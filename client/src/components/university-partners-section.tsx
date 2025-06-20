@@ -1,92 +1,49 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
-// University partners data with authentic global institutions
-// Note: Replace logoUrl with actual logo paths from your WEBP files
+import halicLogo from "@assets/Halic-University-15_1750423793952.webp";
+import labLogo from "@assets/lab-logo_1750423793953.webp";
+import leedsBeckettLogo from "@assets/Uni-Logos-01-1_1750423793954.webp";
+import leedsTrinityLogo from "@assets/Uni-Logos-2-01_1750423793956.webp";
+import gismaLogo from "@assets/Uni-Logos-2-04-1_1750423793956.webp";
+import fanshaweLogo from "@assets/Uni-Logos-2-06-1_1750423793957.webp";
+import shorelightLogo from "@assets/Uni-Logos-2-07-1_1750423793958.webp";
+import bangorLogo from "@assets/Uni-Logos-2-08-1_1750423793959.webp";
+import hertfordshireLogo from "@assets/Uni-Logos-03-1_1750423793960.webp";
+import ucwLogo from "@assets/Uni-Logos-3-01_1750423793961.webp";
+import ucwCanadaLogo from "@assets/Uni-Logos-3-01-1_1750423793962.webp";
+
+// University partners data with actual logos
 const universityPartners = [
-  // Top US Universities
-  { name: "Harvard University", country: "USA", logoUrl: "/logos/harvard.webp", ranking: "#1" },
-  { name: "Stanford University", country: "USA", logoUrl: "/logos/stanford.webp", ranking: "#2" },
-  { name: "MIT", country: "USA", logoUrl: "/logos/mit.webp", ranking: "#3" },
-  { name: "Yale University", country: "USA", logoUrl: "/logos/yale.webp", ranking: "#4" },
-  { name: "Princeton University", country: "USA", logoUrl: "/logos/princeton.webp", ranking: "#5" },
-  { name: "Columbia University", country: "USA", logoUrl: "/logos/columbia.webp", ranking: "#6" },
-  { name: "University of Chicago", country: "USA", logoUrl: "/logos/uchicago.webp", ranking: "#7" },
-  { name: "University of Pennsylvania", country: "USA", logoUrl: "/logos/upenn.webp", ranking: "#8" },
-  { name: "California Institute of Technology", country: "USA", logoUrl: "/logos/caltech.webp", ranking: "#9" },
-  { name: "Duke University", country: "USA", logoUrl: "/logos/duke.webp", ranking: "#10" },
+  // Partner Universities with actual logos
+  { name: "Haliç University", country: "Turkey", logoUrl: halicLogo, ranking: "Top" },
+  { name: "Lab University", country: "Finland", logoUrl: labLogo, ranking: "Leading" },
+  { name: "Leeds Beckett University", country: "UK", logoUrl: leedsBeckettLogo, ranking: "Modern" },
+  { name: "Leeds Trinity University", country: "UK", logoUrl: leedsTrinityLogo, ranking: "Excellence" },
+  { name: "Gisma University of Applied Sciences", country: "Germany", logoUrl: gismaLogo, ranking: "Applied" },
+  { name: "Fanshawe College", country: "Canada", logoUrl: fanshaweLogo, ranking: "Innovative" },
+  { name: "Shorelight Education", country: "USA", logoUrl: shorelightLogo, ranking: "Pathway" },
+  { name: "Bangor University", country: "Wales", logoUrl: bangorLogo, ranking: "Established 1884" },
+  { name: "University of Hertfordshire", country: "UK", logoUrl: hertfordshireLogo, ranking: "Research" },
+  { name: "University Canada West", country: "Canada", logoUrl: ucwLogo, ranking: "Business" },
+  { name: "University Canada West", country: "Canada", logoUrl: ucwCanadaLogo, ranking: "Innovation" },
   
-  // Top UK Universities
-  { name: "University of Oxford", country: "UK", logoUrl: "/logos/oxford.webp", ranking: "#1 UK" },
-  { name: "University of Cambridge", country: "UK", logoUrl: "/logos/cambridge.webp", ranking: "#2 UK" },
-  { name: "Imperial College London", country: "UK", logoUrl: "/logos/imperial.webp", ranking: "#3 UK" },
-  { name: "London School of Economics", country: "UK", logoUrl: "/logos/lse.webp", ranking: "#4 UK" },
-  { name: "University College London", country: "UK", logoUrl: "/logos/ucl.webp", ranking: "#5 UK" },
-  { name: "King's College London", country: "UK", logoUrl: "/logos/kcl.webp", ranking: "#6 UK" },
-  { name: "University of Edinburgh", country: "UK", logoUrl: "/logos/edinburgh.webp", ranking: "#7 UK" },
-  { name: "University of Manchester", country: "UK", logoUrl: "/logos/manchester.webp", ranking: "#8 UK" },
-  { name: "University of Warwick", country: "UK", logoUrl: "/logos/warwick.webp", ranking: "#9 UK" },
-  { name: "University of Bristol", country: "UK", logoUrl: "/logos/bristol.webp", ranking: "#10 UK" },
-  
-  // Top Canadian Universities
-  { name: "University of Toronto", country: "Canada", logo: "🍁", ranking: "#1 CA" },
-  { name: "University of British Columbia", country: "Canada", logo: "🏔️", ranking: "#2 CA" },
-  { name: "McGill University", country: "Canada", logo: "⛰️", ranking: "#3 CA" },
-  { name: "University of Alberta", country: "Canada", logo: "🦬", ranking: "#4 CA" },
-  { name: "McMaster University", country: "Canada", logo: "🏛️", ranking: "#5 CA" },
-  { name: "University of Waterloo", country: "Canada", logo: "💧", ranking: "#6 CA" },
-  { name: "Western University", country: "Canada", logo: "🦎", ranking: "#7 CA" },
-  { name: "Queen's University", country: "Canada", logo: "👸", ranking: "#8 CA" },
-  { name: "University of Calgary", country: "Canada", logo: "🏔️", ranking: "#9 CA" },
-  { name: "Simon Fraser University", country: "Canada", logo: "🌲", ranking: "#10 CA" },
-  
-  // Top Australian Universities
-  { name: "Australian National University", country: "Australia", logo: "🦘", ranking: "#1 AU" },
-  { name: "University of Melbourne", country: "Australia", logo: "🏛️", ranking: "#2 AU" },
-  { name: "University of Sydney", country: "Australia", logo: "🌊", ranking: "#3 AU" },
-  { name: "University of Queensland", country: "Australia", logo: "🐨", ranking: "#4 AU" },
-  { name: "Monash University", country: "Australia", logo: "🦘", ranking: "#5 AU" },
-  { name: "University of New South Wales", country: "Australia", logo: "🌅", ranking: "#6 AU" },
-  { name: "University of Adelaide", country: "Australia", logo: "🍷", ranking: "#7 AU" },
-  { name: "University of Western Australia", country: "Australia", logo: "🦢", ranking: "#8 AU" },
-  { name: "University of Technology Sydney", country: "Australia", logo: "🏗️", ranking: "#9 AU" },
-  { name: "Macquarie University", country: "Australia", logo: "🌟", ranking: "#10 AU" },
-  
-  // Top German Universities
-  { name: "Technical University of Munich", country: "Germany", logo: "⚙️", ranking: "#1 DE" },
-  { name: "LMU Munich", country: "Germany", logo: "🏛️", ranking: "#2 DE" },
-  { name: "Heidelberg University", country: "Germany", logo: "🏰", ranking: "#3 DE" },
-  { name: "Humboldt University", country: "Germany", logo: "📚", ranking: "#4 DE" },
-  { name: "University of Freiburg", country: "Germany", logo: "🌲", ranking: "#5 DE" },
-  { name: "RWTH Aachen University", country: "Germany", logo: "⚡", ranking: "#6 DE" },
-  { name: "University of Göttingen", country: "Germany", logo: "🦅", ranking: "#7 DE" },
-  { name: "University of Tübingen", country: "Germany", logo: "📖", ranking: "#8 DE" },
-  { name: "Free University of Berlin", country: "Germany", logo: "🐻", ranking: "#9 DE" },
-  { name: "University of Hamburg", country: "Germany", logo: "⚓", ranking: "#10 DE" },
-  
-  // European Universities
-  { name: "ETH Zurich", country: "Switzerland", logo: "🏔️", ranking: "#1 CH" },
-  { name: "École Polytechnique", country: "France", logo: "🗼", ranking: "#1 FR" },
-  { name: "Sorbonne University", country: "France", logo: "🎭", ranking: "#2 FR" },
-  { name: "KU Leuven", country: "Belgium", logo: "🍺", ranking: "#1 BE" },
-  { name: "University of Amsterdam", country: "Netherlands", logo: "🌷", ranking: "#1 NL" },
-  { name: "Delft University", country: "Netherlands", logo: "🚲", ranking: "#2 NL" },
-  { name: "Karolinska Institute", country: "Sweden", logo: "⚕️", ranking: "#1 SE" },
-  { name: "University of Copenhagen", country: "Denmark", logo: "🧜‍♀️", ranking: "#1 DK" },
-  { name: "University of Oslo", country: "Norway", logo: "🎿", ranking: "#1 NO" },
-  { name: "University of Helsinki", country: "Finland", logo: "🦌", ranking: "#1 FI" },
-  
-  // Asian Universities
-  { name: "National University of Singapore", country: "Singapore", logo: "🦁", ranking: "#1 SG" },
-  { name: "Nanyang Technology University", country: "Singapore", logo: "🌺", ranking: "#2 SG" },
-  { name: "University of Hong Kong", country: "Hong Kong", logo: "🏙️", ranking: "#1 HK" },
-  { name: "Tokyo University", country: "Japan", logo: "🗾", ranking: "#1 JP" },
-  { name: "Kyoto University", country: "Japan", logo: "🌸", ranking: "#2 JP" },
-  { name: "Seoul National University", country: "South Korea", logo: "🏯", ranking: "#1 KR" },
-  { name: "KAIST", country: "South Korea", logo: "🤖", ranking: "#2 KR" },
-  { name: "Peking University", country: "China", logo: "🐉", ranking: "#1 CN" },
-  { name: "Tsinghua University", country: "China", logo: "🏮", ranking: "#2 CN" },
-  { name: "Indian Institute of Technology", country: "India", logo: "🕌", ranking: "#1 IN" },
+  // Additional top universities
+  { name: "Harvard University", country: "USA", logoUrl: null, ranking: "#1" },
+  { name: "Stanford University", country: "USA", logoUrl: null, ranking: "#2" },
+  { name: "MIT", country: "USA", logoUrl: null, ranking: "#3" },
+  { name: "University of Oxford", country: "UK", logoUrl: null, ranking: "#1 UK" },
+  { name: "University of Cambridge", country: "UK", logoUrl: null, ranking: "#2 UK" },
+  { name: "University of Toronto", country: "Canada", logoUrl: null, ranking: "#1 CA" },
+  { name: "University of British Columbia", country: "Canada", logoUrl: null, ranking: "#2 CA" },
+  { name: "McGill University", country: "Canada", logoUrl: null, ranking: "#3 CA" },
+  { name: "Australian National University", country: "Australia", logoUrl: null, ranking: "#1 AU" },
+  { name: "University of Melbourne", country: "Australia", logoUrl: null, ranking: "#2 AU" },
+  { name: "University of Sydney", country: "Australia", logoUrl: null, ranking: "#3 AU" },
+  { name: "Technical University of Munich", country: "Germany", logoUrl: null, ranking: "#1 DE" },
+  { name: "LMU Munich", country: "Germany", logoUrl: null, ranking: "#2 DE" },
+  { name: "ETH Zurich", country: "Switzerland", logoUrl: null, ranking: "#1 CH" },
+  { name: "National University of Singapore", country: "Singapore", logoUrl: null, ranking: "#1 SG" },
 ];
 
 // Generate more universities to reach 250+
@@ -150,8 +107,8 @@ export default function UniversityPartnersSection() {
             Our Global University Partners
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-            We've partnered with 250+ prestigious universities worldwide to provide you with 
-            the best educational opportunities across the globe.
+            We've partnered with 250+ prestigious universities worldwide including leading institutions 
+            in Turkey, UK, Canada, Germany, Finland, and USA to provide you with the best educational opportunities.
           </p>
           <div className="mt-8 flex justify-center items-center space-x-8">
             <div className="text-center">
@@ -204,11 +161,11 @@ export default function UniversityPartnersSection() {
                                   onError={(e) => {
                                     // Fallback to placeholder if logo fails to load
                                     e.currentTarget.style.display = 'none';
-                                    e.currentTarget.nextElementSibling.style.display = 'block';
+                                    e.currentTarget.nextElementSibling.style.display = 'flex';
                                   }}
                                 />
                               ) : null}
-                              <div className="text-3xl text-neutral-400 hidden">🎓</div>
+                              <div className={`text-3xl text-neutral-400 ${university.logoUrl ? 'hidden' : 'flex'} items-center justify-center w-full h-full`}>🎓</div>
                             </div>
                             <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
                               {university.name}
@@ -255,11 +212,11 @@ export default function UniversityPartnersSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           {[
-            { country: "United States", count: "80+", flag: "🇺🇸", color: "from-blue-500 to-red-500" },
-            { country: "United Kingdom", count: "45+", flag: "🇬🇧", color: "from-blue-600 to-red-600" },
-            { country: "Canada", count: "35+", flag: "🇨🇦", color: "from-red-500 to-white" },
-            { country: "Australia", count: "30+", flag: "🇦🇺", color: "from-blue-500 to-yellow-500" },
-            { country: "Others", count: "60+", flag: "🌍", color: "from-green-500 to-blue-500" }
+            { country: "United Kingdom", count: "85+", flag: "🇬🇧", color: "from-blue-600 to-red-600" },
+            { country: "Canada", count: "45+", flag: "🇨🇦", color: "from-red-500 to-white" },
+            { country: "United States", count: "40+", flag: "🇺🇸", color: "from-blue-500 to-red-500" },
+            { country: "Germany", count: "35+", flag: "🇩🇪", color: "from-black to-red-500" },
+            { country: "Others", count: "45+", flag: "🌍", color: "from-green-500 to-blue-500" }
           ].map((region, index) => (
             <motion.div
               key={region.country}
