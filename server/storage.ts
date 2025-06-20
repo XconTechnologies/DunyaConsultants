@@ -35,7 +35,7 @@ export class MemStorage implements IStorage {
         name: "Sarah Johnson",
         program: "MBA",
         university: "Stanford University",
-        message: "EduPath made my dream of studying at Stanford a reality. Their expertise in visa processing and university selection was invaluable. I couldn't have done it without them!",
+        message: "Path made my dream of studying at Stanford a reality. Their expertise in visa processing and university selection was invaluable. I couldn't have done it without them!",
         rating: 5,
         imageUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&h=80",
         isActive: true,

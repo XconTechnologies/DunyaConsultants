@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, GraduationCap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logoImage from "@assets/Asset-1_1750413567978.png";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -43,9 +44,15 @@ export default function Navigation() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="text-2xl font-bold text-primary flex items-center">
-              <GraduationCap className="mr-2" />
-              EduPath
+            <div className="flex items-center">
+              <img 
+                src={logoImage} 
+                alt="EduPath Logo" 
+                className="h-10 w-auto mr-3"
+              />
+              <div className="text-2xl font-bold text-primary">
+                Path
+              </div>
             </div>
           </motion.div>
           

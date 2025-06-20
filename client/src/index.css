@@ -67,7 +67,7 @@
 
 @layer utilities {
   .gradient-bg {
-    background: linear-gradient(135deg, hsl(221, 84%, 45%) 0%, hsl(217, 91%, 60%) 50%, hsl(163, 94%, 24%) 100%);
+    background: linear-gradient(135deg, hsl(220, 50%, 15%) 0%, hsl(225, 60%, 25%) 30%, hsl(230, 70%, 35%) 70%, hsl(235, 80%, 45%) 100%);
   }
 
   .animate-float {

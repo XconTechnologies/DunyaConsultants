@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import logoImage from "@assets/Asset-1_1750413567978.png";
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -57,8 +58,12 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <div className="text-2xl font-bold mb-4 flex items-center">
-              <GraduationCap className="mr-2" />
-              EduPath
+              <img 
+                src={logoImage} 
+                alt="EduPath Logo" 
+                className="h-8 w-auto mr-3"
+              />
+              Path
             </div>
             <p className="text-neutral-400 mb-4">
               Your trusted partner in achieving international education dreams.

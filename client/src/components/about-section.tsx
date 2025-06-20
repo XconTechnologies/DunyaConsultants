@@ -68,7 +68,7 @@ export default function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">About EduPath</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">About Path</h2>
             <p className="text-xl text-neutral-500 mb-8 leading-relaxed">
               With over 15 years of experience in international education consulting, we have helped thousands of students achieve their dreams of studying abroad.
             </p>
