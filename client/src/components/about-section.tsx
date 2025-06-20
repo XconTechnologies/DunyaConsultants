@@ -18,32 +18,32 @@ export default function AboutSection() {
   const features = [
     {
       icon: Award,
-      title: "Expert Guidance",
-      description: "Certified visa consultants with deep knowledge of immigration policies across 15+ countries.",
+      title: "200 Certified Counsellors",
+      description: "Expert guidance from certified professionals with deep knowledge of immigration policies.",
       color: "text-primary",
       bgColor: "bg-primary/10"
     },
     {
       icon: Users,
-      title: "Proven Track Record",
-      description: "Successfully processed over 5,000 student visas with a 98% approval rate.",
+      title: "17 City Branches",
+      description: "Nationwide presence with 250 ambassadors ensuring local support everywhere.",
       color: "text-secondary",
       bgColor: "bg-secondary/10"
     },
     {
       icon: Heart,
-      title: "Personalized Care",
-      description: "Every student receives individual attention and customized solutions for their unique needs.",
+      title: "20+ University Partnerships",
+      description: "Direct partnerships with leading international universities for better admission chances.",
       color: "text-accent",
       bgColor: "bg-accent/10"
     }
   ];
 
   const stats = [
-    { value: "5000+", label: "Successful Applications", color: "text-primary" },
-    { value: "15+", label: "Countries Covered", color: "text-secondary" },
-    { value: "98%", label: "Success Rate", color: "text-accent" },
-    { value: "15", label: "Years Experience", color: "text-purple-600" }
+    { value: "17", label: "City Branches", color: "text-primary" },
+    { value: "200", label: "Certified Counsellors", color: "text-secondary" },
+    { value: "250", label: "Ambassadors", color: "text-accent" },
+    { value: "20+", label: "University Partners", color: "text-purple-600" }
   ];
 
   return (
@@ -68,9 +68,9 @@ export default function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">About Path</h2>
+            <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">Who We Are</h2>
             <p className="text-xl text-neutral-500 mb-8 leading-relaxed">
-              With over 15 years of experience in international education consulting, we have helped thousands of students achieve their dreams of studying abroad.
+              With a decade of overseas education experience, we are your trusted partner in achieving international education dreams. Our extensive network and proven track record set us apart in the industry.
             </p>
             
             <div className="space-y-6">

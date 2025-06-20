@@ -14,50 +14,50 @@ import {
 
 const services = [
   {
-    icon: FileText,
-    title: "Visa Application",
-    description: "Complete assistance with visa documentation, application forms, and submission process for all major study destinations.",
-    features: ["Document preparation", "Application review", "Interview preparation"],
+    icon: MessageCircle,
+    title: "Career Counseling",
+    description: "Professional guidance to identify the right career path and educational opportunities aligned with your goals.",
+    features: ["Career assessment", "Goal planning", "Industry insights"],
     color: "text-primary",
     bgColor: "bg-primary/10"
   },
   {
-    icon: GraduationCap,
-    title: "University Selection",
-    description: "Personalized guidance to choose the right university and program based on your academic profile and career goals.",
-    features: ["Profile assessment", "University matching", "Application support"],
+    icon: FileText,
+    title: "Application Handling",
+    description: "Complete assistance with university applications, documentation, and submission processes.",
+    features: ["Document preparation", "Application review", "Submission tracking"],
     color: "text-secondary",
     bgColor: "bg-secondary/10"
   },
   {
-    icon: Plane,
-    title: "Pre-Departure Support",
-    description: "Comprehensive preparation for your journey abroad including accommodation, travel, and cultural orientation.",
-    features: ["Travel arrangements", "Accommodation guidance", "Cultural orientation"],
+    icon: DollarSign,
+    title: "Scholarships",
+    description: "Access to exclusive scholarship programs and financial aid opportunities to reduce education costs.",
+    features: ["Scholarship matching", "Application support", "Financial planning"],
     color: "text-accent",
     bgColor: "bg-accent/10"
   },
   {
-    icon: DollarSign,
-    title: "Financial Planning",
-    description: "Expert advice on education funding, scholarships, and financial documentation for visa applications.",
-    features: ["Scholarship guidance", "Loan assistance", "Financial documentation"],
+    icon: GraduationCap,
+    title: "University Selection",
+    description: "Expert advice on choosing the best university and program based on your profile and preferences.",
+    features: ["University matching", "Program analysis", "Admission requirements"],
     color: "text-purple-600",
     bgColor: "bg-purple-100"
   },
   {
-    icon: MessageCircle,
-    title: "Language Support",
-    description: "IELTS, TOEFL, and other language test preparation with expert trainers and proven methodologies.",
-    features: ["Test preparation", "Practice sessions", "Score improvement"],
+    icon: Headphones,
+    title: "Interview Preparation",
+    description: "Comprehensive training for visa interviews and university admission interviews.",
+    features: ["Mock interviews", "Question practice", "Confidence building"],
     color: "text-red-600",
     bgColor: "bg-red-100"
   },
   {
-    icon: Headphones,
-    title: "24/7 Support",
-    description: "Round-the-clock assistance throughout your journey from application to arrival at your destination.",
-    features: ["Emergency support", "Progress tracking", "Post-arrival assistance"],
+    icon: Plane,
+    title: "Pre-Departure Briefing",
+    description: "Complete preparation for your journey including travel, accommodation, and cultural orientation.",
+    features: ["Travel guidance", "Cultural briefing", "Essential preparations"],
     color: "text-green-600",
     bgColor: "bg-green-100"
   }
