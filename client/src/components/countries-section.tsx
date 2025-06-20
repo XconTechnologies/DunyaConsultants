@@ -50,6 +50,28 @@ const countries: Country[] = [
   },
   {
     id: "2",
+    name: "United States",
+    code: "US",
+    flag: "🇺🇸",
+    description: "Home to the world's top universities and cutting-edge research facilities. The US offers unparalleled academic diversity and innovation opportunities across all fields of study.",
+    topUniversities: ["Harvard University", "MIT", "Stanford University", "Yale University", "Princeton University"],
+    studentCount: 2100,
+    popularPrograms: ["Computer Science", "Business", "Engineering", "Medicine", "Liberal Arts"],
+    averageCost: "$25,000 - $70,000/year",
+    scholarships: 200,
+    visaSuccessRate: 88,
+    workRights: "1-3 year OPT program",
+    featured: true,
+    continent: "North America",
+    highlights: ["Top-ranked universities", "Innovation hub", "Diverse programs", "Research opportunities"],
+    studyDuration: "4 years (Bachelor's), 2 years (Master's)",
+    language: "English",
+    climate: "Varied continental",
+    currency: "US Dollar (USD)",
+    timeZone: "Multiple zones"
+  },
+  {
+    id: "3",
     name: "Canada",
     code: "CA",
     flag: "🇨🇦",
@@ -71,7 +93,7 @@ const countries: Country[] = [
     timeZone: "Multiple zones"
   },
   {
-    id: "3",
+    id: "4",
     name: "Australia",
     code: "AU",
     flag: "🇦🇺",
@@ -93,38 +115,148 @@ const countries: Country[] = [
     timeZone: "Multiple zones"
   },
   {
-    id: "4",
-    name: "United States",
-    code: "US",
-    flag: "🇺🇸",
-    description: "Home to the world's top universities and cutting-edge research facilities. The US offers unparalleled academic diversity and innovation opportunities across all fields of study.",
-    topUniversities: ["Harvard University", "MIT", "Stanford University", "Yale University", "Princeton University"],
-    studentCount: 2100,
-    popularPrograms: ["Computer Science", "Business", "Engineering", "Medicine", "Liberal Arts"],
-    averageCost: "$25,000 - $70,000/year",
-    scholarships: 200,
-    visaSuccessRate: 88,
-    workRights: "1-3 year OPT program",
+    id: "5",
+    name: "United Arab Emirates",
+    code: "AE",
+    flag: "🇦🇪",
+    description: "A rapidly growing education hub in the Middle East with international university branches and cutting-edge facilities. UAE offers a strategic location connecting East and West.",
+    topUniversities: ["American University of Sharjah", "United Arab Emirates University", "Khalifa University", "New York University Abu Dhabi", "University of Sharjah"],
+    studentCount: 320,
+    popularPrograms: ["Business", "Engineering", "Medicine", "Information Technology", "Petroleum Engineering"],
+    averageCost: "AED 40,000 - 80,000/year",
+    scholarships: 65,
+    visaSuccessRate: 85,
+    workRights: "1-year job search visa",
     featured: false,
-    continent: "North America",
-    highlights: ["Top-ranked universities", "Innovation hub", "Diverse programs", "Research opportunities"],
+    continent: "Asia",
+    highlights: ["Tax-free income", "Modern infrastructure", "Cultural diversity", "Strategic location"],
     studyDuration: "4 years (Bachelor's), 2 years (Master's)",
-    language: "English",
-    climate: "Varied continental",
-    currency: "US Dollar (USD)",
-    timeZone: "Multiple zones"
+    language: "English & Arabic",
+    climate: "Desert climate",
+    currency: "UAE Dirham (AED)",
+    timeZone: "GST"
   },
   {
-    id: "5",
+    id: "6",
+    name: "Finland",
+    code: "FI",
+    flag: "🇫🇮",
+    description: "Known for its innovative education system and high quality of life. Finland offers excellent programs in technology, design, and sustainability with strong government support for international students.",
+    topUniversities: ["University of Helsinki", "Aalto University", "University of Turku", "Tampere University", "University of Oulu"],
+    studentCount: 180,
+    popularPrograms: ["Technology", "Design", "Education", "Environmental Studies", "Business"],
+    averageCost: "€0 - €18,000/year",
+    scholarships: 40,
+    visaSuccessRate: 90,
+    workRights: "2-year residence permit extension",
+    featured: false,
+    continent: "Europe",
+    highlights: ["High quality of life", "Innovation focus", "Low tuition fees", "Safe environment"],
+    studyDuration: "3 years (Bachelor's), 2 years (Master's)",
+    language: "Finnish, Swedish (English programs available)",
+    climate: "Continental subarctic",
+    currency: "Euro (EUR)",
+    timeZone: "EET/EEST"
+  },
+  {
+    id: "7",
+    name: "Sweden",
+    code: "SE",
+    flag: "🇸🇪",
+    description: "Renowned for innovation and sustainability, Sweden offers world-class education in a progressive society. Known for its research excellence and work-life balance culture.",
+    topUniversities: ["KTH Royal Institute of Technology", "Lund University", "University of Gothenburg", "Stockholm University", "Uppsala University"],
+    studentCount: 240,
+    popularPrograms: ["Engineering", "Technology", "Medicine", "Business", "Sustainability"],
+    averageCost: "SEK 80,000 - 140,000/year",
+    scholarships: 55,
+    visaSuccessRate: 88,
+    workRights: "6-month job search extension",
+    featured: false,
+    continent: "Europe",
+    highlights: ["Innovation hub", "Sustainable development", "Work-life balance", "English proficiency"],
+    studyDuration: "3 years (Bachelor's), 2 years (Master's)",
+    language: "Swedish (English programs available)",
+    climate: "Continental",
+    currency: "Swedish Krona (SEK)",
+    timeZone: "CET/CEST"
+  },
+  {
+    id: "8",
+    name: "Cyprus",
+    code: "CY",
+    flag: "🇨🇾",
+    description: "A Mediterranean island nation offering European education standards at affordable costs. Cyprus provides a gateway to European education with excellent weather and cultural diversity.",
+    topUniversities: ["University of Cyprus", "Cyprus University of Technology", "European University Cyprus", "Frederick University", "Neapolis University"],
+    studentCount: 95,
+    popularPrograms: ["Business", "Medicine", "Engineering", "Tourism", "Maritime Studies"],
+    averageCost: "€6,000 - €15,000/year",
+    scholarships: 25,
+    visaSuccessRate: 82,
+    workRights: "12-month job search visa",
+    featured: false,
+    continent: "Europe",
+    highlights: ["EU member benefits", "Mediterranean lifestyle", "Affordable education", "English-speaking environment"],
+    studyDuration: "4 years (Bachelor's), 2 years (Master's)",
+    language: "Greek, Turkish (English programs available)",
+    climate: "Mediterranean",
+    currency: "Euro (EUR)",
+    timeZone: "EET/EEST"
+  },
+  {
+    id: "9",
+    name: "Turkey",
+    code: "TR",
+    flag: "🇹🇷",
+    description: "A bridge between Europe and Asia, Turkey offers rich cultural heritage and modern education facilities. Known for affordable education and diverse academic programs.",
+    topUniversities: ["Boğaziçi University", "Middle East Technical University", "Istanbul Technical University", "Bilkent University", "Koç University"],
+    studentCount: 380,
+    popularPrograms: ["Engineering", "Business", "Medicine", "International Relations", "Architecture"],
+    averageCost: "$2,000 - $8,000/year",
+    scholarships: 70,
+    visaSuccessRate: 75,
+    workRights: "6-month work permit",
+    featured: false,
+    continent: "Europe/Asia",
+    highlights: ["Cultural crossroads", "Affordable costs", "Rich history", "Growing economy"],
+    studyDuration: "4 years (Bachelor's), 2 years (Master's)",
+    language: "Turkish (English programs available)",
+    climate: "Mediterranean/Continental",
+    currency: "Turkish Lira (TRY)",
+    timeZone: "TRT"
+  },
+  {
+    id: "10",
+    name: "France",
+    code: "FR",
+    flag: "🇫🇷",
+    description: "Home to prestigious institutions and rich cultural heritage. France offers excellent education in arts, sciences, and business with strong government support for international students.",
+    topUniversities: ["Sorbonne University", "École Normale Supérieure", "Sciences Po", "HEC Paris", "École Polytechnique"],
+    studentCount: 420,
+    popularPrograms: ["Business", "Arts", "Engineering", "Fashion", "Culinary Arts"],
+    averageCost: "€2,770 - €25,000/year",
+    scholarships: 85,
+    visaSuccessRate: 80,
+    workRights: "12-month job search visa",
+    featured: false,
+    continent: "Europe",
+    highlights: ["Cultural richness", "Low tuition fees", "Research excellence", "Central European location"],
+    studyDuration: "3 years (Bachelor's), 2 years (Master's)",
+    language: "French (English programs available)",
+    climate: "Temperate",
+    currency: "Euro (EUR)",
+    timeZone: "CET/CEST"
+  },
+  {
+    id: "11",
     name: "Germany",
     code: "DE",
     flag: "🇩🇪",
     description: "Known for its strong engineering programs and low tuition fees. Germany offers excellent technical education with a focus on practical application and industry partnerships.",
     topUniversities: ["Technical University of Munich", "Ludwig Maximilian University", "Heidelberg University", "Humboldt University", "RWTH Aachen"],
-    studentCount: 420,
+    studentCount: 520,
     popularPrograms: ["Engineering", "Computer Science", "Business", "Medicine", "Automotive Technology"],
     averageCost: "€0 - €20,000/year",
-    scholarships: 75,
+    scholarships: 95,
     visaSuccessRate: 85,
     workRights: "18-month job search visa",
     featured: false,
@@ -137,26 +269,26 @@ const countries: Country[] = [
     timeZone: "CET/CEST"
   },
   {
-    id: "6",
-    name: "New Zealand",
-    code: "NZ",
-    flag: "🇳🇿",
-    description: "Offering high-quality education in a safe, peaceful environment with stunning natural beauty. Known for its innovative teaching methods and strong support for international students.",
-    topUniversities: ["University of Auckland", "University of Otago", "Victoria University of Wellington", "University of Canterbury", "Massey University"],
-    studentCount: 180,
-    popularPrograms: ["Agriculture", "Tourism", "Engineering", "Medicine", "Environmental Studies"],
-    averageCost: "NZD 22,000 - 40,000/year",
-    scholarships: 45,
-    visaSuccessRate: 93,
-    workRights: "3-year post-study work visa",
+    id: "12",
+    name: "Ireland",
+    code: "IE",
+    flag: "🇮🇪",
+    description: "Known as the 'Silicon Valley of Europe', Ireland offers excellent technology and business programs with a vibrant culture and friendly environment for international students.",
+    topUniversities: ["Trinity College Dublin", "University College Dublin", "National University of Ireland", "Dublin City University", "University of Limerick"],
+    studentCount: 280,
+    popularPrograms: ["Technology", "Business", "Pharmaceuticals", "Finance", "Engineering"],
+    averageCost: "€10,000 - €25,000/year",
+    scholarships: 60,
+    visaSuccessRate: 87,
+    workRights: "2-year graduate scheme",
     featured: false,
-    continent: "Oceania",
-    highlights: ["Safe environment", "Natural beauty", "Quality education", "Adventure opportunities"],
-    studyDuration: "3 years (Bachelor's), 1-2 years (Master's)",
-    language: "English",
-    climate: "Temperate maritime",
-    currency: "New Zealand Dollar (NZD)",
-    timeZone: "NZST/NZDT"
+    continent: "Europe",
+    highlights: ["Tech industry hub", "English-speaking", "EU member benefits", "Friendly culture"],
+    studyDuration: "3-4 years (Bachelor's), 1-2 years (Master's)",
+    language: "English & Irish",
+    climate: "Temperate oceanic",
+    currency: "Euro (EUR)",
+    timeZone: "GMT/IST"
   }
 ];
 
@@ -164,16 +296,28 @@ const getCountryGradient = (country: string) => {
   switch (country) {
     case 'United Kingdom':
       return 'from-blue-600 to-red-600';
+    case 'United States':
+      return 'from-blue-600 to-red-500';
     case 'Canada':
       return 'from-red-500 to-red-600';
     case 'Australia':
       return 'from-blue-500 to-green-500';
-    case 'United States':
-      return 'from-blue-600 to-red-500';
+    case 'United Arab Emirates':
+      return 'from-green-600 to-red-500';
+    case 'Finland':
+      return 'from-blue-500 to-white';
+    case 'Sweden':
+      return 'from-blue-500 to-yellow-400';
+    case 'Cyprus':
+      return 'from-blue-400 to-orange-400';
+    case 'Turkey':
+      return 'from-red-600 to-red-700';
+    case 'France':
+      return 'from-blue-600 to-red-600';
     case 'Germany':
       return 'from-red-500 to-yellow-500';
-    case 'New Zealand':
-      return 'from-blue-500 to-black';
+    case 'Ireland':
+      return 'from-green-600 to-orange-500';
     default:
       return 'from-primary to-secondary';
   }
@@ -187,6 +331,7 @@ export default function CountriesSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const featuredCountries = countries.filter(country => country.featured);
+  const europeanCountries = countries.filter(country => country.continent === 'Europe');
   const currentCountries = viewMode === 'featured' ? featuredCountries : countries;
   const totalSlides = Math.ceil(currentCountries.length / 3);
 
@@ -274,7 +419,7 @@ export default function CountriesSection() {
                 setViewMode('featured');
                 setCurrentSlide(0);
               }}
-              className={`px-6 py-2 rounded-md font-medium transition-all duration-300 ${
+              className={`px-4 py-2 rounded-md font-medium transition-all duration-300 text-sm ${
                 viewMode === 'featured'
                   ? 'bg-primary text-white shadow-md'
                   : 'text-neutral-600 hover:text-primary'
@@ -287,7 +432,7 @@ export default function CountriesSection() {
                 setViewMode('all');
                 setCurrentSlide(0);
               }}
-              className={`px-6 py-2 rounded-md font-medium transition-all duration-300 ${
+              className={`px-4 py-2 rounded-md font-medium transition-all duration-300 text-sm ${
                 viewMode === 'all'
                   ? 'bg-primary text-white shadow-md'
                   : 'text-neutral-600 hover:text-primary'
