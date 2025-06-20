@@ -292,45 +292,119 @@ export default function OfficeLocations() {
           </div>
           
           {/* Map Container */}
-          <div className="h-96 bg-gray-100 relative overflow-hidden">
-            {/* Office Markers */}
-            {filteredOffices.map((office, index) => (
-              <motion.div
-                key={office.id}
-                className="absolute group cursor-pointer"
-                style={{
-                  left: `${15 + (index % 9) * 9}%`,
-                  top: `${15 + Math.floor(index / 9) * 20}%`
-                }}
-                onClick={() => setSelectedOffice(selectedOffice?.id === office.id ? null : office)}
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.6 + index * 0.05 }}
-              >
-                {/* Marker Pin */}
-                <div className={`relative w-6 h-8 transition-all duration-300 group-hover:scale-125 ${
-                  selectedOffice?.id === office.id ? 'scale-125' : ''
-                }`}>
-                  <div className={`w-6 h-6 rounded-full shadow-lg ${
-                    office.isHeadOffice ? 'bg-red-500' : 'bg-primary'
-                  } border-2 border-white`} />
-                  <div className={`w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-transparent ${
-                    office.isHeadOffice ? 'border-t-red-500' : 'border-t-primary'
-                  } absolute -bottom-2 left-1/2 transform -translate-x-1/2`} />
-                </div>
-                
-                {/* Tooltip */}
-                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                  <div className="bg-neutral-800 text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap shadow-lg">
-                    {office.name}
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[4px] border-transparent border-t-neutral-800" />
+          <div className="h-96 bg-blue-50 relative overflow-hidden">
+            {/* World Map Grid Lines */}
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 400">
+              {/* Longitude lines */}
+              {Array.from({ length: 17 }, (_, i) => (
+                <line
+                  key={`lon-${i}`}
+                  x1={i * 50}
+                  y1={0}
+                  x2={i * 50}
+                  y2={400}
+                  stroke="#e5e7eb"
+                  strokeWidth="1"
+                  opacity="0.6"
+                />
+              ))}
+              {/* Latitude lines */}
+              {Array.from({ length: 9 }, (_, i) => (
+                <line
+                  key={`lat-${i}`}
+                  x1={0}
+                  y1={i * 50}
+                  x2={800}
+                  y2={i * 50}
+                  stroke="#e5e7eb"
+                  strokeWidth="1"
+                  opacity="0.6"
+                />
+              ))}
+              
+              {/* Simplified World Continents */}
+              {/* Asia */}
+              <path
+                d="M350 120 Q450 100 550 130 Q580 150 590 180 Q570 220 520 240 Q480 250 440 230 Q400 210 380 180 Q360 150 350 120Z"
+                fill="#d1d5db"
+                opacity="0.4"
+              />
+              {/* Europe */}
+              <path
+                d="M280 100 Q320 95 340 110 Q350 130 340 150 Q320 160 300 155 Q285 145 280 130 Q275 115 280 100Z"
+                fill="#d1d5db"
+                opacity="0.4"
+              />
+              {/* Africa */}
+              <path
+                d="M300 160 Q330 155 350 170 Q360 200 350 240 Q340 280 320 300 Q300 310 285 300 Q275 280 280 250 Q285 220 290 190 Q295 175 300 160Z"
+                fill="#d1d5db"
+                opacity="0.4"
+              />
+              {/* North America */}
+              <path
+                d="M100 80 Q150 70 200 90 Q220 110 210 140 Q190 170 160 180 Q130 175 110 150 Q95 125 100 80Z"
+                fill="#d1d5db"
+                opacity="0.4"
+              />
+              {/* South America */}
+              <path
+                d="M180 200 Q200 195 210 210 Q215 240 205 280 Q195 320 185 340 Q175 350 165 340 Q160 320 165 290 Q170 260 175 230 Q178 215 180 200Z"
+                fill="#d1d5db"
+                opacity="0.4"
+              />
+              {/* Australia */}
+              <path
+                d="M550 280 Q580 275 600 290 Q605 305 595 315 Q580 320 565 315 Q555 305 550 290 Q548 285 550 280Z"
+                fill="#d1d5db"
+                opacity="0.4"
+              />
+            </svg>
+            
+            {/* Office Markers with Geographic Positioning */}
+            {filteredOffices.map((office, index) => {
+              // Convert lat/lng to approximate screen coordinates
+              const x = ((office.coordinates[1] + 180) / 360) * 100; // longitude to x%
+              const y = ((90 - office.coordinates[0]) / 180) * 100; // latitude to y%
+              
+              return (
+                <motion.div
+                  key={office.id}
+                  className="absolute group cursor-pointer z-10"
+                  style={{
+                    left: `${Math.max(2, Math.min(96, x))}%`,
+                    top: `${Math.max(2, Math.min(94, y))}%`
+                  }}
+                  onClick={() => setSelectedOffice(selectedOffice?.id === office.id ? null : office)}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 0.6 + index * 0.05 }}
+                >
+                  {/* Marker Pin */}
+                  <div className={`relative w-6 h-8 transition-all duration-300 group-hover:scale-125 ${
+                    selectedOffice?.id === office.id ? 'scale-125' : ''
+                  }`}>
+                    <div className={`w-6 h-6 rounded-full shadow-lg ${
+                      office.isHeadOffice ? 'bg-red-500' : 'bg-primary'
+                    } border-2 border-white`} />
+                    <div className={`w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-transparent ${
+                      office.isHeadOffice ? 'border-t-red-500' : 'border-t-primary'
+                    } absolute -bottom-2 left-1/2 transform -translate-x-1/2`} />
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                  
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <div className="bg-neutral-800 text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap shadow-lg">
+                      {office.name}
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[4px] border-transparent border-t-neutral-800" />
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
             
             {/* Legend */}
-            <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm p-4 rounded-lg shadow-lg">
+            <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm p-4 rounded-lg shadow-lg z-20">
               <h4 className="text-sm font-semibold text-neutral-800 mb-2">Legend</h4>
               <div className="space-y-2 text-xs">
                 <div className="flex items-center">
@@ -344,8 +418,13 @@ export default function OfficeLocations() {
               </div>
             </div>
             
+            {/* Geographic Labels */}
+            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-md z-20">
+              <p className="text-xs font-semibold text-neutral-700">Global Office Network</p>
+            </div>
+            
             {/* Instructions */}
-            <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-lg max-w-xs">
+            <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-lg max-w-xs z-20">
               <p className="text-xs text-neutral-600 text-center">
                 Click on any marker to view office details
               </p>
