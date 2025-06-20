@@ -10,6 +10,7 @@ import EventsSection from "@/components/events-section";
 import TestimonialsSection from "@/components/testimonials-section";
 import ContactSection from "@/components/contact-section";
 import UniversityPartnersSection from "@/components/university-partners-section";
+import CostCalculatorSection from "@/components/cost-calculator-section";
 import Footer from "@/components/footer";
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
       <EventsSection />
       <TestimonialsSection />
       <UniversityPartnersSection />
+      <CostCalculatorSection />
       <ContactSection />
       <Footer />
     </div>
