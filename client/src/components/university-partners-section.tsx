@@ -2,30 +2,31 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
 // University partners data with authentic global institutions
+// Note: Replace logoUrl with actual logo paths from your WEBP files
 const universityPartners = [
   // Top US Universities
-  { name: "Harvard University", country: "USA", logo: "🏛️", ranking: "#1" },
-  { name: "Stanford University", country: "USA", logo: "🌲", ranking: "#2" },
-  { name: "MIT", country: "USA", logo: "🔬", ranking: "#3" },
-  { name: "Yale University", country: "USA", logo: "🦬", ranking: "#4" },
-  { name: "Princeton University", country: "USA", logo: "🐅", ranking: "#5" },
-  { name: "Columbia University", country: "USA", logo: "🏛️", ranking: "#6" },
-  { name: "University of Chicago", country: "USA", logo: "🌆", ranking: "#7" },
-  { name: "University of Pennsylvania", country: "USA", logo: "🦅", ranking: "#8" },
-  { name: "California Institute of Technology", country: "USA", logo: "🚀", ranking: "#9" },
-  { name: "Duke University", country: "USA", logo: "👑", ranking: "#10" },
+  { name: "Harvard University", country: "USA", logoUrl: "/logos/harvard.webp", ranking: "#1" },
+  { name: "Stanford University", country: "USA", logoUrl: "/logos/stanford.webp", ranking: "#2" },
+  { name: "MIT", country: "USA", logoUrl: "/logos/mit.webp", ranking: "#3" },
+  { name: "Yale University", country: "USA", logoUrl: "/logos/yale.webp", ranking: "#4" },
+  { name: "Princeton University", country: "USA", logoUrl: "/logos/princeton.webp", ranking: "#5" },
+  { name: "Columbia University", country: "USA", logoUrl: "/logos/columbia.webp", ranking: "#6" },
+  { name: "University of Chicago", country: "USA", logoUrl: "/logos/uchicago.webp", ranking: "#7" },
+  { name: "University of Pennsylvania", country: "USA", logoUrl: "/logos/upenn.webp", ranking: "#8" },
+  { name: "California Institute of Technology", country: "USA", logoUrl: "/logos/caltech.webp", ranking: "#9" },
+  { name: "Duke University", country: "USA", logoUrl: "/logos/duke.webp", ranking: "#10" },
   
   // Top UK Universities
-  { name: "University of Oxford", country: "UK", logo: "📚", ranking: "#1 UK" },
-  { name: "University of Cambridge", country: "UK", logo: "🎓", ranking: "#2 UK" },
-  { name: "Imperial College London", country: "UK", logo: "⚗️", ranking: "#3 UK" },
-  { name: "London School of Economics", country: "UK", logo: "💼", ranking: "#4 UK" },
-  { name: "University College London", country: "UK", logo: "🏛️", ranking: "#5 UK" },
-  { name: "King's College London", country: "UK", logo: "👑", ranking: "#6 UK" },
-  { name: "University of Edinburgh", country: "UK", logo: "🏰", ranking: "#7 UK" },
-  { name: "University of Manchester", country: "UK", logo: "🐝", ranking: "#8 UK" },
-  { name: "University of Warwick", country: "UK", logo: "⚔️", ranking: "#9 UK" },
-  { name: "University of Bristol", country: "UK", logo: "🌉", ranking: "#10 UK" },
+  { name: "University of Oxford", country: "UK", logoUrl: "/logos/oxford.webp", ranking: "#1 UK" },
+  { name: "University of Cambridge", country: "UK", logoUrl: "/logos/cambridge.webp", ranking: "#2 UK" },
+  { name: "Imperial College London", country: "UK", logoUrl: "/logos/imperial.webp", ranking: "#3 UK" },
+  { name: "London School of Economics", country: "UK", logoUrl: "/logos/lse.webp", ranking: "#4 UK" },
+  { name: "University College London", country: "UK", logoUrl: "/logos/ucl.webp", ranking: "#5 UK" },
+  { name: "King's College London", country: "UK", logoUrl: "/logos/kcl.webp", ranking: "#6 UK" },
+  { name: "University of Edinburgh", country: "UK", logoUrl: "/logos/edinburgh.webp", ranking: "#7 UK" },
+  { name: "University of Manchester", country: "UK", logoUrl: "/logos/manchester.webp", ranking: "#8 UK" },
+  { name: "University of Warwick", country: "UK", logoUrl: "/logos/warwick.webp", ranking: "#9 UK" },
+  { name: "University of Bristol", country: "UK", logoUrl: "/logos/bristol.webp", ranking: "#10 UK" },
   
   // Top Canadian Universities
   { name: "University of Toronto", country: "Canada", logo: "🍁", ranking: "#1 CA" },
@@ -105,7 +106,7 @@ const generateMoreUniversities = () => {
     additionalUniversities.push({
       name: `${prefix} ${suffix} of ${city}`,
       country,
-      logo: "🎓",
+      logoUrl: `/logos/university-${i + 11}.webp`,
       ranking: `#${i + 11}`
     });
   }
@@ -187,24 +188,36 @@ export default function UniversityPartnersSection() {
                       {getUniversitiesForSlide(slideIndex).map((university, index) => (
                         <motion.div
                           key={`${slideIndex}-${index}`}
-                          className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-6 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+                          className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.5, delay: index * 0.05 }}
                           whileHover={{ scale: 1.05, y: -5 }}
                         >
                           <div className="text-center">
-                            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                              {university.logo}
+                            <div className="h-16 mb-3 flex items-center justify-center">
+                              {university.logoUrl ? (
+                                <img 
+                                  src={university.logoUrl} 
+                                  alt={`${university.name} logo`}
+                                  className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                                  onError={(e) => {
+                                    // Fallback to placeholder if logo fails to load
+                                    e.currentTarget.style.display = 'none';
+                                    e.currentTarget.nextElementSibling.style.display = 'block';
+                                  }}
+                                />
+                              ) : null}
+                              <div className="text-3xl text-neutral-400 hidden">🎓</div>
                             </div>
-                            <h3 className="font-bold text-neutral-800 text-sm mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                            <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
                               {university.name}
                             </h3>
-                            <div className="flex justify-between items-center text-xs text-neutral-500">
-                              <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
+                            <div className="flex justify-between items-center text-xs text-neutral-500 gap-1">
+                              <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
                                 {university.country}
                               </span>
-                              <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full">
+                              <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">
                                 {university.ranking}
                               </span>
                             </div>
