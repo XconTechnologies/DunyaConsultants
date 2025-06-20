@@ -11,6 +11,7 @@ import TestimonialsSection from "@/components/testimonials-section";
 import ContactSection from "@/components/contact-section";
 import UniversityPartnersSection from "@/components/university-partners-section";
 import CostCalculatorSection from "@/components/cost-calculator-section";
+import GoogleReviewsSection from "@/components/google-reviews-section";
 import Footer from "@/components/footer";
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
       <CountriesSection />
       <EventsSection />
       <TestimonialsSection />
+      <GoogleReviewsSection />
       <UniversityPartnersSection />
       <CostCalculatorSection />
       <ContactSection />
