@@ -112,7 +112,7 @@ The application uses three main tables:
 - **June 20, 2025 - Dark Blue Theme**: Changed hero section gradient to use professional dark blue color scheme for enhanced visual appeal.
 - **June 20, 2025 - Content Enhancement**: Added comprehensive sections including IELTS training features, 6-step admission process workflow, updated services to match consultancy offerings (Career Counseling, Application Handling, Scholarships, University Selection, Interview Preparation, Pre-Departure Briefing), and enhanced About section with authentic statistics (17 city branches, 200 certified counsellors, 250 ambassadors, 20+ university partnerships).
 - **June 20, 2025 - Audience-Specific Solutions**: Created interactive tabbed section showcasing tailored solutions for Students (virtual coaching, applications & visas, scholarships), Partners (innovative technology, expert webinars, end-to-end support), and Universities (diverse recruitment, network access, brand visibility) with dynamic content switching and unique visual designs.
-- **June 20, 2025 - Office Locations Simplified**: Removed map visualization to focus on clean office listings with region filtering, expandable cards showing detailed contact information, and streamlined presentation of office network.
+- **June 20, 2025 - Office Locations Removed**: Completely removed office locations section from the website to simplify user experience and focus on core consultation services.
 
 ## Changelog
 
