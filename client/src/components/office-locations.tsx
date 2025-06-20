@@ -272,23 +272,21 @@ export default function OfficeLocations() {
           ))}
         </motion.div>
 
-        {/* Interactive Maps */}
+        {/* Office Listings */}
         <motion.div 
-          className="bg-white rounded-2xl shadow-xl mb-12 overflow-hidden"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="bg-gradient-to-r from-primary to-secondary p-6 text-white">
-            <div className="flex items-center justify-between">
-              <h3 className="text-2xl font-bold flex items-center">
-                <Navigation className="mr-3" size={28} />
-                Interactive Office Maps
-              </h3>
-              <div className="text-sm bg-white/20 px-3 py-1 rounded-full">
-                {filteredOffices.length} Locations
-              </div>
-            </div>
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-bold text-neutral-800 mb-4 flex items-center justify-center">
+              <Building className="mr-3 text-primary" size={32} />
+              Our Office Network
+            </h3>
+            <p className="text-neutral-600 max-w-2xl mx-auto">
+              Visit any of our {filteredOffices.length} offices across Pakistan and internationally for personalized consultation services.
+            </p>
           </div>
           
           {/* Maps Grid */}
