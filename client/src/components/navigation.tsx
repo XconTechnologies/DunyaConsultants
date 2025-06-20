@@ -29,6 +29,7 @@ export default function Navigation() {
     { name: "Home", id: "home" },
     { name: "Services", id: "services" },
     { name: "About", id: "about" },
+    { name: "Solutions", id: "audience" },
     { name: "IELTS", id: "ielts" },
     { name: "Process", id: "process" },
     { name: "Testimonials", id: "testimonials" },
