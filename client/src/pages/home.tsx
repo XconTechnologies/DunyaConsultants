@@ -5,6 +5,7 @@ import AboutSection from "@/components/about-section";
 import AudienceSection from "@/components/audience-section";
 import IeltsSection from "@/components/ielts-section";
 import ProcessSection from "@/components/process-section";
+import EventsSection from "@/components/events-section";
 import TestimonialsSection from "@/components/testimonials-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
@@ -19,6 +20,7 @@ export default function Home() {
       <AudienceSection />
       <IeltsSection />
       <ProcessSection />
+      <EventsSection />
       <TestimonialsSection />
       <ContactSection />
       <Footer />
