@@ -47,12 +47,9 @@ export default function Navigation() {
             <div className="flex items-center">
               <img 
                 src={logoImage} 
-                alt="EduPath Logo" 
-                className="h-10 w-auto mr-3"
+                alt="Path Visa Consultants Logo" 
+                className="h-12 w-auto"
               />
-              <div className="text-2xl font-bold text-primary">
-                Path
-              </div>
             </div>
           </motion.div>
           

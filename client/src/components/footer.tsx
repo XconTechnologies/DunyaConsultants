@@ -57,13 +57,12 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="text-2xl font-bold mb-4 flex items-center">
+            <div className="mb-4 flex items-center">
               <img 
                 src={logoImage} 
-                alt="EduPath Logo" 
-                className="h-8 w-auto mr-3"
+                alt="Path Visa Consultants Logo" 
+                className="h-10 w-auto"
               />
-              Path
             </div>
             <p className="text-neutral-400 mb-4">
               Your trusted partner in achieving international education dreams.
