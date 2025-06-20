@@ -124,7 +124,7 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <p>&copy; 2024 EduPath Visa Consultants. All rights reserved.</p>
+          <p>&copy; 2024 Path Visa Consultants. All rights reserved.</p>
         </motion.div>
       </div>
     </footer>

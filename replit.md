@@ -1,8 +1,8 @@
-# EduPath Visa Consultants - System Architecture
+# Path Visa Consultants - System Architecture
 
 ## Overview
 
-EduPath Visa Consultants is a full-stack web application that provides visa consultation services for students seeking to study abroad. The application is built with a modern tech stack featuring a React frontend, Express.js backend, and PostgreSQL database, all deployed on Replit's infrastructure.
+Path Visa Consultants is a full-stack web application that provides visa consultation services for students seeking to study abroad. The application features a professional dark blue gradient design with custom branding, built with a modern tech stack featuring a React frontend, Express.js backend, and PostgreSQL database, all deployed on Replit's infrastructure.
 
 ## System Architecture
 
@@ -107,7 +107,9 @@ The application uses three main tables:
 
 ## Recent Changes
 
-- **June 20, 2025 - Hero Section Redesign**: Redesigned hero section to be fully centered without image, featuring gradient overlay effects, background patterns, floating animated elements, and integrated statistics cards for better visual impact and professionalism.
+- **June 20, 2025 - Hero Section Redesign**: Redesigned hero section to be fully centered without image, featuring dark blue gradient overlay effects, background patterns, floating animated elements, and integrated statistics cards for better visual impact and professionalism.
+- **June 20, 2025 - Brand Update**: Updated brand name from "EduPath" to "Path", integrated custom logo asset throughout navigation and footer, updated all testimonials and contact information to reflect new branding.
+- **June 20, 2025 - Dark Blue Theme**: Changed hero section gradient to use professional dark blue color scheme for enhanced visual appeal.
 
 ## Changelog
 

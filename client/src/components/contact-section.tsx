@@ -83,7 +83,7 @@ export default function ContactSection() {
     {
       icon: Mail,
       title: "Email Addresses",
-      content: ["info@edupath.com", "support@edupath.com"],
+      content: ["info@pathconsultants.com", "support@pathconsultants.com"],
       color: "bg-accent"
     },
     {
