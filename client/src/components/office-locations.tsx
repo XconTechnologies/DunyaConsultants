@@ -272,7 +272,7 @@ export default function OfficeLocations() {
           ))}
         </motion.div>
 
-        {/* Interactive Map Placeholder */}
+        {/* Interactive Maps */}
         <motion.div 
           className="bg-white rounded-2xl shadow-xl mb-12 overflow-hidden"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -283,7 +283,7 @@ export default function OfficeLocations() {
             <div className="flex items-center justify-between">
               <h3 className="text-2xl font-bold flex items-center">
                 <Navigation className="mr-3" size={28} />
-                Interactive Office Map
+                Interactive Office Maps
               </h3>
               <div className="text-sm bg-white/20 px-3 py-1 rounded-full">
                 {filteredOffices.length} Locations
@@ -291,8 +291,13 @@ export default function OfficeLocations() {
             </div>
           </div>
           
-          {/* Map Container */}
-          <div className="h-96 bg-blue-50 relative overflow-hidden">
+          {/* Maps Grid */}
+          <div className="grid lg:grid-cols-2 gap-6 p-6">
+            {/* World Map */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-neutral-800 text-center">Global Presence</h4>
+              <div className="h-80 bg-blue-50 relative overflow-hidden rounded-xl border"
+              >
             {/* World Map Grid Lines */}
             <svg className="absolute inset-0 w-full h-full" viewBox="0 0 800 400">
               {/* Longitude lines */}
@@ -418,17 +423,155 @@ export default function OfficeLocations() {
               </div>
             </div>
             
-            {/* Geographic Labels */}
-            <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-lg shadow-md z-20">
-              <p className="text-xs font-semibold text-neutral-700">Global Office Network</p>
+              </div>
             </div>
             
-            {/* Instructions */}
-            <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-lg max-w-xs z-20">
-              <p className="text-xs text-neutral-600 text-center">
-                Click on any marker to view office details
-              </p>
+            {/* Pakistan Map */}
+            <div className="space-y-4">
+              <h4 className="text-lg font-semibold text-neutral-800 text-center">Pakistan Network</h4>
+              <div className="h-80 bg-green-50 relative overflow-hidden rounded-xl border">
+                {/* Pakistan Map Grid Lines */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
+                  {/* Grid lines for Pakistan region */}
+                  {Array.from({ length: 9 }, (_, i) => (
+                    <line
+                      key={`pk-lon-${i}`}
+                      x1={i * 50}
+                      y1={0}
+                      x2={i * 50}
+                      y2={400}
+                      stroke="#d1fae5"
+                      strokeWidth="1"
+                      opacity="0.8"
+                    />
+                  ))}
+                  {Array.from({ length: 9 }, (_, i) => (
+                    <line
+                      key={`pk-lat-${i}`}
+                      x1={0}
+                      y1={i * 50}
+                      x2={400}
+                      y2={i * 50}
+                      stroke="#d1fae5"
+                      strokeWidth="1"
+                      opacity="0.8"
+                    />
+                  ))}
+                  
+                  {/* Pakistan country outline */}
+                  <path
+                    d="M100 80 Q120 70 150 75 Q180 80 220 90 Q260 100 300 120 Q320 140 330 170 Q335 200 330 230 Q325 260 310 290 Q290 320 260 340 Q230 350 200 345 Q170 340 140 330 Q110 315 95 285 Q85 250 90 215 Q95 180 100 150 Q102 115 100 80Z"
+                    fill="#86efac"
+                    opacity="0.6"
+                    stroke="#22c55e"
+                    strokeWidth="2"
+                  />
+                  
+                  {/* Major cities labels */}
+                  <text x="150" y="200" fontSize="10" fill="#059669" fontWeight="bold">Lahore</text>
+                  <text x="200" y="150" fontSize="10" fill="#059669" fontWeight="bold">Islamabad</text>
+                  <text x="120" y="300" fontSize="10" fill="#059669" fontWeight="bold">Karachi</text>
+                  <text x="180" y="240" fontSize="10" fill="#059669" fontWeight="bold">Faisalabad</text>
+                </svg>
+                
+                {/* Pakistan Office Markers */}
+                {filteredOffices.filter(office => office.region === "pakistan").map((office, index) => {
+                  // Pakistan specific positioning (approximate)
+                  let x = 50, y = 50; // default position
+                  
+                  // Position based on city
+                  if (office.name.includes("Lahore")) {
+                    x = office.name.includes("DHA") ? 35 : 40;
+                    y = 48;
+                  } else if (office.name.includes("Islamabad")) {
+                    x = 45; y = 35;
+                  } else if (office.name.includes("Karachi")) {
+                    x = 25; y = 75;
+                  } else if (office.name.includes("Faisalabad")) {
+                    x = 38; y = 55;
+                  } else if (office.name.includes("Gujranwala")) {
+                    x = 42; y = 45;
+                  } else if (office.name.includes("Gujrat")) {
+                    x = 45; y = 42;
+                  } else if (office.name.includes("Sargodha")) {
+                    x = 40; y = 40;
+                  } else if (office.name.includes("Sialkot")) {
+                    x = 48; y = 40;
+                  } else if (office.name.includes("Multan")) {
+                    x = 35; y = 65;
+                  } else if (office.name.includes("Peshawar")) {
+                    x = 50; y = 25;
+                  } else if (office.name.includes("Bahawalpur")) {
+                    x = 38; y = 70;
+                  } else if (office.name.includes("Jhelum")) {
+                    x = 47; y = 38;
+                  } else if (office.name.includes("Mardan")) {
+                    x = 52; y = 28;
+                  } else {
+                    // Distribute remaining offices
+                    x = 30 + (index % 4) * 15;
+                    y = 30 + Math.floor(index / 4) * 20;
+                  }
+                  
+                  return (
+                    <motion.div
+                      key={office.id}
+                      className="absolute group cursor-pointer z-10"
+                      style={{
+                        left: `${x}%`,
+                        top: `${y}%`
+                      }}
+                      onClick={() => setSelectedOffice(selectedOffice?.id === office.id ? null : office)}
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 0.8 + index * 0.05 }}
+                    >
+                      {/* Marker Pin */}
+                      <div className={`relative w-5 h-6 transition-all duration-300 group-hover:scale-125 ${
+                        selectedOffice?.id === office.id ? 'scale-125' : ''
+                      }`}>
+                        <div className={`w-5 h-5 rounded-full shadow-lg ${
+                          office.isHeadOffice ? 'bg-red-500' : 'bg-green-600'
+                        } border-2 border-white`} />
+                        <div className={`w-0 h-0 border-l-[5px] border-r-[5px] border-t-[6px] border-transparent ${
+                          office.isHeadOffice ? 'border-t-red-500' : 'border-t-green-600'
+                        } absolute -bottom-1 left-1/2 transform -translate-x-1/2`} />
+                      </div>
+                      
+                      {/* Tooltip */}
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                        <div className="bg-neutral-800 text-white px-2 py-1 rounded text-xs font-medium whitespace-nowrap shadow-lg">
+                          {office.name.split(',')[0]}
+                          <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[3px] border-r-[3px] border-t-[3px] border-transparent border-t-neutral-800" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+                
+                {/* Pakistan Legend */}
+                <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-lg z-20">
+                  <h5 className="text-xs font-semibold text-neutral-800 mb-1">Pakistan Offices</h5>
+                  <div className="space-y-1 text-xs">
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-red-500 rounded-full mr-2 border border-white shadow-sm" />
+                      <span className="text-neutral-600">Head Office</span>
+                    </div>
+                    <div className="flex items-center">
+                      <div className="w-3 h-3 bg-green-600 rounded-full mr-2 border border-white shadow-sm" />
+                      <span className="text-neutral-600">Branch</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          
+          {/* Global Instructions */}
+          <div className="px-6 pb-4">
+            <p className="text-sm text-neutral-600 text-center">
+              Click on any marker to view detailed office information below
+            </p>
           </div>
           
           {/* Selected Office Details */}
