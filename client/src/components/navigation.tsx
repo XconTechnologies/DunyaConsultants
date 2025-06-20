@@ -32,6 +32,7 @@ export default function Navigation() {
     { name: "Solutions", id: "audience" },
     { name: "IELTS", id: "ielts" },
     { name: "Process", id: "process" },
+    { name: "Locations", id: "locations" },
     { name: "Testimonials", id: "testimonials" },
   ];
 
