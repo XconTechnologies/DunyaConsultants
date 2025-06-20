@@ -11,95 +11,147 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center gradient-bg overflow-hidden">
-      <div className="absolute inset-0 bg-black/10"></div>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div 
-            className="text-white"
-            initial={{ opacity: 0, y: 50 }}
+    <section id="home" className="relative min-h-screen flex items-center justify-center gradient-bg overflow-hidden">
+      <div className="absolute inset-0 bg-black/20"></div>
+      
+      {/* Background Pattern Overlay */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                           radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%)`,
+          backgroundSize: '200px 200px'
+        }}></div>
+      </div>
+      
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <motion.div 
+          className="text-white"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h1 
+            className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <motion.h1 
-              className="text-5xl lg:text-6xl font-bold leading-tight mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Your Gateway to{" "}
-              <span className="text-accent">Global Education</span>
-            </motion.h1>
-            <motion.p 
-              className="text-xl lg:text-2xl mb-8 text-blue-100 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Expert visa consultation services to help you achieve your dream of studying abroad. Professional guidance, proven success rates.
-            </motion.p>
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <Button 
-                size="lg"
-                onClick={() => scrollToSection("contact")}
-                className="bg-accent hover:bg-yellow-500 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
-              >
-                <Rocket className="mr-2" size={20} />
-                Start Your Journey
-              </Button>
-              <Button 
-                variant="outline"
-                size="lg"
-                onClick={() => scrollToSection("testimonials")}
-                className="border-2 border-white text-white px-8 py-4 text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300"
-              >
-                <Play className="mr-2" size={20} />
-                Watch Success Stories
-              </Button>
-            </motion.div>
+            Your Gateway to{" "}
+            <span className="text-accent block md:inline">Global Education</span>
+          </motion.h1>
+          
+          <motion.p 
+            className="text-xl lg:text-2xl mb-10 text-blue-100 leading-relaxed max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Expert visa consultation services to help you achieve your dream of studying abroad. Professional guidance, proven success rates.
+          </motion.p>
+          
+          {/* Stats Cards */}
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div className="text-2xl md:text-3xl font-bold text-accent">98%</div>
+              <div className="text-sm text-blue-100">Success Rate</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div className="text-2xl md:text-3xl font-bold text-accent">5000+</div>
+              <div className="text-sm text-blue-100">Students</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div className="text-2xl md:text-3xl font-bold text-accent">15+</div>
+              <div className="text-sm text-blue-100">Countries</div>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+              <div className="text-2xl md:text-3xl font-bold text-accent">15</div>
+              <div className="text-sm text-blue-100">Years Exp</div>
+            </div>
           </motion.div>
           
           <motion.div 
-            className="relative"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <motion.img 
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" 
-              alt="Diverse group of international students celebrating graduation" 
-              className="rounded-2xl shadow-2xl w-full h-auto animate-float"
-            />
-            <motion.div 
-              className="absolute -bottom-4 -right-4 bg-white p-6 rounded-xl shadow-lg"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1 }}
+            <Button 
+              size="lg"
+              onClick={() => scrollToSection("contact")}
+              className="bg-accent hover:bg-yellow-500 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
             >
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">98%</div>
-                <div className="text-sm text-neutral-500">Success Rate</div>
-              </div>
-            </motion.div>
+              <Rocket className="mr-2" size={20} />
+              Start Your Journey
+            </Button>
+            <Button 
+              variant="outline"
+              size="lg"
+              onClick={() => scrollToSection("testimonials")}
+              className="border-2 border-white text-white px-8 py-4 text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm bg-white/10"
+            >
+              <Play className="mr-2" size={20} />
+              Watch Success Stories
+            </Button>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
       
-      {/* Floating Elements */}
+      {/* Enhanced Floating Elements */}
       <motion.div 
-        className="absolute top-20 right-10 w-20 h-20 bg-accent/20 rounded-full hidden lg:block"
-        animate={{ y: [0, -20, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-20 right-10 w-24 h-24 bg-accent/20 rounded-full hidden lg:block"
+        animate={{ 
+          y: [0, -20, 0],
+          rotate: [0, 180, 360]
+        }}
+        transition={{ 
+          duration: 4, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
       />
       <motion.div 
-        className="absolute bottom-20 left-10 w-16 h-16 bg-secondary/20 rounded-full hidden lg:block"
-        animate={{ y: [0, -15, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-20 left-10 w-20 h-20 bg-secondary/20 rounded-full hidden lg:block"
+        animate={{ 
+          y: [0, -15, 0],
+          scale: [1, 1.2, 1]
+        }}
+        transition={{ 
+          duration: 3, 
+          repeat: Infinity, 
+          ease: "easeInOut", 
+          delay: 1 
+        }}
+      />
+      <motion.div 
+        className="absolute top-1/2 left-20 w-16 h-16 bg-primary/20 rounded-full hidden xl:block"
+        animate={{ 
+          x: [0, 20, 0],
+          y: [0, -10, 0]
+        }}
+        transition={{ 
+          duration: 5, 
+          repeat: Infinity, 
+          ease: "easeInOut", 
+          delay: 2 
+        }}
+      />
+      <motion.div 
+        className="absolute top-1/3 right-20 w-12 h-12 bg-accent/30 rounded-full hidden xl:block"
+        animate={{ 
+          x: [0, -15, 0],
+          opacity: [0.3, 0.7, 0.3]
+        }}
+        transition={{ 
+          duration: 4, 
+          repeat: Infinity, 
+          ease: "easeInOut", 
+          delay: 0.5 
+        }}
       />
     </section>
   );

@@ -105,11 +105,15 @@ The application uses three main tables:
 - **Node Environment**: Separate development and production configurations
 - **Static Assets**: Served from `dist/public` in production
 
+## Recent Changes
+
+- **June 20, 2025 - Hero Section Redesign**: Redesigned hero section to be fully centered without image, featuring gradient overlay effects, background patterns, floating animated elements, and integrated statistics cards for better visual impact and professionalism.
+
 ## Changelog
 
 ```
 Changelog:
-- June 20, 2025. Initial setup
+- June 20, 2025. Initial setup and hero section redesign
 ```
 
 ## User Preferences
