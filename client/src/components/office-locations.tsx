@@ -292,44 +292,63 @@ export default function OfficeLocations() {
           </div>
           
           {/* Map Container */}
-          <div className="h-96 bg-gradient-to-br from-blue-100 to-indigo-200 relative overflow-hidden">
-            {/* Map Background Pattern */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `radial-gradient(circle at 25% 25%, rgba(59,130,246,0.3) 0%, transparent 50%),
-                                 radial-gradient(circle at 75% 75%, rgba(34,197,94,0.3) 0%, transparent 50%)`,
-                backgroundSize: '100px 100px'
-              }}></div>
-            </div>
-            
+          <div className="h-96 bg-gray-100 relative overflow-hidden">
             {/* Office Markers */}
             {filteredOffices.map((office, index) => (
-              <motion.button
+              <motion.div
                 key={office.id}
-                className={`absolute w-4 h-4 rounded-full shadow-lg transition-all duration-300 hover:scale-150 ${
-                  office.isHeadOffice ? 'bg-red-500' : 'bg-primary'
-                } ${selectedOffice?.id === office.id ? 'scale-150 ring-4 ring-white' : ''}`}
+                className="absolute group cursor-pointer"
                 style={{
-                  left: `${20 + (index % 8) * 10}%`,
-                  top: `${20 + Math.floor(index / 8) * 15}%`
+                  left: `${15 + (index % 9) * 9}%`,
+                  top: `${15 + Math.floor(index / 9) * 20}%`
                 }}
                 onClick={() => setSelectedOffice(selectedOffice?.id === office.id ? null : office)}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.6 + index * 0.05 }}
-                title={office.name}
-              />
+              >
+                {/* Marker Pin */}
+                <div className={`relative w-6 h-8 transition-all duration-300 group-hover:scale-125 ${
+                  selectedOffice?.id === office.id ? 'scale-125' : ''
+                }`}>
+                  <div className={`w-6 h-6 rounded-full shadow-lg ${
+                    office.isHeadOffice ? 'bg-red-500' : 'bg-primary'
+                  } border-2 border-white`} />
+                  <div className={`w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-transparent ${
+                    office.isHeadOffice ? 'border-t-red-500' : 'border-t-primary'
+                  } absolute -bottom-2 left-1/2 transform -translate-x-1/2`} />
+                </div>
+                
+                {/* Tooltip */}
+                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  <div className="bg-neutral-800 text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap shadow-lg">
+                    {office.name}
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-[4px] border-r-[4px] border-t-[4px] border-transparent border-t-neutral-800" />
+                  </div>
+                </div>
+              </motion.div>
             ))}
             
-            {/* Map Center Text */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="text-center bg-white/90 backdrop-blur-sm p-6 rounded-xl shadow-lg">
-                <Globe className="mx-auto mb-2 text-primary" size={32} />
-                <p className="text-neutral-600 font-medium">Click on markers to view office details</p>
-                <p className="text-sm text-neutral-500 mt-1">
-                  🔴 Head Office | 🔵 Branch Office
-                </p>
+            {/* Legend */}
+            <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm p-4 rounded-lg shadow-lg">
+              <h4 className="text-sm font-semibold text-neutral-800 mb-2">Legend</h4>
+              <div className="space-y-2 text-xs">
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-red-500 rounded-full mr-2 border border-white shadow-sm" />
+                  <span className="text-neutral-600">Head Office</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-4 h-4 bg-primary rounded-full mr-2 border border-white shadow-sm" />
+                  <span className="text-neutral-600">Branch Office</span>
+                </div>
               </div>
+            </div>
+            
+            {/* Instructions */}
+            <div className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm p-3 rounded-lg shadow-lg max-w-xs">
+              <p className="text-xs text-neutral-600 text-center">
+                Click on any marker to view office details
+              </p>
             </div>
           </div>
           
