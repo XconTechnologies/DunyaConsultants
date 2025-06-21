@@ -53,13 +53,13 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Your Gateway to{" "}
-            <span className="text-accent block md:inline">Global Education</span>
+            Premium Advice, Fast Processing, Proven Success —{" "}
+            <span className="text-accent block md:inline">For Every Student, Every Step</span>
           </motion.h1>
           
           <motion.p 
