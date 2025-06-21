@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { 
   UserCheck, 
   GraduationCap, 
@@ -10,7 +10,9 @@ import {
   Send, 
   MessageCircle, 
   FileCheck,
-  ArrowRight
+  ArrowRight,
+  ChevronDown,
+  ChevronUp
 } from "lucide-react";
 
 const processSteps = [
@@ -61,12 +63,23 @@ const processSteps = [
 export default function ProcessSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [expandedSteps, setExpandedSteps] = useState<Set<number>>(new Set());
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const toggleStep = (index: number) => {
+    const newExpanded = new Set(expandedSteps);
+    if (newExpanded.has(index)) {
+      newExpanded.delete(index);
+    } else {
+      newExpanded.add(index);
+    }
+    setExpandedSteps(newExpanded);
   };
 
   return (
@@ -92,8 +105,8 @@ export default function ProcessSection() {
           {/* Simple Connection Line */}
           <div className="hidden lg:block absolute top-16 left-12 right-12 h-px bg-neutral-200"></div>
           
-          {/* Process Steps - Clean Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Desktop View - Clean Grid */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8">
             {processSteps.map((step, index) => (
               <motion.div
                 key={step.title}
@@ -120,6 +133,61 @@ export default function ProcessSection() {
                     <ArrowRight className="text-neutral-300" size={20} />
                   </div>
                 )}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile View - Collapsible Steps */}
+          <div className="md:hidden space-y-4">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white border border-neutral-200 rounded-lg shadow-sm overflow-hidden"
+              >
+                {/* Step Header - Always Visible */}
+                <button
+                  onClick={() => toggleStep(index)}
+                  className="w-full px-4 py-4 flex items-center justify-between text-left hover:bg-neutral-50 transition-colors"
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center justify-center w-10 h-10 bg-primary text-white rounded-full font-semibold text-sm">
+                      {step.step}
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <step.icon className="w-6 h-6 text-primary" />
+                      <h3 className="text-lg font-semibold text-neutral-800">{step.title}</h3>
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0">
+                    {expandedSteps.has(index) ? (
+                      <ChevronUp className="w-5 h-5 text-neutral-500" />
+                    ) : (
+                      <ChevronDown className="w-5 h-5 text-neutral-500" />
+                    )}
+                  </div>
+                </button>
+
+                {/* Expandable Content */}
+                <AnimatePresence>
+                  {expandedSteps.has(index) && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-4 pb-4 pt-2 border-t border-neutral-100">
+                        <p className="text-neutral-600 text-sm leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>
