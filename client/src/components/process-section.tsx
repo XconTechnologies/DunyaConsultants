@@ -70,87 +70,86 @@ export default function ProcessSection() {
   };
 
   return (
-    <section id="process" className="py-16 bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-500/20 to-purple-500/20"></div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="process" className="py-16 bg-white">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6 }}
           ref={ref}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold text-neutral-800 mb-3">
             Our Admission Process
           </h2>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
             A streamlined 6-step process to guide you from initial consultation to successful visa approval
           </p>
         </motion.div>
 
-        {/* Horizontal Process Flow */}
+        {/* Clean Process Flow */}
         <div className="relative">
-          {/* Horizontal Connection Line */}
-          <div className="hidden lg:block absolute top-20 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 via-green-500 via-orange-500 via-red-500 to-teal-500 opacity-50"></div>
+          {/* Simple Connection Line */}
+          <div className="hidden lg:block absolute top-16 left-12 right-12 h-px bg-neutral-200"></div>
           
-          {/* Process Steps - Horizontal Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+          {/* Process Steps - Clean Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {processSteps.map((step, index) => (
               <motion.div
                 key={step.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative text-center"
               >
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-white/20 hover:bg-white/15 transition-all duration-300 h-full">
-                  {/* Step Number */}
-                  <div className={`w-12 h-12 ${step.color} rounded-full flex items-center justify-center text-white font-bold text-lg mb-4 mx-auto shadow-lg`}>
-                    {step.step}
-                  </div>
-                  
-                  {/* Icon */}
-                  <div className={`w-16 h-16 ${step.color} bg-opacity-20 rounded-xl flex items-center justify-center mb-4 mx-auto`}>
-                    <step.icon className="text-white" size={24} />
-                  </div>
-                  
-                  <h3 className="text-lg font-bold text-white mb-2 text-center">{step.title}</h3>
-                  <p className="text-slate-300 text-sm leading-relaxed text-center">{step.description}</p>
-                  
-                  {/* Arrow for desktop */}
-                  {index < processSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-8 -right-3 transform">
-                      <ArrowRight className="text-white/50" size={20} />
-                    </div>
-                  )}
+                {/* Step Number */}
+                <div className="relative z-10 inline-flex items-center justify-center w-12 h-12 bg-primary text-white rounded-full font-semibold text-lg mb-4">
+                  {step.step}
                 </div>
+                
+                {/* Content */}
+                <div className="space-y-3">
+                  <step.icon className="w-8 h-8 text-primary mx-auto" />
+                  <h3 className="text-xl font-semibold text-neutral-800">{step.title}</h3>
+                  <p className="text-neutral-600 text-sm leading-relaxed px-2">{step.description}</p>
+                </div>
+
+                {/* Connection Arrow */}
+                {index < processSteps.length - 1 && index % 3 !== 2 && (
+                  <div className="hidden lg:block absolute top-6 -right-4 z-0">
+                    <ArrowRight className="text-neutral-300" size={20} />
+                  </div>
+                )}
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Compact Success Stats */}
+        {/* Minimal Stats */}
         <motion.div 
-          className="mt-12 flex flex-wrap justify-center gap-8 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-16 border-t border-neutral-200 pt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
         >
-          {[
-            { number: "95%", label: "Success Rate" },
-            { number: "30+", label: "Days Average" },
-            { number: "24/7", label: "Support" },
-            { number: "17+", label: "Branches" }
-          ].map((stat, index) => (
-            <div key={stat.label} className="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4 border border-white/20">
-              <div className="text-2xl font-bold text-white">{stat.number}</div>
-              <div className="text-slate-300 text-sm">{stat.label}</div>
+          <div className="flex flex-wrap justify-center gap-12 text-center">
+            <div>
+              <div className="text-3xl font-bold text-primary">95%</div>
+              <div className="text-neutral-600 text-sm">Success Rate</div>
             </div>
-          ))}
+            <div>
+              <div className="text-3xl font-bold text-primary">30+</div>
+              <div className="text-neutral-600 text-sm">Days Average</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-primary">24/7</div>
+              <div className="text-neutral-600 text-sm">Support</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-primary">17+</div>
+              <div className="text-neutral-600 text-sm">Branches</div>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>
