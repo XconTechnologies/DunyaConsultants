@@ -1,0 +1,896 @@
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import {
+  BookOpen,
+  Calendar,
+  Clock,
+  User,
+  Tag,
+  Search,
+  Filter,
+  ChevronRight,
+  Eye,
+  MessageCircle,
+  Share2,
+  TrendingUp,
+  Globe,
+  GraduationCap,
+  MapPin
+} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: {
+    name: string;
+    title: string;
+    avatar: string;
+  };
+  publishedDate: string;
+  readTime: string;
+  category: string;
+  tags: string[];
+  featured: boolean;
+  views: number;
+  comments: number;
+  image: string;
+  slug: string;
+}
+
+const blogPosts: BlogPost[] = [
+  {
+    id: "1",
+    title: "Why Turkey is the Best Choice for Pakistani Students in 2024",
+    excerpt: "Discover why Turkey has emerged as the top study destination for Pakistani students, offering quality education, cultural compatibility, and excellent career prospects.",
+    content: `Turkey has rapidly emerged as one of the most attractive study destinations for Pakistani students, and for good reason. With its strategic location bridging Europe and Asia, rich cultural heritage, and world-class educational institutions, Turkey offers an unparalleled study abroad experience.
+
+## Quality Education at Affordable Costs
+
+Turkish universities are gaining international recognition for their academic excellence. With over 200 universities, including many ranked among the world's top institutions, Turkey offers diverse programs in English and Turkish. The cost of education is significantly lower compared to Western countries, with annual tuition fees ranging from $2,000 to $8,000.
+
+## Cultural Compatibility and Islamic Values
+
+For Pakistani students, Turkey offers a unique advantage of cultural familiarity. As a predominantly Muslim country, Turkey provides an environment where Pakistani students can practice their faith freely while pursuing higher education. The cultural similarities make the transition smoother for students and their families.
+
+## Strategic Location and Travel Benefits
+
+Turkey's location offers easy access to both European and Asian countries. Students can explore diverse cultures and opportunities within the region. The visa-free or visa-on-arrival access to many countries makes Turkey an ideal base for international exposure.
+
+## Government Scholarships and Support
+
+The Turkish government offers extensive scholarship programs, including the prestigious Türkiye Scholarships, which cover tuition fees, accommodation, health insurance, and monthly stipends. These scholarships are specifically designed to attract international students and foster cultural exchange.
+
+## Career Opportunities and Industry Connections
+
+Turkey's growing economy and strong ties with Pakistan create excellent career opportunities for graduates. Many Turkish companies have operations in Pakistan, providing direct pathways for employment. The country's strategic importance in international trade opens doors to global career prospects.
+
+## Language Advantages
+
+While many programs are offered in English, learning Turkish opens additional opportunities in the region. Turkish is spoken by over 80 million people and is increasingly valuable in international business and diplomacy.
+
+## Living Standards and Safety
+
+Turkey offers a high standard of living at a reasonable cost. Cities like Istanbul, Ankara, and Izmir provide modern amenities, efficient public transportation, and a safe environment for international students. The hospitality of Turkish people towards Pakistani students is particularly noteworthy.
+
+Turkey represents an optimal balance of quality education, cultural comfort, affordability, and career prospects, making it the ideal choice for Pakistani students seeking international education.`,
+    author: {
+      name: "Dr. Mehmet Özkan",
+      title: "Education Consultant",
+      avatar: "/api/placeholder/50/50"
+    },
+    publishedDate: "2024-03-17",
+    readTime: "8 min read",
+    category: "Study Destinations",
+    tags: ["Turkey", "Pakistani Students", "Scholarships", "Education"],
+    featured: true,
+    views: 2450,
+    comments: 23,
+    image: "/api/placeholder/600/400",
+    slug: "why-turkey-best-choice-pakistani-students"
+  },
+  {
+    id: "2",
+    title: "Complete Guide to Canadian Student Visa Application 2024",
+    excerpt: "Step-by-step guide to successfully apply for a Canadian student visa, including document requirements, processing times, and expert tips.",
+    content: `Canada remains one of the most sought-after destinations for international students. The Canadian student visa application process, while comprehensive, is straightforward when you understand the requirements and procedures.
+
+## Understanding the Study Permit
+
+A study permit is not a visa but an authorization to study in Canada. Most international students need both a study permit and a visitor visa or Electronic Travel Authorization (eTA) to enter Canada.
+
+## Essential Document Requirements
+
+### Academic Documents
+- Official transcripts from all previously attended institutions
+- Diploma or degree certificates
+- Language proficiency test results (IELTS, TOEFL, etc.)
+- Letter of acceptance from a Designated Learning Institution (DLI)
+
+### Financial Documentation
+- Proof of financial support ($10,000 CAD per year plus tuition fees)
+- Bank statements for the past 4-6 months
+- Education loan approval letters
+- Scholarship award letters (if applicable)
+
+### Personal Documents
+- Valid passport
+- Medical examination results (if required)
+- Statement of Purpose
+- Police clearance certificate
+
+## Application Process Timeline
+
+### 1. Receive Letter of Acceptance (2-8 weeks)
+Apply to Canadian institutions and receive your official acceptance letter.
+
+### 2. Gather Required Documents (2-4 weeks)
+Collect and prepare all necessary documentation.
+
+### 3. Submit Online Application (1-2 weeks)
+Complete the application through the Immigration, Refugees and Citizenship Canada (IRCC) website.
+
+### 4. Biometrics Appointment (1-2 weeks)
+Schedule and attend your biometrics appointment at a Visa Application Centre.
+
+### 5. Processing Time (4-12 weeks)
+Wait for the decision on your application.
+
+## Pro Tips for Success
+
+- Apply early, especially for September intake
+- Ensure all documents are properly translated and notarized
+- Provide clear and honest information in your Statement of Purpose
+- Show strong ties to your home country
+- Demonstrate genuine intent to study
+
+## Common Reasons for Rejection
+
+- Insufficient financial proof
+- Weak Statement of Purpose
+- Incomplete documentation
+- Concerns about returning to home country
+- Medical inadmissibility
+
+## Post-Graduation Opportunities
+
+Canada offers excellent post-graduation work permits (PGWP) that allow students to work in Canada after completing their studies, potentially leading to permanent residency through various immigration programs.
+
+With proper preparation and documentation, obtaining a Canadian student visa is highly achievable for Pakistani students.`,
+    author: {
+      name: "Sarah Khan",
+      title: "Immigration Specialist",
+      avatar: "/api/placeholder/50/50"
+    },
+    publishedDate: "2024-03-10",
+    readTime: "12 min read",
+    category: "Visa Guide",
+    tags: ["Canada", "Student Visa", "Immigration", "Documentation"],
+    featured: true,
+    views: 3200,
+    comments: 45,
+    image: "/api/placeholder/600/400",
+    slug: "canada-student-visa-guide-2024"
+  },
+  {
+    id: "3",
+    title: "Top 10 Scholarships for International Students in 2024",
+    excerpt: "Comprehensive list of the most prestigious and accessible scholarships available for international students across different countries and fields of study.",
+    content: `Scholarships can significantly reduce the financial burden of studying abroad. Here are the top 10 scholarship opportunities that international students should consider for 2024.
+
+## 1. Fulbright Foreign Student Program (USA)
+- **Coverage**: Full tuition, living expenses, health insurance
+- **Eligibility**: Graduate students and young professionals
+- **Application Deadline**: Varies by country
+
+## 2. Chevening Scholarships (UK)
+- **Coverage**: Full tuition fees, monthly stipend, travel costs
+- **Eligibility**: Master's degree candidates with leadership potential
+- **Application Deadline**: November 2024
+
+## 3. Australia Awards Scholarships
+- **Coverage**: Full tuition, living allowance, health cover
+- **Eligibility**: Undergraduate and postgraduate students
+- **Application Deadline**: April 2024
+
+## 4. DAAD Scholarships (Germany)
+- **Coverage**: Monthly stipend, tuition fees, health insurance
+- **Eligibility**: Graduate students and researchers
+- **Application Deadline**: October 2024
+
+## 5. Türkiye Scholarships
+- **Coverage**: Full tuition, accommodation, monthly allowance
+- **Eligibility**: Undergraduate, graduate, and PhD students
+- **Application Deadline**: February 2024
+
+## 6. Erasmus Mundus Joint Master Degrees (Europe)
+- **Coverage**: Full tuition, living allowance, travel costs
+- **Eligibility**: Master's degree candidates
+- **Application Deadline**: January 2024
+
+## 7. Sweden Institute Scholarships
+- **Coverage**: Tuition fees and living allowance
+- **Eligibility**: Master's degree students from developing countries
+- **Application Deadline**: February 2024
+
+## 8. Netherlands Fellowship Programme
+- **Coverage**: Full tuition, monthly allowance, visa costs
+- **Eligibility**: Mid-career professionals
+- **Application Deadline**: May 2024
+
+## 9. New Zealand Development Scholarships
+- **Coverage**: Full tuition, living allowance, establishment allowance
+- **Eligibility**: Students from developing countries
+- **Application Deadline**: July 2024
+
+## 10. Canadian Commonwealth Scholarship Program
+- **Coverage**: Tuition fees, living allowance, travel costs
+- **Eligibility**: Commonwealth country citizens
+- **Application Deadline**: December 2024
+
+## Application Tips
+
+### Start Early
+Most scholarship applications require extensive preparation. Begin at least 6-12 months before the deadline.
+
+### Strong Personal Statement
+Craft a compelling personal statement that highlights your achievements, goals, and how the scholarship aligns with your career objectives.
+
+### Letters of Recommendation
+Choose recommenders who know your work well and can speak to your qualifications and potential.
+
+### Meet All Requirements
+Ensure you meet all eligibility criteria and submit all required documents before the deadline.
+
+### Apply Broadly
+Don't put all your eggs in one basket. Apply to multiple scholarships to increase your chances of success.
+
+Remember, scholarship competition is intense, but with proper preparation and a strong application, you can secure funding for your international education dreams.`,
+    author: {
+      name: "Dr. Amanda Foster",
+      title: "Scholarship Advisor",
+      avatar: "/api/placeholder/50/50"
+    },
+    publishedDate: "2024-03-05",
+    readTime: "10 min read",
+    category: "Scholarships",
+    tags: ["Scholarships", "Financial Aid", "International Students", "Funding"],
+    featured: false,
+    views: 1890,
+    comments: 32,
+    image: "/api/placeholder/600/400",
+    slug: "top-scholarships-international-students-2024"
+  },
+  {
+    id: "4",
+    title: "IELTS vs TOEFL: Which English Test Should You Choose?",
+    excerpt: "Detailed comparison of IELTS and TOEFL tests to help you choose the right English proficiency exam for your study abroad goals.",
+    content: `Choosing between IELTS and TOEFL is a crucial decision for international students. Both tests assess English proficiency but have different formats, scoring systems, and acceptance rates across institutions.
+
+## Test Format Comparison
+
+### IELTS (International English Language Testing System)
+- **Duration**: 2 hours 45 minutes
+- **Format**: Paper-based or computer-based
+- **Sections**: Listening, Reading, Writing, Speaking
+- **Speaking**: Face-to-face interview with examiner
+
+### TOEFL (Test of English as a Foreign Language)
+- **Duration**: 3 hours
+- **Format**: Internet-based (iBT)
+- **Sections**: Reading, Listening, Speaking, Writing
+- **Speaking**: Computer-based recording
+
+## Scoring Systems
+
+### IELTS Scoring
+- **Scale**: 0-9 bands
+- **Overall Score**: Average of four sections
+- **Common Requirements**: 6.0-7.5 for most universities
+
+### TOEFL Scoring
+- **Scale**: 0-120 points
+- **Section Scores**: 0-30 per section
+- **Common Requirements**: 80-100 for most universities
+
+## Geographic Preferences
+
+### IELTS is Preferred in:
+- United Kingdom
+- Australia
+- New Zealand
+- Canada (increasingly accepted)
+
+### TOEFL is Preferred in:
+- United States
+- Canada (traditional preference)
+- Some Asian countries
+
+## Test Content Differences
+
+### IELTS Features
+- British English emphasis
+- Variety of accents in listening section
+- Handwritten writing section (paper-based)
+- Human interaction in speaking
+
+### TOEFL Features
+- American English emphasis
+- Academic context throughout
+- Integrated tasks combining skills
+- Computer-based interaction
+
+## Which Test Should You Choose?
+
+### Choose IELTS if:
+- You're applying to UK, Australia, or New Zealand
+- You prefer face-to-face speaking interaction
+- You're comfortable with various English accents
+- You prefer shorter test duration
+
+### Choose TOEFL if:
+- You're applying primarily to US universities
+- You're comfortable with computer-based testing
+- You prefer American English
+- You excel at integrated academic tasks
+
+## Preparation Strategies
+
+### For IELTS
+- Practice with British Council materials
+- Focus on different English accents
+- Prepare for speaking interview format
+- Practice handwriting for paper-based test
+
+### For TOEFL
+- Use ETS official preparation materials
+- Practice integrated skills tasks
+- Familiarize yourself with computer interface
+- Focus on academic vocabulary and contexts
+
+## Cost and Availability
+
+Both tests cost approximately $200-250 and are available multiple times per month in major cities worldwide. IELTS offers more test dates and locations globally.
+
+## Final Recommendation
+
+Your choice should primarily depend on your target universities' requirements. Research specific requirements for your intended institutions and choose the test that aligns with your study destinations and personal strengths.
+
+Both tests are widely accepted, and either can open doors to quality international education opportunities.`,
+    author: {
+      name: "Prof. David Wilson",
+      title: "English Language Expert",
+      avatar: "/api/placeholder/50/50"
+    },
+    publishedDate: "2024-02-28",
+    readTime: "9 min read",
+    category: "Test Preparation",
+    tags: ["IELTS", "TOEFL", "English Tests", "Test Preparation"],
+    featured: false,
+    views: 2100,
+    comments: 28,
+    image: "/api/placeholder/600/400",
+    slug: "ielts-vs-toefl-comparison-guide"
+  },
+  {
+    id: "5",
+    title: "Cost of Living Guide: Studying in Major Global Cities",
+    excerpt: "Comprehensive breakdown of living expenses for international students in popular study destinations including accommodation, food, and transportation costs.",
+    content: `Understanding the cost of living is crucial when choosing your study destination. Here's a detailed breakdown of expenses in major global cities popular among international students.
+
+## North America
+
+### Toronto, Canada
+- **Accommodation**: $800-1500/month
+- **Food**: $300-500/month
+- **Transportation**: $150/month
+- **Miscellaneous**: $200-400/month
+- **Total Monthly Cost**: $1450-2550
+
+### New York, USA
+- **Accommodation**: $1200-2500/month
+- **Food**: $400-700/month
+- **Transportation**: $120/month
+- **Miscellaneous**: $300-500/month
+- **Total Monthly Cost**: $2020-3820
+
+## Europe
+
+### London, UK
+- **Accommodation**: £600-1200/month
+- **Food**: £200-350/month
+- **Transportation**: £150/month
+- **Miscellaneous**: £200-400/month
+- **Total Monthly Cost**: £1150-2100
+
+### Berlin, Germany
+- **Accommodation**: €400-800/month
+- **Food**: €200-300/month
+- **Transportation**: €100/month
+- **Miscellaneous**: €150-250/month
+- **Total Monthly Cost**: €850-1450
+
+### Istanbul, Turkey
+- **Accommodation**: $200-500/month
+- **Food**: $150-250/month
+- **Transportation**: $30/month
+- **Miscellaneous**: $100-200/month
+- **Total Monthly Cost**: $480-980
+
+## Asia-Pacific
+
+### Sydney, Australia
+- **Accommodation**: AUD 800-1500/month
+- **Food**: AUD 300-500/month
+- **Transportation**: AUD 150/month
+- **Miscellaneous**: AUD 200-400/month
+- **Total Monthly Cost**: AUD 1450-2550
+
+### Singapore
+- **Accommodation**: SGD 800-1500/month
+- **Food**: SGD 300-500/month
+- **Transportation**: SGD 120/month
+- **Miscellaneous**: SGD 200-400/month
+- **Total Monthly Cost**: SGD 1420-2520
+
+## Money-Saving Tips
+
+### Accommodation
+- Consider shared housing or student dormitories
+- Look for accommodations slightly outside city centers
+- Explore homestay options for cultural immersion
+
+### Food
+- Cook at home instead of eating out frequently
+- Shop at local markets and discount stores
+- Take advantage of student meal plans
+
+### Transportation
+- Use student discounts on public transport
+- Consider cycling or walking for short distances
+- Look for monthly or annual transport passes
+
+### Entertainment and Miscellaneous
+- Take advantage of student discounts
+- Explore free cultural activities and events
+- Use student ID for museum and cinema discounts
+
+## Budget Planning Tips
+
+### Emergency Fund
+Maintain an emergency fund covering 2-3 months of expenses.
+
+### Currency Fluctuations
+Factor in potential currency exchange rate changes.
+
+### Health Insurance
+Budget for mandatory health insurance requirements.
+
+### Seasonal Variations
+Consider seasonal cost variations, especially for heating in winter.
+
+## Part-Time Work Opportunities
+
+Most countries allow international students to work part-time:
+- **Canada**: 20 hours/week during studies
+- **Australia**: 20 hours/week during studies
+- **UK**: 20 hours/week during studies
+- **USA**: On-campus work only in first year
+
+Understanding these costs helps you make informed decisions about your study destination and budget accordingly for a successful international education experience.`,
+    author: {
+      name: "Maria Rodriguez",
+      title: "Financial Advisor",
+      avatar: "/api/placeholder/50/50"
+    },
+    publishedDate: "2024-02-20",
+    readTime: "11 min read",
+    category: "Cost of Living",
+    tags: ["Cost of Living", "Budgeting", "Student Life", "Financial Planning"],
+    featured: false,
+    views: 1750,
+    comments: 19,
+    image: "/api/placeholder/600/400",
+    slug: "cost-living-guide-global-cities"
+  }
+];
+
+const categories = ["All", "Study Destinations", "Visa Guide", "Scholarships", "Test Preparation", "Cost of Living"];
+
+export default function Blogs() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+
+  const filteredPosts = blogPosts.filter(post => {
+    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+
+  const featuredPosts = blogPosts.filter(post => post.featured);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
+  if (selectedPost) {
+    return (
+      <div className="min-h-screen bg-white">
+        {/* Article Header */}
+        <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Button 
+              onClick={() => setSelectedPost(null)}
+              variant="outline" 
+              className="mb-8 text-white border-white hover:bg-white/10"
+            >
+              ← Back to Blogs
+            </Button>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Badge className="mb-4 bg-primary">{selectedPost.category}</Badge>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6">{selectedPost.title}</h1>
+              
+              <div className="flex items-center space-x-6 text-blue-100 mb-8">
+                <div className="flex items-center space-x-2">
+                  <User className="w-4 h-4" />
+                  <span>{selectedPost.author.name}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Calendar className="w-4 h-4" />
+                  <span>{formatDate(selectedPost.publishedDate)}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Clock className="w-4 h-4" />
+                  <span>{selectedPost.readTime}</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Article Content */}
+        <section className="py-20">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="prose prose-lg max-w-none">
+              {selectedPost.content.split('\n\n').map((paragraph, index) => {
+                if (paragraph.startsWith('## ')) {
+                  return <h2 key={index} className="text-2xl font-bold text-neutral-800 mt-8 mb-4">{paragraph.replace('## ', '')}</h2>;
+                } else if (paragraph.startsWith('### ')) {
+                  return <h3 key={index} className="text-xl font-semibold text-neutral-800 mt-6 mb-3">{paragraph.replace('### ', '')}</h3>;
+                } else if (paragraph.startsWith('- **') || paragraph.startsWith('* **')) {
+                  return (
+                    <div key={index} className="mb-2">
+                      <p className="text-neutral-700 leading-relaxed">{paragraph}</p>
+                    </div>
+                  );
+                } else {
+                  return <p key={index} className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>;
+                }
+              })}
+            </div>
+
+            {/* Share Section */}
+            <div className="border-t border-gray-200 pt-8 mt-12">
+              <div className="flex items-center justify-between">
+                <div className="flex space-x-4">
+                  {selectedPost.tags.map((tag) => (
+                    <Badge key={tag} variant="outline">{tag}</Badge>
+                  ))}
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2 text-neutral-600">
+                    <Eye className="w-4 h-4" />
+                    <span>{selectedPost.views}</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-neutral-600">
+                    <MessageCircle className="w-4 h-4" />
+                    <span>{selectedPost.comments}</span>
+                  </div>
+                  <Button size="sm" variant="outline">
+                    <Share2 className="w-4 h-4 mr-2" />
+                    Share
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-primary via-blue-700 to-secondary text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-purple-600/30"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
+              <BookOpen className="w-5 h-5" />
+              <span className="text-sm font-medium">Education Insights</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Study Abroad<br />
+              <span className="text-yellow-300">Blog & Insights</span>
+            </h1>
+            
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+              Expert guidance, insider tips, and comprehensive guides to help you navigate your international education journey successfully.
+            </p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-300">100+</div>
+                <div className="text-sm text-blue-100">Expert Articles</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-300">25+</div>
+                <div className="text-sm text-blue-100">Countries Covered</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-300">50K+</div>
+                <div className="text-sm text-blue-100">Monthly Readers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-yellow-300">Daily</div>
+                <div className="text-sm text-blue-100">Fresh Content</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Blog Content */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Search and Filters */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-12"
+          >
+            <Card className="p-6 shadow-lg">
+              <div className="flex flex-col lg:flex-row gap-4 items-center">
+                <div className="flex-1">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400 w-4 h-4" />
+                    <Input
+                      placeholder="Search articles, topics, or destinations..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-10"
+                    />
+                  </div>
+                </div>
+                
+                <div className="flex gap-3">
+                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                    <SelectTrigger className="w-48">
+                      <SelectValue placeholder="Select Category" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+
+          {/* Featured Posts */}
+          {featuredPosts.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="mb-16"
+            >
+              <h2 className="text-3xl font-bold text-neutral-800 mb-8">Featured Articles</h2>
+              <div className="grid md:grid-cols-2 gap-8">
+                {featuredPosts.slice(0, 2).map((post, index) => (
+                  <Card key={post.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ring-2 ring-primary/20">
+                    <div className="relative h-64 bg-gradient-to-br from-primary to-secondary">
+                      <div className="absolute inset-0 bg-black/20"></div>
+                      <div className="absolute top-4 left-4">
+                        <Badge className="bg-yellow-400 text-yellow-900">Featured</Badge>
+                      </div>
+                      <div className="absolute bottom-4 left-4 text-white">
+                        <Badge variant="secondary" className="mb-2">{post.category}</Badge>
+                        <h3 className="text-xl font-bold line-clamp-2">{post.title}</h3>
+                      </div>
+                    </div>
+                    <CardContent className="p-6">
+                      <p className="text-neutral-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                      
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-xs font-bold">
+                            {post.author.name.split(' ').map(n => n[0]).join('')}
+                          </div>
+                          <div className="text-sm">
+                            <div className="font-medium text-neutral-800">{post.author.name}</div>
+                            <div className="text-neutral-500">{formatDate(post.publishedDate)}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-4 text-neutral-500 text-sm">
+                          <div className="flex items-center space-x-1">
+                            <Eye className="w-4 h-4" />
+                            <span>{post.views}</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <Clock className="w-4 h-4" />
+                            <span>{post.readTime}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <Button 
+                        onClick={() => setSelectedPost(post)}
+                        className="w-full bg-primary hover:bg-primary/90"
+                      >
+                        Read Article
+                        <ChevronRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {/* All Posts */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-3xl font-bold text-neutral-800">Latest Articles</h2>
+              <div className="flex items-center space-x-2 text-neutral-600">
+                <TrendingUp className="w-4 h-4" />
+                <span className="text-sm">{filteredPosts.length} articles found</span>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600">
+                      <div className="absolute inset-0 bg-black/20"></div>
+                      <div className="absolute top-4 right-4">
+                        <Badge variant="secondary">{post.category}</Badge>
+                      </div>
+                      <div className="absolute bottom-4 left-4 text-white">
+                        <div className="text-lg font-bold">{formatDate(post.publishedDate).split(' ')[1]}</div>
+                        <div className="text-sm opacity-90">{formatDate(post.publishedDate).split(' ')[0]} {formatDate(post.publishedDate).split(' ')[2]}</div>
+                      </div>
+                    </div>
+
+                    <CardContent className="p-6">
+                      <h3 className="text-xl font-bold text-neutral-800 mb-3 line-clamp-2">
+                        {post.title}
+                      </h3>
+                      
+                      <p className="text-neutral-600 mb-4 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {post.tags.slice(0, 3).map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-xs font-bold">
+                            {post.author.name.split(' ').map(n => n[0]).join('')}
+                          </div>
+                          <div className="text-sm">
+                            <div className="font-medium text-neutral-800">{post.author.name}</div>
+                            <div className="text-neutral-500">{post.readTime}</div>
+                          </div>
+                        </div>
+                        <Button 
+                          size="sm" 
+                          onClick={() => setSelectedPost(post)}
+                          className="bg-primary hover:bg-primary/90"
+                        >
+                          Read More
+                          <ChevronRight className="w-4 h-4 ml-1" />
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            {filteredPosts.length === 0 && (
+              <div className="text-center py-12">
+                <BookOpen className="w-16 h-16 mx-auto text-neutral-300 mb-4" />
+                <h3 className="text-xl font-semibold text-neutral-600 mb-2">No articles found</h3>
+                <p className="text-neutral-500">Try adjusting your search or filters</p>
+              </div>
+            )}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Newsletter CTA */}
+      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            <h2 className="text-4xl font-bold mb-6">
+              Stay Updated with Latest Insights
+            </h2>
+            <p className="text-xl text-blue-100 mb-8">
+              Get weekly expert tips, scholarship updates, and study abroad insights delivered to your inbox
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <Input 
+                placeholder="Enter your email" 
+                className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+              />
+              <Button className="bg-white text-primary hover:bg-blue-50 whitespace-nowrap">
+                Subscribe
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
