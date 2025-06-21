@@ -6,7 +6,7 @@ import AudienceSection from "@/components/audience-section";
 import IeltsSection from "@/components/ielts-section";
 import ProcessSection from "@/components/process-section";
 import CountriesSection from "@/components/countries-section";
-import EventsSection from "@/components/events-section";
+
 import TestimonialsSection from "@/components/testimonials-section";
 import ContactSection from "@/components/contact-section";
 import UniversityPartnersSection from "@/components/university-partners-section";
@@ -27,7 +27,7 @@ export default function Home() {
       <IeltsSection />
       <ProcessSection />
       <CountriesSection />
-      <EventsSection />
+
       <TestimonialsSection />
       <GoogleReviewsSection />
       <UniversityPartnersSection />

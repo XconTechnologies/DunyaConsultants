@@ -35,6 +35,7 @@ export default function Navigation() {
     { name: "Process", id: "process" },
     { name: "Locations", id: "locations" },
     { name: "Testimonials", id: "testimonials" },
+    { name: "Events", href: "/events" },
     { name: "Cost Calculator", href: "/cost-calculator" },
   ];
 
