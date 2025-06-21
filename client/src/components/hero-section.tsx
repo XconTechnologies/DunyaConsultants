@@ -1,12 +1,68 @@
 import { Button } from "@/components/ui/button";
-import { Rocket, Play } from "lucide-react";
-import { motion } from "framer-motion";
+import { Rocket, Play, Sparkles } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function HeroSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+      controls.start("visible");
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [controls]);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // Floating highlight animation variants
+  const floatingVariants = {
+    hidden: { opacity: 0, scale: 0, rotate: 0 },
+    visible: (index: number) => ({
+      opacity: [0, 1, 0.8, 1],
+      scale: [0, 1.2, 0.9, 1],
+      rotate: [0, 10, -5, 0],
+      transition: {
+        duration: 1.5,
+        delay: index * 0.3,
+        repeat: Infinity,
+        repeatType: "reverse" as const,
+        repeatDelay: 2
+      }
+    })
+  };
+
+  // Text reveal animation variants
+  const textRevealVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: "easeOut"
+      }
+    })
+  };
+
+  // Highlight bubble animation
+  const bubbleVariants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: {
+      scale: [0, 1.2, 1],
+      opacity: [0, 0.8, 0.6],
+      transition: {
+        duration: 1,
+        ease: "easeOut"
+      }
     }
   };
 
@@ -30,6 +86,136 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          {/* Animated Tagline with Floating Highlights */}
+          <motion.div
+            className="mb-8 relative"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            {/* Floating Highlight Elements */}
+            <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              {/* Sparkle elements */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={`sparkle-${i}`}
+                  className="absolute"
+                  style={{
+                    left: `${20 + i * 15}%`,
+                    top: `${-20 + (i % 2) * 40}%`,
+                  }}
+                  variants={floatingVariants}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  custom={i}
+                >
+                  <Sparkles className="w-4 h-4 text-yellow-300" />
+                </motion.div>
+              ))}
+
+              {/* Floating dots */}
+              {[...Array(8)].map((_, i) => (
+                <motion.div
+                  key={`dot-${i}`}
+                  className="absolute w-2 h-2 rounded-full"
+                  style={{
+                    left: `${10 + i * 12}%`,
+                    top: `${-30 + (i % 3) * 25}%`,
+                    background: `linear-gradient(45deg, ${
+                      i % 2 === 0 ? '#fbbf24, #f59e0b' : '#34d399, #10b981'
+                    })`,
+                  }}
+                  variants={floatingVariants}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                  custom={i + 0.5}
+                />
+              ))}
+
+              {/* Animated rings */}
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={`ring-${i}`}
+                  className="absolute border-2 border-white/20 rounded-full"
+                  style={{
+                    left: `${30 + i * 20}%`,
+                    top: `${-10 + i * 15}%`,
+                    width: `${20 + i * 10}px`,
+                    height: `${20 + i * 10}px`,
+                  }}
+                  variants={bubbleVariants}
+                  initial="hidden"
+                  animate={isVisible ? "visible" : "hidden"}
+                />
+              ))}
+            </div>
+
+            {/* Main Tagline Container */}
+            <div className="relative z-10 inline-flex items-center justify-center w-full">
+              <motion.div
+                className="relative px-8 py-4 rounded-full bg-gradient-to-r from-white/15 to-white/10 backdrop-blur-lg border border-white/30 shadow-2xl"
+                variants={bubbleVariants}
+                initial="hidden"
+                animate={isVisible ? "visible" : "hidden"}
+              >
+                {/* Background glow effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/20 to-orange-500/20 blur-xl"></div>
+                
+                {/* Animated pulse indicator */}
+                <motion.div
+                  className="absolute -left-1 top-1/2 transform -translate-y-1/2"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.7, 1, 0.7],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <div className="w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-lg"></div>
+                </motion.div>
+
+                {/* Animated text reveal */}
+                <div className="relative flex items-center justify-center space-x-1 text-white font-semibold text-lg">
+                  {"Dedication to Education".split(" ").map((word, wordIndex) => (
+                    <motion.span
+                      key={wordIndex}
+                      className="inline-block"
+                      variants={textRevealVariants}
+                      initial="hidden"
+                      animate={isVisible ? "visible" : "hidden"}
+                      custom={wordIndex}
+                    >
+                      {word.split("").map((letter, letterIndex) => (
+                        <motion.span
+                          key={letterIndex}
+                          className="inline-block"
+                          variants={textRevealVariants}
+                          initial="hidden"
+                          animate={isVisible ? "visible" : "hidden"}
+                          custom={wordIndex * 3 + letterIndex * 0.05}
+                        >
+                          {letter}
+                        </motion.span>
+                      ))}
+                      {wordIndex < 2 && <span className="mr-1"></span>}
+                    </motion.span>
+                  ))}
+                </div>
+
+                {/* Animated underline */}
+                <motion.div
+                  className="absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full"
+                  initial={{ width: 0 }}
+                  animate={isVisible ? { width: "80%" } : { width: 0 }}
+                  transition={{ duration: 1, delay: 1.5 }}
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+
           <motion.h1 
             className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8"
             initial={{ opacity: 0, y: 30 }}
