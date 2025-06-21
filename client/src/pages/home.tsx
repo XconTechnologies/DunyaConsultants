@@ -12,6 +12,7 @@ import ContactSection from "@/components/contact-section";
 import UniversityPartnersSection from "@/components/university-partners-section";
 import CostCalculatorSection from "@/components/cost-calculator-section";
 import GoogleReviewsSection from "@/components/google-reviews-section";
+import OfficeLocationsSection from "@/components/office-locations-section";
 import Footer from "@/components/footer";
 
 export default function Home() {
@@ -30,6 +31,7 @@ export default function Home() {
       <GoogleReviewsSection />
       <UniversityPartnersSection />
       <CostCalculatorSection />
+      <OfficeLocationsSection />
       <ContactSection />
       <Footer />
     </div>
