@@ -49,7 +49,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="text-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
@@ -111,26 +111,7 @@ export default function AboutSection() {
           </motion.div>
         </div>
         
-        {/* Stats Section */}
-        <motion.div 
-          className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 1 }}
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="text-center"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-              transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
-            >
-              <div className={`text-4xl lg:text-5xl font-bold ${stat.color} mb-2`}>{stat.value}</div>
-              <div className="text-neutral-500 font-medium">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
+        
       </div>
     </section>
   );

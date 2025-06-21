@@ -242,31 +242,7 @@ export default function AudienceSection() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Bottom Stats */}
-        <motion.div 
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          {[
-            { value: "10,000+", label: "Happy Students" },
-            { value: "500+", label: "Partner Institutions" },
-            { value: "50+", label: "University Partners" },
-            { value: "99%", label: "Success Rate" }
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="text-center p-6 bg-white/60 backdrop-blur-sm rounded-xl shadow-md"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
-            >
-              <div className="text-3xl lg:text-4xl font-bold text-primary mb-2">{stat.value}</div>
-              <div className="text-neutral-600 font-medium">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
+        
       </div>
     </section>
   );

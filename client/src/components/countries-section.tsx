@@ -349,62 +349,7 @@ export default function CountriesSection() {
   return (
     <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl font-bold text-neutral-800 mb-6 flex items-center justify-center">
-            <Globe className="mr-4 text-primary" size={40} />
-            Study Destinations We Cover
-          </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed mb-8">
-            Discover world-class education opportunities across multiple countries. 
-            We guide students to the best universities and programs worldwide.
-          </p>
-          
-          {/* Statistics */}
-          <div className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <motion.div
-              className="bg-white rounded-xl p-6 shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <div className="text-3xl font-bold text-primary mb-2">{countries.length}</div>
-              <div className="text-neutral-600">Countries</div>
-            </motion.div>
-            <motion.div
-              className="bg-white rounded-xl p-6 shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="text-3xl font-bold text-primary mb-2">{totalStudents.toLocaleString()}</div>
-              <div className="text-neutral-600">Students Placed</div>
-            </motion.div>
-            <motion.div
-              className="bg-white rounded-xl p-6 shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <div className="text-3xl font-bold text-primary mb-2">{totalScholarships}</div>
-              <div className="text-neutral-600">Scholarships</div>
-            </motion.div>
-            <motion.div
-              className="bg-white rounded-xl p-6 shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <div className="text-3xl font-bold text-primary mb-2">95%</div>
-              <div className="text-neutral-600">Success Rate</div>
-            </motion.div>
-          </div>
-        </motion.div>
+        
 
         {/* View Mode Toggle */}
         <motion.div
