@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Clock, CheckCircle, ArrowRight, Star, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, CheckCircle, ArrowRight, Star, ExternalLink, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -10,6 +10,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 // Services data with your specified offerings
@@ -347,8 +348,12 @@ export default function ServicesSection() {
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+                        <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                          <X className="h-4 w-4" />
+                          <span className="sr-only">Close</span>
+                        </DialogClose>
                         <DialogHeader>
-                          <DialogTitle className="flex items-center space-x-4">
+                          <DialogTitle className="flex items-center space-x-4 pr-8">
                             <div className={`w-16 h-16 bg-gradient-to-br ${selectedService?.color} rounded-2xl flex items-center justify-center text-white text-3xl shadow-lg`}>
                               {selectedService?.icon}
                             </div>
@@ -419,10 +424,17 @@ export default function ServicesSection() {
                                     <h4 className="text-lg font-semibold text-neutral-800">Ready to get started?</h4>
                                     <p className="text-neutral-600">Contact us for a free consultation and personalized service plan.</p>
                                   </div>
-                                  <Button className="bg-primary hover:bg-primary/90">
-                                    Get Quote
-                                    <ExternalLink className="w-4 h-4 ml-2" />
-                                  </Button>
+                                  <div className="flex gap-3">
+                                    <DialogClose asChild>
+                                      <Button variant="outline">
+                                        Close
+                                      </Button>
+                                    </DialogClose>
+                                    <Button className="bg-primary hover:bg-primary/90">
+                                      Get Quote
+                                      <ExternalLink className="w-4 h-4 ml-2" />
+                                    </Button>
+                                  </div>
                                 </div>
                               </div>
                             </div>
