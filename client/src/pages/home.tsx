@@ -10,7 +10,7 @@ import EventsSection from "@/components/events-section";
 import TestimonialsSection from "@/components/testimonials-section";
 import ContactSection from "@/components/contact-section";
 import UniversityPartnersSection from "@/components/university-partners-section";
-import CostCalculatorSection from "@/components/cost-calculator-section";
+
 import GoogleReviewsSection from "@/components/google-reviews-section";
 import OfficeLocationsSection from "@/components/office-locations-section";
 import ContactInfoSection from "@/components/contact-info-section";
@@ -31,7 +31,7 @@ export default function Home() {
       <TestimonialsSection />
       <GoogleReviewsSection />
       <UniversityPartnersSection />
-      <CostCalculatorSection />
+
       <OfficeLocationsSection />
       <ContactSection />
       <ContactInfoSection />

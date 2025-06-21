@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "wouter";
 import logoImage from "@assets/Asset-1_1750413567978.png";
 
 export default function Navigation() {
@@ -34,6 +35,7 @@ export default function Navigation() {
     { name: "Process", id: "process" },
     { name: "Locations", id: "locations" },
     { name: "Testimonials", id: "testimonials" },
+    { name: "Cost Calculator", href: "/cost-calculator" },
   ];
 
   return (
@@ -59,16 +61,27 @@ export default function Navigation() {
           
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, index) => (
-              <motion.button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="text-neutral-800 hover:text-primary transition-colors duration-200 font-medium"
+              <motion.div
+                key={item.id || item.href}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {item.name}
-              </motion.button>
+                {item.href ? (
+                  <Link href={item.href}>
+                    <button className="text-neutral-800 hover:text-primary transition-colors duration-200 font-medium">
+                      {item.name}
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => scrollToSection(item.id)}
+                    className="text-neutral-800 hover:text-primary transition-colors duration-200 font-medium"
+                  >
+                    {item.name}
+                  </button>
+                )}
+              </motion.div>
             ))}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -107,13 +120,24 @@ export default function Navigation() {
           >
             <div className="px-4 py-4 space-y-4">
               {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-medium py-2"
-                >
-                  {item.name}
-                </button>
+                item.href ? (
+                  <Link key={item.href} href={item.href}>
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-medium py-2"
+                    >
+                      {item.name}
+                    </button>
+                  </Link>
+                ) : (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-medium py-2"
+                  >
+                    {item.name}
+                  </button>
+                )
               ))}
               <Button 
                 onClick={() => scrollToSection("contact")}
