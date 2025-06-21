@@ -108,58 +108,86 @@ export default function OfficeLocationsSection() {
               {/* World Map Container */}
               <div className="relative">
                 {/* Background World Map */}
-                <div className="relative w-full h-96 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl overflow-hidden">
-                  {/* Dotted World Map Pattern */}
+                <div className="relative w-full h-96 bg-gradient-to-br from-slate-100 to-blue-100 rounded-xl overflow-hidden border border-gray-200">
+                  {/* Grid Lines and World Map Pattern */}
                   <svg 
-                    className="absolute inset-0 w-full h-full opacity-30" 
+                    className="absolute inset-0 w-full h-full" 
                     viewBox="0 0 800 400"
                     preserveAspectRatio="xMidYMid meet"
                   >
-                    {/* Simple dotted world map outline */}
-                    <g fill="#3B82F6" opacity="0.6">
+                    {/* Grid Lines */}
+                    <defs>
+                      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" strokeWidth="0.5" opacity="0.5"/>
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+                    
+                    {/* Continents with dotted patterns */}
+                    <g fill="#3B82F6" opacity="0.4">
                       {/* North America */}
-                      <circle cx="150" cy="120" r="1.5" />
-                      <circle cx="155" cy="125" r="1.5" />
-                      <circle cx="160" cy="130" r="1.5" />
-                      <circle cx="170" cy="140" r="1.5" />
-                      <circle cx="180" cy="150" r="1.5" />
-                      <circle cx="190" cy="160" r="1.5" />
-                      <circle cx="200" cy="170" r="1.5" />
+                      {Array.from({ length: 80 }, (_, i) => {
+                        const x = 80 + Math.random() * 200;
+                        const y = 80 + Math.random() * 120;
+                        return <circle key={`na-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
+                      })}
                       
                       {/* Europe */}
-                      <circle cx="400" cy="130" r="1.5" />
-                      <circle cx="410" cy="135" r="1.5" />
-                      <circle cx="420" cy="140" r="1.5" />
-                      <circle cx="430" cy="145" r="1.5" />
+                      {Array.from({ length: 60 }, (_, i) => {
+                        const x = 380 + Math.random() * 100;
+                        const y = 100 + Math.random() * 80;
+                        return <circle key={`eu-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
+                      })}
                       
                       {/* Asia */}
-                      <circle cx="500" cy="150" r="1.5" />
-                      <circle cx="520" cy="160" r="1.5" />
-                      <circle cx="540" cy="170" r="1.5" />
-                      <circle cx="560" cy="180" r="1.5" />
-                      <circle cx="580" cy="190" r="1.5" />
-                      <circle cx="600" cy="180" r="1.5" />
+                      {Array.from({ length: 120 }, (_, i) => {
+                        const x = 480 + Math.random() * 200;
+                        const y = 120 + Math.random() * 120;
+                        return <circle key={`as-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
+                      })}
                       
                       {/* Africa */}
-                      <circle cx="420" cy="200" r="1.5" />
-                      <circle cx="430" cy="220" r="1.5" />
-                      <circle cx="440" cy="240" r="1.5" />
-                      <circle cx="450" cy="260" r="1.5" />
+                      {Array.from({ length: 70 }, (_, i) => {
+                        const x = 400 + Math.random() * 80;
+                        const y = 200 + Math.random() * 120;
+                        return <circle key={`af-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
+                      })}
                       
                       {/* Australia */}
-                      <circle cx="650" cy="280" r="1.5" />
-                      <circle cx="670" cy="290" r="1.5" />
+                      {Array.from({ length: 30 }, (_, i) => {
+                        const x = 640 + Math.random() * 60;
+                        const y = 270 + Math.random() * 40;
+                        return <circle key={`au-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
+                      })}
                       
-                      {/* Additional dots for density */}
-                      {Array.from({ length: 200 }, (_, i) => (
-                        <circle 
-                          key={i}
-                          cx={Math.random() * 800} 
-                          cy={Math.random() * 400} 
-                          r="1" 
-                          opacity={Math.random() * 0.3}
-                        />
-                      ))}
+                      {/* Pakistan region highlighted */}
+                      {Array.from({ length: 40 }, (_, i) => {
+                        const x = 580 + Math.random() * 30;
+                        const y = 170 + Math.random() * 30;
+                        return <circle key={`pk-${i}`} cx={x} cy={y} r="1.5" fill="#059669" opacity="0.8" />;
+                      })}
+                    </g>
+                    
+                    {/* Connection lines between offices */}
+                    <g stroke="#3B82F6" strokeWidth="1" opacity="0.3" fill="none">
+                      {/* Lines connecting major offices */}
+                      <path d="M 580 175 Q 590 180 585 185" strokeDasharray="2,2" />
+                      <path d="M 585 185 Q 575 190 580 195" strokeDasharray="2,2" />
+                      <path d="M 580 195 Q 590 185 595 180" strokeDasharray="2,2" />
+                      <path d="M 595 180 Q 585 175 580 175" strokeDasharray="2,2" />
+                    </g>
+                    
+                    {/* Coordinate labels */}
+                    <g fill="#6B7280" fontSize="10" opacity="0.7">
+                      <text x="20" y="30">60°N</text>
+                      <text x="20" y="130">30°N</text>
+                      <text x="20" y="230">0°</text>
+                      <text x="20" y="330">30°S</text>
+                      <text x="80" y="380">120°W</text>
+                      <text x="280" y="380">60°W</text>
+                      <text x="380" y="380">0°</text>
+                      <text x="580" y="380">60°E</text>
+                      <text x="680" y="380">120°E</text>
                     </g>
                   </svg>
 
@@ -180,28 +208,53 @@ export default function OfficeLocationsSection() {
                       onMouseLeave={() => setHoveredOffice(null)}
                       onClick={() => setSelectedOffice(office)}
                     >
-                      {/* Location Marker */}
+                      {/* Location Marker with enhanced design */}
                       <div className={`relative cursor-pointer group`}>
-                        <div className={`w-6 h-6 ${office.color} rounded-full border-4 border-white shadow-lg group-hover:scale-125 transition-transform duration-300`}>
-                          <div className="absolute inset-0 rounded-full bg-white opacity-20"></div>
+                        {/* Outer ring */}
+                        <div className={`absolute inset-0 w-10 h-10 ${office.color} rounded-full opacity-20 group-hover:scale-150 transition-all duration-500`}></div>
+                        
+                        {/* Main marker */}
+                        <div className={`relative w-7 h-7 ${office.color} rounded-full border-3 border-white shadow-xl group-hover:scale-125 transition-transform duration-300 z-10`}>
+                          <div className="absolute inset-0 rounded-full bg-white opacity-30"></div>
+                          {/* Center dot */}
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full"></div>
                         </div>
                         
                         {/* Pulse Animation */}
-                        <div className={`absolute inset-0 w-6 h-6 ${office.color} rounded-full animate-ping opacity-20`}></div>
+                        <div className={`absolute inset-0 w-7 h-7 ${office.color} rounded-full animate-ping opacity-30`}></div>
+                        
+                        {/* Office Label */}
+                        <div className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-neutral-700 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                          {office.city}
+                        </div>
                         
                         {/* Hover Tooltip */}
                         {hoveredOffice?.id === office.id && (
                           <motion.div
-                            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-xl p-3 min-w-48 z-10"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 10 }}
+                            className="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-white rounded-xl shadow-2xl p-4 min-w-56 z-20 border border-gray-100"
+                            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.9 }}
                           >
-                            <div className="text-sm font-bold text-neutral-800">{office.city}</div>
-                            <div className="text-xs text-neutral-600">{office.country}</div>
-                            <div className="text-xs text-neutral-500 mt-1">{office.staff} Staff Members</div>
+                            <div className="text-sm font-bold text-neutral-800 flex items-center">
+                              {office.city}
+                              {office.isHeadOffice && (
+                                <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">HQ</span>
+                              )}
+                            </div>
+                            <div className="text-xs text-neutral-600 mb-2">{office.country}</div>
+                            <div className="text-xs text-neutral-500 space-y-1">
+                              <div className="flex items-center">
+                                <Users className="w-3 h-3 mr-1" />
+                                {office.staff} Staff Members
+                              </div>
+                              <div className="flex items-center">
+                                <Phone className="w-3 h-3 mr-1" />
+                                {office.phone}
+                              </div>
+                            </div>
                             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
-                              <div className="w-2 h-2 bg-white rotate-45 shadow"></div>
+                              <div className="w-3 h-3 bg-white rotate-45 shadow border-r border-b border-gray-100"></div>
                             </div>
                           </motion.div>
                         )}
@@ -210,21 +263,45 @@ export default function OfficeLocationsSection() {
                   ))}
                 </div>
 
-                {/* Legend */}
-                <div className="mt-6 flex flex-wrap justify-center gap-4">
-                  {officeLocations.map((office) => (
-                    <div 
-                      key={office.id}
-                      className="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 px-2 py-1 rounded-lg transition-colors"
-                      onClick={() => setSelectedOffice(office)}
-                    >
-                      <div className={`w-3 h-3 ${office.color} rounded-full`}></div>
-                      <span className="text-sm text-neutral-700">{office.city}</span>
-                      {office.isHeadOffice && (
-                        <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">HQ</span>
-                      )}
+                {/* Enhanced Legend with Grid */}
+                <div className="mt-6 bg-gray-50 rounded-lg p-4">
+                  <div className="text-sm font-medium text-neutral-700 mb-3 text-center">Office Network</div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {officeLocations.map((office) => (
+                      <motion.div 
+                        key={office.id}
+                        className="flex items-center space-x-3 cursor-pointer hover:bg-white px-3 py-2 rounded-lg transition-all duration-200 group"
+                        onClick={() => setSelectedOffice(office)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div className={`w-4 h-4 ${office.color} rounded-full border-2 border-white shadow-sm group-hover:scale-110 transition-transform`}></div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium text-neutral-800 truncate">{office.city}</div>
+                          <div className="text-xs text-neutral-500">{office.staff} staff</div>
+                        </div>
+                        {office.isHeadOffice && (
+                          <span className="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full font-medium">HQ</span>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  {/* Map Legend */}
+                  <div className="mt-4 pt-3 border-t border-gray-200 flex justify-center space-x-6 text-xs text-neutral-500">
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span>Grid: 20° intervals</span>
                     </div>
-                  ))}
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                      <span>Regions</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                      <span>Pakistan</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
