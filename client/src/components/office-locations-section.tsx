@@ -1,8 +1,8 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { MapPin, Phone, Mail, Clock, Users } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { MapPin, Phone, Mail, Clock, Users, ChevronLeft, ChevronRight, Building2 } from "lucide-react";
 
-// Office locations data with coordinates
+// Office locations data
 const officeLocations = [
   {
     id: 1,
@@ -14,10 +14,10 @@ const officeLocations = [
     email: "lahore@pathvisaconsultants.com",
     hours: "Mon-Fri: 9:00 AM - 6:00 PM",
     staff: 25,
-    coords: [31.5497, 74.3436],
-    position: { top: "45%", left: "75%" },
-    color: "bg-red-500",
-    markerColor: "#ef4444"
+    color: "from-red-500 to-red-600",
+    bgPattern: "bg-gradient-to-br from-red-50 to-red-100",
+    services: ["Visa Processing", "University Applications", "IELTS Training", "Scholarships"],
+    image: "🏢"
   },
   {
     id: 2,
@@ -28,10 +28,10 @@ const officeLocations = [
     email: "karachi@pathvisaconsultants.com",
     hours: "Mon-Fri: 9:00 AM - 6:00 PM",
     staff: 18,
-    coords: [24.8607, 67.0011],
-    position: { top: "48%", left: "73%" },
-    color: "bg-blue-500",
-    markerColor: "#3b82f6"
+    color: "from-blue-500 to-blue-600",
+    bgPattern: "bg-gradient-to-br from-blue-50 to-blue-100",
+    services: ["Career Counseling", "Document Processing", "Interview Prep", "Pre-departure"],
+    image: "🌊"
   },
   {
     id: 3,
@@ -42,10 +42,10 @@ const officeLocations = [
     email: "islamabad@pathvisaconsultants.com",
     hours: "Mon-Fri: 9:00 AM - 6:00 PM",
     staff: 15,
-    coords: [33.6844, 73.0479],
-    position: { top: "42%", left: "74%" },
-    color: "bg-green-500",
-    markerColor: "#22c55e"
+    color: "from-green-500 to-green-600",
+    bgPattern: "bg-gradient-to-br from-green-50 to-green-100",
+    services: ["Government Relations", "Embassy Support", "Legal Assistance", "Fast Track"],
+    image: "🏛️"
   },
   {
     id: 4,
@@ -56,10 +56,10 @@ const officeLocations = [
     email: "faisalabad@pathvisaconsultants.com", 
     hours: "Mon-Fri: 9:00 AM - 6:00 PM",
     staff: 12,
-    coords: [31.4504, 73.1350],
-    position: { top: "44%", left: "74.5%" },
-    color: "bg-orange-500",
-    markerColor: "#f97316"
+    color: "from-orange-500 to-orange-600",
+    bgPattern: "bg-gradient-to-br from-orange-50 to-orange-100",
+    services: ["Student Guidance", "Application Support", "Financial Aid", "Test Prep"],
+    image: "🌾"
   },
   {
     id: 5,
@@ -70,18 +70,72 @@ const officeLocations = [
     email: "multan@pathvisaconsultants.com",
     hours: "Mon-Fri: 9:00 AM - 6:00 PM", 
     staff: 10,
-    coords: [30.1575, 71.5249],
-    position: { top: "46%", left: "73.5%" },
-    color: "bg-purple-500",
-    markerColor: "#a855f7"
+    color: "from-purple-500 to-purple-600",
+    bgPattern: "bg-gradient-to-br from-purple-50 to-purple-100",
+    services: ["Regional Support", "Local Partnerships", "Community Outreach", "Follow-up"],
+    image: "🕌"
+  },
+  {
+    id: 6,
+    city: "Peshawar",
+    country: "Pakistan",
+    address: "University Road, Opposite Pearl Continental Hotel",
+    phone: "+92 91 111 222 333",
+    email: "peshawar@pathvisaconsultants.com",
+    hours: "Mon-Fri: 9:00 AM - 6:00 PM", 
+    staff: 14,
+    color: "from-indigo-500 to-indigo-600",
+    bgPattern: "bg-gradient-to-br from-indigo-50 to-indigo-100",
+    services: ["Border Support", "Cultural Guidance", "Language Training", "Family Assistance"],
+    image: "🏔️"
+  },
+  {
+    id: 7,
+    city: "Rawalpindi",
+    country: "Pakistan",
+    address: "Saddar Bazaar, Committee Chowk, 2nd Floor",
+    phone: "+92 51 111 222 444",
+    email: "rawalpindi@pathvisaconsultants.com",
+    hours: "Mon-Fri: 9:00 AM - 6:00 PM", 
+    staff: 11,
+    color: "from-teal-500 to-teal-600",
+    bgPattern: "bg-gradient-to-br from-teal-50 to-teal-100",
+    services: ["Military Support", "Veterans Programs", "Special Cases", "Express Processing"],
+    image: "⚡"
   }
 ];
 
 export default function OfficeLocationsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [selectedOffice, setSelectedOffice] = useState(null);
-  const [hoveredOffice, setHoveredOffice] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [officesPerPage] = useState(2);
+
+  // Auto-slide functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => 
+        prev + officesPerPage >= officeLocations.length ? 0 : prev + officesPerPage
+      );
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [officesPerPage]);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => 
+      prev + officesPerPage >= officeLocations.length ? 0 : prev + officesPerPage
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => 
+      prev - officesPerPage < 0 ? 
+      Math.max(0, officeLocations.length - officesPerPage) : prev - officesPerPage
+    );
+  };
+
+  const currentOffices = officeLocations.slice(currentIndex, currentIndex + officesPerPage);
 
   return (
     <section ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -102,352 +156,181 @@ export default function OfficeLocationsSection() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* World Map */}
-          <motion.div
-            className="lg:col-span-2"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-2xl font-bold text-neutral-800 mb-6 text-center">
-                Global Presence Map
-              </h3>
-              
-              {/* World Map Container */}
-              <div className="relative">
-                {/* Background World Map */}
-                <div className="relative w-full h-96 bg-gradient-to-br from-slate-100 to-blue-100 rounded-xl overflow-hidden border border-gray-200">
-                  {/* Grid Lines and World Map Pattern */}
-                  <svg 
-                    className="absolute inset-0 w-full h-full" 
-                    viewBox="0 0 800 400"
-                    preserveAspectRatio="xMidYMid meet"
-                  >
-                    {/* Grid Lines */}
-                    <defs>
-                      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" strokeWidth="0.5" opacity="0.5"/>
-                      </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#grid)" />
-                    
-                    {/* Continents with dotted patterns */}
-                    <g fill="#3B82F6" opacity="0.4">
-                      {/* North America */}
-                      {Array.from({ length: 80 }, (_, i) => {
-                        const x = 80 + Math.random() * 200;
-                        const y = 80 + Math.random() * 120;
-                        return <circle key={`na-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
-                      })}
-                      
-                      {/* Europe */}
-                      {Array.from({ length: 60 }, (_, i) => {
-                        const x = 380 + Math.random() * 100;
-                        const y = 100 + Math.random() * 80;
-                        return <circle key={`eu-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
-                      })}
-                      
-                      {/* Asia */}
-                      {Array.from({ length: 120 }, (_, i) => {
-                        const x = 480 + Math.random() * 200;
-                        const y = 120 + Math.random() * 120;
-                        return <circle key={`as-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
-                      })}
-                      
-                      {/* Africa */}
-                      {Array.from({ length: 70 }, (_, i) => {
-                        const x = 400 + Math.random() * 80;
-                        const y = 200 + Math.random() * 120;
-                        return <circle key={`af-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
-                      })}
-                      
-                      {/* Australia */}
-                      {Array.from({ length: 30 }, (_, i) => {
-                        const x = 640 + Math.random() * 60;
-                        const y = 270 + Math.random() * 40;
-                        return <circle key={`au-${i}`} cx={x} cy={y} r="1.2" opacity="0.6" />;
-                      })}
-                      
-                      {/* Pakistan region highlighted */}
-                      {Array.from({ length: 40 }, (_, i) => {
-                        const x = 580 + Math.random() * 30;
-                        const y = 170 + Math.random() * 30;
-                        return <circle key={`pk-${i}`} cx={x} cy={y} r="1.5" fill="#059669" opacity="0.8" />;
-                      })}
-                    </g>
-                    
-                    {/* Connection lines between offices */}
-                    <g stroke="#3B82F6" strokeWidth="1" opacity="0.3" fill="none">
-                      {/* Lines connecting major offices */}
-                      <path d="M 580 175 Q 590 180 585 185" strokeDasharray="2,2" />
-                      <path d="M 585 185 Q 575 190 580 195" strokeDasharray="2,2" />
-                      <path d="M 580 195 Q 590 185 595 180" strokeDasharray="2,2" />
-                      <path d="M 595 180 Q 585 175 580 175" strokeDasharray="2,2" />
-                    </g>
-                    
-                    {/* Coordinate labels */}
-                    <g fill="#6B7280" fontSize="10" opacity="0.7">
-                      <text x="20" y="30">60°N</text>
-                      <text x="20" y="130">30°N</text>
-                      <text x="20" y="230">0°</text>
-                      <text x="20" y="330">30°S</text>
-                      <text x="80" y="380">120°W</text>
-                      <text x="280" y="380">60°W</text>
-                      <text x="380" y="380">0°</text>
-                      <text x="580" y="380">60°E</text>
-                      <text x="680" y="380">120°E</text>
-                    </g>
-                  </svg>
+        {/* Office Carousel */}
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {/* Navigation Header */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h3 className="text-2xl font-bold text-neutral-800">Our Office Network</h3>
+              <p className="text-neutral-600 mt-1">Discover our branches across Pakistan</p>
+            </div>
+            
+            {/* Navigation Controls */}
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={prevSlide}
+                className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors group"
+              >
+                <ChevronLeft className="w-5 h-5 text-neutral-600 group-hover:text-primary" />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="w-12 h-12 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors group"
+              >
+                <ChevronRight className="w-5 h-5 text-neutral-600 group-hover:text-primary" />
+              </button>
+            </div>
+          </div>
 
-                  {/* Office Location Markers */}
-                  {officeLocations.map((office, index) => (
-                    <motion.div
-                      key={office.id}
-                      className="absolute"
-                      style={{ 
-                        top: office.position.top, 
-                        left: office.position.left,
-                        transform: 'translate(-50%, -50%)'
-                      }}
-                      initial={{ opacity: 0, scale: 0 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                      onMouseEnter={() => setHoveredOffice(office)}
-                      onMouseLeave={() => setHoveredOffice(null)}
-                      onClick={() => setSelectedOffice(office)}
-                    >
-                      {/* Location Marker with enhanced design */}
-                      <div className={`relative cursor-pointer group`}>
-                        {/* Outer ring */}
-                        <div className={`absolute inset-0 w-10 h-10 ${office.color} rounded-full opacity-20 group-hover:scale-150 transition-all duration-500`}></div>
-                        
-                        {/* Main marker */}
-                        <div className={`relative w-7 h-7 ${office.color} rounded-full border-3 border-white shadow-xl group-hover:scale-125 transition-transform duration-300 z-10`}>
-                          <div className="absolute inset-0 rounded-full bg-white opacity-30"></div>
-                          {/* Center dot */}
-                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full"></div>
+          {/* Office Cards Slider */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {currentOffices.map((office, index) => (
+              <motion.div
+                key={office.id}
+                className="relative group"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className={`relative overflow-hidden rounded-2xl ${office.bgPattern} p-8 h-full`}>
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <svg className="w-full h-full" viewBox="0 0 100 100">
+                      <defs>
+                        <pattern id={`pattern-${office.id}`} x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                          <circle cx="10" cy="10" r="1" fill="currentColor" />
+                        </pattern>
+                      </defs>
+                      <rect width="100" height="100" fill={`url(#pattern-${office.id})`} />
+                    </svg>
+                  </div>
+
+                  {/* Office Header */}
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-6">
+                      <div className="flex items-center space-x-4">
+                        <div className={`w-16 h-16 bg-gradient-to-br ${office.color} rounded-xl flex items-center justify-center text-white text-2xl shadow-lg`}>
+                          {office.image}
                         </div>
-                        
-                        {/* Pulse Animation */}
-                        <div className={`absolute inset-0 w-7 h-7 ${office.color} rounded-full animate-ping opacity-30`}></div>
-                        
-                        {/* Office Label */}
-                        <div className="absolute top-8 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-medium text-neutral-700 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-                          {office.city}
+                        <div>
+                          <h4 className="text-xl font-bold text-neutral-800 flex items-center">
+                            {office.city}
+                            {office.isHeadOffice && (
+                              <span className="ml-2 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full font-medium">
+                                HQ
+                              </span>
+                            )}
+                          </h4>
+                          <p className="text-neutral-600">{office.country}</p>
                         </div>
-                        
-                        {/* Hover Tooltip */}
-                        {hoveredOffice?.id === office.id && (
-                          <motion.div
-                            className="absolute bottom-12 left-1/2 transform -translate-x-1/2 bg-white rounded-xl shadow-2xl p-4 min-w-56 z-20 border border-gray-100"
-                            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+                      </div>
+                      <Building2 className="w-6 h-6 text-neutral-400" />
+                    </div>
+
+                    {/* Office Details */}
+                    <div className="space-y-4 mb-6">
+                      <div className="flex items-center space-x-3">
+                        <MapPin className="w-4 h-4 text-neutral-500" />
+                        <span className="text-sm text-neutral-700">{office.address}</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Users className="w-4 h-4 text-neutral-500" />
+                        <span className="text-sm text-neutral-700">{office.staff} Expert Counselors</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <Clock className="w-4 h-4 text-neutral-500" />
+                        <span className="text-sm text-neutral-700">{office.hours}</span>
+                      </div>
+                    </div>
+
+                    {/* Services */}
+                    <div className="mb-6">
+                      <h5 className="text-sm font-semibold text-neutral-800 mb-3">Specialized Services</h5>
+                      <div className="flex flex-wrap gap-2">
+                        {office.services.map((service, idx) => (
+                          <span
+                            key={idx}
+                            className="px-3 py-1 bg-white/70 text-neutral-700 text-xs rounded-full border border-white/50"
                           >
-                            <div className="text-sm font-bold text-neutral-800 flex items-center">
-                              {office.city}
-                              {office.isHeadOffice && (
-                                <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-0.5 rounded-full">HQ</span>
-                              )}
-                            </div>
-                            <div className="text-xs text-neutral-600 mb-2">{office.country}</div>
-                            <div className="text-xs text-neutral-500 space-y-1">
-                              <div className="flex items-center">
-                                <Users className="w-3 h-3 mr-1" />
-                                {office.staff} Staff Members
-                              </div>
-                              <div className="flex items-center">
-                                <Phone className="w-3 h-3 mr-1" />
-                                {office.phone}
-                              </div>
-                            </div>
-                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full">
-                              <div className="w-3 h-3 bg-white rotate-45 shadow border-r border-b border-gray-100"></div>
-                            </div>
-                          </motion.div>
-                        )}
+                            {service}
+                          </span>
+                        ))}
                       </div>
-                    </motion.div>
-                  ))}
-                </div>
+                    </div>
 
-                {/* Enhanced Legend with Grid */}
-                <div className="mt-6 bg-gray-50 rounded-lg p-4">
-                  <div className="text-sm font-medium text-neutral-700 mb-3 text-center">Office Network</div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                    {officeLocations.map((office) => (
-                      <motion.div 
-                        key={office.id}
-                        className="flex items-center space-x-3 cursor-pointer hover:bg-white px-3 py-2 rounded-lg transition-all duration-200 group"
-                        onClick={() => setSelectedOffice(office)}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                    {/* Contact Actions */}
+                    <div className="flex space-x-3">
+                      <a 
+                        href={`tel:${office.phone}`}
+                        className={`flex-1 bg-gradient-to-r ${office.color} text-white py-3 px-4 rounded-lg font-medium text-center hover:shadow-lg transition-all duration-300 transform hover:scale-105`}
                       >
-                        <div className={`w-4 h-4 ${office.color} rounded-full border-2 border-white shadow-sm group-hover:scale-110 transition-transform`}></div>
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium text-neutral-800 truncate">{office.city}</div>
-                          <div className="text-xs text-neutral-500">{office.staff} staff</div>
-                        </div>
-                        {office.isHeadOffice && (
-                          <span className="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full font-medium">HQ</span>
-                        )}
-                      </motion.div>
-                    ))}
-                  </div>
-                  
-                  {/* Map Legend */}
-                  <div className="mt-4 pt-3 border-t border-gray-200 flex justify-center space-x-6 text-xs text-neutral-500">
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                      <span>Grid: 20° intervals</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <span>Regions</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                      <span>Pakistan</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Office Details */}
-          <motion.div
-            className="lg:col-span-1"
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <div className="bg-white rounded-2xl shadow-xl p-6 h-fit">
-              <h3 className="text-xl font-bold text-neutral-800 mb-6">
-                {selectedOffice ? 'Office Details' : 'Select an Office'}
-              </h3>
-
-              {selectedOffice ? (
-                <div className="space-y-4">
-                  {/* Office Name */}
-                  <div className="pb-4 border-b">
-                    <h4 className="text-lg font-bold text-neutral-800 flex items-center">
-                      {selectedOffice.city}
-                      {selectedOffice.isHeadOffice && (
-                        <span className="ml-2 text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">
-                          Head Office
-                        </span>
-                      )}
-                    </h4>
-                    <p className="text-neutral-600">{selectedOffice.country}</p>
-                  </div>
-
-                  {/* Contact Information */}
-                  <div className="space-y-3">
-                    <div className="flex items-start space-x-3">
-                      <MapPin className="w-5 h-5 text-primary mt-0.5" />
-                      <div>
-                        <div className="font-medium text-neutral-800">Address</div>
-                        <div className="text-sm text-neutral-600">{selectedOffice.address}</div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3">
-                      <Phone className="w-5 h-5 text-green-600 mt-0.5" />
-                      <div>
-                        <div className="font-medium text-neutral-800">Phone</div>
-                        <a 
-                          href={`tel:${selectedOffice.phone}`}
-                          className="text-sm text-green-600 hover:text-green-700"
-                        >
-                          {selectedOffice.phone}
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3">
-                      <Mail className="w-5 h-5 text-blue-600 mt-0.5" />
-                      <div>
-                        <div className="font-medium text-neutral-800">Email</div>
-                        <a 
-                          href={`mailto:${selectedOffice.email}`}
-                          className="text-sm text-blue-600 hover:text-blue-700"
-                        >
-                          {selectedOffice.email}
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3">
-                      <Clock className="w-5 h-5 text-orange-600 mt-0.5" />
-                      <div>
-                        <div className="font-medium text-neutral-800">Hours</div>
-                        <div className="text-sm text-neutral-600">{selectedOffice.hours}</div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-3">
-                      <Users className="w-5 h-5 text-purple-600 mt-0.5" />
-                      <div>
-                        <div className="font-medium text-neutral-800">Team Size</div>
-                        <div className="text-sm text-neutral-600">{selectedOffice.staff} Expert Counselors</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="pt-4 space-y-3">
-                    <a href={`tel:${selectedOffice.phone}`}>
-                      <button className="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg font-medium transition-colors">
+                        <Phone className="w-4 h-4 inline mr-2" />
                         Call Now
-                      </button>
-                    </a>
-                    <a href={`mailto:${selectedOffice.email}`}>
-                      <button className="w-full border border-primary text-primary hover:bg-primary hover:text-white py-2 px-4 rounded-lg font-medium transition-colors">
-                        Send Email
-                      </button>
-                    </a>
+                      </a>
+                      <a 
+                        href={`mailto:${office.email}`}
+                        className="flex-1 bg-white/80 text-neutral-700 py-3 px-4 rounded-lg font-medium text-center hover:bg-white transition-colors border border-white/50"
+                      >
+                        <Mail className="w-4 h-4 inline mr-2" />
+                        Email
+                      </a>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <MapPin className="w-16 h-16 mx-auto text-gray-300 mb-4" />
-                  <p className="text-neutral-500 mb-4">
-                    Click on any location marker on the map to view office details and contact information.
-                  </p>
-                  <div className="text-sm text-neutral-400">
-                    {officeLocations.length} offices available
-                  </div>
-                </div>
-              )}
-            </div>
 
-            {/* Statistics */}
-            <div className="mt-6 bg-gradient-to-r from-primary to-secondary rounded-xl p-6 text-white">
-              <h4 className="text-lg font-bold mb-4">Our Network</h4>
-              <div className="grid grid-cols-2 gap-4 text-center">
-                <div>
-                  <div className="text-2xl font-bold">17+</div>
-                  <div className="text-sm text-blue-100">Branches</div>
+                  {/* Hover Effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${office.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
                 </div>
-                <div>
-                  <div className="text-2xl font-bold">200+</div>
-                  <div className="text-sm text-blue-100">Counselors</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">1000+</div>
-                  <div className="text-sm text-blue-100">Ambassadors</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">95%</div>
-                  <div className="text-sm text-blue-100">Success Rate</div>
-                </div>
-              </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center mt-8 space-x-2">
+            {Array.from({ length: Math.ceil(officeLocations.length / officesPerPage) }, (_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentIndex(i * officesPerPage)}
+                className={`w-3 h-3 rounded-full transition-colors ${
+                  Math.floor(currentIndex / officesPerPage) === i
+                    ? 'bg-primary'
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Network Statistics */}
+        <motion.div
+          className="mt-16 bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <div className="grid md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-bold mb-2">{officeLocations.length}+</div>
+              <div className="text-blue-100">Office Locations</div>
             </div>
-          </motion.div>
-        </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">200+</div>
+              <div className="text-blue-100">Expert Counselors</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">1000+</div>
+              <div className="text-blue-100">Student Ambassadors</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold mb-2">95%</div>
+              <div className="text-blue-100">Success Rate</div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Call to Action */}
         <motion.div
