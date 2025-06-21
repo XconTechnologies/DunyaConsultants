@@ -305,60 +305,9 @@ export default function OfficeLocationsSection() {
           </div>
         </motion.div>
 
-        {/* Network Statistics */}
-        <motion.div
-          className="mt-16 bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold mb-2">{officeLocations.length}+</div>
-              <div className="text-blue-100">Office Locations</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">200+</div>
-              <div className="text-blue-100">Expert Counselors</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">1000+</div>
-              <div className="text-blue-100">Student Ambassadors</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">95%</div>
-              <div className="text-blue-100">Success Rate</div>
-            </div>
-          </div>
-        </motion.div>
+        
 
-        {/* Call to Action */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <h3 className="text-2xl font-bold text-neutral-800 mb-4">
-              Visit Your Nearest Branch
-            </h3>
-            <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
-              Schedule a free consultation at any of our offices. Our expert counselors are ready 
-              to guide you through your study abroad journey.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="tel:+923041110947">
-                <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                  Call UAN: (+92) 304 1110947
-                </button>
-              </a>
-              <button className="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-                Schedule Appointment
-              </button>
-            </div>
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );

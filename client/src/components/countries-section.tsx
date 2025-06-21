@@ -720,31 +720,7 @@ export default function CountriesSection() {
           </motion.div>
         )}
 
-        {/* Call to Action */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              Explore Your Dream Destination
-            </h3>
-            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Connect with our expert counselors to find the perfect country and university for your academic journey. 
-              We'll guide you through every step of the application process.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300">
-                Book Free Consultation
-              </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300">
-                Compare Countries
-              </button>
-            </div>
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );

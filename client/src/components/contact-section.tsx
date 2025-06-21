@@ -429,33 +429,7 @@ export default function ContactSection() {
           </motion.div>
         </div>
 
-        {/* Final Call to Action */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-        >
-          <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              Ready to Transform Your Future?
-            </h3>
-            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Join thousands of students who have successfully started their international education journey with Path Visa Consultants. Our expert team of 200+ employees across 17+ branches is ready to guide you.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="tel:+923041110947"
-                className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 inline-block"
-              >
-                Call UAN: (+92) 304 1110947
-              </a>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300">
-                Schedule Free Consultation
-              </button>
-            </div>
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );

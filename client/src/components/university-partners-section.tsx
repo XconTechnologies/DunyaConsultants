@@ -204,37 +204,7 @@ export default function UniversityPartnersSection() {
           </div>
         </motion.div>
 
-        {/* Country Breakdown */}
-        <motion.div
-          className="mt-16 grid md:grid-cols-2 lg:grid-cols-5 gap-6"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          {[
-            { country: "United Kingdom", count: "85+", flag: "🇬🇧", color: "from-blue-600 to-red-600" },
-            { country: "Canada", count: "45+", flag: "🇨🇦", color: "from-red-500 to-white" },
-            { country: "United States", count: "40+", flag: "🇺🇸", color: "from-blue-500 to-red-500" },
-            { country: "Germany", count: "35+", flag: "🇩🇪", color: "from-black to-red-500" },
-            { country: "Others", count: "45+", flag: "🌍", color: "from-green-500 to-blue-500" }
-          ].map((region, index) => (
-            <motion.div
-              key={region.country}
-              className="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-              whileHover={{ y: -5 }}
-            >
-              <div className={`w-16 h-16 bg-gradient-to-r ${region.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                <span className="text-2xl">{region.flag}</span>
-              </div>
-              <h3 className="font-bold text-neutral-800 mb-2">{region.country}</h3>
-              <div className="text-2xl font-bold text-primary mb-1">{region.count}</div>
-              <div className="text-sm text-neutral-600">Universities</div>
-            </motion.div>
-          ))}
-        </motion.div>
+        
 
         {/* Call to Action */}
         <motion.div
