@@ -70,8 +70,15 @@ export default function ProcessSection() {
   };
 
   return (
-    <section id="process" className="py-20 bg-neutral-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="process" className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 text-white relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-500/20 to-purple-500/20"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
@@ -79,77 +86,104 @@ export default function ProcessSection() {
           transition={{ duration: 0.6 }}
           ref={ref}
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">Our Admission Process</h2>
-          <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Our Admission Process
+          </h2>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
             A streamlined 6-step process to guide you from initial consultation to successful visa approval
           </p>
         </motion.div>
 
-        {/* Process Steps */}
+        {/* Timeline Layout */}
         <div className="relative">
-          {/* Connection Line */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 via-green-500 via-orange-500 via-red-500 to-teal-500 opacity-30 -translate-y-1/2"></div>
+          {/* Central Timeline Line */}
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-purple-500 via-green-500 via-orange-500 via-red-500 to-teal-500 transform -translate-x-1/2"></div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* Timeline Steps */}
+          <div className="space-y-12 lg:space-y-16">
             {processSteps.map((step, index) => (
               <motion.div
                 key={step.title}
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                className={`relative flex items-center ${
+                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                } flex-col lg:gap-12 gap-8`}
               >
-                <Card className="p-8 shadow-xl card-hover h-full bg-neutral-800 border-neutral-700">
-                  <CardContent className="p-0 text-center">
-                    {/* Step Number */}
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <div className={`w-12 h-12 ${step.color} rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
-                        {step.step}
-                      </div>
+                {/* Timeline Node */}
+                <div className="hidden lg:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
+                  <div className={`w-16 h-16 ${step.color} rounded-full flex items-center justify-center shadow-2xl border-4 border-white/20`}>
+                    <step.icon className="text-white" size={24} />
+                  </div>
+                </div>
+
+                {/* Step Content */}
+                <div className={`flex-1 ${index % 2 === 0 ? 'lg:text-right lg:pr-8' : 'lg:text-left lg:pl-8'} text-center lg:max-w-md`}>
+                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-white/20 hover:bg-white/15 transition-all duration-300">
+                    {/* Step Number Badge */}
+                    <div className={`inline-flex items-center justify-center w-12 h-12 ${step.color} rounded-full text-white font-bold text-lg mb-4 shadow-lg`}>
+                      {step.step}
                     </div>
                     
-                    {/* Icon */}
-                    <div className={`w-20 h-20 ${step.color} bg-opacity-20 rounded-xl flex items-center justify-center mb-6 mx-auto mt-6`}>
-                      <step.icon className="text-white text-3xl" size={40} />
-                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-3">{step.title}</h3>
+                    <p className="text-slate-300 leading-relaxed mb-4">{step.description}</p>
                     
-                    <h3 className="text-2xl font-semibold text-white mb-4">{step.title}</h3>
-                    <p className="text-neutral-300 leading-relaxed">{step.description}</p>
-                    
-                    {/* Arrow for larger screens */}
-                    {index < processSteps.length - 1 && (
-                      <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                        <ArrowRight className="text-neutral-500" size={24} />
+                    {/* Progress Indicator */}
+                    <div className="flex items-center gap-2 justify-center lg:justify-start">
+                      <div className="flex space-x-1">
+                        {Array.from({ length: 6 }, (_, i) => (
+                          <div
+                            key={i}
+                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                              i <= index ? step.color : 'bg-white/20'
+                            }`}
+                          />
+                        ))}
                       </div>
-                    )}
-                  </CardContent>
-                </Card>
+                      <span className="text-sm text-slate-400 ml-2">
+                        Step {index + 1} of 6
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Visual Element */}
+                <div className={`flex-1 ${index % 2 === 0 ? 'lg:pl-8' : 'lg:pr-8'} flex justify-center`}>
+                  <div className={`w-32 h-32 ${step.color} bg-opacity-20 rounded-2xl flex items-center justify-center shadow-2xl border border-white/10`}>
+                    <step.icon className="text-white" size={48} />
+                  </div>
+                </div>
+
+                {/* Mobile Timeline Node */}
+                <div className="lg:hidden absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                  <div className={`w-12 h-12 ${step.color} rounded-full flex items-center justify-center shadow-lg border-2 border-white/20`}>
+                    <step.icon className="text-white" size={20} />
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Call to Action */}
+        {/* Success Stats */}
         <motion.div 
-          className="text-center mt-16"
+          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
         >
-          <div className="bg-gradient-to-r from-primary to-secondary p-8 rounded-2xl shadow-xl">
-            <h3 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h3>
-            <p className="text-lg text-blue-100 mb-6 max-w-2xl mx-auto">
-              Join thousands of successful students who have achieved their international education dreams through our proven process.
-            </p>
-            <Button 
-              size="lg"
-              onClick={() => scrollToSection("contact")}
-              className="bg-white text-primary hover:bg-gray-100 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
-            >
-              <UserCheck className="mr-2" size={20} />
-              Begin Your Process Today
-            </Button>
-          </div>
+          {[
+            { number: "95%", label: "Success Rate" },
+            { number: "30+", label: "Days Average" },
+            { number: "24/7", label: "Support" },
+            { number: "17+", label: "Branches" }
+          ].map((stat, index) => (
+            <div key={stat.label} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+              <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
+              <div className="text-slate-300">{stat.label}</div>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>
