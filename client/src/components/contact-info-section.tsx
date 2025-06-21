@@ -60,87 +60,87 @@ export default function ContactInfoSection() {
               </div>
             </div>
 
-            {/* Contact Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-              {/* Head Office */}
-              <div className="flex items-start space-x-3 p-4 rounded-xl bg-blue-50 hover:bg-blue-100 transition-colors">
-                <div className="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-5 h-5 text-white" />
+            {/* Contact Circles */}
+            <div className="flex flex-wrap justify-center gap-8">
+              {/* Head Office Circle */}
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="w-32 h-32 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex flex-col items-center justify-center text-white shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+                  <MapPin className="w-8 h-8 mb-2" />
+                  <p className="text-xs font-semibold text-center">Head Office</p>
                 </div>
-                <div className="min-w-0">
-                  <h4 className="font-semibold text-neutral-800 mb-1">Head Office</h4>
-                  <p className="text-sm text-neutral-600 leading-tight">
-                    Alif Tower Buhadur shah zafar road, Sargodha
-                  </p>
+                {/* Tooltip */}
+                <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  Alif Tower Buhadur shah zafar road, Sargodha
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Email */}
-              <div className="flex items-start space-x-3 p-4 rounded-xl bg-purple-50 hover:bg-purple-100 transition-colors">
-                <div className="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 text-white" />
-                </div>
-                <div className="min-w-0">
-                  <h4 className="font-semibold text-neutral-800 mb-1">Email</h4>
-                  <a 
-                    href="mailto:info@dunyaconsultants.com"
-                    className="text-sm text-purple-600 hover:text-purple-800 transition-colors font-medium break-all"
-                  >
+              {/* Email Circle */}
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <a href="mailto:info@dunyaconsultants.com">
+                  <div className="w-32 h-32 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex flex-col items-center justify-center text-white shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+                    <Mail className="w-8 h-8 mb-2" />
+                    <p className="text-xs font-semibold text-center">Email</p>
+                  </div>
+                  {/* Tooltip */}
+                  <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     info@dunyaconsultants.com
-                  </a>
-                </div>
-              </div>
+                  </div>
+                </a>
+              </motion.div>
 
-              {/* Business */}
-              <div className="flex items-start space-x-3 p-4 rounded-xl bg-orange-50 hover:bg-orange-100 transition-colors">
-                <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Briefcase className="w-5 h-5 text-white" />
+              {/* Business Circle */}
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="w-32 h-32 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex flex-col items-center justify-center text-white shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+                  <Briefcase className="w-8 h-8 mb-2" />
+                  <p className="text-xs font-semibold text-center">Business</p>
                 </div>
-                <div className="min-w-0">
-                  <h4 className="font-semibold text-neutral-800 mb-1">Business</h4>
+                {/* Tooltip */}
+                <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
                   <div className="space-y-1">
-                    <a 
-                      href="mailto:umer@dunyaconsultants.com"
-                      className="block text-xs text-orange-600 hover:text-orange-800 transition-colors font-medium break-all"
-                    >
+                    <a href="mailto:umer@dunyaconsultants.com" className="block hover:text-orange-300">
                       umer@dunyaconsultants.com
                     </a>
-                    <a 
-                      href="https://wa.me/923216051057"
-                      className="flex items-center space-x-1 text-xs text-green-600 hover:text-green-800 transition-colors"
-                    >
-                      <MessageCircle className="w-3 h-3" />
-                      <span>+923216051057</span>
+                    <a href="https://wa.me/923216051057" className="block hover:text-green-300">
+                      WhatsApp: +923216051057
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Admission */}
-              <div className="flex items-start space-x-3 p-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 transition-colors">
-                <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="w-5 h-5 text-white" />
+              {/* Admission Circle */}
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="w-32 h-32 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex flex-col items-center justify-center text-white shadow-lg hover:shadow-xl transition-shadow cursor-pointer group">
+                  <MessageCircle className="w-8 h-8 mb-2" />
+                  <p className="text-xs font-semibold text-center">Admission</p>
                 </div>
-                <div className="min-w-0">
-                  <h4 className="font-semibold text-neutral-800 mb-1">Admission</h4>
+                {/* Tooltip */}
+                <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
                   <div className="space-y-1">
-                    <a 
-                      href="https://wa.me/923011231947"
-                      className="flex items-center space-x-1 text-xs text-green-600 hover:text-green-800 transition-colors"
-                    >
-                      <MessageCircle className="w-3 h-3" />
-                      <span>+923011231947</span>
+                    <a href="https://wa.me/923011231947" className="block hover:text-green-300">
+                      WhatsApp: +923011231947
                     </a>
-                    <a 
-                      href="https://wa.me/923219991947"
-                      className="flex items-center space-x-1 text-xs text-green-600 hover:text-green-800 transition-colors"
-                    >
-                      <MessageCircle className="w-3 h-3" />
-                      <span>+923219991947</span>
+                    <a href="https://wa.me/923219991947" className="block hover:text-green-300">
+                      WhatsApp: +923219991947
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </motion.div>
