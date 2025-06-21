@@ -24,118 +24,100 @@ export default function ContactInfoSection() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Main Contact */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100"
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mb-6">
-              <Phone className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-xl font-bold text-neutral-800 mb-4">Give Us A Call</h3>
-            <a 
-              href="tel:+923041110947"
-              className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors"
-            >
-              (+92) 304 1110947
-            </a>
-          </motion.div>
-
-          {/* Head Office */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100"
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6">
-              <MapPin className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-xl font-bold text-neutral-800 mb-4">Head Office Location</h3>
-            <p className="text-neutral-600 leading-relaxed">
-              Alif Tower Buhadur shah zafar road, Sargodha.
-            </p>
-          </motion.div>
-
-          {/* Email */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100"
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-              <Mail className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-xl font-bold text-neutral-800 mb-4">Email Address</h3>
-            <a 
-              href="mailto:info@dunyaconsultants.com"
-              className="text-primary hover:text-primary/80 transition-colors font-medium"
-            >
-              info@dunyaconsultants.com
-            </a>
-          </motion.div>
-
-          {/* Business Proposals */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100"
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mb-6">
-              <Briefcase className="w-8 h-8 text-white" />
-            </div>
-            <h3 className="text-xl font-bold text-neutral-800 mb-4">For Business Proposals</h3>
-            <div className="space-y-2">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="bg-white rounded-2xl p-8 shadow-lg border border-neutral-100"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+            {/* Main Contact */}
+            <div className="text-center md:text-left">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto md:mx-0 mb-3">
+                <Phone className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-bold text-neutral-800 mb-2">Give Us A Call</h3>
               <a 
-                href="mailto:umer@dunyaconsultants.com"
-                className="block text-primary hover:text-primary/80 transition-colors font-medium"
+                href="tel:+923041110947"
+                className="text-lg font-bold text-primary hover:text-primary/80 transition-colors block"
               >
-                umer@dunyaconsultants.com
-              </a>
-              <a 
-                href="https://wa.me/923216051057"
-                className="flex items-center space-x-2 text-green-600 hover:text-green-700 transition-colors font-medium"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>Umer Farooq +923216051057</span>
+                (+92) 304 1110947
               </a>
             </div>
-          </motion.div>
 
-          {/* Admission & Query */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100 md:col-span-2 lg:col-span-1"
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6">
-              <MessageCircle className="w-8 h-8 text-white" />
+            {/* Head Office */}
+            <div className="text-center md:text-left">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto md:mx-0 mb-3">
+                <MapPin className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-bold text-neutral-800 mb-2">Head Office</h3>
+              <p className="text-sm text-neutral-600 leading-relaxed">
+                Alif Tower Buhadur shah zafar road, Sargodha.
+              </p>
             </div>
-            <h3 className="text-xl font-bold text-neutral-800 mb-4">For Admission & Query</h3>
-            <div className="space-y-3">
+
+            {/* Email */}
+            <div className="text-center md:text-left">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto md:mx-0 mb-3">
+                <Mail className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-bold text-neutral-800 mb-2">Email Address</h3>
               <a 
-                href="https://wa.me/923011231947"
-                className="flex items-center space-x-2 text-green-600 hover:text-green-700 transition-colors font-medium"
+                href="mailto:info@dunyaconsultants.com"
+                className="text-sm text-primary hover:text-primary/80 transition-colors font-medium block"
               >
-                <MessageCircle className="w-4 h-4" />
-                <span>+923011231947</span>
-              </a>
-              <a 
-                href="https://wa.me/923219991947"
-                className="flex items-center space-x-2 text-green-600 hover:text-green-700 transition-colors font-medium"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>+923219991947</span>
+                info@dunyaconsultants.com
               </a>
             </div>
-          </motion.div>
-        </div>
+
+            {/* Business Proposals */}
+            <div className="text-center md:text-left">
+              <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mx-auto md:mx-0 mb-3">
+                <Briefcase className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-bold text-neutral-800 mb-2">Business</h3>
+              <div className="space-y-1">
+                <a 
+                  href="mailto:umer@dunyaconsultants.com"
+                  className="block text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                >
+                  umer@dunyaconsultants.com
+                </a>
+                <a 
+                  href="https://wa.me/923216051057"
+                  className="flex items-center justify-center md:justify-start space-x-1 text-sm text-green-600 hover:text-green-700 transition-colors font-medium"
+                >
+                  <MessageCircle className="w-3 h-3" />
+                  <span>+923216051057</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Admission & Query */}
+            <div className="text-center md:text-left">
+              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center mx-auto md:mx-0 mb-3">
+                <MessageCircle className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-bold text-neutral-800 mb-2">Admission</h3>
+              <div className="space-y-1">
+                <a 
+                  href="https://wa.me/923011231947"
+                  className="flex items-center justify-center md:justify-start space-x-1 text-sm text-green-600 hover:text-green-700 transition-colors font-medium"
+                >
+                  <MessageCircle className="w-3 h-3" />
+                  <span>+923011231947</span>
+                </a>
+                <a 
+                  href="https://wa.me/923219991947"
+                  className="flex items-center justify-center md:justify-start space-x-1 text-sm text-green-600 hover:text-green-700 transition-colors font-medium"
+                >
+                  <MessageCircle className="w-3 h-3" />
+                  <span>+923219991947</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Bottom CTA */}
         <motion.div
