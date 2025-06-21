@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { MapPin, Phone, Mail, Clock, Users, Globe, Building2 } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Users } from "lucide-react";
 
 // Office locations data with coordinates
 const officeLocations = [
@@ -77,17 +77,6 @@ const officeLocations = [
   }
 ];
 
-// Study destination countries
-const studyDestinations = [
-  { name: "USA", coords: [38.9072, -77.0369], type: "country", color: "#dc2626" },
-  { name: "UK", coords: [51.5074, -0.1278], type: "country", color: "#2563eb" },
-  { name: "Canada", coords: [45.4215, -75.6972], type: "country", color: "#dc2626" },
-  { name: "Australia", coords: [-33.8688, 151.2093], type: "country", color: "#059669" },
-  { name: "Finland", coords: [60.1699, 24.9384], type: "country", color: "#7c3aed" },
-  { name: "UAE", coords: [25.2048, 55.2708], type: "country", color: "#ea580c" },
-  { name: "Germany", coords: [52.5200, 13.4050], type: "country", color: "#0891b2" },
-];
-
 export default function OfficeLocationsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -128,8 +117,8 @@ export default function OfficeLocationsSection() {
               
               {/* World Map Container */}
               <div className="relative">
-                  {/* Background World Map */}
-                  <div className="relative w-full h-96 bg-gradient-to-br from-slate-100 to-blue-100 rounded-xl overflow-hidden border border-gray-200">
+                {/* Background World Map */}
+                <div className="relative w-full h-96 bg-gradient-to-br from-slate-100 to-blue-100 rounded-xl overflow-hidden border border-gray-200">
                   {/* Grid Lines and World Map Pattern */}
                   <svg 
                     className="absolute inset-0 w-full h-full" 
@@ -282,50 +271,49 @@ export default function OfficeLocationsSection() {
                       </div>
                     </motion.div>
                   ))}
-                  </div>
+                </div>
 
-                  {/* Enhanced Legend with Grid */}
-                  <div className="mt-6 bg-gray-50 rounded-lg p-4">
-                    <div className="text-sm font-medium text-neutral-700 mb-3 text-center">Office Network</div>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                      {officeLocations.map((office) => (
-                        <motion.div 
-                          key={office.id}
-                          className="flex items-center space-x-3 cursor-pointer hover:bg-white px-3 py-2 rounded-lg transition-all duration-200 group"
-                          onClick={() => setSelectedOffice(office)}
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <div className={`w-4 h-4 ${office.color} rounded-full border-2 border-white shadow-sm group-hover:scale-110 transition-transform`}></div>
-                          <div className="flex-1 min-w-0">
-                            <div className="text-sm font-medium text-neutral-800 truncate">{office.city}</div>
-                            <div className="text-xs text-neutral-500">{office.staff} staff</div>
-                          </div>
-                          {office.isHeadOffice && (
-                            <span className="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full font-medium">HQ</span>
-                          )}
-                        </motion.div>
-                      ))}
+                {/* Enhanced Legend with Grid */}
+                <div className="mt-6 bg-gray-50 rounded-lg p-4">
+                  <div className="text-sm font-medium text-neutral-700 mb-3 text-center">Office Network</div>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                    {officeLocations.map((office) => (
+                      <motion.div 
+                        key={office.id}
+                        className="flex items-center space-x-3 cursor-pointer hover:bg-white px-3 py-2 rounded-lg transition-all duration-200 group"
+                        onClick={() => setSelectedOffice(office)}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div className={`w-4 h-4 ${office.color} rounded-full border-2 border-white shadow-sm group-hover:scale-110 transition-transform`}></div>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium text-neutral-800 truncate">{office.city}</div>
+                          <div className="text-xs text-neutral-500">{office.staff} staff</div>
+                        </div>
+                        {office.isHeadOffice && (
+                          <span className="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded-full font-medium">HQ</span>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  {/* Map Legend */}
+                  <div className="mt-4 pt-3 border-t border-gray-200 flex justify-center space-x-6 text-xs text-neutral-500">
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                      <span>Grid: 20° intervals</span>
                     </div>
-                    
-                    {/* Map Legend */}
-                    <div className="mt-4 pt-3 border-t border-gray-200 flex justify-center space-x-6 text-xs text-neutral-500">
-                      <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                        <span>Grid: 20° intervals</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                        <span>Regions</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-green-600 rounded-full"></div>
-                        <span>Pakistan</span>
-                      </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                      <span>Regions</span>
+                    </div>
+                    <div className="flex items-center space-x-1">
+                      <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                      <span>Pakistan</span>
                     </div>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </motion.div>
 
