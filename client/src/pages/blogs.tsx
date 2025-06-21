@@ -15,7 +15,12 @@ import {
   TrendingUp,
   Globe,
   GraduationCap,
-  MapPin
+  MapPin,
+  Calculator,
+  Users,
+  Video,
+  FileText,
+  Award
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -575,24 +580,245 @@ export default function Blogs() {
 
         {/* Article Content */}
         <section className="py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="prose prose-lg max-w-none">
-              {selectedPost.content.split('\n\n').map((paragraph, index) => {
-                if (paragraph.startsWith('## ')) {
-                  return <h2 key={index} className="text-2xl font-bold text-neutral-800 mt-8 mb-4">{paragraph.replace('## ', '')}</h2>;
-                } else if (paragraph.startsWith('### ')) {
-                  return <h3 key={index} className="text-xl font-semibold text-neutral-800 mt-6 mb-3">{paragraph.replace('### ', '')}</h3>;
-                } else if (paragraph.startsWith('- **') || paragraph.startsWith('* **')) {
-                  return (
-                    <div key={index} className="mb-2">
-                      <p className="text-neutral-700 leading-relaxed">{paragraph}</p>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-4 gap-8">
+              {/* Main Content */}
+              <div className="lg:col-span-3">
+                <div className="prose prose-lg max-w-none">
+                  {selectedPost.content.split('\n\n').map((paragraph, index) => {
+                    // Insert lead form after 3rd paragraph
+                    if (index === 3) {
+                      return (
+                        <div key={`content-${index}`}>
+                          <p className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>
+                          
+                          {/* Inline Lead Form */}
+                          <div className="my-12 p-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
+                            <div className="text-center mb-6">
+                              <h3 className="text-2xl font-bold text-neutral-800 mb-2">Get Free Study Abroad Consultation</h3>
+                              <p className="text-neutral-600">Expert guidance tailored to your academic goals</p>
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-4 max-w-lg mx-auto">
+                              <Input placeholder="Your Name" className="bg-white" />
+                              <Input placeholder="Email Address" type="email" className="bg-white" />
+                              <Input placeholder="Phone Number" type="tel" className="bg-white" />
+                              <Select>
+                                <SelectTrigger className="bg-white">
+                                  <SelectValue placeholder="Study Destination" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="usa">United States</SelectItem>
+                                  <SelectItem value="uk">United Kingdom</SelectItem>
+                                  <SelectItem value="canada">Canada</SelectItem>
+                                  <SelectItem value="australia">Australia</SelectItem>
+                                  <SelectItem value="turkey">Turkey</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <Button className="w-full mt-4 bg-primary hover:bg-primary/90 text-white py-3">
+                              Get Free Consultation
+                            </Button>
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    // Insert animated banner after 6th paragraph
+                    if (index === 6) {
+                      return (
+                        <div key={`content-${index}`}>
+                          <p className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>
+                          
+                          {/* Animated Study Visa Banner */}
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse", repeatDelay: 3 }}
+                            className="my-12 p-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl text-white relative overflow-hidden"
+                          >
+                            <div className="absolute inset-0 bg-black/10"></div>
+                            <div className="relative z-10 text-center">
+                              <motion.div
+                                animate={{ rotate: [0, 10, -10, 0] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                                className="inline-block mb-4"
+                              >
+                                <GraduationCap className="w-12 h-12 mx-auto" />
+                              </motion.div>
+                              <h3 className="text-2xl font-bold mb-2">🎓 Study Visa Success Rate: 95%</h3>
+                              <p className="mb-4">Join thousands of successful students who got their visas with our expert guidance</p>
+                              <Button className="bg-white text-green-600 hover:bg-green-50">
+                                Start Your Visa Journey
+                              </Button>
+                            </div>
+                          </motion.div>
+                        </div>
+                      );
+                    }
+
+                    if (paragraph.startsWith('## ')) {
+                      return <h2 key={index} className="text-2xl font-bold text-neutral-800 mt-8 mb-4">{paragraph.replace('## ', '')}</h2>;
+                    } else if (paragraph.startsWith('### ')) {
+                      return <h3 key={index} className="text-xl font-semibold text-neutral-800 mt-6 mb-3">{paragraph.replace('### ', '')}</h3>;
+                    } else if (paragraph.startsWith('- **') || paragraph.startsWith('* **')) {
+                      return (
+                        <div key={index} className="mb-2">
+                          <p className="text-neutral-700 leading-relaxed">{paragraph}</p>
+                        </div>
+                      );
+                    } else {
+                      return <p key={index} className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>;
+                    }
+                  })}
+                </div>
+              </div>
+
+              {/* Sticky Sidebar */}
+              <div className="lg:col-span-1">
+                <div className="sticky top-8 space-y-6">
+                  {/* Quick Cost Calculator */}
+                  <Card className="p-6 shadow-lg">
+                    <CardHeader className="pb-4">
+                      <CardTitle className="flex items-center text-lg">
+                        <Calculator className="w-5 h-5 mr-2 text-primary" />
+                        Quick Cost Calculator
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Country" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="usa">USA</SelectItem>
+                          <SelectItem value="uk">UK</SelectItem>
+                          <SelectItem value="canada">Canada</SelectItem>
+                          <SelectItem value="australia">Australia</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <Select>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Study Level" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="undergraduate">Undergraduate</SelectItem>
+                          <SelectItem value="postgraduate">Postgraduate</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <div className="bg-blue-50 p-4 rounded-lg text-center">
+                        <div className="text-2xl font-bold text-primary">$45,000</div>
+                        <div className="text-sm text-neutral-600">Estimated Annual Cost</div>
+                      </div>
+                      <Button className="w-full bg-primary hover:bg-primary/90">
+                        Get Detailed Estimate
+                      </Button>
+                    </CardContent>
+                  </Card>
+
+                  {/* Contact QR Code */}
+                  <Card className="p-6 shadow-lg text-center">
+                    <h3 className="text-lg font-bold mb-4">Quick Contact</h3>
+                    <div className="w-32 h-32 bg-gradient-to-br from-primary to-secondary rounded-lg mx-auto mb-4 flex items-center justify-center">
+                      <div className="w-24 h-24 bg-white rounded-lg flex items-center justify-center">
+                        <div className="text-xs font-mono">
+                          QR<br/>CODE
+                        </div>
+                      </div>
                     </div>
-                  );
-                } else {
-                  return <p key={index} className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>;
-                }
-              })}
+                    <p className="text-sm text-neutral-600 mb-4">Scan to chat with our consultants on WhatsApp</p>
+                    <div className="text-center">
+                      <div className="font-bold text-primary">+92 304 1110947</div>
+                    </div>
+                  </Card>
+
+                  {/* Community Links */}
+                  <Card className="p-6 shadow-lg">
+                    <h3 className="text-lg font-bold mb-4">Join Our Community</h3>
+                    <div className="space-y-3">
+                      <Button variant="outline" className="w-full justify-start">
+                        <Users className="w-4 h-4 mr-2" />
+                        Facebook Group (15K+)
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start">
+                        <MessageCircle className="w-4 h-4 mr-2" />
+                        WhatsApp Community
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start">
+                        <Globe className="w-4 h-4 mr-2" />
+                        LinkedIn Network
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start">
+                        <Video className="w-4 h-4 mr-2" />
+                        YouTube Channel
+                      </Button>
+                    </div>
+                  </Card>
+
+                  {/* PDF Downloads */}
+                  <Card className="p-6 shadow-lg">
+                    <h3 className="text-lg font-bold mb-4">Free Resources</h3>
+                    <div className="space-y-3">
+                      <Button variant="outline" className="w-full justify-start text-sm">
+                        <BookOpen className="w-4 h-4 mr-2" />
+                        Study Abroad Guide (PDF)
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-sm">
+                        <FileText className="w-4 h-4 mr-2" />
+                        Scholarship Directory
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-sm">
+                        <Award className="w-4 h-4 mr-2" />
+                        University Rankings
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start text-sm">
+                        <MapPin className="w-4 h-4 mr-2" />
+                        Country Comparison
+                      </Button>
+                    </div>
+                  </Card>
+
+                  {/* Newsletter Signup */}
+                  <Card className="p-6 shadow-lg bg-gradient-to-br from-primary to-secondary text-white">
+                    <h3 className="text-lg font-bold mb-4">Weekly Insights</h3>
+                    <p className="text-blue-100 text-sm mb-4">Get expert tips and latest updates delivered to your inbox</p>
+                    <div className="space-y-3">
+                      <Input placeholder="Email Address" className="bg-white/10 border-white/20 text-white placeholder:text-white/60" />
+                      <Button className="w-full bg-white text-primary hover:bg-blue-50">
+                        Subscribe Now
+                      </Button>
+                    </div>
+                    <p className="text-xs text-blue-200 mt-2">Join 10,000+ students getting weekly insights</p>
+                  </Card>
+                </div>
+              </div>
             </div>
+
+            {/* Final CTA Banner */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="my-12 p-8 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-xl text-white relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-black/10"></div>
+              <div className="relative z-10 text-center">
+                <motion.div
+                  animate={{ scale: [1, 1.05, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <h3 className="text-3xl font-bold mb-4">🚀 Ready to Start Your Journey?</h3>
+                </motion.div>
+                <p className="text-xl mb-6">Don't let your dreams wait! Get personalized guidance from our experts today.</p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                  <Button className="bg-white text-orange-600 hover:bg-orange-50 flex-1">
+                    Book Free Consultation
+                  </Button>
+                  <Button variant="outline" className="border-white text-white hover:bg-white/10 flex-1">
+                    Download Guide
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
 
             {/* Share Section */}
             <div className="border-t border-gray-200 pt-8 mt-12">
