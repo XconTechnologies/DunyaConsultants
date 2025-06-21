@@ -197,33 +197,32 @@ export default function ServicesSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedService, setSelectedService] = useState(null);
-  const servicesPerPage = 3;
+  const servicesPerPage = 1;
 
   // Auto-slide functionality
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => 
-        prev + servicesPerPage >= services.length ? 0 : prev + servicesPerPage
+        prev + 1 >= services.length ? 0 : prev + 1
       );
-    }, 6000);
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => 
-      prev + servicesPerPage >= services.length ? 0 : prev + servicesPerPage
+      prev + 1 >= services.length ? 0 : prev + 1
     );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prev) => 
-      prev - servicesPerPage < 0 ? 
-      Math.max(0, services.length - servicesPerPage) : prev - servicesPerPage
+      prev - 1 < 0 ? services.length - 1 : prev - 1
     );
   };
 
-  const currentServices = services.slice(currentIndex, currentIndex + servicesPerPage);
+  const currentService = services[currentIndex];
 
   return (
     <section id="services" ref={ref} className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -256,7 +255,7 @@ export default function ServicesSection() {
             <div className="flex items-center space-x-4">
               <div className="w-12 h-1 bg-primary rounded-full"></div>
               <span className="text-sm font-medium text-neutral-600">
-                {Math.floor(currentIndex / servicesPerPage) + 1} of {Math.ceil(services.length / servicesPerPage)}
+                {currentIndex + 1} of {services.length}
               </span>
             </div>
             
@@ -277,72 +276,72 @@ export default function ServicesSection() {
             </div>
           </div>
 
-          {/* Services Carousel */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {currentServices.map((service, index) => (
-              <motion.div
-                key={service.id}
-                className="relative group cursor-pointer"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-              >
-                <div className={`relative overflow-hidden rounded-2xl ${service.bgPattern} p-6 h-full border border-white/50 shadow-lg hover:shadow-2xl transition-all duration-500`}>
-                  {/* Background Pattern */}
-                  <div className="absolute inset-0 opacity-5">
-                    <svg className="w-full h-full" viewBox="0 0 100 100">
-                      <defs>
-                        <pattern id={`pattern-${service.id}`} x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
-                          <circle cx="7.5" cy="7.5" r="1" fill="currentColor" />
-                        </pattern>
-                      </defs>
-                      <rect width="100" height="100" fill={`url(#pattern-${service.id})`} />
-                    </svg>
+          {/* Single Service Display */}
+          <div className="max-w-2xl mx-auto mb-8">
+            <motion.div
+              key={currentService.id}
+              className="relative group cursor-pointer"
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.6 }}
+              whileHover={{ y: -8, scale: 1.02 }}
+            >
+              <div className={`relative overflow-hidden rounded-3xl ${currentService.bgPattern} p-10 border border-white/50 shadow-2xl hover:shadow-3xl transition-all duration-500`}>
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <defs>
+                      <pattern id={`pattern-${currentService.id}`} x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
+                        <circle cx="7.5" cy="7.5" r="1" fill="currentColor" />
+                      </pattern>
+                    </defs>
+                    <rect width="100" height="100" fill={`url(#pattern-${currentService.id})`} />
+                  </svg>
+                </div>
+
+                {/* Service Content */}
+                <div className="relative z-10 text-center">
+                  {/* Icon and Title */}
+                  <div className="mb-6">
+                    <div className={`w-32 h-32 bg-gradient-to-br ${currentService.color} rounded-full flex items-center justify-center text-white text-6xl shadow-2xl mx-auto mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700`}>
+                      {currentService.icon}
+                    </div>
+                    <h3 className="text-3xl font-bold text-neutral-800 mb-3 group-hover:text-primary transition-colors duration-300">{currentService.title}</h3>
+                    <Badge variant="secondary" className="text-sm bg-white/80 px-4 py-2">
+                      Duration: {currentService.duration}
+                    </Badge>
                   </div>
 
-                  {/* Service Content */}
-                  <div className="relative z-10">
-                    {/* Icon and Title */}
-                    <div className="text-center mb-4">
-                      <div className={`w-20 h-20 bg-gradient-to-br ${service.color} rounded-3xl flex items-center justify-center text-white text-4xl shadow-xl mx-auto mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
-                        {service.icon}
-                      </div>
-                      <h3 className="text-xl font-bold text-neutral-800 mb-2 group-hover:text-primary transition-colors duration-300">{service.title}</h3>
-                      <Badge variant="secondary" className="text-xs bg-white/70">
-                        {service.duration}
-                      </Badge>
-                    </div>
+                  {/* Description */}
+                  <p className="text-neutral-600 text-lg leading-relaxed mb-8 max-w-xl mx-auto">
+                    {currentService.description}
+                  </p>
 
-                    {/* Description */}
-                    <p className="text-neutral-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                      {service.description}
-                    </p>
-
-                    {/* Key Benefits Preview */}
-                    <div className="mb-6">
-                      <div className="space-y-2">
-                        {service.benefits.slice(0, 2).map((benefit, idx) => (
-                          <div key={idx} className="flex items-center space-x-2">
-                            <Star className="w-3 h-3 text-yellow-500 fill-current" />
-                            <span className="text-xs text-neutral-700">{benefit}</span>
-                          </div>
-                        ))}
-                        <div className="text-xs text-neutral-500 font-medium">
-                          +{service.benefits.length - 2} more benefits
+                  {/* Key Benefits Preview */}
+                  <div className="mb-8">
+                    <h4 className="text-lg font-semibold text-neutral-800 mb-4">Key Benefits</h4>
+                    <div className="grid md:grid-cols-2 gap-3 max-w-lg mx-auto">
+                      {currentService.benefits.map((benefit, idx) => (
+                        <div key={idx} className="flex items-center space-x-3 bg-white/60 rounded-lg px-4 py-2">
+                          <Star className="w-4 h-4 text-yellow-500 fill-current" />
+                          <span className="text-sm text-neutral-700">{benefit}</span>
                         </div>
-                      </div>
+                      ))}
                     </div>
+                  </div>
 
-                    {/* Action Button */}
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Dialog>
                       <DialogTrigger asChild>
                         <Button 
-                          className={`w-full bg-gradient-to-r ${service.color} text-white hover:shadow-xl transition-all duration-500 transform group-hover:scale-105 text-sm font-semibold`}
-                          onClick={() => setSelectedService(service)}
+                          size="lg"
+                          className={`bg-gradient-to-r ${currentService.color} text-white hover:shadow-xl transition-all duration-500 transform group-hover:scale-105 font-semibold px-8`}
+                          onClick={() => setSelectedService(currentService)}
                         >
-                          Explore Service
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                          Explore Service Details
+                          <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -429,28 +428,32 @@ export default function ServicesSection() {
                         )}
                       </DialogContent>
                     </Dialog>
-                  </div>
-
-                  {/* Hover Effect Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl`}></div>
-                  
-                  {/* Floating Elements */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <ExternalLink className="w-5 h-5 text-neutral-400" />
+                    
+                    <Button size="lg" variant="outline" className="bg-white/80 border-white/70 hover:bg-white font-semibold px-8">
+                      Get Free Quote
+                    </Button>
                   </div>
                 </div>
-              </motion.div>
-            ))}
+
+                {/* Hover Effect Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${currentService.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}></div>
+                
+                {/* Floating Elements */}
+                <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <ExternalLink className="w-6 h-6 text-neutral-400" />
+                </div>
+              </div>
+            </motion.div>
           </div>
 
           {/* Pagination Dots */}
           <div className="flex justify-center space-x-2">
-            {Array.from({ length: Math.ceil(services.length / servicesPerPage) }, (_, i) => (
+            {services.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setCurrentIndex(i * servicesPerPage)}
+                onClick={() => setCurrentIndex(i)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  Math.floor(currentIndex / servicesPerPage) === i
+                  currentIndex === i
                     ? 'bg-primary scale-125'
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
