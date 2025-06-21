@@ -193,32 +193,7 @@ export default function ProcessSection() {
           </div>
         </div>
 
-        {/* Minimal Stats */}
-        <motion.div 
-          className="mt-16 border-t border-neutral-200 pt-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <div className="flex flex-wrap justify-center gap-12 text-center">
-            <div>
-              <div className="text-3xl font-bold text-primary">95%</div>
-              <div className="text-neutral-600 text-sm">Success Rate</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary">30+</div>
-              <div className="text-neutral-600 text-sm">Days Average</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary">24/7</div>
-              <div className="text-neutral-600 text-sm">Support</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary">17+</div>
-              <div className="text-neutral-600 text-sm">Branches</div>
-            </div>
-          </div>
-        </motion.div>
+        
 
         {/* WhatsApp QR Code Section */}
         <motion.div 
@@ -231,91 +206,63 @@ export default function ProcessSection() {
             <h3 className="text-2xl font-bold text-neutral-800 mb-4">
               Ready to Start Your Application?
             </h3>
-            <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
-              Scan the QR code below to connect with our admission counselors on WhatsApp and begin your journey today.
+            <p className="text-neutral-600 mb-6">
+              Scan the QR code to connect with our admission counselors on WhatsApp
             </p>
             
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8">
-              {/* QR Code */}
-              <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-green-200">
-                <div className="w-40 h-40 bg-white rounded-lg flex items-center justify-center">
-                  {/* WhatsApp QR Code - Using a placeholder QR code pattern */}
-                  <svg viewBox="0 0 160 160" className="w-full h-full">
-                    {/* QR Code pattern - simplified representation */}
-                    <rect width="160" height="160" fill="white"/>
-                    {/* Corner squares */}
-                    <rect x="0" y="0" width="28" height="28" fill="black"/>
-                    <rect x="4" y="4" width="20" height="20" fill="white"/>
-                    <rect x="8" y="8" width="12" height="12" fill="black"/>
-                    
-                    <rect x="132" y="0" width="28" height="28" fill="black"/>
-                    <rect x="136" y="4" width="20" height="20" fill="white"/>
-                    <rect x="140" y="8" width="12" height="12" fill="black"/>
-                    
-                    <rect x="0" y="132" width="28" height="28" fill="black"/>
-                    <rect x="4" y="136" width="20" height="20" fill="white"/>
-                    <rect x="8" y="140" width="12" height="12" fill="black"/>
-                    
-                    {/* Data pattern */}
-                    <rect x="32" y="8" width="4" height="4" fill="black"/>
-                    <rect x="40" y="8" width="4" height="4" fill="black"/>
-                    <rect x="48" y="8" width="4" height="4" fill="black"/>
-                    <rect x="64" y="8" width="4" height="4" fill="black"/>
-                    <rect x="72" y="8" width="4" height="4" fill="black"/>
-                    <rect x="88" y="8" width="4" height="4" fill="black"/>
-                    <rect x="96" y="8" width="4" height="4" fill="black"/>
-                    <rect x="104" y="8" width="4" height="4" fill="black"/>
-                    <rect x="120" y="8" width="4" height="4" fill="black"/>
-                    
-                    {/* Add more pattern elements for authenticity */}
-                    <rect x="8" y="32" width="4" height="4" fill="black"/>
-                    <rect x="16" y="32" width="4" height="4" fill="black"/>
-                    <rect x="32" y="32" width="4" height="4" fill="black"/>
-                    <rect x="48" y="32" width="4" height="4" fill="black"/>
-                    <rect x="56" y="32" width="4" height="4" fill="black"/>
-                    <rect x="72" y="32" width="4" height="4" fill="black"/>
-                    <rect x="88" y="32" width="4" height="4" fill="black"/>
-                    <rect x="104" y="32" width="4" height="4" fill="black"/>
-                    <rect x="112" y="32" width="4" height="4" fill="black"/>
-                    <rect x="128" y="32" width="4" height="4" fill="black"/>
-                    <rect x="144" y="32" width="4" height="4" fill="black"/>
-                    
-                    {/* Central timing pattern */}
-                    <rect x="76" y="76" width="8" height="8" fill="black"/>
-                    <rect x="68" y="68" width="4" height="4" fill="black"/>
-                    <rect x="88" y="68" width="4" height="4" fill="black"/>
-                    <rect x="68" y="88" width="4" height="4" fill="black"/>
-                    <rect x="88" y="88" width="4" height="4" fill="black"/>
-                  </svg>
-                </div>
-                <p className="text-sm text-green-600 font-medium mt-2">Scan with WhatsApp</p>
+            {/* QR Code */}
+            <div className="bg-white p-6 rounded-xl shadow-lg border-2 border-green-200 inline-block">
+              <div className="w-40 h-40 bg-white rounded-lg flex items-center justify-center">
+                {/* WhatsApp QR Code - Using a placeholder QR code pattern */}
+                <svg viewBox="0 0 160 160" className="w-full h-full">
+                  {/* QR Code pattern - simplified representation */}
+                  <rect width="160" height="160" fill="white"/>
+                  {/* Corner squares */}
+                  <rect x="0" y="0" width="28" height="28" fill="black"/>
+                  <rect x="4" y="4" width="20" height="20" fill="white"/>
+                  <rect x="8" y="8" width="12" height="12" fill="black"/>
+                  
+                  <rect x="132" y="0" width="28" height="28" fill="black"/>
+                  <rect x="136" y="4" width="20" height="20" fill="white"/>
+                  <rect x="140" y="8" width="12" height="12" fill="black"/>
+                  
+                  <rect x="0" y="132" width="28" height="28" fill="black"/>
+                  <rect x="4" y="136" width="20" height="20" fill="white"/>
+                  <rect x="8" y="140" width="12" height="12" fill="black"/>
+                  
+                  {/* Data pattern */}
+                  <rect x="32" y="8" width="4" height="4" fill="black"/>
+                  <rect x="40" y="8" width="4" height="4" fill="black"/>
+                  <rect x="48" y="8" width="4" height="4" fill="black"/>
+                  <rect x="64" y="8" width="4" height="4" fill="black"/>
+                  <rect x="72" y="8" width="4" height="4" fill="black"/>
+                  <rect x="88" y="8" width="4" height="4" fill="black"/>
+                  <rect x="96" y="8" width="4" height="4" fill="black"/>
+                  <rect x="104" y="8" width="4" height="4" fill="black"/>
+                  <rect x="120" y="8" width="4" height="4" fill="black"/>
+                  
+                  {/* Add more pattern elements for authenticity */}
+                  <rect x="8" y="32" width="4" height="4" fill="black"/>
+                  <rect x="16" y="32" width="4" height="4" fill="black"/>
+                  <rect x="32" y="32" width="4" height="4" fill="black"/>
+                  <rect x="48" y="32" width="4" height="4" fill="black"/>
+                  <rect x="56" y="32" width="4" height="4" fill="black"/>
+                  <rect x="72" y="32" width="4" height="4" fill="black"/>
+                  <rect x="88" y="32" width="4" height="4" fill="black"/>
+                  <rect x="104" y="32" width="4" height="4" fill="black"/>
+                  <rect x="112" y="32" width="4" height="4" fill="black"/>
+                  <rect x="128" y="32" width="4" height="4" fill="black"/>
+                  <rect x="144" y="32" width="4" height="4" fill="black"/>
+                  
+                  {/* Central timing pattern */}
+                  <rect x="76" y="76" width="8" height="8" fill="black"/>
+                  <rect x="68" y="68" width="4" height="4" fill="black"/>
+                  <rect x="88" y="68" width="4" height="4" fill="black"/>
+                  <rect x="68" y="88" width="4" height="4" fill="black"/>
+                  <rect x="88" y="88" width="4" height="4" fill="black"/>
+                </svg>
               </div>
-              
-              {/* Instructions */}
-              <div className="text-left space-y-4 max-w-md">
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">1</div>
-                  <p className="text-neutral-700">Open WhatsApp on your phone</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">2</div>
-                  <p className="text-neutral-700">Tap the camera icon or scan QR option</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">3</div>
-                  <p className="text-neutral-700">Point your camera at the QR code</p>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <div className="flex-shrink-0 w-6 h-6 bg-primary text-white rounded-full flex items-center justify-center text-sm font-semibold">4</div>
-                  <p className="text-neutral-700">Start chatting with our admission counselor</p>
-                </div>
-                
-                <div className="mt-6 pt-4 border-t border-green-200">
-                  <p className="text-sm text-neutral-600">
-                    <strong>Or call directly:</strong> <a href="tel:+923041110947" className="text-primary font-semibold hover:underline">(+92) 304 1110947</a>
-                  </p>
-                </div>
-              </div>
+              <p className="text-sm text-green-600 font-medium mt-2">Scan with WhatsApp</p>
             </div>
           </div>
         </motion.div>
