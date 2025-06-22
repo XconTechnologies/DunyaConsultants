@@ -102,8 +102,11 @@ export default function StatsBanner() {
           />
         </video>
         
-        {/* Dark Overlay with Animation */}
+        {/* Video Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-blue-900/80 to-indigo-900/85"></div>
+        
+        {/* Additional Video Overlay for Enhanced Effect */}
+        <div className="absolute inset-0 bg-black/30"></div>
         
         {/* Animated Particles Overlay */}
         <div className="absolute inset-0 opacity-20">
@@ -113,11 +116,69 @@ export default function StatsBanner() {
           }}></div>
         </div>
         
-        {/* Floating Elements */}
+        {/* Dynamic Floating Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+          <motion.div 
+            className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl"
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{ 
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute top-3/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
+            animate={{ 
+              scale: [1.2, 1, 1.2],
+              opacity: [0.4, 0.7, 0.4]
+            }}
+            transition={{ 
+              duration: 5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div 
+            className="absolute top-1/2 left-1/2 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl"
+            animate={{ 
+              scale: [1, 1.4, 1],
+              opacity: [0.2, 0.5, 0.2]
+            }}
+            transition={{ 
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+        </div>
+        
+        {/* Video Play/Pause Overlay Control */}
+        <div className="absolute bottom-8 right-8 z-20">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="bg-white/20 backdrop-blur-sm rounded-full p-3 text-white hover:bg-white/30 transition-all duration-300"
+            onClick={() => {
+              const video = document.querySelector('video');
+              if (video) {
+                if (video.paused) {
+                  video.play();
+                } else {
+                  video.pause();
+                }
+              }
+            }}
+          >
+            <div className="w-6 h-6 flex items-center justify-center">
+              <div className="w-0 h-0 border-l-[8px] border-l-white border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent ml-1"></div>
+            </div>
+          </motion.button>
         </div>
       </div>
 
