@@ -7,6 +7,7 @@ import CountriesSection from "@/components/countries-section";
 import AccreditationsSection from "@/components/accreditations-section";
 import MobileProcessSection from "@/components/mobile-process-section";
 import StatsBanner from "@/components/stats-banner";
+import AchievementsSection from "@/components/achievements-section";
 import SuccessStoriesCarousel from "@/components/success-stories-carousel";
 import FloatingCTA from "@/components/floating-cta";
 import ScrollProgress from "@/components/scroll-progress";
@@ -26,6 +27,7 @@ export default function Home() {
       <ScrollProgress />
       <Navigation />
       <StatsBanner />
+      <AchievementsSection />
       <ServicesSection />
       <AudienceSection />
       <IeltsSection />

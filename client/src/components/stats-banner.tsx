@@ -84,20 +84,40 @@ export default function StatsBanner() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Hero Background Image */}
+      {/* Animated Video Background */}
       <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&h=1080&fit=crop&crop=center"
-          alt="Students studying abroad"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="w-full h-full object-cover"
-        />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-blue-900/85 to-indigo-900/90"></div>
-        {/* Additional Pattern Overlay */}
-        <div className="absolute inset-0 opacity-10">
+        >
+          <source src="https://videos.pexels.com/video-files/6195392/6195392-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+          {/* Fallback image if video doesn't load */}
+          <img
+            src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&h=1080&fit=crop&crop=center"
+            alt="Students studying abroad"
+            className="w-full h-full object-cover"
+          />
+        </video>
+        
+        {/* Dark Overlay with Animation */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-blue-900/80 to-indigo-900/85"></div>
+        
+        {/* Animated Particles Overlay */}
+        <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-full h-full" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.3'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            animation: 'float 6s ease-in-out infinite'
           }}></div>
+        </div>
+        
+        {/* Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-3/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
         </div>
       </div>
 
@@ -186,48 +206,20 @@ export default function StatsBanner() {
           ))}
         </motion.div>
 
-        {/* Achievement Highlights */}
+        {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="grid md:grid-cols-3 gap-8 lg:gap-12"
+          className="text-center"
         >
-          <motion.div 
-            whileHover={{ scale: 1.05, y: -5 }}
-            className="text-center bg-white/10 backdrop-blur-md rounded-2xl p-6 lg:p-8 border border-white/20"
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold text-lg px-12 py-4 rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
           >
-            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
-              <Award className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
-            </div>
-            <h3 className="text-xl lg:text-2xl font-bold text-white mb-3">Award Winner</h3>
-            <p className="text-blue-200 text-base lg:text-lg">Best Education Consultancy 2024</p>
-            <div className="mt-4 text-yellow-400 text-sm font-semibold">Excellence in Service</div>
-          </motion.div>
-          
-          <motion.div 
-            whileHover={{ scale: 1.05, y: -5 }}
-            className="text-center bg-white/10 backdrop-blur-md rounded-2xl p-6 lg:p-8 border border-white/20"
-          >
-            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-400 to-teal-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
-              <TrendingUp className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
-            </div>
-            <h3 className="text-xl lg:text-2xl font-bold text-white mb-3">Growing Fast</h3>
-            <p className="text-blue-200 text-base lg:text-lg">500+ new students monthly</p>
-            <div className="mt-4 text-green-400 text-sm font-semibold">Expanding Rapidly</div>
-          </motion.div>
-          
-          <motion.div 
-            whileHover={{ scale: 1.05, y: -5 }}
-            className="text-center bg-white/10 backdrop-blur-md rounded-2xl p-6 lg:p-8 border border-white/20"
-          >
-            <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl">
-              <Globe className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
-            </div>
-            <h3 className="text-xl lg:text-2xl font-bold text-white mb-3">Global Reach</h3>
-            <p className="text-blue-200 text-base lg:text-lg">Offices across Pakistan</p>
-            <div className="mt-4 text-purple-400 text-sm font-semibold">Nationwide Network</div>
-          </motion.div>
+            Start Your Journey Today
+          </motion.button>
         </motion.div>
       </div>
     </section>
