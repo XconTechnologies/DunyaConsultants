@@ -153,24 +153,41 @@ export default function Navigation() {
           >
             <div className="px-4 py-4 space-y-4">
               {navItems.map((item) => (
-                item.href ? (
-                  <Link key={item.href} href={item.href}>
+                <div key={item.id || item.href}>
+                  {item.submenu ? (
+                    <div className="space-y-2">
+                      <div className="text-neutral-800 font-medium py-2 border-b border-gray-100">
+                        {item.name}
+                      </div>
+                      {item.submenu.map((subItem) => (
+                        <Link key={subItem.name} href={subItem.href}>
+                          <button
+                            onClick={() => setIsOpen(false)}
+                            className="block w-full text-left pl-4 text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-1"
+                          >
+                            {subItem.name}
+                          </button>
+                        </Link>
+                      ))}
+                    </div>
+                  ) : item.href ? (
+                    <Link href={item.href}>
+                      <button
+                        onClick={() => setIsOpen(false)}
+                        className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-medium py-2"
+                      >
+                        {item.name}
+                      </button>
+                    </Link>
+                  ) : (
                     <button
-                      onClick={() => setIsOpen(false)}
+                      onClick={() => scrollToSection(item.id)}
                       className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-medium py-2"
                     >
                       {item.name}
                     </button>
-                  </Link>
-                ) : (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-medium py-2"
-                  >
-                    {item.name}
-                  </button>
-                )
+                  )}
+                </div>
               ))}
               <Button 
                 onClick={() => scrollToSection("contact")}
