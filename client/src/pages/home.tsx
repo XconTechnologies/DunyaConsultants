@@ -25,7 +25,6 @@ export default function Home() {
     <div className="min-h-screen">
       <ScrollProgress />
       <Navigation />
-      <HeroSection />
       <StatsBanner />
       <ServicesSection />
       <AudienceSection />
