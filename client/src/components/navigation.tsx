@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import logoImage from "@assets/Asset-1_1750413567978.png";
 
 export default function Navigation() {
@@ -31,7 +37,14 @@ export default function Navigation() {
     { name: "Services", id: "services" },
     { name: "About", id: "about" },
     { name: "Solutions", id: "audience" },
-    { name: "IELTS", href: "/ielts" },
+    { 
+      name: "IELTS", 
+      href: "/ielts",
+      submenu: [
+        { name: "IELTS Overview", href: "/ielts" },
+        { name: "What to Expect on Exam Day", href: "/ielts/exam-day" }
+      ]
+    },
     { name: "Process", id: "process" },
     { name: "Locations", id: "locations" },
     { name: "Testimonials", id: "testimonials" },
@@ -69,7 +82,25 @@ export default function Navigation() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                {item.href ? (
+                {item.submenu ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className="text-neutral-800 hover:text-primary transition-colors duration-200 font-medium flex items-center space-x-1">
+                        <span>{item.name}</span>
+                        <ChevronDown className="w-4 h-4" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="start">
+                      {item.submenu.map((subItem) => (
+                        <DropdownMenuItem key={subItem.name} asChild>
+                          <Link href={subItem.href}>
+                            <span className="w-full cursor-pointer">{subItem.name}</span>
+                          </Link>
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : item.href ? (
                   <Link href={item.href}>
                     <button className="text-neutral-800 hover:text-primary transition-colors duration-200 font-medium">
                       {item.name}
