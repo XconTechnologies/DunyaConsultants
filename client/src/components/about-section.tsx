@@ -47,43 +47,6 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          
-          
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">Who We Are</h2>
-            <p className="text-xl text-neutral-500 mb-8 leading-relaxed">
-              With a decade of overseas education experience, we are your trusted partner in achieving international education dreams. Our extensive network and proven track record set us apart in the industry.
-            </p>
-            
-            
-            
-            <motion.div 
-              className="mt-10"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <Button 
-                size="lg"
-                onClick={() => scrollToSection("contact")}
-                className="bg-primary hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
-              >
-                <Calendar className="mr-2" size={20} />
-                Schedule Consultation
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-        
-        
-      </div>
-    </section>
+    null
   );
 }

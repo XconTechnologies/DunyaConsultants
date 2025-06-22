@@ -50,7 +50,17 @@ export default function Navigation() {
     { name: "Testimonials", id: "testimonials" },
     { name: "Events", href: "/events" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Country Guide", href: "/country-guide" },
+    { 
+      name: "Country Guide", 
+      href: "/country-guide",
+      submenu: [
+        { name: "Country Guide Overview", href: "/country-guide" },
+        { name: "Study in USA", href: "/country-guide/usa" },
+        { name: "Study in UK", href: "/country-guide/uk" },
+        { name: "Study in Canada", href: "/country-guide/canada" },
+        { name: "Study in Australia", href: "/country-guide/australia" }
+      ]
+    },
     { name: "Cost Calculator", href: "/cost-calculator" },
   ];
 
