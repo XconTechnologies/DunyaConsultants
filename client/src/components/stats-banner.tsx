@@ -2,9 +2,34 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Users, MapPin, GraduationCap, Award, TrendingUp, Globe } from "lucide-react";
 
+// Force video autoplay on component mount
+const forceVideoAutoplay = () => {
+  const video = document.querySelector('video');
+  if (video) {
+    video.muted = true;
+    video.play().catch(() => {
+      // If autoplay fails, try again after user interaction
+      const handleUserInteraction = () => {
+        video.play().catch(console.error);
+        document.removeEventListener('click', handleUserInteraction);
+        document.removeEventListener('touchstart', handleUserInteraction);
+      };
+      document.addEventListener('click', handleUserInteraction);
+      document.addEventListener('touchstart', handleUserInteraction);
+    });
+  }
+};
+
 export default function StatsBanner() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  useEffect(() => {
+    if (isInView) {
+      // Delay to ensure video is loaded
+      setTimeout(forceVideoAutoplay, 500);
+    }
+  }, [isInView]);
   
   const stats = [
     {
@@ -91,7 +116,12 @@ export default function StatsBanner() {
           muted
           loop
           playsInline
+          preload="auto"
           className="w-full h-full object-cover"
+          onLoadedData={(e) => {
+            const video = e.target as HTMLVideoElement;
+            video.play().catch(console.error);
+          }}
         >
           <source src="https://videos.pexels.com/video-files/6195392/6195392-uhd_2560_1440_25fps.mp4" type="video/mp4" />
           {/* Fallback image if video doesn't load */}
@@ -168,7 +198,7 @@ export default function StatsBanner() {
               const video = document.querySelector('video');
               if (video) {
                 if (video.paused) {
-                  video.play();
+                  video.play().catch(console.error);
                 } else {
                   video.pause();
                 }
