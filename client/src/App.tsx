@@ -9,6 +9,7 @@ import Events from "@/pages/events";
 import Blogs from "@/pages/blogs";
 import IELTS from "@/pages/ielts";
 import IELTSExamDay from "@/pages/ielts-exam-day";
+import CountryGuide from "@/pages/country-guide";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/blogs" component={Blogs} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
+      <Route path="/country-guide" component={CountryGuide} />
       <Route component={NotFound} />
     </Switch>
   );

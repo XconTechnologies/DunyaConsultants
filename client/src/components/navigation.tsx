@@ -50,6 +50,7 @@ export default function Navigation() {
     { name: "Testimonials", id: "testimonials" },
     { name: "Events", href: "/events" },
     { name: "Blogs", href: "/blogs" },
+    { name: "Country Guide", href: "/country-guide" },
     { name: "Cost Calculator", href: "/cost-calculator" },
   ];
 
