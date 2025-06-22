@@ -1,6 +1,5 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import ServicesSection from "@/components/services-section";
 import AudienceSection from "@/components/audience-section";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
@@ -29,7 +28,6 @@ export default function Home() {
       <Navigation />
       <StatsBanner />
       <AchievementsSection />
-      <ServicesSection />
       <AudienceSection />
       <IeltsSection />
       <CountriesSection />
