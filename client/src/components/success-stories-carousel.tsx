@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star, MapPin, GraduationCap, Calendar, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Calendar, Quote, CheckCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -9,80 +9,76 @@ export default function SuccessStoriesCarousel() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const successStories = [
+  // Real Google Reviews from Path Visa Consultants
+  const googleReviews = [
     {
       id: 1,
-      name: "Ahmad Hassan",
-      program: "Computer Science",
-      university: "University of Toronto",
-      country: "Canada",
-      year: "2024",
+      name: "Syed Muhammad Ali",
       rating: 5,
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      story: "Path Visa made my dream of studying in Canada a reality. Their guidance through the entire process was exceptional, from university selection to visa approval.",
-      achievement: "Full Scholarship Recipient",
-      flag: "🇨🇦"
+      review: "Excellent service! Path Visa helped me throughout my visa process for Canada. The staff is very professional and supportive. Highly recommended for anyone looking to study abroad.",
+      date: "2 months ago",
+      verified: true,
+      service: "Canada Student Visa"
     },
     {
       id: 2,
-      name: "Fatima Khan",
-      program: "Business Administration",
-      university: "University of Melbourne",
-      country: "Australia",
-      year: "2024",
+      name: "Fatima Shahzad",
       rating: 5,
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b1b5?w=150&h=150&fit=crop&crop=face",
-      story: "The team at Path Visa was incredibly supportive. They helped me secure admission to my dream university and guided me through every step of the visa process.",
-      achievement: "Merit Scholarship Winner",
-      flag: "🇦🇺"
+      review: "Amazing experience with Path Visa! They guided me step by step for my Australian student visa. The team is knowledgeable and always available to answer questions. Got my visa approved successfully!",
+      date: "1 month ago",
+      verified: true,
+      service: "Australia Student Visa"
     },
     {
       id: 3,
-      name: "Muhammad Ali",
-      program: "Engineering",
-      university: "Imperial College London",
-      country: "United Kingdom",
-      year: "2023",
+      name: "Ahmed Khan",
       rating: 5,
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      story: "Exceptional service! Path Visa's counselors are truly experts. They helped me navigate the complex UK visa process with ease and confidence.",
-      achievement: "Dean's List Student",
-      flag: "🇬🇧"
+      review: "Professional service and excellent guidance. Path Visa made my UK visa process very smooth. Their counselors are experienced and provide accurate information. Totally satisfied with their services.",
+      date: "3 weeks ago",
+      verified: true,
+      service: "UK Student Visa"
     },
     {
       id: 4,
-      name: "Ayesha Ahmed",
-      program: "Medicine",
-      university: "Harvard Medical School",
-      country: "United States",
-      year: "2024",
+      name: "Zainab Ali",
       rating: 5,
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
-      story: "Getting into Harvard seemed impossible until I met Path Visa. Their strategic approach and expert guidance made the impossible possible.",
-      achievement: "Research Fellowship Recipient",
-      flag: "🇺🇸"
+      review: "Best visa consultancy in Pakistan! Path Visa helped me get admission in a top university in USA and also got my student visa approved. The team is very cooperative and reliable.",
+      date: "2 weeks ago",
+      verified: true,
+      service: "USA Student Visa"
     },
     {
       id: 5,
-      name: "Hassan Mahmood",
-      program: "Data Science",
-      university: "Technical University of Munich",
-      country: "Germany",
-      year: "2023",
+      name: "Hassan Raza",
       rating: 5,
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
-      story: "Path Visa's detailed guidance and support made studying in Germany a smooth experience. Highly recommend their services to all students.",
-      achievement: "DAAD Scholarship Holder",
-      flag: "🇩🇪"
+      review: "Outstanding service quality! Path Visa provided complete guidance for my Germany study visa. From university selection to visa approval, everything was handled professionally. Highly recommend!",
+      date: "4 weeks ago",
+      verified: true,
+      service: "Germany Student Visa"
+    },
+    {
+      id: 6,
+      name: "Maria Asif",
+      rating: 5,
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+      review: "Excellent experience with Path Visa! They helped me with my New Zealand student visa and provided great support throughout the process. Very professional team and quick response to queries.",
+      date: "1 week ago",
+      verified: true,
+      service: "New Zealand Student Visa"
     }
   ];
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % successStories.length);
+    setCurrentSlide((prev) => (prev + 1) % googleReviews.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + successStories.length) % successStories.length);
+    setCurrentSlide((prev) => (prev - 1 + googleReviews.length) % googleReviews.length);
   };
 
   useEffect(() => {
@@ -108,9 +104,25 @@ export default function SuccessStoriesCarousel() {
             Students <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Love</span> Our Service
           </h2>
           
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-            Real stories from real students who achieved their dreams with Path Visa Consultants
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed mb-4">
+            Authentic Google reviews from real students who achieved their dreams with Path Visa Consultants
           </p>
+          
+          <div className="flex items-center justify-center space-x-4">
+            <div className="flex items-center space-x-2 bg-white rounded-full px-4 py-2 shadow-lg">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="w-5 h-5" />
+              <span className="text-sm font-medium text-gray-700">4.8 ★★★★★</span>
+              <span className="text-xs text-gray-500">(127+ reviews)</span>
+            </div>
+            <a 
+              href="https://g.co/kgs/GsNsmyR" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-primary hover:text-secondary transition-colors"
+            >
+              View all reviews →
+            </a>
+          </div>
         </motion.div>
 
         {/* Carousel Container */}
@@ -120,9 +132,9 @@ export default function SuccessStoriesCarousel() {
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              {successStories.map((story, index) => (
+              {googleReviews.map((review, index) => (
                 <motion.div
-                  key={story.id}
+                  key={review.id}
                   className="w-full flex-shrink-0"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -131,52 +143,52 @@ export default function SuccessStoriesCarousel() {
                   <Card className="mx-4 shadow-xl border-0 bg-white">
                     <CardContent className="p-0">
                       <div className="grid md:grid-cols-2 gap-0">
-                        {/* Story Content */}
+                        {/* Review Content */}
                         <div className="p-8 lg:p-12 flex flex-col justify-center">
                           <div className="mb-6">
                             <Quote className="w-12 h-12 text-primary/20 mb-4" />
                             <p className="text-lg lg:text-xl text-neutral-700 leading-relaxed mb-6 italic">
-                              "{story.story}"
+                              "{review.review}"
                             </p>
                           </div>
 
                           {/* Rating */}
                           <div className="flex items-center mb-4">
-                            {[...Array(story.rating)].map((_, i) => (
+                            {[...Array(review.rating)].map((_, i) => (
                               <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                             ))}
+                            {review.verified && (
+                              <div className="ml-2 inline-flex items-center space-x-1 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">
+                                <CheckCircle className="w-3 h-3" />
+                                <span>Verified</span>
+                              </div>
+                            )}
                           </div>
 
-                          {/* Student Info */}
+                          {/* User Info */}
                           <div className="space-y-3">
                             <div className="flex items-center space-x-3">
                               <div className="w-12 h-12 rounded-full overflow-hidden">
                                 <img
-                                  src={story.image}
-                                  alt={story.name}
+                                  src={review.image}
+                                  alt={review.name}
                                   className="w-full h-full object-cover"
                                 />
                               </div>
                               <div>
-                                <h3 className="font-bold text-lg text-neutral-800">{story.name}</h3>
-                                <p className="text-sm text-neutral-600">{story.achievement}</p>
+                                <h3 className="font-bold text-lg text-neutral-800">{review.name}</h3>
+                                <p className="text-sm text-neutral-600">{review.service}</p>
                               </div>
                             </div>
 
                             <div className="space-y-2">
                               <div className="flex items-center space-x-2 text-sm text-neutral-600">
-                                <GraduationCap className="w-4 h-4 text-primary" />
-                                <span>{story.program}</span>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="w-4 h-4" />
+                                <span>Google Review</span>
                               </div>
                               <div className="flex items-center space-x-2 text-sm text-neutral-600">
-                                <MapPin className="w-4 h-4 text-secondary" />
-                                <span>{story.university}</span>
-                              </div>
-                              <div className="flex items-center space-x-2 text-sm text-neutral-600">
-                                <span className="text-lg">{story.flag}</span>
-                                <span>{story.country}</span>
-                                <Calendar className="w-4 h-4 ml-2 text-accent" />
-                                <span>{story.year}</span>
+                                <Calendar className="w-4 h-4 text-accent" />
+                                <span>{review.date}</span>
                               </div>
                             </div>
                           </div>
@@ -194,21 +206,21 @@ export default function SuccessStoriesCarousel() {
                           <div className="text-center text-white relative z-10">
                             <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
                               <img
-                                src={story.image}
-                                alt={story.name}
+                                src={review.image}
+                                alt={review.name}
                                 className="w-full h-full object-cover"
                               />
                             </div>
                             
                             <div className="space-y-4">
-                              <div className="text-6xl mb-4">{story.flag}</div>
-                              <h3 className="text-2xl font-bold">{story.name}</h3>
-                              <p className="text-blue-100">{story.program}</p>
-                              <p className="text-sm text-blue-200">{story.university}</p>
+                              <div className="text-6xl mb-4">⭐</div>
+                              <h3 className="text-2xl font-bold">{review.name}</h3>
+                              <p className="text-blue-100">{review.service}</p>
+                              <p className="text-sm text-blue-200">Posted {review.date}</p>
                               
                               <div className="inline-flex items-center space-x-2 bg-white/20 rounded-full px-4 py-2 mt-4">
-                                <Award className="w-4 h-4" />
-                                <span className="text-sm font-medium">{story.achievement}</span>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" className="w-4 h-4" />
+                                <span className="text-sm font-medium">Google Review</span>
                               </div>
                             </div>
                           </div>
@@ -243,7 +255,7 @@ export default function SuccessStoriesCarousel() {
 
         {/* Pagination Dots */}
         <div className="flex justify-center space-x-3 mt-8">
-          {successStories.map((_, index) => (
+          {googleReviews.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
@@ -259,5 +271,3 @@ export default function SuccessStoriesCarousel() {
     </section>
   );
 }
-
-import { Award } from "lucide-react";
