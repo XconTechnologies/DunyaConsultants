@@ -31,7 +31,7 @@ export default function Navigation() {
     { name: "Services", id: "services" },
     { name: "About", id: "about" },
     { name: "Solutions", id: "audience" },
-    { name: "IELTS", id: "ielts" },
+    { name: "IELTS", href: "/ielts" },
     { name: "Process", id: "process" },
     { name: "Locations", id: "locations" },
     { name: "Testimonials", id: "testimonials" },
