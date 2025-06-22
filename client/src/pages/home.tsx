@@ -4,6 +4,7 @@ import ServicesSection from "@/components/services-section";
 import AudienceSection from "@/components/audience-section";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
+import AccreditationsSection from "@/components/accreditations-section";
 
 import TestimonialsSection from "@/components/testimonials-section";
 import ContactSection from "@/components/contact-section";
@@ -23,6 +24,7 @@ export default function Home() {
       <AudienceSection />
       <IeltsSection />
       <CountriesSection />
+      <AccreditationsSection />
 
       <TestimonialsSection />
       <GoogleReviewsSection />
