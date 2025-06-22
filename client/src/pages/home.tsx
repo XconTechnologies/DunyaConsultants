@@ -1,6 +1,6 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import AudienceSection from "@/components/audience-section";
+import AudienceSectionNew from "@/components/audience-section-new";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
 import AccreditationsSection from "@/components/accreditations-section";
@@ -28,7 +28,7 @@ export default function Home() {
       <Navigation />
       <StatsBanner />
       <AchievementsSection />
-      <AudienceSection />
+      <AudienceSectionNew />
       <IeltsSection />
       <CountriesSection />
       <StudentJourneyVisualization />
