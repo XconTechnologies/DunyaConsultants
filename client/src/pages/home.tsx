@@ -23,23 +23,25 @@ import Footer from "@/components/footer";
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <ScrollProgress />
       <Navigation />
       <HeroSection />
+      <StatsBanner />
       <ServicesSection />
       <AudienceSection />
       <IeltsSection />
       <CountriesSection />
       <MobileProcessSection />
       <AccreditationsSection />
-
+      <SuccessStoriesCarousel />
       <TestimonialsSection />
       <GoogleReviewsSection />
       <UniversityPartnersSection />
-
       <OfficeLocationsSection />
       <ContactSection />
       <ContactInfoSection />
       <Footer />
+      <FloatingCTA />
     </div>
   );
 }

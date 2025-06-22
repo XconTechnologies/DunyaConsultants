@@ -48,6 +48,8 @@
   --secondary-foreground: hsl(0, 0%, 98%);
   --accent: hsl(41, 96%, 48%);
   --accent-foreground: hsl(0, 0%, 98%);
+  --gold-400: hsl(45, 96%, 64%);
+  --gold-500: hsl(45, 93%, 47%);
   --destructive: hsl(0, 62.8%, 30.6%);
   --destructive-foreground: hsl(0, 0%, 98%);
   --ring: hsl(240, 4.9%, 83.9%);
