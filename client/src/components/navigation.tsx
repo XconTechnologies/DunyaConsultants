@@ -14,10 +14,13 @@ import logoImage from "@assets/Asset-1_1750413567978.png";
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHeroSection, setIsHeroSection] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+      setIsHeroSection(scrollPosition < window.innerHeight * 0.8);
     };
 
     window.addEventListener("scroll", handleScroll);
