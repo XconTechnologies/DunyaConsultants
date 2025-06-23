@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin, Building2, MessageCircle, Calendar, Newspaper, PenTool, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import logoImage from "@assets/Asset-1_1750664385021.png";
+import logoImageWhite from "@assets/Asset-1_1750664385021.png";
+import logoImageBlue from "@assets/DC Blue Logo (1)_1750668538365.png";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -264,7 +265,7 @@ export default function Navigation() {
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <img 
-                  src={logoImage} 
+                  src={!isScrolled ? logoImageWhite : logoImageBlue} 
                   alt="Dunya Consultants Logo" 
                   className={`h-8 w-auto transition-all duration-500 ${
                     !isScrolled 
