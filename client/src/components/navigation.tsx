@@ -1,20 +1,15 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import logoImage from "@assets/Asset-1_1750664385021.png";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeroSection, setIsHeroSection] = useState(true);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,62 +30,132 @@ export default function Navigation() {
     }
   };
 
+  const megaMenuData = {
+    "About Us": {
+      icon: Users,
+      sections: [
+        {
+          title: "Company",
+          icon: Users,
+          items: [
+            { name: "Our Story", href: "/about/story", description: "Learn about our journey and mission" },
+            { name: "Who We Are", href: "/about/who-we-are", description: "Meet our dedicated team" },
+            { name: "Mission & Vision", href: "/about/mission-vision", description: "Our goals and values" }
+          ]
+        },
+        {
+          title: "Why Choose Us",
+          icon: Star,
+          items: [
+            { name: "Success Stories", href: "/about/success-stories", description: "Student achievements" },
+            { name: "Why Choose Us", href: "/about/why-choose-us", description: "Our unique advantages" },
+            { name: "Leadership & Team", href: "/about/team", description: "Expert counselors" }
+          ]
+        }
+      ],
+      featured: {
+        title: "17+ Years of Excellence",
+        description: "Trusted by thousands of students worldwide",
+        cta: "Learn More",
+        href: "/about"
+      }
+    },
+    "Study Destinations": {
+      icon: Globe,
+      sections: [
+        {
+          title: "Popular Destinations",
+          icon: Globe,
+          items: [
+            { name: "Study in Canada", href: "/country-guide/canada", description: "World-class education & immigration" },
+            { name: "Study in UK", href: "/country-guide/uk", description: "Prestigious universities & culture" },
+            { name: "Study in Australia", href: "/country-guide/australia", description: "Quality education & lifestyle" },
+            { name: "Study in USA", href: "/country-guide/usa", description: "Top universities & opportunities" }
+          ]
+        },
+        {
+          title: "Emerging Destinations",
+          icon: ArrowRight,
+          items: [
+            { name: "Study in Europe", href: "/country-guide/europe", description: "Affordable quality education" },
+            { name: "Study in Turkey", href: "/country-guide/turkey", description: "Bridge between East & West" }
+          ]
+        }
+      ],
+      featured: {
+        title: "Free Country Selection",
+        description: "Get personalized recommendations",
+        cta: "Explore Now",
+        href: "/country-guide"
+      }
+    },
+    "Services": {
+      icon: BookOpen,
+      sections: [
+        {
+          title: "Core Services",
+          icon: BookOpen,
+          items: [
+            { name: "University Selection", href: "/services/university-selection", description: "Find your perfect match" },
+            { name: "Course & Career Counselling", href: "/services/counselling", description: "Expert guidance" },
+            { name: "Application Assistance", href: "/services/applications", description: "Complete application support" }
+          ]
+        },
+        {
+          title: "Specialized Support",
+          icon: Award,
+          items: [
+            { name: "Scholarship Guidance", href: "/services/scholarships", description: "Financial aid assistance" },
+            { name: "Visa Processing", href: "/services/visa", description: "Hassle-free visa support" },
+            { name: "Test Preparation", href: "/test-prep", description: "IELTS, PTE, TOEFL & more" }
+          ]
+        }
+      ],
+      featured: {
+        title: "End-to-End Support",
+        description: "From application to arrival",
+        cta: "Get Started",
+        href: "/services"
+      }
+    },
+    "Test Prep": {
+      icon: Award,
+      sections: [
+        {
+          title: "English Tests",
+          icon: Award,
+          items: [
+            { name: "IELTS", href: "/test-prep/ielts", description: "Most accepted English test" },
+            { name: "PTE", href: "/test-prep/pte", description: "Computer-based English test" },
+            { name: "TOEFL", href: "/test-prep/toefl", description: "Academic English assessment" },
+            { name: "Duolingo", href: "/test-prep/duolingo", description: "Online English proficiency" }
+          ]
+        },
+        {
+          title: "Preparation Support",
+          icon: BookOpen,
+          items: [
+            { name: "Spoken English", href: "/test-prep/spoken-english", description: "Improve speaking skills" },
+            { name: "Interview Prep", href: "/test-prep/interview", description: "Visa interview coaching" }
+          ]
+        }
+      ],
+      featured: {
+        title: "Free Mock Tests",
+        description: "Practice with real exam format",
+        cta: "Start Practice",
+        href: "/test-prep"
+      }
+    }
+  };
+
   const navItems = [
     { name: "Home", href: "/" },
-    { 
-      name: "About Us", 
-      submenu: [
-        { name: "Our Story", href: "/about/story" },
-        { name: "Who We Are", href: "/about/who-we-are" },
-        { name: "Mission & Vision", href: "/about/mission-vision" },
-        { name: "Leadership & Team", href: "/about/team" },
-        { name: "Success Stories", href: "/about/success-stories" },
-        { name: "Why Choose Us", href: "/about/why-choose-us" }
-      ]
-    },
-    { 
-      name: "Country Guide", 
-      submenu: [
-        { name: "Study in Canada", href: "/country-guide/canada" },
-        { name: "Study in UK", href: "/country-guide/uk" },
-        { name: "Study in Australia", href: "/country-guide/australia" },
-        { name: "Study in USA", href: "/country-guide/usa" },
-        { name: "Study in Europe", href: "/country-guide/europe" },
-        { name: "Study in Turkey", href: "/country-guide/turkey" },
-        { name: "University Selection", href: "/services/university-selection" },
-        { name: "Course & Career Counselling", href: "/services/counselling" },
-        { name: "Application Assistance", href: "/services/applications" },
-        { name: "Scholarship Guidance", href: "/services/scholarships" },
-        { name: "Visa Processing", href: "/services/visa" }
-      ]
-    },
-    { 
-      name: "Test Preparation", 
-      submenu: [
-        { name: "IELTS", href: "/test-prep/ielts" },
-        { name: "PTE", href: "/test-prep/pte" },
-        { name: "TOEFL", href: "/test-prep/toefl" },
-        { name: "Duolingo", href: "/test-prep/duolingo" },
-        { name: "Spoken English & Interview Prep", href: "/test-prep/spoken-english" }
-      ]
-    },
-    { 
-      name: "Offices", 
-      submenu: [
-        { name: "Find a Branch", href: "/offices/branches" },
-        { name: "Contact Details", href: "/offices/contact" },
-        { name: "Appointment Booking", href: "/offices/booking" }
-      ]
-    },
-    { 
-      name: "Blog", 
-      submenu: [
-        { name: "Study Abroad Tips", href: "/blog/tips" },
-        { name: "Country Guides", href: "/blog/country-guides" },
-        { name: "Student Experiences", href: "/blog/experiences" }
-      ]
-    },
-    { name: "Contact Us", href: "/contact" },
+    { name: "About Us", megaMenu: true },
+    { name: "Study Destinations", megaMenu: true },
+    { name: "Services", megaMenu: true },
+    { name: "Test Prep", megaMenu: true },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -136,34 +201,25 @@ export default function Navigation() {
             <div className="flex items-center space-x-1">
               {navItems.map((item, index) => (
                 <motion.div
-                  key={item.href}
+                  key={item.name}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative group"
+                  className="relative"
+                  onMouseEnter={() => item.megaMenu && setActiveMegaMenu(item.name)}
+                  onMouseLeave={() => item.megaMenu && setActiveMegaMenu(null)}
                 >
-                  {item.submenu ? (
-                    <DropdownMenu>
-                      <DropdownMenuTrigger asChild>
-                        <button className={`${
-                        !isScrolled 
-                          ? 'text-white drop-shadow-md hover:text-white/90' 
-                          : 'text-neutral-700 hover:text-primary'
-                      } transition-all duration-300 font-medium flex items-center space-x-1 px-4 py-2 rounded-lg hover:bg-white/10 text-sm`}>
-                          <span>{item.name}</span>
-                          <ChevronDown className="w-3 h-3" />
-                        </button>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent align="start" className="w-56 mt-2">
-                        {item.submenu.map((subItem) => (
-                          <DropdownMenuItem key={subItem.name} asChild>
-                            <Link href={subItem.href}>
-                              <span className="w-full cursor-pointer text-sm py-2">{subItem.name}</span>
-                            </Link>
-                          </DropdownMenuItem>
-                        ))}
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                  {item.megaMenu ? (
+                    <button className={`${
+                      !isScrolled 
+                        ? 'text-white drop-shadow-md hover:text-white/90' 
+                        : 'text-neutral-700 hover:text-primary'
+                    } transition-all duration-300 font-medium flex items-center space-x-1 px-4 py-2 rounded-lg hover:bg-white/10 text-sm`}>
+                      <span>{item.name}</span>
+                      <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${
+                        activeMegaMenu === item.name ? 'rotate-180' : ''
+                      }`} />
+                    </button>
                   ) : item.href ? (
                     <Link href={item.href}>
                       <span className={`${
@@ -216,6 +272,103 @@ export default function Navigation() {
           </div>
         </div>
       </div>
+
+      {/* Mega Menu */}
+      <AnimatePresence>
+        {activeMegaMenu && megaMenuData[activeMegaMenu] && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-neutral-100 z-40"
+            onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
+            onMouseLeave={() => setActiveMegaMenu(null)}
+          >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                {/* Menu Sections */}
+                <div className="lg:col-span-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {megaMenuData[activeMegaMenu].sections.map((section, idx) => (
+                      <div key={idx} className="space-y-4">
+                        <div className="flex items-center space-x-2 mb-4">
+                          <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                            {React.createElement(section.icon, { 
+                              className: "w-4 h-4 text-white" 
+                            })}
+                          </div>
+                          <h3 className="text-lg font-bold text-neutral-800">{section.title}</h3>
+                        </div>
+                        <div className="space-y-3">
+                          {section.items.map((item, itemIdx) => (
+                            <Link key={itemIdx} href={item.href}>
+                              <div className="group flex items-start space-x-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                                <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200" />
+                                <div>
+                                  <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
+                                    {item.name}
+                                  </div>
+                                  <div className="text-sm text-neutral-600 mt-1">
+                                    {item.description}
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Featured Section */}
+                <div className="lg:col-span-1">
+                  <div className="bg-gradient-to-br from-primary via-secondary to-accent rounded-2xl p-6 text-white relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+                    <div className="relative z-10">
+                      <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                        {React.createElement(megaMenuData[activeMegaMenu].icon, { 
+                          className: "w-6 h-6 text-white" 
+                        })}
+                      </div>
+                      <h3 className="text-xl font-bold mb-2">
+                        {megaMenuData[activeMegaMenu].featured.title}
+                      </h3>
+                      <p className="text-white/90 mb-4 text-sm">
+                        {megaMenuData[activeMegaMenu].featured.description}
+                      </p>
+                      <Link href={megaMenuData[activeMegaMenu].featured.href}>
+                        <button className="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 text-sm font-medium">
+                          {megaMenuData[activeMegaMenu].featured.cta} →
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
+                  
+                  {/* Quick Contact */}
+                  <div className="mt-6 p-4 bg-neutral-50 rounded-xl">
+                    <h4 className="font-semibold text-neutral-800 mb-3 flex items-center">
+                      <Phone className="w-4 h-4 mr-2 text-primary" />
+                      Need Help?
+                    </h4>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center space-x-2 text-neutral-600">
+                        <Phone className="w-3 h-3" />
+                        <span>+92 304 1110947</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-neutral-600">
+                        <MapPin className="w-3 h-3" />
+                        <span>17+ Offices Nationwide</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>
         {isOpen && (
