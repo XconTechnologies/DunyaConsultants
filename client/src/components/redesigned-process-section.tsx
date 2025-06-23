@@ -1,81 +1,145 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { MessageCircle, Globe, FileText, Send, Shield, Plane, CheckCircle, Clock, Target, ArrowRight, GraduationCap, BookOpen } from "lucide-react";
+import { MessageCircle, Globe, FileText, Send, Shield, Plane, CheckCircle, Clock, Target, ArrowRight, GraduationCap, BookOpen, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 const processSteps = [
   {
     id: 1,
-    title: "Free Consultation",
-    subtitle: "Understand Your Goals",
-    description: "Meet with our expert counselors to discuss your academic background, career aspirations, and study abroad dreams.",
-    icon: Users,
-    duration: "30-45 mins",
-    deliverables: ["Personalized assessment", "Country recommendations", "Budget planning"],
+    title: "Initial Consultation & Assessment",
+    subtitle: "Comprehensive Career Evaluation",
+    description: "Begin your journey with a detailed consultation where our certified counselors assess your academic profile, career aspirations, and study preferences to create a personalized roadmap.",
+    icon: MessageCircle,
     color: "from-blue-500 to-blue-600",
     bgColor: "bg-blue-50",
-    pattern: "dots"
+    pattern: "dots",
+    duration: "Week 1",
+    deliverables: [
+      "Academic profile assessment and gap analysis",
+      "Career counseling and goal alignment session",
+      "Country suitability evaluation",
+      "Preliminary budget planning and scholarship identification"
+    ]
   },
   {
     id: 2,
-    title: "University Selection",
-    subtitle: "Find Your Perfect Match",
-    description: "Research and shortlist universities that align with your profile, preferences, and career objectives.",
-    icon: GraduationCap,
-    duration: "1-2 weeks",
-    deliverables: ["University shortlist", "Program analysis", "Admission requirements"],
-    color: "from-green-500 to-green-600",
-    bgColor: "bg-green-50",
-    pattern: "waves"
+    title: "Strategic Planning & Research",
+    subtitle: "Destination & Institution Selection",
+    description: "Conduct comprehensive research on countries, universities, and programs. Make informed decisions based on rankings, career prospects, costs, and immigration policies.",
+    icon: Globe,
+    color: "from-emerald-500 to-emerald-600",
+    bgColor: "bg-emerald-50",
+    pattern: "waves",
+    duration: "Week 2-3",
+    deliverables: [
+      "Detailed country comparison matrix",
+      "University shortlist with program analysis",
+      "Scholarship and funding opportunity research",
+      "Final destination and university selection"
+    ]
   },
   {
     id: 3,
-    title: "Test Preparation",
-    subtitle: "Achieve Your Target Score",
-    description: "Prepare for IELTS, PTE, or TOEFL with our expert coaching and achieve the required language proficiency.",
-    icon: Award,
-    duration: "2-4 weeks",
-    deliverables: ["Test preparation plan", "Mock tests", "Score improvement"],
-    color: "from-purple-500 to-purple-600",
-    bgColor: "bg-purple-50",
-    pattern: "grid"
+    title: "Test Preparation & Language Training",
+    subtitle: "Standardized Test Excellence",
+    description: "Prepare for required standardized tests (IELTS, TOEFL, GRE, GMAT) with expert coaching and achieve competitive scores for university admission.",
+    icon: BookOpen,
+    color: "from-violet-500 to-violet-600",
+    bgColor: "bg-violet-50",
+    pattern: "grid",
+    duration: "Week 2-8",
+    deliverables: [
+      "Diagnostic test and skill assessment",
+      "Personalized study plan and materials",
+      "Expert coaching sessions and practice tests",
+      "Test registration and scheduling assistance"
+    ]
   },
   {
     id: 4,
-    title: "Documentation",
-    subtitle: "Prepare Your Profile",
-    description: "Compile and prepare all necessary documents including transcripts, SOPs, and recommendation letters.",
+    title: "Document Preparation & Verification",
+    subtitle: "Application Portfolio Development",
+    description: "Prepare, authenticate, and organize all required documentation including academic records, professional documents, and supporting materials for university applications.",
     icon: FileText,
-    duration: "2-3 weeks",
-    deliverables: ["Document checklist", "SOP writing", "Academic transcripts"],
-    color: "from-orange-500 to-orange-600",
-    bgColor: "bg-orange-50",
-    pattern: "lines"
+    color: "from-amber-500 to-amber-600",
+    bgColor: "bg-amber-50",
+    pattern: "circles",
+    duration: "Week 4-7",
+    deliverables: [
+      "Academic transcript evaluation and verification",
+      "Professional document translation and notarization",
+      "Statement of Purpose and essay writing assistance",
+      "Letters of recommendation coordination"
+    ]
   },
   {
     id: 5,
-    title: "Application Submission",
-    subtitle: "Apply to Universities",
-    description: "Submit your applications to selected universities with all required documents and track their progress.",
-    icon: Calendar,
-    duration: "1-2 weeks",
-    deliverables: ["Application submissions", "Fee payments", "Progress tracking"],
-    color: "from-pink-500 to-pink-600",
-    bgColor: "bg-pink-50",
-    pattern: "circles"
+    title: "University Application Submission",
+    subtitle: "Strategic Application Management",
+    description: "Submit comprehensive applications to selected universities with optimized documentation, ensuring all requirements are met and deadlines are adhered to.",
+    icon: Send,
+    color: "from-orange-500 to-orange-600",
+    bgColor: "bg-orange-50",
+    pattern: "triangles",
+    duration: "Week 8-10",
+    deliverables: [
+      "Complete online application submission",
+      "Application fee payment and receipt management",
+      "Document upload verification and quality check",
+      "Application status tracking system setup"
+    ]
   },
   {
     id: 6,
-    title: "Visa & Departure",
-    subtitle: "Final Steps to Success",
-    description: "Secure your student visa, arrange accommodation, and prepare for your departure to your dream destination.",
+    title: "Admission Follow-up & Decision",
+    subtitle: "University Response Management",
+    description: "Track application progress, handle university communications, and make informed decisions on admission offers while preparing for the next steps.",
+    icon: CheckCircle,
+    color: "from-green-500 to-green-600",
+    bgColor: "bg-green-50",
+    pattern: "hexagons",
+    duration: "Week 10-14",
+    deliverables: [
+      "Application status monitoring and updates",
+      "University interview preparation and coaching",
+      "Admission offer evaluation and comparison",
+      "Acceptance confirmation and enrollment deposit"
+    ]
+  },
+  {
+    id: 7,
+    title: "Visa Application & Processing",
+    subtitle: "Immigration Documentation",
+    description: "Navigate the complex visa application process with expert guidance, ensuring all immigration requirements are met for successful visa approval.",
+    icon: Shield,
+    color: "from-red-500 to-red-600",
+    bgColor: "bg-red-50",
+    pattern: "waves",
+    duration: "Week 14-18",
+    deliverables: [
+      "Visa category determination and application preparation",
+      "Financial documentation and sponsorship letters",
+      "Visa interview preparation and mock sessions",
+      "Biometric appointment scheduling and assistance"
+    ]
+  },
+  {
+    id: 8,
+    title: "Pre-Departure Preparation",
+    subtitle: "Journey Readiness",
+    description: "Complete final preparations including accommodation arrangements, travel planning, orientation sessions, and essential checklist completion for a smooth departure.",
     icon: Plane,
-    duration: "4-6 weeks",
-    deliverables: ["Visa approval", "Accommodation booking", "Pre-departure briefing"],
-    color: "from-indigo-500 to-indigo-600",
-    bgColor: "bg-indigo-50",
-    pattern: "hexagons"
+    color: "from-cyan-500 to-cyan-600",
+    bgColor: "bg-cyan-50",
+    pattern: "dots",
+    duration: "Week 18-20",
+    deliverables: [
+      "Accommodation booking and confirmation",
+      "Flight reservation and travel insurance",
+      "Pre-departure orientation and cultural briefing",
+      "Banking and financial setup guidance"
+    ]
   }
 ];
 
