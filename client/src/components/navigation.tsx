@@ -279,7 +279,7 @@ export default function Navigation() {
           
           {/* Navigation Menu - Centered */}
           <div className="hidden lg:flex items-center justify-center flex-1">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -295,9 +295,9 @@ export default function Navigation() {
                       !isScrolled 
                         ? 'text-white drop-shadow-md hover:text-white/90' 
                         : 'text-neutral-700 hover:text-primary'
-                    } transition-all duration-300 font-medium flex items-center space-x-1 px-4 py-2 rounded-lg hover:bg-white/10 text-sm`}>
+                    } transition-all duration-300 font-medium flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-white/10 text-xs`}>
                       <span>{item.name}</span>
-                      <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${
+                      <ChevronDown className={`w-3 h-3 transition-transform duration-200 ml-1 ${
                         activeMegaMenu === item.name ? 'rotate-180' : ''
                       }`} />
                     </button>
@@ -307,7 +307,7 @@ export default function Navigation() {
                         !isScrolled 
                           ? 'text-white drop-shadow-md hover:text-white/90' 
                           : 'text-neutral-700 hover:text-primary'
-                      } transition-all duration-300 font-medium px-4 py-2 rounded-lg cursor-pointer hover:bg-white/10 text-sm block`}>
+                      } transition-all duration-300 font-medium px-3 py-2 rounded-lg cursor-pointer hover:bg-white/10 text-xs block`}>
                         {item.name}
                       </span>
                     </Link>
