@@ -1,12 +1,11 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import AudienceSectionNew from "@/components/audience-section-new";
+import RedesignedProcessSection from "@/components/redesigned-process-section";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
-import MobileProcessSection from "@/components/mobile-process-section";
 import StatsBanner from "@/components/stats-banner";
 import UniversityPartnersSection from "@/components/university-partners-section";
-import EducationJourneySection from "@/components/education-journey-section";
 import FloatingCTA from "@/components/floating-cta";
 import ScrollProgress from "@/components/scroll-progress";
 import Footer from "@/components/footer";
@@ -18,10 +17,9 @@ export default function Home() {
       <Navigation />
       <StatsBanner />
       <AudienceSectionNew />
-      <EducationJourneySection />
+      <RedesignedProcessSection />
       <IeltsSection />
       <CountriesSection />
-      <MobileProcessSection />
       <UniversityPartnersSection />
       <FloatingCTA />
       <Footer />

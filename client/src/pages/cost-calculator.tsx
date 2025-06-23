@@ -1,826 +1,478 @@
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import {
-  Calculator,
-  DollarSign,
-  GraduationCap,
-  MapPin,
-  Plane,
-  Shield,
-  FileText,
-  Heart,
-  ChevronDown,
-  ChevronUp,
-  MessageCircle,
-  TrendingUp,
-  BookOpen,
-  Users,
-  Globe
-} from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Calculator, MapPin, GraduationCap, Home, Plane, Heart, DollarSign, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
-interface CountryData {
+interface CostData {
+  country: string;
   currency: string;
   tuitionRange: [number, number];
-  livingExpenses: [number, number];
+  livingExpenses: {
+    shared: number;
+    oncampus: number;
+    private: number;
+  };
+  cities: {
+    [key: string]: {
+      livingCost: number;
+      rentMultiplier: number;
+    };
+  };
   visaFee: number;
-  cities: Record<string, { livingCost: number; rent: number }>;
-  averageIncome: number;
-  workHours: number;
   healthInsurance: number;
   flightCost: number;
+  workRights: string;
+  prPathway: boolean;
 }
 
-const countryData: Record<string, CountryData> = {
-  "United States": {
-    currency: "USD",
-    tuitionRange: [25000, 60000],
-    livingExpenses: [15000, 25000],
-    visaFee: 350,
-    cities: {
-      "New York": { livingCost: 28000, rent: 24000 },
-      "Los Angeles": { livingCost: 25000, rent: 22000 },
-      "Chicago": { livingCost: 20000, rent: 18000 },
-      "Boston": { livingCost: 23000, rent: 20000 }
-    },
-    averageIncome: 15,
-    workHours: 20,
-    healthInsurance: 2500,
-    flightCost: 1200
-  },
-  "United Kingdom": {
-    currency: "GBP",
-    tuitionRange: [15000, 35000],
-    livingExpenses: [12000, 18000],
-    visaFee: 363,
-    cities: {
-      "London": { livingCost: 20000, rent: 15000 },
-      "Manchester": { livingCost: 15000, rent: 10000 },
-      "Birmingham": { livingCost: 14000, rent: 9000 },
-      "Edinburgh": { livingCost: 16000, rent: 11000 }
-    },
-    averageIncome: 12,
-    workHours: 20,
-    healthInsurance: 0,
-    flightCost: 800
-  },
-  "Canada": {
+const costDatabase: Record<string, CostData> = {
+  canada: {
+    country: "Canada",
     currency: "CAD",
-    tuitionRange: [20000, 45000],
-    livingExpenses: [12000, 20000],
+    tuitionRange: [15000, 35000],
+    livingExpenses: {
+      shared: 12000,
+      oncampus: 14000,
+      private: 18000
+    },
+    cities: {
+      toronto: { livingCost: 16000, rentMultiplier: 1.3 },
+      vancouver: { livingCost: 15500, rentMultiplier: 1.25 },
+      montreal: { livingCost: 13000, rentMultiplier: 1.0 },
+      calgary: { livingCost: 12500, rentMultiplier: 0.9 },
+      ottawa: { livingCost: 13500, rentMultiplier: 1.1 }
+    },
     visaFee: 150,
-    cities: {
-      "Toronto": { livingCost: 18000, rent: 15000 },
-      "Vancouver": { livingCost: 17000, rent: 14000 },
-      "Montreal": { livingCost: 14000, rent: 10000 },
-      "Calgary": { livingCost: 15000, rent: 12000 }
-    },
-    averageIncome: 14,
-    workHours: 20,
-    healthInsurance: 800,
-    flightCost: 1000
-  },
-  "Australia": {
-    currency: "AUD",
-    tuitionRange: [25000, 50000],
-    livingExpenses: [18000, 25000],
-    visaFee: 620,
-    cities: {
-      "Sydney": { livingCost: 25000, rent: 18000 },
-      "Melbourne": { livingCost: 22000, rent: 16000 },
-      "Brisbane": { livingCost: 20000, rent: 14000 },
-      "Perth": { livingCost: 19000, rent: 13000 }
-    },
-    averageIncome: 18,
-    workHours: 20,
     healthInsurance: 600,
-    flightCost: 1400
+    flightCost: 1200,
+    workRights: "20 hours/week during studies, full-time during breaks",
+    prPathway: true
   },
-  "Germany": {
+  uk: {
+    country: "United Kingdom",
+    currency: "GBP",
+    tuitionRange: [12000, 28000],
+    livingExpenses: {
+      shared: 9000,
+      oncampus: 11000,
+      private: 13000
+    },
+    cities: {
+      london: { livingCost: 14000, rentMultiplier: 1.4 },
+      manchester: { livingCost: 10000, rentMultiplier: 1.0 },
+      birmingham: { livingCost: 9500, rentMultiplier: 0.95 },
+      glasgow: { livingCost: 8500, rentMultiplier: 0.85 },
+      leeds: { livingCost: 9000, rentMultiplier: 0.9 }
+    },
+    visaFee: 363,
+    healthInsurance: 470,
+    flightCost: 1000,
+    workRights: "20 hours/week during studies",
+    prPathway: false
+  },
+  australia: {
+    country: "Australia",
+    currency: "AUD",
+    tuitionRange: [20000, 45000],
+    livingExpenses: {
+      shared: 15000,
+      oncampus: 17000,
+      private: 21000
+    },
+    cities: {
+      sydney: { livingCost: 22000, rentMultiplier: 1.3 },
+      melbourne: { livingCost: 20000, rentMultiplier: 1.2 },
+      brisbane: { livingCost: 18000, rentMultiplier: 1.0 },
+      perth: { livingCost: 17000, rentMultiplier: 0.95 },
+      adelaide: { livingCost: 16000, rentMultiplier: 0.9 }
+    },
+    visaFee: 620,
+    healthInsurance: 548,
+    flightCost: 1400,
+    workRights: "20 hours/week during studies, full-time during breaks",
+    prPathway: true
+  },
+  usa: {
+    country: "United States",
+    currency: "USD",
+    tuitionRange: [25000, 55000],
+    livingExpenses: {
+      shared: 12000,
+      oncampus: 15000,
+      private: 20000
+    },
+    cities: {
+      newyork: { livingCost: 25000, rentMultiplier: 1.5 },
+      losangeles: { livingCost: 22000, rentMultiplier: 1.4 },
+      chicago: { livingCost: 18000, rentMultiplier: 1.1 },
+      boston: { livingCost: 20000, rentMultiplier: 1.3 },
+      austin: { livingCost: 16000, rentMultiplier: 1.0 }
+    },
+    visaFee: 160,
+    healthInsurance: 2000,
+    flightCost: 1300,
+    workRights: "On-campus work only (20 hours/week)",
+    prPathway: false
+  },
+  germany: {
+    country: "Germany",
     currency: "EUR",
     tuitionRange: [0, 20000],
-    livingExpenses: [10000, 15000],
-    visaFee: 75,
-    cities: {
-      "Berlin": { livingCost: 12000, rent: 8000 },
-      "Munich": { livingCost: 15000, rent: 12000 },
-      "Hamburg": { livingCost: 13000, rent: 9000 },
-      "Frankfurt": { livingCost: 14000, rent: 11000 }
+    livingExpenses: {
+      shared: 8000,
+      oncampus: 9000,
+      private: 11000
     },
-    averageIncome: 12,
-    workHours: 20,
-    healthInsurance: 1200,
-    flightCost: 700
+    cities: {
+      berlin: { livingCost: 10000, rentMultiplier: 1.1 },
+      munich: { livingCost: 12000, rentMultiplier: 1.3 },
+      hamburg: { livingCost: 10500, rentMultiplier: 1.15 },
+      cologne: { livingCost: 9500, rentMultiplier: 1.0 },
+      frankfurt: { livingCost: 11000, rentMultiplier: 1.2 }
+    },
+    visaFee: 75,
+    healthInsurance: 1100,
+    flightCost: 900,
+    workRights: "120 full days or 240 half days per year",
+    prPathway: true
   }
 };
 
-const faqData = [
-  {
-    category: "Tuition & Fees",
-    questions: [
-      {
-        q: "What's included in tuition fees?",
-        a: "Tuition fees typically include academic instruction, access to university facilities, student services, and some administrative costs. Additional fees may apply for specialized programs, lab usage, or student activities."
-      },
-      {
-        q: "Are there scholarships available?",
-        a: "Yes, many universities offer merit-based and need-based scholarships. We help identify and apply for scholarships that can reduce your overall costs by 20-70%."
-      }
-    ]
-  },
-  {
-    category: "Living Expenses",
-    questions: [
-      {
-        q: "How much should I budget for accommodation?",
-        a: "Accommodation typically costs 40-60% of your living expenses. On-campus housing ranges from $8,000-$15,000 annually, while off-campus options vary by city and sharing arrangements."
-      },
-      {
-        q: "Can I work while studying?",
-        a: "Most countries allow international students to work part-time (15-20 hours/week) during studies and full-time during breaks. This can help offset living costs."
-      }
-    ]
-  },
-  {
-    category: "Visa & Immigration",
-    questions: [
-      {
-        q: "What documents do I need for visa application?",
-        a: "Required documents include admission letter, proof of funds, academic transcripts, English proficiency scores, passport, and health insurance. Requirements vary by country."
-      },
-      {
-        q: "How long does visa processing take?",
-        a: "Visa processing times vary: US (2-12 weeks), UK (3-6 weeks), Canada (4-12 weeks), Australia (4-8 weeks). Apply early to avoid delays."
-      }
-    ]
-  }
-];
-
 export default function CostCalculator() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   const [selectedCountry, setSelectedCountry] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-  const [studyLevel, setStudyLevel] = useState("");
   const [duration, setDuration] = useState("");
-  const [tuitionFee, setTuitionFee] = useState<number[]>([30000]);
-  const [livingExpenses, setLivingExpenses] = useState<number[]>([15000]);
-  const [includeInsurance, setIncludeInsurance] = useState(false);
-  const [includeFlight, setIncludeFlight] = useState(false);
-  const [includeIelts, setIncludeIelts] = useState(false);
-  const [customFlight, setCustomFlight] = useState("");
-  const [openFaqCategory, setOpenFaqCategory] = useState(-1);
-  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
+  const [livingStyle, setLivingStyle] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [customTuition, setCustomTuition] = useState("");
+  const [results, setResults] = useState<any>(null);
 
-  const resetCalculator = () => {
-    setSelectedCountry("");
-    setSelectedCity("");
-    setStudyLevel("");
-    setDuration("");
-    setTuitionFee([30000]);
-    setLivingExpenses([15000]);
-    setIncludeInsurance(false);
-    setIncludeFlight(false);
-    setIncludeIelts(false);
-    setCustomFlight("");
+  const calculateCosts = () => {
+    if (!selectedCountry || !duration || !livingStyle) return;
+
+    const countryData = costDatabase[selectedCountry];
+    const durationYears = parseFloat(duration);
+    
+    // Calculate tuition
+    const avgTuition = customTuition 
+      ? parseFloat(customTuition) 
+      : (countryData.tuitionRange[0] + countryData.tuitionRange[1]) / 2;
+    const totalTuition = avgTuition * durationYears;
+
+    // Calculate living expenses
+    let baseLiving = countryData.livingExpenses[livingStyle as keyof typeof countryData.livingExpenses];
+    if (selectedCity && countryData.cities[selectedCity]) {
+      baseLiving = countryData.cities[selectedCity].livingCost;
+    }
+    const totalLiving = baseLiving * durationYears;
+
+    // Other costs
+    const visaFee = countryData.visaFee;
+    const healthInsurance = countryData.healthInsurance * durationYears;
+    const flightCost = countryData.flightCost;
+
+    const totalCost = totalTuition + totalLiving + visaFee + healthInsurance + flightCost;
+
+    setResults({
+      country: countryData.country,
+      currency: countryData.currency,
+      tuition: totalTuition,
+      living: totalLiving,
+      visa: visaFee,
+      insurance: healthInsurance,
+      flight: flightCost,
+      total: totalCost,
+      workRights: countryData.workRights,
+      prPathway: countryData.prPathway,
+      duration: durationYears
+    });
   };
 
-  const calculateTotal = () => {
-    if (!selectedCountry || !duration) return 0;
-    
-    const data = countryData[selectedCountry];
-    let total = 0;
-    
-    // Base costs
-    total += tuitionFee[0] * parseInt(duration);
-    total += livingExpenses[0] * parseInt(duration);
-    total += data.visaFee;
-    
-    // Additional costs
-    if (includeIelts) total += 250; // USD equivalent
-    if (includeFlight) total += parseInt(customFlight) || data.flightCost;
-    if (includeInsurance) total += data.healthInsurance * parseInt(duration);
-    
-    return total;
-  };
+  useEffect(() => {
+    if (selectedCountry && duration && livingStyle) {
+      calculateCosts();
+    }
+  }, [selectedCountry, duration, livingStyle, selectedCity, customTuition]);
 
-  const getWorkEarnings = () => {
-    if (!selectedCountry || !duration) return 0;
-    const data = countryData[selectedCountry];
-    return data.averageIncome * data.workHours * 52 * parseInt(duration); // 52 weeks per year
+  const formatCurrency = (amount: number, currency: string) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amount);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary via-blue-700 to-secondary text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-purple-600/30"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <Calculator className="w-5 h-5" />
-              <span className="text-sm font-medium">Smart Planning Tool</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Study Abroad<br />
-              <span className="text-yellow-300">Cost Calculator</span>
-            </h1>
-            
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Plan your international education budget with precision. Get accurate estimates for tuition, 
-              living expenses, and additional costs across top study destinations.
-            </p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">250+</div>
-                <div className="text-sm text-blue-100">Universities</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">95%</div>
-                <div className="text-sm text-blue-100">Success Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">50+</div>
-                <div className="text-sm text-blue-100">Countries</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">24/7</div>
-                <div className="text-sm text-blue-100">Support</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Calculator Section */}
-      <section className="py-20">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-blue-50">
+      <Navigation />
+      
+      <div className="pt-20 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-center mb-16"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-neutral-800 mb-4">
-              Calculate Your Study Costs
-            </h2>
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
+                <Calculator className="w-8 h-8 text-white" />
+              </div>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                Live Cost Calculator
+              </span>
+            </h1>
             <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
-              Get a comprehensive breakdown of all expenses including tuition, accommodation, 
-              living costs, and additional fees for your chosen destination.
+              Get accurate cost estimates for studying abroad. Calculate tuition, living expenses, 
+              visa fees, and more for your dream destination.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Calculator Form */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="lg:col-span-2"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <Card className="p-8 shadow-xl">
-                <CardHeader className="pb-6">
-                  <CardTitle className="flex items-center text-2xl">
-                    <Calculator className="w-6 h-6 mr-3 text-primary" />
-                    Cost Calculator
+              <Card className="shadow-xl border-0">
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <GraduationCap className="w-5 h-5 text-primary" />
+                    <span>Calculate Your Study Costs</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
-                  {/* Country & City Selection */}
-                  <div className="grid md:grid-cols-2 gap-6">
+                  {/* Country Selection */}
+                  <div>
+                    <Label htmlFor="country" className="text-sm font-medium">
+                      Select Country
+                    </Label>
+                    <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+                      <SelectTrigger className="mt-2">
+                        <SelectValue placeholder="Choose your destination" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="canada">🇨🇦 Canada</SelectItem>
+                        <SelectItem value="uk">🇬🇧 United Kingdom</SelectItem>
+                        <SelectItem value="australia">🇦🇺 Australia</SelectItem>
+                        <SelectItem value="usa">🇺🇸 United States</SelectItem>
+                        <SelectItem value="germany">🇩🇪 Germany</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* City Selection */}
+                  {selectedCountry && (
                     <div>
-                      <Label className="text-sm font-medium mb-2 block">Study Destination</Label>
-                      <Select value={selectedCountry} onValueChange={(value) => {
-                        setSelectedCountry(value);
-                        setSelectedCity("");
-                        if (value && countryData[value]) {
-                          setTuitionFee([countryData[value].tuitionRange[0]]);
-                          setLivingExpenses([countryData[value].livingExpenses[0]]);
-                        }
-                      }}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a country" />
+                      <Label htmlFor="city" className="text-sm font-medium">
+                        Select City (Optional)
+                      </Label>
+                      <Select value={selectedCity} onValueChange={setSelectedCity}>
+                        <SelectTrigger className="mt-2">
+                          <SelectValue placeholder="Choose a city for accurate costs" />
                         </SelectTrigger>
                         <SelectContent>
-                          {Object.keys(countryData).map((country) => (
-                            <SelectItem key={country} value={country}>
-                              {country}
+                          {Object.keys(costDatabase[selectedCountry].cities).map((city) => (
+                            <SelectItem key={city} value={city}>
+                              <MapPin className="w-4 h-4 inline mr-2" />
+                              {city.charAt(0).toUpperCase() + city.slice(1)}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                     </div>
+                  )}
 
+                  {/* Duration */}
+                  <div>
+                    <Label htmlFor="duration" className="text-sm font-medium">
+                      Course Duration
+                    </Label>
+                    <Select value={duration} onValueChange={setDuration}>
+                      <SelectTrigger className="mt-2">
+                        <SelectValue placeholder="Select duration" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="0.5">6 months</SelectItem>
+                        <SelectItem value="1">1 year</SelectItem>
+                        <SelectItem value="1.5">1.5 years</SelectItem>
+                        <SelectItem value="2">2 years</SelectItem>
+                        <SelectItem value="3">3 years</SelectItem>
+                        <SelectItem value="4">4 years</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Living Style */}
+                  <div>
+                    <Label htmlFor="living" className="text-sm font-medium">
+                      Living Arrangement
+                    </Label>
+                    <Select value={livingStyle} onValueChange={setLivingStyle}>
+                      <SelectTrigger className="mt-2">
+                        <SelectValue placeholder="Select living style" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="shared">
+                          <Home className="w-4 h-4 inline mr-2" />
+                          Shared Apartment
+                        </SelectItem>
+                        <SelectItem value="oncampus">
+                          <GraduationCap className="w-4 h-4 inline mr-2" />
+                          On-Campus Housing
+                        </SelectItem>
+                        <SelectItem value="private">
+                          <Home className="w-4 h-4 inline mr-2" />
+                          Private Apartment
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Custom Tuition */}
+                  <div>
+                    <Label htmlFor="tuition" className="text-sm font-medium">
+                      Custom Tuition Fee (Optional)
+                    </Label>
+                    <Input
+                      type="number"
+                      placeholder="Enter if you know exact amount"
+                      value={customTuition}
+                      onChange={(e) => setCustomTuition(e.target.value)}
+                      className="mt-2"
+                    />
                     {selectedCountry && (
-                      <div>
-                        <Label className="text-sm font-medium mb-2 block">City (Optional)</Label>
-                        <Select value={selectedCity} onValueChange={setSelectedCity}>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a city" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {Object.keys(countryData[selectedCountry].cities).map((city) => (
-                              <SelectItem key={city} value={city}>
-                                {city}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
+                      <p className="text-xs text-neutral-500 mt-1">
+                        Average range: {formatCurrency(costDatabase[selectedCountry].tuitionRange[0], costDatabase[selectedCountry].currency)} - {formatCurrency(costDatabase[selectedCountry].tuitionRange[1], costDatabase[selectedCountry].currency)} per year
+                      </p>
                     )}
-                  </div>
-
-                  {/* Study Level & Duration */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <Label className="text-sm font-medium mb-2 block">Study Level</Label>
-                      <Select value={studyLevel} onValueChange={setStudyLevel}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select study level" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="undergraduate">Undergraduate (Bachelor's)</SelectItem>
-                          <SelectItem value="postgraduate">Postgraduate (Master's)</SelectItem>
-                          <SelectItem value="phd">PhD / Doctoral</SelectItem>
-                          <SelectItem value="diploma">Diploma / Certificate</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div>
-                      <Label className="text-sm font-medium mb-2 block">Course Duration</Label>
-                      <Select value={duration} onValueChange={setDuration}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select duration" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="1">1 Year</SelectItem>
-                          <SelectItem value="2">2 Years</SelectItem>
-                          <SelectItem value="3">3 Years</SelectItem>
-                          <SelectItem value="4">4 Years</SelectItem>
-                          <SelectItem value="5">5 Years</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  {/* Tuition Fee Slider */}
-                  {selectedCountry && (
-                    <div>
-                      <Label className="text-sm font-medium mb-2 block">
-                        Annual Tuition Fee ({countryData[selectedCountry].currency})
-                      </Label>
-                      <div className="px-3">
-                        <Slider
-                          value={tuitionFee}
-                          onValueChange={setTuitionFee}
-                          max={countryData[selectedCountry].tuitionRange[1]}
-                          min={countryData[selectedCountry].tuitionRange[0]}
-                          step={1000}
-                          className="w-full"
-                        />
-                        <div className="flex justify-between text-sm text-neutral-500 mt-2">
-                          <span>{countryData[selectedCountry].tuitionRange[0].toLocaleString()}</span>
-                          <span className="font-medium text-primary">{tuitionFee[0].toLocaleString()}</span>
-                          <span>{countryData[selectedCountry].tuitionRange[1].toLocaleString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Living Expenses Slider */}
-                  {selectedCountry && (
-                    <div>
-                      <Label className="text-sm font-medium mb-2 block">
-                        Annual Living Expenses ({countryData[selectedCountry].currency})
-                      </Label>
-                      <div className="px-3">
-                        <Slider
-                          value={livingExpenses}
-                          onValueChange={setLivingExpenses}
-                          max={countryData[selectedCountry].livingExpenses[1]}
-                          min={countryData[selectedCountry].livingExpenses[0]}
-                          step={500}
-                          className="w-full"
-                        />
-                        <div className="flex justify-between text-sm text-neutral-500 mt-2">
-                          <span>{countryData[selectedCountry].livingExpenses[0].toLocaleString()}</span>
-                          <span className="font-medium text-primary">{livingExpenses[0].toLocaleString()}</span>
-                          <span>{countryData[selectedCountry].livingExpenses[1].toLocaleString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Additional Costs */}
-                  <div className="space-y-4">
-                    <Label className="text-sm font-medium">Additional Expenses</Label>
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="flex items-center space-x-3 p-3 border rounded-lg">
-                        <Checkbox
-                          id="ielts"
-                          checked={includeIelts}
-                          onCheckedChange={setIncludeIelts}
-                        />
-                        <div className="flex-1">
-                          <Label htmlFor="ielts" className="text-sm font-medium">IELTS Test</Label>
-                          <div className="text-xs text-neutral-500">$250 USD</div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center space-x-3 p-3 border rounded-lg">
-                        <Checkbox
-                          id="flight"
-                          checked={includeFlight}
-                          onCheckedChange={setIncludeFlight}
-                        />
-                        <div className="flex-1">
-                          <Label htmlFor="flight" className="text-sm font-medium">Flight Tickets</Label>
-                          <div className="text-xs text-neutral-500">
-                            {selectedCountry ? `$${countryData[selectedCountry].flightCost}` : "$800"} USD
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center space-x-3 p-3 border rounded-lg">
-                        <Checkbox
-                          id="insurance"
-                          checked={includeInsurance}
-                          onCheckedChange={setIncludeInsurance}
-                        />
-                        <div className="flex-1">
-                          <Label htmlFor="insurance" className="text-sm font-medium">Health Insurance</Label>
-                          <div className="text-xs text-neutral-500">
-                            {selectedCountry ? `${countryData[selectedCountry].healthInsurance} ${countryData[selectedCountry].currency}/year` : "Varies"}
-                          </div>
-                        </div>
-                      </div>
-
-                      {includeFlight && (
-                        <div className="p-3 border rounded-lg">
-                          <Label className="text-sm font-medium mb-2 block">Custom Flight Cost (USD)</Label>
-                          <Input
-                            type="number"
-                            placeholder={selectedCountry ? `${countryData[selectedCountry].flightCost}` : "800"}
-                            value={customFlight}
-                            onChange={(e) => setCustomFlight(e.target.value)}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3 pt-6">
-                    <Button onClick={resetCalculator} variant="outline" className="flex-1">
-                      Reset Calculator
-                    </Button>
-                    <Button className="flex-1 bg-primary hover:bg-primary/90">
-                      Get Consultation
-                    </Button>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* Cost Breakdown */}
+            {/* Results */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <Card className="p-6 shadow-xl sticky top-8">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center text-xl">
-                    <DollarSign className="w-5 h-5 mr-2 text-green-600" />
-                    Cost Breakdown
-                  </CardTitle>
-                </CardHeader>
-                
-                <CardContent>
-                  {selectedCountry && duration ? (
-                    <div className="space-y-6">
-                      {/* Total Cost */}
-                      <div className="bg-gradient-to-r from-primary to-secondary rounded-lg p-6 text-white text-center">
-                        <div className="text-sm opacity-90 mb-2">Total Estimated Cost</div>
-                        <div className="text-3xl font-bold mb-2">
-                          {calculateTotal().toLocaleString()}
+              {results ? (
+                <Card className="shadow-xl border-0">
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <DollarSign className="w-5 h-5 text-green-600" />
+                      <span>Cost Breakdown - {results.country}</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {/* Cost Items */}
+                      <div className="space-y-3">
+                        <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                          <span className="font-medium">Tuition Fees ({results.duration} years)</span>
+                          <span className="font-bold text-blue-600">
+                            {formatCurrency(results.tuition, results.currency)}
+                          </span>
                         </div>
-                        <div className="text-sm opacity-90">
-                          {countryData[selectedCountry].currency} for {duration} year(s)
+                        <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                          <span className="font-medium">Living Expenses</span>
+                          <span className="font-bold text-green-600">
+                            {formatCurrency(results.living, results.currency)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
+                          <span className="font-medium">Visa Fee</span>
+                          <span className="font-bold text-purple-600">
+                            {formatCurrency(results.visa, results.currency)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
+                          <span className="font-medium">Health Insurance</span>
+                          <span className="font-bold text-orange-600">
+                            {formatCurrency(results.insurance, results.currency)}
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center p-3 bg-indigo-50 rounded-lg">
+                          <span className="font-medium">Flight Cost</span>
+                          <span className="font-bold text-indigo-600">
+                            {formatCurrency(results.flight, results.currency)}
+                          </span>
                         </div>
                       </div>
 
-                      {/* Earnings Potential */}
-                      {getWorkEarnings() > 0 && (
-                        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                          <div className="flex items-center text-green-800 mb-2">
-                            <TrendingUp className="w-4 h-4 mr-2" />
-                            <span className="font-medium">Potential Earnings</span>
-                          </div>
-                          <div className="text-2xl font-bold text-green-700">
-                            {getWorkEarnings().toLocaleString()} {countryData[selectedCountry].currency}
-                          </div>
-                          <div className="text-sm text-green-600">
-                            Part-time work ({countryData[selectedCountry].workHours}h/week @ {countryData[selectedCountry].averageIncome}/hour)
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Detailed Breakdown */}
-                      <div className="space-y-3">
-                        <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                          <div className="flex items-center">
-                            <GraduationCap className="w-4 h-4 mr-2 text-blue-600" />
-                            <span className="text-sm">Tuition Fees</span>
-                          </div>
-                          <span className="font-medium">
-                            {(tuitionFee[0] * parseInt(duration)).toLocaleString()}
+                      {/* Total */}
+                      <div className="border-t pt-4">
+                        <div className="flex justify-between items-center p-4 bg-gradient-to-r from-primary to-secondary rounded-lg text-white">
+                          <span className="text-lg font-bold">Total Cost</span>
+                          <span className="text-2xl font-bold">
+                            {formatCurrency(results.total, results.currency)}
                           </span>
                         </div>
+                      </div>
 
-                        <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
-                          <div className="flex items-center">
-                            <Heart className="w-4 h-4 mr-2 text-orange-600" />
-                            <span className="text-sm">Living Expenses</span>
+                      {/* Additional Info */}
+                      <div className="space-y-3 pt-4">
+                        <div className="p-3 bg-yellow-50 rounded-lg">
+                          <div className="flex items-start space-x-2">
+                            <Info className="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" />
+                            <div>
+                              <p className="font-medium text-yellow-800">Work Rights</p>
+                              <p className="text-sm text-yellow-700">{results.workRights}</p>
+                            </div>
                           </div>
-                          <span className="font-medium">
-                            {(livingExpenses[0] * parseInt(duration)).toLocaleString()}
-                          </span>
                         </div>
-
-                        <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
-                          <div className="flex items-center">
-                            <FileText className="w-4 h-4 mr-2 text-purple-600" />
-                            <span className="text-sm">Visa Fee</span>
-                          </div>
-                          <span className="font-medium">
-                            {countryData[selectedCountry].visaFee}
-                          </span>
-                        </div>
-
-                        {(includeIelts || includeFlight || includeInsurance) && (
-                          <div className="border-t pt-3">
-                            <div className="text-sm font-medium text-neutral-700 mb-2">Additional Costs:</div>
-                            
-                            {includeIelts && (
-                              <div className="flex justify-between text-sm p-2 bg-gray-50 rounded mb-1">
-                                <span>IELTS Test</span>
-                                <span>$250 USD</span>
+                        {results.prPathway && (
+                          <div className="p-3 bg-green-50 rounded-lg">
+                            <div className="flex items-start space-x-2">
+                              <Heart className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                              <div>
+                                <p className="font-medium text-green-800">PR Pathway Available</p>
+                                <p className="text-sm text-green-700">This country offers pathways to permanent residency for international students.</p>
                               </div>
-                            )}
-                            
-                            {includeFlight && (
-                              <div className="flex justify-between text-sm p-2 bg-gray-50 rounded mb-1">
-                                <span>Flight Tickets</span>
-                                <span>
-                                  ${customFlight || countryData[selectedCountry].flightCost} USD
-                                </span>
-                              </div>
-                            )}
-                            
-                            {includeInsurance && (
-                              <div className="flex justify-between text-sm p-2 bg-gray-50 rounded">
-                                <span>Health Insurance</span>
-                                <span>
-                                  {countryData[selectedCountry].healthInsurance * parseInt(duration)}
-                                </span>
-                              </div>
-                            )}
+                            </div>
                           </div>
                         )}
                       </div>
 
-                      {/* Action Buttons */}
-                      <div className="space-y-3 pt-4">
-                        <Button className="w-full bg-green-600 hover:bg-green-700">
-                          Schedule Free Consultation
-                        </Button>
-                        <Button variant="outline" className="w-full">
-                          Download Cost Report
+                      {/* CTA */}
+                      <div className="pt-4">
+                        <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
+                          Book Free Consultation
                         </Button>
                       </div>
                     </div>
-                  ) : (
-                    <div className="text-center py-12">
-                      <Calculator className="w-16 h-16 mx-auto text-neutral-300 mb-4" />
-                      <p className="text-neutral-500 text-sm">
-                        Select a country and duration to see your personalized cost breakdown
-                      </p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              ) : (
+                <Card className="shadow-xl border-0">
+                  <CardContent className="flex flex-col items-center justify-center h-96 text-center">
+                    <Calculator className="w-16 h-16 text-neutral-300 mb-4" />
+                    <h3 className="text-lg font-medium text-neutral-600 mb-2">
+                      Ready to Calculate?
+                    </h3>
+                    <p className="text-neutral-500">
+                      Fill in the form to see your personalized cost breakdown
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
             </motion.div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Country Comparison */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-neutral-800 mb-4">
-              Compare Study Destinations
-            </h2>
-            <p className="text-xl text-neutral-600">
-              Quick comparison of popular study destinations
-            </p>
-          </motion.div>
-
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse bg-white rounded-lg shadow-lg overflow-hidden">
-              <thead>
-                <tr className="bg-gradient-to-r from-primary to-secondary text-white">
-                  <th className="p-4 text-left">Country</th>
-                  <th className="p-4 text-center">Tuition Range</th>
-                  <th className="p-4 text-center">Living Costs</th>
-                  <th className="p-4 text-center">Work Rights</th>
-                  <th className="p-4 text-center">Post-Study Work</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(countryData).map(([country, data], index) => (
-                  <tr key={country} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
-                    <td className="p-4 font-medium">{country}</td>
-                    <td className="p-4 text-center">
-                      {data.tuitionRange[0].toLocaleString()} - {data.tuitionRange[1].toLocaleString()} {data.currency}
-                    </td>
-                    <td className="p-4 text-center">
-                      {data.livingExpenses[0].toLocaleString()} - {data.livingExpenses[1].toLocaleString()} {data.currency}
-                    </td>
-                    <td className="p-4 text-center">
-                      <Badge variant="secondary">{data.workHours}h/week</Badge>
-                    </td>
-                    <td className="p-4 text-center">
-                      <Badge variant="outline">Available</Badge>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-neutral-800 mb-4">
-              Frequently Asked Questions
-            </h2>
-            <p className="text-xl text-neutral-600">
-              Get answers to common questions about study abroad costs
-            </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-4">
-              {faqData.map((category, categoryIndex) => (
-                <div key={categoryIndex} className="border border-gray-200 rounded-lg bg-white">
-                  <button
-                    onClick={() => setOpenFaqCategory(openFaqCategory === categoryIndex ? -1 : categoryIndex)}
-                    className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
-                  >
-                    <span className="font-semibold text-neutral-800 text-lg">{category.category}</span>
-                    {openFaqCategory === categoryIndex ? (
-                      <ChevronUp className="w-5 h-5 text-neutral-500" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-neutral-500" />
-                    )}
-                  </button>
-                  
-                  {openFaqCategory === categoryIndex && (
-                    <div className="border-t border-gray-200">
-                      {category.questions.map((faq, questionIndex) => (
-                        <div key={questionIndex} className="border-b border-gray-100 last:border-b-0">
-                          <button
-                            onClick={() => setOpenQuestion(openQuestion === `${categoryIndex}-${questionIndex}` ? null : `${categoryIndex}-${questionIndex}`)}
-                            className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
-                          >
-                            <span className="text-sm font-medium text-neutral-700">{faq.q}</span>
-                            {openQuestion === `${categoryIndex}-${questionIndex}` ? (
-                              <ChevronUp className="w-4 h-4 text-neutral-400" />
-                            ) : (
-                              <ChevronDown className="w-4 h-4 text-neutral-400" />
-                            )}
-                          </button>
-                          
-                          {openQuestion === `${categoryIndex}-${questionIndex}` && (
-                            <div className="px-4 pb-4">
-                              <p className="text-sm text-neutral-600 leading-relaxed">{faq.a}</p>
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Sidebar */}
-            <div className="space-y-6">
-              <Card className="p-6 bg-gradient-to-br from-primary to-secondary text-white">
-                <div className="text-center">
-                  <MessageCircle className="w-12 h-12 mx-auto mb-4 opacity-90" />
-                  <h4 className="text-xl font-bold mb-2">Need Expert Help?</h4>
-                  <p className="text-blue-100 mb-4">
-                    Get personalized guidance from our education consultants
-                  </p>
-                  <Button className="bg-white text-primary hover:bg-blue-50 w-full">
-                    Book Free Consultation
-                  </Button>
-                </div>
-              </Card>
-
-              <Card className="p-6">
-                <h4 className="text-lg font-bold mb-4 text-neutral-800">Why Choose Path Consultants?</h4>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <div>
-                      <div className="font-medium text-neutral-800">200+ Expert Counselors</div>
-                      <div className="text-sm text-neutral-600">Certified professionals with 15+ years experience</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <div>
-                      <div className="font-medium text-neutral-800">250+ University Partners</div>
-                      <div className="text-sm text-neutral-600">Direct partnerships with top global institutions</div>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <div>
-                      <div className="font-medium text-neutral-800">95% Success Rate</div>
-                      <div className="text-sm text-neutral-600">Proven track record of successful applications</div>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            <h2 className="text-4xl font-bold mb-6">
-              Ready to Start Your Journey?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Let our experts help you turn your study abroad dreams into reality
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-primary hover:bg-blue-50">
-                Get Free Consultation
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Download Guide
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <Footer />
     </div>
   );
 }

@@ -75,11 +75,12 @@ export default function Navigation() {
           ]
         },
         {
-          title: "Emerging Destinations",
+          title: "Smart Tools",
           icon: ArrowRight,
           items: [
-            { name: "Study in Europe", href: "/country-guide/europe", description: "Affordable quality education" },
-            { name: "Study in Turkey", href: "/country-guide/turkey", description: "Bridge between East & West" }
+            { name: "Cost Calculator", href: "/cost-calculator", description: "Calculate study abroad costs" },
+            { name: "Course Match Tool", href: "/course-match-tool", description: "Find your perfect course & country" },
+            { name: "Country Guide", href: "/country-guide", description: "Comprehensive destination guides" }
           ]
         }
       ],
