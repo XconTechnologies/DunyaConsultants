@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin, Building2, MessageCircle, Calendar, Newspaper, PenTool, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/Asset-1_1750664385021.png";
@@ -146,6 +146,92 @@ export default function Navigation() {
         cta: "Start Practice",
         href: "/test-prep"
       }
+    },
+    "Offices": {
+      icon: Building2,
+      sections: [
+        {
+          title: "Find Our Offices",
+          icon: MapPin,
+          items: [
+            { name: "Find a Branch", href: "/offices/branches", description: "Interactive map & city list" },
+            { name: "Contact Details", href: "/offices/contact", description: "Phone numbers & addresses" },
+            { name: "Google Maps Integration", href: "/offices/maps", description: "Directions & locations" }
+          ]
+        },
+        {
+          title: "Services",
+          icon: Calendar,
+          items: [
+            { name: "Appointment Booking", href: "/offices/booking", description: "Schedule your consultation" },
+            { name: "Office Timings", href: "/offices/hours", description: "Working hours & holidays" }
+          ]
+        }
+      ],
+      featured: {
+        title: "17+ Offices Nationwide",
+        description: "Visit us for personalized guidance",
+        cta: "Find Nearest",
+        href: "/offices"
+      }
+    },
+    "Blog": {
+      icon: Newspaper,
+      sections: [
+        {
+          title: "Study Abroad",
+          icon: Globe,
+          items: [
+            { name: "Study Abroad Tips", href: "/blog/tips", description: "Expert advice & guidance" },
+            { name: "Country Guides", href: "/blog/country-guides", description: "Destination insights" },
+            { name: "Application Process", href: "/blog/applications", description: "Step-by-step guides" }
+          ]
+        },
+        {
+          title: "Student Stories",
+          icon: Heart,
+          items: [
+            { name: "Student Experiences", href: "/blog/experiences", description: "Success stories & journeys" },
+            { name: "University Reviews", href: "/blog/reviews", description: "Campus life & academics" },
+            { name: "Career Outcomes", href: "/blog/careers", description: "Post-graduation success" }
+          ]
+        }
+      ],
+      featured: {
+        title: "Latest Updates",
+        description: "Stay informed about study abroad",
+        cta: "Read More",
+        href: "/blog"
+      }
+    },
+    "Contact": {
+      icon: MessageCircle,
+      sections: [
+        {
+          title: "Get in Touch",
+          icon: Phone,
+          items: [
+            { name: "Inquiry Form", href: "/contact/form", description: "Send us your questions" },
+            { name: "Live Chat", href: "/contact/chat", description: "Instant support available" },
+            { name: "WhatsApp", href: "/contact/whatsapp", description: "Message us directly" }
+          ]
+        },
+        {
+          title: "Connect",
+          icon: Users,
+          items: [
+            { name: "Office Timings", href: "/contact/hours", description: "When we're available" },
+            { name: "Social Media", href: "/contact/social", description: "Follow us online" },
+            { name: "Newsletter", href: "/contact/newsletter", description: "Subscribe for updates" }
+          ]
+        }
+      ],
+      featured: {
+        title: "24/7 Support",
+        description: "We're here to help you succeed",
+        cta: "Contact Now",
+        href: "/contact"
+      }
     }
   };
 
@@ -155,7 +241,9 @@ export default function Navigation() {
     { name: "Study Destinations", megaMenu: true },
     { name: "Services", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
-    { name: "Contact", href: "/contact" },
+    { name: "Offices", megaMenu: true },
+    { name: "Blog", megaMenu: true },
+    { name: "Contact", megaMenu: true },
   ];
 
   return (
