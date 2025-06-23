@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
 import CostCalculator from "@/pages/cost-calculator";
 import CourseMatchTool from "@/pages/course-match-tool";
+import DocumentChecklist from "@/pages/document-checklist";
 import Events from "@/pages/events";
 import Blogs from "@/pages/blogs";
 import IELTS from "@/pages/ielts";
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/cost-calculator" component={CostCalculator} />
       <Route path="/course-match-tool" component={CourseMatchTool} />
+      <Route path="/document-checklist" component={DocumentChecklist} />
       <Route path="/events" component={Events} />
       <Route path="/blogs" component={Blogs} />
       <Route path="/ielts" component={IELTS} />

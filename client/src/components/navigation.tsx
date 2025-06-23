@@ -80,6 +80,7 @@ export default function Navigation() {
           items: [
             { name: "Cost Calculator", href: "/cost-calculator", description: "Calculate study abroad costs" },
             { name: "Course Match Tool", href: "/course-match-tool", description: "Find your perfect course & country" },
+            { name: "Document Checklist", href: "/document-checklist", description: "Generate personalized document checklists" },
             { name: "Country Guide", href: "/country-guide", description: "Comprehensive destination guides" }
           ]
         }
