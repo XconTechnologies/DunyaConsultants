@@ -129,91 +129,177 @@ export default function RedesignedProcessSection() {
           </p>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative max-w-5xl mx-auto mb-16">
-          {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-secondary to-accent rounded-full"></div>
-          
-          {/* Timeline Steps */}
-          <div className="space-y-16">
-            {processSteps.map((step, index) => (
-              <motion.div
-                key={step.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                }`}
-                onMouseEnter={() => setActiveStep(step.id)}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
+        {/* Horizontal Timeline */}
+        <div className="relative mb-16">
+          {/* Timeline Container */}
+          <div className="relative overflow-x-auto pb-8">
+            <div className="min-w-max px-4">
+              {/* Main Timeline Line */}
+              <div className="relative h-2 bg-gradient-to-r from-primary via-secondary to-accent rounded-full mb-12 shadow-lg">
+                {/* Animated Progress Indicator */}
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={isInView ? { width: `${(activeStep / processSteps.length) * 100}%` } : {}}
+                  transition={{ duration: 1.5, ease: "easeInOut" }}
+                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-md"
+                />
+              </div>
+
+              {/* Timeline Steps */}
+              <div className="flex justify-between relative -mt-20">
+                {processSteps.map((step, index) => (
                   <motion.div
-                    whileHover={{ scale: 1.2 }}
-                    className={`w-16 h-16 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-2xl border-4 border-white cursor-pointer ${
-                      activeStep === step.id ? 'ring-4 ring-primary/30' : ''
-                    }`}
+                    key={step.id}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
+                    className="flex flex-col items-center relative group cursor-pointer"
+                    onMouseEnter={() => setActiveStep(step.id)}
+                    style={{ width: '300px' }}
                   >
-                    <step.icon className="w-8 h-8 text-white" />
-                  </motion.div>
-                </div>
-
-                {/* Timeline Content */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
-                  <Card className={`border-0 shadow-xl transition-all duration-500 ${
-                    activeStep === step.id ? 'shadow-2xl ring-2 ring-primary/20 transform scale-105' : ''
-                  }`}>
-                    <CardContent className="p-0">
-                      {/* Step Header */}
-                      <div 
-                        className={`${step.bgColor} p-6 relative overflow-hidden`}
-                        style={{ backgroundImage: getPatternSvg(step.pattern) }}
+                    {/* Step Number with connecting line */}
+                    <div className="relative mb-8">
+                      {/* Connecting Line */}
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-px h-16 bg-gradient-to-b from-transparent via-neutral-300 to-transparent"></div>
+                      
+                      {/* Step Circle */}
+                      <motion.div
+                        whileHover={{ scale: 1.15 }}
+                        whileTap={{ scale: 0.95 }}
+                        className={`relative z-10 w-20 h-20 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-2xl border-4 border-white group-hover:shadow-3xl transition-all duration-500 ${
+                          activeStep === step.id ? 'ring-4 ring-primary/30 scale-110' : ''
+                        }`}
                       >
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="text-3xl font-bold text-neutral-300">0{step.id}</div>
-                          <div className="flex items-center space-x-2 text-xs text-neutral-500">
-                            <Clock className="w-4 h-4" />
-                            <span>{step.duration}</span>
-                          </div>
-                        </div>
-                        <h3 className="text-2xl font-bold text-neutral-800 mb-2">{step.title}</h3>
-                        <p className="text-neutral-600 font-medium">{step.subtitle}</p>
-                      </div>
-
-                      {/* Step Content */}
-                      <div className="p-6">
-                        <p className="text-neutral-600 mb-6 leading-relaxed text-lg">{step.description}</p>
+                        <step.icon className="w-10 h-10 text-white" />
                         
-                        <div className="space-y-4">
-                          <h4 className="text-sm font-bold text-neutral-800 uppercase tracking-wider flex items-center">
-                            <Target className="w-4 h-4 mr-2 text-primary" />
-                            Key Deliverables
-                          </h4>
-                          <div className="grid grid-cols-1 gap-3">
-                            {step.deliverables.map((deliverable, i) => (
-                              <motion.div
-                                key={i}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                                transition={{ duration: 0.4, delay: index * 0.1 + i * 0.1 }}
-                                className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-neutral-100 hover:border-primary/30 transition-colors duration-200"
-                              >
-                                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                                <span className="text-neutral-700 font-medium">{deliverable}</span>
-                              </motion.div>
-                            ))}
-                          </div>
+                        {/* Step Number Badge */}
+                        <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center text-sm font-bold text-neutral-800 shadow-lg border-2 border-neutral-100">
+                          {step.id}
                         </div>
+                      </motion.div>
+                    </div>
+
+                    {/* Step Card */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
+                      className={`w-full transition-all duration-500 ${
+                        activeStep === step.id ? 'transform -translate-y-2' : ''
+                      }`}
+                    >
+                      <Card className={`border-0 shadow-xl transition-all duration-500 group-hover:shadow-2xl ${
+                        activeStep === step.id ? 'ring-2 ring-primary/20 shadow-2xl' : ''
+                      }`}>
+                        <CardContent className="p-0">
+                          {/* Card Header */}
+                          <div 
+                            className={`${step.bgColor} p-6 relative overflow-hidden`}
+                            style={{ backgroundImage: getPatternSvg(step.pattern) }}
+                          >
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="flex items-center space-x-2">
+                                <Clock className="w-4 h-4 text-neutral-500" />
+                                <span className="text-sm text-neutral-600">{step.duration}</span>
+                              </div>
+                              <div className="text-2xl font-bold text-neutral-300">0{step.id}</div>
+                            </div>
+                            <h3 className="text-xl font-bold text-neutral-800 mb-2">{step.title}</h3>
+                            <p className="text-sm text-neutral-600 font-medium">{step.subtitle}</p>
+                          </div>
+
+                          {/* Card Content */}
+                          <div className="p-6">
+                            <p className="text-neutral-600 mb-4 leading-relaxed text-sm">{step.description}</p>
+                            
+                            {/* Deliverables */}
+                            <div className="space-y-3">
+                              <h4 className="text-xs font-bold text-neutral-800 uppercase tracking-wider flex items-center">
+                                <Target className="w-3 h-3 mr-2 text-primary" />
+                                Key Deliverables
+                              </h4>
+                              <div className="space-y-2">
+                                {step.deliverables.slice(0, 2).map((deliverable, i) => (
+                                  <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={isInView ? { opacity: 1, x: 0 } : {}}
+                                    transition={{ duration: 0.4, delay: index * 0.1 + i * 0.1 }}
+                                    className="flex items-center space-x-2 text-xs"
+                                  >
+                                    <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0" />
+                                    <span className="text-neutral-600">{deliverable}</span>
+                                  </motion.div>
+                                ))}
+                                {step.deliverables.length > 2 && (
+                                  <div className="text-xs text-primary font-medium">
+                                    +{step.deliverables.length - 2} more...
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+
+                    {/* Connection Arrow */}
+                    {index < processSteps.length - 1 && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ duration: 0.5, delay: index * 0.2 + 0.5 }}
+                        className="absolute -right-16 top-8 z-30"
+                      >
+                        <div className="w-12 h-12 bg-white rounded-full shadow-lg border border-neutral-200 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                          <ArrowRight className="w-5 h-5 text-primary group-hover:text-white" />
+                        </div>
+                      </motion.div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Timeline for small screens */}
+          <div className="block lg:hidden">
+            <div className="space-y-8">
+              {processSteps.map((step, index) => (
+                <motion.div
+                  key={step.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="flex items-start space-x-4"
+                  onTouchStart={() => setActiveStep(step.id)}
+                >
+                  {/* Mobile Step Circle */}
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg border-4 border-white flex-shrink-0`}>
+                    <step.icon className="w-6 h-6 text-white" />
+                  </div>
+                  
+                  {/* Mobile Content */}
+                  <Card className="flex-1 border-0 shadow-lg">
+                    <CardContent className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-lg font-bold text-neutral-800">{step.title}</h3>
+                        <span className="text-xs text-neutral-500">{step.duration}</span>
+                      </div>
+                      <p className="text-sm text-neutral-600 mb-3">{step.description}</p>
+                      <div className="space-y-1">
+                        {step.deliverables.slice(0, 2).map((deliverable, i) => (
+                          <div key={i} className="flex items-center space-x-2 text-xs">
+                            <CheckCircle className="w-3 h-3 text-green-500" />
+                            <span className="text-neutral-600">{deliverable}</span>
+                          </div>
+                        ))}
                       </div>
                     </CardContent>
                   </Card>
-                </div>
-
-                {/* Empty space for alternating layout */}
-                <div className="w-5/12"></div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
 
