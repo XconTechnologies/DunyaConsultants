@@ -129,281 +129,102 @@ export default function RedesignedProcessSection() {
           </p>
         </motion.div>
 
-        {/* Horizontal Timeline */}
+        {/* Simple Clean Timeline */}
         <div className="relative mb-16">
-          {/* Timeline Container */}
-          <div className="relative overflow-x-auto pb-8">
-            <div className="min-w-max px-4">
-              {/* Main Timeline Line */}
-              <div className="relative h-2 bg-gradient-to-r from-primary via-secondary to-accent rounded-full mb-12 shadow-lg">
-                {/* Animated Progress Indicator */}
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={isInView ? { width: `${(activeStep / processSteps.length) * 100}%` } : {}}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                  className="absolute top-0 left-0 h-full bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full shadow-md"
-                />
-              </div>
-
-              {/* Timeline Steps */}
-              <div className="flex justify-between relative -mt-20">
-                {processSteps.map((step, index) => (
-                  <motion.div
-                    key={step.id}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, delay: index * 0.2 }}
-                    className="flex flex-col items-center relative group cursor-pointer"
-                    onMouseEnter={() => setActiveStep(step.id)}
-                    style={{ width: '300px' }}
-                  >
-                    {/* Step Number with connecting line */}
-                    <div className="relative mb-8">
-                      {/* Connecting Line */}
-                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-px h-16 bg-gradient-to-b from-transparent via-neutral-300 to-transparent"></div>
-                      
-                      {/* Step Circle */}
-                      <motion.div
-                        whileHover={{ scale: 1.15 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`relative z-10 w-20 h-20 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-2xl border-4 border-white group-hover:shadow-3xl transition-all duration-500 ${
-                          activeStep === step.id ? 'ring-4 ring-primary/30 scale-110' : ''
-                        }`}
-                      >
-                        <step.icon className="w-10 h-10 text-white" />
-                        
-                        {/* Step Number Badge */}
-                        <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center text-sm font-bold text-neutral-800 shadow-lg border-2 border-neutral-100">
-                          {step.id}
-                        </div>
-                      </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={step.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="relative"
+              >
+                <Card className="h-full border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
+                  <CardContent className="p-6">
+                    {/* Step Header */}
+                    <div className="flex items-center justify-between mb-4">
+                      <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center`}>
+                        <step.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="text-right">
+                        <div className="text-2xl font-bold text-neutral-300">0{step.id}</div>
+                        <div className="text-xs text-neutral-500">{step.duration}</div>
+                      </div>
                     </div>
 
-                    {/* Step Card */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.6, delay: index * 0.1 + 0.3 }}
-                      className={`w-full transition-all duration-500 ${
-                        activeStep === step.id ? 'transform -translate-y-2' : ''
-                      }`}
-                    >
-                      <Card className={`border-0 shadow-xl transition-all duration-500 group-hover:shadow-2xl ${
-                        activeStep === step.id ? 'ring-2 ring-primary/20 shadow-2xl' : ''
-                      }`}>
-                        <CardContent className="p-0">
-                          {/* Card Header */}
-                          <div 
-                            className={`${step.bgColor} p-6 relative overflow-hidden`}
-                            style={{ backgroundImage: getPatternSvg(step.pattern) }}
-                          >
-                            <div className="flex items-center justify-between mb-3">
-                              <div className="flex items-center space-x-2">
-                                <Clock className="w-4 h-4 text-neutral-500" />
-                                <span className="text-sm text-neutral-600">{step.duration}</span>
-                              </div>
-                              <div className="text-2xl font-bold text-neutral-300">0{step.id}</div>
-                            </div>
-                            <h3 className="text-xl font-bold text-neutral-800 mb-2">{step.title}</h3>
-                            <p className="text-sm text-neutral-600 font-medium">{step.subtitle}</p>
-                          </div>
+                    {/* Step Content */}
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold text-neutral-800 mb-2">{step.title}</h3>
+                      <p className="text-sm text-neutral-600 mb-3">{step.subtitle}</p>
+                      <p className="text-neutral-600 leading-relaxed">{step.description}</p>
+                    </div>
 
-                          {/* Card Content */}
-                          <div className="p-6">
-                            <p className="text-neutral-600 mb-4 leading-relaxed text-sm">{step.description}</p>
-                            
-                            {/* Deliverables */}
-                            <div className="space-y-3">
-                              <h4 className="text-xs font-bold text-neutral-800 uppercase tracking-wider flex items-center">
-                                <Target className="w-3 h-3 mr-2 text-primary" />
-                                Key Deliverables
-                              </h4>
-                              <div className="space-y-2">
-                                {step.deliverables.slice(0, 2).map((deliverable, i) => (
-                                  <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                                    transition={{ duration: 0.4, delay: index * 0.1 + i * 0.1 }}
-                                    className="flex items-center space-x-2 text-xs"
-                                  >
-                                    <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0" />
-                                    <span className="text-neutral-600">{deliverable}</span>
-                                  </motion.div>
-                                ))}
-                                {step.deliverables.length > 2 && (
-                                  <div className="text-xs text-primary font-medium">
-                                    +{step.deliverables.length - 2} more...
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-
-                    {/* Connection Arrow */}
-                    {index < processSteps.length - 1 && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.5, delay: index * 0.2 + 0.5 }}
-                        className="absolute -right-16 top-8 z-30"
-                      >
-                        <div className="w-12 h-12 bg-white rounded-full shadow-lg border border-neutral-200 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-300">
-                          <ArrowRight className="w-5 h-5 text-primary group-hover:text-white" />
+                    {/* Deliverables */}
+                    <div className="space-y-2">
+                      <h4 className="text-sm font-semibold text-neutral-800">What You Get:</h4>
+                      {step.deliverables.map((deliverable, i) => (
+                        <div key={i} className="flex items-center space-x-2">
+                          <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                          <span className="text-sm text-neutral-600">{deliverable}</span>
                         </div>
-                      </motion.div>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
 
-          {/* Mobile Timeline for small screens */}
-          <div className="block lg:hidden">
-            <div className="space-y-8">
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={step.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex items-start space-x-4"
-                  onTouchStart={() => setActiveStep(step.id)}
-                >
-                  {/* Mobile Step Circle */}
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg border-4 border-white flex-shrink-0`}>
-                    <step.icon className="w-6 h-6 text-white" />
+                {/* Step Connector for non-mobile */}
+                {index < processSteps.length - 1 && (
+                  <div className="hidden lg:block absolute top-8 -right-4 z-10">
+                    <ArrowRight className="w-6 h-6 text-neutral-300" />
                   </div>
-                  
-                  {/* Mobile Content */}
-                  <Card className="flex-1 border-0 shadow-lg">
-                    <CardContent className="p-4">
-                      <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-lg font-bold text-neutral-800">{step.title}</h3>
-                        <span className="text-xs text-neutral-500">{step.duration}</span>
-                      </div>
-                      <p className="text-sm text-neutral-600 mb-3">{step.description}</p>
-                      <div className="space-y-1">
-                        {step.deliverables.slice(0, 2).map((deliverable, i) => (
-                          <div key={i} className="flex items-center space-x-2 text-xs">
-                            <CheckCircle className="w-3 h-3 text-green-500" />
-                            <span className="text-neutral-600">{deliverable}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                )}
+              </motion.div>
+            ))}
           </div>
         </div>
 
-        {/* Progress Overview */}
+        {/* Simple Stats Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="bg-gradient-to-r from-white via-blue-50 to-white rounded-3xl shadow-2xl p-8 mb-12 border border-neutral-100"
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-center mb-12"
         >
-          <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold text-neutral-800 mb-3">Your Success Timeline</h3>
-            <p className="text-lg text-neutral-600">Complete journey from consultation to departure</p>
-          </div>
-          
-          {/* Mini Timeline */}
-          <div className="relative max-w-4xl mx-auto">
-            <div className="flex justify-between items-center relative">
-              {/* Progress Line */}
-              <div className="absolute top-1/2 left-0 right-0 h-2 bg-gradient-to-r from-primary via-secondary to-accent rounded-full transform -translate-y-1/2"></div>
-              
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={step.id}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
-                  className="relative z-10 flex flex-col items-center group cursor-pointer"
-                  onMouseEnter={() => setActiveStep(step.id)}
-                >
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 border-4 border-white`}>
-                    <span className="text-white text-sm font-bold">{step.id}</span>
-                  </div>
-                  <div className="mt-4 text-center">
-                    <div className="text-sm font-bold text-neutral-800">{step.title}</div>
-                    <div className="text-xs text-neutral-500 mt-1">{step.duration}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Statistics */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.8 }}
-              className="text-center p-6 bg-white rounded-2xl shadow-lg"
-            >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="p-6 bg-white rounded-xl shadow-lg border border-neutral-200">
               <div className="text-3xl font-bold text-primary mb-2">12-16</div>
-              <div className="text-sm text-neutral-600">Weeks to Complete</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 2.0 }}
-              className="text-center p-6 bg-white rounded-2xl shadow-lg"
-            >
+              <div className="text-neutral-600">Weeks to Complete</div>
+            </div>
+            <div className="p-6 bg-white rounded-xl shadow-lg border border-neutral-200">
               <div className="text-3xl font-bold text-secondary mb-2">95%</div>
-              <div className="text-sm text-neutral-600">Success Rate</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 2.2 }}
-              className="text-center p-6 bg-white rounded-2xl shadow-lg"
-            >
+              <div className="text-neutral-600">Success Rate</div>
+            </div>
+            <div className="p-6 bg-white rounded-xl shadow-lg border border-neutral-200">
               <div className="text-3xl font-bold text-accent mb-2">24/7</div>
-              <div className="text-sm text-neutral-600">Expert Support</div>
-            </motion.div>
+              <div className="text-neutral-600">Expert Support</div>
+            </div>
           </div>
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Simple Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-3xl p-8 text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
-            <div className="relative z-10">
-              <h3 className="text-3xl font-bold mb-4">Ready to Start Your Success Story?</h3>
-              <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Join thousands of students who have successfully reached their dream universities through our proven process.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <Button
-                  size="lg"
-                  className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-4 text-lg"
-                >
-                  Start Free Consultation
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 text-lg"
-                >
-                  Download Process Guide
-                </Button>
-              </div>
-            </div>
+          <div className="bg-primary rounded-2xl p-8 text-white">
+            <h3 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h3>
+            <p className="text-lg mb-6 max-w-2xl mx-auto">
+              Get personalized guidance from our expert counselors and take the first step towards your dream university.
+            </p>
+            <Button
+              size="lg"
+              className="bg-white text-primary hover:bg-neutral-100 font-semibold px-8 py-3"
+            >
+              Book Free Consultation
+            </Button>
           </div>
         </motion.div>
       </div>
