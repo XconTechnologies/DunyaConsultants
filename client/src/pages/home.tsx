@@ -1,7 +1,6 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import AudienceSectionNew from "@/components/audience-section-new";
-import RedesignedProcessSection from "@/components/redesigned-process-section";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
 import StatsBanner from "@/components/stats-banner";
@@ -17,7 +16,6 @@ export default function Home() {
       <Navigation />
       <StatsBanner />
       <AudienceSectionNew />
-      <RedesignedProcessSection />
       <IeltsSection />
       <CountriesSection />
       <UniversityPartnersSection />
