@@ -266,7 +266,7 @@ export default function Navigation() {
                 <img 
                   src={logoImage} 
                   alt="Dunya Consultants Logo" 
-                  className={`h-12 w-auto transition-all duration-500 ${
+                  className={`h-8 w-auto transition-all duration-500 ${
                     !isScrolled 
                       ? 'brightness-0 invert drop-shadow-lg' 
                       : ''
