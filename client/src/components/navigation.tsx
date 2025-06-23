@@ -185,14 +185,7 @@ export default function Navigation() {
                   }`}
                 />
               </div>
-              <div className="hidden sm:block">
-                <div className={`text-xl font-bold transition-colors duration-500 ${
-                  !isScrolled ? 'text-white drop-shadow-lg' : 'text-neutral-800'
-                }`}>Dunya</div>
-                <div className={`text-xs transition-colors duration-500 -mt-1 ${
-                  !isScrolled ? 'text-white/90 drop-shadow-md' : 'text-neutral-600'
-                }`}>Consultants</div>
-              </div>
+              
             </div>
           </motion.div>
           
@@ -384,7 +377,7 @@ export default function Navigation() {
           >
             <div className="px-4 py-4 space-y-4">
               {navItems.map((item) => (
-                <div key={item.id || item.href}>
+                <div key={item.name || item.href}>
                   {item.submenu ? (
                     <div className="space-y-2">
                       <div className="text-neutral-800 font-medium py-2 border-b border-gray-100">
