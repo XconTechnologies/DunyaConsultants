@@ -36,44 +36,68 @@ export default function Navigation() {
   };
 
   const navItems = [
-    { name: "Home", id: "home" },
-    { name: "Services", id: "services" },
-    { name: "About", id: "about" },
-    { name: "Solutions", id: "audience" },
+    { name: "Home", href: "/" },
     { 
-      name: "IELTS", 
-      href: "/ielts",
+      name: "About Us", 
       submenu: [
-        { name: "IELTS Overview", href: "/ielts" },
-        { name: "What to Expect on Exam Day", href: "/ielts/exam-day" }
+        { name: "Our Story", href: "/about/story" },
+        { name: "Who We Are", href: "/about/who-we-are" },
+        { name: "Mission & Vision", href: "/about/mission-vision" },
+        { name: "Leadership & Team", href: "/about/team" },
+        { name: "Success Stories", href: "/about/success-stories" },
+        { name: "Why Choose Us", href: "/about/why-choose-us" }
       ]
     },
-    { name: "Process", id: "process" },
-    { name: "Locations", id: "locations" },
-    { name: "Testimonials", id: "testimonials" },
-    { name: "Events", href: "/events" },
-    { name: "Blogs", href: "/blogs" },
     { 
       name: "Country Guide", 
-      href: "/country-guide",
       submenu: [
-        { name: "Country Guide Overview", href: "/country-guide" },
-        { name: "Study in USA", href: "/country-guide/usa" },
-        { name: "Study in UK", href: "/country-guide/uk" },
         { name: "Study in Canada", href: "/country-guide/canada" },
-        { name: "Study in Australia", href: "/country-guide/australia" }
+        { name: "Study in UK", href: "/country-guide/uk" },
+        { name: "Study in Australia", href: "/country-guide/australia" },
+        { name: "Study in USA", href: "/country-guide/usa" },
+        { name: "Study in Europe", href: "/country-guide/europe" },
+        { name: "Study in Turkey", href: "/country-guide/turkey" },
+        { name: "University Selection", href: "/services/university-selection" },
+        { name: "Course & Career Counselling", href: "/services/counselling" },
+        { name: "Application Assistance", href: "/services/applications" },
+        { name: "Scholarship Guidance", href: "/services/scholarships" },
+        { name: "Visa Processing", href: "/services/visa" }
       ]
     },
-    { name: "Cost Calculator", href: "/cost-calculator" },
+    { 
+      name: "Test Preparation", 
+      submenu: [
+        { name: "IELTS", href: "/test-prep/ielts" },
+        { name: "PTE", href: "/test-prep/pte" },
+        { name: "TOEFL", href: "/test-prep/toefl" },
+        { name: "Duolingo", href: "/test-prep/duolingo" },
+        { name: "Spoken English & Interview Prep", href: "/test-prep/spoken-english" }
+      ]
+    },
+    { 
+      name: "Offices", 
+      submenu: [
+        { name: "Find a Branch", href: "/offices/branches" },
+        { name: "Contact Details", href: "/offices/contact" },
+        { name: "Appointment Booking", href: "/offices/booking" }
+      ]
+    },
+    { 
+      name: "Blog", 
+      submenu: [
+        { name: "Study Abroad Tips", href: "/blog/tips" },
+        { name: "Country Guides", href: "/blog/country-guides" },
+        { name: "Student Experiences", href: "/blog/experiences" }
+      ]
+    },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed w-full top-0 z-50 transition-all duration-500 ${
       isScrolled 
-        ? "bg-white/95 backdrop-blur-sm shadow-lg" 
-        : isHeroSection
-        ? "bg-white/10 backdrop-blur-sm"
-        : "bg-white/95 backdrop-blur-sm shadow-lg"
+        ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-white/20" 
+        : "bg-gradient-to-r from-blue-900/20 via-indigo-900/20 to-purple-900/20 backdrop-blur-md border-b border-white/10"
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -88,19 +112,19 @@ export default function Navigation() {
                 <img 
                   src={logoImage} 
                   alt="Dunya Consultants Logo" 
-                  className={`h-10 w-auto transition-all duration-300 ${
-                    isHeroSection && !isScrolled 
-                      ? 'brightness-0 invert' 
+                  className={`h-10 w-auto transition-all duration-500 ${
+                    !isScrolled 
+                      ? 'brightness-0 invert drop-shadow-lg' 
                       : ''
                   }`}
                 />
               </div>
               <div className="hidden sm:block">
-                <div className={`text-xl font-bold transition-colors duration-300 ${
-                  isHeroSection && !isScrolled ? 'text-white' : 'text-neutral-800'
+                <div className={`text-xl font-bold transition-colors duration-500 ${
+                  !isScrolled ? 'text-white drop-shadow-lg' : 'text-neutral-800'
                 }`}>Dunya</div>
-                <div className={`text-xs transition-colors duration-300 -mt-1 ${
-                  isHeroSection && !isScrolled ? 'text-white/90' : 'text-neutral-600'
+                <div className={`text-xs transition-colors duration-500 -mt-1 ${
+                  !isScrolled ? 'text-white/90 drop-shadow-md' : 'text-neutral-600'
                 }`}>Consultants</div>
               </div>
             </div>
@@ -118,10 +142,10 @@ export default function Navigation() {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <button className={`${
-                      isHeroSection && !isScrolled 
-                        ? 'text-white hover:text-white/80' 
-                        : 'text-neutral-800 hover:text-primary'
-                    } transition-colors duration-200 font-medium flex items-center space-x-1`}>
+                      !isScrolled 
+                        ? 'text-white drop-shadow-md hover:text-white/80 hover:bg-white/10' 
+                        : 'text-neutral-800 hover:text-primary hover:bg-primary/5'
+                    } transition-all duration-300 font-medium flex items-center space-x-1 px-3 py-2 rounded-lg`}>
                         <span>{item.name}</span>
                         <ChevronDown className="w-4 h-4" />
                       </button>
@@ -139,10 +163,10 @@ export default function Navigation() {
                 ) : item.href ? (
                   <Link href={item.href}>
                     <button className={`${
-                      isHeroSection && !isScrolled 
-                        ? 'text-white hover:text-white/80' 
-                        : 'text-neutral-800 hover:text-primary'
-                    } transition-colors duration-200 font-medium`}>
+                      !isScrolled 
+                        ? 'text-white drop-shadow-md hover:text-white/80 hover:bg-white/10' 
+                        : 'text-neutral-800 hover:text-primary hover:bg-primary/5'
+                    } transition-all duration-300 font-medium px-3 py-2 rounded-lg`}>
                       {item.name}
                     </button>
                   </Link>
@@ -157,10 +181,10 @@ export default function Navigation() {
               <Button 
                 onClick={() => scrollToSection("contact")}
                 className={`${
-                  isHeroSection && !isScrolled
-                    ? 'bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30'
-                    : 'bg-primary hover:bg-blue-700 text-white'
-                } transition-all duration-300`}
+                  !isScrolled
+                    ? 'bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 hover:border-white/60 shadow-lg'
+                    : 'bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md'
+                } transition-all duration-300 font-semibold`}
               >
                 Contact Us
               </Button>
@@ -173,10 +197,10 @@ export default function Navigation() {
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
               className={`${
-                isHeroSection && !isScrolled 
-                  ? 'text-white hover:bg-white/10' 
-                  : 'text-neutral-800 hover:text-primary'
-              } transition-colors duration-300`}
+                !isScrolled 
+                  ? 'text-white hover:bg-white/20 drop-shadow-md' 
+                  : 'text-neutral-800 hover:text-primary hover:bg-primary/5'
+              } transition-all duration-300`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
@@ -190,7 +214,11 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t border-neutral-200"
+            className={`md:hidden transition-all duration-300 ${
+              !isScrolled 
+                ? 'bg-white/95 backdrop-blur-md border-t border-white/20' 
+                : 'bg-white border-t border-neutral-200'
+            }`}
           >
             <div className="px-4 py-4 space-y-4">
               {navItems.map((item) => (
