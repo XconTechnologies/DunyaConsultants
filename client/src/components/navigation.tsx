@@ -164,8 +164,8 @@ export default function Navigation() {
         ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-white/20" 
         : "bg-gradient-to-r from-blue-900/20 via-indigo-900/20 to-purple-900/20 backdrop-blur-md border-b border-white/10"
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-16">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="flex items-center h-18 py-2">
           {/* Logo - Extreme Left */}
           <motion.div 
             className="flex items-center mr-8"
@@ -191,7 +191,7 @@ export default function Navigation() {
           
           {/* Navigation Menu - Centered */}
           <div className="hidden lg:flex items-center justify-center flex-1">
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-3">
               {navItems.map((item, index) => (
                 <motion.div
                   key={item.name}
@@ -231,7 +231,7 @@ export default function Navigation() {
           
           {/* CTA Button - Right Side */}
           <motion.div
-            className="hidden lg:block ml-8"
+            className="hidden lg:block ml-12"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
