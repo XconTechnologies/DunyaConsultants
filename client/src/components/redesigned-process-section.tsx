@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { CheckCircle, ArrowRight, Users, FileText, GraduationCap, Plane, Award, Calendar, Clock, Star, Circle, Target } from "lucide-react";
+import { MessageCircle, Globe, FileText, Send, Shield, Plane, CheckCircle, Clock, Target, ArrowRight, GraduationCap, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -148,19 +148,31 @@ export default function RedesignedProcessSection() {
                     International Education
                   </h3>
                   <p className="text-sm text-neutral-600 mt-3">
-                    Complete 6-step process designed for your success
+                    Complete 8-step comprehensive process designed for your success
                   </p>
+                  <div className="mt-4 flex items-center justify-center space-x-4 text-xs text-neutral-500">
+                    <div className="flex items-center space-x-1">
+                      <Clock className="w-3 h-3" />
+                      <span>18-20 Weeks</span>
+                    </div>
+                    <div className="w-px h-4 bg-neutral-300"></div>
+                    <div className="flex items-center space-x-1">
+                      <Target className="w-3 h-3" />
+                      <span>95% Success Rate</span>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
 
               {/* Circular Timeline Ring */}
-              <div className="absolute w-[560px] h-[560px] rounded-full border-2 border-dashed border-neutral-300 opacity-50"></div>
-              <div className="absolute w-[580px] h-[580px] rounded-full border border-primary/20"></div>
+              <div className="absolute w-[640px] h-[640px] rounded-full border-2 border-dashed border-neutral-300 opacity-50"></div>
+              <div className="absolute w-[660px] h-[660px] rounded-full border border-primary/20"></div>
+              <div className="absolute w-[680px] h-[680px] rounded-full border border-secondary/10"></div>
 
               {/* Process Steps in Circle */}
               {processSteps.map((step, index) => {
-                const angle = (index * 60) - 90; // 60 degrees apart starting from top
-                const radius = 280;
+                const angle = (index * 45) - 90; // 45 degrees apart for 8 steps starting from top
+                const radius = 320;
                 const x = Math.cos((angle * Math.PI) / 180) * radius;
                 const y = Math.sin((angle * Math.PI) / 180) * radius;
 
@@ -263,7 +275,7 @@ export default function RedesignedProcessSection() {
                   <motion.circle
                     cx="400"
                     cy="400"
-                    r="280"
+                    r="320"
                     fill="none"
                     stroke="url(#gradient)"
                     strokeWidth="3"
@@ -285,9 +297,9 @@ export default function RedesignedProcessSection() {
 
               {/* Step Connectors */}
               {processSteps.map((step, index) => {
-                const angle = (index * 60) - 90;
-                const nextAngle = ((index + 1) * 60) - 90;
-                const radius = 280;
+                const angle = (index * 45) - 90;
+                const nextAngle = ((index + 1) * 45) - 90;
+                const radius = 320;
                 
                 if (index === processSteps.length - 1) return null;
 
@@ -301,11 +313,11 @@ export default function RedesignedProcessSection() {
                     style={{
                       left: '50%',
                       top: '50%',
-                      transform: `rotate(${angle + 30}deg)`,
+                      transform: `rotate(${angle + 22.5}deg)`,
                       transformOrigin: '0 0',
                     }}
                   >
-                    <ArrowRight className="w-6 h-6 text-primary/40 transform translate-x-64 -translate-y-3" />
+                    <ArrowRight className="w-5 h-5 text-primary/40 transform translate-x-72 -translate-y-2.5" />
                   </motion.div>
                 );
               })}
@@ -366,47 +378,79 @@ export default function RedesignedProcessSection() {
           </div>
         </div>
 
-        {/* Simple Stats Section */}
+        {/* Professional Stats Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mb-12"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <div className="p-6 bg-white rounded-xl shadow-lg border border-neutral-200">
-              <div className="text-3xl font-bold text-primary mb-2">12-16</div>
-              <div className="text-neutral-600">Weeks to Complete</div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg border border-blue-200">
+              <div className="text-3xl font-bold text-blue-600 mb-2">18-20</div>
+              <div className="text-neutral-700 font-medium">Weeks Timeline</div>
             </div>
-            <div className="p-6 bg-white rounded-xl shadow-lg border border-neutral-200">
-              <div className="text-3xl font-bold text-secondary mb-2">95%</div>
-              <div className="text-neutral-600">Success Rate</div>
+            <div className="p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-lg border border-green-200">
+              <div className="text-3xl font-bold text-green-600 mb-2">95%</div>
+              <div className="text-neutral-700 font-medium">Visa Success Rate</div>
+            </div>      
+            <div className="p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-lg border border-purple-200">
+              <div className="text-3xl font-bold text-purple-600 mb-2">250+</div>
+              <div className="text-neutral-700 font-medium">Partner Universities</div>
             </div>
-            <div className="p-6 bg-white rounded-xl shadow-lg border border-neutral-200">
-              <div className="text-3xl font-bold text-accent mb-2">24/7</div>
-              <div className="text-neutral-600">Expert Support</div>
+            <div className="p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl shadow-lg border border-orange-200">
+              <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
+              <div className="text-neutral-700 font-medium">Expert Support</div>
             </div>
           </div>
         </motion.div>
 
-        {/* Simple Call to Action */}
+        {/* Professional Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-center"
         >
-          <div className="bg-primary rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h3>
-            <p className="text-lg mb-6 max-w-2xl mx-auto">
-              Get personalized guidance from our expert counselors and take the first step towards your dream university.
-            </p>
-            <Button
-              size="lg"
-              className="bg-white text-primary hover:bg-neutral-100 font-semibold px-8 py-3"
-            >
-              Book Free Consultation
-            </Button>
+          <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl p-8 text-white relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+            <div className="relative z-10">
+              <h3 className="text-3xl font-bold mb-4">Begin Your Educational Journey Today</h3>
+              <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+                Join thousands of successful students who have achieved their international education dreams through our comprehensive 8-step process. Expert guidance at every step.
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <Button
+                  size="lg"
+                  className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-4 text-lg shadow-xl"
+                >
+                  <MessageCircle className="w-5 h-5 mr-2" />
+                  Schedule Free Consultation
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white text-white hover:bg-white hover:text-primary font-semibold px-8 py-4 text-lg"
+                >
+                  <FileText className="w-5 h-5 mr-2" />
+                  Download Process Guide
+                </Button>
+              </div>
+              <div className="mt-6 flex items-center justify-center space-x-8 text-sm text-white/80">
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-4 h-4" />
+                  <span>No Hidden Fees</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Shield className="w-4 h-4" />
+                  <span>Guaranteed Support</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Clock className="w-4 h-4" />
+                  <span>Quick Response</span>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
