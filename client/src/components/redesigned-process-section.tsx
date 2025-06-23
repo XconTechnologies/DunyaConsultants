@@ -154,12 +154,13 @@ export default function RedesignedProcessSection() {
               </motion.div>
 
               {/* Circular Timeline Ring */}
-              <div className="absolute w-[600px] h-[600px] rounded-full border-4 border-dashed border-neutral-200"></div>
+              <div className="absolute w-[560px] h-[560px] rounded-full border-2 border-dashed border-neutral-300 opacity-50"></div>
+              <div className="absolute w-[580px] h-[580px] rounded-full border border-primary/20"></div>
 
               {/* Process Steps in Circle */}
               {processSteps.map((step, index) => {
                 const angle = (index * 60) - 90; // 60 degrees apart starting from top
-                const radius = 300;
+                const radius = 280;
                 const x = Math.cos((angle * Math.PI) / 180) * radius;
                 const y = Math.sin((angle * Math.PI) / 180) * radius;
 
@@ -177,10 +178,10 @@ export default function RedesignedProcessSection() {
                   >
                     {/* Connection Line to Center */}
                     <motion.div
-                      initial={{ scale: 0 }}
-                      animate={isInView ? { scale: 1 } : {}}
-                      transition={{ duration: 1, delay: index * 0.1 + 1 }}
-                      className="absolute w-32 h-0.5 bg-gradient-to-r from-neutral-300 to-transparent origin-right z-0"
+                      initial={{ scaleX: 0 }}
+                      animate={isInView ? { scaleX: 1 } : {}}
+                      transition={{ duration: 1.2, delay: index * 0.15 + 1 }}
+                      className="absolute w-28 h-0.5 bg-gradient-to-r from-primary/40 to-transparent origin-right z-0"
                       style={{
                         transform: `rotate(${angle + 180}deg)`,
                         right: '50%',
@@ -188,20 +189,36 @@ export default function RedesignedProcessSection() {
                       }}
                     ></motion.div>
 
-                    {/* Step Circle */}
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      className={`relative w-24 h-24 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-xl border-4 border-white group-hover:shadow-2xl transition-all duration-300 ${
-                        activeStep === step.id ? 'ring-4 ring-primary/30' : ''
-                      }`}
-                    >
-                      <step.icon className="w-10 h-10 text-white" />
+                    {/* Step Circle Container */}
+                    <div className="relative">
+                      {/* Outer Ring Animation */}
+                      <motion.div
+                        animate={activeStep === step.id ? {
+                          scale: [1, 1.1, 1],
+                          opacity: [0.3, 0.6, 0.3]
+                        } : {}}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className={`absolute inset-0 w-28 h-28 rounded-full border-2 ${step.color.replace('from-', 'border-').replace('to-', '').split(' ')[0].replace('bg-gradient-to-br', 'border')} opacity-20 transform -translate-x-2 -translate-y-2`}
+                      />
                       
-                      {/* Step Number Badge */}
-                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-neutral-100">
-                        <span className="text-sm font-bold text-neutral-700">{step.id}</span>
-                      </div>
-                    </motion.div>
+                      {/* Step Circle */}
+                      <motion.div
+                        whileHover={{ scale: 1.15 }}
+                        className={`relative w-24 h-24 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-2xl border-4 border-white group-hover:shadow-3xl transition-all duration-300 cursor-pointer ${
+                          activeStep === step.id ? 'ring-4 ring-primary/40 scale-110' : ''
+                        }`}
+                      >
+                        <step.icon className="w-10 h-10 text-white" />
+                        
+                        {/* Step Number Badge */}
+                        <motion.div 
+                          whileHover={{ scale: 1.1 }}
+                          className="absolute -bottom-1 -right-1 w-7 h-7 bg-white rounded-full flex items-center justify-center shadow-lg border-2 border-neutral-100"
+                        >
+                          <span className="text-xs font-bold text-neutral-700">{step.id}</span>
+                        </motion.div>
+                      </motion.div>
+                    </div>
 
                     {/* Floating Info Card */}
                     <motion.div
@@ -235,36 +252,60 @@ export default function RedesignedProcessSection() {
                 );
               })}
 
-              {/* Animated Progress Indicators */}
+              {/* Timeline Progress Arc */}
+              <motion.div
+                initial={{ pathLength: 0 }}
+                animate={isInView ? { pathLength: 1 } : {}}
+                transition={{ duration: 3, delay: 2 }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <svg className="w-full h-full" viewBox="0 0 800 800">
+                  <motion.circle
+                    cx="400"
+                    cy="400"
+                    r="280"
+                    fill="none"
+                    stroke="url(#gradient)"
+                    strokeWidth="3"
+                    strokeDasharray="8 8"
+                    initial={{ pathLength: 0, rotate: -90 }}
+                    animate={isInView ? { pathLength: 1, rotate: 270 } : {}}
+                    transition={{ duration: 4, delay: 2.5 }}
+                    style={{ transformOrigin: "400px 400px" }}
+                  />
+                  <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.6" />
+                      <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                      <stop offset="100%" stopColor="#06b6d4" stopOpacity="0.6" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </motion.div>
+
+              {/* Step Connectors */}
               {processSteps.map((step, index) => {
                 const angle = (index * 60) - 90;
-                const radius = 300;
-                const x = Math.cos((angle * Math.PI) / 180) * radius;
-                const y = Math.sin((angle * Math.PI) / 180) * radius;
+                const nextAngle = ((index + 1) * 60) - 90;
+                const radius = 280;
+                
+                if (index === processSteps.length - 1) return null;
 
                 return (
                   <motion.div
-                    key={`progress-${step.id}`}
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 1.5 }}
-                    className="absolute w-3 h-3 rounded-full bg-primary/30"
+                    key={`connector-${step.id}`}
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ duration: 0.8, delay: index * 0.2 + 3 }}
+                    className="absolute"
                     style={{
-                      transform: `translate(${x * 0.85}px, ${y * 0.85}px)`,
+                      left: '50%',
+                      top: '50%',
+                      transform: `rotate(${angle + 30}deg)`,
+                      transformOrigin: '0 0',
                     }}
                   >
-                    <motion.div
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [0.3, 0.8, 0.3],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: index * 0.3,
-                      }}
-                      className="w-full h-full rounded-full bg-primary"
-                    ></motion.div>
+                    <ArrowRight className="w-6 h-6 text-primary/40 transform translate-x-64 -translate-y-3" />
                   </motion.div>
                 );
               })}
@@ -312,7 +353,12 @@ export default function RedesignedProcessSection() {
 
                   {/* Connection Line */}
                   {index < processSteps.length - 1 && (
-                    <div className="absolute left-8 top-20 w-0.5 h-12 bg-gradient-to-b from-primary to-accent opacity-30"></div>
+                    <motion.div
+                      initial={{ scaleY: 0 }}
+                      animate={isInView ? { scaleY: 1 } : {}}
+                      transition={{ duration: 0.6, delay: index * 0.1 + 0.8 }}
+                      className="absolute left-8 top-20 w-0.5 h-12 bg-gradient-to-b from-primary to-accent opacity-40 origin-top"
+                    ></motion.div>
                   )}
                 </motion.div>
               ))}
