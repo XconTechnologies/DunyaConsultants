@@ -6,6 +6,7 @@ import CountriesSection from "@/components/countries-section";
 import MobileProcessSection from "@/components/mobile-process-section";
 import StatsBanner from "@/components/stats-banner";
 import UniversityPartnersSection from "@/components/university-partners-section";
+import EducationJourneySection from "@/components/education-journey-section";
 import FloatingCTA from "@/components/floating-cta";
 import ScrollProgress from "@/components/scroll-progress";
 import Footer from "@/components/footer";
@@ -17,6 +18,7 @@ export default function Home() {
       <Navigation />
       <StatsBanner />
       <AudienceSectionNew />
+      <EducationJourneySection />
       <IeltsSection />
       <CountriesSection />
       <MobileProcessSection />
