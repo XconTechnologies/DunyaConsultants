@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { CheckCircle, ArrowRight, Users, FileText, GraduationCap, Plane, Award, Calendar, Clock, Star } from "lucide-react";
+import { CheckCircle, ArrowRight, Users, FileText, GraduationCap, Plane, Award, Calendar, Clock, Star, Circle, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -129,105 +129,162 @@ export default function RedesignedProcessSection() {
           </p>
         </motion.div>
 
-        {/* Process Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {processSteps.map((step, index) => (
-            <motion.div
-              key={step.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.1 }}
-              className="relative group cursor-pointer"
-              onMouseEnter={() => setActiveStep(step.id)}
-            >
-              <Card className={`h-full border-0 shadow-xl transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-2xl ${
-                activeStep === step.id ? 'ring-2 ring-primary shadow-2xl -translate-y-1' : ''
-              }`}>
-                <CardContent className="p-0 h-full">
-                  {/* Card Header */}
-                  <div 
-                    className={`${step.bgColor} p-6 relative overflow-hidden`}
-                    style={{ backgroundImage: getPatternSvg(step.pattern) }}
+        {/* Timeline */}
+        <div className="relative max-w-5xl mx-auto mb-16">
+          {/* Timeline Line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-secondary to-accent rounded-full"></div>
+          
+          {/* Timeline Steps */}
+          <div className="space-y-16">
+            {processSteps.map((step, index) => (
+              <motion.div
+                key={step.id}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                className={`relative flex items-center ${
+                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
+                }`}
+                onMouseEnter={() => setActiveStep(step.id)}
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 z-20">
+                  <motion.div
+                    whileHover={{ scale: 1.2 }}
+                    className={`w-16 h-16 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-2xl border-4 border-white cursor-pointer ${
+                      activeStep === step.id ? 'ring-4 ring-primary/30' : ''
+                    }`}
                   >
-                    <div className="flex items-center justify-between mb-4">
-                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                        <step.icon className="w-6 h-6 text-white" />
+                    <step.icon className="w-8 h-8 text-white" />
+                  </motion.div>
+                </div>
+
+                {/* Timeline Content */}
+                <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
+                  <Card className={`border-0 shadow-xl transition-all duration-500 ${
+                    activeStep === step.id ? 'shadow-2xl ring-2 ring-primary/20 transform scale-105' : ''
+                  }`}>
+                    <CardContent className="p-0">
+                      {/* Step Header */}
+                      <div 
+                        className={`${step.bgColor} p-6 relative overflow-hidden`}
+                        style={{ backgroundImage: getPatternSvg(step.pattern) }}
+                      >
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="text-3xl font-bold text-neutral-300">0{step.id}</div>
+                          <div className="flex items-center space-x-2 text-xs text-neutral-500">
+                            <Clock className="w-4 h-4" />
+                            <span>{step.duration}</span>
+                          </div>
+                        </div>
+                        <h3 className="text-2xl font-bold text-neutral-800 mb-2">{step.title}</h3>
+                        <p className="text-neutral-600 font-medium">{step.subtitle}</p>
                       </div>
-                      <div className="text-right">
-                        <div className="text-2xl font-bold text-neutral-400">0{step.id}</div>
-                        <div className="text-xs text-neutral-500 flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
-                          {step.duration}
+
+                      {/* Step Content */}
+                      <div className="p-6">
+                        <p className="text-neutral-600 mb-6 leading-relaxed text-lg">{step.description}</p>
+                        
+                        <div className="space-y-4">
+                          <h4 className="text-sm font-bold text-neutral-800 uppercase tracking-wider flex items-center">
+                            <Target className="w-4 h-4 mr-2 text-primary" />
+                            Key Deliverables
+                          </h4>
+                          <div className="grid grid-cols-1 gap-3">
+                            {step.deliverables.map((deliverable, i) => (
+                              <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                                transition={{ duration: 0.4, delay: index * 0.1 + i * 0.1 }}
+                                className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-neutral-100 hover:border-primary/30 transition-colors duration-200"
+                              >
+                                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                                <span className="text-neutral-700 font-medium">{deliverable}</span>
+                              </motion.div>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <h3 className="text-xl font-bold text-neutral-800 mb-2">{step.title}</h3>
-                    <p className="text-sm font-medium text-neutral-600">{step.subtitle}</p>
-                  </div>
+                    </CardContent>
+                  </Card>
+                </div>
 
-                  {/* Card Content */}
-                  <div className="p-6">
-                    <p className="text-neutral-600 mb-4 leading-relaxed">{step.description}</p>
-                    
-                    <div className="space-y-3">
-                      <h4 className="text-sm font-semibold text-neutral-800 uppercase tracking-wide">
-                        Key Deliverables
-                      </h4>
-                      {step.deliverables.map((deliverable, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={activeStep === step.id ? { opacity: 1, x: 0 } : { opacity: 0.7, x: 0 }}
-                          transition={{ duration: 0.3, delay: i * 0.1 }}
-                          className="flex items-center space-x-3"
-                        >
-                          <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
-                          <span className="text-sm text-neutral-600">{deliverable}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Arrow Connector */}
-                  {index < processSteps.length - 1 && (
-                    <div className="hidden lg:block absolute -right-4 top-1/2 transform -translate-y-1/2 z-10">
-                      <div className="w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center border border-neutral-200">
-                        <ArrowRight className="w-4 h-4 text-primary" />
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                {/* Empty space for alternating layout */}
+                <div className="w-5/12"></div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
-        {/* Timeline Summary */}
+        {/* Progress Overview */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-white rounded-3xl shadow-2xl p-8 mb-12 border border-neutral-100"
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="bg-gradient-to-r from-white via-blue-50 to-white rounded-3xl shadow-2xl p-8 mb-12 border border-neutral-100"
         >
           <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-neutral-800 mb-2">Complete Timeline</h3>
-            <p className="text-neutral-600">From consultation to departure - your journey mapped out</p>
+            <h3 className="text-3xl font-bold text-neutral-800 mb-3">Your Success Timeline</h3>
+            <p className="text-lg text-neutral-600">Complete journey from consultation to departure</p>
           </div>
           
-          <div className="flex flex-wrap justify-center items-center space-x-4 space-y-2">
-            {processSteps.map((step, index) => (
-              <div key={step.id} className="flex items-center">
-                <div className="flex items-center space-x-3 bg-neutral-50 rounded-full px-4 py-2">
-                  <div className={`w-8 h-8 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center`}>
-                    <span className="text-white text-xs font-bold">{step.id}</span>
+          {/* Mini Timeline */}
+          <div className="relative max-w-4xl mx-auto">
+            <div className="flex justify-between items-center relative">
+              {/* Progress Line */}
+              <div className="absolute top-1/2 left-0 right-0 h-2 bg-gradient-to-r from-primary via-secondary to-accent rounded-full transform -translate-y-1/2"></div>
+              
+              {processSteps.map((step, index) => (
+                <motion.div
+                  key={step.id}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.6, delay: 1.4 + index * 0.1 }}
+                  className="relative z-10 flex flex-col items-center group cursor-pointer"
+                  onMouseEnter={() => setActiveStep(step.id)}
+                >
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${step.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 border-4 border-white`}>
+                    <span className="text-white text-sm font-bold">{step.id}</span>
                   </div>
-                  <span className="text-sm font-medium text-neutral-700">{step.duration}</span>
-                </div>
-                {index < processSteps.length - 1 && (
-                  <ArrowRight className="w-4 h-4 text-neutral-400 mx-2" />
-                )}
-              </div>
-            ))}
+                  <div className="mt-4 text-center">
+                    <div className="text-sm font-bold text-neutral-800">{step.title}</div>
+                    <div className="text-xs text-neutral-500 mt-1">{step.duration}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Statistics */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 1.8 }}
+              className="text-center p-6 bg-white rounded-2xl shadow-lg"
+            >
+              <div className="text-3xl font-bold text-primary mb-2">12-16</div>
+              <div className="text-sm text-neutral-600">Weeks to Complete</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 2.0 }}
+              className="text-center p-6 bg-white rounded-2xl shadow-lg"
+            >
+              <div className="text-3xl font-bold text-secondary mb-2">95%</div>
+              <div className="text-sm text-neutral-600">Success Rate</div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 2.2 }}
+              className="text-center p-6 bg-white rounded-2xl shadow-lg"
+            >
+              <div className="text-3xl font-bold text-accent mb-2">24/7</div>
+              <div className="text-sm text-neutral-600">Expert Support</div>
+            </motion.div>
           </div>
         </motion.div>
 
