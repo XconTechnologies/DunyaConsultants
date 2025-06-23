@@ -11,15 +11,17 @@ import {
   Award,
   ArrowRight,
   CheckCircle,
-  Clock
+  Clock,
+  Plus,
+  Minus,
+  Users
 } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 export default function MobileProcessSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [expandedSteps, setExpandedSteps] = useState<Set<number>>(new Set([0])); // First step expanded by default
+  const [expandAll, setExpandAll] = useState(false);
 
   const processSteps = [
     {
@@ -94,12 +96,14 @@ export default function MobileProcessSection() {
     setExpandedSteps(newExpanded);
   };
 
-  const expandAll = () => {
-    setExpandedSteps(new Set(processSteps.map((_, index) => index)));
-  };
-
-  const collapseAll = () => {
-    setExpandedSteps(new Set());
+  const toggleAllSteps = () => {
+    if (expandAll) {
+      setExpandedSteps(new Set());
+      setExpandAll(false);
+    } else {
+      setExpandedSteps(new Set(processSteps.map((_, index) => index)));
+      setExpandAll(true);
+    }
   };
 
   return (
@@ -125,22 +129,13 @@ export default function MobileProcessSection() {
           
           {/* Mobile Controls */}
           <div className="flex justify-center space-x-4 md:hidden">
-            <Button
-              onClick={expandAll}
-              variant="outline"
-              size="sm"
-              className="text-primary border-primary hover:bg-primary/10"
+            <button
+              onClick={toggleAllSteps}
+              className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105"
             >
-              Expand All
-            </Button>
-            <Button
-              onClick={collapseAll}
-              variant="outline"
-              size="sm"
-              className="text-neutral-600 border-neutral-300"
-            >
-              Collapse All
-            </Button>
+              {expandAll ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+              <span className="font-medium">{expandAll ? 'Collapse All' : 'Expand All'}</span>
+            </button>
           </div>
         </motion.div>
 
