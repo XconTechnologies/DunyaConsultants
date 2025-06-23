@@ -285,14 +285,14 @@ export default function Navigation() {
             onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
             onMouseLeave={() => setActiveMegaMenu(null)}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <div className="max-w-6xl mx-auto px-6 py-6">
+              <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                 {/* Menu Sections */}
                 <div className="lg:col-span-3">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {megaMenuData[activeMegaMenu].sections.map((section, idx) => (
-                      <div key={idx} className="space-y-4">
-                        <div className="flex items-center space-x-2 mb-4">
+                      <div key={idx} className="space-y-3">
+                        <div className="flex items-center space-x-2 mb-3">
                           <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
                             {React.createElement(section.icon, { 
                               className: "w-4 h-4 text-white" 
@@ -300,10 +300,10 @@ export default function Navigation() {
                           </div>
                           <h3 className="text-lg font-bold text-neutral-800">{section.title}</h3>
                         </div>
-                        <div className="space-y-3">
+                        <div className="space-y-2">
                           {section.items.map((item, itemIdx) => (
                             <Link key={itemIdx} href={item.href}>
-                              <div className="group flex items-start space-x-3 p-3 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                              <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
                                 <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200" />
                                 <div>
                                   <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
@@ -324,18 +324,18 @@ export default function Navigation() {
 
                 {/* Featured Section */}
                 <div className="lg:col-span-1">
-                  <div className="bg-gradient-to-br from-primary via-secondary to-accent rounded-2xl p-6 text-white relative overflow-hidden">
+                  <div className="bg-gradient-to-br from-primary via-secondary to-accent rounded-xl p-5 text-white relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
                     <div className="relative z-10">
-                      <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-4">
+                      <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">
                         {React.createElement(megaMenuData[activeMegaMenu].icon, { 
                           className: "w-6 h-6 text-white" 
                         })}
                       </div>
-                      <h3 className="text-xl font-bold mb-2">
+                      <h3 className="text-lg font-bold mb-2">
                         {megaMenuData[activeMegaMenu].featured.title}
                       </h3>
-                      <p className="text-white/90 mb-4 text-sm">
+                      <p className="text-white/90 mb-3 text-sm">
                         {megaMenuData[activeMegaMenu].featured.description}
                       </p>
                       <Link href={megaMenuData[activeMegaMenu].featured.href}>
@@ -347,7 +347,7 @@ export default function Navigation() {
                   </div>
                   
                   {/* Quick Contact */}
-                  <div className="mt-6 p-4 bg-neutral-50 rounded-xl">
+                  <div className="mt-4 p-3 bg-neutral-50 rounded-lg">
                     <h4 className="font-semibold text-neutral-800 mb-3 flex items-center">
                       <Phone className="w-4 h-4 mr-2 text-primary" />
                       Need Help?
