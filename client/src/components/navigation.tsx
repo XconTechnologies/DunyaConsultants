@@ -100,9 +100,10 @@ export default function Navigation() {
         : "bg-gradient-to-r from-blue-900/20 via-indigo-900/20 to-purple-900/20 backdrop-blur-md border-b border-white/10"
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex items-center h-16">
+          {/* Logo - Extreme Left */}
           <motion.div 
-            className="flex items-center"
+            className="flex items-center mr-8"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -112,7 +113,7 @@ export default function Navigation() {
                 <img 
                   src={logoImage} 
                   alt="Dunya Consultants Logo" 
-                  className={`h-10 w-auto transition-all duration-500 ${
+                  className={`h-12 w-auto transition-all duration-500 ${
                     !isScrolled 
                       ? 'brightness-0 invert drop-shadow-lg' 
                       : ''
@@ -130,68 +131,76 @@ export default function Navigation() {
             </div>
           </motion.div>
           
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.id || item.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                {item.submenu ? (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <button className={`${
-                      !isScrolled 
-                        ? 'text-white drop-shadow-md hover:text-white/80 hover:bg-white/10' 
-                        : 'text-neutral-800 hover:text-primary hover:bg-primary/5'
-                    } transition-all duration-300 font-medium flex items-center space-x-1 px-3 py-2 rounded-lg`}>
-                        <span>{item.name}</span>
-                        <ChevronDown className="w-4 h-4" />
-                      </button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start">
-                      {item.submenu.map((subItem) => (
-                        <DropdownMenuItem key={subItem.name} asChild>
-                          <Link href={subItem.href}>
-                            <span className="w-full cursor-pointer">{subItem.name}</span>
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                ) : item.href ? (
-                  <Link href={item.href}>
-                    <button className={`${
-                      !isScrolled 
-                        ? 'text-white drop-shadow-md hover:text-white/80 hover:bg-white/10' 
-                        : 'text-neutral-800 hover:text-primary hover:bg-primary/5'
-                    } transition-all duration-300 font-medium px-3 py-2 rounded-lg`}>
-                      {item.name}
-                    </button>
-                  </Link>
-                ) : null}
-              </motion.div>
-            ))}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <Button 
-                onClick={() => scrollToSection("contact")}
-                className={`${
-                  !isScrolled
-                    ? 'bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 hover:border-white/60 shadow-lg'
-                    : 'bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md'
-                } transition-all duration-300 font-semibold`}
-              >
-                Contact Us
-              </Button>
-            </motion.div>
+          {/* Navigation Menu - Centered */}
+          <div className="hidden lg:flex items-center justify-center flex-1">
+            <div className="flex items-center space-x-1">
+              {navItems.map((item, index) => (
+                <motion.div
+                  key={item.href}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative group"
+                >
+                  {item.submenu ? (
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <button className={`${
+                        !isScrolled 
+                          ? 'text-white drop-shadow-md hover:text-white/90' 
+                          : 'text-neutral-700 hover:text-primary'
+                      } transition-all duration-300 font-medium flex items-center space-x-1 px-4 py-2 rounded-lg hover:bg-white/10 text-sm`}>
+                          <span>{item.name}</span>
+                          <ChevronDown className="w-3 h-3" />
+                        </button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="start" className="w-56 mt-2">
+                        {item.submenu.map((subItem) => (
+                          <DropdownMenuItem key={subItem.name} asChild>
+                            <Link href={subItem.href}>
+                              <span className="w-full cursor-pointer text-sm py-2">{subItem.name}</span>
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  ) : item.href ? (
+                    <Link href={item.href}>
+                      <span className={`${
+                        !isScrolled 
+                          ? 'text-white drop-shadow-md hover:text-white/90' 
+                          : 'text-neutral-700 hover:text-primary'
+                      } transition-all duration-300 font-medium px-4 py-2 rounded-lg cursor-pointer hover:bg-white/10 text-sm block`}>
+                        {item.name}
+                      </span>
+                    </Link>
+                  ) : null}
+                </motion.div>
+              ))}
+            </div>
           </div>
+          
+          {/* CTA Button - Right Side */}
+          <motion.div
+            className="hidden lg:block ml-8"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <Button 
+              onClick={() => scrollToSection("contact")}
+              className={`${
+                !isScrolled
+                  ? 'bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 hover:border-white/60 shadow-lg'
+                  : 'bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md'
+              } transition-all duration-300 font-semibold px-6 py-2`}
+            >
+              Free Consultation
+            </Button>
+          </motion.div>
 
-          <div className="md:hidden">
+          {/* Mobile Menu Toggle */}
+          <div className="lg:hidden ml-auto">
             <Button
               variant="ghost"
               size="icon"
@@ -214,7 +223,7 @@ export default function Navigation() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className={`md:hidden transition-all duration-300 ${
+            className={`lg:hidden transition-all duration-300 ${
               !isScrolled 
                 ? 'bg-white/95 backdrop-blur-md border-t border-white/20' 
                 : 'bg-white border-t border-neutral-200'
@@ -251,12 +260,17 @@ export default function Navigation() {
                   ) : null}
                 </div>
               ))}
-              <Button 
-                onClick={() => scrollToSection("contact")}
-                className="w-full bg-primary hover:bg-blue-700 text-white"
-              >
-                Contact Us
-              </Button>
+              <div className="pt-4 border-t border-neutral-200">
+                <Button 
+                  onClick={() => {
+                    scrollToSection("contact");
+                    setIsOpen(false);
+                  }}
+                  className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
+                >
+                  Free Consultation
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}
