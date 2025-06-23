@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import logoImage from "@assets/Asset-1_1750413567978.png";
+import logoImage from "@assets/Asset-1_1750664385021.png";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,7 +69,11 @@ export default function Navigation() {
 
   return (
     <nav className={`fixed w-full top-0 z-50 transition-all duration-300 ${
-      isScrolled ? "bg-white/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
+      isScrolled 
+        ? "bg-white/95 backdrop-blur-sm shadow-lg" 
+        : isHeroSection
+        ? "bg-white/10 backdrop-blur-sm"
+        : "bg-white/95 backdrop-blur-sm shadow-lg"
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -79,12 +83,26 @@ export default function Navigation() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="flex items-center">
-              <img 
-                src={logoImage} 
-                alt="Path Visa Consultants Logo" 
-                className="h-12 w-auto"
-              />
+            <div className="flex items-center space-x-3">
+              <div className="relative">
+                <img 
+                  src={logoImage} 
+                  alt="Dunya Consultants Logo" 
+                  className={`h-10 w-auto transition-all duration-300 ${
+                    isHeroSection && !isScrolled 
+                      ? 'brightness-0 invert' 
+                      : ''
+                  }`}
+                />
+              </div>
+              <div className="hidden sm:block">
+                <div className={`text-xl font-bold transition-colors duration-300 ${
+                  isHeroSection && !isScrolled ? 'text-white' : 'text-neutral-800'
+                }`}>Dunya</div>
+                <div className={`text-xs transition-colors duration-300 -mt-1 ${
+                  isHeroSection && !isScrolled ? 'text-white/90' : 'text-neutral-600'
+                }`}>Consultants</div>
+              </div>
             </div>
           </motion.div>
           
@@ -99,7 +117,11 @@ export default function Navigation() {
                 {item.submenu ? (
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <button className="text-neutral-800 hover:text-primary transition-colors duration-200 font-medium flex items-center space-x-1">
+                      <button className={`${
+                      isHeroSection && !isScrolled 
+                        ? 'text-white hover:text-white/80' 
+                        : 'text-neutral-800 hover:text-primary'
+                    } transition-colors duration-200 font-medium flex items-center space-x-1`}>
                         <span>{item.name}</span>
                         <ChevronDown className="w-4 h-4" />
                       </button>
@@ -116,14 +138,22 @@ export default function Navigation() {
                   </DropdownMenu>
                 ) : item.href ? (
                   <Link href={item.href}>
-                    <button className="text-neutral-800 hover:text-primary transition-colors duration-200 font-medium">
+                    <button className={`${
+                      isHeroSection && !isScrolled 
+                        ? 'text-white hover:text-white/80' 
+                        : 'text-neutral-800 hover:text-primary'
+                    } transition-colors duration-200 font-medium`}>
                       {item.name}
                     </button>
                   </Link>
                 ) : (
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className="text-neutral-800 hover:text-primary transition-colors duration-200 font-medium"
+                    className={`${
+                      isHeroSection && !isScrolled 
+                        ? 'text-white hover:text-white/80' 
+                        : 'text-neutral-800 hover:text-primary'
+                    } transition-colors duration-200 font-medium`}
                   >
                     {item.name}
                   </button>
@@ -137,7 +167,11 @@ export default function Navigation() {
             >
               <Button 
                 onClick={() => scrollToSection("contact")}
-                className="bg-primary hover:bg-blue-700 text-white"
+                className={`${
+                  isHeroSection && !isScrolled
+                    ? 'bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30'
+                    : 'bg-primary hover:bg-blue-700 text-white'
+                } transition-all duration-300`}
               >
                 Contact Us
               </Button>
@@ -149,7 +183,11 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-neutral-800 hover:text-primary"
+              className={`${
+                isHeroSection && !isScrolled 
+                  ? 'text-white hover:bg-white/10' 
+                  : 'text-neutral-800 hover:text-primary'
+              } transition-colors duration-300`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
