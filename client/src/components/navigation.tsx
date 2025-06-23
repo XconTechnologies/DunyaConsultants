@@ -152,12 +152,24 @@ export default function Navigation() {
       icon: Building2,
       sections: [
         {
-          title: "Find Our Offices",
+          title: "Pakistan Offices",
           icon: MapPin,
           items: [
-            { name: "Find a Branch", href: "/offices/branches", description: "Interactive map & city list" },
-            { name: "Contact Details", href: "/offices/contact", description: "Phone numbers & addresses" },
-            { name: "Google Maps Integration", href: "/offices/maps", description: "Directions & locations" }
+            { name: "Lahore (DHA & Johar Town)", href: "/offices/lahore", description: "2 locations in Lahore" },
+            { name: "Sargodha (Head Office)", href: "/offices/sargodha", description: "Main headquarters" },
+            { name: "Islamabad", href: "/offices/islamabad", description: "Blue Area location" },
+            { name: "Karachi (DHA)", href: "/offices/karachi", description: "Prime Point Building" },
+            { name: "Faisalabad", href: "/offices/faisalabad", description: "Centre Point Plaza" },
+            { name: "All Branches", href: "/offices/all", description: "Complete office list" }
+          ]
+        },
+        {
+          title: "International Offices",
+          icon: Globe,
+          items: [
+            { name: "Jeddah, Saudi Arabia", href: "/offices/jeddah", description: "Engineering Square" },
+            { name: "Istanbul, Turkey", href: "/offices/istanbul", description: "Ataköy Towers" },
+            { name: "Edinburgh, UK", href: "/offices/edinburgh", description: "Ferry Road Place" }
           ]
         },
         {
@@ -165,13 +177,14 @@ export default function Navigation() {
           icon: Calendar,
           items: [
             { name: "Appointment Booking", href: "/offices/booking", description: "Schedule your consultation" },
-            { name: "Office Timings", href: "/offices/hours", description: "Working hours & holidays" }
+            { name: "Office Timings", href: "/offices/hours", description: "Mon-Sat: 10 AM-6 PM" },
+            { name: "Google Maps", href: "/offices/maps", description: "Directions & locations" }
           ]
         }
       ],
       featured: {
-        title: "17+ Offices Nationwide",
-        description: "Visit us for personalized guidance",
+        title: "15+ Offices Worldwide",
+        description: "Pakistan, Saudi Arabia, Turkey & UK",
         cta: "Find Nearest",
         href: "/offices"
       }
