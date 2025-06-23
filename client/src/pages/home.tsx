@@ -1,6 +1,7 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import AudienceSectionNew from "@/components/audience-section-new";
+import DocumentChecklistGenerator from "@/components/document-checklist-generator";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
 import StatsBanner from "@/components/stats-banner";
@@ -16,6 +17,7 @@ export default function Home() {
       <Navigation />
       <StatsBanner />
       <AudienceSectionNew />
+      <DocumentChecklistGenerator />
       <IeltsSection />
       <CountriesSection />
       <UniversityPartnersSection />
