@@ -146,18 +146,7 @@ export default function Navigation() {
                       {item.name}
                     </button>
                   </Link>
-                ) : (
-                  <button
-                    onClick={() => scrollToSection(item.id)}
-                    className={`${
-                      isHeroSection && !isScrolled 
-                        ? 'text-white hover:text-white/80' 
-                        : 'text-neutral-800 hover:text-primary'
-                    } transition-colors duration-200 font-medium`}
-                  >
-                    {item.name}
-                  </button>
-                )}
+                ) : null}
               </motion.div>
             ))}
             <motion.div
@@ -231,14 +220,7 @@ export default function Navigation() {
                         {item.name}
                       </button>
                     </Link>
-                  ) : (
-                    <button
-                      onClick={() => scrollToSection(item.id)}
-                      className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-medium py-2"
-                    >
-                      {item.name}
-                    </button>
-                  )}
+                  ) : null}
                 </div>
               ))}
               <Button 
