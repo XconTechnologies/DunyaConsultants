@@ -49,7 +49,15 @@ import halicUniversityLogo from "@assets/Halic-University-15-2048x879_1750756910
 import labUniversityLogo from "@assets/lab-logo_1750756910277.jpg";
 import teessideUniversityLogo from "@assets/Teesside-University-logo_1750756910279.jpg";
 
-// University partners data - all 42 universities
+// Import additional university logos - batch 5 (6 logos)
+import leedsTrinityLogo from "@assets/Uni-Logos-2-01_1750757117512.jpg";
+import gismaUniversityLogo from "@assets/Uni-Logos-2-04-1_1750757117514.jpg";
+import fanshaweCollegeLogo from "@assets/Uni-Logos-2-06-1_1750757117515.jpg";
+import angliRuskinLogo from "@assets/191782_191241_ARU_Logo_Descriptor_RGB_Blue3_1750757117517.jpg";
+import ucaLogo from "@assets/Artboard-1-copy-3-2_1750757117518.jpg";
+import websterUniversityNewLogo from "@assets/Artboard-1-copy-4_1750757117520.jpg";
+
+// University partners data - all 48 universities
 const universityPartners = [
   { name: "Southampton Solent University", country: "UK", logoUrl: southamptonSolentLogo },
   { name: "University of South Wales", country: "Wales", logoUrl: southWalesUniversityLogo },
@@ -90,7 +98,13 @@ const universityPartners = [
   { name: "Eton College", country: "UK", logoUrl: etonCollegeLogo },
   { name: "Halic University", country: "Turkey", logoUrl: halicUniversityLogo },
   { name: "LAB University of Applied Sciences", country: "Finland", logoUrl: labUniversityLogo },
-  { name: "Teesside University", country: "UK", logoUrl: teessideUniversityLogo }
+  { name: "Teesside University", country: "UK", logoUrl: teessideUniversityLogo },
+  { name: "Leeds Trinity University", country: "UK", logoUrl: leedsTrinityLogo },
+  { name: "Gisma University of Applied Sciences", country: "Germany", logoUrl: gismaUniversityLogo },
+  { name: "Fanshawe College", country: "Canada", logoUrl: fanshaweCollegeLogo },
+  { name: "Anglia Ruskin University", country: "UK", logoUrl: angliRuskinLogo },
+  { name: "University for the Creative Arts", country: "UK", logoUrl: ucaLogo },
+  { name: "Webster University", country: "USA", logoUrl: websterUniversityNewLogo }
 ];
 
 export default function UniversityPartnersSection() {
@@ -125,7 +139,7 @@ export default function UniversityPartnersSection() {
           </p>
         </motion.div>
 
-        {/* Expanded 11-Row Logo Grid for 42 Universities */}
+        {/* Expanded 12-Row Logo Grid for 48 Universities */}
         <motion.div
           className="relative mb-16 bg-white rounded-2xl shadow-xl p-8"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -142,14 +156,14 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(0, 4).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -165,14 +179,14 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(4, 8).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -188,14 +202,14 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(8, 12).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -211,14 +225,14 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(12, 16).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -234,14 +248,14 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(16, 20).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -257,14 +271,14 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(20, 24).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -280,14 +294,14 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(24, 28).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -303,14 +317,14 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(28, 32).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -326,14 +340,14 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(32, 36).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -349,37 +363,60 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(36, 40).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Row 11 - Last 2 logos centered */}
+          {/* Row 11 - Next 4 logos */}
           <motion.div
-            className="grid grid-cols-2 gap-4 max-w-md mx-auto"
+            className="grid grid-cols-4 gap-4 mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 1.3 }}
           >
-            {universityPartners.slice(40, 42).map((university, index) => (
+            {universityPartners.slice(40, 44).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Row 12 - Last 4 logos */}
+          <motion.div
+            className="grid grid-cols-4 gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 1.4 }}
+          >
+            {universityPartners.slice(44, 48).map((university, index) => (
+              <motion.div
+                key={index}
+                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src={university.logoUrl}
+                  alt={`${university.name} logo`}
+                  className="h-16 w-32 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -394,11 +431,11 @@ export default function UniversityPartnersSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <div className="text-center bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-primary mb-2">400+</div>
+            <div className="text-3xl font-bold text-primary mb-2">450+</div>
             <div className="text-sm text-gray-600">Universities</div>
           </div>
           <div className="text-center bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-primary mb-2">30+</div>
+            <div className="text-3xl font-bold text-primary mb-2">35+</div>
             <div className="text-sm text-gray-600">Countries</div>
           </div>
           <div className="text-center bg-white rounded-xl p-6 shadow-lg">
