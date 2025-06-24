@@ -24,8 +24,10 @@ export default function EngagementTracker({ children }: EngagementTrackerProps) 
 
   // Track engagement mutation
   const trackEngagementMutation = useMutation({
-    mutationFn: (data: InsertUserEngagement) => 
-      apiRequest('POST', '/api/engagement/track', data),
+    mutationFn: async (data: InsertUserEngagement) => {
+      const res = await apiRequest('POST', '/api/engagement/track', data);
+      return res.json();
+    },
     onSuccess: () => {
       // Invalidate and refetch user stats
       queryClient.invalidateQueries({ queryKey: ['user-stats', sessionId] });

@@ -12,15 +12,19 @@ export default function AchievementNotification() {
   const [lastCheck, setLastCheck] = useState<Date>(new Date());
   const sessionId = getSessionId();
 
-  const { data: achievements = [] } = useQuery<Achievement[]>({
+  const { data: achievements } = useQuery<Achievement[]>({
     queryKey: ['user-achievements', sessionId],
-    queryFn: () => apiRequest('GET', `/api/engagement/achievements/${sessionId}`),
+    queryFn: async () => {
+      const res = await apiRequest('GET', `/api/engagement/achievements/${sessionId}`);
+      return res.json();
+    },
     refetchInterval: 5000, // Check for new achievements every 5 seconds
   });
 
   // Check for new achievements
   useEffect(() => {
-    const newAchievements = (achievements || []).filter(
+    const achievementsArray = Array.isArray(achievements) ? achievements : [];
+    const newAchievements = achievementsArray.filter(
       achievement => new Date(achievement.unlockedAt) > lastCheck
     );
     

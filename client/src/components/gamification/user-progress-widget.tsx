@@ -15,18 +15,25 @@ export default function UserProgressWidget() {
 
   const { data: userStats } = useQuery<UserStats>({
     queryKey: ['user-stats', sessionId],
-    queryFn: () => apiRequest('GET', `/api/engagement/stats/${sessionId}`),
+    queryFn: async () => {
+      const res = await apiRequest('GET', `/api/engagement/stats/${sessionId}`);
+      return res.json();
+    },
   });
 
-  const { data: achievements = [] } = useQuery<Achievement[]>({
+  const { data: achievements } = useQuery<Achievement[]>({
     queryKey: ['user-achievements', sessionId],
-    queryFn: () => apiRequest('GET', `/api/engagement/achievements/${sessionId}`),
+    queryFn: async () => {
+      const res = await apiRequest('GET', `/api/engagement/achievements/${sessionId}`);
+      return res.json();
+    },
   });
 
   if (!userStats) return null;
 
   const progressToNextLevel = ((userStats.totalPoints % 100) / 100) * 100;
-  const recentAchievements = (achievements || []).slice(-3);
+  const achievementsArray = Array.isArray(achievements) ? achievements : [];
+  const recentAchievements = achievementsArray.slice(-3);
 
   return (
     <motion.div
@@ -56,7 +63,7 @@ export default function UserProgressWidget() {
             
             {/* Recent badges preview */}
             <div className="flex -space-x-2">
-              {recentAchievements.slice(0, 2).map((achievement) => (
+              {achievementsArray.slice(0, 2).map((achievement) => (
                 <div key={achievement.id} className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-xs border-2 border-white/30">
                   {achievement.icon}
                 </div>

@@ -32,19 +32,26 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const sessionId = getSessionId();
 
-  const { data: achievements = [] } = useQuery<Achievement[]>({
+  const { data: achievements } = useQuery<Achievement[]>({
     queryKey: ['user-achievements', sessionId],
-    queryFn: () => apiRequest('GET', `/api/engagement/achievements/${sessionId}`),
+    queryFn: async () => {
+      const res = await apiRequest('GET', `/api/engagement/achievements/${sessionId}`);
+      return res.json();
+    },
   });
 
   const { data: userStats } = useQuery<UserStats>({
     queryKey: ['user-stats', sessionId],
-    queryFn: () => apiRequest('GET', `/api/engagement/stats/${sessionId}`),
+    queryFn: async () => {
+      const res = await apiRequest('GET', `/api/engagement/stats/${sessionId}`);
+      return res.json();
+    },
   });
 
   if (!isOpen) return null;
 
-  const groupedAchievements = (achievements || []).reduce((acc, achievement) => {
+  const achievementsArray = Array.isArray(achievements) ? achievements : [];
+  const groupedAchievements = achievementsArray.reduce((acc, achievement) => {
     if (!acc[achievement.badgeType]) {
       acc[achievement.badgeType] = [];
     }
@@ -55,7 +62,7 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
   const categories = Object.keys(categoryIcons);
   const filteredAchievements = selectedCategory 
     ? groupedAchievements[selectedCategory] || []
-    : achievements || [];
+    : achievementsArray;
 
   return (
     <AnimatePresence>
@@ -79,7 +86,7 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
               <div>
                 <h2 className="text-3xl font-bold">Achievement Gallery</h2>
                 <p className="text-blue-100 mt-1">
-                  {(achievements || []).length} badges earned • Level {userStats?.level || 1}
+                  {achievementsArray.length} badges earned • Level {userStats?.level || 1}
                 </p>
               </div>
               <button
