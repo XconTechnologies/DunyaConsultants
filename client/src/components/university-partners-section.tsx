@@ -1,93 +1,37 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
-// Import authentic university logos
-import etonCollegeLogo from "@assets/download-1_1750752090669.webp";
-import southernCrossLogo from "@assets/Uni-Logos-3-15-1-2048x879_1750752090670.webp";
-import skillsAustraliaLogo from "@assets/Uni-Logos-3-22-2048x878_1750752090670.webp";
-import universityAppliedSciencesLogo from "@assets/Uni-Logos-3-14-2048x878_1750752090671.webp";
-import ibatCollegeLogo from "@assets/Uni-Logos-3-20-2048x878_1750752090672.webp";
-import gbsLogo from "@assets/Uni-Logos-3-05-2048x879_1750752090672.webp";
-import collegeParisLogo from "@assets/Uni-Logos-3-09-2048x879_1750752090673.webp";
-import gismaUniversityLogo from "@assets/Uni-Logos-2-04-1_1750752090673.webp";
-import ardenUniversityLogo from "@assets/Uni-Logos-3-17-2048x879_1750752090674.webp";
-import universityEuropeLogo from "@assets/Artboard-1-copy-42_1750752090674.webp";
-import bsbiLogo from "@assets/Uni-Logos-3-16-2048x878_1750752090675.webp";
-import labLogo from "@assets/lab-logo_1750752090675.webp";
-import limCollegeLogo from "@assets/Uni-Logos-3-11-2048x879_1750752378811.webp";
-import websterUniversityLogo from "@assets/Artboard-1-copy-4_1750752378812.webp";
-import qaPartnershipLogo from "@assets/Untitled design (14)_1750752416711.png";
-import hartpuryUniversityLogo from "@assets/download_1750752416712.webp";
-import ulsterUniversityLogo from "@assets/IMG-20250425-WA0015_1750752416712.webp";
-import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750752416713.webp";
-import southWalesUniversityLogo from "@assets/IMG-20250425-WA0017_1750752416714.webp";
+// Import new authentic university logos
+import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750754671288.jpg";
+import southWalesUniversityLogo from "@assets/IMG-20250425-WA0017_1750754671290.jpg";
+import qaPartnershipLogo from "@assets/Untitled design (14)_1750754671291.jpg";
+import ulsterUniversityLogo from "@assets/IMG-20250425-WA0015_1750754671292.jpg";
+import universityAppliedSciencesLogo from "@assets/Uni-Logos-3-14-2048x878_1750754671293.jpg";
+import southernCrossLogo from "@assets/Uni-Logos-3-15-1-2048x879_1750754671294.jpg";
+import bsbiLogo from "@assets/Uni-Logos-3-16-2048x878_1750754671295.jpg";
+import ardenUniversityLogo from "@assets/Uni-Logos-3-17-2048x879_1750754671296.jpg";
+import avilaUniversityLogo from "@assets/Uni-Logos-3-18-2048x878_1750754671297.jpg";
+import ibatCollegeLogo from "@assets/Uni-Logos-3-20-2048x878_1750754671298.jpg";
+import skillsAustraliaLogo from "@assets/Uni-Logos-3-22-2048x878_1750754671299.jpg";
+import canterburyChristChurchLogo from "@assets/Uni-Logos-10_1750754671300.jpg";
 
-// University partners data with authentic logos
+// University partners data with new authentic logos
 const universityPartners = [
-  // Authentic Partner Universities
-  { name: "Eton College", country: "UK", logoUrl: etonCollegeLogo, ranking: "Premier" },
-  { name: "Southern Cross Institute", country: "Australia", logoUrl: southernCrossLogo, ranking: "Top 10" },
-  { name: "Skills Australia Institute", country: "Australia", logoUrl: skillsAustraliaLogo, ranking: "Leading" },
-  { name: "University of Applied Sciences Europe", country: "Germany", logoUrl: universityAppliedSciencesLogo, ranking: "Top 20" },
-  { name: "IBAT College Dublin", country: "Ireland", logoUrl: ibatCollegeLogo, ranking: "Prestigious" },
-  { name: "GBS Global Applied Knowledge", country: "UK", logoUrl: gbsLogo, ranking: "Excellence" },
-  { name: "College de Paris", country: "France", logoUrl: collegeParisLogo, ranking: "Elite" },
-  { name: "Gisma University of Applied Sciences", country: "Germany", logoUrl: gismaUniversityLogo, ranking: "Top 15" },
-  { name: "Arden University Berlin", country: "Germany", logoUrl: ardenUniversityLogo, ranking: "Innovative" },
-  { name: "University of Europe", country: "Germany", logoUrl: universityEuropeLogo, ranking: "Leading" },
-  { name: "Berlin School of Business & Innovation", country: "Germany", logoUrl: bsbiLogo, ranking: "Premier" },
-  { name: "LAB University", country: "Finland", logoUrl: labLogo, ranking: "Excellence" },
-  { name: "LIM College - Business of Fashion & Lifestyle", country: "USA", logoUrl: limCollegeLogo, ranking: "Specialized" },
-  { name: "Webster University", country: "USA", logoUrl: websterUniversityLogo, ranking: "Global" },
-  { name: "QA Partnership", country: "UK", logoUrl: qaPartnershipLogo, ranking: "Partnership" },
-  { name: "Hartpury University and College", country: "UK", logoUrl: hartpuryUniversityLogo, ranking: "Specialized" },
-  { name: "Ulster University", country: "UK", logoUrl: ulsterUniversityLogo, ranking: "Research" },
   { name: "Southampton Solent University", country: "UK", logoUrl: southamptonSolentLogo, ranking: "Modern" },
   { name: "University of South Wales", country: "Wales", logoUrl: southWalesUniversityLogo, ranking: "Innovation" },
-  
-  // Additional top universities
-  { name: "Harvard University", country: "USA", logoUrl: null, ranking: "#1" },
-  { name: "Stanford University", country: "USA", logoUrl: null, ranking: "#2" },
-  { name: "MIT", country: "USA", logoUrl: null, ranking: "#3" },
-  { name: "University of Oxford", country: "UK", logoUrl: null, ranking: "#1 UK" },
-  { name: "University of Cambridge", country: "UK", logoUrl: null, ranking: "#2 UK" },
-  { name: "University of Toronto", country: "Canada", logoUrl: null, ranking: "#1 CA" },
-  { name: "University of British Columbia", country: "Canada", logoUrl: null, ranking: "#2 CA" },
-  { name: "McGill University", country: "Canada", logoUrl: null, ranking: "#3 CA" },
-  { name: "Australian National University", country: "Australia", logoUrl: null, ranking: "#1 AU" },
-  { name: "University of Melbourne", country: "Australia", logoUrl: null, ranking: "#2 AU" },
-  { name: "University of Sydney", country: "Australia", logoUrl: null, ranking: "#3 AU" },
-  { name: "Technical University of Munich", country: "Germany", logoUrl: null, ranking: "#1 DE" },
-  { name: "LMU Munich", country: "Germany", logoUrl: null, ranking: "#2 DE" },
-  { name: "ETH Zurich", country: "Switzerland", logoUrl: null, ranking: "#1 CH" },
-  { name: "National University of Singapore", country: "Singapore", logoUrl: null, ranking: "#1 SG" },
+  { name: "QA Partnership", country: "UK", logoUrl: qaPartnershipLogo, ranking: "Partnership" },
+  { name: "Ulster University", country: "UK", logoUrl: ulsterUniversityLogo, ranking: "Research" },
+  { name: "University of Applied Sciences Europe", country: "Netherlands", logoUrl: universityAppliedSciencesLogo, ranking: "Top 20" },
+  { name: "Southern Cross Institute", country: "Australia", logoUrl: southernCrossLogo, ranking: "Top 10" },
+  { name: "Berlin School of Business & Innovation", country: "Germany", logoUrl: bsbiLogo, ranking: "Premier" },
+  { name: "Arden University Berlin", country: "Germany", logoUrl: ardenUniversityLogo, ranking: "Innovative" },
+  { name: "Avila University", country: "USA", logoUrl: avilaUniversityLogo, ranking: "Excellence" },
+  { name: "IBAT College Dublin", country: "Ireland", logoUrl: ibatCollegeLogo, ranking: "Prestigious" },
+  { name: "Skills Australia Institute", country: "Australia", logoUrl: skillsAustraliaLogo, ranking: "Leading" },
+  { name: "Canterbury Christ Church University", country: "UK", logoUrl: canterburyChristChurchLogo, ranking: "Community" }
 ];
 
-// Generate more universities to reach 250+
-const generateMoreUniversities = () => {
-  const additionalUniversities = [];
-  const countries = ["USA", "UK", "Canada", "Australia", "Germany", "France", "Netherlands", "Sweden", "Italy", "Spain"];
-  const prefixes = ["Royal", "National", "State", "Technical", "Metropolitan", "Central", "International", "Global"];
-  const suffixes = ["University", "Institute", "College", "Academy", "School"];
-  
-  for (let i = 0; i < 180; i++) {
-    const country = countries[i % countries.length];
-    const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-    const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
-    const cityNames = ["Victoria", "Cambridge", "Oxford", "Berlin", "Paris", "Rome", "Madrid", "Vienna", "Prague", "Dublin"];
-    const city = cityNames[Math.floor(Math.random() * cityNames.length)];
-    
-    additionalUniversities.push({
-      name: `${prefix} ${suffix} of ${city}`,
-      country,
-      logoUrl: `/logos/university-${i + 11}.webp`,
-      ranking: `#${i + 11}`
-    });
-  }
-  return additionalUniversities;
-};
-
-const allUniversities = [...universityPartners, ...generateMoreUniversities()];
+const allUniversities = universityPartners;
 
 export default function UniversityPartnersSection() {
   const ref = useRef(null);
