@@ -168,6 +168,7 @@ The application uses three main tables:
 - **June 24, 2025 - Micro-Interaction Hover Tooltips**: Implemented comprehensive educational tooltip system using Radix UI with custom EducationalTooltip component. Added interactive hover tooltips to statistics cards in hero section and IELTS features with detailed explanations, categorized by type (educational, process, achievement, location, statistic, info), and smooth animations. Enhanced user experience with contextual information on hover.
 - **June 24, 2025 - Statistics Text Size Reduction**: Significantly reduced font sizes in hero section statistics - numbers from text-4xl/5xl/6xl to text-lg/xl/2xl, labels from text-base/lg/xl to text-xs/sm, and minimized spacing for very compact appearance.
 - **June 24, 2025 - Office Locations Section Cleanup**: Removed description paragraph and statistics section (17+ Offices, 15+ Cities, 200+ Expert Staff, 10K+ Students Served) from office locations section for cleaner, more focused presentation.
+- **June 24, 2025 - Compact Office Layout with Auto-Slide**: Redesigned office locations with compact layout showing 4 offices per row on desktop, reduced card padding and font sizes, implemented auto-sliding functionality (4-second intervals), added hover pause/resume functionality, and enhanced responsive breakpoints for better mobile experience.
 
 ## Changelog
 

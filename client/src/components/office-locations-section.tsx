@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { MapPin, Phone, Clock, ArrowLeft, ArrowRight, Building2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -174,16 +174,19 @@ const offices: Office[] = [
 
 export default function OfficeLocationsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardsPerView, setCardsPerView] = useState(3);
+  const [cardsPerView, setCardsPerView] = useState(4);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const updateCardsPerView = () => {
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 640) {
         setCardsPerView(1);
-      } else if (window.innerWidth < 1024) {
+      } else if (window.innerWidth < 768) {
         setCardsPerView(2);
-      } else {
+      } else if (window.innerWidth < 1024) {
         setCardsPerView(3);
+      } else {
+        setCardsPerView(4);
       }
     };
 
@@ -191,6 +194,42 @@ export default function OfficeLocationsSection() {
     window.addEventListener('resize', updateCardsPerView);
     return () => window.removeEventListener('resize', updateCardsPerView);
   }, []);
+
+  // Auto-slide functionality
+  useEffect(() => {
+    const startAutoSlide = () => {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex(prevIndex => {
+          const maxIndex = offices.length - cardsPerView;
+          return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+        });
+      }, 4000); // Change slide every 4 seconds
+    };
+
+    startAutoSlide();
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [cardsPerView, offices.length]);
+
+  // Pause auto-slide on hover
+  const pauseAutoSlide = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+  };
+
+  const resumeAutoSlide = () => {
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex(prevIndex => {
+        const maxIndex = offices.length - cardsPerView;
+        return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+      });
+    }, 4000);
+  };
 
   // Auto-slide functionality
   useEffect(() => {
@@ -274,7 +313,11 @@ export default function OfficeLocationsSection() {
           </div>
 
           {/* Office Cards */}
-          <div className="overflow-hidden rounded-2xl">
+          <div 
+            className="overflow-hidden rounded-2xl"
+            onMouseEnter={pauseAutoSlide}
+            onMouseLeave={resumeAutoSlide}
+          >
             <motion.div
               className="flex transition-transform duration-500 ease-in-out"
               style={{
@@ -284,70 +327,74 @@ export default function OfficeLocationsSection() {
               {offices.map((office, index) => (
                 <motion.div
                   key={office.id}
-                  className={`flex-shrink-0 px-4 ${
-                    cardsPerView === 1 ? 'w-full' : cardsPerView === 2 ? 'w-1/2' : 'w-1/3'
+                  className={`flex-shrink-0 px-2 ${
+                    cardsPerView === 1 ? 'w-full' : 
+                    cardsPerView === 2 ? 'w-1/2' : 
+                    cardsPerView === 3 ? 'w-1/3' : 'w-1/4'
                   }`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: (index % cardsPerView) * 0.1 }}
                 >
-                  <Card className="h-full shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden border-0 bg-white group hover:scale-105">
-                    <div className={`h-2 bg-gradient-to-r ${office.gradient}`}></div>
-                    <CardContent className="p-8">
-                      {/* Header */}
-                      <div className="flex items-start justify-between mb-6">
-                        <div>
-                          <div className="flex items-center space-x-2 mb-2">
-                            <h3 className="text-2xl font-bold text-gray-800">{office.city}</h3>
+                  <Card className="h-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-0 bg-white group hover:scale-105">
+                    <div className={`h-1.5 bg-gradient-to-r ${office.gradient}`}></div>
+                    <CardContent className="p-4">
+                      {/* Header - Compact */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center space-x-1 mb-1">
+                            <h3 className="text-lg font-bold text-gray-800 truncate">{office.city}</h3>
                             {office.isHeadOffice && (
-                              <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs px-3 py-1 rounded-full font-semibold">
-                                Head Office
+                              <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0">
+                                HQ
                               </span>
                             )}
                           </div>
-                          <p className="text-lg font-medium text-gray-600">{office.name}</p>
+                          <p className="text-sm font-medium text-gray-600 truncate">{office.name}</p>
                         </div>
-                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${office.gradient} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                          <Building2 className="w-8 h-8 text-white" />
+                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${office.gradient} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2`}>
+                          <Building2 className="w-6 h-6 text-white" />
                         </div>
                       </div>
 
-                      {/* Office Details */}
-                      <div className="space-y-4 mb-6">
-                        <div className="flex items-start space-x-3">
-                          <MapPin className="w-5 h-5 text-gray-400 mt-1 flex-shrink-0" />
-                          <p className="text-gray-600 leading-relaxed">{office.address}</p>
+                      {/* Office Details - Compact */}
+                      <div className="space-y-2 mb-4">
+                        <div className="flex items-start space-x-2">
+                          <MapPin className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                          <p className="text-xs text-gray-600 leading-relaxed line-clamp-2">{office.address}</p>
                         </div>
                         
-                        <div className="flex items-center space-x-3">
-                          <Phone className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                        <div className="flex items-center space-x-2">
+                          <Phone className="w-4 h-4 text-gray-400 flex-shrink-0" />
                           <a 
                             href={`tel:${office.phone}`}
-                            className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200"
+                            className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200 text-xs truncate"
                           >
                             {office.phone}
                           </a>
                         </div>
                         
-                        <div className="flex items-center space-x-3">
-                          <Clock className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                          <p className="text-gray-600">{office.hours}</p>
+                        <div className="flex items-center space-x-2">
+                          <Clock className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                          <p className="text-xs text-gray-600 truncate">{office.hours}</p>
                         </div>
                       </div>
 
-                      {/* Action Buttons */}
-                      <div className="flex space-x-3">
+                      {/* Action Buttons - Compact */}
+                      <div className="flex space-x-2">
                         <Button 
-                          className={`flex-1 bg-gradient-to-r ${office.gradient} hover:opacity-90 text-white font-semibold shadow-lg`}
+                          size="sm"
+                          className={`flex-1 bg-gradient-to-r ${office.gradient} hover:opacity-90 text-white font-medium shadow-md text-xs`}
                         >
-                          <Phone className="w-4 h-4 mr-2" />
-                          Call Now
+                          <Phone className="w-3 h-3 mr-1" />
+                          Call
                         </Button>
                         <Button 
                           variant="outline" 
-                          className="flex-1 border-2 hover:bg-gray-50 font-semibold"
+                          size="sm"
+                          className="flex-1 border hover:bg-gray-50 font-medium text-xs"
                         >
-                          Get Directions
+                          Directions
                         </Button>
                       </div>
                     </CardContent>
