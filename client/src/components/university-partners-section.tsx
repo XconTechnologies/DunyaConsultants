@@ -115,9 +115,339 @@ export default function UniversityPartnersSection() {
           </p>
         </motion.div>
 
+        {/* University Logos Grid */}
+        <motion.div
+          className="bg-white rounded-3xl shadow-2xl p-8"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+            {/* Anglia Ruskin University */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/191782_191241_ARU_Logo_Descriptor_RGB_Blue3_1750753802260.webp"
+                    alt="Anglia Ruskin University logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  Anglia Ruskin University
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
+                    UK
+                  </span>
+                </div>
+              </div>
+            </motion.div>
 
+            {/* University for the Creative Arts */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/Artboard-1-copy-3-2_1750753802261.webp"
+                    alt="University for the Creative Arts logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  University for the Creative Arts
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
+                    UK
+                  </span>
+                </div>
+              </div>
+            </motion.div>
 
-        
+            {/* Webster University */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/Artboard-1-copy-4_1750753802263.webp"
+                    alt="Webster University logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  Webster University
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-red-100 text-red-700 px-2 py-1 rounded-full text-xs">
+                    USA
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* IC University of Applied Sciences */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/Artboard-1-copy-5_1750753802264.webp"
+                    alt="IC University of Applied Sciences logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  IC University of Applied Sciences
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-full text-xs">
+                    Netherlands
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Beykoz University */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/Artboard-1-copy-14-2_1750753802265.webp"
+                    alt="Beykoz University logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  Beykoz University
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs">
+                    Turkey
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Capilano University */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/Artboard-1-copy-19-3_1750753802266.webp"
+                    alt="Capilano University logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  Capilano University
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">
+                    Canada
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* LUT University */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/Artboard-1-copy-31-2_1750753802267.webp"
+                    alt="LUT University logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  LUT University
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full text-xs">
+                    Finland
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* University of Niagara Falls */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.8 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/Artboard-1-copy-41-1_1750753802269.webp"
+                    alt="University of Niagara Falls logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  University of Niagara Falls
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">
+                    Canada
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* University of Europe */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.9 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/Artboard-1-copy-42_1750753802270.webp"
+                    alt="University of Europe logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  University of Europe
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full text-xs">
+                    Germany
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* University of East Anglia */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.0 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/download_1750753802272.webp"
+                    alt="University of East Anglia logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  University of East Anglia
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
+                    UK
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Eton College */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.1 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/download-1_1750753802274.webp"
+                    alt="Eton College logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  Eton College
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
+                    UK
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Halic University */}
+            <motion.div
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+            >
+              <div className="text-center">
+                <div className="h-16 mb-3 flex items-center justify-center">
+                  <img 
+                    src="/attached_assets/Halic-University-15-2048x879_1750753802275.webp"
+                    alt="Halic University logo"
+                    className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                  />
+                </div>
+                <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                  Halic University
+                </h3>
+                <div className="flex justify-center">
+                  <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded-full text-xs">
+                    Turkey
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
 
         {/* Call to Action */}
         <motion.div
