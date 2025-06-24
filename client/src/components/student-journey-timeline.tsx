@@ -119,73 +119,118 @@ export default function StudentJourneyTimeline() {
           </motion.p>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gradient-to-b from-blue-500 to-purple-500"></div>
-
-          {/* Timeline Steps */}
-          <div className="space-y-12">
+        {/* Horizontal Timeline */}
+        <div className="relative overflow-x-auto pb-8">
+          {/* Timeline Container */}
+          <div className="flex items-start space-x-8 min-w-max px-4">
             {journeySteps.map((step, index) => (
               <motion.div
                 key={step.id}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-                }`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="flex flex-col items-center relative"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                {/* Content Card */}
-                <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8' : 'pl-8'}`}>
-                  <motion.div
-                    className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100"
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="flex items-center mb-4">
-                      <div className={`${step.color} p-3 rounded-full text-white mr-4`}>
-                        <step.icon className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
-                        <span className="text-sm text-blue-600 font-medium">{step.duration}</span>
-                      </div>
+                {/* Step Card */}
+                <motion.div
+                  className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 w-80 mb-6"
+                  whileHover={{ scale: 1.02, y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Step Header */}
+                  <div className="flex items-center mb-4">
+                    <div className={`${step.color} p-3 rounded-full text-white mr-4 flex-shrink-0`}>
+                      <step.icon className="w-6 h-6" />
                     </div>
-                    <p className="text-gray-600 mb-4">{step.description}</p>
-                    
-                    {/* Deliverables */}
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-gray-800 text-sm">Key Deliverables:</h4>
-                      <div className="grid grid-cols-2 gap-2">
-                        {step.deliverables.map((item, idx) => (
-                          <div key={idx} className="flex items-center text-sm text-gray-600">
-                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></div>
-                            {item}
-                          </div>
-                        ))}
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-sm font-bold text-gray-500">STEP {step.id}</span>
+                        <span className="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded-full">
+                          {step.duration}
+                        </span>
                       </div>
+                      <h3 className="text-lg font-bold text-gray-900 leading-tight">{step.title}</h3>
                     </div>
-                  </motion.div>
-                </div>
+                  </div>
 
-                {/* Timeline Node */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                  {/* Description */}
+                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">{step.description}</p>
+                  
+                  {/* Deliverables */}
+                  <div className="space-y-2">
+                    <h4 className="font-semibold text-gray-800 text-xs uppercase tracking-wide">Key Deliverables:</h4>
+                    <div className="space-y-1">
+                      {step.deliverables.map((item, idx) => (
+                        <div key={idx} className="flex items-center text-xs text-gray-600">
+                          <div className={`w-1.5 h-1.5 rounded-full mr-2 ${step.color.replace('bg-', 'bg-')}`}></div>
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Timeline Connection */}
+                {index < journeySteps.length - 1 && (
                   <motion.div
-                    className={`${step.color} w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg border-4 border-white`}
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : { scale: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-                  >
-                    <span className="font-bold text-sm">{step.id}</span>
-                  </motion.div>
-                </div>
+                    className="absolute -right-4 top-16 w-8 h-0.5 bg-gradient-to-r from-blue-300 to-purple-300 z-10"
+                    initial={{ scaleX: 0 }}
+                    animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+                    transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
+                    style={{ transformOrigin: 'left' }}
+                  />
+                )}
 
-                {/* Empty space for the other side */}
-                <div className="w-5/12"></div>
+                {/* Step Number Circle */}
+                <motion.div
+                  className={`${step.color} w-16 h-16 rounded-full flex items-center justify-center text-white shadow-lg border-4 border-white relative z-20`}
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 + 0.2, type: "spring", stiffness: 200 }}
+                >
+                  <span className="font-bold text-lg">{step.id}</span>
+                </motion.div>
+
+                {/* Progress Line */}
+                {index < journeySteps.length - 1 && (
+                  <motion.div
+                    className="absolute top-8 -right-4 w-8 h-1 bg-gradient-to-r from-blue-400 to-purple-400"
+                    initial={{ scaleX: 0 }}
+                    animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+                    transition={{ duration: 0.8, delay: index * 0.1 + 0.5 }}
+                    style={{ transformOrigin: 'left' }}
+                  />
+                )}
               </motion.div>
             ))}
           </div>
+
+          {/* Progress Overview */}
+          <motion.div
+            className="mt-12 bg-white rounded-xl shadow-lg p-6 border border-gray-100"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+              <div>
+                <div className="text-2xl font-bold text-blue-600">8</div>
+                <div className="text-sm text-gray-600">Total Steps</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-purple-600">6-12</div>
+                <div className="text-sm text-gray-600">Months Duration</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-green-600">98%</div>
+                <div className="text-sm text-gray-600">Success Rate</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-orange-600">24/7</div>
+                <div className="text-sm text-gray-600">Support Available</div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Call to Action */}
