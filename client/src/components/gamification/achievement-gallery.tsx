@@ -32,7 +32,7 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const sessionId = getSessionId();
 
-  const { data: achievements } = useQuery<Achievement[]>({
+  const { data: achievements = [] } = useQuery<Achievement[]>({
     queryKey: ['user-achievements', sessionId],
     queryFn: () => apiRequest('GET', `/api/engagement/achievements/${sessionId}`),
   });
@@ -44,13 +44,13 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
 
   if (!isOpen) return null;
 
-  const groupedAchievements = achievements?.reduce((acc, achievement) => {
+  const groupedAchievements = (achievements || []).reduce((acc, achievement) => {
     if (!acc[achievement.badgeType]) {
       acc[achievement.badgeType] = [];
     }
     acc[achievement.badgeType].push(achievement);
     return acc;
-  }, {} as Record<string, Achievement[]>) || {};
+  }, {} as Record<string, Achievement[]>);
 
   const categories = Object.keys(categoryIcons);
   const filteredAchievements = selectedCategory 
@@ -79,7 +79,7 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
               <div>
                 <h2 className="text-3xl font-bold">Achievement Gallery</h2>
                 <p className="text-blue-100 mt-1">
-                  {achievements?.length || 0} badges earned • Level {userStats?.level || 1}
+                  {(achievements || []).length} badges earned • Level {userStats?.level || 1}
                 </p>
               </div>
               <button

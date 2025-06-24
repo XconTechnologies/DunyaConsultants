@@ -18,7 +18,7 @@ export default function UserProgressWidget() {
     queryFn: () => apiRequest('GET', `/api/engagement/stats/${sessionId}`),
   });
 
-  const { data: achievements } = useQuery<Achievement[]>({
+  const { data: achievements = [] } = useQuery<Achievement[]>({
     queryKey: ['user-achievements', sessionId],
     queryFn: () => apiRequest('GET', `/api/engagement/achievements/${sessionId}`),
   });
@@ -26,7 +26,7 @@ export default function UserProgressWidget() {
   if (!userStats) return null;
 
   const progressToNextLevel = ((userStats.totalPoints % 100) / 100) * 100;
-  const recentAchievements = achievements?.slice(-3) || [];
+  const recentAchievements = (achievements || []).slice(-3);
 
   return (
     <motion.div
