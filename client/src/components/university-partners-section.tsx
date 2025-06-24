@@ -139,288 +139,31 @@ export default function UniversityPartnersSection() {
           </p>
         </motion.div>
 
-        {/* Expanded 12-Row Logo Grid for 48 Universities */}
+        {/* Clean 8-Row Logo Grid - 6 Logos Per Row */}
         <motion.div
-          className="relative mb-16 bg-white rounded-2xl shadow-xl p-8"
+          className="relative mb-16"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Row 1 - First 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            {universityPartners.slice(0, 4).map((university, index) => (
+          <div className="grid grid-cols-6 gap-6">
+            {universityPartners.map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                className="flex items-center justify-center p-4 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                whileHover={{ scale: 1.05, y: -5 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
+                  className="h-14 w-28 object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
-          </motion.div>
-
-          {/* Row 2 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            {universityPartners.slice(4, 8).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 3 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
-            {universityPartners.slice(8, 12).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 4 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-          >
-            {universityPartners.slice(12, 16).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 5 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-          >
-            {universityPartners.slice(16, 20).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 6 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            {universityPartners.slice(20, 24).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 7 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-          >
-            {universityPartners.slice(24, 28).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 8 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-          >
-            {universityPartners.slice(28, 32).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 9 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-          >
-            {universityPartners.slice(32, 36).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 10 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-          >
-            {universityPartners.slice(36, 40).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 11 - Next 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4 mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.3 }}
-          >
-            {universityPartners.slice(40, 44).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* Row 12 - Last 4 logos */}
-          <motion.div
-            className="grid grid-cols-4 gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 1.4 }}
-          >
-            {universityPartners.slice(44, 48).map((university, index) => (
-              <motion.div
-                key={index}
-                className="flex items-center justify-center p-2 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter drop-shadow-sm"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+          </div>
         </motion.div>
 
         {/* Statistics */}
