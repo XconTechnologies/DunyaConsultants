@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Clock, ArrowLeft, ArrowRight, Building2, Users, Search, Filter, X } from "lucide-react";
+import { MapPin, Phone, Clock, ArrowLeft, ArrowRight, Building2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 
 interface Office {
   id: string;
@@ -244,53 +242,10 @@ const offices: Office[] = [
 export default function OfficeLocationsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(4);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedRegion, setSelectedRegion] = useState('all');
-  const [selectedService, setSelectedService] = useState('all');
-  const [filteredOffices, setFilteredOffices] = useState(offices);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
 
-  // Filter and search functionality
-  useEffect(() => {
-    let filtered = offices;
 
-    // Apply search filter
-    if (searchQuery.trim()) {
-      filtered = filtered.filter(office => 
-        office.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        office.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        office.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        office.services.some(service => service.toLowerCase().includes(searchQuery.toLowerCase()))
-      );
-    }
-
-    // Apply region filter
-    if (selectedRegion !== 'all') {
-      filtered = filtered.filter(office => office.region === selectedRegion);
-    }
-
-    // Apply service filter
-    if (selectedService !== 'all') {
-      filtered = filtered.filter(office => 
-        office.services.some(service => service.toLowerCase().includes(selectedService.toLowerCase()))
-      );
-    }
-
-    setFilteredOffices(filtered);
-    setCurrentIndex(0); // Reset to first slide when filters change
-  }, [searchQuery, selectedRegion, selectedService]);
-
-  // Clear all filters
-  const clearFilters = () => {
-    setSearchQuery('');
-    setSelectedRegion('all');
-    setSelectedService('all');
-  };
-
-  // Get unique regions and services for filter options
-  const regions = ['all', ...new Set(offices.map(office => office.region))];
-  const services = ['all', ...new Set(offices.flatMap(office => office.services))];
 
   useEffect(() => {
     const updateCardsPerView = () => {
@@ -310,27 +265,25 @@ export default function OfficeLocationsSection() {
     return () => window.removeEventListener('resize', updateCardsPerView);
   }, []);
 
-  // Auto-slide functionality (only when not filtered)
+  // Auto-slide functionality
   useEffect(() => {
-    if (filteredOffices.length === offices.length) { // Only auto-slide when not filtered
-      const startAutoSlide = () => {
-        intervalRef.current = setInterval(() => {
-          setCurrentIndex(prevIndex => {
-            const maxIndex = filteredOffices.length - cardsPerView;
-            return prevIndex >= maxIndex ? 0 : prevIndex + 1;
-          });
-        }, 4000); // Change slide every 4 seconds
-      };
+    const startAutoSlide = () => {
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex(prevIndex => {
+          const maxIndex = offices.length - cardsPerView;
+          return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+        });
+      }, 4000); // Change slide every 4 seconds
+    };
 
-      startAutoSlide();
+    startAutoSlide();
 
-      return () => {
-        if (intervalRef.current) {
-          clearInterval(intervalRef.current);
-        }
-      };
-    }
-  }, [cardsPerView, filteredOffices.length, offices.length]);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [cardsPerView, offices.length]);
 
 
 
@@ -342,42 +295,38 @@ export default function OfficeLocationsSection() {
   };
 
   const resumeAutoSlide = () => {
-    if (filteredOffices.length === offices.length) { // Only resume if not filtered
-      intervalRef.current = setInterval(() => {
-        setCurrentIndex(prevIndex => {
-          const maxIndex = filteredOffices.length - cardsPerView;
-          return prevIndex >= maxIndex ? 0 : prevIndex + 1;
-        });
-      }, 4000);
-    }
+    intervalRef.current = setInterval(() => {
+      setCurrentIndex(prevIndex => {
+        const maxIndex = offices.length - cardsPerView;
+        return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+      });
+    }, 4000);
   };
 
-  // Auto-slide functionality (disabled when filtered)
+  // Auto-slide functionality
   useEffect(() => {
-    if (filteredOffices.length === offices.length) { // Only auto-slide when not filtered
-      const interval = setInterval(() => {
-        setCurrentIndex((prev) => 
-          prev + cardsPerView >= filteredOffices.length ? 0 : prev + 1
-        );
-      }, 4000);
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => 
+        prev + cardsPerView >= offices.length ? 0 : prev + 1
+      );
+    }, 4000);
 
-      return () => clearInterval(interval);
-    }
-  }, [cardsPerView, filteredOffices.length, offices.length]);
+    return () => clearInterval(interval);
+  }, [cardsPerView]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => 
-      prev + cardsPerView >= filteredOffices.length ? 0 : prev + 1
+      prev + cardsPerView >= offices.length ? 0 : prev + 1
     );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prev) => 
-      prev === 0 ? Math.max(0, filteredOffices.length - cardsPerView) : prev - 1
+      prev === 0 ? Math.max(0, offices.length - cardsPerView) : prev - 1
     );
   };
 
-  const visibleOffices = filteredOffices.slice(currentIndex, currentIndex + cardsPerView);
+  const visibleOffices = offices.slice(currentIndex, currentIndex + cardsPerView);
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
@@ -399,124 +348,7 @@ export default function OfficeLocationsSection() {
           Our Office Locations
         </motion.h2>
 
-        {/* Search and Filter Section */}
-        <motion.div
-          className="max-w-4xl mx-auto mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {/* Search Bar */}
-          <div className="relative mb-6">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <Input
-              type="text"
-              placeholder="Search by city, office, address, or services..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-4 py-3 w-full border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-0 text-gray-700"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            )}
-          </div>
 
-          {/* Filter Buttons */}
-          <div className="flex flex-wrap gap-4 justify-center mb-6">
-            {/* Region Filter */}
-            <div className="flex flex-wrap gap-2">
-              <span className="text-sm font-medium text-gray-600 flex items-center mr-2">
-                <Filter className="w-4 h-4 mr-1" />
-                Region:
-              </span>
-              {regions.map((region) => (
-                <button
-                  key={region}
-                  onClick={() => setSelectedRegion(region)}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
-                    selectedRegion === region
-                      ? 'bg-blue-600 text-white shadow-md'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
-                >
-                  {region === 'all' ? 'All Regions' : region}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Service Filter */}
-          <div className="flex flex-wrap gap-2 justify-center mb-6">
-            <span className="text-sm font-medium text-gray-600 mr-2">Services:</span>
-            {services.slice(0, 8).map((service) => (
-              <button
-                key={service}
-                onClick={() => setSelectedService(service === selectedService ? 'all' : service)}
-                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                  selectedService === service
-                    ? 'bg-green-600 text-white shadow-md'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {service === 'all' ? 'All Services' : service}
-              </button>
-            ))}
-          </div>
-
-          {/* Active Filters and Results */}
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap gap-2">
-              {(searchQuery || selectedRegion !== 'all' || selectedService !== 'all') && (
-                <>
-                  {searchQuery && (
-                    <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
-                      Search: "{searchQuery}"
-                      <button onClick={() => setSearchQuery('')} className="ml-1 hover:text-blue-900">
-                        <X className="w-3 h-3" />
-                      </button>
-                    </Badge>
-                  )}
-                  {selectedRegion !== 'all' && (
-                    <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
-                      Region: {selectedRegion}
-                      <button onClick={() => setSelectedRegion('all')} className="ml-1 hover:text-purple-900">
-                        <X className="w-3 h-3" />
-                      </button>
-                    </Badge>
-                  )}
-                  {selectedService !== 'all' && (
-                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
-                      Service: {selectedService}
-                      <button onClick={() => setSelectedService('all')} className="ml-1 hover:text-green-900">
-                        <X className="w-3 h-3" />
-                      </button>
-                    </Badge>
-                  )}
-                  <button
-                    onClick={clearFilters}
-                    className="text-sm text-gray-500 hover:text-gray-700 underline"
-                  >
-                    Clear all filters
-                  </button>
-                </>
-              )}
-            </div>
-            <div className="text-sm text-gray-600">
-              Showing {filteredOffices.length} of {offices.length} offices
-              {filteredOffices.filter(office => office.region === 'International').length > 0 && (
-                <span className="ml-2 text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
-                  {filteredOffices.filter(office => office.region === 'International').length} International
-                </span>
-              )}
-            </div>
-          </div>
-        </motion.div>
 
         {/* Office Carousel */}
         <div className="relative max-w-7xl mx-auto">
@@ -641,7 +473,7 @@ export default function OfficeLocationsSection() {
 
           {/* Pagination Dots */}
           <div className="flex justify-center mt-8 space-x-2">
-            {Array.from({ length: Math.ceil(filteredOffices.length / cardsPerView) }).map((_, index) => (
+            {Array.from({ length: Math.ceil(offices.length / cardsPerView) }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index * cardsPerView)}

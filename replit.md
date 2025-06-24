@@ -226,6 +226,7 @@ The application uses three main tables:
 - **June 24, 2025 - Contact Card Text Size Reduction**: Reduced font sizes in contact card to make text smaller and more compact - heading to text-sm, contact details to text-xs, and reduced icon sizes for cleaner presentation.
 - **June 24, 2025 - Business Proposals Header Text Removal**: Removed "Get In Touch" and "For Business Proposals" header text from business proposals section for cleaner presentation.
 - **June 24, 2025 - Dynamic Location Filter with Search**: Implemented comprehensive search and filter system for office locations with search bar for city/office/address/services queries, region filters (Punjab, Sindh, Federal, International), service filters, active filter badges, clear filters functionality, and dynamic results count. Enhanced office data with region metadata and improved filtering capabilities.
+- **June 24, 2025 - Search Filter Removal**: Removed the search and filter functionality from office locations section to simplify the interface and restore the clean auto-sliding carousel presentation without extra filtering options.
 
 ## Changelog
 
