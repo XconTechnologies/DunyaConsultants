@@ -1,10 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Clock, ArrowLeft, ArrowRight, Building2, Users, Search, Filter, X } from "lucide-react";
+import { MapPin, Phone, Clock, ArrowLeft, ArrowRight, Building2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 
 interface Office {
   id: string;
@@ -227,10 +225,7 @@ export default function OfficeLocationsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(4);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedRegion, setSelectedRegion] = useState<string>("");
-  const [selectedService, setSelectedService] = useState<string>("");
-  const [filteredOffices, setFilteredOffices] = useState<Office[]>(offices);
+
 
   useEffect(() => {
     const updateCardsPerView = () => {
@@ -268,48 +263,9 @@ export default function OfficeLocationsSection() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [cardsPerView, filteredOffices.length]);
+  }, [cardsPerView, offices.length]);
 
-  // Filter offices based on search and filters
-  useEffect(() => {
-    let filtered = offices;
 
-    // Search filter
-    if (searchQuery) {
-      filtered = filtered.filter(office =>
-        office.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        office.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        office.address.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-    }
-
-    // Region filter
-    if (selectedRegion) {
-      filtered = filtered.filter(office => office.region === selectedRegion);
-    }
-
-    // Service filter
-    if (selectedService) {
-      filtered = filtered.filter(office => 
-        office.services.includes(selectedService)
-      );
-    }
-
-    setFilteredOffices(filtered);
-    setCurrentIndex(0); // Reset to first slide when filters change
-  }, [searchQuery, selectedRegion, selectedService]);
-
-  // Get unique regions and services for filter options
-  const regions = [...new Set(offices.map(office => office.region))];
-  const services = [...new Set(offices.flatMap(office => office.services))];
-
-  const clearFilters = () => {
-    setSearchQuery("");
-    setSelectedRegion("");
-    setSelectedService("");
-  };
-
-  const hasActiveFilters = searchQuery || selectedRegion || selectedService;
 
   // Pause auto-slide on hover
   const pauseAutoSlide = () => {
@@ -495,11 +451,8 @@ export default function OfficeLocationsSection() {
           </div>
         </motion.div>
 
-        
-
         {/* Office Carousel */}
-        {filteredOffices.length > 0 && (
-          <div className="relative max-w-7xl mx-auto">
+        <div className="relative max-w-7xl mx-auto">
           {/* Navigation Buttons */}
           <div className="absolute top-1/2 -translate-y-1/2 left-4 z-10">
             <Button
@@ -534,7 +487,7 @@ export default function OfficeLocationsSection() {
                 transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)`
               }}
             >
-              {filteredOffices.map((office, index) => (
+              {offices.map((office, index) => (
                 <motion.div
                   key={office.id}
                   className={`flex-shrink-0 px-2 ${
@@ -621,7 +574,7 @@ export default function OfficeLocationsSection() {
 
           {/* Pagination Dots */}
           <div className="flex justify-center mt-8 space-x-2">
-            {Array.from({ length: Math.ceil(filteredOffices.length / cardsPerView) }).map((_, index) => (
+            {Array.from({ length: Math.ceil(offices.length / cardsPerView) }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index * cardsPerView)}
@@ -634,7 +587,6 @@ export default function OfficeLocationsSection() {
             ))}
           </div>
         </div>
-        )}
 
         {/* Contact CTA */}
         <motion.div
