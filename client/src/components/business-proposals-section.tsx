@@ -219,7 +219,7 @@ export default function BusinessProposalsSection() {
                         
                         {/* Title with badge design */}
                         <div className="inline-block bg-gradient-to-r from-purple-100 to-blue-100 px-4 py-2 rounded-full mb-8">
-                          <p className="text-gray-700 font-medium text-sm">Business Development Manager</p>
+                          <p className="text-gray-700 font-medium text-sm">General Manager</p>
                         </div>
                         
                         {/* Action Button with unique design */}
