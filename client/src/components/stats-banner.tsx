@@ -219,18 +219,7 @@ export default function StatsBanner() {
           className="text-center mb-16"
         >
           {/* Professional Tagline */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="mb-12 mt-8"
-          >
-            <div className="inline-flex flex-col items-center justify-center space-y-2 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
-              
-              
-              
-            </div>
-          </motion.div>
+          
 
           {/* Main Hero Heading */}
           <motion.h1 
