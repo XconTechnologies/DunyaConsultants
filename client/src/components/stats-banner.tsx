@@ -248,12 +248,10 @@ export default function StatsBanner() {
             transition={{ duration: 1.2, delay: 0.4 }}
             className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight"
           >
-            Trusted by{" "}
+            Dedication To{" "}
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
-              Thousands
+              Education
             </span>
-            <br />
-            <span className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl">Worldwide</span>
           </motion.h1>
           
           {/* Hero Description */}
