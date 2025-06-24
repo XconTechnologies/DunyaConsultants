@@ -238,7 +238,7 @@ export default function StatsBanner() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8 leading-tight"
           >
             Dedication To{" "}
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
@@ -251,7 +251,7 @@ export default function StatsBanner() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-10"
           >
             <span className="font-semibold text-white">About Dunya Consultants:</span> Making global education dreams come true since 2009. Join thousands of successful students who achieved their international study goals with Pakistan's most trusted visa consultancy.
           </motion.p>
@@ -310,7 +310,7 @@ export default function StatsBanner() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold text-lg px-12 py-4 rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold text-base px-10 py-3 rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
           >
             Start Your Journey Today
           </motion.button>
