@@ -162,9 +162,6 @@ export default function BusinessProposalsSection() {
                     </motion.div>
                     
                     <h3 className="text-4xl font-bold mb-6">Business Proposals</h3>
-                    <p className="text-white/90 text-lg mb-8 leading-relaxed">
-                      Ready to explore partnership opportunities? Connect with our business development team to discuss collaborations, franchise opportunities, and strategic partnerships.
-                    </p>
                     
                     <div className="space-y-4">
                       <div className="flex items-center text-white/90">
