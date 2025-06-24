@@ -92,23 +92,9 @@ const allUniversities = [...universityPartners, ...generateMoreUniversities()];
 export default function UniversityPartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Auto-scroll functionality
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % Math.ceil(allUniversities.length / 16)); // 16 logos per slide (4 rows × 4 columns)
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const getUniversitiesForSlide = (slideIndex: number) => {
-    const startIndex = slideIndex * 16;
-    return allUniversities.slice(startIndex, startIndex + 16);
-  };
-
-  const totalSlides = Math.ceil(allUniversities.length / 16);
+  // Filter only universities with logos (authentic partners)
+  const authenticPartners = universityPartners.filter(uni => uni.logoUrl !== null);
 
   return (
     <section ref={ref} className="py-20 bg-gradient-to-br from-white to-blue-50">
@@ -171,81 +157,45 @@ export default function UniversityPartnersSection() {
           </div>
         </motion.div>
 
-        {/* University Logos Slider */}
+        {/* University Logos Grid - Single Frame */}
         <motion.div
-          className="relative overflow-hidden"
+          className="bg-white rounded-3xl shadow-2xl p-8"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="bg-white rounded-3xl shadow-2xl p-8">
-            <div className="overflow-hidden">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {authenticPartners.map((university, index) => (
               <motion.div
-                className="flex transition-transform duration-1000 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                key={university.name}
+                className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                whileHover={{ scale: 1.05, y: -5 }}
               >
-                {Array.from({ length: totalSlides }, (_, slideIndex) => (
-                  <div key={slideIndex} className="w-full flex-shrink-0">
-                    <div className="grid grid-cols-4 gap-6">
-                      {getUniversitiesForSlide(slideIndex).map((university, index) => (
-                        <motion.div
-                          key={`${slideIndex}-${index}`}
-                          className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5, delay: index * 0.05 }}
-                          whileHover={{ scale: 1.05, y: -5 }}
-                        >
-                          <div className="text-center">
-                            <div className="h-16 mb-3 flex items-center justify-center">
-                              {university.logoUrl ? (
-                                <img 
-                                  src={university.logoUrl} 
-                                  alt={`${university.name} logo`}
-                                  className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
-                                  onError={(e) => {
-                                    // Fallback to placeholder if logo fails to load
-                                    e.currentTarget.style.display = 'none';
-                                    e.currentTarget.nextElementSibling.style.display = 'flex';
-                                  }}
-                                />
-                              ) : null}
-                              <div className={`text-3xl text-neutral-400 ${university.logoUrl ? 'hidden' : 'flex'} items-center justify-center w-full h-full`}>🎓</div>
-                            </div>
-                            <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
-                              {university.name}
-                            </h3>
-                            <div className="flex justify-between items-center text-xs text-neutral-500 gap-1">
-                              <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
-                                {university.country}
-                              </span>
-                              <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">
-                                {university.ranking}
-                              </span>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
+                <div className="text-center">
+                  <div className="h-16 mb-3 flex items-center justify-center">
+                    <img 
+                      src={university.logoUrl}
+                      alt={`${university.name} logo`}
+                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                    />
                   </div>
-                ))}
+                  <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
+                    {university.name}
+                  </h3>
+                  <div className="flex justify-between items-center text-xs text-neutral-500 gap-1">
+                    <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
+                      {university.country}
+                    </span>
+                    <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">
+                      {university.ranking}
+                    </span>
+                  </div>
+                </div>
               </motion.div>
-            </div>
-
-            {/* Slide Indicators */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {Array.from({ length: totalSlides }, (_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? 'bg-primary scale-125'
-                      : 'bg-neutral-300 hover:bg-neutral-400'
-                  }`}
-                />
-              ))}
-            </div>
+            ))}
           </div>
         </motion.div>
 
