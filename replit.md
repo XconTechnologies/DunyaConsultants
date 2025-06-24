@@ -201,6 +201,7 @@ The application uses three main tables:
 - **June 24, 2025 - Journey Step Update**: Changed step 2 title from "Course & University Selection" to "University Selection" and updated description from "course and university" to "university and program" for clearer focus on institutional selection.
 - **June 24, 2025 - Statistics Section Removal**: Completely removed the animated statistics section (8 Complete Steps, 6-12 Months Duration, 98% Success Rate, 24/7 Expert Support) from the journey timeline for a cleaner, more focused presentation.
 - **June 24, 2025 - Business Proposals Footer Section**: Added dedicated business proposals contact section in footer featuring Umer Farooq contact information (umer@dunyaconsultants.com) with email and WhatsApp icons, and updated copyright to "Dunya Consultants".
+- **June 24, 2025 - Business Proposals Section Redesign**: Moved business proposals from footer to dedicated section above footer with blue gradient background, glassmorphism contact cards, hover animations, and professional layout featuring email and WhatsApp contact options for Umer Farooq.
 
 ## Changelog
 

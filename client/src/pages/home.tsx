@@ -7,6 +7,7 @@ import ConsultationBookingCalendar from "@/components/consultation-booking-calen
 import OfficeLocationsSection from "@/components/office-locations-section";
 import StatsBanner from "@/components/stats-banner";
 import UniversityPartnersSection from "@/components/university-partners-section";
+import BusinessProposalsSection from "@/components/business-proposals-section";
 import FloatingCTA from "@/components/floating-cta";
 import ScrollProgress from "@/components/scroll-progress";
 import Footer from "@/components/footer";
@@ -23,6 +24,7 @@ export default function Home() {
       <ConsultationBookingCalendar />
       <UniversityPartnersSection />
       <OfficeLocationsSection />
+      <BusinessProposalsSection />
       <FloatingCTA />
       <Footer />
     </div>
