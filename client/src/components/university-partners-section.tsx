@@ -316,7 +316,7 @@ export default function UniversityPartnersSection() {
               <div className="text-center relative z-10">
                 <div className="h-16 sm:h-20 mb-4 flex items-center justify-center relative">
                   <motion.img 
-                    src="https://www.inholland.nl/media/35678/inholland-logo.png"
+                    src="/attached_assets/Uni-Logos-3-14-2048x878_1750754324473.webp"
                     alt="IC University of Applied Sciences logo"
                     className="max-h-full max-w-full object-contain filter drop-shadow-sm"
                     whileHover={{ 
