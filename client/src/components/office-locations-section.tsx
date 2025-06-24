@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Clock, ArrowLeft, ArrowRight, Building2, Users } from "lucide-react";
+import { MapPin, Phone, Clock, ArrowLeft, ArrowRight, Building2, Users, Search, Filter, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 
 interface Office {
   id: string;
@@ -13,6 +15,8 @@ interface Office {
   hours: string;
   gradient: string;
   isHeadOffice?: boolean;
+  region: string;
+  services: string[];
 }
 
 const offices: Office[] = [
@@ -24,7 +28,9 @@ const offices: Office[] = [
     phone: "+92 323‑251‑6319",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-blue-600 to-purple-600",
-    isHeadOffice: true
+    isHeadOffice: true,
+    region: "Punjab",
+    services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"]
   },
   {
     id: "lahore-dha",
@@ -33,7 +39,9 @@ const offices: Office[] = [
     address: "1st Floor, 174 6th Street 123, Sector H, DHA Phase 1, Lahore",
     phone: "+92 300‑167‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-green-600 to-teal-600"
+    gradient: "from-green-600 to-teal-600",
+    region: "Punjab",
+    services: ["Visa Processing", "University Applications", "Document Verification"]
   },
   {
     id: "lahore-johar",
@@ -42,7 +50,9 @@ const offices: Office[] = [
     address: "1st Floor, 85 /R‑1, Phase 2, Johar Town, Lahore",
     phone: "+92 300‑827‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-orange-600 to-red-600"
+    gradient: "from-orange-600 to-red-600",
+    region: "Punjab",
+    services: ["Student Counseling", "Test Preparation", "Career Guidance"]
   },
   {
     id: "islamabad",
@@ -51,7 +61,9 @@ const offices: Office[] = [
     address: "Mezzanine‑3, ATS Centre, Fazal‑e‑Haq Road, Blue Area, Islamabad",
     phone: "+92 333‑777‑5458",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-indigo-600 to-blue-600"
+    gradient: "from-indigo-600 to-blue-600",
+    region: "Federal",
+    services: ["Visa Processing", "Embassy Relations", "Document Attestation"]
   },
   {
     id: "karachi",
@@ -60,7 +72,9 @@ const offices: Office[] = [
     address: "05‑C Prime Point Building, Main 2, Khayaban‑e‑Ittehad Road, DHA, Karachi",
     phone: "+92 332‑364‑3373",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-cyan-600 to-blue-600"
+    gradient: "from-cyan-600 to-blue-600",
+    region: "Sindh",
+    services: ["Visa Processing", "University Applications", "Financial Guidance"]
   },
   {
     id: "faisalabad",
@@ -69,7 +83,9 @@ const offices: Office[] = [
     address: "Mezzanine Floor, Centre Point Plaza, Koh‑i‑Noor City, Jaranwala Road, Faisalabad",
     phone: "+92 332‑662‑8487",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-purple-600 to-pink-600"
+    gradient: "from-purple-600 to-pink-600",
+    region: "Punjab",
+    services: ["Student Counseling", "Test Preparation", "Scholarship Guidance"]
   },
   {
     id: "gujranwala",
@@ -176,6 +192,10 @@ export default function OfficeLocationsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(4);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedRegion, setSelectedRegion] = useState<string>("");
+  const [selectedService, setSelectedService] = useState<string>("");
+  const [filteredOffices, setFilteredOffices] = useState<Office[]>(offices);
 
   useEffect(() => {
     const updateCardsPerView = () => {
@@ -213,7 +233,48 @@ export default function OfficeLocationsSection() {
         clearInterval(intervalRef.current);
       }
     };
-  }, [cardsPerView, offices.length]);
+  }, [cardsPerView, filteredOffices.length]);
+
+  // Filter offices based on search and filters
+  useEffect(() => {
+    let filtered = offices;
+
+    // Search filter
+    if (searchQuery) {
+      filtered = filtered.filter(office =>
+        office.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        office.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        office.address.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    // Region filter
+    if (selectedRegion) {
+      filtered = filtered.filter(office => office.region === selectedRegion);
+    }
+
+    // Service filter
+    if (selectedService) {
+      filtered = filtered.filter(office => 
+        office.services.includes(selectedService)
+      );
+    }
+
+    setFilteredOffices(filtered);
+    setCurrentIndex(0); // Reset to first slide when filters change
+  }, [searchQuery, selectedRegion, selectedService]);
+
+  // Get unique regions and services for filter options
+  const regions = [...new Set(offices.map(office => office.region))];
+  const services = [...new Set(offices.flatMap(office => office.services))];
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setSelectedRegion("");
+    setSelectedService("");
+  };
+
+  const hasActiveFilters = searchQuery || selectedRegion || selectedService;
 
   // Pause auto-slide on hover
   const pauseAutoSlide = () => {
@@ -289,7 +350,8 @@ export default function OfficeLocationsSection() {
         
 
         {/* Office Carousel */}
-        <div className="relative max-w-7xl mx-auto">
+        {filteredOffices.length > 0 && (
+          <div className="relative max-w-7xl mx-auto">
           {/* Navigation Buttons */}
           <div className="absolute top-1/2 -translate-y-1/2 left-4 z-10">
             <Button
@@ -324,7 +386,7 @@ export default function OfficeLocationsSection() {
                 transform: `translateX(-${(currentIndex * 100) / cardsPerView}%)`
               }}
             >
-              {offices.map((office, index) => (
+              {filteredOffices.map((office, index) => (
                 <motion.div
                   key={office.id}
                   className={`flex-shrink-0 px-2 ${
@@ -406,7 +468,7 @@ export default function OfficeLocationsSection() {
 
           {/* Pagination Dots */}
           <div className="flex justify-center mt-8 space-x-2">
-            {Array.from({ length: Math.ceil(offices.length / cardsPerView) }).map((_, index) => (
+            {Array.from({ length: Math.ceil(filteredOffices.length / cardsPerView) }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index * cardsPerView)}
@@ -419,6 +481,7 @@ export default function OfficeLocationsSection() {
             ))}
           </div>
         </div>
+        )}
 
         {/* Contact CTA */}
         <motion.div
