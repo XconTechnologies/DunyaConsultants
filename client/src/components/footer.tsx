@@ -80,9 +80,13 @@ export default function Footer() {
                   </div>
                 </div>
                 
+                <div className="text-xs text-gray-300 mb-2">
+                  abdul.majeed@dunyaconsultants.com
+                </div>
+                
                 <motion.a
                   href="mailto:abdul.majeed@dunyaconsultants.com"
-                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-xs font-medium transition-colors mt-2"
+                  className="inline-flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg text-xs font-medium transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
