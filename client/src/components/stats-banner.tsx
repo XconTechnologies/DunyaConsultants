@@ -227,7 +227,7 @@ export default function StatsBanner() {
           >
             <div className="inline-flex flex-col items-center justify-center space-y-2 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
               
-              <span className="text-white/90 font-medium tracking-wide" style={{ fontSize: '22px' }}>Trusted By Thousands Worldwide</span>
+              <span className="text-white/90 font-medium tracking-wide" style={{ fontSize: '32px' }}>Dedication To Education</span>
               
             </div>
           </motion.div>
