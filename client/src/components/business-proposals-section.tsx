@@ -37,88 +37,68 @@ export default function BusinessProposalsSection() {
 
         </motion.div>
 
-        {/* Combined Team Photo with Business Card Overlay */}
+        {/* Team Photo */}
         <motion.div
-          className="mb-16 relative rounded-3xl overflow-hidden shadow-2xl"
+          className="mb-16 rounded-3xl overflow-hidden shadow-2xl"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          {/* Team Photo Background */}
-          <div className="relative">
-            <img 
-              src={teamPhoto} 
-              alt="Dunya Consultants Team" 
-              className="w-full h-auto object-cover"
-            />
-            {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-          </div>
-          
-          {/* Business Card Overlay */}
-          <div className="absolute bottom-0 left-0 right-0 p-8">
-            <motion.div
-              className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <div className="p-8">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* UAN Contact */}
-                  <motion.a
-                    href="tel:+923041110947"
-                    className="group text-center p-4 rounded-xl hover:bg-gray-50 transition-all duration-300"
-                    whileHover={{ y: -3 }}
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
-                      <Phone className="w-6 h-6 text-white" />
-                    </div>
-                    <h4 className="text-sm font-bold text-gray-900 mb-1">UAN Number</h4>
-                    <p className="text-lg font-bold text-green-600 mb-1">(+92) 304 1110947</p>
-                    <p className="text-gray-600 text-xs">Call us anytime</p>
-                  </motion.a>
+          <img 
+            src={teamPhoto} 
+            alt="Dunya Consultants Team" 
+            className="w-full h-auto object-contain"
+          />
+        </motion.div>
 
-                  {/* Head Office */}
-                  <motion.div
-                    className="group text-center p-4 rounded-xl hover:bg-gray-50 transition-all duration-300"
-                    whileHover={{ y: -3 }}
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-rose-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
-                      <MapPin className="w-6 h-6 text-white" />
-                    </div>
-                    <h4 className="text-sm font-bold text-gray-900 mb-1">Head Office</h4>
-                    <p className="text-sm font-semibold text-red-600 mb-1">Alif Tower</p>
-                    <p className="text-gray-600 text-xs leading-relaxed">Buhadur shah zafar road, Sargodha</p>
-                  </motion.div>
+        {/* Simple Contact Design */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* UAN Contact */}
+                <motion.a
+                  href="tel:+923041110947"
+                  className="text-center p-4 hover:bg-gray-50 rounded-xl transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Phone className="w-8 h-8 text-green-600 mx-auto mb-3" />
+                  <h4 className="font-semibold text-gray-900 mb-2">UAN Number</h4>
+                  <p className="text-xl font-bold text-green-600 mb-1">(+92) 304 1110947</p>
+                  <p className="text-gray-600 text-sm">Call us anytime</p>
+                </motion.a>
 
-                  {/* General Queries */}
-                  <motion.a
-                    href="mailto:info@dunyaconsultants.com"
-                    className="group text-center p-4 rounded-xl hover:bg-gray-50 transition-all duration-300"
-                    whileHover={{ y: -3 }}
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <h4 className="text-sm font-bold text-gray-900 mb-1">General Queries</h4>
-                    <p className="text-sm font-semibold text-blue-600 mb-1">info@dunyaconsultants.com</p>
-                    <p className="text-gray-600 text-xs">We'll respond within 24 hours</p>
-                  </motion.a>
-                </div>
-                
-                {/* Bottom Border Design */}
-                <div className="mt-6 pt-4 border-t border-gray-200">
-                  <div className="flex items-center justify-center space-x-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full" />
-                    <div className="w-2 h-2 bg-red-500 rounded-full" />
-                    <div className="w-2 h-2 bg-blue-500 rounded-full" />
-                  </div>
-                </div>
+                {/* Head Office */}
+                <motion.div
+                  className="text-center p-4 hover:bg-gray-50 rounded-xl transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <MapPin className="w-8 h-8 text-red-600 mx-auto mb-3" />
+                  <h4 className="font-semibold text-gray-900 mb-2">Head Office</h4>
+                  <p className="font-semibold text-red-600 mb-1">Alif Tower</p>
+                  <p className="text-gray-600 text-sm">Buhadur shah zafar road, Sargodha</p>
+                </motion.div>
+
+                {/* General Queries */}
+                <motion.a
+                  href="mailto:info@dunyaconsultants.com"
+                  className="text-center p-4 hover:bg-gray-50 rounded-xl transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <Mail className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+                  <h4 className="font-semibold text-gray-900 mb-2">General Queries</h4>
+                  <p className="font-semibold text-blue-600 mb-1">info@dunyaconsultants.com</p>
+                  <p className="text-gray-600 text-sm">We'll respond within 24 hours</p>
+                </motion.a>
               </div>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
 
