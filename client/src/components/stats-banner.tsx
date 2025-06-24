@@ -211,7 +211,6 @@ export default function StatsBanner() {
           </motion.button>
         </div>
       </div>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -227,17 +226,10 @@ export default function StatsBanner() {
             className="mb-12 mt-8"
           >
             <div className="inline-flex flex-col items-center justify-center space-y-2 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
-              <div className="flex space-x-1 mb-1">
-                <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
-                <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse delay-100"></div>
-                <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse delay-200"></div>
-              </div>
-              <span className="text-white/90 font-semibold text-lg tracking-wide">
-                Dedication To Education
-              </span>
-              <span className="text-white/70 font-medium text-xs tracking-wider">
-                Excellence in Every Step
-              </span>
+              
+              <span className="text-white/90 font-semibold text-lg tracking-wide">Trusted By Thousands Worldwide
+</span>
+              
             </div>
           </motion.div>
 
