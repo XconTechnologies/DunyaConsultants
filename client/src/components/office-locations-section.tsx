@@ -184,7 +184,42 @@ const offices: Office[] = [
     address: "2nd Floor, Office Unit A, Walyan Commercial Centre, Nowshera Road, Mardan",
     phone: "+92 317‑111‑4617",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-neutral-600 to-stone-600"
+    gradient: "from-neutral-600 to-stone-600",
+    region: "KPK",
+    services: ["Student Counseling", "Visa Processing"]
+  },
+  {
+    id: "jeddah",
+    city: "Jeddah",
+    name: "Engineering Square",
+    address: "Above Topten, Engineering Square, Makarona Street, 2nd Floor, Office 27, Jeddah 23447",
+    phone: "+966 50‑851‑0785",
+    hours: "Mon–Thu 10 AM–5 PM",
+    gradient: "from-amber-600 to-yellow-600",
+    region: "International",
+    services: ["Visa Processing", "Document Attestation", "Student Support"]
+  },
+  {
+    id: "istanbul",
+    city: "Istanbul",
+    name: "Ataköy Towers",
+    address: "Ataköy Towers, Ataköy 7‑8‑9‑10 Kısım Mah., Çobançeşme E‑5 Yan Yol Cad., A Blok Apt. No: 20/1, Bakırköy, Istanbul",
+    phone: "+90 505‑305‑8047",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-red-600 to-rose-600",
+    region: "International",
+    services: ["Student Counseling", "University Applications", "Student Support"]
+  },
+  {
+    id: "edinburgh",
+    city: "Edinburgh",
+    name: "Ferry Road Place",
+    address: "4 Ferry Road Place, Edinburgh EH4 4AX",
+    phone: "+44 7448‑419291",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-slate-600 to-gray-600",
+    region: "International",
+    services: ["Student Support", "University Applications", "Career Guidance"]
   }
 ];
 
@@ -344,7 +379,120 @@ export default function OfficeLocationsSection() {
               Locations
             </span>
           </h2>
+          <p className="text-center text-gray-600 mb-8 max-w-3xl mx-auto">
+            Visit any of our offices across Pakistan and internationally for personalized consultation.
+            We have presence in major cities and international locations to serve you better.
+          </p>
           
+        </motion.div>
+
+        {/* Search and Filter Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mb-8 max-w-4xl mx-auto"
+        >
+          {/* Search Bar */}
+          <div className="relative mb-6">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Input
+              type="text"
+              placeholder="Search by city, office name, or address..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-12 pr-4 py-3 text-lg rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-0"
+            />
+          </div>
+
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap gap-4 items-center justify-center">
+            {/* Region Filter */}
+            <div className="flex flex-wrap gap-2">
+              <span className="text-sm font-medium text-gray-600 flex items-center">
+                <Filter className="w-4 h-4 mr-1" />
+                Region:
+              </span>
+              {regions.map(region => (
+                <Button
+                  key={region}
+                  variant={selectedRegion === region ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedRegion(selectedRegion === region ? "" : region)}
+                  className="rounded-full"
+                >
+                  {region}
+                </Button>
+              ))}
+            </div>
+
+            {/* Service Filter */}
+            <div className="flex flex-wrap gap-2">
+              <span className="text-sm font-medium text-gray-600">Services:</span>
+              {services.slice(0, 4).map(service => (
+                <Button
+                  key={service}
+                  variant={selectedService === service ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedService(selectedService === service ? "" : service)}
+                  className="rounded-full text-xs"
+                >
+                  {service}
+                </Button>
+              ))}
+            </div>
+
+            {/* Clear Filters */}
+            {hasActiveFilters && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={clearFilters}
+                className="text-red-600 hover:text-red-700 hover:bg-red-50"
+              >
+                <X className="w-4 h-4 mr-1" />
+                Clear Filters
+              </Button>
+            )}
+          </div>
+
+          {/* Active Filters Display */}
+          {hasActiveFilters && (
+            <div className="flex flex-wrap gap-2 mt-4 justify-center">
+              {searchQuery && (
+                <Badge variant="secondary" className="px-3 py-1">
+                  Search: "{searchQuery}"
+                </Badge>
+              )}
+              {selectedRegion && (
+                <Badge variant="secondary" className="px-3 py-1">
+                  Region: {selectedRegion}
+                </Badge>
+              )}
+              {selectedService && (
+                <Badge variant="secondary" className="px-3 py-1">
+                  Service: {selectedService}
+                </Badge>
+              )}
+            </div>
+          )}
+
+          {/* Results Count */}
+          <div className="text-center mt-4">
+            <p className="text-gray-600">
+              Showing {filteredOffices.length} of {offices.length} offices
+              {filteredOffices.filter(o => o.region === "International").length > 0 && (
+                <span className="block mt-1 text-sm text-emerald-600">
+                  Including {filteredOffices.filter(o => o.region === "International").length} international office{filteredOffices.filter(o => o.region === "International").length > 1 ? 's' : ''}
+                </span>
+              )}
+              {filteredOffices.length === 0 && (
+                <span className="block mt-2 text-red-600">
+                  No offices found matching your criteria. Try adjusting your filters.
+                </span>
+              )}
+            </p>
+          </div>
         </motion.div>
 
         
