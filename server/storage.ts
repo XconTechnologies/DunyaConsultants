@@ -7,15 +7,27 @@ export interface IStorage {
   createContact(contact: InsertContact): Promise<Contact>;
   getTestimonials(): Promise<Testimonial[]>;
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
+  // Engagement tracking
+  trackEngagement(engagement: InsertUserEngagement): Promise<UserEngagement>;
+  getUserStats(sessionId: string): Promise<UserStats | undefined>;
+  updateUserStats(sessionId: string, updates: Partial<UserStats>): Promise<UserStats>;
+  getUserAchievements(sessionId: string): Promise<Achievement[]>;
+  createAchievement(achievement: InsertAchievement): Promise<Achievement>;
+  checkAndAwardBadges(sessionId: string): Promise<Achievement[]>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private contacts: Map<number, Contact>;
   private testimonials: Map<number, Testimonial>;
+  private userEngagements: Map<number, UserEngagement>;
+  private userAchievements: Map<number, Achievement>;
+  private userStatsMap: Map<string, UserStats>;
   private currentUserId: number;
   private currentContactId: number;
   private currentTestimonialId: number;
+  private currentEngagementId: number;
+  private currentAchievementId: number;
 
   constructor() {
     this.users = new Map();
@@ -110,6 +122,156 @@ export class MemStorage implements IStorage {
     };
     this.testimonials.set(id, testimonial);
     return testimonial;
+  }
+
+  async trackEngagement(insertEngagement: InsertUserEngagement): Promise<UserEngagement> {
+    const id = this.currentEngagementId++;
+    const engagement: UserEngagement = {
+      ...insertEngagement,
+      id,
+      createdAt: new Date(),
+    };
+    this.userEngagements.set(id, engagement);
+    
+    // Update user stats
+    await this.updateUserStatsFromEngagement(insertEngagement);
+    
+    return engagement;
+  }
+
+  async getUserStats(sessionId: string): Promise<UserStats | undefined> {
+    return this.userStatsMap.get(sessionId);
+  }
+
+  async updateUserStats(sessionId: string, updates: Partial<UserStats>): Promise<UserStats> {
+    const existing = this.userStatsMap.get(sessionId);
+    const stats: UserStats = {
+      id: existing?.id || Math.floor(Math.random() * 1000000),
+      sessionId,
+      userId: updates.userId || existing?.userId || null,
+      totalPoints: updates.totalPoints || existing?.totalPoints || 0,
+      level: updates.level || existing?.level || 1,
+      pagesVisited: updates.pagesVisited || existing?.pagesVisited || 0,
+      toolsUsed: updates.toolsUsed || existing?.toolsUsed || 0,
+      formsCompleted: updates.formsCompleted || existing?.formsCompleted || 0,
+      documentsDownloaded: updates.documentsDownloaded || existing?.documentsDownloaded || 0,
+      consultationsBooked: updates.consultationsBooked || existing?.consultationsBooked || 0,
+      badgesEarned: updates.badgesEarned || existing?.badgesEarned || 0,
+      streak: updates.streak || existing?.streak || 0,
+      lastActiveAt: new Date(),
+      createdAt: existing?.createdAt || new Date(),
+    };
+    this.userStatsMap.set(sessionId, stats);
+    return stats;
+  }
+
+  async getUserAchievements(sessionId: string): Promise<Achievement[]> {
+    return Array.from(this.userAchievements.values()).filter(
+      achievement => achievement.sessionId === sessionId
+    );
+  }
+
+  async createAchievement(insertAchievement: InsertAchievement): Promise<Achievement> {
+    const id = this.currentAchievementId++;
+    const achievement: Achievement = {
+      ...insertAchievement,
+      id,
+      unlockedAt: new Date(),
+    };
+    this.userAchievements.set(id, achievement);
+    return achievement;
+  }
+
+  async checkAndAwardBadges(sessionId: string): Promise<Achievement[]> {
+    const stats = await this.getUserStats(sessionId);
+    if (!stats) return [];
+
+    const existingAchievements = await this.getUserAchievements(sessionId);
+    const existingBadgeTypes = new Set(existingAchievements.map(a => `${a.badgeType}-${a.badgeLevel}`));
+    const newAchievements: Achievement[] = [];
+
+    // Define badge criteria
+    const badgeCriteria = [
+      // Explorer badges
+      { type: 'explorer', level: 'bronze', title: 'First Steps', description: 'Visited 3 pages', icon: '🗺️', points: 10, criteria: () => stats.pagesVisited >= 3 },
+      { type: 'explorer', level: 'silver', title: 'Site Navigator', description: 'Visited 10 pages', icon: '🧭', points: 25, criteria: () => stats.pagesVisited >= 10 },
+      { type: 'explorer', level: 'gold', title: 'Master Explorer', description: 'Visited 25 pages', icon: '🏆', points: 50, criteria: () => stats.pagesVisited >= 25 },
+      
+      // Scholar badges
+      { type: 'scholar', level: 'bronze', title: 'Knowledge Seeker', description: 'Used 2 tools', icon: '📚', points: 15, criteria: () => stats.toolsUsed >= 2 },
+      { type: 'scholar', level: 'silver', title: 'Research Expert', description: 'Used 5 tools', icon: '🔬', points: 30, criteria: () => stats.toolsUsed >= 5 },
+      { type: 'scholar', level: 'gold', title: 'Academic Master', description: 'Used all available tools', icon: '🎓', points: 75, criteria: () => stats.toolsUsed >= 10 },
+      
+      // Communicator badges
+      { type: 'communicator', level: 'bronze', title: 'First Contact', description: 'Completed 1 form', icon: '💬', points: 20, criteria: () => stats.formsCompleted >= 1 },
+      { type: 'communicator', level: 'silver', title: 'Active Inquirer', description: 'Completed 3 forms', icon: '📞', points: 40, criteria: () => stats.formsCompleted >= 3 },
+      { type: 'communicator', level: 'gold', title: 'Engagement Champion', description: 'Completed 5 forms', icon: '🤝', points: 80, criteria: () => stats.formsCompleted >= 5 },
+      
+      // Planner badges
+      { type: 'planner', level: 'bronze', title: 'Future Thinker', description: 'Downloaded 1 document', icon: '📋', points: 15, criteria: () => stats.documentsDownloaded >= 1 },
+      { type: 'planner', level: 'silver', title: 'Preparation Pro', description: 'Downloaded 3 documents', icon: '📁', points: 35, criteria: () => stats.documentsDownloaded >= 3 },
+      { type: 'planner', level: 'gold', title: 'Master Organizer', description: 'Downloaded 5+ documents', icon: '🗂️', points: 60, criteria: () => stats.documentsDownloaded >= 5 },
+      
+      // Commitment badges
+      { type: 'commitment', level: 'bronze', title: 'Taking Action', description: 'Booked first consultation', icon: '⭐', points: 50, criteria: () => stats.consultationsBooked >= 1 },
+      { type: 'commitment', level: 'silver', title: 'Serious Student', description: 'Booked 2 consultations', icon: '🌟', points: 100, criteria: () => stats.consultationsBooked >= 2 },
+      { type: 'commitment', level: 'gold', title: 'Dedicated Achiever', description: 'Booked 3+ consultations', icon: '✨', points: 150, criteria: () => stats.consultationsBooked >= 3 },
+    ];
+
+    // Check each badge criteria
+    for (const badge of badgeCriteria) {
+      const badgeKey = `${badge.type}-${badge.level}`;
+      if (!existingBadgeTypes.has(badgeKey) && badge.criteria()) {
+        const newAchievement = await this.createAchievement({
+          sessionId,
+          userId: stats.userId,
+          badgeType: badge.type,
+          badgeLevel: badge.level,
+          title: badge.title,
+          description: badge.description,
+          icon: badge.icon,
+          points: badge.points,
+        });
+        newAchievements.push(newAchievement);
+        
+        // Update user stats with new badge and points
+        await this.updateUserStats(sessionId, {
+          totalPoints: stats.totalPoints + badge.points,
+          badgesEarned: stats.badgesEarned + 1,
+          level: Math.floor((stats.totalPoints + badge.points) / 100) + 1,
+        });
+      }
+    }
+
+    return newAchievements;
+  }
+
+  private async updateUserStatsFromEngagement(engagement: InsertUserEngagement) {
+    const stats = await this.getUserStats(engagement.sessionId);
+    const updates: Partial<UserStats> = {};
+
+    switch (engagement.action) {
+      case 'page_view':
+        updates.pagesVisited = (stats?.pagesVisited || 0) + 1;
+        break;
+      case 'tool_use':
+        updates.toolsUsed = (stats?.toolsUsed || 0) + 1;
+        break;
+      case 'form_submit':
+        updates.formsCompleted = (stats?.formsCompleted || 0) + 1;
+        break;
+      case 'document_download':
+        updates.documentsDownloaded = (stats?.documentsDownloaded || 0) + 1;
+        break;
+      case 'consultation_booking':
+        updates.consultationsBooked = (stats?.consultationsBooked || 0) + 1;
+        break;
+    }
+
+    if (Object.keys(updates).length > 0) {
+      updates.totalPoints = (stats?.totalPoints || 0) + (engagement.points || 0);
+      await this.updateUserStats(engagement.sessionId, updates);
+    }
   }
 }
 
