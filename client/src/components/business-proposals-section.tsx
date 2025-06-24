@@ -182,36 +182,89 @@ export default function BusinessProposalsSection() {
                     </div>
                   </div>
                   
-                  {/* Right Contact Card */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-                    <div className="text-center text-white">
-                      <motion.div
-                        className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <MessageCircle className="w-10 h-10 text-white" />
-                      </motion.div>
+                  {/* Unique Contact Card */}
+                  <div className="relative">
+                    {/* Card Container */}
+                    <motion.div 
+                      className="bg-white rounded-3xl p-8 shadow-2xl relative overflow-hidden"
+                      whileHover={{ rotateY: 5, rotateX: 5 }}
+                      transition={{ duration: 0.3 }}
+                      style={{ transformStyle: "preserve-3d" }}
+                    >
+                      {/* Floating Background Elements */}
+                      <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-50 blur-xl" />
+                      <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full opacity-30 blur-xl" />
                       
-                      <h4 className="text-2xl font-bold mb-3">Umer Farooq</h4>
-                      <p className="text-white/80 mb-6">Business Development Manager</p>
-                      
-                      <div className="space-y-4">
+                      {/* Content */}
+                      <div className="relative z-10 text-center">
+                        {/* Profile Icon with Unique Design */}
+                        <motion.div
+                          className="relative w-24 h-24 mx-auto mb-6"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="w-full h-full bg-gradient-to-br from-purple-500 via-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center relative">
+                            <MessageCircle className="w-12 h-12 text-white" />
+                            {/* Animated border */}
+                            <div className="absolute inset-0 rounded-2xl border-2 border-purple-300 animate-pulse" />
+                          </div>
+                          {/* Status indicator */}
+                          <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full border-2 border-white flex items-center justify-center">
+                            <div className="w-2 h-2 bg-green-600 rounded-full animate-ping" />
+                          </div>
+                        </motion.div>
+                        
+                        {/* Name with gradient text */}
+                        <h4 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                          Umer Farooq
+                        </h4>
+                        
+                        {/* Title with badge design */}
+                        <div className="inline-block bg-gradient-to-r from-purple-100 to-blue-100 px-4 py-2 rounded-full mb-8">
+                          <p className="text-gray-700 font-medium text-sm">Business Development Manager</p>
+                        </div>
+                        
+                        {/* Action Button with unique design */}
                         <motion.a
                           href="mailto:umer@dunyaconsultants.com"
-                          className="block bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors"
+                          className="group relative inline-block"
                           whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.98 }}
+                          whileTap={{ scale: 0.95 }}
                         >
-                          <Mail className="w-5 h-5 inline mr-2" />
-                          Send Business Proposal
+                          <div className="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 rounded-2xl p-6 text-white font-semibold shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                            <div className="flex items-center justify-center space-x-3">
+                              <Mail className="w-6 h-6" />
+                              <span className="text-lg">Send Business Proposal</span>
+                            </div>
+                            {/* Animated underline */}
+                            <div className="h-1 bg-white/30 rounded-full mt-3 overflow-hidden">
+                              <div className="h-full bg-white rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+                            </div>
+                          </div>
+                          {/* Glow effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300 -z-10" />
                         </motion.a>
                         
-                        <div className="text-white/70 text-sm">
-                          umer@dunyaconsultants.com
-                        </div>
+                        {/* Email with copy functionality */}
+                        <motion.div 
+                          className="mt-6 p-3 bg-gray-50 rounded-xl cursor-pointer group"
+                          whileHover={{ scale: 1.02 }}
+                          onClick={() => navigator.clipboard.writeText('umer@dunyaconsultants.com')}
+                        >
+                          <div className="flex items-center justify-center space-x-2 text-gray-600 group-hover:text-blue-600 transition-colors">
+                            <Mail className="w-4 h-4" />
+                            <span className="text-sm font-medium">umer@dunyaconsultants.com</span>
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              whileHover={{ opacity: 1 }}
+                              className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded"
+                            >
+                              Click to copy
+                            </motion.div>
+                          </div>
+                        </motion.div>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </div>
