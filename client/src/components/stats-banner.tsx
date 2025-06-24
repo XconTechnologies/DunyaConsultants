@@ -219,11 +219,33 @@ export default function StatsBanner() {
           transition={{ duration: 1, ease: "easeOut" }}
           className="text-center mb-16"
         >
+          {/* Professional Tagline */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="mb-12 mt-8"
+          >
+            <div className="inline-flex flex-col items-center justify-center space-y-2 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
+              <div className="flex space-x-1 mb-1">
+                <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-white/40 rounded-full animate-pulse delay-100"></div>
+                <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse delay-200"></div>
+              </div>
+              <span className="text-white/90 font-semibold text-lg tracking-wide">
+                Dedication To Education
+              </span>
+              <span className="text-white/70 font-medium text-xs tracking-wider">
+                Excellence in Every Step
+              </span>
+            </div>
+          </motion.div>
+
           {/* Main Hero Heading */}
           <motion.h1 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-            transition={{ duration: 1.2, delay: 0.2 }}
+            transition={{ duration: 1.2, delay: 0.4 }}
             className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight"
           >
             Trusted by{" "}
@@ -234,23 +256,14 @@ export default function StatsBanner() {
             <span className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl">Worldwide</span>
           </motion.h1>
           
-          {/* Hero Tagline */}
+          {/* Hero Description */}
           <motion.p 
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-xl md:text-2xl lg:text-3xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-4"
+            transition={{ duration: 1, delay: 0.6 }}
+            className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed"
           >
-            Making Global Education Dreams Come True Since 2009
-          </motion.p>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="text-lg md:text-xl text-blue-200 max-w-3xl mx-auto"
-          >
-            Our numbers speak for themselves - join the success stories of students who achieved their dreams with Pakistan's most trusted visa consultancy
+            <span className="font-semibold text-white">About Dunya Consultants:</span> Making global education dreams come true since 2009. Join thousands of successful students who achieved their international study goals with Pakistan's most trusted visa consultancy.
           </motion.p>
         </motion.div>
 
@@ -271,12 +284,12 @@ export default function StatsBanner() {
             >
               <div className="relative">
                 {/* Icon Background */}
-                <div className={`w-20 h-20 lg:w-24 lg:h-24 mx-auto mb-6 bg-gradient-to-br ${stat.color} rounded-3xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-2xl`}>
-                  <stat.icon className="w-10 h-10 lg:w-12 lg:h-12 text-white" />
+                <div className={`w-16 h-16 lg:w-18 lg:h-18 mx-auto mb-6 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-2xl`}>
+                  <stat.icon className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
                 </div>
                 
                 {/* Enhanced Glow Effect */}
-                <div className={`absolute inset-0 w-20 h-20 lg:w-24 lg:h-24 mx-auto bg-gradient-to-br ${stat.color} rounded-3xl blur-2xl opacity-30 group-hover:opacity-60 transition-all duration-500`}></div>
+                <div className={`absolute inset-0 w-16 h-16 lg:w-18 lg:h-18 mx-auto bg-gradient-to-br ${stat.color} rounded-2xl blur-2xl opacity-30 group-hover:opacity-60 transition-all duration-500`}></div>
               </div>
 
               <div className="text-white">
