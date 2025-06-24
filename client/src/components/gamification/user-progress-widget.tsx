@@ -5,10 +5,12 @@ import { ChevronUp, ChevronDown, Trophy, Star, Target, Zap } from 'lucide-react'
 import { apiRequest } from '@/lib/queryClient';
 import { getSessionId } from './engagement-tracker';
 import AchievementBadge from './achievement-badge';
+import AchievementGallery from './achievement-gallery';
 import type { UserStats, Achievement } from '@shared/schema';
 
 export default function UserProgressWidget() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
   const sessionId = getSessionId();
 
   const { data: userStats } = useQuery<UserStats>({
@@ -150,6 +152,15 @@ export default function UserProgressWidget() {
                   </div>
                 </div>
 
+                {/* View All Achievements Button */}
+                <button
+                  onClick={() => setShowGallery(true)}
+                  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                >
+                  <Trophy className="w-5 h-5" />
+                  <span>View All Achievements</span>
+                </button>
+
                 {/* Engagement Tips */}
                 <div className="bg-gray-50 rounded-lg p-4">
                   <h4 className="text-sm font-semibold text-gray-700 mb-2">💡 Quick Tips</h4>
@@ -165,6 +176,12 @@ export default function UserProgressWidget() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Achievement Gallery Modal */}
+      <AchievementGallery 
+        isOpen={showGallery} 
+        onClose={() => setShowGallery(false)} 
+      />
     </motion.div>
   );
 }

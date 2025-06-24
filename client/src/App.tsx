@@ -18,6 +18,9 @@ import CanadaGuide from "@/pages/country-guides/canada";
 import AustraliaGuide from "@/pages/country-guides/australia";
 import BusinessCardGenerator from "@/pages/business-card-generator";
 import NotFound from "@/pages/not-found";
+import EngagementTracker from "@/components/gamification/engagement-tracker";
+import UserProgressWidget from "@/components/gamification/user-progress-widget";
+import AchievementNotification from "@/components/gamification/achievement-notification";
 
 function Router() {
   return (
@@ -44,10 +47,14 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Router />
-      </TooltipProvider>
+      <EngagementTracker>
+        <TooltipProvider>
+          <Toaster />
+          <Router />
+          <UserProgressWidget />
+          <AchievementNotification />
+        </TooltipProvider>
+      </EngagementTracker>
     </QueryClientProvider>
   );
 }

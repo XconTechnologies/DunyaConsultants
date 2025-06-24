@@ -1,4 +1,9 @@
-import { contacts, testimonials, users, type User, type InsertUser, type Contact, type InsertContact, type Testimonial, type InsertTestimonial } from "@shared/schema";
+import { 
+  contacts, testimonials, users, userEngagement, achievements, userStats,
+  type User, type InsertUser, type Contact, type InsertContact, 
+  type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
+  type Achievement, type InsertAchievement, type UserStats, type InsertUserStats
+} from "@shared/schema";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -33,9 +38,14 @@ export class MemStorage implements IStorage {
     this.users = new Map();
     this.contacts = new Map();
     this.testimonials = new Map();
+    this.userEngagements = new Map();
+    this.userAchievements = new Map();
+    this.userStatsMap = new Map();
     this.currentUserId = 1;
     this.currentContactId = 1;
     this.currentTestimonialId = 1;
+    this.currentEngagementId = 1;
+    this.currentAchievementId = 1;
     
     // Initialize with some testimonials
     this.initializeTestimonials();

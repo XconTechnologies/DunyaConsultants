@@ -31,6 +31,47 @@ export const testimonials = pgTable("testimonials", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const userEngagement = pgTable("user_engagement", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id").notNull(),
+  userId: integer("user_id"),
+  action: text("action").notNull(), // page_view, form_submit, tool_use, download, etc.
+  category: text("category").notNull(), // navigation, interaction, conversion, etc.
+  details: text("details"), // JSON string with additional data
+  points: integer("points").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const achievements = pgTable("achievements", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id").notNull(),
+  userId: integer("user_id"),
+  badgeType: text("badge_type").notNull(), // explorer, scholar, communicator, planner, etc.
+  badgeLevel: text("badge_level").notNull(), // bronze, silver, gold, platinum
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  icon: text("icon").notNull(),
+  points: integer("points").notNull(),
+  unlockedAt: timestamp("unlocked_at").defaultNow(),
+});
+
+export const userStats = pgTable("user_stats", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id").notNull().unique(),
+  userId: integer("user_id"),
+  totalPoints: integer("total_points").default(0),
+  level: integer("level").default(1),
+  pagesVisited: integer("pages_visited").default(0),
+  toolsUsed: integer("tools_used").default(0),
+  formsCompleted: integer("forms_completed").default(0),
+  documentsDownloaded: integer("documents_downloaded").default(0),
+  consultationsBooked: integer("consultations_booked").default(0),
+  badgesEarned: integer("badges_earned").default(0),
+  streak: integer("streak").default(0),
+  lastActiveAt: timestamp("last_active_at").defaultNow(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
