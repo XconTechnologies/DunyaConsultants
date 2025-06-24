@@ -17,8 +17,8 @@ export default function Home() {
       <StatsBanner />
       <IeltsSection />
       <CountriesSection />
-      <OfficeLocationsSection />
       <UniversityPartnersSection />
+      <OfficeLocationsSection />
       <FloatingCTA />
       <Footer />
     </div>
