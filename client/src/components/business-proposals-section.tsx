@@ -253,7 +253,7 @@ export default function BusinessProposalsSection() {
                         >
                           <div className="flex items-center justify-center space-x-2 text-gray-600 group-hover:text-blue-600 transition-colors">
                             <Mail className="w-4 h-4" />
-                            <span className="text-sm font-medium">umer@dunyaconsultants.com</span>
+                            <span className="text-sm font-medium">abdul.majeed@dunyaconsultants.com</span>
                             <motion.div
                               initial={{ opacity: 0 }}
                               whileHover={{ opacity: 1 }}
