@@ -61,10 +61,7 @@ export default function BusinessProposalsSection() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold text-gray-900 mb-4">Contact Information</h3>
-              <p className="text-gray-600 text-lg">Reach out to us through any of these channels</p>
-            </div>
+
             
             {/* Business Card Style Layout */}
             <div className="max-w-4xl mx-auto">
