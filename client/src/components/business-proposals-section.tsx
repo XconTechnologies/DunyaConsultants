@@ -37,100 +37,93 @@ export default function BusinessProposalsSection() {
 
         </motion.div>
 
-        {/* Full Team Photo */}
+        {/* Combined Team Photo with Business Card Overlay */}
         <motion.div
-          className="mb-16 rounded-2xl overflow-hidden shadow-2xl"
+          className="mb-16 relative rounded-3xl overflow-hidden shadow-2xl"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <img 
-            src={teamPhoto} 
-            alt="Dunya Consultants Team" 
-            className="w-full h-auto object-contain"
-          />
+          {/* Team Photo Background */}
+          <div className="relative">
+            <img 
+              src={teamPhoto} 
+              alt="Dunya Consultants Team" 
+              className="w-full h-auto object-cover"
+            />
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+          </div>
+          
+          {/* Business Card Overlay */}
+          <div className="absolute bottom-0 left-0 right-0 p-8">
+            <motion.div
+              className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <div className="p-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* UAN Contact */}
+                  <motion.a
+                    href="tel:+923041110947"
+                    className="group text-center p-4 rounded-xl hover:bg-gray-50 transition-all duration-300"
+                    whileHover={{ y: -3 }}
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <h4 className="text-sm font-bold text-gray-900 mb-1">UAN Number</h4>
+                    <p className="text-lg font-bold text-green-600 mb-1">(+92) 304 1110947</p>
+                    <p className="text-gray-600 text-xs">Call us anytime</p>
+                  </motion.a>
+
+                  {/* Head Office */}
+                  <motion.div
+                    className="group text-center p-4 rounded-xl hover:bg-gray-50 transition-all duration-300"
+                    whileHover={{ y: -3 }}
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-rose-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <h4 className="text-sm font-bold text-gray-900 mb-1">Head Office</h4>
+                    <p className="text-sm font-semibold text-red-600 mb-1">Alif Tower</p>
+                    <p className="text-gray-600 text-xs leading-relaxed">Buhadur shah zafar road, Sargodha</p>
+                  </motion.div>
+
+                  {/* General Queries */}
+                  <motion.a
+                    href="mailto:info@dunyaconsultants.com"
+                    className="group text-center p-4 rounded-xl hover:bg-gray-50 transition-all duration-300"
+                    whileHover={{ y: -3 }}
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform shadow-lg">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <h4 className="text-sm font-bold text-gray-900 mb-1">General Queries</h4>
+                    <p className="text-sm font-semibold text-blue-600 mb-1">info@dunyaconsultants.com</p>
+                    <p className="text-gray-600 text-xs">We'll respond within 24 hours</p>
+                  </motion.a>
+                </div>
+                
+                {/* Bottom Border Design */}
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <div className="flex items-center justify-center space-x-3">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" />
+                    <div className="w-2 h-2 bg-red-500 rounded-full" />
+                    <div className="w-2 h-2 bg-blue-500 rounded-full" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
         {/* Modern Contact Layout */}
         <div className="space-y-12">
-          {/* Contact Information Section - Business Card Style */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-
-            
-            {/* Business Card Style Layout */}
-            <div className="max-w-4xl mx-auto">
-              <motion.div
-                className="bg-white rounded-3xl shadow-2xl overflow-hidden relative"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Background Pattern */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full -mr-16 -mt-16" />
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-green-200/20 to-blue-200/20 rounded-full -ml-12 -mb-12" />
-                
-                <div className="relative z-10 p-12">
-                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* UAN Contact */}
-                    <motion.a
-                      href="tel:+923041110947"
-                      className="group text-center p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300"
-                      whileHover={{ y: -5 }}
-                    >
-                      <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                        <Phone className="w-8 h-8 text-white" />
-                      </div>
-                      <h4 className="text-lg font-bold text-gray-900 mb-2">UAN Number</h4>
-                      <p className="text-2xl font-bold text-green-600 mb-2">(+92) 304 1110947</p>
-                      <p className="text-gray-600 text-sm">Call us anytime</p>
-                    </motion.a>
-
-                    {/* Head Office */}
-                    <motion.div
-                      className="group text-center p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300"
-                      whileHover={{ y: -5 }}
-                    >
-                      <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                        <MapPin className="w-8 h-8 text-white" />
-                      </div>
-                      <h4 className="text-lg font-bold text-gray-900 mb-2">Head Office</h4>
-                      <p className="text-lg font-semibold text-red-600 mb-1">Alif Tower</p>
-                      <p className="text-gray-600 text-sm leading-relaxed">Buhadur shah zafar road, Sargodha</p>
-                    </motion.div>
-
-                    {/* General Queries */}
-                    <motion.a
-                      href="mailto:info@dunyaconsultants.com"
-                      className="group text-center p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300"
-                      whileHover={{ y: -5 }}
-                    >
-                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
-                        <Mail className="w-8 h-8 text-white" />
-                      </div>
-                      <h4 className="text-lg font-bold text-gray-900 mb-2">General Queries</h4>
-                      <p className="text-lg font-semibold text-blue-600 mb-2">info@dunyaconsultants.com</p>
-                      <p className="text-gray-600 text-sm">We'll respond within 24 hours</p>
-                    </motion.a>
-                  </div>
-                  
-                  {/* Bottom Border Design */}
-                  <div className="mt-8 pt-6 border-t border-gray-200">
-                    <div className="flex items-center justify-center space-x-4">
-                      <div className="w-3 h-3 bg-green-500 rounded-full" />
-                      <div className="w-3 h-3 bg-red-500 rounded-full" />
-                      <div className="w-3 h-3 bg-blue-500 rounded-full" />
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
 
           {/* Business Proposals Section */}
           <motion.div
