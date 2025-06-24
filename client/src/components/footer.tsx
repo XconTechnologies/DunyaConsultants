@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Mail, User, Building, Handshake, Users, Globe } from 'lucide-react';
 
+import Asset_1 from "@assets/Asset-1.png";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -10,7 +12,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <img 
-                src="/attached_assets/Asset-1_1750770525064.png" 
+                src={Asset_1} 
                 alt="Dunya Consultants Logo" 
                 className="h-12 w-auto"
               />
