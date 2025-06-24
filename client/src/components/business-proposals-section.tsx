@@ -215,9 +215,7 @@ export default function BusinessProposalsSection() {
                         </motion.div>
                         
                         {/* Name with gradient text */}
-                        <h4 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                          Umer Farooq
-                        </h4>
+                        <h4 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Abdul Majeed</h4>
                         
                         {/* Title with badge design */}
                         <div className="inline-block bg-gradient-to-r from-purple-100 to-blue-100 px-4 py-2 rounded-full mb-8">
