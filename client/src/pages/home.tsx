@@ -1,6 +1,5 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import AudienceSectionNew from "@/components/audience-section-new";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
 import OfficeLocationsSection from "@/components/office-locations-section";
@@ -16,7 +15,6 @@ export default function Home() {
       <ScrollProgress />
       <Navigation />
       <StatsBanner />
-      <AudienceSectionNew />
       <IeltsSection />
       <CountriesSection />
       <OfficeLocationsSection />
