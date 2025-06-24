@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, User, Building, Handshake, Users, Globe } from 'lucide-react';
+import { Mail, User, Building, Handshake, Users, Globe, Phone, MapPin } from 'lucide-react';
 
 import Asset_1 from "@assets/Asset-1.png";
 
@@ -35,16 +35,56 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Us Card */}
           <div className="lg:col-span-1">
-            <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
-            <div className="space-y-2 text-sm">
-              <p className="text-gray-400">UAN: (+92) 304 1110947</p>
-              <p className="text-gray-400">Email: info@dunyaconsultants.com</p>
-              <p className="text-gray-400">
-                Head Office: Alif Tower, Buhadur shah zafar road, Sargodha
-              </p>
-            </div>
+            <motion.div 
+              className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl p-6 shadow-lg relative overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Background accent */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-6 translate-x-6" />
+              <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-4 -translate-x-4" />
+              
+              <div className="relative z-10">
+                <h4 className="text-lg font-bold text-white mb-4 flex items-center">
+                  <Phone className="w-5 h-5 mr-2" />
+                  Contact Us
+                </h4>
+                
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <Phone className="w-4 h-4 text-blue-200 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-blue-100 text-sm font-medium">UAN:</p>
+                      <a href="tel:+923041110947" className="text-white font-semibold hover:text-blue-200 transition-colors">
+                        (+92) 304 1110947
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <Mail className="w-4 h-4 text-blue-200 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-blue-100 text-sm font-medium">Email:</p>
+                      <a href="mailto:info@dunyaconsultants.com" className="text-white font-semibold hover:text-blue-200 transition-colors break-all">
+                        info@dunyaconsultants.com
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-3">
+                    <MapPin className="w-4 h-4 text-blue-200 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="text-blue-100 text-sm font-medium">Head Office:</p>
+                      <p className="text-white font-semibold text-sm leading-relaxed">
+                        Alif Tower, Buhadur shah zafar road, Sargodha
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
 
           {/* Business Proposals Section */}
