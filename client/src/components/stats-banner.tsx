@@ -310,8 +310,8 @@ export default function StatsBanner() {
                 </div>
 
                 <div className="text-white">
-                  <div className="mb-2">
-                    <div className="text-2xl lg:text-3xl xl:text-4xl font-bold">
+                  <div className="mb-1">
+                    <div className="text-lg lg:text-xl xl:text-2xl font-bold">
                       <AnimatedCounter 
                         number={stat.number} 
                         suffix={stat.suffix} 
@@ -319,7 +319,7 @@ export default function StatsBanner() {
                       />
                     </div>
                   </div>
-                  <p className="text-sm lg:text-base text-blue-200 font-medium tracking-wide">
+                  <p className="text-xs lg:text-sm text-blue-200 font-medium tracking-wide">
                     {stat.label}
                   </p>
                 </div>
