@@ -14,6 +14,13 @@ import ardenUniversityLogo from "@assets/Uni-Logos-3-17-2048x879_1750752090674.w
 import universityEuropeLogo from "@assets/Artboard-1-copy-42_1750752090674.webp";
 import bsbiLogo from "@assets/Uni-Logos-3-16-2048x878_1750752090675.webp";
 import labLogo from "@assets/lab-logo_1750752090675.webp";
+import limCollegeLogo from "@assets/Uni-Logos-3-11-2048x879_1750752378811.webp";
+import websterUniversityLogo from "@assets/Artboard-1-copy-4_1750752378812.webp";
+import qaPartnershipLogo from "@assets/Untitled design (14)_1750752416711.png";
+import hartpuryUniversityLogo from "@assets/download_1750752416712.webp";
+import ulsterUniversityLogo from "@assets/IMG-20250425-WA0015_1750752416712.webp";
+import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750752416713.webp";
+import southWalesUniversityLogo from "@assets/IMG-20250425-WA0017_1750752416714.webp";
 
 // University partners data with authentic logos
 const universityPartners = [
@@ -30,6 +37,13 @@ const universityPartners = [
   { name: "University of Europe", country: "Germany", logoUrl: universityEuropeLogo, ranking: "Leading" },
   { name: "Berlin School of Business & Innovation", country: "Germany", logoUrl: bsbiLogo, ranking: "Premier" },
   { name: "LAB University", country: "Finland", logoUrl: labLogo, ranking: "Excellence" },
+  { name: "LIM College - Business of Fashion & Lifestyle", country: "USA", logoUrl: limCollegeLogo, ranking: "Specialized" },
+  { name: "Webster University", country: "USA", logoUrl: websterUniversityLogo, ranking: "Global" },
+  { name: "QA Partnership", country: "UK", logoUrl: qaPartnershipLogo, ranking: "Partnership" },
+  { name: "Hartpury University and College", country: "UK", logoUrl: hartpuryUniversityLogo, ranking: "Specialized" },
+  { name: "Ulster University", country: "UK", logoUrl: ulsterUniversityLogo, ranking: "Research" },
+  { name: "Southampton Solent University", country: "UK", logoUrl: southamptonSolentLogo, ranking: "Modern" },
+  { name: "University of South Wales", country: "Wales", logoUrl: southWalesUniversityLogo, ranking: "Innovation" },
   
   // Additional top universities
   { name: "Harvard University", country: "USA", logoUrl: null, ranking: "#1" },
@@ -111,32 +125,40 @@ export default function UniversityPartnersSection() {
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
             We've partnered with 250+ prestigious universities worldwide including leading institutions 
-            in UK, Germany, Australia, Ireland, France, and Finland to provide you with the best educational opportunities.
+            in USA, UK, Wales, Germany, Australia, Ireland, France, and Finland to provide you with the best educational opportunities.
           </p>
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 text-center">
             <div>
-              <div className="text-2xl font-bold text-blue-600">250+</div>
-              <div className="text-sm text-neutral-600">Universities</div>
+              <div className="text-xl font-bold text-blue-600">250+</div>
+              <div className="text-xs text-neutral-600">Universities</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-purple-600">60+</div>
-              <div className="text-sm text-neutral-600">Germany</div>
+              <div className="text-xl font-bold text-indigo-600">80+</div>
+              <div className="text-xs text-neutral-600">USA</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-green-600">45+</div>
-              <div className="text-sm text-neutral-600">UK</div>
+              <div className="text-xl font-bold text-green-600">65+</div>
+              <div className="text-xs text-neutral-600">UK</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-orange-600">35+</div>
-              <div className="text-sm text-neutral-600">Australia</div>
+              <div className="text-xl font-bold text-purple-600">60+</div>
+              <div className="text-xs text-neutral-600">Germany</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-red-600">25+</div>
-              <div className="text-sm text-neutral-600">Ireland</div>
+              <div className="text-xl font-bold text-orange-600">35+</div>
+              <div className="text-xs text-neutral-600">Australia</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-teal-600">20+</div>
-              <div className="text-sm text-neutral-600">France</div>
+              <div className="text-xl font-bold text-red-600">25+</div>
+              <div className="text-xs text-neutral-600">Ireland</div>
+            </div>
+            <div>
+              <div className="text-xl font-bold text-teal-600">20+</div>
+              <div className="text-xs text-neutral-600">France</div>
+            </div>
+            <div>
+              <div className="text-xl font-bold text-pink-600">15+</div>
+              <div className="text-xs text-neutral-600">Wales</div>
             </div>
             <div className="text-center">
               <div className="text-3xl font-bold text-secondary">50+</div>
