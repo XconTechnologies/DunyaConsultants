@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <img 
-                src="/attached_assets/Asset-1_1750769524939.png" 
+                src="/attached_assets/Asset-1_1750770525064.png" 
                 alt="Dunya Consultants Logo" 
                 className="h-12 w-auto"
               />
