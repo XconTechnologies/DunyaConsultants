@@ -44,6 +44,7 @@ export default function ConsultationBookingCalendar() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   
+  const [currentStep, setCurrentStep] = useState(1);
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
@@ -61,6 +62,16 @@ export default function ConsultationBookingCalendar() {
     location: "",
     message: ""
   });
+
+  const totalSteps = 5;
+
+  const stepTitles = [
+    "Choose Consultation Type",
+    "Select Office Location", 
+    "Pick Your Date",
+    "Choose Time Slot",
+    "Enter Your Details"
+  ];
 
   // Generate next 30 days for calendar
   const generateCalendarDays = () => {
@@ -88,6 +99,29 @@ export default function ConsultationBookingCalendar() {
 
   const handleInputChange = (field: keyof BookingFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const nextStep = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const canProceed = () => {
+    switch (currentStep) {
+      case 1: return selectedType !== "";
+      case 2: return selectedLocation !== "";
+      case 3: return selectedDate !== "";
+      case 4: return selectedTime !== "";
+      case 5: return formData.name && formData.email && formData.phone;
+      default: return false;
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -169,107 +203,170 @@ export default function ConsultationBookingCalendar() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Calendar & Selection */}
+        {/* Step-by-Step Timeline */}
+        <div className="max-w-4xl mx-auto">
+          {/* Progress Timeline */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            className="flex items-center justify-between mb-12 px-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Consultation Type Selection */}
-            <div className="mb-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Select Consultation Type</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {consultationTypes.map((type) => (
-                  <motion.button
-                    key={type.id}
-                    onClick={() => {
-                      setSelectedType(type.id);
-                      handleInputChange('consultationType', type.id);
-                    }}
-                    className={`p-4 rounded-xl border-2 text-left transition-all duration-300 ${
-                      selectedType === type.id
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-blue-300'
-                    }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div className="font-semibold text-gray-900">{type.name}</div>
-                    <div className="text-sm text-gray-600">{type.duration} • {type.price}</div>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            {/* Location Selection */}
-            <div className="mb-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Select Location</h3>
-              <div className="space-y-3">
-                {officeLocations.map((location) => (
-                  <motion.button
-                    key={location.id}
-                    onClick={() => {
-                      setSelectedLocation(location.id);
-                      handleInputChange('location', location.id);
-                    }}
-                    className={`w-full p-4 rounded-xl border-2 text-left transition-all duration-300 ${
-                      selectedLocation === location.id
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-blue-300'
-                    }`}
-                    whileHover={{ scale: 1.01 }}
-                    whileTap={{ scale: 0.99 }}
-                  >
-                    <div className="flex items-center">
-                      <MapPin className="w-4 h-4 text-blue-600 mr-2" />
-                      <div>
-                        <div className="font-semibold text-gray-900">{location.name}</div>
-                        <div className="text-sm text-gray-600">{location.address}</div>
+            {stepTitles.map((title, index) => {
+              const stepNumber = index + 1;
+              const isActive = currentStep === stepNumber;
+              const isCompleted = currentStep > stepNumber;
+              
+              return (
+                <div key={stepNumber} className="flex items-center flex-1">
+                  <div className="flex flex-col items-center">
+                    <motion.div
+                      className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg border-4 border-white shadow-lg ${
+                        isCompleted ? 'bg-green-500' : isActive ? 'bg-blue-500' : 'bg-gray-300'
+                      }`}
+                      animate={{ scale: isActive ? 1.1 : 1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {isCompleted ? <Check className="w-6 h-6" /> : stepNumber}
+                    </motion.div>
+                    <div className="text-center mt-2">
+                      <div className={`text-sm font-medium ${isActive ? 'text-blue-600' : 'text-gray-600'}`}>
+                        Step {stepNumber}
+                      </div>
+                      <div className={`text-xs ${isActive ? 'text-blue-800' : 'text-gray-500'}`}>
+                        {title}
                       </div>
                     </div>
-                  </motion.button>
-                ))}
-              </div>
-            </div>
+                  </div>
+                  
+                  {index < stepTitles.length - 1 && (
+                    <motion.div
+                      className={`flex-1 h-1 mx-4 rounded ${
+                        isCompleted ? 'bg-green-500' : 'bg-gray-200'
+                      }`}
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: isCompleted ? 1 : 0 }}
+                      transition={{ duration: 0.5 }}
+                      style={{ transformOrigin: 'left' }}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </motion.div>
 
-            {/* Calendar */}
-            <div className="mb-8">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Select Date</h3>
-              <div className="grid grid-cols-5 gap-3">
-                {calendarDays.slice(0, 15).map((day) => (
-                  <motion.button
-                    key={day.date}
-                    onClick={() => {
-                      setSelectedDate(day.date);
-                      handleInputChange('preferredDate', day.date);
-                    }}
-                    className={`p-3 rounded-xl border text-center transition-all duration-300 ${
-                      selectedDate === day.date
-                        ? 'border-blue-500 bg-blue-500 text-white'
-                        : 'border-gray-200 hover:border-blue-300'
-                    }`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <div className="text-xs font-medium">{day.weekday}</div>
-                    <div className="text-lg font-bold">{day.day}</div>
-                    <div className="text-xs">{day.month}</div>
-                  </motion.button>
-                ))}
+          {/* Step Content */}
+          <motion.div
+            className="bg-white rounded-2xl shadow-xl p-8 min-h-96"
+            key={currentStep}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Step 1: Consultation Type */}
+            {currentStep === 1 && (
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Choose Your Consultation Type</h3>
+                <p className="text-gray-600 mb-8">Select the type of consultation that best fits your needs</p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {consultationTypes.map((type) => (
+                    <motion.button
+                      key={type.id}
+                      onClick={() => {
+                        setSelectedType(type.id);
+                        handleInputChange('consultationType', type.id);
+                      }}
+                      className={`p-6 rounded-xl border-2 text-left transition-all duration-300 ${
+                        selectedType === type.id
+                          ? 'border-blue-500 bg-blue-50'
+                          : 'border-gray-200 hover:border-blue-300'
+                      }`}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <div className="font-semibold text-gray-900 mb-2">{type.name}</div>
+                      <div className="text-sm text-gray-600">{type.duration} • {type.price}</div>
+                    </motion.button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
-            {/* Time Slots */}
-            {selectedDate && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mb-8"
-              >
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Select Time</h3>
-                <div className="grid grid-cols-3 md:grid-cols-4 gap-3">
+            {/* Step 2: Location Selection */}
+            {currentStep === 2 && (
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Select Office Location</h3>
+                <p className="text-gray-600 mb-8">Choose your preferred consultation location</p>
+                
+                <div className="space-y-4">
+                  {officeLocations.map((location) => (
+                    <motion.button
+                      key={location.id}
+                      onClick={() => {
+                        setSelectedLocation(location.id);
+                        handleInputChange('location', location.id);
+                      }}
+                      className={`w-full p-6 rounded-xl border-2 text-left transition-all duration-300 ${
+                        selectedLocation === location.id
+                          ? 'border-blue-500 bg-blue-50'
+                          : 'border-gray-200 hover:border-blue-300'
+                      }`}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                    >
+                      <div className="flex items-center">
+                        <MapPin className="w-5 h-5 text-blue-600 mr-3" />
+                        <div>
+                          <div className="font-semibold text-gray-900">{location.name}</div>
+                          <div className="text-sm text-gray-600">{location.address}</div>
+                        </div>
+                      </div>
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Step 3: Date Selection */}
+            {currentStep === 3 && (
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Pick Your Date</h3>
+                <p className="text-gray-600 mb-8">Select your preferred consultation date</p>
+                
+                <div className="grid grid-cols-5 gap-4">
+                  {calendarDays.slice(0, 15).map((day) => (
+                    <motion.button
+                      key={day.date}
+                      onClick={() => {
+                        setSelectedDate(day.date);
+                        handleInputChange('preferredDate', day.date);
+                      }}
+                      className={`p-4 rounded-xl border text-center transition-all duration-300 ${
+                        selectedDate === day.date
+                          ? 'border-blue-500 bg-blue-500 text-white'
+                          : 'border-gray-200 hover:border-blue-300'
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <div className="text-xs font-medium">{day.weekday}</div>
+                      <div className="text-xl font-bold">{day.day}</div>
+                      <div className="text-xs">{day.month}</div>
+                    </motion.button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Step 4: Time Selection */}
+            {currentStep === 4 && (
+              <div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Choose Time Slot</h3>
+                <p className="text-gray-600 mb-8">Select your preferred consultation time</p>
+                
+                <div className="grid grid-cols-3 md:grid-cols-4 gap-4">
                   {timeSlots.map((time) => (
                     <motion.button
                       key={time}
@@ -277,7 +374,7 @@ export default function ConsultationBookingCalendar() {
                         setSelectedTime(time);
                         handleInputChange('preferredTime', time);
                       }}
-                      className={`p-3 rounded-lg border text-center transition-all duration-300 ${
+                      className={`p-4 rounded-lg border text-center transition-all duration-300 ${
                         selectedTime === time
                           ? 'border-blue-500 bg-blue-500 text-white'
                           : 'border-gray-200 hover:border-blue-300'
@@ -285,113 +382,132 @@ export default function ConsultationBookingCalendar() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      <Clock className="w-4 h-4 mx-auto mb-1" />
+                      <Clock className="w-5 h-5 mx-auto mb-2" />
                       <div className="text-sm font-medium">{time}</div>
                     </motion.button>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             )}
-          </motion.div>
 
-          {/* Booking Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-white rounded-2xl shadow-xl p-8"
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Your Details</h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Step 5: Personal Details */}
+            {currentStep === 5 && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Enter your full name"
-                />
-              </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Enter Your Details</h3>
+                <p className="text-gray-600 mb-8">Provide your contact information to complete the booking</p>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => handleInputChange('name', e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Enter your email"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number *
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange('phone', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="+92 XXX XXXXXXX"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Additional Message
-                </label>
-                <textarea
-                  value={formData.message}
-                  onChange={(e) => handleInputChange('message', e.target.value)}
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Tell us about your study abroad goals..."
-                />
-              </div>
-
-              {/* Selection Summary */}
-              {(selectedType || selectedDate || selectedTime || selectedLocation) && (
-                <div className="bg-blue-50 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-900 mb-2">Booking Summary</h4>
-                  <div className="space-y-1 text-sm text-blue-800">
-                    {selectedType && (
-                      <div>Type: {consultationTypes.find(t => t.id === selectedType)?.name}</div>
-                    )}
-                    {selectedLocation && (
-                      <div>Location: {officeLocations.find(l => l.id === selectedLocation)?.name}</div>
-                    )}
-                    {selectedDate && <div>Date: {new Date(selectedDate).toLocaleDateString()}</div>}
-                    {selectedTime && <div>Time: {selectedTime}</div>}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        value={formData.phone}
+                        onChange={(e) => handleInputChange('phone', e.target.value)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="+92 XXX XXXXXXX"
+                      />
+                    </div>
                   </div>
-                </div>
-              )}
 
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Additional Message
+                    </label>
+                    <textarea
+                      value={formData.message}
+                      onChange={(e) => handleInputChange('message', e.target.value)}
+                      rows={4}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Tell us about your study abroad goals..."
+                    />
+                  </div>
+
+                  {/* Booking Summary */}
+                  <div className="bg-blue-50 rounded-lg p-6">
+                    <h4 className="font-semibold text-blue-900 mb-4">Booking Summary</h4>
+                    <div className="space-y-2 text-sm text-blue-800">
+                      <div><strong>Type:</strong> {consultationTypes.find(t => t.id === selectedType)?.name}</div>
+                      <div><strong>Location:</strong> {officeLocations.find(l => l.id === selectedLocation)?.name}</div>
+                      <div><strong>Date:</strong> {selectedDate && new Date(selectedDate).toLocaleDateString()}</div>
+                      <div><strong>Time:</strong> {selectedTime}</div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {/* Navigation Buttons */}
+            <div className="flex justify-between mt-8 pt-6 border-t border-gray-200">
               <Button
-                type="submit"
-                disabled={!selectedType || !selectedDate || !selectedTime || !selectedLocation || !formData.name || !formData.email || !formData.phone || isSubmitting}
-                className="w-full py-4 text-lg font-semibold"
+                type="button"
+                variant="outline"
+                onClick={prevStep}
+                disabled={currentStep === 1}
+                className="px-6 py-3"
               >
-                {isSubmitting ? (
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                    className="w-6 h-6 border-2 border-white border-t-transparent rounded-full"
-                  />
-                ) : (
-                  "Confirm Booking"
-                )}
+                Previous
               </Button>
-            </form>
+
+              {currentStep < totalSteps ? (
+                <Button
+                  type="button"
+                  onClick={nextStep}
+                  disabled={!canProceed()}
+                  className="px-6 py-3"
+                >
+                  Next Step
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  onClick={handleSubmit}
+                  disabled={!canProceed() || isSubmitting}
+                  className="px-6 py-3"
+                >
+                  {isSubmitting ? (
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                    />
+                  ) : (
+                    "Confirm Booking"
+                  )}
+                </Button>
+              )}
+            </div>
           </motion.div>
         </div>
       </div>
