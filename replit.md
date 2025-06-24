@@ -200,6 +200,7 @@ The application uses three main tables:
 - **June 24, 2025 - Enhanced Timeline with Icons and Animations**: Added comprehensive animations and visual enhancements to study abroad journey timeline including step icons, timeline arrows with pulsing animations, gradient card backgrounds, hover effects, staggered entrance animations, animated deliverables with pulsing dots, mobile timeline connectors, and enhanced statistics section with emoji icons and floating animations.
 - **June 24, 2025 - Journey Step Update**: Changed step 2 title from "Course & University Selection" to "University Selection" and updated description from "course and university" to "university and program" for clearer focus on institutional selection.
 - **June 24, 2025 - Statistics Section Removal**: Completely removed the animated statistics section (8 Complete Steps, 6-12 Months Duration, 98% Success Rate, 24/7 Expert Support) from the journey timeline for a cleaner, more focused presentation.
+- **June 24, 2025 - Business Proposals Footer Section**: Added dedicated business proposals contact section in footer featuring Umer Farooq contact information (umer@dunyaconsultants.com) with email and WhatsApp icons, and updated copyright to "Dunya Consultants".
 
 ## Changelog
 

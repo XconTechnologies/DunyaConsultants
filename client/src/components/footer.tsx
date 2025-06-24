@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Instagram, MessageCircle, Mail } from "lucide-react";
 import logoImage from "@assets/Asset-1_1750413567978.png";
 
 export default function Footer() {
@@ -116,6 +116,34 @@ export default function Footer() {
           ))}
         </div>
         
+        {/* Business Proposals Section */}
+        <motion.div 
+          className="border-t border-neutral-800 mt-8 pt-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <div className="bg-neutral-800 rounded-lg p-6 mb-6">
+            <h3 className="text-white font-semibold mb-4 text-lg">For Business Proposals</h3>
+            <div className="space-y-3">
+              <div className="flex items-center text-neutral-300">
+                <Mail className="w-5 h-5 mr-3 text-blue-400" />
+                <a 
+                  href="mailto:umer@dunyaconsultants.com" 
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  umer@dunyaconsultants.com
+                </a>
+              </div>
+              <div className="flex items-center text-neutral-300">
+                <MessageCircle className="w-5 h-5 mr-3 text-green-400" />
+                <span>Umer Farooq</span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
         <motion.div 
           className="border-t border-neutral-800 mt-8 pt-8 text-center text-neutral-400"
           initial={{ opacity: 0 }}
@@ -123,7 +151,7 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <p>&copy; 2024 Path Visa Consultants. All rights reserved.</p>
+          <p>&copy; 2024 Dunya Consultants. All rights reserved.</p>
         </motion.div>
       </div>
     </footer>
