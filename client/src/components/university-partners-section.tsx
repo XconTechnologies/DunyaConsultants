@@ -115,47 +115,7 @@ export default function UniversityPartnersSection() {
           </p>
         </motion.div>
 
-        {/* University Logos Grid - Single Frame */}
-        <motion.div
-          className="bg-white rounded-3xl shadow-2xl p-8"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {authenticPartners.map((university, index) => (
-              <motion.div
-                key={university.name}
-                className="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300 cursor-pointer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="text-center">
-                  <div className="h-16 mb-3 flex items-center justify-center">
-                    <img 
-                      src={university.logoUrl}
-                      alt={`${university.name} logo`}
-                      className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </div>
-                  <h3 className="font-bold text-neutral-800 text-xs mb-2 group-hover:text-primary transition-colors line-clamp-2 leading-tight">
-                    {university.name}
-                  </h3>
-                  <div className="flex justify-between items-center text-xs text-neutral-500 gap-1">
-                    <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs">
-                      {university.country}
-                    </span>
-                    <span className="bg-green-100 text-green-700 px-2 py-1 rounded-full text-xs">
-                      {university.ranking}
-                    </span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+
 
         
 
