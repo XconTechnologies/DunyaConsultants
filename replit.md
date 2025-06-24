@@ -192,6 +192,7 @@ The application uses three main tables:
 - **June 24, 2025 - Section Reordering**: Moved "Our Global University Partners" section above "Our Office Locations" in home page flow to prioritize display of international partnerships before local office information. Updated page sequence: Hero → Stats Banner → IELTS → Countries → University Partners → Office Locations → Footer.
 - **June 24, 2025 - Statistics Removal**: Removed statistics cards section (450+ Universities, 35+ Countries, 95% Success Rate, 10K+ Students) from university partners section for cleaner, more focused presentation without redundant numerical displays.
 - **June 24, 2025 - Hero Tagline Addition**: Added tagline "Your Gateway to Global Education" above "Dedication to Education" in hero section with elegant typography and smooth animations. Enhanced visual hierarchy with proper spacing and staggered animation delays for better user engagement.
+- **June 24, 2025 - Student Journey Timeline**: Created comprehensive 8-step study abroad journey timeline with alternating left-right layout, interactive cards, detailed deliverables for each phase, duration estimates, and gradient timeline connector. Features include consultation, course selection, test preparation, documentation, applications, admissions, visa processing, and pre-departure phases with total journey duration of 6-12 months.
 
 ## Changelog
 
