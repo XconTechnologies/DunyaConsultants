@@ -224,6 +224,7 @@ The application uses three main tables:
 - **June 24, 2025 - Footer Logo Final Update**: Updated footer logo to use latest Asset-1_1750770525064.png for consistent branding across the website.
 - **June 24, 2025 - Contact Us Card Design**: Created attractive contact card in footer with gradient background, icon integration, and hover animations. Features UAN phone number, email, and head office address in Sargodha with clickable links and professional styling.
 - **June 24, 2025 - Contact Card Text Size Reduction**: Reduced font sizes in contact card to make text smaller and more compact - heading to text-sm, contact details to text-xs, and reduced icon sizes for cleaner presentation.
+- **June 24, 2025 - Business Proposals Header Text Removal**: Removed "Get In Touch" and "For Business Proposals" header text from business proposals section for cleaner presentation.
 
 ## Changelog
 

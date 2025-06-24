@@ -474,33 +474,7 @@ export default function OfficeLocationsSection() {
           </div>
         </div>
 
-        {/* Contact CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              Can't Find a Nearby Office?
-            </h3>
-            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Don't worry! We offer online consultations and can arrange meetings at your convenience. 
-              Our expert counselors are just a call away.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-white text-blue-600 hover:bg-blue-50 font-bold px-8 py-3 rounded-xl shadow-xl">
-                <Phone className="w-5 h-5 mr-2" />
-                Call: +92 304 1110947
-              </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white/20 font-bold px-8 py-3 rounded-xl">
-                <Users className="w-5 h-5 mr-2" />
-                Schedule Online Meeting
-              </Button>
-            </div>
-          </div>
-        </motion.div>
+        
       </div>
     </section>
   );
