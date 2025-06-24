@@ -47,37 +47,37 @@ export default function Footer() {
               <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-4 -translate-x-4" />
               
               <div className="relative z-10">
-                <h4 className="text-lg font-bold text-white mb-4 flex items-center">
-                  <Phone className="w-5 h-5 mr-2" />
+                <h4 className="text-sm font-bold text-white mb-3 flex items-center">
+                  <Phone className="w-4 h-4 mr-2" />
                   Contact Us
                 </h4>
                 
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <Phone className="w-4 h-4 text-blue-200 mt-0.5 flex-shrink-0" />
+                <div className="space-y-2">
+                  <div className="flex items-start space-x-2">
+                    <Phone className="w-3 h-3 text-blue-200 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="text-blue-100 text-sm font-medium">UAN:</p>
-                      <a href="tel:+923041110947" className="text-white font-semibold hover:text-blue-200 transition-colors">
+                      <p className="text-blue-100 text-xs font-medium">UAN:</p>
+                      <a href="tel:+923041110947" className="text-white text-xs font-semibold hover:text-blue-200 transition-colors">
                         (+92) 304 1110947
                       </a>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3">
-                    <Mail className="w-4 h-4 text-blue-200 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start space-x-2">
+                    <Mail className="w-3 h-3 text-blue-200 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="text-blue-100 text-sm font-medium">Email:</p>
-                      <a href="mailto:info@dunyaconsultants.com" className="text-white font-semibold hover:text-blue-200 transition-colors break-all">
+                      <p className="text-blue-100 text-xs font-medium">Email:</p>
+                      <a href="mailto:info@dunyaconsultants.com" className="text-white text-xs font-semibold hover:text-blue-200 transition-colors break-all">
                         info@dunyaconsultants.com
                       </a>
                     </div>
                   </div>
                   
-                  <div className="flex items-start space-x-3">
-                    <MapPin className="w-4 h-4 text-blue-200 mt-0.5 flex-shrink-0" />
+                  <div className="flex items-start space-x-2">
+                    <MapPin className="w-3 h-3 text-blue-200 mt-0.5 flex-shrink-0" />
                     <div>
-                      <p className="text-blue-100 text-sm font-medium">Head Office:</p>
-                      <p className="text-white font-semibold text-sm leading-relaxed">
+                      <p className="text-blue-100 text-xs font-medium">Head Office:</p>
+                      <p className="text-white text-xs font-semibold leading-relaxed">
                         Alif Tower, Buhadur shah zafar road, Sargodha
                       </p>
                     </div>
