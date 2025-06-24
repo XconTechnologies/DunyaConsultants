@@ -190,6 +190,7 @@ The application uses three main tables:
 - **June 24, 2025 - Country Labels Integration**: Added country name labels below each university logo using small gray badges to clearly identify the geographical location of each partner institution. Enhanced card layout with flex-col structure to accommodate logo and country label positioning with proper spacing and visual hierarchy.
 - **June 24, 2025 - Strategic Country Organization**: Reorganized university partners array to prioritize UK institutions first (14 universities), followed by Wales (2), Scotland (2), then other countries in sequence: Germany (5), Canada (5), USA (4), Australia (2), Turkey (4), Netherlands (2), Finland (2), Ireland (1), France (1), UAE (1), and Caribbean (1). This strategic ordering emphasizes primary destination preferences while maintaining comprehensive global coverage.
 - **June 24, 2025 - Section Reordering**: Moved "Our Global University Partners" section above "Our Office Locations" in home page flow to prioritize display of international partnerships before local office information. Updated page sequence: Hero → Stats Banner → IELTS → Countries → University Partners → Office Locations → Footer.
+- **June 24, 2025 - Statistics Removal**: Removed statistics cards section (450+ Universities, 35+ Countries, 95% Success Rate, 10K+ Students) from university partners section for cleaner, more focused presentation without redundant numerical displays.
 
 ## Changelog
 

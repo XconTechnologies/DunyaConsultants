@@ -200,30 +200,7 @@ export default function UniversityPartnersSection() {
           </div>
         </motion.div>
 
-        {/* Statistics */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <div className="text-center bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-primary mb-2">450+</div>
-            <div className="text-sm text-gray-600">Universities</div>
-          </div>
-          <div className="text-center bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-primary mb-2">35+</div>
-            <div className="text-sm text-gray-600">Countries</div>
-          </div>
-          <div className="text-center bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-primary mb-2">95%</div>
-            <div className="text-sm text-gray-600">Success Rate</div>
-          </div>
-          <div className="text-center bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-primary mb-2">10K+</div>
-            <div className="text-sm text-gray-600">Students Placed</div>
-          </div>
-        </motion.div>
+
 
         {/* Call to Action */}
         <motion.div
