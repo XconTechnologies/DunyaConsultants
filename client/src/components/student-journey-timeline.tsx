@@ -119,84 +119,263 @@ export default function StudentJourneyTimeline() {
           </motion.p>
         </motion.div>
 
-        {/* Minimal Timeline Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {journeySteps.map((step, index) => (
-            <motion.div
-              key={step.id}
-              className="group"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              {/* Simple Card */}
+        {/* Enhanced Timeline Grid with Arrows */}
+        <div className="relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {journeySteps.map((step, index) => (
               <motion.div
-                className="bg-white rounded-lg p-6 border border-gray-100 h-full hover:shadow-md transition-all duration-300"
-                whileHover={{ y: -4 }}
+                key={step.id}
+                className="group relative"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: index * 0.15 }}
               >
-                {/* Step Number & Icon */}
-                <div className="flex items-center mb-4">
-                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-bold text-sm mr-3">
-                    {step.id}
-                  </div>
-                  <div className="text-xs text-gray-500 font-medium uppercase tracking-wide">
-                    {step.duration}
-                  </div>
-                </div>
+                {/* Timeline Arrow */}
+                {index < journeySteps.length - 1 && (
+                  <motion.div
+                    className="hidden lg:block absolute -right-3 top-20 z-10"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
+                  >
+                    <div className="flex items-center">
+                      <motion.div
+                        className="w-8 h-0.5 bg-gradient-to-r from-blue-300 to-blue-400"
+                        initial={{ scaleX: 0 }}
+                        animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+                        transition={{ duration: 0.8, delay: index * 0.15 + 0.5 }}
+                        style={{ transformOrigin: 'left' }}
+                      />
+                      <motion.div
+                        className="text-blue-400 ml-1"
+                        animate={{ x: [0, 3, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        →
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                )}
 
-                {/* Title */}
-                <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-tight">
-                  {step.title}
-                </h3>
+                {/* Enhanced Card */}
+                <motion.div
+                  className="bg-white rounded-xl p-6 border border-gray-100 h-full hover:shadow-lg transition-all duration-300 hover:border-blue-200 relative overflow-hidden"
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
+                >
+                  {/* Subtle Background Pattern */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                {/* Description */}
-                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                  {step.description}
-                </p>
-                
-                {/* Key Deliverables */}
-                <div>
-                  <div className="text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">
-                    Deliverables
+                  {/* Step Icon & Number */}
+                  <div className="flex items-center mb-5 relative z-10">
+                    <motion.div
+                      className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white shadow-lg mr-4"
+                      whileHover={{ rotate: 5, scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={isInView ? { scale: 1 } : { scale: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.15 + 0.2 }}
+                      >
+                        <step.icon className="w-6 h-6" />
+                      </motion.div>
+                    </motion.div>
+                    <div className="flex flex-col">
+                      <motion.span
+                        className="text-xs text-blue-600 font-bold uppercase tracking-wider"
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.15 + 0.3 }}
+                      >
+                        Step {step.id}
+                      </motion.span>
+                      <motion.span
+                        className="text-xs text-gray-500 font-medium"
+                        initial={{ opacity: 0 }}
+                        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.15 + 0.4 }}
+                      >
+                        {step.duration}
+                      </motion.span>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    {step.deliverables.slice(0, 3).map((item, idx) => (
-                      <div key={idx} className="flex items-center text-xs text-gray-600">
-                        <div className="w-1 h-1 bg-gray-400 rounded-full mr-2"></div>
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+
+                  {/* Animated Title */}
+                  <motion.h3
+                    className="text-lg font-semibold text-gray-900 mb-3 leading-tight relative z-10"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                    transition={{ duration: 0.5, delay: index * 0.15 + 0.3 }}
+                  >
+                    {step.title}
+                  </motion.h3>
+
+                  {/* Animated Description */}
+                  <motion.p
+                    className="text-sm text-gray-600 mb-5 leading-relaxed relative z-10"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                    transition={{ duration: 0.5, delay: index * 0.15 + 0.4 }}
+                  >
+                    {step.description}
+                  </motion.p>
+                  
+                  {/* Animated Deliverables */}
+                  <motion.div
+                    className="relative z-10"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+                    transition={{ duration: 0.5, delay: index * 0.15 + 0.5 }}
+                  >
+                    <div className="text-xs font-medium text-blue-600 mb-3 uppercase tracking-wide flex items-center">
+                      <motion.div
+                        className="w-2 h-2 bg-blue-500 rounded-full mr-2"
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                      />
+                      Key Deliverables
+                    </div>
+                    <div className="space-y-2">
+                      {step.deliverables.slice(0, 3).map((item, idx) => (
+                        <motion.div
+                          key={idx}
+                          className="flex items-center text-xs text-gray-600"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
+                          transition={{ duration: 0.5, delay: index * 0.15 + 0.6 + idx * 0.1 }}
+                        >
+                          <motion.div
+                            className="w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full mr-3"
+                            animate={{ scale: [1, 1.3, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 + idx * 0.2 }}
+                          />
+                          {item}
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  {/* Hover Effect Indicator */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    layoutId={`step-indicator-${step.id}`}
+                  />
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
+
+          {/* Mobile Timeline Connector */}
+          <div className="lg:hidden flex flex-col items-center space-y-6 absolute left-6 top-0 bottom-0">
+            {journeySteps.slice(0, -1).map((_, index) => (
+              <motion.div
+                key={index}
+                className="w-0.5 h-24 bg-gradient-to-b from-blue-300 to-blue-400"
+                initial={{ scaleY: 0 }}
+                animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                style={{ transformOrigin: 'top' }}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Clean Stats */}
+        {/* Enhanced Animated Stats */}
         <motion.div
-          className="bg-gray-50 rounded-lg p-8"
+          className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-100"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-light text-gray-900 mb-1">8</div>
-              <div className="text-sm text-gray-600">Steps</div>
-            </div>
-            <div>
-              <div className="text-3xl font-light text-gray-900 mb-1">6-12</div>
-              <div className="text-sm text-gray-600">Months</div>
-            </div>
-            <div>
-              <div className="text-3xl font-light text-gray-900 mb-1">98%</div>
-              <div className="text-sm text-gray-600">Success</div>
-            </div>
-            <div>
-              <div className="text-3xl font-light text-gray-900 mb-1">24/7</div>
-              <div className="text-sm text-gray-600">Support</div>
-            </div>
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={isInView ? { scale: 1 } : { scale: 0 }}
+              transition={{ duration: 0.6, delay: 1.0, type: "spring" }}
+            >
+              <motion.div
+                className="text-4xl font-light text-blue-600 mb-2 flex items-center justify-center"
+                animate={{ y: [0, -2, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                8
+                <motion.span
+                  className="ml-1 text-blue-400"
+                  animate={{ rotate: [0, 10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                >
+                  ✓
+                </motion.span>
+              </motion.div>
+              <div className="text-sm text-gray-600 font-medium">Complete Steps</div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={isInView ? { scale: 1 } : { scale: 0 }}
+              transition={{ duration: 0.6, delay: 1.1, type: "spring" }}
+            >
+              <motion.div
+                className="text-4xl font-light text-purple-600 mb-2 flex items-center justify-center"
+                animate={{ y: [0, -2, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+              >
+                6-12
+                <motion.span
+                  className="ml-1 text-purple-400 text-lg"
+                  animate={{ opacity: [1, 0.5, 1] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  📅
+                </motion.span>
+              </motion.div>
+              <div className="text-sm text-gray-600 font-medium">Months Duration</div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={isInView ? { scale: 1 } : { scale: 0 }}
+              transition={{ duration: 0.6, delay: 1.2, type: "spring" }}
+            >
+              <motion.div
+                className="text-4xl font-light text-green-600 mb-2 flex items-center justify-center"
+                animate={{ y: [0, -2, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+              >
+                98%
+                <motion.span
+                  className="ml-1 text-green-400 text-lg"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                >
+                  🎯
+                </motion.span>
+              </motion.div>
+              <div className="text-sm text-gray-600 font-medium">Success Rate</div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={isInView ? { scale: 1 } : { scale: 0 }}
+              transition={{ duration: 0.6, delay: 1.3, type: "spring" }}
+            >
+              <motion.div
+                className="text-4xl font-light text-orange-600 mb-2 flex items-center justify-center"
+                animate={{ y: [0, -2, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
+              >
+                24/7
+                <motion.span
+                  className="ml-1 text-orange-400 text-lg"
+                  animate={{ rotate: [0, 20, 0] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  💬
+                </motion.span>
+              </motion.div>
+              <div className="text-sm text-gray-600 font-medium">Expert Support</div>
+            </motion.div>
           </div>
         </motion.div>
 
