@@ -81,6 +81,7 @@ export default function Navigation() {
             { name: "Cost Calculator", href: "/cost-calculator", description: "Calculate study abroad costs" },
             { name: "Course Match Tool", href: "/course-match-tool", description: "Find your perfect course & country" },
             { name: "Document Checklist", href: "/document-checklist", description: "Generate personalized document checklists" },
+            { name: "Business Card Generator", href: "/business-card-generator", description: "Create professional glassmorphic business cards" },
             { name: "Country Guide", href: "/country-guide", description: "Comprehensive destination guides" }
           ]
         }

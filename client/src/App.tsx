@@ -16,6 +16,7 @@ import USAGuide from "@/pages/country-guides/usa";
 import UKGuide from "@/pages/country-guides/uk";
 import CanadaGuide from "@/pages/country-guides/canada";
 import AustraliaGuide from "@/pages/country-guides/australia";
+import BusinessCardGenerator from "@/pages/business-card-generator";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/country-guide/uk" component={UKGuide} />
       <Route path="/country-guide/canada" component={CanadaGuide} />
       <Route path="/country-guide/australia" component={AustraliaGuide} />
+      <Route path="/business-card-generator" component={BusinessCardGenerator} />
       <Route component={NotFound} />
     </Switch>
   );
