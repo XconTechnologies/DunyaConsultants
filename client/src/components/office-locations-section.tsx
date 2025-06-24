@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
-import { MapPin, Phone, Clock, ArrowLeft, ArrowRight, Building2, Users } from "lucide-react";
+import { MapPin, Phone, Clock, ArrowLeft, ArrowRight, Building2, Users, Search, Filter, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 
 interface Office {
   id: string;
@@ -224,8 +226,53 @@ const offices: Office[] = [
 export default function OfficeLocationsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [cardsPerView, setCardsPerView] = useState(4);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState('all');
+  const [selectedService, setSelectedService] = useState('all');
+  const [filteredOffices, setFilteredOffices] = useState(offices);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
+
+  // Filter and search functionality
+  useEffect(() => {
+    let filtered = offices;
+
+    // Apply search filter
+    if (searchQuery.trim()) {
+      filtered = filtered.filter(office => 
+        office.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        office.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        office.address.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        office.services.some(service => service.toLowerCase().includes(searchQuery.toLowerCase()))
+      );
+    }
+
+    // Apply region filter
+    if (selectedRegion !== 'all') {
+      filtered = filtered.filter(office => office.region === selectedRegion);
+    }
+
+    // Apply service filter
+    if (selectedService !== 'all') {
+      filtered = filtered.filter(office => 
+        office.services.some(service => service.toLowerCase().includes(selectedService.toLowerCase()))
+      );
+    }
+
+    setFilteredOffices(filtered);
+    setCurrentIndex(0); // Reset to first slide when filters change
+  }, [searchQuery, selectedRegion, selectedService]);
+
+  // Clear all filters
+  const clearFilters = () => {
+    setSearchQuery('');
+    setSelectedRegion('all');
+    setSelectedService('all');
+  };
+
+  // Get unique regions and services for filter options
+  const regions = ['all', ...new Set(offices.map(office => office.region))];
+  const services = ['all', ...new Set(offices.flatMap(office => office.services))];
 
   useEffect(() => {
     const updateCardsPerView = () => {
@@ -245,25 +292,27 @@ export default function OfficeLocationsSection() {
     return () => window.removeEventListener('resize', updateCardsPerView);
   }, []);
 
-  // Auto-slide functionality
+  // Auto-slide functionality (only when not filtered)
   useEffect(() => {
-    const startAutoSlide = () => {
-      intervalRef.current = setInterval(() => {
-        setCurrentIndex(prevIndex => {
-          const maxIndex = offices.length - cardsPerView;
-          return prevIndex >= maxIndex ? 0 : prevIndex + 1;
-        });
-      }, 4000); // Change slide every 4 seconds
-    };
+    if (filteredOffices.length === offices.length) { // Only auto-slide when not filtered
+      const startAutoSlide = () => {
+        intervalRef.current = setInterval(() => {
+          setCurrentIndex(prevIndex => {
+            const maxIndex = filteredOffices.length - cardsPerView;
+            return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+          });
+        }, 4000); // Change slide every 4 seconds
+      };
 
-    startAutoSlide();
+      startAutoSlide();
 
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, [cardsPerView, offices.length]);
+      return () => {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+      };
+    }
+  }, [cardsPerView, filteredOffices.length, offices.length]);
 
 
 
@@ -275,12 +324,14 @@ export default function OfficeLocationsSection() {
   };
 
   const resumeAutoSlide = () => {
-    intervalRef.current = setInterval(() => {
-      setCurrentIndex(prevIndex => {
-        const maxIndex = offices.length - cardsPerView;
-        return prevIndex >= maxIndex ? 0 : prevIndex + 1;
-      });
-    }, 4000);
+    if (filteredOffices.length === offices.length) { // Only resume if not filtered
+      intervalRef.current = setInterval(() => {
+        setCurrentIndex(prevIndex => {
+          const maxIndex = filteredOffices.length - cardsPerView;
+          return prevIndex >= maxIndex ? 0 : prevIndex + 1;
+        });
+      }, 4000);
+    }
   };
 
   // Auto-slide functionality
