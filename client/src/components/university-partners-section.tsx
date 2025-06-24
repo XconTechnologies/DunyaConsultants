@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
-// Import new university logos
+// Import university logos - original 10
 import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750755121093.jpg";
 import southWalesUniversityLogo from "@assets/IMG-20250425-WA0017_1750755121094.jpg";
 import qaPartnershipLogo from "@assets/Untitled design (14)_1750755121095.jpg";
@@ -13,7 +13,19 @@ import ardenUniversityLogo from "@assets/Uni-Logos-3-17-2048x879_1750755121098.j
 import avilaUniversityLogo from "@assets/Uni-Logos-3-18-2048x878_1750755121099.jpg";
 import ibatCollegeLogo from "@assets/Uni-Logos-3-20-2048x878_1750755121100.jpg";
 
-// University partners data
+// Import additional university logos - new 12
+import skillsAustraliaLogo from "@assets/Uni-Logos-3-22-2048x878_1750756376768.jpg";
+import canterburyChristChurchLogo from "@assets/Uni-Logos-10_1750756376770.jpg";
+import concordiaUniversityLogo from "@assets/Uni-Logos-18-1_1750756376771.jpg";
+import gloucestershireLogo from "@assets/Uni-Logos-20-1_1750756376772.jpg";
+import ulsterUniversityNewLogo from "@assets/Uni-Logos-21_1750756376773.jpg";
+import northamptonLogo from "@assets/Uni-Logos-25-1_1750756376774.jpg";
+import bangorUniversityLogo from "@assets/Uni-Logos-2-08-1_1750756376776.jpg";
+import universityCanadaWestLogo from "@assets/Uni-Logos-3-01-2048x878_1750756376777.jpg";
+import kadirHasLogo from "@assets/Uni-Logos-3-02-2048x877_1750756376778.jpg";
+import universityOfLawLogo from "@assets/Uni-Logos-3-03-2048x878_1750756376779.jpg";
+
+// University partners data - all 22 universities
 const universityPartners = [
   { name: "Southampton Solent University", country: "UK", logoUrl: southamptonSolentLogo },
   { name: "University of South Wales", country: "Wales", logoUrl: southWalesUniversityLogo },
@@ -24,7 +36,17 @@ const universityPartners = [
   { name: "Berlin School of Business & Innovation", country: "Germany", logoUrl: bsbiLogo },
   { name: "Arden University Berlin", country: "Germany", logoUrl: ardenUniversityLogo },
   { name: "Avila University", country: "USA", logoUrl: avilaUniversityLogo },
-  { name: "IBAT College Dublin", country: "Ireland", logoUrl: ibatCollegeLogo }
+  { name: "IBAT College Dublin", country: "Ireland", logoUrl: ibatCollegeLogo },
+  { name: "Skills Australia Institute", country: "Australia", logoUrl: skillsAustraliaLogo },
+  { name: "Canterbury Christ Church University", country: "UK", logoUrl: canterburyChristChurchLogo },
+  { name: "Concordia University", country: "Canada", logoUrl: concordiaUniversityLogo },
+  { name: "University of Gloucestershire", country: "UK", logoUrl: gloucestershireLogo },
+  { name: "Ulster University", country: "UK", logoUrl: ulsterUniversityNewLogo },
+  { name: "University of Northampton", country: "UK", logoUrl: northamptonLogo },
+  { name: "Bangor University", country: "Wales", logoUrl: bangorUniversityLogo },
+  { name: "University Canada West", country: "Canada", logoUrl: universityCanadaWestLogo },
+  { name: "Kadir Has University", country: "Turkey", logoUrl: kadirHasLogo },
+  { name: "The University of Law", country: "UK", logoUrl: universityOfLawLogo }
 ];
 
 export default function UniversityPartnersSection() {
@@ -59,7 +81,7 @@ export default function UniversityPartnersSection() {
           </p>
         </motion.div>
 
-        {/* 3-Row Logo Grid */}
+        {/* Expanded 6-Row Logo Grid for 22 Universities */}
         <motion.div
           className="relative mb-16 bg-white rounded-2xl shadow-xl p-8"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -68,7 +90,7 @@ export default function UniversityPartnersSection() {
         >
           {/* Row 1 - First 4 logos */}
           <motion.div
-            className="grid grid-cols-4 gap-6 mb-8"
+            className="grid grid-cols-4 gap-4 mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -76,60 +98,129 @@ export default function UniversityPartnersSection() {
             {universityPartners.slice(0, 4).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-16 max-w-full object-contain filter drop-shadow-sm"
+                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Row 2 - Next 3 logos */}
+          {/* Row 2 - Next 4 logos */}
           <motion.div
-            className="grid grid-cols-3 gap-6 mb-8"
+            className="grid grid-cols-4 gap-4 mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            {universityPartners.slice(4, 7).map((university, index) => (
+            {universityPartners.slice(4, 8).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-16 max-w-full object-contain filter drop-shadow-sm"
+                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Row 3 - Last 3 logos */}
+          {/* Row 3 - Next 4 logos */}
           <motion.div
-            className="grid grid-cols-3 gap-6"
+            className="grid grid-cols-4 gap-4 mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            {universityPartners.slice(7, 10).map((university, index) => (
+            {universityPartners.slice(8, 12).map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="max-h-16 max-w-full object-contain filter drop-shadow-sm"
+                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Row 4 - Next 4 logos */}
+          <motion.div
+            className="grid grid-cols-4 gap-4 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            {universityPartners.slice(12, 16).map((university, index) => (
+              <motion.div
+                key={index}
+                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src={university.logoUrl}
+                  alt={`${university.name} logo`}
+                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Row 5 - Next 4 logos */}
+          <motion.div
+            className="grid grid-cols-4 gap-4 mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+          >
+            {universityPartners.slice(16, 20).map((university, index) => (
+              <motion.div
+                key={index}
+                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src={university.logoUrl}
+                  alt={`${university.name} logo`}
+                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Row 6 - Last 2 logos centered */}
+          <motion.div
+            className="grid grid-cols-2 gap-4 max-w-md mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            {universityPartners.slice(20, 22).map((university, index) => (
+              <motion.div
+                key={index}
+                className="flex items-center justify-center p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <img
+                  src={university.logoUrl}
+                  alt={`${university.name} logo`}
+                  className="max-h-14 max-w-full object-contain filter drop-shadow-sm"
                 />
               </motion.div>
             ))}
@@ -144,11 +235,11 @@ export default function UniversityPartnersSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <div className="text-center bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-primary mb-2">250+</div>
+            <div className="text-3xl font-bold text-primary mb-2">300+</div>
             <div className="text-sm text-gray-600">Universities</div>
           </div>
           <div className="text-center bg-white rounded-xl p-6 shadow-lg">
-            <div className="text-3xl font-bold text-primary mb-2">15+</div>
+            <div className="text-3xl font-bold text-primary mb-2">20+</div>
             <div className="text-sm text-gray-600">Countries</div>
           </div>
           <div className="text-center bg-white rounded-xl p-6 shadow-lg">
