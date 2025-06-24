@@ -24,12 +24,12 @@ const journeySteps = [
   },
   {
     id: 2,
-    title: "Course & University Selection",
+    title: "University Selection",
     description: "Personalized university recommendations based on your profile and preferences",
     duration: "2-3 weeks",
     icon: GraduationCap,
     color: "bg-purple-500",
-    deliverables: ["University Shortlist", "Course Matching", "Entry Requirements", "Scholarship Options"]
+    deliverables: ["University Shortlist", "Program Matching", "Entry Requirements", "Scholarship Options"]
   },
   {
     id: 3,

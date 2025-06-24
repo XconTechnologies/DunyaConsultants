@@ -198,6 +198,7 @@ The application uses three main tables:
 - **June 24, 2025 - Step-by-Step Booking Timeline**: Redesigned consultation booking section into guided 5-step timeline process with progress visualization, step validation, and smooth transitions. Features include consultation type selection, location choice, date picking, time slot selection, and personal details form with navigation controls and booking summary.
 - **June 24, 2025 - Clean Simple Timeline**: Redesigned timeline with simple grid layout featuring clean white cards, minimal design elements, clear typography, and straightforward visual hierarchy. Removed complex animations and patterns for better readability and user focus on content.
 - **June 24, 2025 - Enhanced Timeline with Icons and Animations**: Added comprehensive animations and visual enhancements to study abroad journey timeline including step icons, timeline arrows with pulsing animations, gradient card backgrounds, hover effects, staggered entrance animations, animated deliverables with pulsing dots, mobile timeline connectors, and enhanced statistics section with emoji icons and floating animations.
+- **June 24, 2025 - Journey Step Update**: Changed step 2 title from "Course & University Selection" to "University Selection" and updated description from "course and university" to "university and program" for clearer focus on institutional selection.
 
 ## Changelog
 
