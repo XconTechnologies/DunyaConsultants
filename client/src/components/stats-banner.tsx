@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Users, MapPin, GraduationCap, Award, TrendingUp, Globe } from "lucide-react";
+import EducationalTooltip from "./educational-tooltip";
 
 // Force video autoplay on component mount
 const forceVideoAutoplay = () => {
@@ -37,42 +38,72 @@ export default function StatsBanner() {
       number: 15000,
       suffix: "+",
       label: "Students Placed",
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
+      tooltip: {
+        title: "Successful Student Placements",
+        description: "Over 15,000 students have successfully secured admissions in top universities worldwide through our expert guidance and comprehensive support services.",
+        type: "statistic" as const
+      }
     },
     {
       icon: MapPin,
       number: 17,
       suffix: "+",
       label: "Office Branches",
-      color: "from-purple-500 to-pink-500"
+      color: "from-purple-500 to-pink-500",
+      tooltip: {
+        title: "Nationwide Presence",
+        description: "Our extensive network of 17+ offices across Pakistan ensures accessible consultation services in major cities for personalized guidance.",
+        type: "location" as const
+      }
     },
     {
       icon: GraduationCap,
       number: 250,
       suffix: "+",
       label: "University Partners",
-      color: "from-green-500 to-emerald-500"
+      color: "from-green-500 to-emerald-500",
+      tooltip: {
+        title: "Global University Network",
+        description: "Strong partnerships with 250+ prestigious universities across USA, UK, Canada, Australia, and other top study destinations worldwide.",
+        type: "educational" as const
+      }
     },
     {
       icon: Globe,
       number: 15,
       suffix: "+",
       label: "Countries Covered",
-      color: "from-orange-500 to-red-500"
+      color: "from-orange-500 to-red-500",
+      tooltip: {
+        title: "International Reach",
+        description: "We provide visa and admission services for 15+ countries including USA, UK, Canada, Australia, Germany, New Zealand, and more.",
+        type: "location" as const
+      }
     },
     {
       icon: Award,
       number: 98,
       suffix: "%",
       label: "Visa Success Rate",
-      color: "from-indigo-500 to-blue-500"
+      color: "from-indigo-500 to-blue-500",
+      tooltip: {
+        title: "Outstanding Success Rate",
+        description: "Our expert team maintains a 98% visa approval rate through meticulous document preparation, interview coaching, and comprehensive support.",
+        type: "achievement" as const
+      }
     },
     {
       icon: TrendingUp,
       number: 200,
       suffix: "+",
       label: "Expert Counselors",
-      color: "from-teal-500 to-green-500"
+      color: "from-teal-500 to-green-500",
+      tooltip: {
+        title: "Professional Team",
+        description: "Our team of 200+ certified counselors brings years of experience in international education and visa consultation services.",
+        type: "process" as const
+      }
     }
   ];
 
@@ -255,38 +286,45 @@ export default function StatsBanner() {
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 lg:gap-8 mb-16"
         >
           {stats.map((stat, index) => (
-            <motion.div
+            <EducationalTooltip
               key={stat.label}
-              initial={{ opacity: 0, y: 80, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 80, scale: 0.8 }}
-              transition={{ duration: 0.8, delay: 1 + (index * 0.15) }}
-              className="text-center group"
+              title={stat.tooltip.title}
+              description={stat.tooltip.description}
+              type={stat.tooltip.type}
+              delay={300}
             >
-              <div className="relative">
-                {/* Icon Background */}
-                <div className={`w-16 h-16 lg:w-18 lg:h-18 mx-auto mb-6 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-2xl`}>
-                  <stat.icon className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
-                </div>
-                
-                {/* Enhanced Glow Effect */}
-                <div className={`absolute inset-0 w-16 h-16 lg:w-18 lg:h-18 mx-auto bg-gradient-to-br ${stat.color} rounded-2xl blur-2xl opacity-30 group-hover:opacity-60 transition-all duration-500`}></div>
-              </div>
-
-              <div className="text-white">
-                <div className="mb-3">
-                  <div className="text-4xl lg:text-5xl xl:text-6xl font-bold">
-                    <AnimatedCounter 
-                      number={stat.number} 
-                      suffix={stat.suffix} 
-                      isVisible={isInView} 
-                    />
+              <motion.div
+                initial={{ opacity: 0, y: 80, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 80, scale: 0.8 }}
+                transition={{ duration: 0.8, delay: 1 + (index * 0.15) }}
+                className="text-center group"
+              >
+                <div className="relative">
+                  {/* Icon Background */}
+                  <div className={`w-16 h-16 lg:w-18 lg:h-18 mx-auto mb-6 bg-gradient-to-br ${stat.color} rounded-2xl flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-2xl`}>
+                    <stat.icon className="w-7 h-7 lg:w-8 lg:h-8 text-white" />
                   </div>
+                  
+                  {/* Enhanced Glow Effect */}
+                  <div className={`absolute inset-0 w-16 h-16 lg:w-18 lg:h-18 mx-auto bg-gradient-to-br ${stat.color} rounded-2xl blur-2xl opacity-30 group-hover:opacity-60 transition-all duration-500`}></div>
                 </div>
-                <p className="text-base lg:text-lg xl:text-xl text-blue-200 font-semibold tracking-wide">
-                  {stat.label}
-                </p>
-              </div>
-            </motion.div>
+
+                <div className="text-white">
+                  <div className="mb-3">
+                    <div className="text-4xl lg:text-5xl xl:text-6xl font-bold">
+                      <AnimatedCounter 
+                        number={stat.number} 
+                        suffix={stat.suffix} 
+                        isVisible={isInView} 
+                      />
+                    </div>
+                  </div>
+                  <p className="text-base lg:text-lg xl:text-xl text-blue-200 font-semibold tracking-wide">
+                    {stat.label}
+                  </p>
+                </div>
+              </motion.div>
+            </EducationalTooltip>
           ))}
         </motion.div>
 

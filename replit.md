@@ -165,6 +165,7 @@ The application uses three main tables:
 - **June 24, 2025 - Hero Section Text Updates**: Updated hero section with new tagline "Dedication To Education" with subtitle "Excellence in Every Step", changed main heading to "Dedication To Education", updated description to include "About Dunya Consultants" introduction, and reduced icon dimensions for cleaner appearance with smaller icons and containers.
 - **June 24, 2025 - Hero Section Typography**: Set exact font sizes throughout hero section - main heading 32px, paragraph 16px, and button 16px. Also updated "Our Office Locations" heading to 32px. Used inline styles for precise font size control instead of Tailwind classes.
 - **June 24, 2025 - Tagline Container Removal**: Completely removed empty tagline container div from hero section for cleaner design. Main heading "Dedication To Education" remains at 32px font size with proper focus.
+- **June 24, 2025 - Micro-Interaction Hover Tooltips**: Implemented comprehensive educational tooltip system using Radix UI with custom EducationalTooltip component. Added interactive hover tooltips to statistics cards in hero section and IELTS features with detailed explanations, categorized by type (educational, process, achievement, location, statistic, info), and smooth animations. Enhanced user experience with contextual information on hover.
 
 ## Changelog
 
