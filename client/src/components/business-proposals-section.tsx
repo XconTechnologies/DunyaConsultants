@@ -214,53 +214,33 @@ export default function BusinessProposalsSection() {
                           </div>
                         </motion.div>
                         
-                        {/* Name with gradient text */}
-                        <h4 className="text-3xl font-bold mb-2 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Abdul Majeed</h4>
-                        
-                        {/* Title with badge design */}
-                        <div className="inline-block bg-gradient-to-r from-purple-100 to-blue-100 px-4 py-2 rounded-full mb-8">
-                          <p className="text-gray-700 font-medium text-sm">General Manager</p>
+                        {/* Contact Info Stack */}
+                        <div className="space-y-4 mb-8">
+                          <h4 className="text-2xl font-bold text-gray-900">Abdul Majeed</h4>
+                          <p className="text-gray-600 font-medium">General Manager</p>
                         </div>
                         
-                        {/* Action Button with unique design */}
+                        {/* Action Button */}
                         <motion.a
                           href="mailto:abdul.majeed@dunyaconsultants.com"
-                          className="group relative inline-block"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
+                          className="group relative inline-block w-full"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          <div className="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 rounded-2xl p-6 text-white font-semibold shadow-xl group-hover:shadow-2xl transition-all duration-300">
-                            <div className="flex items-center justify-center space-x-3">
-                              <Mail className="w-6 h-6" />
-                              <span className="text-lg">Send Business Proposal</span>
-                            </div>
-                            {/* Animated underline */}
-                            <div className="h-1 bg-white/30 rounded-full mt-3 overflow-hidden">
-                              <div className="h-full bg-white rounded-full transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+                          <div className="bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 rounded-xl p-4 text-white font-semibold shadow-lg group-hover:shadow-xl transition-all duration-300">
+                            <div className="flex items-center justify-center space-x-2">
+                              <Mail className="w-5 h-5" />
+                              <span>Send Business Proposal</span>
                             </div>
                           </div>
-                          {/* Glow effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur-xl opacity-0 group-hover:opacity-30 transition-opacity duration-300 -z-10" />
                         </motion.a>
                         
-                        {/* Email with copy functionality */}
-                        <motion.div 
-                          className="mt-6 p-3 bg-gray-50 rounded-xl cursor-pointer group"
-                          whileHover={{ scale: 1.02 }}
-                          onClick={() => navigator.clipboard.writeText('abdul.majeed@dunyaconsultants.com')}
-                        >
-                          <div className="flex items-center justify-center space-x-2 text-gray-600 group-hover:text-blue-600 transition-colors">
-                            <Mail className="w-4 h-4" />
-                            <span className="text-sm font-medium">abdul.majeed@dunyaconsultants.com</span>
-                            <motion.div
-                              initial={{ opacity: 0 }}
-                              whileHover={{ opacity: 1 }}
-                              className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded"
-                            >
-                              Click to copy
-                            </motion.div>
+                        {/* Email Display */}
+                        <div className="mt-4 p-3 bg-gray-50 rounded-lg">
+                          <div className="text-gray-700 text-sm text-center font-medium">
+                            abdul.majeed@dunyaconsultants.com
                           </div>
-                        </motion.div>
+                        </div>
                       </div>
                     </motion.div>
                   </div>
