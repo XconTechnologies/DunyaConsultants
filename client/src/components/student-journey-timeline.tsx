@@ -119,119 +119,86 @@ export default function StudentJourneyTimeline() {
           </motion.p>
         </motion.div>
 
-        {/* Horizontal Timeline */}
-        <div className="relative overflow-x-auto pb-8">
-          {/* Timeline Container */}
-          <div className="flex items-start space-x-8 min-w-max px-4">
-            {journeySteps.map((step, index) => (
+        {/* Minimal Timeline Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {journeySteps.map((step, index) => (
+            <motion.div
+              key={step.id}
+              className="group"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              {/* Simple Card */}
               <motion.div
-                key={step.id}
-                className="flex flex-col items-center relative"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-lg p-6 border border-gray-100 h-full hover:shadow-md transition-all duration-300"
+                whileHover={{ y: -4 }}
               >
-                {/* Step Card */}
-                <motion.div
-                  className="bg-white rounded-2xl shadow-xl p-6 border border-gray-100 w-80 mb-6"
-                  whileHover={{ scale: 1.02, y: -8 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {/* Step Header */}
-                  <div className="flex items-center mb-4">
-                    <div className={`${step.color} p-3 rounded-full text-white mr-4 flex-shrink-0`}>
-                      <step.icon className="w-6 h-6" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-sm font-bold text-gray-500">STEP {step.id}</span>
-                        <span className="text-xs text-blue-600 font-medium bg-blue-50 px-2 py-1 rounded-full">
-                          {step.duration}
-                        </span>
+                {/* Step Number & Icon */}
+                <div className="flex items-center mb-4">
+                  <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-600 font-bold text-sm mr-3">
+                    {step.id}
+                  </div>
+                  <div className="text-xs text-gray-500 font-medium uppercase tracking-wide">
+                    {step.duration}
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-tight">
+                  {step.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                  {step.description}
+                </p>
+                
+                {/* Key Deliverables */}
+                <div>
+                  <div className="text-xs font-medium text-gray-500 mb-2 uppercase tracking-wide">
+                    Deliverables
+                  </div>
+                  <div className="space-y-1">
+                    {step.deliverables.slice(0, 3).map((item, idx) => (
+                      <div key={idx} className="flex items-center text-xs text-gray-600">
+                        <div className="w-1 h-1 bg-gray-400 rounded-full mr-2"></div>
+                        {item}
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 leading-tight">{step.title}</h3>
-                    </div>
+                    ))}
                   </div>
-
-                  {/* Description */}
-                  <p className="text-gray-600 text-sm mb-4 leading-relaxed">{step.description}</p>
-                  
-                  {/* Deliverables */}
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-gray-800 text-xs uppercase tracking-wide">Key Deliverables:</h4>
-                    <div className="space-y-1">
-                      {step.deliverables.map((item, idx) => (
-                        <div key={idx} className="flex items-center text-xs text-gray-600">
-                          <div className={`w-1.5 h-1.5 rounded-full mr-2 ${step.color.replace('bg-', 'bg-')}`}></div>
-                          {item}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Timeline Connection */}
-                {index < journeySteps.length - 1 && (
-                  <motion.div
-                    className="absolute -right-4 top-16 w-8 h-0.5 bg-gradient-to-r from-blue-300 to-purple-300 z-10"
-                    initial={{ scaleX: 0 }}
-                    animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                    transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
-                    style={{ transformOrigin: 'left' }}
-                  />
-                )}
-
-                {/* Step Number Circle */}
-                <motion.div
-                  className={`${step.color} w-16 h-16 rounded-full flex items-center justify-center text-white shadow-lg border-4 border-white relative z-20`}
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 + 0.2, type: "spring", stiffness: 200 }}
-                >
-                  <span className="font-bold text-lg">{step.id}</span>
-                </motion.div>
-
-                {/* Progress Line */}
-                {index < journeySteps.length - 1 && (
-                  <motion.div
-                    className="absolute top-8 -right-4 w-8 h-1 bg-gradient-to-r from-blue-400 to-purple-400"
-                    initial={{ scaleX: 0 }}
-                    animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                    transition={{ duration: 0.8, delay: index * 0.1 + 0.5 }}
-                    style={{ transformOrigin: 'left' }}
-                  />
-                )}
+                </div>
               </motion.div>
-            ))}
-          </div>
-
-          {/* Progress Overview */}
-          <motion.div
-            className="mt-12 bg-white rounded-xl shadow-lg p-6 border border-gray-100"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-              <div>
-                <div className="text-2xl font-bold text-blue-600">8</div>
-                <div className="text-sm text-gray-600">Total Steps</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-purple-600">6-12</div>
-                <div className="text-sm text-gray-600">Months Duration</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-green-600">98%</div>
-                <div className="text-sm text-gray-600">Success Rate</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-orange-600">24/7</div>
-                <div className="text-sm text-gray-600">Support Available</div>
-              </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Clean Stats */}
+        <motion.div
+          className="bg-gray-50 rounded-lg p-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-3xl font-light text-gray-900 mb-1">8</div>
+              <div className="text-sm text-gray-600">Steps</div>
+            </div>
+            <div>
+              <div className="text-3xl font-light text-gray-900 mb-1">6-12</div>
+              <div className="text-sm text-gray-600">Months</div>
+            </div>
+            <div>
+              <div className="text-3xl font-light text-gray-900 mb-1">98%</div>
+              <div className="text-sm text-gray-600">Success</div>
+            </div>
+            <div>
+              <div className="text-3xl font-light text-gray-900 mb-1">24/7</div>
+              <div className="text-sm text-gray-600">Support</div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Call to Action */}
         <motion.div
