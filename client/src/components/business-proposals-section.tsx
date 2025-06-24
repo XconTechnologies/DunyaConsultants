@@ -224,7 +224,7 @@ export default function BusinessProposalsSection() {
                         
                         {/* Action Button with unique design */}
                         <motion.a
-                          href="mailto:umer@dunyaconsultants.com"
+                          href="mailto:abdul.majeed@dunyaconsultants.com"
                           className="group relative inline-block"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -247,7 +247,7 @@ export default function BusinessProposalsSection() {
                         <motion.div 
                           className="mt-6 p-3 bg-gray-50 rounded-xl cursor-pointer group"
                           whileHover={{ scale: 1.02 }}
-                          onClick={() => navigator.clipboard.writeText('umer@dunyaconsultants.com')}
+                          onClick={() => navigator.clipboard.writeText('abdul.majeed@dunyaconsultants.com')}
                         >
                           <div className="flex items-center justify-center space-x-2 text-gray-600 group-hover:text-blue-600 transition-colors">
                             <Mail className="w-4 h-4" />
