@@ -10,9 +10,9 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <img 
-                src="/attached_assets/DC Blue Logo (1)_1750668538365.png" 
+                src="/attached_assets/Asset-1_1750769524939.png" 
                 alt="Dunya Consultants Logo" 
-                className="h-12 w-auto brightness-0 invert"
+                className="h-12 w-auto"
               />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
