@@ -150,17 +150,24 @@ export default function UniversityPartnersSection() {
             {universityPartners.map((university, index) => (
               <motion.div
                 key={index}
-                className="flex items-center justify-center p-4 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
+                className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
                 whileHover={{ scale: 1.05, y: -5 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.6, delay: index * 0.05 }}
               >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-14 w-28 object-contain filter drop-shadow-sm"
-                />
+                <div className="flex items-center justify-center mb-3">
+                  <img
+                    src={university.logoUrl}
+                    alt={`${university.name} logo`}
+                    className="h-14 w-28 object-contain filter drop-shadow-sm"
+                  />
+                </div>
+                <div className="text-center">
+                  <div className="text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded-md">
+                    {university.country}
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
