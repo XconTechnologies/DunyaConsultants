@@ -62,70 +62,84 @@ export default function BusinessProposalsSection() {
 
         {/* Modern Contact Layout */}
         <div className="space-y-12">
-          {/* Contact Information Section */}
+          {/* Contact Information Section - Business Card Style */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="text-center mb-10">
+            <div className="text-center mb-12">
               <h3 className="text-3xl font-bold text-gray-900 mb-4">Contact Information</h3>
               <p className="text-gray-600 text-lg">Reach out to us through any of these channels</p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* UAN Card */}
-              <motion.a
-                href="tel:+923041110947"
-                className="group relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -5 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="absolute top-0 right-0 w-20 h-20 bg-green-200/30 rounded-full -mr-10 -mt-10" />
-                <div className="relative">
-                  <div className="w-14 h-14 bg-green-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <Phone className="w-7 h-7 text-white" />
-                  </div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">UAN Number</h4>
-                  <p className="text-green-600 font-semibold text-lg">(+92) 304 1110947</p>
-                  <p className="text-gray-600 text-sm mt-2">Call us anytime</p>
-                </div>
-              </motion.a>
-
-              {/* Head Office Card */}
+            {/* Business Card Style Layout */}
+            <div className="max-w-4xl mx-auto">
               <motion.div
-                className="group relative overflow-hidden bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -5 }}
+                className="bg-white rounded-3xl shadow-2xl overflow-hidden relative"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="absolute top-0 right-0 w-20 h-20 bg-red-200/30 rounded-full -mr-10 -mt-10" />
-                <div className="relative">
-                  <div className="w-14 h-14 bg-red-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <MapPin className="w-7 h-7 text-white" />
+                {/* Background Pattern */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-200/20 to-purple-200/20 rounded-full -mr-16 -mt-16" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-br from-green-200/20 to-blue-200/20 rounded-full -ml-12 -mb-12" />
+                
+                <div className="relative z-10 p-12">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {/* UAN Contact */}
+                    <motion.a
+                      href="tel:+923041110947"
+                      className="group text-center p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300"
+                      whileHover={{ y: -5 }}
+                    >
+                      <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                        <Phone className="w-8 h-8 text-white" />
+                      </div>
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">UAN Number</h4>
+                      <p className="text-2xl font-bold text-green-600 mb-2">(+92) 304 1110947</p>
+                      <p className="text-gray-600 text-sm">Call us anytime</p>
+                    </motion.a>
+
+                    {/* Head Office */}
+                    <motion.div
+                      className="group text-center p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300"
+                      whileHover={{ y: -5 }}
+                    >
+                      <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-rose-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                        <MapPin className="w-8 h-8 text-white" />
+                      </div>
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">Head Office</h4>
+                      <p className="text-lg font-semibold text-red-600 mb-1">Alif Tower</p>
+                      <p className="text-gray-600 text-sm leading-relaxed">Buhadur shah zafar road, Sargodha</p>
+                    </motion.div>
+
+                    {/* General Queries */}
+                    <motion.a
+                      href="mailto:info@dunyaconsultants.com"
+                      className="group text-center p-6 rounded-2xl hover:bg-gray-50 transition-all duration-300"
+                      whileHover={{ y: -5 }}
+                    >
+                      <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                        <Mail className="w-8 h-8 text-white" />
+                      </div>
+                      <h4 className="text-lg font-bold text-gray-900 mb-2">General Queries</h4>
+                      <p className="text-lg font-semibold text-blue-600 mb-2">info@dunyaconsultants.com</p>
+                      <p className="text-gray-600 text-sm">We'll respond within 24 hours</p>
+                    </motion.a>
                   </div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">Head Office</h4>
-                  <p className="text-red-600 font-semibold">Alif Tower</p>
-                  <p className="text-gray-600 text-sm">Buhadur shah zafar road, Sargodha</p>
+                  
+                  {/* Bottom Border Design */}
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    <div className="flex items-center justify-center space-x-4">
+                      <div className="w-3 h-3 bg-green-500 rounded-full" />
+                      <div className="w-3 h-3 bg-red-500 rounded-full" />
+                      <div className="w-3 h-3 bg-blue-500 rounded-full" />
+                    </div>
+                  </div>
                 </div>
               </motion.div>
-
-              {/* General Queries Card */}
-              <motion.a
-                href="mailto:info@dunyaconsultants.com"
-                className="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 hover:shadow-xl transition-all duration-300"
-                whileHover={{ scale: 1.02, y: -5 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="absolute top-0 right-0 w-20 h-20 bg-blue-200/30 rounded-full -mr-10 -mt-10" />
-                <div className="relative">
-                  <div className="w-14 h-14 bg-blue-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                    <Mail className="w-7 h-7 text-white" />
-                  </div>
-                  <h4 className="text-xl font-bold text-gray-900 mb-2">General Queries</h4>
-                  <p className="text-blue-600 font-semibold">info@dunyaconsultants.com</p>
-                  <p className="text-gray-600 text-sm mt-2">We'll respond within 24 hours</p>
-                </div>
-              </motion.a>
             </div>
           </motion.div>
 
