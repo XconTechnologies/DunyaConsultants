@@ -103,7 +103,9 @@ const offices: Office[] = [
     address: "2nd Floor, Bank Islami, Cantt Plaza, Sialkot Cantonment",
     phone: "+92 323‑002‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-emerald-600 to-green-600"
+    gradient: "from-emerald-600 to-green-600",
+    region: "Punjab",
+    services: ["Student Counseling", "Visa Processing", "Document Verification"]
   },
   {
     id: "gujrat",
@@ -112,7 +114,9 @@ const offices: Office[] = [
     address: "Beside KFC, Service Morh Road, GT Road, Gujrat",
     phone: "+92 300‑105‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-rose-600 to-pink-600"
+    gradient: "from-rose-600 to-pink-600",
+    region: "Punjab",
+    services: ["University Applications", "IELTS Training", "Career Counseling"]
   },
   {
     id: "bahawalpur",
@@ -121,7 +125,9 @@ const offices: Office[] = [
     address: "Rafi Qamar Road, near Muslim Town, Goth Muslim Town, Bahawalpur",
     phone: "+92 300‑173‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-violet-600 to-purple-600"
+    gradient: "from-violet-600 to-purple-600",
+    region: "Punjab",
+    services: ["Visa Processing", "Test Preparation", "Document Preparation"]
   },
   {
     id: "mian-channu",
@@ -130,7 +136,9 @@ const offices: Office[] = [
     address: "1st Floor, Moti Plaza, Allama Iqbal Road, Mian Channu",
     phone: "+92 300‑984‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-teal-600 to-cyan-600"
+    gradient: "from-teal-600 to-cyan-600",
+    region: "Punjab",
+    services: ["Student Counseling", "University Applications", "Career Guidance"]
   },
   {
     id: "mandi-bahauddin",
@@ -139,7 +147,9 @@ const offices: Office[] = [
     address: "Punjab Center, Mandi Bahauddin",
     phone: "+92 321‑300‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-amber-600 to-yellow-600"
+    gradient: "from-amber-600 to-yellow-600",
+    region: "Punjab",
+    services: ["Visa Processing", "Document Preparation", "Test Preparation"]
   },
   {
     id: "sheikhupura",
@@ -148,7 +158,9 @@ const offices: Office[] = [
     address: "Beside Darul Barkat Medicare Hospital, Stadium Road, Sheikhupura",
     phone: "+92 300‑507‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-lime-600 to-green-600"
+    gradient: "from-lime-600 to-green-600",
+    region: "Punjab",
+    services: ["University Applications", "Career Counseling", "IELTS Training"]
   },
   {
     id: "multan",
@@ -157,7 +169,9 @@ const offices: Office[] = [
     address: "Shalimar Metro Station, Bosan Road, New Sabzazar Colony, Multan",
     phone: "+92 305‑444‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-red-600 to-rose-600"
+    gradient: "from-red-600 to-rose-600",
+    region: "Punjab",
+    services: ["Visa Processing", "University Applications", "Document Verification"]
   },
   {
     id: "peshawar",
@@ -166,7 +180,9 @@ const offices: Office[] = [
     address: "Office 27, 4th Floor, Alhaj Tower 2, near Phase 3 Chowk, Peshawar",
     phone: "+92 317‑111‑4726",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-sky-600 to-blue-600"
+    gradient: "from-sky-600 to-blue-600",
+    region: "KPK",
+    services: ["Student Counseling", "Visa Processing", "University Applications"]
   },
   {
     id: "jhelum",
@@ -175,7 +191,9 @@ const offices: Office[] = [
     address: "2nd Floor, NADRA Executive Office, Sultan Plaza, GT Road, Jhelum",
     phone: "+92 317‑111‑4693",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-slate-600 to-gray-600"
+    gradient: "from-slate-600 to-gray-600",
+    region: "Punjab",
+    services: ["Document Preparation", "Career Counseling", "Test Preparation"]
   },
   {
     id: "mardan",
@@ -334,30 +352,32 @@ export default function OfficeLocationsSection() {
     }
   };
 
-  // Auto-slide functionality
+  // Auto-slide functionality (disabled when filtered)
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => 
-        prev + cardsPerView >= offices.length ? 0 : prev + 1
-      );
-    }, 4000);
+    if (filteredOffices.length === offices.length) { // Only auto-slide when not filtered
+      const interval = setInterval(() => {
+        setCurrentIndex((prev) => 
+          prev + cardsPerView >= filteredOffices.length ? 0 : prev + 1
+        );
+      }, 4000);
 
-    return () => clearInterval(interval);
-  }, [cardsPerView]);
+      return () => clearInterval(interval);
+    }
+  }, [cardsPerView, filteredOffices.length, offices.length]);
 
   const nextSlide = () => {
     setCurrentIndex((prev) => 
-      prev + cardsPerView >= offices.length ? 0 : prev + 1
+      prev + cardsPerView >= filteredOffices.length ? 0 : prev + 1
     );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prev) => 
-      prev === 0 ? Math.max(0, offices.length - cardsPerView) : prev - 1
+      prev === 0 ? Math.max(0, filteredOffices.length - cardsPerView) : prev - 1
     );
   };
 
-  const visibleOffices = offices.slice(currentIndex, currentIndex + cardsPerView);
+  const visibleOffices = filteredOffices.slice(currentIndex, currentIndex + cardsPerView);
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
@@ -368,24 +388,134 @@ export default function OfficeLocationsSection() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <motion.div
+        <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          style={{ fontSize: '32px' }}
+          className="font-bold text-center text-gray-900 mb-8"
         >
-          <div className="inline-flex items-center space-x-2 bg-blue-100 rounded-full px-6 py-3 mb-6">
-            <Building2 className="w-5 h-5 text-blue-600" />
-            <span className="text-sm font-medium text-blue-800">Nationwide Presence</span>
+          Our Office Locations
+        </motion.h2>
+
+        {/* Search and Filter Section */}
+        <motion.div
+          className="max-w-4xl mx-auto mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {/* Search Bar */}
+          <div className="relative mb-6">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Input
+              type="text"
+              placeholder="Search by city, office, address, or services..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 pr-4 py-3 w-full border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-0 text-gray-700"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            )}
           </div>
-          
-          <h2 className="font-bold text-gray-800 mb-6" style={{ fontSize: '32px' }}>
-            Our Office{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Locations
-            </span>
-          </h2>
+
+          {/* Filter Buttons */}
+          <div className="flex flex-wrap gap-4 justify-center mb-6">
+            {/* Region Filter */}
+            <div className="flex flex-wrap gap-2">
+              <span className="text-sm font-medium text-gray-600 flex items-center mr-2">
+                <Filter className="w-4 h-4 mr-1" />
+                Region:
+              </span>
+              {regions.map((region) => (
+                <button
+                  key={region}
+                  onClick={() => setSelectedRegion(region)}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
+                    selectedRegion === region
+                      ? 'bg-blue-600 text-white shadow-md'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  {region === 'all' ? 'All Regions' : region}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Service Filter */}
+          <div className="flex flex-wrap gap-2 justify-center mb-6">
+            <span className="text-sm font-medium text-gray-600 mr-2">Services:</span>
+            {services.slice(0, 8).map((service) => (
+              <button
+                key={service}
+                onClick={() => setSelectedService(service === selectedService ? 'all' : service)}
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
+                  selectedService === service
+                    ? 'bg-green-600 text-white shadow-md'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                {service === 'all' ? 'All Services' : service}
+              </button>
+            ))}
+          </div>
+
+          {/* Active Filters and Results */}
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div className="flex flex-wrap gap-2">
+              {(searchQuery || selectedRegion !== 'all' || selectedService !== 'all') && (
+                <>
+                  {searchQuery && (
+                    <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                      Search: "{searchQuery}"
+                      <button onClick={() => setSearchQuery('')} className="ml-1 hover:text-blue-900">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </Badge>
+                  )}
+                  {selectedRegion !== 'all' && (
+                    <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+                      Region: {selectedRegion}
+                      <button onClick={() => setSelectedRegion('all')} className="ml-1 hover:text-purple-900">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </Badge>
+                  )}
+                  {selectedService !== 'all' && (
+                    <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                      Service: {selectedService}
+                      <button onClick={() => setSelectedService('all')} className="ml-1 hover:text-green-900">
+                        <X className="w-3 h-3" />
+                      </button>
+                    </Badge>
+                  )}
+                  <button
+                    onClick={clearFilters}
+                    className="text-sm text-gray-500 hover:text-gray-700 underline"
+                  >
+                    Clear all filters
+                  </button>
+                </>
+              )}
+            </div>
+            <div className="text-sm text-gray-600">
+              Showing {filteredOffices.length} of {offices.length} offices
+              {filteredOffices.filter(office => office.region === 'International').length > 0 && (
+                <span className="ml-2 text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">
+                  {filteredOffices.filter(office => office.region === 'International').length} International
+                </span>
+              )}
+            </div>
+          </div>
         </motion.div>
 
         {/* Office Carousel */}
@@ -511,7 +641,7 @@ export default function OfficeLocationsSection() {
 
           {/* Pagination Dots */}
           <div className="flex justify-center mt-8 space-x-2">
-            {Array.from({ length: Math.ceil(offices.length / cardsPerView) }).map((_, index) => (
+            {Array.from({ length: Math.ceil(filteredOffices.length / cardsPerView) }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index * cardsPerView)}
