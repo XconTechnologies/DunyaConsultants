@@ -202,6 +202,7 @@ The application uses three main tables:
 - **June 24, 2025 - Statistics Section Removal**: Completely removed the animated statistics section (8 Complete Steps, 6-12 Months Duration, 98% Success Rate, 24/7 Expert Support) from the journey timeline for a cleaner, more focused presentation.
 - **June 24, 2025 - Business Proposals Footer Section**: Added dedicated business proposals contact section in footer featuring Umer Farooq contact information (umer@dunyaconsultants.com) with email and WhatsApp icons, and updated copyright to "Dunya Consultants".
 - **June 24, 2025 - Business Proposals Section Redesign**: Moved business proposals from footer to dedicated section above footer with blue gradient background, glassmorphism contact cards, hover animations, and professional layout featuring email and WhatsApp contact options for Umer Farooq.
+- **June 24, 2025 - Enhanced Contact Information with Team Photo**: Added comprehensive contact information including UAN (+92) 304 1110947, Head Office location (Alif Tower Buhadur shah zafar road, Sargodha), general queries email (info@dunyaconsultants.com), and business proposals contact (Umer Farooq). Integrated team photo as background with 4-column contact grid layout featuring phone, location, email, and business proposal cards with appropriate icons and hover effects.
 
 ## Changelog
 
