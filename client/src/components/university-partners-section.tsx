@@ -57,54 +57,81 @@ import angliRuskinLogo from "@assets/191782_191241_ARU_Logo_Descriptor_RGB_Blue3
 import ucaLogo from "@assets/Artboard-1-copy-3-2_1750757117518.jpg";
 import websterUniversityNewLogo from "@assets/Artboard-1-copy-4_1750757117520.jpg";
 
-// University partners data - all 48 universities
+// University partners data - all 48 universities (organized by country priority: UK first, then others)
 const universityPartners = [
+  // UK Universities (First Priority)
   { name: "Southampton Solent University", country: "UK", logoUrl: southamptonSolentLogo },
-  { name: "University of South Wales", country: "Wales", logoUrl: southWalesUniversityLogo },
   { name: "QA Partnership", country: "UK", logoUrl: qaPartnershipLogo },
   { name: "Ulster University", country: "UK", logoUrl: ulsterUniversityLogo },
-  { name: "University of Applied Sciences Europe", country: "Netherlands", logoUrl: universityAppliedSciencesLogo },
-  { name: "Southern Cross Institute", country: "Australia", logoUrl: southernCrossLogo },
-  { name: "Berlin School of Business & Innovation", country: "Germany", logoUrl: bsbiLogo },
-  { name: "Arden University Berlin", country: "Germany", logoUrl: ardenUniversityLogo },
-  { name: "Avila University", country: "USA", logoUrl: avilaUniversityLogo },
-  { name: "IBAT College Dublin", country: "Ireland", logoUrl: ibatCollegeLogo },
-  { name: "Skills Australia Institute", country: "Australia", logoUrl: skillsAustraliaLogo },
   { name: "Canterbury Christ Church University", country: "UK", logoUrl: canterburyChristChurchLogo },
-  { name: "Concordia University", country: "Canada", logoUrl: concordiaUniversityLogo },
   { name: "University of Gloucestershire", country: "UK", logoUrl: gloucestershireLogo },
   { name: "Ulster University", country: "UK", logoUrl: ulsterUniversityNewLogo },
   { name: "University of Northampton", country: "UK", logoUrl: northamptonLogo },
-  { name: "Bangor University", country: "Wales", logoUrl: bangorUniversityLogo },
-  { name: "University Canada West", country: "Canada", logoUrl: universityCanadaWestLogo },
-  { name: "Kadir Has University", country: "Turkey", logoUrl: kadirHasLogo },
   { name: "The University of Law", country: "UK", logoUrl: universityOfLawLogo },
-  { name: "De Montfort University Dubai", country: "UAE", logoUrl: deMontfortLogo },
-  { name: "GBS Global Applied Knowledge", country: "Germany", logoUrl: gbsGlobalLogo },
-  { name: "Abertay University", country: "Scotland", logoUrl: abertayUniversityLogo },
-  { name: "Heriot-Watt University", country: "Scotland", logoUrl: heriotWattLogo },
-  { name: "Bahçeşehir University", country: "Turkey", logoUrl: bahcesehirLogo },
-  { name: "College de Paris", country: "France", logoUrl: collegeDeParisLogo },
-  { name: "LIM College", country: "USA", logoUrl: limCollegeLogo },
-  { name: "GUS Medical & Veterinary Schools", country: "Caribbean", logoUrl: gusMedicalLogo },
-  { name: "Herzing University", country: "USA", logoUrl: herzingUniversityLogo },
-  { name: "IC University of Applied Sciences", country: "Netherlands", logoUrl: icUniversityLogo },
-  { name: "Beykoz University", country: "Turkey", logoUrl: beykozUniversityLogo },
-  { name: "Capilano University", country: "Canada", logoUrl: capilanoUniversityLogo },
-  { name: "LUT University", country: "Finland", logoUrl: lutUniversityLogo },
-  { name: "University of Niagara Falls Canada", country: "Canada", logoUrl: niagaraFallsLogo },
-  { name: "University of Europe for Applied Sciences", country: "Germany", logoUrl: universityOfEuropeLogo },
   { name: "Hartpury University", country: "UK", logoUrl: hartpuryUniversityLogo },
   { name: "Eton College", country: "UK", logoUrl: etonCollegeLogo },
-  { name: "Halic University", country: "Turkey", logoUrl: halicUniversityLogo },
-  { name: "LAB University of Applied Sciences", country: "Finland", logoUrl: labUniversityLogo },
   { name: "Teesside University", country: "UK", logoUrl: teessideUniversityLogo },
   { name: "Leeds Trinity University", country: "UK", logoUrl: leedsTrinityLogo },
-  { name: "Gisma University of Applied Sciences", country: "Germany", logoUrl: gismaUniversityLogo },
-  { name: "Fanshawe College", country: "Canada", logoUrl: fanshaweCollegeLogo },
   { name: "Anglia Ruskin University", country: "UK", logoUrl: angliRuskinLogo },
   { name: "University for the Creative Arts", country: "UK", logoUrl: ucaLogo },
-  { name: "Webster University", country: "USA", logoUrl: websterUniversityNewLogo }
+  
+  // Wales Universities
+  { name: "University of South Wales", country: "Wales", logoUrl: southWalesUniversityLogo },
+  { name: "Bangor University", country: "Wales", logoUrl: bangorUniversityLogo },
+  
+  // Scotland Universities
+  { name: "Abertay University", country: "Scotland", logoUrl: abertayUniversityLogo },
+  { name: "Heriot-Watt University", country: "Scotland", logoUrl: heriotWattLogo },
+  
+  // Germany Universities
+  { name: "Berlin School of Business & Innovation", country: "Germany", logoUrl: bsbiLogo },
+  { name: "Arden University Berlin", country: "Germany", logoUrl: ardenUniversityLogo },
+  { name: "GBS Global Applied Knowledge", country: "Germany", logoUrl: gbsGlobalLogo },
+  { name: "University of Europe for Applied Sciences", country: "Germany", logoUrl: universityOfEuropeLogo },
+  { name: "Gisma University of Applied Sciences", country: "Germany", logoUrl: gismaUniversityLogo },
+  
+  // Canada Universities
+  { name: "Concordia University", country: "Canada", logoUrl: concordiaUniversityLogo },
+  { name: "University Canada West", country: "Canada", logoUrl: universityCanadaWestLogo },
+  { name: "Capilano University", country: "Canada", logoUrl: capilanoUniversityLogo },
+  { name: "University of Niagara Falls Canada", country: "Canada", logoUrl: niagaraFallsLogo },
+  { name: "Fanshawe College", country: "Canada", logoUrl: fanshaweCollegeLogo },
+  
+  // USA Universities
+  { name: "Avila University", country: "USA", logoUrl: avilaUniversityLogo },
+  { name: "LIM College", country: "USA", logoUrl: limCollegeLogo },
+  { name: "Herzing University", country: "USA", logoUrl: herzingUniversityLogo },
+  { name: "Webster University", country: "USA", logoUrl: websterUniversityNewLogo },
+  
+  // Australia Universities
+  { name: "Southern Cross Institute", country: "Australia", logoUrl: southernCrossLogo },
+  { name: "Skills Australia Institute", country: "Australia", logoUrl: skillsAustraliaLogo },
+  
+  // Turkey Universities
+  { name: "Kadir Has University", country: "Turkey", logoUrl: kadirHasLogo },
+  { name: "Bahçeşehir University", country: "Turkey", logoUrl: bahcesehirLogo },
+  { name: "Beykoz University", country: "Turkey", logoUrl: beykozUniversityLogo },
+  { name: "Halic University", country: "Turkey", logoUrl: halicUniversityLogo },
+  
+  // Netherlands Universities
+  { name: "University of Applied Sciences Europe", country: "Netherlands", logoUrl: universityAppliedSciencesLogo },
+  { name: "IC University of Applied Sciences", country: "Netherlands", logoUrl: icUniversityLogo },
+  
+  // Finland Universities
+  { name: "LUT University", country: "Finland", logoUrl: lutUniversityLogo },
+  { name: "LAB University of Applied Sciences", country: "Finland", logoUrl: labUniversityLogo },
+  
+  // Ireland Universities
+  { name: "IBAT College Dublin", country: "Ireland", logoUrl: ibatCollegeLogo },
+  
+  // France Universities
+  { name: "College de Paris", country: "France", logoUrl: collegeDeParisLogo },
+  
+  // UAE Universities
+  { name: "De Montfort University Dubai", country: "UAE", logoUrl: deMontfortLogo },
+  
+  // Caribbean Universities
+  { name: "GUS Medical & Veterinary Schools", country: "Caribbean", logoUrl: gusMedicalLogo }
 ];
 
 export default function UniversityPartnersSection() {
