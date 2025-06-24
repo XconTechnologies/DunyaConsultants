@@ -227,8 +227,9 @@ export default function StatsBanner() {
           >
             <div className="inline-flex flex-col items-center justify-center space-y-2 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
               
-              <span className="text-white/90 font-semibold text-lg tracking-wide">Trusted By Thousands Worldwide
-</span>
+              <span className="text-white/90 font-medium text-xs tracking-wide">
+                Dedication To Education
+              </span>
               
             </div>
           </motion.div>
@@ -238,7 +239,7 @@ export default function StatsBanner() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8 leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-8 leading-tight"
           >
             Dedication To{" "}
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
@@ -251,7 +252,7 @@ export default function StatsBanner() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-lg md:text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-10"
+            className="text-sm md:text-base text-blue-100 max-w-4xl mx-auto leading-relaxed mb-10"
           >
             <span className="font-semibold text-white">About Dunya Consultants:</span> Making global education dreams come true since 2009. Join thousands of successful students who achieved their international study goals with Pakistan's most trusted visa consultancy.
           </motion.p>
@@ -310,7 +311,7 @@ export default function StatsBanner() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-semibold text-base px-10 py-3 rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-medium text-sm px-8 py-2.5 rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
           >
             Start Your Journey Today
           </motion.button>
