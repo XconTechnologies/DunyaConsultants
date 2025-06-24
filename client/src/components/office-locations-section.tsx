@@ -244,38 +244,10 @@ export default function OfficeLocationsSection() {
               Locations
             </span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Visit any of our 17+ offices across Pakistan for personalized consultation. 
-            Expert counselors are ready to guide you at every step of your journey.
-          </p>
+          
         </motion.div>
 
-        {/* Statistics */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex justify-center mb-12"
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-blue-600">17+</div>
-              <div className="text-sm text-gray-600">Offices</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600">15+</div>
-              <div className="text-sm text-gray-600">Cities</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600">200+</div>
-              <div className="text-sm text-gray-600">Expert Staff</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-orange-600">10K+</div>
-              <div className="text-sm text-gray-600">Students Served</div>
-            </div>
-          </div>
-        </motion.div>
+        
 
         {/* Office Carousel */}
         <div className="relative max-w-7xl mx-auto">
