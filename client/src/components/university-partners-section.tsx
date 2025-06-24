@@ -110,51 +110,9 @@ export default function UniversityPartnersSection() {
             Our Global University Partners
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-            We've partnered with 250+ prestigious universities worldwide including leading institutions 
+            We've partnered with prestigious universities worldwide including leading institutions 
             in USA, UK, Wales, Germany, Australia, Ireland, France, and Finland to provide you with the best educational opportunities.
           </p>
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 text-center">
-            <div>
-              <div className="text-xl font-bold text-blue-600">250+</div>
-              <div className="text-xs text-neutral-600">Universities</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-indigo-600">80+</div>
-              <div className="text-xs text-neutral-600">USA</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-green-600">65+</div>
-              <div className="text-xs text-neutral-600">UK</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-purple-600">60+</div>
-              <div className="text-xs text-neutral-600">Germany</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-orange-600">35+</div>
-              <div className="text-xs text-neutral-600">Australia</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-red-600">25+</div>
-              <div className="text-xs text-neutral-600">Ireland</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-teal-600">20+</div>
-              <div className="text-xs text-neutral-600">France</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-pink-600">15+</div>
-              <div className="text-xs text-neutral-600">Wales</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-secondary">50+</div>
-              <div className="text-neutral-600">Countries</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-accent">95%</div>
-              <div className="text-neutral-600">Success Rate</div>
-            </div>
-          </div>
         </motion.div>
 
         {/* University Logos Grid - Single Frame */}
