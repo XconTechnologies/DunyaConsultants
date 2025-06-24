@@ -157,7 +157,7 @@ export default function UniversityPartnersSection() {
               <div className="text-center relative z-10">
                 <div className="h-16 sm:h-20 mb-4 flex items-center justify-center relative">
                   <motion.img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Anglia_Ruskin_University_logo.svg/200px-Anglia_Ruskin_University_logo.svg.png"
+                    src="/attached_assets/191782_191241_ARU_Logo_Descriptor_RGB_Blue3_1750754253083.webp"
                     alt="Anglia Ruskin University logo"
                     className="max-h-full max-w-full object-contain filter drop-shadow-sm"
                     whileHover={{ 
@@ -420,7 +420,7 @@ export default function UniversityPartnersSection() {
               <div className="text-center relative z-10">
                 <div className="h-16 sm:h-20 mb-4 flex items-center justify-center relative">
                   <motion.img 
-                    src="/attached_assets/Artboard-1-copy-19-3_1750753802266.webp"
+                    src="https://www.capilanou.ca/media/capilanouca/about-capu/logos/CapU-Logo-colour.png"
                     alt="Capilano University logo"
                     className="max-h-full max-w-full object-contain filter drop-shadow-sm"
                     whileHover={{ 
@@ -472,7 +472,7 @@ export default function UniversityPartnersSection() {
               <div className="text-center relative z-10">
                 <div className="h-16 sm:h-20 mb-4 flex items-center justify-center relative">
                   <motion.img 
-                    src="/attached_assets/Artboard-1-copy-31-2_1750753802267.webp"
+                    src="https://www.lut.fi/sites/all/themes/lut2015/images/lut_logo.png"
                     alt="LUT University logo"
                     className="max-h-full max-w-full object-contain filter drop-shadow-sm"
                     whileHover={{ 
@@ -524,7 +524,7 @@ export default function UniversityPartnersSection() {
               <div className="text-center relative z-10">
                 <div className="h-16 sm:h-20 mb-4 flex items-center justify-center relative">
                   <motion.img 
-                    src="/attached_assets/Artboard-1-copy-41-1_1750753802269.webp"
+                    src="https://niagaracollege.ca/uploads/2019/03/NC-logo-RGB.png"
                     alt="University of Niagara Falls logo"
                     className="max-h-full max-w-full object-contain filter drop-shadow-sm"
                     whileHover={{ 
@@ -576,7 +576,7 @@ export default function UniversityPartnersSection() {
               <div className="text-center relative z-10">
                 <div className="h-16 sm:h-20 mb-4 flex items-center justify-center relative">
                   <motion.img 
-                    src="/attached_assets/Artboard-1-copy-42_1750753802270.webp"
+                    src="https://www.ue-germany.com/sites/default/files/UE_Logo_RGB_Red_sRGB.png"
                     alt="University of Europe logo"
                     className="max-h-full max-w-full object-contain filter drop-shadow-sm"
                     whileHover={{ 
@@ -628,7 +628,7 @@ export default function UniversityPartnersSection() {
               <div className="text-center relative z-10">
                 <div className="h-16 sm:h-20 mb-4 flex items-center justify-center relative">
                   <motion.img 
-                    src="/attached_assets/download_1750753802272.webp"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/University_of_East_Anglia_Logo.svg/200px-University_of_East_Anglia_Logo.svg.png"
                     alt="University of East Anglia logo"
                     className="max-h-full max-w-full object-contain filter drop-shadow-sm"
                     whileHover={{ 
@@ -680,7 +680,7 @@ export default function UniversityPartnersSection() {
               <div className="text-center relative z-10">
                 <div className="h-16 sm:h-20 mb-4 flex items-center justify-center relative">
                   <motion.img 
-                    src="/attached_assets/download-1_1750753802274.webp"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Eton_College_Coat_of_Arms.svg/200px-Eton_College_Coat_of_Arms.svg.png"
                     alt="Eton College logo"
                     className="max-h-full max-w-full object-contain filter drop-shadow-sm"
                     whileHover={{ 
@@ -732,7 +732,7 @@ export default function UniversityPartnersSection() {
               <div className="text-center relative z-10">
                 <div className="h-16 sm:h-20 mb-4 flex items-center justify-center relative">
                   <motion.img 
-                    src="/attached_assets/Halic-University-15-2048x879_1750753802275.webp"
+                    src="https://halicdegisim.com.tr/wp-content/uploads/2020/12/halicdegisim-logo.png"
                     alt="Halic University logo"
                     className="max-h-full max-w-full object-contain filter drop-shadow-sm"
                     whileHover={{ 
