@@ -45,9 +45,9 @@ export default function BusinessProposalsSection() {
           </motion.p>
         </motion.div>
 
-        {/* Team Photo with Overlay */}
+        {/* Full Team Photo */}
         <motion.div
-          className="relative mb-16 rounded-2xl overflow-hidden shadow-2xl"
+          className="mb-16 rounded-2xl overflow-hidden shadow-2xl"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -56,13 +56,8 @@ export default function BusinessProposalsSection() {
           <img 
             src={teamPhoto} 
             alt="Dunya Consultants Team" 
-            className="w-full h-80 md:h-96 object-cover"
+            className="w-full h-auto object-contain"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          <div className="absolute bottom-8 left-8 text-white">
-            <h3 className="text-2xl font-bold mb-2">Our Global Team</h3>
-            <p className="text-white/90">Dedicated professionals committed to your success</p>
-          </div>
         </motion.div>
 
         {/* Contact Cards */}

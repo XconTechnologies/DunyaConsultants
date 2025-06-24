@@ -204,6 +204,7 @@ The application uses three main tables:
 - **June 24, 2025 - Business Proposals Section Redesign**: Moved business proposals from footer to dedicated section above footer with blue gradient background, glassmorphism contact cards, hover animations, and professional layout featuring email and WhatsApp contact options for Umer Farooq.
 - **June 24, 2025 - Enhanced Contact Information with Team Photo**: Added comprehensive contact information including UAN (+92) 304 1110947, Head Office location (Alif Tower Buhadur shah zafar road, Sargodha), general queries email (info@dunyaconsultants.com), and business proposals contact (Umer Farooq). Integrated team photo as background with 4-column contact grid layout featuring phone, location, email, and business proposal cards with appropriate icons and hover effects.
 - **June 24, 2025 - Modern Business Proposals Section Redesign**: Completely redesigned business proposals section with clean white background, prominent team photo with gradient overlay, split-screen layout featuring contact information cards on left and dedicated business proposals card on right. Enhanced with modern typography, subtle animations, color-coded contact cards, and professional call-to-action for Umer Farooq business development contact.
+- **June 24, 2025 - Full Team Image Display**: Modified business proposals section to display the complete team photo without overlay effects, showing the full image dimensions with natural aspect ratio and clean presentation.
 
 ## Changelog
 
