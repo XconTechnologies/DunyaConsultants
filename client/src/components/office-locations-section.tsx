@@ -411,6 +411,11 @@ export default function OfficeLocationsSection() {
                                 HQ
                               </span>
                             )}
+                            {office.region === "International" && (
+                              <span className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0">
+                                🌍 INT
+                              </span>
+                            )}
                           </div>
                           <p className="text-sm font-medium text-gray-600 truncate">{office.name}</p>
                         </div>
