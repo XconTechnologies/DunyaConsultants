@@ -8,7 +8,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <h3 className="text-xl font-bold mb-4">Dunya Consultants</h3>
+            <div className="mb-4">
+              <img 
+                src="/attached_assets/DC Blue Logo (1)_1750668538365.png" 
+                alt="Dunya Consultants Logo" 
+                className="h-12 w-auto brightness-0 invert"
+              />
+            </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               Your trusted partner for global education opportunities. 
               Dedicated to helping students achieve their academic dreams worldwide.
