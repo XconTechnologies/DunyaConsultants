@@ -34,15 +34,7 @@ export default function BusinessProposalsSection() {
             For Business Proposals
           </motion.h2>
           
-          <motion.p
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Partner with us to expand educational opportunities and create meaningful connections worldwide
-          </motion.p>
+
         </motion.div>
 
         {/* Full Team Photo */}
