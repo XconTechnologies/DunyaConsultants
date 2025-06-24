@@ -326,7 +326,7 @@ export default function OfficeLocationsSection() {
     );
   };
 
-  const visibleOffices = offices.slice(currentIndex, currentIndex + cardsPerView);
+
 
   return (
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
