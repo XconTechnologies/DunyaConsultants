@@ -227,7 +227,7 @@ export default function StatsBanner() {
           >
             <div className="inline-flex flex-col items-center justify-center space-y-2 bg-white/10 backdrop-blur-sm rounded-full px-8 py-4 border border-white/20">
               
-              <span className="text-white/90 font-medium text-xs tracking-wide">
+              <span className="text-white/90 font-medium tracking-wide" style={{ fontSize: '22px' }}>
                 Dedication To Education
               </span>
               
@@ -239,7 +239,8 @@ export default function StatsBanner() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-8 leading-tight"
+            className="font-bold text-white mb-8 leading-tight"
+            style={{ fontSize: '32px' }}
           >
             Dedication To{" "}
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
@@ -252,7 +253,8 @@ export default function StatsBanner() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-sm md:text-base text-blue-100 max-w-4xl mx-auto leading-relaxed mb-10"
+            className="text-blue-100 max-w-4xl mx-auto leading-relaxed mb-10"
+            style={{ fontSize: '16px' }}
           >
             <span className="font-semibold text-white">About Dunya Consultants:</span> Making global education dreams come true since 2009. Join thousands of successful students who achieved their international study goals with Pakistan's most trusted visa consultancy.
           </motion.p>
@@ -311,7 +313,8 @@ export default function StatsBanner() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-medium text-sm px-8 py-2.5 rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
+            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-medium px-8 py-2.5 rounded-full shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300"
+            style={{ fontSize: '16px' }}
           >
             Start Your Journey Today
           </motion.button>
