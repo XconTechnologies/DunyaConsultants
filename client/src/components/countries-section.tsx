@@ -428,6 +428,14 @@ export default function CountriesSection() {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [applicationCountry, setApplicationCountry] = useState<Country | null>(null);
+  const [activeTab, setActiveTab] = useState<'popular' | 'all'>('popular');
+
+  // Popular countries (most requested destinations)
+  const popularCountries = countries.filter(country => 
+    ['United Kingdom', 'United States', 'Canada', 'Australia', 'Germany', 'New Zealand'].includes(country.name)
+  );
+
+  const displayCountries = activeTab === 'popular' ? popularCountries : countries;
 
   const handleApplyNow = (country: Country) => {
     setApplicationCountry(country);
@@ -486,9 +494,44 @@ export default function CountriesSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Discover exceptional universities and endless opportunities across 12 premier study destinations. 
-            Your international education journey starts here.
+            Discover exceptional universities and endless opportunities across our premier study destinations. 
+            Start with popular choices or explore all available countries for your international education journey.
           </motion.p>
+        </motion.div>
+
+        {/* Country Tabs */}
+        <motion.div
+          className="flex justify-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-2 border border-white/20">
+            <div className="flex space-x-2">
+              <button
+                onClick={() => setActiveTab('popular')}
+                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                  activeTab === 'popular'
+                    ? 'bg-white text-gray-900 shadow-lg'
+                    : 'text-white hover:bg-white/10'
+                }`}
+              >
+                <Star className="w-5 h-5 inline mr-2" />
+                Popular Countries
+              </button>
+              <button
+                onClick={() => setActiveTab('all')}
+                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                  activeTab === 'all'
+                    ? 'bg-white text-gray-900 shadow-lg'
+                    : 'text-white hover:bg-white/10'
+                }`}
+              >
+                <Globe className="w-5 h-5 inline mr-2" />
+                All Destinations
+              </button>
+            </div>
+          </div>
         </motion.div>
 
         {/* Interactive Country Grid */}
@@ -498,7 +541,7 @@ export default function CountriesSection() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          {countries.map((country, index) => (
+          {displayCountries.map((country, index) => (
             <motion.div
               key={country.id}
               className="group relative"
@@ -592,8 +635,12 @@ export default function CountriesSection() {
               className="text-center group"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors duration-300">12</div>
-              <div className="text-white/80 font-medium">Top Destinations</div>
+              <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors duration-300">
+                {activeTab === 'popular' ? '6' : '12'}
+              </div>
+              <div className="text-white/80 font-medium">
+                {activeTab === 'popular' ? 'Popular' : 'Total'} Destinations
+              </div>
               <div className="text-white/60 text-sm mt-1">Premium Countries</div>
             </motion.div>
             <motion.div 
