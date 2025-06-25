@@ -229,6 +229,7 @@ The application uses three main tables:
 - **June 24, 2025 - Search Filter Removal**: Removed the search and filter functionality from office locations section to simplify the interface and restore the clean auto-sliding carousel presentation without extra filtering options.
 - **June 24, 2025 - Office Locations Section to Individual Pages**: Completely removed "Our Office Locations" section from home page and created separate dedicated pages for each office location. Implemented OfficesList page with search/filter functionality and OfficeDetails page with comprehensive information including contact details, services, specializations, staff info, testimonials, facilities, and statistics. Updated navigation mega menu to link to individual office pages with detailed content for better user experience.
 - **June 24, 2025 - Hero Section Text Enhancement**: Updated hero section with new tagline "A New Study Visa" above the main heading, increased main heading "Dedication To Education" font size from 32px to 48px for better visual prominence and impact.
+- **June 24, 2025 - Hero Section Sizing Adjustments**: Further increased "Dedication To Education" heading font size to 64px for maximum impact, reduced statistics banner text and icons to smaller sizes (text-lg/xl, text-xs labels, smaller padding and rounded corners), and made action buttons more compact for better visual hierarchy.
 
 ## Changelog
 

@@ -69,7 +69,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            style={{ fontSize: '48px' }}
+            style={{ fontSize: '64px' }}
           >
             <span className="text-white">
               Dedication To Education
@@ -85,52 +85,53 @@ export default function HeroSection() {
             Expert visa consultation services to help you achieve your dream of studying abroad. Professional guidance, proven success rates.
           </motion.p>
           
-          {/* Stats Cards */}
+          {/* Stats Cards - Made Smaller */}
           <motion.div 
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 max-w-3xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-              <div className="text-2xl md:text-3xl font-bold text-accent">98%</div>
-              <div className="text-sm text-blue-100">Success Rate</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+              <div className="text-lg md:text-xl font-bold text-accent">98%</div>
+              <div className="text-xs text-blue-100">Success Rate</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-              <div className="text-2xl md:text-3xl font-bold text-accent">5000+</div>
-              <div className="text-sm text-blue-100">Students</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+              <div className="text-lg md:text-xl font-bold text-accent">5000+</div>
+              <div className="text-xs text-blue-100">Students</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-              <div className="text-2xl md:text-3xl font-bold text-accent">15+</div>
-              <div className="text-sm text-blue-100">Countries</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+              <div className="text-lg md:text-xl font-bold text-accent">15+</div>
+              <div className="text-xs text-blue-100">Countries</div>
             </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-              <div className="text-2xl md:text-3xl font-bold text-accent">15</div>
-              <div className="text-sm text-blue-100">Years Exp</div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3">
+              <div className="text-lg md:text-xl font-bold text-accent">15</div>
+              <div className="text-xs text-blue-100">Years Exp</div>
             </div>
           </motion.div>
           
+          {/* Action Buttons - Made Smaller */}
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-3 justify-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <Button 
-              size="lg"
+              size="default"
               onClick={() => scrollToSection("contact")}
-              className="bg-accent hover:bg-yellow-500 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+              className="bg-accent hover:bg-yellow-500 text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
             >
-              <Rocket className="mr-2" size={20} />
+              <Rocket className="mr-2" size={16} />
               Start Your Journey
             </Button>
             <Button 
               variant="outline"
-              size="lg"
+              size="default"
               onClick={() => scrollToSection("testimonials")}
-              className="border-2 border-white text-white px-8 py-4 text-lg font-semibold hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm bg-white/10"
+              className="border-2 border-white text-white px-6 py-3 text-sm font-semibold hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm bg-white/10"
             >
-              <Play className="mr-2" size={20} />
+              <Play className="mr-2" size={16} />
               Watch Success Stories
             </Button>
           </motion.div>
