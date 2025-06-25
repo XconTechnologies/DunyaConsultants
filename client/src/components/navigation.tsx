@@ -157,21 +157,21 @@ export default function Navigation() {
           title: "Pakistan Offices",
           icon: MapPin,
           items: [
-            { name: "Lahore (DHA & Johar Town)", href: "/offices/lahore", description: "2 locations in Lahore" },
-            { name: "Sargodha (Head Office)", href: "/offices/sargodha", description: "Main headquarters" },
-            { name: "Islamabad", href: "/offices/islamabad", description: "Blue Area location" },
-            { name: "Karachi (DHA)", href: "/offices/karachi", description: "Prime Point Building" },
-            { name: "Faisalabad", href: "/offices/faisalabad", description: "Centre Point Plaza" },
-            { name: "All Branches", href: "/offices/all", description: "Complete office list" }
+            { name: "All Office Locations", href: "/offices", description: "Browse all branches" },
+            { name: "Sargodha Head Office", href: "/offices/sargodha-head", description: "Main headquarters" },
+            { name: "Lahore DHA", href: "/offices/lahore-dha", description: "DHA Phase 1 office" },
+            { name: "Islamabad Blue Area", href: "/offices/islamabad", description: "Federal capital office" },
+            { name: "Karachi Gulshan", href: "/offices/karachi", description: "Sindh province office" },
+            { name: "Faisalabad Civil Lines", href: "/offices/faisalabad", description: "Industrial city office" }
           ]
         },
         {
-          title: "International Offices",
+          title: "Office Services",
           icon: Globe,
           items: [
-            { name: "Jeddah, Saudi Arabia", href: "/offices/jeddah", description: "Engineering Square" },
-            { name: "Istanbul, Turkey", href: "/offices/istanbul", description: "Ataköy Towers" },
-            { name: "Edinburgh, UK", href: "/offices/edinburgh", description: "Ferry Road Place" }
+            { name: "Book Consultation", href: "/consultation-booking", description: "Schedule your visit" },
+            { name: "Contact Details", href: "/offices", description: "Phone & addresses" },
+            { name: "Office Hours", href: "/offices", description: "Mon-Sat: 9 AM-7 PM" }
           ]
         },
         {
@@ -185,9 +185,9 @@ export default function Navigation() {
         }
       ],
       featured: {
-        title: "15+ Offices Worldwide",
-        description: "Pakistan, Saudi Arabia, Turkey & UK",
-        cta: "Find Nearest",
+        title: "20+ Office Locations",
+        description: "Nationwide coverage across Pakistan",
+        cta: "Find Office",
         href: "/offices"
       }
     },

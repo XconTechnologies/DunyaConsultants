@@ -23,7 +23,6 @@ export default function Home() {
       <StudentJourneyTimeline />
       <ConsultationBookingCalendar />
       <UniversityPartnersSection />
-      <OfficeLocationsSection />
       <BusinessProposalsSection />
       <FloatingCTA />
       <Footer />
