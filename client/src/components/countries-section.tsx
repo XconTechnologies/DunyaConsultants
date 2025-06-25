@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Globe, MapPin, Users, GraduationCap, ChevronLeft, ChevronRight, Star, Award, BookOpen, Send, DollarSign, Clock, X, CheckCircle, ArrowRight, Plane, Calendar } from "lucide-react";
+import { Globe, MapPin, Users, GraduationCap, ChevronLeft, ChevronRight, Star, Award, BookOpen, Send, DollarSign, Clock, X, CheckCircle, ArrowRight, Plane, Calendar, Phone, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -361,34 +361,7 @@ const countries: Country[] = [
 ];
 
 const getCountryColor = (countryName: string): string => {
-  switch (countryName) {
-    case 'United Kingdom':
-      return 'bg-indigo-600';
-    case 'United States':
-      return 'bg-blue-600';
-    case 'Canada':
-      return 'bg-red-500';
-    case 'Australia':
-      return 'bg-green-500';
-    case 'Germany':
-      return 'bg-gray-800';
-    case 'New Zealand':
-      return 'bg-teal-500';
-    case 'Ireland':
-      return 'bg-emerald-600';
-    case 'France':
-      return 'bg-purple-600';
-    case 'Netherlands':
-      return 'bg-orange-500';
-    case 'Singapore':
-      return 'bg-pink-500';
-    case 'Sweden':
-      return 'bg-yellow-500';
-    case 'Switzerland':
-      return 'bg-slate-600';
-    default:
-      return 'bg-violet-600';
-  }
+  return 'bg-gradient-to-br from-white to-gray-100';
 };
 
 const getCountryImage = (countryName: string): string => {
@@ -576,39 +549,39 @@ export default function CountriesSection() {
                   }}
                 >
                   {/* Color Overlay */}
-                  <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-85`}></div>
+                  <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-90`}></div>
                 </div>
                 
                 {/* Content */}
-                <div className="relative z-10 p-4 h-full flex flex-col text-white">
+                <div className="relative z-10 p-4 h-full flex flex-col text-gray-900">
                   {/* Header */}
                   <div className="flex items-center justify-end mb-2">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Plane className="w-4 h-4 text-white" />
+                      <Plane className="w-4 h-4 text-gray-700" />
                     </div>
                   </div>
 
                   {/* Country Name */}
-                  <h2 className="text-xl font-bold mb-3 group-hover:text-yellow-200 transition-colors duration-300">
+                  <h2 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors duration-300">
                     {country.name}
                   </h2>
                   
                   {/* University Count */}
                   <div className="mb-3">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 text-center">
-                      <GraduationCap className="w-4 h-4 mx-auto mb-1 text-yellow-300" />
+                    <div className="bg-gray-100/80 backdrop-blur-sm rounded-lg p-2 text-center border">
+                      <GraduationCap className="w-4 h-4 mx-auto mb-1 text-blue-600" />
                       <div className="text-sm font-bold">{country.topUniversities.length}+ Universities</div>
                     </div>
                   </div>
 
                   {/* Quick Info */}
                   <div className="space-y-2 mb-3 flex-grow">
-                    <div className="flex items-center text-xs bg-white/10 rounded-lg px-2 py-1.5">
-                      <DollarSign className="w-3 h-3 mr-1.5 text-green-300" />
+                    <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
+                      <DollarSign className="w-3 h-3 mr-1.5 text-green-600" />
                       <span className="truncate font-medium">From {country.averageCost.split(' - ')[0]}</span>
                     </div>
-                    <div className="flex items-center text-xs bg-white/10 rounded-lg px-2 py-1.5">
-                      <Clock className="w-3 h-3 mr-1.5 text-blue-300" />
+                    <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
+                      <Clock className="w-3 h-3 mr-1.5 text-blue-600" />
                       <span className="truncate">{country.intakeSeason}</span>
                     </div>
                   </div>
@@ -617,14 +590,14 @@ export default function CountriesSection() {
                   <div className="mt-auto space-y-1.5">
                     <Button 
                       onClick={() => handleApplyNow(country)}
-                      className="w-full bg-gradient-to-r from-white to-gray-100 text-gray-900 hover:from-gray-100 hover:to-white font-semibold py-2 text-xs shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="w-full bg-gradient-to-r from-gray-900 to-gray-800 text-white hover:from-gray-800 hover:to-gray-700 font-semibold py-2 text-xs shadow-lg hover:shadow-xl transition-all duration-300"
                     >
                       <Send className="mr-1.5 h-3 w-3" />
                       Apply Now
                     </Button>
                     <Button 
                       onClick={() => setSelectedCountry(country)}
-                      className="w-full bg-gradient-to-r from-white/90 to-white/70 text-gray-800 hover:from-white hover:to-white/90 backdrop-blur-sm py-2 text-xs font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 py-2 text-xs font-semibold shadow-md hover:shadow-lg transition-all duration-300"
                     >
                       <BookOpen className="mr-1.5 h-3 w-3" />
                       Get Information
