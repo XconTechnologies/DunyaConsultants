@@ -394,28 +394,9 @@ const getCountryGradient = (countryName: string): string => {
 export default function CountriesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [applicationCountry, setApplicationCountry] = useState<Country | null>(null);
-  const countriesPerSlide = 6; // Increased to show more countries per slide
-  
-  // Show all countries (12 total)
-  const displayCountries = countries;
-  const totalSlides = Math.ceil(displayCountries.length / countriesPerSlide);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
-
-  const getCurrentCountries = () => {
-    const start = currentSlide * countriesPerSlide;
-    return displayCountries.slice(start, start + countriesPerSlide);
-  };
 
   const handleApplyNow = (country: Country) => {
     setApplicationCountry(country);
@@ -423,200 +404,361 @@ export default function CountriesSection() {
   };
 
   return (
-    <section ref={ref} className="py-16 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
+    <>
+    <section ref={ref} className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Moving dots pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute animate-pulse w-2 h-2 bg-white rounded-full top-10 left-10" style={{animationDelay: '0s'}}></div>
+          <div className="absolute animate-pulse w-1 h-1 bg-blue-300 rounded-full top-32 left-32" style={{animationDelay: '1s'}}></div>
+          <div className="absolute animate-pulse w-3 h-3 bg-white rounded-full top-20 right-20" style={{animationDelay: '2s'}}></div>
+          <div className="absolute animate-pulse w-1 h-1 bg-blue-200 rounded-full bottom-20 left-40" style={{animationDelay: '1.5s'}}></div>
+          <div className="absolute animate-pulse w-2 h-2 bg-white rounded-full bottom-32 right-32" style={{animationDelay: '3s'}}></div>
+        </div>
+        {/* Gradient mesh */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-transparent to-purple-600/20"></div>
       </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center space-x-2 bg-blue-100 rounded-full px-6 py-3 mb-6">
-            <Globe className="w-5 h-5 text-blue-600" />
-            <span className="text-sm font-medium text-blue-800">Study Destinations</span>
-          </div>
-          
-          <motion.h2 
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            Choose Your Dream Destination
-          </motion.h2>
-          <motion.p 
-            className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          <motion.div 
+            className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md rounded-full px-8 py-4 mb-8 border border-white/20"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Explore world-class universities and exciting opportunities across 12 top study destinations. 
-            Apply directly to your preferred country with expert guidance.
+            <Globe className="w-6 h-6 text-blue-300" />
+            <span className="text-white font-medium">Study Destinations Worldwide</span>
+          </motion.div>
+          
+          <motion.h2 
+            className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            Choose Your
+            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent block">
+              Dream Destination
+            </span>
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Discover exceptional universities and endless opportunities across 12 premier study destinations. 
+            Your international education journey starts here.
           </motion.p>
         </motion.div>
 
-        {/* Countries Slider */}
-        <div className="relative">
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            {getCurrentCountries().map((country, index) => (
-              <motion.div
-                key={country.id}
-                className="group"
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
-              >
-                <Card className="relative overflow-hidden h-[350px] hover:shadow-2xl transition-all duration-500 group-hover:scale-105 border-0 bg-white">
-                  {/* Background Image */}
-                  <div 
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${country.bgImage})` }}
-                  >
-                    <div className={`absolute inset-0 bg-gradient-to-t ${country.gradient} opacity-80`}></div>
-                  </div>
-                  
-                  {/* Content */}
-                  <CardContent className="relative z-10 h-full p-4 flex flex-col text-white">
-                    {/* Header */}
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-2xl">{country.flag}</span>
-                        <div>
-                          <h3 className="text-lg font-bold">{country.code}</h3>
-                          <Badge className="bg-white/20 text-white border-0 text-xs">
-                            {country.visaSuccessRate}% Success
-                          </Badge>
+        {/* Interactive Country Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
+          {countries.map((country, index) => (
+            <motion.div
+              key={country.id}
+              className="group relative"
+              initial={{ opacity: 0, y: 50, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+              transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+            >
+              <div className="relative h-80 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden hover:border-white/40 transition-all duration-500">
+                {/* Country Flag Background */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-5">
+                  <span className="text-9xl">{country.flag}</span>
+                </div>
+                
+                {/* Gradient Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${country.gradient} opacity-80`}></div>
+                
+                {/* Content */}
+                <div className="relative z-10 p-6 h-full flex flex-col text-white">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <span className="text-3xl">{country.flag}</span>
+                      <div>
+                        <h3 className="text-lg font-bold">{country.code}</h3>
+                        <div className="flex items-center space-x-1">
+                          <Star className="w-3 h-3 text-yellow-300 fill-current" />
+                          <span className="text-xs font-medium">{country.visaSuccessRate}% Success</span>
                         </div>
                       </div>
                     </div>
-
-                    {/* Country Name */}
-                    <h2 className="text-xl font-bold mb-2">{country.name}</h2>
-                    
-                    {/* Quick Stats */}
-                    <div className="grid grid-cols-2 gap-2 mb-3">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 text-center">
-                        <GraduationCap className="w-4 h-4 mx-auto mb-1" />
-                        <div className="text-xs font-semibold">{country.topUniversities.length}+</div>
-                        <div className="text-xs opacity-80">Unis</div>
-                      </div>
-                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 text-center">
-                        <Users className="w-4 h-4 mx-auto mb-1" />
-                        <div className="text-xs font-semibold">{country.studentCount}+</div>
-                        <div className="text-xs opacity-80">Students</div>
-                      </div>
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <Plane className="w-5 h-5 text-white" />
                     </div>
+                  </div>
 
-                    {/* Key Info */}
-                    <div className="space-y-1 mb-3 flex-grow">
-                      <div className="flex items-center text-xs">
-                        <DollarSign className="w-3 h-3 mr-1" />
-                        <span className="truncate">From {country.averageCost.split(' - ')[0]}</span>
-                      </div>
-                      <div className="flex items-center text-xs">
-                        <Clock className="w-3 h-3 mr-1" />
-                        <span className="truncate">{country.intakeSeason}</span>
-                      </div>
+                  {/* Country Name */}
+                  <h2 className="text-2xl font-bold mb-3 group-hover:text-yellow-200 transition-colors duration-300">
+                    {country.name}
+                  </h2>
+                  
+                  {/* Key Stats */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/25 transition-all duration-300">
+                      <GraduationCap className="w-5 h-5 mx-auto mb-1 text-yellow-300" />
+                      <div className="text-sm font-bold">{country.topUniversities.length}+</div>
+                      <div className="text-xs opacity-80">Universities</div>
                     </div>
+                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/25 transition-all duration-300">
+                      <Users className="w-5 h-5 mx-auto mb-1 text-green-300" />
+                      <div className="text-sm font-bold">{country.studentCount}+</div>
+                      <div className="text-xs opacity-80">Students</div>
+                    </div>
+                  </div>
 
-                    {/* Action Buttons */}
-                    <div className="space-y-2">
+                  {/* Quick Info */}
+                  <div className="space-y-2 mb-4 flex-grow">
+                    <div className="flex items-center text-sm bg-white/10 rounded-lg px-3 py-2">
+                      <DollarSign className="w-4 h-4 mr-2 text-green-300" />
+                      <span className="truncate font-medium">From {country.averageCost.split(' - ')[0]}</span>
+                    </div>
+                    <div className="flex items-center text-sm bg-white/10 rounded-lg px-3 py-2">
+                      <Clock className="w-4 h-4 mr-2 text-blue-300" />
+                      <span className="truncate">{country.intakeSeason}</span>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="space-y-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    <Button 
+                      onClick={() => handleApplyNow(country)}
+                      className="w-full bg-white/90 text-gray-900 hover:bg-white font-semibold py-3 text-sm shadow-lg hover:shadow-xl transition-all duration-300"
+                    >
+                      <Send className="mr-2 h-4 w-4" />
+                      Apply Now
+                    </Button>
+                    <Button 
+                      onClick={() => setSelectedCountry(country)}
+                      variant="outline"
+                      className="w-full border-white/50 text-white hover:bg-white/20 backdrop-blur-sm py-3 text-sm hover:border-white transition-all duration-300"
+                    >
+                      <BookOpen className="mr-2 h-4 w-4" />
+                      Learn More
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Enhanced Statistics */}
+        <motion.div
+          className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 p-8"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <motion.div 
+              className="text-center group"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors duration-300">12</div>
+              <div className="text-white/80 font-medium">Top Destinations</div>
+              <div className="text-white/60 text-sm mt-1">Premium Countries</div>
+            </motion.div>
+            <motion.div 
+              className="text-center group"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="text-4xl font-bold text-green-400 mb-2 group-hover:text-green-300 transition-colors duration-300">50,000+</div>
+              <div className="text-white/80 font-medium">Students Placed</div>
+              <div className="text-white/60 text-sm mt-1">Success Stories</div>
+            </motion.div>
+            <motion.div 
+              className="text-center group"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="text-4xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors duration-300">95%</div>
+              <div className="text-white/80 font-medium">Visa Success</div>
+              <div className="text-white/60 text-sm mt-1">Approval Rate</div>
+            </motion.div>
+            <motion.div 
+              className="text-center group"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="text-4xl font-bold text-orange-400 mb-2 group-hover:text-orange-300 transition-colors duration-300">24/7</div>
+              <div className="text-white/80 font-medium">Expert Support</div>
+              <div className="text-white/60 text-sm mt-1">Always Available</div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+
+    {/* Application Form Modal */}
+    {showApplicationForm && applicationCountry && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            onClick={() => setShowApplicationForm(false)}
+          >
+            <motion.div
+              className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className={`relative p-6 text-white bg-gradient-to-br ${applicationCountry.gradient}`}>
+                <button
+                  onClick={() => setShowApplicationForm(false)}
+                  className="absolute top-4 right-4 text-white hover:bg-white/20 p-2 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="flex items-center space-x-4">
+                  <span className="text-3xl">{applicationCountry.flag}</span>
+                  <div>
+                    <h2 className="text-2xl font-bold">Apply to Study in {applicationCountry.name}</h2>
+                    <p className="text-white/90">Start your application process with expert guidance</p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-6 space-y-6">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Full Name *</label>
+                    <input 
+                      type="text" 
+                      className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Email *</label>
+                    <input 
+                      type="email" 
+                      className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                </div>
+                <div className="flex space-x-4">
+                  <Button className="flex-1 bg-blue-600 hover:bg-blue-700">
+                    <Send className="mr-2 h-4 w-4" />
+                    Submit Application
+                  </Button>
+                  <Button variant="outline" onClick={() => setShowApplicationForm(false)}>
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* Country Details Modal */}
+        {selectedCountry && (
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            onClick={() => setSelectedCountry(null)}
+          >
+            <motion.div
+              className="bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div 
+                className="relative p-8 text-white bg-cover bg-center"
+                style={{ backgroundImage: `url(${selectedCountry.bgImage})` }}
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${selectedCountry.gradient} opacity-90`}></div>
+                <button
+                  onClick={() => setSelectedCountry(null)}
+                  className="absolute top-4 right-4 text-white hover:bg-white/20 p-2 rounded-full transition-colors z-10"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="text-6xl mb-4">{selectedCountry.flag}</div>
+                      <h2 className="text-4xl font-bold mb-2">{selectedCountry.name}</h2>
+                      <p className="text-white/90 text-lg mb-4">{selectedCountry.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="p-8">
+                <div className="grid lg:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                        <GraduationCap className="mr-2 text-blue-600" />
+                        Top Universities
+                      </h3>
+                      <ul className="space-y-2">
+                        {selectedCountry.topUniversities.map((university, index) => (
+                          <li key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
+                            <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-medium mr-3">
+                              {index + 1}
+                            </span>
+                            <span className="font-medium text-gray-800">{university}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-4">Why Choose {selectedCountry.name}?</h3>
+                      <ul className="space-y-2">
+                        {selectedCountry.highlights.map((highlight, index) => (
+                          <li key={index} className="flex items-center">
+                            <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                            <span className="text-gray-700">{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-8 pt-6 border-t bg-gray-50 rounded-lg p-6">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div className="text-center md:text-left">
+                      <h4 className="text-xl font-bold text-gray-900">Ready to Start Your Journey?</h4>
+                      <p className="text-gray-600">Get personalized guidance for studying in {selectedCountry.name}</p>
+                    </div>
+                    <div className="flex gap-3">
                       <Button 
-                        onClick={() => handleApplyNow(country)}
-                        className="w-full bg-white text-gray-900 hover:bg-gray-100 font-semibold py-2 text-sm"
+                        onClick={() => {
+                          setSelectedCountry(null);
+                          handleApplyNow(selectedCountry);
+                        }}
+                        className="bg-blue-600 hover:bg-blue-700"
                       >
-                        <Send className="mr-1 h-3 w-3" />
+                        <Send className="mr-2 h-4 w-4" />
                         Apply Now
                       </Button>
-                      <Button 
-                        onClick={() => setSelectedCountry(country)}
-                        variant="outline"
-                        className="w-full border-white/30 text-white hover:bg-white/10 backdrop-blur-sm py-2 text-sm"
-                      >
-                        <BookOpen className="mr-1 h-3 w-3" />
-                        Learn More
-                      </Button>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
-
-          {/* Navigation */}
-          <div className="flex items-center justify-center mt-8 space-x-4">
-            <Button
-              onClick={prevSlide}
-              variant="outline"
-              size="sm"
-              className="rounded-full border-blue-200 hover:bg-blue-50 hover:border-blue-300 px-4"
-            >
-              <ChevronLeft className="h-4 w-4 mr-1" />
-              Previous
-            </Button>
-            
-            <div className="flex space-x-2">
-              {Array.from({ length: totalSlides }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'bg-blue-600 scale-125 shadow-lg' 
-                      : 'bg-gray-300 hover:bg-gray-400 hover:scale-110'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <Button
-              onClick={nextSlide}
-              variant="outline"
-              size="sm"
-              className="rounded-full border-blue-200 hover:bg-blue-50 hover:border-blue-300 px-4"
-            >
-              Next
-              <ChevronRight className="h-4 w-4 ml-1" />
-            </Button>
-          </div>
-
-          {/* Statistics */}
-          <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">12</div>
-              <div className="text-xs text-gray-600">Top Destinations</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">50,000+</div>
-              <div className="text-xs text-gray-600">Students Placed</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">95%</div>
-              <div className="text-xs text-gray-600">Visa Success</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-orange-600">24/7</div>
-              <div className="text-xs text-gray-600">Expert Support</div>
-            </div>
-          </motion.div>
-        </div>
+        )}
 
         {/* Application Form Modal */}
         {showApplicationForm && applicationCountry && (
@@ -955,7 +1097,6 @@ export default function CountriesSection() {
             </motion.div>
           </motion.div>
         )}
-      </div>
-    </section>
+    </>
   );
 }
