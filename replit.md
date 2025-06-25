@@ -228,6 +228,7 @@ The application uses three main tables:
 - **June 24, 2025 - Dynamic Location Filter with Search**: Implemented comprehensive search and filter system for office locations with search bar for city/office/address/services queries, region filters (Punjab, Sindh, Federal, International), service filters, active filter badges, clear filters functionality, and dynamic results count. Enhanced office data with region metadata and improved filtering capabilities.
 - **June 24, 2025 - Search Filter Removal**: Removed the search and filter functionality from office locations section to simplify the interface and restore the clean auto-sliding carousel presentation without extra filtering options.
 - **June 24, 2025 - Office Locations Section to Individual Pages**: Completely removed "Our Office Locations" section from home page and created separate dedicated pages for each office location. Implemented OfficesList page with search/filter functionality and OfficeDetails page with comprehensive information including contact details, services, specializations, staff info, testimonials, facilities, and statistics. Updated navigation mega menu to link to individual office pages with detailed content for better user experience.
+- **June 24, 2025 - Hero Section Text Enhancement**: Updated hero section with new tagline "A New Study Visa" above the main heading, increased main heading "Dedication To Education" font size from 32px to 48px for better visual prominence and impact.
 
 ## Changelog
 

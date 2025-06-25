@@ -30,15 +30,15 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Tagline Above */}
+          {/* New Tagline Above */}
           <motion.div
             className="mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <div className="text-lg md:text-xl text-white/80 font-medium">
-              Your Gateway to Global Education
+            <div className="text-xl md:text-2xl text-white/90 font-semibold tracking-wide">
+              A New Study Visa
             </div>
           </motion.div>
 
@@ -60,18 +60,20 @@ export default function HeroSection() {
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               />
-              Dedication to Education
+              Dedication To Education
             </motion.div>
           </motion.div>
 
           <motion.h1 
-            className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8"
+            className="font-bold leading-tight mb-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            style={{ fontSize: '48px' }}
           >
-            We Focus On{" "}
-            <span className="text-accent block md:inline">Premium Advice & Proven Success</span>
+            <span className="text-white">
+              Dedication To Education
+            </span>
           </motion.h1>
           
           <motion.p 
