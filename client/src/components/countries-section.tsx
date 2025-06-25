@@ -540,20 +540,21 @@ export default function CountriesSection() {
               transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
             >
-              <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
-                {/* Background Image */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ 
-                    backgroundImage: `url(${getCountryImage(country.name)})`,
-                  }}
-                >
-                  {/* Color Overlay */}
-                  <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-90`}></div>
-                </div>
-                
-                {/* Content */}
-                <div className="relative z-10 p-4 h-full flex flex-col text-gray-900">
+              <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105 border-2 border-transparent bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 p-0.5">
+                <div className="relative h-full bg-white rounded-xl overflow-hidden">
+                  {/* Background Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ 
+                      backgroundImage: `url(${getCountryImage(country.name)})`,
+                    }}
+                  >
+                    {/* Color Overlay */}
+                    <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-90`}></div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="relative z-10 p-4 h-full flex flex-col text-gray-900">
                   {/* Header */}
                   <div className="flex items-center justify-end mb-2">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -602,6 +603,7 @@ export default function CountriesSection() {
                       <BookOpen className="mr-1 h-3 w-3" />
                       More Detail
                     </Button>
+                  </div>
                   </div>
                 </div>
               </div>
