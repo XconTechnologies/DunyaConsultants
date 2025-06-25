@@ -363,31 +363,31 @@ const countries: Country[] = [
 const getCountryGradient = (countryName: string): string => {
   switch (countryName) {
     case 'United Kingdom':
-      return 'from-blue-600 to-red-600';
+      return 'from-indigo-600 to-purple-700';
     case 'United States':
-      return 'from-blue-700 to-red-600';
+      return 'from-blue-600 to-blue-800';
     case 'Canada':
-      return 'from-red-600 to-red-800';
+      return 'from-red-500 to-red-700';
     case 'Australia':
-      return 'from-green-500 to-yellow-600';
+      return 'from-green-500 to-emerald-600';
     case 'Germany':
-      return 'from-black to-red-600';
+      return 'from-gray-700 to-gray-900';
     case 'New Zealand':
-      return 'from-blue-600 to-green-500';
+      return 'from-teal-500 to-cyan-600';
     case 'Ireland':
-      return 'from-green-600 to-orange-500';
+      return 'from-green-600 to-green-800';
     case 'France':
-      return 'from-blue-600 to-red-600';
+      return 'from-blue-500 to-indigo-600';
     case 'Netherlands':
-      return 'from-orange-500 to-blue-600';
+      return 'from-orange-500 to-orange-700';
     case 'Singapore':
-      return 'from-red-600 to-white';
+      return 'from-pink-500 to-rose-600';
     case 'Sweden':
-      return 'from-blue-500 to-yellow-400';
+      return 'from-yellow-400 to-amber-500';
     case 'Switzerland':
-      return 'from-red-600 to-white';
+      return 'from-slate-600 to-slate-800';
     default:
-      return 'from-primary to-secondary';
+      return 'from-violet-600 to-purple-700';
   }
 };
 
@@ -477,27 +477,15 @@ export default function CountriesSection() {
               whileHover={{ y: -10, scale: 1.02 }}
             >
               <div className="relative h-80 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden hover:border-white/40 transition-all duration-500">
-                {/* Country Flag Background */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-5">
-                  <span className="text-9xl">{country.flag}</span>
-                </div>
-                
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${country.gradient} opacity-80`}></div>
+                {/* Color Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${getCountryGradient(country.name)}`}></div>
                 
                 {/* Content */}
                 <div className="relative z-10 p-6 h-full flex flex-col text-white">
                   {/* Header */}
                   <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <span className="text-3xl">{country.flag}</span>
-                      <div>
-                        <h3 className="text-lg font-bold">{country.code}</h3>
-                        <div className="flex items-center space-x-1">
-                          <Star className="w-3 h-3 text-yellow-300 fill-current" />
-                          <span className="text-xs font-medium">{country.visaSuccessRate}% Success</span>
-                        </div>
-                      </div>
+                    <div>
+                      <h3 className="text-xl font-bold">{country.code}</h3>
                     </div>
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <Plane className="w-5 h-5 text-white" />
@@ -505,21 +493,16 @@ export default function CountriesSection() {
                   </div>
 
                   {/* Country Name */}
-                  <h2 className="text-2xl font-bold mb-3 group-hover:text-yellow-200 transition-colors duration-300">
+                  <h2 className="text-3xl font-bold mb-6 group-hover:text-yellow-200 transition-colors duration-300">
                     {country.name}
                   </h2>
                   
-                  {/* Key Stats */}
-                  <div className="grid grid-cols-2 gap-3 mb-4">
-                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/25 transition-all duration-300">
-                      <GraduationCap className="w-5 h-5 mx-auto mb-1 text-yellow-300" />
-                      <div className="text-sm font-bold">{country.topUniversities.length}+</div>
-                      <div className="text-xs opacity-80">Universities</div>
-                    </div>
-                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-3 text-center hover:bg-white/25 transition-all duration-300">
-                      <Users className="w-5 h-5 mx-auto mb-1 text-green-300" />
-                      <div className="text-sm font-bold">{country.studentCount}+</div>
-                      <div className="text-xs opacity-80">Students</div>
+                  {/* University Count Only */}
+                  <div className="mb-6">
+                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-4 text-center hover:bg-white/25 transition-all duration-300">
+                      <GraduationCap className="w-6 h-6 mx-auto mb-2 text-yellow-300" />
+                      <div className="text-lg font-bold">{country.topUniversities.length}+</div>
+                      <div className="text-sm opacity-80">Top Universities</div>
                     </div>
                   </div>
 
@@ -535,22 +518,14 @@ export default function CountriesSection() {
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="space-y-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                  {/* Apply Now Button - Always Visible */}
+                  <div className="mt-auto">
                     <Button 
                       onClick={() => handleApplyNow(country)}
-                      className="w-full bg-white/90 text-gray-900 hover:bg-white font-semibold py-3 text-sm shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="w-full bg-white/90 text-gray-900 hover:bg-white font-bold py-4 text-base shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
                     >
-                      <Send className="mr-2 h-4 w-4" />
+                      <Send className="mr-3 h-5 w-5" />
                       Apply Now
-                    </Button>
-                    <Button 
-                      onClick={() => setSelectedCountry(country)}
-                      variant="outline"
-                      className="w-full border-white/50 text-white hover:bg-white/20 backdrop-blur-sm py-3 text-sm hover:border-white transition-all duration-300"
-                    >
-                      <BookOpen className="mr-2 h-4 w-4" />
-                      Learn More
                     </Button>
                   </div>
                 </div>
@@ -633,31 +608,90 @@ export default function CountriesSection() {
                   </div>
                 </div>
               </div>
-              <div className="p-6 space-y-6">
-                <div className="grid grid-cols-2 gap-4">
+              <div className="p-8 space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Full Name *</label>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">Full Name *</label>
                     <input 
                       type="text" 
-                      className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="Enter your full name"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-2">Email *</label>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">Email Address *</label>
                     <input 
                       type="email" 
-                      className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                       placeholder="your.email@example.com"
                     />
                   </div>
+                  <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">Phone Number *</label>
+                    <input 
+                      type="tel" 
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="+92 300 1234567"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">Study Level</label>
+                    <select className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                      <option value="">Select Level</option>
+                      <option value="undergraduate">Undergraduate</option>
+                      <option value="postgraduate">Postgraduate</option>
+                      <option value="masters">Masters</option>
+                      <option value="phd">PhD</option>
+                    </select>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">Preferred Program</label>
+                    <select className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                      <option value="">Select Program</option>
+                      {applicationCountry.popularPrograms.map((program, idx) => (
+                        <option key={idx} value={program}>{program}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-semibold mb-2 text-gray-700">Tell us about your goals</label>
+                    <textarea 
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32 resize-none"
+                      placeholder="Share your academic goals and career aspirations..."
+                    ></textarea>
+                  </div>
                 </div>
+                
+                <div className="bg-gray-50 p-6 rounded-xl">
+                  <h4 className="font-bold text-gray-900 mb-4">What happens next?</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600">
+                    <div className="flex items-center space-x-3">
+                      <div className="bg-blue-100 p-2 rounded-full">
+                        <Phone className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <span>Our counselor will contact you within 24 hours</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="bg-green-100 p-2 rounded-full">
+                        <FileText className="w-4 h-4 text-green-600" />
+                      </div>
+                      <span>Free assessment of your profile</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="bg-purple-100 p-2 rounded-full">
+                        <MapPin className="w-4 h-4 text-purple-600" />
+                      </div>
+                      <span>Personalized study plan for {applicationCountry.name}</span>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="flex space-x-4">
-                  <Button className="flex-1 bg-blue-600 hover:bg-blue-700">
-                    <Send className="mr-2 h-4 w-4" />
+                  <Button className={`flex-1 bg-gradient-to-r ${getCountryGradient(applicationCountry.name)} hover:opacity-90 text-white font-bold py-4 text-lg shadow-xl`}>
+                    <Send className="mr-3 h-5 w-5" />
                     Submit Application
                   </Button>
-                  <Button variant="outline" onClick={() => setShowApplicationForm(false)}>
+                  <Button variant="outline" onClick={() => setShowApplicationForm(false)} className="px-8">
                     Cancel
                   </Button>
                 </div>
