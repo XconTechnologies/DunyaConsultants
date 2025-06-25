@@ -429,6 +429,7 @@ export default function CountriesSection() {
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [applicationCountry, setApplicationCountry] = useState<Country | null>(null);
   const [activeTab, setActiveTab] = useState<'popular' | 'all'>('popular');
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   // Popular countries (most requested destinations)
   const popularCountries = countries.filter(country => 
@@ -436,6 +437,21 @@ export default function CountriesSection() {
   );
 
   const displayCountries = activeTab === 'popular' ? popularCountries : countries;
+  const countriesPerSlide = 4;
+  const totalSlides = Math.ceil(displayCountries.length / countriesPerSlide);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  const getCurrentCountries = () => {
+    const start = currentSlide * countriesPerSlide;
+    return displayCountries.slice(start, start + countriesPerSlide);
+  };
 
   const handleApplyNow = (country: Country) => {
     setApplicationCountry(country);
@@ -534,14 +550,15 @@ export default function CountriesSection() {
           </div>
         </motion.div>
 
-        {/* Interactive Country Grid */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          {displayCountries.map((country, index) => (
+        {/* Countries Carousel */}
+        <div className="relative mb-16">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            {getCurrentCountries().map((country, index) => (
             <motion.div
               key={country.id}
               className="group relative"
@@ -565,10 +582,7 @@ export default function CountriesSection() {
                 {/* Content */}
                 <div className="relative z-10 p-6 h-full flex flex-col text-white">
                   {/* Header */}
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold">{country.code}</h3>
-                    </div>
+                  <div className="flex items-center justify-end mb-4">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       <Plane className="w-5 h-5 text-white" />
                     </div>
@@ -603,25 +617,62 @@ export default function CountriesSection() {
                   <div className="mt-auto space-y-3">
                     <Button 
                       onClick={() => handleApplyNow(country)}
-                      className="w-full bg-white text-gray-900 hover:bg-gray-100 font-bold py-3 text-sm shadow-lg hover:shadow-xl transition-all duration-300"
+                      className="w-full bg-gradient-to-r from-white to-gray-100 text-gray-900 hover:from-gray-100 hover:to-white font-bold py-4 text-base shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                     >
-                      <Send className="mr-2 h-4 w-4" />
+                      <Send className="mr-3 h-5 w-5" />
                       Apply Now
                     </Button>
                     <Button 
                       onClick={() => setSelectedCountry(country)}
-                      variant="outline"
-                      className="w-full border-white/70 text-white hover:bg-white/10 backdrop-blur-sm py-3 text-sm font-semibold"
+                      className="w-full bg-gradient-to-r from-white/90 to-white/70 text-gray-800 hover:from-white hover:to-white/90 backdrop-blur-sm py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
-                      <BookOpen className="mr-2 h-4 w-4" />
-                      View Details
+                      <BookOpen className="mr-3 h-5 w-5" />
+                      Get Information
                     </Button>
                   </div>
                 </div>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+          </motion.div>
+
+          {/* Carousel Navigation */}
+          <div className="flex items-center justify-center mt-12 space-x-6">
+            <Button
+              onClick={prevSlide}
+              variant="outline"
+              size="lg"
+              className="rounded-full border-white/30 text-white hover:bg-white/20 backdrop-blur-sm px-6 py-3"
+            >
+              <ChevronLeft className="h-5 w-5 mr-2" />
+              Previous
+            </Button>
+            
+            <div className="flex space-x-3">
+              {Array.from({ length: totalSlides }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'bg-white scale-125 shadow-lg' 
+                      : 'bg-white/40 hover:bg-white/60 hover:scale-110'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            <Button
+              onClick={nextSlide}
+              variant="outline"
+              size="lg"
+              className="rounded-full border-white/30 text-white hover:bg-white/20 backdrop-blur-sm px-6 py-3"
+            >
+              Next
+              <ChevronRight className="h-5 w-5 ml-2" />
+            </Button>
+          </div>
+        </div>
 
         {/* Enhanced Statistics */}
         <motion.div
@@ -636,10 +687,10 @@ export default function CountriesSection() {
               whileHover={{ scale: 1.05 }}
             >
               <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors duration-300">
-                {activeTab === 'popular' ? '6' : '12'}
+                {displayCountries.length}
               </div>
               <div className="text-white/80 font-medium">
-                {activeTab === 'popular' ? 'Popular' : 'Total'} Destinations
+                {activeTab === 'popular' ? 'Popular' : 'Total'} Countries
               </div>
               <div className="text-white/60 text-sm mt-1">Premium Countries</div>
             </motion.div>
