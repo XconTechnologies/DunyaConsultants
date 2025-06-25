@@ -144,6 +144,252 @@ const countries: Country[] = [
   },
   {
     id: "5",
+    name: "Germany",
+    code: "DE",
+    flag: "🇩🇪",
+    description: "Europe's economic powerhouse offering world-class engineering programs, low tuition fees, and excellent career opportunities in a culturally rich environment.",
+    topUniversities: ["Technical University of Munich", "Humboldt University", "University of Heidelberg", "RWTH Aachen", "University of Freiburg"],
+    studentCount: 420,
+    popularPrograms: ["Engineering", "Computer Science", "Business", "Medicine", "Natural Sciences"],
+    averageCost: "€500 - 3,000/year",
+    scholarships: 75,
+    visaSuccessRate: 85,
+    workRights: "18-month post-graduation visa",
+    featured: true,
+    continent: "Europe",
+    highlights: ["Low tuition fees", "Strong economy", "Research excellence", "Central European location"],
+    studyDuration: "3 years (Bachelor's), 2 years (Master's)",
+    language: "German & English",
+    climate: "Temperate continental",
+    currency: "Euro (EUR)",
+    timeZone: "CET",
+    bgImage: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=600&fit=crop",
+    gradient: "from-black to-red-600",
+    intakeSeason: "October & April",
+    livingCost: "€800-1,200/month",
+    applicationDeadline: "March 15, 2025"
+  },
+  {
+    id: "6",
+    name: "New Zealand",
+    code: "NZ",
+    flag: "🇳🇿",
+    description: "Known for its stunning landscapes and high-quality education system. New Zealand offers a safe, welcoming environment with excellent outdoor lifestyle opportunities.",
+    topUniversities: ["University of Auckland", "University of Otago", "Victoria University", "University of Canterbury", "Massey University"],
+    studentCount: 280,
+    popularPrograms: ["Agriculture", "Environmental Science", "Tourism", "Engineering", "Business"],
+    averageCost: "NZD 22,000 - 35,000/year",
+    scholarships: 45,
+    visaSuccessRate: 88,
+    workRights: "3-year post-study work visa",
+    featured: true,
+    continent: "Oceania",
+    highlights: ["Safe environment", "Beautiful nature", "Work-life balance", "Pathway to residency"],
+    studyDuration: "3 years (Bachelor's), 1-2 years (Master's)",
+    language: "English",
+    climate: "Temperate maritime",
+    currency: "New Zealand Dollar (NZD)",
+    timeZone: "NZST",
+    bgImage: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop",
+    gradient: "from-blue-600 to-green-500",
+    intakeSeason: "February & July",
+    livingCost: "NZD 15,000-20,000/year",
+    applicationDeadline: "December 1, 2024"
+  },
+  {
+    id: "7",
+    name: "Ireland",
+    code: "IE",
+    flag: "🇮🇪",
+    description: "The Emerald Isle offers a warm welcome, English-speaking environment, and access to top European universities with strong tech industry connections.",
+    topUniversities: ["Trinity College Dublin", "University College Dublin", "National University of Ireland", "Dublin City University", "University of Limerick"],
+    studentCount: 320,
+    popularPrograms: ["Technology", "Business", "Medicine", "Literature", "Engineering"],
+    averageCost: "€10,000 - 25,000/year",
+    scholarships: 55,
+    visaSuccessRate: 82,
+    workRights: "2-year post-study visa",
+    featured: true,
+    continent: "Europe",
+    highlights: ["English speaking", "EU access", "Tech hub", "Rich culture"],
+    studyDuration: "3-4 years (Bachelor's), 1-2 years (Master's)",
+    language: "English & Irish",
+    climate: "Temperate oceanic",
+    currency: "Euro (EUR)",
+    timeZone: "GMT/IST",
+    bgImage: "https://images.unsplash.com/photo-1590736969955-71cc94901144?w=800&h=600&fit=crop",
+    gradient: "from-green-600 to-orange-500",
+    intakeSeason: "September & January",
+    livingCost: "€7,000-12,000/year",
+    applicationDeadline: "February 1, 2025"
+  },
+  {
+    id: "8",
+    name: "France",
+    code: "FR",
+    flag: "🇫🇷",
+    description: "Experience world-renowned arts, culture, and cuisine while studying at prestigious institutions in the heart of Europe with excellent academic traditions.",
+    topUniversities: ["Sorbonne University", "École Normale Supérieure", "Sciences Po", "HEC Paris", "École Polytechnique"],
+    studentCount: 380,
+    popularPrograms: ["Arts & Humanities", "Business", "Engineering", "Fashion", "Culinary Arts"],
+    averageCost: "€2,770 - 15,000/year",
+    scholarships: 65,
+    visaSuccessRate: 78,
+    workRights: "2-year post-graduation visa",
+    featured: true,
+    continent: "Europe",
+    highlights: ["Cultural richness", "Low tuition fees", "Art & fashion capital", "EU benefits"],
+    studyDuration: "3 years (Bachelor's), 2 years (Master's)",
+    language: "French & English",
+    climate: "Varied continental",
+    currency: "Euro (EUR)",
+    timeZone: "CET",
+    bgImage: "https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=800&h=600&fit=crop",
+    gradient: "from-blue-600 to-red-600",
+    intakeSeason: "September & February",
+    livingCost: "€600-1,200/month",
+    applicationDeadline: "April 30, 2025"
+  },
+  {
+    id: "9",
+    name: "Netherlands",
+    code: "NL",
+    flag: "🇳🇱",
+    description: "Known for innovative teaching methods, high English proficiency, and a multicultural environment. The Netherlands offers excellent opportunities in a progressive society.",
+    topUniversities: ["University of Amsterdam", "Delft University", "Eindhoven University", "Leiden University", "Utrecht University"],
+    studentCount: 290,
+    popularPrograms: ["Engineering", "Business", "International Relations", "Environmental Science", "Design"],
+    averageCost: "€8,000 - 20,000/year",
+    scholarships: 50,
+    visaSuccessRate: 80,
+    workRights: "1-year post-study visa",
+    featured: true,
+    continent: "Europe",
+    highlights: ["English programs", "Innovative education", "Bike-friendly", "Progressive culture"],
+    studyDuration: "3 years (Bachelor's), 1-2 years (Master's)",
+    language: "Dutch & English",
+    climate: "Temperate maritime",
+    currency: "Euro (EUR)",
+    timeZone: "CET",
+    bgImage: "https://images.unsplash.com/photo-1534351590666-13e3e96b5017?w=800&h=600&fit=crop",
+    gradient: "from-orange-500 to-blue-600",
+    intakeSeason: "September & February",
+    livingCost: "€800-1,200/month",
+    applicationDeadline: "May 1, 2025"
+  },
+  {
+    id: "10",
+    name: "Singapore",
+    code: "SG",
+    flag: "🇸🇬",
+    description: "Asia's education hub offering world-class universities, multicultural environment, and gateway to Asian markets with excellent career prospects.",
+    topUniversities: ["National University of Singapore", "Nanyang Technological University", "Singapore Management University", "INSEAD", "Singapore Institute of Technology"],
+    studentCount: 180,
+    popularPrograms: ["Business", "Technology", "Engineering", "Finance", "Biotechnology"],
+    averageCost: "SGD 17,000 - 40,000/year",
+    scholarships: 35,
+    visaSuccessRate: 90,
+    workRights: "1-year post-study visa",
+    featured: true,
+    continent: "Asia",
+    highlights: ["Asian business hub", "Multicultural", "Safe environment", "Strategic location"],
+    studyDuration: "3-4 years (Bachelor's), 1-2 years (Master's)",
+    language: "English",
+    climate: "Tropical",
+    currency: "Singapore Dollar (SGD)",
+    timeZone: "SGT",
+    bgImage: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=600&fit=crop",
+    gradient: "from-red-600 to-white",
+    intakeSeason: "August & January",
+    livingCost: "SGD 800-1,500/month",
+    applicationDeadline: "March 1, 2025"
+  },
+  {
+    id: "11",
+    name: "Sweden",
+    code: "SE",
+    flag: "🇸🇪",
+    description: "Renowned for innovation, sustainability, and high quality of life. Sweden offers excellent research opportunities and a progressive academic environment.",
+    topUniversities: ["Karolinska Institute", "KTH Royal Institute", "Stockholm University", "University of Gothenburg", "Lund University"],
+    studentCount: 150,
+    popularPrograms: ["Engineering", "Medicine", "Sustainability", "Design", "Technology"],
+    averageCost: "SEK 80,000 - 140,000/year",
+    scholarships: 40,
+    visaSuccessRate: 85,
+    workRights: "6-month post-study visa",
+    featured: true,
+    continent: "Europe",
+    highlights: ["Innovation leader", "Sustainable living", "High quality of life", "Research excellence"],
+    studyDuration: "3 years (Bachelor's), 2 years (Master's)",
+    language: "Swedish & English",
+    climate: "Continental subarctic",
+    currency: "Swedish Krona (SEK)",
+    timeZone: "CET",
+    bgImage: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=800&h=600&fit=crop",
+    gradient: "from-blue-500 to-yellow-400",
+    intakeSeason: "August & January",
+    livingCost: "SEK 8,000-12,000/month",
+    applicationDeadline: "January 15, 2025"
+  },
+  {
+    id: "12",
+    name: "Switzerland",
+    code: "CH",
+    flag: "🇨🇭",
+    description: "Home to world-renowned institutions and research facilities. Switzerland offers premium education in a stunning Alpine setting with multilingual advantages.",
+    topUniversities: ["ETH Zurich", "University of Zurich", "EPFL", "University of Geneva", "University of Basel"],
+    studentCount: 120,
+    popularPrograms: ["Engineering", "Finance", "International Relations", "Hospitality", "Science"],
+    averageCost: "CHF 1,000 - 4,000/year",
+    scholarships: 25,
+    visaSuccessRate: 75,
+    workRights: "6-month job search visa",
+    featured: true,
+    continent: "Europe",
+    highlights: ["World-class institutions", "Research hub", "Multilingual", "Alpine setting"],
+    studyDuration: "3 years (Bachelor's), 2 years (Master's)",
+    language: "German, French & English",
+    climate: "Continental Alpine",
+    currency: "Swiss Franc (CHF)",
+    timeZone: "CET",
+    bgImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+    gradient: "from-red-600 to-white",
+    intakeSeason: "September & February",
+    livingCost: "CHF 1,200-2,000/month",
+    applicationDeadline: "April 30, 2025"
+  }
+];
+
+const getCountryGradient = (countryName: string): string => {
+  switch (countryName) {
+    case 'United Kingdom':
+      return 'from-blue-600 to-red-600';
+    case 'United States':
+      return 'from-blue-700 to-red-600';
+    case 'Canada':
+      return 'from-red-600 to-red-800';
+    case 'Australia':
+      return 'from-green-500 to-yellow-600';
+    case 'Germany':
+      return 'from-black to-red-600';
+    case 'New Zealand':
+      return 'from-blue-600 to-green-500';
+    case 'Ireland':
+      return 'from-green-600 to-orange-500';
+    case 'France':
+      return 'from-blue-600 to-red-600';
+    case 'Netherlands':
+      return 'from-orange-500 to-blue-600';
+    case 'Singapore':
+      return 'from-red-600 to-white';
+    case 'Sweden':
+      return 'from-blue-500 to-yellow-400';
+    case 'Switzerland':
+      return 'from-red-600 to-white';
+    default:
+      return 'from-primary to-secondary';
+  }
+};
     name: "United Arab Emirates",
     code: "AE",
     flag: "🇦🇪",
@@ -358,10 +604,10 @@ export default function CountriesSection() {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [applicationCountry, setApplicationCountry] = useState<Country | null>(null);
-  const countriesPerSlide = 4;
+  const countriesPerSlide = 6; // Increased to show more countries per slide
   
-  // Filter to only show featured countries (first 8)
-  const displayCountries = countries.slice(0, 8);
+  // Show all countries (12 total)
+  const displayCountries = countries;
   const totalSlides = Math.ceil(displayCountries.length / countriesPerSlide);
 
   const nextSlide = () => {
@@ -383,7 +629,7 @@ export default function CountriesSection() {
   };
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+    <section ref={ref} className="py-16 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -393,7 +639,7 @@ export default function CountriesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
@@ -404,7 +650,7 @@ export default function CountriesSection() {
           </div>
           
           <motion.h2 
-            className="text-5xl md:text-6xl font-bold text-gray-900 mb-6"
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -412,12 +658,12 @@ export default function CountriesSection() {
             Choose Your Dream Destination
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed"
+            className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Explore world-class universities and exciting opportunities across 8 top study destinations. 
+            Explore world-class universities and exciting opportunities across 12 top study destinations. 
             Apply directly to your preferred country with expert guidance.
           </motion.p>
         </motion.div>
@@ -425,7 +671,7 @@ export default function CountriesSection() {
         {/* Countries Slider */}
         <div className="relative">
           <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -438,7 +684,7 @@ export default function CountriesSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.8, delay: 0.4 + index * 0.1 }}
               >
-                <Card className="relative overflow-hidden h-[500px] hover:shadow-2xl transition-all duration-500 group-hover:scale-105 border-0 bg-white">
+                <Card className="relative overflow-hidden h-[350px] hover:shadow-2xl transition-all duration-500 group-hover:scale-105 border-0 bg-white">
                   {/* Background Image */}
                   <div 
                     className="absolute inset-0 bg-cover bg-center"
@@ -448,72 +694,64 @@ export default function CountriesSection() {
                   </div>
                   
                   {/* Content */}
-                  <CardContent className="relative z-10 h-full p-6 flex flex-col text-white">
+                  <CardContent className="relative z-10 h-full p-4 flex flex-col text-white">
                     {/* Header */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        <span className="text-3xl">{country.flag}</span>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-2xl">{country.flag}</span>
                         <div>
-                          <h3 className="text-xl font-bold">{country.code}</h3>
+                          <h3 className="text-lg font-bold">{country.code}</h3>
                           <Badge className="bg-white/20 text-white border-0 text-xs">
-                            #{index + 1} Destination
+                            {country.visaSuccessRate}% Success
                           </Badge>
                         </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm opacity-90">Success Rate</div>
-                        <div className="text-lg font-bold">{country.visaSuccessRate}%</div>
                       </div>
                     </div>
 
                     {/* Country Name */}
-                    <h2 className="text-2xl font-bold mb-3">{country.name}</h2>
+                    <h2 className="text-xl font-bold mb-2">{country.name}</h2>
                     
                     {/* Quick Stats */}
-                    <div className="grid grid-cols-2 gap-3 mb-4">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
-                        <GraduationCap className="w-5 h-5 mx-auto mb-1" />
-                        <div className="text-sm font-semibold">{country.topUniversities.length}+</div>
-                        <div className="text-xs opacity-80">Top Unis</div>
+                    <div className="grid grid-cols-2 gap-2 mb-3">
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 text-center">
+                        <GraduationCap className="w-4 h-4 mx-auto mb-1" />
+                        <div className="text-xs font-semibold">{country.topUniversities.length}+</div>
+                        <div className="text-xs opacity-80">Unis</div>
                       </div>
-                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
-                        <Users className="w-5 h-5 mx-auto mb-1" />
-                        <div className="text-sm font-semibold">{country.studentCount}+</div>
+                      <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2 text-center">
+                        <Users className="w-4 h-4 mx-auto mb-1" />
+                        <div className="text-xs font-semibold">{country.studentCount}+</div>
                         <div className="text-xs opacity-80">Students</div>
                       </div>
                     </div>
 
                     {/* Key Info */}
-                    <div className="space-y-2 mb-4 flex-grow">
-                      <div className="flex items-center text-sm">
-                        <DollarSign className="w-4 h-4 mr-2" />
-                        <span>From {country.averageCost.split(' - ')[0]}/year</span>
+                    <div className="space-y-1 mb-3 flex-grow">
+                      <div className="flex items-center text-xs">
+                        <DollarSign className="w-3 h-3 mr-1" />
+                        <span className="truncate">From {country.averageCost.split(' - ')[0]}</span>
                       </div>
-                      <div className="flex items-center text-sm">
-                        <Clock className="w-4 h-4 mr-2" />
-                        <span>{country.intakeSeason}</span>
-                      </div>
-                      <div className="flex items-center text-sm">
-                        <Globe className="w-4 h-4 mr-2" />
-                        <span>{country.language}</span>
+                      <div className="flex items-center text-xs">
+                        <Clock className="w-3 h-3 mr-1" />
+                        <span className="truncate">{country.intakeSeason}</span>
                       </div>
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="space-y-3">
+                    <div className="space-y-2">
                       <Button 
                         onClick={() => handleApplyNow(country)}
-                        className="w-full bg-white text-gray-900 hover:bg-gray-100 font-semibold py-3"
+                        className="w-full bg-white text-gray-900 hover:bg-gray-100 font-semibold py-2 text-sm"
                       >
-                        <Send className="mr-2 h-4 w-4" />
+                        <Send className="mr-1 h-3 w-3" />
                         Apply Now
                       </Button>
                       <Button 
                         onClick={() => setSelectedCountry(country)}
                         variant="outline"
-                        className="w-full border-white/30 text-white hover:bg-white/10 backdrop-blur-sm py-3"
+                        className="w-full border-white/30 text-white hover:bg-white/10 backdrop-blur-sm py-2 text-sm"
                       >
-                        <BookOpen className="mr-2 h-4 w-4" />
+                        <BookOpen className="mr-1 h-3 w-3" />
                         Learn More
                       </Button>
                     </div>
@@ -524,23 +762,23 @@ export default function CountriesSection() {
           </motion.div>
 
           {/* Navigation */}
-          <div className="flex items-center justify-center mt-16 space-x-6">
+          <div className="flex items-center justify-center mt-8 space-x-4">
             <Button
               onClick={prevSlide}
               variant="outline"
-              size="lg"
-              className="rounded-full border-blue-200 hover:bg-blue-50 hover:border-blue-300 px-6"
+              size="sm"
+              className="rounded-full border-blue-200 hover:bg-blue-50 hover:border-blue-300 px-4"
             >
-              <ChevronLeft className="h-5 w-5 mr-2" />
+              <ChevronLeft className="h-4 w-4 mr-1" />
               Previous
             </Button>
             
-            <div className="flex space-x-3">
+            <div className="flex space-x-2">
               {Array.from({ length: totalSlides }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
                       ? 'bg-blue-600 scale-125 shadow-lg' 
                       : 'bg-gray-300 hover:bg-gray-400 hover:scale-110'
@@ -552,36 +790,36 @@ export default function CountriesSection() {
             <Button
               onClick={nextSlide}
               variant="outline"
-              size="lg"
-              className="rounded-full border-blue-200 hover:bg-blue-50 hover:border-blue-300 px-6"
+              size="sm"
+              className="rounded-full border-blue-200 hover:bg-blue-50 hover:border-blue-300 px-4"
             >
               Next
-              <ChevronRight className="h-5 w-5 ml-2" />
+              <ChevronRight className="h-4 w-4 ml-1" />
             </Button>
           </div>
 
           {/* Statistics */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <div className="text-center">
-              <div className="text-3xl font-bold text-blue-600">8</div>
-              <div className="text-sm text-gray-600">Top Destinations</div>
+              <div className="text-2xl font-bold text-blue-600">12</div>
+              <div className="text-xs text-gray-600">Top Destinations</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600">50,000+</div>
-              <div className="text-sm text-gray-600">Students Placed</div>
+              <div className="text-2xl font-bold text-green-600">50,000+</div>
+              <div className="text-xs text-gray-600">Students Placed</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600">95%</div>
-              <div className="text-sm text-gray-600">Visa Success</div>
+              <div className="text-2xl font-bold text-purple-600">95%</div>
+              <div className="text-xs text-gray-600">Visa Success</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600">24/7</div>
-              <div className="text-sm text-gray-600">Expert Support</div>
+              <div className="text-2xl font-bold text-orange-600">24/7</div>
+              <div className="text-xs text-gray-600">Expert Support</div>
             </div>
           </motion.div>
         </div>
