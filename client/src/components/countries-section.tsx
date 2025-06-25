@@ -567,7 +567,7 @@ export default function CountriesSection() {
               transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
             >
-              <div className="relative h-96 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+              <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
                 {/* Background Image */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center"
@@ -580,53 +580,53 @@ export default function CountriesSection() {
                 </div>
                 
                 {/* Content */}
-                <div className="relative z-10 p-6 h-full flex flex-col text-white">
+                <div className="relative z-10 p-4 h-full flex flex-col text-white">
                   {/* Header */}
-                  <div className="flex items-center justify-end mb-4">
+                  <div className="flex items-center justify-end mb-2">
                     <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Plane className="w-5 h-5 text-white" />
+                      <Plane className="w-4 h-4 text-white" />
                     </div>
                   </div>
 
                   {/* Country Name */}
-                  <h2 className="text-3xl font-bold mb-4 group-hover:text-yellow-200 transition-colors duration-300">
+                  <h2 className="text-xl font-bold mb-3 group-hover:text-yellow-200 transition-colors duration-300">
                     {country.name}
                   </h2>
                   
                   {/* University Count */}
-                  <div className="mb-4">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center">
-                      <GraduationCap className="w-5 h-5 mx-auto mb-1 text-yellow-300" />
-                      <div className="text-base font-bold">{country.topUniversities.length}+ Universities</div>
+                  <div className="mb-3">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2 text-center">
+                      <GraduationCap className="w-4 h-4 mx-auto mb-1 text-yellow-300" />
+                      <div className="text-sm font-bold">{country.topUniversities.length}+ Universities</div>
                     </div>
                   </div>
 
                   {/* Quick Info */}
-                  <div className="space-y-2 mb-4 flex-grow">
-                    <div className="flex items-center text-sm bg-white/10 rounded-lg px-3 py-2">
-                      <DollarSign className="w-4 h-4 mr-2 text-green-300" />
+                  <div className="space-y-2 mb-3 flex-grow">
+                    <div className="flex items-center text-xs bg-white/10 rounded-lg px-2 py-1.5">
+                      <DollarSign className="w-3 h-3 mr-1.5 text-green-300" />
                       <span className="truncate font-medium">From {country.averageCost.split(' - ')[0]}</span>
                     </div>
-                    <div className="flex items-center text-sm bg-white/10 rounded-lg px-3 py-2">
-                      <Clock className="w-4 h-4 mr-2 text-blue-300" />
+                    <div className="flex items-center text-xs bg-white/10 rounded-lg px-2 py-1.5">
+                      <Clock className="w-3 h-3 mr-1.5 text-blue-300" />
                       <span className="truncate">{country.intakeSeason}</span>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="mt-auto space-y-3">
+                  <div className="mt-auto space-y-2">
                     <Button 
                       onClick={() => handleApplyNow(country)}
-                      className="w-full bg-gradient-to-r from-white to-gray-100 text-gray-900 hover:from-gray-100 hover:to-white font-bold py-4 text-base shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                      className="w-full bg-gradient-to-r from-white to-gray-100 text-gray-900 hover:from-gray-100 hover:to-white font-bold py-3 text-sm shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                     >
-                      <Send className="mr-3 h-5 w-5" />
+                      <Send className="mr-2 h-4 w-4" />
                       Apply Now
                     </Button>
                     <Button 
                       onClick={() => setSelectedCountry(country)}
-                      className="w-full bg-gradient-to-r from-white/90 to-white/70 text-gray-800 hover:from-white hover:to-white/90 backdrop-blur-sm py-4 text-base font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                      className="w-full bg-gradient-to-r from-white/90 to-white/70 text-gray-800 hover:from-white hover:to-white/90 backdrop-blur-sm py-3 text-sm font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
-                      <BookOpen className="mr-3 h-5 w-5" />
+                      <BookOpen className="mr-2 h-4 w-4" />
                       Get Information
                     </Button>
                   </div>
