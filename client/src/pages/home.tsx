@@ -4,7 +4,7 @@ import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
 import StudentJourneyTimeline from "@/components/student-journey-timeline";
 import ConsultationBookingCalendar from "@/components/consultation-booking-calendar";
-import OfficeLocationsSection from "@/components/office-locations-section";
+
 import StatsBanner from "@/components/stats-banner";
 import UniversityPartnersSection from "@/components/university-partners-section";
 import BusinessProposalsSection from "@/components/business-proposals-section";

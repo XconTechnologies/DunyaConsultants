@@ -18,6 +18,8 @@ import CanadaGuide from "@/pages/country-guides/canada";
 import AustraliaGuide from "@/pages/country-guides/australia";
 import BusinessCardGenerator from "@/pages/business-card-generator";
 import NotFound from "@/pages/not-found";
+import OfficesList from "@/pages/offices/OfficesList";
+import OfficeDetails from "@/pages/offices/OfficeDetails";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
 import UserProgressWidget from "@/components/gamification/user-progress-widget";
 import AchievementNotification from "@/components/gamification/achievement-notification";
@@ -39,6 +41,8 @@ function Router() {
       <Route path="/country-guide/canada" component={CanadaGuide} />
       <Route path="/country-guide/australia" component={AustraliaGuide} />
       <Route path="/business-card-generator" component={BusinessCardGenerator} />
+      <Route path="/offices" component={OfficesList} />
+      <Route path="/offices/:officeId" component={OfficeDetails} />
       <Route component={NotFound} />
     </Switch>
   );
