@@ -360,34 +360,65 @@ const countries: Country[] = [
   }
 ];
 
-const getCountryGradient = (countryName: string): string => {
+const getCountryColor = (countryName: string): string => {
   switch (countryName) {
     case 'United Kingdom':
-      return 'from-indigo-600 to-purple-700';
+      return 'bg-indigo-600';
     case 'United States':
-      return 'from-blue-600 to-blue-800';
+      return 'bg-blue-600';
     case 'Canada':
-      return 'from-red-500 to-red-700';
+      return 'bg-red-500';
     case 'Australia':
-      return 'from-green-500 to-emerald-600';
+      return 'bg-green-500';
     case 'Germany':
-      return 'from-gray-700 to-gray-900';
+      return 'bg-gray-800';
     case 'New Zealand':
-      return 'from-teal-500 to-cyan-600';
+      return 'bg-teal-500';
     case 'Ireland':
-      return 'from-green-600 to-green-800';
+      return 'bg-emerald-600';
     case 'France':
-      return 'from-blue-500 to-indigo-600';
+      return 'bg-purple-600';
     case 'Netherlands':
-      return 'from-orange-500 to-orange-700';
+      return 'bg-orange-500';
     case 'Singapore':
-      return 'from-pink-500 to-rose-600';
+      return 'bg-pink-500';
     case 'Sweden':
-      return 'from-yellow-400 to-amber-500';
+      return 'bg-yellow-500';
     case 'Switzerland':
-      return 'from-slate-600 to-slate-800';
+      return 'bg-slate-600';
     default:
-      return 'from-violet-600 to-purple-700';
+      return 'bg-violet-600';
+  }
+};
+
+const getCountryImage = (countryName: string): string => {
+  switch (countryName) {
+    case 'United Kingdom':
+      return 'https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop'; // London Big Ben
+    case 'United States':
+      return 'https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=600&fit=crop'; // New York skyline
+    case 'Canada':
+      return 'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=800&h=600&fit=crop'; // Toronto CN Tower
+    case 'Australia':
+      return 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop'; // Sydney Opera House
+    case 'Germany':
+      return 'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&h=600&fit=crop'; // Berlin Brandenburg Gate
+    case 'New Zealand':
+      return 'https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=800&h=600&fit=crop'; // Auckland skyline
+    case 'Ireland':
+      return 'https://images.unsplash.com/photo-1549918864-48ac978761a4?w=800&h=600&fit=crop'; // Dublin Trinity College
+    case 'France':
+      return 'https://images.unsplash.com/photo-1502602898536-47ad22581b52?w=800&h=600&fit=crop'; // Paris Eiffel Tower
+    case 'Netherlands':
+      return 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=800&h=600&fit=crop'; // Amsterdam canals
+    case 'Singapore':
+      return 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=600&fit=crop'; // Singapore Marina Bay
+    case 'Sweden':
+      return 'https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=800&h=600&fit=crop'; // Stockholm city hall
+    case 'Switzerland':
+      return 'https://images.unsplash.com/photo-1530841344095-57295d5b073f?w=800&h=600&fit=crop'; // Swiss Alps and city
+    default:
+      return 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=600&fit=crop'; // Generic cityscape
   }
 };
 
@@ -462,7 +493,7 @@ export default function CountriesSection() {
 
         {/* Interactive Country Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
@@ -476,9 +507,17 @@ export default function CountriesSection() {
               transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
               whileHover={{ y: -10, scale: 1.02 }}
             >
-              <div className="relative h-80 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden hover:border-white/40 transition-all duration-500">
-                {/* Color Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${getCountryGradient(country.name)}`}></div>
+              <div className="relative h-96 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                {/* Background Image */}
+                <div 
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ 
+                    backgroundImage: `url(${getCountryImage(country.name)})`,
+                  }}
+                >
+                  {/* Color Overlay */}
+                  <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-85`}></div>
+                </div>
                 
                 {/* Content */}
                 <div className="relative z-10 p-6 h-full flex flex-col text-white">
@@ -493,16 +532,15 @@ export default function CountriesSection() {
                   </div>
 
                   {/* Country Name */}
-                  <h2 className="text-3xl font-bold mb-6 group-hover:text-yellow-200 transition-colors duration-300">
+                  <h2 className="text-3xl font-bold mb-4 group-hover:text-yellow-200 transition-colors duration-300">
                     {country.name}
                   </h2>
                   
-                  {/* University Count Only */}
-                  <div className="mb-6">
-                    <div className="bg-white/15 backdrop-blur-sm rounded-lg p-4 text-center hover:bg-white/25 transition-all duration-300">
-                      <GraduationCap className="w-6 h-6 mx-auto mb-2 text-yellow-300" />
-                      <div className="text-lg font-bold">{country.topUniversities.length}+</div>
-                      <div className="text-sm opacity-80">Top Universities</div>
+                  {/* University Count */}
+                  <div className="mb-4">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-lg p-3 text-center">
+                      <GraduationCap className="w-5 h-5 mx-auto mb-1 text-yellow-300" />
+                      <div className="text-base font-bold">{country.topUniversities.length}+ Universities</div>
                     </div>
                   </div>
 
@@ -518,14 +556,22 @@ export default function CountriesSection() {
                     </div>
                   </div>
 
-                  {/* Apply Now Button - Always Visible */}
-                  <div className="mt-auto">
+                  {/* Action Buttons */}
+                  <div className="mt-auto space-y-3">
                     <Button 
                       onClick={() => handleApplyNow(country)}
-                      className="w-full bg-white/90 text-gray-900 hover:bg-white font-bold py-4 text-base shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                      className="w-full bg-white text-gray-900 hover:bg-gray-100 font-bold py-3 text-sm shadow-lg hover:shadow-xl transition-all duration-300"
                     >
-                      <Send className="mr-3 h-5 w-5" />
+                      <Send className="mr-2 h-4 w-4" />
                       Apply Now
+                    </Button>
+                    <Button 
+                      onClick={() => setSelectedCountry(country)}
+                      variant="outline"
+                      className="w-full border-white/70 text-white hover:bg-white/10 backdrop-blur-sm py-3 text-sm font-semibold"
+                    >
+                      <BookOpen className="mr-2 h-4 w-4" />
+                      View Details
                     </Button>
                   </div>
                 </div>
@@ -687,7 +733,7 @@ export default function CountriesSection() {
                 </div>
 
                 <div className="flex space-x-4">
-                  <Button className={`flex-1 bg-gradient-to-r ${getCountryGradient(applicationCountry.name)} hover:opacity-90 text-white font-bold py-4 text-lg shadow-xl`}>
+                  <Button className={`flex-1 ${getCountryColor(applicationCountry.name)} hover:opacity-90 text-white font-bold py-4 text-lg shadow-xl`}>
                     <Send className="mr-3 h-5 w-5" />
                     Submit Application
                   </Button>
