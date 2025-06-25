@@ -2,7 +2,6 @@ import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
-import StudentJourneyTimeline from "@/components/student-journey-timeline";
 import ConsultationBookingCalendar from "@/components/consultation-booking-calendar";
 
 import StatsBanner from "@/components/stats-banner";
@@ -20,7 +19,6 @@ export default function Home() {
       <StatsBanner />
       <IeltsSection />
       <CountriesSection />
-      <StudentJourneyTimeline />
       <ConsultationBookingCalendar />
       <UniversityPartnersSection />
       <BusinessProposalsSection />
