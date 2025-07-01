@@ -457,7 +457,8 @@ export default function CountriesSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
+            className="font-bold text-white mb-6 leading-tight"
+            style={{ fontSize: '34px' }}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3 }}
