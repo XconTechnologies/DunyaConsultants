@@ -35,13 +35,13 @@ export default function StatsBanner() {
   const stats = [
     {
       icon: Users,
-      number: 15000,
+      number: 5000,
       suffix: "+",
       label: "Students Placed",
       color: "from-blue-500 to-cyan-500",
       tooltip: {
         title: "Successful Student Placements",
-        description: "Over 15,000 students have successfully secured admissions in top universities worldwide through our expert guidance and comprehensive support services.",
+        description: "Over 5,000 students have successfully secured admissions in top universities worldwide through our expert guidance and comprehensive support services.",
         type: "statistic" as const
       }
     },
@@ -59,13 +59,13 @@ export default function StatsBanner() {
     },
     {
       icon: GraduationCap,
-      number: 250,
+      number: 50,
       suffix: "+",
       label: "University Partners",
       color: "from-green-500 to-emerald-500",
       tooltip: {
         title: "Global University Network",
-        description: "Strong partnerships with 250+ prestigious universities across USA, UK, Canada, Australia, and other top study destinations worldwide.",
+        description: "Strong partnerships with 50+ prestigious universities across USA, UK, Canada, Australia, and other top study destinations worldwide.",
         type: "educational" as const
       }
     },
@@ -311,7 +311,7 @@ export default function StatsBanner() {
 
                 <div className="text-white">
                   <div className="mb-1">
-                    <div className="text-lg lg:text-xl xl:text-2xl font-bold">
+                    <div className="text-base lg:text-lg xl:text-xl font-bold">
                       <AnimatedCounter 
                         number={stat.number} 
                         suffix={stat.suffix} 
