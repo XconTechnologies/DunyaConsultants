@@ -158,9 +158,16 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-neutral-800 mb-6">
+          <motion.h2 
+            className="text-4xl font-bold text-neutral-800 mb-6 cursor-default"
+            whileHover={{ 
+              scale: 1.05,
+              color: '#3b82f6',
+              transition: { duration: 0.3 }
+            }}
+          >
             Our Global University Partners
-          </h2>
+          </motion.h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
             Unlock your potential with our extensive network of world-class universities and institutions across the globe
           </p>

@@ -457,11 +457,15 @@ export default function CountriesSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="font-bold text-white mb-6 leading-tight"
+            className="font-bold text-white mb-6 leading-tight cursor-default"
             style={{ fontSize: '34px' }}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3 }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
           >
             Choose Your
             <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent block">

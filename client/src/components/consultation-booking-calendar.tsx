@@ -195,9 +195,17 @@ export default function ConsultationBookingCalendar() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <motion.h2 
+            className="font-bold text-gray-900 mb-6 cursor-default"
+            style={{ fontSize: '32px' }}
+            whileHover={{ 
+              scale: 1.05,
+              color: '#3b82f6',
+              transition: { duration: 0.3 }
+            }}
+          >
             Book Your Free Consultation
-          </h2>
+          </motion.h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Schedule a personalized consultation with our expert counsellors to kickstart your study abroad journey
           </p>

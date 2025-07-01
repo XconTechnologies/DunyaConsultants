@@ -257,8 +257,12 @@ export default function StatsBanner() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="font-bold text-white mb-8 text-[46px]"
+            className="font-bold text-white mb-8 text-[46px] cursor-default"
             style={{ fontSize: '48px' }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3 }
+            }}
           >
             Dedication To{" "}
             <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">

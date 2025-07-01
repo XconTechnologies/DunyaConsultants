@@ -343,7 +343,12 @@ export default function OfficeLocationsSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           style={{ fontSize: '32px' }}
-          className="font-bold text-center text-gray-900 mb-8"
+          className="font-bold text-center text-gray-900 mb-8 cursor-default"
+          whileHover={{ 
+            scale: 1.05,
+            color: '#3b82f6',
+            transition: { duration: 0.3 }
+          }}
         >
           Our Office Locations
         </motion.h2>
