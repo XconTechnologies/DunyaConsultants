@@ -585,14 +585,16 @@ export default function CountriesSection() {
                   <div className="mt-auto flex space-x-2">
                     <Button 
                       onClick={() => handleApplyNow(country)}
-                      className="flex-1 bg-gradient-to-r from-gray-900 to-gray-800 text-white hover:from-gray-800 hover:to-gray-700 font-medium py-1.5 text-xs shadow-md hover:shadow-lg transition-all duration-300"
+                      className="flex-1 bg-gray-900 text-white hover:bg-gray-800 font-medium py-2 text-xs shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                      size="sm"
                     >
                       <Send className="mr-1 h-3 w-3" />
                       Apply Now
                     </Button>
                     <Button 
                       onClick={() => setSelectedCountry(country)}
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 py-1.5 text-xs font-medium shadow-md hover:shadow-lg transition-all duration-300"
+                      className="flex-1 bg-blue-600 text-white hover:bg-blue-700 py-2 text-xs font-medium shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                      size="sm"
                     >
                       <BookOpen className="mr-1 h-3 w-3" />
                       More Detail

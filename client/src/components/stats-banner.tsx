@@ -315,7 +315,7 @@ Transforming dreams into reality since 2009. Join thousands of successful studen
 
                 <div className="text-white">
                   <div className="mb-1">
-                    <div className="text-base lg:text-lg xl:text-xl font-bold">
+                    <div className="text-sm lg:text-base font-bold">
                       <AnimatedCounter 
                         number={stat.number} 
                         suffix={stat.suffix} 
@@ -323,7 +323,7 @@ Transforming dreams into reality since 2009. Join thousands of successful studen
                       />
                     </div>
                   </div>
-                  <p className="text-xs lg:text-sm text-blue-200 font-medium tracking-wide">
+                  <p className="text-xs text-blue-200 font-medium tracking-wide">
                     {stat.label}
                   </p>
                 </div>
