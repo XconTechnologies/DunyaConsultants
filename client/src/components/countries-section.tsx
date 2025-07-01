@@ -456,16 +456,6 @@ export default function CountriesSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div 
-            className="inline-flex items-center space-x-3 bg-white/10 backdrop-blur-md rounded-full px-8 py-4 mb-8 border border-white/20"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Globe className="w-6 h-6 text-blue-300" />
-            <span className="text-white font-medium">Study Destinations Worldwide</span>
-          </motion.div>
-          
           <motion.h2 
             className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
@@ -659,7 +649,7 @@ export default function CountriesSection() {
               className="text-center group"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="text-4xl font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors duration-300">
+              <div className="text-2xl font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors duration-300">
                 {displayCountries.length}
               </div>
               <div className="text-white/80 font-medium">
@@ -671,7 +661,7 @@ export default function CountriesSection() {
               className="text-center group"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="text-4xl font-bold text-green-400 mb-2 group-hover:text-green-300 transition-colors duration-300">50,000+</div>
+              <div className="text-2xl font-bold text-green-400 mb-2 group-hover:text-green-300 transition-colors duration-300">5000+</div>
               <div className="text-white/80 font-medium">Students Placed</div>
               <div className="text-white/60 text-sm mt-1">Success Stories</div>
             </motion.div>
@@ -679,7 +669,7 @@ export default function CountriesSection() {
               className="text-center group"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="text-4xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors duration-300">95%</div>
+              <div className="text-2xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors duration-300">95%</div>
               <div className="text-white/80 font-medium">Visa Success</div>
               <div className="text-white/60 text-sm mt-1">Approval Rate</div>
             </motion.div>
@@ -687,7 +677,7 @@ export default function CountriesSection() {
               className="text-center group"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="text-4xl font-bold text-orange-400 mb-2 group-hover:text-orange-300 transition-colors duration-300">24/7</div>
+              <div className="text-2xl font-bold text-orange-400 mb-2 group-hover:text-orange-300 transition-colors duration-300">24/7</div>
               <div className="text-white/80 font-medium">Expert Support</div>
               <div className="text-white/60 text-sm mt-1">Always Available</div>
             </motion.div>
