@@ -257,7 +257,7 @@ export default function StatsBanner() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="font-bold text-white mb-8 leading-tight"
+            className="font-bold text-white mb-8 text-[46px]"
             style={{ fontSize: '32px' }}
           >
             Dedication To{" "}
