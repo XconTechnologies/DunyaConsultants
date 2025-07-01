@@ -274,7 +274,7 @@ export default function StatsBanner() {
             className="text-blue-100 max-w-4xl mx-auto leading-relaxed mb-10"
             style={{ fontSize: '16px' }}
           >
-            <span className="font-semibold text-white">About Dunya Consultants:</span> Making global education dreams come true since 2009. Join thousands of successful students who achieved their international study goals with Pakistan's most trusted visa consultancy.
+Transforming dreams into reality since 2009. Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.
           </motion.p>
         </motion.div>
 
