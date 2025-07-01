@@ -4,7 +4,6 @@ import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
 import ConsultationBookingCalendar from "@/components/consultation-booking-calendar";
 
-import StatsBanner from "@/components/stats-banner";
 import UniversityPartnersSection from "@/components/university-partners-section";
 import BusinessProposalsSection from "@/components/business-proposals-section";
 import FloatingCTA from "@/components/floating-cta";
@@ -16,7 +15,7 @@ export default function Home() {
     <div className="min-h-screen">
       <ScrollProgress />
       <Navigation />
-      <StatsBanner />
+      <HeroSection />
       <IeltsSection />
       <CountriesSection />
       <ConsultationBookingCalendar />
