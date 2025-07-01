@@ -669,9 +669,9 @@ export default function CountriesSection() {
               className="text-center group"
               whileHover={{ scale: 1.05 }}
             >
-              <div className="text-2xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors duration-300">95%</div>
-              <div className="text-white/80 font-medium">Visa Success</div>
-              <div className="text-white/60 text-sm mt-1">Approval Rate</div>
+              <div className="text-2xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors duration-300">50+</div>
+              <div className="text-white/80 font-medium">University Partners</div>
+              <div className="text-white/60 text-sm mt-1">Global Network</div>
             </motion.div>
             <motion.div 
               className="text-center group"
