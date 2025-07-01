@@ -610,9 +610,8 @@ export default function CountriesSection() {
           <div className="flex items-center justify-center mt-12 space-x-6">
             <Button
               onClick={prevSlide}
-              variant="outline"
               size="lg"
-              className="rounded-full border-white/30 text-white hover:bg-white/20 backdrop-blur-sm px-6 py-3"
+              className="rounded-full bg-white text-blue-600 hover:bg-gray-100 border-0 px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <ChevronLeft className="h-5 w-5 mr-2" />
               Previous
@@ -626,7 +625,7 @@ export default function CountriesSection() {
                   className={`w-4 h-4 rounded-full transition-all duration-300 ${
                     index === currentSlide 
                       ? 'bg-white scale-125 shadow-lg' 
-                      : 'bg-white/40 hover:bg-white/60 hover:scale-110'
+                      : 'bg-white/50 hover:bg-white/70 hover:scale-110'
                   }`}
                 />
               ))}
@@ -634,9 +633,8 @@ export default function CountriesSection() {
             
             <Button
               onClick={nextSlide}
-              variant="outline"
               size="lg"
-              className="rounded-full border-white/30 text-white hover:bg-white/20 backdrop-blur-sm px-6 py-3"
+              className="rounded-full bg-white text-blue-600 hover:bg-gray-100 border-0 px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
             >
               Next
               <ChevronRight className="h-5 w-5 ml-2" />
