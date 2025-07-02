@@ -173,7 +173,7 @@ export default function StatsBanner() {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Our Impact Speaks
+            Dedication To Education
           </motion.h2>
           
           <motion.p
@@ -182,7 +182,7 @@ export default function StatsBanner() {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Transforming dreams into reality through exceptional education consultancy
+            Transforming dreams into reality since 2009. Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.
           </motion.p>
         </motion.div>
 
