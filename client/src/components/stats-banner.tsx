@@ -251,7 +251,7 @@ export default function StatsBanner() {
                 {/* Main Card */}
                 <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full">
                   {/* Icon Container */}
-                  <div className="relative mb-4">
+                  <div className="relative mb-4 flex justify-center">
                     <motion.div
                       className={`w-10 h-10 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`}
                       whileHover={{ rotate: 360, scale: 1.1 }}
