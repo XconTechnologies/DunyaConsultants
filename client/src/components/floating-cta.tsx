@@ -45,10 +45,9 @@ export default function FloatingCTA() {
                 {/* Pulse Animation */}
                 <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20"></div>
                 
-                {/* Icons */}
-                <div className="relative z-10 flex items-center space-x-1">
-                  <Phone className="w-5 h-5" />
-                  <MessageCircle className="w-4 h-4" />
+                {/* Icon */}
+                <div className="relative z-10">
+                  <Phone className="w-6 h-6" />
                 </div>
                 
                 {/* Notification Badge */}
