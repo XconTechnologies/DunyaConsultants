@@ -195,14 +195,14 @@ export default function UniversityPartnersSection() {
           </p>
         </motion.div>
 
-        {/* Modern Country Filter Cards */}
+        {/* Tab-Style Country Filters */}
         <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-4 max-w-6xl mx-auto">
+          <div className="flex flex-wrap gap-3 justify-center max-w-7xl mx-auto px-4">
             {countries.map((country, index) => {
               const universityCount = country === "All" ? universityPartners.length : universityPartners.filter(uni => uni.country === country).length;
               const isActive = (hoveredCountry || selectedCountry) === country;
@@ -216,43 +216,34 @@ export default function UniversityPartnersSection() {
                   }}
                   onMouseEnter={() => setHoveredCountry(country)}
                   onMouseLeave={() => setHoveredCountry(null)}
-                  className={`group relative overflow-hidden rounded-2xl p-4 transition-all duration-500 transform ${
+                  className={`relative overflow-hidden rounded-lg px-4 py-2.5 font-medium text-sm transition-all duration-300 transform min-w-[100px] ${
                     isActive 
-                      ? 'scale-105 shadow-2xl' 
-                      : 'hover:scale-105 hover:shadow-xl'
+                      ? 'scale-105 shadow-lg' 
+                      : 'hover:scale-102 hover:shadow-md'
                   }`}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                  whileHover={{ y: -5 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
+                  whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {/* Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${getCountryColor(country)} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
-                  
-                  {/* Animated Pattern */}
-                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
-                       style={{
-                         backgroundImage: `radial-gradient(circle at 25% 25%, white 2px, transparent 2px), radial-gradient(circle at 75% 75%, white 2px, transparent 2px)`,
-                         backgroundSize: '20px 20px'
-                       }} />
+                  {/* Tab Background with Country Colors */}
+                  <div className={`absolute inset-0 bg-gradient-to-r ${getCountryColor(country)} ${
+                    isActive ? 'opacity-100' : 'opacity-80 hover:opacity-90'
+                  } transition-opacity duration-300`} />
                   
                   {/* Content */}
-                  <div className="relative z-10 text-center">
-                    <h3 className="text-white font-bold text-sm mb-1 group-hover:scale-110 transition-transform duration-300">
-                      {country}
-                    </h3>
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full px-2 py-1">
-                      <span className="text-white text-xs font-medium">
-                        {universityCount} {universityCount === 1 ? 'Uni' : 'Unis'}
-                      </span>
-                    </div>
+                  <div className="relative z-10 flex flex-col items-center text-white">
+                    <span className="font-bold leading-tight">{country}</span>
+                    <span className="text-xs opacity-90 mt-0.5">
+                      {universityCount} {universityCount === 1 ? 'Uni' : 'Unis'}
+                    </span>
                   </div>
                   
-                  {/* Hover Ring Effect */}
-                  <div className={`absolute inset-0 rounded-2xl ring-2 ring-white/50 transition-all duration-300 ${
-                    isActive ? 'ring-4 ring-white/80' : 'ring-0 group-hover:ring-2'
-                  }`} />
+                  {/* Active Border Effect */}
+                  {isActive && (
+                    <div className="absolute inset-0 rounded-xl ring-2 ring-white/50" />
+                  )}
                 </motion.button>
               );
             })}
