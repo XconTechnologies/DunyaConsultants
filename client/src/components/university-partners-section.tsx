@@ -195,54 +195,21 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-8">
             {universityPartners.map((university, index) => (
               <motion.div
                 key={`${university.name}-${university.country}-${index}`}
-                className="group relative bg-white rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100/50 overflow-hidden"
-                whileHover={{ scale: 1.05, y: -8 }}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.6, delay: 0.1 + index * 0.05 }}
+                className="group flex items-center justify-center"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.5, delay: 0.05 + index * 0.02 }}
+                whileHover={{ scale: 1.1 }}
               >
-                {/* Animated Background Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${getCountryColor(university.country)} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-                
-                {/* Floating Particle Effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                     style={{
-                       backgroundImage: `radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.3) 1px, transparent 1px), 
-                                        radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.3) 1px, transparent 1px)`,
-                       backgroundSize: '30px 30px'
-                     }} />
-                
-                {/* Content */}
-                <div className="relative z-10 flex flex-col items-center">
-                  {/* Logo Container */}
-                  <div className="mb-4 p-2 bg-gray-50 rounded-xl group-hover:bg-white transition-colors duration-300 group-hover:shadow-md">
-                    <img
-                      src={university.logoUrl}
-                      alt={`${university.name} logo`}
-                      className="h-12 w-24 object-contain filter group-hover:drop-shadow-md transition-all duration-300"
-                    />
-                  </div>
-                  
-                  {/* University Info */}
-                  <div className="text-center">
-                    <h3 className="text-xs font-semibold text-gray-800 mb-2 group-hover:text-gray-900 transition-colors duration-300 leading-tight">
-                      {university.name}
-                    </h3>
-                    
-                    {/* Country Badge */}
-                    <div className={`inline-flex items-center bg-gradient-to-r ${getCountryColor(university.country)} text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm group-hover:shadow-md transition-all duration-300`}>
-                      <div className="w-2 h-2 bg-white/30 rounded-full mr-1.5 animate-pulse" />
-                      {university.country}
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Hover Border Effect */}
-                <div className="absolute inset-0 rounded-2xl ring-1 ring-transparent group-hover:ring-2 group-hover:ring-blue-200/50 transition-all duration-300" />
+                <img
+                  src={university.logoUrl}
+                  alt={`${university.name} logo`}
+                  className="h-16 w-32 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+                />
               </motion.div>
             ))}
           </div>
