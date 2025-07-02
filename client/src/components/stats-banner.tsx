@@ -144,10 +144,10 @@ export default function StatsBanner() {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 py-20" ref={ref}>
+      <div className="container mx-auto px-4 relative z-10 py-12" ref={ref}>
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10"
           initial={{ opacity: 0, y: -50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -224,15 +224,15 @@ export default function StatsBanner() {
                 <div className={`absolute -inset-2 bg-gradient-to-r ${stat.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
                 
                 {/* Main Card */}
-                <div className="relative bg-white/8 backdrop-blur-xl rounded-3xl p-8 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full">
+                <div className="relative bg-white/8 backdrop-blur-xl rounded-3xl p-6 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full">
                   {/* Icon Container */}
                   <div className="relative mb-6">
                     <motion.div
-                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center ${stat.glowColor} shadow-xl group-hover:shadow-2xl transition-all duration-500`}
+                      className={`w-10 h-10 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`}
                       whileHover={{ rotate: 360, scale: 1.1 }}
                       transition={{ duration: 0.6 }}
                     >
-                      <IconComponent className="w-8 h-8 text-white" />
+                      <IconComponent className="w-5 h-5 text-white" />
                     </motion.div>
                     
                     {/* Floating Sparkles */}
@@ -255,7 +255,7 @@ export default function StatsBanner() {
                   {/* Content */}
                   <div className="text-center space-y-3">
                     <motion.div
-                      className="text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500"
+                      className="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500"
                       initial={{ scale: 0 }}
                       animate={isInView ? { scale: 1 } : { scale: 0 }}
                       transition={{ duration: 0.8, delay: index * 0.2 + 1.2, type: "spring", stiffness: 100 }}
@@ -267,11 +267,11 @@ export default function StatsBanner() {
                       />
                     </motion.div>
                     
-                    <h3 className="text-white font-semibold text-lg group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500">
+                    <h3 className="text-white font-semibold text-base group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500">
                       {stat.label}
                     </h3>
                     
-                    <p className="text-white/60 text-sm group-hover:text-white/80 transition-colors duration-300">
+                    <p className="text-white/60 text-xs group-hover:text-white/80 transition-colors duration-300">
                       {stat.description}
                     </p>
                   </div>
