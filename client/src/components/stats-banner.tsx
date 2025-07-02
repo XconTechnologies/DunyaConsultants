@@ -299,7 +299,7 @@ export default function StatsBanner() {
 
                   {/* Progress Indicator */}
                   <motion.div
-                    className="absolute bottom-4 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full overflow-hidden"
+                    className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full overflow-hidden"
                     initial={{ width: 0 }}
                     animate={isInView ? { width: 48 } : { width: 0 }}
                     transition={{ duration: 1, delay: index * 0.2 + 1.5 }}
