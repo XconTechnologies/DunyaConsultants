@@ -400,7 +400,7 @@ export default function Navigation() {
                         <div className="space-y-2">
                           {section.items.map((item, itemIdx) => (
                             <Link key={itemIdx} href={item.href}>
-                              <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                              <div className="group flex items-start space-x-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 hover:shadow-md hover:scale-102 border border-transparent hover:border-blue-100/50">
                                 <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200" />
                                 <div>
                                   <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
