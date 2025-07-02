@@ -224,13 +224,13 @@ export default function UniversityPartnersSection() {
                   {[...column, ...column].map((university, index) => (
                     <motion.div
                       key={`${university.name}-${columnIndex}-${index}`}
-                      className="group flex items-center justify-center p-1 min-h-[80px]"
+                      className="group flex items-center justify-center p-1 min-h-[100px]"
                       whileHover={{ scale: 1.1 }}
                     >
                       <img
                         src={university.logoUrl}
                         alt={`${university.name} logo`}
-                        className="h-20 w-32 object-contain transition-all duration-300"
+                        className="h-24 w-40 object-contain transition-all duration-300"
                       />
                     </motion.div>
                   ))}
