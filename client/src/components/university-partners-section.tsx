@@ -208,7 +208,7 @@ export default function UniversityPartnersSection() {
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
+                  className="h-20 w-36 object-contain transition-all duration-300 hover:scale-110"
                 />
               </motion.div>
             ))}
