@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin, Building2, MessageCircle, Calendar, Newspaper, PenTool, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import logoImage from "@assets/Asset-1_1750769657321.png";
+import logoImage from "@assets/DC Blue Logo_1751440868138.png";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
