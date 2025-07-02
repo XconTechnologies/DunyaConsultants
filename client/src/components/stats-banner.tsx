@@ -224,9 +224,9 @@ export default function StatsBanner() {
                 <div className={`absolute -inset-2 bg-gradient-to-r ${stat.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
                 
                 {/* Main Card */}
-                <div className="relative bg-white/8 backdrop-blur-xl rounded-3xl p-6 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full">
+                <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full">
                   {/* Icon Container */}
-                  <div className="relative mb-6">
+                  <div className="relative mb-4">
                     <motion.div
                       className={`w-10 h-10 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`}
                       whileHover={{ rotate: 360, scale: 1.1 }}
@@ -253,7 +253,7 @@ export default function StatsBanner() {
                   </div>
 
                   {/* Content */}
-                  <div className="text-center space-y-3">
+                  <div className="text-center space-y-2">
                     <motion.div
                       className="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500"
                       initial={{ scale: 0 }}
