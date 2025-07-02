@@ -638,52 +638,7 @@ export default function CountriesSection() {
           </div>
         </div>
 
-        {/* Enhanced Statistics */}
-        <motion.div
-          className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 p-8"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <motion.div 
-              className="text-center group"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="text-2xl font-bold text-blue-400 mb-2 group-hover:text-blue-300 transition-colors duration-300">
-                {displayCountries.length}
-              </div>
-              <div className="text-white/80 font-medium">
-                {activeTab === 'popular' ? 'Popular' : 'Total'} Countries
-              </div>
-              <div className="text-white/60 text-sm mt-1">Premium Countries</div>
-            </motion.div>
-            <motion.div 
-              className="text-center group"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="text-2xl font-bold text-green-400 mb-2 group-hover:text-green-300 transition-colors duration-300">5000+</div>
-              <div className="text-white/80 font-medium">Students Placed</div>
-              <div className="text-white/60 text-sm mt-1">Success Stories</div>
-            </motion.div>
-            <motion.div 
-              className="text-center group"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="text-2xl font-bold text-purple-400 mb-2 group-hover:text-purple-300 transition-colors duration-300">50+</div>
-              <div className="text-white/80 font-medium">University Partners</div>
-              <div className="text-white/60 text-sm mt-1">Global Network</div>
-            </motion.div>
-            <motion.div 
-              className="text-center group"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="text-2xl font-bold text-orange-400 mb-2 group-hover:text-orange-300 transition-colors duration-300">24/7</div>
-              <div className="text-white/80 font-medium">Expert Support</div>
-              <div className="text-white/60 text-sm mt-1">Always Available</div>
-            </motion.div>
-          </div>
-        </motion.div>
+
       </div>
     </section>
 
