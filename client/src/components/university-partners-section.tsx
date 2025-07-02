@@ -137,16 +137,15 @@ const universityPartners = [
 export default function UniversityPartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedCountry, setSelectedCountry] = useState("All");
 
-  // Auto-slide functionality
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % universityPartners.length);
-    }, 3000); // 3 seconds per slide
-
-    return () => clearInterval(interval);
-  }, []);
+  // Get unique countries for filter tabs
+  const countries = ["All", ...Array.from(new Set(universityPartners.map(uni => uni.country)))];
+  
+  // Filter universities based on selected country
+  const filteredUniversities = selectedCountry === "All" 
+    ? universityPartners 
+    : universityPartners.filter(uni => uni.country === selectedCountry);
 
   return (
     <section ref={ref} className="py-20 bg-gradient-to-br from-white to-blue-50">
@@ -172,17 +171,59 @@ export default function UniversityPartnersSection() {
           </p>
         </motion.div>
 
-        {/* Clean 8-Row Logo Grid - 6 Logos Per Row */}
+        {/* Country Filter Tabs */}
+        <motion.div
+          className="flex justify-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <div className="bg-white/80 backdrop-blur-md rounded-2xl p-2 border border-gray-200/50 shadow-lg">
+            <div className="flex flex-wrap gap-2">
+              {countries.map((country) => (
+                <button
+                  key={country}
+                  onClick={() => setSelectedCountry(country)}
+                  className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm ${
+                    selectedCountry === country
+                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105'
+                      : 'text-gray-700 hover:bg-gray-100 hover:scale-105'
+                  }`}
+                >
+                  {country}
+                  <span className="ml-1 text-xs opacity-70">
+                    ({country === "All" ? universityPartners.length : universityPartners.filter(uni => uni.country === country).length})
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Results Count */}
+        <motion.div
+          className="text-center mb-8"
+          initial={{ opacity: 0, y: 10 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <p className="text-gray-600 text-sm">
+            Showing <span className="font-bold text-blue-600">{filteredUniversities.length}</span> {filteredUniversities.length === 1 ? 'university' : 'universities'}
+            {selectedCountry !== "All" && <span className=" text-gray-500"> from {selectedCountry}</span>}
+          </p>
+        </motion.div>
+
+        {/* University Grid */}
         <motion.div
           className="relative mb-16"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="grid grid-cols-6 gap-6">
-            {universityPartners.map((university, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            {filteredUniversities.map((university, index) => (
               <motion.div
-                key={index}
+                key={`${university.name}-${university.country}-${index}`}
                 className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
                 whileHover={{ scale: 1.05, y: -5 }}
                 initial={{ opacity: 0, y: 20 }}
