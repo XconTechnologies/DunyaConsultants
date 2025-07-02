@@ -159,16 +159,15 @@ export default function UniversityPartnersSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-4xl font-bold text-neutral-800 mb-6 cursor-default"
-            whileHover={{ 
-              scale: 1.05,
-              color: '#3b82f6',
-              transition: { duration: 0.3 }
-            }}
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105"
+            whileHover={{ scale: 1.05 }}
           >
-            Our Global University Partners
+            <span className="text-neutral-800">Our Global </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
+              University Partners
+            </span>
           </motion.h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-neutral-600 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
             Unlock your potential with our extensive network of world-class universities and institutions across the globe
           </p>
         </motion.div>
