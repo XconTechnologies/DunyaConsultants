@@ -206,11 +206,11 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="flex gap-4 max-w-6xl mx-auto h-96">
+          <div className="flex gap-2 max-w-6xl mx-auto h-96">
             {columns.map((column, columnIndex) => (
               <div key={columnIndex} className="flex-1 overflow-hidden">
                 <motion.div
-                  className="flex flex-col gap-4"
+                  className="flex flex-col gap-1"
                   animate={{
                     y: [0, -100 * column.length]
                   }}
@@ -224,7 +224,7 @@ export default function UniversityPartnersSection() {
                   {[...column, ...column].map((university, index) => (
                     <motion.div
                       key={`${university.name}-${columnIndex}-${index}`}
-                      className="group flex items-center justify-center p-4 min-h-[100px]"
+                      className="group flex items-center justify-center p-1 min-h-[80px]"
                       whileHover={{ scale: 1.1 }}
                     >
                       <img
