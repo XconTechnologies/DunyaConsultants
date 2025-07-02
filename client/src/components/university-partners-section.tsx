@@ -137,15 +137,39 @@ const universityPartners = [
 export default function UniversityPartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const [selectedCountry, setSelectedCountry] = useState("All");
 
   // Get unique countries for filter tabs
   const countries = ["All", ...Array.from(new Set(universityPartners.map(uni => uni.country)))];
   
-  // Filter universities based on selected country
-  const filteredUniversities = selectedCountry === "All" 
+  // Filter universities based on hovered or selected country
+  const displayCountry = hoveredCountry || selectedCountry;
+  const filteredUniversities = displayCountry === "All" 
     ? universityPartners 
-    : universityPartners.filter(uni => uni.country === selectedCountry);
+    : universityPartners.filter(uni => uni.country === displayCountry);
+
+  // Get country colors for modern styling
+  const getCountryColor = (country: string): string => {
+    const colors: Record<string, string> = {
+      "All": "from-gray-500 to-gray-700",
+      "UK": "from-blue-500 to-blue-700",
+      "Germany": "from-red-500 to-yellow-600", 
+      "Canada": "from-red-500 to-red-700",
+      "USA": "from-blue-600 to-red-600",
+      "Australia": "from-green-500 to-yellow-500",
+      "Turkey": "from-red-600 to-red-800",
+      "Netherlands": "from-orange-500 to-blue-600",
+      "Finland": "from-blue-400 to-white",
+      "Ireland": "from-green-600 to-orange-500",
+      "France": "from-blue-500 to-red-600",
+      "UAE": "from-green-600 to-red-600",
+      "Caribbean": "from-cyan-500 to-blue-600",
+      "Wales": "from-red-600 to-green-600",
+      "Scotland": "from-blue-600 to-white"
+    };
+    return colors[country] || "from-gray-500 to-gray-700";
+  };
 
   return (
     <section ref={ref} className="py-20 bg-gradient-to-br from-white to-blue-50">
@@ -171,77 +195,146 @@ export default function UniversityPartnersSection() {
           </p>
         </motion.div>
 
-        {/* Country Filter Tabs */}
+        {/* Modern Country Filter Cards */}
         <motion.div
-          className="flex justify-center mb-12"
+          className="mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <div className="bg-white/80 backdrop-blur-md rounded-2xl p-2 border border-gray-200/50 shadow-lg">
-            <div className="flex flex-wrap gap-2">
-              {countries.map((country) => (
-                <button
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-4 max-w-6xl mx-auto">
+            {countries.map((country, index) => {
+              const universityCount = country === "All" ? universityPartners.length : universityPartners.filter(uni => uni.country === country).length;
+              const isActive = (hoveredCountry || selectedCountry) === country;
+              
+              return (
+                <motion.button
                   key={country}
-                  onClick={() => setSelectedCountry(country)}
-                  className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 text-sm ${
-                    selectedCountry === country
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg scale-105'
-                      : 'text-gray-700 hover:bg-gray-100 hover:scale-105'
+                  onClick={() => {
+                    setSelectedCountry(country);
+                    setHoveredCountry(null);
+                  }}
+                  onMouseEnter={() => setHoveredCountry(country)}
+                  onMouseLeave={() => setHoveredCountry(null)}
+                  className={`group relative overflow-hidden rounded-2xl p-4 transition-all duration-500 transform ${
+                    isActive 
+                      ? 'scale-105 shadow-2xl' 
+                      : 'hover:scale-105 hover:shadow-xl'
                   }`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  {country}
-                  <span className="ml-1 text-xs opacity-70">
-                    ({country === "All" ? universityPartners.length : universityPartners.filter(uni => uni.country === country).length})
-                  </span>
-                </button>
-              ))}
+                  {/* Gradient Background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${getCountryColor(country)} opacity-80 group-hover:opacity-100 transition-opacity duration-300`} />
+                  
+                  {/* Animated Pattern */}
+                  <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" 
+                       style={{
+                         backgroundImage: `radial-gradient(circle at 25% 25%, white 2px, transparent 2px), radial-gradient(circle at 75% 75%, white 2px, transparent 2px)`,
+                         backgroundSize: '20px 20px'
+                       }} />
+                  
+                  {/* Content */}
+                  <div className="relative z-10 text-center">
+                    <h3 className="text-white font-bold text-sm mb-1 group-hover:scale-110 transition-transform duration-300">
+                      {country}
+                    </h3>
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full px-2 py-1">
+                      <span className="text-white text-xs font-medium">
+                        {universityCount} {universityCount === 1 ? 'Uni' : 'Unis'}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Hover Ring Effect */}
+                  <div className={`absolute inset-0 rounded-2xl ring-2 ring-white/50 transition-all duration-300 ${
+                    isActive ? 'ring-4 ring-white/80' : 'ring-0 group-hover:ring-2'
+                  }`} />
+                </motion.button>
+              );
+            })}
+          </div>
+        </motion.div>
+
+        {/* Dynamic Results Display */}
+        <motion.div
+          className="text-center mb-8"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <div className="inline-flex items-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-full px-6 py-3 border border-blue-200/50 shadow-lg">
+            <div className="flex items-center space-x-2">
+              <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${getCountryColor(displayCountry)} animate-pulse`} />
+              <span className="text-gray-700 font-medium">
+                {displayCountry === "All" ? "All Countries" : displayCountry}
+              </span>
+              <span className="text-gray-400">•</span>
+              <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                {filteredUniversities.length} {filteredUniversities.length === 1 ? 'University' : 'Universities'}
+              </span>
             </div>
           </div>
         </motion.div>
 
-        {/* Results Count */}
-        <motion.div
-          className="text-center mb-8"
-          initial={{ opacity: 0, y: 10 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <p className="text-gray-600 text-sm">
-            Showing <span className="font-bold text-blue-600">{filteredUniversities.length}</span> {filteredUniversities.length === 1 ? 'university' : 'universities'}
-            {selectedCountry !== "All" && <span className=" text-gray-500"> from {selectedCountry}</span>}
-          </p>
-        </motion.div>
-
-        {/* University Grid */}
+        {/* Enhanced University Grid */}
         <motion.div
           className="relative mb-16"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
         >
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
             {filteredUniversities.map((university, index) => (
               <motion.div
                 key={`${university.name}-${university.country}-${index}`}
-                className="flex flex-col items-center justify-center p-4 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
-                whileHover={{ scale: 1.05, y: -5 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
+                className="group relative bg-white rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100/50 overflow-hidden"
+                whileHover={{ scale: 1.05, y: -8 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                transition={{ duration: 0.6, delay: 0.1 + index * 0.05 }}
               >
-                <div className="flex items-center justify-center mb-3">
-                  <img
-                    src={university.logoUrl}
-                    alt={`${university.name} logo`}
-                    className="h-14 w-28 object-contain filter drop-shadow-sm"
-                  />
-                </div>
-                <div className="text-center">
-                  <div className="text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded-md">
-                    {university.country}
+                {/* Animated Background Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${getCountryColor(university.country)} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                
+                {/* Floating Particle Effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                     style={{
+                       backgroundImage: `radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.3) 1px, transparent 1px), 
+                                        radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.3) 1px, transparent 1px)`,
+                       backgroundSize: '30px 30px'
+                     }} />
+                
+                {/* Content */}
+                <div className="relative z-10 flex flex-col items-center">
+                  {/* Logo Container */}
+                  <div className="mb-4 p-2 bg-gray-50 rounded-xl group-hover:bg-white transition-colors duration-300 group-hover:shadow-md">
+                    <img
+                      src={university.logoUrl}
+                      alt={`${university.name} logo`}
+                      className="h-12 w-24 object-contain filter group-hover:drop-shadow-md transition-all duration-300"
+                    />
+                  </div>
+                  
+                  {/* University Info */}
+                  <div className="text-center">
+                    <h3 className="text-xs font-semibold text-gray-800 mb-2 group-hover:text-gray-900 transition-colors duration-300 leading-tight">
+                      {university.name}
+                    </h3>
+                    
+                    {/* Country Badge */}
+                    <div className={`inline-flex items-center bg-gradient-to-r ${getCountryColor(university.country)} text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm group-hover:shadow-md transition-all duration-300`}>
+                      <div className="w-2 h-2 bg-white/30 rounded-full mr-1.5 animate-pulse" />
+                      {university.country}
+                    </div>
                   </div>
                 </div>
+                
+                {/* Hover Border Effect */}
+                <div className="absolute inset-0 rounded-2xl ring-1 ring-transparent group-hover:ring-2 group-hover:ring-blue-200/50 transition-all duration-300" />
               </motion.div>
             ))}
           </div>
