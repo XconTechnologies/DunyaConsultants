@@ -137,17 +137,6 @@ const universityPartners = [
 export default function UniversityPartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
-  const [selectedCountry, setSelectedCountry] = useState("All");
-
-  // Get unique countries for filter tabs
-  const countries = ["All", ...Array.from(new Set(universityPartners.map(uni => uni.country)))];
-  
-  // Filter universities based on hovered or selected country
-  const displayCountry = hoveredCountry || selectedCountry;
-  const filteredUniversities = displayCountry === "All" 
-    ? universityPartners 
-    : universityPartners.filter(uni => uni.country === displayCountry);
 
   // Get country colors for modern styling
   const getCountryColor = (country: string): string => {
@@ -195,78 +184,9 @@ export default function UniversityPartnersSection() {
           </p>
         </motion.div>
 
-        {/* Tab-Style Country Filters */}
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <div className="flex flex-wrap gap-3 justify-center max-w-7xl mx-auto px-4">
-            {countries.map((country, index) => {
-              const universityCount = country === "All" ? universityPartners.length : universityPartners.filter(uni => uni.country === country).length;
-              const isActive = (hoveredCountry || selectedCountry) === country;
-              
-              return (
-                <motion.button
-                  key={country}
-                  onClick={() => {
-                    setSelectedCountry(country);
-                    setHoveredCountry(null);
-                  }}
-                  onMouseEnter={() => setHoveredCountry(country)}
-                  onMouseLeave={() => setHoveredCountry(null)}
-                  className={`relative overflow-hidden rounded-lg px-4 py-2.5 font-medium text-sm transition-all duration-300 transform min-w-[100px] ${
-                    isActive 
-                      ? 'scale-105 shadow-lg' 
-                      : 'hover:scale-102 hover:shadow-md'
-                  }`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.5, delay: 0.1 + index * 0.05 }}
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {/* Blue Background for all tabs */}
-                  <div className={`absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 ${
-                    isActive ? 'opacity-100' : 'opacity-80 hover:opacity-90'
-                  } transition-opacity duration-300`} />
-                  
-                  {/* Content */}
-                  <div className="relative z-10 flex items-center justify-center text-white">
-                    <span className="font-bold">{country}</span>
-                  </div>
-                  
-                  {/* Active Border Effect */}
-                  {isActive && (
-                    <div className="absolute inset-0 rounded-xl ring-2 ring-white/50" />
-                  )}
-                </motion.button>
-              );
-            })}
-          </div>
-        </motion.div>
 
-        {/* Dynamic Results Display */}
-        <motion.div
-          className="text-center mb-8"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <div className="inline-flex items-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-full px-6 py-3 border border-blue-200/50 shadow-lg">
-            <div className="flex items-center space-x-2">
-              <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${getCountryColor(displayCountry)} animate-pulse`} />
-              <span className="text-gray-700 font-medium">
-                {displayCountry === "All" ? "All Countries" : displayCountry}
-              </span>
-              <span className="text-gray-400">•</span>
-              <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                {filteredUniversities.length} {filteredUniversities.length === 1 ? 'University' : 'Universities'}
-              </span>
-            </div>
-          </div>
-        </motion.div>
+
+
 
         {/* Enhanced University Grid */}
         <motion.div
@@ -276,7 +196,7 @@ export default function UniversityPartnersSection() {
           transition={{ duration: 0.8, delay: 0.9 }}
         >
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-            {filteredUniversities.map((university, index) => (
+            {universityPartners.map((university, index) => (
               <motion.div
                 key={`${university.name}-${university.country}-${index}`}
                 className="group relative bg-white rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100/50 overflow-hidden"
