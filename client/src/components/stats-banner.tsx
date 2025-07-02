@@ -280,7 +280,7 @@ export default function StatsBanner() {
                   {/* Content */}
                   <div className="text-center space-y-2">
                     <motion.div
-                      className="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500"
+                      className="text-lg lg:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500"
                       initial={{ scale: 0 }}
                       animate={isInView ? { scale: 1 } : { scale: 0 }}
                       transition={{ duration: 0.8, delay: index * 0.2 + 1.2, type: "spring", stiffness: 100 }}
@@ -292,7 +292,7 @@ export default function StatsBanner() {
                       />
                     </motion.div>
                     
-                    <h3 className="text-white font-semibold text-base group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500">
+                    <h3 className="text-white font-semibold text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500">
                       {stat.label}
                     </h3>
                     
