@@ -556,31 +556,31 @@ export default function CountriesSection() {
                     transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
                     whileHover={{ y: -10, scale: 1.02 }}
                   >
-              <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
-                {/* Background Image */}
-                <div 
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ 
-                    backgroundImage: `url(${getCountryImage(country.name)})`,
-                  }}
-                >
-                  {/* Color Overlay */}
-                  <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-90`}></div>
-                </div>
-                
-                {/* Content */}
-                <div className="relative z-10 p-4 h-full flex flex-col text-gray-900">
-                  {/* Header */}
-                  <div className="flex items-center justify-end mb-2">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <Plane className="w-4 h-4 text-gray-700" />
-                    </div>
-                  </div>
+                    <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                      {/* Background Image */}
+                      <div 
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{ 
+                          backgroundImage: `url(${getCountryImage(country.name)})`,
+                        }}
+                      >
+                        {/* Color Overlay */}
+                        <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-90`}></div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="relative z-10 p-4 h-full flex flex-col text-gray-900">
+                        {/* Header */}
+                        <div className="flex items-center justify-end mb-2">
+                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <Plane className="w-4 h-4 text-gray-700" />
+                          </div>
+                        </div>
 
-                  {/* Country Name */}
-                  <h2 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                    {country.name}
-                  </h2>
+                        {/* Country Name */}
+                        <h2 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                          {country.name}
+                        </h2>
                   
                   {/* University Count */}
                   <div className="mb-3">
