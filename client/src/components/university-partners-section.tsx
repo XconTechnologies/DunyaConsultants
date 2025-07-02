@@ -195,21 +195,20 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+          <div className="grid grid-cols-5 gap-6 max-w-5xl mx-auto">
             {universityPartners.map((university, index) => (
               <motion.div
                 key={`${university.name}-${university.country}-${index}`}
-                className="group flex items-center justify-center p-2"
+                className="group flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.05 + index * 0.02 }}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
               >
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="h-40 w-40 object-contain transition-all duration-300 hover:scale-110 bg-transparent"
-                  style={{ mixBlendMode: 'multiply' }}
+                  className="h-16 w-24 object-contain transition-all duration-300"
                 />
               </motion.div>
             ))}
