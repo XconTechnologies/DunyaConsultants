@@ -202,7 +202,7 @@ export default function StatsBanner() {
           </motion.h2>
           
           <motion.p
-            className="text-white/80 text-base lg:text-lg max-w-3xl mx-auto leading-relaxed"
+            className="text-white/80 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
