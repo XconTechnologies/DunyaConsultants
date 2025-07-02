@@ -199,7 +199,7 @@ export default function UniversityPartnersSection() {
             {universityPartners.map((university, index) => (
               <motion.div
                 key={`${university.name}-${university.country}-${index}`}
-                className="group flex items-center justify-center"
+                className="group flex items-center justify-center p-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.5, delay: 0.05 + index * 0.02 }}
@@ -208,7 +208,8 @@ export default function UniversityPartnersSection() {
                 <img
                   src={university.logoUrl}
                   alt={`${university.name} logo`}
-                  className="h-32 w-32 object-contain transition-all duration-300 hover:scale-110"
+                  className="h-32 w-32 object-contain transition-all duration-300 hover:scale-110 bg-transparent"
+                  style={{ mixBlendMode: 'multiply' }}
                 />
               </motion.div>
             ))}
