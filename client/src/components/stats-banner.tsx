@@ -10,7 +10,8 @@ import {
   TrendingUp,
   Shield,
   Zap,
-  Star
+  Star,
+  MapPin
 } from "lucide-react";
 
 const AnimatedCounter = ({ number, suffix, isVisible }: { number: number; suffix: string; isVisible: boolean }) => {
@@ -57,33 +58,53 @@ export default function StatsBanner() {
     },
     {
       icon: Building,
-      number: 50,
+      number: 17,
       suffix: '+',
-      label: 'University Partners',
-      description: 'Global Network',
+      label: 'Office Branches',
+      description: 'Nationwide Coverage',
       gradient: 'from-violet-400 via-purple-500 to-indigo-600',
       glowColor: 'shadow-violet-500/25',
       bgPattern: 'radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)'
     },
     {
       icon: Award,
-      number: 98,
-      suffix: '%',
-      label: 'Success Rate',
-      description: 'Proven Results',
-      gradient: 'from-amber-400 via-orange-500 to-red-500',
-      glowColor: 'shadow-orange-500/25',
-      bgPattern: 'radial-gradient(circle at 50% 80%, rgba(251, 146, 60, 0.3) 0%, transparent 50%)'
+      number: 50,
+      suffix: '+',
+      label: 'University Partners',
+      description: 'Global Network',
+      gradient: 'from-emerald-400 via-green-500 to-teal-600',
+      glowColor: 'shadow-green-500/25',
+      bgPattern: 'radial-gradient(circle at 50% 80%, rgba(34, 197, 94, 0.3) 0%, transparent 50%)'
     },
     {
-      icon: Clock,
-      number: 247,
-      suffix: '',
-      label: 'Expert Support',
-      description: 'Always Available',
-      gradient: 'from-pink-400 via-rose-500 to-red-500',
-      glowColor: 'shadow-pink-500/25',
-      bgPattern: 'radial-gradient(circle at 30% 30%, rgba(244, 63, 94, 0.3) 0%, transparent 50%)'
+      icon: MapPin,
+      number: 15,
+      suffix: '+',
+      label: 'Countries Covered',
+      description: 'Global Reach',
+      gradient: 'from-orange-400 via-red-500 to-pink-600',
+      glowColor: 'shadow-red-500/25',
+      bgPattern: 'radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.3) 0%, transparent 50%)'
+    },
+    {
+      icon: Shield,
+      number: 98,
+      suffix: '%',
+      label: 'Visa Success Rate',
+      description: 'Proven Results',
+      gradient: 'from-blue-400 via-indigo-500 to-purple-600',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: 'radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
+    },
+    {
+      icon: Star,
+      number: 200,
+      suffix: '+',
+      label: 'Expert Counselors',
+      description: 'Professional Team',
+      gradient: 'from-emerald-400 via-cyan-500 to-blue-600',
+      glowColor: 'shadow-cyan-500/25',
+      bgPattern: 'radial-gradient(circle at 40% 60%, rgba(6, 182, 212, 0.3) 0%, transparent 50%)'
     }
   ];
 
@@ -188,7 +209,7 @@ export default function StatsBanner() {
 
         {/* Stats Cards */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
