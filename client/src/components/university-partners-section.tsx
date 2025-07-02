@@ -172,7 +172,7 @@ export default function UniversityPartnersSection() {
   };
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-white to-blue-50">
+    <section ref={ref} className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
