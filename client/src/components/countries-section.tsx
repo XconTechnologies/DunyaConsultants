@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Globe, MapPin, Users, GraduationCap, ChevronLeft, ChevronRight, Star, Award, BookOpen, Send, DollarSign, Clock, X, CheckCircle, ArrowRight, Plane, Calendar, Phone, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -403,6 +403,7 @@ export default function CountriesSection() {
   const [applicationCountry, setApplicationCountry] = useState<Country | null>(null);
   const [activeTab, setActiveTab] = useState<'popular' | 'all'>('popular');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoScrollPaused, setIsAutoScrollPaused] = useState(false);
 
   // Popular countries (most requested destinations)
   const popularCountries = countries.filter(country => 
