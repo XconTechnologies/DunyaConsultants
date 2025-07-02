@@ -165,7 +165,7 @@ export default function StatsBanner() {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 py-12" ref={ref}>
+      <div className="container mx-auto px-4 relative z-10 pt-20 pb-12" ref={ref}>
         {/* Header */}
         <motion.div
           className="text-center mb-10"
