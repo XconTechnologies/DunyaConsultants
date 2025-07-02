@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { Globe, MapPin, Users, GraduationCap, ChevronLeft, ChevronRight, Star, Award, BookOpen, Send, DollarSign, Clock, X, CheckCircle, ArrowRight, Plane, Calendar, Phone, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -413,6 +413,15 @@ export default function CountriesSection() {
   const countriesPerSlide = 4;
   const totalSlides = Math.ceil(displayCountries.length / countriesPerSlide);
 
+  // Auto-scroll functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    }, 4000); // Auto-scroll every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [totalSlides]);
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
   };
@@ -515,14 +524,96 @@ export default function CountriesSection() {
         </motion.div>
 
         {/* Countries Carousel */}
-        <div className="relative mb-16">
+        <div className="relative mb-16 overflow-hidden">
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="flex transition-transform duration-1000 ease-in-out"
+            style={{ 
+              transform: `translateX(-${currentSlide * 100}%)`,
+              width: `${totalSlides * 100}%`
+            }}
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            {getCurrentCountries().map((country, index) => (
+            {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+              <div key={slideIndex} className="w-full flex-shrink-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
+                  {displayCountries.slice(slideIndex * countriesPerSlide, (slideIndex + 1) * countriesPerSlide).map((country, index) => (
+                    <motion.div
+                      key={`${slideIndex}-${country.id}`}
+                      className="group relative"
+                      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+                      transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                      whileHover={{ y: -10, scale: 1.02 }}
+                    >
+                      <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                        {/* Background Image */}
+                        <div 
+                          className="absolute inset-0 bg-cover bg-center"
+                          style={{ 
+                            backgroundImage: `url(${getCountryImage(country.name)})`,
+                          }}
+                        >
+                          {/* Color Overlay */}
+                          <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-90`}></div>
+                        </div>
+                        
+                        {/* Content */}
+                        <div className="relative z-10 p-4 h-full flex flex-col text-gray-900">
+                          {/* Header */}
+                          <div className="flex items-center justify-end mb-2">
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <Plane className="w-4 h-4 text-gray-700" />
+                            </div>
+                          </div>
+
+                          {/* Country Name */}
+                          <h2 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                            {country.name}
+                          </h2>
+                          
+                          {/* University Count */}
+                          <div className="mb-3">
+                            <div className="bg-gray-100/80 backdrop-blur-sm rounded-lg p-2 text-center border">
+                              <GraduationCap className="w-4 h-4 mx-auto mb-1 text-blue-600" />
+                              <div className="text-sm font-bold">{country.topUniversities.length}+ Universities</div>
+                            </div>
+                          </div>
+
+                          {/* Quick Info */}
+                          <div className="space-y-2 mb-3 flex-grow">
+                            <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
+                              <DollarSign className="w-3 h-3 mr-1.5 text-green-600" />
+                              <span className="truncate font-medium">From {country.averageCost.split(' - ')[0]}</span>
+                            </div>
+                            <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
+                              <Clock className="w-3 h-3 mr-1.5 text-blue-600" />
+                              <span className="truncate">{country.intakeSeason}</span>
+                            </div>
+                          </div>
+
+                          {/* Action Buttons */}
+                          <div className="mt-auto flex space-x-2">
+                            <Button 
+                              onClick={() => handleApplyNow(country)}
+                              className="flex-1 bg-gray-900 text-white hover:bg-gray-800 font-medium py-2 text-xs shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                              size="sm"
+                            >
+                              <Send className="mr-1 h-3 w-3" />
+                              Apply Now
+                            </Button>
+                            <Button 
+                              onClick={() => setSelectedCountry(country)}
+                              className="flex-1 bg-blue-600 text-white hover:bg-blue-700 py-2 text-xs font-medium shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                              size="sm"
+                            >
+                              <BookOpen className="mr-1 h-3 w-3" />
+                              More Detail
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
             <motion.div
               key={country.id}
               className="group relative"
@@ -598,8 +689,11 @@ export default function CountriesSection() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </motion.div>
 
           {/* Carousel Navigation */}
