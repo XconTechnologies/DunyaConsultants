@@ -264,10 +264,10 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+    <nav className={`fixed w-full top-0 z-50 transition-all duration-700 ${
       isScrolled 
-        ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-white/20" 
-        : "bg-gradient-to-r from-blue-900/20 via-indigo-900/20 to-purple-900/20 backdrop-blur-md border-b border-white/10"
+        ? "bg-white/98 backdrop-blur-xl shadow-2xl border-b border-blue-100/40" 
+        : "bg-gradient-to-r from-blue-900/30 via-indigo-900/25 to-purple-900/30 backdrop-blur-xl border-b border-white/20 shadow-lg"
     }`}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center h-16 py-2">
@@ -283,7 +283,7 @@ export default function Navigation() {
                 <img 
                   src={isScrolled ? logoImageBlue : logoImage} 
                   alt="Dunya Consultants Logo" 
-                  className="h-8 w-auto transition-all duration-500 drop-shadow-lg"
+                  className="h-10 w-auto transition-all duration-500 drop-shadow-2xl hover:scale-105 filter brightness-110"
                 />
               </div>
               
@@ -306,9 +306,9 @@ export default function Navigation() {
                   {item.megaMenu ? (
                     <button className={`${
                       !isScrolled 
-                        ? 'text-white drop-shadow-md hover:text-white/90' 
-                        : 'text-neutral-700 hover:text-primary'
-                    } transition-all duration-300 font-medium flex items-center space-x-1 px-3 py-2 rounded-lg hover:bg-white/10 text-xs`}>
+                        ? 'text-white drop-shadow-lg hover:text-cyan-100' 
+                        : 'text-gray-700 hover:text-blue-600'
+                    } transition-all duration-300 font-semibold flex items-center space-x-1 px-4 py-2.5 rounded-xl hover:bg-white/20 text-sm hover:scale-105 hover:shadow-lg backdrop-blur-sm`}>
                       <span>{item.name}</span>
                       <ChevronDown className={`w-3 h-3 transition-transform duration-200 ml-1 ${
                         activeMegaMenu === item.name ? 'rotate-180' : ''
@@ -318,9 +318,9 @@ export default function Navigation() {
                     <Link href={item.href}>
                       <span className={`${
                         !isScrolled 
-                          ? 'text-white drop-shadow-md hover:text-white/90' 
-                          : 'text-neutral-700 hover:text-primary'
-                      } transition-all duration-300 font-medium px-3 py-2 rounded-lg cursor-pointer hover:bg-white/10 text-xs block`}>
+                          ? 'text-white drop-shadow-lg hover:text-cyan-100' 
+                          : 'text-gray-700 hover:text-blue-600'
+                      } transition-all duration-300 font-semibold px-4 py-2.5 rounded-xl cursor-pointer hover:bg-white/20 text-sm block hover:scale-105 hover:shadow-lg backdrop-blur-sm`}>
                         {item.name}
                       </span>
                     </Link>
@@ -341,11 +341,14 @@ export default function Navigation() {
               onClick={() => scrollToSection("contact")}
               className={`${
                 !isScrolled
-                  ? 'bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 hover:border-white/60 shadow-lg'
-                  : 'bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md'
-              } transition-all duration-300 font-semibold px-6 py-2`}
+                  ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-xl border border-white/50 text-white hover:bg-gradient-to-r hover:from-cyan-400/30 hover:to-blue-400/30 hover:border-white/70 shadow-2xl hover:shadow-cyan-500/25'
+                  : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-xl hover:shadow-blue-500/25'
+              } transition-all duration-500 font-bold px-8 py-3 rounded-2xl hover:scale-105 transform`}
             >
-              Free Consultation
+              <span className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                Free Consultation
+              </span>
             </Button>
           </motion.div>
 
@@ -375,7 +378,7 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 w-full bg-white shadow-2xl border-t border-neutral-100 z-40"
+            className="absolute top-full left-0 w-full bg-white/98 backdrop-blur-2xl shadow-2xl border-t border-blue-100/50 z-40 ring-1 ring-blue-50"
             onMouseEnter={() => setActiveMegaMenu(activeMegaMenu)}
             onMouseLeave={() => setActiveMegaMenu(null)}
           >
@@ -387,7 +390,7 @@ export default function Navigation() {
                     {megaMenuData[activeMegaMenu].sections.map((section, idx) => (
                       <div key={idx} className="space-y-3">
                         <div className="flex items-center space-x-2 mb-3">
-                          <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-300">
                             {React.createElement(section.icon, { 
                               className: "w-4 h-4 text-white" 
                             })}
