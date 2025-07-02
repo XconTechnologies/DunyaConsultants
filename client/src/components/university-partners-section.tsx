@@ -227,17 +227,14 @@ export default function UniversityPartnersSection() {
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  {/* Tab Background with Country Colors */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${getCountryColor(country)} ${
+                  {/* Blue Background for all tabs */}
+                  <div className={`absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 ${
                     isActive ? 'opacity-100' : 'opacity-80 hover:opacity-90'
                   } transition-opacity duration-300`} />
                   
                   {/* Content */}
-                  <div className="relative z-10 flex flex-col items-center text-white">
-                    <span className="font-bold leading-tight">{country}</span>
-                    <span className="text-xs opacity-90 mt-0.5">
-                      {universityCount} {universityCount === 1 ? 'Uni' : 'Unis'}
-                    </span>
+                  <div className="relative z-10 flex items-center justify-center text-white">
+                    <span className="font-bold">{country}</span>
                   </div>
                   
                   {/* Active Border Effect */}
