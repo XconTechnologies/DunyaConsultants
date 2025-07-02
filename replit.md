@@ -242,6 +242,7 @@ The application uses three main tables:
 - **January 2, 2025 - Statistics Section Spacing**: Updated statistics section padding to pt-[120px] pb-[50px] for proper separation from header navigation and bottom content.
 - **January 2, 2025 - Statistics Icons Centered**: Added flex justify-center to statistics card icons for proper center alignment within each card.
 - **January 2, 2025 - Gamification Widget Removal**: Removed UserProgressWidget component and gamification level/points display system from the application for cleaner user interface.
+- **January 2, 2025 - Countries Auto-Scrolling Carousel**: Implemented auto-scrolling functionality for countries section with 4-second intervals, pause on hover feature, and seamless transitions between slides for better user experience.
 
 ## Changelog
 

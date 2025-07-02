@@ -432,6 +432,21 @@ export default function CountriesSection() {
     setShowApplicationForm(true);
   };
 
+  // Auto-scroll functionality
+  useEffect(() => {
+    if (!isAutoScrollPaused && totalSlides > 1) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % totalSlides);
+      }, 4000); // Auto-scroll every 4 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [isAutoScrollPaused, totalSlides]);
+
+  // Pause auto-scroll on hover
+  const handleMouseEnter = () => setIsAutoScrollPaused(true);
+  const handleMouseLeave = () => setIsAutoScrollPaused(false);
+
   return (
     <>
     <section ref={ref} className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
@@ -516,7 +531,11 @@ export default function CountriesSection() {
         </motion.div>
 
         {/* Countries Carousel */}
-        <div className="relative mb-16">
+        <div 
+          className="relative mb-16"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
             initial={{ opacity: 0 }}
