@@ -172,7 +172,7 @@ export default function UniversityPartnersSection() {
   };
 
   return (
-    <section ref={ref} className="py-20 bg-white">
+    <section ref={ref} className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -206,7 +206,7 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="flex gap-2 max-w-6xl mx-auto h-96">
+          <div className="flex gap-2 max-w-6xl mx-auto h-[500px]">
             {columns.map((column, columnIndex) => (
               <div key={columnIndex} className="flex-1 overflow-hidden">
                 <motion.div
@@ -242,28 +242,7 @@ export default function UniversityPartnersSection() {
 
 
 
-        {/* Call to Action */}
-        <motion.div
-          className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <motion.button
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-blue-700 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Explore University Guidance
-            <motion.div
-              className="text-xl"
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              →
-            </motion.div>
-          </motion.button>
-        </motion.div>
+
       </div>
     </section>
   );
