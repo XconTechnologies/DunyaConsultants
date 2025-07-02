@@ -190,7 +190,7 @@ export default function UniversityPartnersSection() {
 
         {/* Enhanced University Grid */}
         <motion.div
-          className="relative mb-16"
+          className="relative mb-6"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
