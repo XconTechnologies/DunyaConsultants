@@ -244,6 +244,7 @@ The application uses three main tables:
 - **January 2, 2025 - Gamification Widget Removal**: Removed UserProgressWidget component and gamification level/points display system from the application for cleaner user interface.
 - **January 2, 2025 - Countries Auto-Scrolling Carousel**: Implemented auto-scrolling functionality for countries section with 3-second intervals, pause on hover feature, and seamless transitions between slides for better user experience.
 - **January 2, 2025 - Floating CTA Icon Fix**: Fixed overlapping icons issue in floating action button by replacing dual icons (Phone + MessageCircle) with single clean Phone icon for better visual appearance and clarity.
+- **January 2, 2025 - Floating CTA Button Functionality**: Fixed WhatsApp button functionality by adding proper WhatsApp URL with pre-filled message, fixed hover text color issue, and made both phone and WhatsApp buttons clickable with proper links.
 
 ## Changelog
 
