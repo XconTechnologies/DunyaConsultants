@@ -437,7 +437,7 @@ export default function CountriesSection() {
     if (!isAutoScrollPaused && totalSlides > 1) {
       const interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % totalSlides);
-      }, 4000); // Auto-scroll every 4 seconds
+      }, 2000); // Auto-scroll every 2 seconds
 
       return () => clearInterval(interval);
     }
