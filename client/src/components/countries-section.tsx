@@ -627,17 +627,8 @@ export default function CountriesSection() {
           ))}
               </motion.div>
 
-              {/* Carousel Navigation */}
-              <div className="flex items-center justify-center mt-12 space-x-6">
-                <Button
-                  onClick={prevSlide}
-                  size="lg"
-                  className="rounded-full bg-white text-blue-600 hover:bg-gray-100 border-0 px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <ChevronLeft className="h-5 w-5 mr-2" />
-                  Previous
-                </Button>
-                
+              {/* Pagination Dots Only */}
+              <div className="flex justify-center mt-12">
                 <div className="flex space-x-3">
                   {Array.from({ length: totalSlides }).map((_, index) => (
                     <button
@@ -651,15 +642,6 @@ export default function CountriesSection() {
                     />
                   ))}
                 </div>
-                
-                <Button
-                  onClick={nextSlide}
-                  size="lg"
-                  className="rounded-full bg-white text-blue-600 hover:bg-gray-100 border-0 px-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  Next
-                  <ChevronRight className="h-5 w-5 ml-2" />
-                </Button>
               </div>
             </div>
           ) : (
