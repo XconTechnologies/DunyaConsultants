@@ -138,6 +138,17 @@ export default function UniversityPartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // Split universities into 5 columns for vertical scrolling
+  const splitIntoColumns = (array: typeof universityPartners, numColumns: number) => {
+    const columns = Array.from({ length: numColumns }, () => [] as typeof universityPartners);
+    array.forEach((item, index) => {
+      columns[index % numColumns].push(item);
+    });
+    return columns;
+  };
+
+  const columns = splitIntoColumns(universityPartners, 5);
+
   // Get country colors for modern styling
   const getCountryColor = (country: string): string => {
     const colors: Record<string, string> = {
@@ -188,29 +199,43 @@ export default function UniversityPartnersSection() {
 
 
 
-        {/* Enhanced University Grid */}
+        {/* Vertical Scrolling Columns */}
         <motion.div
-          className="relative mb-6"
+          className="relative mb-6 overflow-hidden"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="grid grid-cols-5 gap-6 max-w-5xl mx-auto">
-            {universityPartners.map((university, index) => (
-              <motion.div
-                key={`${university.name}-${university.country}-${index}`}
-                className="group flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.5, delay: 0.05 + index * 0.02 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-24 object-contain transition-all duration-300"
-                />
-              </motion.div>
+          <div className="flex gap-4 max-w-6xl mx-auto h-96">
+            {columns.map((column, columnIndex) => (
+              <div key={columnIndex} className="flex-1 overflow-hidden">
+                <motion.div
+                  className="flex flex-col gap-4"
+                  animate={{
+                    y: [0, -100 * column.length]
+                  }}
+                  transition={{
+                    duration: 15 + columnIndex * 2,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  {/* Duplicate column for seamless loop */}
+                  {[...column, ...column].map((university, index) => (
+                    <motion.div
+                      key={`${university.name}-${columnIndex}-${index}`}
+                      className="group flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 min-h-[80px]"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      <img
+                        src={university.logoUrl}
+                        alt={`${university.name} logo`}
+                        className="h-12 w-20 object-contain transition-all duration-300"
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>

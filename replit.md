@@ -249,6 +249,7 @@ The application uses three main tables:
 - **January 2, 2025 - Modern University Partners Design**: Completely redesigned university partners section with modern hover-based country filtering system. Features include country-specific gradient cards with unique color schemes, hover effects to show related universities dynamically, animated background patterns, enhanced university cards with floating particle effects, country badges with animated dots, and responsive grid layout. Added dynamic results display with country indicators and comprehensive TypeScript typing for improved maintainability.
 - **January 2, 2025 - Tab-Style Country Filters**: Converted university partners country selection from cards to horizontal tab-style layout with blue gradient backgrounds and white text. Removed university count labels for cleaner appearance while maintaining hover and active state functionality.
 - **January 2, 2025 - Navigation Simplification**: Removed Previous/Next navigation buttons from countries section carousel, keeping only bullet point pagination dots for cleaner, simpler navigation interface.
+- **January 2, 2025 - University Partners Vertical Scrolling**: Completely redesigned university partners section with 5 vertical scrolling columns inspired by edgeoverseas.com. Features include automatic vertical animation with different speeds per column, seamless looping, white card containers with shadows, and overflow hidden design for smooth continuous scrolling effect.
 
 ## Changelog
 
