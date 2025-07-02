@@ -1,12 +1,54 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, MessageCircle, X, Users, Calendar, Star } from "lucide-react";
+import { Phone, MessageCircle, X, Users, Calendar, Star, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+// Country counselor data
+const countryCounselors = [
+  {
+    country: "UK",
+    name: "Ahmad Ali",
+    phone: "+923041110947",
+    flag: "🇬🇧"
+  },
+  {
+    country: "Canada",
+    name: "Sarah Khan",
+    phone: "+923041110948",
+    flag: "🇨🇦"
+  },
+  {
+    country: "Australia",
+    name: "Hassan Sheikh",
+    phone: "+923041110949",
+    flag: "🇦🇺"
+  },
+  {
+    country: "USA",
+    name: "Maria Ahmed",
+    phone: "+923041110950",
+    flag: "🇺🇸"
+  },
+  {
+    country: "Germany",
+    name: "Usman Malik",
+    phone: "+923041110951",
+    flag: "🇩🇪"
+  },
+  {
+    country: "General",
+    name: "Main Office",
+    phone: "+923041110947",
+    flag: "🏢"
+  }
+];
 
 export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
   const [showFull, setShowFull] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState("General");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +63,12 @@ export default function FloatingCTA() {
   const toggleExpanded = () => {
     setShowFull(!showFull);
   };
+
+  const getSelectedCounselor = () => {
+    return countryCounselors.find(c => c.country === selectedCountry) || countryCounselors[5];
+  };
+
+  const selectedCounselor = getSelectedCounselor();
 
   return (
     <AnimatePresence>
@@ -124,6 +172,46 @@ export default function FloatingCTA() {
                       </div>
                     </div>
 
+                    {/* Country Counselor Selection */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">
+                        Select Country Counselor:
+                      </label>
+                      <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Choose counselor" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {countryCounselors.map((counselor) => (
+                            <SelectItem key={counselor.country} value={counselor.country}>
+                              <div className="flex items-center space-x-2">
+                                <span className="text-lg">{counselor.flag}</span>
+                                <div>
+                                  <div className="font-medium">{counselor.country}</div>
+                                  <div className="text-xs text-gray-500">{counselor.name}</div>
+                                </div>
+                              </div>
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      
+                      {/* Selected Counselor Info */}
+                      <div className="bg-blue-50 p-3 rounded-lg">
+                        <div className="flex items-center space-x-2 text-sm">
+                          <span className="text-lg">{selectedCounselor.flag}</span>
+                          <div>
+                            <div className="font-medium text-gray-900">
+                              {selectedCounselor.name}
+                            </div>
+                            <div className="text-gray-600">
+                              {selectedCounselor.country} Counselor
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     {/* Action Buttons */}
                     <div className="space-y-2">
                       <Button 
@@ -131,9 +219,9 @@ export default function FloatingCTA() {
                         className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
                         size="lg"
                       >
-                        <a href="tel:+923041110947">
+                        <a href={`tel:${selectedCounselor.phone.replace(/\s+/g, '')}`}>
                           <Phone className="w-5 h-5 mr-2" />
-                          Call Now: +92 304 1110947
+                          Call {selectedCounselor.name}: {selectedCounselor.phone}
                         </a>
                       </Button>
                       
@@ -143,9 +231,9 @@ export default function FloatingCTA() {
                         className="w-full border-primary text-primary hover:bg-primary/5 hover:text-primary"
                         size="lg"
                       >
-                        <a href="https://wa.me/923041110947?text=Hello! I would like to get a free consultation for study abroad." target="_blank" rel="noopener noreferrer">
+                        <a href={`https://wa.me/${selectedCounselor.phone.replace(/[\s+-]/g, '')}?text=Hello! I would like to get a free consultation for ${selectedCounselor.country} from ${selectedCounselor.name}.`} target="_blank" rel="noopener noreferrer">
                           <MessageCircle className="w-5 h-5 mr-2" />
-                          WhatsApp Chat
+                          WhatsApp {selectedCounselor.name}
                         </a>
                       </Button>
                     </div>
