@@ -3,6 +3,9 @@ import HeroSection from "@/components/hero-section";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
 import ConsultationBookingCalendar from "@/components/consultation-booking-calendar";
+import EventsSection from "@/components/events-section";
+import AssistanceSection from "@/components/assistance-section";
+import ReasonsSection from "@/components/reasons-section";
 
 import StatsBanner from "@/components/stats-banner";
 import UniversityPartnersSection from "@/components/university-partners-section";
@@ -19,6 +22,9 @@ export default function Home() {
       <StatsBanner />
       <IeltsSection />
       <CountriesSection />
+      <EventsSection />
+      <AssistanceSection />
+      <ReasonsSection />
       <ConsultationBookingCalendar />
       <UniversityPartnersSection />
       <BusinessProposalsSection />
