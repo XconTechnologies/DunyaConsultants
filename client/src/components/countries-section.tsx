@@ -457,23 +457,19 @@ export default function CountriesSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="font-bold text-white mb-6 leading-tight cursor-default"
-            style={{ fontSize: '34px' }}
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.3 }
-            }}
+            whileHover={{ scale: 1.05 }}
           >
-            Choose Your
-            <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent block">
+            <span className="text-white">Choose Your </span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
               Dream Destination
             </span>
           </motion.h2>
           <motion.p 
-            className="text-xl text-blue-100 max-w-4xl mx-auto leading-relaxed"
+            className="text-white/80 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
