@@ -51,26 +51,26 @@ const carouselImages: CarouselImage[] = [
   {
     id: 5,
     src: img5,
-    alt: "Team Excellence",
-    caption: "Celebrating Team Excellence & Success"
+    alt: "Professional Seminar",
+    caption: "Professional Development Seminars"
   },
   {
     id: 6,
     src: img6,
-    alt: "Success Celebration",
-    caption: "Celebrating Success Together"
+    alt: "Leadership Conference",
+    caption: "Leadership Conference & Workshop"
   },
   {
     id: 7,
     src: img7,
-    alt: "Malaysia Tour Achievement",
-    caption: "Malaysia Tour Achievement Recognition"
+    alt: "Strategic Planning",
+    caption: "Strategic Planning & Development Sessions"
   },
   {
     id: 8,
     src: img8,
-    alt: "Leadership Team",
-    caption: "Leadership & Management Team"
+    alt: "Team Building",
+    caption: "Team Building & Collaborative Events"
   },
   {
     id: 9,
@@ -99,83 +99,59 @@ const carouselImages: CarouselImage[] = [
 ];
 
 export default function ImageCarousel() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-
-  const imagesPerSlide = 5;
-  const totalSlides = Math.ceil(carouselImages.length / imagesPerSlide);
-
-  // Auto-play functionality
-  useEffect(() => {
-    if (!isPlaying) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isPlaying, totalSlides]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
-
-  const getCurrentImages = () => {
-    const startIndex = currentSlide * imagesPerSlide;
-    return carouselImages.slice(startIndex, startIndex + imagesPerSlide);
-  };
 
   const handleImageLoad = (imageId: number) => {
     setLoadedImages(prev => new Set(prev).add(imageId));
   };
 
-  // Preload next slide images
+  // Preload all images
   useEffect(() => {
-    const preloadNextSlide = () => {
-      const nextSlideIndex = (currentSlide + 1) % totalSlides;
-      const nextSlideStart = nextSlideIndex * imagesPerSlide;
-      const nextSlideImages = carouselImages.slice(nextSlideStart, nextSlideStart + imagesPerSlide);
-      
-      nextSlideImages.forEach(image => {
-        if (!loadedImages.has(image.id)) {
-          const img = new Image();
-          img.src = image.src;
-          img.onload = () => handleImageLoad(image.id);
-        }
-      });
-    };
-
-    preloadNextSlide();
-  }, [currentSlide, totalSlides, imagesPerSlide, loadedImages]);
+    carouselImages.forEach(image => {
+      if (!loadedImages.has(image.id)) {
+        const img = new Image();
+        img.src = image.src;
+        img.onload = () => handleImageLoad(image.id);
+      }
+    });
+  }, [loadedImages]);
 
   return (
     <section ref={ref} className="relative -mt-20 mb-20 z-20">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-
-        {/* 5-Image Grid Carousel */}
+        {/* Horizontal Sliding Images */}
         <motion.div
-          className="relative"
+          className="relative overflow-hidden"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Images Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {getCurrentImages().map((image, index) => (
+          {/* Left fade overlay */}
+          <div className="absolute top-0 left-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          
+          {/* Right fade overlay */}
+          <div className="absolute top-0 right-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+          
+          {/* Sliding images container */}
+          <motion.div
+            className="flex gap-6"
+            animate={{
+              x: [0, -300 * carouselImages.length]
+            }}
+            transition={{
+              duration: 60,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            {/* Duplicate images for seamless loop */}
+            {[...carouselImages, ...carouselImages].map((image, index) => (
               <motion.div
-                key={image.id}
-                className="group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 bg-white"
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                key={`${image.id}-${index}`}
+                className="group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 bg-white min-w-[280px] flex-shrink-0"
                 whileHover={{ y: -10, scale: 1.05 }}
               >
                 <div className="aspect-[4/3] relative">
@@ -209,11 +185,8 @@ export default function ImageCarousel() {
                 </div>
               </motion.div>
             ))}
-          </div>
-
-
+          </motion.div>
         </motion.div>
-
 
       </div>
     </section>
