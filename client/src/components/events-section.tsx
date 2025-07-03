@@ -164,7 +164,7 @@ export default function EventsSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-4xl lg:text-5xl font-bold mb-4 text-white"
+            className="text-4xl lg:text-5xl font-bold mb-4"
             style={{
               background: 'linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #6366f1 100%)',
               WebkitBackgroundClip: 'text',
@@ -173,75 +173,8 @@ export default function EventsSection() {
             }}
             whileHover={{ scale: 1.02 }}
           >
-            All Events
+            Events & Workshops
           </motion.h2>
-          <div className="flex items-center justify-center gap-2 text-lg text-gray-600">
-            <span>Home</span>
-            <ArrowRight className="w-4 h-4" />
-            <span className="text-blue-600 font-semibold">All Events</span>
-          </div>
-        </motion.div>
-
-        {/* Featured Event Hero Card */}
-        <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="relative h-96 rounded-3xl overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop&crop=center"
-              alt="UK University Fair"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 via-purple-600/80 to-indigo-700/80" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-            
-            {/* Content */}
-            <div className="relative z-10 h-full flex flex-col justify-end p-8 lg:p-12">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="px-4 py-2 bg-blue-500 text-white rounded-full text-sm font-medium">
-                  Upcoming Event
-                </span>
-                <span className="text-white/80 text-sm">25 JAN 2025</span>
-              </div>
-              
-              <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
-                Study in UK University Fair 2025
-                <br />
-                Career Guidance Session
-              </h3>
-              
-              <div className="flex items-center gap-6 text-white/90 text-sm mb-6">
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>Hotel One Faisalabad, Conference Hall</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="w-4 h-4" />
-                  <span>2:00 PM - 6:00 PM</span>
-                </div>
-              </div>
-              
-              <div className="flex gap-4">
-                <motion.button
-                  className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 hover:shadow-lg transition-all duration-300 whitespace-nowrap"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Register Free
-                </motion.button>
-                <motion.button
-                  className="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-600 hover:shadow-lg transition-all duration-300 whitespace-nowrap"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Learn More
-                </motion.button>
-              </div>
-            </div>
-          </div>
         </motion.div>
 
         {/* Filter Tabs */}
