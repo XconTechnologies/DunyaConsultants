@@ -118,7 +118,6 @@ export default function CoursesSection() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeLevel, setActiveLevel] = useState('All Levels');
   const [searchTerm, setSearchTerm] = useState('');
-  const [showCourseFinder, setShowCourseFinder] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -145,84 +144,63 @@ export default function CoursesSection() {
             className="text-4xl lg:text-5xl font-bold mb-4"
             whileHover={{ scale: 1.02 }}
           >
-            <span className="text-neutral-800">📚 Courses & </span>
+            <span className="text-neutral-800">Courses & </span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
               Programs
             </span>
           </motion.h2>
-          <p className="text-xl text-gray-600 mb-6">
-            Bachelor's / Master's / Diplomas
-          </p>
-          <p className="text-lg text-gray-500 max-w-3xl mx-auto mb-8">
-            Business / Engineering / IT / Healthcare, etc.
-          </p>
-          
-          {/* Course Finder Tool Button */}
-          <motion.button
-            onClick={() => setShowCourseFinder(!showCourseFinder)}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Search className="w-6 h-6" />
-            Course Finder Tool
-            <ArrowRight className="w-5 h-5" />
-          </motion.button>
         </motion.div>
 
-        {/* Course Finder Tool (Optional Feature) */}
-        {showCourseFinder && (
-          <motion.div
-            className="bg-white rounded-3xl shadow-xl p-8 mb-12 border border-gray-100"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Find Your Perfect Course</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Search Bar */}
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <input
-                  type="text"
-                  placeholder="Search courses, universities..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
-                />
-              </div>
-
-              {/* Level Filter */}
-              <div className="relative">
-                <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <select
-                  value={activeLevel}
-                  onChange={(e) => setActiveLevel(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 bg-white"
-                >
-                  {levels.map(level => (
-                    <option key={level} value={level}>{level}</option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Clear Filters */}
-              <motion.button
-                onClick={() => {
-                  setActiveCategory('all');
-                  setActiveLevel('All Levels');
-                  setSearchTerm('');
-                }}
-                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-medium transition-all duration-300"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Clear Filters
-              </motion.button>
+        {/* Find Your Perfect Course */}
+        <motion.div
+          className="bg-white rounded-3xl shadow-xl p-8 mb-12 border border-gray-100"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Find Your Perfect Course</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Search Bar */}
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Search courses, universities..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
+              />
             </div>
-          </motion.div>
-        )}
+
+            {/* Level Filter */}
+            <div className="relative">
+              <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <select
+                value={activeLevel}
+                onChange={(e) => setActiveLevel(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 bg-white"
+              >
+                {levels.map(level => (
+                  <option key={level} value={level}>{level}</option>
+                ))}
+              </select>
+            </div>
+
+            {/* Clear Filters */}
+            <motion.button
+              onClick={() => {
+                setActiveCategory('all');
+                setActiveLevel('All Levels');
+                setSearchTerm('');
+              }}
+              className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-6 py-3 rounded-full font-medium transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Clear Filters
+            </motion.button>
+          </div>
+        </motion.div>
 
         {/* Category Filters */}
         <motion.div
