@@ -558,7 +558,7 @@ export default function CountriesSection() {
                       transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
                       whileHover={{ y: -10, scale: 1.02 }}
                     >
-                      <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                      <div className="relative h-64 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
                         {/* Background Image */}
                         <div 
                           className="absolute inset-0 bg-cover bg-center"
@@ -643,7 +643,7 @@ export default function CountriesSection() {
                   transition={{ duration: 0.8, delay: 0.6 + (index + 4) * 0.1 }}
                   whileHover={{ y: -10, scale: 1.02 }}
                 >
-                  <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                  <div className="relative h-64 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
                     {/* Background Image */}
                     <div 
                       className="absolute inset-0 bg-cover bg-center"
