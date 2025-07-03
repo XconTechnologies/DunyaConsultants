@@ -14,7 +14,7 @@ import img8 from "@assets/Dunya AGM (350 of 577)_1751536114475.webp";
 import img9 from "@assets/IMG-20250510-WA0020_1751536114476.webp";
 import img10 from "@assets/IMG-20250510-WA0028_1751536114476.webp";
 import img11 from "@assets/IMG-20250510-WA0070_1751536114476.webp";
-import img12 from "@assets/MHQ07389_1751536114477.webp";
+import img12 from "@assets/MHQ07558_1751536114477.webp";
 
 interface CarouselImage {
   id: number;
