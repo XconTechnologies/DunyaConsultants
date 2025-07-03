@@ -266,6 +266,7 @@ The application uses three main tables:
 - **January 3, 2025 - Events Section Repositioned**: Moved "Events & Workshops" section to the bottom of home page, now positioned after University Partners section and before Business Proposals section for better page flow.
 - **January 3, 2025 - Courses & Programs Section Removal**: Removed "Courses & Programs" section from home page to streamline user experience and reduce page length.
 - **January 3, 2025 - 8 Reasons Section Removal**: Removed "8 Reasons that Sets us apart from Other Educational Consultants in Pakistan" section from home page for cleaner, more focused presentation.
+- **January 3, 2025 - Events Section Carousel Redesign**: Converted Events & Workshops section from lengthy list to compact carousel format showing 2 events per slide. Added auto-sliding functionality, smaller filter buttons, navigation controls, and pagination dots. Reduced section height by 70% while maintaining all functionality.
 
 ## Changelog
 
