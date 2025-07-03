@@ -101,6 +101,7 @@ const carouselImages: CarouselImage[] = [
 export default function ImageCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
@@ -131,6 +132,29 @@ export default function ImageCarousel() {
     return carouselImages.slice(startIndex, startIndex + imagesPerSlide);
   };
 
+  const handleImageLoad = (imageId: number) => {
+    setLoadedImages(prev => new Set(prev).add(imageId));
+  };
+
+  // Preload next slide images
+  useEffect(() => {
+    const preloadNextSlide = () => {
+      const nextSlideIndex = (currentSlide + 1) % totalSlides;
+      const nextSlideStart = nextSlideIndex * imagesPerSlide;
+      const nextSlideImages = carouselImages.slice(nextSlideStart, nextSlideStart + imagesPerSlide);
+      
+      nextSlideImages.forEach(image => {
+        if (!loadedImages.has(image.id)) {
+          const img = new Image();
+          img.src = image.src;
+          img.onload = () => handleImageLoad(image.id);
+        }
+      });
+    };
+
+    preloadNextSlide();
+  }, [currentSlide, totalSlides, imagesPerSlide, loadedImages]);
+
   return (
     <section ref={ref} className="relative -mt-20 mb-20 z-20">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -155,10 +179,19 @@ export default function ImageCarousel() {
                 whileHover={{ y: -10, scale: 1.05 }}
               >
                 <div className="aspect-[4/3] relative">
+                  {/* Loading skeleton */}
+                  {!loadedImages.has(image.id) && (
+                    <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-2xl" />
+                  )}
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className={`w-full h-full object-cover group-hover:scale-110 transition-all duration-500 ${
+                      loadedImages.has(image.id) ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    onLoad={() => handleImageLoad(image.id)}
+                    loading="lazy"
+                    decoding="async"
                   />
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
