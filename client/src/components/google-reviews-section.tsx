@@ -24,7 +24,7 @@ const reviews: Review[] = [
     scholarship: "£2,500",
     rating: 5,
     review: "Dunya Consultants helped me with the admission and visa process, and I'm pleased with their support. The entire procedure was handled by them, and I was accepted to the institution I desired. Big thanks to the complete crew that has been striving to keep my dream alive.",
-    profileImage: "/api/placeholder/60/60"
+    profileImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face&auto=format"
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const reviews: Review[] = [
     scholarship: "CAD 3,000",
     rating: 5,
     review: "Since day one, their assistance has been very simple and straightforward. The consultants assisted me with university selection and the admissions process, and the visa consultant assisted me with the visa application process seamlessly. They are a very knowledgeable and helpful crew. I would suggest Dunya Consultants to anyone who is interested in studying abroad.",
-    profileImage: "/api/placeholder/60/60"
+    profileImage: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face&auto=format"
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ const reviews: Review[] = [
     scholarship: "AUD 4,000",
     rating: 5,
     review: "Dunya Consultants is the greatest in the industry. I received assistance with the entire visa procedure at the Dunya Consultants consultancy. Since I was new at this, I had no understanding of how to accomplish any of these procedures. The consultants were gracious and polite enough to make it crystal clear on the entire process. I filed for a student visa using their help, and it was granted. Without a doubt, I would tell my friends about Dunya Consultants.",
-    profileImage: "/api/placeholder/60/60"
+    profileImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face&auto=format"
   },
   {
     id: 4,
@@ -57,7 +57,7 @@ const reviews: Review[] = [
     scholarship: "£3,500",
     rating: 5,
     review: "An excellent resource for advice about studying abroad. I learned about a wide range of programs. All along the application procedure, the team was helpful and courteous. Moreover, I was offered assistance at every step to reach my goal. The perfect choice that can help students attain their dreams.",
-    profileImage: "/api/placeholder/60/60"
+    profileImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face&auto=format"
   },
   {
     id: 5,
@@ -68,7 +68,7 @@ const reviews: Review[] = [
     scholarship: "CAD 2,800",
     rating: 5,
     review: "Dunya Consultants is one of the outstanding consultancies that I would recommend to anyone. Outstandingly advised! From the beginning, they were incredibly supportive and attentively and meticulously observed each stage. Everyone was polite and dedicated to offering excellent service. I am grateful to the consultants for being so helpful and always accessible for all of my queries.",
-    profileImage: "/api/placeholder/60/60"
+    profileImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face&auto=format"
   }
 ];
 
@@ -193,37 +193,66 @@ export default function GoogleReviewsSection() {
 
         {/* All Reviewers Thumbnails */}
         <motion.div
-          className="flex justify-center items-center mt-12 gap-4"
+          className="mt-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          {reviews.map((review, index) => (
-            <motion.div
-              key={review.id}
-              className={`relative cursor-pointer transition-all duration-300 ${
-                index === currentIndex ? 'scale-110' : 'scale-100 opacity-60'
-              }`}
-              onClick={() => setCurrentIndex(index)}
-              whileHover={{ scale: 1.1 }}
-            >
-              <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-lg">
-                <img 
-                  src={review.profileImage}
-                  alt={review.name}
-                  className="w-full h-full object-cover bg-gray-200"
-                />
-              </div>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-center">
-                <p className="text-xs font-semibold text-gray-900 bg-white px-2 py-1 rounded shadow">
-                  {review.name.split(' ')[0]}
-                </p>
-                <p className="text-xs text-gray-600 bg-white px-1 rounded shadow mt-1">
-                  {review.course.split(' ').slice(0, 2).join(' ')}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+          <div className="flex justify-center items-end gap-6 mb-8">
+            {reviews.map((review, index) => (
+              <motion.div
+                key={review.id}
+                className={`relative cursor-pointer transition-all duration-300 ${
+                  index === currentIndex ? 'scale-110' : 'scale-100 opacity-70'
+                }`}
+                onClick={() => setCurrentIndex(index)}
+                whileHover={{ scale: 1.15 }}
+              >
+                <div className={`relative ${
+                  index === currentIndex ? 'ring-4 ring-blue-500 ring-offset-2' : ''
+                } rounded-full overflow-hidden shadow-xl`}>
+                  <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white">
+                    <img 
+                      src={review.profileImage}
+                      alt={review.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {index === currentIndex && (
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="mt-3 text-center">
+                  <p className={`text-sm font-bold ${
+                    index === currentIndex ? 'text-blue-600' : 'text-gray-800'
+                  }`}>
+                    {review.name.split(' ')[0]}
+                  </p>
+                  <p className="text-xs text-gray-600 mt-1">
+                    {review.course.split(' ').slice(0, 2).join(' ')}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Navigation dots */}
+          <div className="flex justify-center gap-2">
+            {reviews.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex 
+                    ? 'bg-blue-500 scale-125' 
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+              />
+            ))}
+          </div>
         </motion.div>
 
         {/* View All Reviews Button */}
