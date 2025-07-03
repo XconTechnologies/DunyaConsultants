@@ -107,6 +107,30 @@ const getEventTypeColor = (type: string) => {
   return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800 border-gray-200';
 };
 
+const getEventImage = (type: string, index: number) => {
+  const images = {
+    'Fair': [
+      'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=300&fit=crop&crop=center'
+    ],
+    'Webinar': [
+      'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=400&h=300&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=400&h=300&fit=crop&crop=center'
+    ],
+    'Workshop': [
+      'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=300&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=300&fit=crop&crop=center'
+    ],
+    'Info Session': [
+      'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop&crop=center',
+      'https://images.unsplash.com/photo-1515169067868-5387ec5d9c2e?w=400&h=300&fit=crop&crop=center'
+    ]
+  };
+  
+  const typeImages = images[type as keyof typeof images] || images['Fair'];
+  return typeImages[index % typeImages.length];
+};
+
 export default function EventsSection() {
   const [activeFilter, setActiveFilter] = useState('all');
   const ref = useRef(null);
@@ -155,9 +179,13 @@ export default function EventsSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="relative h-96 rounded-3xl overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-black/30" />
+          <div className="relative h-96 rounded-3xl overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop&crop=center"
+              alt="UK University Fair"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 via-purple-600/80 to-indigo-700/80" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
             
             {/* Content */}
@@ -188,15 +216,15 @@ export default function EventsSection() {
               
               <div className="flex gap-4">
                 <motion.button
-                  className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition-colors"
-                  whileHover={{ scale: 1.05 }}
+                  className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 hover:shadow-lg transition-all duration-300 whitespace-nowrap"
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Register Free
                 </motion.button>
                 <motion.button
-                  className="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-600 transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
+                  className="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-600 hover:shadow-lg transition-all duration-300 whitespace-nowrap"
+                  whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Learn More
@@ -247,8 +275,13 @@ export default function EventsSection() {
             >
               <div className="flex flex-col lg:flex-row">
                 {/* Event Image */}
-                <div className="lg:w-80 h-64 lg:h-auto bg-gradient-to-br from-blue-400 to-purple-500 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20" />
+                <div className="lg:w-80 h-64 lg:h-auto relative overflow-hidden">
+                  <img 
+                    src={getEventImage(event.type, index)}
+                    alt={event.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-purple-600/80" />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 bg-white/90 text-blue-600 rounded-full text-sm font-medium">
                       {event.type}
@@ -272,9 +305,10 @@ export default function EventsSection() {
                       </p>
                     </div>
                     <motion.button
-                      className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors ml-4"
-                      whileHover={{ scale: 1.05 }}
+                      className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold whitespace-nowrap hover:bg-blue-700 hover:shadow-lg transition-all duration-300 ml-4 flex-shrink-0"
+                      whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
+                      style={{ minWidth: 'fit-content' }}
                     >
                       Register Now
                     </motion.button>
