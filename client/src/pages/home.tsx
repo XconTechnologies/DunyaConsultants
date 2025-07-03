@@ -6,8 +6,6 @@ import CountriesSection from "@/components/countries-section";
 import ConsultationBookingCalendar from "@/components/consultation-booking-calendar";
 import EventsSection from "@/components/events-section";
 
-import TestimonialSection from "@/components/testimonial-section";
-
 import StatsBanner from "@/components/stats-banner";
 import UniversityPartnersSection from "@/components/university-partners-section";
 import BusinessProposalsSection from "@/components/business-proposals-section";
@@ -24,7 +22,6 @@ export default function Home() {
       <ImageCarousel />
       <IeltsSection />
       <CountriesSection />
-      <TestimonialSection />
       <ConsultationBookingCalendar />
       <UniversityPartnersSection />
       <EventsSection />

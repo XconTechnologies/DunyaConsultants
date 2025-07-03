@@ -101,55 +101,34 @@ const carouselImages: CarouselImage[] = [
 export default function ImageCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  const imagesPerSlide = 5;
+  const totalSlides = Math.ceil(carouselImages.length / imagesPerSlide);
 
   // Auto-play functionality
   useEffect(() => {
     if (!isPlaying) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [isPlaying]);
+  }, [isPlaying, totalSlides]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) {
-      nextSlide();
-    } else if (isRightSwipe) {
-      prevSlide();
-    }
+  const getCurrentImages = () => {
+    const startIndex = currentSlide * imagesPerSlide;
+    return carouselImages.slice(startIndex, startIndex + imagesPerSlide);
   };
 
   return (
@@ -176,70 +155,76 @@ export default function ImageCarousel() {
           </p>
         </motion.div>
 
-        {/* Main Carousel */}
+        {/* 5-Image Grid Carousel */}
         <motion.div
-          className="relative rounded-2xl overflow-hidden shadow-2xl bg-white"
+          className="relative"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Image Container */}
-          <div 
-            className="relative h-96 md:h-[500px] lg:h-[600px] overflow-hidden"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            {carouselImages.map((image, index) => (
+          {/* Images Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {getCurrentImages().map((image, index) => (
               <motion.div
                 key={image.id}
-                className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                  index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                }`}
-                initial={{ opacity: 0, scale: 1.1 }}
-                animate={index === currentSlide ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.1 }}
-                transition={{ duration: 0.7 }}
+                className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                whileHover={{ y: -10, scale: 1.05 }}
               >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="w-full h-full object-cover"
-                />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                
-                {/* Caption */}
-                <motion.div
-                  className="absolute bottom-8 left-8 right-8 text-center"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={index === currentSlide ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                >
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                    {image.caption}
-                  </h3>
-                  <div className="w-16 h-1 bg-blue-500 mx-auto rounded-full" />
-                </motion.div>
+                <div className="aspect-[4/3] relative">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Caption on Hover */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 p-3 text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                  >
+                    <h3 className="text-white text-sm font-semibold leading-tight">
+                      {image.caption}
+                    </h3>
+                  </motion.div>
+                </div>
               </motion.div>
             ))}
           </div>
 
           {/* Navigation Controls */}
-          <div className="absolute inset-y-0 left-0 flex items-center">
+          <div className="flex justify-center items-center mt-8 space-x-4">
             <button
               onClick={prevSlide}
-              className="ml-4 p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              className="p-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 hover:scale-110 shadow-lg"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
-          </div>
-          
-          <div className="absolute inset-y-0 right-0 flex items-center">
+            
+            <div className="flex space-x-2">
+              {Array.from({ length: totalSlides }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? 'bg-blue-600 scale-125'
+                      : 'bg-gray-300 hover:bg-gray-400 hover:scale-110'
+                  }`}
+                />
+              ))}
+            </div>
+            
             <button
               onClick={nextSlide}
-              className="mr-4 p-3 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300 hover:scale-110"
+              className="p-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 hover:scale-110 shadow-lg"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
 
@@ -247,58 +232,14 @@ export default function ImageCarousel() {
           <div className="absolute top-4 right-4">
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-all duration-300"
+              className="p-2 rounded-full bg-white/90 backdrop-blur-sm text-blue-600 hover:bg-white transition-all duration-300 shadow-lg"
             >
-              {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
             </button>
           </div>
         </motion.div>
 
-        {/* Dots Navigation */}
-        <motion.div
-          className="flex justify-center mt-8 space-x-2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          {carouselImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide
-                  ? 'bg-blue-600 w-8 shadow-lg'
-                  : 'bg-gray-300 hover:bg-gray-400 hover:scale-110'
-              }`}
-            />
-          ))}
-        </motion.div>
 
-        {/* Thumbnail Strip */}
-        <motion.div
-          className="mt-8 flex justify-center space-x-4 overflow-x-auto pb-4"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          {carouselImages.map((image, index) => (
-            <button
-              key={image.id}
-              onClick={() => goToSlide(index)}
-              className={`flex-shrink-0 w-20 h-16 rounded-lg overflow-hidden transition-all duration-300 ${
-                index === currentSlide 
-                  ? 'ring-4 ring-blue-500 scale-110' 
-                  : 'hover:scale-105 opacity-70 hover:opacity-100'
-              }`}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
-            </button>
-          ))}
-        </motion.div>
       </div>
     </section>
   );
