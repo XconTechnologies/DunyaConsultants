@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Calendar, Clock, MapPin, Users, ArrowRight, ExternalLink } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, ArrowRight, ExternalLink, Tag } from 'lucide-react';
 
 interface Event {
   id: number;
@@ -108,12 +108,19 @@ const getEventTypeColor = (type: string) => {
 };
 
 export default function EventsSection() {
-  const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
+  const [activeFilter, setActiveFilter] = useState('all');
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const filters = [
+    { id: 'all', label: 'All Events', count: 12 },
+    { id: 'fair', label: 'University Fair', count: 4 },
+    { id: 'webinar', label: 'Webinars', count: 5 },
+    { id: 'workshop', label: 'Workshops', count: 3 }
+  ];
+
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-white">
+    <section ref={ref} className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -123,141 +130,221 @@ export default function EventsSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-3xl lg:text-4xl font-bold mb-4"
+            className="text-4xl lg:text-5xl font-bold mb-4 text-white"
+            style={{
+              background: 'linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #6366f1 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}
             whileHover={{ scale: 1.02 }}
           >
-            <span className="text-neutral-800">You Should Also </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-              Know
-            </span>
+            All Events
           </motion.h2>
-          <p className="text-neutral-600 text-lg max-w-3xl mx-auto">
-            Stay updated with our latest events, webinars, and workshops designed to guide you through your study abroad journey
-          </p>
-        </motion.div>
-
-        {/* Tab Navigation */}
-        <motion.div
-          className="flex justify-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="bg-white rounded-full p-2 shadow-lg border">
-            <button
-              onClick={() => setActiveTab('upcoming')}
-              className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
-                activeTab === 'upcoming'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-gray-600 hover:text-blue-600'
-              }`}
-            >
-              Upcoming Events
-            </button>
-            <button
-              onClick={() => setActiveTab('past')}
-              className={`px-8 py-3 rounded-full font-medium transition-all duration-300 ${
-                activeTab === 'past'
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'text-gray-600 hover:text-blue-600'
-              }`}
-            >
-              Past Events
-            </button>
+          <div className="flex items-center justify-center gap-2 text-lg text-gray-600">
+            <span>Home</span>
+            <ArrowRight className="w-4 h-4" />
+            <span className="text-blue-600 font-semibold">All Events</span>
           </div>
         </motion.div>
 
-        {/* Events Grid */}
+        {/* Featured Event Hero Card */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {upcomingEvents.map((event, index) => (
-            <motion.div
-              key={event.id}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
-              whileHover={{ y: -5 }}
-            >
-              {/* Event Image */}
-              <div className="relative h-48 bg-gradient-to-br from-blue-400 to-purple-500 overflow-hidden">
-                <div className="absolute inset-0 bg-black/20" />
-                <div className="absolute top-4 left-4">
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getEventTypeColor(event.type)}`}>
-                    {event.type}
-                  </span>
+          <div className="relative h-96 rounded-3xl overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 bg-black/30" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            
+            {/* Content */}
+            <div className="relative z-10 h-full flex flex-col justify-end p-8 lg:p-12">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="px-4 py-2 bg-blue-500 text-white rounded-full text-sm font-medium">
+                  Upcoming Event
+                </span>
+                <span className="text-white/80 text-sm">25 JAN 2025</span>
+              </div>
+              
+              <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+                Study in UK University Fair 2025
+                <br />
+                Career Guidance Session
+              </h3>
+              
+              <div className="flex items-center gap-6 text-white/90 text-sm mb-6">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  <span>Hotel One Faisalabad, Conference Hall</span>
                 </div>
-                <div className="absolute top-4 right-4">
-                  {event.isOnline && (
-                    <span className="px-3 py-1 bg-green-500 text-white rounded-full text-sm font-medium">
-                      Online
-                    </span>
-                  )}
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  <span>2:00 PM - 6:00 PM</span>
                 </div>
               </div>
+              
+              <div className="flex gap-4">
+                <motion.button
+                  className="bg-white text-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-50 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Register Free
+                </motion.button>
+                <motion.button
+                  className="border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-600 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Learn More
+                </motion.button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
-              {/* Event Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                  {event.title}
-                </h3>
-                
-                <div className="space-y-2 mb-4">
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <Calendar className="w-4 h-4 mr-2 text-blue-500" />
-                    {event.date}
+        {/* Filter Tabs */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-2 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          {filters.map((filter) => (
+            <button
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+                activeFilter === filter.id
+                  ? 'bg-blue-600 text-white shadow-lg'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              }`}
+            >
+              {filter.label}
+              <span className="ml-2 text-sm opacity-75">({filter.count})</span>
+            </button>
+          ))}
+        </motion.div>
+
+        {/* Events List */}
+        <motion.div
+          className="space-y-6"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          {upcomingEvents.slice(0, 4).map((event, index) => (
+            <motion.div
+              key={event.id}
+              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+              initial={{ opacity: 0, x: -20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              transition={{ duration: 0.5, delay: 0.1 * index }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="flex flex-col lg:flex-row">
+                {/* Event Image */}
+                <div className="lg:w-80 h-64 lg:h-auto bg-gradient-to-br from-blue-400 to-purple-500 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-black/20" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-white/90 text-blue-600 rounded-full text-sm font-medium">
+                      {event.type}
+                    </span>
                   </div>
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <Clock className="w-4 h-4 mr-2 text-blue-500" />
-                    {event.time}
-                  </div>
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <MapPin className="w-4 h-4 mr-2 text-blue-500" />
-                    {event.location}
-                  </div>
-                  <div className="flex items-center text-gray-600 text-sm">
-                    <Users className="w-4 h-4 mr-2 text-blue-500" />
-                    {event.attendees} Expected Attendees
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="text-3xl font-bold">25</div>
+                    <div className="text-sm opacity-90">JAN 2025</div>
                   </div>
                 </div>
 
-                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                  {event.description}
-                </p>
+                {/* Event Content */}
+                <div className="flex-1 p-6 lg:p-8">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors cursor-pointer">
+                        {event.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {event.description}
+                      </p>
+                    </div>
+                    <motion.button
+                      className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700 transition-colors ml-4"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Register Now
+                    </motion.button>
+                  </div>
 
-                {/* Register Button */}
-                <motion.button
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2 group"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Register Now
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
+                  <div className="flex flex-wrap items-center gap-6 text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-blue-500" />
+                      <span className="text-sm">{event.time}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 text-blue-500" />
+                      <span className="text-sm">{event.location}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Users className="w-4 h-4 text-blue-500" />
+                      <span className="text-sm">{event.attendees} attending</span>
+                    </div>
+                  </div>
+
+                  {/* Attendee Avatars */}
+                  <div className="flex items-center gap-4 mt-4">
+                    <div className="flex -space-x-2">
+                      {[1, 2, 3, 4].map((i) => (
+                        <div
+                          key={i}
+                          className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 border-2 border-white"
+                        />
+                      ))}
+                      <div className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center">
+                        <span className="text-xs font-medium text-gray-600">+</span>
+                      </div>
+                    </div>
+                    <span className="text-sm text-gray-500">and 120+ others</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* View All Events Button */}
+        {/* Pagination */}
         <motion.div
-          className="text-center mt-12"
+          className="flex justify-center items-center gap-2 mt-12"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <motion.button
-            className="inline-flex items-center gap-3 bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:shadow-xl border-2 border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            View All Events
-            <ExternalLink className="w-5 h-5" />
-          </motion.button>
+          <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+            <ArrowRight className="w-5 h-5 rotate-180" />
+          </button>
+          {[1, 2, 3, 4, 5].map((page) => (
+            <button
+              key={page}
+              className={`w-10 h-10 rounded-lg font-medium transition-colors ${
+                page === 1
+                  ? 'bg-blue-600 text-white'
+                  : 'hover:bg-gray-100 text-gray-700'
+              }`}
+            >
+              {page}
+            </button>
+          ))}
+          <span className="text-gray-400">...</span>
+          <button className="w-10 h-10 rounded-lg font-medium hover:bg-gray-100 text-gray-700">
+            09
+          </button>
+          <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+            <ArrowRight className="w-5 h-5" />
+          </button>
         </motion.div>
       </div>
     </section>
