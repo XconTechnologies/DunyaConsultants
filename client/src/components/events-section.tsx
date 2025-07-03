@@ -291,12 +291,21 @@ export default function EventsSection() {
                           {/* Register Button */}
                           <motion.button
                             onClick={() => {
-                              // Open registration form or redirect to registration page
-                              window.open(`tel:+923041110947`, '_blank');
-                              // Alternative: Open WhatsApp for registration
-                              // window.open(`https://wa.me/923041110947?text=I want to register for ${event.title} on ${event.date}`, '_blank');
+                              // Show registration options
+                              const userChoice = window.confirm(
+                                `Register for "${event.title}" on ${event.date}\n\nClick OK to call now, or Cancel to send WhatsApp message`
+                              );
+                              
+                              if (userChoice) {
+                                // Open phone dialer
+                                window.open(`tel:+923041110947`, '_self');
+                              } else {
+                                // Open WhatsApp with pre-filled message
+                                const message = `Hi! I want to register for "${event.title}" scheduled on ${event.date} at ${event.time}. Please confirm my registration.`;
+                                window.open(`https://wa.me/923041110947?text=${encodeURIComponent(message)}`, '_blank');
+                              }
                             }}
-                            className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-300 cursor-pointer"
+                            className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-300 cursor-pointer active:bg-blue-800"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
