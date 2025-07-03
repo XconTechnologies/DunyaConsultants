@@ -283,7 +283,7 @@ The application uses three main tables:
 - **January 3, 2025 - Image Loading Performance Optimization**: Implemented comprehensive image loading optimization including lazy loading, loading skeleton animations, image preloading for next slide, smooth fade-in transitions, and loading state tracking to significantly improve carousel performance and user experience.
 - **January 3, 2025 - Complete Image Carousel Redesign**: Completely rebuilt image carousel with simple horizontal sliding animation. Features include continuous left-to-right scrolling, 300x200px image cards, 30-second cycle duration, fade overlays on edges, and seamless infinite loop using duplicate image sets for reliable performance.
 - **January 3, 2025 - Consultation Form Title Sizes**: Made consultation form titles smaller for better visual hierarchy. Reduced main "Choose Your Consultation Type" title from text-2xl to text-lg, and consultation type names from font-semibold to font-medium text-sm for more compact, professional appearance.
-- **January 3, 2025 - Image Carousel Section Removal**: Completely removed the image carousel section from home page that was displaying the team photo banner for cleaner page layout.
+- **January 3, 2025 - Image Carousel Section Removal and Restoration**: Temporarily removed and then restored the image carousel section on home page. The carousel now displays horizontal sliding company images without the team photo banner overlay.
 - **January 3, 2025 - Register Now Button Activation**: Made "Register Now" buttons in events section fully functional with click handlers that open direct phone calls to main office number (+92 304 1110947) for event registration.
 
 ## Changelog
