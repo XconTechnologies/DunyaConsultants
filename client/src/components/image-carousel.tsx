@@ -110,10 +110,17 @@ export default function ImageCarousel() {
   // Preload all images
   useEffect(() => {
     carouselImages.forEach(image => {
+      console.log('Loading image:', image.src, 'for ID:', image.id);
       if (!loadedImages.has(image.id)) {
         const img = new Image();
         img.src = image.src;
-        img.onload = () => handleImageLoad(image.id);
+        img.onload = () => {
+          console.log('Image loaded successfully:', image.id);
+          handleImageLoad(image.id);
+        };
+        img.onerror = () => {
+          console.error('Failed to load image:', image.src);
+        };
       }
     });
   }, [loadedImages]);
@@ -155,19 +162,17 @@ export default function ImageCarousel() {
                 whileHover={{ y: -10, scale: 1.05 }}
               >
                 <div className="aspect-[4/3] relative">
-                  {/* Loading skeleton */}
-                  {!loadedImages.has(image.id) && (
-                    <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-2xl" />
-                  )}
+
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className={`w-full h-full object-cover group-hover:scale-110 transition-all duration-500 ${
-                      loadedImages.has(image.id) ? 'opacity-100' : 'opacity-0'
-                    }`}
-                    onLoad={() => handleImageLoad(image.id)}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500"
                     loading="lazy"
                     decoding="async"
+                    onError={(e) => {
+                      console.error('Image failed to load:', image.src);
+                      e.currentTarget.style.display = 'none';
+                    }}
                   />
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
