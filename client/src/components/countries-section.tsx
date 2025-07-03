@@ -584,13 +584,7 @@ export default function CountriesSection() {
                             {country.name}
                           </h2>
                     
-                    {/* University Count */}
-                    <div className="mb-3">
-                      <div className="bg-gray-100/80 backdrop-blur-sm rounded-lg p-2 text-center border">
-                        <GraduationCap className="w-4 h-4 mx-auto mb-1 text-blue-600" />
-                        <div className="text-sm font-bold">{country.topUniversities.length}+ Universities</div>
-                      </div>
-                    </div>
+
 
                     {/* Quick Info */}
                     <div className="space-y-2 mb-3 flex-grow">
@@ -669,13 +663,7 @@ export default function CountriesSection() {
                         {country.name}
                       </h2>
                 
-                {/* University Count */}
-                <div className="mb-3">
-                  <div className="bg-gray-100/80 backdrop-blur-sm rounded-lg p-2 text-center border">
-                    <GraduationCap className="w-4 h-4 mx-auto mb-1 text-blue-600" />
-                    <div className="text-sm font-bold">{country.topUniversities.length}+ Universities</div>
-                  </div>
-                </div>
+
 
                 {/* Quick Info */}
                 <div className="space-y-2 mb-3 flex-grow">
