@@ -509,24 +509,24 @@ export default function CountriesSection() {
             <div className="flex space-x-2">
               <button
                 onClick={() => setActiveTab('popular')}
-                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   activeTab === 'popular'
                     ? 'bg-white text-gray-900 shadow-lg'
                     : 'text-white hover:bg-white/10'
                 }`}
               >
-                <Star className="w-5 h-5 inline mr-2" />
+                <Star className="w-4 h-4 inline mr-1" />
                 Popular Countries
               </button>
               <button
                 onClick={() => setActiveTab('all')}
-                className={`px-8 py-4 rounded-xl font-semibold transition-all duration-300 ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                   activeTab === 'all'
                     ? 'bg-white text-gray-900 shadow-lg'
                     : 'text-white hover:bg-white/10'
                 }`}
               >
-                <Globe className="w-5 h-5 inline mr-2" />
+                <Globe className="w-4 h-4 inline mr-1" />
                 All Destinations
               </button>
             </div>
