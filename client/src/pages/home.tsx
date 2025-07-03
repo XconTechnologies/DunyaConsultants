@@ -26,11 +26,11 @@ export default function Home() {
       <IeltsSection />
       <CountriesSection />
       <CoursesSection />
-      <EventsSection />
       <ReasonsSection />
       <TestimonialSection />
       <ConsultationBookingCalendar />
       <UniversityPartnersSection />
+      <EventsSection />
       <BusinessProposalsSection />
       <FloatingCTA />
       <Footer />
