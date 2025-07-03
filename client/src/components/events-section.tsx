@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Calendar, Clock, MapPin, Users, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, ArrowRight, ChevronLeft, ChevronRight, X, User, Phone, Mail, GraduationCap } from 'lucide-react';
 
 interface Event {
   id: number;
@@ -131,9 +131,31 @@ const getEventImage = (type: string, index: number) => {
   return typeImages[index % typeImages.length];
 };
 
+interface RegistrationFormData {
+  name: string;
+  email: string;
+  phone: string;
+  education: string;
+  experience: string;
+  eventId: number;
+}
+
 export default function EventsSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
+  const [showRegistrationForm, setShowRegistrationForm] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [formData, setFormData] = useState<RegistrationFormData>({
+    name: '',
+    email: '',
+    phone: '',
+    education: '',
+    experience: '',
+    eventId: 0
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -176,6 +198,42 @@ export default function EventsSection() {
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + Math.ceil(filteredEvents.length / 4)) % Math.ceil(filteredEvents.length / 4));
+  };
+
+  const handleRegistration = (event: Event) => {
+    setSelectedEvent(event);
+    setFormData({ ...formData, eventId: event.id });
+    setShowRegistrationForm(true);
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    setIsSubmitting(false);
+    setShowSuccess(true);
+    
+    // Reset form after success
+    setTimeout(() => {
+      setShowRegistrationForm(false);
+      setShowSuccess(false);
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        education: '',
+        experience: '',
+        eventId: 0
+      });
+    }, 2000);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -290,17 +348,7 @@ export default function EventsSection() {
 
                           {/* Register Button */}
                           <motion.button
-                            onClick={() => {
-                              // Direct call for registration
-                              const confirmCall = window.confirm(
-                                `Register for "${event.title}" on ${event.date}\n\nClick OK to call now for registration.`
-                              );
-                              
-                              if (confirmCall) {
-                                // Open phone dialer
-                                window.location.href = `tel:+923041110947`;
-                              }
-                            }}
+                            onClick={() => handleRegistration(event)}
                             className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-300 cursor-pointer active:bg-blue-800"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
@@ -351,6 +399,179 @@ export default function EventsSection() {
           ))}
         </motion.div>
       </div>
+
+      {/* Registration Form Modal */}
+      {showRegistrationForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto"
+          >
+            {/* Modal Header */}
+            <div className="flex justify-between items-center p-6 border-b border-gray-200">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Event Registration</h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  {selectedEvent?.title}
+                </p>
+              </div>
+              <button
+                onClick={() => setShowRegistrationForm(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Success Message */}
+            {showSuccess && (
+              <div className="p-6 text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h4 className="text-xl font-bold text-gray-900 mb-2">Registration Successful!</h4>
+                <p className="text-gray-600">
+                  Thank you for registering. We'll send you event details via email.
+                </p>
+              </div>
+            )}
+
+            {/* Registration Form */}
+            {!showSuccess && (
+              <form onSubmit={handleFormSubmit} className="p-6 space-y-4">
+                {/* Name */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <User className="w-4 h-4 inline mr-2" />
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter your full name"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <Mail className="w-4 h-4 inline mr-2" />
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter your email"
+                  />
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <Phone className="w-4 h-4 inline mr-2" />
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+
+                {/* Education Level */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <GraduationCap className="w-4 h-4 inline mr-2" />
+                    Education Level
+                  </label>
+                  <select
+                    name="education"
+                    value={formData.education}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Select your education level</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="bachelors">Bachelor's Degree</option>
+                    <option value="masters">Master's Degree</option>
+                    <option value="phd">PhD</option>
+                  </select>
+                </div>
+
+                {/* Study Experience */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Study Abroad Experience
+                  </label>
+                  <select
+                    name="experience"
+                    value={formData.experience}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Select your experience</option>
+                    <option value="first-time">First time applicant</option>
+                    <option value="reapplying">Re-applying</option>
+                    <option value="experienced">Have studied abroad before</option>
+                  </select>
+                </div>
+
+                {/* Event Details */}
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h4 className="font-medium text-gray-900 mb-2">Event Details</h4>
+                  <div className="space-y-1 text-sm text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4" />
+                      <span>{selectedEvent?.date}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      <span>{selectedEvent?.time}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4" />
+                      <span>{selectedEvent?.location}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center gap-2">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Registering...
+                    </div>
+                  ) : (
+                    'Register for Event'
+                  )}
+                </button>
+              </form>
+            )}
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }
