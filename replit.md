@@ -284,7 +284,7 @@ The application uses three main tables:
 - **January 3, 2025 - Complete Image Carousel Redesign**: Completely rebuilt image carousel with simple horizontal sliding animation. Features include continuous left-to-right scrolling, 300x200px image cards, 30-second cycle duration, fade overlays on edges, and seamless infinite loop using duplicate image sets for reliable performance.
 - **January 3, 2025 - Consultation Form Title Sizes**: Made consultation form titles smaller for better visual hierarchy. Reduced main "Choose Your Consultation Type" title from text-2xl to text-lg, and consultation type names from font-semibold to font-medium text-sm for more compact, professional appearance.
 - **January 3, 2025 - Image Carousel Section Final Removal**: Permanently removed the image carousel section from home page showing the team photo banner with "DUNYA" text for cleaner page layout and improved loading performance.
-- **January 3, 2025 - Register Now Button Activation**: Made "Register Now" buttons in events section fully functional with enhanced click handlers. Users can choose between direct phone call (+92 304 1110947) or WhatsApp registration with pre-filled event details and professional messaging.
+- **January 3, 2025 - Register Now Button Activation**: Made "Register Now" buttons in events section fully functional with direct phone call registration only. Removed WhatsApp functionality and simplified to direct call (+92 304 1110947) with confirmation dialog showing event details.
 
 ## Changelog
 

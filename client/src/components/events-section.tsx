@@ -291,18 +291,14 @@ export default function EventsSection() {
                           {/* Register Button */}
                           <motion.button
                             onClick={() => {
-                              // Show registration options
-                              const userChoice = window.confirm(
-                                `Register for "${event.title}" on ${event.date}\n\nClick OK to call now, or Cancel to send WhatsApp message`
+                              // Direct call for registration
+                              const confirmCall = window.confirm(
+                                `Register for "${event.title}" on ${event.date}\n\nClick OK to call now for registration.`
                               );
                               
-                              if (userChoice) {
+                              if (confirmCall) {
                                 // Open phone dialer
-                                window.open(`tel:+923041110947`, '_self');
-                              } else {
-                                // Open WhatsApp with pre-filled message
-                                const message = `Hi! I want to register for "${event.title}" scheduled on ${event.date} at ${event.time}. Please confirm my registration.`;
-                                window.open(`https://wa.me/923041110947?text=${encodeURIComponent(message)}`, '_blank');
+                                window.location.href = `tel:+923041110947`;
                               }
                             }}
                             className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-300 cursor-pointer active:bg-blue-800"
