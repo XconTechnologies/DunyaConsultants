@@ -132,28 +132,9 @@ export default function ImageCarousel() {
   };
 
   return (
-    <section ref={ref} className="relative py-16 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(59,130,246,0.1),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(147,51,234,0.1),transparent_50%)]" />
-      </div>
-
+    <section ref={ref} className="relative -mt-20 mb-20 z-20">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Journey</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Discover moments of success, academic excellence, and the journey of thousands of students
-          </p>
-        </motion.div>
+
 
         {/* 5-Image Grid Carousel */}
         <motion.div
@@ -163,11 +144,11 @@ export default function ImageCarousel() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           {/* Images Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {getCurrentImages().map((image, index) => (
               <motion.div
                 key={image.id}
-                className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500"
+                className="group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 bg-white"
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
@@ -197,46 +178,7 @@ export default function ImageCarousel() {
             ))}
           </div>
 
-          {/* Navigation Controls */}
-          <div className="flex justify-center items-center mt-8 space-x-4">
-            <button
-              onClick={prevSlide}
-              className="p-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 hover:scale-110 shadow-lg"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            
-            <div className="flex space-x-2">
-              {Array.from({ length: totalSlides }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? 'bg-blue-600 scale-125'
-                      : 'bg-gray-300 hover:bg-gray-400 hover:scale-110'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <button
-              onClick={nextSlide}
-              className="p-3 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-all duration-300 hover:scale-110 shadow-lg"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
 
-          {/* Play/Pause Button */}
-          <div className="absolute top-4 right-4">
-            <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              className="p-2 rounded-full bg-white/90 backdrop-blur-sm text-blue-600 hover:bg-white transition-all duration-300 shadow-lg"
-            >
-              {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-            </button>
-          </div>
         </motion.div>
 
 
