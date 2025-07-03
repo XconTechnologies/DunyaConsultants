@@ -264,6 +264,8 @@ The application uses three main tables:
 - **January 3, 2025 - Events Section Cleanup**: Removed breadcrumb navigation ("Home > All Events") and UK University Fair hero section from events page. Changed section title to "Events & Workshops" for cleaner, more focused presentation without redundant featured event card.
 - **January 3, 2025 - Events Register Button Repositioning**: Moved "Register Now" button from top-right corner to bottom of each event card. Updated layout to use full-width button at bottom for better visual hierarchy and user experience.
 - **January 3, 2025 - Events Section Repositioned**: Moved "Events & Workshops" section to the bottom of home page, now positioned after University Partners section and before Business Proposals section for better page flow.
+- **January 3, 2025 - Courses & Programs Section Removal**: Removed "Courses & Programs" section from home page to streamline user experience and reduce page length.
+- **January 3, 2025 - 8 Reasons Section Removal**: Removed "8 Reasons that Sets us apart from Other Educational Consultants in Pakistan" section from home page for cleaner, more focused presentation.
 
 ## Changelog
 

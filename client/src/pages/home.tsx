@@ -4,9 +4,6 @@ import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
 import ConsultationBookingCalendar from "@/components/consultation-booking-calendar";
 import EventsSection from "@/components/events-section";
-import CoursesSection from "@/components/courses-section";
-
-import ReasonsSection from "@/components/reasons-section";
 
 import TestimonialSection from "@/components/testimonial-section";
 
@@ -25,8 +22,6 @@ export default function Home() {
       <StatsBanner />
       <IeltsSection />
       <CountriesSection />
-      <CoursesSection />
-      <ReasonsSection />
       <TestimonialSection />
       <ConsultationBookingCalendar />
       <UniversityPartnersSection />
