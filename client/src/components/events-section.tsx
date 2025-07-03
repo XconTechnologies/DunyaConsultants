@@ -136,11 +136,21 @@ export default function EventsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  // Filter events based on active filter
+  const filteredEvents = activeFilter === 'all' 
+    ? upcomingEvents 
+    : upcomingEvents.filter(event => {
+        if (activeFilter === 'fair') return event.type === 'Fair';
+        if (activeFilter === 'webinar') return event.type === 'Webinar';
+        if (activeFilter === 'workshop') return event.type === 'Workshop';
+        return false;
+      });
+
   const filters = [
-    { id: 'all', label: 'All Events', count: 12 },
-    { id: 'fair', label: 'University Fair', count: 4 },
-    { id: 'webinar', label: 'Webinars', count: 5 },
-    { id: 'workshop', label: 'Workshops', count: 3 }
+    { id: 'all', label: 'All Events', count: upcomingEvents.length },
+    { id: 'fair', label: 'University Fair', count: upcomingEvents.filter(e => e.type === 'Fair').length },
+    { id: 'webinar', label: 'Webinars', count: upcomingEvents.filter(e => e.type === 'Webinar').length },
+    { id: 'workshop', label: 'Workshops', count: upcomingEvents.filter(e => e.type === 'Workshop').length }
   ];
 
   return (
@@ -264,7 +274,7 @@ export default function EventsSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          {upcomingEvents.slice(0, 4).map((event, index) => (
+          {filteredEvents.map((event, index) => (
             <motion.div
               key={event.id}
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
