@@ -206,7 +206,13 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="flex gap-2 max-w-6xl mx-auto h-[500px]">
+          <div className="flex gap-2 max-w-6xl mx-auto h-[500px] relative">
+            {/* Top fade overlay */}
+            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
+            
+            {/* Bottom fade overlay */}
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+            
             {columns.map((column, columnIndex) => (
               <div key={columnIndex} className="flex-1 overflow-hidden">
                 <motion.div

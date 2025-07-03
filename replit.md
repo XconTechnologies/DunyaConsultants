@@ -253,6 +253,7 @@ The application uses three main tables:
 - **January 2, 2025 - Events Section with IDP-Style Layout**: Created comprehensive "You Should Also Know" events section inspired by IDP Pakistan with 6 upcoming events including university fairs, IELTS workshops, visa seminars, and online webinars. Features tabbed navigation, event cards with gradients, registration functionality, and detailed event information.
 - **January 2, 2025 - Free Assistance Section**: Built "Worried about Admission? Get Assistance for Free" section inspired by StudyIndia with dual-column layout, contact form, expert guidance features, and trust indicators. Includes red-orange gradient theme with consultation booking functionality.
 - **January 2, 2025 - 8 Reasons Section**: Created "8 Reasons that Sets us apart from Other Educational Consultants in Pakistan" section with animated cards showcasing company advantages including 15+ years experience, 98% visa success rate, 200+ counselors, 24/7 support, 400+ university partners, 17+ offices, free career counseling, and post-arrival support.
+- **January 3, 2025 - University Partners Fade Effects**: Added fade overlay effects to university partners vertical scrolling animation. Logos now smoothly fade in at the top (24px gradient from white) and fade out at the bottom (24px gradient to white) for professional appearance at start and end points of the scrolling animation.
 
 ## Changelog
 
