@@ -144,8 +144,14 @@ export default function EventsSection() {
         if (activeFilter === 'fair') return event.type === 'Fair';
         if (activeFilter === 'webinar') return event.type === 'Webinar';
         if (activeFilter === 'workshop') return event.type === 'Workshop';
+        if (activeFilter === 'info') return event.type === 'Info Session';
         return false;
       });
+
+  // Reset slide when filter changes
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, [activeFilter]);
 
   const filters = [
     { id: 'all', label: 'All Events' },
@@ -156,10 +162,12 @@ export default function EventsSection() {
 
   // Auto-slide carousel
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 4));
-    }, 4000);
-    return () => clearInterval(interval);
+    if (filteredEvents.length > 4) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 4));
+      }, 4000);
+      return () => clearInterval(interval);
+    }
   }, [filteredEvents.length]);
 
   const nextSlide = () => {
