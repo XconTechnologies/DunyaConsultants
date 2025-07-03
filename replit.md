@@ -285,6 +285,7 @@ The application uses three main tables:
 - **January 3, 2025 - Consultation Form Title Sizes**: Made consultation form titles smaller for better visual hierarchy. Reduced main "Choose Your Consultation Type" title from text-2xl to text-lg, and consultation type names from font-semibold to font-medium text-sm for more compact, professional appearance.
 - **January 3, 2025 - Image Carousel Section Final Removal**: Permanently removed the image carousel section from home page showing the team photo banner with "DUNYA" text for cleaner page layout and improved loading performance.
 - **January 3, 2025 - Register Now Button Activation**: Made "Register Now" buttons in events section fully functional with direct phone call registration only. Removed WhatsApp functionality and simplified to direct call (+92 304 1110947) with confirmation dialog showing event details.
+- **January 3, 2025 - Team Photo Removal**: Removed the large team photo image from the business proposals section at the end of the page for cleaner, more focused layout without the banner image.
 
 ## Changelog
 
