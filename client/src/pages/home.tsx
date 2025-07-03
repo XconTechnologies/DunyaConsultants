@@ -7,6 +7,7 @@ import EventsSection from "@/components/events-section";
 import AssistanceSection from "@/components/assistance-section";
 import ReasonsSection from "@/components/reasons-section";
 import GoogleReviewsSection from "@/components/google-reviews-section";
+import TestimonialSection from "@/components/testimonial-section";
 
 import StatsBanner from "@/components/stats-banner";
 import UniversityPartnersSection from "@/components/university-partners-section";
@@ -27,6 +28,7 @@ export default function Home() {
       <AssistanceSection />
       <ReasonsSection />
       <GoogleReviewsSection />
+      <TestimonialSection />
       <ConsultationBookingCalendar />
       <UniversityPartnersSection />
       <BusinessProposalsSection />
