@@ -17,6 +17,10 @@ import UKGuide from "@/pages/country-guides/uk";
 import CanadaGuide from "@/pages/country-guides/canada";
 import AustraliaGuide from "@/pages/country-guides/australia";
 import BusinessCardGenerator from "@/pages/business-card-generator";
+import ContactPage from "@/pages/contact";
+import FAQsPage from "@/pages/faqs";
+import ScholarshipsPage from "@/pages/scholarships";
+import ServicesPage from "@/pages/services";
 import NotFound from "@/pages/not-found";
 import OfficesList from "@/pages/offices/OfficesList";
 import OfficeDetails from "@/pages/offices/OfficeDetails";
@@ -42,6 +46,10 @@ function Router() {
       <Route path="/country-guide/canada" component={CanadaGuide} />
       <Route path="/country-guide/australia" component={AustraliaGuide} />
       <Route path="/business-card-generator" component={BusinessCardGenerator} />
+      <Route path="/contact" component={ContactPage} />
+      <Route path="/faqs" component={FAQsPage} />
+      <Route path="/scholarships" component={ScholarshipsPage} />
+      <Route path="/services" component={ServicesPage} />
       <Route path="/study-abroad-journey" component={StudyAbroadJourney} />
       <Route path="/offices" component={OfficesList} />
       <Route path="/offices/:officeId" component={OfficeDetails} />

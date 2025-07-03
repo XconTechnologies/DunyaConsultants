@@ -1,289 +1,300 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Search, HelpCircle, GraduationCap, CreditCard, Plane, FileText } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
-const faqCategories = [
-  { id: "admission", label: "Admission", icon: GraduationCap, color: "blue" },
-  { id: "visa", label: "Visa", icon: FileText, color: "green" },
-  { id: "finances", label: "Finances", icon: CreditCard, color: "purple" },
-  { id: "travel", label: "Travel", icon: Plane, color: "orange" },
-];
-
-const faqData = [
-  {
-    category: "admission",
-    question: "What are the minimum requirements for admission to international universities?",
-    answer: "The minimum requirements vary by country and university, but generally include: a completed bachelor's degree (for master's programs), English proficiency test scores (IELTS/TOEFL), academic transcripts, statement of purpose, letters of recommendation, and sometimes work experience. We help you understand specific requirements for your chosen universities."
-  },
-  {
-    category: "admission",
-    question: "How long does the university application process take?",
-    answer: "The application process typically takes 3-6 months from start to finish. This includes university research, application preparation, document submission, and waiting for admission decisions. We recommend starting at least 6-8 months before your intended start date."
-  },
-  {
-    category: "admission",
-    question: "Can I apply to multiple universities at the same time?",
-    answer: "Yes, we strongly recommend applying to multiple universities (typically 5-8) to increase your chances of admission. This includes a mix of reach schools, target schools, and safety schools based on your profile."
-  },
-  {
-    category: "visa",
-    question: "How long does the student visa process take?",
-    answer: "Student visa processing times vary by country: UK (3-6 weeks), Canada (4-12 weeks), Australia (4-8 weeks), USA (2-8 weeks). We recommend applying for your visa as soon as you receive your university acceptance letter."
-  },
-  {
-    category: "visa",
-    question: "What documents are required for a student visa application?",
-    answer: "Common documents include: valid passport, university acceptance letter, financial proof, academic transcripts, English proficiency scores, medical examination results, and visa application forms. Specific requirements vary by country and we provide detailed checklists."
-  },
-  {
-    category: "visa",
-    question: "What if my visa application is rejected?",
-    answer: "If your visa is rejected, we analyze the rejection reasons and help you prepare a stronger reapplication. This may involve addressing specific concerns, providing additional documentation, or improving your profile before reapplying."
-  },
-  {
-    category: "finances",
-    question: "How much does it cost to study abroad?",
-    answer: "Costs vary significantly by country and program. Annual expenses typically range from $20,000-$60,000 including tuition and living costs. We provide detailed cost breakdowns and help you explore scholarship opportunities and financial planning options."
-  },
-  {
-    category: "finances",
-    question: "Are scholarships available for international students?",
-    answer: "Yes, many universities and governments offer scholarships for international students. These can be merit-based, need-based, or specific to your field of study. We help identify and apply for relevant scholarship opportunities."
-  },
-  {
-    category: "finances",
-    question: "Can I work while studying abroad?",
-    answer: "Most countries allow international students to work part-time (typically 20 hours per week) during studies and full-time during breaks. Work regulations vary by country and visa type, and we provide detailed information about work rights."
-  },
-  {
-    category: "travel",
-    question: "What should I pack for studying abroad?",
-    answer: "Pack essentials like important documents, medications, seasonal clothing, electronics with adapters, and personal items. We provide comprehensive packing checklists and guidance on what to bring vs. what to buy locally."
-  },
-  {
-    category: "travel",
-    question: "How do I find accommodation abroad?",
-    answer: "Accommodation options include university dormitories, shared apartments, homestays, and private rentals. We assist with accommodation research, applications, and provide guidance on the best options for your budget and preferences."
-  },
-  {
-    category: "travel",
-    question: "What support is available after I arrive at my destination?",
-    answer: "We provide pre-departure orientation, airport pickup assistance (if needed), initial settlement support, and ongoing guidance throughout your studies. Many universities also offer international student support services."
-  },
-];
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+import { GraduationCap, Plane, DollarSign, HelpCircle, Users, Clock } from "lucide-react";
 
 export default function FAQsSection() {
+  const faqCategories = [
+    {
+      id: "admission",
+      title: "Admission Process",
+      icon: GraduationCap,
+      color: "from-blue-500 to-blue-600",
+      faqs: [
+        {
+          question: "What documents do I need for university applications?",
+          answer: "You'll need academic transcripts, degree certificates, English proficiency test scores (IELTS/TOEFL), passport, statement of purpose, letters of recommendation, CV/resume, and financial statements. Specific requirements vary by university and program."
+        },
+        {
+          question: "How many universities should I apply to?",
+          answer: "We recommend applying to 6-8 universities - 2 safe choices, 3-4 moderate choices, and 1-2 reach universities. This gives you the best chance of receiving multiple offers while managing application costs and effort."
+        },
+        {
+          question: "When should I start my university applications?",
+          answer: "Start 12-18 months before your intended study date. This allows time for English tests, document preparation, applications, visa processing, and pre-departure arrangements. Early applications often have better scholarship opportunities."
+        },
+        {
+          question: "Can I apply without IELTS or TOEFL scores?",
+          answer: "Some universities accept conditional offers pending English test results, while others require scores upfront. We can identify universities that match your timeline and help you plan your English testing strategy."
+        },
+        {
+          question: "What is a statement of purpose and how important is it?",
+          answer: "The SOP is your personal essay explaining your academic goals, career plans, and why you want to study at that specific university. It's crucial for admission decisions and can significantly impact scholarship eligibility."
+        },
+        {
+          question: "How do I choose the right university and program?",
+          answer: "Consider factors like program ranking, university reputation, location, cost, campus facilities, job placement rates, and visa policies. Our counselors provide personalized guidance based on your academic background and career goals."
+        }
+      ]
+    },
+    {
+      id: "visa",
+      title: "Visa Process",
+      icon: Plane,
+      color: "from-green-500 to-green-600",
+      faqs: [
+        {
+          question: "How long does the visa process take?",
+          answer: "Processing times vary by country: UK (3-6 weeks), Canada (4-8 weeks), Australia (4-6 weeks), USA (2-8 weeks), Germany (6-12 weeks). We recommend applying as soon as you receive your university offer letter."
+        },
+        {
+          question: "What financial documents are required for visa applications?",
+          answer: "You'll need bank statements (6 months), education loan approval letter, property documents, income tax returns, salary certificates, and sponsor's financial documents if applicable. The amount required varies by country and duration of study."
+        },
+        {
+          question: "Can I work while studying on a student visa?",
+          answer: "Yes, most countries allow part-time work: UK (20 hrs/week), Canada (20 hrs/week during studies, full-time during breaks), Australia (48 hrs/fortnight), USA (20 hrs/week on-campus), Germany (120 full days or 240 half days per year)."
+        },
+        {
+          question: "What happens if my visa application is rejected?",
+          answer: "We analyze the rejection reasons and help you address the issues for reapplication. Common reasons include insufficient funds, poor academic records, or incomplete documentation. Most rejections can be overcome with proper guidance."
+        },
+        {
+          question: "Do I need health insurance for my visa application?",
+          answer: "Health insurance requirements vary by country. Australia requires OSHC, Germany requires health insurance proof, while UK, Canada, and USA have different requirements. We help arrange appropriate coverage as part of our services."
+        },
+        {
+          question: "Can my family accompany me on a student visa?",
+          answer: "Dependent visa policies vary: Canada and Australia allow spouses and children for Masters/PhD students, UK allows dependents for programs longer than 9 months, USA allows dependents on F-2 visas, Germany has family reunion options."
+        }
+      ]
+    },
+    {
+      id: "finances",
+      title: "Finances & Scholarships",
+      icon: DollarSign,
+      color: "from-purple-500 to-purple-600",
+      faqs: [
+        {
+          question: "How much does it cost to study abroad?",
+          answer: "Total costs vary significantly: UK (£15,000-40,000/year), Canada (CAD 20,000-35,000/year), Australia (AUD 25,000-45,000/year), USA ($25,000-60,000/year), Germany (€200-3,000/year tuition + €8,000-12,000 living costs)."
+        },
+        {
+          question: "What scholarship opportunities are available?",
+          answer: "We help you access merit-based scholarships, need-based grants, government scholarships (like Chevening, Fulbright), university-specific awards, and external funding opportunities. Scholarships can cover 20-100% of expenses."
+        },
+        {
+          question: "Can I get an education loan to study abroad?",
+          answer: "Yes, major banks offer education loans up to ₹1.5 crore for overseas studies. We assist with loan applications, documentation, and connecting you with the best lenders offering competitive interest rates and terms."
+        },
+        {
+          question: "How much money should I show for visa applications?",
+          answer: "Financial requirements vary: UK (₹15-20 lakhs), Canada (₹12-18 lakhs), Australia (₹18-25 lakhs), USA (₹20-35 lakhs), Germany (₹8-10 lakhs). These amounts should be maintained for 6 months before application."
+        },
+        {
+          question: "Are there any hidden costs I should know about?",
+          answer: "Consider additional expenses like application fees, English test fees, visa fees, health insurance, flight tickets, accommodation deposits, initial living expenses, and emergency funds. We provide detailed cost breakdowns for each destination."
+        },
+        {
+          question: "When do I need to pay university fees?",
+          answer: "Universities typically require a deposit (₹50,000-2,00,000) to confirm your place after receiving an offer. Full fees are usually due before semester commencement or can be paid in installments as per university policy."
+        }
+      ]
+    },
+    {
+      id: "general",
+      title: "General Questions",
+      icon: HelpCircle,
+      color: "from-orange-500 to-orange-600",
+      faqs: [
+        {
+          question: "Why should I choose Dunya Consultants?",
+          answer: "With 15+ years of experience, 5,000+ successful placements, 98% visa success rate, and 17+ offices across Pakistan, we provide comprehensive end-to-end services from university selection to post-arrival support."
+        },
+        {
+          question: "Do you provide services after I reach my destination country?",
+          answer: "Yes, we offer post-arrival support including airport pickup assistance, accommodation guidance, SIM card and bank account setup help, orientation sessions, and ongoing support throughout your studies."
+        },
+        {
+          question: "How do you help with university selection?",
+          answer: "Our expert counselors assess your academic background, career goals, budget, and preferences to shortlist suitable universities and programs. We consider factors like ranking, location, job prospects, and scholarship availability."
+        },
+        {
+          question: "What is your success rate for admissions and visas?",
+          answer: "We maintain a 95% admission success rate and 98% visa approval rate. Our experienced team's deep knowledge of requirements and strong university partnerships contribute to these excellent success rates."
+        },
+        {
+          question: "How much do your services cost?",
+          answer: "Our service fees vary based on the package you choose, ranging from ₹15,000 to ₹50,000. We offer comprehensive packages covering the entire process and individual services for specific needs. Free initial consultation is always provided."
+        },
+        {
+          question: "How long does the entire process take from application to departure?",
+          answer: "The complete process typically takes 8-12 months: 2-3 months for applications, 2-4 months for admission decisions, 1-3 months for visa processing, and 1-2 months for pre-departure preparations."
+        }
+      ]
+    }
+  ];
+
   const [selectedCategory, setSelectedCategory] = useState("admission");
-  const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredFAQs = faqData.filter(faq => 
-    faq.category === selectedCategory &&
-    (faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-     faq.answer.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-
-  const toggleFAQ = (index: number) => {
-    setExpandedFAQ(expandedFAQ === index ? null : index);
-  };
-
-  const getCategoryColor = (color: string) => {
-    const colors = {
-      blue: "from-blue-500 to-blue-600",
-      green: "from-green-500 to-green-600",
-      purple: "from-purple-500 to-purple-600",
-      orange: "from-orange-500 to-orange-600",
-    };
-    return colors[color as keyof typeof colors] || colors.blue;
-  };
+  const currentCategory = faqCategories.find(cat => cat.id === selectedCategory) || faqCategories[0];
 
   return (
-    <div className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Frequently Asked{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Questions
-            </span>
+          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Frequently Asked Questions
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Find answers to common questions about studying abroad, admissions, visas, and more
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Get answers to the most common questions about studying abroad and our services
           </p>
         </motion.div>
 
-        {/* Search Bar */}
+        {/* Category Statistics */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="max-w-2xl mx-auto mb-12"
-        >
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <Input
-              type="text"
-              placeholder="Search FAQs..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-12 py-4 text-lg rounded-full border-0 shadow-lg"
-            />
-          </div>
-        </motion.div>
-
-        {/* Category Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center mb-12"
+          className="grid md:grid-cols-4 gap-6 mb-12"
         >
-          <div className="flex flex-wrap gap-4 p-2 bg-white rounded-2xl shadow-lg">
-            {faqCategories.map((category) => (
-              <Button
-                key={category.id}
-                onClick={() => {
-                  setSelectedCategory(category.id);
-                  setExpandedFAQ(null);
-                  setSearchTerm("");
-                }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
-                  selectedCategory === category.id
-                    ? `bg-gradient-to-r ${getCategoryColor(category.color)} text-white shadow-lg`
-                    : "bg-transparent text-gray-600 hover:bg-gray-100"
-                }`}
-              >
-                <category.icon className="w-5 h-5" />
-                {category.label}
-              </Button>
-            ))}
-          </div>
+          <Card className="text-center shadow-lg border-l-4 border-blue-500">
+            <CardContent className="p-6">
+              <Users className="h-10 w-10 text-blue-600 mx-auto mb-3" />
+              <h3 className="text-2xl font-bold text-gray-900">50+</h3>
+              <p className="text-gray-600">Questions Answered</p>
+            </CardContent>
+          </Card>
+          <Card className="text-center shadow-lg border-l-4 border-green-500">
+            <CardContent className="p-6">
+              <Clock className="h-10 w-10 text-green-600 mx-auto mb-3" />
+              <h3 className="text-2xl font-bold text-gray-900">24/7</h3>
+              <p className="text-gray-600">Support Available</p>
+            </CardContent>
+          </Card>
+          <Card className="text-center shadow-lg border-l-4 border-purple-500">
+            <CardContent className="p-6">
+              <GraduationCap className="h-10 w-10 text-purple-600 mx-auto mb-3" />
+              <h3 className="text-2xl font-bold text-gray-900">98%</h3>
+              <p className="text-gray-600">Success Rate</p>
+            </CardContent>
+          </Card>
+          <Card className="text-center shadow-lg border-l-4 border-orange-500">
+            <CardContent className="p-6">
+              <HelpCircle className="h-10 w-10 text-orange-600 mx-auto mb-3" />
+              <h3 className="text-2xl font-bold text-gray-900">15+</h3>
+              <p className="text-gray-600">Years Experience</p>
+            </CardContent>
+          </Card>
         </motion.div>
 
-        {/* FAQ List */}
-        <div className="max-w-4xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={selectedCategory}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="space-y-6"
-            >
-              {filteredFAQs.length > 0 ? (
-                filteredFAQs.map((faq, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                  >
-                    <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <CardContent className="p-0">
-                        <button
-                          onClick={() => toggleFAQ(index)}
-                          className="w-full text-left p-6 flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
-                        >
-                          <h3 className="text-lg font-semibold text-gray-900 pr-4">
-                            {faq.question}
-                          </h3>
-                          <motion.div
-                            animate={{ rotate: expandedFAQ === index ? 180 : 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="flex-shrink-0"
-                          >
-                            <ChevronDown className="w-6 h-6 text-gray-500" />
-                          </motion.div>
-                        </button>
-                        <AnimatePresence>
-                          {expandedFAQ === index && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="px-6 pb-6 pt-0">
-                                <div className="h-px bg-gray-200 mb-4" />
-                                <p className="text-gray-700 leading-relaxed">
-                                  {faq.answer}
-                                </p>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-center py-12"
-                >
-                  <HelpCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                  <p className="text-xl text-gray-500">
-                    No FAQs found matching your search.
-                  </p>
-                  <Button
-                    onClick={() => setSearchTerm("")}
-                    variant="outline"
-                    className="mt-4"
-                  >
-                    Clear Search
-                  </Button>
-                </motion.div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Contact Support */}
+        {/* FAQ Categories */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-16"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="max-w-6xl mx-auto"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 lg:p-12 text-white">
-            <HelpCircle className="w-16 h-16 mx-auto mb-6 text-blue-100" />
-            <h3 className="text-3xl font-bold mb-4">Still Have Questions?</h3>
-            <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
-              Our expert counselors are here to help you with any questions about studying abroad.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                size="lg"
-                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-full font-semibold"
-              >
-                Ask a Question
-              </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-full font-semibold"
-              >
-                Live Chat Support
-              </Button>
-            </div>
-          </div>
+          <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
+            <TabsList className="grid grid-cols-4 mb-8 bg-gray-100 p-1 rounded-xl">
+              {faqCategories.map((category) => (
+                <TabsTrigger
+                  key={category.id}
+                  value={category.id}
+                  className="flex items-center space-x-2 rounded-lg py-3 px-4"
+                >
+                  <category.icon className="h-5 w-5" />
+                  <span className="hidden sm:inline">{category.title}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            {faqCategories.map((category) => (
+              <TabsContent key={category.id} value={category.id}>
+                <Card className="shadow-xl border-0 overflow-hidden">
+                  <CardHeader className={`bg-gradient-to-r ${category.color} text-white p-8`}>
+                    <div className="flex items-center space-x-4">
+                      <div className="p-3 bg-white/20 rounded-full">
+                        <category.icon className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <CardTitle className="text-3xl mb-2">{category.title}</CardTitle>
+                        <Badge variant="secondary" className="bg-white/20 text-white">
+                          {category.faqs.length} Questions
+                        </Badge>
+                      </div>
+                    </div>
+                  </CardHeader>
+
+                  <CardContent className="p-8">
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                      {category.faqs.map((faq, index) => (
+                        <AccordionItem
+                          key={index}
+                          value={`item-${index}`}
+                          className="border border-gray-200 rounded-lg px-6 py-2"
+                        >
+                          <AccordionTrigger className="text-left hover:no-underline">
+                            <span className="font-semibold text-gray-900 pr-4">
+                              {faq.question}
+                            </span>
+                          </AccordionTrigger>
+                          <AccordionContent className="pt-4 pb-2">
+                            <p className="text-gray-700 leading-relaxed">
+                              {faq.answer}
+                            </p>
+                          </AccordionContent>
+                        </AccordionItem>
+                      ))}
+                    </Accordion>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            ))}
+          </Tabs>
+        </motion.div>
+
+        {/* Contact CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center mt-12"
+        >
+          <Card className="max-w-2xl mx-auto shadow-lg">
+            <CardContent className="p-8">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+                Still Have Questions?
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Our expert counselors are here to help you with personalized guidance for your study abroad journey.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="tel:+923041110947"
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all"
+                >
+                  Call Us: +92 304 1110947
+                </a>
+                <a
+                  href="mailto:info@dunyaconsultants.com"
+                  className="border border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all"
+                >
+                  Email Us
+                </a>
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 }
