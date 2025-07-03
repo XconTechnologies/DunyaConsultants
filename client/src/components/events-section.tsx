@@ -157,17 +157,17 @@ export default function EventsSection() {
   // Auto-slide carousel
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 2));
+      setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 4));
     }, 4000);
     return () => clearInterval(interval);
   }, [filteredEvents.length]);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 2));
+    setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 4));
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + Math.ceil(filteredEvents.length / 2)) % Math.ceil(filteredEvents.length / 2));
+    setCurrentSlide((prev) => (prev - 1 + Math.ceil(filteredEvents.length / 4)) % Math.ceil(filteredEvents.length / 4));
   };
 
   return (
@@ -228,17 +228,17 @@ export default function EventsSection() {
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${currentSlide * 100}%)` }}
             >
-              {Array.from({ length: Math.ceil(filteredEvents.length / 2) }).map((_, slideIndex) => (
+              {Array.from({ length: Math.ceil(filteredEvents.length / 4) }).map((_, slideIndex) => (
                 <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {filteredEvents.slice(slideIndex * 2, slideIndex * 2 + 2).map((event, index) => (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {filteredEvents.slice(slideIndex * 4, slideIndex * 4 + 4).map((event, index) => (
                       <motion.div
                         key={event.id}
                         className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
                         whileHover={{ scale: 1.02 }}
                       >
                         {/* Event Image */}
-                        <div className="h-48 relative overflow-hidden">
+                        <div className="h-32 relative overflow-hidden">
                           <img 
                             src={getEventImage(event.type, index)}
                             alt={event.title}
@@ -257,7 +257,7 @@ export default function EventsSection() {
                         </div>
 
                         {/* Event Content */}
-                        <div className="p-6">
+                        <div className="p-4">
                           <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
                             {event.title}
                           </h3>
