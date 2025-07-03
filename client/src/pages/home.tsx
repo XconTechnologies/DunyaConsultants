@@ -1,6 +1,5 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import ImageCarousel from "@/components/image-carousel";
 import IeltsSection from "@/components/ielts-section";
 import CountriesSection from "@/components/countries-section";
 import ConsultationBookingCalendar from "@/components/consultation-booking-calendar";
@@ -19,7 +18,6 @@ export default function Home() {
       <ScrollProgress />
       <Navigation />
       <StatsBanner />
-      <ImageCarousel />
       <IeltsSection />
       <CountriesSection />
       <ConsultationBookingCalendar />

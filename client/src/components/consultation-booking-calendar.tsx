@@ -273,7 +273,7 @@ export default function ConsultationBookingCalendar() {
             {/* Step 1: Consultation Type */}
             {currentStep === 1 && (
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Choose Your Consultation Type</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-6">Choose Your Consultation Type</h3>
                 <p className="text-gray-600 mb-8">Select the type of consultation that best fits your needs</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -292,7 +292,7 @@ export default function ConsultationBookingCalendar() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <div className="font-semibold text-gray-900 mb-2">{type.name}</div>
+                      <div className="font-medium text-sm text-gray-900 mb-2">{type.name}</div>
                       <div className="text-sm text-gray-600">{type.duration} • {type.price}</div>
                     </motion.button>
                   ))}

@@ -290,7 +290,13 @@ export default function EventsSection() {
 
                           {/* Register Button */}
                           <motion.button
-                            className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-300"
+                            onClick={() => {
+                              // Open registration form or redirect to registration page
+                              window.open(`tel:+923041110947`, '_blank');
+                              // Alternative: Open WhatsApp for registration
+                              // window.open(`https://wa.me/923041110947?text=I want to register for ${event.title} on ${event.date}`, '_blank');
+                            }}
+                            className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-300 cursor-pointer"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
