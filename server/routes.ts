@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertUserEngagementSchema } from "@shared/schema";
+import { insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -91,6 +91,72 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(newAchievements);
     } catch (error: any) {
       res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Eligibility check submission
+  app.post("/api/eligibility-check", async (req, res) => {
+    try {
+      const eligibilityData = insertEligibilityCheckSchema.parse(req.body);
+      const eligibilityCheck = await storage.createEligibilityCheck(eligibilityData);
+      res.json({ success: true, eligibilityCheck });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ 
+          success: false, 
+          message: "Invalid form data", 
+          errors: error.errors 
+        });
+      } else {
+        res.status(500).json({ 
+          success: false, 
+          message: "Failed to submit eligibility check" 
+        });
+      }
+    }
+  });
+
+  // Consultation booking
+  app.post("/api/consultations", async (req, res) => {
+    try {
+      const consultationData = insertConsultationSchema.parse(req.body);
+      const consultation = await storage.createConsultation(consultationData);
+      res.json({ success: true, consultation });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ 
+          success: false, 
+          message: "Invalid form data", 
+          errors: error.errors 
+        });
+      } else {
+        res.status(500).json({ 
+          success: false, 
+          message: "Failed to book consultation" 
+        });
+      }
+    }
+  });
+
+  // Contact form (updated route to match frontend)
+  app.post("/api/contacts", async (req, res) => {
+    try {
+      const contactData = insertContactSchema.parse(req.body);
+      const contact = await storage.createContact(contactData);
+      res.json({ success: true, contact });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ 
+          success: false, 
+          message: "Invalid form data", 
+          errors: error.errors 
+        });
+      } else {
+        res.status(500).json({ 
+          success: false, 
+          message: "Failed to submit contact form" 
+        });
+      }
     }
   });
 

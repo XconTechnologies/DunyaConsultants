@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, json } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -72,6 +72,49 @@ export const userStats = pgTable("user_stats", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const eligibilityChecks = pgTable("eligibility_checks", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone"),
+  educationLevel: text("education_level").notNull(),
+  fieldOfStudy: text("field_of_study").notNull(),
+  preferredCountry: text("preferred_country").notNull(),
+  englishProficiency: text("english_proficiency").notNull(),
+  budget: text("budget").notNull(),
+  workExperience: text("work_experience"),
+  result: json("result"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const consultations = pgTable("consultations", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  dateOfBirth: text("date_of_birth"),
+  educationLevel: text("education_level").notNull(),
+  fieldOfStudy: text("field_of_study").notNull(),
+  preferredCountry: text("preferred_country").notNull(),
+  preferredIntake: text("preferred_intake"),
+  budget: text("budget"),
+  englishTest: text("english_test"),
+  workExperience: text("work_experience"),
+  additionalInfo: text("additional_info"),
+  documents: text("documents").array(),
+  status: text("status").default("pending"),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+export const faqs = pgTable("faqs", {
+  id: serial("id").primaryKey(),
+  category: text("category").notNull(),
+  question: text("question").notNull(),
+  answer: text("answer").notNull(),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -103,6 +146,21 @@ export const insertUserStatsSchema = createInsertSchema(userStats).omit({
   lastActiveAt: true,
 });
 
+export const insertEligibilityCheckSchema = createInsertSchema(eligibilityChecks).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertConsultationSchema = createInsertSchema(consultations).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertFaqSchema = createInsertSchema(faqs).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
@@ -115,3 +173,9 @@ export type InsertAchievement = z.infer<typeof insertAchievementSchema>;
 export type Achievement = typeof achievements.$inferSelect;
 export type InsertUserStats = z.infer<typeof insertUserStatsSchema>;
 export type UserStats = typeof userStats.$inferSelect;
+export type InsertEligibilityCheck = z.infer<typeof insertEligibilityCheckSchema>;
+export type EligibilityCheck = typeof eligibilityChecks.$inferSelect;
+export type InsertConsultation = z.infer<typeof insertConsultationSchema>;
+export type Consultation = typeof consultations.$inferSelect;
+export type InsertFaq = z.infer<typeof insertFaqSchema>;
+export type Faq = typeof faqs.$inferSelect;

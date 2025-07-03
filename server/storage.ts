@@ -1,8 +1,9 @@
 import { 
-  contacts, testimonials, users, userEngagement, achievements, userStats,
+  contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
-  type Achievement, type InsertAchievement, type UserStats, type InsertUserStats
+  type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
+  type EligibilityCheck, type InsertEligibilityCheck, type Consultation, type InsertConsultation
 } from "@shared/schema";
 
 export interface IStorage {
@@ -12,6 +13,8 @@ export interface IStorage {
   createContact(contact: InsertContact): Promise<Contact>;
   getTestimonials(): Promise<Testimonial[]>;
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
+  createEligibilityCheck(eligibilityCheck: InsertEligibilityCheck): Promise<EligibilityCheck>;
+  createConsultation(consultation: InsertConsultation): Promise<Consultation>;
   // Engagement tracking
   trackEngagement(engagement: InsertUserEngagement): Promise<UserEngagement>;
   getUserStats(sessionId: string): Promise<UserStats | undefined>;
@@ -25,12 +28,16 @@ export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private contacts: Map<number, Contact>;
   private testimonials: Map<number, Testimonial>;
+  private eligibilityChecks: Map<number, EligibilityCheck>;
+  private consultations: Map<number, Consultation>;
   private userEngagements: Map<number, UserEngagement>;
   private userAchievements: Map<number, Achievement>;
   private userStatsMap: Map<string, UserStats>;
   private currentUserId: number;
   private currentContactId: number;
   private currentTestimonialId: number;
+  private currentEligibilityCheckId: number;
+  private currentConsultationId: number;
   private currentEngagementId: number;
   private currentAchievementId: number;
 
@@ -38,12 +45,16 @@ export class MemStorage implements IStorage {
     this.users = new Map();
     this.contacts = new Map();
     this.testimonials = new Map();
+    this.eligibilityChecks = new Map();
+    this.consultations = new Map();
     this.userEngagements = new Map();
     this.userAchievements = new Map();
     this.userStatsMap = new Map();
     this.currentUserId = 1;
     this.currentContactId = 1;
     this.currentTestimonialId = 1;
+    this.currentEligibilityCheckId = 1;
+    this.currentConsultationId = 1;
     this.currentEngagementId = 1;
     this.currentAchievementId = 1;
     
@@ -132,6 +143,28 @@ export class MemStorage implements IStorage {
     };
     this.testimonials.set(id, testimonial);
     return testimonial;
+  }
+
+  async createEligibilityCheck(insertEligibilityCheck: InsertEligibilityCheck): Promise<EligibilityCheck> {
+    const id = this.currentEligibilityCheckId++;
+    const eligibilityCheck: EligibilityCheck = {
+      ...insertEligibilityCheck,
+      id,
+      createdAt: new Date(),
+    };
+    this.eligibilityChecks.set(id, eligibilityCheck);
+    return eligibilityCheck;
+  }
+
+  async createConsultation(insertConsultation: InsertConsultation): Promise<Consultation> {
+    const id = this.currentConsultationId++;
+    const consultation: Consultation = {
+      ...insertConsultation,
+      id,
+      createdAt: new Date(),
+    };
+    this.consultations.set(id, consultation);
+    return consultation;
   }
 
   async trackEngagement(insertEngagement: InsertUserEngagement): Promise<UserEngagement> {
