@@ -542,90 +542,177 @@ export default function CountriesSection() {
               onMouseLeave={handleMouseLeave}
             >
               <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6"
+                className="space-y-6"
                 initial={{ opacity: 0 }}
                 animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 1, delay: 0.5 }}
               >
-                {getCurrentCountries().map((country, index) => (
-                  <motion.div
-                    key={country.id}
-                    className="group relative"
-                    initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                    animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
-                    transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
-                    whileHover={{ y: -10, scale: 1.02 }}
-                  >
-                    <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
-                      {/* Background Image */}
-                      <div 
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ 
-                          backgroundImage: `url(${getCountryImage(country.name)})`,
-                        }}
-                      >
-                        {/* Color Overlay */}
-                        <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-90`}></div>
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="relative z-10 p-4 h-full flex flex-col text-gray-900">
-                        {/* Header */}
-                        <div className="flex items-center justify-end mb-2">
-                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <Plane className="w-4 h-4 text-gray-700" />
-                          </div>
+                {/* First row - 4 countries */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {getCurrentCountries().slice(0, 4).map((country, index) => (
+                    <motion.div
+                      key={country.id}
+                      className="group relative"
+                      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+                      transition={{ duration: 0.8, delay: 0.6 + index * 0.1 }}
+                      whileHover={{ y: -10, scale: 1.02 }}
+                    >
+                      <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                        {/* Background Image */}
+                        <div 
+                          className="absolute inset-0 bg-cover bg-center"
+                          style={{ 
+                            backgroundImage: `url(${getCountryImage(country.name)})`,
+                          }}
+                        >
+                          {/* Color Overlay */}
+                          <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-90`}></div>
                         </div>
+                        
+                        {/* Content */}
+                        <div className="relative z-10 p-4 h-full flex flex-col text-gray-900">
+                          {/* Header */}
+                          <div className="flex items-center justify-end mb-2">
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <Plane className="w-4 h-4 text-gray-700" />
+                            </div>
+                          </div>
 
-                        {/* Country Name */}
-                        <h2 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                          {country.name}
-                        </h2>
-                  
-                  {/* University Count */}
-                  <div className="mb-3">
-                    <div className="bg-gray-100/80 backdrop-blur-sm rounded-lg p-2 text-center border">
-                      <GraduationCap className="w-4 h-4 mx-auto mb-1 text-blue-600" />
-                      <div className="text-sm font-bold">{country.topUniversities.length}+ Universities</div>
+                          {/* Country Name */}
+                          <h2 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                            {country.name}
+                          </h2>
+                    
+                    {/* University Count */}
+                    <div className="mb-3">
+                      <div className="bg-gray-100/80 backdrop-blur-sm rounded-lg p-2 text-center border">
+                        <GraduationCap className="w-4 h-4 mx-auto mb-1 text-blue-600" />
+                        <div className="text-sm font-bold">{country.topUniversities.length}+ Universities</div>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Quick Info */}
-                  <div className="space-y-2 mb-3 flex-grow">
-                    <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
-                      <DollarSign className="w-3 h-3 mr-1.5 text-green-600" />
-                      <span className="truncate font-medium">From {country.averageCost.split(' - ')[0]}</span>
+                    {/* Quick Info */}
+                    <div className="space-y-2 mb-3 flex-grow">
+                      <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
+                        <DollarSign className="w-3 h-3 mr-1.5 text-green-600" />
+                        <span className="truncate font-medium">From {country.averageCost.split(' - ')[0]}</span>
+                      </div>
+                      <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
+                        <Clock className="w-3 h-3 mr-1.5 text-blue-600" />
+                        <span className="truncate">{country.intakeSeason}</span>
+                      </div>
                     </div>
-                    <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
-                      <Clock className="w-3 h-3 mr-1.5 text-blue-600" />
-                      <span className="truncate">{country.intakeSeason}</span>
-                    </div>
-                  </div>
 
-                  {/* Action Buttons */}
-                  <div className="mt-auto flex space-x-2">
-                    <Button 
-                      onClick={() => handleApplyNow(country)}
-                      className="flex-1 bg-gray-900 text-white hover:bg-gray-800 font-medium py-2 text-xs shadow-md hover:shadow-lg transition-all duration-300 border-0"
-                      size="sm"
-                    >
-                      <Send className="mr-1 h-3 w-3" />
-                      Apply Now
-                    </Button>
-                    <Button 
-                      onClick={() => setSelectedCountry(country)}
-                      className="flex-1 bg-blue-600 text-white hover:bg-blue-700 py-2 text-xs font-medium shadow-md hover:shadow-lg transition-all duration-300 border-0"
-                      size="sm"
-                    >
-                      <BookOpen className="mr-1 h-3 w-3" />
-                      More Detail
-                    </Button>
+                    {/* Action Buttons */}
+                    <div className="mt-auto flex space-x-2">
+                      <Button 
+                        onClick={() => handleApplyNow(country)}
+                        className="flex-1 bg-gray-900 text-white hover:bg-gray-800 font-medium py-2 text-xs shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                        size="sm"
+                      >
+                        <Send className="mr-1 h-3 w-3" />
+                        Apply Now
+                      </Button>
+                      <Button 
+                        onClick={() => setSelectedCountry(country)}
+                        className="flex-1 bg-blue-600 text-white hover:bg-blue-700 py-2 text-xs font-medium shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                        size="sm"
+                      >
+                        <BookOpen className="mr-1 h-3 w-3" />
+                        More Detail
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
               </motion.div>
+            ))}
+          </div>
+
+          {/* Second row - 2 countries (centered) */}
+          {getCurrentCountries().length > 4 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {getCurrentCountries().slice(4, 6).map((country, index) => (
+                <motion.div
+                  key={country.id}
+                  className="group relative"
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
+                  transition={{ duration: 0.8, delay: 0.6 + (index + 4) * 0.1 }}
+                  whileHover={{ y: -10, scale: 1.02 }}
+                >
+                  <div className="relative h-80 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                    {/* Background Image */}
+                    <div 
+                      className="absolute inset-0 bg-cover bg-center"
+                      style={{ 
+                        backgroundImage: `url(${getCountryImage(country.name)})`,
+                      }}
+                    >
+                      {/* Color Overlay */}
+                      <div className={`absolute inset-0 ${getCountryColor(country.name)} opacity-90`}></div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="relative z-10 p-4 h-full flex flex-col text-gray-900">
+                      {/* Header */}
+                      <div className="flex items-center justify-end mb-2">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <Plane className="w-4 h-4 text-gray-700" />
+                        </div>
+                      </div>
+
+                      {/* Country Name */}
+                      <h2 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                        {country.name}
+                      </h2>
+                
+                {/* University Count */}
+                <div className="mb-3">
+                  <div className="bg-gray-100/80 backdrop-blur-sm rounded-lg p-2 text-center border">
+                    <GraduationCap className="w-4 h-4 mx-auto mb-1 text-blue-600" />
+                    <div className="text-sm font-bold">{country.topUniversities.length}+ Universities</div>
+                  </div>
+                </div>
+
+                {/* Quick Info */}
+                <div className="space-y-2 mb-3 flex-grow">
+                  <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
+                    <DollarSign className="w-3 h-3 mr-1.5 text-green-600" />
+                    <span className="truncate font-medium">From {country.averageCost.split(' - ')[0]}</span>
+                  </div>
+                  <div className="flex items-center text-xs bg-gray-100/60 rounded-lg px-2 py-1.5 border">
+                    <Clock className="w-3 h-3 mr-1.5 text-blue-600" />
+                    <span className="truncate">{country.intakeSeason}</span>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="mt-auto flex space-x-2">
+                  <Button 
+                    onClick={() => handleApplyNow(country)}
+                    className="flex-1 bg-gray-900 text-white hover:bg-gray-800 font-medium py-2 text-xs shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                    size="sm"
+                  >
+                    <Send className="mr-1 h-3 w-3" />
+                    Apply Now
+                  </Button>
+                  <Button 
+                    onClick={() => setSelectedCountry(country)}
+                    className="flex-1 bg-blue-600 text-white hover:bg-blue-700 py-2 text-xs font-medium shadow-md hover:shadow-lg transition-all duration-300 border-0"
+                    size="sm"
+                  >
+                    <BookOpen className="mr-1 h-3 w-3" />
+                    More Detail
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    )}
+  </motion.div>
 
               {/* Pagination Dots Only */}
               <div className="flex justify-center mt-12">
