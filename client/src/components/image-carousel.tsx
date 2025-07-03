@@ -3,14 +3,18 @@ import { motion, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 
 // Import images from assets
-import img1 from "@assets/IMG-20250425-WA0015_1750755121095.jpg";
-import img2 from "@assets/IMG-20250425-WA0016_1750755121093.jpg";
-import img3 from "@assets/IMG-20250425-WA0017_1750755121094.jpg";
-import img4 from "@assets/Halic-University-15-2048x879_1750756910276.jpg";
-import img5 from "@assets/Linkedin Cover_1750765339302.jpg";
-import img6 from "@assets/2983550_1750486804143.jpg";
-import img7 from "@assets/57296202fc4079cdfca9b3d72a4d0cf6_1751529291131.jpg";
-import img8 from "@assets/dc409228eb0680c8f13c6c0d748ca083_1751528798111.jpg";
+import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
+import img2 from "@assets/Avari Carnival (152 of 1139)_1751536114473.webp";
+import img3 from "@assets/Branch Manager of the year_1751536114473.webp";
+import img4 from "@assets/Dunya AGM (183 of 577)_1751536114474.webp";
+import img5 from "@assets/Dunya AGM (187 of 577)_1751536114474.webp";
+import img6 from "@assets/Dunya AGM (319 of 577)_1751536114475.webp";
+import img7 from "@assets/Dunya AGM (337 of 577)_1751536114475.webp";
+import img8 from "@assets/Dunya AGM (350 of 577)_1751536114475.webp";
+import img9 from "@assets/IMG-20250510-WA0020_1751536114476.webp";
+import img10 from "@assets/IMG-20250510-WA0028_1751536114476.webp";
+import img11 from "@assets/IMG-20250510-WA0070_1751536114476.webp";
+import img12 from "@assets/MHQ07389_1751536114477.webp";
 
 interface CarouselImage {
   id: number;
@@ -23,50 +27,74 @@ const carouselImages: CarouselImage[] = [
   {
     id: 1,
     src: img1,
-    alt: "Student Success Story",
-    caption: "Empowering Students Worldwide"
+    alt: "Student Consultation Event",
+    caption: "Professional Student Consultation Events"
   },
   {
     id: 2,
     src: img2,
-    alt: "University Campus",
-    caption: "Top International Universities"
+    alt: "Expert Guidance Session",
+    caption: "One-on-One Expert Guidance Sessions"
   },
   {
     id: 3,
     src: img3,
-    alt: "Education Excellence",
-    caption: "Excellence in Education"
+    alt: "Branch Manager Award",
+    caption: "Branch Manager of the Year Award 2025"
   },
   {
     id: 4,
     src: img4,
-    alt: "Global Education",
-    caption: "World-Class Education"
+    alt: "Annual General Meeting",
+    caption: "Annual General Meeting 2025"
   },
   {
     id: 5,
     src: img5,
-    alt: "Team Success",
-    caption: "Professional Team"
+    alt: "Team Excellence",
+    caption: "Celebrating Team Excellence & Success"
   },
   {
     id: 6,
     src: img6,
-    alt: "Educational Journey",
-    caption: "Your Journey to Success"
+    alt: "Success Celebration",
+    caption: "Celebrating Success Together"
   },
   {
     id: 7,
     src: img7,
-    alt: "Academic Achievement",
-    caption: "Academic Excellence"
+    alt: "Malaysia Tour Achievement",
+    caption: "Malaysia Tour Achievement Recognition"
   },
   {
     id: 8,
     src: img8,
-    alt: "Student Life",
-    caption: "Student Life & Success"
+    alt: "Leadership Team",
+    caption: "Leadership & Management Team"
+  },
+  {
+    id: 9,
+    src: img9,
+    alt: "Modern Office Consultation",
+    caption: "Modern Office Consultation Environment"
+  },
+  {
+    id: 10,
+    src: img10,
+    alt: "Expert Advisory Session",
+    caption: "Expert Advisory Sessions"
+  },
+  {
+    id: 11,
+    src: img11,
+    alt: "International Study Programs",
+    caption: "International Study Programs Consultation"
+  },
+  {
+    id: 12,
+    src: img12,
+    alt: "Team Training",
+    caption: "Team Building & Professional Training"
   }
 ];
 

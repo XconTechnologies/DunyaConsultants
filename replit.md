@@ -270,6 +270,7 @@ The application uses three main tables:
 - **January 3, 2025 - Countries Section Button Redesign**: Made "Popular Countries" and "All Destinations" buttons much smaller and more compact. Reduced padding from px-8 py-4 to px-4 py-2, changed to text-sm font-medium, smaller rounded corners, and reduced icon sizes for cleaner, more professional appearance matching modern UI standards.
 - **January 3, 2025 - Image Carousel Addition**: Created comprehensive image carousel section positioned after hero section featuring 8 high-quality images from project assets. Includes auto-playing slides (4-second intervals), navigation controls, touch/swipe support, thumbnail navigation, pause/play functionality, and professional animations with gradient overlays and captions.
 - **January 3, 2025 - Countries Grid Layout (4+2)**: Updated Popular Countries section to display 4 countries in top row and 2 countries in bottom row (centered) instead of 6 countries in single row. Implemented responsive grid layout with proper spacing and maintained all existing functionality including hover effects and modal dialogs.
+- **January 3, 2025 - Equal Card Sizing Fix**: Fixed country cards sizing inconsistency by implementing unified grid system. Both rows now use same grid layout with smart centering using empty spacer divs, ensuring all 6 country cards have identical dimensions and professional appearance.
 
 ## Changelog
 
