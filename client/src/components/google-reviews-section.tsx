@@ -1,371 +1,245 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { Star, Quote, ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import React, { useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Google Reviews data - you'll need to manually extract these from your Google Business profile
-// Since Google doesn't provide a direct API for reviews, this is typically done through scraping or manual entry
-const googleReviews = [
+interface Review {
+  id: number;
+  name: string;
+  course: string;
+  cgpa: string;
+  backlogs: number;
+  scholarship: string;
+  rating: number;
+  review: string;
+  profileImage?: string;
+}
+
+const reviews: Review[] = [
   {
     id: 1,
     name: "Ahmed Hassan",
+    course: "MSc in Data Science",
+    cgpa: "3.7",
+    backlogs: 0,
+    scholarship: "£2,500",
     rating: 5,
-    date: "2 weeks ago",
-    text: "Excellent service from Path Visa Consultants! They helped me get admission to University of Toronto. The counselors were very knowledgeable and supportive throughout the entire process. Highly recommended for anyone planning to study abroad.",
-    avatar: "AH",
-    verified: true
+    review: "Dunya Consultants helped me with the admission and visa process, and I'm pleased with their support. The entire procedure was handled by them, and I was accepted to the institution I desired. Big thanks to the complete crew that has been striving to keep my dream alive.",
+    profileImage: "/api/placeholder/60/60"
   },
   {
     id: 2,
-    name: "Sara Khan",
+    name: "Fatima Khan",
+    course: "MSc in Business Analytics",
+    cgpa: "3.9",
+    backlogs: 0,
+    scholarship: "CAD 3,000",
     rating: 5,
-    date: "1 month ago",
-    text: "Outstanding experience with Path Visa Consultants. They guided me through the UK visa process and helped me secure admission at University of Manchester. The team is professional and always available to answer questions.",
-    avatar: "SK",
-    verified: true
+    review: "Since day one, their assistance has been very simple and straightforward. The consultants assisted me with university selection and the admissions process, and the visa consultant assisted me with the visa application process seamlessly. They are a very knowledgeable and helpful crew. I would suggest Dunya Consultants to anyone who is interested in studying abroad.",
+    profileImage: "/api/placeholder/60/60"
   },
   {
     id: 3,
     name: "Muhammad Ali",
+    course: "MSc in Computer Science",
+    cgpa: "3.8",
+    backlogs: 0,
+    scholarship: "AUD 4,000",
     rating: 5,
-    date: "3 weeks ago",
-    text: "Path Visa Consultants made my dream of studying in Canada come true. Got admission to University of British Columbia with their expert guidance. The scholarship assistance was particularly helpful. Thank you team!",
-    avatar: "MA",
-    verified: true
+    review: "Dunya Consultants is the greatest in the industry. I received assistance with the entire visa procedure at the Dunya Consultants consultancy. Since I was new at this, I had no understanding of how to accomplish any of these procedures. The consultants were gracious and polite enough to make it crystal clear on the entire process. I filed for a student visa using their help, and it was granted. Without a doubt, I would tell my friends about Dunya Consultants.",
+    profileImage: "/api/placeholder/60/60"
   },
   {
     id: 4,
-    name: "Fatima Malik",
+    name: "Ayesha Ahmed",
+    course: "MSc in International Business",
+    cgpa: "3.6",
+    backlogs: 0,
+    scholarship: "£3,500",
     rating: 5,
-    date: "2 months ago",
-    text: "Fantastic service! The counselors at Path helped me navigate the complex Australia visa process. Now studying at University of Sydney. Their support didn't end after visa approval - they helped with pre-departure preparation too.",
-    avatar: "FM",
-    verified: true
+    review: "An excellent resource for advice about studying abroad. I learned about a wide range of programs. All along the application procedure, the team was helpful and courteous. Moreover, I was offered assistance at every step to reach my goal. The perfect choice that can help students attain their dreams.",
+    profileImage: "/api/placeholder/60/60"
   },
   {
     id: 5,
-    name: "Usman Sheikh",
+    name: "Zain Malik",
+    course: "MSc in Mechanical Engineering",
+    cgpa: "3.5",
+    backlogs: 0,
+    scholarship: "CAD 2,800",
     rating: 5,
-    date: "1 week ago",
-    text: "Professional and reliable consultancy. They helped me get into a top German university with a scholarship. The IELTS preparation they provided was excellent. Worth every penny spent on their services.",
-    avatar: "US",
-    verified: true
-  },
-  {
-    id: 6,
-    name: "Ayesha Noor",
-    rating: 5,
-    date: "4 weeks ago",
-    text: "Impressed with their transparency and honesty. Path Visa Consultants provided realistic expectations and delivered exactly what they promised. Now studying Masters in UK thanks to their guidance.",
-    avatar: "AN",
-    verified: true
-  },
-  {
-    id: 7,
-    name: "Hassan Raza",
-    rating: 5,
-    date: "3 months ago",
-    text: "Excellent counseling services. They have partnerships with many universities which gave me multiple options. The visa interview preparation was thorough. Highly satisfied with their services.",
-    avatar: "HR",
-    verified: true
-  },
-  {
-    id: 8,
-    name: "Zainab Ahmed",
-    rating: 5,
-    date: "6 weeks ago",
-    text: "Path Visa Consultants exceeded my expectations. Their team helped me secure admission to a Canadian university with 50% scholarship. The application process was smooth and stress-free with their support.",
-    avatar: "ZA",
-    verified: true
+    review: "Dunya Consultants is one of the outstanding consultancies that I would recommend to anyone. Outstandingly advised! From the beginning, they were incredibly supportive and attentively and meticulously observed each stage. Everyone was polite and dedicated to offering excellent service. I am grateful to the consultants for being so helpful and always accessible for all of my queries.",
+    profileImage: "/api/placeholder/60/60"
   }
 ];
-
-const stats = {
-  totalReviews: 127,
-  averageRating: 4.8,
-  fiveStars: 89,
-  fourStars: 28,
-  threeStars: 7,
-  twoStars: 2,
-  oneStars: 1
-};
 
 export default function GoogleReviewsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [reviewsPerPage] = useState(3);
 
-  // Auto-scroll reviews
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => 
-        prev + reviewsPerPage >= googleReviews.length ? 0 : prev + reviewsPerPage
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [reviewsPerPage]);
-
-  const nextReviews = () => {
-    setCurrentIndex((prev) => 
-      prev + reviewsPerPage >= googleReviews.length ? 0 : prev + reviewsPerPage
+  const nextReview = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
     );
   };
 
-  const prevReviews = () => {
-    setCurrentIndex((prev) => 
-      prev - reviewsPerPage < 0 ? 
-      Math.max(0, googleReviews.length - reviewsPerPage) : prev - reviewsPerPage
+  const prevReview = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? reviews.length - 1 : prevIndex - 1
     );
   };
 
-  const currentReviews = googleReviews.slice(currentIndex, currentIndex + reviewsPerPage);
+  const currentReview = reviews[currentIndex];
 
   const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star
-        key={i}
-        className={`w-4 h-4 ${
-          i < rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
-        }`}
+    return Array.from({ length: 5 }, (_, index) => (
+      <Star 
+        key={index} 
+        className={`w-5 h-5 ${index < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
       />
     ));
   };
 
-  const getPercentage = (count: number) => {
-    return (count / stats.totalReviews) * 100;
-  };
-
   return (
-    <section ref={ref} className="py-20 bg-white">
+    <section ref={ref} className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+        {/* Header with Google Reviews Logo */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl font-bold text-neutral-800 mb-6">
-            What Our Students Say
-          </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
-            Real reviews from students who achieved their study abroad dreams with Path Visa Consultants
-          </p>
+          <div className="flex items-center justify-center mb-6">
+            <img 
+              src="https://www.studyindia.com/images/google-reviews-logo.webp" 
+              alt="Google Reviews"
+              className="h-12 mr-4"
+            />
+            <div className="text-left">
+              <div className="flex items-center mb-1">
+                {renderStars(5)}
+                <span className="ml-2 text-lg font-semibold text-gray-700">4.8</span>
+              </div>
+              <p className="text-sm text-gray-600">4000+ Reviews</p>
+            </div>
+          </div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-12">
-          {/* Google Reviews Stats */}
-          <motion.div
-            className="lg:col-span-1"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8">
-              {/* Google Logo and Link */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-2">
-                  <div className="text-2xl font-bold text-blue-600">Google</div>
-                  <div className="text-sm text-neutral-500">Reviews</div>
-                </div>
-                <a 
-                  href="https://g.co/kgs/syV1FVf" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-800 transition-colors"
-                >
-                  <ExternalLink className="w-5 h-5" />
-                </a>
-              </div>
-
-              {/* Overall Rating */}
-              <div className="text-center mb-8">
-                <div className="text-5xl font-bold text-neutral-800 mb-2">
-                  {stats.averageRating}
-                </div>
-                <div className="flex justify-center mb-2">
-                  {renderStars(5)}
-                </div>
-                <div className="text-neutral-600">
-                  Based on {stats.totalReviews} reviews
-                </div>
-              </div>
-
-              {/* Rating Breakdown */}
-              <div className="space-y-3">
-                {[5, 4, 3, 2, 1].map((stars) => {
-                  const count = stars === 5 ? stats.fiveStars :
-                               stars === 4 ? stats.fourStars :
-                               stars === 3 ? stats.threeStars :
-                               stars === 2 ? stats.twoStars :
-                               stats.oneStars;
-                  
-                  return (
-                    <div key={stars} className="flex items-center space-x-3">
-                      <div className="flex items-center space-x-1 w-16">
-                        <span className="text-sm text-neutral-600">{stars}</span>
-                        <Star className="w-3 h-3 text-yellow-400 fill-current" />
-                      </div>
-                      <div className="flex-1 bg-gray-200 rounded-full h-2">
-                        <div 
-                          className="bg-yellow-400 h-2 rounded-full transition-all duration-1000"
-                          style={{ width: `${getPercentage(count)}%` }}
-                        />
-                      </div>
-                      <div className="text-sm text-neutral-600 w-8">
-                        {count}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Call to Action */}
-              <div className="mt-8 pt-6 border-t border-blue-200">
-                <a 
-                  href="https://g.co/kgs/syV1FVf" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
-                    Write a Review on Google
-                  </Button>
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Reviews Display */}
-          <motion.div
-            className="lg:col-span-2"
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <div className="space-y-6">
-              {currentReviews.map((review, index) => (
-                <motion.div
-                  key={review.id}
-                  className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className="flex items-start space-x-4">
-                    {/* Avatar */}
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                      {review.avatar}
-                    </div>
-                    
-                    <div className="flex-1">
-                      {/* Header */}
-                      <div className="flex items-center justify-between mb-2">
-                        <div>
-                          <div className="flex items-center space-x-2">
-                            <h4 className="font-semibold text-neutral-800">{review.name}</h4>
-                            {review.verified && (
-                              <div className="w-2 h-2 bg-green-500 rounded-full" title="Verified"></div>
-                            )}
-                          </div>
-                          <div className="text-sm text-neutral-500">{review.date}</div>
-                        </div>
-                        <div className="flex space-x-1">
-                          {renderStars(review.rating)}
-                        </div>
-                      </div>
-                      
-                      {/* Review Text */}
-                      <div className="relative">
-                        <Quote className="absolute -top-2 -left-2 w-6 h-6 text-blue-200" />
-                        <p className="text-neutral-700 leading-relaxed pl-4">
-                          {review.text}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Navigation */}
-            <div className="flex items-center justify-between mt-8">
-              <Button
-                onClick={prevReviews}
-                variant="outline"
-                size="sm"
-                className="flex items-center space-x-2"
-              >
-                <ChevronLeft className="w-4 h-4" />
-                <span>Previous</span>
-              </Button>
-
-              {/* Pagination Dots */}
-              <div className="flex space-x-2">
-                {Array.from({ length: Math.ceil(googleReviews.length / reviewsPerPage) }, (_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentIndex(i * reviewsPerPage)}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      Math.floor(currentIndex / reviewsPerPage) === i
-                        ? 'bg-primary'
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              <Button
-                onClick={nextReviews}
-                variant="outline"
-                size="sm"
-                className="flex items-center space-x-2"
-              >
-                <span>Next</span>
-                <ChevronRight className="w-4 h-4" />
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Success Statistics */}
+        {/* Main Review Display */}
         <motion.div
-          className="mt-16 bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white"
+          className="bg-white rounded-2xl shadow-xl p-8 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold mb-2">{stats.totalReviews}+</div>
-              <div className="text-blue-100">Happy Students</div>
+          {/* Review Header */}
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center">
+              <img 
+                src={currentReview.profileImage}
+                alt={currentReview.name}
+                className="w-16 h-16 rounded-full mr-4 bg-gray-200"
+              />
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">{currentReview.name}</h3>
+                <p className="text-blue-600 font-medium">{currentReview.course}</p>
+              </div>
             </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">{stats.averageRating}/5</div>
-              <div className="text-blue-100">Average Rating</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">95%</div>
-              <div className="text-blue-100">Success Rate</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold mb-2">17+</div>
-              <div className="text-blue-100">Office Locations</div>
+            
+            {/* Navigation Controls */}
+            <div className="flex items-center gap-2">
+              <button
+                onClick={prevReview}
+                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={nextReview}
+                className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
           </div>
-          
-          <div className="text-center mt-8">
-            <h3 className="text-xl font-bold mb-2">Ready to Join Our Success Stories?</h3>
-            <p className="text-blue-100 mb-4">
-              Let our expert counselors guide you to your dream university
-            </p>
-            <a href="tel:+923041110947">
-              <Button className="bg-white text-primary hover:bg-blue-50 px-8 py-3">
-                Call Now: (+92) 304 1110947
-              </Button>
-            </a>
+
+          {/* Academic Details */}
+          <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-gray-50 rounded-lg">
+            <div className="text-center">
+              <p className="text-sm text-gray-600">CGPA</p>
+              <p className="text-lg font-bold text-gray-900">{currentReview.cgpa}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-gray-600">Backlogs</p>
+              <p className="text-lg font-bold text-gray-900">{currentReview.backlogs}</p>
+            </div>
+            <div className="text-center">
+              <p className="text-sm text-gray-600">Scholarship</p>
+              <p className="text-lg font-bold text-green-600">{currentReview.scholarship}</p>
+            </div>
           </div>
+
+          {/* Rating */}
+          <div className="flex items-center mb-6">
+            {renderStars(currentReview.rating)}
+          </div>
+
+          {/* Review Text */}
+          <blockquote className="text-gray-700 text-lg leading-relaxed italic">
+            "{currentReview.review}"
+          </blockquote>
+        </motion.div>
+
+        {/* All Reviewers Thumbnails */}
+        <motion.div
+          className="flex justify-center items-center mt-12 gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          {reviews.map((review, index) => (
+            <motion.div
+              key={review.id}
+              className={`relative cursor-pointer transition-all duration-300 ${
+                index === currentIndex ? 'scale-110' : 'scale-100 opacity-60'
+              }`}
+              onClick={() => setCurrentIndex(index)}
+              whileHover={{ scale: 1.1 }}
+            >
+              <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                <img 
+                  src={review.profileImage}
+                  alt={review.name}
+                  className="w-full h-full object-cover bg-gray-200"
+                />
+              </div>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 text-center">
+                <p className="text-xs font-semibold text-gray-900 bg-white px-2 py-1 rounded shadow">
+                  {review.name.split(' ')[0]}
+                </p>
+                <p className="text-xs text-gray-600 bg-white px-1 rounded shadow mt-1">
+                  {review.course.split(' ').slice(0, 2).join(' ')}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* View All Reviews Button */}
+        <motion.div
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+        >
+          <motion.button
+            className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-blue-700 transition-all duration-300"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View All Google Reviews
+          </motion.button>
         </motion.div>
       </div>
     </section>

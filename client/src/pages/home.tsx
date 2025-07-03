@@ -6,6 +6,7 @@ import ConsultationBookingCalendar from "@/components/consultation-booking-calen
 import EventsSection from "@/components/events-section";
 import AssistanceSection from "@/components/assistance-section";
 import ReasonsSection from "@/components/reasons-section";
+import GoogleReviewsSection from "@/components/google-reviews-section";
 
 import StatsBanner from "@/components/stats-banner";
 import UniversityPartnersSection from "@/components/university-partners-section";
@@ -25,6 +26,7 @@ export default function Home() {
       <EventsSection />
       <AssistanceSection />
       <ReasonsSection />
+      <GoogleReviewsSection />
       <ConsultationBookingCalendar />
       <UniversityPartnersSection />
       <BusinessProposalsSection />
