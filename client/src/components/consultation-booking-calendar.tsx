@@ -213,19 +213,19 @@ export default function ConsultationBookingCalendar() {
         <div className="max-w-4xl mx-auto">
           {/* Progress Timeline */}
           <motion.div
-            className="flex items-center justify-between mb-12 px-4"
+            className="mb-12 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {stepTitles.map((title, index) => {
-              const stepNumber = index + 1;
-              const isActive = currentStep === stepNumber;
-              const isCompleted = currentStep > stepNumber;
-              
-              return (
-                <div key={stepNumber} className="flex items-center flex-1">
-                  <div className="flex flex-col items-center">
+            <div className="flex items-center justify-between w-full">
+              {stepTitles.map((title, index) => {
+                const stepNumber = index + 1;
+                const isActive = currentStep === stepNumber;
+                const isCompleted = currentStep > stepNumber;
+                
+                return (
+                  <div key={stepNumber} className="flex flex-col items-center" style={{ width: '20%' }}>
                     <motion.div
                       className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg border-4 border-white shadow-lg ${
                         isCompleted ? 'bg-green-500' : isActive ? 'bg-blue-500' : 'bg-gray-300'
@@ -244,21 +244,24 @@ export default function ConsultationBookingCalendar() {
                       </div>
                     </div>
                   </div>
-                  
-                  {index < stepTitles.length - 1 && (
-                    <motion.div
-                      className={`flex-1 h-1 mx-4 rounded ${
-                        isCompleted ? 'bg-green-500' : 'bg-gray-200'
-                      }`}
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: isCompleted ? 1 : 0 }}
-                      transition={{ duration: 0.5 }}
-                      style={{ transformOrigin: 'left' }}
-                    />
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+            
+            {/* Progress Line */}
+            <div className="relative mt-4">
+              <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 rounded transform -translate-y-1/2" style={{ left: '10%', right: '10%' }}></div>
+              <motion.div
+                className="absolute top-1/2 left-0 h-1 bg-green-500 rounded transform -translate-y-1/2"
+                style={{ 
+                  left: '10%',
+                  width: `${((currentStep - 1) / (totalSteps - 1)) * 80}%`
+                }}
+                initial={{ width: 0 }}
+                animate={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 80}%` }}
+                transition={{ duration: 0.5 }}
+              />
+            </div>
           </motion.div>
 
           {/* Step Content */}
