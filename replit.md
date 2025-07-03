@@ -262,6 +262,7 @@ The application uses three main tables:
 - **January 3, 2025 - Courses & Programs Section**: Created comprehensive "Courses & Programs" section featuring Bachelor's/Master's/Diplomas across Business/Engineering/IT/Healthcare categories. Includes always-visible "Find Your Perfect Course" search tool with search functionality, level filters, category filters, detailed course cards with HD images, university information, tuition fees, ratings, and application buttons. Features 6 sample courses from top universities in UK, Canada, Australia, USA, and Germany with authentic program details.
 - **January 3, 2025 - Events Section Filter Fix**: Fixed filtering functionality in events section to properly filter events by type (University Fair, Webinars, Workshops). Updated filter logic to correctly match event types and display filtered results instead of always showing all events.
 - **January 3, 2025 - Events Section Cleanup**: Removed breadcrumb navigation ("Home > All Events") and UK University Fair hero section from events page. Changed section title to "Events & Workshops" for cleaner, more focused presentation without redundant featured event card.
+- **January 3, 2025 - Events Register Button Repositioning**: Moved "Register Now" button from top-right corner to bottom of each event card. Updated layout to use full-width button at bottom for better visual hierarchy and user experience.
 
 ## Changelog
 

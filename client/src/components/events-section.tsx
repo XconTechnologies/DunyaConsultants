@@ -237,56 +237,55 @@ export default function EventsSection() {
                 </div>
 
                 {/* Event Content */}
-                <div className="flex-1 p-6 lg:p-8">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors cursor-pointer">
-                        {event.title}
-                      </h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {event.description}
-                      </p>
-                    </div>
-                    <motion.button
-                      className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold whitespace-nowrap hover:bg-blue-700 hover:shadow-lg transition-all duration-300 ml-4 flex-shrink-0"
-                      whileHover={{ scale: 1.05, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      style={{ minWidth: 'fit-content' }}
-                    >
-                      Register Now
-                    </motion.button>
-                  </div>
+                <div className="flex-1 p-6 lg:p-8 flex flex-col">
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors cursor-pointer">
+                      {event.title}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed mb-4">
+                      {event.description}
+                    </p>
 
-                  <div className="flex flex-wrap items-center gap-6 text-gray-600">
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-blue-500" />
-                      <span className="text-sm">{event.time}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4 text-blue-500" />
-                      <span className="text-sm">{event.location}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Users className="w-4 h-4 text-blue-500" />
-                      <span className="text-sm">{event.attendees} attending</span>
-                    </div>
-                  </div>
-
-                  {/* Attendee Avatars */}
-                  <div className="flex items-center gap-4 mt-4">
-                    <div className="flex -space-x-2">
-                      {[1, 2, 3, 4].map((i) => (
-                        <div
-                          key={i}
-                          className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 border-2 border-white"
-                        />
-                      ))}
-                      <div className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center">
-                        <span className="text-xs font-medium text-gray-600">+</span>
+                    <div className="flex flex-wrap items-center gap-6 text-gray-600 mb-4">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4 text-blue-500" />
+                        <span className="text-sm">{event.time}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4 text-blue-500" />
+                        <span className="text-sm">{event.location}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-blue-500" />
+                        <span className="text-sm">{event.attendees} attending</span>
                       </div>
                     </div>
-                    <span className="text-sm text-gray-500">and 120+ others</span>
+
+                    {/* Attendee Avatars */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <div className="flex -space-x-2">
+                        {[1, 2, 3, 4].map((i) => (
+                          <div
+                            key={i}
+                            className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 border-2 border-white"
+                          />
+                        ))}
+                        <div className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center">
+                          <span className="text-xs font-medium text-gray-600">+</span>
+                        </div>
+                      </div>
+                      <span className="text-sm text-gray-500">and 120+ others</span>
+                    </div>
                   </div>
+
+                  {/* Register Button at Bottom */}
+                  <motion.button
+                    className="w-full bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Register Now
+                  </motion.button>
                 </div>
               </div>
             </motion.div>
