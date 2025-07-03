@@ -276,7 +276,7 @@ The application uses three main tables:
 - **January 3, 2025 - Our Journey 5-Image Carousel**: Redesigned "Our Journey" image carousel to display 5 company images per slide instead of single large image. Features responsive grid layout (1-3-5 columns), smaller aspect ratio (4:3), hover effects with captions, navigation controls, auto-play functionality, and professional styling. Shows 12 authentic Dunya Consultants images across 3 slides with much more organized and visually appealing presentation.
 - **January 3, 2025 - Image Carousel Repositioned**: Removed "Our Journey" header text and repositioned image carousel to overlap between hero section and next section. Added negative top margin (-mt-20) and higher z-index (z-20) so images appear half in hero section and half in the content below, creating seamless section transition with enhanced shadows and professional floating effect.
 - **January 3, 2025 - Image Carousel Navigation Removed**: Removed all navigation controls from image carousel including previous/next arrow buttons, pagination dots, and play/pause button for cleaner, streamlined appearance while maintaining auto-play functionality.
-- **January 3, 2025 - Button Margin Bottom Added**: Added 50px margin bottom to "Trusted Excellence Since 2010" button in stats banner section for improved spacing and visual separation from overlapping content below.
+- **January 3, 2025 - Button Margin Bottom Added**: Added 100px margin bottom to "Trusted Excellence Since 2010" button in stats banner section for improved spacing and visual separation from overlapping content below.
 
 ## Changelog
 

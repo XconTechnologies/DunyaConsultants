@@ -339,7 +339,7 @@ export default function StatsBanner() {
 
         {/* Bottom Element */}
         <motion.div
-          className="flex justify-center mt-16 mb-12"
+          className="flex justify-center mt-16 mb-24"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 1.5 }}
