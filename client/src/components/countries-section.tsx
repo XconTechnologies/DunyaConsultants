@@ -597,20 +597,27 @@ export default function CountriesSection() {
             ))}
           </div>
         ) : (
-          /* Carousel View for Popular Countries */
-          <div 
-            className="relative"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {getCurrentCountries().map((country, index) => (
+          /* Horizontal Scrolling Carousel for Popular Countries */
+          <div className="relative overflow-hidden">
+            <motion.div
+              className="flex gap-6"
+              animate={{
+                x: [0, -1200]
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              {/* First set of countries */}
+              {popularCountries.map((country, index) => (
                 <motion.div
-                  key={country.id}
+                  key={`first-${country.id}`}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group flex-shrink-0 w-[300px]"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img 
@@ -664,20 +671,69 @@ export default function CountriesSection() {
                   </div>
                 </motion.div>
               ))}
-            </div>
-
-            {/* Pagination dots */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {Array.from({ length: totalSlides }, (_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentSlide(i)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    i === currentSlide ? 'bg-blue-600' : 'bg-gray-300'
-                  }`}
-                />
+              
+              {/* Duplicate set for seamless loop */}
+              {popularCountries.map((country, index) => (
+                <motion.div
+                  key={`second-${country.id}`}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group flex-shrink-0 w-[300px]"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={country.bgImage} 
+                      alt={country.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-b ${country.gradient} opacity-70`} />
+                    <div className="absolute top-4 left-4">
+                      <span className="text-3xl">{country.flag}</span>
+                    </div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <h3 className="text-xl font-bold">{country.name}</h3>
+                      <p className="text-sm opacity-90">{country.studentCount}+ students</p>
+                    </div>
+                  </div>
+                  
+                  <div className="p-6">
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                      {country.description}
+                    </p>
+                    
+                    <div className="space-y-2 mb-4">
+                      <div className="flex items-center gap-2">
+                        <DollarSign className="w-4 h-4 text-green-600" />
+                        <span className="text-sm text-gray-600">{country.averageCost}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="w-4 h-4 text-blue-600" />
+                        <span className="text-sm text-gray-600">{country.visaSuccessRate}% visa success</span>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-2 mb-4">
+                      <Button
+                        onClick={() => setSelectedCountry(country)}
+                        variant="outline"
+                        size="sm"
+                        className="flex-1"
+                      >
+                        View Details
+                      </Button>
+                      <Button
+                        onClick={() => handleApplyNow(country)}
+                        size="sm"
+                        className="flex-1"
+                      >
+                        Apply Now
+                      </Button>
+                    </div>
+                  </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         )}
       </div>
