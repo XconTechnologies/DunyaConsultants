@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Download, Calendar, Clock, MapPin, User, Mail, Phone, GraduationCap, QrCode } from 'lucide-react';
 import html2canvas from 'html2canvas';
+import dcLogoPath from '@assets/DC Blue Logo_1751614676879.png';
 
 interface TicketData {
   name: string;
@@ -29,6 +30,43 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
     const timestamp = Date.now().toString().slice(-6);
     const random = Math.random().toString(36).substring(2, 6).toUpperCase();
     return `${prefix}-${timestamp}-${random}`;
+  };
+
+  const generateQRCode = (data: string) => {
+    // Generate QR code SVG using a simple pattern
+    const size = 100;
+    const modules = 25;
+    const moduleSize = size / modules;
+    
+    // Create a simple QR-like pattern based on the data
+    const hash = data.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const pattern: boolean[][] = [];
+    
+    for (let i = 0; i < modules; i++) {
+      pattern[i] = [];
+      for (let j = 0; j < modules; j++) {
+        // Create a pseudo-random pattern based on position and data hash
+        const value = (i * j + hash + i + j) % 3;
+        pattern[i][j] = value === 0;
+      }
+    }
+    
+    return (
+      <svg width={size} height={size} className="border border-gray-300 rounded">
+        {pattern.map((row, i) =>
+          row.map((cell, j) => (
+            <rect
+              key={`${i}-${j}`}
+              x={j * moduleSize}
+              y={i * moduleSize}
+              width={moduleSize}
+              height={moduleSize}
+              fill={cell ? '#000' : '#fff'}
+            />
+          ))
+        )}
+      </svg>
+    );
   };
 
   const downloadTicket = async () => {
@@ -101,9 +139,16 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
         {/* Header Section */}
         <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6">
           <div className="flex justify-between items-start">
-            <div>
-              <h1 className="text-2xl font-bold mb-2">Dunya Consultants</h1>
-              <p className="text-blue-100 text-sm">Event Registration Ticket</p>
+            <div className="flex items-center">
+              <img 
+                src={dcLogoPath} 
+                alt="Dunya Consultants" 
+                className="h-12 w-auto mr-4 bg-white rounded-lg p-2"
+              />
+              <div>
+                <h1 className="text-2xl font-bold mb-2">Dunya Consultants</h1>
+                <p className="text-blue-100 text-sm">Event Registration Ticket</p>
+              </div>
             </div>
             <div className="text-right">
               <div className="bg-white/20 backdrop-blur rounded-lg px-3 py-2">
@@ -116,7 +161,7 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
 
         {/* Main Content */}
         <div className="relative p-6 flex h-full">
-          {/* Left Section - Student Info */}
+          {/* Left Section - Event Info */}
           <div className="flex-1 space-y-4">
             <div className="mb-6">
               <h2 className="text-xl font-bold text-gray-800 mb-2">{ticketData.eventTitle}</h2>
@@ -136,7 +181,7 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
               </div>
             </div>
 
-            {/* Student Details */}
+            {/* Student Name Only */}
             <div className="space-y-3">
               <div className="flex items-center">
                 <User className="w-5 h-5 text-blue-600 mr-3" />
@@ -145,42 +190,23 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
                   <p className="font-semibold text-gray-800">{ticketData.name}</p>
                 </div>
               </div>
+            </div>
 
-              <div className="flex items-center">
-                <Mail className="w-5 h-5 text-blue-600 mr-3" />
-                <div>
-                  <p className="text-xs text-gray-500">Email Address</p>
-                  <p className="font-medium text-gray-700">{ticketData.email}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center">
-                <Phone className="w-5 h-5 text-blue-600 mr-3" />
-                <div>
-                  <p className="text-xs text-gray-500">Phone Number</p>
-                  <p className="font-medium text-gray-700">{ticketData.phone}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center">
-                <GraduationCap className="w-5 h-5 text-blue-600 mr-3" />
-                <div>
-                  <p className="text-xs text-gray-500">Education Level</p>
-                  <p className="font-medium text-gray-700">{ticketData.education}</p>
-                </div>
-              </div>
+            {/* Footer Note */}
+            <div className="mt-8 pt-4 border-t border-gray-200">
+              <p className="text-xs text-gray-500">
+                Please bring this ticket to the event venue
+              </p>
             </div>
           </div>
 
           {/* Right Section - QR Code & Branding */}
           <div className="w-48 flex flex-col items-center justify-center space-y-4">
-            {/* QR Code Placeholder */}
-            <div className="w-32 h-32 bg-gray-100 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
-              <div className="text-center">
-                <QrCode className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                <p className="text-xs text-gray-500">QR Code</p>
-                <p className="text-xs text-gray-400">Scan for Details</p>
-              </div>
+            {/* Active QR Code */}
+            <div className="flex flex-col items-center">
+              {generateQRCode(`${ticketNumber}-${ticketData.name}-${ticketData.eventTitle}`)}
+              <p className="text-xs text-gray-500 mt-2">QR Code</p>
+              <p className="text-xs text-gray-400">Scan for Details</p>
             </div>
 
             {/* Contact Info */}
@@ -195,7 +221,6 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
         {/* Footer */}
         <div className="absolute bottom-0 left-0 right-0 bg-gray-50 px-6 py-3 border-t border-gray-200">
           <div className="flex justify-between items-center text-xs text-gray-500">
-            <p>Please bring this ticket to the event venue</p>
             <p>Generated on {new Date().toLocaleDateString()}</p>
           </div>
         </div>
