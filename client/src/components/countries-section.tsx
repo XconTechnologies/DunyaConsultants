@@ -484,7 +484,7 @@ export default function CountriesSection() {
   return (
     <section 
       ref={ref}
-      className="relative py-20 bg-gradient-to-b from-slate-50 to-white overflow-hidden"
+      className="relative py-16 bg-gradient-to-b from-slate-50 to-white overflow-hidden"
     >
       {/* Rest of the component remains the same */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
@@ -598,14 +598,14 @@ export default function CountriesSection() {
           </div>
         ) : (
           /* Horizontal Scrolling Carousel for Popular Countries */
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden py-4">
             <motion.div
               className="flex gap-6"
               animate={{
-                x: [0, -1200]
+                x: [0, -1800]
               }}
               transition={{
-                duration: 20,
+                duration: 25,
                 repeat: Infinity,
                 ease: "linear"
               }}
@@ -617,7 +617,7 @@ export default function CountriesSection() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group flex-shrink-0 w-[300px]"
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group flex-shrink-0 w-[300px] h-[420px]"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img 
@@ -679,7 +679,7 @@ export default function CountriesSection() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group flex-shrink-0 w-[300px]"
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group flex-shrink-0 w-[300px] h-[420px]"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img 
