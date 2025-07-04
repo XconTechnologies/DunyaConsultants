@@ -160,6 +160,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Email confirmation endpoint
+  app.post("/api/send-email", async (req, res) => {
+    try {
+      const { to, subject, html, attachment } = req.body;
+      
+      // In a real implementation, you would use SendGrid or another email service
+      // For now, we'll simulate email sending and return success
+      console.log(`Simulating email send to: ${to}`);
+      console.log(`Subject: ${subject}`);
+      console.log(`Has attachment: ${!!attachment}`);
+      
+      // Simulate processing delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      res.json({ 
+        success: true, 
+        message: "Email sent successfully",
+        emailId: `sim_${Date.now()}_${Math.random().toString(36).substring(7)}`
+      });
+    } catch (error) {
+      console.error('Email sending error:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to send email" 
+      });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

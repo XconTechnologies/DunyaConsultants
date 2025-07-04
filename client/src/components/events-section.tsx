@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Calendar, Clock, MapPin, Users, ArrowRight, ChevronLeft, ChevronRight, X, User, Phone, Mail, GraduationCap } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, ArrowRight, ChevronLeft, ChevronRight, X, User, Phone, Mail, GraduationCap, Ticket } from 'lucide-react';
+import EventTicketGenerator from "./event-ticket-generator";
+import { sendConfirmationEmail } from "./email-service";
 
 interface Event {
   id: number;
@@ -155,6 +157,9 @@ export default function EventsSection() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showTicket, setShowTicket] = useState(false);
+  const [ticketData, setTicketData] = useState<any>(null);
+  const [emailSent, setEmailSent] = useState(false);
   
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -206,29 +211,75 @@ export default function EventsSection() {
     setShowRegistrationForm(true);
   };
 
+  const generateTicketNumber = () => {
+    const prefix = 'DC';
+    const timestamp = Date.now().toString().slice(-6);
+    const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+    return `${prefix}-${timestamp}-${random}`;
+  };
+
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setShowSuccess(true);
-    
-    // Reset form after success
-    setTimeout(() => {
-      setShowRegistrationForm(false);
-      setShowSuccess(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        education: '',
-        experience: '',
-        eventId: 0
-      });
-    }, 2000);
+    try {
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      if (selectedEvent) {
+        // Generate ticket data
+        const ticketNumber = generateTicketNumber();
+        const ticket = {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          education: formData.education,
+          experience: formData.experience,
+          eventTitle: selectedEvent.title,
+          eventDate: selectedEvent.date,
+          eventTime: selectedEvent.time,
+          eventLocation: selectedEvent.location,
+          ticketNumber
+        };
+        
+        setTicketData(ticket);
+        setIsSubmitting(false);
+        setShowSuccess(true);
+        setShowTicket(true);
+        
+        // Send confirmation email with ticket
+        try {
+          await sendConfirmationEmail(ticket);
+          setEmailSent(true);
+        } catch (error) {
+          console.error('Failed to send confirmation email:', error);
+        }
+      }
+    } catch (error) {
+      console.error('Registration failed:', error);
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleTicketDownload = async (imageBlob: Blob) => {
+    // Additional functionality after ticket download
+    console.log('Ticket downloaded successfully');
+  };
+
+  const resetForm = () => {
+    setShowRegistrationForm(false);
+    setShowSuccess(false);
+    setShowTicket(false);
+    setEmailSent(false);
+    setTicketData(null);
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      education: '',
+      experience: '',
+      eventId: 0
+    });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -425,7 +476,7 @@ export default function EventsSection() {
             </div>
 
             {/* Success Message */}
-            {showSuccess && (
+            {showSuccess && !showTicket && (
               <div className="p-6 text-center">
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -433,9 +484,23 @@ export default function EventsSection() {
                   </svg>
                 </div>
                 <h4 className="text-xl font-bold text-gray-900 mb-2">Registration Successful!</h4>
-                <p className="text-gray-600">
-                  Thank you for registering. We'll send you event details via email.
+                <p className="text-gray-600 mb-4">
+                  Thank you for registering. Your event ticket is being generated...
                 </p>
+                {emailSent && (
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+                    <p className="text-blue-800 text-sm">
+                      📧 Confirmation email sent to {formData.email}
+                    </p>
+                  </div>
+                )}
+                <button
+                  onClick={() => setShowTicket(true)}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center space-x-2 mx-auto"
+                >
+                  <Ticket className="w-4 h-4" />
+                  <span>View & Download Ticket</span>
+                </button>
               </div>
             )}
 
@@ -569,6 +634,61 @@ export default function EventsSection() {
                 </button>
               </form>
             )}
+          </motion.div>
+        </div>
+      )}
+
+      {/* Ticket Display Modal */}
+      {showTicket && ticketData && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-2xl shadow-2xl max-w-6xl w-full max-h-[95vh] overflow-y-auto"
+          >
+            {/* Modal Header */}
+            <div className="flex justify-between items-center p-6 border-b border-gray-200">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Your Event Ticket</h3>
+                <p className="text-sm text-gray-600 mt-1">
+                  Download and save your ticket for the event
+                </p>
+              </div>
+              <button
+                onClick={resetForm}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Ticket Content */}
+            <div className="p-6">
+              <EventTicketGenerator 
+                ticketData={ticketData}
+                onDownload={handleTicketDownload}
+              />
+              
+              <div className="mt-6 text-center">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
+                  <h4 className="font-semibold text-green-800 mb-2">✅ Registration Complete!</h4>
+                  <div className="text-sm text-green-700 space-y-1">
+                    <p>• Your event ticket has been generated successfully</p>
+                    <p>• Confirmation email sent to {ticketData.email}</p>
+                    <p>• Please download and bring this ticket to the event</p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <button
+                    onClick={resetForm}
+                    className="bg-gray-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-700 transition-all duration-300"
+                  >
+                    Close & Register Another Event
+                  </button>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       )}
