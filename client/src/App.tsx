@@ -27,8 +27,6 @@ import OfficeDetails from "@/pages/offices/OfficeDetails";
 import StudyAbroadJourney from "@/pages/study-abroad-journey";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
 
-import AchievementNotification from "@/components/gamification/achievement-notification";
-
 function Router() {
   return (
     <Switch>
@@ -65,8 +63,6 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
-
-          <AchievementNotification />
         </TooltipProvider>
       </EngagementTracker>
     </QueryClientProvider>
