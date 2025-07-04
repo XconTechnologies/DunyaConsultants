@@ -506,18 +506,26 @@ export default function CountriesSection() {
             Choose from top study destinations worldwide and start your journey to international education excellence.
           </p>
           
-          <div className="flex justify-center gap-4 mt-8">
+          <div className="flex justify-center gap-1 mt-8 bg-gray-100 p-1 rounded-lg w-fit mx-auto">
             <Button
               onClick={() => setActiveTab('popular')}
-              variant={activeTab === 'popular' ? 'default' : 'outline'}
-              className="px-4 py-2 text-sm font-medium rounded-md"
+              className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
+                activeTab === 'popular' 
+                  ? 'bg-white text-gray-700 shadow-sm' 
+                  : 'bg-transparent text-gray-600 hover:text-gray-800'
+              }`}
+              variant="ghost"
             >
               Popular Countries
             </Button>
             <Button
               onClick={() => setActiveTab('all')}
-              variant={activeTab === 'all' ? 'default' : 'outline'}
-              className="px-4 py-2 text-sm font-medium rounded-md"
+              className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
+                activeTab === 'all' 
+                  ? 'bg-blue-600 text-white shadow-sm' 
+                  : 'bg-transparent text-gray-600 hover:text-gray-800'
+              }`}
+              variant="ghost"
             >
               All Destinations
             </Button>
