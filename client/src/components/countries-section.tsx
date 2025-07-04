@@ -411,7 +411,7 @@ export default function CountriesSection() {
   );
 
   const displayCountries = activeTab === 'popular' ? popularCountries : countries;
-  const countriesPerSlide = 6;
+  const countriesPerSlide = 4;
   const totalSlides = Math.ceil(displayCountries.length / countriesPerSlide);
 
   const nextSlide = () => {
@@ -526,7 +526,7 @@ export default function CountriesSection() {
 
         {/* Grid View for All Countries */}
         {isGridView ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {displayCountries.map((country, index) => (
               <motion.div
                 key={country.id}
@@ -595,7 +595,7 @@ export default function CountriesSection() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {getCurrentCountries().map((country, index) => (
                 <motion.div
                   key={country.id}
