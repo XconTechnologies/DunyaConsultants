@@ -559,23 +559,8 @@ export default function CountriesSection() {
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {country.description}
-                  </p>
-                  
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center gap-2">
-                      <DollarSign className="w-4 h-4 text-green-600" />
-                      <span className="text-sm text-gray-600">{country.averageCost}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-blue-600" />
-                      <span className="text-sm text-gray-600">{country.visaSuccessRate}% visa success</span>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-2 mb-4">
+                <div className="p-4">
+                  <div className="flex gap-2">
                     <Button
                       onClick={() => setSelectedCountry(country)}
                       variant="outline"
@@ -628,23 +613,8 @@ export default function CountriesSection() {
                     </div>
                   </div>
                   
-                  <div className="p-6">
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                      {country.description}
-                    </p>
-                    
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-green-600" />
-                        <span className="text-sm text-gray-600">{country.averageCost}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-blue-600" />
-                        <span className="text-sm text-gray-600">{country.visaSuccessRate}% visa success</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-2 mb-4">
+                  <div className="p-4">
+                    <div className="flex gap-2">
                       <Button
                         onClick={() => setSelectedCountry(country)}
                         variant="outline"
