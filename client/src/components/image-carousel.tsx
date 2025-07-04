@@ -45,11 +45,6 @@ export default function ImageCarousel() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          {/* Left fade overlay */}
-          <div className="absolute top-0 left-0 bottom-0 w-20 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
-          
-          {/* Right fade overlay */}
-          <div className="absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />
           
           {/* Infinite Sliding Container */}
           <div className="flex">
