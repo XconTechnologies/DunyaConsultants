@@ -17,6 +17,7 @@ import UKGuide from "@/pages/country-guides/uk";
 import CanadaGuide from "@/pages/country-guides/canada";
 import AustraliaGuide from "@/pages/country-guides/australia";
 import BusinessCardGenerator from "@/pages/business-card-generator";
+import Blog from "@/pages/blog";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/document-checklist" component={DocumentChecklist} />
       <Route path="/events" component={Events} />
       <Route path="/blogs" component={Blogs} />
+      <Route path="/blog/kaplan-test-of-english" component={Blog} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

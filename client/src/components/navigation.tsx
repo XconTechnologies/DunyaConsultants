@@ -205,6 +205,15 @@ export default function Navigation() {
           ]
         },
         {
+          title: "Test Preparation",
+          icon: Award,
+          items: [
+            { name: "Kaplan Test of English", href: "/blog/kaplan-test-of-english", description: "Complete KTE guide & tips" },
+            { name: "IELTS Preparation", href: "/blog/ielts-prep", description: "IELTS study strategies" },
+            { name: "PTE Test Guide", href: "/blog/pte-guide", description: "PTE exam preparation" }
+          ]
+        },
+        {
           title: "Student Stories",
           icon: Heart,
           items: [
