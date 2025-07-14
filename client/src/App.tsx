@@ -18,6 +18,11 @@ import CanadaGuide from "@/pages/country-guides/canada";
 import AustraliaGuide from "@/pages/country-guides/australia";
 import BusinessCardGenerator from "@/pages/business-card-generator";
 import Blog from "@/pages/blog";
+import BlogList from "@/pages/blog-list";
+import GlobalTalentVisaAustralia from "@/pages/blog/global-talent-visa-australia";
+import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
+import IELTSPreparationTips from "@/pages/blog/ielts-preparation-tips";
+import StudyNursingUK from "@/pages/blog/study-nursing-uk";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -37,7 +42,12 @@ function Router() {
       <Route path="/document-checklist" component={DocumentChecklist} />
       <Route path="/events" component={Events} />
       <Route path="/blogs" component={Blogs} />
+      <Route path="/blog" component={BlogList} />
       <Route path="/blog/kaplan-test-of-english" component={Blog} />
+      <Route path="/blog/global-talent-visa-australia" component={GlobalTalentVisaAustralia} />
+      <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
+      <Route path="/blog/ielts-preparation-tips" component={IELTSPreparationTips} />
+      <Route path="/blog/study-nursing-uk" component={StudyNursingUK} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

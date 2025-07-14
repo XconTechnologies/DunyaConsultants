@@ -199,9 +199,9 @@ export default function Navigation() {
           title: "Study Abroad",
           icon: Globe,
           items: [
-            { name: "Study Abroad Tips", href: "/blog/tips", description: "Expert advice & guidance" },
-            { name: "Country Guides", href: "/blog/country-guides", description: "Destination insights" },
-            { name: "Application Process", href: "/blog/applications", description: "Step-by-step guides" }
+            { name: "Top Study Abroad Countries", href: "/blog/top-study-abroad-countries", description: "Best destinations for international students" },
+            { name: "Global Talent Visa Australia", href: "/blog/global-talent-visa-australia", description: "Complete guide to Australian visa" },
+            { name: "Study Nursing in the UK", href: "/blog/study-nursing-uk", description: "Healthcare education opportunities" }
           ]
         },
         {
@@ -209,8 +209,8 @@ export default function Navigation() {
           icon: Award,
           items: [
             { name: "Kaplan Test of English", href: "/blog/kaplan-test-of-english", description: "Complete KTE guide & tips" },
-            { name: "IELTS Preparation", href: "/blog/ielts-prep", description: "IELTS study strategies" },
-            { name: "PTE Test Guide", href: "/blog/pte-guide", description: "PTE exam preparation" }
+            { name: "IELTS Preparation Tips", href: "/blog/ielts-preparation-tips", description: "Top 10 tips for high band score" },
+            { name: "How to Improve IELTS Listening", href: "/blog/improve-ielts-listening", description: "Listening skills enhancement" }
           ]
         },
         {
