@@ -186,7 +186,7 @@ export default function ConsultationBookingCalendar() {
   }
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+    <section id="consultation" ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

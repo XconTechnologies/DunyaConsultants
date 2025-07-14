@@ -338,7 +338,7 @@ export default function Navigation() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <Button 
-              onClick={() => scrollToSection("contact")}
+              onClick={() => scrollToSection("consultation")}
               className={`${
                 !isScrolled
                   ? 'bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 hover:border-white/60 shadow-lg'
