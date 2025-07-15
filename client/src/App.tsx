@@ -19,18 +19,6 @@ import AustraliaGuide from "@/pages/country-guides/australia";
 import BusinessCardGenerator from "@/pages/business-card-generator";
 import Blog from "@/pages/blog";
 import BlogList from "@/pages/blog-list";
-import GlobalTalentVisaAustralia from "@/pages/blog/global-talent-visa-australia";
-import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
-import IELTSPreparationTips from "@/pages/blog/ielts-preparation-tips";
-import StudyNursingUK from "@/pages/blog/study-nursing-uk";
-import EngineeringLawProgramsCanada from "@/pages/blog/engineering-law-programs-canada";
-import ScholarshipsForPakistaniStudents from "@/pages/blog/scholarships-for-pakistani-students";
-import StudentVisaGuide from "@/pages/blog/student-visa-guide";
-import ImproveIELTSListening from "@/pages/blog/improve-ielts-listening";
-import CyprusVisaPakistan from "@/pages/blog/cyprus-visa-pakistan";
-import StudyInTurkey from "@/pages/blog/study-in-turkey";
-import ScholarshipOpportunities2025 from "@/pages/blog/scholarship-opportunities-2025";
-import AngliaRuskinUniversityPartner from "@/pages/blog/anglia-ruskin-university-partner";
 import BlogArchive from "@/pages/blog-archive";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
@@ -54,18 +42,6 @@ function Router() {
       <Route path="/blog" component={BlogArchive} />
       <Route path="/blog/list" component={BlogList} />
       <Route path="/blog/kaplan-test-of-english" component={Blog} />
-      <Route path="/blog/global-talent-visa-australia" component={GlobalTalentVisaAustralia} />
-      <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
-      <Route path="/blog/ielts-preparation-tips" component={IELTSPreparationTips} />
-      <Route path="/blog/study-nursing-uk" component={StudyNursingUK} />
-      <Route path="/blog/engineering-law-programs-canada" component={EngineeringLawProgramsCanada} />
-      <Route path="/blog/scholarships-for-pakistani-students" component={ScholarshipsForPakistaniStudents} />
-      <Route path="/blog/student-visa-guide" component={StudentVisaGuide} />
-      <Route path="/blog/improve-ielts-listening" component={ImproveIELTSListening} />
-      <Route path="/blog/cyprus-visa-pakistan" component={CyprusVisaPakistan} />
-      <Route path="/blog/study-in-turkey" component={StudyInTurkey} />
-      <Route path="/blog/scholarship-opportunities-2025" component={ScholarshipOpportunities2025} />
-      <Route path="/blog/anglia-ruskin-university-partner" component={AngliaRuskinUniversityPartner} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
