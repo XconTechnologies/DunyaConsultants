@@ -51,6 +51,11 @@ function Router() {
       <Route path="/blog/anglia-ruskin-university-partner" component={AngliaRuskinUniversityPartner} />
       <Route path="/blog/cyprus-visa-pakistan" component={CyprusVisaPakistan} />
       <Route path="/blog/engineering-law-programs-canada" component={EngineeringLawProgramsCanada} />
+      <Route path="/blog/why-turkey-best-choice-pakistani-students" component={WhyTurkeyBestChoicePakistaniStudents} />
+      <Route path="/blog/uk-llm-to-pakistani-bar" component={UKLLMToPakistaniBar} />
+      <Route path="/blog/study-nursing-in-uk" component={StudyNursingInUK} />
+      <Route path="/blog/global-talent-visa-uk" component={GlobalTalentVisaUK} />
+      <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
