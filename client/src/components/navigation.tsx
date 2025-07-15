@@ -199,7 +199,7 @@ export default function Navigation() {
           title: "Study Abroad",
           icon: Globe,
           items: [
-            { name: "Blog Archive", href: "/blog/archive", description: "Browse all our blog articles" },
+            { name: "Blog Archive", href: "/blog", description: "Browse all our blog articles" },
             { name: "Top Study Abroad Countries", href: "/blog/top-study-abroad-countries", description: "Best destinations for international students" },
             { name: "Global Talent Visa Australia", href: "/blog/global-talent-visa-australia", description: "Complete guide to Australian visa" },
             { name: "Study Nursing in the UK", href: "/blog/study-nursing-uk", description: "Healthcare education opportunities" }
@@ -228,7 +228,7 @@ export default function Navigation() {
         title: "Latest Updates",
         description: "Stay informed about study abroad",
         cta: "View Archive",
-        href: "/blog/archive"
+        href: "/blog"
       }
     },
     "Contact": {

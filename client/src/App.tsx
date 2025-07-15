@@ -47,8 +47,8 @@ function Router() {
       <Route path="/document-checklist" component={DocumentChecklist} />
       <Route path="/events" component={Events} />
       <Route path="/blogs" component={Blogs} />
-      <Route path="/blog" component={BlogList} />
-      <Route path="/blog/archive" component={BlogArchive} />
+      <Route path="/blog" component={BlogArchive} />
+      <Route path="/blog/list" component={BlogList} />
       <Route path="/blog/kaplan-test-of-english" component={Blog} />
       <Route path="/blog/global-talent-visa-australia" component={GlobalTalentVisaAustralia} />
       <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
