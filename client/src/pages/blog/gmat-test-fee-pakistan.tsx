@@ -43,7 +43,7 @@ const GMATTestFeePakistan: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-4 py-4">
+        <div className="max-w-[1440px] mx-auto px-4 py-4">
           <Link href="/blog" className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Blog
@@ -77,7 +77,7 @@ const GMATTestFeePakistan: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
