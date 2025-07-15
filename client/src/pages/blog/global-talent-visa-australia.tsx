@@ -8,7 +8,7 @@ export default function GlobalTalentVisaAustralia() {
   const shareLinks = [
     {
       name: "Twitter",
-      url: "https://twitter.com/intent/tweet?text=Global Talent Visa Australia - Complete Guide&url=" + encodeURIComponent(window.location.href),
+      url: "https://twitter.com/intent/tweet?text=A Complete Guide to Global Talent Visa Australia&url=" + encodeURIComponent(window.location.href),
       icon: Twitter,
       color: "hover:text-blue-400"
     },
@@ -28,10 +28,10 @@ export default function GlobalTalentVisaAustralia() {
 
   const tableOfContents = [
     { id: "what-is-gtv", title: "What is Global Talent Visa Australia?" },
-    { id: "eligibility", title: "Eligibility Requirements" },
-    { id: "application-process", title: "Application Process" },
-    { id: "benefits", title: "Benefits & Advantages" },
-    { id: "timeline", title: "Processing Timeline" },
+    { id: "eligibility", title: "Eligibility Criteria" },
+    { id: "documents", title: "Required Documents" },
+    { id: "application-process", title: "Application Steps" },
+    { id: "cost", title: "Visa Costs" },
     { id: "conclusion", title: "Conclusion" },
     { id: "faqs", title: "FAQs" }
   ];

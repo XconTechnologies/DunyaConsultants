@@ -27,6 +27,7 @@ import ImproveIELTSListening from "@/pages/blog/improve-ielts-listening";
 import CyprusVisaPakistan from "@/pages/blog/cyprus-visa-pakistan";
 import StudyInTurkey from "@/pages/blog/study-in-turkey";
 import ScholarshipOpportunities2025 from "@/pages/blog/scholarship-opportunities-2025";
+import AngliaRuskinUniversityPartner from "@/pages/blog/anglia-ruskin-university-partner";
 import BlogArchive from "@/pages/blog-archive";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
@@ -58,6 +59,7 @@ function Router() {
       <Route path="/blog/cyprus-visa-pakistan" component={CyprusVisaPakistan} />
       <Route path="/blog/study-in-turkey" component={StudyInTurkey} />
       <Route path="/blog/scholarship-opportunities-2025" component={ScholarshipOpportunities2025} />
+      <Route path="/blog/anglia-ruskin-university-partner" component={AngliaRuskinUniversityPartner} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

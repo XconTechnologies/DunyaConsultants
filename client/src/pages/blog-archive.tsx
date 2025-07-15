@@ -133,6 +133,20 @@ const blogPosts: BlogPost[] = [
     href: "/blog/scholarship-opportunities-2025"
   },
   {
+    id: "17",
+    title: "Anglia Ruskin University – A Trusted Partner of Dunya Consultants",
+    excerpt: "Discover why Anglia Ruskin University is the perfect choice for Pakistani students seeking quality education in the UK.",
+    category: "University Partnership",
+    author: "Dunya Consultants",
+    date: "Mar 19, 2025",
+    readTime: "12 min",
+    views: 2847,
+    tags: ["UK", "University", "Partnership", "Education"],
+    image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    href: "/blog/anglia-ruskin-university-partner"
+  },
+  {
     id: "5",
     title: "Kaplan Test of English (KTE): Complete Guide",
     excerpt: "Comprehensive guide to the Kaplan Test of English with test format, preparation tips, and scoring system explained.",
