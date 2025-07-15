@@ -23,6 +23,9 @@ import GlobalTalentVisaAustralia from "@/pages/blog/global-talent-visa-australia
 import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
 import IELTSPreparationTips from "@/pages/blog/ielts-preparation-tips";
 import StudyNursingUK from "@/pages/blog/study-nursing-uk";
+import EngineeringLawProgramsCanada from "@/pages/blog/engineering-law-programs-canada";
+import ScholarshipsForPakistaniStudents from "@/pages/blog/scholarships-for-pakistani-students";
+import StudentVisaGuide from "@/pages/blog/student-visa-guide";
 import ImproveIELTSListening from "@/pages/blog/improve-ielts-listening";
 import CyprusVisaPakistan from "@/pages/blog/cyprus-visa-pakistan";
 import StudyInTurkey from "@/pages/blog/study-in-turkey";
@@ -55,6 +58,9 @@ function Router() {
       <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
       <Route path="/blog/ielts-preparation-tips" component={IELTSPreparationTips} />
       <Route path="/blog/study-nursing-uk" component={StudyNursingUK} />
+      <Route path="/blog/engineering-law-programs-canada" component={EngineeringLawProgramsCanada} />
+      <Route path="/blog/scholarships-for-pakistani-students" component={ScholarshipsForPakistaniStudents} />
+      <Route path="/blog/student-visa-guide" component={StudentVisaGuide} />
       <Route path="/blog/improve-ielts-listening" component={ImproveIELTSListening} />
       <Route path="/blog/cyprus-visa-pakistan" component={CyprusVisaPakistan} />
       <Route path="/blog/study-in-turkey" component={StudyInTurkey} />
