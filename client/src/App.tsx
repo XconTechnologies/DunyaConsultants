@@ -23,6 +23,7 @@ import GlobalTalentVisaAustralia from "@/pages/blog/global-talent-visa-australia
 import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
 import IELTSPreparationTips from "@/pages/blog/ielts-preparation-tips";
 import StudyNursingUK from "@/pages/blog/study-nursing-uk";
+import BlogArchive from "@/pages/blog-archive";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -43,6 +44,7 @@ function Router() {
       <Route path="/events" component={Events} />
       <Route path="/blogs" component={Blogs} />
       <Route path="/blog" component={BlogList} />
+      <Route path="/blog/archive" component={BlogArchive} />
       <Route path="/blog/kaplan-test-of-english" component={Blog} />
       <Route path="/blog/global-talent-visa-australia" component={GlobalTalentVisaAustralia} />
       <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
