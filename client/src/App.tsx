@@ -23,6 +23,10 @@ import GlobalTalentVisaAustralia from "@/pages/blog/global-talent-visa-australia
 import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
 import IELTSPreparationTips from "@/pages/blog/ielts-preparation-tips";
 import StudyNursingUK from "@/pages/blog/study-nursing-uk";
+import ImproveIELTSListening from "@/pages/blog/improve-ielts-listening";
+import CyprusVisaPakistan from "@/pages/blog/cyprus-visa-pakistan";
+import StudyInTurkey from "@/pages/blog/study-in-turkey";
+import ScholarshipOpportunities2025 from "@/pages/blog/scholarship-opportunities-2025";
 import BlogArchive from "@/pages/blog-archive";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
@@ -50,6 +54,10 @@ function Router() {
       <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
       <Route path="/blog/ielts-preparation-tips" component={IELTSPreparationTips} />
       <Route path="/blog/study-nursing-uk" component={StudyNursingUK} />
+      <Route path="/blog/improve-ielts-listening" component={ImproveIELTSListening} />
+      <Route path="/blog/cyprus-visa-pakistan" component={CyprusVisaPakistan} />
+      <Route path="/blog/study-in-turkey" component={StudyInTurkey} />
+      <Route path="/blog/scholarship-opportunities-2025" component={ScholarshipOpportunities2025} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
