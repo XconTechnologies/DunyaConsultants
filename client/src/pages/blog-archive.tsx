@@ -157,6 +157,88 @@ const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     featured: true,
     href: "/blog/top-study-abroad-countries"
+  },
+  {
+    id: "11",
+    title: "Oxford Test Accepted Universities in UK: Complete Guide to OIETC",
+    excerpt: "Comprehensive guide to UK universities accepting OIETC (Oxford International Education Training Centre) scores, including University of Edinburgh, University of Nottingham, and Birmingham City University.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Mar 13, 2025",
+    readTime: "8 min",
+    views: 6420,
+    tags: ["OIETC", "UK Universities", "English Test", "ELLT"],
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    href: "/blog/oxford-test-accepted-universities-uk"
+  },
+  {
+    id: "12",
+    title: "Master of Laws (LLM) in Australia: Complete Guide for International Students",
+    excerpt: "Everything you need to know about studying LLM in Australia, including best universities, eligibility criteria, costs, application process, and career opportunities.",
+    category: "Legal Education",
+    author: "Dunya Consultants",
+    date: "Mar 13, 2025",
+    readTime: "10 min",
+    views: 8750,
+    tags: ["Australia", "LLM", "Legal Education", "Master of Laws"],
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    trending: true,
+    href: "/blog/master-of-laws-llm-australia"
+  },
+  {
+    id: "13",
+    title: "GMAT Test Fee in Pakistan: Complete Registration Guide 2025",
+    excerpt: "Complete guide to GMAT exam fees in Pakistan, registration process, test dates, eligibility criteria, and preparation tips for business school applications.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Mar 11, 2025",
+    readTime: "8 min",
+    views: 5680,
+    tags: ["GMAT", "Pakistan", "Test Fee", "Business School"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    href: "/blog/gmat-test-fee-pakistan"
+  },
+  {
+    id: "14",
+    title: "UK Internship for International Students: Complete Guide 2025",
+    excerpt: "Comprehensive guide to UK internship opportunities for international students, including types of internships, best programs, application tips, and career benefits.",
+    category: "Study Abroad",
+    author: "Dunya Consultants",
+    date: "Mar 12, 2025",
+    readTime: "9 min",
+    views: 7350,
+    tags: ["UK", "Internship", "International Students", "Career"],
+    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    href: "/blog/uk-internship-international-students"
+  },
+  {
+    id: "15",
+    title: "How to Improve IELTS Listening Skills: Expert Tips and Strategies",
+    excerpt: "Master the IELTS listening test with expert tips, practice strategies, and techniques to improve your English listening skills for better band scores.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Mar 12, 2025",
+    readTime: "8 min",
+    views: 9420,
+    tags: ["IELTS", "Listening", "Test Preparation", "English Skills"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    trending: true,
+    href: "/blog/ielts-listening-skills"
+  },
+  {
+    id: "16",
+    title: "Top 10 IELTS Preparation Tips: Expert Guide for High Band Score",
+    excerpt: "Complete IELTS preparation guide with 10 essential tips and strategies to achieve your target band score, including study schedules, practice resources, and expert advice.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Mar 10, 2025",
+    readTime: "10 min",
+    views: 11200,
+    tags: ["IELTS", "Preparation", "Study Tips", "Band Score"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    href: "/blog/ielts-preparation-tips"
   }
 ];
 

@@ -30,6 +30,12 @@ import UKLLMPakistaniBar from "@/pages/blog/uk-llm-pakistani-bar";
 import StudyNursingUK from "@/pages/blog/study-nursing-uk";
 import GlobalTalentVisaUK from "@/pages/blog/global-talent-visa-uk";
 import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
+import OxfordTestAcceptedUniversitiesUK from "@/pages/blog/oxford-test-accepted-universities-uk";
+import MasterOfLawsLLMAustralia from "@/pages/blog/master-of-laws-llm-australia";
+import GMATTestFeePakistan from "@/pages/blog/gmat-test-fee-pakistan";
+import UKInternshipInternationalStudents from "@/pages/blog/uk-internship-international-students";
+import IELTSListeningSkills from "@/pages/blog/ielts-listening-skills";
+import IELTSPreparationTips from "@/pages/blog/ielts-preparation-tips";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -61,6 +67,12 @@ function Router() {
       <Route path="/blog/study-nursing-uk" component={StudyNursingUK} />
       <Route path="/blog/global-talent-visa-uk" component={GlobalTalentVisaUK} />
       <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
+      <Route path="/blog/oxford-test-accepted-universities-uk" component={OxfordTestAcceptedUniversitiesUK} />
+      <Route path="/blog/master-of-laws-llm-australia" component={MasterOfLawsLLMAustralia} />
+      <Route path="/blog/gmat-test-fee-pakistan" component={GMATTestFeePakistan} />
+      <Route path="/blog/uk-internship-international-students" component={UKInternshipInternationalStudents} />
+      <Route path="/blog/ielts-listening-skills" component={IELTSListeningSkills} />
+      <Route path="/blog/ielts-preparation-tips" component={IELTSPreparationTips} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
