@@ -25,6 +25,11 @@ import GlobalTalentVisaAustralia from "@/pages/blog/global-talent-visa-australia
 import AngliaRuskinUniversityPartner from "@/pages/blog/anglia-ruskin-university-partner";
 import CyprusVisaPakistan from "@/pages/blog/cyprus-visa-pakistan";
 import EngineeringLawProgramsCanada from "@/pages/blog/engineering-law-programs-canada";
+import WhyTurkeyBestChoicePakistaniStudents from "@/pages/blog/why-turkey-best-choice-pakistani-students";
+import UKLLMToPakistaniBar from "@/pages/blog/uk-llm-to-pakistani-bar";
+import StudyNursingInUK from "@/pages/blog/study-nursing-in-uk";
+import GlobalTalentVisaUK from "@/pages/blog/global-talent-visa-uk";
+import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";

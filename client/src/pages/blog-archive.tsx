@@ -88,6 +88,75 @@ const blogPosts: BlogPost[] = [
     tags: ["Canada", "Engineering", "Law", "Universities"],
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     href: "/blog/engineering-law-programs-canada"
+  },
+  {
+    id: "6",
+    title: "Why Turkey is Best Choice for Pakistani Students?",
+    excerpt: "Discover why Turkey has become the top destination for Pakistani students seeking quality education, cultural familiarity, and affordable study options in Europe.",
+    category: "Study Abroad",
+    author: "Dunya Consultants",
+    date: "Jan 10, 2025",
+    readTime: "9 min",
+    views: 11240,
+    tags: ["Turkey", "Pakistan", "Study Abroad", "Affordable Education"],
+    image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    href: "/blog/why-turkey-best-choice-pakistani-students"
+  },
+  {
+    id: "7",
+    title: "From UK LLM to Pakistani Bar: How to Convert Your Degree for Legal Practice?",
+    excerpt: "Complete guide for Pakistani law graduates on how to convert their UK LLM degree for legal practice in Pakistan, including requirements, procedures, and career opportunities.",
+    category: "Legal Education",
+    author: "Dunya Consultants",
+    date: "Jan 9, 2025",
+    readTime: "12 min",
+    views: 8750,
+    tags: ["UK", "LLM", "Pakistan", "Legal Practice", "Bar Council"],
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    href: "/blog/uk-llm-to-pakistani-bar"
+  },
+  {
+    id: "8",
+    title: "Study Nursing in the UK: Complete Guide for International Students",
+    excerpt: "Comprehensive guide to studying nursing in the UK, including top universities, admission requirements, career prospects, and registration process for international students.",
+    category: "Healthcare Studies",
+    author: "Dunya Consultants",
+    date: "Jan 8, 2025",
+    readTime: "13 min",
+    views: 15680,
+    tags: ["UK", "Nursing", "Healthcare", "International Students"],
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    trending: true,
+    href: "/blog/study-nursing-in-uk"
+  },
+  {
+    id: "9",
+    title: "Global Talent Visa UK: Complete Guide for Skilled Professionals",
+    excerpt: "Comprehensive guide to the UK's Global Talent Visa, including eligibility criteria, application process, endorsement requirements, and career opportunities for exceptional talent.",
+    category: "UK Immigration",
+    author: "Dunya Consultants",
+    date: "Jan 7, 2025",
+    readTime: "11 min",
+    views: 13420,
+    tags: ["UK", "Visa", "Immigration", "Skilled Professionals"],
+    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    trending: true,
+    href: "/blog/global-talent-visa-uk"
+  },
+  {
+    id: "10",
+    title: "Top Study Abroad Countries: Best Destinations for International Students in 2025",
+    excerpt: "Discover the world's top study abroad destinations, comparing education quality, costs, career opportunities, and student experiences to help you make the best choice for your international education.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Jan 6, 2025",
+    readTime: "15 min",
+    views: 18950,
+    tags: ["Study Abroad", "Countries", "International Education", "Comparison"],
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    href: "/blog/top-study-abroad-countries"
   }
 ];
 
@@ -97,9 +166,11 @@ const categories = [
   { name: "Visa Guides", icon: BookOpen, count: blogPosts.filter(p => p.category === "Visa Guides").length },
   { name: "Test Preparation", icon: Award, count: blogPosts.filter(p => p.category === "Test Preparation").length },
   { name: "Healthcare Studies", icon: Heart, count: blogPosts.filter(p => p.category === "Healthcare Studies").length },
-  { name: "Scholarships", icon: Star, count: blogPosts.filter(p => p.category === "Scholarships").length },
-  { name: "University Selection", icon: Users, count: blogPosts.filter(p => p.category === "University Selection").length },
-  { name: "Business Studies", icon: TrendingUp, count: blogPosts.filter(p => p.category === "Business Studies").length }
+  { name: "Legal Education", icon: Users, count: blogPosts.filter(p => p.category === "Legal Education").length },
+  { name: "UK Immigration", icon: TrendingUp, count: blogPosts.filter(p => p.category === "UK Immigration").length },
+  { name: "Study Destinations", icon: Star, count: blogPosts.filter(p => p.category === "Study Destinations").length },
+  { name: "University Partnership", icon: Users, count: blogPosts.filter(p => p.category === "University Partnership").length },
+  { name: "Study in Canada", icon: Globe, count: blogPosts.filter(p => p.category === "Study in Canada").length }
 ];
 
 export default function BlogArchive() {
