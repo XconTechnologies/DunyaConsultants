@@ -22,6 +22,48 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "How to Apply For IELTS in Pakistan",
+    excerpt: "Complete guide to IELTS registration and application process in Pakistan, including requirements, booking steps, fees, and frequently asked questions for 2025.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Mar 10, 2025",
+    readTime: "8 min",
+    views: 12450,
+    tags: ["IELTS", "Pakistan", "Registration", "Application"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/how-to-apply-ielts-pakistan"
+  },
+  {
+    id: "2",
+    title: "Bachelors in ICT (Software Engineering)",
+    excerpt: "Complete guide to Software Engineering programs in Finland, including universities, eligibility criteria, documents required, and application process for international students.",
+    category: "Study Programs",
+    author: "Dunya Consultants",
+    date: "Mar 8, 2025",
+    readTime: "9 min",
+    views: 9870,
+    tags: ["Software Engineering", "Finland", "ICT", "Bachelor's"],
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    href: "/blog/bachelors-ict-software-engineering"
+  },
+  {
+    id: "3",
+    title: "Bachelors in Industrial Engineering and Management",
+    excerpt: "Comprehensive guide to Industrial Engineering and Management programs worldwide, including top universities, eligibility requirements, and application procedures.",
+    category: "Study Programs",
+    author: "Dunya Consultants",
+    date: "Mar 7, 2025",
+    readTime: "8 min",
+    views: 8650,
+    tags: ["Industrial Engineering", "Management", "Bachelor's", "Programs"],
+    image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    href: "/blog/bachelors-industrial-engineering-management"
+  },
+  {
+    id: "4",
     title: "Kaplan Test of English (KTE): Complete Guide 2025",
     excerpt: "Comprehensive guide to the Kaplan Test of English (KTE) including format, preparation tips, scoring system, and how it compares to other English proficiency tests for international students.",
     category: "Test Preparation",
@@ -34,7 +76,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/kaplan-test-of-english"
   },
   {
-    id: "2",
+    id: "5",
     title: "Global Talent Visa Australia: Complete Guide 2025",
     excerpt: "Everything you need to know about Australia's Global Talent Visa program including eligibility requirements, application process, priority sectors, and success tips for skilled professionals.",
     category: "Visa Guides",
@@ -49,7 +91,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/global-talent-visa-australia"
   },
   {
-    id: "3",
+    id: "6",
     title: "Anglia Ruskin University – A Trusted Partner of Dunya Consultants",
     excerpt: "Discover why Anglia Ruskin University is the perfect choice for Pakistani students seeking quality education in the UK. Complete guide to programs, rankings, and admission requirements.",
     category: "University Partnership",
@@ -63,7 +105,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/anglia-ruskin-university-partner"
   },
   {
-    id: "4",
+    id: "7",
     title: "Cyprus Visa for Pakistan: Complete Student Guide 2025",
     excerpt: "Comprehensive guide to obtaining a Cyprus student visa for Pakistani students, including requirements, application process, costs, and top universities in Cyprus.",
     category: "Visa Guides",

@@ -36,6 +36,9 @@ import GMATTestFeePakistan from "@/pages/blog/gmat-test-fee-pakistan";
 import UKInternshipInternationalStudents from "@/pages/blog/uk-internship-international-students";
 import IELTSListeningSkills from "@/pages/blog/ielts-listening-skills";
 import IELTSPreparationTips from "@/pages/blog/ielts-preparation-tips";
+import HowToApplyIELTSPakistan from "@/pages/blog/how-to-apply-ielts-pakistan";
+import BachelorsICTSoftwareEngineering from "@/pages/blog/bachelors-ict-software-engineering";
+import BachelorsIndustrialEngineeringManagement from "@/pages/blog/bachelors-industrial-engineering-management";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -73,6 +76,9 @@ function Router() {
       <Route path="/blog/uk-internship-international-students" component={UKInternshipInternationalStudents} />
       <Route path="/blog/ielts-listening-skills" component={IELTSListeningSkills} />
       <Route path="/blog/ielts-preparation-tips" component={IELTSPreparationTips} />
+      <Route path="/blog/how-to-apply-ielts-pakistan" component={HowToApplyIELTSPakistan} />
+      <Route path="/blog/bachelors-ict-software-engineering" component={BachelorsICTSoftwareEngineering} />
+      <Route path="/blog/bachelors-industrial-engineering-management" component={BachelorsIndustrialEngineeringManagement} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
