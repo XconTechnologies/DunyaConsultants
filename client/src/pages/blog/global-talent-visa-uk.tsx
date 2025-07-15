@@ -1,453 +1,360 @@
-import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Clock, User, Share2, Crown, CheckCircle, AlertCircle, Star, TrendingUp, Users, Award } from "lucide-react";
-import { Link } from "wouter";
+import React from 'react';
+import { ArrowRight, FileText, Globe, CheckCircle, Clock, DollarSign, AlertCircle, Calendar } from 'lucide-react';
 
 export default function GlobalTalentVisaUK() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <Link 
-            href="/blog" 
-            className="inline-flex items-center text-indigo-200 hover:text-white mb-6 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
-          </Link>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="mb-4">
-              <span className="bg-indigo-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+      <header className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Global Talent Visa UK</h1>
+              <p className="mt-2 text-gray-600">Complete Guide to UK's Premier Talent Immigration Route</p>
+            </div>
+            <div className="text-right">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                <Globe className="w-4 h-4 mr-1" />
                 UK Immigration
               </span>
             </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              Global Talent Visa UK: Complete Guide for Skilled Professionals
-            </h1>
-            
-            <p className="text-xl text-indigo-100 mb-6">
-              Comprehensive guide to the UK's Global Talent Visa, including eligibility criteria, application process, endorsement requirements, and career opportunities for exceptional talent.
-            </p>
-            
-            <div className="flex flex-wrap items-center gap-6 text-sm text-indigo-200">
-              <div className="flex items-center">
-                <User className="h-4 w-4 mr-2" />
-                Dunya Consultants
-              </div>
-              <div className="flex items-center">
-                <Calendar className="h-4 w-4 mr-2" />
-                Jan 7, 2025
-              </div>
-              <div className="flex items-center">
-                <Clock className="h-4 w-4 mr-2" />
-                11 min read
-              </div>
-              <div className="flex items-center">
-                <TrendingUp className="h-4 w-4 mr-2" />
-                Trending
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Article Content */}
-          <div className="lg:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="prose prose-lg max-w-none"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                alt="Global Talent Visa UK"
-                className="w-full h-64 object-cover rounded-lg mb-8"
-              />
-
-              <div className="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8">
-                <div className="flex items-center mb-2">
-                  <Crown className="h-5 w-5 text-indigo-500 mr-2" />
-                  <h3 className="text-lg font-semibold text-gray-900">What is the Global Talent Visa?</h3>
-                </div>
-                <p className="text-gray-700">
-                  The Global Talent Visa is the UK's premier immigration route for individuals with exceptional talent or promise in specific fields including science, engineering, humanities, medicine, digital technology, and the arts.
-                </p>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Eligible Fields and Endorsing Bodies</h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold mb-3">Science & Research</h3>
-                  <p className="text-gray-600 mb-3">Endorsed by UK Research and Innovation (UKRI)</p>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Academia and research</li>
-                    <li>• Applied science and engineering</li>
-                    <li>• Medicine and health sciences</li>
-                  </ul>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold mb-3">Digital Technology</h3>
-                  <p className="text-gray-600 mb-3">Endorsed by Tech Nation</p>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Fintech and cybersecurity</li>
-                    <li>• Gaming and emerging tech</li>
-                    <li>• Data science and AI</li>
-                  </ul>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold mb-3">Arts & Culture</h3>
-                  <p className="text-gray-600 mb-3">Endorsed by Arts Council England</p>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Literature and creative writing</li>
-                    <li>• Film and television</li>
-                    <li>• Music and performing arts</li>
-                  </ul>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold mb-3">Architecture</h3>
-                  <p className="text-gray-600 mb-3">Endorsed by Royal Institute of British Architects</p>
-                  <ul className="text-sm text-gray-700 space-y-1">
-                    <li>• Architectural design</li>
-                    <li>• Urban planning</li>
-                    <li>• Sustainable architecture</li>
-                  </ul>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Application Process</h2>
-              
-              <div className="bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold mb-4">Two-Stage Application</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <span className="bg-indigo-100 text-indigo-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">1</span>
-                    <div>
-                      <strong>Stage 1: Endorsement Application</strong>
-                      <p className="text-sm text-gray-600 mt-1">Apply to relevant endorsing body for your field</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="bg-indigo-100 text-indigo-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">2</span>
-                    <div>
-                      <strong>Stage 2: Visa Application</strong>
-                      <p className="text-sm text-gray-600 mt-1">Apply to Home Office with endorsement letter</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Endorsement Criteria</h2>
-              
-              <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold mb-4">Two Routes to Endorsement</h3>
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Exceptional Talent Route</h4>
-                    <div className="space-y-2">
-                      <div className="flex items-start">
-                        <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                        <div>
-                          <strong>Proven track record:</strong> International recognition and significant contributions
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                        <div>
-                          <strong>Leadership evidence:</strong> Leading roles in organizations or projects
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                        <div>
-                          <strong>Industry recognition:</strong> Awards, patents, publications, or media coverage
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Exceptional Promise Route</h4>
-                    <div className="space-y-2">
-                      <div className="flex items-start">
-                        <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                        <div>
-                          <strong>Emerging talent:</strong> Demonstrated potential for future leadership
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                        <div>
-                          <strong>Innovation evidence:</strong> Novel approaches or breakthrough contributions
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                        <div>
-                          <strong>Career trajectory:</strong> Rapid career progression and recognition
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Required Documentation</h2>
-              
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
-                <div className="flex items-center mb-2">
-                  <AlertCircle className="h-5 w-5 text-yellow-500 mr-2" />
-                  <h3 className="text-lg font-semibold text-gray-900">Essential Documents</h3>
-                </div>
-                <ul className="list-disc list-inside text-gray-700 space-y-2">
-                  <li>Detailed CV highlighting achievements and impact</li>
-                  <li>Academic qualifications and professional certifications</li>
-                  <li>Evidence of exceptional talent or promise (publications, patents, awards)</li>
-                  <li>Letters of recommendation from industry leaders</li>
-                  <li>Personal statement explaining your contribution to the field</li>
-                  <li>Evidence of media coverage or recognition</li>
-                  <li>Portfolio of work (for creative fields)</li>
-                  <li>Financial evidence (if applying for visa stage)</li>
-                </ul>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Processing Times and Costs</h2>
-              
-              <div className="overflow-x-auto mb-8">
-                <table className="w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr className="bg-gray-50">
-                      <th className="border border-gray-300 px-4 py-2 text-left">Stage</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Processing Time</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Cost</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2">Endorsement Application</td>
-                      <td className="border border-gray-300 px-4 py-2">8-12 weeks</td>
-                      <td className="border border-gray-300 px-4 py-2">£524</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-300 px-4 py-2">Visa Application</td>
-                      <td className="border border-gray-300 px-4 py-2">3-8 weeks</td>
-                      <td className="border border-gray-300 px-4 py-2">£716</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2">Priority Service</td>
-                      <td className="border border-gray-300 px-4 py-2">5 working days</td>
-                      <td className="border border-gray-300 px-4 py-2">+£500</td>
-                    </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-300 px-4 py-2">Immigration Health Surcharge</td>
-                      <td className="border border-gray-300 px-4 py-2">N/A</td>
-                      <td className="border border-gray-300 px-4 py-2">£624/year</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Visa Benefits</h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Star className="h-8 w-8 text-yellow-500 mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">Flexible Duration</h3>
-                  <p className="text-gray-600">Initially valid for up to 5 years, extendable for another 5 years</p>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Users className="h-8 w-8 text-blue-500 mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">Family Inclusion</h3>
-                  <p className="text-gray-600">Spouse/partner and children under 18 can accompany you</p>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <TrendingUp className="h-8 w-8 text-green-500 mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">Work Freedom</h3>
-                  <p className="text-gray-600">Work for any employer, be self-employed, or start a business</p>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Award className="h-8 w-8 text-purple-500 mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">Settlement Path</h3>
-                  <p className="text-gray-600">Eligible for Indefinite Leave to Remain after 3 years</p>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Success Tips</h2>
-              
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold mb-4">Maximizing Your Application Success</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Build a strong portfolio:</strong> Document all achievements, publications, and recognition</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Secure strong references:</strong> Get recommendations from respected figures in your field</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Demonstrate impact:</strong> Show how your work has influenced or advanced your field</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Professional presentation:</strong> Ensure all documents are professionally formatted</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Get expert advice:</strong> Consider using immigration lawyers or consultants</span>
-                  </li>
-                </ul>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Challenges</h2>
-              
-              <div className="space-y-4 mb-8">
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-red-800 mb-2">Insufficient Evidence</h4>
-                  <p className="text-sm text-red-700">Ensure comprehensive documentation of all achievements and recognition</p>
-                </div>
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-orange-800 mb-2">Weak Personal Statement</h4>
-                  <p className="text-sm text-orange-700">Clearly articulate your unique contribution and future plans</p>
-                </div>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-yellow-800 mb-2">Poor References</h4>
-                  <p className="text-sm text-yellow-700">Secure detailed letters from recognized leaders in your field</p>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">After Approval</h2>
-              
-              <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold mb-4">Next Steps</h3>
-                <div className="space-y-3">
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Arrival in UK:</strong> No requirement to have a job offer before arriving
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Employment flexibility:</strong> Work in any capacity within your field of expertise
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Extension applications:</strong> Can extend for another 5 years before settlement
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Settlement eligibility:</strong> Apply for ILR after 3 years of continuous residence
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-indigo-600 text-white rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-2">Ready to Apply for Global Talent Visa?</h3>
-                <p className="mb-4">
-                  The Global Talent Visa offers exceptional opportunities for skilled professionals. Let Dunya Consultants guide you through the complex application process with expert support.
-                </p>
-                <Link 
-                  href="/contact" 
-                  className="inline-block bg-white text-indigo-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-                >
-                  Get Expert Guidance
-                </Link>
-              </div>
-            </motion.div>
           </div>
+        </div>
+      </header>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-4">
-            <div className="sticky top-8 space-y-6">
-              {/* Table of Contents */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="#fields" className="text-blue-600 hover:text-blue-800">Eligible Fields</a></li>
-                  <li><a href="#process" className="text-blue-600 hover:text-blue-800">Application Process</a></li>
-                  <li><a href="#criteria" className="text-blue-600 hover:text-blue-800">Endorsement Criteria</a></li>
-                  <li><a href="#documents" className="text-blue-600 hover:text-blue-800">Required Documents</a></li>
-                  <li><a href="#costs" className="text-blue-600 hover:text-blue-800">Processing & Costs</a></li>
-                  <li><a href="#benefits" className="text-blue-600 hover:text-blue-800">Visa Benefits</a></li>
-                  <li><a href="#tips" className="text-blue-600 hover:text-blue-800">Success Tips</a></li>
-                </ul>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
+              {/* Featured Image */}
+              <div className="mb-8">
+                <img 
+                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+                  alt="Global Talent Visa UK"
+                  className="w-full h-64 object-cover rounded-lg"
+                />
               </div>
 
               {/* Quick Facts */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Facts</h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Visa Duration:</span>
-                    <span className="font-semibold">Up to 5 years</span>
+              <div className="bg-blue-50 rounded-lg p-6 mb-8">
+                <h3 className="text-lg font-semibold text-blue-900 mb-4">Quick Facts</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-center">
+                    <Clock className="w-5 h-5 text-blue-600 mr-2" />
+                    <span className="text-sm">Duration: Up to 5 years</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Application Cost:</span>
-                    <span className="font-semibold">£1,240</span>
+                  <div className="flex items-center">
+                    <DollarSign className="w-5 h-5 text-blue-600 mr-2" />
+                    <span className="text-sm">Cost: £716</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Processing Time:</span>
-                    <span className="font-semibold">11-20 weeks</span>
+                  <div className="flex items-center">
+                    <Calendar className="w-5 h-5 text-blue-600 mr-2" />
+                    <span className="text-sm">Processing: 3 weeks</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Settlement:</span>
-                    <span className="font-semibold">After 3 years</span>
+                  <div className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-blue-600 mr-2" />
+                    <span className="text-sm">Success Rate: 95%+</span>
                   </div>
                 </div>
               </div>
 
-              {/* Assessment Form */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Free Assessment</h3>
-                <form className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    />
+              {/* Introduction */}
+              <div className="prose prose-lg max-w-none mb-8">
+                <p className="text-gray-700 leading-relaxed">
+                  The Global Talent Visa UK allows exceptionally skilled individuals to live and work in the UK for up to five years, 
+                  with the possibility of extending stay or applying for permanent residency and eventually British citizenship. 
+                  This prestigious visa route also permits bringing your partner and children to live in the UK.
+                </p>
+                
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-6">
+                  <div className="flex">
+                    <AlertCircle className="w-5 h-5 text-yellow-600 mr-2 mt-0.5" />
+                    <div>
+                      <p className="text-sm text-yellow-800">
+                        <strong>Important Note:</strong> Dunya Consultants does not offer this visa service. 
+                        This guide is for informational purposes only.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    />
+                </div>
+              </div>
+
+              {/* Eligibility Criteria */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
+                  Eligibility Criteria
+                </h2>
+                <div className="bg-gray-50 rounded-lg p-6">
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
+                      <span>Strong record of achievements in your industry</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
+                      <span>Must be at least 18 years old</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
+                      <span>Proven leadership or leadership potential in your field</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
+                      <span>Endorsement from approved organization (arts, digital technology, science, academia)</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
+                      <span>Exceptional skills and contributions to your field</span>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+
+              {/* Required Documents */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
+                  Required Documents
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-white border rounded-lg p-4">
+                    <h3 className="font-semibold text-gray-900 mb-2">Personal Documents</h3>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li>• Valid passport (6+ months validity)</li>
+                      <li>• Birth/marriage certificates</li>
+                      <li>• Tuberculosis test results (if required)</li>
+                      <li>• Police clearance certificates</li>
+                    </ul>
                   </div>
-                  <div>
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
-                      <option>Select Your Field</option>
-                      <option>Science & Research</option>
-                      <option>Digital Technology</option>
-                      <option>Arts & Culture</option>
-                      <option>Architecture</option>
-                    </select>
+                  <div className="bg-white border rounded-lg p-4">
+                    <h3 className="font-semibold text-gray-900 mb-2">Professional Documents</h3>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li>• Endorsement letter from approved organization</li>
+                      <li>• Awards, certificates, publications</li>
+                      <li>• Financial documents</li>
+                      <li>• Evidence of achievements</li>
+                    </ul>
                   </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-indigo-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
-                  >
-                    Get Assessment
-                  </button>
-                </form>
+                </div>
+              </section>
+
+              {/* Application Process */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
+                  Application Process
+                </h2>
+                <div className="space-y-4">
+                  <div className="bg-white border rounded-lg p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold mr-3">1</div>
+                      <h3 className="text-lg font-semibold">Document Preparation</h3>
+                    </div>
+                    <p className="text-gray-600 ml-11">Check required documents before starting your application</p>
+                  </div>
+                  
+                  <div className="bg-white border rounded-lg p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold mr-3">2</div>
+                      <h3 className="text-lg font-semibold">Online Application</h3>
+                    </div>
+                    <p className="text-gray-600 ml-11">Apply online or at a visa application center from any country with legal residence</p>
+                  </div>
+                  
+                  <div className="bg-white border rounded-lg p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold mr-3">3</div>
+                      <h3 className="text-lg font-semibold">Application Review</h3>
+                    </div>
+                    <p className="text-gray-600 ml-11">If in UK, you and family may extend or switch visa types</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Cost Breakdown */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
+                  Cost Breakdown
+                </h2>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">With Endorsement</h3>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span>Endorsement Application:</span>
+                          <span className="font-semibold">£524</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Visa Application:</span>
+                          <span className="font-semibold">£192</span>
+                        </div>
+                        <div className="flex justify-between border-t pt-2">
+                          <span className="font-semibold">Total:</span>
+                          <span className="font-semibold text-blue-600">£716</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">With Eligible Award</h3>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span>Full Application:</span>
+                          <span className="font-semibold">£716</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span>Per Family Member:</span>
+                          <span className="font-semibold">£716</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Processing Time */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
+                  Processing Time & Decision
+                </h2>
+                <div className="bg-green-50 rounded-lg p-6">
+                  <div className="flex items-center mb-4">
+                    <Clock className="w-6 h-6 text-green-600 mr-3" />
+                    <h3 className="text-lg font-semibold text-green-900">Standard Processing</h3>
+                  </div>
+                  <p className="text-gray-700 mb-4">
+                    After submitting your online application, confirming identity, and providing documents, 
+                    you'll typically receive a decision within 3 weeks.
+                  </p>
+                  <div className="bg-white rounded-lg p-4">
+                    <h4 className="font-semibold text-gray-900 mb-2">Applications may take longer if:</h4>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      <li>• Family member requires appointment while you don't</li>
+                      <li>• Documents need verification</li>
+                      <li>• Interview is required</li>
+                      <li>• Personal history concerns (criminal record)</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              {/* Benefits */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
+                  Visa Benefits
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-blue-900 mb-2">Work Flexibility</h3>
+                    <p className="text-sm text-blue-800">
+                      Choose to work, change jobs easily, freelance, or start your own business
+                    </p>
+                  </div>
+                  <div className="bg-green-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-green-900 mb-2">Family Inclusion</h3>
+                    <p className="text-sm text-green-800">
+                      Bring your partner and children to live in the UK
+                    </p>
+                  </div>
+                  <div className="bg-purple-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-purple-900 mb-2">Path to Settlement</h3>
+                    <p className="text-sm text-purple-800">
+                      Apply for permanent residency and eventually British citizenship
+                    </p>
+                  </div>
+                  <div className="bg-orange-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-orange-900 mb-2">Biometric Residence Permit</h3>
+                    <p className="text-sm text-orange-800">
+                      Receive BRP for banking, tax number, and official identification
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* FAQs */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-4">
+                  <div className="bg-white border rounded-lg p-6">
+                    <h3 className="font-semibold text-gray-900 mb-2">What is the Global Talent Visa UK success rate?</h3>
+                    <p className="text-gray-600">
+                      The UK Global Talent Visa has a very high approval rate, usually over 95%. 
+                      Some reports indicate it can be as high as 99.2%.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white border rounded-lg p-6">
+                    <h3 className="font-semibold text-gray-900 mb-2">How can I get a UK exceptional talent visa?</h3>
+                    <p className="text-gray-600">
+                      You must demonstrate outstanding skills in your field by either winning a top award listed by the UK government 
+                      or obtaining an official endorsement from an approved organization.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white border rounded-lg p-6">
+                    <h3 className="font-semibold text-gray-900 mb-2">What is Global Talent Visa endorsement?</h3>
+                    <p className="text-gray-600">
+                      A Global Talent Visa endorsement is official approval from a recognized organization that confirms 
+                      you are already a leader or have the potential to become one in your field.
+                    </p>
+                  </div>
+                </div>
+              </section>
+            </article>
+          </div>
+
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-8 space-y-6">
+              {/* Contact Card */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Need Assistance?</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  Get expert consultation for your immigration needs
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center text-sm text-gray-600">
+                    <span className="font-medium">Phone:</span>
+                    <span className="ml-2">+92 304 1110947</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <span className="font-medium">Email:</span>
+                    <span className="ml-2">info@dunyaconsultants.com</span>
+                  </div>
+                </div>
+                <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors mt-4">
+                  Contact Us
+                </button>
+              </div>
+
+              {/* Table of Contents */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
+                <nav className="space-y-2 text-sm">
+                  <a href="#eligibility" className="block text-gray-600 hover:text-blue-600">Eligibility Criteria</a>
+                  <a href="#documents" className="block text-gray-600 hover:text-blue-600">Required Documents</a>
+                  <a href="#application" className="block text-gray-600 hover:text-blue-600">Application Process</a>
+                  <a href="#cost" className="block text-gray-600 hover:text-blue-600">Cost Breakdown</a>
+                  <a href="#processing" className="block text-gray-600 hover:text-blue-600">Processing Time</a>
+                  <a href="#benefits" className="block text-gray-600 hover:text-blue-600">Visa Benefits</a>
+                  <a href="#faqs" className="block text-gray-600 hover:text-blue-600">FAQs</a>
+                </nav>
+              </div>
+
+              {/* Related Articles */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
+                <div className="space-y-3">
+                  <a href="/blog/global-talent-visa-australia" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                    <h4 className="font-medium text-gray-900 text-sm">Global Talent Visa Australia</h4>
+                    <p className="text-xs text-gray-600 mt-1">Complete guide to Australia's talent visa</p>
+                  </a>
+                  <a href="/blog/uk-internship-international-students" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                    <h4 className="font-medium text-gray-900 text-sm">UK Internships for International Students</h4>
+                    <p className="text-xs text-gray-600 mt-1">Opportunities for international students</p>
+                  </a>
+                </div>
               </div>
             </div>
           </div>

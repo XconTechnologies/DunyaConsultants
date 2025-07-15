@@ -22,12 +22,12 @@ import BlogList from "@/pages/blog-list";
 import BlogArchive from "@/pages/blog-archive";
 import KaplanTestOfEnglish from "@/pages/blog/kaplan-test-of-english";
 import GlobalTalentVisaAustralia from "@/pages/blog/global-talent-visa-australia";
-import AngliaRuskinUniversityPartner from "@/pages/blog/anglia-ruskin-university-partner";
+import AngliaRuskinUniversity from "@/pages/blog/anglia-ruskin-university";
 import CyprusVisaPakistan from "@/pages/blog/cyprus-visa-pakistan";
-import EngineeringLawProgramsCanada from "@/pages/blog/engineering-law-programs-canada";
-import WhyTurkeyBestChoicePakistaniStudents from "@/pages/blog/why-turkey-best-choice-pakistani-students";
-import UKLLMToPakistaniBar from "@/pages/blog/uk-llm-to-pakistani-bar";
-import StudyNursingInUK from "@/pages/blog/study-nursing-in-uk";
+import EngineeringLawCanada from "@/pages/blog/engineering-law-canada";
+import TurkeyBestChoicePakistaniStudents from "@/pages/blog/turkey-best-choice-pakistani-students";
+import UKLLMPakistaniBar from "@/pages/blog/uk-llm-pakistani-bar";
+import StudyNursingUK from "@/pages/blog/study-nursing-uk";
 import GlobalTalentVisaUK from "@/pages/blog/global-talent-visa-uk";
 import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
 import ContactPage from "@/pages/contact";
@@ -53,12 +53,12 @@ function Router() {
       <Route path="/blog/list" component={BlogList} />
       <Route path="/blog/kaplan-test-of-english" component={KaplanTestOfEnglish} />
       <Route path="/blog/global-talent-visa-australia" component={GlobalTalentVisaAustralia} />
-      <Route path="/blog/anglia-ruskin-university-partner" component={AngliaRuskinUniversityPartner} />
+      <Route path="/blog/anglia-ruskin-university" component={AngliaRuskinUniversity} />
       <Route path="/blog/cyprus-visa-pakistan" component={CyprusVisaPakistan} />
-      <Route path="/blog/engineering-law-programs-canada" component={EngineeringLawProgramsCanada} />
-      <Route path="/blog/why-turkey-best-choice-pakistani-students" component={WhyTurkeyBestChoicePakistaniStudents} />
-      <Route path="/blog/uk-llm-to-pakistani-bar" component={UKLLMToPakistaniBar} />
-      <Route path="/blog/study-nursing-in-uk" component={StudyNursingInUK} />
+      <Route path="/blog/engineering-law-canada" component={EngineeringLawCanada} />
+      <Route path="/blog/turkey-best-choice-pakistani-students" component={TurkeyBestChoicePakistaniStudents} />
+      <Route path="/blog/uk-llm-pakistani-bar" component={UKLLMPakistaniBar} />
+      <Route path="/blog/study-nursing-uk" component={StudyNursingUK} />
       <Route path="/blog/global-talent-visa-uk" component={GlobalTalentVisaUK} />
       <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
       <Route path="/ielts" component={IELTS} />
