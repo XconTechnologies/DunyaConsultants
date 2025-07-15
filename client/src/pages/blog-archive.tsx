@@ -20,7 +20,75 @@ interface BlogPost {
 }
 
 const blogPosts: BlogPost[] = [
-  // All blog articles have been removed
+  {
+    id: "1",
+    title: "Kaplan Test of English (KTE): Complete Guide 2025",
+    excerpt: "Comprehensive guide to the Kaplan Test of English (KTE) including format, preparation tips, scoring system, and how it compares to other English proficiency tests for international students.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Jan 15, 2025",
+    readTime: "8 min",
+    views: 8340,
+    tags: ["KTE", "English Test", "Test Preparation", "Study Tips"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    href: "/blog/kaplan-test-of-english"
+  },
+  {
+    id: "2",
+    title: "Global Talent Visa Australia: Complete Guide 2025",
+    excerpt: "Everything you need to know about Australia's Global Talent Visa program including eligibility requirements, application process, priority sectors, and success tips for skilled professionals.",
+    category: "Visa Guides",
+    author: "Dunya Consultants",
+    date: "Jan 14, 2025",
+    readTime: "12 min",
+    views: 15420,
+    tags: ["Australia", "Visa", "Immigration", "Global Talent"],
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/global-talent-visa-australia"
+  },
+  {
+    id: "3",
+    title: "Anglia Ruskin University – A Trusted Partner of Dunya Consultants",
+    excerpt: "Discover why Anglia Ruskin University is the perfect choice for Pakistani students seeking quality education in the UK. Complete guide to programs, rankings, and admission requirements.",
+    category: "University Partnership",
+    author: "Dunya Consultants",
+    date: "Jan 13, 2025",
+    readTime: "10 min",
+    views: 7280,
+    tags: ["UK", "University", "Partnership", "Education"],
+    image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    href: "/blog/anglia-ruskin-university-partner"
+  },
+  {
+    id: "4",
+    title: "Cyprus Visa for Pakistan: Complete Student Guide 2025",
+    excerpt: "Comprehensive guide to obtaining a Cyprus student visa for Pakistani students, including requirements, application process, costs, and top universities in Cyprus.",
+    category: "Visa Guides",
+    author: "Dunya Consultants",
+    date: "Jan 12, 2025",
+    readTime: "11 min",
+    views: 12456,
+    tags: ["Cyprus", "Visa", "Pakistan", "Student"],
+    image: "https://images.unsplash.com/photo-1544737151-6e4b55de4036?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    trending: true,
+    href: "/blog/cyprus-visa-pakistan"
+  },
+  {
+    id: "5",
+    title: "Engineering and Law Programs in Canada: Best Universities for Pakistani Students in 2025",
+    excerpt: "Complete guide to top Canadian universities offering engineering and law programs for Pakistani students, including admission requirements, costs, and career prospects.",
+    category: "Study in Canada",
+    author: "Dunya Consultants",
+    date: "Jan 11, 2025",
+    readTime: "14 min",
+    views: 9850,
+    tags: ["Canada", "Engineering", "Law", "Universities"],
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    href: "/blog/engineering-law-programs-canada"
+  }
 ];
 
 const categories = [
