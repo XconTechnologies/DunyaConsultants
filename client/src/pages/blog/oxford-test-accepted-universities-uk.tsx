@@ -66,18 +66,27 @@ const OxfordTestAcceptedUniversitiesUK: React.FC = () => {
         </div>
       </div>
 
+      {/* Full Width Hero Section */}
+      <div className="relative w-full h-96 bg-cover bg-center bg-no-repeat" style={{
+        backgroundImage: 'url(https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)'
+      }}>
+        {/* Color Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-purple-600/80"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 flex items-center justify-center h-full">
+          <div className="text-center text-white px-4">
+            <h1 className="text-5xl font-bold mb-4">Oxford Test Accepted Universities in UK</h1>
+            <p className="text-2xl opacity-90 max-w-3xl mx-auto">Complete Guide to OIETC Accepted Universities</p>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-lg shadow-sm">
-              {/* Hero Image */}
-              <div className="aspect-video bg-gradient-to-r from-blue-600 to-purple-600 rounded-t-lg flex items-center justify-center">
-                <div className="text-center text-white">
-                  <h1 className="text-3xl font-bold mb-2">Oxford Test Accepted Universities in UK</h1>
-                  <p className="text-xl opacity-90">Complete Guide to OIETC Accepted Universities</p>
-                </div>
-              </div>
 
               <div className="p-8">
                 {/* Article Content */}

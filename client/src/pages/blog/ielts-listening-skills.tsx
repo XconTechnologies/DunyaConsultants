@@ -99,18 +99,27 @@ const IELTSListeningSkills: React.FC = () => {
         </div>
       </div>
 
+      {/* Full Width Hero Section */}
+      <div className="relative w-full h-96 bg-cover bg-center bg-no-repeat" style={{
+        backgroundImage: 'url(https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)'
+      }}>
+        {/* Color Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-600/80 to-purple-600/80"></div>
+        
+        {/* Content */}
+        <div className="relative z-10 flex items-center justify-center h-full">
+          <div className="text-center text-white px-4">
+            <h1 className="text-5xl font-bold mb-4">How to Improve IELTS Listening Skills</h1>
+            <p className="text-2xl opacity-90 max-w-3xl mx-auto">Master Your IELTS Listening Test with Expert Tips</p>
+          </div>
+        </div>
+      </div>
+
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-lg shadow-sm">
-              {/* Hero Image */}
-              <div className="aspect-video bg-gradient-to-r from-pink-600 to-purple-600 rounded-t-lg flex items-center justify-center">
-                <div className="text-center text-white">
-                  <h1 className="text-3xl font-bold mb-2">How to Improve IELTS Listening Skills</h1>
-                  <p className="text-xl opacity-90">Master Your IELTS Listening Test with Expert Tips</p>
-                </div>
-              </div>
 
               <div className="p-8">
                 {/* Article Content */}
