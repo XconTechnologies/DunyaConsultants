@@ -33,7 +33,7 @@ const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     featured: true,
     trending: true,
-    href: "/blog/how-to-apply-ielts-pakistan"
+    href: "/blog/how-to-apply-for-ielts-in-pakistan"
   },
   {
     id: "2",
@@ -47,7 +47,7 @@ const blogPosts: BlogPost[] = [
     tags: ["Software Engineering", "Finland", "ICT", "Bachelor's"],
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     featured: true,
-    href: "/blog/bachelors-ict-software-engineering"
+    href: "/blog/bachelors-in-ict-software-engineering"
   },
   {
     id: "3",
@@ -102,7 +102,7 @@ const blogPosts: BlogPost[] = [
     tags: ["UK", "University", "Partnership", "Education"],
     image: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     featured: true,
-    href: "/blog/anglia-ruskin-university-partner"
+    href: "/blog/anglia-ruskin-university"
   },
   {
     id: "7",
@@ -129,7 +129,7 @@ const blogPosts: BlogPost[] = [
     views: 9850,
     tags: ["Canada", "Engineering", "Law", "Universities"],
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    href: "/blog/engineering-law-programs-canada"
+    href: "/blog/engineering-law-canada"
   },
   {
     id: "6",
@@ -143,7 +143,7 @@ const blogPosts: BlogPost[] = [
     tags: ["Turkey", "Pakistan", "Study Abroad", "Affordable Education"],
     image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     featured: true,
-    href: "/blog/why-turkey-best-choice-pakistani-students"
+    href: "/blog/turkey-best-choice-pakistani-students"
   },
   {
     id: "7",
@@ -156,7 +156,7 @@ const blogPosts: BlogPost[] = [
     views: 8750,
     tags: ["UK", "LLM", "Pakistan", "Legal Practice", "Bar Council"],
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    href: "/blog/uk-llm-to-pakistani-bar"
+    href: "/blog/uk-llm-pakistani-bar"
   },
   {
     id: "8",
@@ -170,7 +170,7 @@ const blogPosts: BlogPost[] = [
     tags: ["UK", "Nursing", "Healthcare", "International Students"],
     image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     trending: true,
-    href: "/blog/study-nursing-in-uk"
+    href: "/blog/study-nursing-uk"
   },
   {
     id: "9",
@@ -238,7 +238,7 @@ const blogPosts: BlogPost[] = [
     views: 5680,
     tags: ["GMAT", "Pakistan", "Test Fee", "Business School"],
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    href: "/blog/gmat-test-fee-pakistan"
+    href: "/blog/gmat-test-fee-in-pakistan"
   },
   {
     id: "14",
@@ -266,7 +266,7 @@ const blogPosts: BlogPost[] = [
     tags: ["IELTS", "Listening", "Test Preparation", "English Skills"],
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     trending: true,
-    href: "/blog/ielts-listening-skills"
+    href: "/blog/how-to-improve-ielts-listening-skills"
   },
   {
     id: "16",
@@ -280,7 +280,7 @@ const blogPosts: BlogPost[] = [
     tags: ["IELTS", "Preparation", "Study Tips", "Band Score"],
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     featured: true,
-    href: "/blog/ielts-preparation-tips"
+    href: "/blog/ielts-preparation-tips-and-tricks"
   }
 ];
 
