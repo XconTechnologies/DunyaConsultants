@@ -1,6 +1,7 @@
 import { ArrowLeft, Clock, User, Share2, Download, Settings, TrendingUp, Building, Users, CheckCircle, FileText, BookOpen, Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'wouter';
 import ContactForm from '@/components/blog/ContactForm';
+import ContactSection from '@/components/blog/ContactSection';
 
 export default function BachelorsIndustrialEngineeringManagement() {
   return (
@@ -338,26 +339,19 @@ export default function BachelorsIndustrialEngineeringManagement() {
               {/* Contact Form */}
               <ContactForm />
 
-              {/* Contact Info */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Information</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center">
-                    <Phone className="w-4 h-4 text-blue-600 mr-3" />
-                    <span className="text-sm text-gray-600">(+92) 304 1110947</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Mail className="w-4 h-4 text-blue-600 mr-3" />
-                    <span className="text-sm text-gray-600">query@teamdunya.com</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="w-4 h-4 text-blue-600 mr-3" />
-                    <span className="text-sm text-gray-600">110 Link Stadium Road Sargodha</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
+        </div>
+        
+        {/* Contact Section */}
+        <div className="max-w-[1440px] mx-auto px-4 py-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Interested in pursuing Industrial Engineering and Management? Contact our expert team for personalized guidance on your academic journey.
+            </p>
+          </div>
+          <ContactSection />
         </div>
       </div>
     </div>
