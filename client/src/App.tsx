@@ -39,6 +39,12 @@ import IELTSPreparationTipsAndTricks from "@/pages/blog/ielts-preparation-tips-a
 import HowToApplyForIELTSInPakistan from "@/pages/blog/how-to-apply-for-ielts-in-pakistan";
 import BachelorsInICTSoftwareEngineering from "@/pages/blog/bachelors-in-ict-software-engineering";
 import BachelorsIndustrialEngineeringManagement from "@/pages/blog/bachelors-industrial-engineering-management";
+import BachelorsIndustrialEngineeringAndManagement from "@/pages/blog/bachelors-in-industrial-engineering-and-management";
+import TeessideUniversityTrustedPartner from "@/pages/blog/teesside-university-trusted-partner";
+import IELTSAcceptability2025 from "@/pages/blog/ielts-acceptability-2025";
+import DifferenceIELTSGeneralAcademic from "@/pages/blog/difference-between-ielts-general-and-academic";
+import IELTSBandScoreGuide from "@/pages/blog/ielts-band-score-complete-guide";
+import LanguageCert2025Guide from "@/pages/blog/languagecert-2025-complete-guide";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -79,6 +85,12 @@ function Router() {
       <Route path="/blog/how-to-apply-for-ielts-in-pakistan" component={HowToApplyForIELTSInPakistan} />
       <Route path="/blog/bachelors-in-ict-software-engineering" component={BachelorsInICTSoftwareEngineering} />
       <Route path="/blog/bachelors-industrial-engineering-management" component={BachelorsIndustrialEngineeringManagement} />
+      <Route path="/blog/bachelors-in-industrial-engineering-and-management" component={BachelorsIndustrialEngineeringAndManagement} />
+      <Route path="/blog/teesside-university-trusted-partner" component={TeessideUniversityTrustedPartner} />
+      <Route path="/blog/ielts-acceptability-2025" component={IELTSAcceptability2025} />
+      <Route path="/blog/difference-between-ielts-general-and-academic" component={DifferenceIELTSGeneralAcademic} />
+      <Route path="/blog/ielts-band-score-complete-guide" component={IELTSBandScoreGuide} />
+      <Route path="/blog/languagecert-2025-complete-guide" component={LanguageCert2025Guide} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
