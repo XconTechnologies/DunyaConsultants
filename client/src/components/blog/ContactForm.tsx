@@ -50,11 +50,11 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
   };
 
   return (
-    <div className={`bg-blue-800 rounded-lg p-6 text-white ${className}`}>
-      <h3 className="text-xl font-semibold mb-6">Contact Us</h3>
+    <div className={`bg-blue-800 rounded-lg p-4 text-white ${className}`}>
+      <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
       
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
           <div>
             <Input
               type="text"
@@ -62,7 +62,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               value={formData.name}
               onChange={(e) => handleInputChange('name', e.target.value)}
               required
-              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
+              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-2 focus:ring-0 focus:ring-offset-0 text-sm"
             />
           </div>
           <div>
@@ -72,52 +72,51 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               value={formData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
               required
-              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
+              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-2 focus:ring-0 focus:ring-offset-0 text-sm"
             />
           </div>
         </div>
 
-        <div className="space-y-4">
-          <div>
-            <Input
-              type="text"
-              placeholder="Your Qualification"
-              value={formData.qualification}
-              onChange={(e) => handleInputChange('qualification', e.target.value)}
-              required
-              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
-            />
-          </div>
-          <div>
-            <Select value={formData.country} onValueChange={(value) => handleInputChange('country', value)}>
-              <SelectTrigger className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white focus:border-white pb-3 focus:ring-0 focus:ring-offset-0">
-                <SelectValue placeholder="Select Your Interested Country*" />
-              </SelectTrigger>
-              <SelectContent className="bg-white">
-                <SelectItem value="USA">USA</SelectItem>
-                <SelectItem value="UK">UK</SelectItem>
-                <SelectItem value="Canada">Canada</SelectItem>
-                <SelectItem value="Australia">Australia</SelectItem>
-                <SelectItem value="Finland">Finland</SelectItem>
-                <SelectItem value="Turkey">Turkey</SelectItem>
-                <SelectItem value="Dubai">Dubai</SelectItem>
-                <SelectItem value="Romania">Romania</SelectItem>
-                <SelectItem value="Malaysia">Malaysia</SelectItem>
-                <SelectItem value="Germany">Germany</SelectItem>
-                <SelectItem value="Cyprus">Cyprus</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
+        <div>
+          <Input
+            type="text"
+            placeholder="Your Qualification"
+            value={formData.qualification}
+            onChange={(e) => handleInputChange('qualification', e.target.value)}
+            required
+            className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-2 focus:ring-0 focus:ring-offset-0 text-sm"
+          />
         </div>
 
-        <div className="space-y-4">
+        <div>
+          <Select value={formData.country} onValueChange={(value) => handleInputChange('country', value)}>
+            <SelectTrigger className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white focus:border-white pb-2 focus:ring-0 focus:ring-offset-0 text-sm">
+              <SelectValue placeholder="Select Your Interested Country*" />
+            </SelectTrigger>
+            <SelectContent className="bg-white">
+              <SelectItem value="USA">USA</SelectItem>
+              <SelectItem value="UK">UK</SelectItem>
+              <SelectItem value="Canada">Canada</SelectItem>
+              <SelectItem value="Australia">Australia</SelectItem>
+              <SelectItem value="Finland">Finland</SelectItem>
+              <SelectItem value="Turkey">Turkey</SelectItem>
+              <SelectItem value="Dubai">Dubai</SelectItem>
+              <SelectItem value="Romania">Romania</SelectItem>
+              <SelectItem value="Malaysia">Malaysia</SelectItem>
+              <SelectItem value="Germany">Germany</SelectItem>
+              <SelectItem value="Cyprus">Cyprus</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="grid grid-cols-2 gap-3">
           <div>
             <Input
               type="text"
               placeholder="Percentage/GPA/CGPA"
               value={formData.percentage}
               onChange={(e) => handleInputChange('percentage', e.target.value)}
-              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
+              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-2 focus:ring-0 focus:ring-offset-0 text-sm"
             />
           </div>
           <div>
@@ -126,7 +125,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               placeholder="PTE / IELTS SCORE"
               value={formData.testScore}
               onChange={(e) => handleInputChange('testScore', e.target.value)}
-              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
+              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-2 focus:ring-0 focus:ring-offset-0 text-sm"
             />
           </div>
         </div>
@@ -136,16 +135,16 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
             placeholder="Message"
             value={formData.message}
             onChange={(e) => handleInputChange('message', e.target.value)}
-            rows={4}
-            className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white resize-none pb-3 focus:ring-0 focus:ring-offset-0"
+            rows={3}
+            className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white resize-none pb-2 focus:ring-0 focus:ring-offset-0 text-sm"
           />
         </div>
 
-        <div className="text-center pt-4">
+        <div className="text-center pt-3">
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full border-2 border-white/20 hover:border-white/40 transition-all"
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full border-2 border-white/20 hover:border-white/40 transition-all text-sm"
           >
             {isSubmitting ? 'Sending...' : 'Send Details'}
           </Button>
@@ -153,18 +152,18 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
       </form>
 
       {/* Contact Information */}
-      <div className="mt-8 pt-6 border-t border-white/20 space-y-3">
-        <div className="flex items-center space-x-3">
-          <MapPin className="w-4 h-4 text-white/70" />
-          <span className="text-sm text-white/90">110 Link Stadium Road Sargodha</span>
+      <div className="mt-4 pt-4 border-t border-white/20 space-y-2">
+        <div className="flex items-center space-x-2">
+          <MapPin className="w-3 h-3 text-white/70" />
+          <span className="text-xs text-white/90">110 Link Stadium Road Sargodha</span>
         </div>
-        <div className="flex items-center space-x-3">
-          <Phone className="w-4 h-4 text-white/70" />
-          <a href="tel:+923041110947" className="text-sm text-white/90 hover:text-white">(+92) 304 1110947</a>
+        <div className="flex items-center space-x-2">
+          <Phone className="w-3 h-3 text-white/70" />
+          <a href="tel:+923041110947" className="text-xs text-white/90 hover:text-white">(+92) 304 1110947</a>
         </div>
-        <div className="flex items-center space-x-3">
-          <Mail className="w-4 h-4 text-white/70" />
-          <a href="mailto:query@teamdunya.com" className="text-sm text-white/90 hover:text-white">query@teamdunya.com</a>
+        <div className="flex items-center space-x-2">
+          <Mail className="w-3 h-3 text-white/70" />
+          <a href="mailto:query@teamdunya.com" className="text-xs text-white/90 hover:text-white">query@teamdunya.com</a>
         </div>
       </div>
     </div>
