@@ -53,6 +53,8 @@ import GreenCardInternationalStudents from "@/pages/blog/green-card-for-internat
 import RequirementsComputerScienceUSA from "@/pages/blog/requirements-to-study-computer-science-in-usa";
 import Top10UniversitiesLondon from "@/pages/blog/top-10-universities-in-london";
 import RecommendationLetterStudentScholarship from "@/pages/blog/recommendation-letter-for-student-scholarship";
+import StudyInUK from "@/pages/blog/study-in-uk";
+import StudyAbroadEducationConsultants from "@/pages/blog/study-abroad-education-consultants-dunya-consultants";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -107,6 +109,8 @@ function Router() {
       <Route path="/blog/requirements-to-study-computer-science-in-usa" component={RequirementsComputerScienceUSA} />
       <Route path="/blog/top-10-universities-in-london" component={Top10UniversitiesLondon} />
       <Route path="/blog/recommendation-letter-for-student-scholarship" component={RecommendationLetterStudentScholarship} />
+      <Route path="/blog/study-in-uk" component={StudyInUK} />
+      <Route path="/blog/study-abroad-education-consultants-dunya-consultants" component={StudyAbroadEducationConsultants} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

@@ -22,6 +22,36 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "Study in UK: Complete Guide for Pakistani Students",
+    excerpt: "Comprehensive guide to studying in the UK including visa requirements, tuition fees, university selection, and application process for Pakistani students.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Jan 16, 2025",
+    readTime: "15 min",
+    views: 19850,
+    tags: ["UK", "Study Abroad", "Visa", "Universities", "Pakistani Students"],
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/study-in-uk"
+  },
+  {
+    id: "2",
+    title: "Study Abroad Education Consultants: Your Path to International Success",
+    excerpt: "Discover how professional education consultants can help Pakistani students navigate the complex world of international education and achieve their study abroad goals.",
+    category: "Education Consultancy",
+    author: "Dunya Consultants",
+    date: "Jan 16, 2025",
+    readTime: "12 min",
+    views: 17340,
+    tags: ["Education Consultants", "Study Abroad", "International Education", "Pakistani Students"],
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/study-abroad-education-consultants-dunya-consultants"
+  },
+  {
+    id: "3",
     title: "Finland Admissions 2025 – Finland Application Fee & deadline 2025",
     excerpt: "Complete guide to studying in Finland for Pakistani students, including visa requirements, top universities, application deadlines, and admission process with €100 application fee.",
     category: "Visa Guides",
@@ -36,7 +66,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/finland-online-visa-application-from-pakistan"
   },
   {
-    id: "2",
+    id: "4",
     title: "New Year Resolutions for Students 2025",
     excerpt: "Comprehensive guide to setting meaningful New Year resolutions for students planning to study abroad, including goal-setting strategies and success tips.",
     category: "Study Tips",
@@ -51,10 +81,10 @@ const blogPosts: BlogPost[] = [
     href: "/blog/new-year-resolutions-for-students-2025"
   },
   {
-    id: "3",
+    id: "5",
     title: "Differences Between UK and Pakistan Education Systems",
     excerpt: "Comprehensive comparison of UK and Pakistan education systems covering primary, secondary, and higher education differences, academic calendars, and key challenges.",
-    category: "Study Destinations",
+    category: "Study Tips",
     author: "Dunya Consultants",
     date: "Jan 16, 2025",
     readTime: "11 min",
@@ -66,7 +96,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/comparison-of-education-system-of-pakistan-with-uk"
   },
   {
-    id: "4",
+    id: "6",
     title: "How to Write a Recommendation Letter for a Student?",
     excerpt: "Complete guide to writing effective recommendation letters for university applications and scholarships, including format, tips, and sample templates.",
     category: "Study Tips",
@@ -81,7 +111,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/recommendation-letter-for-student-scholarship"
   },
   {
-    id: "5",
+    id: "7",
     title: "Top 10 Universities in London",
     excerpt: "Discover the best universities in London for international students, including UCL, Imperial College, LSE, and King's College with their unique advantages and programs.",
     category: "Study Destinations",
@@ -96,7 +126,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/top-10-universities-in-london"
   },
   {
-    id: "6",
+    id: "8",
     title: "Requirements to Study Computer Science in USA",
     excerpt: "Complete guide to admission requirements, costs, and career prospects for computer science programs in America, including top universities and application timeline.",
     category: "Study Programs",
@@ -111,7 +141,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/requirements-to-study-computer-science-in-usa"
   },
   {
-    id: "7",
+    id: "9",
     title: "Green Card for International Students: Complete Guide 2025",
     excerpt: "Everything international students need to know about obtaining a Green Card in the USA, including pathways, requirements, processes, and timeline for permanent residency.",
     category: "Visa Guides",
@@ -126,7 +156,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/green-card-for-international-students"
   },
   {
-    id: "8",
+    id: "10",
     title: "How Much Study Gap Acceptable in UK for Masters",
     excerpt: "Complete guide to study gap acceptance for UK master's programs, including university policies, gap year explanations, and strategies to strengthen your application.",
     category: "Study Destinations",
@@ -623,7 +653,8 @@ const categories = [
   { name: "Medical Education", icon: Heart, count: blogPosts.filter(p => p.category === "Medical Education").length },
   { name: "Scholarships", icon: Star, count: blogPosts.filter(p => p.category === "Scholarships").length },
   { name: "Student Life", icon: Users, count: blogPosts.filter(p => p.category === "Student Life").length },
-  { name: "Education Systems", icon: BookOpen, count: blogPosts.filter(p => p.category === "Education Systems").length }
+  { name: "Education Systems", icon: BookOpen, count: blogPosts.filter(p => p.category === "Education Systems").length },
+  { name: "Education Consultancy", icon: Users, count: blogPosts.filter(p => p.category === "Education Consultancy").length }
 ];
 
 export default function BlogArchive() {
