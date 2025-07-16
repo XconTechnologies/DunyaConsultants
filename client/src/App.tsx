@@ -45,6 +45,9 @@ import IELTSAcceptability2025 from "@/pages/blog/ielts-acceptability-2025";
 import DifferenceIELTSGeneralAcademic from "@/pages/blog/difference-between-ielts-general-and-academic";
 import IELTSBandScoreGuide from "@/pages/blog/ielts-band-score-complete-guide";
 import LanguageCert2025Guide from "@/pages/blog/languagecert-2025-complete-guide";
+import FinlandOnlineVisaApplication from "@/pages/blog/finland-online-visa-application-from-pakistan";
+import NewYearResolutionsStudents2025 from "@/pages/blog/new-year-resolutions-for-students-2025";
+import ComparisonEducationSystemPakistanUK from "@/pages/blog/comparison-of-education-system-of-pakistan-with-uk";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -91,6 +94,9 @@ function Router() {
       <Route path="/blog/difference-between-ielts-general-and-academic" component={DifferenceIELTSGeneralAcademic} />
       <Route path="/blog/ielts-band-score-complete-guide" component={IELTSBandScoreGuide} />
       <Route path="/blog/languagecert-2025-complete-guide" component={LanguageCert2025Guide} />
+      <Route path="/blog/finland-online-visa-application-from-pakistan" component={FinlandOnlineVisaApplication} />
+      <Route path="/blog/new-year-resolutions-for-students-2025" component={NewYearResolutionsStudents2025} />
+      <Route path="/blog/comparison-of-education-system-of-pakistan-with-uk" component={ComparisonEducationSystemPakistanUK} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

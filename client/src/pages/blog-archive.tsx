@@ -445,6 +445,47 @@ const blogPosts: BlogPost[] = [
     tags: ["LanguageCert", "Pakistan", "UK Universities", "Test Preparation"],
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     href: "/blog/languagecert-2025-complete-guide"
+  },
+  {
+    id: "32",
+    title: "Finland Online Visa Application from Pakistan",
+    excerpt: "Complete guide to applying for Finland student visa online from Pakistan, including requirements, documents, step-by-step process, and embassy information.",
+    category: "Visa Guides",
+    author: "Dunya Consultants",
+    date: "Feb 16, 2025",
+    readTime: "10 min",
+    views: 4120,
+    tags: ["Finland", "Student Visa", "Pakistan", "Online Application"],
+    image: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    href: "/blog/finland-online-visa-application-from-pakistan"
+  },
+  {
+    id: "33",
+    title: "New Year Resolutions for Students 2025",
+    excerpt: "Transform your academic journey with these meaningful resolutions for students. Set goals for academic excellence, personal development, and career success.",
+    category: "Student Life",
+    author: "Dunya Consultants",
+    date: "Feb 16, 2025",
+    readTime: "8 min",
+    views: 6890,
+    tags: ["New Year", "Student Goals", "Academic Success", "Personal Development"],
+    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    trending: true,
+    href: "/blog/new-year-resolutions-for-students-2025"
+  },
+  {
+    id: "34",
+    title: "Comparison of Education System of Pakistan with UK",
+    excerpt: "Detailed comparison of Pakistani and UK education systems, including structure, teaching methods, grading, and preparation tips for Pakistani students.",
+    category: "Education Systems",
+    author: "Dunya Consultants",
+    date: "Feb 16, 2025",
+    readTime: "12 min",
+    views: 5670,
+    tags: ["Pakistan", "UK Education", "Comparison", "International Students"],
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    href: "/blog/comparison-of-education-system-of-pakistan-with-uk"
   }
 ];
 
@@ -461,7 +502,9 @@ const categories = [
   { name: "Study in Canada", icon: Globe, count: blogPosts.filter(p => p.category === "Study in Canada").length },
   { name: "Study Programs", icon: BookOpen, count: blogPosts.filter(p => p.category === "Study Programs").length },
   { name: "Medical Education", icon: Heart, count: blogPosts.filter(p => p.category === "Medical Education").length },
-  { name: "Scholarships", icon: Star, count: blogPosts.filter(p => p.category === "Scholarships").length }
+  { name: "Scholarships", icon: Star, count: blogPosts.filter(p => p.category === "Scholarships").length },
+  { name: "Student Life", icon: Users, count: blogPosts.filter(p => p.category === "Student Life").length },
+  { name: "Education Systems", icon: BookOpen, count: blogPosts.filter(p => p.category === "Education Systems").length }
 ];
 
 export default function BlogArchive() {
