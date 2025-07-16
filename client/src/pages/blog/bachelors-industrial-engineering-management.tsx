@@ -1,5 +1,6 @@
 import { ArrowLeft, Clock, User, Share2, Download, Settings, TrendingUp, Building, Users, CheckCircle, FileText, BookOpen, Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'wouter';
+import ContactForm from '@/components/blog/ContactForm';
 
 export default function BachelorsIndustrialEngineeringManagement() {
   return (
@@ -335,26 +336,7 @@ export default function BachelorsIndustrialEngineeringManagement() {
               </div>
 
               {/* Contact Form */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Need Expert Advice?</h3>
-                <form className="space-y-4">
-                  <div>
-                    <input type="text" placeholder="Your Name" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                  </div>
-                  <div>
-                    <input type="email" placeholder="Your Email" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                  </div>
-                  <div>
-                    <input type="tel" placeholder="Phone Number" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                  </div>
-                  <div>
-                    <textarea placeholder="Your Message" rows={4} className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-                  </div>
-                  <button type="submit" className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
-                    Get Free Consultation
-                  </button>
-                </form>
-              </div>
+              <ContactForm />
 
               {/* Contact Info */}
               <div className="bg-white rounded-lg shadow-sm p-6">

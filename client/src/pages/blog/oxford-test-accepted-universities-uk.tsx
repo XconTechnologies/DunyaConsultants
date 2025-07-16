@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'wouter';
 import { ArrowLeft, Clock, User, Share2, Download, Phone, Mail, MessageCircle, ChevronRight, ChevronDown, ChevronUp } from 'lucide-react';
+import ContactForm from '@/components/blog/ContactForm';
 
 const OxfordTestAcceptedUniversitiesUK: React.FC = () => {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -290,29 +291,7 @@ const OxfordTestAcceptedUniversitiesUK: React.FC = () => {
               </div>
 
               {/* Contact Form */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Need Help with UK Admissions?</h3>
-                <p className="text-gray-600 mb-4">Get expert guidance on OIETC accepted universities and application process.</p>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <Phone className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm text-gray-700">UAN: (+92) 304 1110947</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <Mail className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm text-gray-700">info@dunyaconsultants.com</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <MessageCircle className="w-5 h-5 text-blue-600" />
-                    <span className="text-sm text-gray-700">WhatsApp Available</span>
-                  </div>
-                </div>
-
-                <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 mt-4">
-                  Get Free Consultation
-                </button>
-              </div>
+              <ContactForm />
 
               {/* Related Articles */}
               <div className="bg-white rounded-lg shadow-sm p-6">
