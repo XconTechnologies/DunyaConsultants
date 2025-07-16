@@ -2,10 +2,13 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, User, Share2, Scale, CheckCircle, AlertCircle, FileText, BookOpen, Award, Users } from "lucide-react";
 import { Link } from "wouter";
 import ContactSection from '@/components/blog/ContactSection';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
 
 export default function UKLLMToPakistaniBar() {
   return (
     <div className="min-h-screen bg-white">
+      <Navigation />
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-800 to-purple-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -442,6 +445,7 @@ export default function UKLLMToPakistaniBar() {
           <ContactSection />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

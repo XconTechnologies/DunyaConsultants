@@ -1,6 +1,8 @@
 import React from 'react';
 import { Flag, GraduationCap, MapPin, DollarSign, Heart, Star, Globe, Users } from 'lucide-react';
 import ContactSection from '@/components/blog/ContactSection';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
 
 export default function TurkeyBestChoicePakistaniStudents() {
   const universities = [
@@ -12,6 +14,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navigation />
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -403,6 +406,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
           <ContactSection />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -1,10 +1,13 @@
 import React from 'react';
 import { Heart, GraduationCap, FileText, Clock, DollarSign, MapPin, Users, CheckCircle } from 'lucide-react';
 import ContactSection from '@/components/blog/ContactSection';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
 
 export default function StudyNursingUK() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navigation />
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -400,6 +403,7 @@ export default function StudyNursingUK() {
           <ContactSection />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

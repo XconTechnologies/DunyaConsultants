@@ -2,10 +2,13 @@ import { ArrowLeft, Clock, User, Share2, Download, Settings, TrendingUp, Buildin
 import { Link } from 'wouter';
 import ContactForm from '@/components/blog/ContactForm';
 import ContactSection from '@/components/blog/ContactSection';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
 
 export default function BachelorsIndustrialEngineeringManagement() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navigation />
       {/* Header */}
       <div className="bg-white shadow-sm sticky top-0 z-40">
         <div className="max-w-[1440px] mx-auto px-4 py-4">
@@ -354,6 +357,7 @@ export default function BachelorsIndustrialEngineeringManagement() {
           <ContactSection />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
