@@ -32,12 +32,12 @@ import GlobalTalentVisaUK from "@/pages/blog/global-talent-visa-uk";
 import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
 import OxfordTestAcceptedUniversitiesUK from "@/pages/blog/oxford-test-accepted-universities-uk";
 import MasterOfLawsLLMAustralia from "@/pages/blog/master-of-laws-llm-australia";
-import GMATTestFeePakistan from "@/pages/blog/gmat-test-fee-pakistan";
+import GMATTestFeePakistan from "@/pages/blog/gmat-test-fee-in-pakistan";
 import UKInternshipInternationalStudents from "@/pages/blog/uk-internship-international-students";
-import IELTSListeningSkills from "@/pages/blog/ielts-listening-skills";
-import IELTSPreparationTips from "@/pages/blog/ielts-preparation-tips";
-import HowToApplyIELTSPakistan from "@/pages/blog/how-to-apply-ielts-pakistan";
-import BachelorsICTSoftwareEngineering from "@/pages/blog/bachelors-ict-software-engineering";
+import HowToImproveIELTSListeningSkills from "@/pages/blog/how-to-improve-ielts-listening-skills";
+import IELTSPreparationTipsAndTricks from "@/pages/blog/ielts-preparation-tips-and-tricks";
+import HowToApplyForIELTSInPakistan from "@/pages/blog/how-to-apply-for-ielts-in-pakistan";
+import BachelorsInICTSoftwareEngineering from "@/pages/blog/bachelors-in-ict-software-engineering";
 import BachelorsIndustrialEngineeringManagement from "@/pages/blog/bachelors-industrial-engineering-management";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
@@ -72,12 +72,12 @@ function Router() {
       <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
       <Route path="/blog/oxford-test-accepted-universities-uk" component={OxfordTestAcceptedUniversitiesUK} />
       <Route path="/blog/master-of-laws-llm-australia" component={MasterOfLawsLLMAustralia} />
-      <Route path="/blog/gmat-test-fee-pakistan" component={GMATTestFeePakistan} />
+      <Route path="/blog/gmat-test-fee-in-pakistan" component={GMATTestFeePakistan} />
       <Route path="/blog/uk-internship-international-students" component={UKInternshipInternationalStudents} />
-      <Route path="/blog/ielts-listening-skills" component={IELTSListeningSkills} />
-      <Route path="/blog/ielts-preparation-tips" component={IELTSPreparationTips} />
-      <Route path="/blog/how-to-apply-ielts-pakistan" component={HowToApplyIELTSPakistan} />
-      <Route path="/blog/bachelors-ict-software-engineering" component={BachelorsICTSoftwareEngineering} />
+      <Route path="/blog/how-to-improve-ielts-listening-skills" component={HowToImproveIELTSListeningSkills} />
+      <Route path="/blog/ielts-preparation-tips-and-tricks" component={IELTSPreparationTipsAndTricks} />
+      <Route path="/blog/how-to-apply-for-ielts-in-pakistan" component={HowToApplyForIELTSInPakistan} />
+      <Route path="/blog/bachelors-in-ict-software-engineering" component={BachelorsInICTSoftwareEngineering} />
       <Route path="/blog/bachelors-industrial-engineering-management" component={BachelorsIndustrialEngineeringManagement} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
