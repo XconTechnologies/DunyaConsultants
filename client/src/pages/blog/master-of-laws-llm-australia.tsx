@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'wouter';
 import { ArrowLeft, Clock, User, Share2, Download, Phone, Mail, MessageCircle, ChevronRight, ChevronDown, ChevronUp, GraduationCap, DollarSign, FileText, MapPin } from 'lucide-react';
+import ContactSection from '@/components/blog/ContactSection';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
 
 const MasterOfLawsLLMAustralia: React.FC = () => {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
@@ -77,6 +80,9 @@ const MasterOfLawsLLMAustralia: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {/* Navigation */}
+      <Navigation />
+      
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-[1440px] mx-auto px-4 py-4">
@@ -405,6 +411,21 @@ const MasterOfLawsLLMAustralia: React.FC = () => {
           </div>
         </div>
       </div>
+      
+      {/* Contact Section */}
+      <div className="max-w-[1440px] mx-auto px-4 py-12">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Ready to start your LLM journey in Australia? Our expert counsellors are here to guide you through every step of the application process.
+          </p>
+        </div>
+        
+        <ContactSection />
+      </div>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
