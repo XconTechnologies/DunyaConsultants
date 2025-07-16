@@ -1,5 +1,6 @@
 import React from 'react';
 import { Plane, FileText, DollarSign, Clock, MapPin, CheckCircle, AlertCircle, Star } from 'lucide-react';
+import ContactSection from '@/components/blog/ContactSection';
 
 export default function CyprusVisaPakistan() {
   return (
@@ -452,6 +453,17 @@ export default function CyprusVisaPakistan() {
               </div>
             </div>
           </div>
+        </div>
+        
+        {/* Contact Section */}
+        <div className="max-w-[1440px] mx-auto px-4 py-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Need help with your Cyprus student visa application? Contact our expert team for personalized guidance and professional support throughout the process.
+            </p>
+          </div>
+          <ContactSection />
         </div>
       </div>
     </div>

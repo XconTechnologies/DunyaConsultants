@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, User, Share2, Scale, CheckCircle, AlertCircle, FileText, BookOpen, Award, Users } from "lucide-react";
 import { Link } from "wouter";
+import ContactSection from '@/components/blog/ContactSection';
 
 export default function UKLLMToPakistaniBar() {
   return (
@@ -428,6 +429,17 @@ export default function UKLLMToPakistaniBar() {
               </div>
             </div>
           </div>
+        </div>
+        
+        {/* Contact Section */}
+        <div className="max-w-[1440px] mx-auto px-4 py-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Need help converting your UK LLM to practice law in Pakistan? Contact our expert team for personalized guidance and professional support throughout the conversion process.
+            </p>
+          </div>
+          <ContactSection />
         </div>
       </div>
     </div>

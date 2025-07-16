@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, User, Share2, BookOpen, CheckCircle, AlertCircle, Award, TrendingUp, MapPin, DollarSign } from "lucide-react";
 import { Link } from "wouter";
+import ContactSection from '@/components/blog/ContactSection';
 
 export default function EngineeringLawProgramsCanada() {
   return (
@@ -557,6 +558,17 @@ export default function EngineeringLawProgramsCanada() {
               </div>
             </div>
           </div>
+        </div>
+        
+        {/* Contact Section */}
+        <div className="max-w-[1440px] mx-auto px-4 py-12">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Ready to pursue engineering or law studies in Canada? Contact our expert team for personalized guidance and comprehensive support throughout your application journey.
+            </p>
+          </div>
+          <ContactSection />
         </div>
       </div>
     </div>
