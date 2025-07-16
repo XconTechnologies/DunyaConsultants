@@ -22,6 +22,21 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "How to Write a Recommendation Letter for a Student?",
+    excerpt: "Complete guide to writing effective recommendation letters for university applications and scholarships, including format, tips, and sample templates.",
+    category: "Study Tips",
+    author: "Dunya Consultants",
+    date: "Mar 13, 2025",
+    readTime: "10 min",
+    views: 16850,
+    tags: ["Recommendation Letter", "University Application", "Scholarship", "Study Abroad"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/recommendation-letter-for-student-scholarship"
+  },
+  {
+    id: "2",
     title: "Top 10 Universities in London",
     excerpt: "Discover the best universities in London for international students, including UCL, Imperial College, LSE, and King's College with their unique advantages and programs.",
     category: "Study Destinations",
@@ -36,7 +51,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/top-10-universities-in-london"
   },
   {
-    id: "2",
+    id: "3",
     title: "Requirements to Study Computer Science in USA",
     excerpt: "Complete guide to admission requirements, costs, and career prospects for computer science programs in America, including top universities and application timeline.",
     category: "Study Programs",
@@ -51,7 +66,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/requirements-to-study-computer-science-in-usa"
   },
   {
-    id: "3",
+    id: "4",
     title: "Green Card for International Students: Complete Guide 2025",
     excerpt: "Everything international students need to know about obtaining a Green Card in the USA, including pathways, requirements, processes, and timeline for permanent residency.",
     category: "Visa Guides",
@@ -66,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/green-card-for-international-students"
   },
   {
-    id: "4",
+    id: "5",
     title: "How Much Study Gap Acceptable in UK for Masters",
     excerpt: "Complete guide to study gap acceptance for UK master's programs, including university policies, gap year explanations, and strategies to strengthen your application.",
     category: "Study Destinations",
@@ -80,7 +95,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/how-much-study-gap-acceptable-in-uk-for-masters"
   },
   {
-    id: "5",
+    id: "6",
     title: "How to Apply For IELTS in Pakistan",
     excerpt: "Complete guide to IELTS registration and application process in Pakistan, including requirements, booking steps, fees, and frequently asked questions for 2025.",
     category: "Test Preparation",

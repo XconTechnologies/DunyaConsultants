@@ -52,6 +52,7 @@ import HowMuchStudyGapAcceptableUKMasters from "@/pages/blog/how-much-study-gap-
 import GreenCardInternationalStudents from "@/pages/blog/green-card-for-international-students";
 import RequirementsComputerScienceUSA from "@/pages/blog/requirements-to-study-computer-science-in-usa";
 import Top10UniversitiesLondon from "@/pages/blog/top-10-universities-in-london";
+import RecommendationLetterStudentScholarship from "@/pages/blog/recommendation-letter-for-student-scholarship";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -105,6 +106,7 @@ function Router() {
       <Route path="/blog/green-card-for-international-students" component={GreenCardInternationalStudents} />
       <Route path="/blog/requirements-to-study-computer-science-in-usa" component={RequirementsComputerScienceUSA} />
       <Route path="/blog/top-10-universities-in-london" component={Top10UniversitiesLondon} />
+      <Route path="/blog/recommendation-letter-for-student-scholarship" component={RecommendationLetterStudentScholarship} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
