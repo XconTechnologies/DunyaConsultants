@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 interface ContactFormProps {
   className?: string;
@@ -52,8 +53,8 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
     <div className={`bg-blue-800 rounded-lg p-6 text-white ${className}`}>
       <h3 className="text-xl font-semibold mb-6">Contact Us</h3>
       
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="space-y-4">
           <div>
             <Input
               type="text"
@@ -61,7 +62,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               value={formData.name}
               onChange={(e) => handleInputChange('name', e.target.value)}
               required
-              className="bg-transparent border-b-2 border-white/30 border-t-0 border-l-0 border-r-0 rounded-none text-white placeholder-white/70 focus:border-white pb-2"
+              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
             />
           </div>
           <div>
@@ -71,12 +72,12 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               value={formData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
               required
-              className="bg-transparent border-b-2 border-white/30 border-t-0 border-l-0 border-r-0 rounded-none text-white placeholder-white/70 focus:border-white pb-2"
+              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-4">
           <div>
             <Input
               type="text"
@@ -84,15 +85,15 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               value={formData.qualification}
               onChange={(e) => handleInputChange('qualification', e.target.value)}
               required
-              className="bg-transparent border-b-2 border-white/30 border-t-0 border-l-0 border-r-0 rounded-none text-white placeholder-white/70 focus:border-white pb-2"
+              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
             />
           </div>
           <div>
             <Select value={formData.country} onValueChange={(value) => handleInputChange('country', value)}>
-              <SelectTrigger className="bg-transparent border-b-2 border-white/30 border-t-0 border-l-0 border-r-0 rounded-none text-white placeholder-white/70 focus:border-white pb-2">
-                <SelectValue placeholder="Countries" />
+              <SelectTrigger className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white focus:border-white pb-3 focus:ring-0 focus:ring-offset-0">
+                <SelectValue placeholder="Select Your Interested Country*" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white">
                 <SelectItem value="USA">USA</SelectItem>
                 <SelectItem value="UK">UK</SelectItem>
                 <SelectItem value="Canada">Canada</SelectItem>
@@ -109,14 +110,14 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-4">
           <div>
             <Input
               type="text"
               placeholder="Percentage/GPA/CGPA"
               value={formData.percentage}
               onChange={(e) => handleInputChange('percentage', e.target.value)}
-              className="bg-transparent border-b-2 border-white/30 border-t-0 border-l-0 border-r-0 rounded-none text-white placeholder-white/70 focus:border-white pb-2"
+              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
             />
           </div>
           <div>
@@ -125,7 +126,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               placeholder="PTE / IELTS SCORE"
               value={formData.testScore}
               onChange={(e) => handleInputChange('testScore', e.target.value)}
-              className="bg-transparent border-b-2 border-white/30 border-t-0 border-l-0 border-r-0 rounded-none text-white placeholder-white/70 focus:border-white pb-2"
+              className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white pb-3 focus:ring-0 focus:ring-offset-0"
             />
           </div>
         </div>
@@ -136,11 +137,11 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
             value={formData.message}
             onChange={(e) => handleInputChange('message', e.target.value)}
             rows={4}
-            className="bg-transparent border-b-2 border-white/30 border-t-0 border-l-0 border-r-0 rounded-none text-white placeholder-white/70 focus:border-white resize-none"
+            className="bg-transparent border-0 border-b-2 border-white/30 rounded-none text-white placeholder-white/70 focus:border-white resize-none pb-3 focus:ring-0 focus:ring-offset-0"
           />
         </div>
 
-        <div className="pt-4">
+        <div className="text-center pt-4">
           <Button
             type="submit"
             disabled={isSubmitting}
@@ -150,6 +151,22 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
           </Button>
         </div>
       </form>
+
+      {/* Contact Information */}
+      <div className="mt-8 pt-6 border-t border-white/20 space-y-3">
+        <div className="flex items-center space-x-3">
+          <MapPin className="w-4 h-4 text-white/70" />
+          <span className="text-sm text-white/90">110 Link Stadium Road Sargodha</span>
+        </div>
+        <div className="flex items-center space-x-3">
+          <Phone className="w-4 h-4 text-white/70" />
+          <a href="tel:+923041110947" className="text-sm text-white/90 hover:text-white">(+92) 304 1110947</a>
+        </div>
+        <div className="flex items-center space-x-3">
+          <Mail className="w-4 h-4 text-white/70" />
+          <a href="mailto:query@teamdunya.com" className="text-sm text-white/90 hover:text-white">query@teamdunya.com</a>
+        </div>
+      </div>
     </div>
   );
 }
