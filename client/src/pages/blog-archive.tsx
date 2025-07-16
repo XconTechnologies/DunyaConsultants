@@ -404,6 +404,47 @@ const blogPosts: BlogPost[] = [
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
     trending: true,
     href: "/blog/ielts-acceptability-2025"
+  },
+  {
+    id: "29",
+    title: "Difference between IELTS General and Academic",
+    excerpt: "Complete guide explaining the key differences between IELTS General Training and Academic tests, including format, content, and which one to choose for your goals.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Feb 17, 2025",
+    readTime: "7 min",
+    views: 4560,
+    tags: ["IELTS", "General Training", "Academic", "Test Format"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    href: "/blog/difference-between-ielts-general-and-academic"
+  },
+  {
+    id: "30",
+    title: "IELTS Band Score: Complete Guide to Understanding the Scoring System",
+    excerpt: "Comprehensive guide to IELTS band scores, including detailed explanations of each band level, scoring criteria, and how to calculate your overall score.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Feb 17, 2025",
+    readTime: "8 min",
+    views: 5230,
+    tags: ["IELTS", "Band Score", "Scoring System", "Test Results"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    trending: true,
+    href: "/blog/ielts-band-score-complete-guide"
+  },
+  {
+    id: "31",
+    title: "LanguageCert 2025 Complete Test Guide for Pakistani Students",
+    excerpt: "Everything you need to know about LanguageCert test including accepted universities in UK, fees in Pakistan, exam pattern, and preparation tips.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Feb 17, 2025",
+    readTime: "9 min",
+    views: 3870,
+    tags: ["LanguageCert", "Pakistan", "UK Universities", "Test Preparation"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    href: "/blog/languagecert-2025-complete-guide"
   }
 ];
 
