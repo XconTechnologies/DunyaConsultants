@@ -22,6 +22,65 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "Top 10 Universities in London",
+    excerpt: "Discover the best universities in London for international students, including UCL, Imperial College, LSE, and King's College with their unique advantages and programs.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Mar 12, 2025",
+    readTime: "12 min",
+    views: 15240,
+    tags: ["UK", "London", "Universities", "Study Abroad"],
+    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/top-10-universities-in-london"
+  },
+  {
+    id: "2",
+    title: "Requirements to Study Computer Science in USA",
+    excerpt: "Complete guide to admission requirements, costs, and career prospects for computer science programs in America, including top universities and application timeline.",
+    category: "Study Programs",
+    author: "Dunya Consultants",
+    date: "Mar 11, 2025",
+    readTime: "10 min",
+    views: 13890,
+    tags: ["USA", "Computer Science", "Requirements", "STEM"],
+    image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/requirements-to-study-computer-science-in-usa"
+  },
+  {
+    id: "3",
+    title: "Green Card for International Students: Complete Guide 2025",
+    excerpt: "Everything international students need to know about obtaining a Green Card in the USA, including pathways, requirements, processes, and timeline for permanent residency.",
+    category: "Visa Guides",
+    author: "Dunya Consultants",
+    date: "Mar 10, 2025",
+    readTime: "11 min",
+    views: 14560,
+    tags: ["USA", "Green Card", "Immigration", "Permanent Residency"],
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/green-card-for-international-students"
+  },
+  {
+    id: "4",
+    title: "How Much Study Gap Acceptable in UK for Masters",
+    excerpt: "Complete guide to study gap acceptance for UK master's programs, including university policies, gap year explanations, and strategies to strengthen your application.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Mar 10, 2025",
+    readTime: "9 min",
+    views: 11780,
+    tags: ["UK", "Masters", "Study Gap", "Application"],
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    trending: true,
+    href: "/blog/how-much-study-gap-acceptable-in-uk-for-masters"
+  },
+  {
+    id: "5",
     title: "How to Apply For IELTS in Pakistan",
     excerpt: "Complete guide to IELTS registration and application process in Pakistan, including requirements, booking steps, fees, and frequently asked questions for 2025.",
     category: "Test Preparation",
@@ -36,7 +95,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/how-to-apply-for-ielts-in-pakistan"
   },
   {
-    id: "2",
+    id: "6",
     title: "Bachelors in ICT (Software Engineering)",
     excerpt: "Complete guide to Software Engineering programs in Finland, including universities, eligibility criteria, documents required, and application process for international students.",
     category: "Study Programs",
@@ -50,7 +109,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/bachelors-in-ict-software-engineering"
   },
   {
-    id: "3",
+    id: "7",
     title: "Master of Laws (LLM) in Australia: Complete Guide for International Students",
     excerpt: "Everything you need to know about studying LLM in Australia, including best universities, eligibility criteria, costs, application process, and career opportunities.",
     category: "Legal Education",
@@ -64,7 +123,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/master-of-laws-llm-australia"
   },
   {
-    id: "4",
+    id: "8",
     title: "GMAT Test Fee in Pakistan: Complete Registration Guide 2025",
     excerpt: "Complete guide to GMAT exam fees in Pakistan, registration process, test dates, eligibility criteria, and preparation tips for business school applications.",
     category: "Test Preparation",
@@ -77,7 +136,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/gmat-test-fee-in-pakistan"
   },
   {
-    id: "5",
+    id: "9",
     title: "How to Improve IELTS Listening Skills: Expert Tips and Strategies",
     excerpt: "Master the IELTS listening test with expert tips, practice strategies, and techniques to improve your English listening skills for better band scores.",
     category: "Test Preparation",
@@ -91,7 +150,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/how-to-improve-ielts-listening-skills"
   },
   {
-    id: "6",
+    id: "10",
     title: "Top 10 IELTS Preparation Tips: Expert Guide for High Band Score",
     excerpt: "Complete IELTS preparation guide with 10 essential tips and strategies to achieve your target band score, including study schedules, practice resources, and expert advice.",
     category: "Test Preparation",
