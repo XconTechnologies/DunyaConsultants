@@ -1,374 +1,277 @@
-import Navigation from '@/components/navigation';
-import ContactForm from '@/components/blog/ContactForm';
-import ContactSection from '@/components/blog/ContactSection';
-import Footer from '@/components/footer';
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
+import ContactForm from "@/components/blog/ContactForm";
+import ContactSection from "@/components/blog/ContactSection";
 
-export default function NewYearResolutionsStudents2025() {
+export default function NewYearResolutionsForStudents2025() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Full-width Hero Section */}
-      <div className="relative h-96 bg-gradient-to-br from-green-900 via-teal-800 to-blue-900 flex items-center justify-center text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-5xl font-bold mb-4">New Year Resolutions for Students 2025</h1>
-          <p className="text-2xl opacity-90">Transform Your Academic Journey This Year</p>
+      {/* Hero Section */}
+      <div className="relative w-full h-96 bg-gradient-to-r from-green-600 to-blue-700">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url("https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-green-600/80 to-blue-700/80" />
+        <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
+          <div>
+            <h1 className="text-5xl font-bold mb-4">New Year Resolutions for Students 2025</h1>
+            <p className="text-2xl">Study Abroad Goals & Success Strategies</p>
+          </div>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="w-[1440px] mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-2">
-            <div className="prose prose-lg max-w-none">
-              <div className="mb-8">
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  As we step into 2025, it's the perfect time for students to set meaningful goals that will shape their academic journey and future career prospects. Whether you're a high school student preparing for university admission or a graduate student planning your next steps, having clear resolutions can make all the difference in achieving your dreams.
-                </p>
-              </div>
+      <div className="w-full max-w-none" style={{ width: '1440px', margin: '0 auto' }}>
+        <div className="px-8 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Main Content */}
+            <div className="lg:col-span-2 space-y-8">
+              <div className="prose prose-lg max-w-none">
+                <div className="mb-8">
+                  <p className="text-lg leading-relaxed text-gray-700">
+                    The New Year is a great time for students to set meaningful goals. Having clear 
+                    resolutions can improve your studies as well as help you to build required skills. 
+                    These goals can help you focus on what is important, like doing better in studies, 
+                    growing personally, or finding a good balance between studies and personal life.
+                  </p>
+                  <p className="text-lg leading-relaxed text-gray-700 mt-4">
+                    If you are planning for a new year's resolution as a student, now is the time to 
+                    set resolutions that match your dreams of studying abroad. Make sure these new year 
+                    resolutions for students in school are not forgotten after the New Year's celebrations 
+                    but guide you throughout the year.
+                  </p>
+                </div>
 
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-green-900">Why New Year Resolutions Matter for Students</h3>
-                <p className="text-gray-700">
-                  New Year resolutions provide students with a structured approach to personal and academic growth. They help create focus, motivation, and accountability, which are essential for success in today's competitive academic environment. Setting clear goals at the beginning of the year helps students track their progress and stay motivated throughout their educational journey.
-                </p>
-              </div>
+                <section className="mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-green-600 pl-4">
+                    What Should be a New Year's Resolution for Students to Study Abroad?
+                  </h2>
+                  <p className="text-lg text-gray-700 mb-6">
+                    Setting clear goals gives you a sense of direction and purpose. Working for your 
+                    resolutions helps you build self-discipline and develop a habit of improving yourself 
+                    step by step. Let's discuss about new year resolutions ideas for students planning 
+                    to study abroad below:
+                  </p>
+                </section>
 
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Top 10 New Year Resolutions for Students in 2025</h2>
+                <section className="mb-12">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                    Follow Proper Deadlines
+                  </h3>
+                  <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                    <p className="text-lg text-gray-700">
+                      Make a new year's resolution as a student to stay organized with deadlines. 
+                      This includes applications for scholarships, universities, and visas.
+                    </p>
+                  </div>
+                  <p className="text-lg text-gray-700">
+                    Missing deadlines can cause stress and delay your plans, so keeping a checklist 
+                    and setting reminders will help you stay on track. Being organized will make 
+                    your study abroad journey smoother and less stressful.
+                  </p>
+                </section>
 
-              <div className="space-y-8 mb-8">
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-blue-100 rounded-full p-3 flex-shrink-0">
-                      <span className="text-blue-600 font-bold text-lg">1</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-3 text-gray-900">Improve Academic Performance</h3>
-                      <p className="text-gray-700 mb-3">
-                        Set specific GPA targets and develop effective study strategies to achieve them. Create a study schedule that balances all subjects and allows for regular review sessions.
+                <section className="mb-12">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                    Master the Art of Research
+                  </h3>
+                  <div className="bg-purple-50 p-6 rounded-lg mb-6">
+                    <p className="text-lg text-gray-700">
+                      To achieve your career dreams, become an expert in research. Start by identifying 
+                      countries and programs you want to study. Research is a skill you will need 
+                      throughout your study abroad journey.
+                    </p>
+                  </div>
+                  <p className="text-lg text-gray-700">
+                    After selecting the right programs and universities, you will also need to research 
+                    scholarships, deadlines, accommodation, internships, etc.
+                  </p>
+                </section>
+
+                <section className="mb-12">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                    Learn to Manage Money
+                  </h3>
+                  <div className="bg-green-50 p-6 rounded-lg mb-6">
+                    <p className="text-lg text-gray-700">
+                      Studying abroad can be expensive, but learning how to budget wisely can help 
+                      you avoid financial problems. Start by tracking your expenses as a new year's 
+                      resolution about studies and planning how to save money for essentials.
+                    </p>
+                  </div>
+                  <p className="text-lg text-gray-700">
+                    Practice managing your finances now so you will be ready to handle costs like 
+                    housing, tuition, and daily expenses while abroad. Smart budgeting will help 
+                    you focus on your studies and enjoy your time overseas without financial worries.
+                  </p>
+                </section>
+
+                <section className="mb-12">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                    Focus on Mental Health
+                  </h3>
+                  <div className="bg-yellow-50 p-6 rounded-lg mb-6">
+                    <p className="text-lg text-gray-700">
+                      Studying abroad is the best experience, but it can also feel overwhelming. 
+                      Make your mental health a priority by maintaining a balance between your 
+                      studies and relaxation.
+                    </p>
+                  </div>
+                  <p className="text-lg text-gray-700">
+                    Regular breaks, exercise, and staying connected with family and friends can help 
+                    reduce stress. A healthy mind is crucial for making the most of your study abroad 
+                    experience and ensuring it's both successful and enjoyable.
+                  </p>
+                </section>
+
+                <section className="mb-12">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                    Learn the Local Language
+                  </h3>
+                  <div className="bg-orange-50 p-6 rounded-lg mb-6">
+                    <p className="text-lg text-gray-700">
+                      Learning the local language is one of the best ways to prepare for studying 
+                      abroad. It is a required skill that will help you adapt to a new environment, 
+                      communicate with locals, and build friendships.
+                    </p>
+                  </div>
+                  <p className="text-lg text-gray-700">
+                    Understanding the basics of the language can also make your studies easier and 
+                    help you participate confidently in group projects or social activities.
+                  </p>
+                </section>
+
+                <section className="mb-12">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                    Aim for Top Test Scores
+                  </h3>
+                  <div className="bg-red-50 p-6 rounded-lg mb-6">
+                    <p className="text-lg text-gray-700">
+                      Good test scores are essential for getting into top universities as well as 
+                      scholarships. Whether you are preparing for TOEFL, GRE, GMAT, IELTS, SAT, 
+                      or other exams, set a goal to get a good score on your tests.
+                    </p>
+                  </div>
+                  <p className="text-lg text-gray-700">
+                    Give proper time to focused study and practice, as these scores can open doors 
+                    to the best opportunities. Make 2025 the year you achieve your academic targets 
+                    and set yourself up for success.
+                  </p>
+                </section>
+
+                <section className="mb-12">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                    Plan Your Travel Goals
+                  </h3>
+                  <div className="bg-teal-50 p-6 rounded-lg mb-6">
+                    <p className="text-lg text-gray-700">
+                      Studying abroad as a new year resolution 2025 for students also means exploring 
+                      new places and creating unforgettable memories. Use this opportunity to visit 
+                      beautiful places, learn about different cultures, and meet new people.
+                    </p>
+                  </div>
+                  <p className="text-lg text-gray-700">
+                    Traveling will not only increase your experiences but also transform your 
+                    personality in positive ways.
+                  </p>
+                </section>
+
+                <section className="mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-green-600 pl-4">
+                    Study Abroad Success Tips
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg">
+                      <h4 className="text-xl font-bold text-gray-900 mb-3">Time Management</h4>
+                      <p className="text-gray-700">
+                        Start preparing for your study-abroad applications twelve to eighteen months 
+                        before your planned start date for best results.
                       </p>
-                      <ul className="text-gray-600 space-y-1">
-                        <li>• Set a target GPA for each semester</li>
-                        <li>• Develop consistent study habits</li>
-                        <li>• Seek help when needed from teachers or tutors</li>
-                        <li>• Use active learning techniques</li>
-                      </ul>
+                    </div>
+                    <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-lg">
+                      <h4 className="text-xl font-bold text-gray-900 mb-3">Personal Growth</h4>
+                      <p className="text-gray-700">
+                        Studying abroad is not just about studies, but also about growing personally, 
+                        exploring new places, and having an unforgettable experience.
+                      </p>
                     </div>
                   </div>
-                </div>
+                </section>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-green-100 rounded-full p-3 flex-shrink-0">
-                      <span className="text-green-600 font-bold text-lg">2</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-3 text-gray-900">Master Time Management</h3>
-                      <p className="text-gray-700 mb-3">
-                        Develop excellent time management skills to balance academics, extracurriculars, and personal life effectively.
+                <section className="mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-green-600 pl-4">
+                    FAQs
+                  </h2>
+                  <div className="space-y-6">
+                    <div className="bg-gray-50 p-6 rounded-lg">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        What are new year resolution examples for students?
+                      </h3>
+                      <p className="text-gray-700">
+                        Examples include improving study habits, maintaining better work-life balance, 
+                        learning new skills, focusing on mental health, and preparing for study abroad 
+                        applications with proper planning and organization.
                       </p>
-                      <ul className="text-gray-600 space-y-1">
-                        <li>• Use digital calendars and planners</li>
-                        <li>• Prioritize tasks using the Eisenhower Matrix</li>
-                        <li>• Eliminate time-wasting activities</li>
-                        <li>• Practice the Pomodoro Technique</li>
-                      </ul>
+                    </div>
+                    <div className="bg-gray-50 p-6 rounded-lg">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        What is your new year's resolution as a student?
+                      </h3>
+                      <p className="text-gray-700">
+                        As a student planning to study abroad, resolutions should focus on academic 
+                        excellence, language learning, financial planning, cultural awareness, and 
+                        building skills that will help in international education success.
+                      </p>
                     </div>
                   </div>
-                </div>
+                </section>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-purple-100 rounded-full p-3 flex-shrink-0">
-                      <span className="text-purple-600 font-bold text-lg">3</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-3 text-gray-900">Enhance Language Skills</h3>
-                      <p className="text-gray-700 mb-3">
-                        Improve English proficiency and consider learning additional languages to boost career prospects and study abroad opportunities.
-                      </p>
-                      <ul className="text-gray-600 space-y-1">
-                        <li>• Take IELTS or TOEFL preparation courses</li>
-                        <li>• Practice speaking with native speakers</li>
-                        <li>• Read international publications daily</li>
-                        <li>• Learn a second foreign language</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-orange-100 rounded-full p-3 flex-shrink-0">
-                      <span className="text-orange-600 font-bold text-lg">4</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-3 text-gray-900">Build Professional Network</h3>
-                      <p className="text-gray-700 mb-3">
-                        Start building professional relationships early through internships, mentorships, and industry connections.
-                      </p>
-                      <ul className="text-gray-600 space-y-1">
-                        <li>• Create a professional LinkedIn profile</li>
-                        <li>• Attend industry conferences and seminars</li>
-                        <li>• Join student organizations</li>
-                        <li>• Seek mentorship from professionals</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-red-100 rounded-full p-3 flex-shrink-0">
-                      <span className="text-red-600 font-bold text-lg">5</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-semibold mb-3 text-gray-900">Explore Study Abroad Opportunities</h3>
-                      <p className="text-gray-700 mb-3">
-                        Research and prepare for international education opportunities that can enhance your global perspective and career prospects.
-                      </p>
-                      <ul className="text-gray-600 space-y-1">
-                        <li>• Research target universities and programs</li>
-                        <li>• Prepare for standardized tests</li>
-                        <li>• Start scholarship applications early</li>
-                        <li>• Consult with education consultants</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Academic Excellence Strategies</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-blue-50 border-l-4 border-blue-500 p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-blue-900">Study Techniques</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Active reading with note-taking</li>
-                    <li>• Mind mapping for complex topics</li>
-                    <li>• Group study sessions</li>
-                    <li>• Regular practice tests</li>
-                    <li>• Teaching others to reinforce learning</li>
-                  </ul>
-                </div>
-                <div className="bg-green-50 border-l-4 border-green-500 p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-green-900">Digital Tools</h3>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Notion for organized note-taking</li>
-                    <li>• Anki for spaced repetition</li>
-                    <li>• Khan Academy for concept clarity</li>
-                    <li>• Grammarly for writing improvement</li>
-                    <li>• Google Scholar for research</li>
-                  </ul>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Personal Development Goals</h2>
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-yellow-900">Essential Life Skills</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Critical thinking and analysis</li>
-                    <li>• Public speaking and presentation</li>
-                    <li>• Financial literacy and budgeting</li>
-                    <li>• Digital literacy and tech skills</li>
-                  </ul>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Emotional intelligence</li>
-                    <li>• Leadership and teamwork</li>
-                    <li>• Problem-solving abilities</li>
-                    <li>• Cultural awareness and sensitivity</li>
-                  </ul>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Health and Wellness Resolutions</h2>
-              <p className="text-gray-700 mb-6">
-                Maintaining physical and mental health is crucial for academic success. Here are important wellness goals for students:
-              </p>
-
-              <div className="space-y-4 mb-8">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold mb-2 text-green-900">Physical Health</h3>
-                  <ul className="text-gray-700 space-y-1">
-                    <li>• Regular exercise (30 minutes daily)</li>
-                    <li>• Balanced nutrition with proper meal timing</li>
-                    <li>• Adequate sleep (7-9 hours nightly)</li>
-                    <li>• Regular health check-ups</li>
-                  </ul>
-                </div>
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold mb-2 text-blue-900">Mental Health</h3>
-                  <ul className="text-gray-700 space-y-1">
-                    <li>• Stress management techniques</li>
-                    <li>• Mindfulness and meditation practice</li>
-                    <li>• Maintaining work-life balance</li>
-                    <li>• Seeking help when needed</li>
-                  </ul>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Financial Planning for Students</h2>
-              <div className="bg-purple-50 border-l-4 border-purple-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-purple-900">Smart Money Management</h3>
-                <ul className="text-gray-700 space-y-2">
-                  <li>• Create and stick to a monthly budget</li>
-                  <li>• Look for scholarship and grant opportunities</li>
-                  <li>• Consider part-time work or internships</li>
-                  <li>• Save for study abroad expenses</li>
-                  <li>• Learn about student loan options</li>
-                  <li>• Track spending using budgeting apps</li>
-                </ul>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Technology and Digital Skills</h2>
-              <p className="text-gray-700 mb-6">
-                In 2025, digital literacy is more important than ever. Students should focus on developing relevant tech skills:
-              </p>
-
-              <div className="overflow-x-auto mb-8">
-                <table className="w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-300 px-4 py-2 text-left">Skill Category</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Specific Skills</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Relevance</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">Basic Computing</td>
-                      <td className="border border-gray-300 px-4 py-2">MS Office, Google Workspace, Email etiquette</td>
-                      <td className="border border-gray-300 px-4 py-2">Essential for all students</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">Research Skills</td>
-                      <td className="border border-gray-300 px-4 py-2">Database search, Citation management, Fact-checking</td>
-                      <td className="border border-gray-300 px-4 py-2">Academic success</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">Programming</td>
-                      <td className="border border-gray-300 px-4 py-2">Python, JavaScript, Web development</td>
-                      <td className="border border-gray-300 px-4 py-2">Future-ready skills</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">Digital Marketing</td>
-                      <td className="border border-gray-300 px-4 py-2">Social media, Content creation, Analytics</td>
-                      <td className="border border-gray-300 px-4 py-2">Career advancement</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Making Resolutions Stick</h2>
-              <div className="bg-gradient-to-r from-blue-50 to-green-50 border border-blue-200 rounded-lg p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-gray-900">Success Strategies</h3>
-                <ul className="text-gray-700 space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">•</span>
-                    <span><strong>Start Small:</strong> Break large goals into smaller, manageable tasks</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">•</span>
-                    <span><strong>Track Progress:</strong> Use journals or apps to monitor your advancement</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">•</span>
-                    <span><strong>Stay Accountable:</strong> Share goals with friends or family for support</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">•</span>
-                    <span><strong>Celebrate Milestones:</strong> Reward yourself for achieving smaller goals</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">•</span>
-                    <span><strong>Learn from Setbacks:</strong> View failures as learning opportunities</span>
-                  </li>
-                </ul>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Conclusion</h2>
-              <p className="text-gray-700 mb-6">
-                As we embrace 2025, these resolutions provide a roadmap for academic and personal success. Remember that consistency is more important than perfection. Start with a few key goals that align with your long-term objectives and gradually build upon them throughout the year.
-              </p>
-
-              <p className="text-gray-700 mb-8">
-                The key to successful resolutions is making them specific, measurable, achievable, relevant, and time-bound (SMART). With dedication and the right strategies, 2025 can be your most successful academic year yet.
-              </p>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">FAQs</h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">How many resolutions should a student make?</h3>
-                  <p className="text-gray-700">It's best to focus on 3-5 main resolutions to avoid overwhelming yourself. Choose goals that align with your academic priorities and personal development needs.</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">What if I fail to keep my resolutions?</h3>
-                  <p className="text-gray-700">Failure is part of the learning process. Analyze what went wrong, adjust your approach, and restart. The key is persistence and learning from setbacks.</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">How can I stay motivated throughout the year?</h3>
-                  <p className="text-gray-700">Set regular check-ins, celebrate small victories, surround yourself with supportive people, and regularly remind yourself of your long-term goals and their benefits.</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">Should I focus on academic or personal goals first?</h3>
-                  <p className="text-gray-700">Balance is key. Academic success often depends on personal well-being, so include both types of goals in your resolutions for holistic development.</p>
-                </div>
+                <section className="mb-12">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-green-600 pl-4">
+                    Conclusion
+                  </h2>
+                  <p className="text-lg text-gray-700">
+                    Making New Year Resolutions for Students 2025 is easy, but sticking to them can 
+                    be tough. Remember, studying abroad is not just about studies, rather it is also 
+                    about growing personally, exploring new places, and having an unforgettable experience. 
+                    As you get ready for 2025, let these simple resolutions help you achieve a successful 
+                    and best study-abroad journey.
+                  </p>
+                </section>
               </div>
             </div>
-          </div>
 
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-8 space-y-8">
-              <ContactForm />
-              
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-gray-900">Table of Contents</h3>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="#top-resolutions" className="text-blue-600 hover:underline">Top 10 Resolutions</a></li>
-                  <li><a href="#academic-excellence" className="text-blue-600 hover:underline">Academic Excellence</a></li>
-                  <li><a href="#personal-development" className="text-blue-600 hover:underline">Personal Development</a></li>
-                  <li><a href="#health-wellness" className="text-blue-600 hover:underline">Health & Wellness</a></li>
-                  <li><a href="#financial-planning" className="text-blue-600 hover:underline">Financial Planning</a></li>
-                  <li><a href="#technology-skills" className="text-blue-600 hover:underline">Technology Skills</a></li>
-                  <li><a href="#making-resolutions-stick" className="text-blue-600 hover:underline">Making Resolutions Stick</a></li>
-                  <li><a href="#faqs" className="text-blue-600 hover:underline">FAQs</a></li>
-                </ul>
-              </div>
-
-              <div className="bg-green-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-green-900">Quick Tips</h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li>• Start with 3-5 main goals</li>
-                  <li>• Write goals down and review regularly</li>
-                  <li>• Share with accountability partner</li>
-                  <li>• Track progress weekly</li>
-                  <li>• Celebrate small wins</li>
-                </ul>
-              </div>
-
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-blue-900">SMART Goals Framework</h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li>• <strong>S</strong>pecific: Clear and well-defined</li>
-                  <li>• <strong>M</strong>easurable: Track progress</li>
-                  <li>• <strong>A</strong>chievable: Realistic expectations</li>
-                  <li>• <strong>R</strong>elevant: Aligned with priorities</li>
-                  <li>• <strong>T</strong>ime-bound: Set deadlines</li>
-                </ul>
-              </div>
-
-              <div className="bg-purple-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-purple-900">Monthly Review</h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li>• Assess goal progress</li>
-                  <li>• Identify challenges faced</li>
-                  <li>• Adjust strategies if needed</li>
-                  <li>• Plan next month's focus</li>
-                  <li>• Celebrate achievements</li>
-                </ul>
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-8 space-y-8">
+                <ContactForm />
+                
+                <div className="bg-green-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Resolution Categories</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
+                      <span className="text-gray-700">Academic Excellence</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-green-600 rounded-full"></div>
+                      <span className="text-gray-700">Financial Planning</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-purple-600 rounded-full"></div>
+                      <span className="text-gray-700">Personal Growth</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-3 h-3 bg-orange-600 rounded-full"></div>
+                      <span className="text-gray-700">Language Skills</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
