@@ -22,6 +22,21 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "UK Student Visa Ratio from Pakistan",
+    excerpt: "Complete analysis of UK student visa success rates for Pakistani students with 98% success rate statistics and expert tips to improve your chances.",
+    category: "Visa Guides",
+    author: "Dunya Consultants",
+    date: "Jan 17, 2025",
+    readTime: "16 min",
+    views: 32400,
+    tags: ["UK Visa", "Student Visa", "Pakistan", "Success Rate", "Visa Statistics"],
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/uk-student-visa-ratio-from-pakistan"
+  },
+  {
+    id: "2",
     title: "Mistakes to Avoid when Applying for a UK Study Visa",
     excerpt: "Essential guide to common mistakes that can lead to UK student visa rejection and how to avoid them for successful visa application.",
     category: "Visa Guides",
@@ -36,7 +51,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/most-common-mistakes-to-avoid-for-your-uk-student-visa-success"
   },
   {
-    id: "2",
+    id: "3",
     title: "A Complete Guide to Bangor University UK",
     excerpt: "Complete guide to Bangor University acceptance rate, admission requirements, English language requirements, and application process for international students.",
     category: "University Guides",
@@ -51,7 +66,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/bangor-university-acceptance-rate"
   },
   {
-    id: "3",
+    id: "4",
     title: "Top Reasons to Study in London",
     excerpt: "Discover why London is the ultimate destination for international students with top-rated universities, diverse student population, career opportunities, and vibrant city life.",
     category: "Study Destinations",
@@ -66,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/benefits-of-studying-in-london"
   },
   {
-    id: "4",
+    id: "5",
     title: "UK Student Dependent Visa – News, Requirements & Process Fees",
     excerpt: "Latest updates on UK student dependent visa new rules, eligibility criteria, application process, and important changes affecting Pakistani students in 2024.",
     category: "Visa Guides",
