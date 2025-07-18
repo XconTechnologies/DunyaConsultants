@@ -57,6 +57,7 @@ import StudyInUK from "@/pages/blog/study-in-uk";
 import StudyAbroadEducationConsultants from "@/pages/blog/study-abroad-education-consultants-dunya-consultants";
 import DubaiVisaForPakistani from "@/pages/blog/dubai-visa-for-pakistani";
 import UKStudentDependentVisaNewRules from "@/pages/blog/uk-student-dependent-visa-new-rules";
+import BenefitsOfStudyingInLondon from "@/pages/blog/benefits-of-studying-in-london";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -115,6 +116,7 @@ function Router() {
       <Route path="/blog/study-abroad-education-consultants-dunya-consultants" component={StudyAbroadEducationConsultants} />
       <Route path="/blog/dubai-visa-for-pakistani" component={DubaiVisaForPakistani} />
       <Route path="/blog/uk-student-dependent-visa-new-rules" component={UKStudentDependentVisaNewRules} />
+      <Route path="/blog/benefits-of-studying-in-london" component={BenefitsOfStudyingInLondon} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
