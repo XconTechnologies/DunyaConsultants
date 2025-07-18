@@ -22,7 +22,7 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
-    title: "UK Student Dependent Visa – New Rules 2024",
+    title: "UK Student Dependent Visa – News, Requirements & Process Fees",
     excerpt: "Latest updates on UK student dependent visa new rules, eligibility criteria, application process, and important changes affecting Pakistani students in 2024.",
     category: "Visa Guides",
     author: "Dunya Consultants",

@@ -17,7 +17,7 @@ export default function UKStudentDependentVisaNewRules() {
             }}
           />
           <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4">UK Student Dependent Visa – New Rules 2024</h1>
+            <h1 className="text-5xl font-bold mb-4">UK Student Dependent Visa – News, Requirements & Process Fees</h1>
             <p className="text-2xl font-light">Latest updates on UK dependent visa requirements and new immigration rules</p>
           </div>
         </div>
@@ -106,16 +106,8 @@ export default function UKStudentDependentVisaNewRules() {
               <div className="mb-8">
                 <h2 className="text-3xl font-bold mb-4 border-l-4 border-orange-500 pl-4">UK Dependent Student Visa Fee from Pakistan</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  After filling out the application form and collecting the required documents, applicants need to pay the UK dependent visa fee from Pakistan. The fee structure is as follows:
+                  After filling out the application form and collecting the required documents, applicants need to pay the UK dependent visa fee from Pakistan. The fee is around 348 pounds for each dependent if applying from outside the United Kingdom. If applying from within the United Kingdom, it costs around 475 pounds for a standard application and 1,275 pounds for a super-priority application.
                 </p>
-                <div className="bg-gray-50 p-6 rounded-lg mb-4">
-                  <ul className="space-y-2 text-gray-700">
-                    <li><strong>From outside UK:</strong> £348 per dependent</li>
-                    <li><strong>From within UK (standard):</strong> £475 per dependent</li>
-                    <li><strong>From within UK (super-priority):</strong> £1,275 per dependent</li>
-                    <li><strong>Immigration Health Surcharge:</strong> Additional fee for NHS access</li>
-                  </ul>
-                </div>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Candidates also have to pay the immigration health surcharge, which permits them to use the National Health Service (NHS) of the United Kingdom for medical care without needing private insurance.
                 </p>
@@ -150,7 +142,7 @@ export default function UKStudentDependentVisaNewRules() {
               <div className="mb-8">
                 <h2 className="text-3xl font-bold mb-4 border-l-4 border-indigo-500 pl-4">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  The UK Student Dependent Visa is a popular option for students planning to study in the United Kingdom. A dependent refers to your spouse or kids. This visa allows eligible students to take their family members with them. However, the United Kingdom Home Office has introduced new rules to specify who can bring dependents.
+                  The UK Student Dependent Visa is a popular option for students planning to study in the United Kingdom. A dependent refers to your spouse or kids. This visa allows eligible students to take their family members with them. However, the United Kingdom Home Office has introduced new rules to specify who can bring dependents. Not all.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   It is crucial for students to understand these rules, as they play a vital role in planning their studies and staying in the country. If you are interested in studying in the UK, contact our experts at Dunya Consultants.
@@ -185,6 +177,16 @@ export default function UKStudentDependentVisaNewRules() {
                   <div className="bg-white border-l-4 border-red-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What financial requirements must be met for dependents?</h3>
                     <p className="text-gray-700">You must show additional funds of £845 per month for each dependent (spouse/partner) and £680 per month for each dependent child, in addition to your own maintenance requirements.</p>
+                  </div>
+
+                  <div className="bg-white border-l-4 border-teal-500 p-6 shadow-sm">
+                    <h3 className="text-xl font-semibold mb-3 text-gray-800">What documents are required for UK dependent visa application?</h3>
+                    <p className="text-gray-700">Key documents include Student PBS Dependent Form, valid passport, Biometric Residence Permit (BRP), financial proof, marriage certificate (for spouses), birth certificate (for children), and university enrollment letter.</p>
+                  </div>
+
+                  <div className="bg-white border-l-4 border-indigo-500 p-6 shadow-sm">
+                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Who is eligible to bring dependents to the UK?</h3>
+                    <p className="text-gray-700">Students studying courses for 9 months or longer, government or university-sponsored students, and those on specific courses like DES (Doctorate Extension Scheme) may be eligible to bring dependents.</p>
                   </div>
                 </div>
               </div>
