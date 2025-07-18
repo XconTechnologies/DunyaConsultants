@@ -61,6 +61,7 @@ import BenefitsOfStudyingInLondon from "@/pages/blog/benefits-of-studying-in-lon
 import BangorUniversityAcceptanceRate from "@/pages/blog/bangor-university-acceptance-rate";
 import MostCommonMistakesToAvoidForYourUKStudentVisaSuccess from "@/pages/blog/most-common-mistakes-to-avoid-for-your-uk-student-visa-success";
 import UKStudentVisaRatioFromPakistan from "@/pages/blog/uk-student-visa-ratio-from-pakistan";
+import LowCostUniversitiesInUKForInternationalStudents from "@/pages/blog/low-cost-universities-in-uk-for-international-students";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -123,6 +124,7 @@ function Router() {
       <Route path="/blog/bangor-university-acceptance-rate" component={BangorUniversityAcceptanceRate} />
       <Route path="/blog/most-common-mistakes-to-avoid-for-your-uk-student-visa-success" component={MostCommonMistakesToAvoidForYourUKStudentVisaSuccess} />
       <Route path="/blog/uk-student-visa-ratio-from-pakistan" component={UKStudentVisaRatioFromPakistan} />
+      <Route path="/blog/low-cost-universities-in-uk-for-international-students" component={LowCostUniversitiesInUKForInternationalStudents} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

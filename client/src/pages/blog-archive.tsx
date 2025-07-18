@@ -96,6 +96,21 @@ const blogPosts: BlogPost[] = [
     href: "/blog/uk-student-dependent-visa-new-rules"
   },
   {
+    id: "6",
+    title: "Low-Cost Universities in UK for International Students",
+    excerpt: "Complete guide to affordable UK universities with tuition fee breakdowns, living costs analysis, and money-saving tips for international students.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Jan 17, 2025",
+    readTime: "15 min",
+    views: 24200,
+    tags: ["UK", "Universities", "Tuition Fees", "Budget", "Cost of Living"],
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/low-cost-universities-in-uk-for-international-students"
+  },
+  {
     id: "4",
     title: "Dubai Study Visa Requirements from Pakistan",
     excerpt: "Complete guide to Dubai student visa requirements, application process, eligibility criteria, and costs for Pakistani students pursuing education in UAE.",
