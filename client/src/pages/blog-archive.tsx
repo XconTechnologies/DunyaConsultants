@@ -22,6 +22,21 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "MS in Business Analytics Course in USA",
+    excerpt: "Complete guide to pursuing Master's in Business Analytics in the USA with top universities, admission requirements, costs, and career opportunities.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Jan 18, 2025",
+    readTime: "18 min",
+    views: 15800,
+    tags: ["USA", "Business Analytics", "Master's Degree", "STEM", "Career Opportunities"],
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/ms-in-business-analytics-course-in-usa"
+  },
+  {
+    id: "2",
     title: "UK Student Visa Ratio from Pakistan",
     excerpt: "Complete analysis of UK student visa success rates for Pakistani students with 98% success rate statistics and expert tips to improve your chances.",
     category: "Visa Guides",
