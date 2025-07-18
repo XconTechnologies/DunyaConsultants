@@ -22,6 +22,21 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "A Complete Guide to Bangor University UK",
+    excerpt: "Complete guide to Bangor University acceptance rate, admission requirements, English language requirements, and application process for international students.",
+    category: "University Guides",
+    author: "Dunya Consultants",
+    date: "Jan 17, 2025",
+    readTime: "15 min",
+    views: 22500,
+    tags: ["Bangor University", "UK", "Admission", "University Guide", "Requirements"],
+    image: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/bangor-university-acceptance-rate"
+  },
+  {
+    id: "2",
     title: "Top Reasons to Study in London",
     excerpt: "Discover why London is the ultimate destination for international students with top-rated universities, diverse student population, career opportunities, and vibrant city life.",
     category: "Study Destinations",
@@ -36,7 +51,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/benefits-of-studying-in-london"
   },
   {
-    id: "2",
+    id: "3",
     title: "UK Student Dependent Visa – News, Requirements & Process Fees",
     excerpt: "Latest updates on UK student dependent visa new rules, eligibility criteria, application process, and important changes affecting Pakistani students in 2024.",
     category: "Visa Guides",
@@ -51,7 +66,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/uk-student-dependent-visa-new-rules"
   },
   {
-    id: "3",
+    id: "4",
     title: "Dubai Study Visa Requirements from Pakistan",
     excerpt: "Complete guide to Dubai student visa requirements, application process, eligibility criteria, and costs for Pakistani students pursuing education in UAE.",
     category: "Visa Guides",
@@ -66,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/dubai-visa-for-pakistani"
   },
   {
-    id: "4",
+    id: "5",
     title: "Study in UK: Complete Guide for Pakistani Students",
     excerpt: "Comprehensive guide to studying in the UK including visa requirements, tuition fees, university selection, and application process for Pakistani students.",
     category: "Study Destinations",
@@ -81,7 +96,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/study-in-uk"
   },
   {
-    id: "5",
+    id: "6",
     title: "Study Abroad Education Consultants: Your Path to International Success",
     excerpt: "Discover how professional education consultants can help Pakistani students navigate the complex world of international education and achieve their study abroad goals.",
     category: "Education Consultancy",

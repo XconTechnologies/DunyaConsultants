@@ -58,6 +58,7 @@ import StudyAbroadEducationConsultants from "@/pages/blog/study-abroad-education
 import DubaiVisaForPakistani from "@/pages/blog/dubai-visa-for-pakistani";
 import UKStudentDependentVisaNewRules from "@/pages/blog/uk-student-dependent-visa-new-rules";
 import BenefitsOfStudyingInLondon from "@/pages/blog/benefits-of-studying-in-london";
+import BangorUniversityAcceptanceRate from "@/pages/blog/bangor-university-acceptance-rate";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -117,6 +118,7 @@ function Router() {
       <Route path="/blog/dubai-visa-for-pakistani" component={DubaiVisaForPakistani} />
       <Route path="/blog/uk-student-dependent-visa-new-rules" component={UKStudentDependentVisaNewRules} />
       <Route path="/blog/benefits-of-studying-in-london" component={BenefitsOfStudyingInLondon} />
+      <Route path="/blog/bangor-university-acceptance-rate" component={BangorUniversityAcceptanceRate} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
