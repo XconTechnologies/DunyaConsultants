@@ -22,6 +22,21 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "Dubai Study Visa Requirements from Pakistan",
+    excerpt: "Complete guide to Dubai student visa requirements, application process, eligibility criteria, and costs for Pakistani students pursuing education in UAE.",
+    category: "Visa Guides",
+    author: "Dunya Consultants",
+    date: "Jan 17, 2025",
+    readTime: "12 min",
+    views: 18500,
+    tags: ["Dubai", "UAE", "Student Visa", "Pakistan", "Study Abroad"],
+    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/dubai-visa-for-pakistani"
+  },
+  {
+    id: "2",
     title: "Study in UK: Complete Guide for Pakistani Students",
     excerpt: "Comprehensive guide to studying in the UK including visa requirements, tuition fees, university selection, and application process for Pakistani students.",
     category: "Study Destinations",
@@ -36,7 +51,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/study-in-uk"
   },
   {
-    id: "2",
+    id: "3",
     title: "Study Abroad Education Consultants: Your Path to International Success",
     excerpt: "Discover how professional education consultants can help Pakistani students navigate the complex world of international education and achieve their study abroad goals.",
     category: "Education Consultancy",
@@ -51,7 +66,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/study-abroad-education-consultants-dunya-consultants"
   },
   {
-    id: "3",
+    id: "4",
     title: "Finland Admissions 2025 – Finland Application Fee & deadline 2025",
     excerpt: "Complete guide to studying in Finland for Pakistani students, including visa requirements, top universities, application deadlines, and admission process with €100 application fee.",
     category: "Visa Guides",
@@ -66,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/finland-online-visa-application-from-pakistan"
   },
   {
-    id: "4",
+    id: "5",
     title: "New Year Resolutions for Students 2025",
     excerpt: "Comprehensive guide to setting meaningful New Year resolutions for students planning to study abroad, including goal-setting strategies and success tips.",
     category: "Study Tips",
@@ -81,7 +96,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/new-year-resolutions-for-students-2025"
   },
   {
-    id: "5",
+    id: "6",
     title: "Differences Between UK and Pakistan Education Systems",
     excerpt: "Comprehensive comparison of UK and Pakistan education systems covering primary, secondary, and higher education differences, academic calendars, and key challenges.",
     category: "Study Tips",
