@@ -22,6 +22,21 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "A Beginner's Guide to Master of Finance in UK",
+    excerpt: "Complete guide to pursuing Master's in Finance at top UK universities with eligibility criteria, admission process, costs, scholarships, and career opportunities.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "22 min",
+    views: 18200,
+    tags: ["UK", "Finance", "Master's Degree", "Universities", "Career", "Scholarships"],
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/master-of-finance-in-uk"
+  },
+  {
+    id: "2",
     title: "MS in Business Analytics Course in USA",
     excerpt: "Complete guide to pursuing Master's in Business Analytics in the USA with top universities, admission requirements, costs, and career opportunities.",
     category: "Study Destinations",
@@ -36,7 +51,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/ms-in-business-analytics-course-in-usa"
   },
   {
-    id: "2",
+    id: "3",
     title: "UK Student Visa Ratio from Pakistan",
     excerpt: "Complete analysis of UK student visa success rates for Pakistani students with 98% success rate statistics and expert tips to improve your chances.",
     category: "Visa Guides",
@@ -51,7 +66,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/uk-student-visa-ratio-from-pakistan"
   },
   {
-    id: "2",
+    id: "4",
     title: "Mistakes to Avoid when Applying for a UK Study Visa",
     excerpt: "Essential guide to common mistakes that can lead to UK student visa rejection and how to avoid them for successful visa application.",
     category: "Visa Guides",
@@ -66,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/most-common-mistakes-to-avoid-for-your-uk-student-visa-success"
   },
   {
-    id: "3",
+    id: "5",
     title: "A Complete Guide to Bangor University UK",
     excerpt: "Complete guide to Bangor University acceptance rate, admission requirements, English language requirements, and application process for international students.",
     category: "University Guides",
@@ -81,7 +96,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/bangor-university-acceptance-rate"
   },
   {
-    id: "4",
+    id: "6",
     title: "Top Reasons to Study in London",
     excerpt: "Discover why London is the ultimate destination for international students with top-rated universities, diverse student population, career opportunities, and vibrant city life.",
     category: "Study Destinations",
@@ -96,7 +111,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/benefits-of-studying-in-london"
   },
   {
-    id: "5",
+    id: "7",
     title: "UK Student Dependent Visa – News, Requirements & Process Fees",
     excerpt: "Latest updates on UK student dependent visa new rules, eligibility criteria, application process, and important changes affecting Pakistani students in 2024.",
     category: "Visa Guides",
@@ -111,7 +126,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/uk-student-dependent-visa-new-rules"
   },
   {
-    id: "6",
+    id: "8",
     title: "Low-Cost Universities in UK for International Students",
     excerpt: "Complete guide to affordable UK universities with tuition fee breakdowns, living costs analysis, and money-saving tips for international students.",
     category: "Study Destinations",
@@ -126,7 +141,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/low-cost-universities-in-uk-for-international-students"
   },
   {
-    id: "4",
+    id: "9",
     title: "Dubai Study Visa Requirements from Pakistan",
     excerpt: "Complete guide to Dubai student visa requirements, application process, eligibility criteria, and costs for Pakistani students pursuing education in UAE.",
     category: "Visa Guides",
@@ -141,7 +156,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/dubai-visa-for-pakistani"
   },
   {
-    id: "5",
+    id: "10",
     title: "Study in UK: Complete Guide for Pakistani Students",
     excerpt: "Comprehensive guide to studying in the UK including visa requirements, tuition fees, university selection, and application process for Pakistani students.",
     category: "Study Destinations",
@@ -156,7 +171,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/study-in-uk"
   },
   {
-    id: "6",
+    id: "11",
     title: "Study Abroad Education Consultants: Your Path to International Success",
     excerpt: "Discover how professional education consultants can help Pakistani students navigate the complex world of international education and achieve their study abroad goals.",
     category: "Education Consultancy",
