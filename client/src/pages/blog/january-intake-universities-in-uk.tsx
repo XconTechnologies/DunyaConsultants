@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import { Calendar, Clock, User, FileText, Phone, Mail, Building, CheckCircle, GraduationCap, BookOpen, MapPin, Star, Users, Target } from "lucide-react";
+import { Calendar, Clock, User, FileText, Phone, Mail, Building, CheckCircle, DollarSign, BookOpen, Globe, Users, Award, Star, Target, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from '../../components/navigation';
@@ -8,101 +8,129 @@ import Footer from '../../components/footer';
 import ContactSection from '../../components/blog/ContactSection';
 
 export default function JanuaryIntakeUniversitiesInUK() {
-  const universityList = [
+  const januaryUniversities = [
     {
-      name: "University of Greenwich",
-      location: "London",
-      rank: "501-600 (THE World Rankings)",
-      programs: "Business, Engineering, Computing",
-      fees: "£14,500 - £16,000"
+      university: "University of Greenwich",
+      programs: ["Business Management", "Computer Science", "Engineering"],
+      requirements: "IELTS 6.0+",
+      deadline: "November 30th"
     },
     {
-      name: "Coventry University",
-      location: "Coventry",
-      rank: "401-500 (THE World Rankings)",
-      programs: "Business, Engineering, Health Sciences",
-      fees: "£15,000 - £17,000"
+      university: "Middlesex University",
+      programs: ["MBA", "Data Science", "International Business"],
+      requirements: "IELTS 6.5+",
+      deadline: "December 15th"
     },
     {
-      name: "University of Bedfordshire",
-      location: "Luton/Bedford",
-      rank: "801-1000 (THE World Rankings)",
-      programs: "Business, Computing, Media Arts",
-      fees: "£13,500 - £15,500"
+      university: "University of Hertfordshire",
+      programs: ["Aerospace Engineering", "Finance", "Marketing"],
+      requirements: "IELTS 6.0+",
+      deadline: "December 1st"
     },
     {
-      name: "Middlesex University",
-      location: "London",
-      rank: "601-800 (THE World Rankings)",
-      programs: "Business, Psychology, Art & Design",
-      fees: "£14,000 - £16,500"
+      university: "London South Bank University",
+      programs: ["Civil Engineering", "Accounting", "Digital Marketing"],
+      requirements: "IELTS 6.0+",
+      deadline: "November 15th"
     },
     {
-      name: "University of Bolton",
-      location: "Bolton",
-      rank: "Ranked in UK",
-      programs: "Engineering, Business, Health",
-      fees: "£12,500 - £14,500"
+      university: "University of Bedfordshire",
+      programs: ["International Business", "Computer Networks", "Tourism"],
+      requirements: "IELTS 6.0+",
+      deadline: "December 10th"
     },
     {
-      name: "London Metropolitan University",
-      location: "London",
-      rank: "Modern University",
-      programs: "Business, Law, Computing",
-      fees: "£13,000 - £15,000"
+      university: "Teesside University",
+      programs: ["Mechanical Engineering", "Psychology", "Law"],
+      requirements: "IELTS 6.0+",
+      deadline: "November 30th"
     }
   ];
 
   const advantages = [
     {
-      title: "Less Competition",
-      description: "Fewer applicants compete for January intake, improving your chances",
-      icon: <Users className="h-6 w-6" />
+      advantage: "Shorter Gap Year",
+      description: "Start studies just 6 months after graduation instead of waiting 12 months",
+      icon: Clock
     },
     {
-      title: "Faster Processing",
-      description: "Quicker application processing and decision-making",
-      icon: <Clock className="h-6 w-6" />
+      advantage: "Less Competition",
+      description: "Fewer applicants apply for January intake, increasing admission chances",
+      icon: Target
     },
     {
-      title: "Early Graduation",
-      description: "Graduate earlier and enter the job market sooner",
-      icon: <GraduationCap className="h-6 w-6" />
+      advantage: "Fresh Start",
+      description: "Begin the new year with new academic goals and fresh motivation",
+      icon: Star
     },
     {
-      title: "Weather Advantage",
-      description: "Start studies in winter and enjoy pleasant spring/summer",
-      icon: <Star className="h-6 w-6" />
+      advantage: "Weather Benefits",
+      description: "Avoid harsh winter arrival - settle in during milder spring weather",
+      icon: Globe
+    },
+    {
+      advantage: "Summer Graduation",
+      description: "Graduate during pleasant summer weather with better job market opportunities",
+      icon: GraduationCap
+    },
+    {
+      advantage: "Additional Preparation Time",
+      description: "Extra months to improve IELTS scores and strengthen application",
+      icon: BookOpen
     }
   ];
 
   const applicationRequirements = [
-    "Completed undergraduate degree with minimum 60% marks",
-    "English language proficiency (IELTS 6.0-6.5 or equivalent)",
-    "Statement of Purpose explaining academic and career goals",
-    "Academic transcripts from all previous institutions",
-    "Two academic or professional reference letters",
-    "Updated CV highlighting academic and work experience",
-    "Copy of passport for international students",
-    "Financial documents showing ability to pay fees and living costs"
+    "Completed bachelor's degree with minimum 60% marks",
+    "IELTS 6.0-6.5 or equivalent English proficiency test",
+    "Academic transcripts and degree certificates",
+    "Statement of Purpose (SOP) explaining career goals",
+    "Letters of Recommendation from professors or employers",
+    "Updated CV/Resume highlighting relevant experience",
+    "Financial documents showing tuition and living expense coverage",
+    "Valid passport with minimum 6 months validity"
+  ];
+
+  const applicationSteps = [
+    { step: "University Research", description: "Research and shortlist universities offering January intake in your field" },
+    { step: "Document Preparation", description: "Gather all required academic and financial documents" },
+    { step: "English Proficiency", description: "Take IELTS/PTE/TOEFL test and achieve required scores" },
+    { step: "Online Application", description: "Submit applications through university portals by deadlines" },
+    { step: "Offer Letters", description: "Receive conditional/unconditional offers from universities" },
+    { step: "Visa Application", description: "Apply for UK student visa after accepting offer" },
+    { step: "Departure Preparation", description: "Arrange accommodation, flights, and pre-departure briefing" }
   ];
 
   const popularPrograms = [
-    { field: "Business Management", duration: "1 year", fee: "£14,000-16,000" },
-    { field: "Computer Science", duration: "1-2 years", fee: "£15,000-17,000" },
-    { field: "Engineering", duration: "1-2 years", fee: "£16,000-18,000" },
-    { field: "International Business", duration: "1 year", fee: "£14,500-16,500" },
-    { field: "Data Science", duration: "1 year", fee: "£15,500-17,500" },
-    { field: "Project Management", duration: "1 year", fee: "£14,000-16,000" }
+    {
+      field: "Business & Management",
+      programs: ["MBA", "International Business", "Digital Marketing", "Finance"],
+      universities: "15+ Universities"
+    },
+    {
+      field: "Engineering & Technology",
+      programs: ["Computer Science", "Mechanical Engineering", "Civil Engineering"],
+      universities: "12+ Universities"
+    },
+    {
+      field: "Health & Life Sciences",
+      programs: ["Public Health", "Biomedical Sciences", "Psychology"],
+      universities: "8+ Universities"
+    },
+    {
+      field: "Arts & Humanities",
+      programs: ["International Relations", "English Literature", "History"],
+      universities: "10+ Universities"
+    }
   ];
 
-  const applicationTimeline = [
-    { phase: "Program Research", period: "August - September", description: "Research universities and programs accepting January intake" },
-    { phase: "Application Preparation", period: "September - October", description: "Prepare all required documents and meet entry requirements" },
-    { phase: "Application Submission", period: "October - November", description: "Submit applications through university portals or UCAS" },
-    { phase: "Application Review", period: "November - December", description: "Universities review applications and conduct interviews if required" },
-    { phase: "Offer Letters", period: "December - January", description: "Receive conditional or unconditional offer letters" },
-    { phase: "Visa Application", period: "December - January", description: "Apply for student visa with CAS from chosen university" }
+  const timelineEvents = [
+    { month: "August-September", activity: "Research universities and prepare documents" },
+    { month: "October", activity: "Take English proficiency tests (IELTS/PTE)" },
+    { month: "November", activity: "Submit university applications before deadlines" },
+    { month: "December", activity: "Receive offer letters and accept preferred university" },
+    { month: "January-February", activity: "Apply for UK student visa and prepare for departure" },
+    { month: "March", activity: "Arrive in UK and begin studies" }
   ];
 
   return (
@@ -110,7 +138,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
       <Navigation />
       <div className="w-[1440px] mx-auto">
         {/* Hero Section */}
-        <div className="relative h-[500px] bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 flex items-center justify-center text-white">
+        <div className="relative h-[500px] bg-gradient-to-r from-orange-600 via-red-700 to-pink-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -119,7 +147,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
           />
           <div className="relative z-10 text-center px-8">
             <h1 className="text-5xl font-bold mb-4">January Intake Universities in UK</h1>
-            <p className="text-2xl font-light">Complete guide to UK universities offering January/Spring admission</p>
+            <p className="text-2xl font-light">Your Alternative Path to UK Higher Education</p>
           </div>
         </div>
 
@@ -131,35 +159,33 @@ export default function JanuaryIntakeUniversitiesInUK() {
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  While most UK universities traditionally offer September intake for international students, many institutions now provide <strong>January intake opportunities</strong> to accommodate students who miss the main admission cycle or prefer starting their studies in the spring semester.
+                  <strong>January intake</strong> in UK universities offers an excellent alternative admission opportunity for international students who missed the traditional September intake or need additional time to prepare their applications. Also known as Spring intake, this admission cycle allows students to begin their UK education journey in January/February, providing flexibility and additional advantages for international applicants.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  January intake, also known as Spring admission, offers Pakistani students a second chance to begin their UK education journey. This alternative admission pathway provides flexibility and can be particularly beneficial for students who need additional time to prepare their applications or improve their English language scores.
+                  Many top UK universities now offer January intake for various undergraduate and postgraduate programs, recognizing the diverse needs of international students. This alternative admission cycle has become increasingly popular among Pakistani students seeking quality British education with more flexible timing.
                 </p>
               </div>
 
-              {/* What is January Intake */}
+              {/* Advantages Section */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg"
+                className="mb-8 p-6 bg-orange-50 border-l-4 border-orange-500 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-center">
-                  <Calendar className="mr-3 h-6 w-6" />
-                  What is January Intake?
+                <h2 className="text-2xl font-bold mb-4 text-orange-800 flex items-center">
+                  <Star className="mr-3 h-6 w-6" />
+                  Why Choose January Intake?
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  January intake refers to the admission process where universities accept students for the spring semester, typically starting in January or February. This is the second major intake after the primary September admission cycle.
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  This intake is particularly popular among international students who need additional time for visa processing, English language preparation, or financial planning. Many UK universities now offer comprehensive programs during this period.
+                  January intake offers numerous advantages over traditional September admission:
                 </p>
               </motion.div>
 
-              {/* Advantages of January Intake */}
+              {/* Advantages Grid */}
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Advantages of January Intake</h2>
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">Key Advantages of January Intake</h2>
+                
                 <div className="grid md:grid-cols-2 gap-6">
                   {advantages.map((advantage, index) => (
                     <motion.div
@@ -168,15 +194,15 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <Card className="bg-white border border-blue-200 hover:shadow-lg transition-shadow">
+                      <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-orange-200 h-full">
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
-                            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white">
-                              {advantage.icon}
+                            <div className="flex-shrink-0">
+                              <advantage.icon className="h-8 w-8 text-orange-600" />
                             </div>
-                            <div className="flex-1">
-                              <h3 className="text-lg font-bold text-gray-800 mb-2">{advantage.title}</h3>
-                              <p className="text-gray-600">{advantage.description}</p>
+                            <div>
+                              <h3 className="text-lg font-bold text-orange-800 mb-2">{advantage.advantage}</h3>
+                              <p className="text-gray-700 text-sm">{advantage.description}</p>
                             </div>
                           </div>
                         </CardContent>
@@ -186,26 +212,25 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 </div>
               </div>
 
-              {/* Top Universities Offering January Intake */}
+              {/* Universities Offering January Intake */}
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Top UK Universities Offering January Intake</h2>
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">Top UK Universities with January Intake</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Here are the leading UK universities that accept international students for January admission:
+                  Here are leading UK universities offering January/Spring admission for international students:
                 </p>
                 
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                      <tr className="bg-gradient-to-r from-orange-600 to-red-600 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">University</th>
-                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Location</th>
-                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Ranking</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Popular Programs</th>
-                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Annual Fees</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">English Requirement</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Application Deadline</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {universityList.map((university, index) => (
+                      {januaryUniversities.map((uni, index) => (
                         <motion.tr
                           key={index}
                           initial={{ opacity: 0, y: 20 }}
@@ -213,11 +238,10 @@ export default function JanuaryIntakeUniversitiesInUK() {
                           transition={{ duration: 0.3, delay: index * 0.05 }}
                           className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
                         >
-                          <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{university.name}</td>
-                          <td className="border border-gray-300 px-4 py-3 text-gray-700">{university.location}</td>
-                          <td className="border border-gray-300 px-4 py-3 text-gray-600 text-sm">{university.rank}</td>
-                          <td className="border border-gray-300 px-4 py-3 text-gray-700 text-sm">{university.programs}</td>
-                          <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">{university.fees}</td>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{uni.university}</td>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-700 text-sm">{uni.programs.join(", ")}</td>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium text-orange-700">{uni.requirements}</td>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">{uni.deadline}</td>
                         </motion.tr>
                       ))}
                     </tbody>
@@ -227,30 +251,33 @@ export default function JanuaryIntakeUniversitiesInUK() {
 
               {/* Popular Programs */}
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Popular Programs for January Intake</h2>
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">Popular Programs Available in January</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  The following programs are commonly available during January intake at UK universities:
+                  January intake covers a wide range of academic disciplines across various fields:
                 </p>
-                <div className="grid md:grid-cols-2 gap-6">
+                
+                <div className="grid gap-6">
                   {popularPrograms.map((program, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      transition={{ duration: 0.5, delay: index * 0.2 }}
                     >
-                      <Card className="bg-gradient-to-br from-indigo-50 to-blue-100 border-indigo-200">
+                      <Card className="bg-gradient-to-br from-red-50 to-orange-100 border-red-200">
                         <CardContent className="p-6">
-                          <h3 className="text-lg font-bold text-indigo-800 mb-3">{program.field}</h3>
-                          <div className="space-y-2 text-sm">
-                            <div className="flex justify-between">
-                              <span className="text-indigo-700">Duration:</span>
-                              <span className="font-semibold text-indigo-800">{program.duration}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-indigo-700">Annual Fee:</span>
-                              <span className="font-semibold text-indigo-800">{program.fee}</span>
-                            </div>
+                          <div className="flex items-center justify-between mb-3">
+                            <h3 className="text-xl font-bold text-red-800">{program.field}</h3>
+                            <span className="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">
+                              {program.universities}
+                            </span>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {program.programs.map((prog, idx) => (
+                              <span key={idx} className="bg-white text-red-700 text-sm px-3 py-1 rounded-full border border-red-200">
+                                {prog}
+                              </span>
+                            ))}
                           </div>
                         </CardContent>
                       </Card>
@@ -259,11 +286,11 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 </div>
               </div>
 
-              {/* Admission Requirements */}
+              {/* Application Requirements */}
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Admission Requirements</h2>
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">Application Requirements</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  To secure admission in January intake, Pakistani students must meet the following requirements:
+                  To apply for January intake in UK universities, international students must meet these requirements:
                 </p>
                 <div className="grid gap-4">
                   {applicationRequirements.map((requirement, index) => (
@@ -272,23 +299,24 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500"
+                      className="flex items-start space-x-3 p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500"
                     >
-                      <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{requirement}</span>
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              {/* Application Timeline */}
+              {/* Application Process */}
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Application Timeline for January Intake</h2>
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">Step-by-Step Application Process</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Follow this timeline to ensure successful application for January admission:
+                  Follow this comprehensive process to secure January intake admission:
                 </p>
+                
                 <div className="space-y-6">
-                  {applicationTimeline.map((phase, index) => (
+                  {applicationSteps.map((item, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: -20 }}
@@ -297,69 +325,91 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       className="relative"
                     >
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold">
                           {index + 1}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                            <div className="flex items-center justify-between mb-2">
-                              <h3 className="text-lg font-bold text-gray-800">{phase.phase}</h3>
-                              <span className="text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
-                                {phase.period}
-                              </span>
-                            </div>
-                            <p className="text-gray-600">{phase.description}</p>
+                            <h3 className="text-lg font-bold text-gray-800 mb-2">{item.step}</h3>
+                            <p className="text-gray-600">{item.description}</p>
                           </div>
                         </div>
                       </div>
-                      {index < applicationTimeline.length - 1 && (
-                        <div className="absolute left-5 top-10 w-0.5 h-6 bg-blue-300"></div>
+                      {index < applicationSteps.length - 1 && (
+                        <div className="absolute left-5 top-10 w-0.5 h-6 bg-orange-300"></div>
                       )}
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              {/* Application Tips */}
+              {/* Application Timeline */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">January Intake Timeline</h2>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Plan your January intake application according to this timeline:
+                </p>
+                
+                <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-lg border border-orange-200">
+                  <div className="space-y-4">
+                    {timelineEvents.map((event, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: index * 0.1 }}
+                        className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-sm"
+                      >
+                        <div className="flex-shrink-0 w-24 text-center">
+                          <span className="bg-orange-100 text-orange-800 text-sm font-semibold px-3 py-1 rounded-full">
+                            {event.month}
+                          </span>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-gray-700 font-medium">{event.activity}</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Important Considerations */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-green-800">Application Tips for Pakistani Students</h2>
+                <h2 className="text-2xl font-bold mb-4 text-blue-800">Important Considerations</h2>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Apply early as January intake has limited seats compared to September</span>
+                    <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700"><strong>Limited Program Availability:</strong> Not all programs offer January intake - verify availability with universities</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Ensure you have sufficient time for visa processing (6-8 weeks)</span>
+                    <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700"><strong>Accommodation:</strong> Book university accommodation early as January intake students have fewer options</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Prepare financial documents showing ability to cover first year expenses</span>
+                    <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700"><strong>Scholarships:</strong> Some scholarships may not be available for January intake - research funding options carefully</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Contact universities directly to confirm program availability</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Consider weather conditions and arrange appropriate clothing</span>
+                    <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700"><strong>Visa Processing:</strong> Plan visa application timing carefully to ensure arrival before program commencement</span>
                   </div>
                 </div>
               </motion.div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-purple-50 border-l-4 border-purple-500 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-purple-800">Conclusion</h2>
+              <div className="mb-8 p-6 bg-orange-50 border-l-4 border-orange-500 rounded-r-lg">
+                <h2 className="text-2xl font-bold mb-4 text-orange-800">Start Your UK Journey in January</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  January intake provides an excellent alternative pathway for Pakistani students who want to study in the UK. With reduced competition and faster processing times, it offers strategic advantages for students who plan their applications carefully.
+                  January intake provides an excellent opportunity for international students to begin their UK education with reduced competition and additional preparation time. With proper planning and early application submission, you can secure admission to top UK universities for the spring semester.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  While program options may be more limited compared to September intake, many reputable universities offer quality programs during this period. Contact Dunya Consultants for personalized guidance on January intake applications and ensure you meet all requirements for a successful admission.
+                  Contact Dunya Consultants for comprehensive guidance on January intake applications, university selection, visa processing, and pre-departure preparation. Our expert team will help you navigate the entire process and secure admission to your preferred UK university.
                 </p>
               </div>
 
@@ -368,39 +418,39 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
                 <div className="space-y-6">
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">Is January intake as good as September intake?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">Which UK universities offer January intake?</h3>
                     <p className="text-gray-700">
-                      Yes, January intake offers the same quality education and degree recognition. The main difference is in the number of available programs.
+                      Many UK universities offer January intake including University of Greenwich, Middlesex University, University of Hertfordshire, London South Bank University, Teesside University, and University of Bedfordshire.
                     </p>
                   </div>
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">Do all UK universities offer January intake?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">Is January intake harder to get into than September intake?</h3>
                     <p className="text-gray-700">
-                      No, not all universities offer January intake. It's more common in post-1992 universities and certain programs. Research specific universities for availability.
+                      Generally, January intake is less competitive than September intake as fewer students apply, potentially increasing your chances of admission with the same qualifications.
+                    </p>
+                  </div>
+                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                    <h3 className="font-bold text-gray-800 mb-2">Are all programs available in January intake?</h3>
+                    <p className="text-gray-700">
+                      No, not all programs offer January intake. Business, engineering, and computer science programs commonly have January options, while some specialized programs may only offer September intake.
                     </p>
                   </div>
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">When should I apply for January intake?</h3>
                     <p className="text-gray-700">
-                      Applications typically open in August-September with deadlines in October-November. Apply as early as possible for better chances.
+                      Application deadlines typically fall between October and December. Start your application process by August-September to ensure all documents are ready on time.
                     </p>
                   </div>
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">Are scholarships available for January intake?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">Can I get scholarships for January intake?</h3>
                     <p className="text-gray-700">
-                      Some scholarships are available, but options may be more limited compared to September intake. Check with individual universities for specific opportunities.
+                      Some scholarships are available for January intake, but options may be more limited than September intake. Check with individual universities for specific scholarship opportunities.
                     </p>
                   </div>
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">Can I get a student visa for January intake?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">What's the difference between January and September graduation?</h3>
                     <p className="text-gray-700">
-                      Yes, the student visa process is the same for January intake. Allow 6-8 weeks for visa processing after receiving your CAS.
-                    </p>
-                  </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">Will I graduate at the same time as September intake students?</h3>
-                    <p className="text-gray-700">
-                      For one-year programs, January students typically graduate in December/January, while September students graduate in summer.
+                      January intake students typically graduate in summer (July-August), which can be advantageous for job hunting as it aligns with the peak recruitment season in many industries.
                     </p>
                   </div>
                 </div>
@@ -412,49 +462,49 @@ export default function JanuaryIntakeUniversitiesInUK() {
           <div className="w-80">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 border-blue-200">
+              <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-orange-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-blue-800 mb-4 flex items-center">
+                  <h3 className="font-bold text-orange-800 mb-4 flex items-center">
                     <Calendar className="mr-2 h-5 w-5" />
                     January Intake Facts
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-blue-700">Application Deadline:</span>
-                      <span className="font-semibold text-blue-800">Oct-Nov</span>
+                      <span className="text-orange-700">Start Date:</span>
+                      <span className="font-semibold text-orange-800">Jan-Feb</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-blue-700">Program Start:</span>
-                      <span className="font-semibold text-blue-800">January</span>
+                      <span className="text-orange-700">Application Deadline:</span>
+                      <span className="font-semibold text-orange-800">Oct-Dec</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-blue-700">Competition:</span>
-                      <span className="font-semibold text-blue-800">Lower</span>
+                      <span className="text-orange-700">Graduation:</span>
+                      <span className="font-semibold text-orange-800">Summer</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-blue-700">Processing:</span>
-                      <span className="font-semibold text-blue-800">Faster</span>
+                      <span className="text-orange-700">Competition:</span>
+                      <span className="font-semibold text-orange-800">Lower</span>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Top Universities */}
+              {/* Popular Universities */}
               <Card className="bg-white border border-gray-200">
                 <CardContent className="p-6">
                   <h3 className="font-bold text-gray-800 mb-4">Top January Universities</h3>
                   <div className="space-y-3">
-                    <div className="p-2 bg-blue-50 rounded text-sm">
+                    <div className="p-2 bg-orange-50 rounded text-sm">
                       <div className="font-medium">University of Greenwich</div>
-                      <div className="text-blue-600 text-xs">London • £14,500-16,000</div>
+                      <div className="text-orange-600 text-xs">Business, Engineering</div>
                     </div>
-                    <div className="p-2 bg-indigo-50 rounded text-sm">
-                      <div className="font-medium">Coventry University</div>
-                      <div className="text-indigo-600 text-xs">Coventry • £15,000-17,000</div>
-                    </div>
-                    <div className="p-2 bg-purple-50 rounded text-sm">
+                    <div className="p-2 bg-red-50 rounded text-sm">
                       <div className="font-medium">Middlesex University</div>
-                      <div className="text-purple-600 text-xs">London • £14,000-16,500</div>
+                      <div className="text-red-600 text-xs">MBA, Data Science</div>
+                    </div>
+                    <div className="p-2 bg-pink-50 rounded text-sm">
+                      <div className="font-medium">University of Hertfordshire</div>
+                      <div className="text-pink-600 text-xs">Aerospace, Finance</div>
                     </div>
                   </div>
                 </CardContent>
@@ -463,32 +513,33 @@ export default function JanuaryIntakeUniversitiesInUK() {
               {/* Application Form */}
               <Card className="bg-white border border-gray-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-gray-800 mb-4">Get January Admission Info</h3>
+                  <h3 className="font-bold text-gray-800 mb-4">Get January Intake Guidance</h3>
                   <form className="space-y-4">
                     <input 
                       type="text" 
                       placeholder="Your Name" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                     <input 
                       type="email" 
                       placeholder="Email Address" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
                     <input 
                       type="tel" 
                       placeholder="Phone Number" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
                     />
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                      <option>Preferred Program</option>
-                      <option>Business Management</option>
-                      <option>Computer Science</option>
+                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                      <option>Preferred Field</option>
+                      <option>Business & Management</option>
                       <option>Engineering</option>
+                      <option>Computer Science</option>
+                      <option>Health Sciences</option>
                       <option>Other</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                      Get Admission Guidance
+                    <Button className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700">
+                      Get Application Help
                     </Button>
                   </form>
                 </CardContent>

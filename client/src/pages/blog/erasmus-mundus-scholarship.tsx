@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import { Calendar, Clock, User, FileText, Phone, Mail, Building, CheckCircle, DollarSign, BookOpen, Award, Globe, Users, Target, GraduationCap, MapPin } from "lucide-react";
+import { Calendar, Clock, User, FileText, Phone, Mail, Building, CheckCircle, DollarSign, BookOpen, Globe, Users, Award, Star, Target, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from '../../components/navigation';
@@ -10,70 +10,103 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function ErasmusMundusScholarship() {
   const scholarshipBenefits = [
     {
-      title: "Full Tuition Coverage",
-      description: "Complete tuition fees for the entire program duration",
-      icon: <GraduationCap className="h-6 w-6" />
+      benefit: "Full Tuition Coverage",
+      amount: "€24,000",
+      description: "Complete tuition fees covered for 2-year program"
     },
     {
-      title: "Monthly Stipend",
-      description: "€1,400 per month for living expenses",
-      icon: <DollarSign className="h-6 w-6" />
+      benefit: "Monthly Stipend",
+      amount: "€1,400",
+      description: "Living allowance per month for 24 months"
     },
     {
-      title: "Travel Allowance",
-      description: "Round-trip flight costs covered",
-      icon: <Globe className="h-6 w-6" />
+      benefit: "Travel Allowance",
+      amount: "€4,000",
+      description: "Travel costs and mobility support"
     },
     {
-      title: "Insurance Coverage",
-      description: "Health and accident insurance included",
-      icon: <Award className="h-6 w-6" />
+      benefit: "Installation Costs",
+      amount: "€2,000",
+      description: "Settlement and accommodation support"
     }
-  ];
-
-  const applicationRequirements = [
-    "Bachelor's degree (for Master's programs) or Master's degree (for Doctoral programs)",
-    "Minimum 2 years of relevant academic/professional experience",
-    "English language proficiency (IELTS 6.5+ or TOEFL 80+)",
-    "Academic transcripts with good grades (minimum 60%)",
-    "Letter of motivation explaining career goals",
-    "Two academic reference letters",
-    "CV highlighting academic and professional achievements",
-    "Copy of passport or national ID"
   ];
 
   const programTypes = [
     {
-      level: "Master's Programs",
-      duration: "1-2 years",
-      funding: "€1,400/month + tuition",
-      description: "Joint master's degree from multiple European universities"
+      type: "Master's Programs",
+      duration: "1-2 Years",
+      subjects: ["Engineering", "Business", "Social Sciences", "Environmental Studies"],
+      universities: "2-4 European Universities"
     },
     {
-      level: "Doctoral Programs", 
-      duration: "3-4 years",
-      funding: "€1,800/month + tuition",
-      description: "Research-based PhD programs with international mobility"
+      type: "Doctoral Programs",
+      duration: "3-4 Years",
+      subjects: ["Research-based", "Innovation", "Technology", "Humanities"],
+      universities: "Multiple European Institutions"
+    },
+    {
+      type: "Joint Programs",
+      duration: "2 Years",
+      subjects: ["Interdisciplinary", "International Relations", "Digital Innovation"],
+      universities: "Consortium Universities"
     }
   ];
 
-  const popularPrograms = [
-    "European Master in International Humanitarian Action (NOHA)",
-    "Master in Economics and Management of Network Industries",
-    "European Master in Tourism Management (EMTM)",
-    "Master in Dependable Software Systems (DESEM)",
-    "European Joint Master in English and American Studies",
-    "Master in European Forestry (MEF)",
-    "European Master in Health and Physical Activity (EHPA)"
+  const eligibilityRequirements = [
+    "Bachelor's degree (for Master's) or Master's degree (for Doctoral)",
+    "English proficiency: IELTS 6.5+ or TOEFL 90+",
+    "Strong academic record with minimum 3.0 GPA",
+    "Relevant work experience (preferred)",
+    "Research proposal (for Doctoral programs)",
+    "Letters of recommendation from professors",
+    "Statement of purpose aligned with program goals",
+    "EU citizenship not required - open to international students"
   ];
 
-  const applicationTimeline = [
-    { phase: "Program Research", duration: "September - November", description: "Research and select programs" },
-    { phase: "Application Preparation", duration: "October - December", description: "Prepare all required documents" },
-    { phase: "Application Submission", duration: "December - January", description: "Submit applications through official portals" },
-    { phase: "Selection Process", duration: "February - April", description: "Evaluation and selection by universities" },
-    { phase: "Results Announcement", duration: "April - May", description: "Scholarship results published" },
-    { phase: "Pre-departure", duration: "June - August", description: "Visa processing and travel preparation" }
+  const applicationSteps = [
+    { step: "Program Selection", description: "Choose your preferred Erasmus Mundus program from 200+ available options" },
+    { step: "Document Preparation", description: "Gather academic transcripts, language certificates, and recommendation letters" },
+    { step: "Online Application", description: "Submit application through program-specific portal with all required documents" },
+    { step: "Selection Process", description: "Universities review applications and conduct interviews if required" },
+    { step: "Scholarship Award", description: "Successful candidates receive full scholarship notification and admission" }
+  ];
+
+  const topPrograms = [
+    {
+      program: "European Master in Renewable Energy",
+      universities: "Netherlands, Norway, Greece",
+      duration: "2 Years",
+      focus: "Sustainable Energy Systems"
+    },
+    {
+      program: "International Master in Digital Transformation",
+      universities: "Germany, France, Italy",
+      duration: "2 Years", 
+      focus: "Technology Innovation"
+    },
+    {
+      program: "Master in International Relations",
+      universities: "Belgium, Poland, Turkey",
+      duration: "2 Years",
+      focus: "European Integration"
+    },
+    {
+      program: "European Master in Environmental Sciences",
+      universities: "Denmark, Spain, Portugal",
+      duration: "2 Years",
+      focus: "Climate Change Solutions"
+    }
+  ];
+
+  const successTips = [
+    "Start application process 12-18 months early",
+    "Research program requirements thoroughly before applying",
+    "Prepare strong statement of purpose highlighting European perspective",
+    "Obtain excellent recommendation letters from professors",
+    "Demonstrate language proficiency in program instruction languages",
+    "Show commitment to European integration and mobility",
+    "Highlight leadership experience and community involvement",
+    "Prepare for potential interviews with program coordinators"
   ];
 
   return (
@@ -81,7 +114,7 @@ export default function ErasmusMundusScholarship() {
       <Navigation />
       <div className="w-[1440px] mx-auto">
         {/* Hero Section */}
-        <div className="relative h-[500px] bg-gradient-to-r from-purple-600 via-indigo-700 to-blue-800 flex items-center justify-center text-white">
+        <div className="relative h-[500px] bg-gradient-to-r from-blue-600 via-purple-700 to-indigo-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -90,7 +123,7 @@ export default function ErasmusMundusScholarship() {
           />
           <div className="relative z-10 text-center px-8">
             <h1 className="text-5xl font-bold mb-4">Erasmus Mundus Scholarship</h1>
-            <p className="text-2xl font-light">Complete guide to Europe's most prestigious scholarship program</p>
+            <p className="text-2xl font-light">Europe's Most Prestigious Scholarship for International Students</p>
           </div>
         </div>
 
@@ -102,65 +135,75 @@ export default function ErasmusMundusScholarship() {
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  The <strong>Erasmus Mundus Scholarship</strong> is one of the most prestigious and competitive scholarship programs offered by the European Union. This fully-funded scholarship provides exceptional opportunities for international students, including those from Pakistan, to pursue high-quality master's and doctoral programs at top European universities.
+                  The <strong>Erasmus Mundus Scholarship</strong> is the European Union's flagship educational program offering full funding for international students to pursue Master's and Doctoral degrees at top European universities. This prestigious scholarship provides complete financial support, covering tuition fees, living expenses, travel costs, and insurance for exceptional students worldwide.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  Erasmus Mundus Joint Master Degrees (EMJMDs) and European Joint Doctorates (EJDs) offer students the unique opportunity to study at multiple universities across different European countries, gaining international experience and diverse perspectives in their chosen field of study.
+                  Established in 2004, Erasmus Mundus promotes European higher education globally while fostering intercultural understanding and academic excellence. The program offers over 200 joint programs across multiple European countries, allowing students to study at 2-4 different universities and earn joint or multiple degrees.
                 </p>
               </div>
 
-              {/* What is Erasmus Mundus */}
+              {/* Scholarship Benefits */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-purple-50 border-l-4 border-purple-500 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-purple-800 flex items-center">
-                  <Award className="mr-3 h-6 w-6" />
-                  What is Erasmus Mundus Scholarship?
+                <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-center">
+                  <DollarSign className="mr-3 h-6 w-6" />
+                  Complete Financial Coverage
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  Erasmus Mundus is the European Union's flagship scholarship program that supports high-quality international master's and doctoral courses delivered by consortiums of higher education institutions from Europe and around the world.
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  The program aims to enhance the quality of European higher education and promote dialogue and understanding between people and cultures. Students receive joint, double, or multiple degrees from the participating institutions.
+                  Erasmus Mundus provides comprehensive financial support covering all aspects of your European education:
                 </p>
               </motion.div>
 
-              {/* Scholarship Benefits */}
+              {/* Benefits Table */}
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Erasmus Mundus Scholarship Benefits</h2>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {scholarshipBenefits.map((benefit, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                    >
-                      <Card className="bg-white border border-purple-200 hover:shadow-lg transition-shadow">
-                        <CardContent className="p-6">
-                          <div className="flex items-start space-x-4">
-                            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center text-white">
-                              {benefit.icon}
-                            </div>
-                            <div className="flex-1">
-                              <h3 className="text-lg font-bold text-gray-800 mb-2">{benefit.title}</h3>
-                              <p className="text-gray-600">{benefit.description}</p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  ))}
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">Scholarship Benefits Breakdown</h2>
+                
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
+                    <thead>
+                      <tr className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Benefit Type</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Amount (EUR)</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Coverage Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {scholarshipBenefits.map((item, index) => (
+                        <motion.tr
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: index * 0.05 }}
+                          className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                        >
+                          <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{item.benefit}</td>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-700 font-bold text-blue-700">{item.amount}</td>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-600">{item.description}</td>
+                        </motion.tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <p className="text-sm text-green-800">
+                    <strong>Total Value:</strong> €30,000+ per student for Master's programs | €40,000+ for Doctoral programs
+                  </p>
                 </div>
               </div>
 
               {/* Program Types */}
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Types of Erasmus Mundus Programs</h2>
-                <div className="grid md:grid-cols-2 gap-6">
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">Available Program Types</h2>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Erasmus Mundus offers diverse academic programs across multiple disciplines and degree levels:
+                </p>
+                
+                <div className="grid gap-6">
                   {programTypes.map((program, index) => (
                     <motion.div
                       key={index}
@@ -168,19 +211,22 @@ export default function ErasmusMundusScholarship() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.2 }}
                     >
-                      <Card className="bg-gradient-to-br from-indigo-50 to-purple-100 border-indigo-200">
+                      <Card className="bg-gradient-to-br from-purple-50 to-blue-100 border-purple-200">
                         <CardContent className="p-6">
-                          <h3 className="text-xl font-bold text-indigo-800 mb-3">{program.level}</h3>
-                          <div className="space-y-2 text-sm">
-                            <div className="flex justify-between">
-                              <span className="text-indigo-700">Duration:</span>
-                              <span className="font-semibold text-indigo-800">{program.duration}</span>
+                          <h3 className="text-xl font-bold text-purple-800 mb-3">{program.type}</h3>
+                          <div className="grid md:grid-cols-3 gap-4 text-sm">
+                            <div>
+                              <span className="text-purple-700 font-medium">Duration:</span>
+                              <div className="font-semibold text-purple-800">{program.duration}</div>
                             </div>
-                            <div className="flex justify-between">
-                              <span className="text-indigo-700">Funding:</span>
-                              <span className="font-semibold text-indigo-800">{program.funding}</span>
+                            <div>
+                              <span className="text-purple-700 font-medium">Subjects:</span>
+                              <div className="font-semibold text-purple-800">{program.subjects.join(", ")}</div>
                             </div>
-                            <p className="text-indigo-700 mt-3">{program.description}</p>
+                            <div>
+                              <span className="text-purple-700 font-medium">Mobility:</span>
+                              <div className="font-semibold text-purple-800">{program.universities}</div>
+                            </div>
                           </div>
                         </CardContent>
                       </Card>
@@ -193,10 +239,10 @@ export default function ErasmusMundusScholarship() {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Eligibility Requirements</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  To be eligible for Erasmus Mundus scholarship, Pakistani students must meet the following criteria:
+                  To qualify for Erasmus Mundus Scholarship, applicants must meet the following criteria:
                 </p>
                 <div className="grid gap-4">
-                  {applicationRequirements.map((requirement, index) => (
+                  {eligibilityRequirements.map((requirement, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: -20 }}
@@ -211,40 +257,54 @@ export default function ErasmusMundusScholarship() {
                 </div>
               </div>
 
-              {/* Popular Programs */}
+              {/* Top Programs */}
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Popular Erasmus Mundus Programs</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Here are some of the most popular Erasmus Mundus programs among international students:
+                  Here are some of the most sought-after Erasmus Mundus programs for international students:
                 </p>
-                <div className="grid md:grid-cols-2 gap-4">
-                  {popularPrograms.map((program, index) => (
+                
+                <div className="grid md:grid-cols-2 gap-6">
+                  {topPrograms.map((program, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="p-4 bg-purple-50 rounded-lg border border-purple-200 hover:shadow-md transition-shadow"
                     >
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                          {index + 1}
-                        </div>
-                        <span className="text-gray-800 font-semibold">{program}</span>
-                      </div>
+                      <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
+                        <CardContent className="p-6">
+                          <h3 className="text-lg font-bold text-gray-800 mb-3">{program.program}</h3>
+                          <div className="space-y-2 text-sm">
+                            <div className="flex items-center space-x-2">
+                              <Globe className="h-4 w-4 text-blue-500" />
+                              <span className="text-gray-700">{program.universities}</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Clock className="h-4 w-4 text-green-500" />
+                              <span className="text-gray-700">{program.duration}</span>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Target className="h-4 w-4 text-purple-500" />
+                              <span className="text-gray-700">{program.focus}</span>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              {/* Application Timeline */}
+              {/* Application Process */}
               <div className="mb-8">
-                <h2 className="text-2xl font-bold mb-6 text-gray-800">Application Timeline</h2>
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">Application Process</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  The Erasmus Mundus application process follows a specific timeline. Here's what Pakistani students need to know:
+                  Follow these essential steps to apply for Erasmus Mundus Scholarship:
                 </p>
+                
                 <div className="space-y-6">
-                  {applicationTimeline.map((phase, index) => (
+                  {applicationSteps.map((item, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: -20 }}
@@ -253,69 +313,85 @@ export default function ErasmusMundusScholarship() {
                       className="relative"
                     >
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
                           {index + 1}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
-                            <div className="flex items-center justify-between mb-2">
-                              <h3 className="text-lg font-bold text-gray-800">{phase.phase}</h3>
-                              <span className="text-sm font-semibold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
-                                {phase.duration}
-                              </span>
-                            </div>
-                            <p className="text-gray-600">{phase.description}</p>
+                            <h3 className="text-lg font-bold text-gray-800 mb-2">{item.step}</h3>
+                            <p className="text-gray-600">{item.description}</p>
                           </div>
                         </div>
                       </div>
-                      {index < applicationTimeline.length - 1 && (
-                        <div className="absolute left-5 top-10 w-0.5 h-6 bg-purple-300"></div>
+                      {index < applicationSteps.length - 1 && (
+                        <div className="absolute left-5 top-10 w-0.5 h-6 bg-blue-300"></div>
                       )}
                     </motion.div>
                   ))}
                 </div>
               </div>
 
-              {/* Application Tips */}
+              {/* Success Tips */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold mb-6 text-gray-800">Success Tips for Applicants</h2>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Increase your chances of securing Erasmus Mundus Scholarship with these proven strategies:
+                </p>
+                <div className="grid gap-4">
+                  {successTips.map((tip, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="flex items-start space-x-3 p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500"
+                    >
+                      <Star className="h-5 w-5 text-purple-600 mt-1 flex-shrink-0" />
+                      <span className="text-gray-700 font-medium">{tip}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Important Deadlines */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg"
+                className="mb-8 p-6 bg-red-50 border-l-4 border-red-500 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-green-800">Application Tips for Pakistani Students</h2>
+                <h2 className="text-2xl font-bold mb-4 text-red-800">Application Deadlines</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Erasmus Mundus applications typically follow these timeline patterns:
+                </p>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Start your application preparation at least 6 months before the deadline</span>
+                    <Calendar className="h-5 w-5 text-red-600 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700"><strong>December - February:</strong> Most program application deadlines</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Research programs thoroughly and align your background with program requirements</span>
+                    <Calendar className="h-5 w-5 text-red-600 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700"><strong>March - May:</strong> Selection process and interviews</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Prepare a compelling motivation letter highlighting your academic and career goals</span>
+                    <Calendar className="h-5 w-5 text-red-600 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700"><strong>June - July:</strong> Scholarship results announcement</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Secure strong recommendation letters from academic supervisors</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-600 mt-1 flex-shrink-0" />
-                    <span className="text-gray-700">Ensure all documents are properly translated and authenticated</span>
+                    <Calendar className="h-5 w-5 text-red-600 mt-1 flex-shrink-0" />
+                    <span className="text-gray-700"><strong>September:</strong> Program commencement in Europe</span>
                   </div>
                 </div>
               </motion.div>
 
               {/* Conclusion */}
               <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-blue-800">Conclusion</h2>
+                <h2 className="text-2xl font-bold mb-4 text-blue-800">Start Your European Journey</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  The Erasmus Mundus Scholarship represents an exceptional opportunity for Pakistani students to pursue world-class education in Europe with full financial support. The program not only covers all educational and living expenses but also provides invaluable international experience and networking opportunities.
+                  The Erasmus Mundus Scholarship represents an extraordinary opportunity to pursue world-class education across multiple European countries with full financial support. This prestigious program not only covers all expenses but also provides invaluable international experience and networking opportunities.
                 </p>
                 <p className="text-gray-700 leading-relaxed">
-                  With careful preparation and a strong application, Pakistani students can join thousands of international scholars who have benefited from this prestigious program. Contact Dunya Consultants for expert guidance on your Erasmus Mundus application process.
+                  Begin your application process early and contact Dunya Consultants for expert guidance on program selection, application preparation, and scholarship success strategies. Our team has helped numerous Pakistani students secure Erasmus Mundus scholarships and achieve their European education dreams.
                 </p>
               </div>
 
@@ -324,39 +400,39 @@ export default function ErasmusMundusScholarship() {
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
                 <div className="space-y-6">
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">Can Pakistani students apply for Erasmus Mundus?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">How competitive is Erasmus Mundus Scholarship?</h3>
                     <p className="text-gray-700">
-                      Yes, Pakistani students are eligible to apply for Erasmus Mundus scholarships. The program is open to students from all countries worldwide.
+                      Erasmus Mundus is highly competitive with acceptance rates typically between 5-15% depending on the program. Strong academic records, relevant experience, and excellent application materials are essential.
                     </p>
                   </div>
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">What is the application deadline for Erasmus Mundus?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">Can Pakistani students apply for all programs?</h3>
                     <p className="text-gray-700">
-                      Application deadlines vary by program but typically fall between December and January. Check individual program websites for specific dates.
+                      Yes, Pakistani students are eligible for all Erasmus Mundus programs. Some programs may have specific regional preferences, but most are open to global applicants.
                     </p>
                   </div>
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">How much monthly stipend do scholarship recipients receive?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">Is work experience required for all programs?</h3>
                     <p className="text-gray-700">
-                      Master's students receive €1,400 per month, while doctoral students receive €1,800 per month to cover living expenses.
+                      Work experience requirements vary by program. While not always mandatory, relevant professional experience significantly strengthens your application, especially for Master's programs.
                     </p>
                   </div>
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">Do I need to study in multiple countries?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">Can I apply to multiple Erasmus Mundus programs?</h3>
                     <p className="text-gray-700">
-                      Yes, Erasmus Mundus programs require mobility between at least two different European countries as part of the joint degree structure.
+                      Yes, you can apply to multiple programs, but each requires a separate application with program-specific requirements and deadlines. Choose programs that align with your academic goals.
                     </p>
                   </div>
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">What degree will I receive upon graduation?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">What happens after graduation?</h3>
                     <p className="text-gray-700">
-                      Students receive either a joint degree (single diploma signed by all institutions) or multiple degrees from each participating university.
+                      Erasmus Mundus graduates receive joint or multiple degrees from partner universities and become part of the alumni network. Many continue with PhD studies or secure positions with international organizations.
                     </p>
                   </div>
                   <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="font-bold text-gray-800 mb-2">Can I work while studying on Erasmus Mundus?</h3>
+                    <h3 className="font-bold text-gray-800 mb-2">Are family members allowed to accompany scholars?</h3>
                     <p className="text-gray-700">
-                      Work regulations vary by country, but generally students can work part-time (up to 20 hours per week) while maintaining their studies.
+                      The scholarship covers only the student. Family members can accompany you, but their visa, accommodation, and living expenses are not covered by the Erasmus Mundus grant.
                     </p>
                   </div>
                 </div>
@@ -368,28 +444,28 @@ export default function ErasmusMundusScholarship() {
           <div className="w-80">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-purple-50 to-indigo-100 border-purple-200">
+              <Card className="bg-gradient-to-br from-blue-50 to-purple-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-purple-800 mb-4 flex items-center">
+                  <h3 className="font-bold text-blue-800 mb-4 flex items-center">
                     <Award className="mr-2 h-5 w-5" />
-                    Scholarship Quick Facts
+                    Scholarship Overview
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-purple-700">Monthly Stipend:</span>
-                      <span className="font-semibold text-purple-800">€1,400</span>
+                      <span className="text-blue-700">Coverage:</span>
+                      <span className="font-semibold text-blue-800">100% Funded</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-purple-700">Program Duration:</span>
-                      <span className="font-semibold text-purple-800">1-2 years</span>
+                      <span className="text-blue-700">Duration:</span>
+                      <span className="font-semibold text-blue-800">1-4 Years</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-purple-700">Coverage:</span>
-                      <span className="font-semibold text-purple-800">100%</span>
+                      <span className="text-blue-700">Countries:</span>
+                      <span className="font-semibold text-blue-800">27+ EU Nations</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-purple-700">Countries:</span>
-                      <span className="font-semibold text-purple-800">27+ EU</span>
+                      <span className="text-blue-700">Programs:</span>
+                      <span className="font-semibold text-blue-800">200+ Available</span>
                     </div>
                   </div>
                 </CardContent>
@@ -398,15 +474,23 @@ export default function ErasmusMundusScholarship() {
               {/* Program Types */}
               <Card className="bg-white border border-gray-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-gray-800 mb-4">Program Levels</h3>
+                  <h3 className="font-bold text-gray-800 mb-4">Popular Fields</h3>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between p-2 bg-purple-50 rounded">
-                      <span className="text-sm font-medium">Master's</span>
-                      <span className="text-xs text-purple-600">€1,400/month</span>
+                    <div className="p-2 bg-blue-50 rounded text-sm">
+                      <div className="font-medium">Engineering & Technology</div>
+                      <div className="text-blue-600 text-xs">40+ Programs Available</div>
                     </div>
-                    <div className="flex items-center justify-between p-2 bg-indigo-50 rounded">
-                      <span className="text-sm font-medium">Doctoral</span>
-                      <span className="text-xs text-indigo-600">€1,800/month</span>
+                    <div className="p-2 bg-purple-50 rounded text-sm">
+                      <div className="font-medium">Business & Economics</div>
+                      <div className="text-purple-600 text-xs">35+ Programs Available</div>
+                    </div>
+                    <div className="p-2 bg-green-50 rounded text-sm">
+                      <div className="font-medium">Environmental Studies</div>
+                      <div className="text-green-600 text-xs">25+ Programs Available</div>
+                    </div>
+                    <div className="p-2 bg-orange-50 rounded text-sm">
+                      <div className="font-medium">Social Sciences</div>
+                      <div className="text-orange-600 text-xs">30+ Programs Available</div>
                     </div>
                   </div>
                 </CardContent>
@@ -415,31 +499,33 @@ export default function ErasmusMundusScholarship() {
               {/* Application Form */}
               <Card className="bg-white border border-gray-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-gray-800 mb-4">Get Scholarship Guidance</h3>
+                  <h3 className="font-bold text-gray-800 mb-4">Get Expert Guidance</h3>
                   <form className="space-y-4">
                     <input 
                       type="text" 
                       placeholder="Your Name" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                     <input 
                       type="email" 
                       placeholder="Email Address" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                     <input 
                       type="tel" 
                       placeholder="Phone Number" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                      <option>Education Level</option>
-                      <option>Bachelor's Degree</option>
-                      <option>Master's Degree</option>
-                      <option>PhD</option>
+                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                      <option>Field of Interest</option>
+                      <option>Engineering</option>
+                      <option>Business</option>
+                      <option>Environmental Studies</option>
+                      <option>Social Sciences</option>
+                      <option>Other</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700">
-                      Get Scholarship Info
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                      Get Scholarship Guidance
                     </Button>
                   </form>
                 </CardContent>

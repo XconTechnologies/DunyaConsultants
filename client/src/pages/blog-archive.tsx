@@ -22,6 +22,51 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "Erasmus Mundus Scholarship",
+    excerpt: "Complete guide to Europe's most prestigious scholarship program offering full funding for international students. Learn about application process, eligibility criteria, benefits, and program types.",
+    category: "Scholarships",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "22 min",
+    views: 55000,
+    tags: ["Erasmus Mundus", "European Scholarship", "Full Funding", "International Students", "Master's Programs", "Doctoral Programs"],
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/erasmus-mundus-scholarship"
+  },
+  {
+    id: "2",
+    title: "January Intake Universities in UK",
+    excerpt: "Complete guide to UK universities offering January/Spring admission for international students. Discover advantages, application process, requirements, and top universities accepting January intake.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "20 min",
+    views: 47500,
+    tags: ["January Intake", "UK Universities", "Spring Admission", "International Students", "University Applications", "Alternative Admission"],
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/january-intake-universities-in-uk"
+  },
+  {
+    id: "3",
+    title: "GRE Test Fee in Pakistan",
+    excerpt: "Complete guide to GRE test costs, registration process, and test centers in Pakistan. Learn about current fees, payment methods, preparation tips, and everything Pakistani students need to know.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "18 min",
+    views: 51000,
+    tags: ["GRE Test", "Test Fee", "Pakistan", "Graduate Exam", "Test Preparation", "Graduate School"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/gre-test-fee-in-pakistan"
+  },
+  {
+    id: "4",
     title: "TB Test for UK Visa in Pakistan: A Concise Guide Before You Apply for Visa Application",
     excerpt: "Complete guide to TB screening requirements for UK visa applications from Pakistan. Learn about test procedures, fees, required documents, validity, and authorized centers for Pakistani students.",
     category: "Visa Guides",
@@ -36,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/tb-test-for-uk-visa-in-pakistan"
   },
   {
-    id: "2", 
+    id: "5", 
     title: "MOI Accepted Universities in UK",
     excerpt: "Complete list of UK universities accepting Medium of Instruction (MOI) certificates instead of IELTS/PTE. Learn about eligibility criteria, application process, and top MOI accepting institutions.",
     category: "University Guides",
@@ -51,7 +96,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/moi-accepted-universities-in-uk"
   },
   {
-    id: "3",
+    id: "6",
     title: "IELTS Exam Fee in Pakistan",
     excerpt: "Complete guide to IELTS test fees, format, and registration process in Pakistan. Learn about test types, costs, documents required, test centers, and preparation tips for Pakistani students.",
     category: "Test Preparation",
