@@ -22,6 +22,51 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "TB Test for UK Visa in Pakistan: A Concise Guide Before You Apply for Visa Application",
+    excerpt: "Complete guide to TB screening requirements for UK visa applications from Pakistan. Learn about test procedures, fees, required documents, validity, and authorized centers for Pakistani students.",
+    category: "Visa Guides",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "15 min",
+    views: 42000,
+    tags: ["UK Visa", "TB Test", "Pakistan", "Medical Requirements", "Student Visa", "Immigration"],
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/tb-test-for-uk-visa-in-pakistan"
+  },
+  {
+    id: "2", 
+    title: "MOI Accepted Universities in UK",
+    excerpt: "Complete list of UK universities accepting Medium of Instruction (MOI) certificates instead of IELTS/PTE. Learn about eligibility criteria, application process, and top MOI accepting institutions.",
+    category: "University Guides",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "18 min",
+    views: 38500,
+    tags: ["UK Universities", "MOI", "Medium of Instruction", "English Proficiency", "University Selection", "Admissions"],
+    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/moi-accepted-universities-in-uk"
+  },
+  {
+    id: "3",
+    title: "IELTS Exam Fee in Pakistan",
+    excerpt: "Complete guide to IELTS test fees, format, and registration process in Pakistan. Learn about test types, costs, documents required, test centers, and preparation tips for Pakistani students.",
+    category: "Test Preparation",
+    author: "Dunya Consultants", 
+    date: "Jan 19, 2025",
+    readTime: "16 min",
+    views: 45000,
+    tags: ["IELTS", "Exam Fee", "Pakistan", "Test Preparation", "English Proficiency", "British Council"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/ielts-exam-fee-in-pakistan"
+  },
+  {
+    id: "4",
     title: "MBBS in Sweden for Pakistani Students",
     excerpt: "Complete guide to pursuing medical education in Sweden with world-class universities, affordable fees, and excellent career opportunities. Learn about top medical universities, eligibility criteria, and application process.",
     category: "Medical Education",
@@ -36,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/mbbs-in-sweden-for-pakistani-students"
   },
   {
-    id: "2",
+    id: "5",
     title: "MBBS in Australia for Pakistani Students",
     excerpt: "Complete guide to pursuing medical education in Australia with world-class universities, comprehensive programs, and excellent career opportunities. Learn about entrance exams, fees, and application process.",
     category: "Medical Education",
@@ -51,7 +96,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/mbbs-in-australia-for-pakistani-students"
   },
   {
-    id: "3",
+    id: "6",
     title: "A Complete Guide to Turkey Burslari Scholarship",
     excerpt: "Comprehensive guide to Turkey's prestigious government scholarship program offering full funding for international students. Learn about application process, eligibility, and benefits.",
     category: "Scholarships",
@@ -66,7 +111,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/a-complete-guide-to-turkey-burslari-scholarship"
   },
   {
-    id: "4",
+    id: "7",
     title: "Which Degree is Best in Pakistan?",
     excerpt: "Complete guide to choosing the right degree with highest scope and career opportunities in Pakistan. Explore top fields including Engineering, IT, Business Administration, Medicine, and Chartered Accounting.",
     category: "Education Guidance",
@@ -81,7 +126,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/which-degree-is-best-in-pakistan"
   },
   {
-    id: "5", 
+    id: "8", 
     title: "Canada Student Visa for Pakistani Students",
     excerpt: "Complete guide to online study visa application process from Pakistan. Learn about eligibility criteria, required documents, fees (150 CAD + 85 CAD biometrics), and step-by-step application process.",
     category: "Visa Guides",
@@ -96,7 +141,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/canada-student-visa-for-pakistani"
   },
   {
-    id: "6",
+    id: "9",
     title: "LLM in UK for Pakistani Students", 
     excerpt: "Complete guide to Master of Laws programs in UK including top 10 universities, eligibility criteria (65-75% grade, IELTS 6.5), fees (£19,500-44,000), scholarships, and career opportunities.",
     category: "Study Destinations",

@@ -76,6 +76,9 @@ import LLMInUKForPakistaniStudents from "@/pages/blog/llm-in-uk-for-pakistani-st
 import MBBSInSwedenForPakistaniStudents from "@/pages/blog/mbbs-in-sweden-for-pakistani-students";
 import MBBSInAustraliaForPakistaniStudents from "@/pages/blog/mbbs-in-australia-for-pakistani-students";
 import TurkeyBurslariScholarshipCompleteGuide from "@/pages/blog/turkey-burslari-scholarship-complete-guide";
+import TBTestForUKVisaBlogPage from "@/pages/blog/tb-test-for-uk-visa-in-pakistan";
+import MOIAcceptedUniversitiesBlogPage from "@/pages/blog/moi-accepted-universities-in-uk";
+import IELTSExamFeeBlogPage from "@/pages/blog/ielts-exam-fee-in-pakistan";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -153,6 +156,9 @@ function Router() {
       <Route path="/blog/mbbs-in-sweden-for-pakistani-students" component={MBBSInSwedenForPakistaniStudents} />
       <Route path="/blog/mbbs-in-australia-for-pakistani-students" component={MBBSInAustraliaForPakistaniStudents} />
       <Route path="/blog/a-complete-guide-to-turkey-burslari-scholarship" component={TurkeyBurslariScholarshipCompleteGuide} />
+      <Route path="/blog/tb-test-for-uk-visa-in-pakistan" component={TBTestForUKVisaBlogPage} />
+      <Route path="/blog/moi-accepted-universities-in-uk" component={MOIAcceptedUniversitiesBlogPage} />
+      <Route path="/blog/ielts-exam-fee-in-pakistan" component={IELTSExamFeeBlogPage} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
