@@ -156,6 +156,21 @@ const blogPosts: BlogPost[] = [
     href: "/blog/jobs-in-canada-for-pakistani-students"
   },
   {
+    id: "13",
+    title: "What is Foundation Year in UK?",
+    excerpt: "Complete guide to UK Foundation Year programs for international students including eligibility criteria, fees, requirements, universities, and popular courses available.",
+    category: "Education Pathways",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "16 min",
+    views: 32100,
+    tags: ["UK", "Foundation Year", "International Students", "Education", "University Preparation"],
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/what-is-foundation-year-in-uk"
+  },
+  {
     id: "9",
     title: "A Complete Guide to Bangor University UK",
     excerpt: "Complete guide to Bangor University acceptance rate, admission requirements, English language requirements, and application process for international students.",
