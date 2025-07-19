@@ -64,6 +64,7 @@ import UKStudentVisaRatioFromPakistan from "@/pages/blog/uk-student-visa-ratio-f
 import LowCostUniversitiesInUKForInternationalStudents from "@/pages/blog/low-cost-universities-in-uk-for-international-students";
 import MSInBusinessAnalyticsCourseInUSA from "@/pages/blog/ms-in-business-analytics-course-in-usa";
 import MasterOfFinanceInUK from "@/pages/blog/master-of-finance-in-uk";
+import MSCBusinessAnalyticsInUK from "@/pages/blog/msc-business-analytics-in-uk";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -129,6 +130,7 @@ function Router() {
       <Route path="/blog/low-cost-universities-in-uk-for-international-students" component={LowCostUniversitiesInUKForInternationalStudents} />
       <Route path="/blog/ms-in-business-analytics-course-in-usa" component={MSInBusinessAnalyticsCourseInUSA} />
       <Route path="/blog/master-of-finance-in-uk" component={MasterOfFinanceInUK} />
+      <Route path="/blog/msc-business-analytics-in-uk" component={MSCBusinessAnalyticsInUK} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

@@ -22,6 +22,21 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "MSc Business Analytics in UK",
+    excerpt: "Complete guide to pursuing Master's in Business Analytics at top UK universities with program duration, eligibility criteria, costs, scholarships, and career prospects.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "20 min",
+    views: 21500,
+    tags: ["UK", "Business Analytics", "Master's Degree", "Data Science", "Universities", "Career"],
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/msc-business-analytics-in-uk"
+  },
+  {
+    id: "2",
     title: "A Beginner's Guide to Master of Finance in UK",
     excerpt: "Complete guide to pursuing Master's in Finance at top UK universities with eligibility criteria, admission process, costs, scholarships, and career opportunities.",
     category: "Study Destinations",
@@ -36,7 +51,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/master-of-finance-in-uk"
   },
   {
-    id: "2",
+    id: "3",
     title: "MS in Business Analytics Course in USA",
     excerpt: "Complete guide to pursuing Master's in Business Analytics in the USA with top universities, admission requirements, costs, and career opportunities.",
     category: "Study Destinations",
@@ -51,7 +66,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/ms-in-business-analytics-course-in-usa"
   },
   {
-    id: "3",
+    id: "4",
     title: "UK Student Visa Ratio from Pakistan",
     excerpt: "Complete analysis of UK student visa success rates for Pakistani students with 98% success rate statistics and expert tips to improve your chances.",
     category: "Visa Guides",
@@ -66,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/uk-student-visa-ratio-from-pakistan"
   },
   {
-    id: "4",
+    id: "5",
     title: "Mistakes to Avoid when Applying for a UK Study Visa",
     excerpt: "Essential guide to common mistakes that can lead to UK student visa rejection and how to avoid them for successful visa application.",
     category: "Visa Guides",
@@ -81,7 +96,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/most-common-mistakes-to-avoid-for-your-uk-student-visa-success"
   },
   {
-    id: "5",
+    id: "6",
     title: "A Complete Guide to Bangor University UK",
     excerpt: "Complete guide to Bangor University acceptance rate, admission requirements, English language requirements, and application process for international students.",
     category: "University Guides",
