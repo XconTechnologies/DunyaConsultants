@@ -70,6 +70,9 @@ import TOEFLTestFeeInPakistan from "@/pages/blog/toefl-test-fee-in-pakistan";
 import Top10ReasonsToStudyInUK from "@/pages/blog/top-10-reasons-to-study-in-uk";
 import JobsInCanadaForPakistaniStudents from "@/pages/blog/jobs-in-canada-for-pakistani-students";
 import WhatIsFoundationYearInUK from "@/pages/blog/what-is-foundation-year-in-uk";
+import WhichDegreeIsBestInPakistan from "@/pages/blog/which-degree-is-best-in-pakistan";
+import CanadaStudentVisaForPakistani from "@/pages/blog/canada-student-visa-for-pakistani";
+import LLMInUKForPakistaniStudents from "@/pages/blog/llm-in-uk-for-pakistani-students";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -141,6 +144,9 @@ function Router() {
       <Route path="/blog/top-10-reasons-to-study-in-uk" component={Top10ReasonsToStudyInUK} />
       <Route path="/blog/jobs-in-canada-for-pakistani-students" component={JobsInCanadaForPakistaniStudents} />
       <Route path="/blog/what-is-foundation-year-in-uk" component={WhatIsFoundationYearInUK} />
+      <Route path="/blog/which-degree-is-best-in-pakistan" component={WhichDegreeIsBestInPakistan} />
+      <Route path="/blog/canada-student-visa-for-pakistani" component={CanadaStudentVisaForPakistani} />
+      <Route path="/blog/llm-in-uk-for-pakistani-students" component={LLMInUKForPakistaniStudents} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

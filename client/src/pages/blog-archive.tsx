@@ -22,6 +22,51 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "Which Degree is Best in Pakistan?",
+    excerpt: "Complete guide to choosing the right degree with highest scope and career opportunities in Pakistan. Explore top fields including Engineering, IT, Business Administration, Medicine, and Chartered Accounting.",
+    category: "Education Guidance",
+    author: "Dunya Consultants", 
+    date: "Jan 19, 2025",
+    readTime: "22 min",
+    views: 32000,
+    tags: ["Pakistan", "Degree Selection", "Career Guidance", "Engineering", "IT", "Business", "Medicine", "Education"],
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/which-degree-is-best-in-pakistan"
+  },
+  {
+    id: "2", 
+    title: "Canada Student Visa for Pakistani Students",
+    excerpt: "Complete guide to online study visa application process from Pakistan. Learn about eligibility criteria, required documents, fees (150 CAD + 85 CAD biometrics), and step-by-step application process.",
+    category: "Visa Guides",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025", 
+    readTime: "18 min",
+    views: 28500,
+    tags: ["Canada", "Student Visa", "Pakistan", "Study Permit", "Application Process", "Visa Requirements"],
+    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/canada-student-visa-for-pakistani"
+  },
+  {
+    id: "3",
+    title: "LLM in UK for Pakistani Students", 
+    excerpt: "Complete guide to Master of Laws programs in UK including top 10 universities, eligibility criteria (65-75% grade, IELTS 6.5), fees (£19,500-44,000), scholarships, and career opportunities.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "20 min", 
+    views: 25200,
+    tags: ["UK", "LLM", "Law Degree", "Pakistani Students", "Universities", "Scholarships", "Legal Career"],
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/llm-in-uk-for-pakistani-students"
+  },
+  {
+    id: "4",
     title: "TOEFL Test Fee in Pakistan",
     excerpt: "Complete guide to TOEFL exam costs, registration process, eligibility criteria, and preparation tips for Pakistani students planning to study abroad.",
     category: "Test Preparation",
@@ -36,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/toefl-test-fee-in-pakistan"
   },
   {
-    id: "2",
+    id: "5",
     title: "A Complete Guide to Blocked Account Germany",
     excerpt: "Essential information for international students on Germany blocked account requirements, including €11,904 deposit, monthly withdrawal limits, and step-by-step opening process.",
     category: "Visa Guides",
@@ -51,7 +96,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/germany-blocked-account"
   },
   {
-    id: "3",
+    id: "6",
     title: "MSc Business Analytics in UK",
     excerpt: "Complete guide to pursuing Master's in Business Analytics at top UK universities with program duration, eligibility criteria, costs, scholarships, and career prospects.",
     category: "Study Destinations",
@@ -66,7 +111,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/msc-business-analytics-in-uk"
   },
   {
-    id: "4",
+    id: "7",
     title: "A Beginner's Guide to Master of Finance in UK",
     excerpt: "Complete guide to pursuing Master's in Finance at top UK universities with eligibility criteria, admission process, costs, scholarships, and career opportunities.",
     category: "Study Destinations",
@@ -81,7 +126,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/master-of-finance-in-uk"
   },
   {
-    id: "5",
+    id: "8",
     title: "MS in Business Analytics Course in USA",
     excerpt: "Complete guide to pursuing Master's in Business Analytics in the USA with top universities, admission requirements, costs, and career opportunities.",
     category: "Study Destinations",
@@ -96,7 +141,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/ms-in-business-analytics-course-in-usa"
   },
   {
-    id: "6",
+    id: "9",
     title: "UK Student Visa Ratio from Pakistan",
     excerpt: "Complete analysis of UK student visa success rates for Pakistani students with 98% success rate statistics and expert tips to improve your chances.",
     category: "Visa Guides",
