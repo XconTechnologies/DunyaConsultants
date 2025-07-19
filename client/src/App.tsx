@@ -73,6 +73,9 @@ import WhatIsFoundationYearInUK from "@/pages/blog/what-is-foundation-year-in-uk
 import WhichDegreeIsBestInPakistan from "@/pages/blog/which-degree-is-best-in-pakistan";
 import CanadaStudentVisaForPakistani from "@/pages/blog/canada-student-visa-for-pakistani";
 import LLMInUKForPakistaniStudents from "@/pages/blog/llm-in-uk-for-pakistani-students";
+import MBBSInSwedenForPakistaniStudents from "@/pages/blog/mbbs-in-sweden-for-pakistani-students";
+import MBBSInAustraliaForPakistaniStudents from "@/pages/blog/mbbs-in-australia-for-pakistani-students";
+import TurkeyBurslariScholarshipCompleteGuide from "@/pages/blog/turkey-burslari-scholarship-complete-guide";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -147,6 +150,9 @@ function Router() {
       <Route path="/blog/which-degree-is-best-in-pakistan" component={WhichDegreeIsBestInPakistan} />
       <Route path="/blog/canada-student-visa-for-pakistani" component={CanadaStudentVisaForPakistani} />
       <Route path="/blog/llm-in-uk-for-pakistani-students" component={LLMInUKForPakistaniStudents} />
+      <Route path="/blog/mbbs-in-sweden-for-pakistani-students" component={MBBSInSwedenForPakistaniStudents} />
+      <Route path="/blog/mbbs-in-australia-for-pakistani-students" component={MBBSInAustraliaForPakistaniStudents} />
+      <Route path="/blog/a-complete-guide-to-turkey-burslari-scholarship" component={TurkeyBurslariScholarshipCompleteGuide} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />
