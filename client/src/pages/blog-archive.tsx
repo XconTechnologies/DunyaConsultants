@@ -141,6 +141,21 @@ const blogPosts: BlogPost[] = [
     href: "/blog/top-10-reasons-to-study-in-uk"
   },
   {
+    id: "11",
+    title: "Jobs in Canada for Pakistani Students",
+    excerpt: "Comprehensive guide to work opportunities in Canada for Pakistani students including on-campus jobs, off-campus employment, co-op programs, and post-graduation career prospects.",
+    category: "Career Guidance",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "18 min",
+    views: 28500,
+    tags: ["Canada", "Jobs", "Pakistani Students", "Work Opportunities", "Career", "Employment"],
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/jobs-in-canada-for-pakistani-students"
+  },
+  {
     id: "9",
     title: "A Complete Guide to Bangor University UK",
     excerpt: "Complete guide to Bangor University acceptance rate, admission requirements, English language requirements, and application process for international students.",
@@ -186,7 +201,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/uk-student-dependent-visa-new-rules"
   },
   {
-    id: "8",
+    id: "12",
     title: "Low-Cost Universities in UK for International Students",
     excerpt: "Complete guide to affordable UK universities with tuition fee breakdowns, living costs analysis, and money-saving tips for international students.",
     category: "Study Destinations",
