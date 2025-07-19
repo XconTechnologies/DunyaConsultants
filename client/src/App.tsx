@@ -66,6 +66,8 @@ import MSInBusinessAnalyticsCourseInUSA from "@/pages/blog/ms-in-business-analyt
 import MasterOfFinanceInUK from "@/pages/blog/master-of-finance-in-uk";
 import MSCBusinessAnalyticsInUK from "@/pages/blog/msc-business-analytics-in-uk";
 import GermanyBlockedAccount from "@/pages/blog/germany-blocked-account";
+import TOEFLTestFeeInPakistan from "@/pages/blog/toefl-test-fee-in-pakistan";
+import Top10ReasonsToStudyInUK from "@/pages/blog/top-10-reasons-to-study-in-uk";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -133,6 +135,8 @@ function Router() {
       <Route path="/blog/master-of-finance-in-uk" component={MasterOfFinanceInUK} />
       <Route path="/blog/msc-business-analytics-in-uk" component={MSCBusinessAnalyticsInUK} />
       <Route path="/blog/germany-blocked-account" component={GermanyBlockedAccount} />
+      <Route path="/blog/toefl-test-fee-in-pakistan" component={TOEFLTestFeeInPakistan} />
+      <Route path="/blog/top-10-reasons-to-study-in-uk" component={Top10ReasonsToStudyInUK} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

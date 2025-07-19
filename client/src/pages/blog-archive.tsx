@@ -22,6 +22,21 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: "1",
+    title: "TOEFL Test Fee in Pakistan",
+    excerpt: "Complete guide to TOEFL exam costs, registration process, eligibility criteria, and preparation tips for Pakistani students planning to study abroad.",
+    category: "Test Preparation",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "16 min",
+    views: 28500,
+    tags: ["TOEFL", "Test Fee", "Pakistan", "English Test", "Study Abroad", "Registration"],
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/toefl-test-fee-in-pakistan"
+  },
+  {
+    id: "2",
     title: "A Complete Guide to Blocked Account Germany",
     excerpt: "Essential information for international students on Germany blocked account requirements, including €11,904 deposit, monthly withdrawal limits, and step-by-step opening process.",
     category: "Visa Guides",
@@ -36,7 +51,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/germany-blocked-account"
   },
   {
-    id: "2",
+    id: "3",
     title: "MSc Business Analytics in UK",
     excerpt: "Complete guide to pursuing Master's in Business Analytics at top UK universities with program duration, eligibility criteria, costs, scholarships, and career prospects.",
     category: "Study Destinations",
@@ -51,7 +66,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/msc-business-analytics-in-uk"
   },
   {
-    id: "3",
+    id: "4",
     title: "A Beginner's Guide to Master of Finance in UK",
     excerpt: "Complete guide to pursuing Master's in Finance at top UK universities with eligibility criteria, admission process, costs, scholarships, and career opportunities.",
     category: "Study Destinations",
@@ -66,7 +81,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/master-of-finance-in-uk"
   },
   {
-    id: "4",
+    id: "5",
     title: "MS in Business Analytics Course in USA",
     excerpt: "Complete guide to pursuing Master's in Business Analytics in the USA with top universities, admission requirements, costs, and career opportunities.",
     category: "Study Destinations",
@@ -81,7 +96,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/ms-in-business-analytics-course-in-usa"
   },
   {
-    id: "5",
+    id: "6",
     title: "UK Student Visa Ratio from Pakistan",
     excerpt: "Complete analysis of UK student visa success rates for Pakistani students with 98% success rate statistics and expert tips to improve your chances.",
     category: "Visa Guides",
@@ -96,7 +111,7 @@ const blogPosts: BlogPost[] = [
     href: "/blog/uk-student-visa-ratio-from-pakistan"
   },
   {
-    id: "6",
+    id: "7",
     title: "Mistakes to Avoid when Applying for a UK Study Visa",
     excerpt: "Essential guide to common mistakes that can lead to UK student visa rejection and how to avoid them for successful visa application.",
     category: "Visa Guides",
@@ -111,7 +126,22 @@ const blogPosts: BlogPost[] = [
     href: "/blog/most-common-mistakes-to-avoid-for-your-uk-student-visa-success"
   },
   {
-    id: "7",
+    id: "8",
+    title: "Top 10 Reasons to Study in UK",
+    excerpt: "Discover the compelling reasons why the UK is the perfect destination for international education with world-class universities, shorter course durations, and excellent career opportunities.",
+    category: "Study Destinations",
+    author: "Dunya Consultants",
+    date: "Jan 19, 2025",
+    readTime: "20 min",
+    views: 42300,
+    tags: ["UK", "Study Abroad", "Education", "Universities", "International Students", "Benefits"],
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    featured: true,
+    trending: true,
+    href: "/blog/top-10-reasons-to-study-in-uk"
+  },
+  {
+    id: "9",
     title: "A Complete Guide to Bangor University UK",
     excerpt: "Complete guide to Bangor University acceptance rate, admission requirements, English language requirements, and application process for international students.",
     category: "University Guides",
