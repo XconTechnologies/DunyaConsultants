@@ -38,6 +38,7 @@ import {
   LogOut,
   Users,
   Activity,
+  CheckCircle,
 } from "lucide-react";
 
 interface AdminUser {
@@ -53,7 +54,7 @@ interface BlogPost {
   slug: string;
   excerpt: string;
   content: string;
-  published: boolean;
+  isPublished: boolean;
   publishedAt: Date | null;
   authorId: number;
   tags: string[];
@@ -173,10 +174,42 @@ export default function AdminDashboard() {
     },
   });
 
+  // Publish blog post mutation
+  const publishMutation = useMutation({
+    mutationFn: async (id: number) => {
+      const response = await fetch(`/api/admin/blog-posts/${id}/publish`, {
+        method: 'PATCH',
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) throw new Error('Failed to publish blog post');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
+      toast({
+        title: "Success",
+        description: "Blog post published successfully",
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: "Failed to publish blog post: " + error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     localStorage.removeItem("adminUser");
     setLocation("/admin/login");
+  };
+
+  const handlePublish = (id: number) => {
+    if (window.confirm(`Are you sure you want to publish this blog post?`)) {
+      publishMutation.mutate(id);
+    }
   };
 
   const handleDelete = (type: "blog" | "service" | "page", id: number) => {
@@ -239,7 +272,7 @@ export default function AdminDashboard() {
             <CardContent>
               <div className="text-2xl font-bold">{blogPosts.length}</div>
               <p className="text-xs text-muted-foreground">
-                {blogPosts.filter((post: BlogPost) => post.published).length} published
+                {blogPosts.filter((post: BlogPost) => post.isPublished).length} published
               </p>
             </CardContent>
           </Card>
@@ -288,8 +321,8 @@ export default function AdminDashboard() {
                       <TableRow key={post.id}>
                         <TableCell className="font-medium">{post.title}</TableCell>
                         <TableCell>
-                          <Badge variant={post.published ? "default" : "secondary"}>
-                            {post.published ? "Published" : "Draft"}
+                          <Badge variant={post.isPublished ? "default" : "secondary"}>
+                            {post.isPublished ? "Published" : "Draft"}
                           </Badge>
                         </TableCell>
                         <TableCell>{post.views || 0}</TableCell>
@@ -299,14 +332,36 @@ export default function AdminDashboard() {
                             <Button
                               size="sm"
                               variant="outline"
-                              onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
+                              onClick={() => window.open(`/blog/${post.slug}`, '_blank')}
+                              title="View Article"
                             >
-                              <Edit2 className="w-4 h-4" />
+                              <Eye className="w-4 h-4" />
                             </Button>
                             <Button
                               size="sm"
                               variant="outline"
+                              onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
+                              title="Edit Article"
+                            >
+                              <Edit2 className="w-4 h-4" />
+                            </Button>
+                            {!post.isPublished && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => handlePublish(post.id)}
+                                title="Publish Article"
+                                className="text-green-600 hover:text-green-700"
+                              >
+                                <CheckCircle className="w-4 h-4" />
+                              </Button>
+                            )}
+                            <Button
+                              size="sm"
+                              variant="outline"
                               onClick={() => handleDelete("blog", post.id)}
+                              title="Delete Article"
+                              className="text-red-600 hover:text-red-700"
                             >
                               <Trash2 className="w-4 h-4" />
                             </Button>
