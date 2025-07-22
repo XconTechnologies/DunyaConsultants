@@ -310,8 +310,8 @@ export default function BlogEditor() {
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <Badge variant={published ? "default" : "secondary"}>
-                {published ? "Published" : "Draft"}
+              <Badge variant={isPublished ? "default" : "secondary"}>
+                {isPublished ? "Published" : "Draft"}
               </Badge>
               <Button
                 type="submit"
