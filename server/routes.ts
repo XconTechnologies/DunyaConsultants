@@ -408,6 +408,49 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const id = parseInt(req.params.id);
       await storage.deleteBlogPost(id);
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to delete blog post' });
+    }
+  });
+
+  // ==============================================
+  // PUBLIC BLOG ROUTES
+  // ==============================================
+
+  // Get published blog posts (public)
+  app.get("/api/blog-posts/published", async (req, res) => {
+    try {
+      const posts = await storage.getBlogPosts(true); // Only published posts
+      res.json(posts);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch published blog posts' });
+    }
+  });
+
+  // Get single published blog post by slug (public)
+  app.get("/api/blog-posts/:slug", async (req, res) => {
+    try {
+      const { slug } = req.params;
+      const post = await storage.getBlogPostBySlug(slug);
+      if (!post || !post.isPublished) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      // Increment view count
+      await storage.incrementBlogViews(post.id);
+      
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog post' });
+    }
+  });
+
+  // Delete blog post
+  app.delete("/api/admin/blog-posts/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteBlogPost(id);
       res.json({ success: true, message: 'Blog post deleted successfully' });
     } catch (error) {
       res.status(500).json({ message: 'Failed to delete blog post' });

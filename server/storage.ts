@@ -43,6 +43,7 @@ export interface IStorage {
   updateBlogPost(id: number, updates: Partial<BlogPost>): Promise<BlogPost>;
   deleteBlogPost(id: number): Promise<void>;
   publishBlogPost(id: number): Promise<BlogPost>;
+  incrementBlogViews(id: number): Promise<void>;
   
   // Services Management
   getServices(active?: boolean): Promise<Service[]>;
@@ -65,7 +66,7 @@ export interface IStorage {
 
 
 import { db } from "./db";
-import { eq, and, desc, asc } from "drizzle-orm";
+import { eq, and, desc, asc, sql } from "drizzle-orm";
 
 export class DatabaseStorage implements IStorage {
   async getUser(id: number): Promise<User | undefined> {
@@ -305,6 +306,12 @@ export class DatabaseStorage implements IStorage {
       .where(eq(blogPosts.id, id))
       .returning();
     return post;
+  }
+
+  async incrementBlogViews(id: number): Promise<void> {
+    await db.update(blogPosts)
+      .set({ views: sql`${blogPosts.views} + 1` })
+      .where(eq(blogPosts.id, id));
   }
 
   // Services Management Methods
