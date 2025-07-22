@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Shield, Lock, User } from "lucide-react";
-import { apiRequest } from "@/lib/queryClient";
+// Removed apiRequest import since we're using fetch directly
 
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
@@ -38,23 +38,29 @@ export default function AdminLogin() {
     setError(null);
 
     try {
-      const response = await apiRequest("/api/admin/login", {
+      const response = await fetch("/api/admin/login", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(data),
       });
 
-      if (response.success) {
+      const result = await response.json();
+
+      if (response.ok && result.success) {
         // Store the token in localStorage
-        localStorage.setItem("adminToken", response.token);
-        localStorage.setItem("adminUser", JSON.stringify(response.admin));
+        localStorage.setItem("adminToken", result.token);
+        localStorage.setItem("adminUser", JSON.stringify(result.admin));
         
         // Redirect to admin dashboard
         navigate("/admin/dashboard");
       } else {
-        setError(response.message || "Login failed");
+        setError(result.message || "Login failed");
       }
     } catch (err: any) {
-      setError(err.message || "Login failed. Please try again.");
+      console.error("Login error:", err);
+      setError("Network error. Please try again.");
     } finally {
       setIsLoading(false);
     }
