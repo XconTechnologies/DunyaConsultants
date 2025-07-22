@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { seedBlogPosts } from "./seed-blogs";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
   insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema 
@@ -43,6 +44,9 @@ async function initializeAdmin() {
       });
       console.log('Default admin user created: admin/admin123');
     }
+
+    // Seed blog posts
+    await seedBlogPosts();
   } catch (error) {
     console.error('Failed to initialize admin user:', error);
   }
@@ -332,7 +336,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const published = req.query.published === 'true' ? true : req.query.published === 'false' ? false : undefined;
       const posts = await storage.getBlogPosts(published);
-      res.json(posts);
+      
+      // Optional pagination support for better dashboard performance
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
+      const offset = req.query.offset ? parseInt(req.query.offset as string) : 0;
+      
+      if (limit && limit > 0) {
+        const paginatedPosts = posts.slice(offset, offset + limit);
+        res.json(paginatedPosts);
+      } else {
+        res.json(posts); // Return all posts if no limit specified
+      }
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch blog posts' });
     }

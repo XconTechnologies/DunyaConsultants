@@ -103,12 +103,12 @@ export default function AdminDashboard() {
     };
   };
 
-  // Fetch blog posts
-  const { data: blogPosts = [], isLoading: blogLoading } = useQuery({
-    queryKey: ["admin-blog-posts"],
+  // Fetch all blog posts without pagination
+  const { data: blogPosts = [], isLoading: blogLoading, refetch: refetchBlogs } = useQuery({
+    queryKey: ["/api/admin/blog-posts"],
     enabled: authChecked && !!adminUser,
     queryFn: async () => {
-      const response = await fetch("/api/admin/blog-posts", {
+      const response = await fetch("/api/admin/blog-posts?limit=100", {
         headers: getAuthHeaders(),
       });
       if (!response.ok) throw new Error("Failed to fetch blog posts");

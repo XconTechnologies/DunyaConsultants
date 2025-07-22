@@ -190,7 +190,8 @@ function Router() {
       {/* Admin Routes */}
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
-      <Route path="/admin/blog/:action/:id?" component={BlogEditor} />
+      <Route path="/admin/blog-editor/:id?" component={BlogEditor} />
+      <Route path="/admin/blog-editor" component={BlogEditor} />
       
       <Route component={NotFound} />
     </Switch>
