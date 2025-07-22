@@ -94,6 +94,9 @@ import OfficesList from "@/pages/offices/OfficesList";
 import OfficeDetails from "@/pages/offices/OfficeDetails";
 import StudyAbroadJourney from "@/pages/study-abroad-journey";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
+import AdminLogin from "@/pages/admin/login";
+import AdminDashboard from "@/pages/admin/dashboard";
+import BlogEditor from "@/pages/admin/blog-editor";
 
 function Router() {
   return (
@@ -183,6 +186,12 @@ function Router() {
       <Route path="/study-abroad-journey" component={StudyAbroadJourney} />
       <Route path="/offices" component={OfficesList} />
       <Route path="/offices/:officeId" component={OfficeDetails} />
+      
+      {/* Admin Routes */}
+      <Route path="/admin/login" component={AdminLogin} />
+      <Route path="/admin/dashboard" component={AdminDashboard} />
+      <Route path="/admin/blog/:action/:id?" component={BlogEditor} />
+      
       <Route component={NotFound} />
     </Switch>
   );

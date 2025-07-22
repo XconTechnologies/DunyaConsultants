@@ -1,10 +1,56 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema } from "@shared/schema";
+import { 
+  insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
+  insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema 
+} from "@shared/schema";
 import { z } from "zod";
+import bcrypt from "bcryptjs";
+import crypto from "crypto";
+
+// Admin authentication middleware
+async function requireAuth(req: any, res: any, next: any) {
+  try {
+    const token = req.headers.authorization?.replace('Bearer ', '');
+    if (!token) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
+
+    const session = await storage.getAdminSession(token);
+    if (!session) {
+      return res.status(401).json({ message: 'Invalid or expired token' });
+    }
+
+    req.adminId = session.adminUserId;
+    next();
+  } catch (error) {
+    res.status(401).json({ message: 'Authentication failed' });
+  }
+}
+
+// Initialize default admin user
+async function initializeAdmin() {
+  try {
+    const existingAdmin = await storage.getAdminByUsername('admin');
+    if (!existingAdmin) {
+      const hashedPassword = await bcrypt.hash('admin123', 10);
+      await storage.createAdminUser({
+        username: 'admin',
+        password: hashedPassword,
+        email: 'admin@dunyaconsultants.com',
+        role: 'admin'
+      });
+      console.log('Default admin user created: admin/admin123');
+    }
+  } catch (error) {
+    console.error('Failed to initialize admin user:', error);
+  }
+}
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Initialize admin user
+  await initializeAdmin();
   // Contact form submission
   app.post("/api/contact", async (req, res) => {
     try {
@@ -185,6 +231,407 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false, 
         message: "Failed to send email" 
       });
+    }
+  });
+
+  // ==============================================
+  // ADMIN AUTHENTICATION ROUTES
+  // ==============================================
+
+  // Admin login
+  app.post("/api/admin/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password required' });
+      }
+
+      const admin = await storage.getAdminByUsername(username);
+      if (!admin || !admin.isActive) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+
+      const isValidPassword = await bcrypt.compare(password, admin.password);
+      if (!isValidPassword) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+
+      // Create session
+      const sessionToken = crypto.randomBytes(32).toString('hex');
+      const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
+      await storage.createAdminSession({
+        sessionToken,
+        adminUserId: admin.id,
+        expiresAt
+      });
+
+      await storage.updateAdminLastLogin(admin.id);
+
+      res.json({
+        success: true,
+        token: sessionToken,
+        admin: {
+          id: admin.id,
+          username: admin.username,
+          email: admin.email,
+          role: admin.role
+        }
+      });
+    } catch (error) {
+      console.error('Admin login error:', error);
+      res.status(500).json({ message: 'Login failed' });
+    }
+  });
+
+  // Admin logout
+  app.post("/api/admin/logout", requireAuth, async (req, res) => {
+    try {
+      const token = req.headers.authorization?.replace('Bearer ', '');
+      if (token) {
+        await storage.deleteAdminSession(token);
+      }
+      res.json({ success: true, message: 'Logged out successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Logout failed' });
+    }
+  });
+
+  // Verify admin session
+  app.get("/api/admin/me", requireAuth, async (req, res) => {
+    try {
+      const token = req.headers.authorization?.replace('Bearer ', '');
+      const session = await storage.getAdminSession(token!);
+      if (!session) {
+        return res.status(401).json({ message: 'Session expired' });
+      }
+      
+      const admin = await storage.getAdminByUsername('admin'); // In real app, get by ID
+      if (!admin) {
+        return res.status(404).json({ message: 'Admin not found' });
+      }
+
+      res.json({
+        id: admin.id,
+        username: admin.username,
+        email: admin.email,
+        role: admin.role
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Session verification failed' });
+    }
+  });
+
+  // ==============================================
+  // BLOG MANAGEMENT ROUTES
+  // ==============================================
+
+  // Get all blog posts (admin)
+  app.get("/api/admin/blog-posts", requireAuth, async (req, res) => {
+    try {
+      const published = req.query.published === 'true' ? true : req.query.published === 'false' ? false : undefined;
+      const posts = await storage.getBlogPosts(published);
+      res.json(posts);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog posts' });
+    }
+  });
+
+  // Get single blog post (admin)
+  app.get("/api/admin/blog-posts/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const post = await storage.getBlogPost(id);
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog post' });
+    }
+  });
+
+  // Create blog post
+  app.post("/api/admin/blog-posts", requireAuth, async (req, res) => {
+    try {
+      const blogData = insertBlogPostSchema.parse({
+        ...req.body,
+        authorId: req.adminId,
+        slug: req.body.slug || req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+      });
+      
+      const post = await storage.createBlogPost(blogData);
+      res.status(201).json(post);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: 'Invalid blog post data', errors: error.errors });
+      } else {
+        res.status(500).json({ message: 'Failed to create blog post' });
+      }
+    }
+  });
+
+  // Update blog post
+  app.put("/api/admin/blog-posts/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      
+      if (updates.title && !updates.slug) {
+        updates.slug = updates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+      
+      const post = await storage.updateBlogPost(id, updates);
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to update blog post' });
+    }
+  });
+
+  // Delete blog post
+  app.delete("/api/admin/blog-posts/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteBlogPost(id);
+      res.json({ success: true, message: 'Blog post deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to delete blog post' });
+    }
+  });
+
+  // Publish blog post
+  app.patch("/api/admin/blog-posts/:id/publish", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const post = await storage.publishBlogPost(id);
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to publish blog post' });
+    }
+  });
+
+  // ==============================================
+  // SERVICES MANAGEMENT ROUTES
+  // ==============================================
+
+  // Get all services (admin)
+  app.get("/api/admin/services", requireAuth, async (req, res) => {
+    try {
+      const active = req.query.active === 'true' ? true : req.query.active === 'false' ? false : undefined;
+      const services = await storage.getServices(active);
+      res.json(services);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch services' });
+    }
+  });
+
+  // Get single service (admin)
+  app.get("/api/admin/services/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const service = await storage.getService(id);
+      if (!service) {
+        return res.status(404).json({ message: 'Service not found' });
+      }
+      res.json(service);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch service' });
+    }
+  });
+
+  // Create service
+  app.post("/api/admin/services", requireAuth, async (req, res) => {
+    try {
+      const serviceData = insertServiceSchema.parse({
+        ...req.body,
+        slug: req.body.slug || req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+      });
+      
+      const service = await storage.createService(serviceData);
+      res.status(201).json(service);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: 'Invalid service data', errors: error.errors });
+      } else {
+        res.status(500).json({ message: 'Failed to create service' });
+      }
+    }
+  });
+
+  // Update service
+  app.put("/api/admin/services/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      
+      if (updates.title && !updates.slug) {
+        updates.slug = updates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+      
+      const service = await storage.updateService(id, updates);
+      res.json(service);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to update service' });
+    }
+  });
+
+  // Delete service
+  app.delete("/api/admin/services/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteService(id);
+      res.json({ success: true, message: 'Service deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to delete service' });
+    }
+  });
+
+  // ==============================================
+  // PAGES MANAGEMENT ROUTES
+  // ==============================================
+
+  // Get all pages (admin)
+  app.get("/api/admin/pages", requireAuth, async (req, res) => {
+    try {
+      const published = req.query.published === 'true' ? true : req.query.published === 'false' ? false : undefined;
+      const pages = await storage.getPages(published);
+      res.json(pages);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch pages' });
+    }
+  });
+
+  // Get single page (admin)
+  app.get("/api/admin/pages/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const page = await storage.getPage(id);
+      if (!page) {
+        return res.status(404).json({ message: 'Page not found' });
+      }
+      res.json(page);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch page' });
+    }
+  });
+
+  // Create page
+  app.post("/api/admin/pages", requireAuth, async (req, res) => {
+    try {
+      const pageData = insertPageSchema.parse({
+        ...req.body,
+        authorId: req.adminId,
+        slug: req.body.slug || req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+      });
+      
+      const page = await storage.createPage(pageData);
+      res.status(201).json(page);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ message: 'Invalid page data', errors: error.errors });
+      } else {
+        res.status(500).json({ message: 'Failed to create page' });
+      }
+    }
+  });
+
+  // Update page
+  app.put("/api/admin/pages/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updates = req.body;
+      
+      if (updates.title && !updates.slug) {
+        updates.slug = updates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+      
+      const page = await storage.updatePage(id, updates);
+      res.json(page);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to update page' });
+    }
+  });
+
+  // Delete page
+  app.delete("/api/admin/pages/:id", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deletePage(id);
+      res.json({ success: true, message: 'Page deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to delete page' });
+    }
+  });
+
+  // Publish page
+  app.patch("/api/admin/pages/:id/publish", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const page = await storage.publishPage(id);
+      res.json(page);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to publish page' });
+    }
+  });
+
+  // ==============================================
+  // PUBLIC BLOG ROUTES (for frontend)
+  // ==============================================
+
+  // Get published blog posts
+  app.get("/api/blog-posts", async (req, res) => {
+    try {
+      const posts = await storage.getBlogPosts(true); // Only published
+      res.json(posts);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog posts' });
+    }
+  });
+
+  // Get single published blog post by slug
+  app.get("/api/blog-posts/:slug", async (req, res) => {
+    try {
+      const post = await storage.getBlogPostBySlug(req.params.slug);
+      if (!post || !post.isPublished) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog post' });
+    }
+  });
+
+  // Get published services
+  app.get("/api/services", async (req, res) => {
+    try {
+      const services = await storage.getServices(true); // Only active
+      res.json(services);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch services' });
+    }
+  });
+
+  // Get published pages
+  app.get("/api/pages", async (req, res) => {
+    try {
+      const pages = await storage.getPages(true); // Only published
+      res.json(pages);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch pages' });
+    }
+  });
+
+  // Get single published page by slug
+  app.get("/api/pages/:slug", async (req, res) => {
+    try {
+      const page = await storage.getPageBySlug(req.params.slug);
+      if (!page || !page.isPublished) {
+        return res.status(404).json({ message: 'Page not found' });
+      }
+      res.json(page);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch page' });
     }
   });
 
