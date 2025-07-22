@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useRoute } from "wouter";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Editor } from "@tinymce/tinymce-react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,9 +13,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon,
+  Bold, Italic, Link, Heading1, Heading2, Heading3
 } from "lucide-react";
 
 const blogSchema = z.object({
@@ -22,27 +25,58 @@ const blogSchema = z.object({
   slug: z.string().min(1, "Slug is required"),
   excerpt: z.string().min(1, "Excerpt is required"),
   content: z.string().min(1, "Content is required"),
-  metaTitle: z.string().optional(),
   metaDescription: z.string().optional(),
+  focusKeyword: z.string().optional(),
+  featuredImage: z.string().optional(),
   tags: z.string().optional(),
-  isPublished: z.boolean().default(false),
+  published: z.boolean().default(false),
 });
 
 type BlogForm = z.infer<typeof blogSchema>;
 
+interface BlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  metaDescription?: string;
+  focusKeyword?: string;
+  featuredImage?: string;
+  tags: string[];
+  isPublished: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export default function BlogEditor() {
   const [, setLocation] = useLocation();
-  const [match, params] = useRoute("/admin/blog/:action/:id?");
-  const [isLoading, setIsLoading] = useState(false);
+  const [match, params] = useRoute("/admin/blog-editor/:id?");
   const [isSaving, setIsSaving] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [blogPost, setBlogPost] = useState<any>(null);
-
-  const navigate = (path: string) => setLocation(path);
+  const [isImageUploading, setIsImageUploading] = useState(false);
+  const [showImageUpload, setShowImageUpload] = useState(false);
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   
-  const isEditing = params?.action === "edit";
-  const isNew = params?.action === "new";
+  const isEditing = !!params?.id;
   const blogId = params?.id;
+
+  const token = localStorage.getItem("adminToken");
+
+  // Fetch blog post for editing
+  const { data: blogPost, isLoading } = useQuery({
+    queryKey: ["/api/admin/blog-posts", blogId],
+    enabled: isEditing && !!token,
+    queryFn: async () => {
+      const response = await fetch(`/api/admin/blog-posts/${blogId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!response.ok) throw new Error("Failed to fetch blog post");
+      return response.json();
+    },
+  });
 
   const {
     register,
@@ -54,12 +88,13 @@ export default function BlogEditor() {
   } = useForm<BlogForm>({
     resolver: zodResolver(blogSchema),
     defaultValues: {
-      isPublished: false,
+      published: false,
     },
   });
 
   const title = watch("title");
-  const isPublished = watch("isPublished");
+  const content = watch("content");
+  const published = watch("published");
 
   // Generate slug from title
   useEffect(() => {
@@ -72,109 +107,177 @@ export default function BlogEditor() {
     }
   }, [title, setValue, isEditing]);
 
-  // Fetch blog post for editing
+  // Populate form when editing
   useEffect(() => {
-    const fetchBlogPost = async () => {
-      if (!isEditing || !blogId) return;
+    if (blogPost && isEditing) {
+      reset({
+        title: blogPost.title,
+        slug: blogPost.slug,
+        excerpt: blogPost.excerpt,
+        content: blogPost.content,
+        metaDescription: blogPost.metaDescription || "",
+        focusKeyword: blogPost.focusKeyword || "",
+        featuredImage: blogPost.featuredImage || "",
+        tags: Array.isArray(blogPost.tags) ? blogPost.tags.join(", ") : "",
+        published: blogPost.isPublished,
+      });
+    }
+  }, [blogPost, isEditing, reset]);
 
-      setIsLoading(true);
-      try {
-        const token = localStorage.getItem("adminToken");
-        const response = await fetch(`/api/admin/blog-posts/${blogId}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+  // Save mutation
+  const saveMutation = useMutation({
+    mutationFn: async (data: BlogForm) => {
+      const url = isEditing
+        ? `/api/admin/blog-posts/${blogId}`
+        : "/api/admin/blog-posts";
+      const method = isEditing ? "PUT" : "POST";
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch blog post");
-        }
-
-        const post = await response.json();
-        setBlogPost(post);
-        
-        // Populate form
-        reset({
-          title: post.title,
-          slug: post.slug,
-          excerpt: post.excerpt,
-          content: post.content,
-          metaTitle: post.metaTitle || "",
-          metaDescription: post.metaDescription || "",
-          tags: post.tags ? post.tags.join(", ") : "",
-          isPublished: post.isPublished,
-        });
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchBlogPost();
-  }, [isEditing, blogId, reset]);
-
-  const onSubmit = async (data: BlogForm) => {
-    setIsSaving(true);
-    setError(null);
-
-    try {
-      const token = localStorage.getItem("adminToken");
       const payload = {
         ...data,
         tags: data.tags ? data.tags.split(",").map(tag => tag.trim()) : [],
       };
 
-      const url = isEditing 
-        ? `/api/admin/blog-posts/${blogId}`
-        : "/api/admin/blog-posts";
-      
-      const method = isEditing ? "PUT" : "POST";
-
-      const response = await fetch(url, {
+      return apiRequest(url, {
         method,
+        body: JSON.stringify(payload),
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(payload),
       });
+    },
+    onSuccess: () => {
+      toast({
+        title: isEditing ? "Blog Updated" : "Blog Created",
+        description: `Blog post has been ${isEditing ? "updated" : "created"} successfully.`,
+      });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
+      setLocation("/admin/dashboard");
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to save blog post",
+        variant: "destructive",
+      });
+    },
+  });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to save blog post");
-      }
-
-      const result = await response.json();
-      
-      // Redirect to dashboard
-      navigate("/admin/dashboard");
-    } catch (err: any) {
-      setError(err.message || "Failed to save blog post");
+  const onSubmit = async (data: BlogForm) => {
+    setIsSaving(true);
+    try {
+      await saveMutation.mutateAsync(data);
     } finally {
       setIsSaving(false);
     }
   };
 
-  const handlePreview = () => {
-    // In a real implementation, you could open a preview modal or new tab
-    alert("Preview functionality would open the blog post in a new tab");
+  // Text formatting functions
+  const insertAtCursor = (text: string) => {
+    const textarea = contentRef.current;
+    if (!textarea) return;
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const currentContent = content || "";
+    
+    const newContent = 
+      currentContent.substring(0, start) + 
+      text + 
+      currentContent.substring(end);
+    
+    setValue("content", newContent);
+    
+    // Restore cursor position
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(start + text.length, start + text.length);
+    }, 0);
   };
 
-  // Check authentication
-  useEffect(() => {
-    const token = localStorage.getItem("adminToken");
-    if (!token) {
-      navigate("/admin/login");
+  const wrapSelectedText = (prefix: string, suffix: string = "") => {
+    const textarea = contentRef.current;
+    if (!textarea) return;
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const currentContent = content || "";
+    const selectedText = currentContent.substring(start, end);
+    
+    if (selectedText) {
+      const wrappedText = prefix + selectedText + suffix;
+      const newContent = 
+        currentContent.substring(0, start) + 
+        wrappedText + 
+        currentContent.substring(end);
+      
+      setValue("content", newContent);
+      
+      setTimeout(() => {
+        textarea.focus();
+        textarea.setSelectionRange(
+          start + prefix.length, 
+          start + prefix.length + selectedText.length
+        );
+      }, 0);
     }
-  }, [navigate]);
+  };
+
+  const addHeading = (level: number) => {
+    const hashes = "#".repeat(level);
+    insertAtCursor(`\n${hashes} Heading ${level}\n`);
+  };
+
+  const addLink = () => {
+    const url = prompt("Enter URL:");
+    if (url) {
+      const linkText = prompt("Enter link text:") || url;
+      wrapSelectedText(`[${linkText}](${url})`);
+    }
+  };
+
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setIsImageUploading(true);
+    try {
+      // Simulate image upload - you can replace this with actual upload logic
+      const imageUrl = `/api/uploads/${file.name}`;
+      
+      if (showImageUpload === true) {
+        // For featured image
+        setValue("featuredImage", imageUrl);
+        setShowImageUpload(false);
+      } else {
+        // For content image
+        insertAtCursor(`\n![Image](${imageUrl})\n`);
+      }
+      
+      toast({
+        title: "Image Uploaded",
+        description: "Image has been uploaded successfully.",
+      });
+    } catch (error) {
+      toast({
+        title: "Upload Failed",
+        description: "Failed to upload image. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsImageUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
+  };
 
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="w-8 h-8 animate-spin mx-auto mb-4" />
-          <p>Loading blog post...</p>
+        <div className="flex items-center space-x-2">
+          <Loader2 className="w-6 h-6 animate-spin" />
+          <span>Loading blog post...</span>
         </div>
       </div>
     );
@@ -183,239 +286,323 @@ export default function BlogEditor() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+      <header className="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center space-x-4">
               <Button
-                variant="outline"
-                onClick={() => navigate("/admin/dashboard")}
-                className="flex items-center gap-2"
+                variant="ghost"
+                onClick={() => setLocation("/admin/dashboard")}
+                className="flex items-center space-x-2"
               >
                 <ArrowLeft className="w-4 h-4" />
-                Back to Dashboard
+                <span>Back to Dashboard</span>
               </Button>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">
-                  {isEditing ? "Edit Blog Post" : "Create New Blog Post"}
-                </h1>
-                {isEditing && blogPost && (
-                  <div className="flex items-center gap-2 mt-1">
-                    <Badge variant={blogPost.isPublished ? "default" : "secondary"}>
-                      {blogPost.isPublished ? "Published" : "Draft"}
-                    </Badge>
-                    {blogPost.publishedAt && (
-                      <span className="text-sm text-gray-500">
-                        Published on {new Date(blogPost.publishedAt).toLocaleDateString()}
-                      </span>
-                    )}
-                  </div>
-                )}
+              <div className="text-lg font-semibold">
+                {isEditing ? "Edit Blog Post" : "Create New Blog Post"}
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center space-x-3">
+              <Badge variant={published ? "default" : "secondary"}>
+                {published ? "Published" : "Draft"}
+              </Badge>
               <Button
-                variant="outline"
-                onClick={handlePreview}
-                className="flex items-center gap-2"
-              >
-                <Eye className="w-4 h-4" />
-                Preview
-              </Button>
-              <Button
-                onClick={handleSubmit(onSubmit)}
+                type="submit"
+                form="blog-form"
                 disabled={isSaving}
-                className="flex items-center gap-2"
+                className="flex items-center space-x-2"
               >
                 {isSaving ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Saving...
-                  </>
+                  <Loader2 className="w-4 h-4 animate-spin" />
                 ) : (
-                  <>
-                    <Save className="w-4 h-4" />
-                    Save {isPublished ? "& Publish" : "Draft"}
-                  </>
+                  <Save className="w-4 h-4" />
                 )}
+                <span>{isSaving ? "Saving..." : "Save"}</span>
               </Button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="p-6">
-        <div className="max-w-4xl mx-auto">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            {error && (
-              <Alert variant="destructive">
-                <AlertDescription>{error}</AlertDescription>
-              </Alert>
-            )}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <form id="blog-form" onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            {/* Main Content */}
+            <div className="lg:col-span-2 space-y-6">
+              
+              {/* Title */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <FileText className="w-5 h-5" />
+                    <span>Blog Title</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Input
+                    {...register("title")}
+                    placeholder="Enter blog title..."
+                    className="text-lg"
+                  />
+                  {errors.title && (
+                    <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
+                  )}
+                </CardContent>
+              </Card>
 
-            {/* Basic Information */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <FileText className="w-5 h-5" />
-                  Basic Information
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="title">Title *</Label>
-                    <Input
-                      id="title"
-                      placeholder="Enter blog post title"
-                      {...register("title")}
-                      className="h-11"
-                    />
-                    {errors.title && (
-                      <p className="text-sm text-red-600">{errors.title.message}</p>
-                    )}
-                  </div>
+              {/* Slug */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Hash className="w-5 h-5" />
+                    <span>URL Slug</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Input
+                    {...register("slug")}
+                    placeholder="url-slug"
+                    className="font-mono"
+                  />
+                  {errors.slug && (
+                    <p className="text-red-500 text-sm mt-1">{errors.slug.message}</p>
+                  )}
+                </CardContent>
+              </Card>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="slug" className="flex items-center gap-2">
-                      <Hash className="w-4 h-4" />
-                      Slug *
-                    </Label>
-                    <Input
-                      id="slug"
-                      placeholder="url-friendly-slug"
-                      {...register("slug")}
-                      className="h-11"
-                    />
-                    {errors.slug && (
-                      <p className="text-sm text-red-600">{errors.slug.message}</p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="excerpt">Excerpt *</Label>
+              {/* Excerpt */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Excerpt</CardTitle>
+                </CardHeader>
+                <CardContent>
                   <Textarea
-                    id="excerpt"
-                    placeholder="Brief description of the blog post"
                     {...register("excerpt")}
+                    placeholder="Brief description of the blog post..."
                     rows={3}
                   />
                   {errors.excerpt && (
-                    <p className="text-sm text-red-600">{errors.excerpt.message}</p>
+                    <p className="text-red-500 text-sm mt-1">{errors.excerpt.message}</p>
                   )}
-                </div>
+                </CardContent>
+              </Card>
 
-                <div className="space-y-2">
-                  <Label htmlFor="tags">Tags</Label>
-                  <Input
-                    id="tags"
-                    placeholder="tag1, tag2, tag3"
-                    {...register("tags")}
-                    className="h-11"
-                  />
-                  <p className="text-sm text-gray-500">Separate tags with commas</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Content Editor */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Content *</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <Editor
-                    apiKey="no-api-key" // You should get a real API key from TinyMCE
-                    init={{
-                      height: 500,
-                      menubar: true,
-                      plugins: [
-                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                        'insertdatetime', 'media', 'table', 'help', 'wordcount'
-                      ],
-                      toolbar: 'undo redo | blocks | ' +
-                        'bold italic forecolor | alignleft aligncenter ' +
-                        'alignright alignjustify | bullist numlist outdent indent | ' +
-                        'removeformat | help',
-                      content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                    }}
-                    onEditorChange={(content) => setValue("content", content)}
-                    value={watch("content")}
+              {/* Content Area */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Content</CardTitle>
+                  {/* Formatting Toolbar */}
+                  <div className="flex flex-wrap gap-2 p-2 bg-gray-50 rounded border">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => wrapSelectedText("**", "**")}
+                      title="Bold"
+                    >
+                      <Bold className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => wrapSelectedText("*", "*")}
+                      title="Italic"
+                    >
+                      <Italic className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={addLink}
+                      title="Add Link"
+                    >
+                      <Link className="w-4 h-4" />
+                    </Button>
+                    <div className="border-l border-gray-300 mx-2" />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => addHeading(1)}
+                      title="Heading 1"
+                    >
+                      <Heading1 className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => addHeading(2)}
+                      title="Heading 2"
+                    >
+                      <Heading2 className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => addHeading(3)}
+                      title="Heading 3"
+                    >
+                      <Heading3 className="w-4 h-4" />
+                    </Button>
+                    <div className="border-l border-gray-300 mx-2" />
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        setShowImageUpload(false);
+                        fileInputRef.current?.click();
+                      }}
+                      title="Insert Image"
+                      disabled={isImageUploading}
+                    >
+                      {isImageUploading ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <ImageIcon className="w-4 h-4" />
+                      )}
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <Textarea
+                    {...register("content")}
+                    ref={contentRef}
+                    placeholder="Write your blog content here... You can use Markdown formatting, paste content with formatting preserved, and add images using the toolbar above."
+                    rows={20}
+                    className="font-mono text-sm"
                   />
                   {errors.content && (
-                    <p className="text-sm text-red-600">{errors.content.message}</p>
+                    <p className="text-red-500 text-sm mt-1">{errors.content.message}</p>
                   )}
-                </div>
-              </CardContent>
-            </Card>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Supports Markdown formatting. Use the toolbar above to format text or insert images.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
 
-            {/* SEO Settings */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Globe className="w-5 h-5" />
-                  SEO Settings
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="metaTitle">Meta Title</Label>
+            {/* Sidebar */}
+            <div className="space-y-6">
+              
+              {/* Publish Settings */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Publish Settings</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="published">Published</Label>
+                    <Switch
+                      id="published"
+                      {...register("published")}
+                      checked={published}
+                      onCheckedChange={(checked) => setValue("published", checked)}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Featured Image */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <ImageIcon className="w-5 h-5" />
+                    <span>Featured Image</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
                   <Input
-                    id="metaTitle"
-                    placeholder="SEO title for search engines"
-                    {...register("metaTitle")}
-                    className="h-11"
+                    {...register("featuredImage")}
+                    placeholder="Image URL or upload..."
                   />
-                  <p className="text-sm text-gray-500">Recommended: 50-60 characters</p>
-                </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      setShowImageUpload(true);
+                      fileInputRef.current?.click();
+                    }}
+                    disabled={isImageUploading}
+                    className="w-full"
+                  >
+                    {isImageUploading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                        Uploading...
+                      </>
+                    ) : (
+                      <>
+                        <Upload className="w-4 h-4 mr-2" />
+                        Upload Image
+                      </>
+                    )}
+                  </Button>
+                </CardContent>
+              </Card>
 
-                <div className="space-y-2">
-                  <Label htmlFor="metaDescription">Meta Description</Label>
-                  <Textarea
-                    id="metaDescription"
-                    placeholder="SEO description for search engines"
-                    {...register("metaDescription")}
-                    rows={3}
-                  />
-                  <p className="text-sm text-gray-500">Recommended: 150-160 characters</p>
-                </div>
-              </CardContent>
-            </Card>
+              {/* SEO Settings */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Globe className="w-5 h-5" />
+                    <span>SEO Settings</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label htmlFor="focusKeyword">Focus Keyword</Label>
+                    <Input
+                      id="focusKeyword"
+                      {...register("focusKeyword")}
+                      placeholder="Main keyword for SEO..."
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="metaDescription">Meta Description</Label>
+                    <Textarea
+                      id="metaDescription"
+                      {...register("metaDescription")}
+                      placeholder="Brief description for search engines..."
+                      rows={3}
+                    />
+                  </div>
+                </CardContent>
+              </Card>
 
-            {/* Publishing Settings */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Calendar className="w-5 h-5" />
-                  Publishing Settings
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center space-x-2">
-                  <Switch
-                    id="publish"
-                    checked={isPublished}
-                    onCheckedChange={(checked) => setValue("isPublished", checked)}
+              {/* Tags */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Tags</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Input
+                    {...register("tags")}
+                    placeholder="Tag1, Tag2, Tag3..."
                   />
-                  <Label htmlFor="publish">
-                    {isPublished ? "Publish immediately" : "Save as draft"}
-                  </Label>
-                </div>
-                <p className="text-sm text-gray-500 mt-2">
-                  {isPublished 
-                    ? "This blog post will be visible to the public" 
-                    : "This blog post will be saved as a draft"
-                  }
-                </p>
-              </CardContent>
-            </Card>
-          </form>
-        </div>
-      </main>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Separate tags with commas
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      {/* Hidden file input */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        onChange={handleImageUpload}
+        className="hidden"
+      />
     </div>
   );
 }

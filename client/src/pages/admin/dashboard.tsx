@@ -66,28 +66,7 @@ interface BlogPost {
   updatedAt: Date;
 }
 
-interface Service {
-  id: number;
-  title: string;
-  description: string;
-  icon: string | null;
-  active: boolean;
-  order: number;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
-interface Page {
-  id: number;
-  title: string;
-  slug: string;
-  content: string;
-  published: boolean;
-  metaTitle: string | null;
-  metaDescription: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 export default function AdminDashboard() {
   const [, setLocation] = useLocation();
@@ -137,31 +116,7 @@ export default function AdminDashboard() {
     },
   });
 
-  // Fetch services
-  const { data: services = [], isLoading: servicesLoading } = useQuery({
-    queryKey: ["admin-services"],
-    enabled: authChecked && !!adminUser,
-    queryFn: async () => {
-      const response = await fetch("/api/admin/services", {
-        headers: getAuthHeaders(),
-      });
-      if (!response.ok) throw new Error("Failed to fetch services");
-      return response.json();
-    },
-  });
 
-  // Fetch pages
-  const { data: pages = [], isLoading: pagesLoading } = useQuery({
-    queryKey: ["admin-pages"],
-    enabled: authChecked && !!adminUser,
-    queryFn: async () => {
-      const response = await fetch("/api/admin/pages", {
-        headers: getAuthHeaders(),
-      });
-      if (!response.ok) throw new Error("Failed to fetch pages");
-      return response.json();
-    },
-  });
 
   // Delete mutations
   const deleteBlogMutation = useMutation({
