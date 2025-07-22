@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -177,7 +178,9 @@ export default function AdminDashboard() {
   // Publish blog post mutation
   const publishMutation = useMutation({
     mutationFn: async (id: number) => {
+      console.log(`Publishing blog post ${id}`);
       const token = localStorage.getItem("adminToken");
+      
       const response = await fetch(`/api/admin/blog-posts/${id}/publish`, {
         method: 'PATCH',
         headers: {
@@ -185,23 +188,28 @@ export default function AdminDashboard() {
           "Content-Type": "application/json",
         },
       });
+      
       if (!response.ok) {
-        const errorData = await response.text();
-        throw new Error(`Failed to publish blog post: ${errorData}`);
+        const errorText = await response.text();
+        throw new Error(`${response.status}: ${errorText}`);
       }
-      return response.json();
+      
+      const result = await response.json();
+      console.log(`Publish result:`, result);
+      return result;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
       toast({
-        title: "Success",
+        title: "Success", 
         description: "Blog post published successfully",
       });
     },
     onError: (error) => {
+      console.error('Publish error:', error);
       toast({
         title: "Error",
-        description: "Failed to publish blog post: " + error.message,
+        description: `Failed to publish: ${error.message}`,
         variant: "destructive",
       });
     },
