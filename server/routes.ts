@@ -418,21 +418,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.patch("/api/admin/blog-posts/:id/publish", requireAuth, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
+      console.log(`Publishing blog post with ID: ${id}`);
       const blogPost = await storage.publishBlogPost(id);
+      console.log(`Successfully published blog post: ${blogPost.title}`);
       res.json(blogPost);
     } catch (error) {
-      res.status(500).json({ message: 'Failed to publish blog post' });
-    }
-  });
-
-  // Publish blog post
-  app.patch("/api/admin/blog-posts/:id/publish", requireAuth, async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      const post = await storage.publishBlogPost(id);
-      res.json(post);
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to publish blog post' });
+      console.error('Error publishing blog post:', error);
+      res.status(500).json({ message: 'Failed to publish blog post', error: error.message });
     }
   });
 

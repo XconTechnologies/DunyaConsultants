@@ -130,7 +130,7 @@ export default function AdminDashboard() {
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["admin-blog-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
       toast({ title: "Success", description: "Blog post deleted successfully" });
     },
     onError: () => {
@@ -177,11 +177,18 @@ export default function AdminDashboard() {
   // Publish blog post mutation
   const publishMutation = useMutation({
     mutationFn: async (id: number) => {
+      const token = localStorage.getItem("adminToken");
       const response = await fetch(`/api/admin/blog-posts/${id}/publish`, {
         method: 'PATCH',
-        headers: getAuthHeaders(),
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
-      if (!response.ok) throw new Error('Failed to publish blog post');
+      if (!response.ok) {
+        const errorData = await response.text();
+        throw new Error(`Failed to publish blog post: ${errorData}`);
+      }
       return response.json();
     },
     onSuccess: () => {
