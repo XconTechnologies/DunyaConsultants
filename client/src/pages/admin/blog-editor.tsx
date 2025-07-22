@@ -29,7 +29,7 @@ const blogSchema = z.object({
   focusKeyword: z.string().optional(),
   featuredImage: z.string().optional(),
   tags: z.string().optional(),
-  published: z.boolean().default(false),
+  isPublished: z.boolean().default(false),
 });
 
 type BlogForm = z.infer<typeof blogSchema>;
@@ -88,13 +88,13 @@ export default function BlogEditor() {
   } = useForm<BlogForm>({
     resolver: zodResolver(blogSchema),
     defaultValues: {
-      published: false,
+      isPublished: false,
     },
   });
 
   const title = watch("title");
   const content = watch("content");
-  const published = watch("published");
+  const isPublished = watch("isPublished");
 
   // Generate slug from title
   useEffect(() => {
@@ -119,7 +119,7 @@ export default function BlogEditor() {
         focusKeyword: blogPost.focusKeyword || "",
         featuredImage: blogPost.featuredImage || "",
         tags: Array.isArray(blogPost.tags) ? blogPost.tags.join(", ") : "",
-        published: blogPost.isPublished,
+        isPublished: blogPost.isPublished,
       });
     }
   }, [blogPost, isEditing, reset]);
@@ -137,7 +137,7 @@ export default function BlogEditor() {
         tags: data.tags ? data.tags.split(",").map(tag => tag.trim()) : [],
       };
 
-      return apiRequest(url, {
+      const response = await fetch(url, {
         method,
         body: JSON.stringify(payload),
         headers: {
@@ -145,6 +145,13 @@ export default function BlogEditor() {
           Authorization: `Bearer ${token}`,
         },
       });
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`${response.status}: ${errorText}`);
+      }
+      
+      return response.json();
     },
     onSuccess: () => {
       toast({
@@ -497,12 +504,12 @@ export default function BlogEditor() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <Label htmlFor="published">Published</Label>
+                    <Label htmlFor="isPublished">Published</Label>
                     <Switch
-                      id="published"
-                      {...register("published")}
-                      checked={published}
-                      onCheckedChange={(checked) => setValue("published", checked)}
+                      id="isPublished"
+                      {...register("isPublished")}
+                      checked={isPublished}
+                      onCheckedChange={(checked) => setValue("isPublished", checked)}
                     />
                   </div>
                 </CardContent>
