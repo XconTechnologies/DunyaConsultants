@@ -308,7 +308,11 @@ export class DatabaseStorage implements IStorage {
     return post;
   }
 
-  // Note: Views functionality removed - views column doesn't exist in database
+  async incrementBlogViews(id: number): Promise<void> {
+    await db.update(blogPosts)
+      .set({ views: sql`${blogPosts.views} + 1` })
+      .where(eq(blogPosts.id, id));
+  }
 
   // Services Management Methods
   async getServices(active?: boolean): Promise<Service[]> {
