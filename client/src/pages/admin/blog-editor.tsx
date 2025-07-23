@@ -278,16 +278,26 @@ export default function BlogEditor() {
 
     setIsImageUploading(true);
     try {
-      // Simulate image upload - you can replace this with actual upload logic
-      const imageUrl = `/api/uploads/${file.name}`;
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) throw new Error('Upload failed');
+
+      const { url } = await response.json();
       
       if (showImageUpload === true) {
         // For featured image
-        setValue("featuredImage", imageUrl);
+        setValue("featuredImage", url);
         setShowImageUpload(false);
       } else {
-        // For content image
-        insertAtCursor(`\n![Image](${imageUrl})\n`);
+        // For content image with preview
+        const imagePreview = `\n\n[Image Preview: ${file.name}]\n![${file.name}](${url})\n\n`;
+        insertAtCursor(imagePreview);
       }
       
       toast({
@@ -555,7 +565,7 @@ export default function BlogEditor() {
                     ref={contentRef}
                     placeholder="Write your blog content here... You can use Markdown formatting, paste content with formatting preserved, and add images using the toolbar above."
                     rows={20}
-                    className="font-mono text-sm"
+                    className="text-sm leading-relaxed"
                   />
                   {errors.content && (
                     <p className="text-red-500 text-sm mt-1">{errors.content.message}</p>
@@ -570,23 +580,7 @@ export default function BlogEditor() {
             {/* Sidebar */}
             <div className="space-y-6">
               
-              {/* Publish Settings */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Publish Settings</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="isPublished">Published</Label>
-                    <Switch
-                      id="isPublished"
-                      {...register("isPublished")}
-                      checked={isPublished}
-                      onCheckedChange={(checked) => setValue("isPublished", checked)}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
+
 
               {/* Featured Image */}
               <Card>
@@ -601,6 +595,18 @@ export default function BlogEditor() {
                     {...register("featuredImage")}
                     placeholder="Image URL or upload..."
                   />
+                  {watch("featuredImage") && (
+                    <div className="mt-2">
+                      <img 
+                        src={watch("featuredImage")} 
+                        alt="Featured image preview" 
+                        className="max-w-full h-32 object-cover rounded border"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  )}
                   <Button
                     type="button"
                     variant="outline"

@@ -171,6 +171,8 @@ function Router() {
       <Route path="/blog/erasmus-mundus-scholarship" component={ErasmusMundusScholarship} />
       <Route path="/blog/january-intake-universities-in-uk" component={JanuaryIntakeUniversitiesInUK} />
       <Route path="/blog/gre-test-fee-in-pakistan" component={GRETestFeeInPakistan} />
+      {/* Dynamic route for new blog posts */}
+      <Route path="/blog/:slug" component={Blog} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/country-guide" component={CountryGuide} />

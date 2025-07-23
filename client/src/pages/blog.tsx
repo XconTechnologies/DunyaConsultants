@@ -1,7 +1,9 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Search, Grid, List, Calendar, Clock, User, Eye, TrendingUp, ArrowRight, Tag, Globe, BookOpen, Award, Heart, Users, Star } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useRoute } from "wouter";
+import { useQuery } from "@tanstack/react-query";
+import type { BlogPost } from "@shared/schema";
 
 interface BlogPost {
   id: string;
@@ -172,7 +174,89 @@ const categories = [
   { name: "Study in Canada", icon: Globe, count: blogPosts.filter(p => p.category === "Study in Canada").length }
 ];
 
+// Dynamic Blog Post Component
+function DynamicBlogPost({ slug }: { slug: string }) {
+  const { data: blogPost, isLoading, error } = useQuery<BlogPost>({
+    queryKey: [`/api/blog-posts/${slug}`],
+  });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading article...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !blogPost) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
+          <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
+          <Link href="/blog" className="text-blue-600 hover:text-blue-800">
+            ← Back to Blog
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <article className="min-h-screen bg-gray-50">
+      <div className="max-w-4xl mx-auto px-4 py-12">
+        <header className="mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">{blogPost.title}</h1>
+          {blogPost.excerpt && (
+            <p className="text-xl text-gray-600 mb-6">{blogPost.excerpt}</p>
+          )}
+          <div className="flex items-center space-x-4 text-sm text-gray-500">
+            <span className="flex items-center">
+              <User className="w-4 h-4 mr-1" />
+              {blogPost.author || 'Dunya Consultants'}
+            </span>
+            <span className="flex items-center">
+              <Calendar className="w-4 h-4 mr-1" />
+              {new Date(blogPost.createdAt).toLocaleDateString()}
+            </span>
+            <span className="flex items-center">
+              <Clock className="w-4 h-4 mr-1" />
+              {blogPost.readTime || '5'} min read
+            </span>
+          </div>
+        </header>
+        
+        {blogPost.featuredImage && (
+          <img 
+            src={blogPost.featuredImage} 
+            alt={blogPost.title}
+            className="w-full h-64 object-cover rounded-lg mb-8"
+          />
+        )}
+        
+        <div className="prose prose-lg max-w-none">
+          <div dangerouslySetInnerHTML={{ __html: blogPost.content }} />
+        </div>
+        
+        <footer className="mt-12 pt-8 border-t">
+          <Link href="/blog" className="text-blue-600 hover:text-blue-800">
+            ← Back to All Articles
+          </Link>
+        </footer>
+      </div>
+    </article>
+  );
+}
+
 export default function Blog() {
+  const [match, params] = useRoute("/blog/:slug");
+  
+  if (match && params?.slug) {
+    return <DynamicBlogPost slug={params.slug} />;
+  }
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
