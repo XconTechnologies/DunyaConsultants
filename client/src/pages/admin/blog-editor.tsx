@@ -137,6 +137,9 @@ export default function BlogEditor() {
       
       console.log('Form data being populated:', formData);
       reset(formData);
+      
+      // Force update the content field specifically
+      setValue('content', formData.content, { shouldValidate: true, shouldDirty: true });
     }
   }, [blogPost, isEditing, reset]);
 
