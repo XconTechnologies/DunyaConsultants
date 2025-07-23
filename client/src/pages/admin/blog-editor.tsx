@@ -197,9 +197,12 @@ export default function BlogEditor() {
   });
 
   const onSubmit = async (data: BlogForm) => {
+    console.log('Form submitted with data:', data);
     setIsSaving(true);
     try {
       await saveMutation.mutateAsync(data);
+    } catch (error) {
+      console.error('Save error:', error);
     } finally {
       setIsSaving(false);
     }
@@ -366,13 +369,34 @@ export default function BlogEditor() {
                 form="blog-form"
                 disabled={isSaving}
                 className="flex items-center space-x-2"
+                onClick={() => {
+                  console.log('Save button clicked');
+                  setValue('isPublished', false);
+                }}
               >
                 {isSaving ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
                 ) : (
                   <Save className="w-4 h-4" />
                 )}
-                <span>{isSaving ? "Saving..." : "Save"}</span>
+                <span>{isSaving ? "Saving..." : "Save Draft"}</span>
+              </Button>
+              <Button
+                type="submit"
+                form="blog-form"
+                disabled={isSaving}
+                className="flex items-center space-x-2 ml-2"
+                onClick={() => {
+                  console.log('Publish button clicked');
+                  setValue('isPublished', true);
+                }}
+              >
+                {isSaving ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Save className="w-4 h-4" />
+                )}
+                <span>{isSaving ? "Publishing..." : "Publish"}</span>
               </Button>
             </div>
           </div>
