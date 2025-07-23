@@ -9,6 +9,9 @@ import {
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
+import path from "path";
+import fs from "fs";
+import multer from "multer";
 
 // Admin authentication middleware
 async function requireAuth(req: any, res: any, next: any) {
@@ -411,6 +414,86 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ success: true });
     } catch (error) {
       res.status(500).json({ message: 'Failed to delete blog post' });
+    }
+  });
+
+  // ==============================================
+  // FILE UPLOAD ROUTES
+  // ==============================================
+
+  // Configure multer for file uploads
+  const uploadDir = path.join(process.cwd(), 'uploads');
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
+
+  const upload = multer({
+    storage: multer.diskStorage({
+      destination: (req, file, cb) => {
+        cb(null, uploadDir);
+      },
+      filename: (req, file, cb) => {
+        const ext = path.extname(file.originalname);
+        const name = path.basename(file.originalname, ext);
+        const timestamp = Date.now();
+        cb(null, `${name}-${timestamp}${ext}`);
+      }
+    }),
+    limits: {
+      fileSize: 5 * 1024 * 1024 // 5MB limit
+    },
+    fileFilter: (req, file, cb) => {
+      if (file.mimetype.startsWith('image/')) {
+        cb(null, true);
+      } else {
+        cb(new Error('Only image files are allowed!'));
+      }
+    }
+  });
+
+  // Handle image uploads
+  app.post("/api/upload", upload.single('image'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "No file uploaded" 
+        });
+      }
+
+      const url = `/api/uploads/${req.file.filename}`;
+      
+      res.json({ 
+        success: true, 
+        url: url,
+        filename: req.file.filename,
+        message: "Image uploaded successfully" 
+      });
+    } catch (error) {
+      console.error('Upload error:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to upload image" 
+      });
+    }
+  });
+
+  // Serve uploaded files
+  app.get("/api/uploads/:filename", (req, res) => {
+    const { filename } = req.params;
+    const filePath = path.join(uploadDir, filename);
+    
+    // Check if file exists
+    if (fs.existsSync(filePath)) {
+      res.sendFile(filePath);
+    } else {
+      // Fallback to existing demo image
+      const demoImagePath = path.join(process.cwd(), 'attached_assets', 'GRE-Test-Fee-in-Pakistan.webp');
+      if (fs.existsSync(demoImagePath)) {
+        res.sendFile(demoImagePath);
+      } else {
+        res.status(404).json({ message: 'File not found' });
+      }
     }
   });
 
