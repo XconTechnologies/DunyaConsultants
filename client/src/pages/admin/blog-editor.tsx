@@ -121,7 +121,10 @@ export default function BlogEditor() {
       
       // Use setTimeout to ensure form is ready
       setTimeout(() => {
-        const formData = {
+        console.log('Raw blog post content:', blogPost.content);
+        
+        // Reset form with the actual data
+        reset({
           title: blogPost.title || "",
           slug: blogPost.slug || "",
           excerpt: blogPost.excerpt || "",
@@ -135,24 +138,13 @@ export default function BlogEditor() {
               ? blogPost.tags 
               : "",
           isPublished: !!blogPost.isPublished,
-        };
+        });
         
-        console.log('Form data being populated:', formData);
-        
-        // Reset form first
-        reset(formData);
-        
-        // Then force each field update
-        setValue('title', formData.title);
-        setValue('slug', formData.slug);
-        setValue('excerpt', formData.excerpt);
-        setValue('content', formData.content);
-        setValue('metaDescription', formData.metaDescription);
-        setValue('focusKeyword', formData.focusKeyword);
-        setValue('featuredImage', formData.featuredImage);
-        setValue('tags', formData.tags);
-        setValue('isPublished', formData.isPublished);
-      }, 100);
+        // Force content field to update
+        if (contentRef.current) {
+          contentRef.current.value = blogPost.content || "";
+        }
+      }, 200);
     }
   }, [blogPost, isEditing, reset, setValue]);
 
