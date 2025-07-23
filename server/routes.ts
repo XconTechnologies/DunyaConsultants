@@ -515,17 +515,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/blog-posts/:slug", async (req, res) => {
     try {
       const { slug } = req.params;
+      console.log(`Looking for blog post with slug: ${slug}`);
       const post = await storage.getBlogPostBySlug(slug);
+      console.log(`Found post:`, post ? `${post.title} (published: ${post.isPublished})` : 'none');
+      
       if (!post || !post.isPublished) {
         return res.status(404).json({ message: 'Blog post not found' });
       }
       
-      // Increment view count
-      await storage.incrementBlogViews(post.id);
+      // Increment view count (temporarily disabled due to missing views column)
+      // await storage.incrementBlogViews(post.id);
       
       res.json(post);
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to fetch blog post' });
+    } catch (error: any) {
+      console.error('Error fetching blog post by slug:', error);
+      res.status(500).json({ message: 'Failed to fetch blog post', error: error?.message || error });
     }
   });
 
