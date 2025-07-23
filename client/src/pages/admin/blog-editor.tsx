@@ -140,9 +140,11 @@ export default function BlogEditor() {
           isPublished: !!blogPost.isPublished,
         });
         
-        // Force content field to update
+        // Force content field to update using both methods
+        setValue('content', blogPost.content || "", { shouldDirty: true, shouldTouch: true });
         if (contentRef.current) {
           contentRef.current.value = blogPost.content || "";
+          contentRef.current.dispatchEvent(new Event('input', { bubbles: true }));
         }
       }, 200);
     }
@@ -523,22 +525,7 @@ export default function BlogEditor() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  {isEditing && (
-                    <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
-                      <p className="text-sm font-medium text-yellow-800">Debug Info:</p>
-                      <p className="text-xs text-yellow-700">
-                        Blog ID: {blogId} | 
-                        Is Loading: {isLoading ? 'Yes' : 'No'} | 
-                        Has Blog Data: {blogPost ? 'Yes' : 'No'} |
-                        Content Length: {content?.length || 0}
-                      </p>
-                      {blogPost && (
-                        <p className="text-xs text-yellow-700 mt-1">
-                          Original Content Length: {blogPost.content?.length || 0}
-                        </p>
-                      )}
-                    </div>
-                  )}
+
                   <Textarea
                     {...register("content")}
                     ref={contentRef}
