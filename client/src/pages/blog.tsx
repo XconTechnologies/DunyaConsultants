@@ -238,7 +238,10 @@ function DynamicBlogPost({ slug }: { slug: string }) {
         )}
         
         <div className="prose prose-lg max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: blogPost.content }} />
+          {/* Display content as formatted text for now since it's not HTML */}
+          <div className="whitespace-pre-wrap text-gray-800 leading-relaxed">
+            {blogPost.content}
+          </div>
         </div>
         
         <footer className="mt-12 pt-8 border-t">
