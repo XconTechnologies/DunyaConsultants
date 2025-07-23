@@ -119,32 +119,40 @@ export default function BlogEditor() {
     if (blogPost && isEditing) {
       console.log('Loading blog post data for editing:', blogPost);
       
-      const formData = {
-        title: blogPost.title || "",
-        slug: blogPost.slug || "",
-        excerpt: blogPost.excerpt || "",
-        content: blogPost.content || "",
-        metaDescription: blogPost.metaDescription || "",
-        focusKeyword: blogPost.focusKeyword || "",
-        featuredImage: blogPost.featuredImage || "",
-        tags: Array.isArray(blogPost.tags) 
-          ? blogPost.tags.join(", ") 
-          : typeof blogPost.tags === 'string' 
-            ? blogPost.tags 
-            : "",
-        isPublished: !!blogPost.isPublished,
-      };
-      
-      console.log('Form data being populated:', formData);
-      reset(formData);
-      
-      // Force update all fields specifically to ensure they populate
-      Object.keys(formData).forEach(key => {
-        setValue(key as keyof BlogForm, formData[key as keyof BlogForm], { 
-          shouldValidate: true, 
-          shouldDirty: true 
-        });
-      });
+      // Use setTimeout to ensure form is ready
+      setTimeout(() => {
+        const formData = {
+          title: blogPost.title || "",
+          slug: blogPost.slug || "",
+          excerpt: blogPost.excerpt || "",
+          content: blogPost.content || "",
+          metaDescription: blogPost.metaDescription || "",
+          focusKeyword: blogPost.focusKeyword || "",
+          featuredImage: blogPost.featuredImage || "",
+          tags: Array.isArray(blogPost.tags) 
+            ? blogPost.tags.join(", ") 
+            : typeof blogPost.tags === 'string' 
+              ? blogPost.tags 
+              : "",
+          isPublished: !!blogPost.isPublished,
+        };
+        
+        console.log('Form data being populated:', formData);
+        
+        // Reset form first
+        reset(formData);
+        
+        // Then force each field update
+        setValue('title', formData.title);
+        setValue('slug', formData.slug);
+        setValue('excerpt', formData.excerpt);
+        setValue('content', formData.content);
+        setValue('metaDescription', formData.metaDescription);
+        setValue('focusKeyword', formData.focusKeyword);
+        setValue('featuredImage', formData.featuredImage);
+        setValue('tags', formData.tags);
+        setValue('isPublished', formData.isPublished);
+      }, 100);
     }
   }, [blogPost, isEditing, reset, setValue]);
 
