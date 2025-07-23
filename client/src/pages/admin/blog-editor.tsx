@@ -66,15 +66,22 @@ export default function BlogEditor() {
   const token = localStorage.getItem("adminToken");
 
   // Fetch blog post for editing
-  const { data: blogPost, isLoading } = useQuery({
+  const { data: blogPost, isLoading, error } = useQuery({
     queryKey: ["/api/admin/blog-posts", blogId],
     enabled: isEditing && !!token,
     queryFn: async () => {
+      console.log('Fetching blog post with ID:', blogId);
       const response = await fetch(`/api/admin/blog-posts/${blogId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      if (!response.ok) throw new Error("Failed to fetch blog post");
-      return response.json();
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Failed to fetch blog post:', response.status, errorText);
+        throw new Error(`Failed to fetch blog post: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log('Fetched blog post data:', data);
+      return data;
     },
   });
 
@@ -110,17 +117,26 @@ export default function BlogEditor() {
   // Populate form when editing
   useEffect(() => {
     if (blogPost && isEditing) {
-      reset({
-        title: blogPost.title,
-        slug: blogPost.slug,
-        excerpt: blogPost.excerpt,
-        content: blogPost.content,
+      console.log('Loading blog post data for editing:', blogPost);
+      
+      const formData = {
+        title: blogPost.title || "",
+        slug: blogPost.slug || "",
+        excerpt: blogPost.excerpt || "",
+        content: blogPost.content || "",
         metaDescription: blogPost.metaDescription || "",
         focusKeyword: blogPost.focusKeyword || "",
         featuredImage: blogPost.featuredImage || "",
-        tags: Array.isArray(blogPost.tags) ? blogPost.tags.join(", ") : "",
-        isPublished: blogPost.isPublished,
-      });
+        tags: Array.isArray(blogPost.tags) 
+          ? blogPost.tags.join(", ") 
+          : typeof blogPost.tags === 'string' 
+            ? blogPost.tags 
+            : "",
+        isPublished: !!blogPost.isPublished,
+      };
+      
+      console.log('Form data being populated:', formData);
+      reset(formData);
     }
   }, [blogPost, isEditing, reset]);
 
@@ -285,6 +301,28 @@ export default function BlogEditor() {
         <div className="flex items-center space-x-2">
           <Loader2 className="w-6 h-6 animate-spin" />
           <span>Loading blog post...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <Alert className="max-w-md">
+            <AlertDescription>
+              Failed to load blog post: {error.message}
+              <br />
+              <Button 
+                variant="outline" 
+                className="mt-4" 
+                onClick={() => setLocation("/admin/dashboard")}
+              >
+                Back to Dashboard
+              </Button>
+            </AlertDescription>
+          </Alert>
         </div>
       </div>
     );
@@ -477,6 +515,22 @@ export default function BlogEditor() {
                   </div>
                 </CardHeader>
                 <CardContent>
+                  {isEditing && (
+                    <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
+                      <p className="text-sm font-medium text-yellow-800">Debug Info:</p>
+                      <p className="text-xs text-yellow-700">
+                        Blog ID: {blogId} | 
+                        Is Loading: {isLoading ? 'Yes' : 'No'} | 
+                        Has Blog Data: {blogPost ? 'Yes' : 'No'} |
+                        Content Length: {content?.length || 0}
+                      </p>
+                      {blogPost && (
+                        <p className="text-xs text-yellow-700 mt-1">
+                          Original Content Length: {blogPost.content?.length || 0}
+                        </p>
+                      )}
+                    </div>
+                  )}
                   <Textarea
                     {...register("content")}
                     ref={contentRef}
