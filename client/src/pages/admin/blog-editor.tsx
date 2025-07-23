@@ -138,10 +138,15 @@ export default function BlogEditor() {
       console.log('Form data being populated:', formData);
       reset(formData);
       
-      // Force update the content field specifically
-      setValue('content', formData.content, { shouldValidate: true, shouldDirty: true });
+      // Force update all fields specifically to ensure they populate
+      Object.keys(formData).forEach(key => {
+        setValue(key as keyof BlogForm, formData[key as keyof BlogForm], { 
+          shouldValidate: true, 
+          shouldDirty: true 
+        });
+      });
     }
-  }, [blogPost, isEditing, reset]);
+  }, [blogPost, isEditing, reset, setValue]);
 
   // Save mutation
   const saveMutation = useMutation({
