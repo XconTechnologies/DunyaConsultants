@@ -252,6 +252,40 @@ function DynamicBlogPost({ slug }: { slug: string }) {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className={`${getCategoryBadgeColor(blogPost.category || 'General')} text-white px-4 py-2 rounded-full text-sm font-medium`}>
+                {blogPost.category || 'General'}
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              {blogPost.title}
+            </h1>
+            {blogPost.excerpt && (
+              <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+                {blogPost.excerpt}
+              </p>
+            )}
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>{new Date(blogPost.createdAt || new Date()).toLocaleDateString()}</span>
+              </div>
+              <div className="flex items-center">
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>8 min read</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -288,39 +322,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                 </div>
               )}
 
-              {/* Contact Form */}
-              <div className="mt-12 bg-blue-50 rounded-lg p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Need Expert Guidance?</h3>
-                <p className="text-gray-700 mb-6">
-                  Get personalized consultation for your study abroad journey. Our expert counselors are here to help you every step of the way.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-center text-gray-700">
-                    <Calendar className="w-5 h-5 text-blue-600 mr-3" />
-                    <span>Free Consultation</span>
-                  </div>
-                  <div className="flex items-center text-gray-700">
-                    <Clock className="w-5 h-5 text-blue-600 mr-3" />
-                    <span>Quick Response</span>
-                  </div>
-                  <div className="flex items-center text-gray-700">
-                    <User className="w-5 h-5 text-blue-600 mr-3" />
-                    <span>Expert Counselors</span>
-                  </div>
-                  <div className="flex items-center text-gray-700">
-                    <Globe className="w-5 h-5 text-blue-600 mr-3" />
-                    <span>Multiple Destinations</span>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <Link 
-                    href="/contact"
-                    className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-                  >
-                    Get Free Consultation
-                  </Link>
-                </div>
-              </div>
+
             </article>
           </div>
 
