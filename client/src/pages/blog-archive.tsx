@@ -16,6 +16,7 @@ interface BlogArchivePost {
   views: number;
   tags: string[];
   image: string;
+  featuredImage: string;
   featured?: boolean;
   trending?: boolean;
   href: string;
@@ -38,19 +39,20 @@ export default function BlogArchive() {
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || post.content.slice(0, 200) + "...",
-      category: post.category,
-      author: post.author,
+      category: post.category || "General",
+      author: "Dunya Consultants",
       date: new Date(post.createdAt).toLocaleDateString('en-US', { 
         year: 'numeric', 
         month: 'short', 
         day: 'numeric' 
       }),
-      readTime: post.readTime || "5 min",
-      views: post.views || 0,
+      readTime: "5 min",
+      views: post.viewCount || 0,
       tags: post.tags || [],
-      image: post.featured_image || "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: post.featured || false,
-      trending: (post.views || 0) > 1000,
+      image: post.featuredImage || "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      featuredImage: post.featuredImage || "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      featured: false,
+      trending: (post.viewCount || 0) > 100,
       href: `/blog/${post.slug}`
     }));
   }, [blogPosts]);
@@ -272,7 +274,7 @@ export default function BlogArchive() {
                       <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '16/10' }}>
                         <Link href={post.href}>
                           <img
-                            src={post.image}
+                            src={post.featuredImage || post.image}
                             alt={post.title}
                             className="w-full h-full object-cover transition-transform duration-300 cursor-pointer"
                             onError={(e) => {

@@ -561,6 +561,76 @@ const allBlogPosts = [
     featuredImage: "/blog/gre-fee-pakistan.jpg",
     readingTime: 7,
     views: 1560
+  },
+  {
+    title: "Study in Japan for Pakistani Students: Complete Guide 2025",
+    slug: "study-in-japan-pakistani-students",
+    excerpt: "Complete guide for Pakistani students who want to study in Japan including visa requirements, scholarships, and top universities",
+    content: "Japan has become an increasingly popular destination for Pakistani students seeking quality education and unique cultural experiences. This comprehensive guide covers everything you need to know about studying in Japan as a Pakistani student...",
+    published: true,
+    authorId: 1,
+    tags: ["Japan", "Study Abroad", "Pakistani Students", "Scholarships"],
+    metaTitle: "Study in Japan for Pakistani Students 2025",
+    metaDescription: "Complete guide for Pakistani students on studying in Japan including visa requirements, MEXT scholarships, top universities, and application process",
+    featuredImage: "/blog/japan-study-guide.jpg",
+    readingTime: 12,
+    views: 1890
+  },
+  {
+    title: "MCAT Preparation Guide for Medical Students in Pakistan",
+    slug: "mcat-preparation-guide-pakistan",
+    excerpt: "Comprehensive MCAT preparation guide for Pakistani students planning to study medicine abroad",
+    content: "The Medical College Admission Test (MCAT) is a crucial step for Pakistani students aspiring to study medicine in North America. This guide provides detailed information on preparation strategies, study materials, and test centers...",
+    published: true,
+    authorId: 1,
+    tags: ["MCAT", "Medical Studies", "Pakistan", "Study Abroad"],
+    metaTitle: "MCAT Preparation Guide for Pakistani Students 2025",
+    metaDescription: "Complete MCAT preparation guide for Pakistani medical students including study materials, test centers, and application timeline",
+    featuredImage: "/blog/mcat-preparation.jpg",
+    readingTime: 10,
+    views: 2340
+  },
+  {
+    title: "Scholarships for Pakistani Students in Europe 2025",
+    slug: "scholarships-pakistani-students-europe",
+    excerpt: "Discover available scholarships and funding opportunities for Pakistani students in European universities",
+    content: "Europe offers numerous scholarship opportunities for Pakistani students across various fields of study. This comprehensive guide covers government scholarships, university-specific funding, and application processes...",
+    published: true,
+    authorId: 1,
+    tags: ["Scholarships", "Europe", "Pakistani Students", "Funding"],
+    metaTitle: "European Scholarships for Pakistani Students 2025",
+    metaDescription: "Complete guide to scholarships available for Pakistani students in Europe including Erasmus+, government scholarships, and university funding",
+    featuredImage: "/blog/europe-scholarships.jpg",
+    readingTime: 14,
+    views: 3120
+  },
+  {
+    title: "Study Medicine in Poland: Guide for International Students",
+    slug: "study-medicine-poland",
+    excerpt: "Complete guide to studying medicine in Poland including admission requirements, costs, and top medical universities",
+    content: "Poland has emerged as a top destination for international students pursuing medical education. With high-quality education, affordable costs, and EU recognition, Polish medical universities attract thousands of students annually...",
+    published: true,
+    authorId: 1,
+    tags: ["Poland", "Medical Studies", "International Students", "MBBS"],
+    metaTitle: "Study Medicine in Poland 2025: Complete Guide",
+    metaDescription: "Complete guide to studying medicine in Poland including top medical universities, admission requirements, costs, and application process",
+    featuredImage: "/blog/poland-medicine.jpg",
+    readingTime: 11,
+    views: 2780
+  },
+  {
+    title: "Work Permit Requirements for International Students in Canada",
+    slug: "work-permit-canada-international-students",
+    excerpt: "Essential information about work permit requirements and regulations for international students in Canada",
+    content: "International students in Canada have various opportunities to work during and after their studies. Understanding work permit requirements is crucial for making the most of these opportunities...",
+    published: true,
+    authorId: 1,
+    tags: ["Canada", "Work Permit", "International Students", "Immigration"],
+    metaTitle: "Canada Work Permit for International Students 2025",
+    metaDescription: "Complete guide to work permit requirements for international students in Canada including on-campus, off-campus, and post-graduation work permits",
+    featuredImage: "/blog/canada-work-permit.jpg",
+    readingTime: 9,
+    views: 1950
   }
 ];
 
