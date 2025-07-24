@@ -563,4 +563,6 @@ export default function ErasmusMundusScholarship() {
     
     </div>
   );
+    </div>
+  );
 }

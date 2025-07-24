@@ -368,7 +368,8 @@ export default function TBTestForUKVisaInPakistan() {
         <ContactSection />
       </div>
       <Footer />
-    
+    </div>
+  );
     </div>
   );
 }

@@ -280,4 +280,6 @@ export default function IELTSAcceptability2025() {
   );
     </div>
   );
+    </div>
+  );
 }

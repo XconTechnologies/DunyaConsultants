@@ -217,25 +217,33 @@ function DynamicBlogPost({ slug }: { slug: string }) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading article...</p>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading article...</p>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
   if (error || !blogPost) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
-          <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
-          <Link href="/blog" className="text-blue-600 hover:text-blue-800">
-            ← Back to Blog
-          </Link>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
+            <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
+            <Link href="/blog" className="text-blue-600 hover:text-blue-800">
+              ← Back to Blog
+            </Link>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }

@@ -399,4 +399,6 @@ export default function UKStudentVisaRatioFromPakistan() {
     
     </div>
   );
+    </div>
+  );
 }

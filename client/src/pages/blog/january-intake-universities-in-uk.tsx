@@ -577,4 +577,6 @@ export default function JanuaryIntakeUniversitiesInUK() {
     
     </div>
   );
+    </div>
+  );
 }

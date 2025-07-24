@@ -264,4 +264,6 @@ export default function UKStudentDependentVisaNewRules() {
     
     </div>
   );
+    </div>
+  );
 }

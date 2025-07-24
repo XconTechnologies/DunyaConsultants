@@ -445,4 +445,6 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
     
     </div>
   );
+    </div>
+  );
 }

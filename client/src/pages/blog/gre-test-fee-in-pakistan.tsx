@@ -522,4 +522,6 @@ export default function GRETestFeeInPakistan() {
     
     </div>
   );
+    </div>
+  );
 }

@@ -321,4 +321,6 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
     
     </div>
   );
+    </div>
+  );
 }

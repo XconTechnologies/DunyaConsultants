@@ -306,4 +306,6 @@ export default function BangorUniversityAcceptanceRate() {
     
     </div>
   );
+    </div>
+  );
 }

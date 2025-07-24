@@ -444,4 +444,6 @@ export default function LowCostUniversitiesInUKForInternationalStudents() {
     
     </div>
   );
+    </div>
+  );
 }

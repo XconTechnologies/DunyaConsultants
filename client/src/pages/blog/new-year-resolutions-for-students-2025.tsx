@@ -286,4 +286,6 @@ export default function NewYearResolutionsForStudents2025() {
   );
     </div>
   );
+    </div>
+  );
 }

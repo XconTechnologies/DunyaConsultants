@@ -3,11 +3,9 @@ import ContactForm from '@/components/blog/ContactForm';
 import ContactSection from '@/components/blog/ContactSection';
 import Footer from '@/components/footer';
 
-export default function IndustrialEngineeringManagement() {
+export default function BachelorsIndustrialEngineeringAndManagement() {
   return (
     <div className="min-h-screen bg-gray-50">
-  return (
-    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
@@ -25,7 +23,7 @@ export default function IndustrialEngineeringManagement() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-[1440px] mx-auto px-8 py-16">
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Article Content */}
           <div className="lg:col-span-2 space-y-8">
@@ -173,10 +171,7 @@ export default function IndustrialEngineeringManagement() {
         </div>
       </div>
 
-      <ContactSection 
-        title="Need Help with Industrial Engineering Applications?"
-        description="Our expert counselors can guide you through the application process for Industrial Engineering and Management programs worldwide. Contact us for personalized assistance."
-      />
+      <ContactSection />
 
       <Footer />
     </div>

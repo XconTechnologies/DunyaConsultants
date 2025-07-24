@@ -416,4 +416,6 @@ export default function CanadaStudentVisaForPakistani() {
     
     </div>
   );
+    </div>
+  );
 }

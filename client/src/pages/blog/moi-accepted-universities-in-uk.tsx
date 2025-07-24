@@ -414,4 +414,6 @@ export default function MOIAcceptedUniversitiesInUK() {
     
     </div>
   );
+    </div>
+  );
 }

@@ -446,4 +446,6 @@ export default function IELTSExamFeeInPakistan() {
     
     </div>
   );
+    </div>
+  );
 }

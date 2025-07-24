@@ -451,4 +451,6 @@ export default function GermanyBlockedAccount() {
     
     </div>
   );
+    </div>
+  );
 }

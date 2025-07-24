@@ -240,4 +240,6 @@ export default function TeessideUniversityPartner() {
   );
     </div>
   );
+    </div>
+  );
 }

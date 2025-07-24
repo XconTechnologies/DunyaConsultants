@@ -383,4 +383,6 @@ export default function Top10ReasonsToStudyInUK() {
     
     </div>
   );
+    </div>
+  );
 }

@@ -367,4 +367,6 @@ export default function WhichDegreeIsBestInPakistan() {
     
     </div>
   );
+    </div>
+  );
 }
