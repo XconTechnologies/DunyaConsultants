@@ -252,40 +252,6 @@ function DynamicBlogPost({ slug }: { slug: string }) {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      {/* Hero Section - Using solid blue background as requested */}
-      <div className="bg-[#124FD3] text-white py-20">
-        <div className="max-w-[1440px] mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="mb-6">
-              <span className={`${getCategoryBadgeColor(blogPost.category || 'General')} text-white px-4 py-2 rounded-full text-sm font-medium`}>
-                {blogPost.category || 'General'}
-              </span>
-            </div>
-            <h1 className="text-5xl font-bold mb-6 leading-tight">
-              {blogPost.title}
-            </h1>
-            {blogPost.excerpt && (
-              <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-                {blogPost.excerpt}
-              </p>
-            )}
-            <div className="flex items-center justify-center space-x-6 text-blue-200">
-              <div className="flex items-center">
-                <Calendar className="w-5 h-5 mr-2" />
-                <span>{new Date(blogPost.createdAt || new Date()).toLocaleDateString()}</span>
-              </div>
-              <div className="flex items-center">
-                <User className="w-5 h-5 mr-2" />
-                <span>Dunya Consultants</span>
-              </div>
-              <div className="flex items-center">
-                <Clock className="w-5 h-5 mr-2" />
-                <span>8 min read</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
