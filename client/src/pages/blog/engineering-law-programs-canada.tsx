@@ -8,8 +8,6 @@ import Footer from '@/components/footer';
 export default function EngineeringLawProgramsCanada() {
   return (
     <div className="min-h-screen bg-white">
-  return (
-    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
       <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white">

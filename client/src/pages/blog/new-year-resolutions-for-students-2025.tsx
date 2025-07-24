@@ -6,8 +6,6 @@ import ContactSection from "@/components/blog/ContactSection";
 export default function NewYearResolutionsForStudents2025() {
   return (
     <div className="min-h-screen bg-white">
-  return (
-    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
@@ -282,8 +280,6 @@ export default function NewYearResolutionsForStudents2025() {
 
       <ContactSection />
       <Footer />
-    </div>
-  );
     </div>
   );
 }

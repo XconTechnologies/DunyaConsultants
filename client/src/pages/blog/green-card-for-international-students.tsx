@@ -6,8 +6,6 @@ import Footer from '@/components/footer';
 export default function GreenCardInternationalStudents() {
   return (
     <div className="min-h-screen bg-white">
-  return (
-    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Full-width Hero Section */}

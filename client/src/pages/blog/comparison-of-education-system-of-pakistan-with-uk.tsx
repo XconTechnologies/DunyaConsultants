@@ -6,8 +6,6 @@ import ContactSection from "@/components/blog/ContactSection";
 export default function ComparisonEducationSystemPakistanUK() {
   return (
     <div className="min-h-screen bg-white">
-  return (
-    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
@@ -361,8 +359,6 @@ export default function ComparisonEducationSystemPakistanUK() {
 
       <ContactSection />
       <Footer />
-    </div>
-  );
     </div>
   );
 }

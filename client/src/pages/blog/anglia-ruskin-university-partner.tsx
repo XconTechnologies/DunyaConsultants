@@ -8,8 +8,6 @@ import Footer from '@/components/footer';
 export default function AngliaRuskinUniversityPartner() {
   return (
     <div className="min-h-screen bg-white">
-  return (
-    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">

@@ -6,8 +6,6 @@ import Footer from '@/components/footer';
 export default function IELTSAcceptability2025() {
   return (
     <div className="min-h-screen bg-white">
-  return (
-    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
@@ -270,14 +268,9 @@ export default function IELTSAcceptability2025() {
         </div>
       </div>
 
-      <ContactSection 
-        title="Need Help with IELTS Requirements?"
-        description="Our expert counselors can help you understand IELTS requirements for your target country and university. Get personalized guidance for your study abroad journey."
-      />
+      <ContactSection />
 
       <Footer />
-    </div>
-  );
     </div>
   );
 }

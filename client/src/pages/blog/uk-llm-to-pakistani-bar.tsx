@@ -8,8 +8,6 @@ import Footer from '@/components/footer';
 export default function UKLLMToPakistaniBar() {
   return (
     <div className="min-h-screen bg-white">
-  return (
-    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-800 to-purple-800 text-white">
