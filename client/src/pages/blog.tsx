@@ -117,7 +117,7 @@ const blogPosts: BlogPost[] = [
     views: 8750,
     tags: ["UK", "LLM", "Pakistan", "Legal Practice", "Bar Council"],
     image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    href: "/blog/uk-llm-to-pakistani-bar"
+    href: "/blog/from-uk-llm-to-pakistani-bar"
   },
   {
     id: "8",
@@ -251,8 +251,8 @@ function DynamicBlogPost({ slug }: { slug: string }) {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      {/* Hero Section - Using dynamic gradient based on category */}
-      <div className={`bg-gradient-to-r ${getCategoryGradient(blogPost.category || 'General')} text-white py-20`}>
+      {/* Hero Section - Using solid blue background as requested */}
+      <div className="bg-[#124FD3] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
