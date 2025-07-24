@@ -1,7 +1,7 @@
-import Navigation from '../../components/navigation';
-import Footer from '../../components/footer';
-import ContactForm from '../../components/blog/ContactForm';
-import ContactSection from '../../components/blog/ContactSection';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
+import ContactForm from '@/components/blog/ContactForm';
+import ContactSection from '@/components/blog/ContactSection';
 
 export default function DubaiVisaForPakistani() {
   return (
@@ -208,10 +208,7 @@ export default function DubaiVisaForPakistani() {
         </div>
 
         {/* Contact Section */}
-        <ContactSection 
-          title="Need Help with Your Dubai Study Visa?"
-          description="Our experienced consultants are here to guide you through every step of the Dubai visa application process. Get personalized assistance today."
-        />
+        <ContactSection />
       </div>
       <Footer />
     </>

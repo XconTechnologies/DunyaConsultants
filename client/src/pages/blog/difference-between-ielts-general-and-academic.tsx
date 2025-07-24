@@ -41,6 +41,122 @@ export default function DifferenceIELTSGeneralAcademic() {
                 The IELTS test has four parts: Reading, Listening, Writing, and Speaking. There are two types of IELTS tests: Academic and General Training. The Listening and Speaking parts are the same for both, but the Reading and Writing parts are different.
               </p>
 
+              <div className="bg-green-50 p-8 rounded-lg mb-8">
+                <h3 className="text-2xl font-bold mb-4 text-green-900">Major Differences Between Academic and General Training</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 className="text-xl font-semibold mb-3 text-blue-800">IELTS Academic</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li>• For university and higher education</li>
+                      <li>• Academic texts and research materials</li>
+                      <li>• Formal academic writing tasks</li>
+                      <li>• University-level vocabulary</li>
+                      <li>• Scientific and academic topics</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 className="text-xl font-semibold mb-3 text-orange-800">IELTS General Training</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li>• For work and immigration</li>
+                      <li>• Everyday English texts</li>
+                      <li>• Personal and semi-formal letters</li>
+                      <li>• Workplace vocabulary</li>
+                      <li>• Social and practical topics</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 p-8 rounded-lg mb-8">
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">Writing Test Differences</h3>
+                <p className="text-gray-700 mb-4">
+                  The Writing section shows the clearest difference between Academic and General Training IELTS. Each has two tasks with different requirements and formats.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 className="text-lg font-semibold mb-3 text-blue-800">Academic Writing</h4>
+                    <div className="space-y-3">
+                      <div>
+                        <strong>Task 1:</strong> Describe visual information (graphs, charts, diagrams)
+                      </div>
+                      <div>
+                        <strong>Task 2:</strong> Write an academic essay on given topic
+                      </div>
+                      <div>
+                        <strong>Word Count:</strong> Task 1 (150 words), Task 2 (250 words)
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 className="text-lg font-semibold mb-3 text-orange-800">General Training Writing</h4>
+                    <div className="space-y-3">
+                      <div>
+                        <strong>Task 1:</strong> Write a letter (formal, semi-formal, or informal)
+                      </div>
+                      <div>
+                        <strong>Task 2:</strong> Write an essay on general interest topic
+                      </div>
+                      <div>
+                        <strong>Word Count:</strong> Task 1 (150 words), Task 2 (250 words)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-purple-50 p-8 rounded-lg mb-8">
+                <h3 className="text-2xl font-bold mb-4 text-purple-900">Reading Test Differences</h3>
+                <p className="text-gray-700 mb-4">
+                  The Reading section also varies significantly between the two test types, reflecting different purposes and contexts.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 className="text-lg font-semibold mb-3 text-blue-800">Academic Reading</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li>• 3 long academic passages</li>
+                      <li>• Taken from journals, books, magazines</li>
+                      <li>• Complex academic vocabulary</li>
+                      <li>• University-level difficulty</li>
+                      <li>• Scientific and technical topics</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <h4 className="text-lg font-semibold mb-3 text-orange-800">General Training Reading</h4>
+                    <ul className="space-y-2 text-gray-700">
+                      <li>• 3 sections with different text types</li>
+                      <li>• Advertisements, notices, workplace documents</li>
+                      <li>• Everyday vocabulary</li>
+                      <li>• Practical and social contexts</li>
+                      <li>• Work and immigration topics</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 p-8 rounded-lg mb-8">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900">Which Test Should You Choose?</h3>
+                <div className="space-y-4">
+                  <div className="bg-blue-100 p-4 rounded-lg">
+                    <h4 className="font-semibold text-blue-900 mb-2">Choose IELTS Academic if:</h4>
+                    <ul className="text-gray-700 space-y-1">
+                      <li>• You want to study at undergraduate or postgraduate level</li>
+                      <li>• You're applying for university admission</li>
+                      <li>• You need to register with professional bodies</li>
+                      <li>• You're seeking academic qualification recognition</li>
+                    </ul>
+                  </div>
+                  <div className="bg-orange-100 p-4 rounded-lg">
+                    <h4 className="font-semibold text-orange-900 mb-2">Choose IELTS General Training if:</h4>
+                    <ul className="text-gray-700 space-y-1">
+                      <li>• You're migrating to Australia, Canada, New Zealand, or UK</li>
+                      <li>• You want to work or train in an English-speaking country</li>
+                      <li>• You're applying for secondary education</li>
+                      <li>• You need it for visa or immigration purposes</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
               <div className="overflow-x-auto mb-8">
                 <table className="w-full border-collapse border border-gray-300">
                   <thead>

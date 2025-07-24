@@ -244,11 +244,11 @@ function DynamicBlogPost({ slug }: { slug: string }) {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       {/* Hero Section - Using dynamic gradient based on category */}
-      <div className={`bg-gradient-to-r ${getCategoryGradient(blogPost.category)} text-white py-20`}>
+      <div className={`bg-gradient-to-r ${getCategoryGradient(blogPost.category || 'General')} text-white py-20`}>
         <div className="max-w-[1440px] mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className={`${getCategoryBadgeColor(blogPost.category)} text-white px-4 py-2 rounded-full text-sm font-medium`}>
+              <span className={`${getCategoryBadgeColor(blogPost.category || 'General')} text-white px-4 py-2 rounded-full text-sm font-medium`}>
                 {blogPost.category || 'General'}
               </span>
             </div>

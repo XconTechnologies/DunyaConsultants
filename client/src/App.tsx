@@ -22,12 +22,10 @@ import BlogList from "@/pages/blog-list";
 import BlogArchive from "@/pages/blog-archive";
 import KaplanTestOfEnglish from "@/pages/blog/kaplan-test-of-english";
 import GlobalTalentVisaAustralia from "@/pages/blog/global-talent-visa-australia";
-import AngliaRuskinUniversity from "@/pages/blog/anglia-ruskin-university";
 import CyprusVisaPakistan from "@/pages/blog/cyprus-visa-pakistan";
-import EngineeringLawCanada from "@/pages/blog/engineering-law-canada";
 import TurkeyBestChoicePakistaniStudents from "@/pages/blog/turkey-best-choice-pakistani-students";
 import UKLLMPakistaniBar from "@/pages/blog/uk-llm-pakistani-bar";
-import StudyNursingUK from "@/pages/blog/study-nursing-uk";
+
 import GlobalTalentVisaUK from "@/pages/blog/global-talent-visa-uk";
 import TopStudyAbroadCountries from "@/pages/blog/top-study-abroad-countries";
 import OxfordTestAcceptedUniversitiesUK from "@/pages/blog/oxford-test-accepted-universities-uk";
@@ -38,7 +36,7 @@ import HowToImproveIELTSListeningSkills from "@/pages/blog/how-to-improve-ielts-
 import IELTSPreparationTipsAndTricks from "@/pages/blog/ielts-preparation-tips-and-tricks";
 import HowToApplyForIELTSInPakistan from "@/pages/blog/how-to-apply-for-ielts-in-pakistan";
 import BachelorsInICTSoftwareEngineering from "@/pages/blog/bachelors-in-ict-software-engineering";
-import BachelorsIndustrialEngineeringManagement from "@/pages/blog/bachelors-industrial-engineering-management";
+
 import BachelorsIndustrialEngineeringAndManagement from "@/pages/blog/bachelors-in-industrial-engineering-and-management";
 import TeessideUniversityTrustedPartner from "@/pages/blog/teesside-university-trusted-partner";
 import IELTSAcceptability2025 from "@/pages/blog/ielts-acceptability-2025";
@@ -111,12 +109,10 @@ function Router() {
       <Route path="/blog/list" component={BlogList} />
       <Route path="/blog/kaplan-test-of-english" component={KaplanTestOfEnglish} />
       <Route path="/blog/global-talent-visa-australia" component={GlobalTalentVisaAustralia} />
-      <Route path="/blog/anglia-ruskin-university" component={AngliaRuskinUniversity} />
       <Route path="/blog/cyprus-visa-pakistan" component={CyprusVisaPakistan} />
-      <Route path="/blog/engineering-law-canada" component={EngineeringLawCanada} />
       <Route path="/blog/turkey-best-choice-pakistani-students" component={TurkeyBestChoicePakistaniStudents} />
       <Route path="/blog/uk-llm-pakistani-bar" component={UKLLMPakistaniBar} />
-      <Route path="/blog/study-nursing-uk" component={StudyNursingUK} />
+
       <Route path="/blog/global-talent-visa-uk" component={GlobalTalentVisaUK} />
       <Route path="/blog/top-study-abroad-countries" component={TopStudyAbroadCountries} />
       <Route path="/blog/oxford-test-accepted-universities-uk" component={OxfordTestAcceptedUniversitiesUK} />
@@ -127,7 +123,7 @@ function Router() {
       <Route path="/blog/ielts-preparation-tips-and-tricks" component={IELTSPreparationTipsAndTricks} />
       <Route path="/blog/how-to-apply-for-ielts-in-pakistan" component={HowToApplyForIELTSInPakistan} />
       <Route path="/blog/bachelors-in-ict-software-engineering" component={BachelorsInICTSoftwareEngineering} />
-      <Route path="/blog/bachelors-industrial-engineering-management" component={BachelorsIndustrialEngineeringManagement} />
+
       <Route path="/blog/bachelors-in-industrial-engineering-and-management" component={BachelorsIndustrialEngineeringAndManagement} />
       <Route path="/blog/teesside-university-trusted-partner" component={TeessideUniversityTrustedPartner} />
       <Route path="/blog/ielts-acceptability-2025" component={IELTSAcceptability2025} />

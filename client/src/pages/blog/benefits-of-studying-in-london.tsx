@@ -1,7 +1,7 @@
-import Navigation from '../../components/navigation';
-import Footer from '../../components/footer';
-import ContactForm from '../../components/blog/ContactForm';
-import ContactSection from '../../components/blog/ContactSection';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
+import ContactForm from '@/components/blog/ContactForm';
+import ContactSection from '@/components/blog/ContactSection';
 
 export default function BenefitsOfStudyingInLondon() {
   return (
@@ -256,10 +256,7 @@ export default function BenefitsOfStudyingInLondon() {
         </div>
 
         {/* Contact Section */}
-        <ContactSection 
-          title="Ready to Study in London?"
-          description="Get expert guidance from Dunya Consultants to choose the perfect university and program in London for your academic journey."
-        />
+        <ContactSection />
       </div>
       <Footer />
     </>
