@@ -5,7 +5,7 @@ import ContactSection from "@/components/blog/ContactSection";
 
 export default function ComparisonEducationSystemPakistanUK() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -187,7 +187,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                           <td className="border border-gray-300 p-3">5-6 years</td>
                           <td className="border border-gray-300 p-3">4 years (Reception)</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 p-3 font-medium">Compulsory Education</td>
                           <td className="border border-gray-300 p-3">Not compulsory</td>
                           <td className="border border-gray-300 p-3">Ages 14-16 mandatory</td>
@@ -197,7 +197,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                           <td className="border border-gray-300 p-3">April to March</td>
                           <td className="border border-gray-300 p-3">September to August</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 p-3 font-medium">Resource Availability</td>
                           <td className="border border-gray-300 p-3">Limited in public schools</td>
                           <td className="border border-gray-300 p-3">Well-resourced curriculum</td>
@@ -271,7 +271,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                     FAQs
                   </h2>
                   <div className="space-y-6">
-                    <div className="bg-gray-50 p-6 rounded-lg">
+                    <div className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         How can I Study in UK from Pakistan?
                       </h3>
@@ -280,7 +280,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                         This requires an offer from a UK university, English language proof, etc.
                       </p>
                     </div>
-                    <div className="bg-gray-50 p-6 rounded-lg">
+                    <div className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         What is UK academic calendar vs Pakistan?
                       </h3>
@@ -290,7 +290,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                         follow September to June.
                       </p>
                     </div>
-                    <div className="bg-gray-50 p-6 rounded-lg">
+                    <div className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         What are Pakistan education challenges?
                       </h3>
@@ -299,7 +299,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                         and public education quality is often poor. Teachers lack proper training and resources.
                       </p>
                     </div>
-                    <div className="bg-gray-50 p-6 rounded-lg">
+                    <div className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         Is the UK education structure better than Pakistan?
                       </h3>
@@ -361,8 +361,6 @@ export default function ComparisonEducationSystemPakistanUK() {
 
       <ContactSection />
       <Footer />
-    </div>
-  );
     </div>
   );
     </div>

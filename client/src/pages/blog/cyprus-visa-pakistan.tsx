@@ -6,7 +6,7 @@ import Footer from '@/components/footer';
 
 export default function CyprusVisaPakistan() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
@@ -82,7 +82,7 @@ export default function CyprusVisaPakistan() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   What is a Cyprus Study Visa?
                 </h2>
-                <div className="bg-gray-50 rounded-lg p-6">
+                <div className="bg-white rounded-lg p-6">
                   <p className="text-gray-700 mb-4">
                     A Cyprus study visa is a special visa that allows students from outside the European Union to enter and stay in Cyprus for their studies. 
                     This visa permits students to stay in the country for up to three months initially.
@@ -444,11 +444,11 @@ export default function CyprusVisaPakistan() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/turkey-best-choice-pakistani-students" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/turkey-best-choice-pakistani-students" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">Study in Turkey</h4>
                     <p className="text-xs text-gray-600 mt-1">Best choice for Pakistani students</p>
                   </a>
-                  <a href="/blog/anglia-ruskin-university" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/anglia-ruskin-university" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">Anglia Ruskin University</h4>
                     <p className="text-xs text-gray-600 mt-1">Trusted partner guide</p>
                   </a>

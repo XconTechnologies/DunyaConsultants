@@ -5,7 +5,7 @@ import ContactSection from "@/components/blog/ContactSection";
 
 export default function FinlandOnlineVisaApplicationFromPakistan() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -114,7 +114,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                     When applying to study in Finland, make sure to gather all the required documents to 
                     complete your requirements for Finland student visa smoothly:
                   </p>
-                  <div className="bg-gray-50 p-6 rounded-lg">
+                  <div className="bg-white p-6 rounded-lg">
                     <ul className="space-y-3 text-gray-700">
                       <li className="flex items-center space-x-3">
                         <span className="text-blue-600">✓</span>
@@ -200,7 +200,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                     FAQs
                   </h2>
                   <div className="space-y-6">
-                    <div className="bg-gray-50 p-6 rounded-lg">
+                    <div className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         How much bank balance is required for Finland student visa?
                       </h3>
@@ -209,7 +209,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                         live there. The required amount depends on your study duration and living costs.
                       </p>
                     </div>
-                    <div className="bg-gray-50 p-6 rounded-lg">
+                    <div className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         What is Finland study visa ratio from Pakistan?
                       </h3>
@@ -218,7 +218,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                         requirements and submit complete documentation.
                       </p>
                     </div>
-                    <div className="bg-gray-50 p-6 rounded-lg">
+                    <div className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         Can I study in Finland without IELTS?
                       </h3>
@@ -280,8 +280,6 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
 
       <ContactSection />
       <Footer />
-    </div>
-  );
     </div>
   );
     </div>

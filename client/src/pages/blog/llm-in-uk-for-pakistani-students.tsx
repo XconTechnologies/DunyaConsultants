@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function LLMInUKForPakistaniStudents() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -79,43 +79,43 @@ export default function LLMInUKForPakistaniStudents() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">1</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">The London School of Economics and Political Science</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">2</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">University of Oxford</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">3</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">King's College London</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">4</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">University of Cambridge</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">5</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">The University of Edinburgh</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">6</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">University College London</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">7</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">The University of Manchester</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">8</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">Queen Mary, University of London</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">9</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">Durham University</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">10</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">Queen Mary, University of London</td>
                       </tr>
@@ -446,8 +446,6 @@ export default function LLMInUKForPakistaniStudents() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

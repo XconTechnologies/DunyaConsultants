@@ -63,7 +63,7 @@ const StudyInUK = () => {
             </div>
 
             {/* Key Benefits */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
                 <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
                 Key Benefits of Studying in the UK
@@ -234,28 +234,28 @@ const StudyInUK = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-3">
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
                     <FileText className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Original Passport</h4>
                       <p className="text-sm text-gray-600">Valid for duration of intended stay</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
                     <FileText className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Educational Certificates</h4>
                       <p className="text-sm text-gray-600">Matric, Intermediate, Bachelor's degrees</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
                     <FileText className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">IELTS/PTE Score Card</h4>
                       <p className="text-sm text-gray-600">English proficiency proof</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
                     <FileText className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Experience Certificate</h4>
@@ -264,28 +264,28 @@ const StudyInUK = () => {
                   </div>
                 </div>
                 <div className="space-y-3">
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
                     <FileText className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Recommendation Letters</h4>
                       <p className="text-sm text-gray-600">From teachers or employers</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
                     <FileText className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Statement of Purpose</h4>
                       <p className="text-sm text-gray-600">Academic and career goals</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
                     <FileText className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">GRE/GMAT Scores</h4>
                       <p className="text-sm text-gray-600">If required by university</p>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                  <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
                     <FileText className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Europass CV</h4>
@@ -327,15 +327,15 @@ const StudyInUK = () => {
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900">Frequently Asked Questions</h3>
               <div className="space-y-4">
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-white rounded-lg p-4">
                   <h4 className="font-medium text-gray-900 mb-2">What is the visa success rate for Pakistani students?</h4>
                   <p className="text-gray-700 text-sm">The UK has one of the highest visa success rates for Pakistani students, especially when applications are properly prepared with all required documentation.</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-white rounded-lg p-4">
                   <h4 className="font-medium text-gray-900 mb-2">Can I work while studying in the UK?</h4>
                   <p className="text-gray-700 text-sm">Yes, international students can work part-time (up to 20 hours per week) during term time and full-time during holidays.</p>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-white rounded-lg p-4">
                   <h4 className="font-medium text-gray-900 mb-2">What are the accommodation options?</h4>
                   <p className="text-gray-700 text-sm">Students can choose from university halls of residence, private student accommodation, or shared housing with other students.</p>
                 </div>
@@ -347,7 +347,7 @@ const StudyInUK = () => {
           <div className="space-y-8">
             <ContactForm />
             
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Facts</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">

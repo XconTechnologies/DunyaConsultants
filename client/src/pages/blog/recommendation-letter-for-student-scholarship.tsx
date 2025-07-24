@@ -6,9 +6,9 @@ import ContactForm from '@/components/blog/ContactForm';
 export default function RecommendationLetterStudentScholarship() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <div className="relative h-96 bg-gradient-to-br from-green-600 via-teal-600 to-blue-700 overflow-hidden">
           <div className="absolute inset-0 bg-black/30"></div>
@@ -165,7 +165,7 @@ export default function RecommendationLetterStudentScholarship() {
                     Here's a simple version of a letter of recommendation sample you can use as an example:
                   </p>
 
-                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
                     <div className="font-mono text-sm space-y-4">
                       <div className="text-gray-800">
                         <p className="font-semibold">[Your Name]</p>
@@ -261,21 +261,21 @@ export default function RecommendationLetterStudentScholarship() {
           <div className="px-16 py-12">
             <h2 className="text-3xl font-bold mb-8 text-gray-900">Frequently Asked Questions</h2>
             <div className="space-y-6">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">How to write a recommendation letter for admission in university?</h3>
                 <p className="text-gray-600">
                   In one sentence, explain how you know the student, highlight their strengths, and share specific examples or stories that show their character. Use real examples instead of general statements.
                 </p>
               </div>
               
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">What should be the starting sentence for a recommendation letter application?</h3>
                 <p className="text-gray-600">
                   Start by saying that you recommend the student. You should also briefly mention who you are and your area of expertise. Then, give an overview of the student's main skills.
                 </p>
               </div>
               
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-gray-800 mb-3">How to end a recommendation letter for student scholarship?</h3>
                 <p className="text-gray-600">
                   In the ending, briefly write the main points and clearly say that you recommend the student for the program they want. The letter should be simple, clear, and direct.

@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function MasterOfFinanceInUK() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -94,7 +94,7 @@ export default function MasterOfFinanceInUK() {
                           <td className="border border-gray-300 px-4 py-2">1</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">London Business School</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">2</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of Oxford</td>
                         </tr>
@@ -102,7 +102,7 @@ export default function MasterOfFinanceInUK() {
                           <td className="border border-gray-300 px-4 py-2">3</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of Cambridge</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">4</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of Leeds</td>
                         </tr>
@@ -110,7 +110,7 @@ export default function MasterOfFinanceInUK() {
                           <td className="border border-gray-300 px-4 py-2">5</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of Edinburgh</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">6</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Cranfield University</td>
                         </tr>
@@ -118,7 +118,7 @@ export default function MasterOfFinanceInUK() {
                           <td className="border border-gray-300 px-4 py-2">7</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of Warwick</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">8</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of Manchester</td>
                         </tr>
@@ -465,8 +465,6 @@ export default function MasterOfFinanceInUK() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

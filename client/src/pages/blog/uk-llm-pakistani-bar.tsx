@@ -3,7 +3,7 @@ import { Scale, GraduationCap, FileText, Users, CheckCircle, BookOpen, AlertTria
 
 export default function UKLLMPakistaniBar() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -85,7 +85,7 @@ export default function UKLLMPakistaniBar() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-purple-500 pl-4">
                   Eligibility to Practice Law in Pakistan
                 </h2>
-                <div className="bg-gray-50 rounded-lg p-6">
+                <div className="bg-white rounded-lg p-6">
                   <div className="space-y-4">
                     <div className="flex items-start">
                       <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
@@ -361,11 +361,11 @@ export default function UKLLMPakistaniBar() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/engineering-law-canada" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/engineering-law-canada" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">Engineering & Law in Canada</h4>
                     <p className="text-xs text-gray-600 mt-1">Best universities for Pakistani students</p>
                   </a>
-                  <a href="/blog/study-nursing-uk" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/study-nursing-uk" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">Study Nursing in UK</h4>
                     <p className="text-xs text-gray-600 mt-1">Complete guide for students</p>
                   </a>

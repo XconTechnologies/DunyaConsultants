@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 
 export default function BachelorsInICTSoftwareEngineering() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-20">
@@ -294,7 +294,7 @@ export default function BachelorsInICTSoftwareEngineering() {
                   Salary Expectations
                 </h2>
 
-                <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <div className="bg-white p-6 rounded-lg mb-8">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4">Starting Salaries by Country</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white p-4 rounded-lg">

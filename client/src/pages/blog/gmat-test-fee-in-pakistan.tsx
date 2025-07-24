@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 
 export default function GMATTestFeeInPakistan() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-20">
@@ -106,11 +106,11 @@ export default function GMATTestFeeInPakistan() {
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Score Reporting Services</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                         <span className="text-gray-700">Additional Score Report</span>
                         <span className="font-semibold text-orange-600">$35 USD</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                         <span className="text-gray-700">Score Reinstatement</span>
                         <span className="font-semibold text-orange-600">$50 USD</span>
                       </div>
@@ -120,11 +120,11 @@ export default function GMATTestFeeInPakistan() {
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Rescheduling and Cancellation</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                         <span className="text-gray-700">Reschedule (more than 24 hours)</span>
                         <span className="font-semibold text-orange-600">$60 USD</span>
                       </div>
-                      <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                      <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                         <span className="text-gray-700">Cancellation Refund</span>
                         <span className="font-semibold text-orange-600">$80 USD</span>
                       </div>
@@ -263,7 +263,7 @@ export default function GMATTestFeeInPakistan() {
                   Cost Comparison: GMAT vs Other Tests
                 </h2>
 
-                <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <div className="bg-white p-6 rounded-lg mb-8">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-white p-4 rounded-lg text-center">
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">GMAT Focus</h3>

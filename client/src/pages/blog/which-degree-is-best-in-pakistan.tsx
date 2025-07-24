@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function WhichDegreeIsBestInPakistan() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -178,31 +178,31 @@ export default function WhichDegreeIsBestInPakistan() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">Business Administration</td>
                         <td className="px-6 py-4 text-gray-700">4 years</td>
                         <td className="px-6 py-4 text-gray-700">Finance, Management, Marketing</td>
                         <td className="px-6 py-4 text-gray-700">50K-200K/month</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">Engineering</td>
                         <td className="px-6 py-4 text-gray-700">4 years</td>
                         <td className="px-6 py-4 text-gray-700">Technology, Construction, Manufacturing</td>
                         <td className="px-6 py-4 text-gray-700">60K-300K/month</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">IT & Computer Science</td>
                         <td className="px-6 py-4 text-gray-700">4 years</td>
                         <td className="px-6 py-4 text-gray-700">Software Development, Data Science</td>
                         <td className="px-6 py-4 text-gray-700">70K-400K/month</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">Medicine (MBBS)</td>
                         <td className="px-6 py-4 text-gray-700">5 years</td>
                         <td className="px-6 py-4 text-gray-700">Healthcare, Surgery, Specialization</td>
                         <td className="px-6 py-4 text-gray-700">100K-500K/month</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">Chartered Accounting</td>
                         <td className="px-6 py-4 text-gray-700">3-5 years</td>
                         <td className="px-6 py-4 text-gray-700">Finance, Auditing, Taxation</td>
@@ -365,8 +365,6 @@ export default function WhichDegreeIsBestInPakistan() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

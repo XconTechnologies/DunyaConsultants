@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function MSCBusinessAnalyticsInUK() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -97,7 +97,7 @@ export default function MSCBusinessAnalyticsInUK() {
                           <td className="border border-gray-300 px-4 py-2">1</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of Edinburgh Business School</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">2</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Lancaster University Management School</td>
                         </tr>
@@ -105,7 +105,7 @@ export default function MSCBusinessAnalyticsInUK() {
                           <td className="border border-gray-300 px-4 py-2">3</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Nottingham University Business School</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">4</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Imperial College Business School</td>
                         </tr>
@@ -113,7 +113,7 @@ export default function MSCBusinessAnalyticsInUK() {
                           <td className="border border-gray-300 px-4 py-2">5</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Warwick Business School</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">6</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Manchester (Alliance)</td>
                         </tr>
@@ -121,7 +121,7 @@ export default function MSCBusinessAnalyticsInUK() {
                           <td className="border border-gray-300 px-4 py-2">7</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Nottingham University Business School</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">8</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Bayes Business School (formerly Cass)</td>
                         </tr>
@@ -129,7 +129,7 @@ export default function MSCBusinessAnalyticsInUK() {
                           <td className="border border-gray-300 px-4 py-2">9</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Leeds University Business School</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">10</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Bath School of Management</td>
                         </tr>
@@ -417,8 +417,6 @@ export default function MSCBusinessAnalyticsInUK() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

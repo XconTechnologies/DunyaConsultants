@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 
 export default function GlobalTalentVisaAustralia() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
       <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white">
@@ -275,7 +275,7 @@ export default function GlobalTalentVisaAustralia() {
               <div className="overflow-x-auto mb-8">
                 <table className="w-full border-collapse border border-gray-300">
                   <thead>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <th className="border border-gray-300 px-4 py-2 text-left">Stage</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">Processing Time</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">Cost</th>
@@ -287,7 +287,7 @@ export default function GlobalTalentVisaAustralia() {
                       <td className="border border-gray-300 px-4 py-2">3-6 months</td>
                       <td className="border border-gray-300 px-4 py-2">Free</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <td className="border border-gray-300 px-4 py-2">Visa Application</td>
                       <td className="border border-gray-300 px-4 py-2">6-12 months</td>
                       <td className="border border-gray-300 px-4 py-2">AUD $4,710</td>
@@ -320,7 +320,7 @@ export default function GlobalTalentVisaAustralia() {
           <div className="lg:col-span-4">
             <div className="sticky top-8 space-y-6">
               {/* Table of Contents */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
                   <li><a href="#sectors" className="text-blue-600 hover:text-blue-800">Priority Sectors</a></li>
@@ -406,9 +406,8 @@ export default function GlobalTalentVisaAustralia() {
           </div>
           <ContactSection />
         </div>
+      </div>
       <Footer />
-    </div>
-  );
     </div>
   );
 }

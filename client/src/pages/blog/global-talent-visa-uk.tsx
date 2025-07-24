@@ -6,7 +6,7 @@ import Footer from '@/components/footer';
 
 export default function GlobalTalentVisaUK() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
@@ -89,7 +89,7 @@ export default function GlobalTalentVisaUK() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   Eligibility Criteria
                 </h2>
-                <div className="bg-gray-50 rounded-lg p-6">
+                <div className="bg-white rounded-lg p-6">
                   <ul className="space-y-3">
                     <li className="flex items-start">
                       <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5" />
@@ -350,11 +350,11 @@ export default function GlobalTalentVisaUK() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/global-talent-visa-australia" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/global-talent-visa-australia" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">Global Talent Visa Australia</h4>
                     <p className="text-xs text-gray-600 mt-1">Complete guide to Australia's talent visa</p>
                   </a>
-                  <a href="/blog/uk-internship-international-students" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/uk-internship-international-students" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">UK Internships for International Students</h4>
                     <p className="text-xs text-gray-600 mt-1">Opportunities for international students</p>
                   </a>

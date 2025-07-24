@@ -59,7 +59,7 @@ export default function IELTSExamFeeInPakistan() {
 
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -193,7 +193,7 @@ export default function IELTSExamFeeInPakistan() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.05 }}
-                          className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                          className={index % 2 === 0 ? "bg-white" : "bg-white"}
                         >
                           <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{test.type}</td>
                           <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">${test.feeUSD}</td>
@@ -297,25 +297,25 @@ export default function IELTSExamFeeInPakistan() {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
                 <div className="space-y-6">
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">What are IELTS test charges for Paper-Based UKVI Test?</h3>
                     <p className="text-gray-700">
                       The IELTS reservation fee for Paper-Based UKVI Test is around 197 USD or Rs. 55,000. You can register for this test easily.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">What is a satisfactory IELTS test band score?</h3>
                     <p className="text-gray-700">
                       Most universities accept a 5.5 or 6 band score to verify English language proficiency of students.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Can I prepare for IELTS at home?</h3>
                     <p className="text-gray-700">
                       Yes, you can read English books and newspapers or can also listen to English audiobooks. However, it is recommended to take proper classes for IELTS test preparation.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">How much time is given to candidates for IELTS?</h3>
                     <p className="text-gray-700">
                       The total time given to students is around two hours twenty-five minutes. In this part, you have to cover all four sections.
@@ -444,8 +444,6 @@ export default function IELTSExamFeeInPakistan() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

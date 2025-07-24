@@ -5,7 +5,7 @@ import ContactSection from "@/components/blog/ContactSection";
 
 export default function NewYearResolutionsForStudents2025() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -210,7 +210,7 @@ export default function NewYearResolutionsForStudents2025() {
                     FAQs
                   </h2>
                   <div className="space-y-6">
-                    <div className="bg-gray-50 p-6 rounded-lg">
+                    <div className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         What are new year resolution examples for students?
                       </h3>
@@ -220,7 +220,7 @@ export default function NewYearResolutionsForStudents2025() {
                         applications with proper planning and organization.
                       </p>
                     </div>
-                    <div className="bg-gray-50 p-6 rounded-lg">
+                    <div className="bg-white p-6 rounded-lg">
                       <h3 className="text-xl font-bold text-gray-900 mb-3">
                         What is your new year's resolution as a student?
                       </h3>
@@ -282,8 +282,6 @@ export default function NewYearResolutionsForStudents2025() {
 
       <ContactSection />
       <Footer />
-    </div>
-  );
     </div>
   );
     </div>

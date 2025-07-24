@@ -5,7 +5,7 @@ import Footer from '@/components/footer';
 
 export default function GreenCardInternationalStudents() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -328,7 +328,7 @@ export default function GreenCardInternationalStudents() {
                   <p className="text-gray-700 mb-3">
                     The H-1B cap and lottery system creates uncertainty for students transitioning from OPT.
                   </p>
-                  <div className="bg-gray-50 p-4 rounded">
+                  <div className="bg-white p-4 rounded">
                     <h4 className="font-semibold text-gray-800 mb-2">Solutions:</h4>
                     <ul className="text-gray-600 space-y-1">
                       <li>• Pursue STEM OPT extension for more chances</li>
@@ -344,7 +344,7 @@ export default function GreenCardInternationalStudents() {
                   <p className="text-gray-700 mb-3">
                     Green card processing can take several years, creating uncertainty about status.
                   </p>
-                  <div className="bg-gray-50 p-4 rounded">
+                  <div className="bg-white p-4 rounded">
                     <h4 className="font-semibold text-gray-800 mb-2">Solutions:</h4>
                     <ul className="text-gray-600 space-y-1">
                       <li>• Apply for premium processing when available</li>
@@ -409,7 +409,7 @@ export default function GreenCardInternationalStudents() {
             <div className="sticky top-8 space-y-8">
               <ContactForm />
               
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-white p-6 rounded-lg">
                 <h3 className="text-lg font-semibold mb-4 text-gray-900">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
                   <li><a href="#pathways" className="text-blue-600 hover:underline">Green Card Pathways</a></li>
@@ -462,8 +462,6 @@ export default function GreenCardInternationalStudents() {
 
       <ContactSection />
       <Footer />
-    </div>
-  );
     </div>
   );
 }

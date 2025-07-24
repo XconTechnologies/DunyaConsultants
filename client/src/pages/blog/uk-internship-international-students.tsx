@@ -89,7 +89,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-[1440px] mx-auto px-4 py-4">
@@ -278,7 +278,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
                   <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                     Application Tips
                   </h2>
-                  <div className="bg-gray-50 rounded-lg p-6 my-8">
+                  <div className="bg-white rounded-lg p-6 my-8">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">How to Secure an Internship</h3>
                     <div className="space-y-4">
                       <div className="flex items-start">
@@ -334,7 +334,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
                       <div key={index} className="border border-gray-200 rounded-lg">
                         <button
                           onClick={() => toggleFaq(index)}
-                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50"
+                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white"
                         >
                           <span className="font-semibold text-gray-900">{faq.question}</span>
                           {expandedFaq === index ? (

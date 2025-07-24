@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 
 export default function IELTSPreparationTipsAndTricks() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-20">

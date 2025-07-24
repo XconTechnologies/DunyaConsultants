@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function GermanyBlockedAccount() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -449,8 +449,6 @@ export default function GermanyBlockedAccount() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

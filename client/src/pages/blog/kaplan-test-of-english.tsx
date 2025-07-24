@@ -7,8 +7,6 @@ import Footer from '@/components/footer';
 
 export default function KaplanTestOfEnglish() {
   return (
-    <div className="min-h-screen bg-gray-50">
-  return (
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
@@ -179,7 +177,7 @@ export default function KaplanTestOfEnglish() {
               <div className="overflow-x-auto mb-8">
                 <table className="w-full border-collapse border border-gray-300">
                   <thead>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <th className="border border-gray-300 px-4 py-2 text-left">Test</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">Duration</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">Format</th>
@@ -193,7 +191,7 @@ export default function KaplanTestOfEnglish() {
                       <td className="border border-gray-300 px-4 py-2">Computer-based</td>
                       <td className="border border-gray-300 px-4 py-2">200-800</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <td className="border border-gray-300 px-4 py-2 font-semibold">IELTS</td>
                       <td className="border border-gray-300 px-4 py-2">2.75 hours</td>
                       <td className="border border-gray-300 px-4 py-2">Paper/Computer</td>
@@ -205,7 +203,7 @@ export default function KaplanTestOfEnglish() {
                       <td className="border border-gray-300 px-4 py-2">Computer-based</td>
                       <td className="border border-gray-300 px-4 py-2">0-120</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <td className="border border-gray-300 px-4 py-2 font-semibold">PTE</td>
                       <td className="border border-gray-300 px-4 py-2">2 hours</td>
                       <td className="border border-gray-300 px-4 py-2">Computer-based</td>
@@ -222,19 +220,19 @@ export default function KaplanTestOfEnglish() {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <div className="flex items-center p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center p-4 bg-white rounded-lg">
                   <Globe className="h-5 w-5 text-blue-600 mr-3" />
                   <span>United States universities</span>
                 </div>
-                <div className="flex items-center p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center p-4 bg-white rounded-lg">
                   <Globe className="h-5 w-5 text-blue-600 mr-3" />
                   <span>Canadian institutions</span>
                 </div>
-                <div className="flex items-center p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center p-4 bg-white rounded-lg">
                   <Globe className="h-5 w-5 text-blue-600 mr-3" />
                   <span>Australian universities</span>
                 </div>
-                <div className="flex items-center p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center p-4 bg-white rounded-lg">
                   <Globe className="h-5 w-5 text-blue-600 mr-3" />
                   <span>UK educational institutions</span>
                 </div>
@@ -259,7 +257,7 @@ export default function KaplanTestOfEnglish() {
           <div className="lg:col-span-4">
             <div className="sticky top-8 space-y-6">
               {/* Table of Contents */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
                   <li><a href="#format" className="text-blue-600 hover:text-blue-800">Test Format and Structure</a></li>
@@ -335,8 +333,6 @@ export default function KaplanTestOfEnglish() {
         </div>
       </div>
       <Footer />
-    </div>
-  );
     </div>
   );
 }

@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 
 export default function HowToApplyForIELTSInPakistan() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-teal-600 to-blue-600 text-white py-20">
@@ -96,7 +96,7 @@ export default function HowToApplyForIELTSInPakistan() {
                     <p className="text-gray-700 mb-3">
                       Designed for students who want to study at undergraduate or postgraduate levels in English-speaking countries.
                     </p>
-                    <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-gray-900 mb-2">Suitable for:</h4>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• University admissions</li>
@@ -112,7 +112,7 @@ export default function HowToApplyForIELTSInPakistan() {
                     <p className="text-gray-700 mb-3">
                       Designed for people who want to migrate to English-speaking countries or for work and training purposes.
                     </p>
-                    <div className="bg-gray-50 p-4 rounded-lg">
+                    <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-gray-900 mb-2">Suitable for:</h4>
                       <ul className="text-sm text-gray-600 space-y-1">
                         <li>• Immigration purposes</li>
@@ -272,7 +272,7 @@ export default function HowToApplyForIELTSInPakistan() {
                   IELTS Test Fees in Pakistan
                 </h2>
 
-                <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <div className="bg-white p-6 rounded-lg mb-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-white p-4 rounded-lg">
                       <div className="flex items-center mb-2">

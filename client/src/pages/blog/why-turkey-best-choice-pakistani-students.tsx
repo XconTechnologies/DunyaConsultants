@@ -4,7 +4,7 @@ import { Link } from "wouter";
 
 export default function WhyTurkeyBestChoicePakistaniStudents() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -144,7 +144,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               <div className="overflow-x-auto mb-8">
                 <table className="w-full border-collapse border border-gray-300">
                   <thead>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <th className="border border-gray-300 px-4 py-2 text-left">Expense Category</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">Turkey</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">UK</th>
@@ -158,7 +158,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                       <td className="border border-gray-300 px-4 py-2">$15,000-$35,000</td>
                       <td className="border border-gray-300 px-4 py-2">$20,000-$50,000</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <td className="border border-gray-300 px-4 py-2">Living Expenses</td>
                       <td className="border border-gray-300 px-4 py-2">$300-$500/month</td>
                       <td className="border border-gray-300 px-4 py-2">$1,200-$1,800/month</td>
@@ -333,7 +333,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
           <div className="lg:col-span-4">
             <div className="sticky top-8 space-y-6">
               {/* Table of Contents */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
                   <li><a href="#reasons" className="text-blue-600 hover:text-blue-800">Top Reasons</a></li>
@@ -407,8 +407,6 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
           </div>
         </div>
       </div>
-    </div>
-  );
     </div>
   );
 }

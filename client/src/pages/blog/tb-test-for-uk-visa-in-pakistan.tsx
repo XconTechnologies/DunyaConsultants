@@ -29,7 +29,7 @@ export default function TBTestForUKVisaInPakistan() {
 
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -151,7 +151,7 @@ export default function TBTestForUKVisaInPakistan() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500"
+                      className="flex items-start space-x-3 p-4 bg-white rounded-lg border-l-4 border-blue-500"
                     >
                       <FileText className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{doc}</span>
@@ -252,19 +252,19 @@ export default function TBTestForUKVisaInPakistan() {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
                 <div className="space-y-6">
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">How is a TB test for UK done?</h3>
                     <p className="text-gray-700">
                       Your doctor will examine you properly for any physical signs of Tuberculosis. In a few cases, this might include a chest X-ray or CT scan.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">What are TB test requirements for a UK visa?</h3>
                     <p className="text-gray-700">
                       You will need to submit a valid photocopy of your National ID Card or passport as well as a paid receipt for the TB test fee.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">How can I book a UK TB test appointment?</h3>
                     <p className="text-gray-700">
                       You should visit one of the certified clinics to book your appointment for a TB test. You need to get a clearance certificate to be eligible for a UK visa.
@@ -368,8 +368,6 @@ export default function TBTestForUKVisaInPakistan() {
         <ContactSection />
       </div>
       <Footer />
-    </div>
-  );
     </div>
   );
 }

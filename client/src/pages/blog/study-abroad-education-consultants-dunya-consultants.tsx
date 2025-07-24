@@ -253,7 +253,7 @@ const StudyAbroadEducationConsultants = () => {
             {/* Services Overview */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900">Our Comprehensive Services</h3>
-              <div className="bg-gray-50 rounded-lg p-6">
+              <div className="bg-white rounded-lg p-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <h4 className="font-semibold text-gray-900">Academic Services</h4>
@@ -346,7 +346,7 @@ const StudyAbroadEducationConsultants = () => {
           <div className="space-y-8">
             <ContactForm />
             
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-white rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Why Choose Dunya Consultants?</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-start space-x-3">

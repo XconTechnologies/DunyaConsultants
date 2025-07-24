@@ -135,7 +135,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
 
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -237,7 +237,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.05 }}
-                          className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                          className={index % 2 === 0 ? "bg-white" : "bg-white"}
                         >
                           <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{uni.university}</td>
                           <td className="border border-gray-300 px-4 py-3 text-gray-700 text-sm">{uni.programs.join(", ")}</td>
@@ -418,37 +418,37 @@ export default function JanuaryIntakeUniversitiesInUK() {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
                 <div className="space-y-6">
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Which UK universities offer January intake?</h3>
                     <p className="text-gray-700">
                       Many UK universities offer January intake including University of Greenwich, Middlesex University, University of Hertfordshire, London South Bank University, Teesside University, and University of Bedfordshire.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Is January intake harder to get into than September intake?</h3>
                     <p className="text-gray-700">
                       Generally, January intake is less competitive than September intake as fewer students apply, potentially increasing your chances of admission with the same qualifications.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Are all programs available in January intake?</h3>
                     <p className="text-gray-700">
                       No, not all programs offer January intake. Business, engineering, and computer science programs commonly have January options, while some specialized programs may only offer September intake.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">When should I apply for January intake?</h3>
                     <p className="text-gray-700">
                       Application deadlines typically fall between October and December. Start your application process by August-September to ensure all documents are ready on time.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Can I get scholarships for January intake?</h3>
                     <p className="text-gray-700">
                       Some scholarships are available for January intake, but options may be more limited than September intake. Check with individual universities for specific scholarship opportunities.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">What's the difference between January and September graduation?</h3>
                     <p className="text-gray-700">
                       January intake students typically graduate in summer (July-August), which can be advantageous for job hunting as it aligns with the peak recruitment season in many industries.
@@ -575,8 +575,6 @@ export default function JanuaryIntakeUniversitiesInUK() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

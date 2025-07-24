@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 
 export default function UKLLMToPakistaniBar() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -200,7 +200,7 @@ export default function UKLLMToPakistaniBar() {
               <div className="overflow-x-auto mb-8">
                 <table className="w-full border-collapse border border-gray-300">
                   <thead>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <th className="border border-gray-300 px-4 py-2 text-left">Process</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">Duration</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">Cost (PKR)</th>
@@ -212,7 +212,7 @@ export default function UKLLMToPakistaniBar() {
                       <td className="border border-gray-300 px-4 py-2">2-4 months</td>
                       <td className="border border-gray-300 px-4 py-2">15,000-25,000</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <td className="border border-gray-300 px-4 py-2">Document Verification</td>
                       <td className="border border-gray-300 px-4 py-2">1-2 months</td>
                       <td className="border border-gray-300 px-4 py-2">5,000-10,000</td>
@@ -222,7 +222,7 @@ export default function UKLLMToPakistaniBar() {
                       <td className="border border-gray-300 px-4 py-2">1-3 months</td>
                       <td className="border border-gray-300 px-4 py-2">20,000-35,000</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <td className="border border-gray-300 px-4 py-2">Total Process</td>
                       <td className="border border-gray-300 px-4 py-2">4-9 months</td>
                       <td className="border border-gray-300 px-4 py-2">40,000-70,000</td>
@@ -360,7 +360,7 @@ export default function UKLLMToPakistaniBar() {
           <div className="lg:col-span-4">
             <div className="sticky top-8 space-y-6">
               {/* Table of Contents */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
                   <li><a href="#process" className="text-blue-600 hover:text-blue-800">Conversion Process</a></li>
@@ -448,8 +448,6 @@ export default function UKLLMToPakistaniBar() {
         </div>
       </div>
       <Footer />
-    </div>
-  );
     </div>
   );
 }

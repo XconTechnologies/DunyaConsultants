@@ -60,7 +60,7 @@ export default function MOIAcceptedUniversitiesInUK() {
 
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -135,7 +135,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.05 }}
-                          className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                          className={index % 2 === 0 ? "bg-white" : "bg-white"}
                         >
                           <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">{university.rank}</td>
                           <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{university.name}</td>
@@ -260,25 +260,25 @@ export default function MOIAcceptedUniversitiesInUK() {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
                 <div className="space-y-6">
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Can I apply for a UK student visa with MOI?</h3>
                     <p className="text-gray-700">
                       Yes, if your UK university accepts MOI as proof of English language proficiency, you can apply for a UK student visa.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Can I get admission in postgraduate courses with MOI for UK?</h3>
                     <p className="text-gray-700">
                       Students can apply for postgraduate programs with a Medium of Instruction (MOI). It totally depends on the course and the university you select.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">What are some of the best MOI accepted universities in UK?</h3>
                     <p className="text-gray-700">
                       Some top MOI accepted universities include University of Law, University of Hertfordshire, University of South Wales, Nottingham Trent University, and Bangor University.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Does a university with January intake in UK accept MOI?</h3>
                     <p className="text-gray-700">
                       Yes, many universities with January intake accept MOI certificates. Check with specific universities for their intake requirements.
@@ -411,9 +411,6 @@ export default function MOIAcceptedUniversitiesInUK() {
         <ContactSection />
       </div>
       <Footer />
-    
-    </div>
-  );
     </div>
   );
 }

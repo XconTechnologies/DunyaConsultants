@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function UKStudentVisaRatioFromPakistan() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -67,7 +67,7 @@ export default function UKStudentVisaRatioFromPakistan() {
                           <td className="border border-gray-300 px-4 py-2 font-medium">Student Visa</td>
                           <td className="border border-gray-300 px-4 py-2 text-green-700 font-bold">98%</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2 font-medium">Family Visa</td>
                           <td className="border border-gray-300 px-4 py-2 text-green-700 font-bold">86%</td>
                         </tr>
@@ -75,7 +75,7 @@ export default function UKStudentVisaRatioFromPakistan() {
                           <td className="border border-gray-300 px-4 py-2 font-medium">Work Visas</td>
                           <td className="border border-gray-300 px-4 py-2 text-green-700 font-bold">95%</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2 font-medium">Visitor Visas</td>
                           <td className="border border-gray-300 px-4 py-2 text-green-700 font-bold">77%</td>
                         </tr>
@@ -397,8 +397,6 @@ export default function UKStudentVisaRatioFromPakistan() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

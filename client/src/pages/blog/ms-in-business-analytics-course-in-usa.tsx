@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function MSInBusinessAnalyticsCourseInUSA() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -94,7 +94,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                           <td className="border border-gray-300 px-4 py-2">1</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of California, Los Angeles (UCLA)</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">2</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of Notre Dame</td>
                         </tr>
@@ -102,7 +102,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                           <td className="border border-gray-300 px-4 py-2">3</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Purdue University</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">4</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Massachusetts Institute of Technology (MIT)</td>
                         </tr>
@@ -110,7 +110,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                           <td className="border border-gray-300 px-4 py-2">5</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Arizona State University</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">6</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of California, Davis</td>
                         </tr>
@@ -118,7 +118,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                           <td className="border border-gray-300 px-4 py-2">7</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of South California (USC)</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">8</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Texas A & M University</td>
                         </tr>
@@ -126,7 +126,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                           <td className="border border-gray-300 px-4 py-2">9</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">University of California, San Diego</td>
                         </tr>
-                        <tr className="bg-gray-50">
+                        <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-2">10</td>
                           <td className="border border-gray-300 px-4 py-2 font-medium">Michigan State University</td>
                         </tr>
@@ -443,8 +443,6 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

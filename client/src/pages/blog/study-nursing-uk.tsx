@@ -6,7 +6,7 @@ import Footer from '@/components/footer';
 
 export default function StudyNursingUK() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
@@ -120,7 +120,7 @@ export default function StudyNursingUK() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
                   Eligibility Criteria for International Students
                 </h2>
-                <div className="bg-gray-50 rounded-lg p-6">
+                <div className="bg-white rounded-lg p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-3">Academic Requirements</h3>
@@ -378,11 +378,11 @@ export default function StudyNursingUK() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/uk-internship-international-students" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/uk-internship-international-students" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">UK Internships</h4>
                     <p className="text-xs text-gray-600 mt-1">For international students</p>
                   </a>
-                  <a href="/blog/improve-ielts-listening-skills" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/improve-ielts-listening-skills" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">IELTS Preparation</h4>
                     <p className="text-xs text-gray-600 mt-1">Improve listening skills</p>
                   </a>

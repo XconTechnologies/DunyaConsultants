@@ -100,7 +100,7 @@ export default function GRETestFeeInPakistan() {
 
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -169,7 +169,7 @@ export default function GRETestFeeInPakistan() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.05 }}
-                          className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                          className={index % 2 === 0 ? "bg-white" : "bg-white"}
                         >
                           <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{item.testType}</td>
                           <td className="border border-gray-300 px-4 py-3 text-gray-700 font-bold text-green-700">{item.fee}</td>
@@ -364,37 +364,37 @@ export default function GRETestFeeInPakistan() {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
                 <div className="space-y-6">
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">How much does the GRE test cost in Pakistan?</h3>
                     <p className="text-gray-700">
                       The GRE General Test costs $220 USD (approximately PKR 61,600) worldwide, including Pakistan. Additional fees apply for late registration and rescheduling.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Can I pay GRE fees with Pakistani rupees?</h3>
                     <p className="text-gray-700">
                       No, GRE fees must be paid in US dollars using an international credit or debit card. Your bank will convert the amount to PKR at the current exchange rate.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">How many times can I take the GRE?</h3>
                     <p className="text-gray-700">
                       You can take the GRE once every 21 days and up to 5 times in a 12-month period. Each attempt requires paying the full test fee.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Are there any fee waivers available for Pakistani students?</h3>
                     <p className="text-gray-700">
                       ETS offers limited fee reduction vouchers for students demonstrating financial need. Contact ETS directly or check with local educational advisors for availability.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">What documents do I need for GRE registration?</h3>
                     <p className="text-gray-700">
                       You need a valid passport for registration and test day identification. The name on your registration must exactly match your passport.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">How long are GRE scores valid?</h3>
                     <p className="text-gray-700">
                       GRE scores are valid for 5 years from the test date. You can send score reports to universities during this period.
@@ -520,8 +520,6 @@ export default function GRETestFeeInPakistan() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

@@ -111,7 +111,7 @@ export default function ErasmusMundusScholarship() {
 
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -179,7 +179,7 @@ export default function ErasmusMundusScholarship() {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.3, delay: index * 0.05 }}
-                          className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
+                          className={index % 2 === 0 ? "bg-white" : "bg-white"}
                         >
                           <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{item.benefit}</td>
                           <td className="border border-gray-300 px-4 py-3 text-gray-700 font-bold text-blue-700">{item.amount}</td>
@@ -400,37 +400,37 @@ export default function ErasmusMundusScholarship() {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
                 <div className="space-y-6">
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">How competitive is Erasmus Mundus Scholarship?</h3>
                     <p className="text-gray-700">
                       Erasmus Mundus is highly competitive with acceptance rates typically between 5-15% depending on the program. Strong academic records, relevant experience, and excellent application materials are essential.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Can Pakistani students apply for all programs?</h3>
                     <p className="text-gray-700">
                       Yes, Pakistani students are eligible for all Erasmus Mundus programs. Some programs may have specific regional preferences, but most are open to global applicants.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Is work experience required for all programs?</h3>
                     <p className="text-gray-700">
                       Work experience requirements vary by program. While not always mandatory, relevant professional experience significantly strengthens your application, especially for Master's programs.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Can I apply to multiple Erasmus Mundus programs?</h3>
                     <p className="text-gray-700">
                       Yes, you can apply to multiple programs, but each requires a separate application with program-specific requirements and deadlines. Choose programs that align with your academic goals.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">What happens after graduation?</h3>
                     <p className="text-gray-700">
                       Erasmus Mundus graduates receive joint or multiple degrees from partner universities and become part of the alumni network. Many continue with PhD studies or secure positions with international organizations.
                     </p>
                   </div>
-                  <div className="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="p-6 bg-white rounded-lg border border-gray-200">
                     <h3 className="font-bold text-gray-800 mb-2">Are family members allowed to accompany scholars?</h3>
                     <p className="text-gray-700">
                       The scholarship covers only the student. Family members can accompany you, but their visa, accommodation, and living expenses are not covered by the Erasmus Mundus grant.
@@ -561,8 +561,6 @@ export default function ErasmusMundusScholarship() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

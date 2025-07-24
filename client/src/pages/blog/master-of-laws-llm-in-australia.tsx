@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 
 export default function MasterOfLawsLLMAustralia() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
@@ -151,37 +151,37 @@ export default function MasterOfLawsLLMAustralia() {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
                       <FileText className="w-5 h-5 text-blue-600 mr-2" />
                       <span className="font-semibold">Educational Certificates</span>
                     </div>
                   </div>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
                       <DollarSign className="w-5 h-5 text-green-600 mr-2" />
                       <span className="font-semibold">Proof of Finances</span>
                     </div>
                   </div>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
                       <User className="w-5 h-5 text-purple-600 mr-2" />
                       <span className="font-semibold">Identification Proof</span>
                     </div>
                   </div>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
                       <BookOpen className="w-5 h-5 text-orange-600 mr-2" />
                       <span className="font-semibold">Statement of Purpose</span>
                     </div>
                   </div>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
                       <Users className="w-5 h-5 text-red-600 mr-2" />
                       <span className="font-semibold">Recommendation Letter</span>
                     </div>
                   </div>
-                  <div className="bg-gray-50 p-4 rounded-lg">
+                  <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
                       <FileText className="w-5 h-5 text-teal-600 mr-2" />
                       <span className="font-semibold">CV or Resume</span>
@@ -252,7 +252,7 @@ export default function MasterOfLawsLLMAustralia() {
                   Cost of Studying LLM from Best University in Australia for Law
                 </h2>
 
-                <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <div className="bg-white p-6 rounded-lg mb-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">Tuition Fees</h3>

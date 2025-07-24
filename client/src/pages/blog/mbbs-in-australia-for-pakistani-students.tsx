@@ -86,9 +86,9 @@ export default function MBBSInAustraliaForPakistaniStudents() {
 
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white">
       
       {/* Hero Section */}
       <section className="relative h-96 bg-gradient-to-r from-emerald-600 via-teal-700 to-cyan-800 overflow-hidden">
@@ -264,15 +264,15 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">Additional Costs</h3>
                       <div className="space-y-3">
-                        <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <div className="flex justify-between items-center p-3 bg-white rounded">
                           <span className="text-gray-700">Living Expenses</span>
                           <span className="font-semibold">AUD 20,000-25,000/year</span>
                         </div>
-                        <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <div className="flex justify-between items-center p-3 bg-white rounded">
                           <span className="text-gray-700">Accommodation</span>
                           <span className="font-semibold">AUD 15,000-20,000/year</span>
                         </div>
-                        <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
+                        <div className="flex justify-between items-center p-3 bg-white rounded">
                           <span className="text-gray-700">Health Insurance</span>
                           <span className="font-semibold">AUD 500-700/year</span>
                         </div>

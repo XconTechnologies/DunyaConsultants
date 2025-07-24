@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function BangorUniversityAcceptanceRate() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -254,7 +254,7 @@ export default function BangorUniversityAcceptanceRate() {
             <ContactForm />
             
             {/* Quick Facts */}
-            <div className="bg-gray-50 p-6 rounded-lg mb-6">
+            <div className="bg-white p-6 rounded-lg mb-6">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Quick Facts</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li><strong>Founded:</strong> 1884</li>
@@ -304,8 +304,6 @@ export default function BangorUniversityAcceptanceRate() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

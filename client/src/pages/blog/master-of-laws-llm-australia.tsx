@@ -79,7 +79,7 @@ const MasterOfLawsLLMAustralia: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
       <Navigation />
       
@@ -205,7 +205,7 @@ const MasterOfLawsLLMAustralia: React.FC = () => {
                   <p className="mb-4">
                     If you want to study LLM in Australia, you must meet certain requirements:
                   </p>
-                  <div className="bg-gray-50 rounded-lg p-6 my-6">
+                  <div className="bg-white rounded-lg p-6 my-6">
                     <ul className="space-y-3">
                       <li className="flex items-start">
                         <ChevronRight className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
@@ -326,7 +326,7 @@ const MasterOfLawsLLMAustralia: React.FC = () => {
                       <div key={index} className="border border-gray-200 rounded-lg">
                         <button
                           onClick={() => toggleFaq(index)}
-                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50"
+                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white"
                         >
                           <span className="font-semibold text-gray-900">{faq.question}</span>
                           {expandedFaq === index ? (

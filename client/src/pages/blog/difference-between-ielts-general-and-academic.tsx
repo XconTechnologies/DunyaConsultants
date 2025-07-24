@@ -5,8 +5,6 @@ import Footer from '@/components/footer';
 
 export default function DifferenceIELTSGeneralAcademic() {
   return (
-    <div className="min-h-screen bg-gray-50">
-  return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
@@ -135,7 +133,7 @@ export default function DifferenceIELTSGeneralAcademic() {
                 </div>
               </div>
 
-              <div className="bg-gray-50 p-8 rounded-lg mb-8">
+              <div className="bg-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4 text-gray-900">Which Test Should You Choose?</h3>
                 <div className="space-y-4">
                   <div className="bg-blue-100 p-4 rounded-lg">
@@ -280,7 +278,7 @@ export default function DifferenceIELTSGeneralAcademic() {
             <div className="sticky top-8 space-y-8">
               <ContactForm />
               
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-white p-6 rounded-lg">
                 <h3 className="text-lg font-semibold mb-4 text-gray-900">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
                   <li><a href="#test-format" className="text-blue-600 hover:underline">Test Format</a></li>
@@ -308,8 +306,6 @@ export default function DifferenceIELTSGeneralAcademic() {
 
       <ContactSection />
       <Footer />
-    </div>
-  );
     </div>
   );
 }

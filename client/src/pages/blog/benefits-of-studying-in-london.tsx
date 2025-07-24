@@ -5,7 +5,7 @@ import ContactSection from '@/components/blog/ContactSection';
 
 export default function BenefitsOfStudyingInLondon() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white py-20">

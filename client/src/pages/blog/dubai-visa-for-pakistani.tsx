@@ -5,7 +5,7 @@ import ContactSection from '@/components/blog/ContactSection';
 
 export default function DubaiVisaForPakistani() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-20">
@@ -109,7 +109,7 @@ export default function DubaiVisaForPakistani() {
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Students applying for a Dubai Study Visa need to pay a certain study visa price, which may vary based on the course, selected university, and type of application. However, there are some mandatory costs:
                 </p>
-                <div className="bg-gray-50 p-6 rounded-lg mb-4">
+                <div className="bg-white p-6 rounded-lg mb-4">
                   <ul className="space-y-2 text-gray-700">
                     <li><strong>Visa processing fee:</strong> 2300 AED to 2700 AED</li>
                     <li><strong>Refundable visa deposit:</strong> 2500 AED to 3000 AED</li>
@@ -182,7 +182,7 @@ export default function DubaiVisaForPakistani() {
             <ContactForm />
             
             {/* Quick Facts */}
-            <div className="bg-gray-50 p-6 rounded-lg mb-6">
+            <div className="bg-white p-6 rounded-lg mb-6">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Quick Facts</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li><strong>Processing Time:</strong> 10-15 working days</li>

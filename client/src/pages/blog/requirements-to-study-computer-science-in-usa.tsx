@@ -6,9 +6,9 @@ import ContactForm from '@/components/blog/ContactForm';
 export default function RequirementsComputerScienceUSA() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white">
         {/* Hero Section */}
         <div className="relative h-96 bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 overflow-hidden">
           <div className="absolute inset-0 bg-black/30"></div>
@@ -81,7 +81,7 @@ export default function RequirementsComputerScienceUSA() {
 
                   <h2 className="text-3xl font-bold mb-6 text-gray-900">Standardized Test Requirements</h2>
                   
-                  <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                  <div className="bg-white p-6 rounded-lg mb-8">
                     <h3 className="text-xl font-semibold mb-4">English Language Tests</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
@@ -97,7 +97,7 @@ export default function RequirementsComputerScienceUSA() {
                     </div>
                   </div>
 
-                  <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                  <div className="bg-white p-6 rounded-lg mb-8">
                     <h3 className="text-xl font-semibold mb-4">Graduate Entrance Exams</h3>
                     <div className="space-y-4">
                       <div>

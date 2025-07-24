@@ -30,7 +30,7 @@ const OxfordTestAcceptedUniversitiesUK: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-[1440px] mx-auto px-4 py-4">
@@ -254,7 +254,7 @@ const OxfordTestAcceptedUniversitiesUK: React.FC = () => {
                       <div key={index} className="border border-gray-200 rounded-lg">
                         <button
                           onClick={() => toggleFaq(index)}
-                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50"
+                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white"
                         >
                           <span className="font-semibold text-gray-900">{faq.question}</span>
                           {expandedFaq === index ? (

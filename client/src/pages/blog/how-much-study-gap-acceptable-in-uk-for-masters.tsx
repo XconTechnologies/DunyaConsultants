@@ -5,7 +5,7 @@ import Footer from '@/components/footer';
 
 export default function StudyGapAcceptableUKMasters() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -209,15 +209,15 @@ export default function StudyGapAcceptableUKMasters() {
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">Alternative Pathways</h2>
               <div className="space-y-4 mb-8">
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
                   <h3 className="text-lg font-semibold mb-2 text-gray-900">Pre-Master's Programs</h3>
                   <p className="text-gray-700">Consider foundation or pre-Master's programs to bridge the gap and strengthen your application.</p>
                 </div>
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
                   <h3 className="text-lg font-semibold mb-2 text-gray-900">Part-time or Online Programs</h3>
                   <p className="text-gray-700">Explore flexible study options that accommodate your current circumstances.</p>
                 </div>
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
                   <h3 className="text-lg font-semibold mb-2 text-gray-900">Research Programs</h3>
                   <p className="text-gray-700">Consider research-based programs that value practical experience and professional knowledge.</p>
                 </div>
@@ -298,7 +298,7 @@ export default function StudyGapAcceptableUKMasters() {
             <div className="sticky top-8 space-y-8">
               <ContactForm />
               
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-white p-6 rounded-lg">
                 <h3 className="text-lg font-semibold mb-4 text-gray-900">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
                   <li><a href="#understanding-gap" className="text-blue-600 hover:underline">Understanding Study Gap</a></li>
@@ -350,8 +350,6 @@ export default function StudyGapAcceptableUKMasters() {
 
       <ContactSection />
       <Footer />
-    </div>
-  );
     </div>
   );
 }

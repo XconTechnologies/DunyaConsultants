@@ -99,7 +99,7 @@ const TopStudyAbroadCountries: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-[1440px] mx-auto px-4 py-4">
@@ -198,7 +198,7 @@ const TopStudyAbroadCountries: React.FC = () => {
                     opportunities after graduation. Students should think about their academic goals when selecting a country.
                   </p>
 
-                  <div className="bg-gray-50 rounded-lg p-6 my-8">
+                  <div className="bg-white rounded-lg p-6 my-8">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Important Considerations</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="flex items-start">
@@ -321,7 +321,7 @@ const TopStudyAbroadCountries: React.FC = () => {
                       <div key={index} className="border border-gray-200 rounded-lg">
                         <button
                           onClick={() => toggleFaq(index)}
-                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50"
+                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white"
                         >
                           <span className="font-semibold text-gray-900">{faq.question}</span>
                           {expandedFaq === index ? (

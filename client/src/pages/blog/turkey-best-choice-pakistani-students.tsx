@@ -13,7 +13,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
@@ -89,7 +89,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
                   Best Universities in Turkey for International Students
                 </h2>
-                <div className="bg-gray-50 rounded-lg p-6">
+                <div className="bg-white rounded-lg p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {universities.map((university, index) => (
                       <div key={index} className="bg-white rounded-lg p-4 border hover:shadow-md transition-shadow">
@@ -381,11 +381,11 @@ export default function TurkeyBestChoicePakistaniStudents() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/cyprus-visa-pakistan" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/cyprus-visa-pakistan" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">Cyprus Visa for Pakistan</h4>
                     <p className="text-xs text-gray-600 mt-1">Student visa guide</p>
                   </a>
-                  <a href="/blog/study-nursing-uk" className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                  <a href="/blog/study-nursing-uk" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
                     <h4 className="font-medium text-gray-900 text-sm">Study Nursing in UK</h4>
                     <p className="text-xs text-gray-600 mt-1">Complete guide</p>
                   </a>

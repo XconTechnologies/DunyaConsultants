@@ -140,9 +140,9 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
 
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white">
       
       {/* Hero Section */}
       <section className="relative h-96 bg-gradient-to-r from-red-600 via-orange-700 to-yellow-800 overflow-hidden">

@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function WhatIsFoundationYearInUK() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -112,27 +112,27 @@ export default function WhatIsFoundationYearInUK() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">1</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">Coventry University</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">2</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">King's College London</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">3</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">Bath University</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">4</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">Queen Mary, University of London</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">5</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">University of Westminster</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700">6</td>
                         <td className="px-6 py-4 text-gray-700 font-medium">University of Edinburgh</td>
                       </tr>
@@ -430,8 +430,6 @@ export default function WhatIsFoundationYearInUK() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }

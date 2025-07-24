@@ -7,7 +7,7 @@ import Footer from '@/components/footer';
 
 export default function EngineeringLawProgramsCanada() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -370,7 +370,7 @@ export default function EngineeringLawProgramsCanada() {
               <div className="overflow-x-auto mb-8">
                 <table className="w-full border-collapse border border-gray-300">
                   <thead>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <th className="border border-gray-300 px-4 py-2 text-left">Expense</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">Engineering</th>
                       <th className="border border-gray-300 px-4 py-2 text-left">Law</th>
@@ -382,7 +382,7 @@ export default function EngineeringLawProgramsCanada() {
                       <td className="border border-gray-300 px-4 py-2">CAD $45,000-65,000</td>
                       <td className="border border-gray-300 px-4 py-2">CAD $50,000-70,000</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <td className="border border-gray-300 px-4 py-2">Living Expenses</td>
                       <td className="border border-gray-300 px-4 py-2">CAD $15,000-20,000</td>
                       <td className="border border-gray-300 px-4 py-2">CAD $15,000-20,000</td>
@@ -392,7 +392,7 @@ export default function EngineeringLawProgramsCanada() {
                       <td className="border border-gray-300 px-4 py-2">CAD $2,000-3,000</td>
                       <td className="border border-gray-300 px-4 py-2">CAD $2,500-3,500</td>
                     </tr>
-                    <tr className="bg-gray-50">
+                    <tr className="bg-white">
                       <td className="border border-gray-300 px-4 py-2">Total (per year)</td>
                       <td className="border border-gray-300 px-4 py-2">CAD $62,000-88,000</td>
                       <td className="border border-gray-300 px-4 py-2">CAD $67,500-93,500</td>
@@ -484,7 +484,7 @@ export default function EngineeringLawProgramsCanada() {
           <div className="lg:col-span-4">
             <div className="sticky top-8 space-y-6">
               {/* Table of Contents */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
                   <li><a href="#engineering" className="text-blue-600 hover:text-blue-800">Top Engineering Universities</a></li>
@@ -577,8 +577,6 @@ export default function EngineeringLawProgramsCanada() {
         </div>
       </div>
       <Footer />
-    </div>
-  );
     </div>
   );
 }

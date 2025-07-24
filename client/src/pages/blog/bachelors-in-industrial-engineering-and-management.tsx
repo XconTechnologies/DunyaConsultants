@@ -5,7 +5,7 @@ import Footer from '@/components/footer';
 
 export default function BachelorsIndustrialEngineeringAndManagement() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       {/* Hero Section */}
@@ -118,7 +118,7 @@ export default function BachelorsIndustrialEngineeringAndManagement() {
               </div>
             </div>
 
-            <div className="bg-gray-50 p-8 rounded-lg">
+            <div className="bg-white p-8 rounded-lg">
               <h2 className="text-3xl font-bold mb-6 text-gray-900">FAQs</h2>
               <div className="space-y-6">
                 <div>
@@ -145,7 +145,7 @@ export default function BachelorsIndustrialEngineeringAndManagement() {
             <div className="sticky top-8 space-y-8">
               <ContactForm />
               
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-white p-6 rounded-lg">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Quick Facts</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between">
@@ -174,8 +174,6 @@ export default function BachelorsIndustrialEngineeringAndManagement() {
       <ContactSection />
 
       <Footer />
-    </div>
-  );
     </div>
   );
 }

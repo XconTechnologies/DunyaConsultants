@@ -6,7 +6,7 @@ import ContactSection from '../../components/blog/ContactSection';
 export default function CanadaStudentVisaForPakistani() {
   return (
     
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
@@ -137,27 +137,27 @@ export default function CanadaStudentVisaForPakistani() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">Valid Passport</td>
                         <td className="px-6 py-4 text-gray-700">Must be valid for entire study duration</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">Acceptance Letter</td>
                         <td className="px-6 py-4 text-gray-700">From DLI (Designated Learning Institution)</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">Criminal History Certificate</td>
                         <td className="px-6 py-4 text-gray-700">Clear criminal background check</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">Financial Documents</td>
                         <td className="px-6 py-4 text-gray-700">Latest bank statements proving sufficient funds</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">Medical Exam</td>
                         <td className="px-6 py-4 text-gray-700">Health examination from approved panel physician</td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-white">
                         <td className="px-6 py-4 text-gray-700 font-medium">English Proficiency</td>
                         <td className="px-6 py-4 text-gray-700">IELTS, TOEFL, or other accepted test scores</td>
                       </tr>
@@ -414,8 +414,6 @@ export default function CanadaStudentVisaForPakistani() {
       </div>
       <Footer />
     
-    </div>
-  );
     </div>
   );
 }
