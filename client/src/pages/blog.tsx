@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Search, Grid, List, Calendar, Clock, User, Eye, TrendingUp, ArrowRight, Tag, Globe, BookOpen, Award, Heart, Users, Star, ArrowLeft } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import type { BlogPost } from "@shared/schema";
+import type { BlogPost as DBBlogPost } from "@shared/schema";
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 
@@ -176,9 +176,42 @@ const categories = [
   { name: "Study in Canada", icon: Globe, count: blogPosts.filter(p => p.category === "Study in Canada").length }
 ];
 
+// Helper functions for dynamic styling
+function getCategoryGradient(category: string): string {
+  const gradients: Record<string, string> = {
+    "Test Preparation": "from-emerald-600 to-teal-600",
+    "Visa Guides": "from-blue-600 to-indigo-600", 
+    "Study Abroad": "from-purple-600 to-violet-600",
+    "Legal Education": "from-orange-600 to-red-600",
+    "Healthcare Studies": "from-pink-600 to-rose-600",
+    "University Partnership": "from-cyan-600 to-blue-600",
+    "Study Destinations": "from-green-600 to-emerald-600",
+    "UK Immigration": "from-indigo-600 to-purple-600",
+    "Study in Canada": "from-red-600 to-pink-600",
+    "General": "from-gray-600 to-slate-600"
+  };
+  return gradients[category || "General"] || "from-blue-600 to-purple-600";
+}
+
+function getCategoryBadgeColor(category: string): string {
+  const colors: Record<string, string> = {
+    "Test Preparation": "bg-emerald-500",
+    "Visa Guides": "bg-blue-500",
+    "Study Abroad": "bg-purple-500", 
+    "Legal Education": "bg-orange-500",
+    "Healthcare Studies": "bg-pink-500",
+    "University Partnership": "bg-cyan-500",
+    "Study Destinations": "bg-green-500",
+    "UK Immigration": "bg-indigo-500",
+    "Study in Canada": "bg-red-500",
+    "General": "bg-gray-500"
+  };
+  return colors[category || "General"] || "bg-blue-500";
+}
+
 // Dynamic Blog Post Component
 function DynamicBlogPost({ slug }: { slug: string }) {
-  const { data: blogPost, isLoading, error } = useQuery<BlogPost>({
+  const { data: blogPost, isLoading, error } = useQuery<DBBlogPost>({
     queryKey: [`/api/blog-posts/${slug}`],
   });
 
@@ -208,111 +241,171 @@ function DynamicBlogPost({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <Link 
-            href="/blog" 
-            className="inline-flex items-center text-blue-200 hover:text-white mb-6 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
-          </Link>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="mb-4">
-              <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+      {/* Hero Section - Using dynamic gradient based on category */}
+      <div className={`bg-gradient-to-r ${getCategoryGradient(blogPost.category)} text-white py-20`}>
+        <div className="max-w-[1440px] mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className={`${getCategoryBadgeColor(blogPost.category)} text-white px-4 py-2 rounded-full text-sm font-medium`}>
                 {blogPost.category || 'General'}
               </span>
             </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
               {blogPost.title}
             </h1>
-            
             {blogPost.excerpt && (
-              <p className="text-xl text-blue-100 mb-6">
+              <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
                 {blogPost.excerpt}
               </p>
             )}
-            
-            <div className="flex flex-wrap items-center gap-6 text-sm text-blue-200">
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
               <div className="flex items-center">
-                <User className="h-4 w-4 mr-2" />
-                Dunya Consultants
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>{new Date(blogPost.createdAt || new Date()).toLocaleDateString()}</span>
               </div>
               <div className="flex items-center">
-                <Calendar className="h-4 w-4 mr-2" />
-                {new Date(blogPost.createdAt).toLocaleDateString()}
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
               </div>
               <div className="flex items-center">
-                <Clock className="h-4 w-4 mr-2" />
-                5 min read
+                <Clock className="w-5 h-5 mr-2" />
+                <span>8 min read</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Article Content */}
-          <div className="lg:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="prose prose-lg max-w-none"
-            >
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
+              {/* Featured Image */}
               {blogPost.featuredImage && (
-                <img 
-                  src={blogPost.featuredImage} 
-                  alt={blogPost.title}
-                  className="w-full h-64 object-cover rounded-lg mb-8"
-                />
+                <div className="mb-8">
+                  <img 
+                    src={blogPost.featuredImage} 
+                    alt={blogPost.title}
+                    className="w-full h-64 object-cover rounded-lg"
+                  />
+                </div>
               )}
 
-              <div dangerouslySetInnerHTML={{ __html: blogPost.content }} />
-            </motion.div>
+              {/* Article Content */}
+              <div className="prose prose-lg max-w-none">
+                <div dangerouslySetInnerHTML={{ __html: blogPost.content || '' }} />
+              </div>
+
+              {/* Tags */}
+              {blogPost.tags && blogPost.tags.length > 0 && (
+                <div className="mt-8 pt-6 border-t border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Tags</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {blogPost.tags.map((tag, index) => (
+                      <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Contact Form */}
+              <div className="mt-12 bg-blue-50 rounded-lg p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Need Expert Guidance?</h3>
+                <p className="text-gray-700 mb-6">
+                  Get personalized consultation for your study abroad journey. Our expert counselors are here to help you every step of the way.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="flex items-center text-gray-700">
+                    <Calendar className="w-5 h-5 text-blue-600 mr-3" />
+                    <span>Free Consultation</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <Clock className="w-5 h-5 text-blue-600 mr-3" />
+                    <span>Quick Response</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <User className="w-5 h-5 text-blue-600 mr-3" />
+                    <span>Expert Counselors</span>
+                  </div>
+                  <div className="flex items-center text-gray-700">
+                    <Globe className="w-5 h-5 text-blue-600 mr-3" />
+                    <span>Multiple Destinations</span>
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <Link 
+                    href="/contact"
+                    className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+                  >
+                    Get Free Consultation
+                  </Link>
+                </div>
+              </div>
+            </article>
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-4">
-            <div className="sticky top-8 space-y-8">
-              {/* Author Card */}
-              <div className="bg-gray-50 rounded-lg p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <User className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="font-semibold text-gray-900">Dunya Consultants</h3>
-                    <p className="text-sm text-gray-600">Education Expert</p>
-                  </div>
+          <div className="lg:col-span-1 space-y-6">
+            {/* Quick Facts */}
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Facts</h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Category:</span>
+                  <span className="font-medium">{blogPost.category}</span>
                 </div>
-                <p className="text-sm text-gray-700">
-                  Your trusted partner for international education and visa consultancy services.
-                </p>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Published:</span>
+                  <span className="font-medium">{new Date(blogPost.createdAt || new Date()).toLocaleDateString()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Reading Time:</span>
+                  <span className="font-medium">8 min</span>
+                </div>
               </div>
+            </div>
 
-              {/* Contact Card */}
-              <div className="bg-blue-50 rounded-lg p-6">
-                <h3 className="font-semibold text-gray-900 mb-4">Need Help?</h3>
-                <p className="text-sm text-gray-700 mb-4">
-                  Get personalized guidance for your study abroad journey.
-                </p>
-                <Link 
-                  href="/contact"
-                  className="inline-block w-full text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Contact Us
+            {/* Contact Card */}
+            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-6">
+              <h3 className="font-semibold mb-3">Need Help?</h3>
+              <p className="text-sm text-blue-100 mb-4">
+                Get personalized guidance for your study abroad journey.
+              </p>
+              <div className="space-y-2 text-sm mb-4">
+                <div className="flex items-center">
+                  <User className="w-4 h-4 mr-2" />
+                  <span>Expert Counselors</span>
+                </div>
+                <div className="flex items-center">
+                  <Clock className="w-4 h-4 mr-2" />
+                  <span>24/7 Support</span>
+                </div>
+              </div>
+              <Link 
+                href="/contact"
+                className="inline-block w-full text-center bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors font-semibold"
+              >
+                Contact Us
+              </Link>
+            </div>
+
+            {/* Related Articles */}
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
+              <div className="space-y-3">
+                <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                  Study Abroad Guide 2025
+                </Link>
+                <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                  University Selection Tips
+                </Link>
+                <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                  Visa Application Process
                 </Link>
               </div>
             </div>
