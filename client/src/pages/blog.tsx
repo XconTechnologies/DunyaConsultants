@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Search, Grid, List, Calendar, Clock, User, Eye, TrendingUp, ArrowRight, Tag, Globe, BookOpen, Award, Heart, Users, Star, ArrowLeft } from "lucide-react";
+import { Search, Grid, List, Calendar, Clock, User, Eye, TrendingUp, ArrowRight, Tag, Globe, BookOpen, Award, Heart, Users, Star, ArrowLeft, Target, MessageCircle } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import type { BlogPost as DBBlogPost } from "@shared/schema";
@@ -361,45 +361,114 @@ function DynamicBlogPost({ slug }: { slug: string }) {
           <div className="lg:col-span-1 space-y-6">
             {/* Quick Facts */}
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Facts</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <Target className="w-5 h-5 mr-2 text-blue-500" />
+                Quick Facts
+              </h3>
               <div className="space-y-3 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Category:</span>
-                  <span className="font-medium">{blogPost.category}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Published:</span>
-                  <span className="font-medium">{new Date(blogPost.createdAt || new Date()).toLocaleDateString()}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Reading Time:</span>
-                  <span className="font-medium">8 min</span>
-                </div>
+                {blogPost.slug === 'from-uk-llm-to-pakistani-bar' ? (
+                  <>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">UK LLM Duration:</span>
+                      <span className="font-medium">1 Year</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Pakistan LLB:</span>
+                      <span className="font-medium">5 Years</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Conversion Course:</span>
+                      <span className="font-medium">1 Year</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Bar Registration:</span>
+                      <span className="font-medium">Required</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Practice System:</span>
+                      <span className="font-medium">Advocacy</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Category:</span>
+                      <span className="font-medium">{blogPost.category}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Published:</span>
+                      <span className="font-medium">{new Date(blogPost.createdAt || new Date()).toLocaleDateString()}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Reading Time:</span>
+                      <span className="font-medium">8 min</span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
-            {/* Contact Card */}
-            <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-6">
-              <h3 className="font-semibold mb-3">Need Help?</h3>
-              <p className="text-sm text-blue-100 mb-4">
-                Get personalized guidance for your study abroad journey.
-              </p>
-              <div className="space-y-2 text-sm mb-4">
-                <div className="flex items-center">
-                  <User className="w-4 h-4 mr-2" />
-                  <span>Expert Counselors</span>
+            {/* Contact Form */}
+            <div className="bg-white rounded-lg shadow-sm p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                <MessageCircle className="w-5 h-5 mr-2 text-blue-500" />
+                Quick Inquiry
+              </h3>
+              <form className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  />
                 </div>
-                <div className="flex items-center">
-                  <Clock className="w-4 h-4 mr-2" />
-                  <span>24/7 Support</span>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  />
+                </div>
+                <div>
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+                    <option value="">Select Country</option>
+                    <option value="uk">United Kingdom</option>
+                    <option value="canada">Canada</option>
+                    <option value="australia">Australia</option>
+                    <option value="usa">United States</option>
+                    <option value="germany">Germany</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <textarea
+                    placeholder="Your Message"
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
+                >
+                  Send Message
+                </button>
+              </form>
+              <div className="mt-4 pt-4 border-t border-gray-200">
+                <div className="flex items-center justify-between text-xs text-gray-600">
+                  <span>Call directly:</span>
+                  <a href="tel:+923041110947" className="text-blue-600 hover:text-blue-800 font-medium">
+                    +92 304 1110947
+                  </a>
                 </div>
               </div>
-              <Link 
-                href="/contact"
-                className="inline-block w-full text-center bg-white text-blue-600 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors font-semibold"
-              >
-                Contact Us
-              </Link>
             </div>
 
             {/* Related Articles */}
