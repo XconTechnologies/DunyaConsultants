@@ -254,106 +254,53 @@ export default function BlogArchive() {
             ) : (
               <div className={
                 viewMode === "grid" 
-                  ? "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8" 
-                  : "space-y-6"
-              }>
+                  ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" 
+                  : "space-y-8"
+              } style={{ padding: '0', margin: '0' }}>
                 {filteredPosts.map((post, index) => (
                   <motion.article
                     key={post.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className={`bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 group ${
+                    className={`bg-white rounded-none shadow-sm border-0 overflow-hidden hover:shadow-md transition-all duration-300 group ${
                       viewMode === "list" ? "flex flex-row" : "flex flex-col"
                     }`}
+                    style={{ marginBottom: '30px' }}
                   >
                     <div className={viewMode === "list" ? "w-1/3" : "w-full"}>
-                      <div className="relative overflow-hidden bg-gray-200 aspect-[16/9]">
-                        <img
-                          src={post.image}
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          onError={(e) => {
-                            e.currentTarget.src = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-                          }}
-                        />
-                        {post.featured && (
-                          <div className="absolute top-4 left-4">
-                            <span className="bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                              <Star className="h-3 w-3" />
-                              <span>Featured</span>
-                            </span>
-                          </div>
-                        )}
-                        {post.trending && (
-                          <div className="absolute top-4 right-4">
-                            <span className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                              <TrendingUp className="h-3 w-3" />
-                              <span>Trending</span>
-                            </span>
-                          </div>
-                        )}
+                      <div className="relative overflow-hidden bg-gray-100" style={{ aspectRatio: '16/10' }}>
+                        <Link href={post.href}>
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="w-full h-full object-cover transition-transform duration-300 cursor-pointer"
+                            onError={(e) => {
+                              e.currentTarget.src = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
+                            }}
+                          />
+                        </Link>
                       </div>
                     </div>
 
-                    <div className={`p-6 flex-1 ${viewMode === "list" ? "flex flex-col justify-between" : ""}`}>
+                    <div className={`${viewMode === "list" ? "p-6 flex-1 flex flex-col justify-between" : "pt-4 pb-4"}`}>
                       <div>
-                        <div className="flex items-center space-x-4 text-sm text-gray-500 mb-3">
-                          <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs font-medium">
-                            {post.category}
-                          </span>
-                          <div className="flex items-center space-x-1">
-                            <Calendar className="h-3 w-3" />
-                            <span>{post.date}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Clock className="h-3 w-3" />
-                            <span>{post.readTime}</span>
-                          </div>
-                        </div>
+                        <Link href={post.href}>
+                          <h4 className="text-base font-medium text-gray-900 mb-2 hover:text-blue-600 transition-colors duration-200 line-clamp-2 leading-snug cursor-pointer">
+                            {post.title}
+                          </h4>
+                        </Link>
 
-                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
-                          {post.title}
-                        </h3>
-
-                        <p className="text-gray-600 mb-4 line-clamp-3">
+                        <p className="text-gray-600 text-sm mb-3 line-clamp-2 leading-relaxed">
                           {post.excerpt}
                         </p>
-
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {post.tags.slice(0, 3).map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="bg-gray-100 text-gray-600 px-2 py-1 rounded-md text-xs font-medium"
-                            >
-                              #{tag}
-                            </span>
-                          ))}
-                          {post.tags.length > 3 && (
-                            <span className="text-gray-400 text-xs">
-                              +{post.tags.length - 3} more
-                            </span>
-                          )}
-                        </div>
                       </div>
 
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4 text-sm text-gray-500">
-                          <div className="flex items-center space-x-1">
-                            <User className="h-3 w-3" />
-                            <span>{post.author}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Eye className="h-3 w-3" />
-                            <span>{post.views.toLocaleString()}</span>
-                          </div>
-                        </div>
-
+                      <div className="mt-auto">
                         <Link href={post.href}>
-                          <button className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-700 font-medium text-sm group">
-                            <span>Read More</span>
-                            <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-200" />
-                          </button>
+                          <span className="text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors duration-200 cursor-pointer">
+                            Read More
+                          </span>
                         </Link>
                       </div>
                     </div>
