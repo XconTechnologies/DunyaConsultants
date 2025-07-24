@@ -143,7 +143,7 @@ const MasterOfLawsLLMAustralia: React.FC = () => {
 
               <div className="p-8">
                 {/* Article Content */}
-                <div className="prose prose-lg max-w-none">
+                <div>
                   <p className="text-xl text-gray-700 mb-6 leading-relaxed">
                     The Master's degree in law (LL.M.) is a postgraduate degree that helps students get advanced knowledge 
                     in legal studies. Australia is one of the best places for studying master in law and has 25 universities 

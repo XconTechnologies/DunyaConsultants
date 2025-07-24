@@ -5,6 +5,8 @@ import Footer from '@/components/footer';
 
 export default function IELTSAcceptability2025() {
   return (
+    <div className="min-h-screen bg-gray-50">
+  return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
@@ -23,11 +25,11 @@ export default function IELTSAcceptability2025() {
       </div>
 
       {/* Main Content */}
-      <div className="w-[1440px] mx-auto px-8 py-16">
+      <div className="max-w-[1440px] mx-auto px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Article Content */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="prose prose-lg max-w-none">
+            <div className="bg-white rounded-lg shadow-sm p-8">
               <p className="text-lg text-gray-700 leading-relaxed">
                 Are you willing to go abroad this year? If yes, then you might need to take the IELTS test. IELTS Academic is the best option for students who want to study in another country. This test is accepted in 140 countries and is required for studying, working, and migrating to recognized English speaking countries like Australia, Canada, the UK, the USA, New Zealand, and Ireland. IELTS (International English Language Testing System) is a well-known English test for people whose first language is not English.
               </p>
@@ -274,6 +276,8 @@ export default function IELTSAcceptability2025() {
       />
 
       <Footer />
+    </div>
+  );
     </div>
   );
 }

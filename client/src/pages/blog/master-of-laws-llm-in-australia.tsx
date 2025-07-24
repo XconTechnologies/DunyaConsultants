@@ -11,7 +11,7 @@ export default function MasterOfLawsLLMAustralia() {
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
-        <div className="max-w-[1440px] mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
@@ -57,7 +57,7 @@ export default function MasterOfLawsLLMAustralia() {
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none">
+              <div>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   The Master's degree in law (LL.M.) is a postgraduate degree that helps students get advanced knowledge in legal studies. Australia is one of the best places for studying master in law and has 25 universities that offer this program. It is the third most popular country for international law students, after the USA and the UK.
                 </p>

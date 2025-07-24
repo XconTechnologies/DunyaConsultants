@@ -160,7 +160,7 @@ const TopStudyAbroadCountries: React.FC = () => {
 
               <div className="p-8">
                 {/* Article Content */}
-                <div className="prose prose-lg max-w-none">
+                <div>
                   <p className="text-xl text-gray-700 mb-6 leading-relaxed">
                     Studying in another country is the best and life-changing experience. It helps students get high quality 
                     education, explore new cultures, and find better career opportunities. Every year, over 700,000 students 

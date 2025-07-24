@@ -5,7 +5,8 @@ import ContactForm from '@/components/blog/ContactForm';
 
 export default function Top10UniversitiesLondon() {
   return (
-    <>
+    
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
@@ -22,12 +23,12 @@ export default function Top10UniversitiesLondon() {
         </div>
 
         {/* Main Content */}
-        <div className="w-[1440px] mx-auto bg-white shadow-lg">
+        <div className="max-w-[1440px] mx-auto bg-white shadow-lg">
           <div className="px-16 py-16">
             <div className="flex gap-12">
               {/* Main Content */}
-              <div className="flex-1">
-                <article className="prose prose-lg max-w-none">
+              <div className="lg:col-span-3">
+                <article className="bg-white rounded-lg shadow-sm p-8">
                   <div className="mb-8">
                     <p className="text-gray-600 text-lg leading-relaxed">
                       London is a famous city popular for its culture as well as its best education system. It is the capital of the United Kingdom and has some of the best universities in London as compared to any other city in the country. No doubt, staying in this city can be very expensive but there are many public transport options like bike lanes that can help students to save money. If you are planning to study in top universities in London, it is important to search for the best one for you.
@@ -363,6 +364,7 @@ export default function Top10UniversitiesLondon() {
         />
       </div>
       <Footer />
-    </>
+    
+    </div>
   );
 }

@@ -59,11 +59,12 @@ export default function MOIAcceptedUniversitiesInUK() {
   ];
 
   return (
-    <>
+    
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
-      <div className="w-[1440px] mx-auto">
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="relative h-[500px] bg-gradient-to-r from-emerald-600 via-teal-700 to-cyan-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-emerald-600 via-teal-700 to-cyan-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -77,10 +78,10 @@ export default function MOIAcceptedUniversitiesInUK() {
         </div>
 
         {/* Main Content */}
-        <div className="flex gap-8 p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Article */}
-          <div className="flex-1">
-            <article className="prose prose-lg max-w-none">
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -188,7 +189,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                       <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                         {step.step}
                       </div>
-                      <div className="flex-1">
+                      <div className="lg:col-span-3">
                         <h3 className="text-lg font-semibold text-gray-800 mb-2">{step.title}</h3>
                         <p className="text-gray-600">{step.description}</p>
                       </div>
@@ -410,6 +411,7 @@ export default function MOIAcceptedUniversitiesInUK() {
         <ContactSection />
       </div>
       <Footer />
-    </>
+    
+    </div>
   );
 }

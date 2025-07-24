@@ -4,6 +4,8 @@ import { Link } from "wouter";
 
 export default function WhyTurkeyBestChoicePakistaniStudents() {
   return (
+    <div className="min-h-screen bg-gray-50">
+  return (
     <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-gradient-to-r from-red-600 to-yellow-600 text-white">
@@ -62,7 +64,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="prose prose-lg max-w-none"
+              className="bg-white rounded-lg shadow-sm p-8"
             >
               <img 
                 src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
@@ -405,6 +407,8 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
           </div>
         </div>
       </div>
+    </div>
+  );
     </div>
   );
 }

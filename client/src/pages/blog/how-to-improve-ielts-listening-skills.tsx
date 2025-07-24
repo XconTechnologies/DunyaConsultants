@@ -11,7 +11,7 @@ export default function HowToImproveIELTSListeningSkills() {
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-pink-600 to-purple-600 text-white py-20">
-        <div className="max-w-[1440px] mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="bg-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium">
@@ -57,7 +57,7 @@ export default function HowToImproveIELTSListeningSkills() {
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none">
+              <div>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   The IELTS Listening test can be challenging, but with the right strategies and consistent practice, you can significantly improve your performance. This comprehensive guide will provide you with proven techniques to enhance your listening skills and achieve your target band score.
                 </p>

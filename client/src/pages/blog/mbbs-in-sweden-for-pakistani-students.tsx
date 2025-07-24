@@ -95,7 +95,8 @@ export default function MBBSInSwedenForPakistaniStudents() {
   ];
 
   return (
-    <>
+    
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       <div className="min-h-screen bg-gray-50">
       
@@ -153,7 +154,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="prose prose-lg max-w-none"
+              className="bg-white rounded-lg shadow-sm p-8"
             >
               
               {/* Introduction */}
@@ -483,6 +484,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
       
       <Footer />
       </div>
-    </>
+    
+    </div>
   );
 }

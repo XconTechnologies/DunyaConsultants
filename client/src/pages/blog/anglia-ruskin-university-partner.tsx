@@ -7,6 +7,8 @@ import Footer from '@/components/footer';
 
 export default function AngliaRuskinUniversityPartner() {
   return (
+    <div className="min-h-screen bg-gray-50">
+  return (
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
@@ -70,7 +72,7 @@ export default function AngliaRuskinUniversityPartner() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="prose prose-lg max-w-none"
+              className="bg-white rounded-lg shadow-sm p-8"
             >
               <img 
                 src="https://images.unsplash.com/photo-1607013251379-e6eecfffe234?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
@@ -428,6 +430,8 @@ export default function AngliaRuskinUniversityPartner() {
         </div>
       </div>
       <Footer />
+    </div>
+  );
     </div>
   );
 }

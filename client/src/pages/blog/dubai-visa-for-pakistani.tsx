@@ -5,28 +5,33 @@ import ContactSection from '@/components/blog/ContactSection';
 
 export default function DubaiVisaForPakistani() {
   return (
-    <>
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
-      <div className="w-[1440px] mx-auto">
-        {/* Hero Section */}
-        <div className="relative h-[500px] bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"
-            }}
-          />
-          <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4">Dubai Study Visa Requirements from Pakistan</h1>
-            <p className="text-2xl font-light">Complete guide to obtaining your Dubai student visa from Pakistan</p>
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                Visa Guide
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Dubai Study Visa Requirements from Pakistan
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Complete guide to obtaining your Dubai student visa from Pakistan with all requirements and processes.
+            </p>
           </div>
         </div>
 
-        {/* Main Content */}
-        <div className="flex gap-8 p-8">
-          {/* Main Article */}
-          <div className="flex-1">
-            <article className="prose prose-lg max-w-none">
+      </div>
+
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -211,6 +216,6 @@ export default function DubaiVisaForPakistani() {
         <ContactSection />
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

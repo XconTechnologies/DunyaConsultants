@@ -150,7 +150,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
 
               <div className="p-8">
                 {/* Article Content */}
-                <div className="prose prose-lg max-w-none">
+                <div>
                   <p className="text-xl text-gray-700 mb-6 leading-relaxed">
                     Are you a student or recent graduate looking for an internship in the UK? According to the ISE 
                     (Institute of Student Employers), almost 50% of interns in the UK get full-time job offers from 

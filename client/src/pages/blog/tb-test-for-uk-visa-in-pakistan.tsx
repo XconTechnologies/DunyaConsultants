@@ -28,11 +28,12 @@ export default function TBTestForUKVisaInPakistan() {
   ];
 
   return (
-    <>
+    
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
-      <div className="w-[1440px] mx-auto">
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="relative h-[500px] bg-gradient-to-r from-red-600 via-rose-700 to-pink-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-red-600 via-rose-700 to-pink-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -46,10 +47,10 @@ export default function TBTestForUKVisaInPakistan() {
         </div>
 
         {/* Main Content */}
-        <div className="flex gap-8 p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Article */}
-          <div className="flex-1">
-            <article className="prose prose-lg max-w-none">
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -199,7 +200,7 @@ export default function TBTestForUKVisaInPakistan() {
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
                             <MapPin className="h-6 w-6 text-red-500 mt-1 flex-shrink-0" />
-                            <div className="flex-1">
+                            <div className="lg:col-span-3">
                               <h3 className="font-bold text-gray-800 mb-2">{center.name}</h3>
                               <p className="text-gray-600 mb-2 flex items-center">
                                 <Building className="h-4 w-4 mr-2" />
@@ -367,6 +368,7 @@ export default function TBTestForUKVisaInPakistan() {
         <ContactSection />
       </div>
       <Footer />
-    </>
+    
+    </div>
   );
 }

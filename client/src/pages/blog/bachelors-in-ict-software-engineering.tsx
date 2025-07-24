@@ -11,7 +11,7 @@ export default function BachelorsInICTSoftwareEngineering() {
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-20">
-        <div className="max-w-[1440px] mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="bg-emerald-500 text-white px-4 py-2 rounded-full text-sm font-medium">
@@ -57,7 +57,7 @@ export default function BachelorsInICTSoftwareEngineering() {
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none">
+              <div>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   The Bachelor's in ICT (Information and Communication Technology) with a focus on Software Engineering is one of the most sought-after degree programs in today's digital world. This comprehensive guide explores everything you need to know about pursuing this degree, from curriculum structure to career opportunities.
                 </p>

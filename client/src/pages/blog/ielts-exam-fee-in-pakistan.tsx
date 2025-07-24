@@ -58,11 +58,12 @@ export default function IELTSExamFeeInPakistan() {
   ];
 
   return (
-    <>
+    
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
-      <div className="w-[1440px] mx-auto">
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="relative h-[500px] bg-gradient-to-r from-indigo-600 via-purple-700 to-pink-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-indigo-600 via-purple-700 to-pink-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -76,10 +77,10 @@ export default function IELTSExamFeeInPakistan() {
         </div>
 
         {/* Main Content */}
-        <div className="flex gap-8 p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Article */}
-          <div className="flex-1">
-            <article className="prose prose-lg max-w-none">
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -151,7 +152,7 @@ export default function IELTSExamFeeInPakistan() {
                             <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white">
                               {section.icon}
                             </div>
-                            <div className="flex-1">
+                            <div className="lg:col-span-3">
                               <div className="flex items-center justify-between mb-2">
                                 <h3 className="text-xl font-bold text-gray-800">{section.section}</h3>
                                 <span className="text-sm font-semibold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full">
@@ -244,7 +245,7 @@ export default function IELTSExamFeeInPakistan() {
                             <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                               {center.city.charAt(0)}
                             </div>
-                            <div className="flex-1">
+                            <div className="lg:col-span-3">
                               <h3 className="text-lg font-bold text-gray-800 mb-1">{center.center}</h3>
                               <p className="text-indigo-600 font-semibold mb-2">{center.city}</p>
                               <p className="text-gray-600 text-sm">{center.address}</p>
@@ -442,6 +443,7 @@ export default function IELTSExamFeeInPakistan() {
         <ContactSection />
       </div>
       <Footer />
-    </>
+    
+    </div>
   );
 }

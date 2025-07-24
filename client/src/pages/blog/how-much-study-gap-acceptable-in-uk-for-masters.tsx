@@ -5,6 +5,8 @@ import Footer from '@/components/footer';
 
 export default function StudyGapAcceptableUKMasters() {
   return (
+    <div className="min-h-screen bg-gray-50">
+  return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
@@ -18,11 +20,11 @@ export default function StudyGapAcceptableUKMasters() {
       </div>
 
       {/* Main Content */}
-      <div className="w-[1440px] mx-auto px-6 py-16">
+      <div className="max-w-[1440px] mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <div className="prose prose-lg max-w-none">
+            <div className="bg-white rounded-lg shadow-sm p-8">
               <div className="mb-8">
                 <p className="text-lg text-gray-700 leading-relaxed">
                   One of the most common concerns among international students planning to pursue a Master's degree in the UK is the acceptability of study gaps. Whether you've taken time off for work, personal reasons, or other circumstances, understanding how UK universities view study gaps is crucial for your application success.
@@ -348,6 +350,8 @@ export default function StudyGapAcceptableUKMasters() {
 
       <ContactSection />
       <Footer />
+    </div>
+  );
     </div>
   );
 }

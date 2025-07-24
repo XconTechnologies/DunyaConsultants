@@ -5,6 +5,8 @@ import Footer from '@/components/footer';
 
 export default function DifferenceIELTSGeneralAcademic() {
   return (
+    <div className="min-h-screen bg-gray-50">
+  return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
@@ -18,11 +20,11 @@ export default function DifferenceIELTSGeneralAcademic() {
       </div>
 
       {/* Main Content */}
-      <div className="w-[1440px] mx-auto px-6 py-16">
+      <div className="max-w-[1440px] mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <div className="prose prose-lg max-w-none">
+            <div className="bg-white rounded-lg shadow-sm p-8">
               <div className="mb-8">
                 <p className="text-lg text-gray-700 leading-relaxed">
                   IELTS is an English test for people who want to study, work, or move to a country where English is the main language. There are two types of IELTS tests: Academic and General Training. IELTS is the only test that lets you choose between these two options. More than 11,500 schools, employers, and immigration offices worldwide, including 3,400 in the USA, accept IELTS as proof of English skills.
@@ -306,6 +308,8 @@ export default function DifferenceIELTSGeneralAcademic() {
 
       <ContactSection />
       <Footer />
+    </div>
+  );
     </div>
   );
 }

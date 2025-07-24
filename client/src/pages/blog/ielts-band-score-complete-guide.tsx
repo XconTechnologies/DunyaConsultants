@@ -5,6 +5,8 @@ import Footer from '@/components/footer';
 
 export default function IELTSBandScoreGuide() {
   return (
+    <div className="min-h-screen bg-gray-50">
+  return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
@@ -18,11 +20,11 @@ export default function IELTSBandScoreGuide() {
       </div>
 
       {/* Main Content */}
-      <div className="w-[1440px] mx-auto px-6 py-16">
+      <div className="max-w-[1440px] mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <div className="prose prose-lg max-w-none">
+            <div className="bg-white rounded-lg shadow-sm p-8">
               <div className="mb-8">
                 <p className="text-lg text-gray-700 leading-relaxed">
                   The IELTS (International English Language Testing System) is one of the most popular English tests accepted worldwide. It is needed for working, studying, or immigrating to countries like Canada, Australia, UK, and New Zealand. Students who want to study abroad must take the IELTS to prove their English skills.
@@ -245,6 +247,8 @@ export default function IELTSBandScoreGuide() {
 
       <ContactSection />
       <Footer />
+    </div>
+  );
     </div>
   );
 }

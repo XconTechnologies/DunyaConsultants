@@ -134,11 +134,12 @@ export default function JanuaryIntakeUniversitiesInUK() {
   ];
 
   return (
-    <>
+    
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
-      <div className="w-[1440px] mx-auto">
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="relative h-[500px] bg-gradient-to-r from-orange-600 via-red-700 to-pink-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-orange-600 via-red-700 to-pink-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -152,10 +153,10 @@ export default function JanuaryIntakeUniversitiesInUK() {
         </div>
 
         {/* Main Content */}
-        <div className="flex gap-8 p-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Article */}
-          <div className="flex-1">
-            <article className="prose prose-lg max-w-none">
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -365,7 +366,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                             {event.month}
                           </span>
                         </div>
-                        <div className="flex-1">
+                        <div className="lg:col-span-3">
                           <p className="text-gray-700 font-medium">{event.activity}</p>
                         </div>
                       </motion.div>
@@ -573,6 +574,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
         <ContactSection />
       </div>
       <Footer />
-    </>
+    
+    </div>
   );
 }

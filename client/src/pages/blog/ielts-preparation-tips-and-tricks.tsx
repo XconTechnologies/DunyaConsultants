@@ -11,7 +11,7 @@ export default function IELTSPreparationTipsAndTricks() {
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-20">
-        <div className="max-w-[1440px] mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="bg-emerald-500 text-white px-4 py-2 rounded-full text-sm font-medium">
@@ -57,7 +57,7 @@ export default function IELTSPreparationTipsAndTricks() {
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none">
+              <div>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   Preparing for the IELTS exam requires strategic planning, consistent practice, and effective techniques. This comprehensive guide provides you with proven tips and tricks to excel in all four IELTS sections: Listening, Reading, Writing, and Speaking. Whether you're aiming for band 6.5 or 8.0, these strategies will help you achieve your target score.
                 </p>

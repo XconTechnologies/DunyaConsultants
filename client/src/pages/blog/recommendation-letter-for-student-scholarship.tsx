@@ -5,7 +5,8 @@ import ContactForm from '@/components/blog/ContactForm';
 
 export default function RecommendationLetterStudentScholarship() {
   return (
-    <>
+    
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
@@ -22,12 +23,12 @@ export default function RecommendationLetterStudentScholarship() {
         </div>
 
         {/* Main Content */}
-        <div className="w-[1440px] mx-auto bg-white shadow-lg">
+        <div className="max-w-[1440px] mx-auto bg-white shadow-lg">
           <div className="px-16 py-16">
             <div className="flex gap-12">
               {/* Main Content */}
-              <div className="flex-1">
-                <article className="prose prose-lg max-w-none">
+              <div className="lg:col-span-3">
+                <article className="bg-white rounded-lg shadow-sm p-8">
                   <div className="mb-8">
                     <p className="text-gray-600 text-lg leading-relaxed">
                       Studying abroad requires a lot of paperwork. One of the most important documents that you must have is the Letter of Recommendation (LOR). This letter is needed when applying to universities or scholarships in other countries. A recommendation letter for student can play a big role in deciding whether you get accepted into a university or not. A strong recommendation can give you an advantage over other applicants, especially if you are looking for financial support or an early decision.
@@ -256,7 +257,7 @@ export default function RecommendationLetterStudentScholarship() {
         </div>
 
         {/* FAQs Section */}
-        <div className="w-[1440px] mx-auto bg-white border-t border-gray-200">
+        <div className="max-w-[1440px] mx-auto bg-white border-t border-gray-200">
           <div className="px-16 py-12">
             <h2 className="text-3xl font-bold mb-8 text-gray-900">Frequently Asked Questions</h2>
             <div className="space-y-6">
@@ -290,6 +291,7 @@ export default function RecommendationLetterStudentScholarship() {
         />
       </div>
       <Footer />
-    </>
+    
+    </div>
   );
 }

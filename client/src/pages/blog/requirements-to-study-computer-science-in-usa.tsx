@@ -5,7 +5,8 @@ import ContactForm from '@/components/blog/ContactForm';
 
 export default function RequirementsComputerScienceUSA() {
   return (
-    <>
+    
+    <div className="min-h-screen bg-gray-50">
       <Navigation />
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
@@ -22,12 +23,12 @@ export default function RequirementsComputerScienceUSA() {
         </div>
 
         {/* Main Content */}
-        <div className="w-[1440px] mx-auto bg-white shadow-lg">
+        <div className="max-w-[1440px] mx-auto bg-white shadow-lg">
           <div className="px-16 py-16">
             <div className="flex gap-12">
               {/* Main Content */}
-              <div className="flex-1">
-                <article className="prose prose-lg max-w-none">
+              <div className="lg:col-span-3">
+                <article className="bg-white rounded-lg shadow-sm p-8">
                   <div className="mb-8">
                     <p className="text-gray-600 text-lg leading-relaxed">
                       The United States is home to some of the world's most prestigious computer science programs, offering cutting-edge research opportunities and excellent career prospects. If you're considering studying computer science in the USA, understanding the admission requirements and application process is crucial for your success.
@@ -276,6 +277,7 @@ export default function RequirementsComputerScienceUSA() {
         />
       </div>
       <Footer />
-    </>
+    
+    </div>
   );
 }

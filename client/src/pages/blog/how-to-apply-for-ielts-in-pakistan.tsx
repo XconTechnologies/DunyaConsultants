@@ -11,7 +11,7 @@ export default function HowToApplyForIELTSInPakistan() {
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-teal-600 to-blue-600 text-white py-20">
-        <div className="max-w-[1440px] mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="bg-teal-500 text-white px-4 py-2 rounded-full text-sm font-medium">
@@ -57,7 +57,7 @@ export default function HowToApplyForIELTSInPakistan() {
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none">
+              <div>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   The International English Language Testing System (IELTS) is a crucial requirement for students and professionals planning to study or work abroad. In Pakistan, IELTS is conducted by the British Council and IDP Education. This comprehensive guide will walk you through the complete application process for IELTS in Pakistan.
                 </p>

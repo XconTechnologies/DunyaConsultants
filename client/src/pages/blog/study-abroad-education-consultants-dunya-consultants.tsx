@@ -55,7 +55,7 @@ const StudyAbroadEducationConsultants = () => {
             </div>
 
             {/* Introduction */}
-            <div className="prose prose-lg max-w-none">
+            <div className="bg-white rounded-lg shadow-sm p-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Introduction</h2>
               <p className="text-gray-700 leading-relaxed mb-6">
                 Studying abroad has become a highly sought-after opportunity for students worldwide, and Pakistani students are no exception. The chance to experience new cultures, gain global exposure, and enhance career prospects are just a few reasons that make studying abroad an attractive option for ambitious students seeking quality education and international exposure.

@@ -5,6 +5,8 @@ import ContactSection from "@/components/blog/ContactSection";
 
 export default function NewYearResolutionsForStudents2025() {
   return (
+    <div className="min-h-screen bg-gray-50">
+  return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
@@ -31,7 +33,7 @@ export default function NewYearResolutionsForStudents2025() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
-              <div className="prose prose-lg max-w-none">
+              <div className="bg-white rounded-lg shadow-sm p-8">
                 <div className="mb-8">
                   <p className="text-lg leading-relaxed text-gray-700">
                     The New Year is a great time for students to set meaningful goals. Having clear 
@@ -280,6 +282,8 @@ export default function NewYearResolutionsForStudents2025() {
 
       <ContactSection />
       <Footer />
+    </div>
+  );
     </div>
   );
 }

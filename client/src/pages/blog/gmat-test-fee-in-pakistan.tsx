@@ -11,7 +11,7 @@ export default function GMATTestFeeInPakistan() {
       <Navigation />
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-orange-600 to-red-600 text-white py-20">
-        <div className="max-w-[1440px] mx-auto px-4">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
               <span className="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-medium">
@@ -57,7 +57,7 @@ export default function GMATTestFeeInPakistan() {
               </div>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none">
+              <div>
                 <p className="text-gray-700 text-lg leading-relaxed mb-6">
                   The Graduate Management Admission Test (GMAT) is a crucial requirement for admission to MBA programs worldwide. For Pakistani students planning to take the GMAT, understanding the complete cost structure is essential for proper financial planning. This comprehensive guide covers all GMAT-related fees and costs in Pakistan.
                 </p>

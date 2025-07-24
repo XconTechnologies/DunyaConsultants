@@ -55,7 +55,7 @@ const StudyInUK = () => {
             </div>
 
             {/* Introduction */}
-            <div className="prose prose-lg max-w-none">
+            <div className="bg-white rounded-lg shadow-sm p-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Study in the UK?</h2>
               <p className="text-gray-700 leading-relaxed mb-6">
                 The United Kingdom remains one of the most prestigious study destinations for Pakistani students, offering world-class education, cultural diversity, and excellent career prospects. With 166 public and private universities offering over 50,000 programs, the UK provides unparalleled opportunities for international students.

@@ -5,6 +5,8 @@ import Footer from '@/components/footer';
 
 export default function IndustrialEngineeringManagement() {
   return (
+    <div className="min-h-screen bg-gray-50">
+  return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
@@ -23,11 +25,11 @@ export default function IndustrialEngineeringManagement() {
       </div>
 
       {/* Main Content */}
-      <div className="w-[1440px] mx-auto px-8 py-16">
+      <div className="max-w-[1440px] mx-auto px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Article Content */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="prose prose-lg max-w-none">
+            <div className="bg-white rounded-lg shadow-sm p-8">
               <p className="text-lg text-gray-700 leading-relaxed">
                 Are you interested in studying Industrial Engineering and Management? Do you want to know what an industrial engineer does? This Bachelor's program teaches you how to combine business and technology. You will learn how companies work, how they manage people, and how they improve production processes. The program helps you understand modern businesses and the challenges they face.
               </p>
@@ -177,6 +179,8 @@ export default function IndustrialEngineeringManagement() {
       />
 
       <Footer />
+    </div>
+  );
     </div>
   );
 }
