@@ -414,6 +414,29 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                         <span className="font-medium">NMC Required</span>
                       </div>
                     </>
+                  ) : blogPost.slug === 'global-talent-visa-uk' ? (
+                    <>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Visa Duration:</span>
+                        <span className="font-medium">Up to 5 Years</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Application Cost:</span>
+                        <span className="font-medium">£716</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Processing Time:</span>
+                        <span className="font-medium">3 Weeks</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Success Rate:</span>
+                        <span className="font-medium">95%+</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Endorsement:</span>
+                        <span className="font-medium">Required</span>
+                      </div>
+                    </>
                   ) : (
                     <>
                       <div className="flex justify-between">
@@ -481,6 +504,31 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Kingston University London</span>
                       <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">London Based</span>
+                    </div>
+                  </div>
+                </div>
+              ) : blogPost.slug === 'global-talent-visa-uk' ? (
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                    <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                    Eligible Fields
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>Digital Technology</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Tech Leader</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>Academia & Research</span>
+                      <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Researcher</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>Arts & Culture</span>
+                      <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Creative</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>Science & Innovation</span>
+                      <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Innovator</span>
                     </div>
                   </div>
                 </div>
