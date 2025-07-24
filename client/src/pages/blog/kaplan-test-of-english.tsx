@@ -323,8 +323,6 @@ export default function KaplanTestOfEnglish() {
         </div>
       </div>
 
-      {/* Contact Section */}
-      <ContactSection />
       <Footer />
     </div>
   );
