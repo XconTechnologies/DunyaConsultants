@@ -283,20 +283,6 @@ export class DatabaseStorage implements IStorage {
     return post || undefined;
   }
 
-  async incrementBlogViews(id: number): Promise<void> {
-    await db.update(blogPosts)
-      .set({ 
-        viewCount: sql`${blogPosts.viewCount} + 1`,
-        updatedAt: new Date()
-      })
-      .where(eq(blogPosts.id, id));
-  }
-
-  async getBlogPostBySlug(slug: string): Promise<BlogPost | undefined> {
-    const [post] = await db.select().from(blogPosts).where(eq(blogPosts.slug, slug));
-    return post || undefined;
-  }
-
   async createBlogPost(insertBlogPost: InsertBlogPost): Promise<BlogPost> {
     const [post] = await db.insert(blogPosts).values(insertBlogPost).returning();
     return post;
@@ -322,14 +308,7 @@ export class DatabaseStorage implements IStorage {
     return post;
   }
 
-  async incrementBlogViews(id: number): Promise<void> {
-    await db.update(blogPosts)
-      .set({ 
-        viewCount: sql`${blogPosts.viewCount} + 1`,
-        updatedAt: new Date()
-      })
-      .where(eq(blogPosts.id, id));
-  }
+  // Note: Views functionality removed - views column doesn't exist in database
 
   // Services Management Methods
   async getServices(active?: boolean): Promise<Service[]> {

@@ -107,7 +107,6 @@ The application uses three main tables:
 
 ## Recent Changes
 
-- **January 24, 2025 - Complete Blog System Overhaul**: Successfully restored original single blog post design with comprehensive content structure, full sidebar functionality, table of contents, quick facts, contact forms, and "Why Choose Us" sections. Implemented complete related blogs functionality displaying 3 related posts with proper cards, images, and navigation. Added comprehensive authentic content to all blog posts including detailed sections, proper HTML formatting, blockquotes, and call-to-action content. Fixed TypeScript errors and implemented full breadcrumb navigation, article sharing, and professional sidebar widgets exactly matching the original dunyaconsultants.com blog design.
 - **June 20, 2025 - Hero Section Redesign**: Redesigned hero section to be fully centered without image, featuring dark blue gradient overlay effects, background patterns, floating animated elements, and integrated statistics cards for better visual impact and professionalism.
 - **June 20, 2025 - Brand Update**: Updated brand name from "EduPath" to "Path", integrated custom logo asset throughout navigation and footer, updated all testimonials and contact information to reflect new branding.
 - **June 20, 2025 - Dark Blue Theme**: Changed hero section gradient to use professional dark blue color scheme for enhanced visual appeal.
