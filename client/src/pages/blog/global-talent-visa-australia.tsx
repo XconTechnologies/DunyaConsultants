@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Clock, User, Share2, Globe, CheckCircle, AlertCircle, Star, TrendingUp, Users, Award } from "lucide-react";
-import { Link } from "wouter";
+import { ArrowLeft, Calendar, Clock, User, Share2, BookOpen, CheckCircle, AlertCircle, FileText, Target, Award, Globe, DollarSign, MessageCircle, Phone, Mail } from 'lucide-react';
+import { Link } from 'wouter';
+import ContactForm from '@/components/blog/ContactForm';
 import ContactSection from '@/components/blog/ContactSection';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -9,402 +9,335 @@ export default function GlobalTalentVisaAustralia() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-blue-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <Link 
-            href="/blog" 
-            className="inline-flex items-center text-green-200 hover:text-white mb-6 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
-          </Link>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="mb-4">
-              <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Visa Guides
               </span>
             </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              Global Talent Visa Australia: Complete Guide 2025
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              A Complete Guide to Global Talent Visa Australia
             </h1>
-            
-            <p className="text-xl text-green-100 mb-6">
-              Everything you need to know about Australia's Global Talent Visa program including eligibility requirements, application process, priority sectors, and success tips for skilled professionals.
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Comprehensive guide to Australia's Global Talent Visa (Subclass 858) for highly skilled professionals seeking permanent residency through the fast-track pathway.
             </p>
-            
-            <div className="flex flex-wrap items-center gap-6 text-sm text-green-200">
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
               <div className="flex items-center">
-                <User className="h-4 w-4 mr-2" />
-                Dunya Consultants
+                <Clock className="w-5 h-5 mr-2" />
+                <span>March 20, 2025</span>
               </div>
               <div className="flex items-center">
-                <Calendar className="h-4 w-4 mr-2" />
-                Jan 14, 2025
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
               </div>
               <div className="flex items-center">
-                <Clock className="h-4 w-4 mr-2" />
-                12 min read
-              </div>
-              <div className="flex items-center">
-                <TrendingUp className="h-4 w-4 mr-2" />
-                Trending
+                <Clock className="w-5 h-5 mr-2" />
+                <span>10 min read</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Article Content */}
-          <div className="lg:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-lg shadow-sm p-8"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                alt="Global Talent Visa Australia"
-                className="w-full h-64 object-cover rounded-lg mb-8"
-              />
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
 
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
-                <div className="flex items-center mb-2">
-                  <Star className="h-5 w-5 text-green-500 mr-2" />
-                  <h3 className="text-lg font-semibold text-gray-900">What is the Global Talent Visa?</h3>
-                </div>
-                <p className="text-gray-700">
-                  The Global Talent Visa (GTI) is Australia's premier skilled migration program designed to attract exceptional and talented individuals in target sectors to contribute to Australia's economic growth and innovation.
+              {/* Introduction */}
+              <div className="mb-8">
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  If you have special skills and internationally recognized qualifications, you can apply for <strong>Global Talent Visa Australia (subclass 858)</strong>. This visa allows you to live, work, and study in Australia permanently, and you can also bring your family. There is no age limit to apply which makes it a great option for those who may not qualify for other visas due to age restrictions.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Moreover, the Australia global talent visa is for highly talented individuals. To be eligible, you must prove that your skills or work will benefit the country. This visa is also best for experts, researchers, and professionals with innovative ideas or business plans. If you are a high achiever in your field and want to build a future in Australia, this visa provides a great opportunity. This guide will help you understand the application process so you can take the next step toward a successful career in Australia.
                 </p>
               </div>
 
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Priority Sectors for 2025</h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">Technology</h4>
-                  <p className="text-sm text-blue-700">AI, cybersecurity, quantum computing, blockchain, and emerging technologies</p>
-                </div>
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-2">Health Industries</h4>
-                  <p className="text-sm text-purple-700">Medical technology, pharmaceuticals, biotechnology, and digital health</p>
-                </div>
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-green-800 mb-2">Energy & Mining</h4>
-                  <p className="text-sm text-green-700">Renewable energy, mining technology, and energy transition</p>
-                </div>
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-orange-800 mb-2">Space & Advanced Manufacturing</h4>
-                  <p className="text-sm text-orange-700">Aerospace, defense, advanced manufacturing, and space technology</p>
-                </div>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-red-800 mb-2">Agri-food & AgTech</h4>
-                  <p className="text-sm text-red-700">Agricultural technology, food security, and sustainable farming</p>
-                </div>
-                <div className="bg-teal-50 border border-teal-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-teal-800 mb-2">Infrastructure & Tourism</h4>
-                  <p className="text-sm text-teal-700">Smart cities, transport, sustainable tourism, and infrastructure</p>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Eligibility Requirements</h2>
-              
-              <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold mb-4">Key Requirements</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Exceptional talent:</strong> Internationally recognized record of exceptional and outstanding achievements
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Priority sector:</strong> Talent must be in one of the designated priority sectors
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Salary threshold:</strong> Ability to earn the Fair Work High Income Threshold (currently AUD $167,500)
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Australian nomination:</strong> Nomination by an Australian organization or individual
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Health and character:</strong> Meet health and character requirements
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Application Process</h2>
-              
-              <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold mb-4">Step-by-Step Process</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <span className="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">1</span>
-                    <div>
-                      <strong>Expression of Interest (EOI)</strong>
-                      <p className="text-sm text-gray-600 mt-1">Submit your EOI through SkillSelect with detailed evidence of your exceptional talent</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">2</span>
-                    <div>
-                      <strong>Department Assessment</strong>
-                      <p className="text-sm text-gray-600 mt-1">Department of Home Affairs reviews your EOI and supporting documents</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">3</span>
-                    <div>
-                      <strong>Invitation to Apply</strong>
-                      <p className="text-sm text-gray-600 mt-1">If successful, you'll receive an invitation to lodge a visa application</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">4</span>
-                    <div>
-                      <strong>Visa Application</strong>
-                      <p className="text-sm text-gray-600 mt-1">Submit your visa application with all required documents within 60 days</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <span className="bg-green-100 text-green-600 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">5</span>
-                    <div>
-                      <strong>Final Assessment</strong>
-                      <p className="text-sm text-gray-600 mt-1">Department conducts final assessment including health and character checks</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Required Documents</h2>
-              
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
-                <div className="flex items-center mb-2">
-                  <AlertCircle className="h-5 w-5 text-yellow-500 mr-2" />
-                  <h3 className="text-lg font-semibold text-gray-900">Essential Documentation</h3>
-                </div>
-                <ul className="list-disc list-inside text-gray-700 space-y-2">
-                  <li>Detailed CV with evidence of exceptional achievements</li>
-                  <li>Academic qualifications and transcripts</li>
-                  <li>Evidence of international recognition (awards, publications, patents)</li>
-                  <li>Letters of recommendation from industry leaders</li>
-                  <li>Employment contracts or job offers showing salary threshold</li>
-                  <li>Australian nomination from eligible nominator</li>
-                  <li>Health examination results</li>
-                  <li>Character clearance certificates</li>
-                </ul>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Benefits of the Global Talent Visa</h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Award className="h-8 w-8 text-blue-600 mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">Permanent Residency</h3>
-                  <p className="text-gray-600">Direct pathway to permanent residency without temporary visa requirements</p>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Users className="h-8 w-8 text-green-600 mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">Family Inclusion</h3>
-                  <p className="text-gray-600">Include your spouse/partner and dependent children in your application</p>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Globe className="h-8 w-8 text-purple-600 mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">Work Anywhere</h3>
-                  <p className="text-gray-600">Freedom to work anywhere in Australia in your field of expertise</p>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <TrendingUp className="h-8 w-8 text-orange-600 mb-3" />
-                  <h3 className="text-lg font-semibold mb-2">Citizenship Path</h3>
-                  <p className="text-gray-600">Eligible for Australian citizenship after meeting residency requirements</p>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Success Tips</h2>
-              
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold mb-4">Maximizing Your Chances</h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Build a strong profile:</strong> Highlight your exceptional achievements and international recognition</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Secure strong nominations:</strong> Get nominations from reputable Australian organizations or individuals</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Professional assistance:</strong> Consider working with registered migration agents familiar with GTI</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Quality over quantity:</strong> Focus on exceptional achievements rather than volume of work</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span><strong>Stay updated:</strong> Monitor changes in priority sectors and program requirements</span>
-                  </li>
-                </ul>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Processing Times and Costs</h2>
-              
-              <div className="overflow-x-auto mb-8">
-                <table className="w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr className="bg-white">
-                      <th className="border border-gray-300 px-4 py-2 text-left">Stage</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Processing Time</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Cost</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2">Expression of Interest</td>
-                      <td className="border border-gray-300 px-4 py-2">3-6 months</td>
-                      <td className="border border-gray-300 px-4 py-2">Free</td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="border border-gray-300 px-4 py-2">Visa Application</td>
-                      <td className="border border-gray-300 px-4 py-2">6-12 months</td>
-                      <td className="border border-gray-300 px-4 py-2">AUD $4,710</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2">Additional charges</td>
-                      <td className="border border-gray-300 px-4 py-2">N/A</td>
-                      <td className="border border-gray-300 px-4 py-2">Health/Character checks</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div className="bg-green-600 text-white rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-2">Ready to Apply for Global Talent Visa?</h3>
-                <p className="mb-4">
-                  Our expert team at Dunya Consultants has successfully guided numerous professionals through the Global Talent Visa process. Let us help you achieve your Australian dream.
+              {/* What is Global Talent Visa */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                  What is Global Talent Visa Australia?
+                </h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The Australian Global Talent Visa is for highly skilled and talented individuals as mentioned earlier. It has two main categories: the Global Talent Pathway and the Distinguished Talent Pathway. This visa is for people with exceptional achievements who can bring valuable skills to Australia.
                 </p>
-                <Link 
-                  href="/contact" 
-                  className="inline-block bg-white text-green-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-                >
-                  Get Expert Guidance
-                </Link>
+                <p className="text-gray-700 leading-relaxed">
+                  By attracting top talent, this talent visa helps Australia grow by sharing knowledge, encouraging new ideas, and creating job opportunities. In 2020-2021, the number of spots for this visa increased from 5,000 to 15,000 to welcome more skilled professionals.
+                </p>
+              </section>
+
+              {/* Eligibility Criteria */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                  Eligibility Criteria for Global Talent Visa Australia
+                </h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  To apply for the GTI Australia visa (subclass 858) in Australia, you need to meet specific requirements:
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">A recognized Australian individual or organization must nominate you as a top talent in your field.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">You must have international recognition for exceptional skills in a profession, sport, arts, or academic research.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">You must show that you can earn a salary of AUD 162,000 or more per year in Australia.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">Your expertise should benefit Australia's economy as well as society in the long run.</span>
+                  </li>
+                </ul>
+              </section>
+
+              {/* Required Documents */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                  Documents Required to Apply for Australia Global Talent Visa
+                </h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  To apply for the Australian Global Talent Independent Visa (Subclass 858), you need to provide important documents. These help prove your eligibility and support your skilled visa Australia application.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {[
+                    "Visa Application Form",
+                    "Passport-Size Photo", 
+                    "Valid Passport",
+                    "Visa Fee Payment",
+                    "Financial Proof",
+                    "Salary Proof",
+                    "English Language Requirement",
+                    "Police Clearance",
+                    "Family Documents",
+                    "Proof of Skills & Experience"
+                  ].map((doc, index) => (
+                    <div key={index} className="flex items-center p-3 bg-blue-50 rounded-lg">
+                      <FileText className="w-5 h-5 text-blue-500 mr-3" />
+                      <span className="text-gray-700 font-medium">{doc}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+
+              {/* Application Steps */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                  Steps to Apply for Australian Global Talent Visa
+                </h2>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  To apply for the Australian Global Talent Visa, you must follow these steps and provide the required documents for migrating to Australia.
+                </p>
+
+                <div className="space-y-6">
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                      <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">1</div>
+                      Get a Nomination
+                    </h3>
+                    <ul className="space-y-2 ml-11">
+                      <li className="text-gray-700">• You need a nomination from an eligible person or organization in Australia.</li>
+                      <li className="text-gray-700">• This person or group must have a strong reputation in your field.</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                      <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">2</div>
+                      Gather Supporting Documents
+                    </h3>
+                    <ul className="space-y-2 ml-11">
+                      <li className="text-gray-700">• Collect proof of your achievements, such as awards, publications, or letters from experts in your field.</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                      <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">3</div>
+                      Submit an Expression of Interest (EOI)
+                    </h3>
+                    <ul className="space-y-2 ml-11">
+                      <li className="text-gray-700">• Fill out the Global Talent contact form and submit it online.</li>
+                      <li className="text-gray-700">• This allows Australian immigration know you are interested in applying to GTI fast track visa Australia.</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
+                      <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">4</div>
+                      Apply Through ImmiAccount
+                    </h3>
+                    <ul className="space-y-2 ml-11">
+                      <li className="text-gray-700">• If your EOI is approved, you will receive an Invitation Code and Reference Identifier.</li>
+                      <li className="text-gray-700">• Use these details to submit your visa application through ImmiAccount.</li>
+                      <li className="text-gray-700">• If your EOI is rejected, you can still apply for other Australian visas.</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              {/* Cost Information */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                  Cost of a GTI Visa Australia (Global Talent Visa)
+                </h2>
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    The cost to apply for the Australia Global Talent Visa is <strong>AUD 4,180</strong> for the main applicant. If a family member over 18 is applying with you, the fee is <strong>AUD 2,095</strong>, while for a child under 18, it is <strong>AUD 1,045</strong>.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    Additionally, if an applicant over 18 does not have functional English, they must pay an extra <strong>AUD 4,890</strong> as a second installment fee. These fees do not include other expenses like health checks, police certificates, or document translations.
+                  </p>
+                </div>
+              </section>
+
+              {/* Conclusion */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                  Conclusion
+                </h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The Global Talent Visa Australia is a fast-track way for highly skilled professionals to get permanent residency. It provides great opportunities for career growth, personal development, and long-term stability in Australia.
+                </p>
+                <p className="text-gray-700 leading-relaxed">
+                  If you meet the eligibility criteria and have exceptional skills in your field, this visa could be your pathway to a successful future in Australia. Contact Dunya Consultants for expert guidance through the application process.
+                </p>
+              </section>
+
+              {/* FAQs */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                  FAQs
+                </h2>
+                <div className="space-y-6">
+                  <div className="border-l-4 border-gray-200 pl-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      What are the chances of getting a Global talent visa Australia?
+                    </h3>
+                    <p className="text-gray-700">
+                      The chances depend on your qualifications, achievements, and how well you meet the eligibility criteria. Having strong documentation and a good nominator increases your chances significantly.
+                    </p>
+                  </div>
+
+                  <div className="border-l-4 border-gray-200 pl-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      What is a GTI visa Australia?
+                    </h3>
+                    <p className="text-gray-700">
+                      GTI stands for Global Talent Independent visa. It's a permanent visa (subclass 858) for highly skilled individuals who can contribute to Australia's economy and society.
+                    </p>
+                  </div>
+
+                  <div className="border-l-4 border-gray-200 pl-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Are Global talent visa Australia and skilled visa Australia same?
+                    </h3>
+                    <p className="text-gray-700">
+                      No, they are different. The Global Talent visa is specifically for exceptionally talented individuals, while skilled visas have different requirements and are based on occupation lists and points systems.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Call to Action */}
+              <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-8 rounded-lg text-center">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Apply for Global Talent Visa?</h3>
+                <p className="text-gray-700 mb-6">
+                  Get expert guidance from Dunya Consultants for your Global Talent Visa Australia application.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a
+                    href="tel:+923041110947"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call Now: (+92) 304 1110947
+                  </a>
+                  <a
+                    href="mailto:query@teamdunya.com"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition-colors"
+                  >
+                    <Mail className="w-5 h-5 mr-2" />
+                    Email Us
+                  </a>
+                </div>
               </div>
-            </motion.div>
+
+            </article>
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-1">
             <div className="sticky top-8 space-y-6">
-              {/* Table of Contents */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="#sectors" className="text-blue-600 hover:text-blue-800">Priority Sectors</a></li>
-                  <li><a href="#eligibility" className="text-blue-600 hover:text-blue-800">Eligibility Requirements</a></li>
-                  <li><a href="#process" className="text-blue-600 hover:text-blue-800">Application Process</a></li>
-                  <li><a href="#documents" className="text-blue-600 hover:text-blue-800">Required Documents</a></li>
-                  <li><a href="#benefits" className="text-blue-600 hover:text-blue-800">Benefits</a></li>
-                  <li><a href="#tips" className="text-blue-600 hover:text-blue-800">Success Tips</a></li>
-                </ul>
-              </div>
-
-              {/* Quick Stats */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Stats</h3>
-                <div className="space-y-3">
+              
+              {/* Quick Facts */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <Target className="w-5 h-5 mr-2 text-blue-500" />
+                  Quick Facts
+                </h3>
+                <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Visa Subclass:</span>
-                    <span className="font-semibold">858</span>
+                    <span className="text-gray-600">Visa Type:</span>
+                    <span className="font-medium">Permanent (Subclass 858)</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Age Limit:</span>
+                    <span className="font-medium">No Age Limit</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Main Applicant Fee:</span>
+                    <span className="font-medium">AUD 4,180</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Salary Requirement:</span>
+                    <span className="font-medium">AUD 162,000+</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Processing:</span>
-                    <span className="font-semibold">6-12 months</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Cost:</span>
-                    <span className="font-semibold">AUD $4,710</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Validity:</span>
-                    <span className="font-semibold">Permanent</span>
+                    <span className="font-medium">Fast-track</span>
                   </div>
                 </div>
               </div>
 
-              {/* Contact Form */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Get Free Assessment</h3>
-                <form className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                    />
-                  </div>
-                  <div>
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500">
-                      <option>Select Your Sector</option>
-                      <option>Technology</option>
-                      <option>Health Industries</option>
-                      <option>Energy & Mining</option>
-                      <option>Space & Manufacturing</option>
-                      <option>Agri-food & AgTech</option>
-                      <option>Infrastructure & Tourism</option>
-                    </select>
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition-colors"
-                  >
-                    Get Assessment
-                  </button>
-                </form>
+              {/* Application Requirements */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <CheckCircle className="w-5 h-5 mr-2 text-blue-500" />
+                  Key Requirements
+                </h3>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">Australian nomination required</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">International recognition</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">High earning potential</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">Benefit to Australia</span>
+                  </li>
+                </ul>
               </div>
+
+              {/* Contact Form */}
+              <ContactForm />
             </div>
           </div>
-        </div>
-        
-        {/* Contact Section */}
-        <div className="max-w-[1440px] mx-auto px-4 py-12">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Ready to apply for Australia's Global Talent Visa? Contact our expert team for personalized guidance and professional support throughout your application process.
-            </p>
-          </div>
-          <ContactSection />
         </div>
       </div>
       <Footer />
