@@ -391,6 +391,29 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                         <span className="font-medium">Advocacy</span>
                       </div>
                     </>
+                  ) : blogPost.slug === 'study-nursing-in-the-uk' ? (
+                    <>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Degree Duration:</span>
+                        <span className="font-medium">3-4 Years</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">IELTS Required:</span>
+                        <span className="font-medium">7.0 Overall</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Annual Fees:</span>
+                        <span className="font-medium">£14,000-£35,000</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Application:</span>
+                        <span className="font-medium">Through UCAS</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Registration:</span>
+                        <span className="font-medium">NMC Required</span>
+                      </div>
+                    </>
                   ) : (
                     <>
                       <div className="flex justify-between">
@@ -410,7 +433,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                 </div>
               </div>
 
-              {/* Key Requirements for UK LLM blog or Related Topics for others */}
+              {/* Blog-specific second sidebar section */}
               {blogPost.slug === 'from-uk-llm-to-pakistani-bar' ? (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
                   <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
@@ -433,6 +456,31 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Professional networking</span>
                       <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Helpful</span>
+                    </div>
+                  </div>
+                </div>
+              ) : blogPost.slug === 'study-nursing-in-the-uk' ? (
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                    <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                    Top Nursing Universities
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>University of Dundee</span>
+                      <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">#1 Ranked</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>University of Glasgow</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Top Choice</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>University of Edinburgh</span>
+                      <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Prestigious</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>Kingston University London</span>
+                      <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">London Based</span>
                     </div>
                   </div>
                 </div>
