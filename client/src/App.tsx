@@ -21,7 +21,7 @@ import Blog from "@/pages/blog";
 import BlogList from "@/pages/blog-list";
 import BlogArchive from "@/pages/blog-archive";
 import KaplanTestOfEnglish from "@/pages/blog/kaplan-test-of-english";
-import GlobalTalentVisaAustralia from "@/pages/blog/global-talent-visa-australia";
+import GlobalTalentVisaAustraliaGuide from "@/pages/blog/global-talent-visa-australia-guide";
 import CyprusVisaPakistan from "@/pages/blog/cyprus-visa-pakistan";
 import TurkeyBestChoicePakistaniStudents from "@/pages/blog/turkey-best-choice-pakistani-students";
 import UKLLMPakistaniBar from "@/pages/blog/uk-llm-pakistani-bar";
@@ -108,7 +108,7 @@ function Router() {
       <Route path="/blog" component={BlogArchive} />
       <Route path="/blog/list" component={BlogList} />
       <Route path="/blog/kaplan-test-of-english" component={KaplanTestOfEnglish} />
-      <Route path="/blog/global-talent-visa-australia" component={GlobalTalentVisaAustralia} />
+      <Route path="/blog/global-talent-visa-australia-guide" component={GlobalTalentVisaAustraliaGuide} />
       <Route path="/blog/cyprus-visa-pakistan" component={CyprusVisaPakistan} />
       <Route path="/blog/turkey-best-choice-pakistani-students" component={TurkeyBestChoicePakistaniStudents} />
       <Route path="/blog/uk-llm-pakistani-bar" component={UKLLMPakistaniBar} />
