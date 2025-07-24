@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Search, Grid, List, Calendar, Clock, User, Eye, TrendingUp, ArrowRight, Tag, Globe, BookOpen, Award, Heart, Users, Star, ArrowLeft, Target, MessageCircle } from "lucide-react";
+import ContactForm from '@/components/blog/ContactForm';
 import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import type { BlogPost as DBBlogPost } from "@shared/schema";
@@ -358,133 +359,105 @@ function DynamicBlogPost({ slug }: { slug: string }) {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
-            {/* Quick Facts */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                <Target className="w-5 h-5 mr-2 text-blue-500" />
-                Quick Facts
-              </h3>
-              <div className="space-y-3 text-sm">
-                {blogPost.slug === 'from-uk-llm-to-pakistani-bar' ? (
-                  <>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">UK LLM Duration:</span>
-                      <span className="font-medium">1 Year</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Pakistan LLB:</span>
-                      <span className="font-medium">5 Years</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Conversion Course:</span>
-                      <span className="font-medium">1 Year</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Bar Registration:</span>
-                      <span className="font-medium">Required</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Practice System:</span>
-                      <span className="font-medium">Advocacy</span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Category:</span>
-                      <span className="font-medium">{blogPost.category}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Published:</span>
-                      <span className="font-medium">{new Date(blogPost.createdAt || new Date()).toLocaleDateString()}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-600">Reading Time:</span>
-                      <span className="font-medium">8 min</span>
-                    </div>
-                  </>
-                )}
+          <div className="lg:col-span-1">
+            <div className="sticky top-8 space-y-6">
+              {/* Quick Facts */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <Target className="w-5 h-5 mr-2 text-blue-500" />
+                  Quick Facts
+                </h3>
+                <div className="space-y-3 text-sm">
+                  {blogPost.slug === 'from-uk-llm-to-pakistani-bar' ? (
+                    <>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">UK LLM Duration:</span>
+                        <span className="font-medium">1 Year</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Pakistan LLB:</span>
+                        <span className="font-medium">5 Years</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Conversion Course:</span>
+                        <span className="font-medium">1 Year</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Bar Registration:</span>
+                        <span className="font-medium">Required</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Practice System:</span>
+                        <span className="font-medium">Advocacy</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Category:</span>
+                        <span className="font-medium">{blogPost.category}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Published:</span>
+                        <span className="font-medium">{new Date(blogPost.createdAt || new Date()).toLocaleDateString()}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Reading Time:</span>
+                        <span className="font-medium">8 min</span>
+                      </div>
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
 
-            {/* Contact Form */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                <MessageCircle className="w-5 h-5 mr-2 text-blue-500" />
-                Quick Inquiry
-              </h3>
-              <form className="space-y-4">
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Your Name"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                  />
+              {/* Key Requirements for UK LLM blog or Related Topics for others */}
+              {blogPost.slug === 'from-uk-llm-to-pakistani-bar' ? (
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                    <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                    Key Requirements
+                  </h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>Pakistani LLB degree</span>
+                      <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Required</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>Bar Council registration</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Mandatory</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>Local law understanding</span>
+                      <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Essential</span>
+                    </div>
+                    <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                      <span>Professional networking</span>
+                      <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Helpful</span>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                  />
+              ) : (
+                <div className="bg-white rounded-lg shadow-sm border p-6">
+                  <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                    <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                    Related Topics
+                  </h3>
+                  <div className="space-y-3">
+                    <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                      Study Abroad Guide 2025
+                    </Link>
+                    <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                      University Selection Tips
+                    </Link>
+                    <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                      Visa Application Process
+                    </Link>
+                  </div>
                 </div>
-                <div>
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                  />
-                </div>
-                <div>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
-                    <option value="">Select Country</option>
-                    <option value="uk">United Kingdom</option>
-                    <option value="canada">Canada</option>
-                    <option value="australia">Australia</option>
-                    <option value="usa">United States</option>
-                    <option value="germany">Germany</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div>
-                  <textarea
-                    placeholder="Your Message"
-                    rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
-                >
-                  Send Message
-                </button>
-              </form>
-              <div className="mt-4 pt-4 border-t border-gray-200">
-                <div className="flex items-center justify-between text-xs text-gray-600">
-                  <span>Call directly:</span>
-                  <a href="tel:+923041110947" className="text-blue-600 hover:text-blue-800 font-medium">
-                    +92 304 1110947
-                  </a>
-                </div>
-              </div>
-            </div>
+              )}
 
-            {/* Related Articles */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
-              <div className="space-y-3">
-                <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
-                  Study Abroad Guide 2025
-                </Link>
-                <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
-                  University Selection Tips
-                </Link>
-                <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
-                  Visa Application Process
-                </Link>
-              </div>
+              {/* Contact Form */}
+              <ContactForm />
             </div>
           </div>
         </div>
