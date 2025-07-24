@@ -141,6 +141,7 @@ export const blogPosts = pgTable("blog_posts", {
   isPublished: boolean("is_published").default(false).notNull(),
   publishedAt: timestamp("published_at"),
   authorId: integer("author_id").references(() => adminUsers.id),
+  viewCount: integer("view_count").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

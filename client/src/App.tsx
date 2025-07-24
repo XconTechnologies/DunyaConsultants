@@ -97,6 +97,7 @@ import EngagementTracker from "@/components/gamification/engagement-tracker";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import BlogEditor from "@/pages/admin/blog-editor";
+import DynamicBlogPost from "@/pages/blog/dynamic-blog-post";
 
 function Router() {
   return (
@@ -108,6 +109,7 @@ function Router() {
       <Route path="/events" component={Events} />
       <Route path="/blogs" component={Blogs} />
       <Route path="/blog" component={BlogArchive} />
+      <Route path="/blog/:slug" component={DynamicBlogPost} />
       <Route path="/blog/list" component={BlogList} />
       <Route path="/blog/kaplan-test-of-english" component={KaplanTestOfEnglish} />
       <Route path="/blog/global-talent-visa-australia" component={GlobalTalentVisaAustralia} />
