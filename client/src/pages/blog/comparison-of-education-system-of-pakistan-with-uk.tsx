@@ -9,14 +9,14 @@ export default function ComparisonEducationSystemPakistanUK() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative w-full h-96 bg-gradient-to-r from-red-600 to-blue-700">
+      <div className="relative w-full h-96 bg-gradient-to-r from-[#124FD3] to-[#0d3db8]">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-red-600/80 to-blue-700/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#124FD3]/80 to-[#0d3db8]/80" />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
           <div>
             <h1 className="text-5xl font-bold mb-4">Differences Between UK and Pakistan Education Systems</h1>

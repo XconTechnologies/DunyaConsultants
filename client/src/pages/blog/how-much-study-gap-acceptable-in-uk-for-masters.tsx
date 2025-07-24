@@ -9,7 +9,7 @@ export default function StudyGapAcceptableUKMasters() {
       <Navigation />
       
       {/* Full-width Hero Section */}
-      <div className="relative h-96 bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-900 flex items-center justify-center text-white">
+      <div className="relative h-96 bg-gradient-to-br from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 text-center px-4">
           <h1 className="text-5xl font-bold mb-4">How Much Study Gap is Acceptable in UK for Masters?</h1>

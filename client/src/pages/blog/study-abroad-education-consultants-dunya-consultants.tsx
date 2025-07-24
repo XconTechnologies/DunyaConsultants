@@ -10,7 +10,7 @@ const StudyAbroadEducationConsultants = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative w-full h-80 bg-gradient-to-br from-green-600 via-teal-600 to-blue-800 overflow-hidden">
+      <div className="relative w-full h-80 bg-gradient-to-br from-[#124FD3] via-[#124FD3] to-[#0d3db8] overflow-hidden">
         <div 
           className="absolute inset-0 opacity-20"
           style={{
@@ -19,7 +19,7 @@ const StudyAbroadEducationConsultants = () => {
             backgroundPosition: 'center'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-green-900/80 via-teal-900/70 to-blue-900/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#124FD3]/80 via-[#124FD3]/70 to-[#0d3db8]/80" />
         
         <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center justify-center text-center">
           <div className="space-y-4">

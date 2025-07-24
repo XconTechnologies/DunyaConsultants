@@ -131,7 +131,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
         backgroundImage: 'url(https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)'
       }}>
         {/* Color Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-teal-600/80 to-blue-600/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#124FD3]/80 to-[#0d3db8]/80"></div>
         
         {/* Content */}
         <div className="relative z-10 flex items-center justify-center h-full">

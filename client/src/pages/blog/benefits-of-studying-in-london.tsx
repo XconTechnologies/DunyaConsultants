@@ -8,7 +8,7 @@ export default function BenefitsOfStudyingInLondon() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white py-20">
+      <div className="bg-gradient-to-r from-[#124FD3] via-[#124FD3] to-[#0d3db8] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">

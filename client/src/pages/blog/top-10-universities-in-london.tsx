@@ -10,7 +10,7 @@ export default function Top10UniversitiesLondon() {
       <Navigation />
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <div className="relative h-96 bg-gradient-to-br from-red-600 via-purple-600 to-blue-700 overflow-hidden">
+        <div className="relative h-96 bg-gradient-to-br from-[#124FD3] via-[#124FD3] to-[#0d3db8] overflow-hidden">
           <div className="absolute inset-0 bg-black/30"></div>
           <div className="relative z-10 flex flex-col justify-center items-center h-full text-white px-4">
             <h1 className="text-5xl font-bold text-center mb-6">

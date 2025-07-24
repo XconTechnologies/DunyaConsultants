@@ -9,7 +9,7 @@ export default function IELTSAcceptability2025() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative h-96 bg-gradient-to-br from-green-600 via-teal-600 to-blue-600 flex items-center justify-center">
+      <div className="relative h-96 bg-gradient-to-br from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{

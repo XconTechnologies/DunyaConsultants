@@ -139,7 +139,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-orange-600 via-red-700 to-pink-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{

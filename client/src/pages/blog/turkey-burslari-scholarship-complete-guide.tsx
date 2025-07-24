@@ -145,7 +145,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
       <div className="min-h-screen bg-white">
       
       {/* Hero Section */}
-      <section className="relative h-96 bg-gradient-to-r from-red-600 via-orange-700 to-yellow-800 overflow-hidden">
+      <section className="relative h-96 bg-gradient-to-r from-[#124FD3] via-[#124FD3] to-[#0d3db8] overflow-hidden">
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
         <div 

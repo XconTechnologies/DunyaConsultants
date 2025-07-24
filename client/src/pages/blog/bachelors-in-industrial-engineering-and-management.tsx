@@ -9,7 +9,7 @@ export default function BachelorsIndustrialEngineeringAndManagement() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative h-96 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 flex items-center justify-center">
+      <div className="relative h-96 bg-gradient-to-br from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center">
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-20"
           style={{
