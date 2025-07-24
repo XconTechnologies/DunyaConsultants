@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Clock, User, Share2, BookOpen, CheckCircle, AlertCircle, Target, Award, Globe } from "lucide-react";
-import { Link } from "wouter";
+import { ArrowLeft, Calendar, Clock, User, Share2, BookOpen, CheckCircle, AlertCircle, FileText, Target, Award, Globe, DollarSign, MessageCircle, Phone, Mail } from 'lucide-react';
+import { Link } from 'wouter';
+import ContactForm from '@/components/blog/ContactForm';
 import ContactSection from '@/components/blog/ContactSection';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -9,329 +9,322 @@ export default function KaplanTestOfEnglish() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <Link 
-            href="/blog" 
-            className="inline-flex items-center text-blue-200 hover:text-white mb-6 transition-colors"
-          >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Blog
-          </Link>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="mb-4">
-              <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Test Preparation
               </span>
             </div>
-            
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
               Kaplan Test of English (KTE): Complete Guide 2025
             </h1>
-            
-            <p className="text-xl text-blue-100 mb-6">
-              Comprehensive guide to the Kaplan Test of English (KTE) including format, preparation tips, scoring system, and how it compares to other English proficiency tests for international students.
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Comprehensive guide to the Kaplan Test of English (KTE) including format, preparation tips, cost, and how to take the test from home.
             </p>
-            
-            <div className="flex flex-wrap items-center gap-6 text-sm text-blue-200">
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
               <div className="flex items-center">
-                <User className="h-4 w-4 mr-2" />
-                Dunya Consultants
+                <Clock className="w-5 h-5 mr-2" />
+                <span>March 25, 2025</span>
               </div>
               <div className="flex items-center">
-                <Calendar className="h-4 w-4 mr-2" />
-                Jan 15, 2025
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
               </div>
               <div className="flex items-center">
-                <Clock className="h-4 w-4 mr-2" />
-                8 min read
+                <Clock className="w-5 h-5 mr-2" />
+                <span>8 min read</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Article Content */}
-          <div className="lg:col-span-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-lg shadow-sm p-8"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                alt="Kaplan Test of English"
-                className="w-full h-64 object-cover rounded-lg mb-8"
-              />
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
+              {/* Featured Image */}
+              <div className="mb-8">
+                <img 
+                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                  alt="Kaplan Test of English"
+                  className="w-full h-64 object-cover rounded-lg"
+                />
+              </div>
 
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
-                <div className="flex items-center mb-2">
-                  <AlertCircle className="h-5 w-5 text-blue-500 mr-2" />
-                  <h3 className="text-lg font-semibold text-gray-900">What is KTE?</h3>
-                </div>
-                <p className="text-gray-700">
-                  The Kaplan Test of English (KTE) is a computer-based English proficiency test designed to assess the English language skills of non-native speakers for academic and professional purposes.
+              {/* Introduction */}
+              <div className="mb-8">
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  If you are an international student planning to study for a Master's or PhD abroad, you may need to prove your English language skills. Different universities accept different tests, so it is crucial to check which one suits you best. The <strong>Kaplan Test of English (KTE)</strong> is an online test that evaluates your writing, reading, listening, and speaking skills.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  You can take Kaplan assessment test from home anytime without booking an appointment or visiting a Kaplan test center. You just need a suitable technical setup. Results are sent via email within 2-5 days. You can forward the Kaplan assessment exam results to as many universities as you want, completely free of charge. Unlike other tests, there are no extra fees for sending results.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  If you think KTE is the right test for you, please keep reading to know all the important details to help you understand how KTE works.
                 </p>
               </div>
 
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Test Format and Structure</h2>
-              
-              <div className="bg-white border border-gray-200 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold mb-4">KTE Test Components</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Reading (30 minutes):</strong> Tests comprehension of academic texts with multiple-choice questions
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Listening (30 minutes):</strong> Evaluates understanding of spoken English in academic contexts
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Writing (30 minutes):</strong> Assesses ability to write clear, coherent academic texts
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
-                    <div>
-                      <strong>Speaking (15 minutes):</strong> Tests oral communication skills through recorded responses
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Scoring System</h2>
-              
-              <p className="text-gray-700 mb-6">
-                The KTE uses a scoring scale from 200-800, similar to other standardized tests. Each section is scored separately, and an overall composite score is calculated.
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-green-800 mb-2">High Proficiency</h4>
-                  <p className="text-sm text-green-700">650-800: Advanced level, ready for academic programs</p>
-                </div>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-yellow-800 mb-2">Intermediate</h4>
-                  <p className="text-sm text-yellow-700">450-649: Good foundation, may need additional preparation</p>
-                </div>
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-orange-800 mb-2">Developing</h4>
-                  <p className="text-sm text-orange-700">300-449: Basic skills, requires significant improvement</p>
-                </div>
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-red-800 mb-2">Beginner</h4>
-                  <p className="text-sm text-red-700">200-299: Foundational level, extensive preparation needed</p>
-                </div>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Preparation Tips</h2>
-              
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold mb-4 flex items-center">
-                  <Target className="h-5 w-5 mr-2 text-blue-600" />
-                  Effective Preparation Strategy
-                </h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li className="flex items-start">
-                    <span className="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">1</span>
-                    <span><strong>Take a diagnostic test</strong> to identify your current level and areas for improvement</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">2</span>
-                    <span><strong>Create a study schedule</strong> with regular practice sessions for each skill area</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">3</span>
-                    <span><strong>Practice with official materials</strong> from Kaplan to familiarize yourself with the format</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">4</span>
-                    <span><strong>Focus on time management</strong> during practice sessions to complete sections within time limits</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center text-sm font-semibold mr-3 mt-0.5">5</span>
-                    <span><strong>Take multiple practice tests</strong> to build confidence and identify remaining weaknesses</span>
-                  </li>
+              {/* Table of Contents */}
+              <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li><a href="#what-is-kaplan" className="hover:text-blue-600">What is Kaplan Test?</a></li>
+                  <li><a href="#test-sections" className="hover:text-blue-600">Sections of Kaplan English Test</a></li>
+                  <li><a href="#preparation" className="hover:text-blue-600">How to Prepare for KTE?</a></li>
+                  <li><a href="#cost" className="hover:text-blue-600">Cost for Kaplan Assessment Exam</a></li>
+                  <li><a href="#conclusion" className="hover:text-blue-600">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:text-blue-600">FAQs</a></li>
                 </ul>
               </div>
 
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">KTE vs Other English Tests</h2>
-              
-              <div className="overflow-x-auto mb-8">
-                <table className="w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr className="bg-white">
-                      <th className="border border-gray-300 px-4 py-2 text-left">Test</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Duration</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Format</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Scoring</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">KTE</td>
-                      <td className="border border-gray-300 px-4 py-2">1.75 hours</td>
-                      <td className="border border-gray-300 px-4 py-2">Computer-based</td>
-                      <td className="border border-gray-300 px-4 py-2">200-800</td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">IELTS</td>
-                      <td className="border border-gray-300 px-4 py-2">2.75 hours</td>
-                      <td className="border border-gray-300 px-4 py-2">Paper/Computer</td>
-                      <td className="border border-gray-300 px-4 py-2">0-9 bands</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">TOEFL</td>
-                      <td className="border border-gray-300 px-4 py-2">3 hours</td>
-                      <td className="border border-gray-300 px-4 py-2">Computer-based</td>
-                      <td className="border border-gray-300 px-4 py-2">0-120</td>
-                    </tr>
-                    <tr className="bg-white">
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">PTE</td>
-                      <td className="border border-gray-300 px-4 py-2">2 hours</td>
-                      <td className="border border-gray-300 px-4 py-2">Computer-based</td>
-                      <td className="border border-gray-300 px-4 py-2">10-90</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Universities Accepting KTE</h2>
-              
-              <p className="text-gray-700 mb-6">
-                Many universities worldwide now accept KTE scores for admission. The test is particularly popular in:
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                <div className="flex items-center p-4 bg-white rounded-lg">
-                  <Globe className="h-5 w-5 text-blue-600 mr-3" />
-                  <span>United States universities</span>
-                </div>
-                <div className="flex items-center p-4 bg-white rounded-lg">
-                  <Globe className="h-5 w-5 text-blue-600 mr-3" />
-                  <span>Canadian institutions</span>
-                </div>
-                <div className="flex items-center p-4 bg-white rounded-lg">
-                  <Globe className="h-5 w-5 text-blue-600 mr-3" />
-                  <span>Australian universities</span>
-                </div>
-                <div className="flex items-center p-4 bg-white rounded-lg">
-                  <Globe className="h-5 w-5 text-blue-600 mr-3" />
-                  <span>UK educational institutions</span>
-                </div>
-              </div>
-
-              <div className="bg-blue-600 text-white rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-2">Ready to Take the KTE?</h3>
-                <p className="mb-4">
-                  Get expert guidance and preparation support from Dunya Consultants. Our experienced team will help you achieve your target score and secure admission to your dream university.
+              {/* What is Kaplan Test Section */}
+              <div className="mb-8" id="what-is-kaplan">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">What is Kaplan Test?</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The <strong>Kaplan English Test</strong> is an adaptive online test that checks your English language skills in different areas. During the test, you may need to listen to conversations, write an essay, read emails and articles, answer comprehension questions, or speak into your computer's microphone.
                 </p>
-                <Link 
-                  href="/contact" 
-                  className="inline-block bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-                >
-                  Contact Us Today
-                </Link>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Unlike traditional paper-based tests, where everyone answers the same questions, Kaplan test questions work differently. It is an adaptive test, meaning the questions change based on your English level. As you take the test, KTE selects questions that match your abilities, so no two test takers have the exact same questions.
+                </p>
               </div>
-            </motion.div>
+
+              {/* Test Sections */}
+              <div className="mb-8" id="test-sections">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Sections of Kaplan English Test</h2>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  In the Kaplan testing center, The Kaplan English Test checks your skills in reading, listening, writing, and speaking.
+                </p>
+
+                {/* Writing Section */}
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-3 text-blue-800 flex items-center">
+                    <FileText className="w-5 h-5 mr-2" />
+                    Writing – Timed Section (25-40 Minutes)
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    The Writing section is timed, and its length depends on your English level. You may need to write an essay, paragraph, or email. You'll have time to read the question and type your answer. After the Kaplan assessment exam, a KTE grader will evaluate your work and give you a score.
+                  </p>
+                </div>
+
+                {/* Listening, Reading & Grammar Section */}
+                <div className="bg-green-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-3 text-green-800 flex items-center">
+                    <BookOpen className="w-5 h-5 mr-2" />
+                    Listening, Reading & Grammar – No Time Limit
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    In these sections, there is no timer. KTE will automatically end the test once it has enough information about your English level. Your test may be longer or shorter than others, so focus on doing your best. On average, these sections take a little over an hour to complete.
+                  </p>
+                </div>
+
+                {/* Speaking Section */}
+                <div className="bg-orange-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-3 text-orange-800 flex items-center">
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Speaking – Timed Section (10 Minutes)
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    The Speaking section of Kaplan test questions lasts about 10 minutes. You will speak into your computer's microphone, and your responses will be recorded. A Kaplan assessment test grader will check your answers and give you a score after the test.
+                  </p>
+                </div>
+              </div>
+
+              {/* Preparation Section */}
+              <div className="mb-8" id="preparation">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">How to Prepare for KTE?</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The best way to get ready for the Kaplan English test is to practice your English skills regularly. Let's discuss below how you can practice before going to Kaplan testing center.
+                </p>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <div className="flex items-start p-4 bg-gray-50 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-2">Practice Regularly</h4>
+                      <p className="text-gray-600 text-sm">Listen to English podcasts and practice writing messages in English.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start p-4 bg-gray-50 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-2">Immerse Yourself</h4>
+                      <p className="text-gray-600 text-sm">Speak with a friend, read articles, and try thinking in English.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start p-4 bg-gray-50 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-2">Multiple-Choice Practice</h4>
+                      <p className="text-gray-600 text-sm">Since the test uses this format, practicing similar questions can help.</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start p-4 bg-gray-50 rounded-lg">
+                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-2">Practice Questions</h4>
+                      <p className="text-gray-600 text-sm">You will get a chance to practice Kaplan test questions before the real one, so don't stress.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Cost Section */}
+              <div className="mb-8" id="cost">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Cost for Kaplan Assessment Exam</h2>
+                <div className="bg-yellow-50 p-6 rounded-lg mb-6">
+                  <div className="flex items-center mb-4">
+                    <DollarSign className="w-6 h-6 text-yellow-600 mr-3" />
+                    <h3 className="text-xl font-semibold text-yellow-800">Pricing Information</h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    The KTE costs around <strong>£118 (€140)</strong>, which is not the cheapest option. However, you may get a <strong>25% discount</strong> if the university you're applying to is a Kaplan partner. Check with the university to see if you qualify.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    You will receive your results at Kaplan online center in <strong>2-5 working days</strong>. Kaplan does not send your results to universities—you need to share them yourself. The good news is that you can send them to as many universities as you want without paying any extra fees, unlike some other English tests.
+                  </p>
+                </div>
+              </div>
+
+              {/* Conclusion Section */}
+              <div className="mb-8" id="conclusion">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The <strong>Kaplan English Test</strong> is an online test you can take from home to check your English skills. It measures your ability in listening, grammar, writing, reading, and speaking, covering levels from beginner (A1) to advanced (C2). The test is adaptive, meaning the questions change based on your level.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Some people may get more questions than others, but that is completely okay. It is recommended to just take your time and give your best. KTE is a simple and flexible way to prove your English proficiency.
+                </p>
+              </div>
+
+              {/* FAQs Section */}
+              <div className="mb-8" id="faqs">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">FAQs</h2>
+                
+                <div className="space-y-6">
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="text-lg font-semibold mb-3 text-gray-800 flex items-center">
+                      <AlertCircle className="w-5 h-5 text-blue-500 mr-2" />
+                      How many times can you take the Kaplan exam?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      You can take the Kaplan Test of English (KTE) as many times as you want, anytime. But for each attempt, you need to register again and pay the test fee.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h3 className="text-lg font-semibold mb-3 text-gray-800 flex items-center">
+                      <AlertCircle className="w-5 h-5 text-blue-500 mr-2" />
+                      How can I practice Kaplan test questions?
+                    </h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      You can practice for the KTE using free resources like practice tests, quizzes, and daily questions. If you want more help, you can also buy their courses.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Call to Action */}
+              <div className="bg-blue-50 p-8 rounded-lg text-center">
+                <h3 className="text-2xl font-bold mb-4 text-blue-800">Need Help with KTE Preparation?</h3>
+                <p className="text-gray-700 mb-6">
+                  Get expert guidance from Dunya Consultants for your Kaplan Test of English preparation and study abroad journey.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a 
+                    href="tel:+923041110947" 
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call Now: +92 304 1110947
+                  </a>
+                  <a 
+                    href="mailto:query@teamdunya.com" 
+                    className="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors flex items-center justify-center"
+                  >
+                    <Mail className="w-5 h-5 mr-2" />
+                    Email Us
+                  </a>
+                </div>
+              </div>
+            </article>
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-4">
+          <div className="lg:col-span-1">
             <div className="sticky top-8 space-y-6">
-              {/* Table of Contents */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="#format" className="text-blue-600 hover:text-blue-800">Test Format and Structure</a></li>
-                  <li><a href="#scoring" className="text-blue-600 hover:text-blue-800">Scoring System</a></li>
-                  <li><a href="#preparation" className="text-blue-600 hover:text-blue-800">Preparation Tips</a></li>
-                  <li><a href="#comparison" className="text-blue-600 hover:text-blue-800">KTE vs Other Tests</a></li>
-                  <li><a href="#universities" className="text-blue-600 hover:text-blue-800">Accepting Universities</a></li>
-                </ul>
+              {/* Quick Facts */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <Target className="w-5 h-5 mr-2 text-blue-500" />
+                  Quick Facts
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Test Type:</span>
+                    <span className="font-medium">Online Adaptive</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Duration:</span>
+                    <span className="font-medium">1-2 hours</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Cost:</span>
+                    <span className="font-medium">£118 (€140)</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Results:</span>
+                    <span className="font-medium">2-5 days</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Location:</span>
+                    <span className="font-medium">From Home</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Test Sections */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                  Test Sections
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Writing</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">25-40 min</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Reading</span>
+                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">No limit</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Listening</span>
+                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">No limit</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Speaking</span>
+                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">10 min</span>
+                  </div>
+                </div>
               </div>
 
               {/* Contact Form */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Need Help with KTE?</h3>
-                <form className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Your Email"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-                  <div>
-                    <textarea
-                      placeholder="Your Message"
-                      rows={4}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                  >
-                    Send Message
-                  </button>
-                </form>
-              </div>
-
-              {/* Share */}
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Share this Article</h3>
-                <div className="flex space-x-2">
-                  <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg text-sm hover:bg-blue-700 transition-colors">
-                    Facebook
-                  </button>
-                  <button className="flex-1 bg-sky-500 text-white py-2 px-4 rounded-lg text-sm hover:bg-sky-600 transition-colors">
-                    Twitter
-                  </button>
-                  <button className="flex-1 bg-blue-700 text-white py-2 px-4 rounded-lg text-sm hover:bg-blue-800 transition-colors">
-                    LinkedIn
-                  </button>
-                </div>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </div>
-        
-        {/* Contact Section */}
-        <div className="max-w-[1440px] mx-auto px-4 py-12">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Need help with KTE preparation or study abroad plans? Contact our expert team for personalized guidance and support.
-            </p>
-          </div>
-          <ContactSection />
-        </div>
       </div>
+
+      {/* Contact Section */}
+      <ContactSection />
       <Footer />
     </div>
   );
