@@ -1,5 +1,6 @@
-import React from 'react';
-import { Flag, GraduationCap, MapPin, DollarSign, Heart, Star, Globe, Users } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, User, Share2, BookOpen, CheckCircle, AlertCircle, FileText, Target, Award, Globe, DollarSign, MessageCircle, Phone, Mail, Star, MapPin, Users, GraduationCap, Building2, Briefcase, Flag, Heart } from 'lucide-react';
+import { Link } from 'wouter';
+import ContactForm from '@/components/blog/ContactForm';
 import ContactSection from '@/components/blog/ContactSection';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -15,395 +16,411 @@ export default function TurkeyBestChoicePakistaniStudents() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900">Why Turkey is Best Choice for Pakistani Students</h1>
-              <p className="mt-2 text-gray-600">Discover the Benefits of Studying in Turkey</p>
-            </div>
-            <div className="text-right">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
-                <Flag className="w-4 h-4 mr-1" />
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study in Turkey
               </span>
             </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Why Turkey is Best Choice for Pakistani Students?
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Discover the benefits of studying in Turkey for Pakistani students - from affordable tuition fees to high-quality education and rich cultural heritage.
+            </p>
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>March 17, 2025</span>
+              </div>
+              <div className="flex items-center">
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>12 min read</span>
+              </div>
+            </div>
           </div>
         </div>
-      </header>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-lg shadow-sm p-8">
-              {/* Featured Image */}
-              <div className="mb-8">
-                <img 
-                  src="https://images.unsplash.com/photo-1541432901042-2d8bd64b5a9b?auto=format&fit=crop&w=1200&q=80"
-                  alt="Turkey Best Choice for Pakistani Students"
-                  className="w-full h-64 object-cover rounded-lg"
-                />
-              </div>
 
-              {/* Key Statistics */}
-              <div className="bg-red-50 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold text-red-900 mb-4">Quick Facts about Turkey</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-red-600">200+</div>
-                    <div className="text-sm text-red-800">Universities</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-red-600">260K+</div>
-                    <div className="text-sm text-red-800">Int'l Students</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-red-600">94.2%</div>
-                    <div className="text-sm text-red-800">Enrollment Rate</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-red-600">129</div>
-                    <div className="text-sm text-red-800">Public Unis</div>
+              {/* Turkey Overview */}
+              <section className="mb-8">
+                <div className="bg-red-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <Flag className="w-6 h-6 text-red-500 mr-2" />
+                    Turkey Study Overview
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-red-600">200+</div>
+                      <div className="text-sm text-red-800">Universities</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-red-600">94.2%</div>
+                      <div className="text-sm text-red-800">Enrollment Rate</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-red-600">129</div>
+                      <div className="text-sm text-red-800">Public Universities</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-red-600">5/5</div>
+                      <div className="text-sm text-red-800">Bologna Score</div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </section>
 
               {/* Introduction */}
-              <div className="prose prose-lg max-w-none mb-8">
-                <p className="text-gray-700 leading-relaxed">
-                  Turkey has emerged as one of the top destinations for Pakistani students seeking quality higher education abroad. 
-                  The country offers a unique blend of affordable tuition fees, high-quality education, rich cultural heritage, 
-                  and a Muslim-friendly environment that makes it easier for Pakistani students to adapt and thrive.
+              <div className="mb-8">
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  At present, numerous students are choosing to study abroad. Study in Turkey has become a top choice for Pakistani students. There are many reasons for this. Turkey provides affordable tuition fees, high-quality education, as well as a rich cultural history. Since it is a Muslim-majority country, Pakistani students find it easier to adjust and practice their faith.
                 </p>
-                
-                <p className="text-gray-700 leading-relaxed mt-4">
-                  With strong Pakistan-Turkey friendship and cultural ties, Turkey provides an ideal study destination where 
-                  students can pursue their academic goals while experiencing a familiar cultural environment.
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Universities in Turkey for international students also provide support services for international students, helping them settle in comfortably. Moreover, many scholarships are available to help cover tuition fees and living costs which make education in Turkey more affordable.
+                </p>
+                <p className="text-gray-700 leading-relaxed">
+                  Pakistan and Turkey share a strong friendship, including military and cultural ties, which makes Turkey an even more attractive study destination for Pakistani students. To learn more about study in Turkey for international students, please keep reading below:
                 </p>
               </div>
 
-              {/* Best Universities */}
+              {/* Best Universities Section */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-red-500 pl-4">
                   Best Universities in Turkey for International Students
                 </h2>
-                <div className="bg-white rounded-lg p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {universities.map((university, index) => (
-                      <div key={index} className="bg-white rounded-lg p-4 border hover:shadow-md transition-shadow">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h3 className="font-semibold text-gray-900 text-sm">{index + 1}. {university}</h3>
-                            <p className="text-xs text-gray-600 mt-1 flex items-center">
-                              <MapPin className="w-3 h-3 mr-1" />
-                              Turkey
-                            </p>
-                          </div>
-                          <div className="w-6 h-6 bg-red-100 rounded-full flex items-center justify-center">
-                            <GraduationCap className="w-3 h-3 text-red-600" />
-                          </div>
-                        </div>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Let's discuss about the list of universities in Turkey for international students in English below:
+                </p>
+
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse border border-gray-300 rounded-lg">
+                    <thead>
+                      <tr className="bg-red-50">
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-900">Sr. No.</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-900">University Name</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {universities.map((university, index) => (
+                        <tr key={index} className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-700">{index + 1}</td>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-700">{university}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              {/* Why Education in Turkey Section */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-red-500 pl-4">
+                  Why Education in Turkey is Best for Pakistani Students?
+                </h2>
+                <p className="text-gray-700 leading-relaxed mb-8">
+                  Turkey is located between Europe and Asia, making it easy to travel and experience different cultures. Here are some main reasons to study in Turkey from Pakistan:
+                </p>
+
+                {/* Reasons Cards */}
+                <div className="space-y-8">
+                  
+                  {/* Top Universities */}
+                  <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start mb-4">
+                      <GraduationCap className="w-6 h-6 text-red-500 mr-3 mt-1" />
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">Top Universities in Turkey</h3>
+                        <p className="text-gray-700 leading-relaxed mb-4">
+                          Turkey has over 200 universities, with 129 being public universities in Turkey for international students. Most universities are modern and use the latest teaching methods. Both public and private universities in Turkey follow the Bologna Agreement, which sets education standards across Europe.
+                        </p>
+                        <p className="text-gray-700 leading-relaxed">
+                          Turkish universities also participate in Erasmus+, allowing students to join exchange programs.
+                        </p>
                       </div>
-                    ))}
+                    </div>
                   </div>
+
+                  {/* High-Quality Education */}
+                  <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start mb-4">
+                      <Award className="w-6 h-6 text-red-500 mr-3 mt-1" />
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">High-Quality Education</h3>
+                        <p className="text-gray-700 leading-relaxed mb-4">
+                          Turkey ranks second in the world for higher education enrollment, with a 94.2% schooling rate. It follows the Bologna Process perfectly, scoring 5 out of 5. This means a study in Turkey from Pakistan is accepted in all European countries.
+                        </p>
+                        <p className="text-gray-700 leading-relaxed">
+                          The ECTS credit system is used, and students receive a Diploma Supplement that helps with international recognition.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Growing Education Hub */}
+                  <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start mb-4">
+                      <Building2 className="w-6 h-6 text-red-500 mr-3 mt-1" />
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">A Growing Education Hub</h3>
+                        <p className="text-gray-700 leading-relaxed">
+                          Turkey has become a major education destination in Europe and globally. With increasing investments in higher education infrastructure and technology, Turkish universities are attracting more international students each year. The country offers modern facilities, research opportunities, and academic partnerships worldwide.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Affordable Living */}
+                  <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start mb-4">
+                      <DollarSign className="w-6 h-6 text-red-500 mr-3 mt-1" />
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">Affordable and Comfortable Living</h3>
+                        <p className="text-gray-700 leading-relaxed">
+                          Turkey offers one of the most affordable living costs in Europe. Students can enjoy comfortable accommodation, delicious food, and modern amenities at reasonable prices. The cost of living is significantly lower compared to other European countries, making it an attractive option for Pakistani students.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Muslim-Friendly Country */}
+                  <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start mb-4">
+                      <Heart className="w-6 h-6 text-red-500 mr-3 mt-1" />
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">A Muslim-Friendly Country</h3>
+                        <p className="text-gray-700 leading-relaxed">
+                          As a Muslim-majority country, Turkey provides a comfortable environment for Pakistani students to practice their faith. Mosques are readily available, halal food is easily accessible, and Islamic values are respected throughout the society. This cultural compatibility helps Pakistani students feel at home.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Cultural Diversity */}
+                  <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start mb-4">
+                      <Globe className="w-6 h-6 text-red-500 mr-3 mt-1" />
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">Cultural Diversity & Safe Environment</h3>
+                        <p className="text-gray-700 leading-relaxed">
+                          Turkey offers a unique blend of Eastern and Western cultures, providing students with diverse experiences. The country maintains a safe and secure environment for international students, with low crime rates and friendly local communities that welcome foreign students.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* English-Taught Programs */}
+                  <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start mb-4">
+                      <BookOpen className="w-6 h-6 text-red-500 mr-3 mt-1" />
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">English-Taught Programs</h3>
+                        <p className="text-gray-700 leading-relaxed">
+                          Many Turkish universities offer programs taught entirely in English, eliminating language barriers for international students. This makes it easier for Pakistani students to pursue their desired fields of study without needing to learn Turkish initially.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Student-Friendly Cities */}
+                  <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start mb-4">
+                      <MapPin className="w-6 h-6 text-red-500 mr-3 mt-1" />
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">Student-Friendly Cities</h3>
+                        <p className="text-gray-700 leading-relaxed">
+                          Major Turkish cities like Istanbul, Ankara, and Izmir are highly student-friendly with excellent public transportation, student discounts, cultural activities, and vibrant student communities. These cities offer the perfect balance of academic excellence and social life.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Scholarships */}
+                  <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div className="flex items-start mb-4">
+                      <Star className="w-6 h-6 text-red-500 mr-3 mt-1" />
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 mb-3">Scholarships for Pakistani Students</h3>
+                        <p className="text-gray-700 leading-relaxed">
+                          Turkey offers numerous scholarship opportunities for Pakistani students, including the prestigious Turkiye Burslari Scholarship program that covers tuition fees, accommodation, and living expenses. Many universities also provide merit-based scholarships to attract talented international students.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </section>
 
-              {/* Why Turkey is Best */}
+              {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
-                  Why Education in Turkey is Best for Pakistani Students
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-red-500 pl-4">
+                  Conclusion
                 </h2>
-                <div className="space-y-6">
-                  <div className="bg-blue-50 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <GraduationCap className="w-6 h-6 text-blue-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-blue-900">Top Universities</h3>
-                    </div>
-                    <p className="text-blue-800 text-sm">
-                      Turkey has over 200 universities, with 129 public universities. Most universities are modern and use latest teaching methods. 
-                      Both public and private universities follow the Bologna Agreement, setting education standards across Europe.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-green-50 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <Star className="w-6 h-6 text-green-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-green-900">High-Quality Education</h3>
-                    </div>
-                    <p className="text-green-800 text-sm">
-                      Turkey ranks second globally for higher education enrollment with 94.2% schooling rate. 
-                      It follows the Bologna Process perfectly, scoring 5 out of 5, meaning degrees are accepted in all European countries.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-purple-50 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <Globe className="w-6 h-6 text-purple-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-purple-900">Growing Education Hub</h3>
-                    </div>
-                    <p className="text-purple-800 text-sm">
-                      Turkey is becoming increasingly popular with around 260,289 international students. 
-                      The government has made significant improvements to the education system with major investments.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-orange-50 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <DollarSign className="w-6 h-6 text-orange-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-orange-900">Affordable and Comfortable Living</h3>
-                    </div>
-                    <p className="text-orange-800 text-sm">
-                      Turkey offers affordable tuition fees and living costs compared to other European countries. 
-                      The cost of living is reasonable, making it accessible for Pakistani students.
-                    </p>
-                  </div>
-                  
-                  <div className="bg-pink-50 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <Heart className="w-6 h-6 text-pink-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-pink-900">Muslim-Friendly Country</h3>
-                    </div>
-                    <p className="text-pink-800 text-sm">
-                      As a Muslim-majority country, Pakistani students find it easier to adjust and practice their faith. 
-                      The cultural similarities make the transition smoother for Pakistani students.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              {/* Additional Benefits */}
-              <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
-                  Additional Benefits
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-white border rounded-lg p-4">
-                    <h3 className="font-semibold text-gray-900 mb-2">Cultural Diversity & Safe Environment</h3>
-                    <p className="text-sm text-gray-600">
-                      Turkey offers a multicultural environment that is safe and welcoming for international students, 
-                      with a rich blend of European and Asian cultures.
-                    </p>
-                  </div>
-                  <div className="bg-white border rounded-lg p-4">
-                    <h3 className="font-semibold text-gray-900 mb-2">English-Taught Programs</h3>
-                    <p className="text-sm text-gray-600">
-                      Many universities offer programs in English, making it accessible for international students 
-                      who may not speak Turkish.
-                    </p>
-                  </div>
-                  <div className="bg-white border rounded-lg p-4">
-                    <h3 className="font-semibold text-gray-900 mb-2">Student-Friendly Cities</h3>
-                    <p className="text-sm text-gray-600">
-                      Major cities like Istanbul, Ankara, and Izmir offer excellent student facilities, 
-                      transportation, and social opportunities.
-                    </p>
-                  </div>
-                  <div className="bg-white border rounded-lg p-4">
-                    <h3 className="font-semibold text-gray-900 mb-2">Scholarships for Pakistani Students</h3>
-                    <p className="text-sm text-gray-600">
-                      Various scholarship programs are available to help Pakistani students reduce tuition fees 
-                      and living costs, making education more affordable.
-                    </p>
-                  </div>
-                </div>
-              </section>
-
-              {/* Strategic Location */}
-              <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
-                  Strategic Location & Opportunities
-                </h2>
-                <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-lg p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-3">Geographic Advantage</h3>
-                      <ul className="space-y-2 text-sm text-gray-600">
-                        <li>• Located between Europe and Asia</li>
-                        <li>• Easy travel to multiple countries</li>
-                        <li>• Experience different cultures</li>
-                        <li>• Access to European opportunities</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900 mb-3">Academic Benefits</h3>
-                      <ul className="space-y-2 text-sm text-gray-600">
-                        <li>• Erasmus+ program participation</li>
-                        <li>• Exchange programs with European universities</li>
-                        <li>• ECTS credit system</li>
-                        <li>• International recognition</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </section>
-
-              {/* Pakistan-Turkey Relations */}
-              <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
-                  Pakistan-Turkey Strong Relations
-                </h2>
-                <div className="bg-green-50 rounded-lg p-6">
-                  <div className="flex items-center mb-4">
-                    <Users className="w-6 h-6 text-green-600 mr-3" />
-                    <h3 className="text-lg font-semibold text-green-900">Historical Friendship</h3>
-                  </div>
-                  <p className="text-gray-700 mb-4">
-                    Pakistan and Turkey share a strong friendship that includes military, cultural, and educational ties. 
-                    This relationship makes Turkey an even more attractive study destination for Pakistani students.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="bg-white rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">Cultural Ties</h4>
-                      <p className="text-sm text-gray-600">Shared Islamic heritage and values</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">Educational Cooperation</h4>
-                      <p className="text-sm text-gray-600">Joint programs and student exchanges</p>
-                    </div>
-                    <div className="bg-white rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">Future Opportunities</h4>
-                      <p className="text-sm text-gray-600">Career prospects in both countries</p>
-                    </div>
-                  </div>
-                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  Turkey stands out as an exceptional choice for Pakistani students seeking quality higher education abroad. With its combination of affordable costs, high educational standards, cultural compatibility, and numerous opportunities, Turkey offers everything Pakistani students need for a successful academic journey. The strong diplomatic ties between Pakistan and Turkey, along with the welcoming Turkish society, make it an ideal destination for students looking to expand their horizons while feeling at home.
+                </p>
               </section>
 
               {/* FAQs */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
-                  Frequently Asked Questions
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-red-500 pl-4">
+                  FAQs
                 </h2>
-                <div className="space-y-4">
-                  <div className="bg-white border rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">What is the study cost in Turkey for Pakistani students?</h3>
-                    <p className="text-gray-600">
-                      Tuition fees vary by university and program, but Turkey offers more affordable education compared to other European countries. 
-                      Public universities have lower fees than private institutions.
+                <div className="space-y-6">
+                  <div className="border-l-4 border-gray-200 pl-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      What is study in Turkey cost for Pakistani students?
+                    </h3>
+                    <p className="text-gray-700">
+                      The cost of studying in Turkey for Pakistani students is quite affordable. Public universities charge around $1,000-$4,000 per year for tuition, while private universities range from $5,000-$20,000 annually. Living expenses typically cost $300-$600 per month, making Turkey one of the most budget-friendly study destinations.
                     </p>
                   </div>
-                  
-                  <div className="bg-white border rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">Is studying in Turkey worth it for Pakistani students?</h3>
-                    <p className="text-gray-600">
-                      Yes, Turkey offers excellent value with high-quality education, affordable costs, cultural compatibility, 
-                      and strong job prospects after graduation.
+
+                  <div className="border-l-4 border-gray-200 pl-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Is study in Turkey for Pakistani students worth it?
+                    </h3>
+                    <p className="text-gray-700">
+                      Absolutely! Studying in Turkey offers excellent value for money with high-quality education, internationally recognized degrees, cultural compatibility, and great career opportunities. The Bologna Process compliance ensures degrees are recognized globally, and the affordable costs make it accessible for Pakistani families.
                     </p>
                   </div>
-                  
-                  <div className="bg-white border rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">Are there English universities in Turkey?</h3>
-                    <p className="text-gray-600">
-                      Yes, many universities in Turkey offer programs taught in English, making it accessible for international students 
-                      who don't speak Turkish.
+
+                  <div className="border-l-4 border-gray-200 pl-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Are there any English universities in Turkey?
+                    </h3>
+                    <p className="text-gray-700">
+                      Yes, many Turkish universities offer programs taught entirely in English. Some top English-taught institutions include Boğaziçi University, Middle East Technical University, Sabancı University, Koç University, and Bilkent University. These universities provide excellent education in English across various fields.
                     </p>
                   </div>
-                  
-                  <div className="bg-white border rounded-lg p-6">
-                    <h3 className="font-semibold text-gray-900 mb-2">How to study in private universities in Turkey?</h3>
-                    <p className="text-gray-600">
-                      Private universities in Turkey have their own admission processes. You need to meet their specific requirements, 
-                      submit applications directly, and may need to take entrance exams.
+
+                  <div className="border-l-4 border-gray-200 pl-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      How to study in private universities in Turkey for international students?
+                    </h3>
+                    <p className="text-gray-700">
+                      International students can apply to private universities in Turkey through direct application to the university, online application portals, or through authorized education consultants. Requirements typically include academic transcripts, English proficiency tests (TOEFL/IELTS), passport copies, and application fees. Many private universities offer scholarships to international students.
+                    </p>
+                  </div>
+
+                  <div className="border-l-4 border-gray-200 pl-4">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      What scholarships are available for Pakistani students in Turkey?
+                    </h3>
+                    <p className="text-gray-700">
+                      The main scholarship program is Turkiye Burslari, which covers full tuition, accommodation, health insurance, and monthly allowance. Additionally, many universities offer merit-based scholarships, and there are specific programs for different fields of study. The scholarship application period typically opens in January each year.
                     </p>
                   </div>
                 </div>
               </section>
+
+              {/* Call to Action */}
+              <div className="bg-gradient-to-r from-red-50 to-red-100 p-8 rounded-lg text-center">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Start Your Turkish Education Journey?</h3>
+                <p className="text-gray-700 mb-6">
+                  Get expert guidance from Dunya Consultants for Turkish university applications, visa processing, and scholarship opportunities.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a
+                    href="tel:+923041110947"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors"
+                  >
+                    <Phone className="w-5 h-5 mr-2" />
+                    Call Now: (+92) 304 1110947
+                  </a>
+                  <a
+                    href="mailto:query@teamdunya.com"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-gray-600 text-white font-semibold rounded-lg hover:bg-gray-700 transition-colors"
+                  >
+                    <Mail className="w-5 h-5 mr-2" />
+                    Email Us
+                  </a>
+                </div>
+              </div>
+
             </article>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-8 space-y-6">
-              {/* Contact Card */}
+              
+              {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Study in Turkey</h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  Get expert guidance on studying in Turkey
-                </p>
-                <div className="space-y-3">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <span className="font-medium">Phone:</span>
-                    <span className="ml-2">+92 304 1110947</span>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <Target className="w-5 h-5 mr-2 text-red-500" />
+                  Quick Facts
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Study Level:</span>
+                    <span className="font-medium">Bachelor's, Master's, PhD</span>
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <span className="font-medium">Email:</span>
-                    <span className="ml-2">info@dunyaconsultants.com</span>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Tuition:</span>
+                    <span className="font-medium">$1,000-$20,000</span>
                   </div>
-                </div>
-                <button className="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition-colors mt-4">
-                  Get Consultation
-                </button>
-              </div>
-
-              {/* Turkey Facts */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Turkey at a Glance</h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Location:</span>
-                    <span className="font-medium">Europe & Asia</span>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Living Cost:</span>
+                    <span className="font-medium">$300-$600/month</span>
                   </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Universities:</span>
-                    <span className="font-medium">200+</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Int'l Students:</span>
-                    <span className="font-medium">260,289</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between">
                     <span className="text-gray-600">Language:</span>
-                    <span className="font-medium">Turkish/English</span>
+                    <span className="font-medium">English/Turkish</span>
                   </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Religion:</span>
-                    <span className="font-medium">Muslim Majority</span>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Intake:</span>
+                    <span className="font-medium">Sep, Feb</span>
                   </div>
                 </div>
               </div>
 
-              {/* Navigation */}
+              {/* Top Reasons */}
               <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Navigation</h3>
-                <nav className="space-y-2 text-sm">
-                  <a href="#universities" className="block text-gray-600 hover:text-red-600">Best Universities</a>
-                  <a href="#benefits" className="block text-gray-600 hover:text-red-600">Why Turkey</a>
-                  <a href="#advantages" className="block text-gray-600 hover:text-red-600">Additional Benefits</a>
-                  <a href="#location" className="block text-gray-600 hover:text-red-600">Strategic Location</a>
-                  <a href="#relations" className="block text-gray-600 hover:text-red-600">Pakistan-Turkey Relations</a>
-                  <a href="#faqs" className="block text-gray-600 hover:text-red-600">FAQs</a>
-                </nav>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <Star className="w-5 h-5 mr-2 text-red-500" />
+                  Top Reasons
+                </h3>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">Affordable tuition and living costs</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">Muslim-friendly environment</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">High-quality education</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">Scholarship opportunities</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">Cultural diversity</span>
+                  </li>
+                </ul>
               </div>
 
-              {/* Related Articles */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
-                <div className="space-y-3">
-                  <a href="/blog/cyprus-visa-pakistan" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
-                    <h4 className="font-medium text-gray-900 text-sm">Cyprus Visa for Pakistan</h4>
-                    <p className="text-xs text-gray-600 mt-1">Student visa guide</p>
-                  </a>
-                  <a href="/blog/study-nursing-uk" className="block p-3 bg-white rounded-lg hover:bg-gray-100 transition-colors">
-                    <h4 className="font-medium text-gray-900 text-sm">Study Nursing in UK</h4>
-                    <p className="text-xs text-gray-600 mt-1">Complete guide</p>
-                  </a>
-                </div>
-              </div>
+              {/* Contact Form */}
+              <ContactForm />
             </div>
           </div>
-        </div>
-        
-        {/* Contact Section */}
-        <div className="max-w-[1440px] mx-auto px-4 py-12">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Ready to study in Turkey? Contact our expert team for personalized guidance and comprehensive support throughout your application journey to Turkish universities.
-            </p>
-          </div>
-          <ContactSection />
         </div>
       </div>
       <Footer />
