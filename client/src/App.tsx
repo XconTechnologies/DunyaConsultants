@@ -53,6 +53,7 @@ import Top10UniversitiesLondon from "@/pages/blog/top-10-universities-in-london"
 import RecommendationLetterStudentScholarship from "@/pages/blog/recommendation-letter-for-student-scholarship";
 import StudyInUK from "@/pages/blog/study-in-uk";
 import StudyAbroadEducationConsultants from "@/pages/blog/study-abroad-education-consultants-dunya-consultants";
+import AngliaRuskinUniversity from "@/pages/blog/anglia-ruskin-university";
 import DubaiVisaForPakistani from "@/pages/blog/dubai-visa-for-pakistani";
 import UKStudentDependentVisaNewRules from "@/pages/blog/uk-student-dependent-visa-new-rules";
 import BenefitsOfStudyingInLondon from "@/pages/blog/benefits-of-studying-in-london";
@@ -140,6 +141,7 @@ function Router() {
       <Route path="/blog/recommendation-letter-for-student-scholarship" component={RecommendationLetterStudentScholarship} />
       <Route path="/blog/study-in-uk" component={StudyInUK} />
       <Route path="/blog/study-abroad-education-consultants-dunya-consultants" component={StudyAbroadEducationConsultants} />
+      <Route path="/blog/anglia-ruskin-university" component={AngliaRuskinUniversity} />
       <Route path="/blog/dubai-visa-for-pakistani" component={DubaiVisaForPakistani} />
       <Route path="/blog/uk-student-dependent-visa-new-rules" component={UKStudentDependentVisaNewRules} />
       <Route path="/blog/benefits-of-studying-in-london" component={BenefitsOfStudyingInLondon} />
