@@ -17,7 +17,7 @@ interface BlogPost {
   featured_image?: string;
 }
 
-const ComparisonEducationSystemPakistanUK: React.FC = () => {
+const NewYearResolutionsStudents2025: React.FC = () => {
   const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ const ComparisonEducationSystemPakistanUK: React.FC = () => {
   useEffect(() => {
     const fetchBlogPost = async () => {
       try {
-        const response = await fetch('/api/blog-posts/comparison-education-system-pakistan-uk');
+        const response = await fetch('/api/blog-posts/new-year-resolutions-students-2025');
         if (!response.ok) {
           throw new Error('Failed to fetch blog post');
         }
@@ -151,54 +151,54 @@ const ComparisonEducationSystemPakistanUK: React.FC = () => {
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Pakistan Literacy:</span>
-                    <span className="font-medium">58.9%</span>
+                    <span className="text-gray-600">Best Time to Start:</span>
+                    <span className="font-medium">12-18 months</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">UK Education:</span>
-                    <span className="font-medium">World Ranking</span>
+                    <span className="text-gray-600">Key Areas:</span>
+                    <span className="font-medium">7 Essential Goals</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Primary Age:</span>
-                    <span className="font-medium">PK: 5-6, UK: 4-5</span>
+                    <span className="text-gray-600">Success Rate:</span>
+                    <span className="font-medium">Higher with planning</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Degree Duration:</span>
-                    <span className="font-medium">UK: 3-4 years</span>
+                    <span className="text-gray-600">Timeline:</span>
+                    <span className="font-medium">Year-long journey</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Academic Year:</span>
-                    <span className="font-medium">UK: Sep-Aug</span>
+                    <span className="text-gray-600">Priority:</span>
+                    <span className="font-medium">Consistency matters</span>
                   </div>
                 </div>
               </div>
 
-              {/* Education Levels */}
+              {/* Resolution Categories */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
                   <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
-                  Education Levels
+                  Resolution Categories
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>Primary</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Ages 5-11</span>
+                    <span>Academic</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Test Scores</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>Secondary</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Ages 11-18</span>
+                    <span>Financial</span>
+                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Budgeting</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>Higher Ed</span>
-                    <span className="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">18+ Years</span>
+                    <span>Personal</span>
+                    <span className="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Mental Health</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>UK Standards</span>
-                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Global</span>
+                    <span>Language</span>
+                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Communication</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>Pakistan System</span>
-                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Developing</span>
+                    <span>Cultural</span>
+                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Adaptation</span>
                   </div>
                 </div>
               </div>
@@ -215,4 +215,4 @@ const ComparisonEducationSystemPakistanUK: React.FC = () => {
   );
 };
 
-export default ComparisonEducationSystemPakistanUK;
+export default NewYearResolutionsStudents2025;

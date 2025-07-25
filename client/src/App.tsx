@@ -42,9 +42,8 @@ import BachelorsIndustrialEngineeringAndManagement from "@/pages/blog/bachelors-
 import TeessideUniversityTrustedPartner from "@/pages/blog/teesside-university-trusted-partner";
 import IELTSAcceptability2025 from "@/pages/blog/ielts-acceptability-2025";
 import DifferenceIELTSGeneralAcademic from "@/pages/blog/difference-between-ielts-general-and-academic";
-import ComparisonEducationSystemPakistanUK from "@/pages/blog/languagecert-2025-guide";
+import NewYearResolutionsStudents2025 from "@/pages/blog/languagecert-2025-guide";
 import FinlandOnlineVisaApplication from "@/pages/blog/finland-online-visa-application-from-pakistan";
-import NewYearResolutionsStudents2025 from "@/pages/blog/new-year-resolutions-for-students-2025";
 import HowMuchStudyGapAcceptableUKMasters from "@/pages/blog/how-much-study-gap-acceptable-in-uk-for-masters";
 import GreenCardInternationalStudents from "@/pages/blog/green-card-for-international-students";
 import RequirementsComputerScienceUSA from "@/pages/blog/requirements-to-study-computer-science-in-usa";
@@ -129,9 +128,8 @@ function Router() {
       <Route path="/blog/teesside-university-trusted-partner" component={TeessideUniversityTrustedPartner} />
       <Route path="/blog/ielts-acceptability-2025" component={IELTSAcceptability2025} />
       <Route path="/blog/difference-between-ielts-general-and-academic" component={DifferenceIELTSGeneralAcademic} />
-      <Route path="/blog/comparison-education-system-pakistan-uk" component={ComparisonEducationSystemPakistanUK} />
+      <Route path="/blog/new-year-resolutions-students-2025" component={NewYearResolutionsStudents2025} />
       <Route path="/blog/finland-online-visa-application-from-pakistan" component={FinlandOnlineVisaApplication} />
-      <Route path="/blog/new-year-resolutions-for-students-2025" component={NewYearResolutionsStudents2025} />
       <Route path="/blog/how-much-study-gap-acceptable-in-uk-for-masters" component={HowMuchStudyGapAcceptableUKMasters} />
       <Route path="/blog/green-card-for-international-students" component={GreenCardInternationalStudents} />
       <Route path="/blog/requirements-to-study-computer-science-in-usa" component={RequirementsComputerScienceUSA} />
