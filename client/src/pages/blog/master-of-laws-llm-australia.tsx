@@ -9,7 +9,7 @@ export default function MasterOfLawsLLMAustralia() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-blue-600 text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-sm font-medium mb-4">
@@ -28,11 +28,11 @@ export default function MasterOfLawsLLMAustralia() {
               </div>
               <div className="flex items-center">
                 <Calendar className="w-4 h-4 mr-2" />
-                January 25, 2025
+                March 13, 2025
               </div>
               <div className="flex items-center">
                 <Clock className="w-4 h-4 mr-2" />
-                18 min read
+                15 min read
               </div>
             </div>
           </div>
