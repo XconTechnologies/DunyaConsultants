@@ -42,7 +42,7 @@ import BachelorsIndustrialEngineeringAndManagement from "@/pages/blog/bachelors-
 import TeessideUniversityTrustedPartner from "@/pages/blog/teesside-university-trusted-partner";
 import IELTSAcceptability2025 from "@/pages/blog/ielts-acceptability-2025";
 import DifferenceIELTSGeneralAcademic from "@/pages/blog/difference-between-ielts-general-and-academic";
-import IELTSBandScoreGuide from "@/pages/blog/ielts-band-score-complete-guide";
+import IELTSBandScoreGuide from "@/pages/blog/ielts-band-score-guide";
 import LanguageCert2025Guide from "@/pages/blog/languagecert-2025-complete-guide";
 import FinlandOnlineVisaApplication from "@/pages/blog/finland-online-visa-application-from-pakistan";
 import NewYearResolutionsStudents2025 from "@/pages/blog/new-year-resolutions-for-students-2025";
