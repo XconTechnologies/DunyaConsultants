@@ -1,390 +1,323 @@
-import React, { useState } from 'react';
-import { Link } from 'wouter';
-import { ArrowLeft, Clock, User, Share2, Download, Phone, Mail, MessageCircle, ChevronRight, ChevronDown, ChevronUp, Globe, Star, DollarSign, Users } from 'lucide-react';
 import ContactForm from '@/components/blog/ContactForm';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
+import { BookOpen, Clock, User, Calendar } from 'lucide-react';
 
-const TopStudyAbroadCountries: React.FC = () => {
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-
-  const toggleFaq = (index: number) => {
-    setExpandedFaq(expandedFaq === index ? null : index);
-  };
-
-  const faqData = [
-    {
-      question: "Which country is best for studying abroad?",
-      answer: "The UK and US have top universities. Canada and Australia provide great work opportunities, and Germany provides affordable education. The best country depends on your field of study, budget, and career goals."
-    },
-    {
-      question: "Which country is the most affordable for international students?",
-      answer: "Germany provides free or low-cost education at public universities, while Canada and Europe also have relatively lower tuition fees compared to the US and UK."
-    },
-    {
-      question: "What factors should I consider when choosing a study abroad destination?",
-      answer: "Consider factors such as academic goals, tuition fees, lifestyle, job opportunities, cultural experiences, visa requirements, and post-graduation work opportunities."
-    },
-    {
-      question: "How many Pakistani students study abroad annually?",
-      answer: "Every year, over 700,000 students and professionals from Pakistan move abroad for studies, making it one of the largest sources of international students globally."
-    }
-  ];
-
-  const countries = [
-    {
-      name: "United Kingdom",
-      flag: "🇬🇧",
-      highlights: [
-        "Home to Oxford and Cambridge universities",
-        "High-quality education with flexible courses",
-        "Strong focus on practical and scientific knowledge",
-        "Many scholarship opportunities available"
-      ],
-      color: "from-blue-500 to-purple-600"
-    },
-    {
-      name: "United States",
-      flag: "🇺🇸",
-      highlights: [
-        "Largest number of international students worldwide",
-        "Ivy League schools and globally recognized institutions",
-        "Diverse courses and top-ranked universities",
-        "Strong career opportunities after graduation"
-      ],
-      color: "from-red-500 to-blue-600"
-    },
-    {
-      name: "Canada",
-      flag: "🇨🇦",
-      highlights: [
-        "26+ institutions in QS World University Rankings",
-        "Affordable tuition fees and friendly communities",
-        "Numerous scholarship programs available",
-        "Pathways to permanent residency for graduates"
-      ],
-      color: "from-red-500 to-red-600"
-    },
-    {
-      name: "Australia",
-      flag: "🇦🇺",
-      highlights: [
-        "43 universities, many ranking among world's best",
-        "Diverse culture and beautiful surroundings",
-        "Wide variety of courses available",
-        "Part-time work opportunities while studying"
-      ],
-      color: "from-green-500 to-blue-600"
-    },
-    {
-      name: "Germany",
-      flag: "🇩🇪",
-      highlights: [
-        "Free or low-cost education at public universities",
-        "Leading institutions like Technical University of Munich",
-        "Strong economy and advanced technology",
-        "Vibrant student life and cultural heritage"
-      ],
-      color: "from-yellow-500 to-red-600"
-    },
-    {
-      name: "Europe",
-      flag: "🇪🇺",
-      highlights: [
-        "Interactive learning approach with direct engagement",
-        "Focus on innovation and research",
-        "Rich cultural heritage and vibrant campus life",
-        "Strong support system for international students"
-      ],
-      color: "from-purple-500 to-blue-600"
-    }
-  ];
-
+export default function TopStudyAbroadCountries() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-[1440px] mx-auto px-4 py-4">
-          <Link href="/blog" className="inline-flex items-center text-blue-600 hover:text-blue-800 mb-4">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Blog
-          </Link>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4 text-sm text-gray-600">
-              <div className="flex items-center">
-                <Clock className="w-4 h-4 mr-1" />
-                <span>March 14, 2025</span>
-              </div>
-              <div className="flex items-center">
-                <User className="w-4 h-4 mr-1" />
-                <span>Dunya Consultants</span>
-              </div>
-              <div className="flex items-center">
-                <Clock className="w-4 h-4 mr-1" />
-                <span>7 min read</span>
-              </div>
+    <div className="min-h-screen bg-gray-50">
+      <Navigation />
+      
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-sm font-medium mb-4">
+              Study Destinations
             </div>
-            
-            <div className="flex items-center space-x-2">
-              <button className="p-2 text-gray-600 hover:text-blue-600 rounded-full hover:bg-blue-50">
-                <Share2 className="w-4 h-4" />
-              </button>
-              <button className="p-2 text-gray-600 hover:text-blue-600 rounded-full hover:bg-blue-50">
-                <Download className="w-4 h-4" />
-              </button>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              Top Study Abroad Countries for Pakistani Students in 2025
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Discover the best study destinations offering quality education, career opportunities, and cultural experiences for Pakistani students seeking international education.
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
+              <div className="flex items-center">
+                <User className="w-4 h-4 mr-2" />
+                Dunya Consultants
+              </div>
+              <div className="flex items-center">
+                <Calendar className="w-4 h-4 mr-2" />
+                January 25, 2025
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-4 h-4 mr-2" />
+                15 min read
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Full Width Hero Section */}
-      <div className="relative w-full h-96 bg-cover bg-center bg-no-repeat" style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)'
-      }}>
-        {/* Color Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/80 to-purple-600/80"></div>
-        
-        {/* Content */}
-        <div className="relative z-10 flex items-center justify-center h-full">
-          <div className="text-center text-white px-4">
-            <h1 className="text-5xl font-bold mb-4">Top Study Abroad Countries</h1>
-            <p className="text-2xl opacity-90 max-w-3xl mx-auto">Discover the Best Destinations for International Students</p>
-          </div>
-        </div>
-      </div>
+      {/* Main Content */}
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="flex flex-col lg:flex-row gap-12">
+          {/* Main Content Area */}
+          <div className="lg:w-2/3">
+            <article className="bg-white rounded-lg shadow-sm border p-8">
+              
+              {/* Introduction */}
+              <div className="mb-8">
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Studying in another country is the best and life-changing experience. It helps students get high quality education, explore new cultures, and find better career opportunities. Every year, over 700,000 students and professionals from Pakistan move abroad for studies.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Choosing the right country can be a difficult decision, as many factors need to be considered. These include the quality of education, tuition fees, student visa process, lifestyle, and job opportunities after graduation. Students should think about their academic goals when selecting a country.
+                </p>
+              </div>
 
-      <div className="max-w-[1440px] mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-3">
-            <article className="bg-white rounded-lg shadow-sm">
+              {/* Table of Contents */}
+              <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li><a href="#best-countries" className="hover:text-blue-600">List of the Best Countries to Study Abroad</a></li>
+                  <li><a href="#united-kingdom" className="hover:text-blue-600">United Kingdom</a></li>
+                  <li><a href="#united-states" className="hover:text-blue-600">United States</a></li>
+                  <li><a href="#canada" className="hover:text-blue-600">Canada</a></li>
+                  <li><a href="#australia" className="hover:text-blue-600">Australia</a></li>
+                  <li><a href="#germany" className="hover:text-blue-600">Germany</a></li>
+                  <li><a href="#europe" className="hover:text-blue-600">Europe</a></li>
+                  <li><a href="#conclusion" className="hover:text-blue-600">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:text-blue-600">FAQs</a></li>
+                </ul>
+              </div>
 
-              <div className="p-8">
-                {/* Article Content */}
-                <div>
-                  <p className="text-xl text-gray-700 mb-6 leading-relaxed">
-                    Studying in another country is the best and life-changing experience. It helps students get high quality 
-                    education, explore new cultures, and find better career opportunities. Every year, over 700,000 students 
-                    and professionals from Pakistan move abroad for studies.
-                  </p>
+              {/* Best Countries Overview */}
+              <div className="mb-8" id="best-countries">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">List of the Best Countries to Study Abroad</h2>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Choosing the best country for studying abroad is not just about picking a well-known university. It is about finding a place according to your education goals and future career plans. Each country provides different benefits. Here are some of the best countries for international students:
+                </p>
+              </div>
 
-                  <div className="bg-blue-50 border-l-4 border-blue-500 p-6 my-8">
-                    <h3 className="text-lg font-semibold text-blue-900 mb-2">Key Statistics</h3>
-                    <div className="grid grid-cols-2 gap-4 text-blue-800">
-                      <div className="flex items-center">
-                        <Users className="w-5 h-5 mr-2" />
-                        <span>700,000+ Pakistani students abroad annually</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Globe className="w-5 h-5 mr-2" />
-                        <span>Multiple top-ranking destinations</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Star className="w-5 h-5 mr-2" />
-                        <span>World-class education quality</span>
-                      </div>
-                      <div className="flex items-center">
-                        <DollarSign className="w-5 h-5 mr-2" />
-                        <span>Various scholarship opportunities</span>
-                      </div>
-                    </div>
+              {/* United Kingdom */}
+              <div className="mb-8" id="united-kingdom">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">United Kingdom</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The UK is one of the most popular places for international students, with a long history of high quality education. It is home to the famous universities such as Oxford and Cambridge, which have been educating students since the 12th and 13th centuries. Studying in the UK can be challenging, but it is also highly rewarding.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  The country provides high-quality education, flexible courses, and a strong focus on practical and scientific knowledge. There are also many scholarship opportunities available for international students.
+                </p>
+                
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-blue-800 mb-3">UK Study Benefits</h4>
+                  <ul className="list-disc list-inside text-gray-700 space-y-2">
+                    <li>World-renowned universities like Oxford and Cambridge</li>
+                    <li>High-quality education with flexible course structures</li>
+                    <li>Strong focus on practical and scientific knowledge</li>
+                    <li>Numerous scholarship opportunities for international students</li>
+                    <li>Rich cultural heritage and diverse student community</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* United States */}
+              <div className="mb-8" id="united-states">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">United States</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The United States is one of the most favorite places for international students. It has a vast range of universities and colleges, including Ivy League schools and other globally recognized institutions.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  The US is home to the largest number of international students worldwide, providing diverse courses, top-ranked universities, and strong career opportunities after graduation. Students can also benefit from a multicultural environment that enhances their personal and professional development.
+                </p>
+                
+                <div className="bg-green-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-green-800 mb-3">USA Study Advantages</h4>
+                  <ul className="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Ivy League schools and globally recognized institutions</li>
+                    <li>Largest number of international students worldwide</li>
+                    <li>Diverse course offerings and top-ranked universities</li>
+                    <li>Strong career opportunities after graduation</li>
+                    <li>Multicultural environment for personal and professional growth</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Canada */}
+              <div className="mb-8" id="canada">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Canada</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The country is also home to world-leading universities, with more than 26 institutions ranked in the QS World University Rankings and THE World University Rankings. Canadian universities host almost half a million international students each year.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Besides its strong education system, Canada is known for its affordable tuition fees, friendly communities, and best student life. The country also provides numerous scholarship programs, work opportunities, and pathways to permanent residency for graduates.
+                </p>
+                
+                <div className="bg-purple-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-purple-800 mb-3">Canada Study Benefits</h4>
+                  <ul className="list-disc list-inside text-gray-700 space-y-2">
+                    <li>26+ institutions ranked in global university rankings</li>
+                    <li>Nearly 500,000 international students annually</li>
+                    <li>Affordable tuition fees and friendly communities</li>
+                    <li>Excellent student life and numerous scholarship programs</li>
+                    <li>Work opportunities and pathways to permanent residency</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Australia */}
+              <div className="mb-8" id="australia">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Australia</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Studying in Australia is a great option for students looking for a high-quality education, a diverse culture, and beautiful surroundings. The country has 43 universities, many of which rank among the best in the world.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Students can choose from a wide variety of courses, including business, medicine, engineering, and English language studies. Australia also provides numerous scholarships for international students and allows them to work part-time while studying.
+                </p>
+                
+                <div className="bg-orange-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-orange-800 mb-3">Australia Study Features</h4>
+                  <ul className="list-disc list-inside text-gray-700 space-y-2">
+                    <li>43 universities with many ranking among world's best</li>
+                    <li>Wide variety of courses in business, medicine, engineering</li>
+                    <li>Beautiful surroundings and diverse cultural environment</li>
+                    <li>Numerous scholarships for international students</li>
+                    <li>Part-time work opportunities while studying</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Germany */}
+              <div className="mb-8" id="germany">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Germany</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Germany is one of the best study destinations for international students, especially for those looking for affordable education. Unlike many other countries, Germany provides free or low-cost education in its public universities, making it an attractive choice for students.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Some of the leading institutions in the country include the Technical University of Munich, the University of Bonn, and the University of Hamburg. In addition to high-quality education, Germany provides a vibrant student life, a strong economy, and advanced technology.
+                </p>
+                
+                <div className="bg-red-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-red-800 mb-3">Germany Study Highlights</h4>
+                  <ul className="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Free or low-cost education at public universities</li>
+                    <li>Leading institutions like TUM, University of Bonn, Hamburg</li>
+                    <li>High-quality education with vibrant student life</li>
+                    <li>Strong economy and advanced technology sector</li>
+                    <li>Excellent value for money in higher education</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Europe */}
+              <div className="mb-8" id="europe">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Europe</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The country provides a unique and interactive learning approach, where students engage directly with their instructors and classmates. Universities and colleges in Europe focus on innovation and research, providing students with the skills they need to succeed in their careers.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Apart from academics, Ireland has a rich cultural heritage, vibrant campus life, and a strong support system for international students. The country also provides various work opportunities after graduation, making it an attractive choice for students from around the world.
+                </p>
+                
+                <div className="bg-teal-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-teal-800 mb-3">European Study Experience</h4>
+                  <ul className="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Unique and interactive learning approaches</li>
+                    <li>Direct engagement with instructors and classmates</li>
+                    <li>Focus on innovation and research excellence</li>
+                    <li>Rich cultural heritage and vibrant campus life</li>
+                    <li>Various work opportunities after graduation</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Conclusion */}
+              <div className="mb-8" id="conclusion">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  When choosing a country to study abroad, it is important to consider factors such as academic goals, tuition fees, lifestyle, job opportunities, and cultural experiences. Whether you are looking for affordable education, top-ranked universities, or strong career opportunities, each of these countries has something unique to provide.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Take your time to research and select the country that best meets your needs and future goals!
+                </p>
+              </div>
+
+              {/* FAQs */}
+              <div className="mb-8" id="faqs">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+                
+                <div className="space-y-6">
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-gray-800 mb-3">Which country is best for studying abroad?</h4>
+                    <p className="text-gray-700">
+                      The UK and US have top universities. Canada and Australia provide great work opportunities, and Germany provides affordable education.
+                    </p>
                   </div>
-
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
-                    Factors to Consider When Choosing a Study Destination
-                  </h2>
-                  <p className="mb-6">
-                    Choosing the right country can be a difficult decision, as many factors need to be considered. 
-                    These include the quality of education, tuition fees, student visa process, lifestyle, and job 
-                    opportunities after graduation. Students should think about their academic goals when selecting a country.
-                  </p>
-
-                  <div className="bg-white rounded-lg p-6 my-8">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Important Considerations</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="flex items-start">
-                        <ChevronRight className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-                        <span>Quality of education and university rankings</span>
-                      </div>
-                      <div className="flex items-start">
-                        <ChevronRight className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-                        <span>Tuition fees and living costs</span>
-                      </div>
-                      <div className="flex items-start">
-                        <ChevronRight className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-                        <span>Student visa process and requirements</span>
-                      </div>
-                      <div className="flex items-start">
-                        <ChevronRight className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-                        <span>Post-graduation work opportunities</span>
-                      </div>
-                      <div className="flex items-start">
-                        <ChevronRight className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-                        <span>Cultural environment and lifestyle</span>
-                      </div>
-                      <div className="flex items-start">
-                        <ChevronRight className="w-5 h-5 text-blue-600 mr-2 mt-0.5" />
-                        <span>Scholarship and financial aid availability</span>
-                      </div>
-                    </div>
+                  
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-gray-800 mb-3">Which country is the most affordable for international students?</h4>
+                    <p className="text-gray-700">
+                      Germany provides free or low-cost education at public universities, while Canada and Europe also have relatively lower tuition fees.
+                    </p>
                   </div>
-
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
-                    Best Countries to Study Abroad
-                  </h2>
-                  <p className="mb-6">
-                    Choosing the best country for studying abroad is not just about picking a well-known university. 
-                    It is about finding a place according to your education goals and future career plans. Each country 
-                    provides different benefits. Here are some of the best countries for international students:
-                  </p>
-
-                  <div className="space-y-8 my-8">
-                    {countries.map((country, index) => (
-                      <div key={index} className="bg-white border rounded-lg shadow-sm overflow-hidden">
-                        <div className={`h-2 bg-gradient-to-r ${country.color}`}></div>
-                        <div className="p-6">
-                          <div className="flex items-center mb-4">
-                            <span className="text-4xl mr-4">{country.flag}</span>
-                            <h3 className="text-2xl font-bold text-gray-900">{country.name}</h3>
-                          </div>
-                          
-                          <div className="space-y-3">
-                            {country.highlights.map((highlight, highlightIndex) => (
-                              <div key={highlightIndex} className="flex items-start">
-                                <ChevronRight className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
-                                <span className="text-gray-700">{highlight}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 my-8">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Country Comparison Quick Guide</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="bg-white rounded-lg p-4">
-                        <h4 className="font-semibold text-blue-900 mb-2">Top Academic Quality</h4>
-                        <p className="text-sm text-gray-700">UK, US, Australia</p>
-                      </div>
-                      <div className="bg-white rounded-lg p-4">
-                        <h4 className="font-semibold text-green-900 mb-2">Most Affordable</h4>
-                        <p className="text-sm text-gray-700">Germany, Canada, Europe</p>
-                      </div>
-                      <div className="bg-white rounded-lg p-4">
-                        <h4 className="font-semibold text-purple-900 mb-2">Best Work Opportunities</h4>
-                        <p className="text-sm text-gray-700">Canada, Australia, Germany</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
-                    Making Your Decision
-                  </h2>
-                  <p className="mb-6">
-                    When choosing a country to study abroad, it is important to consider factors such as academic goals, 
-                    tuition fees, lifestyle, job opportunities, and cultural experiences. Whether you are looking for 
-                    affordable education, top-ranked universities, or strong career opportunities, each of these countries 
-                    has something unique to provide.
-                  </p>
-
-                  <div className="bg-green-50 border-l-4 border-green-500 p-6 my-8">
-                    <h3 className="text-lg font-semibold text-green-900 mb-2">Expert Recommendations</h3>
-                    <ul className="text-green-800 space-y-2">
-                      <li>✓ Research thoroughly before making your decision</li>
-                      <li>✓ Consider your budget and financial resources</li>
-                      <li>✓ Think about your long-term career goals</li>
-                      <li>✓ Look into scholarship opportunities</li>
-                      <li>✓ Consider the cultural fit and lifestyle</li>
-                      <li>✓ Check visa requirements and processes</li>
-                    </ul>
-                  </div>
-
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
-                    Conclusion
-                  </h2>
-                  <p className="mb-6">
-                    Each study abroad destination offers unique advantages and opportunities. The UK and US provide 
-                    world-class education and prestigious universities, while Canada and Australia offer great work 
-                    opportunities and immigration pathways. Germany stands out for its affordable education, and 
-                    Europe provides diverse cultural experiences. Take your time to research and select the country 
-                    that best meets your needs and future goals. Remember, the right choice will depend on your 
-                    individual circumstances, academic interests, and career aspirations.
-                  </p>
-
-                  {/* FAQ Section */}
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
-                    Frequently Asked Questions
-                  </h2>
-                  <div className="space-y-4">
-                    {faqData.map((faq, index) => (
-                      <div key={index} className="border border-gray-200 rounded-lg">
-                        <button
-                          onClick={() => toggleFaq(index)}
-                          className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white"
-                        >
-                          <span className="font-semibold text-gray-900">{faq.question}</span>
-                          {expandedFaq === index ? (
-                            <ChevronUp className="w-5 h-5 text-gray-500" />
-                          ) : (
-                            <ChevronDown className="w-5 h-5 text-gray-500" />
-                          )}
-                        </button>
-                        {expandedFaq === index && (
-                          <div className="px-6 pb-4">
-                            <p className="text-gray-700">{faq.answer}</p>
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                  
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h4 className="font-semibold text-gray-800 mb-3">What factors should I consider when choosing a study abroad country?</h4>
+                    <p className="text-gray-700">
+                      Consider factors such as quality of education, tuition fees, student visa process, lifestyle, job opportunities after graduation, cultural experiences, and how well the country aligns with your academic and career goals.
+                    </p>
                   </div>
                 </div>
               </div>
+
             </article>
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-8 space-y-6">
-              {/* Table of Contents */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
-                <nav className="space-y-2">
-                  <a href="#factors" className="block text-sm text-blue-600 hover:text-blue-800">Key Factors</a>
-                  <a href="#countries" className="block text-sm text-blue-600 hover:text-blue-800">Best Countries</a>
-                  <a href="#decision" className="block text-sm text-blue-600 hover:text-blue-800">Making Your Decision</a>
-                  <a href="#conclusion" className="block text-sm text-blue-600 hover:text-blue-800">Conclusion</a>
-                  <a href="#faq" className="block text-sm text-blue-600 hover:text-blue-800">FAQ</a>
-                </nav>
-              </div>
-
-              {/* Contact Form */}
-              <ContactForm />
-
-              {/* Related Articles */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
-                <div className="space-y-4">
-                  <Link href="/blog/master-of-laws-llm-australia" className="block hover:text-blue-600">
-                    <div className="text-sm font-medium">Master of Laws (LLM) in Australia</div>
-                    <div className="text-xs text-gray-500">Complete guide to LLM programs</div>
-                  </Link>
-                  <Link href="/blog/uk-internship-international-students" className="block hover:text-blue-600">
-                    <div className="text-sm font-medium">UK Internship for International Students</div>
-                    <div className="text-xs text-gray-500">Internship opportunities guide</div>
-                  </Link>
-                  <Link href="/blog/gmat-test-fee-pakistan" className="block hover:text-blue-600">
-                    <div className="text-sm font-medium">GMAT Test Fee in Pakistan</div>
-                    <div className="text-xs text-gray-500">GMAT exam details</div>
-                  </Link>
+          <div className="lg:w-1/3 space-y-8">
+            {/* Quick Facts */}
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                Quick Facts
+              </h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Top Countries:</span>
+                  <span className="font-medium">8 Destinations</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Best for Scholarships:</span>
+                  <span className="font-medium">Germany & Canada</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Most Popular:</span>
+                  <span className="font-medium">UK & Australia</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">Post-Study Work:</span>
+                  <span className="font-medium">Available</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-600">English Required:</span>
+                  <span className="font-medium">IELTS/TOEFL</span>
                 </div>
               </div>
             </div>
+
+            {/* Top Destinations */}
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                Top Destinations
+              </h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                  <span>United Kingdom</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Most Popular</span>
+                </div>
+                <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                  <span>Canada</span>
+                  <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Best Immigration</span>
+                </div>
+                <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                  <span>Australia</span>
+                  <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">High Quality</span>
+                </div>
+                <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                  <span>Germany</span>
+                  <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Low Tuition</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <ContactForm />
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
-};
-
-export default TopStudyAbroadCountries;
+}
