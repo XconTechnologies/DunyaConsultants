@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Clock, User, Headphones, CheckCircle, AlertCircle, FileText, BookOpen, Award, Users, Target, Globe, TrendingUp, Star, Play, Volume2 } from 'lucide-react';
 import { Link } from 'wouter';
 import ContactForm from '@/components/blog/ContactForm';
-import ContactSection from '@/components/blog/ContactSection';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 
@@ -169,9 +168,6 @@ const HowToImproveIELTSListeningSkills: React.FC = () => {
         </div>
       </div>
 
-      {/* Contact Section */}
-      <ContactSection />
-      
       <Footer />
     </div>
   );
