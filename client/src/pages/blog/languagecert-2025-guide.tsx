@@ -78,44 +78,48 @@ const LanguageCert2025Guide: React.FC = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      <article className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero Section */}
-        <div className="bg-[#124FD3] text-white py-16 px-8 -mx-4 sm:-mx-6 lg:-mx-8 mb-12">
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                {blogPost.category}
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
               {blogPost.title}
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               {blogPost.excerpt}
             </p>
-            <div className="flex items-center justify-center space-x-6 text-sm text-blue-200">
-              <div className="flex items-center space-x-2">
-                <Clock className="w-4 h-4" />
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
                 <span>{new Date(blogPost.published_at).toLocaleDateString()}</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <User className="w-4 h-4" />
+              <div className="flex items-center">
+                <User className="w-5 h-5 mr-2" />
                 <span>Dunya Consultants</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <BookOpen className="w-4 h-4" />
-                <span>{blogPost.category}</span>
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>8 min read</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Main Content */}
-        <div className="max-w-7xl mx-auto">
-          <div className="lg:grid lg:grid-cols-4 lg:gap-12">
-            {/* Article Content */}
-            <div className="lg:col-span-3">
-              <div className="prose prose-lg max-w-none">
-                <div 
-                  className="article-content"
-                  dangerouslySetInnerHTML={{ __html: blogPost.content }}
-                />
-              </div>
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
+              <div 
+                className="article-content"
+                dangerouslySetInnerHTML={{ __html: blogPost.content }}
+              />
               
               {/* Tags */}
               {blogPost.tags && blogPost.tags.length > 0 && (
@@ -133,53 +137,78 @@ const LanguageCert2025Guide: React.FC = () => {
                   </div>
                 </div>
               )}
-            </div>
+            </article>
+          </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-8 space-y-6">
-                {/* Quick Facts */}
-                <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                  <h3 className="text-lg font-semibold text-blue-800 mb-4">Quick Facts</h3>
-                  <div className="space-y-3 text-sm text-blue-700">
-                    <div className="flex justify-between">
-                      <span>Test Type:</span>
-                      <span className="font-semibold">English Proficiency</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Skills Tested:</span>
-                      <span className="font-semibold">4 (L, R, W, S)</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Validity:</span>
-                      <span className="font-semibold">3 years</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Results:</span>
-                      <span className="font-semibold">4-7 days</span>
-                    </div>
+          {/* Sidebar */}
+          <div className="lg:col-span-1">
+            <div className="sticky top-8 space-y-6">
+              {/* Quick Facts */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <Target className="w-5 h-5 mr-2 text-blue-500" />
+                  Quick Facts
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Test Type:</span>
+                    <span className="font-medium">English Proficiency</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Skills Tested:</span>
+                    <span className="font-medium">4 (L, R, W, S)</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Validity:</span>
+                    <span className="font-medium">3 years</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Results:</span>
+                    <span className="font-medium">4-7 days</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Cost:</span>
+                    <span className="font-medium">24,000-39,500 PKR</span>
                   </div>
                 </div>
-
-                {/* Test Levels */}
-                <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-                  <h3 className="text-lg font-semibold text-green-800 mb-4">Test Levels</h3>
-                  <div className="space-y-2 text-sm text-green-700">
-                    <div>• C2 Mastery: Expert level</div>
-                    <div>• C1 Expert: Advanced level</div>
-                    <div>• B2 Communicator: Upper-intermediate</div>
-                    <div>• B1 Achiever: Intermediate</div>
-                    <div>• A2 Access: Elementary</div>
-                  </div>
-                </div>
-
-                {/* Contact Form */}
-                <ContactForm />
               </div>
+
+              {/* Test Levels */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                  Test Levels
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>C2 Mastery</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Expert</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>C1 Expert</span>
+                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Advanced</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>B2 Communicator</span>
+                    <span className="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Upper-Int</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>B1 Achiever</span>
+                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Intermediate</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>A2 Access</span>
+                    <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Elementary</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Form */}
+              <ContactForm />
             </div>
           </div>
         </div>
-      </article>
+      </div>
       
       <Footer />
     </div>
