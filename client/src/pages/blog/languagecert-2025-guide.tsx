@@ -17,7 +17,7 @@ interface BlogPost {
   featured_image?: string;
 }
 
-const LanguageCert2025Guide: React.FC = () => {
+const ComparisonEducationSystemPakistanUK: React.FC = () => {
   const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ const LanguageCert2025Guide: React.FC = () => {
   useEffect(() => {
     const fetchBlogPost = async () => {
       try {
-        const response = await fetch('/api/blog-posts/languagecert-2025-complete-guide');
+        const response = await fetch('/api/blog-posts/comparison-education-system-pakistan-uk');
         if (!response.ok) {
           throw new Error('Failed to fetch blog post');
         }
@@ -151,54 +151,54 @@ const LanguageCert2025Guide: React.FC = () => {
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Test Type:</span>
-                    <span className="font-medium">English Proficiency</span>
+                    <span className="text-gray-600">Pakistan Literacy:</span>
+                    <span className="font-medium">58.9%</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Skills Tested:</span>
-                    <span className="font-medium">4 (L, R, W, S)</span>
+                    <span className="text-gray-600">UK Education:</span>
+                    <span className="font-medium">World Ranking</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Validity:</span>
-                    <span className="font-medium">3 years</span>
+                    <span className="text-gray-600">Primary Age:</span>
+                    <span className="font-medium">PK: 5-6, UK: 4-5</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Results:</span>
-                    <span className="font-medium">4-7 days</span>
+                    <span className="text-gray-600">Degree Duration:</span>
+                    <span className="font-medium">UK: 3-4 years</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Cost:</span>
-                    <span className="font-medium">24,000-39,500 PKR</span>
+                    <span className="text-gray-600">Academic Year:</span>
+                    <span className="font-medium">UK: Sep-Aug</span>
                   </div>
                 </div>
               </div>
 
-              {/* Test Levels */}
+              {/* Education Levels */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
                   <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
-                  Test Levels
+                  Education Levels
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>C2 Mastery</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Expert</span>
+                    <span>Primary</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Ages 5-11</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>C1 Expert</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Advanced</span>
+                    <span>Secondary</span>
+                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Ages 11-18</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>B2 Communicator</span>
-                    <span className="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Upper-Int</span>
+                    <span>Higher Ed</span>
+                    <span className="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">18+ Years</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>B1 Achiever</span>
-                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Intermediate</span>
+                    <span>UK Standards</span>
+                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Global</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
-                    <span>A2 Access</span>
-                    <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Elementary</span>
+                    <span>Pakistan System</span>
+                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Developing</span>
                   </div>
                 </div>
               </div>
@@ -215,4 +215,4 @@ const LanguageCert2025Guide: React.FC = () => {
   );
 };
 
-export default LanguageCert2025Guide;
+export default ComparisonEducationSystemPakistanUK;
