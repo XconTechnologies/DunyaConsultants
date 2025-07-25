@@ -17,7 +17,7 @@ interface BlogPost {
   featured_image?: string;
 }
 
-const IELTSBandScoreGuide: React.FC = () => {
+const LanguageCert2025Guide: React.FC = () => {
   const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ const IELTSBandScoreGuide: React.FC = () => {
   useEffect(() => {
     const fetchBlogPost = async () => {
       try {
-        const response = await fetch('/api/blog-posts/ielts-band-score-complete-guide');
+        const response = await fetch('/api/blog-posts/languagecert-2025-complete-guide');
         if (!response.ok) {
           throw new Error('Failed to fetch blog post');
         }
@@ -130,33 +130,33 @@ const IELTSBandScoreGuide: React.FC = () => {
                 <h3 className="text-lg font-semibold text-blue-800 mb-4">Quick Facts</h3>
                 <div className="space-y-3 text-sm text-blue-700">
                   <div className="flex justify-between">
-                    <span>Score Range:</span>
-                    <span className="font-semibold">0-9 bands</span>
+                    <span>Test Type:</span>
+                    <span className="font-semibold">English Proficiency</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Test Sections:</span>
+                    <span>Skills Tested:</span>
                     <span className="font-semibold">4 (L, R, W, S)</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Validity:</span>
-                    <span className="font-semibold">2 years</span>
+                    <span className="font-semibold">3 years</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Results:</span>
-                    <span className="font-semibold">13 days</span>
+                    <span className="font-semibold">4-7 days</span>
                   </div>
                 </div>
               </div>
 
-              {/* Band Score Breakdown */}
+              {/* Test Levels */}
               <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-                <h3 className="text-lg font-semibold text-green-800 mb-4">Band Score Guide</h3>
+                <h3 className="text-lg font-semibold text-green-800 mb-4">Test Levels</h3>
                 <div className="space-y-2 text-sm text-green-700">
-                  <div>• Band 9: Expert user</div>
-                  <div>• Band 8: Very good user</div>
-                  <div>• Band 7: Good user</div>
-                  <div>• Band 6: Competent user</div>
-                  <div>• Band 5: Modest user</div>
+                  <div>• C2 Mastery: Expert level</div>
+                  <div>• C1 Expert: Advanced level</div>
+                  <div>• B2 Communicator: Upper-intermediate</div>
+                  <div>• B1 Achiever: Intermediate</div>
+                  <div>• A2 Access: Elementary</div>
                 </div>
               </div>
 
@@ -172,4 +172,4 @@ const IELTSBandScoreGuide: React.FC = () => {
   );
 };
 
-export default IELTSBandScoreGuide;
+export default LanguageCert2025Guide;
