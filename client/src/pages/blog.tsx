@@ -553,18 +553,18 @@ export default function Blog() {
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || "Read this comprehensive guide to learn more about this important topic.",
-      category: post.category,
-      author: post.author,
+      category: post.category || "General",
+      author: `Author ${post.authorId || 1}`,
       date: new Date(post.createdAt).toLocaleDateString('en-US', { 
         year: 'numeric', 
         month: 'short', 
         day: 'numeric' 
       }),
       readTime: `${Math.ceil(post.content.length / 1000)} min`,
-      views: Math.floor(Math.random() * 20000) + 5000, // Placeholder views
+      views: post.views || Math.floor(Math.random() * 20000) + 5000,
       tags: post.tags || [],
-      image: post.imageUrl || "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: post.featured || false,
+      image: post.featuredImage || "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      featured: false, // Could be based on a specific category or tag
       trending: Math.random() > 0.7, // Random trending status
       href: `/blog/${post.slug}`
     }));
@@ -1062,21 +1062,14 @@ export default function Blog() {
             ))}
           </div>
         </motion.div>
-                <button
-                  onClick={() => setViewMode("list")}
-                  className={`p-2 rounded-lg ${
-                    viewMode === "list"
-                      ? "bg-blue-100 text-blue-700"
-                      : "text-gray-400 hover:text-gray-600"
-                  }`}
-                >
-                  <List className="h-5 w-5" />
-                </button>
-              </div>
-            </div>
 
-            {/* Articles Grid */}
-            {filteredPosts.length === 0 ? (
+        {/* Articles Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          {filteredPosts.length === 0 ? (
               <div className="text-center py-12">
                 <div className="text-gray-500 text-lg">No articles found matching your criteria.</div>
               </div>
@@ -1189,8 +1182,7 @@ export default function Blog() {
                 ))}
               </div>
             )}
-          </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Newsletter Section */}
