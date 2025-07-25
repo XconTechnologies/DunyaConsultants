@@ -537,9 +537,38 @@ export default function Blog() {
   if (match && params?.slug) {
     return <DynamicBlogPost slug={params.slug} />;
   }
+
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+  // Fetch published blog posts from database
+  const { data: dbBlogPosts = [], isLoading } = useQuery<DBBlogPost[]>({
+    queryKey: ['/api/blog-posts/published'],
+  });
+
+  // Convert database posts to local format
+  const blogPosts: BlogPost[] = useMemo(() => {
+    return dbBlogPosts.map(post => ({
+      id: post.id.toString(),
+      title: post.title,
+      excerpt: post.excerpt || "Read this comprehensive guide to learn more about this important topic.",
+      category: post.category,
+      author: post.author,
+      date: new Date(post.createdAt).toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      }),
+      readTime: `${Math.ceil(post.content.length / 1000)} min`,
+      views: Math.floor(Math.random() * 20000) + 5000, // Placeholder views
+      tags: post.tags || [],
+      image: post.imageUrl || "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      featured: post.featured || false,
+      trending: Math.random() > 0.7, // Random trending status
+      href: `/blog/${post.slug}`
+    }));
+  }, [dbBlogPosts]);
 
   const filteredPosts = useMemo(() => {
     return blogPosts.filter(post => {
@@ -549,13 +578,42 @@ export default function Blog() {
                            post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchTerm]);
+  }, [blogPosts, selectedCategory, searchTerm]);
 
   const featuredPosts = blogPosts.filter(post => post.featured);
   const trendingPosts = blogPosts.filter(post => post.trending);
 
+  // Generate categories from posts
+  const categories = useMemo(() => {
+    const categoryCount: Record<string, number> = {};
+    blogPosts.forEach(post => {
+      categoryCount[post.category] = (categoryCount[post.category] || 0) + 1;
+    });
+
+    return [
+      "All",
+      ...Object.keys(categoryCount).sort()
+    ];
+  }, [blogPosts]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading blog posts...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navigation />
       {/* Enhanced Hero Section with Blue Theme */}
       <div className="relative overflow-hidden" style={{ backgroundColor: '#124FD3' }}>
         {/* Background Pattern */}
@@ -737,84 +795,273 @@ export default function Blog() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Sidebar */}
-          <div className="lg:col-span-3">
-            <div className="sticky top-8 space-y-6">
-              {/* Categories */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
-                <div className="space-y-2">
-                  {categories.map((category) => (
-                    <button
-                      key={category.name}
-                      onClick={() => setSelectedCategory(category.name)}
-                      className={`w-full flex items-center justify-between p-3 rounded-lg transition-colors ${
-                        selectedCategory === category.name
-                          ? "bg-blue-50 text-blue-700 border border-blue-200"
-                          : "text-gray-700 hover:bg-gray-50"
-                      }`}
-                    >
-                      <div className="flex items-center">
-                        <category.icon className="h-4 w-4 mr-3" />
-                        <span>{category.name}</span>
-                      </div>
-                      <span className="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
-                        {category.count}
-                      </span>
-                    </button>
-                  ))}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Featured Posts Section */}
+        {featuredPosts.length > 0 && (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-16"
+          >
+            <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                  <Star className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900">Featured Articles</h2>
+                  <p className="text-gray-600">Handpicked by our education experts</p>
                 </div>
               </div>
-
-              {/* Featured Posts */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Featured Posts</h3>
-                <div className="space-y-4">
-                  {featuredPosts.slice(0, 3).map((post) => (
-                    <Link key={post.id} href={post.href}>
-                      <div className="flex space-x-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+              <div className="text-sm text-gray-500 bg-yellow-50 px-3 py-1 rounded-full">
+                {featuredPosts.length} featured posts
+              </div>
+            </div>
+            
+            <div className="grid lg:grid-cols-2 gap-8">
+              {featuredPosts.slice(0, 2).map((post, index) => (
+                <motion.article
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  className="group cursor-pointer"
+                >
+                  <Link href={post.href} className="block">
+                    <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:rotate-1">
+                      <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
                         <img
                           src={post.image}
                           alt={post.title}
-                          className="w-16 h-16 object-cover rounded-lg"
+                          className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
                         />
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-medium text-gray-900 line-clamp-2">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        
+                        {/* Enhanced badges */}
+                        <div className="absolute top-6 left-6">
+                          <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-yellow-400 to-orange-500 text-white shadow-lg">
+                            <Star className="w-4 h-4 mr-2" />
+                            Featured
+                          </span>
+                        </div>
+                        
+                        <div className="absolute top-6 right-6">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-black/50 text-white backdrop-blur-sm">
+                            <Eye className="w-3 h-3 mr-1" />
+                            {post.views.toLocaleString()}
+                          </span>
+                        </div>
+                        
+                        <div className="absolute bottom-6 left-6 right-6">
+                          <div className="flex items-center space-x-4 text-white/90 text-sm mb-3">
+                            <div className="flex items-center">
+                              <Calendar className="w-4 h-4 mr-1" />
+                              <span>{post.date}</span>
+                            </div>
+                            <div className="flex items-center">
+                              <Clock className="w-4 h-4 mr-1" />
+                              <span>{post.readTime}</span>
+                            </div>
+                          </div>
+                          <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
                             {post.title}
-                          </h4>
-                          <p className="text-xs text-gray-500 mt-1">{post.date}</p>
+                          </h3>
                         </div>
                       </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+                      
+                      <div className="p-8">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                            {post.category}
+                          </span>
+                          <span className="text-gray-400">•</span>
+                          <span className="text-gray-600 text-sm">By {post.author}</span>
+                        </div>
+                        
+                        <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+                          {post.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center justify-between">
+                          <div className="flex flex-wrap gap-2">
+                            {post.tags.slice(0, 3).map((tag) => (
+                              <span key={tag} className="inline-flex items-center px-3 py-1 rounded-lg text-xs font-medium bg-gray-100 text-gray-700">
+                                <Tag className="w-3 h-3 mr-1" />
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                          
+                          <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
+                            <span className="text-sm">Read Article</span>
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.article>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Mobile Category Filter */}
+        <div className="md:hidden mb-8">
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+          >
+            {categories.map((category) => (
+              <option key={category} value={category}>
+                {category} {category !== "All" && `(${blogPosts.filter(post => post.category === category).length})`}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
+        >
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center space-x-3">
+              <Globe className="w-6 h-6 text-blue-600" />
+              <h2 className="text-3xl font-bold text-gray-900">
+                {selectedCategory === "All" ? "All Articles" : selectedCategory}
+              </h2>
+              <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                {filteredPosts.length} articles
+              </span>
             </div>
           </div>
 
-          {/* Main Content */}
-          <div className="lg:col-span-9">
-            {/* View Toggle */}
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-gray-900">
-                {selectedCategory === "All" 
-                  ? `All Articles (${filteredPosts.length})`
-                  : `${selectedCategory} (${filteredPosts.length})`
-                }
-              </h2>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`p-2 rounded-lg ${
-                    viewMode === "grid"
-                      ? "bg-blue-100 text-blue-700"
-                      : "text-gray-400 hover:text-gray-600"
-                  }`}
-                >
-                  <Grid className="h-5 w-5" />
-                </button>
+          {/* Enhanced Articles Grid */}
+          <div className={`${
+            viewMode === "grid" 
+              ? "grid grid-cols-1 md:grid-cols-2 gap-8" 
+              : "space-y-8"
+          }`}>
+            {filteredPosts.map((post, index) => (
+              <motion.article
+                key={post.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.6 }}
+                className={`group cursor-pointer ${
+                  viewMode === "list" ? "flex flex-col md:flex-row" : ""
+                }`}
+              >
+                <Link href={post.href} className={`block ${
+                  viewMode === "list" ? "flex flex-col md:flex-row w-full" : ""
+                }`}>
+                  <div className={`
+                    bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-1
+                    ${viewMode === "list" ? "flex flex-col md:flex-row" : ""}
+                  `}>
+                    <div className={`relative overflow-hidden ${
+                      viewMode === "list" ? "md:w-80 flex-shrink-0" : ""
+                    }`}>
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className={`
+                          object-cover group-hover:scale-110 transition-transform duration-500
+                          ${viewMode === "list" ? "w-full h-64 md:h-full" : "w-full h-56"}
+                        `}
+                      />
+                      
+                      {/* Enhanced Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      
+                      {/* Category and Status Badges */}
+                      <div className="absolute top-4 left-4 flex items-center space-x-2">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/95 backdrop-blur-sm text-gray-800 shadow-sm">
+                          {post.category}
+                        </span>
+                        {post.featured && (
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-sm">
+                            <Star className="w-3 h-3 mr-1" />
+                            Featured
+                          </span>
+                        )}
+                        {post.trending && (
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-sm">
+                            <TrendingUp className="w-3 h-3 mr-1" />
+                            Trending
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Read Time Badge */}
+                      <div className="absolute top-4 right-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-black/50 text-white backdrop-blur-sm">
+                          <Clock className="w-3 h-3 mr-1" />
+                          {post.readTime}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <div className={`p-6 ${viewMode === "list" ? "flex-1" : ""}`}>
+                      {/* Meta Information */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center text-gray-500 text-sm space-x-4">
+                          <div className="flex items-center">
+                            <User className="w-4 h-4 mr-1" />
+                            <span>{post.author}</span>
+                          </div>
+                          <div className="flex items-center">
+                            <Calendar className="w-4 h-4 mr-1" />
+                            <span>{post.date}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center space-x-1 text-gray-400">
+                          <Eye className="w-4 h-4" />
+                          <span className="text-sm font-medium">{post.views.toLocaleString()}</span>
+                        </div>
+                      </div>
+                      
+                      {/* Title */}
+                      <h3 className={`
+                        font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2
+                        ${viewMode === "list" ? "text-2xl" : "text-xl"}
+                      `}>
+                        {post.title}
+                      </h3>
+                      
+                      {/* Excerpt */}
+                      <p className="text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                      
+                      {/* Tags and CTA */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap gap-2">
+                          {post.tags.slice(0, 3).map((tag) => (
+                            <span key={tag} className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors">
+                              <Tag className="w-3 h-3 mr-1" />
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        
+                        <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors duration-300">
+                          <span className="text-sm">Read Article</span>
+                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </motion.article>
+            ))}
+          </div>
+        </motion.div>
                 <button
                   onClick={() => setViewMode("list")}
                   className={`p-2 rounded-lg ${
@@ -1036,6 +1283,7 @@ export default function Blog() {
           </motion.div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
