@@ -556,56 +556,182 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* Enhanced Hero Section with Blue Theme */}
+      <div className="relative overflow-hidden" style={{ backgroundColor: '#124FD3' }}>
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
+        {/* Floating Elements */}
+        <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            animate={{ 
+              y: [0, -20, 0],
+              rotate: [0, 5, 0]
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/4 left-1/4 w-12 h-12 bg-white/10 rounded-full blur-sm"
+          />
+          <motion.div
+            animate={{ 
+              y: [0, 15, 0],
+              rotate: [0, -5, 0]
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/3 right-1/4 w-8 h-8 bg-white/15 rounded-full blur-sm"
+          />
+          <motion.div
+            animate={{ 
+              y: [0, -10, 0],
+              rotate: [0, 10, 0]
+            }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-1/4 left-1/3 w-6 h-6 bg-white/20 rounded-full blur-sm"
+          />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-center text-white"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Dunya Consultants Blog
-            </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Your ultimate guide to studying abroad, visa applications, and international education insights
-            </p>
+            {/* Blog Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6"
+            >
+              <BookOpen className="w-4 h-4 mr-2" />
+              <span className="text-sm font-medium">Educational Resources</span>
+            </motion.div>
+
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+            >
+              <span className="block">Dunya Consultants</span>
+              <span className="block bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                Blog
+              </span>
+            </motion.h1>
             
-            {/* Search Bar */}
-            <div className="max-w-md mx-auto relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-              <input
-                type="text"
-                placeholder="Search articles..."
-                className="w-full pl-10 pr-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="text-xl md:text-2xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed"
+            >
+              Your ultimate guide to studying abroad, visa applications, and international education insights from Pakistan's most trusted consultancy
+            </motion.p>
+            
+            {/* Enhanced Search Bar */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="max-w-2xl mx-auto relative"
+            >
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
+                <input
+                  type="text"
+                  placeholder="Search for study abroad tips, visa guides, university insights..."
+                  className="w-full pl-12 pr-6 py-4 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-white/20 shadow-2xl bg-white/95 backdrop-blur-sm text-lg"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <div className="absolute right-2 top-2 bottom-2 flex items-center">
+                  <kbd className="px-3 py-1 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-lg">
+                    ⌘K
+                  </kbd>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Quick Stats */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
+            >
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                <div className="text-3xl font-bold">{blogPosts.length}+</div>
+                <div className="text-blue-100 text-sm">Expert Articles</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                <div className="text-3xl font-bold">50K+</div>
+                <div className="text-blue-100 text-sm">Monthly Readers</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                <div className="text-3xl font-bold">15+</div>
+                <div className="text-blue-100 text-sm">Countries Covered</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                <div className="text-3xl font-bold">98%</div>
+                <div className="text-blue-100 text-sm">Success Rate</div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Stats Section */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <div className="text-2xl font-bold text-blue-600">{blogPosts.length}</div>
-              <div className="text-gray-600">Total Articles</div>
+      {/* Enhanced Navigation Bar */}
+      <div className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-40 backdrop-blur-sm bg-white/95">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-8">
+              <h2 className="text-xl font-bold text-gray-900">Latest Articles</h2>
+              
+              {/* Category Pills */}
+              <div className="hidden md:flex items-center space-x-3">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                      selectedCategory === category
+                        ? 'bg-blue-600 text-white shadow-lg'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    }`}
+                  >
+                    {category}
+                    {category !== "All" && (
+                      <span className="ml-2 px-1.5 py-0.5 bg-white/20 rounded-full text-xs">
+                        {blogPosts.filter(post => post.category === category).length}
+                      </span>
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
-            <div>
-              <div className="text-2xl font-bold text-green-600">{featuredPosts.length}</div>
-              <div className="text-gray-600">Featured Posts</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-purple-600">{trendingPosts.length}</div>
-              <div className="text-gray-600">Trending Now</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-orange-600">{categories.length - 1}</div>
-              <div className="text-gray-600">Categories</div>
+
+            {/* View Toggle */}
+            <div className="flex items-center space-x-2 bg-gray-100 rounded-xl p-1">
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`p-2 rounded-lg transition-all duration-200 ${
+                  viewMode === "grid" ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                <Grid className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => setViewMode("list")}
+                className={`p-2 rounded-lg transition-all duration-200 ${
+                  viewMode === "list" ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'
+                }`}
+              >
+                <List className="w-5 h-5" />
+              </button>
             </div>
           </div>
         </div>
@@ -817,6 +943,97 @@ export default function Blog() {
               </div>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* Newsletter Section */}
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+              <MessageCircle className="w-4 h-4 mr-2" />
+              <span className="text-sm font-medium">Stay Updated</span>
+            </div>
+            
+            <h2 className="text-4xl font-bold mb-4">Never Miss an Update</h2>
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+              Get the latest study abroad tips, visa guides, and university insights delivered straight to your inbox
+            </p>
+            
+            <div className="max-w-md mx-auto flex space-x-4">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="flex-1 px-4 py-3 rounded-xl text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/20"
+              />
+              <button className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+                Subscribe
+              </button>
+            </div>
+            
+            <p className="text-blue-200 text-sm mt-4">
+              Join 10,000+ students already subscribed. No spam, unsubscribe anytime.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="bg-gray-50 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 mb-6">
+              <Target className="w-4 h-4 mr-2" />
+              <span className="text-sm font-medium">Ready to Start?</span>
+            </div>
+            
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Ready to Begin Your Study Abroad Journey?
+            </h2>
+            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Get expert guidance from Pakistan's most trusted education consultancy with 98% visa success rate
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+              <a 
+                href="tel:+923041110947" 
+                className="flex-1 bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center"
+              >
+                📞 Call Now
+              </a>
+              <a 
+                href="mailto:query@teamdunya.com" 
+                className="flex-1 bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-900 transition-colors flex items-center justify-center"
+              >
+                ✉️ Email Us
+              </a>
+            </div>
+            
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-600 mb-2">5,000+</div>
+                <div className="text-gray-600">Students Placed</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-green-600 mb-2">98%</div>
+                <div className="text-gray-600">Visa Success Rate</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-purple-600 mb-2">17+</div>
+                <div className="text-gray-600">Office Locations</div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>
