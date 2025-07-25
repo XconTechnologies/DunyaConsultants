@@ -158,21 +158,21 @@ export class DatabaseStorage implements IStorage {
 
     // Define badge criteria (same as MemStorage)
     const badgeCriteria = [
-      { type: 'explorer', level: 'bronze', title: 'First Steps', description: 'Visited 3 pages', icon: '🗺️', points: 10, criteria: () => stats.pagesVisited >= 3 },
-      { type: 'explorer', level: 'silver', title: 'Site Navigator', description: 'Visited 10 pages', icon: '🧭', points: 25, criteria: () => stats.pagesVisited >= 10 },
-      { type: 'explorer', level: 'gold', title: 'Master Explorer', description: 'Visited 25 pages', icon: '🏆', points: 50, criteria: () => stats.pagesVisited >= 25 },
-      { type: 'scholar', level: 'bronze', title: 'Knowledge Seeker', description: 'Used 2 tools', icon: '📚', points: 15, criteria: () => stats.toolsUsed >= 2 },
-      { type: 'scholar', level: 'silver', title: 'Research Expert', description: 'Used 5 tools', icon: '🔬', points: 30, criteria: () => stats.toolsUsed >= 5 },
-      { type: 'scholar', level: 'gold', title: 'Academic Master', description: 'Used all available tools', icon: '🎓', points: 75, criteria: () => stats.toolsUsed >= 10 },
-      { type: 'communicator', level: 'bronze', title: 'First Contact', description: 'Completed 1 form', icon: '💬', points: 20, criteria: () => stats.formsCompleted >= 1 },
-      { type: 'communicator', level: 'silver', title: 'Active Inquirer', description: 'Completed 3 forms', icon: '📞', points: 40, criteria: () => stats.formsCompleted >= 3 },
-      { type: 'communicator', level: 'gold', title: 'Engagement Champion', description: 'Completed 5 forms', icon: '🤝', points: 80, criteria: () => stats.formsCompleted >= 5 },
-      { type: 'planner', level: 'bronze', title: 'Future Thinker', description: 'Downloaded 1 document', icon: '📋', points: 15, criteria: () => stats.documentsDownloaded >= 1 },
-      { type: 'planner', level: 'silver', title: 'Preparation Pro', description: 'Downloaded 3 documents', icon: '📁', points: 35, criteria: () => stats.documentsDownloaded >= 3 },
-      { type: 'planner', level: 'gold', title: 'Master Organizer', description: 'Downloaded 5+ documents', icon: '🗂️', points: 60, criteria: () => stats.documentsDownloaded >= 5 },
-      { type: 'commitment', level: 'bronze', title: 'Taking Action', description: 'Booked first consultation', icon: '⭐', points: 50, criteria: () => stats.consultationsBooked >= 1 },
-      { type: 'commitment', level: 'silver', title: 'Serious Student', description: 'Booked 2 consultations', icon: '🌟', points: 100, criteria: () => stats.consultationsBooked >= 2 },
-      { type: 'commitment', level: 'gold', title: 'Dedicated Achiever', description: 'Booked 3+ consultations', icon: '✨', points: 150, criteria: () => stats.consultationsBooked >= 3 },
+      { type: 'explorer', level: 'bronze', title: 'First Steps', description: 'Visited 3 pages', icon: '🗺️', points: 10, criteria: () => (stats.pagesVisited || 0) >= 3 },
+      { type: 'explorer', level: 'silver', title: 'Site Navigator', description: 'Visited 10 pages', icon: '🧭', points: 25, criteria: () => (stats.pagesVisited || 0) >= 10 },
+      { type: 'explorer', level: 'gold', title: 'Master Explorer', description: 'Visited 25 pages', icon: '🏆', points: 50, criteria: () => (stats.pagesVisited || 0) >= 25 },
+      { type: 'scholar', level: 'bronze', title: 'Knowledge Seeker', description: 'Used 2 tools', icon: '📚', points: 15, criteria: () => (stats.toolsUsed || 0) >= 2 },
+      { type: 'scholar', level: 'silver', title: 'Research Expert', description: 'Used 5 tools', icon: '🔬', points: 30, criteria: () => (stats.toolsUsed || 0) >= 5 },
+      { type: 'scholar', level: 'gold', title: 'Academic Master', description: 'Used all available tools', icon: '🎓', points: 75, criteria: () => (stats.toolsUsed || 0) >= 10 },
+      { type: 'communicator', level: 'bronze', title: 'First Contact', description: 'Completed 1 form', icon: '💬', points: 20, criteria: () => (stats.formsCompleted || 0) >= 1 },
+      { type: 'communicator', level: 'silver', title: 'Active Inquirer', description: 'Completed 3 forms', icon: '📞', points: 40, criteria: () => (stats.formsCompleted || 0) >= 3 },
+      { type: 'communicator', level: 'gold', title: 'Engagement Champion', description: 'Completed 5 forms', icon: '🤝', points: 80, criteria: () => (stats.formsCompleted || 0) >= 5 },
+      { type: 'planner', level: 'bronze', title: 'Future Thinker', description: 'Downloaded 1 document', icon: '📋', points: 15, criteria: () => (stats.documentsDownloaded || 0) >= 1 },
+      { type: 'planner', level: 'silver', title: 'Preparation Pro', description: 'Downloaded 3 documents', icon: '📁', points: 35, criteria: () => (stats.documentsDownloaded || 0) >= 3 },
+      { type: 'planner', level: 'gold', title: 'Master Organizer', description: 'Downloaded 5+ documents', icon: '🗂️', points: 60, criteria: () => (stats.documentsDownloaded || 0) >= 5 },
+      { type: 'commitment', level: 'bronze', title: 'Taking Action', description: 'Booked first consultation', icon: '⭐', points: 50, criteria: () => (stats.consultationsBooked || 0) >= 1 },
+      { type: 'commitment', level: 'silver', title: 'Serious Student', description: 'Booked 2 consultations', icon: '🌟', points: 100, criteria: () => (stats.consultationsBooked || 0) >= 2 },
+      { type: 'commitment', level: 'gold', title: 'Dedicated Achiever', description: 'Booked 3+ consultations', icon: '✨', points: 150, criteria: () => (stats.consultationsBooked || 0) >= 3 },
     ];
 
     for (const badge of badgeCriteria) {
@@ -191,9 +191,9 @@ export class DatabaseStorage implements IStorage {
         newAchievements.push(newAchievement);
         
         await this.updateUserStats(sessionId, {
-          totalPoints: stats.totalPoints + badge.points,
-          badgesEarned: stats.badgesEarned + 1,
-          level: Math.floor((stats.totalPoints + badge.points) / 100) + 1,
+          totalPoints: (stats.totalPoints || 0) + badge.points,
+          badgesEarned: (stats.badgesEarned || 0) + 1,
+          level: Math.floor(((stats.totalPoints || 0) + badge.points) / 100) + 1,
         });
       }
     }
@@ -388,6 +388,12 @@ export class DatabaseStorage implements IStorage {
       .where(eq(pages.id, id))
       .returning();
     return page;
+  }
+
+  async incrementBlogViews(id: number): Promise<void> {
+    await db.update(blogPosts)
+      .set({ views: sql`${blogPosts.views} + 1` })
+      .where(eq(blogPosts.id, id));
   }
 }
 

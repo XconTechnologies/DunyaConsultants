@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { seedBlogPosts } from "./seed-blogs";
@@ -13,8 +13,13 @@ import path from "path";
 import fs from "fs";
 import multer from "multer";
 
+// Extend Request interface to include adminId
+interface AuthenticatedRequest extends Request {
+  adminId?: number;
+}
+
 // Admin authentication middleware
-async function requireAuth(req: any, res: any, next: any) {
+async function requireAuth(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   try {
     const token = req.headers.authorization?.replace('Bearer ', '');
     if (!token) {
@@ -370,7 +375,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create blog post
-  app.post("/api/admin/blog-posts", requireAuth, async (req, res) => {
+  app.post("/api/admin/blog-posts", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const blogData = insertBlogPostSchema.parse({
         ...req.body,
@@ -523,8 +528,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: 'Blog post not found' });
       }
       
-      // Increment view count (temporarily disabled due to missing views column)
-      // await storage.incrementBlogViews(post.id);
+      // Increment view count
+      await storage.incrementBlogViews(post.id);
       
       res.json(post);
     } catch (error: any) {
@@ -552,9 +557,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const blogPost = await storage.publishBlogPost(id);
       console.log(`Successfully published blog post: ${blogPost.title}`);
       res.json(blogPost);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error publishing blog post:', error);
-      res.status(500).json({ message: 'Failed to publish blog post', error: error.message });
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      res.status(500).json({ message: 'Failed to publish blog post', error: errorMessage });
     }
   });
 
@@ -664,7 +670,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create page
-  app.post("/api/admin/pages", requireAuth, async (req, res) => {
+  app.post("/api/admin/pages", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const pageData = insertPageSchema.parse({
         ...req.body,

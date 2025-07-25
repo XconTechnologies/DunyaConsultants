@@ -138,6 +138,7 @@ export const blogPosts = pgTable("blog_posts", {
   excerpt: text("excerpt"),
   category: text("category").default("General"),
   tags: text("tags").array(),
+  views: integer("views").default(0).notNull(),
   isPublished: boolean("is_published").default(false).notNull(),
   publishedAt: timestamp("published_at"),
   authorId: integer("author_id").references(() => adminUsers.id),
