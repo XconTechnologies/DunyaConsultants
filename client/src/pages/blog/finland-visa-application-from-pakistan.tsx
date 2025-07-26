@@ -1,7 +1,6 @@
 import { ArrowLeft, Calendar, Clock, User, Share2, BookOpen, CheckCircle, AlertCircle, FileText, Target, Award, Globe, DollarSign, MessageCircle, Phone, Mail, Star, MapPin, Users, TrendingUp } from 'lucide-react';
 import { Link } from 'wouter';
 import ContactForm from '@/components/blog/ContactForm';
-import ContactSection from '@/components/blog/ContactSection';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 
