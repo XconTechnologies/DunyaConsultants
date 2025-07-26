@@ -8,14 +8,16 @@ export default function RequirementsComputerScienceUSA() {
       <Navigation />
       
       {/* Hero Section - Kaplan Style */}
-      <div className="relative h-80 flex items-center justify-center" style={{backgroundColor: '#124FD3'}}>
-        <div className="text-center text-white px-4">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4">
-            Requirements to Study Computer Science in USA
-          </h1>
-          <p className="text-xl opacity-90 max-w-3xl">
-            Complete guide to admission requirements, eligibility criteria, costs, and top universities for CS programs in America
-          </p>
+      <div className="relative py-16 lg:py-24" style={{backgroundColor: '#124FD3'}}>
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-16">
+          <div className="text-center text-white">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
+              Requirements to Study Computer Science in USA
+            </h1>
+            <p className="text-lg lg:text-xl opacity-90 max-w-4xl mx-auto leading-relaxed">
+              Complete guide to admission requirements, eligibility criteria, costs, and top universities for CS programs in America
+            </p>
+          </div>
         </div>
       </div>
 
