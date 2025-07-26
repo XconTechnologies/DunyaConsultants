@@ -43,7 +43,7 @@ import TeessideUniversityTrustedPartner from "@/pages/blog/teesside-university-t
 import IELTSAcceptability2025 from "@/pages/blog/ielts-acceptability-2025";
 import DifferenceIELTSGeneralAcademic from "@/pages/blog/difference-between-ielts-general-and-academic";
 import NewYearResolutionsStudents2025 from "@/pages/blog/languagecert-2025-guide";
-import FinlandOnlineVisaApplication from "@/pages/blog/finland-online-visa-application-from-pakistan";
+import { FinlandVisaApplicationFromPakistan } from "@/pages/blog/finland-visa-application-from-pakistan";
 import HowMuchStudyGapAcceptableUKMasters from "@/pages/blog/how-much-study-gap-acceptable-in-uk-for-masters";
 import GreenCardInternationalStudents from "@/pages/blog/green-card-for-international-students";
 import RequirementsComputerScienceUSA from "@/pages/blog/requirements-to-study-computer-science-in-usa";
@@ -129,7 +129,7 @@ function Router() {
       <Route path="/blog/ielts-acceptability-2025" component={IELTSAcceptability2025} />
       <Route path="/blog/difference-between-ielts-general-and-academic" component={DifferenceIELTSGeneralAcademic} />
       <Route path="/blog/new-year-resolutions-students-2025" component={NewYearResolutionsStudents2025} />
-      <Route path="/blog/finland-online-visa-application-from-pakistan" component={FinlandOnlineVisaApplication} />
+      <Route path="/blog/finland-online-visa-application-from-pakistan" component={FinlandVisaApplicationFromPakistan} />
       <Route path="/blog/how-much-study-gap-acceptable-in-uk-for-masters" component={HowMuchStudyGapAcceptableUKMasters} />
       <Route path="/blog/green-card-for-international-students" component={GreenCardInternationalStudents} />
       <Route path="/blog/requirements-to-study-computer-science-in-usa" component={RequirementsComputerScienceUSA} />
