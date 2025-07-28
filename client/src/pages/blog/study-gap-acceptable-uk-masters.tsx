@@ -1,6 +1,10 @@
 import React from 'react';
 import { Calendar, Clock, User, ArrowLeft, Phone, Mail, MapPin, ExternalLink, Download, Star, CheckCircle, AlertTriangle, BookOpen, GraduationCap, Globe } from 'lucide-react';
 import { Link } from 'wouter';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
+import ContactForm from '@/components/blog/ContactForm';
+import ContactSection from '@/components/blog/ContactSection';
 
 export default function StudyGapAcceptableUKMasters() {
   const handleContactSubmit = (e: React.FormEvent) => {
@@ -9,66 +13,43 @@ export default function StudyGapAcceptableUKMasters() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
+      <Navigation />
       {/* Hero Section */}
-      <div 
-        className="relative py-16 lg:py-24 overflow-hidden"
-        style={{ backgroundColor: '#124FD3' }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
-        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl">
-            {/* Breadcrumb */}
-            <nav className="mb-6">
-              <div className="flex items-center space-x-2 text-white/80 text-sm">
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                <span>/</span>
-                <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-                <span>/</span>
-                <span className="text-white">Study Gap UK Masters</span>
-              </div>
-            </nav>
-
-            {/* Category Badge */}
-            <div className="mb-4">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white/20 text-white backdrop-blur-sm">
-                <BookOpen className="w-3 h-3 mr-1" />
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Abroad Guide
               </span>
             </div>
-
-            {/* Title */}
-            <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
               How Much Study Gap is Acceptable in UK for Masters?
             </h1>
-
-            {/* Meta Information */}
-            <div className="flex flex-wrap items-center gap-6 text-white/90 text-sm mb-6">
-              <div className="flex items-center gap-2">
-                <User className="w-4 h-4" />
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Complete guide to understanding study gap acceptance for UK Masters programs, including acceptable gap periods, documentation requirements, and tips for strengthening your application.
+            </p>
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>January 28, 2025</span>
+              </div>
+              <div className="flex items-center">
+                <User className="w-5 h-5 mr-2" />
                 <span>Dunya Consultants</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                <span>January 25, 2025</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
                 <span>12 min read</span>
               </div>
             </div>
-
-            {/* Description */}
-            <p className="text-lg text-white/90 max-w-2xl leading-relaxed">
-              Complete guide to understanding study gap acceptance for UK Masters programs, including acceptable gap periods, documentation requirements, and tips for strengthening your application.
-            </p>
           </div>
         </div>
       </div>
 
-      {/* Main Content Container */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid lg:grid-cols-4 gap-8">
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-lg shadow-sm p-8">
@@ -458,6 +439,9 @@ export default function StudyGapAcceptableUKMasters() {
           </div>
         </div>
       </div>
+      
+      <ContactSection />
+      <Footer />
     </div>
   );
 }
