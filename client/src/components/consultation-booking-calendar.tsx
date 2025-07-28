@@ -228,7 +228,7 @@ export default function ConsultationBookingCalendar() {
                   <div key={stepNumber} className="flex flex-col items-center" style={{ width: '20%' }}>
                     <motion.div
                       className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg border-4 border-white shadow-lg ${
-                        isCompleted ? 'bg-blue-600' : isActive ? 'bg-blue-500' : 'bg-gray-300'
+                        isCompleted ? 'bg-green-500' : isActive ? 'bg-blue-500' : 'bg-gray-300'
                       }`}
                       animate={{ scale: isActive ? 1.1 : 1 }}
                       transition={{ duration: 0.3 }}
@@ -252,7 +252,7 @@ export default function ConsultationBookingCalendar() {
             <div className="relative mt-4">
               <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 rounded transform -translate-y-1/2" style={{ left: '10%', right: '10%' }}></div>
               <motion.div
-                className="absolute top-1/2 left-0 h-1 bg-blue-500 rounded transform -translate-y-1/2"
+                className="absolute top-1/2 left-0 h-1 bg-green-500 rounded transform -translate-y-1/2"
                 style={{ 
                   left: '10%',
                   width: `${((currentStep - 1) / (totalSteps - 1)) * 80}%`

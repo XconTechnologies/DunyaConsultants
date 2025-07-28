@@ -18,9 +18,8 @@ export default function Home() {
     <div className="min-h-screen">
       <ScrollProgress />
       <Navigation />
-      <HeroSection />
-      <AboutCompany />
       <StatsBanner />
+      <AboutCompany />
       <IeltsSection />
       <CountriesSection />
       <ConsultationBookingCalendar />
