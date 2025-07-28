@@ -43,62 +43,8 @@ const expandableContent = [
   }
 ];
 
-// Centered Header Component
-function CenteredAboutHeader() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
-  return (
-    <section ref={ref} className="relative py-16 lg:py-20 overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-      </div>
-
-      <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <motion.div
-            className="inline-flex items-center px-4 py-2 bg-blue-50 rounded-full mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
-            <span className="text-sm font-semibold text-blue-700 tracking-wide uppercase">
-              ABOUT COMPANY
-            </span>
-          </motion.div>
-          
-          <motion.h2 
-            className="text-4xl lg:text-5xl font-bold mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-600 bg-clip-text text-transparent">
-              WHO WE ARE
-            </span>
-          </motion.h2>
-          
-          <motion.p 
-            className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Dunya Consultants is one of the best education consultants in Pakistan. 
-            We stand among the top study abroad consultants and provide detailed 
-            guidance on study abroad programs to students.
-          </motion.p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Main About Company Component with Images and Accordion
-function AboutCompanyContent() {
+// Unified Who We Are Section
+export default function AboutCompany() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
