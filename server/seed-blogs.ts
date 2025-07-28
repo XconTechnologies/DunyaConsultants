@@ -468,6 +468,20 @@ const allBlogPosts = [
     views: 2970
   },
   {
+    title: "Low-Cost Universities in UK for International Students",
+    slug: "low-cost-universities-in-uk-for-international-students", 
+    excerpt: "Complete guide to affordable UK universities and living costs for international students",
+    content: "Comprehensive guide to low-cost universities in UK, tuition fees, and living expenses for international students...",
+    published: true,
+    authorId: 1,
+    tags: ["UK", "University Guides", "International Students", "Affordable Education"],
+    metaTitle: "Low-Cost Universities in UK for International Students - Complete Guide 2025",
+    metaDescription: "Complete guide to affordable UK universities and living costs for international students including tuition fees, accommodation, and budget planning",
+    featuredImage: "/blog/low-cost-uk-universities.jpg",
+    readingTime: 12,
+    views: 2180
+  },
+  {
     title: "LLM in UK for Pakistani Students",
     slug: "llm-in-uk-for-pakistani-students",
     excerpt: "Complete guide to LLM programs in UK for Pakistani law students",
