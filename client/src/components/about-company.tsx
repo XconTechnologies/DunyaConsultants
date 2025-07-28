@@ -43,7 +43,62 @@ const expandableContent = [
   }
 ];
 
-export default function AboutCompany() {
+// Centered Header Component
+function CenteredAboutHeader() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <section ref={ref} className="relative py-16 lg:py-20 overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
+      </div>
+
+      <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <motion.div
+            className="inline-flex items-center px-4 py-2 bg-blue-50 rounded-full mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
+            <span className="text-sm font-semibold text-blue-700 tracking-wide uppercase">
+              ABOUT COMPANY
+            </span>
+          </motion.div>
+          
+          <motion.h2 
+            className="text-4xl lg:text-5xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <span className="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-600 bg-clip-text text-transparent">
+              WHO WE ARE
+            </span>
+          </motion.h2>
+          
+          <motion.p 
+            className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Dunya Consultants is one of the best education consultants in Pakistan. 
+            We stand among the top study abroad consultants and provide detailed 
+            guidance on study abroad programs to students.
+          </motion.p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Main About Company Component with Images and Accordion
+function AboutCompanyContent() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
@@ -76,54 +131,11 @@ export default function AboutCompany() {
   ];
 
   return (
-    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse animation-delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
-      </div>
-
-      {/* Floating Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-10 w-3 h-3 bg-blue-400 rounded-full"
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.4, 1, 0.4]
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute top-40 right-20 w-2 h-2 bg-indigo-400 rounded-full"
-          animate={{
-            y: [0, -15, 0],
-            opacity: [0.3, 0.8, 0.3]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-        <motion.div
-          className="absolute bottom-32 left-1/4 w-4 h-4 bg-purple-400 rounded-full"
-          animate={{
-            y: [0, -25, 0],
-            opacity: [0.2, 0.6, 0.2]
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
+    <section ref={ref} className="relative py-16 lg:py-24 overflow-hidden">
+      {/* Blue Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-blue-50 to-blue-100">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
       </div>
 
       <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -132,154 +144,85 @@ export default function AboutCompany() {
           {/* Left Side - Enhanced Scrolling Images */}
           <motion.div
             className="relative"
-            initial={{ opacity: 0, x: -60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8 }}
           >
-            <div className="relative">
-              {/* Glass morphism container */}
-              <div className="relative h-[550px] lg:h-[650px] bg-white/20 backdrop-blur-sm border border-white/30 rounded-3xl p-4 shadow-2xl">
-                
-                {/* Decorative elements */}
-                <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl rotate-12 shadow-lg"></div>
-                <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl -rotate-12 shadow-lg"></div>
-                <div className="absolute top-1/2 -right-4 w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl rotate-45 shadow-lg"></div>
+            <div className="relative h-[600px] lg:h-[700px] overflow-hidden rounded-3xl bg-white/20 backdrop-blur-sm border border-blue-200/30 shadow-2xl">
+              
+              {/* Decorative elements with blue theme */}
+              <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl rotate-12 shadow-lg"></div>
+              <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl -rotate-12 shadow-lg"></div>
+              <div className="absolute top-1/2 -right-4 w-8 h-8 bg-gradient-to-br from-blue-300 to-blue-500 rounded-xl rotate-45 shadow-lg"></div>
 
-                {/* Enhanced Left Column */}
-                <div className="absolute left-6 top-6 w-[calc(50%-16px)] h-[calc(100%-48px)] overflow-hidden rounded-2xl">
-                  <motion.div
-                    className="flex flex-col gap-4"
-                    animate={{
-                      y: [0, -1200]
-                    }}
-                    transition={{
-                      duration: 30,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  >
-                    {leftColumnImages.map((img, index) => (
-                      <motion.div
-                        key={`left-${index}`}
-                        className="relative rounded-xl overflow-hidden shadow-xl group"
-                        whileHover={{ scale: 1.05, z: 10 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <img
-                          src={img}
-                          alt={`Company Image ${index + 1}`}
-                          className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
-
-                {/* Enhanced Right Column */}
-                <div className="absolute right-6 top-6 w-[calc(50%-16px)] h-[calc(100%-48px)] overflow-hidden rounded-2xl">
-                  <motion.div
-                    className="flex flex-col gap-4"
-                    animate={{
-                      y: [-1200, 0]
-                    }}
-                    transition={{
-                      duration: 30,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  >
-                    {rightColumnImages.map((img, index) => (
-                      <motion.div
-                        key={`right-${index}`}
-                        className="relative rounded-xl overflow-hidden shadow-xl group"
-                        whileHover={{ scale: 1.05, z: 10 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <img
-                          src={img}
-                          alt={`Company Image ${index + 1}`}
-                          className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
+              {/* Left Column - Scrolling Up */}
+              <div className="absolute left-4 top-4 w-[calc(50%-12px)] h-[calc(100%-32px)] overflow-hidden rounded-2xl">
+                <motion.div
+                  className="flex flex-col gap-4"
+                  animate={{
+                    y: [0, -1500]
+                  }}
+                  transition={{
+                    duration: 35,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  {leftColumnImages.map((img, index) => (
+                    <div
+                      key={`left-${index}`}
+                      className="relative rounded-xl overflow-hidden shadow-xl group flex-shrink-0"
+                    >
+                      <img
+                        src={img}
+                        alt={`Company Image ${index + 1}`}
+                        className="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  ))}
+                </motion.div>
               </div>
 
-              {/* Floating stats */}
-              <motion.div
-                className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl px-6 py-3 shadow-xl border border-gray-100"
-                initial={{ opacity: 0, y: -20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">17+</div>
-                  <div className="text-xs text-gray-600">Cities</div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-8 left-8 bg-white rounded-2xl px-6 py-3 shadow-xl border border-gray-100"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-              >
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-indigo-600">250+</div>
-                  <div className="text-xs text-gray-600">Ambassadors</div>
-                </div>
-              </motion.div>
+              {/* Right Column - Scrolling Down */}
+              <div className="absolute right-4 top-4 w-[calc(50%-12px)] h-[calc(100%-32px)] overflow-hidden rounded-2xl">
+                <motion.div
+                  className="flex flex-col gap-4"
+                  animate={{
+                    y: [-1500, 0]
+                  }}
+                  transition={{
+                    duration: 35,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  {rightColumnImages.map((img, index) => (
+                    <div
+                      key={`right-${index}`}
+                      className="relative rounded-xl overflow-hidden shadow-xl group flex-shrink-0"
+                    >
+                      <img
+                        src={img}
+                        alt={`Company Image ${index + 1}`}
+                        className="w-full h-36 object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
             </div>
           </motion.div>
 
-          {/* Right Side - Enhanced Content */}
+          {/* Right Side - Accordion Content */}
           <motion.div
             className="lg:pl-8"
-            initial={{ opacity: 0, x: 60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Enhanced Header */}
-            <div className="mb-10">
-              <motion.div
-                className="inline-flex items-center px-4 py-2 bg-blue-50 rounded-full mb-4"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm font-semibold text-blue-700 tracking-wide uppercase">
-                  ABOUT COMPANY
-                </span>
-              </motion.div>
-              
-              <motion.h2 
-                className="text-4xl lg:text-5xl font-bold mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-700 bg-clip-text text-transparent">
-                  WHO WE ARE
-                </span>
-              </motion.h2>
-              
-              <motion.p 
-                className="text-xl text-gray-600 leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-              >
-                Dunya Consultants is one of the best education consultants in Pakistan. 
-                We stand among the top study abroad consultants and provide detailed 
-                guidance on study abroad programs to students.
-              </motion.p>
-            </div>
-
-            {/* Enhanced Expandable Features */}
+            {/* Expandable Features List */}
             <div className="space-y-4">
               {expandableContent.map((item, index) => (
                 <motion.div
@@ -287,15 +230,15 @@ export default function AboutCompany() {
                   className="group"
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                 >
-                  <div className="bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02]">
+                  <div className="bg-white/80 backdrop-blur-sm border border-blue-200/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02]">
                     <button
                       onClick={() => toggleExpand(index)}
-                      className="w-full flex items-center justify-between p-6 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300"
+                      className="w-full flex items-center justify-between p-6 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-300"
                     >
                       <div className="flex items-center">
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center mr-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
                           <span className="text-white font-bold text-lg">+</span>
                         </div>
                         <span className="text-gray-900 font-semibold text-left text-lg">
@@ -305,9 +248,9 @@ export default function AboutCompany() {
                       <motion.div
                         animate={{ rotate: expandedItems.includes(index) ? 180 : 0 }}
                         transition={{ duration: 0.3 }}
-                        className="p-2 rounded-full bg-gray-100 group-hover:bg-white transition-colors duration-300"
+                        className="p-2 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300"
                       >
-                        <ChevronDown className="w-5 h-5 text-gray-600" />
+                        <ChevronDown className="w-5 h-5 text-blue-600" />
                       </motion.div>
                     </button>
                     
@@ -320,8 +263,8 @@ export default function AboutCompany() {
                       transition={{ duration: 0.4, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-6 text-gray-700 leading-relaxed bg-gradient-to-r from-gray-50 to-blue-50">
-                        <div className="pt-2 border-t border-gray-200">
+                      <div className="px-6 pb-6 text-gray-700 leading-relaxed bg-gradient-to-r from-blue-50 to-blue-100">
+                        <div className="pt-2 border-t border-blue-200">
                           {item.content}
                         </div>
                       </div>
@@ -339,7 +282,7 @@ export default function AboutCompany() {
               transition={{ duration: 0.8, delay: 1.3 }}
             >
               <motion.button 
-                className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-bold py-4 px-10 rounded-2xl shadow-2xl"
+                className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white font-bold py-4 px-10 rounded-2xl shadow-2xl"
                 whileHover={{ 
                   scale: 1.05,
                   boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.5)"
@@ -349,7 +292,7 @@ export default function AboutCompany() {
               >
                 <span className="relative z-10">Read More</span>
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600"
+                  className="absolute inset-0 bg-gradient-to-r from-blue-700 via-blue-800 to-blue-900"
                   initial={{ x: "-100%" }}
                   whileHover={{ x: "0%" }}
                   transition={{ duration: 0.3 }}
@@ -361,5 +304,15 @@ export default function AboutCompany() {
         </div>
       </div>
     </section>
+  );
+}
+
+// Export combined component
+export default function AboutCompany() {
+  return (
+    <>
+      <CenteredAboutHeader />
+      <AboutCompanyContent />
+    </>
   );
 }

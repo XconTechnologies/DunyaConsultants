@@ -56,7 +56,7 @@ const countries: Country[] = [
     currency: "British Pound (GBP)",
     timeZone: "GMT/BST",
     bgImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop",
-    gradient: "from-red-600 to-blue-800",
+    gradient: "from-blue-600 to-blue-800",
     intakeSeason: "September & January",
     livingCost: "£12,000-18,000/year",
     applicationDeadline: "January 15, 2025"
@@ -83,7 +83,7 @@ const countries: Country[] = [
     currency: "US Dollar (USD)",
     timeZone: "Multiple zones",
     bgImage: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-red-600",
+    gradient: "from-blue-500 to-blue-700",
     intakeSeason: "Fall & Spring",
     livingCost: "$15,000-25,000/year",
     applicationDeadline: "December 1, 2024"
@@ -110,7 +110,7 @@ const countries: Country[] = [
     currency: "Canadian Dollar (CAD)",
     timeZone: "Multiple zones",
     bgImage: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=800&h=600&fit=crop",
-    gradient: "from-red-600 to-white",
+    gradient: "from-blue-600 to-indigo-700",
     intakeSeason: "September & January",
     livingCost: "CAD 12,000-18,000/year",
     applicationDeadline: "February 1, 2025"
@@ -137,7 +137,7 @@ const countries: Country[] = [
     currency: "Australian Dollar (AUD)",
     timeZone: "Multiple zones",
     bgImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-    gradient: "from-green-600 to-gold",
+    gradient: "from-blue-400 to-blue-600",
     intakeSeason: "February & July",
     livingCost: "AUD 18,000-25,000/year",
     applicationDeadline: "October 31, 2024"
@@ -164,7 +164,7 @@ const countries: Country[] = [
     currency: "Turkish Lira (TRY)",
     timeZone: "TRT",
     bgImage: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&h=600&fit=crop",
-    gradient: "from-red-600 to-orange-500",
+    gradient: "from-blue-500 to-blue-700",
     intakeSeason: "September & February",
     livingCost: "$3,000-6,000/year",
     applicationDeadline: "July 15, 2025"
@@ -191,7 +191,7 @@ const countries: Country[] = [
     currency: "UAE Dirham (AED)",
     timeZone: "GST",
     bgImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=600&fit=crop",
-    gradient: "from-yellow-500 to-red-600",
+    gradient: "from-blue-400 to-indigo-600",
     intakeSeason: "September & January",
     livingCost: "$8,000-15,000/year",
     applicationDeadline: "June 30, 2025"
@@ -218,7 +218,7 @@ const countries: Country[] = [
     currency: "Danish Krone (DKK)",
     timeZone: "CET",
     bgImage: "https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=800&h=600&fit=crop",
-    gradient: "from-red-600 to-white",
+    gradient: "from-blue-600 to-blue-300",
     intakeSeason: "September & February",
     livingCost: "€10,000-15,000/year",
     applicationDeadline: "March 15, 2025"
@@ -245,7 +245,7 @@ const countries: Country[] = [
     currency: "Swedish Krona (SEK)",
     timeZone: "CET",
     bgImage: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=800&h=600&fit=crop",
-    gradient: "from-blue-500 to-yellow-400",
+    gradient: "from-blue-600 to-indigo-600",
     intakeSeason: "August & January",
     livingCost: "SEK 8,000-12,000/month",
     applicationDeadline: "January 15, 2025"
@@ -272,7 +272,7 @@ const countries: Country[] = [
     currency: "Euro (EUR)",
     timeZone: "GMT/IST",
     bgImage: "https://images.unsplash.com/photo-1549918864-48ac978761a4?w=800&h=600&fit=crop",
-    gradient: "from-green-600 to-orange-500",
+    gradient: "from-blue-500 to-indigo-600",
     intakeSeason: "September & February",
     livingCost: "€8,000-12,000/year",
     applicationDeadline: "May 1, 2025"
@@ -299,7 +299,7 @@ const countries: Country[] = [
     currency: "Euro (EUR)",
     timeZone: "EET",
     bgImage: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-white",
+    gradient: "from-blue-600 to-blue-400",
     intakeSeason: "August & January",
     livingCost: "€7,000-12,000/year",
     applicationDeadline: "January 31, 2025"
@@ -326,7 +326,7 @@ const countries: Country[] = [
     currency: "Euro (EUR)",
     timeZone: "EET",
     bgImage: "https://images.unsplash.com/photo-1544552866-d3ed42536cfd?w=800&h=600&fit=crop",
-    gradient: "from-blue-500 to-orange-400",
+    gradient: "from-blue-500 to-blue-700",
     intakeSeason: "September & February",
     livingCost: "€4,000-7,000/year",
     applicationDeadline: "July 31, 2025"
@@ -353,7 +353,7 @@ const countries: Country[] = [
     currency: "Kyrgyzstani Som (KGS)",
     timeZone: "KGT",
     bgImage: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
-    gradient: "from-red-600 to-yellow-500",
+    gradient: "from-blue-600 to-indigo-700",
     intakeSeason: "September & February",
     livingCost: "$1,500-3,000/year",
     applicationDeadline: "August 15, 2025"

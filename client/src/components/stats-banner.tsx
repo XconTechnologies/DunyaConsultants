@@ -52,9 +52,9 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'Students Placed',
       description: 'Success Stories',
-      gradient: 'from-emerald-400 via-teal-500 to-cyan-600',
-      glowColor: 'shadow-emerald-500/25',
-      bgPattern: 'radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.3) 0%, transparent 50%)'
+      gradient: 'from-blue-400 via-blue-500 to-blue-600',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
     },
     {
       icon: Building,
@@ -62,9 +62,9 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'Office Branches',
       description: 'Nationwide Coverage',
-      gradient: 'from-violet-400 via-purple-500 to-indigo-600',
-      glowColor: 'shadow-violet-500/25',
-      bgPattern: 'radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)'
+      gradient: 'from-blue-500 via-indigo-500 to-blue-700',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: 'radial-gradient(circle at 80% 20%, rgba(79, 70, 229, 0.3) 0%, transparent 50%)'
     },
     {
       icon: Award,
@@ -72,9 +72,9 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'University Partners',
       description: 'Global Network',
-      gradient: 'from-emerald-400 via-green-500 to-teal-600',
-      glowColor: 'shadow-green-500/25',
-      bgPattern: 'radial-gradient(circle at 50% 80%, rgba(34, 197, 94, 0.3) 0%, transparent 50%)'
+      gradient: 'from-blue-300 via-blue-400 to-blue-600',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: 'radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
     },
     {
       icon: MapPin,
@@ -82,9 +82,9 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'Countries Covered',
       description: 'Global Reach',
-      gradient: 'from-orange-400 via-red-500 to-pink-600',
-      glowColor: 'shadow-red-500/25',
-      bgPattern: 'radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.3) 0%, transparent 50%)'
+      gradient: 'from-blue-400 via-blue-600 to-indigo-700',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: 'radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
     },
     {
       icon: Shield,
@@ -92,7 +92,7 @@ export default function StatsBanner() {
       suffix: '%',
       label: 'Visa Success Rate',
       description: 'Proven Results',
-      gradient: 'from-blue-400 via-indigo-500 to-purple-600',
+      gradient: 'from-blue-500 via-blue-600 to-blue-800',
       glowColor: 'shadow-blue-500/25',
       bgPattern: 'radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
     },
@@ -102,9 +102,9 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'Expert Counselors',
       description: 'Professional Team',
-      gradient: 'from-emerald-400 via-cyan-500 to-blue-600',
-      glowColor: 'shadow-cyan-500/25',
-      bgPattern: 'radial-gradient(circle at 40% 60%, rgba(6, 182, 212, 0.3) 0%, transparent 50%)'
+      gradient: 'from-blue-600 via-indigo-600 to-blue-800',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: 'radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
     }
   ];
 
@@ -113,10 +113,10 @@ export default function StatsBanner() {
       {/* Animated Background */}
       <div className="absolute inset-0">
         {/* Gradient Orbs */}
-        <div className="absolute top-10 -left-10 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-0 -right-10 w-80 h-80 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-10 left-20 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-        <div className="absolute bottom-0 right-10 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-6000"></div>
+        <div className="absolute top-10 -left-10 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute top-0 -right-10 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-10 left-20 w-80 h-80 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute bottom-0 right-10 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-6000"></div>
         
         {/* Dynamic Grid */}
         <div className="absolute inset-0 opacity-[0.07]">
