@@ -89,6 +89,21 @@ const allBlogPosts = [
     category: "Immigration Guide"
   },
   {
+    title: "How Much Study Gap is Acceptable in UK for Masters?",
+    slug: "study-gap-acceptable-uk-masters",
+    excerpt: "Complete guide to understanding study gap acceptance for UK Masters programs, including acceptable gap periods, documentation requirements, and tips for strengthening your application",
+    content: "One of the most common concerns for Pakistani students planning to pursue a Masters degree in the UK is whether their study gap will affect their admission chances. The good news is that UK universities are generally understanding about study gaps, especially when they are well-justified and documented properly. The gap accepted in UK for a Bachelor's degree is around two-years and up to five years for a Master's degree.",
+    published: true,
+    authorId: 1,
+    tags: ["UK", "Masters", "Study Gap", "University Admission", "Education"],
+    metaTitle: "How Much Study Gap is Acceptable in UK for Masters?",
+    metaDescription: "Complete guide to understanding study gap acceptance for UK Masters programs including acceptable gap periods, documentation, and application tips",
+    featuredImage: "/blog/uk-study-gap.jpg",
+    readingTime: 12,
+    views: 2890,
+    category: "Study Abroad"
+  },
+  {
     title: "Engineering and Law Programs in Canada: Best Universities for Pakistani Students in 2025",
     slug: "engineering-law-canada",
     excerpt: "Top Canadian universities offering engineering and law programs for Pakistani students",

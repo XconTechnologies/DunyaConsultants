@@ -45,6 +45,7 @@ import DifferenceIELTSGeneralAcademic from "@/pages/blog/difference-between-ielt
 import NewYearResolutionsStudents2025 from "@/pages/blog/languagecert-2025-guide";
 import { FinlandVisaApplicationFromPakistan } from "@/pages/blog/finland-visa-application-from-pakistan";
 import HowMuchStudyGapAcceptableUKMasters from "@/pages/blog/how-much-study-gap-acceptable-in-uk-for-masters";
+import StudyGapAcceptableUKMasters from "@/pages/blog/study-gap-acceptable-uk-masters";
 import GreenCardInternationalStudents from "@/pages/blog/green-card-for-international-students";
 import RequirementsComputerScienceUSA from "@/pages/blog/requirements-to-study-computer-science-in-usa";
 import Top10UniversitiesLondon from "@/pages/blog/top-10-universities-in-london";
@@ -132,6 +133,7 @@ function Router() {
       <Route path="/blog/finland-online-visa-application-from-pakistan" component={FinlandVisaApplicationFromPakistan} />
       <Route path="/blog/how-much-study-gap-acceptable-in-uk-for-masters" component={HowMuchStudyGapAcceptableUKMasters} />
       <Route path="/blog/green-card-for-international-students" component={GreenCardInternationalStudents} />
+      <Route path="/blog/study-gap-acceptable-uk-masters" component={StudyGapAcceptableUKMasters} />
       <Route path="/blog/requirements-to-study-computer-science-in-usa" component={RequirementsComputerScienceUSA} />
       <Route path="/blog/top-10-universities-in-london" component={Top10UniversitiesLondon} />
       <Route path="/blog/recommendation-letter-for-student-scholarship" component={RecommendationLetterStudentScholarship} />
