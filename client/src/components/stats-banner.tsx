@@ -189,16 +189,13 @@ export default function StatsBanner() {
           </motion.div>
           
           <motion.h2
-            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105"
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-[#1e3a8a]"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
           >
-            <span className="text-white">Dedication To </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
-              Education
-            </span>
+            Dedication To Education
           </motion.h2>
           
           <motion.p

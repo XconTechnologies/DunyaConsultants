@@ -135,14 +135,12 @@ export default function AboutCompany() {
           </motion.div>
           
           <motion.h2 
-            className="text-4xl lg:text-5xl font-bold mb-6"
+            className="text-3xl lg:text-4xl font-bold mb-6 text-[#1e3a8a]"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-700 bg-clip-text text-transparent">
-              WHO WE ARE
-            </span>
+            WHO WE ARE
           </motion.h2>
           
           <motion.p 

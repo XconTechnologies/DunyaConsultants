@@ -4,39 +4,38 @@ import {
   Building2, 
   Landmark, 
   MapPin, 
-  Users, 
-  Car,
+  Factory,
+  Zap,
   Plane,
   Castle,
   Crown,
   Star,
-  Zap,
+  Mountain,
   Globe,
   Shield,
   Trophy,
   Target,
-  Flag,
-  Heart
+  Flag
 } from "lucide-react";
 
 const branches = [
-  { name: "Islamabad", icon: Building },
-  { name: "Karachi", icon: Building2 },
-  { name: "Sargodha", icon: Landmark },
-  { name: "Gujrat", icon: Castle },
-  { name: "Gujranwala", icon: MapPin },
-  { name: "Faisalabad", icon: Crown },
-  { name: "Sialkot", icon: Users },
-  { name: "Multan", icon: Star },
-  { name: "Bahawalpur", icon: Zap },
-  { name: "Sheikhupura", icon: Building },
-  { name: "Mardan", icon: Globe },
-  { name: "Mian Channu", icon: Shield },
-  { name: "Mandi Bahauddin", icon: Car },
-  { name: "Lahore DHA", icon: Trophy },
-  { name: "Lahore Johar Town", icon: Target },
-  { name: "Jeddah", icon: Flag },
-  { name: "Istanbul", icon: Heart }
+  { name: "Islamabad", icon: Building, sketch: "🏛️" },
+  { name: "Karachi", icon: Building2, sketch: "🏢" },
+  { name: "Sargodha", icon: Landmark, sketch: "🏛️" },
+  { name: "Gujrat", icon: Castle, sketch: "🏰" },
+  { name: "Gujranwala", icon: MapPin, sketch: "🌆" },
+  { name: "Faisalabad", icon: Factory, sketch: "🏭" },
+  { name: "Sialkot", icon: Trophy, sketch: "🏆" },
+  { name: "Multan", icon: Star, sketch: "⭐" },
+  { name: "Bahawalpur", icon: Crown, sketch: "👑" },
+  { name: "Sheikhupura", icon: Building, sketch: "🏘️" },
+  { name: "Mardan", icon: Mountain, sketch: "⛰️" },
+  { name: "Mian Channu", icon: Shield, sketch: "🛡️" },
+  { name: "Mandi Bahauddin", icon: Target, sketch: "🎯" },
+  { name: "Lahore DHA", icon: Building2, sketch: "🏢" },
+  { name: "Lahore Johar Town", icon: Building, sketch: "🏘️" },
+  { name: "Jeddah", icon: Flag, sketch: "🕌" },
+  { name: "Istanbul", icon: Globe, sketch: "🌍" }
 ];
 
 export default function BranchesCarousel() {
@@ -90,9 +89,10 @@ export default function BranchesCarousel() {
                   key={index}
                   className="flex-shrink-0 w-36 text-center"
                 >
-                  {/* Icon */}
-                  <div className="w-16 h-16 mx-auto mb-3 bg-[#1e3a8a] rounded-full flex items-center justify-center">
+                  {/* Icon with Sketch */}
+                  <div className="w-16 h-16 mx-auto mb-3 bg-[#1e3a8a] rounded-full flex items-center justify-center relative">
                     <IconComponent className="w-8 h-8 text-white" />
+                    <div className="absolute -top-1 -right-1 text-lg">{branch.sketch}</div>
                   </div>
                   
                   {/* Branch Name */}

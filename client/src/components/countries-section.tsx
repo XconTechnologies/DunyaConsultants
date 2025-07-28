@@ -496,11 +496,8 @@ export default function CountriesSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Study Abroad{' '}
-            <span className="bg-gradient-to-r from-cyan-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Destinations
-            </span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1e3a8a] mb-6">
+            Study Abroad Destinations
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Choose from top study destinations worldwide and start your journey to international education excellence.

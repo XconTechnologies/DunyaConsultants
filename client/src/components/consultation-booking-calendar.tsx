@@ -196,13 +196,10 @@ export default function ConsultationBookingCalendar() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105"
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-[#1e3a8a]"
             whileHover={{ scale: 1.05 }}
           >
-            <span className="text-neutral-800">Book Your Free </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600">
-              Consultation
-            </span>
+            Book Your Free Consultation
           </motion.h2>
           <p className="text-neutral-600 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
             Schedule a personalized consultation with our expert counsellors to kickstart your study abroad journey
