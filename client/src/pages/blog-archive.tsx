@@ -70,42 +70,13 @@ export default function BlogArchive() {
   const filteredPosts = useMemo(() => {
     let filtered = archivePosts;
 
-    // Enhanced search functionality with keyword matching
-    if (searchTerm && searchTerm.trim()) {
-      const searchTerms = searchTerm.toLowerCase().trim().split(/\s+/);
-      
-      filtered = filtered.filter(post => {
-        // Get the original blog post data to search content as well
-        const originalPost = blogPosts.find(bp => bp.slug === post.href.replace('/blog/', ''));
-        const searchableText = [
-          post.title,
-          post.excerpt,
-          post.category,
-          ...post.tags,
-          post.author,
-          // Include actual blog content for comprehensive search
-          originalPost?.content?.substring(0, 2000) || '' // First 2000 chars of content
-        ].join(' ').toLowerCase();
-
-        // Check if all search terms are found (AND logic)
-        return searchTerms.some(term => 
-          searchableText.includes(term) ||
-          // Handle common variations and synonyms
-          (term === 'uk' && (searchableText.includes('united kingdom') || searchableText.includes('britain') || searchableText.includes('british'))) ||
-          (term === 'usa' && (searchableText.includes('united states') || searchableText.includes('america') || searchableText.includes('american'))) ||
-          (term === 'visa' && searchableText.includes('immigration')) ||
-          (term === 'university' && (searchableText.includes('college') || searchableText.includes('institution'))) ||
-          (term === 'study' && (searchableText.includes('education') || searchableText.includes('academic'))) ||
-          (term === 'abroad' && (searchableText.includes('international') || searchableText.includes('overseas'))) ||
-          (term === 'guide' && (searchableText.includes('tips') || searchableText.includes('help') || searchableText.includes('advice'))) ||
-          (term === 'test' && (searchableText.includes('exam') || searchableText.includes('ielts') || searchableText.includes('toefl'))) ||
-          (term === 'london' && searchableText.includes('uk')) ||
-          (term === 'mistakes' && (searchableText.includes('avoid') || searchableText.includes('error') || searchableText.includes('common'))) ||
-          (term === 'student' && searchableText.includes('international')) ||
-          (term === 'bangor' && searchableText.includes('university')) ||
-          (term === 'reasons' && (searchableText.includes('benefits') || searchableText.includes('advantages') || searchableText.includes('why')))
-        );
-      });
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter(post => 
+        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
     }
 
     // Filter by category
