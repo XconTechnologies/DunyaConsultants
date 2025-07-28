@@ -74,6 +74,21 @@ const allBlogPosts = [
     views: 1680
   },
   {
+    title: "Green Card for International Students: Complete Guide 2025",
+    slug: "green-card-for-international-students",
+    excerpt: "Comprehensive guide to obtaining a Green Card as an international student, including benefits, application process, and pathways to permanent residency",
+    content: "Are you a non-U.S. student looking to become an official green card holder in the USA? Getting a green card is one of the most important steps. It lets you live as well as work in the United States without the worry of leaving one day. A green card makes you a permanent resident, giving you many of the same rights as a U.S. citizen, but not all. Each year, the US government gives the opportunity of green card for students.",
+    published: true,
+    authorId: 1,
+    tags: ["USA", "Green Card", "Immigration", "Students", "Permanent Residency"],
+    metaTitle: "Green Card for International Students: Complete Guide 2025",
+    metaDescription: "Comprehensive guide to obtaining a Green Card as an international student including benefits, application pathways, and step-by-step process",
+    featuredImage: "/blog/green-card-usa.jpg",
+    readingTime: 15,
+    views: 3250,
+    category: "Immigration Guide"
+  },
+  {
     title: "Engineering and Law Programs in Canada: Best Universities for Pakistani Students in 2025",
     slug: "engineering-law-canada",
     excerpt: "Top Canadian universities offering engineering and law programs for Pakistani students",

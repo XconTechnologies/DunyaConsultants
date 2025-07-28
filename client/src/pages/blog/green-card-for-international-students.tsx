@@ -1,464 +1,383 @@
+import { Clock, User, Share2 } from 'lucide-react';
 import Navigation from '@/components/navigation';
-import ContactForm from '@/components/blog/ContactForm';
-import ContactSection from '@/components/blog/ContactSection';
 import Footer from '@/components/footer';
+import ContactForm from '@/components/blog/ContactForm';
 
 export default function GreenCardInternationalStudents() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
       
-      {/* Full-width Hero Section */}
-      <div className="relative h-96 bg-gradient-to-br from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center text-white">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative z-10 text-center px-4">
-          <h1 className="text-5xl font-bold mb-4">Green Card for International Students</h1>
-          <p className="text-2xl opacity-90">Complete Guide to Permanent Residency in the USA</p>
+      {/* Hero Section - Exact Kaplan Style */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                Immigration Guide
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Green Card for International Students: Complete Guide 2025
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Comprehensive guide to obtaining a Green Card as an international student, including benefits, application process, and pathways to permanent residency
+            </p>
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>January 27, 2025</span>
+              </div>
+              <div className="flex items-center">
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>15 min read</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="max-w-[1440px] mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      {/* Main Content - Exact Kaplan Style */}
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-sm p-8">
+          <div className="lg:col-span-3">
+            <article className="bg-white rounded-lg shadow-sm p-8">
+              
+              {/* Introduction */}
               <div className="mb-8">
-                <p className="text-lg text-gray-700 leading-relaxed">
-                  For international students studying in the United States, obtaining a green card represents the ultimate goal of achieving permanent residency. This comprehensive guide will walk you through the various pathways, requirements, and processes available to international students seeking to make the USA their permanent home.
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Are you a non-U.S. student looking to become an official green card holder in the USA? Getting a green card is one of the most important steps. It lets you live as well as work in the United States without the worry of leaving one day. A green card makes you a permanent resident, giving you many of the same rights as a U.S. citizen, but not all. Each year, the US government gives the opportunity of green card for students.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  There are many green card benefits for students. Through the U.S. EB-5 visa program, international students (like those on F1 student visas) can have more opportunities to attend the college or university they want. It also gives students and their families financial and other advantages of green card during and after their studies in the USA.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  If you are interested to learn more, please keep reading below.
                 </p>
               </div>
 
-              <div className="bg-emerald-50 border-l-4 border-emerald-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-emerald-900">What is a Green Card?</h3>
-                <p className="text-gray-700">
-                  A green card, officially known as a Permanent Resident Card, grants you the right to live and work permanently in the United States. It's the stepping stone to U.S. citizenship and provides numerous benefits including access to federal benefits, ability to sponsor family members, and protection under U.S. laws.
-                </p>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Green Card Pathways for International Students</h2>
-              
-              <div className="space-y-6 mb-8">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">1. Employment-Based Green Card (EB Categories)</h3>
-                  <p className="text-gray-700 mb-3">
-                    The most common path for international students involves employment-based immigration through various EB categories.
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">EB-1 (Priority Workers)</h4>
-                      <ul className="text-gray-600 space-y-1">
-                        <li>• Extraordinary ability professionals</li>
-                        <li>• Outstanding professors/researchers</li>
-                        <li>• Multinational executives</li>
-                        <li>• No labor certification required</li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-800 mb-2">EB-2 (Advanced Degree)</h4>
-                      <ul className="text-gray-600 space-y-1">
-                        <li>• Master's degree or higher</li>
-                        <li>• Bachelor's + 5 years experience</li>
-                        <li>• National Interest Waiver (NIW)</li>
-                        <li>• Labor certification usually required</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">2. Family-Based Green Card</h3>
-                  <p className="text-gray-700 mb-3">
-                    Marriage to a U.S. citizen or permanent resident can provide a pathway to permanent residency.
-                  </p>
-                  <ul className="text-gray-600 space-y-1">
-                    <li>• Immediate relative of U.S. citizen (spouse, parent, unmarried child under 21)</li>
-                    <li>• Family preference categories for other relationships</li>
-                    <li>• Requires proof of genuine relationship</li>
-                    <li>• No annual limits for immediate relatives</li>
-                  </ul>
-                </div>
-
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">3. Diversity Visa Lottery</h3>
-                  <p className="text-gray-700 mb-3">
-                    The annual Diversity Visa (DV) lottery program provides 50,000 green cards to individuals from countries with low immigration rates to the U.S.
-                  </p>
-                  <ul className="text-gray-600 space-y-1">
-                    <li>• Free to apply, annual registration period</li>
-                    <li>• Requires high school education or equivalent</li>
-                    <li>• Must be from an eligible country</li>
-                    <li>• Random selection process</li>
-                  </ul>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">The F-1 to Green Card Process</h2>
-              
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-blue-900">Typical Timeline for Students</h3>
-                <div className="space-y-3">
-                  <div className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">Step 1:</span>
-                    <span className="text-gray-700">Complete studies on F-1 visa</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">Step 2:</span>
-                    <span className="text-gray-700">Apply for Optional Practical Training (OPT)</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">Step 3:</span>
-                    <span className="text-gray-700">Find employer willing to sponsor H-1B visa</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">Step 4:</span>
-                    <span className="text-gray-700">Employer files PERM labor certification</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">Step 5:</span>
-                    <span className="text-gray-700">File Form I-140 (Immigrant Petition)</span>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <span className="text-blue-600 font-bold">Step 6:</span>
-                    <span className="text-gray-700">File Form I-485 (Adjust Status) or consular processing</span>
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">STEM OPT Extension Benefits</h2>
-              
-              <div className="overflow-x-auto mb-8">
-                <table className="w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-300 px-4 py-2 text-left">Benefit</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Regular OPT</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">STEM Extension</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">Duration</td>
-                      <td className="border border-gray-300 px-4 py-2">12 months</td>
-                      <td className="border border-gray-300 px-4 py-2">Additional 24 months</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">Total Time</td>
-                      <td className="border border-gray-300 px-4 py-2">12 months</td>
-                      <td className="border border-gray-300 px-4 py-2">36 months total</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">H-1B Attempts</td>
-                      <td className="border border-gray-300 px-4 py-2">1-2 attempts</td>
-                      <td className="border border-gray-300 px-4 py-2">3-4 attempts</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">Employer Requirements</td>
-                      <td className="border border-gray-300 px-4 py-2">Basic employment</td>
-                      <td className="border border-gray-300 px-4 py-2">E-Verify enrollment</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">National Interest Waiver (NIW)</h2>
-              
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-green-900">NIW Advantages for Students</h3>
-                <ul className="text-gray-700 space-y-2">
-                  <li>• No employer sponsorship required</li>
-                  <li>• No labor certification needed</li>
-                  <li>• Can be self-petitioned</li>
-                  <li>• Faster processing times</li>
-                  <li>• Job mobility and flexibility</li>
+              {/* Table of Contents */}
+              <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li><a href="#who-can-apply" className="hover:text-blue-600">Who can Apply for International Students Green Card in the USA?</a></li>
+                  <li><a href="#employment-based" className="hover:text-blue-600">Employment-based immigration</a></li>
+                  <li><a href="#family-based" className="hover:text-blue-600">Family-based immigration</a></li>
+                  <li><a href="#diversity-visa" className="hover:text-blue-600">Diversity Visa Lottery</a></li>
+                  <li><a href="#refugees-asylees" className="hover:text-blue-600">Refugees & asylees</a></li>
+                  <li><a href="#green-card-benefits" className="hover:text-blue-600">Green Card Benefits for Students</a></li>
+                  <li><a href="#scholarships" className="hover:text-blue-600">Scholarships for Green Card Holders</a></li>
+                  <li><a href="#study-opportunities" className="hover:text-blue-600">Study Opportunities</a></li>
+                  <li><a href="#work-permit" className="hover:text-blue-600">Work Permit</a></li>
+                  <li><a href="#lower-tuition" className="hover:text-blue-600">Lower Tuition Fee</a></li>
+                  <li><a href="#travel-flexibility" className="hover:text-blue-600">Travel Flexibility & Other Advantages</a></li>
+                  <li><a href="#job-opportunities" className="hover:text-blue-600">Job Opportunities</a></li>
                 </ul>
               </div>
 
-              <div className="space-y-4 mb-8">
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900">NIW Eligibility Criteria</h3>
-                  <ul className="text-gray-700 space-y-1">
-                    <li>• Advanced degree or exceptional ability</li>
-                    <li>• Proposed endeavor has substantial merit and national importance</li>
-                    <li>• Well-positioned to advance the proposed endeavor</li>
-                    <li>• Beneficial to waive labor certification requirements</li>
-                  </ul>
-                </div>
-                
-                <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900">Common NIW Fields for Students</h3>
-                  <ul className="text-gray-700 space-y-1">
-                    <li>• Science, Technology, Engineering, Mathematics (STEM)</li>
-                    <li>• Healthcare and medical research</li>
-                    <li>• Renewable energy and environment</li>
-                    <li>• Education and academic research</li>
-                    <li>• Business and entrepreneurship</li>
-                  </ul>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">EB-1A: Extraordinary Ability</h2>
-              
-              <div className="bg-purple-50 border-l-4 border-purple-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-purple-900">EB-1A Criteria (3 out of 10 required)</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Receipt of major awards or prizes</li>
-                    <li>• Membership in exclusive associations</li>
-                    <li>• Published material about you</li>
-                    <li>• Participation as a judge</li>
-                    <li>• Original contributions to field</li>
-                  </ul>
-                  <ul className="text-gray-700 space-y-2">
-                    <li>• Scholarly articles authored</li>
-                    <li>• Critical employment or role</li>
-                    <li>• High salary or remuneration</li>
-                    <li>• Commercial success in arts</li>
-                    <li>• Other comparable evidence</li>
-                  </ul>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Processing Times and Costs</h2>
-              
-              <div className="overflow-x-auto mb-8">
-                <table className="w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-300 px-4 py-2 text-left">Process</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Processing Time</th>
-                      <th className="border border-gray-300 px-4 py-2 text-left">Government Fees</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">PERM Labor Certification</td>
-                      <td className="border border-gray-300 px-4 py-2">6-12 months</td>
-                      <td className="border border-gray-300 px-4 py-2">$0 (employer pays)</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">I-140 Petition</td>
-                      <td className="border border-gray-300 px-4 py-2">4-8 months</td>
-                      <td className="border border-gray-300 px-4 py-2">$700 (+ $2,500 premium)</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">I-485 Adjustment</td>
-                      <td className="border border-gray-300 px-4 py-2">8-14 months</td>
-                      <td className="border border-gray-300 px-4 py-2">$1,140 (+ $1,440 biometrics)</td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-300 px-4 py-2 font-semibold">Consular Processing</td>
-                      <td className="border border-gray-300 px-4 py-2">3-6 months</td>
-                      <td className="border border-gray-300 px-4 py-2">$325 (+ medical exam)</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Priority Dates and Country Caps</h2>
-              
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-yellow-900">Per-Country Limits Impact</h3>
-                <p className="text-gray-700 mb-3">
-                  Annual green card limits and per-country caps significantly affect waiting times for students from certain countries.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">Heavily Impacted Countries</h4>
-                    <ul className="text-gray-600 space-y-1">
-                      <li>• India: 10-20+ year wait for EB-2/EB-3</li>
-                      <li>• China: 2-5 year wait for EB-2/EB-3</li>
-                      <li>• Philippines: 3-5 year wait</li>
-                      <li>• Mexico: 2-3 year wait</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-800 mb-2">Strategies for Long Waits</h4>
-                    <ul className="text-gray-600 space-y-1">
-                      <li>• Pursue EB-1 qualification</li>
-                      <li>• Apply for NIW</li>
-                      <li>• Consider family-based options</li>
-                      <li>• Maintain valid work status</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Tips for Success</h2>
-              
-              <div className="space-y-4 mb-8">
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold mb-2 text-blue-900">Academic Excellence</h3>
-                  <ul className="text-gray-700 space-y-1">
-                    <li>• Maintain high GPA throughout studies</li>
-                    <li>• Pursue advanced degrees (Master's/PhD)</li>
-                    <li>• Engage in research and publications</li>
-                    <li>• Build strong faculty relationships</li>
-                  </ul>
-                </div>
-                
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold mb-2 text-green-900">Professional Development</h3>
-                  <ul className="text-gray-700 space-y-1">
-                    <li>• Gain relevant work experience through internships</li>
-                    <li>• Develop specialized skills in high-demand fields</li>
-                    <li>• Build professional networks</li>
-                    <li>• Obtain industry certifications</li>
-                  </ul>
-                </div>
-                
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold mb-2 text-purple-900">Legal Strategy</h3>
-                  <ul className="text-gray-700 space-y-1">
-                    <li>• Consult with experienced immigration attorneys</li>
-                    <li>• Start planning early in your studies</li>
-                    <li>• Keep detailed records of achievements</li>
-                    <li>• Consider multiple pathways simultaneously</li>
-                  </ul>
-                </div>
-              </div>
-
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Common Challenges and Solutions</h2>
-              
-              <div className="space-y-6 mb-8">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">Challenge: H-1B Lottery System</h3>
-                  <p className="text-gray-700 mb-3">
-                    The H-1B cap and lottery system creates uncertainty for students transitioning from OPT.
+              {/* Who can Apply */}
+              <section id="who-can-apply" className="mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">Who can Apply for International Students Green Card in the USA?</h2>
+                <div className="text-gray-700 leading-relaxed space-y-4">
+                  <p>
+                    Green card holders, or Lawful Permanent Residents (LPRs), have many benefits that international students with temporary visas do not. Let's discuss in detail about who can enjoy the benefits of a green card in US below:
                   </p>
-                  <div className="bg-white p-4 rounded">
-                    <h4 className="font-semibold text-gray-800 mb-2">Solutions:</h4>
-                    <ul className="text-gray-600 space-y-1">
-                      <li>• Pursue STEM OPT extension for more chances</li>
-                      <li>• Consider cap-exempt employers (universities, non-profits)</li>
-                      <li>• Explore L-1 visa options with multinational companies</li>
-                      <li>• Apply for NIW to bypass H-1B requirement</li>
-                    </ul>
-                  </div>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-gray-900">Challenge: Long Processing Times</h3>
-                  <p className="text-gray-700 mb-3">
-                    Green card processing can take several years, creating uncertainty about status.
+                {/* Employment-based immigration */}
+                <div id="employment-based" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Employment-based immigration</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    People with advanced degrees, special skills, or exceptional abilities can get green card advantages through a job. Employers can sponsor workers if there are not enough qualified U.S. workers for certain jobs.
                   </p>
-                  <div className="bg-white p-4 rounded">
-                    <h4 className="font-semibold text-gray-800 mb-2">Solutions:</h4>
-                    <ul className="text-gray-600 space-y-1">
-                      <li>• Apply for premium processing when available</li>
-                      <li>• Maintain valid work authorization throughout</li>
-                      <li>• Consider concurrent filing when eligible</li>
-                      <li>• Keep backup plans for visa extensions</li>
+                </div>
+
+                {/* Family-based immigration */}
+                <div id="family-based" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Family-based immigration</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    You can apply for a green card for international students if you have a family member who is a U.S. citizen or permanent resident. This includes parents, children, spouses, and siblings.
+                  </p>
+                </div>
+
+                {/* Diversity Visa Lottery */}
+                <div id="diversity-visa" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Diversity Visa Lottery</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    This program, also called the Green Card Lottery, randomly selects people from countries with low immigration to the U.S. Winners can get green card holder benefits.
+                  </p>
+                </div>
+
+                {/* Refugees & asylees */}
+                <div id="refugees-asylees" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Refugees & asylees</h3>
+                  <p className="text-gray-700 leading-relaxed">
+                    People granted refugee or asylum status in the USA can apply for a green card after living in the country for one year, as long as they meet certain requirements and pass background checks.
+                  </p>
+                </div>
+              </section>
+
+              {/* Green Card Benefits for Students */}
+              <section id="green-card-benefits" className="mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">Green Card Benefits for Students</h2>
+                <div className="text-gray-700 leading-relaxed space-y-4">
+                  <p>Here are some of the benefits of green card in USA for international students:</p>
+                </div>
+
+                {/* Scholarships for Green Card Holders */}
+                <div id="scholarships" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Scholarships for Green Card Holders</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-4 my-4">
+                    <p className="text-gray-700 leading-relaxed mb-3">
+                      Green card holders can apply for federal financial aid, which includes grants, scholarship for green card holders, and low-interest loans. This is more than what international students can get because they are not eligible for most US government help.
+                    </p>
+                    <p className="text-gray-700 leading-relaxed">
+                      By applying for scholarships, students can lower their school costs. To apply for federal loans, green card holders need to fill out the Free Application for Federal Student Aid, also called FAFSA for green card holders.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Study Opportunities */}
+                <div id="study-opportunities" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Study Opportunities</h3>
+                  <div className="text-gray-700 leading-relaxed space-y-3">
+                    <p>
+                      Green card holders can easily apply to any US school, including public and private colleges, universities, as well as vocational programs. They don't face the same visa limits or restrictions as international students.
+                    </p>
+                    <p>
+                      Many US colleges have limited spots for international students. Green card holders are treated as local students and it improves their chances of being accepted.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Work Permit */}
+                <div id="work-permit" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Work Permit</h3>
+                  <div className="bg-green-50 border-l-4 border-green-500 p-4 my-4">
+                    <p className="text-gray-700 leading-relaxed">
+                      Green card holders have unlimited work authorization in the United States. Unlike F1 students who have restrictions on where and how much they can work, green card holders can work anywhere, anytime, and for any employer without needing special permits or sponsorship.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Lower Tuition Fee */}
+                <div id="lower-tuition" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Lower Tuition Fee</h3>
+                  <div className="text-gray-700 leading-relaxed space-y-3">
+                    <p>
+                      One of the biggest financial benefits is access to in-state tuition rates at public universities. Green card holders pay significantly less than international students:
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                      <div className="bg-red-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-red-800 mb-2">International Student Tuition</h4>
+                        <p className="text-gray-700">$25,000 - $50,000 per year</p>
+                      </div>
+                      <div className="bg-green-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-green-800 mb-2">Green Card Holder Tuition</h4>
+                        <p className="text-gray-700">$10,000 - $15,000 per year</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Travel Flexibility & Other Advantages */}
+                <div id="travel-flexibility" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Travel Flexibility & Other Advantages</h3>
+                  <div className="text-gray-700 leading-relaxed space-y-3">
+                    <p>Green card holders enjoy numerous travel and lifestyle benefits:</p>
+                    <ul className="list-disc list-inside space-y-2 ml-4">
+                      <li>Can travel freely in and out of the United States without visa restrictions</li>
+                      <li>Can live anywhere in the United States without reporting to immigration authorities</li>
+                      <li>Can sponsor certain family members for green cards</li>
+                      <li>Have access to Social Security benefits after meeting requirements</li>
+                      <li>Can apply for U.S. citizenship after 5 years (or 3 years if married to a U.S. citizen)</li>
+                      <li>Protection under U.S. laws and the Constitution</li>
                     </ul>
                   </div>
                 </div>
-              </div>
 
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Recent Changes and Updates</h2>
-              
-              <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-red-900">2024 Updates</h3>
-                <ul className="text-gray-700 space-y-2">
-                  <li>• USCIS policy updates on premium processing</li>
-                  <li>• New STEM OPT fields added to eligible list</li>
-                  <li>• Enhanced security measures for applications</li>
-                  <li>• Digital transformation initiatives</li>
-                  <li>• Fee increases for various applications</li>
-                </ul>
-              </div>
+                {/* Job Opportunities */}
+                <div id="job-opportunities" className="mt-6">
+                  <h3 className="text-xl font-semibold mb-3 text-gray-800">Job Opportunities</h3>
+                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 my-4">
+                    <p className="text-gray-700 leading-relaxed mb-3">
+                      Green card holders have access to all job opportunities in the United States, including:
+                    </p>
+                    <ul className="list-disc list-inside space-y-2 text-gray-700">
+                      <li>Government jobs (federal, state, and local)</li>
+                      <li>Jobs requiring security clearances</li>
+                      <li>Employment in sensitive industries</li>
+                      <li>Starting their own businesses</li>
+                      <li>Working for any employer without sponsorship requirements</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
 
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">Conclusion</h2>
-              <p className="text-gray-700 mb-6">
-                Obtaining a green card as an international student requires careful planning, patience, and strategic decision-making. While the process can be complex and time-consuming, understanding your options and preparing early can significantly increase your chances of success.
-              </p>
-              
-              <p className="text-gray-700 mb-6">
-                The key is to start planning early in your academic career, maintain excellent academic and professional records, and consider multiple pathways simultaneously. With proper preparation and guidance, achieving permanent residency in the United States is an attainable goal.
-              </p>
-              
-              <p className="text-gray-700 mb-8">
-                Remember that immigration law is complex and constantly evolving. It's essential to consult with qualified immigration attorneys who can provide personalized advice based on your specific circumstances and goals.
-              </p>
+              {/* Application Pathways */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">Common Pathways for Students to Get Green Card</h2>
+                <div className="text-gray-700 leading-relaxed space-y-4">
+                  <p>International students typically pursue green cards through these main pathways:</p>
+                  
+                  <div className="space-y-6">
+                    <div className="border-l-4 border-blue-500 pl-4">
+                      <h3 className="font-semibold text-lg mb-2">1. Employment-Based Green Card (EB-1, EB-2, EB-3)</h3>
+                      <p>After graduation, students can work on OPT (Optional Practical Training), then H-1B visa, and eventually apply for employment-based green card through their employer.</p>
+                    </div>
+                    
+                    <div className="border-l-4 border-green-500 pl-4">
+                      <h3 className="font-semibold text-lg mb-2">2. EB-5 Investment Visa</h3>
+                      <p>Students or their families can invest $800,000 - $1,050,000 in a U.S. business project to qualify for green card.</p>
+                    </div>
+                    
+                    <div className="border-l-4 border-purple-500 pl-4">
+                      <h3 className="font-semibold text-lg mb-2">3. Family-Based Green Card</h3>
+                      <p>Students who marry U.S. citizens or have immediate family members who are citizens/permanent residents can apply.</p>
+                    </div>
+                    
+                    <div className="border-l-4 border-orange-500 pl-4">
+                      <h3 className="font-semibold text-lg mb-2">4. Diversity Visa Lottery</h3>
+                      <p>Students from eligible countries can participate in the annual Diversity Visa Lottery program.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
 
-              <h2 className="text-3xl font-bold mb-6 text-gray-900">FAQs</h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">Can I apply for a green card while on F-1 visa?</h3>
-                  <p className="text-gray-700">Yes, you can apply for a green card while on F-1 status, but you must maintain your student status until you receive your green card or adjust to another status.</p>
+              {/* Conclusion */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">Conclusion</h2>
+                <div className="text-gray-700 leading-relaxed space-y-4">
+                  <p>
+                    Obtaining a green card as an international student provides tremendous benefits and opportunities for your education, career, and life in the United States. From significant cost savings on tuition to unlimited work authorization and pathway to citizenship, a green card opens doors that temporary visas cannot.
+                  </p>
+                  <p>
+                    While the process can be complex and time-consuming, understanding your options and planning early can significantly improve your chances of success. Whether through employment, family connections, investment, or the diversity lottery, there are multiple pathways available to international students.
+                  </p>
+                  <p>
+                    It's essential to work with experienced immigration professionals who can guide you through the process and help you choose the best strategy for your specific situation.
+                  </p>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">What's the fastest way to get a green card as a student?</h3>
-                  <p className="text-gray-700">The fastest routes are typically EB-1A (extraordinary ability), NIW (national interest waiver), or marriage to a U.S. citizen. These don't require labor certification and have shorter processing times.</p>
+              </section>
+
+              {/* FAQ Section */}
+              <section className="mb-8">
+                <h2 className="text-2xl font-bold mb-4 text-gray-800">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-lg text-gray-800 mb-2">Can green card holders get student loans?</h3>
+                    <p className="text-gray-700">Yes, green card holders are eligible for federal student aid including grants, work-study programs, and federal student loans by completing the FAFSA application.</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-lg text-gray-800 mb-2">How can an international student get a green card?</h3>
+                    <p className="text-gray-700">International students can obtain green cards through employment sponsorship, family relationships, EB-5 investment visa, or the diversity visa lottery program.</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-lg text-gray-800 mb-2">Can international students apply for green card?</h3>
+                    <p className="text-gray-700">Yes, international students can apply for green cards while maintaining their F-1 status, though they must demonstrate non-immigrant intent until the green card process is complete.</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-lg text-gray-800 mb-2">Can F1 student apply for green card?</h3>
+                    <p className="text-gray-700">Yes, F1 students can apply for green cards through eligible pathways such as employment sponsorship, family petitions, or investment visas while maintaining their student status.</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-lg text-gray-800 mb-2">How long does the green card process take for students?</h3>
+                    <p className="text-gray-700">The timeline varies by pathway: employment-based can take 1-10+ years depending on country of birth and category, family-based varies by relationship, and EB-5 typically takes 2-5 years.</p>
+                  </div>
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-lg text-gray-800 mb-2">What is the difference between green card and citizenship?</h3>
+                    <p className="text-gray-700">Green card holders are permanent residents with most rights of citizens but cannot vote in federal elections or hold certain government positions. They can apply for citizenship after meeting residency requirements.</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">Do I need a job offer to apply for a green card?</h3>
-                  <p className="text-gray-700">It depends on the category. EB-2 and EB-3 typically require job offers, while EB-1A, NIW, and family-based categories don't. Some categories like NIW allow self-petitioning.</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">Can I travel outside the US while my green card application is pending?</h3>
-                  <p className="text-gray-700">Yes, but you need to maintain valid status and may need advance parole if applying for adjustment of status. Travel on F-1 or H-1B is generally safer than using advance parole.</p>
-                </div>
-              </div>
-            </div>
+              </section>
+
+            </article>
           </div>
 
-          {/* Sidebar */}
+          {/* Sidebar - Exact Kaplan Style */}
           <div className="lg:col-span-1">
-            <div className="sticky top-8 space-y-8">
+            <div className="sticky top-8 space-y-6">
+              {/* Quick Facts */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <h3 className="font-bold text-lg text-blue-900 mb-4">Quick Facts</h3>
+                <ul className="space-y-3 text-sm">
+                  <li className="flex justify-between">
+                    <span className="text-gray-600">Processing Time:</span>
+                    <span className="font-medium">1-10+ years</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span className="text-gray-600">EB-5 Investment:</span>
+                    <span className="font-medium">$800K-$1.05M</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span className="text-gray-600">Tuition Savings:</span>
+                    <span className="font-medium">$15K-$35K/year</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span className="text-gray-600">Work Authorization:</span>
+                    <span className="font-medium">Unlimited</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span className="text-gray-600">Travel Freedom:</span>
+                    <span className="font-medium">Unrestricted</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span className="text-gray-600">Path to Citizenship:</span>
+                    <span className="font-medium">5 years</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Green Card Pathways */}
+              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                <h3 className="font-bold text-lg text-green-900 mb-4">Green Card Pathways</h3>
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <div className="font-medium text-green-800">Employment-Based</div>
+                    <div className="text-gray-600">EB-1, EB-2, EB-3 categories</div>
+                  </div>
+                  <div>
+                    <div className="font-medium text-green-800">Family-Based</div>
+                    <div className="text-gray-600">Through US citizen/resident family</div>
+                  </div>
+                  <div>
+                    <div className="font-medium text-green-800">EB-5 Investment</div>
+                    <div className="text-gray-600">$800K minimum investment</div>
+                  </div>
+                  <div>
+                    <div className="font-medium text-green-800">Diversity Lottery</div>
+                    <div className="text-gray-600">Annual random selection</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Benefits Summary */}
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                <h3 className="font-bold text-lg text-yellow-900 mb-4">Key Benefits</h3>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li>• Federal financial aid eligibility</li>
+                  <li>• In-state tuition rates</li>
+                  <li>• Unlimited work authorization</li>
+                  <li>• Free travel in/out of US</li>
+                  <li>• Can sponsor family members</li>
+                  <li>• Path to US citizenship</li>
+                  <li>• Social Security benefits</li>
+                  <li>• Government job eligibility</li>
+                </ul>
+              </div>
+
+              {/* Contact Form */}
               <ContactForm />
-              
-              <div className="bg-white p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-gray-900">Table of Contents</h3>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="#pathways" className="text-blue-600 hover:underline">Green Card Pathways</a></li>
-                  <li><a href="#f1-process" className="text-blue-600 hover:underline">F-1 to Green Card</a></li>
-                  <li><a href="#stem-opt" className="text-blue-600 hover:underline">STEM OPT Benefits</a></li>
-                  <li><a href="#niw" className="text-blue-600 hover:underline">National Interest Waiver</a></li>
-                  <li><a href="#eb1a" className="text-blue-600 hover:underline">EB-1A Extraordinary Ability</a></li>
-                  <li><a href="#processing-times" className="text-blue-600 hover:underline">Processing Times</a></li>
-                  <li><a href="#success-tips" className="text-blue-600 hover:underline">Tips for Success</a></li>
-                  <li><a href="#faqs" className="text-blue-600 hover:underline">FAQs</a></li>
-                </ul>
-              </div>
-
-              <div className="bg-emerald-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-emerald-900">Quick Facts</h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li>• 50,000+ employment-based green cards annually</li>
-                  <li>• 7% per-country limit applies</li>
-                  <li>• EB-1 has no backlog for most countries</li>
-                  <li>• STEM OPT = 36 months total work time</li>
-                  <li>• NIW doesn't require job offer</li>
-                </ul>
-              </div>
-
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-blue-900">Best Strategies</h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li>• Start planning in first year</li>
-                  <li>• Pursue advanced degrees</li>
-                  <li>• Build publication record</li>
-                  <li>• Network with professionals</li>
-                  <li>• Consider multiple pathways</li>
-                </ul>
-              </div>
-
-              <div className="bg-yellow-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-yellow-900">Common Timelines</h3>
-                <ul className="space-y-2 text-sm text-gray-700">
-                  <li>• EB-1A: 8-15 months</li>
-                  <li>• NIW: 10-18 months</li>
-                  <li>• EB-2/EB-3: 2-20+ years</li>
-                  <li>• Family-based: 1-3 years</li>
-                  <li>• DV Lottery: 6-12 months</li>
-                </ul>
-              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <ContactSection />
       <Footer />
     </div>
   );

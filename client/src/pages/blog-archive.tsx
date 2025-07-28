@@ -38,18 +38,18 @@ export default function BlogArchive() {
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || post.content.slice(0, 200) + "...",
-      category: post.category,
-      author: post.author,
+      category: post.category || "General",
+      author: "Dunya Consultants",
       date: new Date(post.createdAt).toLocaleDateString('en-US', { 
         year: 'numeric', 
         month: 'short', 
         day: 'numeric' 
       }),
-      readTime: post.readTime || "5 min",
+      readTime: (post.readingTime || 5) + " min",
       views: post.views || 0,
       tags: post.tags || [],
       image: post.featuredImage || "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      featured: post.featured || false,
+      featured: false,
       trending: (post.views || 0) > 1000,
       href: `/blog/${post.slug}`
     }));
@@ -63,7 +63,8 @@ export default function BlogArchive() {
     { name: "University Guides", count: archivePosts.filter(p => p.category === "University Guides").length },
     { name: "Scholarships", count: archivePosts.filter(p => p.category === "Scholarships").length },
     { name: "Study Destinations", count: archivePosts.filter(p => p.category === "Study Destinations").length },
-    { name: "Study Tips", count: archivePosts.filter(p => p.category === "Study Tips").length }
+    { name: "Study Tips", count: archivePosts.filter(p => p.category === "Study Tips").length },
+    { name: "Immigration Guide", count: archivePosts.filter(p => p.category === "Immigration Guide").length }
   ];
 
   const filteredPosts = useMemo(() => {
