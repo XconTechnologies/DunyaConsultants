@@ -1,206 +1,407 @@
-import Navigation from '../../components/navigation';
-import Footer from '../../components/footer';
-import ContactForm from '../../components/blog/ContactForm';
-import ContactSection from '../../components/blog/ContactSection';
+import React from 'react';
+import { Calendar, Clock, User, AlertTriangle, FileText, CheckCircle, Users, DollarSign } from 'lucide-react';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
+import ContactForm from '@/components/blog/ContactForm';
 
 export default function UKStudentDependentVisaNewRules() {
   return (
-    
     <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="max-w-[1440px] mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-red-600 via-blue-600 to-purple-600 flex items-center justify-center text-white">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"
-            }}
-          />
-          <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4">UK Student Dependent Visa – News, Requirements & Process Fees</h1>
-            <p className="text-2xl font-light">Latest updates on UK dependent visa requirements and new immigration rules</p>
+      
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                Visa Guide
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              UK Student Dependent Visa – News, Requirements & Process Fees
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Latest updates on UK dependent visa requirements, new immigration rules, and comprehensive guide for bringing family members as dependents.
+            </p>
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>January 28, 2025</span>
+              </div>
+              <div className="flex items-center">
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>15 min read</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Main Content */}
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Main Article */}
+          {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  The UK student dependent visa type is one of the most well-known among students who are willing to bring their family members with them. Dependents usually include civil partners, spouses, unmarried partners, and children below eighteen years old. However, the UK student dependent visa new rules can vary based on the program of students. Master's or PhD students can typically take their family members with them without many restrictions.
+                  The UK student dependent visa type is one of the most well-known among students who are willing to bring their family members with them. Dependents usually include civil partners, spouses, unmarried partners, and children below eighteen years old. However, the UK student dependent visa new rules can vary based on the program of students.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  On the other hand, undergraduate as well as postgraduate students might have stricter rules about whether their partner, spouse, or kids can join them while studying in the United Kingdom. However, those who are extending their UK student visa or kids who are now more than eighteen years old can apply for permission to stay in the UK as dependents. It is essential to understand the eligibility criteria and requirements before applying for a dependent visa UK.
+                  Master's or PhD students can typically take their family members with them without many restrictions. On the other hand, undergraduate as well as postgraduate students might have stricter rules about whether their partner, spouse, or kids can join them while studying in the United Kingdom.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  However, those who are extending their UK student visa or kids who are now more than eighteen years old can apply for permission to stay in the UK as dependents. It is essential to understand the eligibility criteria and requirements before applying for a dependent visa UK.
                 </p>
               </div>
 
-              {/* Eligibility Criteria */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-blue-500 pl-4">Eligibility Criteria for UK Student Dependent Visa</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
+              {/* Table of Contents */}
+              <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li><a href="#eligibility-criteria" className="hover:text-blue-600">Eligibility Criteria</a></li>
+                  <li><a href="#new-rules-2024" className="hover:text-blue-600">New Rules 2024 Updates</a></li>
+                  <li><a href="#requirements" className="hover:text-blue-600">Required Documents</a></li>
+                  <li><a href="#application-process" className="hover:text-blue-600">Application Process</a></li>
+                  <li><a href="#visa-fees" className="hover:text-blue-600">Visa Fees Breakdown</a></li>
+                  <li><a href="#important-notices" className="hover:text-blue-600">Important Policy Changes</a></li>
+                  <li><a href="#faqs" className="hover:text-blue-600">Frequently Asked Questions</a></li>
+                </ul>
+              </div>
+
+              {/* Important Notice */}
+              <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold text-red-800 mb-4 flex items-center">
+                  <AlertTriangle className="w-5 h-5 mr-2" />
+                  Important 2024 Policy Changes
+                </h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start">
+                    <AlertTriangle className="w-4 h-4 text-red-500 mr-3 mt-1" />
+                    Master's students (except research-based) are no longer eligible to bring dependents
+                  </li>
+                  <li className="flex items-start">
+                    <AlertTriangle className="w-4 h-4 text-red-500 mr-3 mt-1" />
+                    New financial requirements and documentation needed
+                  </li>
+                  <li className="flex items-start">
+                    <AlertTriangle className="w-4 h-4 text-red-500 mr-3 mt-1" />
+                    Increased visa fees and processing times
+                  </li>
+                  <li className="flex items-start">
+                    <AlertTriangle className="w-4 h-4 text-red-500 mr-3 mt-1" />
+                    Stricter application requirements for all categories
+                  </li>
+                </ul>
+              </div>
+
+              {/* Eligibility Criteria Section */}
+              <section id="eligibility-criteria" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Eligibility Criteria for UK Student Dependent Visa</h2>
+                
+                <p className="text-gray-700 leading-relaxed mb-6">
                   The UK dependent visa new rules for bringing family members along with you as dependents depend on numerous factors. Let's discuss the eligibility criteria below:
                 </p>
-                <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                  <li>Students studying courses for around nine months or longer can usually bring their family with them.</li>
-                  <li>Students sponsored by their government or university for their studies are eligible to apply for dependent student visa for UK.</li>
-                  <li>Students applying under specific courses like the DES (Doctorate Extension Scheme) might also bring their dependents.</li>
-                </ul>
-              </div>
 
-              {/* Requirements */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-green-500 pl-4">Student Dependent Visa UK Requirements</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  For student dependent visa requirements, there is a list of documents that is mandatory for applying. Let's have a look at these documents below:
-                </p>
-                <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                  <li>Student PBS Dependent Form</li>
-                  <li>Biometric Residence Permit (BRP)</li>
-                  <li>Valid Passport</li>
-                  <li>Financial proof (bank statements/sponsorship)</li>
-                  <li>Police registration certificate (if needed)</li>
-                  <li>Birth certificate (for kids)</li>
-                  <li>Marriage certificate (for UK student visa with spouse)</li>
-                  <li>Evidence for unmarried partners</li>
-                  <li>Copies of student visa or BRP</li>
-                  <li>University enrollment letter</li>
-                  <li>Additional documents for kids above sixteen</li>
-                </ul>
-              </div>
-
-              {/* Application Process */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-purple-500 pl-4">Application Process for UK Dependent Visa Application</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Here is a step-by-step process to apply for UK student visa dependent for you:
-                </p>
-                <ol className="list-decimal pl-6 space-y-3 text-gray-700">
-                  <li>Fill out the UK study visa with spouse or UK dependent visa application online using the official visa website.</li>
-                  <li>Get advice from an immigration professional to check your application and make sure all documents are ready.</li>
-                  <li>Confirm your student visa UK application through the email link and gather the required documents for submission.</li>
-                  <li>Attend your visa appointment at the visa center at the scheduled time with all mandatory documents.</li>
-                  <li>Schedule a biometric appointment to provide a photo, fingerprints, and additional paperwork if required.</li>
-                  <li>Wait for UK student dependent visa processing time from UK Visas and Immigration after submitting everything.</li>
-                  <li>If approved, receive a thirty-day entry permit.</li>
-                  <li>Collect your BRP (Biometric Residence Permit) from the Post Office within ten days of arriving in the United Kingdom.</li>
-                </ol>
-              </div>
-
-              {/* New Rules 2024 */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-red-500 pl-4">UK Student Dependent Visa New Rules 2024</h2>
-                <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-4">
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    <strong>Important Update:</strong> The UK government has introduced new dependent visa rules for international students in 2024. Under these rules, master's students can no longer bring their dependents to the United Kingdom. However, students enrolled in postgraduate research courses are still allowed to bring their family members.
-                  </p>
-                </div>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  The purpose of these changes is to stop the misuse of student visas for work purposes and reduce the number of migrants. Moreover, students cannot switch to a Skilled Worker visa until they finish their studies. This UK dependent visa news is created to protect the visa system as well as public services.
-                </p>
-              </div>
-
-              {/* Visa Fees */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-orange-500 pl-4">UK Dependent Student Visa Fee from Pakistan</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  After filling out the application form and collecting the required documents, applicants need to pay the UK dependent visa fee from Pakistan. The fee is around 348 pounds for each dependent if applying from outside the United Kingdom. If applying from within the United Kingdom, it costs around 475 pounds for a standard application and 1,275 pounds for a super-priority application.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Candidates also have to pay the immigration health surcharge, which permits them to use the National Health Service (NHS) of the United Kingdom for medical care without needing private insurance.
-                </p>
-              </div>
-
-              {/* Key Changes Summary */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-teal-500 pl-4">Key Changes Summary</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-green-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-3 text-green-800">Still Eligible</h3>
+                <div className="space-y-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <CheckCircle className="w-5 h-5 mr-2" />
+                      Eligible Student Categories
+                    </h3>
                     <ul className="space-y-2 text-gray-700">
-                      <li>• PhD students</li>
-                      <li>• Postgraduate research students</li>
-                      <li>• Government-sponsored students</li>
-                      <li>• DES scheme participants</li>
+                      <li>• PhD and research-based Master's students</li>
+                      <li>• Students sponsored by government or university</li>
+                      <li>• Students on courses 9 months or longer (conditions apply)</li>
+                      <li>• Students under Doctorate Extension Scheme (DES)</li>
                     </ul>
                   </div>
-                  <div className="bg-red-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-3 text-red-800">No Longer Eligible</h3>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-green-800 mb-3 flex items-center">
+                      <Users className="w-5 h-5 mr-2" />
+                      Who Can Apply as Dependents
+                    </h3>
                     <ul className="space-y-2 text-gray-700">
-                      <li>• Master's degree students</li>
-                      <li>• Undergraduate students</li>
-                      <li>• Most postgraduate taught programs</li>
-                      <li>• Short-term course students</li>
+                      <li>• Spouse or civil partner</li>
+                      <li>• Unmarried partner (in relationship 2+ years)</li>
+                      <li>• Children under 18 years old</li>
+                      <li>• Children over 18 (if already in UK as dependents)</li>
                     </ul>
                   </div>
                 </div>
-              </div>
+              </section>
 
-              {/* Conclusion */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-indigo-500 pl-4">Conclusion</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  The UK Student Dependent Visa is a popular option for students planning to study in the United Kingdom. A dependent refers to your spouse or kids. This visa allows eligible students to take their family members with them. However, the United Kingdom Home Office has introduced new rules to specify who can bring dependents. Not all.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  It is crucial for students to understand these rules, as they play a vital role in planning their studies and staying in the country. If you are interested in studying in the UK, contact our experts at Dunya Consultants.
-                </p>
-              </div>
-
-              {/* FAQs */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-purple-500 pl-4">Frequently Asked Questions</h2>
+              {/* New Rules 2024 Section */}
+              <section id="new-rules-2024" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Major Changes in 2024 UK Immigration Rules</h2>
                 
                 <div className="space-y-6">
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">What is dependent visa for UK?</h3>
-                    <p className="text-gray-700">A dependent visa is a type of visa that lets family members join you in the UK. With this visa, dependents can stay in the country to study, work, and travel.</p>
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-red-800 mb-4">Master's Students Restriction</h3>
+                    <p className="text-gray-700 mb-3">
+                      <strong>Effective January 2024:</strong> Most Master's degree students can no longer bring dependents to the UK. This affects:
+                    </p>
+                    <ul className="space-y-2 text-gray-700">
+                      <li>• Taught Master's programs (MSc, MA, MBA, etc.)</li>
+                      <li>• Professional qualification courses</li>
+                      <li>• Pre-Master's and pathway programs</li>
+                    </ul>
+                    <p className="text-green-700 mt-3">
+                      <strong>Exceptions:</strong> Research-based Master's (MRes, MPhil) and PhD students can still bring dependents.
+                    </p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-green-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">What is UK student dependent visa processing time?</h3>
-                    <p className="text-gray-700">The processing time for UK student dependent visas typically takes 3-8 weeks when applying from outside the UK. Processing times may vary based on the country of application and current workload.</p>
-                  </div>
-
-                  <div className="bg-white border-l-4 border-purple-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">How to get a UK study visa with spouse?</h3>
-                    <p className="text-gray-700">To bring your spouse on a UK student visa, you must be enrolled in an eligible course (PhD or postgraduate research), provide marriage certificate, meet financial requirements, and your spouse must apply for a dependent visa.</p>
-                  </div>
-
-                  <div className="bg-white border-l-4 border-orange-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Can master's students bring dependents under new rules?</h3>
-                    <p className="text-gray-700">No, under the new 2024 rules, master's degree students can no longer bring their dependents to the UK. Only PhD and postgraduate research students are eligible to bring family members.</p>
-                  </div>
-
-                  <div className="bg-white border-l-4 border-red-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">What financial requirements must be met for dependents?</h3>
-                    <p className="text-gray-700">You must show additional funds of £845 per month for each dependent (spouse/partner) and £680 per month for each dependent child, in addition to your own maintenance requirements.</p>
-                  </div>
-
-                  <div className="bg-white border-l-4 border-teal-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">What documents are required for UK dependent visa application?</h3>
-                    <p className="text-gray-700">Key documents include Student PBS Dependent Form, valid passport, Biometric Residence Permit (BRP), financial proof, marriage certificate (for spouses), birth certificate (for children), and university enrollment letter.</p>
-                  </div>
-
-                  <div className="bg-white border-l-4 border-indigo-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Who is eligible to bring dependents to the UK?</h3>
-                    <p className="text-gray-700">Students studying courses for 9 months or longer, government or university-sponsored students, and those on specific courses like DES (Doctorate Extension Scheme) may be eligible to bring dependents.</p>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4">Increased Financial Requirements</h3>
+                    <p className="text-gray-700 mb-3">New maintenance fund requirements:</p>
+                    <ul className="space-y-2 text-gray-700">
+                      <li>• £845 per month for spouse/partner (increased from £680)</li>
+                      <li>• £680 per month for first child (increased from £540)</li>
+                      <li>• £565 per month for additional children (increased from £450)</li>
+                      <li>• Funds must be held for 28 consecutive days before application</li>
+                    </ul>
                   </div>
                 </div>
-              </div>
+              </section>
+
+              {/* Requirements Section */}
+              <section id="requirements" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Student Dependent Visa UK Requirements</h2>
+                
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  For student dependent visa requirements, there is a list of documents that is mandatory for applying. Let's have a look at these documents below:
+                </p>
+
+                <div className="space-y-6">
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">Essential Documents</h3>
+                    <ul className="space-y-1 text-gray-700">
+                      <li>• Student PBS Dependent Form (completed online application)</li>
+                      <li>• Valid passport with blank pages</li>
+                      <li>• Biometric Residence Permit (BRP) of main applicant</li>
+                      <li>• Financial proof (bank statements/sponsorship letters)</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-green-50 border-l-4 border-green-400 p-6">
+                    <h3 className="text-lg font-semibold text-green-800 mb-2">Relationship Documents</h3>
+                    <ul className="space-y-1 text-gray-700">
+                      <li>• Marriage certificate (for spouse applications)</li>
+                      <li>• Birth certificate (for children under 18)</li>
+                      <li>• Evidence of relationship (for unmarried partners)</li>
+                      <li>• Custody documents (if applicable)</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-purple-50 border-l-4 border-purple-400 p-6">
+                    <h3 className="text-lg font-semibold text-purple-800 mb-2">Student Status Documents</h3>
+                    <ul className="space-y-1 text-gray-700">
+                      <li>• Copy of student visa or BRP</li>
+                      <li>• University enrollment confirmation letter</li>
+                      <li>• Course completion certificate (if extending)</li>
+                      <li>• Police registration certificate (if required)</li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-orange-50 border-l-4 border-orange-400 p-6">
+                    <h3 className="text-lg font-semibold text-orange-800 mb-2">Additional Requirements for Children 16+</h3>
+                    <ul className="space-y-1 text-gray-700">
+                      <li>• Educational enrollment evidence</li>
+                      <li>• Proof of financial dependency</li>
+                      <li>• Accommodation arrangements</li>
+                      <li>• Consent letters from both parents</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              {/* Application Process Section */}
+              <section id="application-process" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Step-by-Step Application Process</h2>
+                
+                <div className="space-y-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">1</div>
+                      <h3 className="text-lg font-semibold text-gray-800">Check Eligibility</h3>
+                    </div>
+                    <p className="text-gray-700">Verify that the main student is eligible to bring dependents based on current immigration rules and course type.</p>
+                  </div>
+                  
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
+                      <h3 className="text-lg font-semibold text-gray-800">Gather Documents</h3>
+                    </div>
+                    <p className="text-gray-700">Collect all required documents including relationship proof, financial evidence, and student status documentation.</p>
+                  </div>
+                  
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
+                      <h3 className="text-lg font-semibold text-gray-800">Complete Online Application</h3>
+                    </div>
+                    <p className="text-gray-700">Fill out the dependent visa application form online through the official UK government website.</p>
+                  </div>
+                  
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
+                      <h3 className="text-lg font-semibold text-gray-800">Pay Fees & Book Appointment</h3>
+                    </div>
+                    <p className="text-gray-700">Pay the visa fees and book biometric appointment at nearest visa application center.</p>
+                  </div>
+                  
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
+                      <h3 className="text-lg font-semibold text-gray-800">Attend Biometric Appointment</h3>
+                    </div>
+                    <p className="text-gray-700">Attend the appointment to provide biometric data and submit all required documents.</p>
+                  </div>
+                  
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <div className="flex items-center mb-3">
+                      <div className="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">6</div>
+                      <h3 className="text-lg font-semibold text-gray-800">Wait for Decision</h3>
+                    </div>
+                    <p className="text-gray-700">Wait for the decision which typically takes 3-8 weeks for applications from outside the UK.</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Visa Fees Section */}
+              <section id="visa-fees" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">UK Student Dependent Visa Fees 2024</h2>
+                
+                <div className="bg-yellow-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-yellow-800 flex items-center">
+                    <DollarSign className="w-5 h-5 mr-2" />
+                    Current Fee Structure
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">From Outside UK:</h4>
+                      <p className="text-gray-700 mb-2"><strong>Application Fee:</strong> £348 per person</p>
+                      <p className="text-gray-700 mb-2"><strong>Immigration Health Surcharge:</strong> £470 per year</p>
+                      <p className="text-gray-700 mb-2"><strong>Biometric Fee:</strong> Included in application</p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">From Inside UK:</h4>
+                      <p className="text-gray-700 mb-2"><strong>Application Fee:</strong> £475 (postal) / £1,275 (premium)</p>
+                      <p className="text-gray-700 mb-2"><strong>Immigration Health Surcharge:</strong> £470 per year</p>
+                      <p className="text-gray-700"><strong>Total Cost:</strong> £818 - £1,745 per person</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Important Notices Section */}
+              <section id="important-notices" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Important Policy Updates & Notices</h2>
+                
+                <div className="space-y-4">
+                  <div className="bg-red-100 border border-red-300 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-red-800 mb-3">Master's Students Notice</h3>
+                    <p className="text-gray-700">
+                      As of January 2024, most Master's degree students cannot bring dependents. This significantly affects international students planning to study with their families. Only research-based programs (MRes, MPhil) are exempt.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-blue-100 border border-blue-300 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Processing Time Updates</h3>
+                    <p className="text-gray-700">
+                      Current processing times are longer than usual due to high application volumes. Allow 8-12 weeks for applications from outside the UK and 4-8 weeks for applications from within the UK.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-green-100 border border-green-300 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-green-800 mb-3">Financial Evidence Requirements</h3>
+                    <p className="text-gray-700">
+                      All financial documents must be in English or officially translated. Bank statements must show funds held for 28 consecutive days ending no more than 31 days before application submission.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* FAQs Section */}
+              <section id="faqs" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+
+                <div className="space-y-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Can Master's students still bring dependents after the 2024 changes?</h3>
+                    <p className="text-gray-700">Most Master's students cannot bring dependents anymore. Only research-based Master's (MRes, MPhil) and PhD students are still eligible to bring family members.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: How much money do I need to show for dependent visa applications?</h3>
+                    <p className="text-gray-700">You need £845 per month for spouse/partner, £680 for first child, and £565 for additional children. These funds must be held for 28 consecutive days.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Can dependents work in the UK?</h3>
+                    <p className="text-gray-700">Yes, dependent visa holders can work full-time in the UK without restrictions, except for professional sports or as self-employed.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: What happens if my dependent visa application is refused?</h3>
+                    <p className="text-gray-700">You can either reapply with additional evidence or appeal the decision if there are grounds for appeal. You cannot get a refund of the application fee.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: How long can dependents stay in the UK?</h3>
+                    <p className="text-gray-700">Dependents can stay for the same duration as the main student visa holder. They must leave when the student's visa expires unless they obtain their own visa.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Do children need separate applications?</h3>
+                    <p className="text-gray-700">Yes, each dependent (including children) must submit a separate application with individual fees and documentation requirements.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Can I apply for dependent visa after arriving in the UK?</h3>
+                    <p className="text-gray-700">Yes, but it's more expensive (£475-£1,275 vs £348) and takes longer. It's generally better to apply before arriving in the UK.</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Conclusion */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
+                
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The UK student dependent visa rules have become significantly more restrictive in 2024, particularly affecting Master's students. It's crucial to understand the current eligibility criteria and requirements before applying.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed">
+                  With proper preparation, eligible students can still bring their family members to the UK. However, the increased financial requirements and stricter rules mean that professional guidance is more important than ever.
+                </p>
+              </section>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-lg mb-8">
-                <h3 className="text-2xl font-bold mb-4">Need Help with UK Student Dependent Visa?</h3>
-                <p className="text-lg mb-4">Our immigration experts at Dunya Consultants can help you navigate the new UK dependent visa rules and ensure your application meets all requirements.</p>
-                <div className="flex gap-4">
-                  <a href="tel:+923041110947" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                    Call Now: (+92) 304 1110947
+              <div className="bg-blue-50 p-8 rounded-lg text-center">
+                <h3 className="text-2xl font-bold mb-4 text-blue-800">Need Help with UK Dependent Visa Applications?</h3>
+                <p className="text-gray-700 mb-6">
+                  Get expert guidance from Dunya Consultants on UK dependent visa applications and navigate the complex requirements successfully.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a 
+                    href="tel:+923041110947" 
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                  >
+                    Call Now: +92 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                  <a 
+                    href="mailto:info@dunyaconsultants.com" 
+                    className="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors"
+                  >
                     Email Us
                   </a>
                 </div>
@@ -209,59 +410,72 @@ export default function UKStudentDependentVisaNewRules() {
           </div>
 
           {/* Sidebar */}
-          <div className="w-80">
-            <ContactForm />
-            
-            {/* Quick Facts */}
-            <div className="bg-white p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">Quick Facts</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li><strong>New Rule:</strong> Master's students cannot bring dependents</li>
-                <li><strong>Still Eligible:</strong> PhD & research students</li>
-                <li><strong>Fee (outside UK):</strong> £348 per dependent</li>
-                <li><strong>Fee (inside UK):</strong> £475 standard / £1,275 super-priority</li>
-                <li><strong>Processing Time:</strong> 3-8 weeks</li>
-                <li><strong>Financial Requirement:</strong> £845/month per spouse</li>
-              </ul>
-            </div>
-
-            {/* Important Notice */}
-            <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-red-800">Important Notice</h3>
-              <p className="text-sm text-gray-700 mb-2">
-                <strong>New Rules Effective 2024:</strong> Master's students can no longer bring dependents to the UK.
-              </p>
-              <p className="text-sm text-gray-700">
-                Only PhD and postgraduate research students are eligible for dependent visas.
-              </p>
-            </div>
-
-            {/* Related Articles */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
-              <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block text-blue-600 hover:text-blue-800 text-sm">
-                  Study in UK: Complete Guide for Pakistani Students
-                </a>
-                <a href="/blog/uk-llm-pakistani-bar" className="block text-blue-600 hover:text-blue-800 text-sm">
-                  From UK LLM to Pakistani Bar: Complete Guide
-                </a>
-                <a href="/blog/top-10-universities-in-london" className="block text-blue-600 hover:text-blue-800 text-sm">
-                  Top 10 Universities in London
-                </a>
+          <div className="lg:col-span-1">
+            <div className="sticky top-8 space-y-6">
+              {/* Quick Facts */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <FileText className="w-5 h-5 mr-2 text-blue-500" />
+                  Quick Facts
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Application Fee:</span>
+                    <span className="font-medium">£348-£1,275</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Processing Time:</span>
+                    <span className="font-medium">3-12 weeks</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Health Surcharge:</span>
+                    <span className="font-medium">£470/year</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Work Rights:</span>
+                    <span className="font-medium">Full-time</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">2024 Changes:</span>
+                    <span className="font-medium text-red-600">Major</span>
+                  </div>
+                </div>
               </div>
+
+              {/* Eligible Categories */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <Users className="w-5 h-5 mr-2 text-blue-500" />
+                  Eligible Students
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>PhD Students</span>
+                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Eligible</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Research Master's</span>
+                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Eligible</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Taught Master's</span>
+                    <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Not Eligible</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Government Sponsored</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Eligible</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Form */}
+              <ContactForm />
             </div>
           </div>
         </div>
-
-        {/* Contact Section */}
-        <ContactSection 
-          title="Need Expert Guidance on UK Dependent Visa?"
-          description="Our immigration specialists can help you understand the new UK dependent visa rules and guide you through the application process."
-        />
       </div>
+      
       <Footer />
-    
     </div>
   );
 }
