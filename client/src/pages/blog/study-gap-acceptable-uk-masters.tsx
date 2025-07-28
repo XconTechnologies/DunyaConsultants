@@ -4,7 +4,6 @@ import { Link } from 'wouter';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import ContactForm from '@/components/blog/ContactForm';
-import ContactSection from '@/components/blog/ContactSection';
 
 export default function StudyGapAcceptableUKMasters() {
   return (
@@ -336,7 +335,6 @@ export default function StudyGapAcceptableUKMasters() {
         </div>
       </div>
       
-      <ContactSection />
       <Footer />
     </div>
   );
