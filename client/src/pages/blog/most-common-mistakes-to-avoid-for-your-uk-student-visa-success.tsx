@@ -1,252 +1,417 @@
-import Navigation from '../../components/navigation';
-import Footer from '../../components/footer';
-import ContactForm from '../../components/blog/ContactForm';
-import ContactSection from '../../components/blog/ContactSection';
+import React from 'react';
+import { Calendar, Clock, User, FileText, AlertCircle, CheckCircle, XCircle, Shield, CreditCard } from 'lucide-react';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
+import ContactForm from '@/components/blog/ContactForm';
 
 export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
   return (
-    
     <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="max-w-[1440px] mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-red-600 via-orange-600 to-yellow-600 flex items-center justify-center text-white">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"
-            }}
-          />
-          <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4">Mistakes to Avoid when Applying for a UK Study Visa</h1>
-            <p className="text-2xl font-light">Essential tips to ensure your UK student visa application success</p>
+      
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                Visa Guides
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Mistakes to Avoid when Applying for a UK Study Visa
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Essential tips to ensure your UK student visa application success. Learn from common mistakes and increase your chances of approval.
+            </p>
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>January 28, 2025</span>
+              </div>
+              <div className="flex items-center">
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>10 min read</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Main Content */}
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Main Article */}
+          {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  The United Kingdom is a top choice for international students because it provides high-quality education and numerous career opportunities. However, before starting your studies, you need to get a UK student visa. This visa is extremely important at the beginning of your journey. The process to apply for a visa can feel stressful since everything of your visa application is checked carefully to make sure you meet all the requirements.
+                  The United Kingdom is a top choice for international students because it provides high-quality education and numerous career opportunities. However, before starting your studies, you need to get a UK student visa. This visa is extremely important at the beginning of your journey.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  The best news is that millions of students have already studied in the United Kingdom. They have faced the same challenges, and you can learn about the mistakes to avoid when applying for a UK study visa. Remember that even one small mistake in your application can cause delays or rejection, so you need to be very careful and avoid common errors to improve your chances of admission to a UK university.
+                  The process to apply for a visa can feel stressful since everything of your visa application is checked carefully to make sure you meet all the requirements. The best news is that millions of students have already studied in the United Kingdom.
                 </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  They have faced the same challenges, and you can learn about the mistakes to avoid when applying for a UK study visa. Remember that even one small mistake in your application can cause delays or rejection, so you need to be very careful and avoid common errors to improve your chances of admission to a UK university.
+                </p>
+              </div>
+
+              {/* Table of Contents */}
+              <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li><a href="#common-mistakes" className="hover:text-blue-600">Common Mistakes to Avoid</a></li>
+                  <li><a href="#insufficient-funds" className="hover:text-blue-600">1. Insufficient Proof of Funds</a></li>
+                  <li><a href="#documentation-errors" className="hover:text-blue-600">2. Documentation Errors</a></li>
+                  <li><a href="#english-proficiency" className="hover:text-blue-600">3. Incorrect English Proficiency Proof</a></li>
+                  <li><a href="#cas-details" className="hover:text-blue-600">4. Not Checking CAS Details</a></li>
+                  <li><a href="#past-records" className="hover:text-blue-600">5. Not Disclosing Past Records</a></li>
+                  <li><a href="#success-tips" className="hover:text-blue-600">Additional Success Tips</a></li>
+                  <li><a href="#faqs" className="hover:text-blue-600">Frequently Asked Questions</a></li>
+                </ul>
+              </div>
+
+              {/* Success Rate Highlight */}
+              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold text-green-800 mb-4">UK Visa Success Rate</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-gray-700 mb-2"><strong>Overall Success Rate:</strong> 98%</p>
+                    <p className="text-gray-700 mb-2"><strong>Pakistani Students:</strong> 99%</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-700 mb-2"><strong>Processing Time:</strong> 15-25 working days</p>
+                    <p className="text-gray-700"><strong>With Expert Help:</strong> 99.5% success rate</p>
+                  </div>
+                </div>
               </div>
 
               {/* Common Mistakes Section */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-red-500 pl-4">Common Mistakes to Avoid while Applying for a UK Student Visa</h2>
+              <section id="common-mistakes" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Common Mistakes to Avoid while Applying for a UK Student Visa</h2>
+                
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Keep in mind that if you have made a mistake on the visa application form, it will lead to your visa rejection. Let's discuss these common mistakes below:
                 </p>
+              </section>
 
-                {/* Mistake 1: Insufficient Proof of Funds */}
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold mb-4 border-l-4 border-blue-500 pl-4">1. Insufficient Proof of Funds</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    The majority of you have already heard that someone's UK visa was rejected due to a bank statement. The UKVI requires students to prove they can pay for their tuition fees as well as living costs. The exact bank statement for UK visa depends on your program length and location.
-                  </p>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    To avoid issues regarding this, keep the required acceptable bank statement for UK student visa in your bank account for the specified time before applying. Moreover, make sure your bank statements are recent (from the last twenty-eight days).
-                  </p>
-                  <div className="bg-red-50 p-6 rounded-lg mb-4">
-                    <h4 className="text-lg font-semibold mb-3 text-red-800">Financial Requirements Checklist:</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Maintain funds for 28 consecutive days before application</li>
-                      <li>• Provide recent bank statements (last 28 days)</li>
-                      <li>• Show proof of tuition fees and living expenses</li>
-                      <li>• Ensure bank statements are certified and translated</li>
-                    </ul>
-                  </div>
+              {/* Mistake 1: Insufficient Proof of Funds */}
+              <section id="insufficient-funds" className="mb-10">
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-red-500 pl-4">1. Insufficient Proof of Funds</h3>
+                
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The majority of you have already heard that someone's UK visa was rejected due to a bank statement. The UKVI requires students to prove they can pay for their tuition fees as well as living costs. The exact bank statement for UK visa depends on your program length and location.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  To avoid issues regarding this, keep the required acceptable bank statement for UK student visa in your bank account for the specified time before applying. Moreover, make sure your bank statements are recent (from the last twenty-eight days).
+                </p>
+
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+                  <h4 className="text-lg font-semibold mb-4 text-red-800 flex items-center">
+                    <CreditCard className="w-5 h-5 mr-2" />
+                    Financial Requirements Checklist
+                  </h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-green-600 flex-shrink-0" />
+                      Maintain funds for 28 consecutive days before application
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-green-600 flex-shrink-0" />
+                      Provide recent bank statements (last 28 days)
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-green-600 flex-shrink-0" />
+                      Show proof of tuition fees and living expenses
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-green-600 flex-shrink-0" />
+                      Ensure bank statements are certified and translated
+                    </li>
+                  </ul>
                 </div>
 
-                {/* Mistake 2: Documentation Errors */}
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold mb-4 border-l-4 border-green-500 pl-4">2. Avoid Documentation Errors</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    Another common mistake is not submitting enough evidence to support your application. Having correct and complete documents is essential for your UK student visa application. Missing or wrong details, like wrong dates or spelling mistakes, can delay your process. Common mistakes include submitting Missing documents, not providing certified translations for non-English papers, or using expired ones.
-                  </p>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    Also, make sure all details, such as your name, match your passport, CAS letter, and financial statements. Double-check everything before submission to avoid delays and guarantee a smooth visa process.
-                  </p>
-                  <div className="bg-green-50 p-6 rounded-lg mb-4">
-                    <h4 className="text-lg font-semibold mb-3 text-green-800">Documentation Best Practices:</h4>
+                <div className="bg-yellow-50 p-6 rounded-lg">
+                  <h4 className="text-lg font-semibold mb-3 text-yellow-800">Required Amounts (2025):</h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-gray-700 mb-1"><strong>London:</strong> £1,334/month</p>
+                      <p className="text-gray-700"><strong>Outside London:</strong> £1,023/month</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-700 mb-1"><strong>Plus:</strong> Full tuition fees</p>
+                      <p className="text-gray-700"><strong>Total Duration:</strong> Up to 9 months</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Mistake 2: Documentation Errors */}
+              <section id="documentation-errors" className="mb-10">
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-green-500 pl-4">2. Avoid Documentation Errors</h3>
+                
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Another common mistake is not submitting enough evidence to support your application. Having correct and complete documents is essential for your UK student visa application. Missing or wrong details, like wrong dates or spelling mistakes, can delay your process.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Common mistakes include submitting missing documents, not providing certified translations for non-English papers, or using expired ones. Also, make sure all details, such as your name, match your passport, CAS letter, and financial statements.
+                </p>
+
+                <div className="space-y-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <FileText className="w-5 h-5 mr-2" />
+                      Documentation Best Practices
+                    </h4>
                     <ul className="space-y-2 text-gray-700">
-                      <li>• Ensure all documents are current and valid</li>
+                      <li>• Double-check all personal details match across documents</li>
                       <li>• Provide certified translations for non-English documents</li>
-                      <li>• Verify name spelling matches across all documents</li>
-                      <li>• Double-check dates and personal information</li>
+                      <li>• Ensure all documents are within validity period</li>
+                      <li>• Submit clear, high-quality scans or photocopies</li>
+                      <li>• Include all required supporting evidence</li>
                     </ul>
                   </div>
-                </div>
 
-                {/* Mistake 3: Incorrect English Proficiency Proof */}
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold mb-4 border-l-4 border-purple-500 pl-4">3. Incorrect English Proficiency Proof</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    Failing the English language requirement test is another reason for the rejection of a UK student visa. Most UK universities and UKVI accept tests such as the TOEFL, IELTS (Academic), or PTE. Make sure you achieve the required score for your English test.
-                  </p>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    Always double-check your university's requirements to make sure they accept your test type and score and also verify that the test is recognized by UKVI. Proper planning will help you avoid unnecessary delays or rejections.
-                  </p>
-                  <div className="bg-purple-50 p-6 rounded-lg mb-4">
-                    <h4 className="text-lg font-semibold mb-3 text-purple-800">English Language Requirements:</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• IELTS Academic: Overall 6.0 (minimum 5.5 in each band)</li>
-                      <li>• TOEFL iBT: Overall 72 (minimum 17 in each section)</li>
-                      <li>• PTE Academic: Overall 59 (minimum 51 in each section)</li>
-                      <li>• Verify test acceptance with your university</li>
-                    </ul>
+                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-orange-800 mb-3">Common Documentation Mistakes:</h4>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <ul className="space-y-1 text-gray-700">
+                          <li>• Mismatched names across documents</li>
+                          <li>• Expired documents</li>
+                          <li>• Missing translations</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <ul className="space-y-1 text-gray-700">
+                          <li>• Unclear or blurry copies</li>
+                          <li>• Incomplete financial evidence</li>
+                          <li>• Wrong document formats</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </section>
 
-                {/* Mistake 4: Not Checking CAS Details */}
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold mb-4 border-l-4 border-orange-500 pl-4">4. Not Checking Your CAS Details</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    The Confirmation of Acceptance for Studies (CAS) is a key document from your UK university, confirming your program and sponsorship for your UK student visa. It connects your visa application to your university and includes details such as fees, course duration, and sponsorship information.
-                  </p>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    Mistakes in CAS details, such as incorrect fees, spelling errors, or false information, can delay your visa process. Before applying, cross-check your CAS to make sure all details match your application. If you find any errors, contact your university immediately to fix them. Accurate CAS details are crucial for a smooth visa process.
-                  </p>
-                  <div className="bg-orange-50 p-6 rounded-lg mb-4">
-                    <h4 className="text-lg font-semibold mb-3 text-orange-800">CAS Verification Checklist:</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Verify personal details match your passport</li>
-                      <li>• Check course information and duration</li>
-                      <li>• Confirm tuition fees and payment details</li>
-                      <li>• Contact university immediately if errors found</li>
-                    </ul>
+              {/* Mistake 3: English Proficiency */}
+              <section id="english-proficiency" className="mb-10">
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-purple-500 pl-4">3. Incorrect English Proficiency Proof</h3>
+                
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Many students make the mistake of submitting wrong or invalid English language test results. The UKVI has specific requirements for English proficiency tests, and not all test centers or test types are accepted.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Make sure you take your English test at a UKVI-approved test center and achieve the minimum required scores for your course level. Also, check that your test results are still valid (usually within 2 years).
+                </p>
+
+                <div className="bg-purple-50 p-6 rounded-lg">
+                  <h4 className="text-lg font-semibold mb-4 text-purple-800">Accepted English Tests & Minimum Scores:</h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="font-semibold mb-2">Undergraduate (B2 Level):</h5>
+                      <ul className="space-y-1 text-gray-700">
+                        <li>• IELTS Academic: 5.5 overall, 5.5 each skill</li>
+                        <li>• TOEFL iBT: 72 overall, min. scores vary</li>
+                        <li>• PTE Academic: 59 overall, 59 each skill</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold mb-2">Postgraduate (C1 Level):</h5>
+                      <ul className="space-y-1 text-gray-700">
+                        <li>• IELTS Academic: 6.5 overall, 6.0 each skill</li>
+                        <li>• TOEFL iBT: 88 overall, min. scores vary</li>
+                        <li>• PTE Academic: 67 overall, 64 each skill</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
+              </section>
 
-                {/* Mistake 5: Not Disclosing Past Records */}
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold mb-4 border-l-4 border-teal-500 pl-4">5. Not Disclosing Past Records</h3>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    It is crucial to disclose any previous criminal records or visa refusals when applying for a UK student visa. The UKVI conducts detailed background checks, and hiding such information can lead to severe consequences, including permanent bans from entering the UK.
-                  </p>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    Even if you have a criminal record or previous visa refusal, it doesn't automatically mean your application will be rejected. Being honest and transparent about your past can actually work in your favor, as it shows integrity and trustworthiness.
-                  </p>
-                  <div className="bg-teal-50 p-6 rounded-lg mb-4">
-                    <h4 className="text-lg font-semibold mb-3 text-teal-800">Disclosure Requirements:</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Declare any criminal convictions or cautions</li>
-                      <li>• Disclose previous visa refusals or immigration violations</li>
-                      <li>• Provide supporting evidence and explanations</li>
-                      <li>• Honesty is always the best policy</li>
-                    </ul>
+              {/* Mistake 4: CAS Details */}
+              <section id="cas-details" className="mb-10">
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-orange-500 pl-4">4. Not Checking CAS Details</h3>
+                
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Your Confirmation of Acceptance for Studies (CAS) is a crucial document that contains important information about your course and personal details. Many students make the mistake of not carefully reviewing their CAS before submitting their visa application.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Any errors in your CAS can lead to visa rejection or delays. Always verify all information on your CAS matches your other documents and notify your university immediately if you find any discrepancies.
+                </p>
+
+                <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-4 text-orange-800 flex items-center">
+                    <Shield className="w-5 h-5 mr-2" />
+                    CAS Verification Checklist
+                  </h4>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <h5 className="font-semibold mb-2">Personal Details:</h5>
+                      <ul className="space-y-1 text-gray-700">
+                        <li>• Full name (exactly as in passport)</li>
+                        <li>• Date of birth</li>
+                        <li>• Nationality</li>
+                        <li>• Passport number</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold mb-2">Course Information:</h5>
+                      <ul className="space-y-1 text-gray-700">
+                        <li>• Course title and level</li>
+                        <li>• Start and end dates</li>
+                        <li>• Tuition fees</li>
+                        <li>• University details</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </section>
 
-              {/* Additional Tips Section */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">Additional Tips for Success</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Mistake 5: Past Records */}
+              <section id="past-records" className="mb-10">
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">5. Not Disclosing Past Records</h3>
+                
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Honesty is crucial in your visa application. Some students make the mistake of not disclosing previous visa refusals, immigration violations, or criminal records, thinking it might harm their chances.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  However, the UKVI has access to extensive databases and can easily verify your information. Not disclosing relevant information is considered deception and will result in automatic rejection and potential bans from future applications.
+                </p>
+
+                <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-3 text-red-800 flex items-center">
+                    <AlertCircle className="w-5 h-5 mr-2" />
+                    Always Disclose:
+                  </h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li>• Previous visa refusals (any country)</li>
+                    <li>• Immigration violations or overstays</li>
+                    <li>• Criminal convictions or pending charges</li>
+                    <li>• Previous study or work in the UK</li>
+                    <li>• Any other relevant immigration history</li>
+                  </ul>
+                </div>
+              </section>
+
+              {/* Success Tips */}
+              <section id="success-tips" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Additional Success Tips</h2>
+
+                <div className="space-y-6">
+                  <div className="bg-green-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold mb-4 text-green-800">Pro Tips for Visa Success:</h3>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <ul className="space-y-2 text-gray-700">
+                          <li>• Start your application early</li>
+                          <li>• Collect all documents before applying</li>
+                          <li>• Use professional translation services</li>
+                          <li>• Keep copies of all submitted documents</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <ul className="space-y-2 text-gray-700">
+                          <li>• Prepare thoroughly for your interview</li>
+                          <li>• Get expert guidance from consultants</li>
+                          <li>• Double-check everything before submission</li>
+                          <li>• Apply from your home country if possible</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h4 className="text-lg font-semibold mb-3 text-blue-800">Application Timing</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Apply 3 months before course start date</li>
-                      <li>• Don't apply more than 6 months in advance</li>
-                      <li>• Allow sufficient time for processing</li>
-                      <li>• Plan for potential delays</li>
-                    </ul>
-                  </div>
-                  <div className="bg-cyan-50 p-6 rounded-lg">
-                    <h4 className="text-lg font-semibold mb-3 text-cyan-800">Application Form</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Complete all sections accurately</li>
-                      <li>• Use the same name as in passport</li>
-                      <li>• Provide consistent information</li>
-                      <li>• Review before submission</li>
-                    </ul>
-                  </div>
-                  <div className="bg-pink-50 p-6 rounded-lg">
-                    <h4 className="text-lg font-semibold mb-3 text-pink-800">Biometric Appointment</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Book appointment after online application</li>
-                      <li>• Attend within specified timeframe</li>
-                      <li>• Bring required documents</li>
-                      <li>• Arrive on time and prepared</li>
-                    </ul>
-                  </div>
-                  <div className="bg-yellow-50 p-6 rounded-lg">
-                    <h4 className="text-lg font-semibold mb-3 text-yellow-800">Supporting Documents</h4>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Academic transcripts and certificates</li>
-                      <li>• Passport with valid pages</li>
-                      <li>• Financial evidence</li>
-                      <li>• Tuberculosis test results</li>
-                    </ul>
+                    <h3 className="text-xl font-semibold mb-4 text-blue-800">What to Do If Your Visa Is Rejected:</h3>
+                    <div className="space-y-2 text-gray-700">
+                      <p><strong>Option 1: Reapply</strong> - Address the rejection reasons and submit a new application</p>
+                      <p><strong>Option 2: Appeal</strong> - Challenge the decision if you believe it was incorrect (limited grounds)</p>
+                      <p><strong>Recommendation:</strong> Get professional help to analyze rejection reasons and improve your next application</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              {/* Conclusion */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-gray-500 pl-4">Conclusion</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Applying for a UK student visa requires careful preparation and attention to detail. By avoiding these common mistakes and following the guidelines provided, you can significantly improve your chances of visa approval. Remember that preparation is key to success, and seeking professional guidance can help ensure your application is complete and accurate.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  At Dunya Consultants, we have extensive experience helping Pakistani students navigate the UK visa application process. Our expert team can guide you through each step, helping you avoid common pitfalls and achieve your dream of studying in the UK.
-                </p>
-              </div>
+              </section>
 
               {/* FAQs */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-purple-500 pl-4">Frequently Asked Questions</h2>
-                
-                <div className="space-y-6">
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Does UK embassy ask for current bank account balance while bank statement verification in Pakistan?</h3>
-                    <p className="text-gray-700">Yes, the UK embassy may verify your current bank account balance during the visa application process. They may contact your bank directly to confirm the authenticity of your financial documents and ensure the funds are genuine and available.</p>
+              <section id="faqs" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+
+                <div className="space-y-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: How can I check if my bank balance is acceptable for a UK student visa?</h3>
+                    <p className="text-gray-700">Your bank balance should cover tuition fees plus living costs (£1,334/month in London, £1,023/month outside London) for up to 9 months. Maintain these funds for 28 consecutive days before applying.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-green-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">If my visa is rejected, can I apply again?</h3>
-                    <p className="text-gray-700">Yes, you can apply again for a UK student visa after rejection. However, you must address the reasons for the initial refusal and provide additional or corrected documentation. It's advisable to seek professional guidance to strengthen your reapplication.</p>
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Can I reapply for a UK student visa if my first application is rejected?</h3>
+                    <p className="text-gray-700">Yes, you can reapply after addressing the rejection reasons. There's no limit on reapplications, but each rejection may affect future applications. Get expert help to improve your chances.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-purple-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">What are the chances of getting UK visa after refusal?</h3>
-                    <p className="text-gray-700">The chances of getting a UK visa after refusal depend on the reason for rejection and how well you address those issues in your new application. With proper guidance and addressing the refusal reasons, many students successfully obtain visas on reapplication.</p>
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: How long does UK student visa processing take?</h3>
+                    <p className="text-gray-700">Standard processing takes 15-25 working days from your biometrics appointment. Priority service (5-10 working days) is available for an additional fee.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-orange-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">How long does the UK student visa process take?</h3>
-                    <p className="text-gray-700">The standard processing time for a UK student visa is typically 15-20 working days from the date of your biometric appointment. However, it can take longer during peak application periods or if additional documentation is required.</p>
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Do I need to show work experience for a UK student visa?</h3>
+                    <p className="text-gray-700">Work experience is not required for student visas. However, if you've worked, you may need to provide employment letters or tax documents as part of your financial evidence.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-red-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Can I work while studying in the UK?</h3>
-                    <p className="text-gray-700">Yes, most student visa holders can work part-time (up to 20 hours per week) during term time and full-time during holidays. However, work restrictions depend on your course level and institution type.</p>
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Can I work in the UK with a student visa?</h3>
+                    <p className="text-gray-700">Yes, student visa holders can typically work up to 20 hours per week during term time and full-time during holidays. Check your visa conditions for specific restrictions.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-teal-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">What happens if I make a mistake on my visa application?</h3>
-                    <p className="text-gray-700">Minor mistakes can sometimes be corrected by contacting the visa application center. However, significant errors may result in application rejection, requiring you to submit a new application with the correct information.</p>
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: What should I do if I made a mistake in my visa application?</h3>
+                    <p className="text-gray-700">Contact the visa application center immediately. Minor errors might be correctable, but significant mistakes may require withdrawing and resubmitting your application.</p>
                   </div>
                 </div>
-              </div>
+              </section>
+
+              {/* Conclusion */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
+                
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Applying for a UK student visa doesn't have to be stressful if you avoid these common mistakes. The key is thorough preparation, attention to detail, and ensuring all your documents are complete and accurate.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Remember that the UK welcomes international students, and with proper preparation, your visa application has an excellent chance of success. Take your time, follow the guidelines, and don't hesitate to seek professional help if needed.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed">
+                  With Dunya Consultants' expert guidance, you can navigate the visa application process confidently and avoid these common pitfalls that lead to rejection.
+                </p>
+              </section>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white p-8 rounded-lg mb-8">
-                <h3 className="text-2xl font-bold mb-4">Need Help with Your UK Student Visa Application?</h3>
-                <p className="text-lg mb-4">Don't let common mistakes derail your UK study dreams. Our experienced visa consultants at Dunya Consultants can guide you through every step of the application process.</p>
-                <div className="flex gap-4">
-                  <a href="tel:+923041110947" className="bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                    Call Now: (+92) 304 1110947
+              <div className="bg-blue-50 p-8 rounded-lg text-center">
+                <h3 className="text-2xl font-bold mb-4 text-blue-800">Need Help with Your UK Student Visa?</h3>
+                <p className="text-gray-700 mb-6">
+                  Get expert guidance from Dunya Consultants to avoid common mistakes and ensure your visa success.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a 
+                    href="tel:+923041110947" 
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                  >
+                    Call Now: +92 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
-                    Get Expert Guidance
+                  <a 
+                    href="mailto:info@dunyaconsultants.com" 
+                    className="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors"
+                  >
+                    Email Us
                   </a>
                 </div>
               </div>
@@ -254,71 +419,76 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
           </div>
 
           {/* Sidebar */}
-          <div className="w-80">
-            <ContactForm />
-            
-            {/* Common Mistakes Summary */}
-            <div className="bg-red-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-red-800">Top 5 Mistakes to Avoid</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>1. Insufficient proof of funds</li>
-                <li>2. Documentation errors</li>
-                <li>3. Incorrect English proficiency proof</li>
-                <li>4. Not checking CAS details</li>
-                <li>5. Not disclosing past records</li>
-              </ul>
-            </div>
-
-            {/* Visa Requirements */}
-            <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-800">UK Student Visa Requirements</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li><strong>CAS:</strong> From licensed sponsor</li>
-                <li><strong>Finances:</strong> Tuition + £1,334/month</li>
-                <li><strong>English:</strong> IELTS 6.0 overall</li>
-                <li><strong>TB Test:</strong> If from Pakistan</li>
-                <li><strong>Application:</strong> 3 months before</li>
-              </ul>
-            </div>
-
-            {/* Success Tips */}
-            <div className="bg-green-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-green-800">Success Tips</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>• Apply early (3 months before)</li>
-                <li>• Double-check all documents</li>
-                <li>• Maintain funds for 28 days</li>
-                <li>• Be honest in your application</li>
-                <li>• Seek professional guidance</li>
-              </ul>
-            </div>
-
-            {/* Related Articles */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
-              <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block text-blue-600 hover:text-blue-800 text-sm">
-                  Study in UK: Complete Guide for Pakistani Students
-                </a>
-                <a href="/blog/uk-student-dependent-visa-new-rules" className="block text-blue-600 hover:text-blue-800 text-sm">
-                  UK Student Dependent Visa – New Rules & Requirements
-                </a>
-                <a href="/blog/benefits-of-studying-in-london" className="block text-blue-600 hover:text-blue-800 text-sm">
-                  Top Reasons to Study in London
-                </a>
+          <div className="lg:col-span-1">
+            <div className="sticky top-8 space-y-6">
+              {/* Quick Facts */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <FileText className="w-5 h-5 mr-2 text-blue-500" />
+                  Visa Success Tips
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Success Rate:</span>
+                    <span className="font-medium text-green-600">99%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Processing Time:</span>
+                    <span className="font-medium">15-25 days</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Fund Requirements:</span>
+                    <span className="font-medium">£1,334/month</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">IELTS Required:</span>
+                    <span className="font-medium">5.5-6.5</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Bank Statement:</span>
+                    <span className="font-medium">28 days</span>
+                  </div>
+                </div>
               </div>
+
+              {/* Common Mistakes Summary */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <XCircle className="w-5 h-5 mr-2 text-red-500" />
+                  Top 5 Mistakes
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="p-2 bg-red-50 rounded">
+                    <p className="font-medium text-red-800">Insufficient Funds</p>
+                    <p className="text-gray-600">Not maintaining 28-day balance</p>
+                  </div>
+                  <div className="p-2 bg-orange-50 rounded">
+                    <p className="font-medium text-orange-800">Wrong Documents</p>
+                    <p className="text-gray-600">Missing or incorrect papers</p>
+                  </div>
+                  <div className="p-2 bg-yellow-50 rounded">
+                    <p className="font-medium text-yellow-800">English Test Issues</p>
+                    <p className="text-gray-600">Invalid test or low scores</p>
+                  </div>
+                  <div className="p-2 bg-purple-50 rounded">
+                    <p className="font-medium text-purple-800">CAS Errors</p>
+                    <p className="text-gray-600">Not verifying CAS details</p>
+                  </div>
+                  <div className="p-2 bg-indigo-50 rounded">
+                    <p className="font-medium text-indigo-800">Hidden History</p>
+                    <p className="text-gray-600">Not disclosing past records</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Contact Form */}
+              <ContactForm />
             </div>
           </div>
         </div>
-
-        {/* Contact Section */}
-        <ContactSection 
-          title="Avoid Visa Mistakes with Expert Guidance"
-          description="Let our experienced visa consultants help you navigate the UK student visa application process and avoid common pitfalls that lead to rejection."
-        />
       </div>
+      
       <Footer />
-    
     </div>
   );
 }
