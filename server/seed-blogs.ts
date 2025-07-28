@@ -606,6 +606,36 @@ const allBlogPosts = [
     featuredImage: "/blog/gre-fee-pakistan.jpg",
     readingTime: 7,
     views: 1560
+  },
+  {
+    title: "Top Reasons to Study in London",
+    slug: "benefits-of-studying-in-london",
+    excerpt: "Discover why London is one of the world's top destinations for international students, offering world-class education, vibrant culture, and endless opportunities.",
+    content: "London is the capital of the United Kingdom and is home to around eight million people at present including more than 382,000 students. Undoubtedly, it is one of the best cities for international students to pursue their higher education.",
+    published: true,
+    authorId: 1,
+    tags: ["London", "UK", "Study Abroad", "Universities", "Student Life"],
+    metaTitle: "Top Reasons to Study in London - Complete Guide 2025",
+    metaDescription: "Discover why London is one of the world's top destinations for international students, offering world-class education, vibrant culture, and endless opportunities.",
+    featuredImage: "/blog/study-in-london.jpg",
+    readingTime: 8,
+    views: 2340,
+    category: "Study Destinations"
+  },
+  {
+    title: "A Complete Guide to Bangor University UK",
+    slug: "bangor-university-acceptance-rate",
+    excerpt: "Comprehensive guide to Bangor University admission requirements, acceptance rates, application process, and everything Pakistani students need to know.",
+    content: "If you plan to study in the United Kingdom, finding the right university is very important. Bangor University is included in the top ten universities in the UK and is known for providing high-quality education to international students.",
+    published: true,
+    authorId: 1,
+    tags: ["Bangor University", "UK", "University Guide", "Admission Requirements", "Pakistani Students"],
+    metaTitle: "Bangor University Acceptance Rate - Complete Guide 2025",
+    metaDescription: "Comprehensive guide to Bangor University admission requirements, acceptance rates, application process, and everything Pakistani students need to know.",
+    featuredImage: "/blog/bangor-university-guide.jpg",
+    readingTime: 12,
+    views: 1890,
+    category: "University Guides"
   }
 ];
 
