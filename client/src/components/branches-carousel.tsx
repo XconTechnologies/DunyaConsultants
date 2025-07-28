@@ -18,24 +18,38 @@ import {
   Flag
 } from "lucide-react";
 
+// Import branch landmark icons
+import lahoreIcon from "@assets/2_1753704363745.webp";
+import karachiIcon from "@assets/4_1753704363746.webp";
+import sargodhaIcon from "@assets/5_1753704363747.webp";
+import gujratIcon from "@assets/6_1753704363748.webp";
+import faisalabadIcon from "@assets/8_1753704363742.webp";
+import bahawalputIcon from "@assets/9_1753704363743.webp";
+import mianChannuIcon from "@assets/10_1753704363744.webp";
+import mandiBahauddinIcon from "@assets/11_1753704363740.webp";
+import sialkotIcon from "@assets/12_1753704363741.webp";
+import sheikhupuraIcon from "@assets/13_1753704363739.webp";
+import mardanIcon from "@assets/14_1753704363737.webp";
+import multanIcon from "@assets/15_1753704363733.webp";
+
 const branches = [
-  { name: "Islamabad", icon: Building, sketch: "🏛️" },
-  { name: "Karachi", icon: Building2, sketch: "🏢" },
-  { name: "Sargodha", icon: Landmark, sketch: "🏛️" },
-  { name: "Gujrat", icon: Castle, sketch: "🏰" },
-  { name: "Gujranwala", icon: MapPin, sketch: "🌆" },
-  { name: "Faisalabad", icon: Factory, sketch: "🏭" },
-  { name: "Sialkot", icon: Trophy, sketch: "🏆" },
-  { name: "Multan", icon: Star, sketch: "⭐" },
-  { name: "Bahawalpur", icon: Crown, sketch: "👑" },
-  { name: "Sheikhupura", icon: Building, sketch: "🏘️" },
-  { name: "Mardan", icon: Mountain, sketch: "⛰️" },
-  { name: "Mian Channu", icon: Shield, sketch: "🛡️" },
-  { name: "Mandi Bahauddin", icon: Target, sketch: "🎯" },
-  { name: "Lahore DHA", icon: Building2, sketch: "🏢" },
-  { name: "Lahore Johar Town", icon: Building, sketch: "🏘️" },
-  { name: "Jeddah", icon: Flag, sketch: "🕌" },
-  { name: "Istanbul", icon: Globe, sketch: "🌍" }
+  { name: "Islamabad", icon: Building, sketch: "🏛️", landmarkIcon: null },
+  { name: "Karachi", icon: Building2, sketch: "🏢", landmarkIcon: karachiIcon },
+  { name: "Sargodha", icon: Landmark, sketch: "🏛️", landmarkIcon: sargodhaIcon },
+  { name: "Gujrat", icon: Castle, sketch: "🏰", landmarkIcon: gujratIcon },
+  { name: "Gujranwala", icon: MapPin, sketch: "🌆", landmarkIcon: null },
+  { name: "Faisalabad", icon: Factory, sketch: "🏭", landmarkIcon: faisalabadIcon },
+  { name: "Sialkot", icon: Trophy, sketch: "🏆", landmarkIcon: sialkotIcon },
+  { name: "Multan", icon: Star, sketch: "⭐", landmarkIcon: multanIcon },
+  { name: "Bahawalpur", icon: Crown, sketch: "👑", landmarkIcon: bahawalputIcon },
+  { name: "Sheikhupura", icon: Building, sketch: "🏘️", landmarkIcon: sheikhupuraIcon },
+  { name: "Mardan", icon: Mountain, sketch: "⛰️", landmarkIcon: mardanIcon },
+  { name: "Mian Channu", icon: Shield, sketch: "🛡️", landmarkIcon: mianChannuIcon },
+  { name: "Mandi Bahauddin", icon: Target, sketch: "🎯", landmarkIcon: mandiBahauddinIcon },
+  { name: "Lahore DHA", icon: Building2, sketch: "🏢", landmarkIcon: lahoreIcon },
+  { name: "Lahore Johar Town", icon: Building, sketch: "🏘️", landmarkIcon: lahoreIcon },
+  { name: "Jeddah", icon: Flag, sketch: "🕌", landmarkIcon: null },
+  { name: "Istanbul", icon: Globe, sketch: "🌍", landmarkIcon: null }
 ];
 
 export default function BranchesCarousel() {
@@ -90,9 +104,16 @@ export default function BranchesCarousel() {
                   className="flex-shrink-0 w-36 text-center"
                 >
                   {/* Icon with Sketch */}
-                  <div className="w-16 h-16 mx-auto mb-3 bg-[#1e3a8a] rounded-full flex items-center justify-center relative">
-                    <IconComponent className="w-8 h-8 text-white" />
-                    <div className="absolute -top-1 -right-1 text-lg">{branch.sketch}</div>
+                  <div className="w-16 h-16 mx-auto mb-3 bg-white rounded-full flex items-center justify-center relative shadow-lg border border-blue-100">
+                    {branch.landmarkIcon ? (
+                      <img 
+                        src={branch.landmarkIcon} 
+                        alt={`${branch.name} landmark`}
+                        className="w-10 h-10 object-contain"
+                      />
+                    ) : (
+                      <IconComponent className="w-8 h-8 text-[#1e3a8a]" />
+                    )}
                   </div>
                   
                   {/* Branch Name */}
