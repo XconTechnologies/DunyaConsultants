@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 
 // Import the same images from the carousel
 import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
@@ -48,32 +48,24 @@ export default function AboutCompany() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
-  const toggleExpand = (index: number) => {
+  const toggleExpand = useCallback((index: number) => {
     setExpandedItems(prev => 
       prev.includes(index) 
         ? prev.filter(i => i !== index)
         : [...prev, index]
     );
-  };
+  }, []);
 
-  // Create multiple sets of images for truly infinite scrolling
-  const createImageSet = (startIndex: number, count: number) => {
-    const set = [];
-    for (let i = 0; i < count; i++) {
-      set.push(aboutImages[(startIndex + i) % aboutImages.length]);
-    }
-    return set;
-  };
-
-  const leftColumnImages = [
-    ...createImageSet(0, 12), 
-    ...createImageSet(0, 12)
-  ];
+  // Optimized image sets with fewer duplicates for better performance
+  const leftColumnImages = useMemo(() => [
+    ...aboutImages.slice(0, 6), 
+    ...aboutImages.slice(0, 6)
+  ], []);
   
-  const rightColumnImages = [
-    ...createImageSet(6, 12), 
-    ...createImageSet(6, 12)
-  ];
+  const rightColumnImages = useMemo(() => [
+    ...aboutImages.slice(6, 12), 
+    ...aboutImages.slice(6, 12)
+  ], []);
 
   return (
     <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
@@ -127,6 +119,44 @@ export default function AboutCompany() {
       </div>
 
       <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Centered Header Section */}
+        <div className="text-center mb-16">
+          <motion.div
+            className="inline-flex items-center px-4 py-2 bg-blue-50 rounded-full mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
+            <span className="text-sm font-semibold text-blue-700 tracking-wide uppercase">
+              ABOUT COMPANY
+            </span>
+          </motion.div>
+          
+          <motion.h2 
+            className="text-4xl lg:text-5xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-700 bg-clip-text text-transparent">
+              WHO WE ARE
+            </span>
+          </motion.h2>
+          
+          <motion.p 
+            className="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            Dunya Consultants is one of the best education consultants in Pakistan. 
+            We stand among the top study abroad consultants and provide detailed 
+            guidance on study abroad programs to students.
+          </motion.p>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           
           {/* Left Side - Enhanced Scrolling Images */}
@@ -150,28 +180,27 @@ export default function AboutCompany() {
                   <motion.div
                     className="flex flex-col gap-4"
                     animate={{
-                      y: [0, -1200]
+                      y: [0, -600]
                     }}
                     transition={{
-                      duration: 30,
+                      duration: 20,
                       repeat: Infinity,
                       ease: "linear"
                     }}
                   >
                     {leftColumnImages.map((img, index) => (
-                      <motion.div
+                      <div
                         key={`left-${index}`}
-                        className="relative rounded-xl overflow-hidden shadow-xl group"
-                        whileHover={{ scale: 1.05, z: 10 }}
-                        transition={{ duration: 0.3 }}
+                        className="relative rounded-xl overflow-hidden shadow-lg flex-shrink-0"
                       >
                         <img
                           src={img}
                           alt={`Company Image ${index + 1}`}
-                          className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="w-full h-32 object-cover"
+                          loading="lazy"
+                          decoding="async"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </motion.div>
+                      </div>
                     ))}
                   </motion.div>
                 </div>
@@ -181,28 +210,27 @@ export default function AboutCompany() {
                   <motion.div
                     className="flex flex-col gap-4"
                     animate={{
-                      y: [-1200, 0]
+                      y: [-600, 0]
                     }}
                     transition={{
-                      duration: 30,
+                      duration: 20,
                       repeat: Infinity,
                       ease: "linear"
                     }}
                   >
                     {rightColumnImages.map((img, index) => (
-                      <motion.div
+                      <div
                         key={`right-${index}`}
-                        className="relative rounded-xl overflow-hidden shadow-xl group"
-                        whileHover={{ scale: 1.05, z: 10 }}
-                        transition={{ duration: 0.3 }}
+                        className="relative rounded-xl overflow-hidden shadow-lg flex-shrink-0"
                       >
                         <img
                           src={img}
                           alt={`Company Image ${index + 1}`}
-                          className="w-full h-32 object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="w-full h-32 object-cover"
+                          loading="lazy"
+                          decoding="async"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      </motion.div>
+                      </div>
                     ))}
                   </motion.div>
                 </div>
@@ -240,44 +268,8 @@ export default function AboutCompany() {
             className="lg:pl-8"
             initial={{ opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
-            {/* Enhanced Header */}
-            <div className="mb-10">
-              <motion.div
-                className="inline-flex items-center px-4 py-2 bg-blue-50 rounded-full mb-4"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
-                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></div>
-                <span className="text-sm font-semibold text-blue-700 tracking-wide uppercase">
-                  ABOUT COMPANY
-                </span>
-              </motion.div>
-              
-              <motion.h2 
-                className="text-4xl lg:text-5xl font-bold mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-700 bg-clip-text text-transparent">
-                  WHO WE ARE
-                </span>
-              </motion.h2>
-              
-              <motion.p 
-                className="text-xl text-gray-600 leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-              >
-                Dunya Consultants is one of the best education consultants in Pakistan. 
-                We stand among the top study abroad consultants and provide detailed 
-                guidance on study abroad programs to students.
-              </motion.p>
-            </div>
 
             {/* Enhanced Expandable Features */}
             <div className="space-y-4">

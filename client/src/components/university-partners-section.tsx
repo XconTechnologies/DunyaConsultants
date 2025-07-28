@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
+import OptimizedImage from "./optimized-image";
 
 // Import university logos - original 10
 import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750755121093.jpg";
