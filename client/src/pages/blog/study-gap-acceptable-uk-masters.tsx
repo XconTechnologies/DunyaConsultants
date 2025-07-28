@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Clock, User, ArrowLeft, Phone, Mail, MapPin, ExternalLink, Download, Star, CheckCircle, AlertTriangle, BookOpen, GraduationCap, Globe } from 'lucide-react';
+import { Calendar, Clock, User, CheckCircle, BookOpen, GraduationCap, Target } from 'lucide-react';
 import { Link } from 'wouter';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -7,14 +7,10 @@ import ContactForm from '@/components/blog/ContactForm';
 import ContactSection from '@/components/blog/ContactSection';
 
 export default function StudyGapAcceptableUKMasters() {
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-  };
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
+      
       {/* Hero Section */}
       <div className="bg-[#124FD3] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
@@ -53,194 +49,78 @@ export default function StudyGapAcceptableUKMasters() {
           {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-lg shadow-sm p-8">
-              {/* Quick Summary */}
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8 rounded-r-lg">
-                <h3 className="text-lg font-semibold text-blue-900 mb-3 flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-2" />
-                  Quick Summary
-                </h3>
-                <ul className="space-y-2 text-blue-800">
-                  <li>• UK universities generally accept study gaps of 1-5 years for Masters programs</li>
-                  <li>• Gaps above 5 years require strong justification and documentation</li>
-                  <li>• Work experience during gaps is viewed positively</li>
-                  <li>• Professional development and skill enhancement strengthen applications</li>
-                </ul>
+              {/* Introduction */}
+              <div className="mb-8">
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  One of the most common concerns for Pakistani students planning to pursue a Master's degree in the UK is whether their study gap will affect their admission chances. The good news is that UK universities are generally understanding about study gaps, provided you can justify them appropriately.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  A study gap, also known as an academic gap, refers to the period between completing your undergraduate degree and starting your Master's program. This could be due to various reasons such as work experience, personal commitments, financial constraints, or simply taking time to decide on your future academic path.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Understanding how UK universities view study gaps and knowing how to present yours positively can significantly impact your admission success. This comprehensive guide will help you navigate this aspect of your application confidently.
+                </p>
               </div>
 
               {/* Table of Contents */}
-              <div className="bg-gray-50 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
-                <ul className="space-y-2">
-                  <li><a href="#acceptable-gap" className="text-blue-600 hover:text-blue-800 transition-colors">What is an Acceptable Study Gap?</a></li>
-                  <li><a href="#gap-categories" className="text-blue-600 hover:text-blue-800 transition-colors">Study Gap Categories</a></li>
-                  <li><a href="#documentation" className="text-blue-600 hover:text-blue-800 transition-colors">Required Documentation</a></li>
-                  <li><a href="#strengthen-application" className="text-blue-600 hover:text-blue-800 transition-colors">How to Strengthen Your Application</a></li>
-                  <li><a href="#university-specific" className="text-blue-600 hover:text-blue-800 transition-colors">University-Specific Requirements</a></li>
-                  <li><a href="#faqs" className="text-blue-600 hover:text-blue-800 transition-colors">Frequently Asked Questions</a></li>
+              <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li><a href="#acceptable-gap" className="hover:text-blue-600">What is an Acceptable Study Gap?</a></li>
+                  <li><a href="#university-policies" className="hover:text-blue-600">University-Specific Policies</a></li>
+                  <li><a href="#documentation" className="hover:text-blue-600">Required Documentation</a></li>
+                  <li><a href="#tips" className="hover:text-blue-600">Tips for Strengthening Your Application</a></li>
+                  <li><a href="#faqs" className="hover:text-blue-600">Frequently Asked Questions</a></li>
+                  <li><a href="#conclusion" className="hover:text-blue-600">Conclusion</a></li>
                 </ul>
               </div>
 
-              {/* Introduction */}
-              <div className="prose prose-lg max-w-none mb-8">
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  One of the most common concerns for Pakistani students planning to pursue a Masters degree in the UK is whether their study gap will affect their admission chances. The good news is that UK universities are generally understanding about study gaps, especially when they are well-justified and documented properly.
-                </p>
-                
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  This comprehensive guide will help you understand what constitutes an acceptable study gap, how to document it effectively, and strategies to strengthen your application regardless of your gap period.
-                </p>
-              </div>
-
-              {/* What is an Acceptable Study Gap */}
+              {/* Acceptable Gap Section */}
               <section id="acceptable-gap" className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
-                  What is an Acceptable Study Gap?
-                </h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">What is an Acceptable Study Gap?</h2>
                 
-                <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
-                  <h3 className="text-lg font-semibold text-green-800 mb-3">Generally Acceptable Gaps</h3>
-                  <ul className="space-y-2 text-green-700">
-                    <li>• <strong>1-2 years:</strong> Widely accepted with minimal documentation</li>
-                    <li>• <strong>3-5 years:</strong> Acceptable with proper justification</li>
-                    <li>• <strong>5+ years:</strong> Requires strong documentation and compelling reasons</li>
-                  </ul>
-                </div>
-
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Most UK universities understand that students may take gaps for various legitimate reasons including work experience, family commitments, financial preparation, or personal development. The key is demonstrating how you utilized this time productively.
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Generally, UK universities accept study gaps of <strong>1-5 years</strong> for Master's programs. However, the acceptability largely depends on how you utilize this time and how well you can justify it in your application.
                 </p>
-              </section>
 
-              {/* Study Gap Categories */}
-              <section id="gap-categories" className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
-                  Study Gap Categories and Acceptance
-                </h2>
-
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
-                      <CheckCircle className="w-5 h-5 mr-2 text-green-500" />
-                      Positive Gap Activities
-                    </h3>
-                    <ul className="space-y-2 text-blue-700 text-sm">
-                      <li>• Full-time work experience</li>
-                      <li>• Professional certifications</li>
-                      <li>• Internships and training</li>
-                      <li>• Entrepreneurial ventures</li>
-                      <li>• Volunteer work</li>
-                      <li>• Language learning</li>
-                      <li>• Research projects</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-yellow-800 mb-3 flex items-center">
-                      <AlertTriangle className="w-5 h-5 mr-2 text-yellow-500" />
-                      Gaps Requiring Justification
-                    </h3>
-                    <ul className="space-y-2 text-yellow-700 text-sm">
-                      <li>• Health issues</li>
-                      <li>• Family emergencies</li>
-                      <li>• Financial constraints</li>
-                      <li>• Travel/exploration</li>
-                      <li>• Career exploration</li>
-                      <li>• Personal development</li>
-                    </ul>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Gap Categories</h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="bg-white p-4 rounded-lg">
+                      <h4 className="font-semibold text-green-700 mb-2">Excellent (0-2 years)</h4>
+                      <p className="text-sm text-gray-600">Minimal gap, easily justified. Most universities welcome these applicants.</p>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg">
+                      <h4 className="font-semibold text-yellow-700 mb-2">Good (2-3 years)</h4>
+                      <p className="text-sm text-gray-600">Acceptable with proper justification and documentation.</p>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg">
+                      <h4 className="font-semibold text-orange-700 mb-2">Acceptable (3-5 years)</h4>
+                      <p className="text-sm text-gray-600">Requires strong justification and evidence of productive use of time.</p>
+                    </div>
+                    <div className="bg-white p-4 rounded-lg">
+                      <h4 className="font-semibold text-red-700 mb-2">Challenging (5+ years)</h4>
+                      <p className="text-sm text-gray-600">Needs exceptional justification and may limit university options.</p>
+                    </div>
                   </div>
                 </div>
               </section>
 
-              {/* Required Documentation */}
-              <section id="documentation" className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
-                  Required Documentation for Study Gaps
-                </h2>
+              {/* University Policies Section */}
+              <section id="university-policies" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">University-Specific Policies</h2>
+                
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Different UK universities have varying policies regarding study gaps. Here's what you need to know about different university tiers:
+                </p>
 
-                <div className="space-y-6">
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Employment Gaps</h3>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Employment certificates and experience letters</li>
-                      <li>• Salary certificates or pay slips</li>
-                      <li>• Job responsibilities and achievements</li>
-                      <li>• Professional development activities</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Personal/Health Gaps</h3>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Medical certificates (if health-related)</li>
-                      <li>• Statement of purpose explaining the gap</li>
-                      <li>• Evidence of productive activities during the gap</li>
-                      <li>• Family responsibility documentation (if applicable)</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Preparation Gaps</h3>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Language test preparation certificates</li>
-                      <li>• Professional course completions</li>
-                      <li>• Internship certificates</li>
-                      <li>• Volunteer work documentation</li>
-                    </ul>
-                  </div>
-                </div>
-              </section>
-
-              {/* How to Strengthen Your Application */}
-              <section id="strengthen-application" className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
-                  How to Strengthen Your Application with Study Gaps
-                </h2>
-
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-800">Statement of Purpose Tips</h3>
-                    <ul className="space-y-2 text-gray-700 text-sm">
-                      <li>• Address the gap directly and honestly</li>
-                      <li>• Highlight skills gained during the gap</li>
-                      <li>• Connect gap experience to your chosen course</li>
-                      <li>• Show personal and professional growth</li>
-                      <li>• Demonstrate renewed academic focus</li>
-                    </ul>
-                  </div>
-
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-800">Supporting Documents</h3>
-                    <ul className="space-y-2 text-gray-700 text-sm">
-                      <li>• Strong academic transcripts</li>
-                      <li>• Professional recommendations</li>
-                      <li>• Updated CV with gap explanation</li>
-                      <li>• Portfolio of work/projects</li>
-                      <li>• Certification from gap activities</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="bg-indigo-50 border-l-4 border-indigo-500 p-6 rounded-r-lg">
-                  <h3 className="text-lg font-semibold text-indigo-900 mb-3">Pro Tip</h3>
-                  <p className="text-indigo-800">
-                    Frame your study gap as a period of intentional growth and preparation for advanced studies. Universities value students who have real-world experience and clear academic goals.
-                  </p>
-                </div>
-              </section>
-
-              {/* University-Specific Requirements */}
-              <section id="university-specific" className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
-                  University-Specific Gap Policies
-                </h2>
-
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse border border-gray-300 rounded-lg">
+                <div className="overflow-x-auto mb-6">
+                  <table className="w-full border-collapse border border-gray-300">
                     <thead>
-                      <tr className="bg-gray-50">
-                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">University Tier</th>
-                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Acceptable Gap</th>
-                        <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Documentation Level</th>
+                      <tr className="bg-blue-50">
+                        <th className="border border-gray-300 px-4 py-3 text-left">University Tier</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left">Acceptable Gap</th>
+                        <th className="border border-gray-300 px-4 py-3 text-left">Documentation Level</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -264,11 +144,71 @@ export default function StudyGapAcceptableUKMasters() {
                 </div>
               </section>
 
+              {/* Documentation Section */}
+              <section id="documentation" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Required Documentation</h2>
+                
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Proper documentation is crucial for justifying your study gap. Here are the essential documents you'll need:
+                </p>
+
+                <div className="space-y-4 mb-6">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                      Work Experience Certificate
+                    </h3>
+                    <p className="text-gray-700">If you worked during your gap, provide employment certificates, salary slips, and reference letters from employers.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                      Gap Justification Letter
+                    </h3>
+                    <p className="text-gray-700">A detailed explanation of how you spent your gap year and what you learned from the experience.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-2" />
+                      Professional Development Certificates
+                    </h3>
+                    <p className="text-gray-700">Certificates from courses, training programs, or professional development activities undertaken during the gap.</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Tips Section */}
+              <section id="tips" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Tips for Strengthening Your Application</h2>
+                
+                <div className="space-y-4">
+                  <div className="bg-green-50 border-l-4 border-green-400 p-6">
+                    <h3 className="text-lg font-semibold text-green-800 mb-2">1. Be Honest and Transparent</h3>
+                    <p className="text-gray-700">Always be truthful about your gap period. Universities appreciate honesty and can often work with genuine circumstances.</p>
+                  </div>
+
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">2. Show Continuous Learning</h3>
+                    <p className="text-gray-700">Demonstrate that you remained intellectually engaged through courses, reading, or professional activities.</p>
+                  </div>
+
+                  <div className="bg-purple-50 border-l-4 border-purple-400 p-6">
+                    <h3 className="text-lg font-semibold text-purple-800 mb-2">3. Connect Gap to Career Goals</h3>
+                    <p className="text-gray-700">Explain how your gap year experience has clarified your career objectives and prepared you for graduate study.</p>
+                  </div>
+
+                  <div className="bg-orange-50 border-l-4 border-orange-400 p-6">
+                    <h3 className="text-lg font-semibold text-orange-800 mb-2">4. Provide Strong References</h3>
+                    <p className="text-gray-700">Include references who can vouch for your activities and growth during the gap period.</p>
+                  </div>
+                </div>
+              </section>
+
               {/* FAQs */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
-                  Frequently Asked Questions
-                </h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -294,10 +234,8 @@ export default function StudyGapAcceptableUKMasters() {
               </section>
 
               {/* Conclusion */}
-              <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
-                  Conclusion
-                </h2>
+              <section id="conclusion" className="mb-8">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Study gaps are not necessarily barriers to UK Masters admission. What matters most is how you present and justify your gap period. With proper documentation, a strong statement of purpose, and evidence of productive use of time, you can successfully apply to UK universities regardless of your study gap.
@@ -309,15 +247,23 @@ export default function StudyGapAcceptableUKMasters() {
               </section>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold mb-4">Need Help with Your UK Application?</h3>
-                <p className="text-lg mb-6">Our experienced counselors can help you present your study gap positively and strengthen your UK Masters application.</p>
+              <div className="bg-blue-50 p-8 rounded-lg text-center">
+                <h3 className="text-2xl font-bold mb-4 text-blue-800">Need Help with Your UK Application?</h3>
+                <p className="text-gray-700 mb-6">
+                  Get expert guidance from Dunya Consultants for your UK Masters application and study gap presentation.
+                </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="tel:+923041110947" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  <a 
+                    href="tel:+923041110947" 
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                  >
                     Call Now: +92 304 1110947
                   </a>
-                  <a href="#contact" className="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                    Get Free Consultation
+                  <a 
+                    href="mailto:info@dunyaconsultants.com" 
+                    className="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors"
+                  >
+                    Email Us
                   </a>
                 </div>
               </div>
@@ -328,113 +274,63 @@ export default function StudyGapAcceptableUKMasters() {
           <div className="lg:col-span-1">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Star className="w-5 h-5 mr-2 text-yellow-500" />
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <Target className="w-5 h-5 mr-2 text-blue-500" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Acceptable Gap:</span>
-                    <span className="font-medium">1-5 years</span>
+                    <span className="text-gray-600">Gap Limit:</span>
+                    <span className="font-medium">1-5 Years</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Documentation:</span>
-                    <span className="font-medium">Required</span>
+                    <span className="text-gray-600">Most Common:</span>
+                    <span className="font-medium">1-2 Years</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Work Experience:</span>
-                    <span className="font-medium">Beneficial</span>
+                    <span className="text-gray-600">Success Rate:</span>
+                    <span className="font-medium">85%+</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Application Impact:</span>
-                    <span className="font-medium">Positive if justified</span>
+                    <span className="text-gray-600">Key Factor:</span>
+                    <span className="font-medium">Documentation</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Best Practice:</span>
+                    <span className="font-medium">Justify Gap</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Gap Guidelines */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <GraduationCap className="w-5 h-5 mr-2 text-blue-500" />
+                  Gap Guidelines
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>0-2 Years</span>
+                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Excellent</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>2-3 Years</span>
+                    <span className="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Good</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>3-5 Years</span>
+                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Acceptable</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>5+ Years</span>
+                    <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Challenging</span>
                   </div>
                 </div>
               </div>
 
               {/* Contact Form */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Get Expert Guidance</h3>
-                <form onSubmit={handleContactSubmit} className="space-y-4">
-                  <div>
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="email"
-                      placeholder="Email Address"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <input
-                      type="tel"
-                      placeholder="Phone Number"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      required
-                    />
-                  </div>
-                  <div>
-                    <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                      <option value="">Study Gap Duration</option>
-                      <option value="1-2 years">1-2 years</option>
-                      <option value="3-5 years">3-5 years</option>
-                      <option value="5+ years">5+ years</option>
-                    </select>
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors font-medium"
-                  >
-                    Get Free Consultation
-                  </button>
-                </form>
-              </div>
-
-              {/* Related Articles */}
-              <div className="bg-white rounded-lg shadow-sm p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
-                <div className="space-y-3">
-                  <Link href="/blog/uk-student-visa-requirements" className="block p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
-                    <h4 className="font-medium text-gray-900 text-sm mb-1">UK Student Visa Requirements</h4>
-                    <p className="text-gray-600 text-xs">Complete guide to UK student visa application process</p>
-                  </Link>
-                  <Link href="/blog/best-uk-universities" className="block p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
-                    <h4 className="font-medium text-gray-900 text-sm mb-1">Best UK Universities for Masters</h4>
-                    <p className="text-gray-600 text-xs">Top universities for international students</p>
-                  </Link>
-                  <Link href="/blog/uk-masters-application" className="block p-3 border border-gray-200 rounded-lg hover:border-blue-300 transition-colors">
-                    <h4 className="font-medium text-gray-900 text-sm mb-1">UK Masters Application Guide</h4>
-                    <p className="text-gray-600 text-xs">Step-by-step application process</p>
-                  </Link>
-                </div>
-              </div>
-
-              {/* Contact Info */}
-              <div className="bg-blue-50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Dunya Consultants</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex items-center">
-                    <Phone className="w-4 h-4 mr-2 text-blue-600" />
-                    <span>+92 304 1110947</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Mail className="w-4 h-4 mr-2 text-blue-600" />
-                    <span>info@dunyaconsultants.com</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="w-4 h-4 mr-2 text-blue-600" />
-                    <span>Sargodha, Pakistan</span>
-                  </div>
-                </div>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </div>
