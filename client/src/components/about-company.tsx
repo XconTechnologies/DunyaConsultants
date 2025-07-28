@@ -1,23 +1,18 @@
 import { useRef, useState, useCallback, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import OptimizedImage from "@/components/optimized-image";
 
-// Import the same images from the carousel
+// Import only 6 key images for better performance
 import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
 import img2 from "@assets/Avari Carnival (152 of 1139)_1751536114473.webp";
 import img3 from "@assets/Branch Manager of the year_1751536114473.webp";
 import img4 from "@assets/Dunya AGM (183 of 577)_1751536114474.webp";
 import img5 from "@assets/Dunya AGM (187 of 577)_1751536114474.webp";
 import img6 from "@assets/Dunya AGM (319 of 577)_1751536114475.webp";
-import img7 from "@assets/Dunya AGM (337 of 577)_1751536114475.webp";
-import img8 from "@assets/Dunya AGM (350 of 577)_1751536114475.webp";
-import img9 from "@assets/IMG-20250510-WA0020_1751536114476.webp";
-import img10 from "@assets/IMG-20250510-WA0028_1751536114476.webp";
-import img11 from "@assets/IMG-20250510-WA0070_1751536114476.webp";
-import img12 from "@assets/MHQ07558_1751536114477.webp";
 
 const aboutImages = [
-  img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12
+  img1, img2, img3, img4, img5, img6
 ];
 
 const expandableContent = [
@@ -56,15 +51,15 @@ export default function AboutCompany() {
     );
   }, []);
 
-  // Optimized image sets with fewer duplicates for better performance
+  // Optimized image sets with fewer images for fast loading
   const leftColumnImages = useMemo(() => [
-    ...aboutImages.slice(0, 6), 
-    ...aboutImages.slice(0, 6)
+    ...aboutImages.slice(0, 3), 
+    ...aboutImages.slice(0, 3)
   ], []);
   
   const rightColumnImages = useMemo(() => [
-    ...aboutImages.slice(6, 12), 
-    ...aboutImages.slice(6, 12)
+    ...aboutImages.slice(3, 6), 
+    ...aboutImages.slice(3, 6)
   ], []);
 
   return (
@@ -181,7 +176,7 @@ export default function AboutCompany() {
                       y: [0, -600]
                     }}
                     transition={{
-                      duration: 20,
+                      duration: 12,
                       repeat: Infinity,
                       ease: "linear"
                     }}
@@ -191,12 +186,11 @@ export default function AboutCompany() {
                         key={`left-${index}`}
                         className="relative rounded-xl overflow-hidden shadow-lg flex-shrink-0"
                       >
-                        <img
+                        <OptimizedImage
                           src={img}
                           alt={`Company Image ${index + 1}`}
                           className="w-full h-32 object-cover"
                           loading="lazy"
-                          decoding="async"
                         />
                       </div>
                     ))}
@@ -211,7 +205,7 @@ export default function AboutCompany() {
                       y: [-600, 0]
                     }}
                     transition={{
-                      duration: 20,
+                      duration: 12,
                       repeat: Infinity,
                       ease: "linear"
                     }}
@@ -221,12 +215,11 @@ export default function AboutCompany() {
                         key={`right-${index}`}
                         className="relative rounded-xl overflow-hidden shadow-lg flex-shrink-0"
                       >
-                        <img
+                        <OptimizedImage
                           src={img}
                           alt={`Company Image ${index + 1}`}
                           className="w-full h-32 object-cover"
                           loading="lazy"
-                          decoding="async"
                         />
                       </div>
                     ))}

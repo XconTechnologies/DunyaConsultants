@@ -39,7 +39,6 @@ export default function Home() {
       <Navigation />
       <StatsBanner />
       <AboutCompany />
-      <BranchesCarousel />
       
       <Suspense fallback={<SectionSkeleton />}>
         <IeltsSection />
@@ -52,6 +51,8 @@ export default function Home() {
       <Suspense fallback={<SectionSkeleton />}>
         <ConsultationBookingCalendar />
       </Suspense>
+      
+      <BranchesCarousel />
       
       <Suspense fallback={<SectionSkeleton />}>
         <UniversityPartnersSection />
