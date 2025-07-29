@@ -344,7 +344,7 @@ export default function Navigation() {
               className={`${
                 !isScrolled
                   ? 'bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 hover:border-white/60 shadow-lg'
-                  : 'bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-md'
+                  : 'bg-blue-600 hover:bg-blue-700 text-white shadow-md border border-blue-600'
               } transition-all duration-300 font-semibold px-6 py-2`}
             >
               Free Consultation
