@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Heart, Download } from "lucide-react";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
-import ConsultationBooking from "@/components/ConsultationBooking";
+import ApplicationForm from "@/components/ApplicationForm";
 
 export default function StudyAbroadUK() {
   const [selectedProgram, setSelectedProgram] = useState("undergraduate");
@@ -337,12 +337,12 @@ Address: Alif Tower, Sargodha
                   <p className="text-xl font-bold text-red-600">(+92) 304 1110947</p>
                 </div>
                 
-                <ConsultationBooking country="UK">
+                <ApplicationForm country="UK">
                   <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     Book Free Consultation
                   </Button>
-                </ConsultationBooking>
+                </ApplicationForm>
                 
                 <Button 
                   variant="outline" 

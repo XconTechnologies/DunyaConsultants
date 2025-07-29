@@ -8,11 +8,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Download, X } from "lucide-react";
 import CountryFlag from "@/components/CountryFlag";
+import ApplicationForm from "@/components/ApplicationForm";
 
 export default function StudyAbroadUSA() {
   const [selectedProgram, setSelectedProgram] = useState("undergraduate");
   const [showSmartTools, setShowSmartTools] = useState(false);
-  const [showConsultation, setShowConsultation] = useState(false);
+
 
   const downloadChecklist = () => {
     const checklistText = `USA STUDY ABROAD DOCUMENT CHECKLIST
@@ -452,46 +453,12 @@ Address: Alif Tower, Sargodha
                   <p className="text-xl font-bold text-blue-600">(+92) 304 1110947</p>
                 </div>
                 
-                <Dialog open={showConsultation} onOpenChange={setShowConsultation}>
-                  <DialogTrigger asChild>
-                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Book Free Consultation
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-md">
-                    <DialogHeader>
-                      <DialogTitle className="flex items-center text-green-600">
-                        <Calendar className="w-5 h-5 mr-2" />
-                        Book Free Consultation - USA
-                      </DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-4">
-                      <div className="text-center p-4 bg-blue-50 rounded-lg">
-                        <p className="font-semibold text-blue-900">UAN Number</p>
-                        <p className="text-xl font-bold text-blue-600">(+92) 304 1110947</p>
-                      </div>
-                      <div className="space-y-3">
-                        <Button 
-                          onClick={() => window.open('tel:+923041110947')}
-                          className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                        >
-                          📞 Call Now
-                        </Button>
-                        <Button 
-                          onClick={() => window.open('https://wa.me/923041110947?text=Hello, I want to book a free consultation for studying in USA')}
-                          className="w-full bg-green-600 hover:bg-green-700 text-white"
-                        >
-                          💬 WhatsApp
-                        </Button>
-                      </div>
-                      <div className="text-center text-sm text-gray-600">
-                        <p>📧 info@dunyaconsultants.com</p>
-                        <p>📍 Alif Tower, Sargodha</p>
-                      </div>
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <ApplicationForm country="USA">
+                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Book Free Consultation
+                  </Button>
+                </ApplicationForm>
                 
                 <Button 
                   variant="outline" 
