@@ -86,12 +86,13 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-lg bg-white max-h-[80vh] overflow-y-auto">
+      <DialogContent className="max-w-lg bg-white max-h-[80vh] overflow-y-auto" aria-describedby="application-form-description">
         <DialogHeader>
           <DialogTitle className="text-xl text-[#124FD3] flex items-center justify-between">
             Apply to {country}
           </DialogTitle>
         </DialogHeader>
+        <div id="application-form-description" className="sr-only">Complete application form for studying in {country}</div>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">

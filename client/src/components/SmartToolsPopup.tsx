@@ -99,10 +99,11 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Cost Calculator
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="cost-calculator-description">
           <DialogHeader>
             <DialogTitle className="text-2xl text-blue-600">{country} Study Cost Calculator</DialogTitle>
           </DialogHeader>
+          <div id="cost-calculator-description" className="sr-only">Interactive cost calculator for studying in {country}</div>
           <div className="space-y-6">
             <div className="text-center">
               <p className="text-gray-600">Calculate your total study costs in {country}</p>
@@ -145,31 +146,79 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Course Match
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="course-match-description">
           <DialogHeader>
             <DialogTitle className="text-2xl text-green-600">Find Your Perfect Course in {country}</DialogTitle>
           </DialogHeader>
+          <div id="course-match-description" className="sr-only">Course matching tool for programs in {country}</div>
           <div className="space-y-6">
             <div className="text-center">
-              <p className="text-gray-600">Discover the perfect course for your career goals</p>
+              <p className="text-gray-600">Discover the perfect course for your career goals in {country}</p>
             </div>
+            
+            {/* Course Selection Form */}
+            <div className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Education Level</label>
+                  <select className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white">
+                    <option>Select Level</option>
+                    <option>Bachelor's Degree</option>
+                    <option>Master's Degree</option>
+                    <option>PhD</option>
+                    <option>Diploma</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Field of Interest</label>
+                  <select className="w-full border border-gray-300 rounded-md px-3 py-2 bg-white">
+                    <option>Select Field</option>
+                    <option>Engineering & Technology</option>
+                    <option>Business & Management</option>
+                    <option>Medicine & Health Sciences</option>
+                    <option>Arts & Social Sciences</option>
+                    <option>Science & Mathematics</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
             <div className="grid md:grid-cols-3 gap-4">
-              <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-blue-600">Engineering</h4>
-                <p className="text-sm text-gray-600 mt-2">Computer Science, Electrical, Mechanical, Civil Engineering programs</p>
+              <div className="p-4 border border-blue-200 rounded-lg hover:shadow-md transition-shadow bg-blue-50">
+                <h4 className="font-semibold text-blue-600 mb-2">Engineering & Technology</h4>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li>• Computer Science</li>
+                  <li>• Electrical Engineering</li>
+                  <li>• Mechanical Engineering</li>
+                  <li>• Civil Engineering</li>
+                </ul>
               </div>
-              <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-green-600">Business</h4>
-                <p className="text-sm text-gray-600 mt-2">MBA, Finance, Marketing, International Business programs</p>
+              <div className="p-4 border border-green-200 rounded-lg hover:shadow-md transition-shadow bg-green-50">
+                <h4 className="font-semibold text-green-600 mb-2">Business & Management</h4>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li>• MBA</li>
+                  <li>• Finance</li>
+                  <li>• Marketing</li>
+                  <li>• International Business</li>
+                </ul>
               </div>
-              <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
-                <h4 className="font-semibold text-purple-600">Medicine</h4>
-                <p className="text-sm text-gray-600 mt-2">MBBS, Nursing, Pharmacy, Health Sciences programs</p>
+              <div className="p-4 border border-purple-200 rounded-lg hover:shadow-md transition-shadow bg-purple-50">
+                <h4 className="font-semibold text-purple-600 mb-2">Medicine & Health</h4>
+                <ul className="text-sm text-gray-600 space-y-1">
+                  <li>• MBBS</li>
+                  <li>• Nursing</li>
+                  <li>• Pharmacy</li>
+                  <li>• Health Sciences</li>
+                </ul>
               </div>
             </div>
-            <div className="text-center">
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            
+            <div className="flex gap-3">
+              <Button className="flex-1 bg-green-600 hover:bg-green-700 text-white">
                 Get Personalized Course Recommendations
+              </Button>
+              <Button variant="outline" className="flex-1">
+                Browse All Programs
               </Button>
             </div>
           </div>
@@ -183,29 +232,62 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Document Checklist
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white">
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="document-checklist-description">
           <DialogHeader>
             <DialogTitle className="text-2xl text-purple-600">{country} Document Checklist</DialogTitle>
           </DialogHeader>
+          <div id="document-checklist-description" className="sr-only">Comprehensive document checklist for studying in {country}</div>
           <div className="space-y-4">
             <div className="text-center">
               <p className="text-gray-600">Get your personalized checklist for studying in {country}</p>
             </div>
-            <div className="space-y-3">
-              {documentChecklist.map((doc, index) => (
-                <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                  <span className="text-gray-700">{doc}</span>
+            <div className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <h4 className="font-semibold text-gray-800 mb-2">Academic Documents</h4>
+                  <div className="space-y-2">
+                    {documentChecklist.slice(0, Math.ceil(documentChecklist.length / 2)).map((doc, index) => (
+                      <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm">{doc}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
+                <div>
+                  <h4 className="font-semibold text-gray-800 mb-2">Supporting Documents</h4>
+                  <div className="space-y-2">
+                    {documentChecklist.slice(Math.ceil(documentChecklist.length / 2)).map((doc, index) => (
+                      <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                        <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 text-sm">{doc}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="text-center">
+            
+            <div className="bg-purple-50 p-4 rounded-lg">
+              <h4 className="font-semibold text-purple-800 mb-2">Important Notes</h4>
+              <ul className="text-sm text-purple-700 space-y-1">
+                <li>• All documents must be in English or officially translated</li>
+                <li>• Ensure documents are notarized where required</li>
+                <li>• Keep multiple copies of all documents</li>
+                <li>• Check embassy requirements for specific countries</li>
+              </ul>
+            </div>
+            
+            <div className="flex gap-3">
               <Button 
                 onClick={downloadChecklist}
-                className="bg-purple-600 hover:bg-purple-700 text-white"
+                className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
               >
                 <Download className="w-4 h-4 mr-2" />
                 Download Complete Checklist
+              </Button>
+              <Button variant="outline" className="flex-1">
+                Get Document Help
               </Button>
             </div>
           </div>
