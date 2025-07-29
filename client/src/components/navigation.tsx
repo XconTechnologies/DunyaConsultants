@@ -5,12 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/DC White Logo_1751441165041.png";
 import logoImageBlue from "@assets/DC Blue Logo_1751440868138.png";
+import ConsultationPopup from "@/components/consultation-popup";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeroSection, setIsHeroSection] = useState(true);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [showConsultationPopup, setShowConsultationPopup] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -340,7 +342,7 @@ export default function Navigation() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <Button 
-              onClick={() => scrollToSection("consultation")}
+              onClick={() => setShowConsultationPopup(true)}
               className={`${
                 !isScrolled
                   ? 'bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 hover:border-white/60 shadow-lg'
@@ -512,7 +514,7 @@ export default function Navigation() {
               <div className="pt-4 border-t border-neutral-200">
                 <Button 
                   onClick={() => {
-                    scrollToSection("contact");
+                    setShowConsultationPopup(true);
                     setIsOpen(false);
                   }}
                   className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
@@ -524,6 +526,12 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Consultation Popup */}
+      <ConsultationPopup 
+        isOpen={showConsultationPopup} 
+        onClose={() => setShowConsultationPopup(false)} 
+      />
     </nav>
   );
 }
