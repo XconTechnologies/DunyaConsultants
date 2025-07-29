@@ -4,7 +4,7 @@ import Footer from "@/components/footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Download, X } from "lucide-react";
 import CountryFlag from "@/components/CountryFlag";
@@ -12,7 +12,6 @@ import ApplicationForm from "@/components/ApplicationForm";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
 
 export default function StudyAbroadUSA() {
-  const [selectedProgram, setSelectedProgram] = useState("undergraduate");
   const [showSmartTools, setShowSmartTools] = useState(false);
 
 
@@ -175,13 +174,10 @@ Address: Alif Tower, Sargodha
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <Tabs value={selectedProgram} onValueChange={setSelectedProgram}>
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="undergraduate">Undergraduate</TabsTrigger>
-                    <TabsTrigger value="graduate">Graduate</TabsTrigger>
-                  </TabsList>
-                  
-                  <TabsContent value="undergraduate" className="mt-6">
+                <div className="space-y-6">
+                  {/* Undergraduate Programs */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Undergraduate Programs</h3>
                     <div className="grid md:grid-cols-3 gap-4">
                       <Card className="bg-blue-50 border-blue-200">
                         <CardContent className="p-4 text-center">
@@ -205,9 +201,11 @@ Address: Alif Tower, Sargodha
                         </CardContent>
                       </Card>
                     </div>
-                  </TabsContent>
+                  </div>
                   
-                  <TabsContent value="graduate" className="mt-6">
+                  {/* Graduate Programs */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Graduate Programs</h3>
                     <Card className="bg-orange-50 border-orange-200">
                       <CardContent className="p-6 text-center">
                         <h4 className="font-semibold text-orange-900 mb-2">Graduate Programs</h4>
@@ -215,8 +213,8 @@ Address: Alif Tower, Sargodha
                         <p className="text-orange-700">per annum</p>
                       </CardContent>
                     </Card>
-                  </TabsContent>
-                </Tabs>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
