@@ -32,12 +32,11 @@ import sheikhupuraIcon from "@assets/13_1753704363739.webp";
 import mardanIcon from "@assets/14_1753704363737.webp";
 import multanIcon from "@assets/15_1753704363733.webp";
 
+// Optimized branches array with only key locations for faster loading
 const branches = [
-  { name: "Islamabad", icon: Building, sketch: "🏛️", landmarkIcon: null },
   { name: "Karachi", icon: Building2, sketch: "🏢", landmarkIcon: karachiIcon },
   { name: "Sargodha", icon: Landmark, sketch: "🏛️", landmarkIcon: sargodhaIcon },
   { name: "Gujrat", icon: Castle, sketch: "🏰", landmarkIcon: gujratIcon },
-  { name: "Gujranwala", icon: MapPin, sketch: "🌆", landmarkIcon: null },
   { name: "Faisalabad", icon: Factory, sketch: "🏭", landmarkIcon: faisalabadIcon },
   { name: "Sialkot", icon: Trophy, sketch: "🏆", landmarkIcon: sialkotIcon },
   { name: "Multan", icon: Star, sketch: "⭐", landmarkIcon: multanIcon },
@@ -46,10 +45,7 @@ const branches = [
   { name: "Mardan", icon: Mountain, sketch: "⛰️", landmarkIcon: mardanIcon },
   { name: "Mian Channu", icon: Shield, sketch: "🛡️", landmarkIcon: mianChannuIcon },
   { name: "Mandi Bahauddin", icon: Target, sketch: "🎯", landmarkIcon: mandiBahauddinIcon },
-  { name: "Lahore DHA", icon: Building2, sketch: "🏢", landmarkIcon: lahoreIcon },
-  { name: "Lahore Johar Town", icon: Building, sketch: "🏘️", landmarkIcon: lahoreIcon },
-  { name: "Jeddah", icon: Flag, sketch: "🕌", landmarkIcon: null },
-  { name: "Istanbul", icon: Globe, sketch: "🌍", landmarkIcon: null }
+  { name: "Lahore", icon: Building2, sketch: "🏢", landmarkIcon: lahoreIcon }
 ];
 
 export default function BranchesCarousel() {
@@ -89,7 +85,7 @@ export default function BranchesCarousel() {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 25,
+                duration: 15,
                 ease: "linear",
               },
             }}

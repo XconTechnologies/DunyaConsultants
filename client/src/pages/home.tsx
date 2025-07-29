@@ -1,13 +1,13 @@
 import { lazy, Suspense } from "react";
 import Navigation from "@/components/navigation";
 import StatsBanner from "@/components/stats-banner";
-import AboutCompany from "@/components/about-company";
-import BranchesCarousel from "@/components/branches-carousel";
 import ScrollProgress from "@/components/scroll-progress";
 import FloatingCTA from "@/components/floating-cta";
 import Footer from "@/components/footer";
 
-// Lazy load heavy components
+// Lazy load ALL heavy components for better performance
+const AboutCompany = lazy(() => import("@/components/about-company"));
+const BranchesCarousel = lazy(() => import("@/components/branches-carousel"));
 const IeltsSection = lazy(() => import("@/components/ielts-section"));
 const CountriesSection = lazy(() => import("@/components/countries-section"));
 const ConsultationBookingCalendar = lazy(() => import("@/components/consultation-booking-calendar"));
@@ -38,7 +38,10 @@ export default function Home() {
       <ScrollProgress />
       <Navigation />
       <StatsBanner />
-      <AboutCompany />
+      
+      <Suspense fallback={<SectionSkeleton />}>
+        <AboutCompany />
+      </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>
         <IeltsSection />
@@ -52,7 +55,9 @@ export default function Home() {
         <ConsultationBookingCalendar />
       </Suspense>
       
-      <BranchesCarousel />
+      <Suspense fallback={<SectionSkeleton />}>
+        <BranchesCarousel />
+      </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>
         <UniversityPartnersSection />
