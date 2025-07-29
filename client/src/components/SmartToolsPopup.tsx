@@ -182,7 +182,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Cost Calculator
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white z-50" aria-describedby="cost-calculator-description">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="cost-calculator-description">
           <DialogHeader>
             <DialogTitle className="text-2xl text-blue-600">{country} Study Cost Calculator</DialogTitle>
           </DialogHeader>
@@ -204,7 +204,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Choose university type" />
                       </SelectTrigger>
-                      <SelectContent className="z-[100]">
+                      <SelectContent className="z-[9999] bg-white border shadow-lg max-h-60 overflow-y-auto">
                         {costData.tuition.map((item, index) => (
                           <SelectItem key={index} value={item.type}>
                             {item.type} - {item.cost}
@@ -220,7 +220,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Choose accommodation" />
                       </SelectTrigger>
-                      <SelectContent className="z-[100]">
+                      <SelectContent className="z-[9999] bg-white border shadow-lg max-h-60 overflow-y-auto">
                         {costData.living.map((item, index) => (
                           <SelectItem key={index} value={item.type}>
                             {item.type} - {item.cost}
@@ -236,7 +236,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Select duration" />
                       </SelectTrigger>
-                      <SelectContent className="z-[100]">
+                      <SelectContent className="z-[9999] bg-white border shadow-lg max-h-60 overflow-y-auto">
                         <SelectItem value="1">1 Year</SelectItem>
                         <SelectItem value="2">2 Years</SelectItem>
                         <SelectItem value="3">3 Years</SelectItem>
@@ -313,7 +313,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Course Match
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white z-50" aria-describedby="course-match-description">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="course-match-description">
           <DialogHeader>
             <DialogTitle className="text-2xl text-green-600">Find Your Perfect Course in {country}</DialogTitle>
           </DialogHeader>
@@ -335,7 +335,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Select your education level" />
                       </SelectTrigger>
-                      <SelectContent className="z-[100]">
+                      <SelectContent className="z-[9999] bg-white border shadow-lg max-h-60 overflow-y-auto">
                         <SelectItem value="Bachelor's Degree">Bachelor's Degree</SelectItem>
                         <SelectItem value="Master's Degree">Master's Degree</SelectItem>
                         <SelectItem value="PhD">PhD</SelectItem>
@@ -350,7 +350,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Choose your field" />
                       </SelectTrigger>
-                      <SelectContent className="z-[100]">
+                      <SelectContent className="z-[9999] bg-white border shadow-lg max-h-60 overflow-y-auto">
                         <SelectItem value="Engineering & Technology">Engineering & Technology</SelectItem>
                         <SelectItem value="Business & Management">Business & Management</SelectItem>
                         <SelectItem value="Medicine & Health">Medicine & Health Sciences</SelectItem>
@@ -366,7 +366,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Select budget range" />
                       </SelectTrigger>
-                      <SelectContent className="z-[100]">
+                      <SelectContent className="z-[9999] bg-white border shadow-lg max-h-60 overflow-y-auto">
                         <SelectItem value="under-30k">Under $30,000</SelectItem>
                         <SelectItem value="30k-50k">$30,000 - $50,000</SelectItem>
                         <SelectItem value="50k-70k">$50,000 - $70,000</SelectItem>
@@ -453,7 +453,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Document Checklist
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white z-50" aria-describedby="document-checklist-description">
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="document-checklist-description">
           <DialogHeader>
             <DialogTitle className="text-2xl text-purple-600">{country} Document Checklist</DialogTitle>
           </DialogHeader>
