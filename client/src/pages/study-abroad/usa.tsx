@@ -5,11 +5,45 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Download, X } from "lucide-react";
 import CountryFlag from "@/components/CountryFlag";
 
 export default function StudyAbroadUSA() {
   const [selectedProgram, setSelectedProgram] = useState("undergraduate");
+  const [showSmartTools, setShowSmartTools] = useState(false);
+  const [showConsultation, setShowConsultation] = useState(false);
+
+  const downloadChecklist = () => {
+    const checklistText = `USA STUDY ABROAD DOCUMENT CHECKLIST
+
+Required Documents:
+• Original Passport
+• Inter Degree & Result Documents
+• Matric Degree & Result Documents
+• IELTS / PTE Score Card
+• Experience Certificate
+• BS Degree + Transcript
+• 2 Recommendation Letters
+• GRE / GMAT (Optional)
+
+Contact Information:
+UAN: (+92) 304 1110947
+Email: info@dunyaconsultants.com
+Address: Alif Tower, Sargodha
+
+© Dunya Consultants - Your trusted study abroad partner`;
+
+    const blob = new Blob([checklistText], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'USA-Study-Documents-Checklist.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  };
 
   const documentChecklist = [
     "Original Passport",
@@ -271,6 +305,153 @@ export default function StudyAbroadUSA() {
           {/* Sidebar */}
           <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
             
+            {/* Smart Tools */}
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle className="text-xl text-[#1e3a8a] flex items-center">
+                  <Calculator className="w-5 h-5 mr-2" />
+                  Smart Tools for USA
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="w-full bg-[#124FD3] hover:bg-[#0f3ba8] text-white">
+                      <Calculator className="w-4 h-4 mr-2" />
+                      Cost Calculator
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl text-blue-600">USA Study Cost Calculator</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-6">
+                      <div className="text-center">
+                        <p className="text-gray-600">Calculate your total study costs in USA</p>
+                      </div>
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="space-y-4">
+                          <h3 className="font-semibold text-lg">Tuition Fees (Annual)</h3>
+                          <div className="space-y-2">
+                            <div className="flex justify-between p-3 bg-gray-50 rounded">
+                              <span>Public Universities (In-State)</span>
+                              <span className="font-semibold">$10,000 - $20,000</span>
+                            </div>
+                            <div className="flex justify-between p-3 bg-gray-50 rounded">
+                              <span>Public Universities (Out-State)</span>
+                              <span className="font-semibold">$20,000 - $35,000</span>
+                            </div>
+                            <div className="flex justify-between p-3 bg-gray-50 rounded">
+                              <span>Private Universities</span>
+                              <span className="font-semibold">$35,000 - $50,000</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="space-y-4">
+                          <h3 className="font-semibold text-lg">Living Expenses (Annual)</h3>
+                          <div className="space-y-2">
+                            <div className="flex justify-between p-3 bg-gray-50 rounded">
+                              <span>Accommodation</span>
+                              <span className="font-semibold">$8,000 - $15,000</span>
+                            </div>
+                            <div className="flex justify-between p-3 bg-gray-50 rounded">
+                              <span>Food & Groceries</span>
+                              <span className="font-semibold">$3,000 - $5,000</span>
+                            </div>
+                            <div className="flex justify-between p-3 bg-gray-50 rounded">
+                              <span>Transportation</span>
+                              <span className="font-semibold">$1,000 - $2,000</span>
+                            </div>
+                            <div className="flex justify-between p-3 bg-gray-50 rounded">
+                              <span>Personal Expenses</span>
+                              <span className="font-semibold">$1,500 - $3,000</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="text-center p-4 bg-blue-50 rounded-lg">
+                        <p className="text-lg font-semibold text-blue-900">Total Estimated Cost: $43,500 - $105,000 per year</p>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                      <GraduationCap className="w-4 h-4 mr-2" />
+                      Course Match
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl text-green-600">Find Your Perfect Course in USA</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-6">
+                      <div className="text-center">
+                        <p className="text-gray-600">Discover the perfect course for your career goals</p>
+                      </div>
+                      <div className="grid md:grid-cols-3 gap-4">
+                        <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
+                          <h4 className="font-semibold text-blue-600">Engineering</h4>
+                          <p className="text-sm text-gray-600 mt-2">Computer Science, Electrical, Mechanical, Civil Engineering programs</p>
+                        </div>
+                        <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
+                          <h4 className="font-semibold text-green-600">Business</h4>
+                          <p className="text-sm text-gray-600 mt-2">MBA, Finance, Marketing, International Business programs</p>
+                        </div>
+                        <div className="p-4 border rounded-lg hover:shadow-md transition-shadow">
+                          <h4 className="font-semibold text-purple-600">Medicine</h4>
+                          <p className="text-sm text-gray-600 mt-2">MBBS, Nursing, Pharmacy, Health Sciences programs</p>
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                          Get Personalized Course Recommendations
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+                      <FileCheck className="w-4 h-4 mr-2" />
+                      Document Checklist
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl text-purple-600">USA Document Checklist</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                      <div className="text-center">
+                        <p className="text-gray-600">Get your personalized checklist for studying in USA</p>
+                      </div>
+                      <div className="space-y-3">
+                        {documentChecklist.map((doc, index) => (
+                          <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded">
+                            <CheckCircle className="w-5 h-5 text-green-500" />
+                            <span className="text-gray-700">{doc}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="text-center">
+                        <Button 
+                          onClick={downloadChecklist}
+                          className="bg-purple-600 hover:bg-purple-700 text-white"
+                        >
+                          <Download className="w-4 h-4 mr-2" />
+                          Download Complete Checklist
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </CardContent>
+            </Card>
+            
             {/* Documents Checklist */}
             <Card className="mb-8">
               <CardHeader>
@@ -288,8 +469,11 @@ export default function StudyAbroadUSA() {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full mt-6 bg-[#124FD3] hover:bg-[#0f3ba8]">
-                  <FileText className="w-4 h-4 mr-2" />
+                <Button 
+                  onClick={downloadChecklist}
+                  className="w-full mt-6 bg-[#124FD3] hover:bg-[#0f3ba8] text-white"
+                >
+                  <Download className="w-4 h-4 mr-2" />
                   Download Full Checklist
                 </Button>
               </CardContent>
@@ -309,10 +493,46 @@ export default function StudyAbroadUSA() {
                   <p className="text-xl font-bold text-blue-600">(+92) 304 1110947</p>
                 </div>
                 
-                <Button className="w-full bg-green-600 hover:bg-green-700">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Book Free Consultation
-                </Button>
+                <Dialog open={showConsultation} onOpenChange={setShowConsultation}>
+                  <DialogTrigger asChild>
+                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Book Free Consultation
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-md">
+                    <DialogHeader>
+                      <DialogTitle className="flex items-center text-green-600">
+                        <Calendar className="w-5 h-5 mr-2" />
+                        Book Free Consultation - USA
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                      <div className="text-center p-4 bg-blue-50 rounded-lg">
+                        <p className="font-semibold text-blue-900">UAN Number</p>
+                        <p className="text-xl font-bold text-blue-600">(+92) 304 1110947</p>
+                      </div>
+                      <div className="space-y-3">
+                        <Button 
+                          onClick={() => window.open('tel:+923041110947')}
+                          className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                        >
+                          📞 Call Now
+                        </Button>
+                        <Button 
+                          onClick={() => window.open('https://wa.me/923041110947?text=Hello, I want to book a free consultation for studying in USA')}
+                          className="w-full bg-green-600 hover:bg-green-700 text-white"
+                        >
+                          💬 WhatsApp
+                        </Button>
+                      </div>
+                      <div className="text-center text-sm text-gray-600">
+                        <p>📧 info@dunyaconsultants.com</p>
+                        <p>📍 Alif Tower, Sargodha</p>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
                 
                 <Button variant="outline" className="w-full">
                   <Globe className="w-4 h-4 mr-2" />

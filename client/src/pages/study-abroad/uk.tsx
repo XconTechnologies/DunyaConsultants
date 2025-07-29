@@ -5,10 +5,42 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Heart } from "lucide-react";
+import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Heart, Download } from "lucide-react";
+import SmartToolsPopup from "@/components/SmartToolsPopup";
+import ConsultationBooking from "@/components/ConsultationBooking";
 
 export default function StudyAbroadUK() {
   const [selectedProgram, setSelectedProgram] = useState("undergraduate");
+
+  const downloadChecklist = () => {
+    const checklistText = `UK STUDY ABROAD DOCUMENT CHECKLIST
+
+Required Documents:
+• All Educational Documents
+• Statement of Purpose
+• IELTS (if Applicable)
+• 2 Recommendation Letters
+• Experience Certificate
+• Passport
+• Europass CV
+
+Contact Information:
+UAN: (+92) 304 1110947
+Email: info@dunyaconsultants.com
+Address: Alif Tower, Sargodha
+
+© Dunya Consultants - Your trusted study abroad partner`;
+
+    const blob = new Blob([checklistText], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'UK-Study-Documents-Checklist.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  };
 
   const documentChecklist = [
     "All Educational Documents",
@@ -241,52 +273,28 @@ export default function StudyAbroadUK() {
               </CardContent>
             </Card>
 
-            {/* Smart Tools Section */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#1e3a8a] flex items-center">
-                  <Calculator className="w-6 h-6 mr-2" />
-                  Smart Tools for UK
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <Button 
-                    variant="outline" 
-                    className="h-auto p-6 flex flex-col items-center space-y-2 hover:bg-red-50"
-                    onClick={() => window.open('/cost-calculator?country=uk', '_blank')}
-                  >
-                    <Calculator className="w-8 h-8 text-red-600" />
-                    <span className="font-semibold">Cost Calculator</span>
-                    <span className="text-sm text-gray-600 text-center">Calculate your total study costs in UK</span>
-                  </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    className="h-auto p-6 flex flex-col items-center space-y-2 hover:bg-blue-50"
-                    onClick={() => window.open('/course-match-tool?country=uk', '_blank')}
-                  >
-                    <GraduationCap className="w-8 h-8 text-blue-600" />
-                    <span className="font-semibold">Course Match</span>
-                    <span className="text-sm text-gray-600 text-center">Find the perfect course for you</span>
-                  </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    className="h-auto p-6 flex flex-col items-center space-y-2 hover:bg-green-50"
-                    onClick={() => window.open('/document-checklist?country=uk', '_blank')}
-                  >
-                    <FileCheck className="w-8 h-8 text-green-600" />
-                    <span className="font-semibold">Document Checklist</span>
-                    <span className="text-sm text-gray-600 text-center">Get your personalized checklist</span>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
+            
+            {/* Smart Tools */}
+            <Card className="mb-8">
+              <CardHeader>
+                <CardTitle className="text-xl text-[#1e3a8a] flex items-center">
+                  <Calculator className="w-5 h-5 mr-2" />
+                  Smart Tools for UK
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <SmartToolsPopup 
+                  country="UK" 
+                  documentChecklist={documentChecklist}
+                  downloadChecklist={downloadChecklist}
+                />
+              </CardContent>
+            </Card>
             
             {/* Documents Checklist */}
             <Card className="mb-8">
@@ -305,8 +313,11 @@ export default function StudyAbroadUK() {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full mt-6 bg-[#124FD3] hover:bg-[#0f3ba8]">
-                  <FileText className="w-4 h-4 mr-2" />
+                <Button 
+                  onClick={downloadChecklist}
+                  className="w-full mt-6 bg-[#124FD3] hover:bg-[#0f3ba8] text-white"
+                >
+                  <Download className="w-4 h-4 mr-2" />
                   Download Full Checklist
                 </Button>
               </CardContent>
@@ -326,10 +337,12 @@ export default function StudyAbroadUK() {
                   <p className="text-xl font-bold text-red-600">(+92) 304 1110947</p>
                 </div>
                 
-                <Button className="w-full bg-green-600 hover:bg-green-700">
-                  <Calendar className="w-4 h-4 mr-2" />
-                  Book Free Consultation
-                </Button>
+                <ConsultationBooking country="UK">
+                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                    <Calendar className="w-4 h-4 mr-2" />
+                    Book Free Consultation
+                  </Button>
+                </ConsultationBooking>
                 
                 <Button variant="outline" className="w-full">
                   <Globe className="w-4 h-4 mr-2" />
