@@ -79,36 +79,36 @@ export default function BranchesCarousel() {
         <div className="relative overflow-hidden">
           <motion.div
             animate={{
-              x: [0, -128 * branches.length]
+              x: [0, -160 * branches.length]
             }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: 15,
+                duration: 18,
                 ease: "linear",
               },
             }}
             className="flex gap-4 will-change-transform"
-            style={{ width: `${128 * duplicatedBranches.length}px` }}
+            style={{ width: `${160 * duplicatedBranches.length}px` }}
           >
             {duplicatedBranches.map((branch, index) => {
               const IconComponent = branch.icon;
               return (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-32 flex items-center justify-center"
+                  className="flex-shrink-0 w-40 flex items-center justify-center"
                 >
                   {/* Clean Icon Container - Only Image */}
-                  <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                  <div className="w-28 h-28 bg-white rounded-2xl flex items-center justify-center shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     {branch.landmarkIcon ? (
                       <img 
                         src={branch.landmarkIcon} 
                         alt={`${branch.name} landmark`}
-                        className="w-14 h-14 object-contain"
+                        className="w-20 h-20 object-contain"
                       />
                     ) : (
-                      <IconComponent className="w-10 h-10 text-[#1e3a8a]" />
+                      <IconComponent className="w-12 h-12 text-[#1e3a8a]" />
                     )}
                   </div>
                 </div>
