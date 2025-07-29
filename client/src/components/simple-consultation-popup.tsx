@@ -78,7 +78,7 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
 
   return (
     <div 
-      className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center z-50 p-4 pt-16"
       style={{ 
         position: 'fixed',
         top: 0,
@@ -90,8 +90,9 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
       onClick={onClose}
     >
       <div 
-        className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-auto"
+        className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-auto mt-8"
         onClick={(e) => e.stopPropagation()}
+        style={{ marginTop: '2rem' }}
       >
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white relative">
