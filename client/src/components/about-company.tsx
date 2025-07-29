@@ -107,115 +107,98 @@ export default function AboutCompany() {
           </motion.p>
         </div>
 
-        <div className="space-y-16">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
           
-          {/* Horizontal Infinite Scrolling Images */}
+          {/* Left Side - Enhanced Scrolling Images */}
           <motion.div
             className="relative"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            initial={{ opacity: 0, x: -60 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            {/* Top Row - Moving Right */}
-            <div className="relative h-24 mb-6 overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-              <div className="absolute inset-0 flex items-center">
-                <motion.div
-                  className="flex gap-6 whitespace-nowrap"
-                  animate={{
-                    x: [0, -1000]
-                  }}
-                  transition={{
-                    duration: 25,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  {/* Duplicate images for seamless loop */}
-                  {[...aboutImages, ...aboutImages, ...aboutImages].map((img, index) => (
-                    <div
-                      key={`top-${index}`}
-                      className="flex-shrink-0 w-32 h-16 rounded-xl overflow-hidden shadow-lg"
-                    >
-                      <img
-                        src={img}
-                        alt={`Company Image ${index + 1}`}
-                        className="w-full h-full object-cover"
-                        loading="eager"
-                        decoding="async"
-                      />
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-            </div>
+            <div className="relative">
+              {/* Glass morphism container */}
+              <div className="relative h-[550px] lg:h-[650px] bg-white/20 backdrop-blur-sm border border-white/30 rounded-3xl p-4 shadow-2xl">
+                
+                {/* Decorative elements */}
+                <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl rotate-12 shadow-lg"></div>
+                <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl -rotate-12 shadow-lg"></div>
+                <div className="absolute top-1/2 -right-4 w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl rotate-45 shadow-lg"></div>
 
-            {/* Bottom Row - Moving Left */}
-            <div className="relative h-24 overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-              <div className="absolute inset-0 flex items-center">
-                <motion.div
-                  className="flex gap-6 whitespace-nowrap"
-                  animate={{
-                    x: [-1000, 0]
-                  }}
-                  transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  {/* Duplicate images for seamless loop */}
-                  {[...aboutImages, ...aboutImages, ...aboutImages].map((img, index) => (
-                    <div
-                      key={`bottom-${index}`}
-                      className="flex-shrink-0 w-32 h-16 rounded-xl overflow-hidden shadow-lg"
-                    >
-                      <img
-                        src={img}
-                        alt={`Company Image ${index + 1}`}
-                        className="w-full h-full object-cover"
-                        loading="eager"
-                        decoding="async"
-                      />
-                    </div>
-                  ))}
-                </motion.div>
-              </div>
-            </div>
+                {/* Simplified Left Column - Static Grid */}
+                <div className="absolute left-6 top-6 w-[calc(50%-16px)] h-[calc(100%-48px)] overflow-hidden rounded-2xl">
+                  <div className="grid grid-cols-1 gap-4 h-full">
+                    {leftColumnImages.slice(0, 3).map((img, index) => (
+                      <div
+                        key={`left-${index}`}
+                        className="relative rounded-xl overflow-hidden shadow-lg"
+                      >
+                        <img
+                          src={img}
+                          alt={`Company Image ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          loading="eager"
+                          decoding="async"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-            {/* Floating stats overlay */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-8">
+                {/* Simplified Right Column - Static Grid */}
+                <div className="absolute right-6 top-6 w-[calc(50%-16px)] h-[calc(100%-48px)] overflow-hidden rounded-2xl">
+                  <div className="grid grid-cols-1 gap-4 h-full">
+                    {rightColumnImages.slice(0, 3).map((img, index) => (
+                      <div
+                        key={`right-${index}`}
+                        className="relative rounded-xl overflow-hidden shadow-lg"
+                      >
+                        <img
+                          src={img}
+                          alt={`Company Image ${index + 1}`}
+                          className="w-full h-full object-cover"
+                          loading="eager"
+                          decoding="async"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating stats */}
               <motion.div
-                className="bg-white/90 backdrop-blur-md rounded-2xl px-6 py-4 shadow-2xl border border-white/40"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl px-6 py-3 shadow-xl border border-gray-100"
+                initial={{ opacity: 0, y: -20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600">17+</div>
-                  <div className="text-sm text-gray-700 font-medium">Cities</div>
+                  <div className="text-2xl font-bold text-blue-600">17+</div>
+                  <div className="text-xs text-gray-600">Cities</div>
                 </div>
               </motion.div>
 
               <motion.div
-                className="bg-white/90 backdrop-blur-md rounded-2xl px-6 py-4 shadow-2xl border border-white/40"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                className="absolute -bottom-8 left-8 bg-white rounded-2xl px-6 py-3 shadow-xl border border-gray-100"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.7 }}
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-indigo-600">250+</div>
-                  <div className="text-sm text-gray-700 font-medium">Ambassadors</div>
+                  <div className="text-2xl font-bold text-indigo-600">250+</div>
+                  <div className="text-xs text-gray-600">Ambassadors</div>
                 </div>
               </motion.div>
             </div>
           </motion.div>
 
-          {/* Content Section */}
+          {/* Right Side - Enhanced Content */}
           <motion.div
-            className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.8 }}
+            className="lg:pl-8"
+            initial={{ opacity: 0, x: 60 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
 
             {/* Enhanced Expandable Features */}
