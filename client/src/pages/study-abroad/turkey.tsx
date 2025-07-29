@@ -285,8 +285,6 @@ Address: Alif Tower, Sargodha
               <CardContent>
                 <SmartToolsPopup 
                   country="Turkey" 
-                  documentChecklist={documentChecklist}
-                  downloadChecklist={downloadChecklist}
                 />
               </CardContent>
             </Card>

@@ -277,8 +277,6 @@ Address: Alif Tower, Sargodha
               <CardContent className="space-y-4">
                 <SmartToolsPopup 
                   country="USA" 
-                  documentChecklist={documentChecklist}
-                  downloadChecklist={downloadChecklist}
                 />
               </CardContent>
             </Card>

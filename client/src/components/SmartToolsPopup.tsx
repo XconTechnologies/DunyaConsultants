@@ -3,16 +3,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calculator, GraduationCap, FileCheck, CheckCircle, Download, Plus, Minus, FileText } from "lucide-react";
+import { Calculator, GraduationCap } from "lucide-react";
 import { useState } from "react";
 
 interface SmartToolsPopupProps {
   country: string;
-  documentChecklist: string[];
-  downloadChecklist: () => void;
 }
 
-export default function SmartToolsPopup({ country, documentChecklist, downloadChecklist }: SmartToolsPopupProps) {
+export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
   // Cost Calculator State
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [selectedAccommodation, setSelectedAccommodation] = useState("");
@@ -25,8 +23,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
   const [budget, setBudget] = useState("");
   const [matchedCourses, setMatchedCourses] = useState<any[]>([]);
   
-  // Document Checklist State
-  const [checkedItems, setCheckedItems] = useState<{[key: number]: boolean}>({});
+
 
   const getCostData = (country: string) => {
     switch(country.toLowerCase()) {
@@ -158,19 +155,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
     setMatchedCourses(matched);
   };
 
-  // Handle document checklist item check/uncheck
-  const handleCheckboxChange = (index: number) => {
-    setCheckedItems(prev => ({
-      ...prev,
-      [index]: !prev[index]
-    }));
-  };
 
-  // Calculate progress percentage
-  const getProgress = () => {
-    const checkedCount = Object.values(checkedItems).filter(Boolean).length;
-    return Math.round((checkedCount / documentChecklist.length) * 100);
-  };
 
   return (
     <div className="space-y-4">
@@ -445,122 +430,6 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
         </DialogContent>
       </Dialog>
 
-      {/* Document Checklist Dialog */}
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
-            <FileCheck className="w-4 h-4 mr-2" />
-            Document Checklist
-          </Button>
-        </DialogTrigger>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="document-checklist-description">
-          <DialogHeader>
-            <DialogTitle className="text-2xl text-purple-600">{country} Document Checklist</DialogTitle>
-          </DialogHeader>
-          <div id="document-checklist-description" className="sr-only">Comprehensive document checklist for studying in {country}</div>
-          <div className="space-y-4">
-            <div className="text-center">
-              <p className="text-gray-600">Get your personalized checklist for studying in {country}</p>
-            </div>
-            <div className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-semibold text-gray-800 mb-2 flex items-center">
-                    <FileCheck className="w-5 h-5 mr-2 text-purple-600" />
-                    Academic Documents
-                  </h4>
-                  <div className="space-y-2">
-                    {documentChecklist.slice(0, Math.ceil(documentChecklist.length / 2)).map((doc, index) => (
-                      <div key={index} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border-l-4 border-purple-200">
-                        <input 
-                          type="checkbox" 
-                          className="mt-1 text-purple-600" 
-                          checked={checkedItems[index] || false}
-                          onChange={() => handleCheckboxChange(index)}
-                        />
-                        <span className={`text-sm flex-1 ${checkedItems[index] ? 'line-through text-gray-500' : 'text-gray-700'}`}>
-                          {doc}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-800 mb-2 flex items-center">
-                    <FileText className="w-5 h-5 mr-2 text-blue-600" />
-                    Supporting Documents
-                  </h4>
-                  <div className="space-y-2">
-                    {documentChecklist.slice(Math.ceil(documentChecklist.length / 2)).map((doc, index) => {
-                      const actualIndex = Math.ceil(documentChecklist.length / 2) + index;
-                      return (
-                        <div key={actualIndex} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors border-l-4 border-blue-200">
-                          <input 
-                            type="checkbox" 
-                            className="mt-1 text-blue-600" 
-                            checked={checkedItems[actualIndex] || false}
-                            onChange={() => handleCheckboxChange(actualIndex)}
-                          />
-                          <span className={`text-sm flex-1 ${checkedItems[actualIndex] ? 'line-through text-gray-500' : 'text-gray-700'}`}>
-                            {doc}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-              
-              {/* Progress Tracker */}
-              <div className="p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border border-purple-200">
-                <h4 className="font-semibold text-purple-800 mb-2">Document Preparation Progress</h4>
-                <div className="flex items-center space-x-3">
-                  <div className="flex-1 bg-gray-200 rounded-full h-2">
-                    <div 
-                      className="bg-purple-600 h-2 rounded-full transition-all duration-300" 
-                      style={{width: `${getProgress()}%`}}
-                    ></div>
-                  </div>
-                  <span className="text-sm text-purple-700">
-                    {Object.values(checkedItems).filter(Boolean).length} / {documentChecklist.length} completed
-                  </span>
-                </div>
-                <p className="text-xs text-purple-600 mt-2">
-                  {getProgress() === 100 ? '🎉 All documents ready!' : 'Check off documents as you prepare them!'}
-                </p>
-              </div>
-            </div>
-            
-            <div className="bg-purple-50 p-4 rounded-lg">
-              <h4 className="font-semibold text-purple-800 mb-2">Important Notes</h4>
-              <ul className="text-sm text-purple-700 space-y-1">
-                <li>• All documents must be in English or officially translated</li>
-                <li>• Ensure documents are notarized where required</li>
-                <li>• Keep multiple copies of all documents</li>
-                <li>• Check embassy requirements for specific countries</li>
-              </ul>
-            </div>
-            
-            <div className="flex gap-3">
-              <Button 
-                onClick={downloadChecklist}
-                className="flex-1 bg-purple-600 hover:bg-purple-700 text-white"
-              >
-                <Download className="w-4 h-4 mr-2" />
-                Download Complete Checklist
-              </Button>
-              <Button 
-                variant="outline" 
-                className="flex-1"
-                onClick={() => window.open(`tel:+923041110947`, '_self')}
-              >
-                <FileText className="w-4 h-4 mr-2" />
-                Get Document Help
-              </Button>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

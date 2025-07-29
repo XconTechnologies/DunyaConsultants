@@ -283,8 +283,6 @@ Address: Alif Tower, Sargodha
               <CardContent>
                 <SmartToolsPopup 
                   country="Canada" 
-                  documentChecklist={documentChecklist}
-                  downloadChecklist={downloadChecklist}
                 />
               </CardContent>
             </Card>

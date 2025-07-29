@@ -290,8 +290,6 @@ Address: Alif Tower, Sargodha
               <CardContent>
                 <SmartToolsPopup 
                   country="UK" 
-                  documentChecklist={documentChecklist}
-                  downloadChecklist={downloadChecklist}
                 />
               </CardContent>
             </Card>
