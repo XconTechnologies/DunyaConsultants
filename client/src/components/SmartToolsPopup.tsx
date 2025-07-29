@@ -174,6 +174,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
 
   return (
     <div className="space-y-4">
+      {/* Cost Calculator Dialog */}
       <Dialog>
         <DialogTrigger asChild>
           <Button className="w-full bg-[#124FD3] hover:bg-[#0f3ba8] text-white">
@@ -181,7 +182,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Cost Calculator
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="cost-calculator-description">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white z-50" aria-describedby="cost-calculator-description">
           <DialogHeader>
             <DialogTitle className="text-2xl text-blue-600">{country} Study Cost Calculator</DialogTitle>
           </DialogHeader>
@@ -203,7 +204,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Choose university type" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[100]">
                         {costData.tuition.map((item, index) => (
                           <SelectItem key={index} value={item.type}>
                             {item.type} - {item.cost}
@@ -219,7 +220,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Choose accommodation" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[100]">
                         {costData.living.map((item, index) => (
                           <SelectItem key={index} value={item.type}>
                             {item.type} - {item.cost}
@@ -235,7 +236,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Select duration" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[100]">
                         <SelectItem value="1">1 Year</SelectItem>
                         <SelectItem value="2">2 Years</SelectItem>
                         <SelectItem value="3">3 Years</SelectItem>
@@ -304,6 +305,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
         </DialogContent>
       </Dialog>
 
+      {/* Course Match Dialog */}
       <Dialog>
         <DialogTrigger asChild>
           <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
@@ -311,7 +313,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Course Match
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="course-match-description">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white z-50" aria-describedby="course-match-description">
           <DialogHeader>
             <DialogTitle className="text-2xl text-green-600">Find Your Perfect Course in {country}</DialogTitle>
           </DialogHeader>
@@ -333,7 +335,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Select your education level" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[100]">
                         <SelectItem value="Bachelor's Degree">Bachelor's Degree</SelectItem>
                         <SelectItem value="Master's Degree">Master's Degree</SelectItem>
                         <SelectItem value="PhD">PhD</SelectItem>
@@ -348,7 +350,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Choose your field" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[100]">
                         <SelectItem value="Engineering & Technology">Engineering & Technology</SelectItem>
                         <SelectItem value="Business & Management">Business & Management</SelectItem>
                         <SelectItem value="Medicine & Health">Medicine & Health Sciences</SelectItem>
@@ -364,7 +366,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                       <SelectTrigger>
                         <SelectValue placeholder="Select budget range" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="z-[100]">
                         <SelectItem value="under-30k">Under $30,000</SelectItem>
                         <SelectItem value="30k-50k">$30,000 - $50,000</SelectItem>
                         <SelectItem value="50k-70k">$50,000 - $70,000</SelectItem>
@@ -443,6 +445,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
         </DialogContent>
       </Dialog>
 
+      {/* Document Checklist Dialog */}
       <Dialog>
         <DialogTrigger asChild>
           <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
@@ -450,7 +453,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Document Checklist
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="document-checklist-description">
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white z-50" aria-describedby="document-checklist-description">
           <DialogHeader>
             <DialogTitle className="text-2xl text-purple-600">{country} Document Checklist</DialogTitle>
           </DialogHeader>
@@ -546,7 +549,12 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
                 <Download className="w-4 h-4 mr-2" />
                 Download Complete Checklist
               </Button>
-              <Button variant="outline" className="flex-1">
+              <Button 
+                variant="outline" 
+                className="flex-1"
+                onClick={() => window.open(`tel:+923041110947`, '_self')}
+              >
+                <FileText className="w-4 h-4 mr-2" />
                 Get Document Help
               </Button>
             </div>
