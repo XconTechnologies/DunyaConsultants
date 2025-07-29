@@ -64,53 +64,10 @@ export default function AboutCompany() {
 
   return (
     <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Animated Background */}
+      {/* Simplified Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse animation-delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
-      </div>
-
-      {/* Floating Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-20 left-10 w-3 h-3 bg-blue-400 rounded-full"
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.4, 1, 0.4]
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute top-40 right-20 w-2 h-2 bg-indigo-400 rounded-full"
-          animate={{
-            y: [0, -15, 0],
-            opacity: [0.3, 0.8, 0.3]
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-        />
-        <motion.div
-          className="absolute bottom-32 left-1/4 w-4 h-4 bg-purple-400 rounded-full"
-          animate={{
-            y: [0, -25, 0],
-            opacity: [0.2, 0.6, 0.2]
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
       </div>
 
       <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -168,62 +125,44 @@ export default function AboutCompany() {
                 <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl -rotate-12 shadow-lg"></div>
                 <div className="absolute top-1/2 -right-4 w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl rotate-45 shadow-lg"></div>
 
-                {/* Enhanced Left Column */}
+                {/* Simplified Left Column - Static Grid */}
                 <div className="absolute left-6 top-6 w-[calc(50%-16px)] h-[calc(100%-48px)] overflow-hidden rounded-2xl">
-                  <motion.div
-                    className="flex flex-col gap-4"
-                    animate={{
-                      y: [0, -600]
-                    }}
-                    transition={{
-                      duration: 12,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  >
-                    {leftColumnImages.map((img, index) => (
+                  <div className="grid grid-cols-1 gap-4 h-full">
+                    {leftColumnImages.slice(0, 3).map((img, index) => (
                       <div
                         key={`left-${index}`}
-                        className="relative rounded-xl overflow-hidden shadow-lg flex-shrink-0"
+                        className="relative rounded-xl overflow-hidden shadow-lg"
                       >
-                        <OptimizedImage
+                        <img
                           src={img}
                           alt={`Company Image ${index + 1}`}
-                          className="w-full h-32 object-cover"
-                          loading="lazy"
+                          className="w-full h-full object-cover"
+                          loading="eager"
+                          decoding="async"
                         />
                       </div>
                     ))}
-                  </motion.div>
+                  </div>
                 </div>
 
-                {/* Enhanced Right Column */}
+                {/* Simplified Right Column - Static Grid */}
                 <div className="absolute right-6 top-6 w-[calc(50%-16px)] h-[calc(100%-48px)] overflow-hidden rounded-2xl">
-                  <motion.div
-                    className="flex flex-col gap-4"
-                    animate={{
-                      y: [-600, 0]
-                    }}
-                    transition={{
-                      duration: 12,
-                      repeat: Infinity,
-                      ease: "linear"
-                    }}
-                  >
-                    {rightColumnImages.map((img, index) => (
+                  <div className="grid grid-cols-1 gap-4 h-full">
+                    {rightColumnImages.slice(0, 3).map((img, index) => (
                       <div
                         key={`right-${index}`}
-                        className="relative rounded-xl overflow-hidden shadow-lg flex-shrink-0"
+                        className="relative rounded-xl overflow-hidden shadow-lg"
                       >
-                        <OptimizedImage
+                        <img
                           src={img}
                           alt={`Company Image ${index + 1}`}
-                          className="w-full h-32 object-cover"
-                          loading="lazy"
+                          className="w-full h-full object-cover"
+                          loading="eager"
+                          decoding="async"
                         />
                       </div>
                     ))}
-                  </motion.div>
+                  </div>
                 </div>
               </div>
 
