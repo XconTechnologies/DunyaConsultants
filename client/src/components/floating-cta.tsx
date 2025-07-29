@@ -77,7 +77,7 @@ export default function FloatingCTA() {
           initial={{ opacity: 0, scale: 0, x: 100 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           exit={{ opacity: 0, scale: 0, x: 100 }}
-          className="fixed bottom-6 right-6 z-50"
+          className="fixed bottom-6 right-6 z-[9999]"
         >
           {!showFull ? (
             /* Floating Action Button */
@@ -88,7 +88,7 @@ export default function FloatingCTA() {
             >
               <button
                 onClick={toggleExpanded}
-                className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full shadow-2xl flex items-center justify-center text-white relative overflow-hidden group"
+                className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full shadow-2xl flex items-center justify-center text-white relative overflow-hidden group z-[10001]"
               >
                 {/* Pulse Animation */}
                 <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20"></div>
@@ -105,7 +105,7 @@ export default function FloatingCTA() {
               </button>
 
               {/* Tooltip */}
-              <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-[10000]">
                 <div className="bg-gray-800 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap">
                   Get Free Consultation
                   <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
@@ -120,7 +120,7 @@ export default function FloatingCTA() {
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
               className="w-80"
             >
-              <Card className="shadow-2xl border-0 bg-white">
+              <Card className="shadow-2xl border-0 bg-white z-[10000] relative">
                 <CardContent className="p-0">
                   {/* Header */}
                   <div className="bg-gradient-to-r from-primary to-secondary p-4 text-white relative">
