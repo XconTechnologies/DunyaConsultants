@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/DC White Logo_1751441165041.png";
 import logoImageBlue from "@assets/DC Blue Logo_1751440868138.png";
-import ConsultationPopup from "@/components/consultation-popup";
+import SimpleConsultationPopup from "@/components/simple-consultation-popup";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -517,7 +517,7 @@ export default function Navigation() {
                     setShowConsultationPopup(true);
                     setIsOpen(false);
                   }}
-                  className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold"
                 >
                   Free Consultation
                 </Button>
@@ -528,7 +528,7 @@ export default function Navigation() {
       </AnimatePresence>
 
       {/* Consultation Popup */}
-      <ConsultationPopup 
+      <SimpleConsultationPopup 
         isOpen={showConsultationPopup} 
         onClose={() => setShowConsultationPopup(false)} 
       />
