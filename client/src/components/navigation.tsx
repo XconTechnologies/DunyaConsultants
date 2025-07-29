@@ -266,7 +266,7 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+    <nav className={`fixed w-full top-0 z-40 transition-all duration-500 ${
       isScrolled 
         ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-white/20" 
         : "bg-gradient-to-r from-blue-900/20 via-indigo-900/20 to-purple-900/20 backdrop-blur-md border-b border-white/10"

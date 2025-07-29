@@ -53,7 +53,7 @@ export default function FloatingCTA() {
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY;
-      setIsVisible(scrolled > 500);
+      setIsVisible(scrolled > 100);
     };
 
     window.addEventListener('scroll', handleScroll);
