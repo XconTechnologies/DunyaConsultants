@@ -61,12 +61,9 @@ export default function StudyAbroadUSA() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <div className="flex items-center justify-center mb-6">
-              <span className="text-6xl mr-4">🇺🇸</span>
-              <h1 className="text-5xl lg:text-7xl font-bold">
-                Study in <span className="text-yellow-400">USA</span>
-              </h1>
-            </div>
+            <h1 className="text-5xl lg:text-7xl font-bold mb-6">
+              Study in <span className="text-yellow-400">USA</span>
+            </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto text-blue-100 mb-8">
               Discover world-class education opportunities in the United States with over 5,000 higher education institutes
             </p>
@@ -272,7 +269,7 @@ export default function StudyAbroadUSA() {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
             
             {/* Documents Checklist */}
             <Card className="mb-8">

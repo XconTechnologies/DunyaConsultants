@@ -60,12 +60,9 @@ export default function StudyAbroadBelgium() {
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <div className="flex items-center justify-center mb-6">
-              <span className="text-6xl mr-4">🇧🇪</span>
-              <h1 className="text-5xl lg:text-7xl font-bold text-white">
-                Study in <span className="text-yellow-400">Belgium</span>
-              </h1>
-            </div>
+            <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6">
+              Study in <span className="text-yellow-400">Belgium</span>
+            </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto text-gray-100 mb-8">
               Experience exceptional education in the heart of Europe with renowned universities and rich cultural heritage
             </p>
@@ -283,7 +280,7 @@ export default function StudyAbroadBelgium() {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 lg:sticky lg:top-24 lg:self-start">
             
             {/* Documents Checklist */}
             <Card className="mb-8">
