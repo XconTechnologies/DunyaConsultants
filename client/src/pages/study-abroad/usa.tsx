@@ -258,48 +258,7 @@ Address: Alif Tower, Sargodha
               </CardContent>
             </Card>
 
-            {/* Smart Tools Section */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#1e3a8a] flex items-center">
-                  <Calculator className="w-6 h-6 mr-2" />
-                  Smart Tools for USA
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <Button 
-                    variant="outline" 
-                    className="h-auto p-6 flex flex-col items-center space-y-2 hover:bg-blue-50"
-                    onClick={() => window.open('/cost-calculator', '_blank')}
-                  >
-                    <Calculator className="w-8 h-8 text-blue-600" />
-                    <span className="font-semibold">Cost Calculator</span>
-                    <span className="text-sm text-gray-600 text-center">Calculate your total study costs in USA</span>
-                  </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    className="h-auto p-6 flex flex-col items-center space-y-2 hover:bg-green-50"
-                    onClick={() => window.open('/course-match-tool', '_blank')}
-                  >
-                    <GraduationCap className="w-8 h-8 text-green-600" />
-                    <span className="font-semibold">Course Match</span>
-                    <span className="text-sm text-gray-600 text-center">Find the perfect course for you</span>
-                  </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    className="h-auto p-6 flex flex-col items-center space-y-2 hover:bg-purple-50"
-                    onClick={() => window.open('/document-checklist', '_blank')}
-                  >
-                    <FileCheck className="w-8 h-8 text-purple-600" />
-                    <span className="font-semibold">Document Checklist</span>
-                    <span className="text-sm text-gray-600 text-center">Get your personalized checklist</span>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+
           </div>
 
           {/* Sidebar */}

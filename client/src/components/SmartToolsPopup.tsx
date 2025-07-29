@@ -99,7 +99,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Cost Calculator
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white">
           <DialogHeader>
             <DialogTitle className="text-2xl text-blue-600">{country} Study Cost Calculator</DialogTitle>
           </DialogHeader>
@@ -145,7 +145,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Course Match
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white">
           <DialogHeader>
             <DialogTitle className="text-2xl text-green-600">Find Your Perfect Course in {country}</DialogTitle>
           </DialogHeader>
@@ -183,7 +183,7 @@ export default function SmartToolsPopup({ country, documentChecklist, downloadCh
             Document Checklist
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto bg-white">
           <DialogHeader>
             <DialogTitle className="text-2xl text-purple-600">{country} Document Checklist</DialogTitle>
           </DialogHeader>
