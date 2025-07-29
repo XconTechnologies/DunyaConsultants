@@ -292,7 +292,7 @@ export default function StudyAbroadUK() {
           <div className="lg:col-span-1">
             
             {/* Documents Checklist */}
-            <Card className="mb-8 sticky top-8">
+            <Card className="mb-8 sticky top-8 max-h-[calc(100vh-2rem)] overflow-y-auto">
               <CardHeader>
                 <CardTitle className="text-xl text-[#1e3a8a] flex items-center">
                   <FileCheck className="w-5 h-5 mr-2" />
@@ -316,7 +316,7 @@ export default function StudyAbroadUK() {
             </Card>
 
             {/* Quick Contact */}
-            <Card>
+            <Card className="sticky top-8 max-h-[calc(100vh-2rem)] overflow-y-auto">
               <CardHeader>
                 <CardTitle className="text-xl text-[#1e3a8a] flex items-center">
                   <MapPin className="w-5 h-5 mr-2" />

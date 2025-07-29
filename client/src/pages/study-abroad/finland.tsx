@@ -250,7 +250,7 @@ export default function StudyAbroadFinland() {
                   <Button 
                     variant="outline" 
                     className="h-auto p-6 flex flex-col items-center space-y-2 hover:bg-blue-50"
-                    onClick={() => window.open('/cost-calculator?country=finland', '_blank')}
+                    onClick={() => window.open('/cost-calculator?country=fi', '_blank')}
                   >
                     <Calculator className="w-8 h-8 text-blue-600" />
                     <span className="font-semibold">Cost Calculator</span>
@@ -260,7 +260,7 @@ export default function StudyAbroadFinland() {
                   <Button 
                     variant="outline" 
                     className="h-auto p-6 flex flex-col items-center space-y-2 hover:bg-green-50"
-                    onClick={() => window.open('/course-match-tool?country=finland', '_blank')}
+                    onClick={() => window.open('/course-match-tool?country=fi', '_blank')}
                   >
                     <GraduationCap className="w-8 h-8 text-green-600" />
                     <span className="font-semibold">Course Match</span>
@@ -270,7 +270,7 @@ export default function StudyAbroadFinland() {
                   <Button 
                     variant="outline" 
                     className="h-auto p-6 flex flex-col items-center space-y-2 hover:bg-purple-50"
-                    onClick={() => window.open('/document-checklist?country=finland', '_blank')}
+                    onClick={() => window.open('/document-checklist?country=fi', '_blank')}
                   >
                     <FileCheck className="w-8 h-8 text-purple-600" />
                     <span className="font-semibold">Document Checklist</span>
@@ -285,7 +285,7 @@ export default function StudyAbroadFinland() {
           <div className="lg:col-span-1">
             
             {/* Documents Checklist */}
-            <Card className="mb-8 sticky top-8">
+            <Card className="mb-8 sticky top-8 max-h-[calc(100vh-2rem)] overflow-y-auto">
               <CardHeader>
                 <CardTitle className="text-xl text-[#1e3a8a] flex items-center">
                   <FileCheck className="w-5 h-5 mr-2" />
@@ -309,7 +309,7 @@ export default function StudyAbroadFinland() {
             </Card>
 
             {/* Quick Contact */}
-            <Card>
+            <Card className="sticky top-8 max-h-[calc(100vh-2rem)] overflow-y-auto">
               <CardHeader>
                 <CardTitle className="text-xl text-[#1e3a8a] flex items-center">
                   <MapPin className="w-5 h-5 mr-2" />
