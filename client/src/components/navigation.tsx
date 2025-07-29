@@ -61,36 +61,28 @@ export default function Navigation() {
         href: "/about"
       }
     },
-    "Study Destinations": {
+    "Study Abroad": {
       icon: Globe,
       sections: [
         {
           title: "Popular Destinations",
           icon: Globe,
           items: [
-            { name: "Study in Canada", href: "/country-guide/canada", description: "World-class education & immigration" },
-            { name: "Study in UK", href: "/country-guide/uk", description: "Prestigious universities & culture" },
-            { name: "Study in Australia", href: "/country-guide/australia", description: "Quality education & lifestyle" },
-            { name: "Study in USA", href: "/country-guide/usa", description: "Top universities & opportunities" }
-          ]
-        },
-        {
-          title: "Smart Tools",
-          icon: ArrowRight,
-          items: [
-            { name: "Cost Calculator", href: "/cost-calculator", description: "Calculate study abroad costs" },
-            { name: "Course Match Tool", href: "/course-match-tool", description: "Find your perfect course & country" },
-            { name: "Document Checklist", href: "/document-checklist", description: "Generate personalized document checklists" },
-            { name: "Business Card Generator", href: "/business-card-generator", description: "Create professional glassmorphic business cards" },
-            { name: "Country Guide", href: "/country-guide", description: "Comprehensive destination guides" }
+            { name: "USA", href: "/study-abroad/usa", description: "World's top universities & opportunities" },
+            { name: "UK", href: "/study-abroad/uk", description: "Quality education & rich culture" },
+            { name: "Canada", href: "/study-abroad/canada", description: "Affordable & immigration-friendly" },
+            { name: "Finland", href: "/study-abroad/finland", description: "Free education & innovation hub" },
+            { name: "Australia", href: "/study-abroad/australia", description: "High quality of life & education" },
+            { name: "Belgium", href: "/study-abroad/belgium", description: "European excellence & diversity" },
+            { name: "Turkey", href: "/study-abroad/turkey", description: "Cultural bridge & affordable education" }
           ]
         }
       ],
       featured: {
-        title: "Free Country Selection",
-        description: "Get personalized recommendations",
-        cta: "Explore Now",
-        href: "/country-guide"
+        title: "Free Country Consultation",
+        description: "Get personalized study abroad guidance",
+        cta: "Book Now",
+        href: "/consultation"
       }
     },
     "Services": {
@@ -265,7 +257,7 @@ export default function Navigation() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", megaMenu: true },
-    { name: "Study Destinations", megaMenu: true },
+    { name: "Study Abroad", megaMenu: true },
     { name: "Services", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },

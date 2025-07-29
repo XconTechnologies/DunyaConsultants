@@ -96,6 +96,15 @@ import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import BlogEditor from "@/pages/admin/blog-editor";
 
+// Study Abroad Pages
+import StudyAbroadUSA from "@/pages/study-abroad/usa";
+import StudyAbroadUK from "@/pages/study-abroad/uk";
+import StudyAbroadCanada from "@/pages/study-abroad/canada";
+import StudyAbroadFinland from "@/pages/study-abroad/finland";
+import StudyAbroadAustralia from "@/pages/study-abroad/australia";
+import StudyAbroadBelgium from "@/pages/study-abroad/belgium";
+import StudyAbroadTurkey from "@/pages/study-abroad/turkey";
+
 function Router() {
   return (
     <Switch>
@@ -182,6 +191,16 @@ function Router() {
       <Route path="/scholarships" component={ScholarshipsPage} />
       <Route path="/services" component={ServicesPage} />
       <Route path="/study-abroad-journey" component={StudyAbroadJourney} />
+      
+      {/* Study Abroad Routes */}
+      <Route path="/study-abroad/usa" component={StudyAbroadUSA} />
+      <Route path="/study-abroad/uk" component={StudyAbroadUK} />
+      <Route path="/study-abroad/canada" component={StudyAbroadCanada} />
+      <Route path="/study-abroad/finland" component={StudyAbroadFinland} />
+      <Route path="/study-abroad/australia" component={StudyAbroadAustralia} />
+      <Route path="/study-abroad/belgium" component={StudyAbroadBelgium} />
+      <Route path="/study-abroad/turkey" component={StudyAbroadTurkey} />
+      
       <Route path="/offices" component={OfficesList} />
       <Route path="/offices/:officeId" component={OfficeDetails} />
       
