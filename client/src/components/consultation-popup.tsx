@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Phone, Mail, MapPin, Clock, User, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,19 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const consultationTypes = [
     "General Consultation",
@@ -75,13 +88,31 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4" style={{ zIndex: 99999 }}>
+        <div 
+          className="fixed inset-0 flex items-center justify-center p-4"
+          style={{ 
+            zIndex: 999999,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0
+          }}
+        >
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            style={{ 
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 1
+            }}
             onClick={onClose}
           />
           
@@ -90,7 +121,8 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-auto z-[100000]"
+            className="relative w-full max-w-4xl max-h-[90vh] overflow-auto"
+            style={{ zIndex: 2 }}
           >
             <Card className="bg-white shadow-2xl border-0">
               <CardContent className="p-0">
