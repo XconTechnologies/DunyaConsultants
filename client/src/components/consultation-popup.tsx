@@ -75,7 +75,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4" style={{ zIndex: 99999 }}>
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -90,7 +90,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-auto"
+            className="relative w-full max-w-4xl max-h-[90vh] overflow-auto z-[100000]"
           >
             <Card className="bg-white shadow-2xl border-0">
               <CardContent className="p-0">
