@@ -79,7 +79,7 @@ export default function BranchesCarousel() {
         <div className="relative overflow-hidden">
           <motion.div
             animate={{
-              x: [0, -150 * branches.length]
+              x: [0, -128 * branches.length]
             }}
             transition={{
               x: {
@@ -89,41 +89,36 @@ export default function BranchesCarousel() {
                 ease: "linear",
               },
             }}
-            className="flex gap-6 will-change-transform"
-            style={{ width: `${150 * duplicatedBranches.length}px` }}
+            className="flex gap-4 will-change-transform"
+            style={{ width: `${128 * duplicatedBranches.length}px` }}
           >
             {duplicatedBranches.map((branch, index) => {
               const IconComponent = branch.icon;
               return (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-36 text-center"
+                  className="flex-shrink-0 w-32 flex items-center justify-center"
                 >
-                  {/* Icon with Sketch */}
-                  <div className="w-16 h-16 mx-auto mb-3 bg-white rounded-full flex items-center justify-center relative shadow-lg border border-blue-100">
+                  {/* Clean Icon Container - Only Image */}
+                  <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105">
                     {branch.landmarkIcon ? (
                       <img 
                         src={branch.landmarkIcon} 
                         alt={`${branch.name} landmark`}
-                        className="w-10 h-10 object-contain"
+                        className="w-14 h-14 object-contain"
                       />
                     ) : (
-                      <IconComponent className="w-8 h-8 text-[#1e3a8a]" />
+                      <IconComponent className="w-10 h-10 text-[#1e3a8a]" />
                     )}
                   </div>
-                  
-                  {/* Branch Name */}
-                  <h3 className="text-sm font-medium text-[#1e3a8a]">
-                    {branch.name}
-                  </h3>
                 </div>
               );
             })}
           </motion.div>
 
           {/* Gradient Overlays for smooth fade effect */}
-          <div className="absolute top-0 left-0 w-20 h-full bg-gradient-to-r from-blue-50 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute top-0 right-0 w-20 h-full bg-gradient-to-l from-blue-50 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-blue-50 via-blue-50/80 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-blue-50 via-blue-50/80 to-transparent z-10 pointer-events-none"></div>
         </div>
 
         {/* Statistics Section */}
