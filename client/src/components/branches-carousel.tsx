@@ -121,30 +121,7 @@ export default function BranchesCarousel() {
           <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-blue-50 via-blue-50/80 to-transparent z-10 pointer-events-none"></div>
         </div>
 
-        {/* Statistics Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-        >
-          <div className="text-center p-4 bg-white rounded-lg shadow-md">
-            <div className="text-2xl lg:text-3xl font-bold text-[#1e3a8a] mb-1">17+</div>
-            <div className="text-sm text-gray-600">Branches</div>
-          </div>
-          <div className="text-center p-4 bg-white rounded-lg shadow-md">
-            <div className="text-2xl lg:text-3xl font-bold text-[#1e3a8a] mb-1">15+</div>
-            <div className="text-sm text-gray-600">Cities</div>
-          </div>
-          <div className="text-center p-4 bg-white rounded-lg shadow-md">
-            <div className="text-2xl lg:text-3xl font-bold text-[#1e3a8a] mb-1">200+</div>
-            <div className="text-sm text-gray-600">Expert Staff</div>
-          </div>
-          <div className="text-center p-4 bg-white rounded-lg shadow-md">
-            <div className="text-2xl lg:text-3xl font-bold text-[#1e3a8a] mb-1">10K+</div>
-            <div className="text-sm text-gray-600">Students Served</div>
-          </div>
-        </motion.div>
+
       </div>
     </section>
   );
