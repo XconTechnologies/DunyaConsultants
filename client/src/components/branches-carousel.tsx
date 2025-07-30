@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useState } from "react";
 import { 
   Building, 
   Building2, 
@@ -195,6 +196,19 @@ const branches = [
 export default function BranchesCarousel() {
   // Duplicate the array for seamless infinite scrolling
   const duplicatedBranches = [...branches, ...branches];
+  const [isPaused, setIsPaused] = useState(false);
+  const controls = useAnimation();
+
+  const handleCallClick = (phone: string) => {
+    window.open(`tel:${phone}`, '_self');
+  };
+
+  const handleEmailClick = (branchName: string) => {
+    const email = 'info@dunyaconsultants.com';
+    const subject = `Inquiry from ${branchName} Branch`;
+    const body = `Hello, I would like to inquire about services at your ${branchName} branch.`;
+    window.open(`mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_self');
+  };
 
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-gray-50 relative overflow-hidden">
@@ -228,9 +242,13 @@ export default function BranchesCarousel() {
         </div>
 
         {/* Right-to-Left Scrolling Carousel */}
-        <div className="relative overflow-hidden mb-16">
+        <div 
+          className="relative overflow-hidden mb-16"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <motion.div
-            animate={{
+            animate={isPaused ? {} : {
               x: [0, -320 * branches.length]
             }}
             transition={{
@@ -307,11 +325,17 @@ export default function BranchesCarousel() {
 
                     {/* Contact Buttons */}
                     <div className="mt-4 flex space-x-2">
-                      <button className={`flex-1 bg-gradient-to-r ${branch.color} text-white text-sm font-medium py-2 px-3 rounded-lg hover:shadow-md transition-shadow`}>
+                      <button 
+                        onClick={() => handleCallClick(branch.phone)}
+                        className={`flex-1 bg-gradient-to-r ${branch.color} text-white text-sm font-medium py-2 px-3 rounded-lg hover:shadow-md transition-shadow`}
+                      >
                         <Phone className="w-4 h-4 inline mr-1" />
                         Call
                       </button>
-                      <button className="flex-1 bg-gray-100 text-gray-700 text-sm font-medium py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors">
+                      <button 
+                        onClick={() => handleEmailClick(branch.name)}
+                        className="flex-1 bg-gray-100 text-gray-700 text-sm font-medium py-2 px-3 rounded-lg hover:bg-gray-200 transition-colors"
+                      >
                         <Mail className="w-4 h-4 inline mr-1" />
                         Email
                       </button>
