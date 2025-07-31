@@ -90,54 +90,54 @@ export default function AboutCompany() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
         >
-          {/* Content Container with Border - Full Width */}
-          <div className="bg-white/70 backdrop-blur-sm border-2 border-gray-200 rounded-3xl p-8 lg:p-12 shadow-xl w-full">
+          {/* Content Container with Border */}
+          <div className="bg-white/70 backdrop-blur-sm border-2 border-gray-200 rounded-3xl p-8 lg:p-12 shadow-xl max-w-5xl mx-auto">
             
             {/* Statistics Cards at Top */}
-            <div className="flex justify-center gap-8 lg:gap-12 xl:gap-16 mb-12">
+            <div className="flex justify-center gap-6 mb-8">
               <motion.div
-                className="bg-white rounded-2xl px-8 py-6 shadow-lg border border-gray-100"
+                className="bg-white rounded-2xl px-6 py-4 shadow-lg border border-gray-100"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.8, delay: 1.0 }}
               >
                 <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-blue-600">17+</div>
-                  <div className="text-sm text-gray-600 font-medium">Cities</div>
+                  <div className="text-2xl font-bold text-blue-600">17+</div>
+                  <div className="text-xs text-gray-600 font-medium">Cities</div>
                 </div>
               </motion.div>
 
               <motion.div
-                className="bg-white rounded-2xl px-8 py-6 shadow-lg border border-gray-100"
+                className="bg-white rounded-2xl px-6 py-4 shadow-lg border border-gray-100"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.8, delay: 1.1 }}
               >
                 <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-indigo-600">250+</div>
-                  <div className="text-sm text-gray-600 font-medium">Ambassadors</div>
+                  <div className="text-2xl font-bold text-indigo-600">250+</div>
+                  <div className="text-xs text-gray-600 font-medium">Ambassadors</div>
                 </div>
               </motion.div>
 
               <motion.div
-                className="bg-white rounded-2xl px-8 py-6 shadow-lg border border-gray-100"
+                className="bg-white rounded-2xl px-6 py-4 shadow-lg border border-gray-100"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.8, delay: 1.2 }}
               >
                 <div className="text-center">
-                  <div className="text-3xl lg:text-4xl font-bold text-emerald-600">200+</div>
-                  <div className="text-sm text-gray-600 font-medium">Expert Staff</div>
+                  <div className="text-2xl font-bold text-emerald-600">200+</div>
+                  <div className="text-xs text-gray-600 font-medium">Expert Staff</div>
                 </div>
               </motion.div>
             </div>
             
             {/* Benefits Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {companyFeatures.map((item, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-start space-x-4 group hover:bg-green-50/50 p-6 rounded-2xl transition-all duration-300"
+                  className="flex items-start space-x-4 group hover:bg-green-50/50 p-4 rounded-2xl transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
@@ -158,27 +158,6 @@ export default function AboutCompany() {
                   </div>
                 </motion.div>
               ))}
-              
-              {/* Additional Call-to-Action Card to fill space */}
-              <motion.div
-                className="xl:col-span-2 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-dashed border-blue-200 p-6 rounded-2xl"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: 1.4 }}
-              >
-                <div className="text-center">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Zap className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <h4 className="font-bold text-gray-800 text-lg mb-2">Ready to Start Your Journey?</h4>
-                  <p className="text-sm text-gray-600 mb-4">
-                    Join thousands of successful students who have achieved their dreams with our expert guidance and personalized support.
-                  </p>
-                  <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-300">
-                    Get Free Consultation
-                  </button>
-                </div>
-              </motion.div>
             </div>
 
             {/* CTA Button */}
