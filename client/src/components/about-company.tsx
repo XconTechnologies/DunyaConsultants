@@ -104,74 +104,56 @@ export default function AboutCompany() {
                     
                     {/* Left Column - Scrolling Up to Down */}
                     <div className="h-full overflow-hidden">
-                      <motion.div
-                        className="space-y-4"
-                        animate={{
-                          y: [0, -300, 0]
-                        }}
-                        transition={{
-                          duration: 25,
-                          repeat: Infinity,
-                          ease: "linear"
-                        }}
-                        style={{ willChange: 'transform' }}
-                      >
-                        {[...leftImages, ...leftImages].map((img, index) => (
+                      <div className="flex flex-col space-y-4 animate-scroll-up">
+                        {[...leftImages, ...leftImages, ...leftImages].map((img, index) => (
                           <div
                             key={`left-${index}`}
                             className="relative flex-shrink-0"
                           >
-                            <div className="relative overflow-hidden rounded-xl shadow-md bg-gray-100">
+                            <div className="relative overflow-hidden rounded-xl shadow-md bg-white">
                               <div className="relative h-32 lg:h-40">
                                 <img
                                   src={img}
-                                  alt=""
+                                  alt={`Company image ${(index % 3) + 1}`}
                                   className="w-full h-full object-cover"
                                   loading="eager"
-                                  decoding="async"
-                                  style={{ willChange: 'transform' }}
+                                  onLoad={(e) => {
+                                    e.currentTarget.style.opacity = '1';
+                                  }}
+                                  style={{ opacity: '0', transition: 'opacity 0.3s ease' }}
                                 />
                               </div>
                             </div>
                           </div>
                         ))}
-                      </motion.div>
+                      </div>
                     </div>
 
                     {/* Right Column - Scrolling Down to Up */}
                     <div className="h-full overflow-hidden">
-                      <motion.div
-                        className="space-y-4"
-                        animate={{
-                          y: [0, 300, 0]
-                        }}
-                        transition={{
-                          duration: 25,
-                          repeat: Infinity,
-                          ease: "linear"
-                        }}
-                        style={{ willChange: 'transform' }}
-                      >
-                        {[...rightImages, ...rightImages].map((img, index) => (
+                      <div className="flex flex-col space-y-4 animate-scroll-down">
+                        {[...rightImages, ...rightImages, ...rightImages].map((img, index) => (
                           <div
                             key={`right-${index}`}
                             className="relative flex-shrink-0"
                           >
-                            <div className="relative overflow-hidden rounded-xl shadow-md bg-gray-100">
+                            <div className="relative overflow-hidden rounded-xl shadow-md bg-white">
                               <div className="relative h-32 lg:h-40">
                                 <img
                                   src={img}
-                                  alt=""
+                                  alt={`Company image ${(index % 3) + 1}`}
                                   className="w-full h-full object-cover"
                                   loading="eager"
-                                  decoding="async"
-                                  style={{ willChange: 'transform' }}
+                                  onLoad={(e) => {
+                                    e.currentTarget.style.opacity = '1';
+                                  }}
+                                  style={{ opacity: '0', transition: 'opacity 0.3s ease' }}
                                 />
                               </div>
                             </div>
                           </div>
                         ))}
-                      </motion.div>
+                      </div>
                     </div>
                   </div>
                   
