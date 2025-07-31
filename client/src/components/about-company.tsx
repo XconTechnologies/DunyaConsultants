@@ -107,21 +107,21 @@ export default function AboutCompany() {
                       <motion.div
                         className="space-y-4"
                         animate={{
-                          y: [0, -600]
+                          y: [0, -300, 0]
                         }}
                         transition={{
-                          duration: 12,
+                          duration: 25,
                           repeat: Infinity,
-                          ease: "linear",
-                          repeatType: "loop"
+                          ease: "linear"
                         }}
+                        style={{ willChange: 'transform' }}
                       >
-                        {[...leftImages, ...leftImages, ...leftImages].map((img, index) => (
+                        {[...leftImages, ...leftImages].map((img, index) => (
                           <div
                             key={`left-${index}`}
-                            className="relative"
+                            className="relative flex-shrink-0"
                           >
-                            <div className="relative overflow-hidden rounded-xl shadow-md">
+                            <div className="relative overflow-hidden rounded-xl shadow-md bg-gray-100">
                               <div className="relative h-32 lg:h-40">
                                 <img
                                   src={img}
@@ -129,6 +129,7 @@ export default function AboutCompany() {
                                   className="w-full h-full object-cover"
                                   loading="eager"
                                   decoding="async"
+                                  style={{ willChange: 'transform' }}
                                 />
                               </div>
                             </div>
@@ -142,21 +143,21 @@ export default function AboutCompany() {
                       <motion.div
                         className="space-y-4"
                         animate={{
-                          y: [0, 600]
+                          y: [0, 300, 0]
                         }}
                         transition={{
-                          duration: 12,
+                          duration: 25,
                           repeat: Infinity,
-                          ease: "linear",
-                          repeatType: "loop"
+                          ease: "linear"
                         }}
+                        style={{ willChange: 'transform' }}
                       >
-                        {[...rightImages, ...rightImages, ...rightImages].map((img, index) => (
+                        {[...rightImages, ...rightImages].map((img, index) => (
                           <div
                             key={`right-${index}`}
-                            className="relative"
+                            className="relative flex-shrink-0"
                           >
-                            <div className="relative overflow-hidden rounded-xl shadow-md">
+                            <div className="relative overflow-hidden rounded-xl shadow-md bg-gray-100">
                               <div className="relative h-32 lg:h-40">
                                 <img
                                   src={img}
@@ -164,6 +165,7 @@ export default function AboutCompany() {
                                   className="w-full h-full object-cover"
                                   loading="eager"
                                   decoding="async"
+                                  style={{ willChange: 'transform' }}
                                 />
                               </div>
                             </div>
