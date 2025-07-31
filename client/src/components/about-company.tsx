@@ -28,14 +28,9 @@ const expandableContent = [
     content: "We are proud to have around 250 ambassadors working with us internationally and have partnered with 30 top educational institutions in Pakistan and more than 20 foreign universities."
   },
   {
-    title: "Scholarship Programs",
-    content: "Since the student visa process can be quite challenging, that's why our Education Consultants are trained enough to provide personalized support to every student so that they can have a smooth and hassle-free experience."
-  },
-  {
     title: "Smooth Visa Approval Process", 
     content: "As a growing study abroad consultants' firm, we help students in visa interview preparations and guide them throughout the student visa application process."
-  },
-
+  }
 ];
 
 export default function AboutCompany() {
@@ -243,8 +238,8 @@ export default function AboutCompany() {
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
             {/* Single Unified Content Container */}
-            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-8 overflow-y-auto">
-              <div className="space-y-6">
+            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-8 flex flex-col justify-center">
+              <div className="space-y-8">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
