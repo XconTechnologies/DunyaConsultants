@@ -105,6 +105,10 @@ import StudyAbroadAustralia from "@/pages/study-abroad/australia";
 import StudyAbroadBelgium from "@/pages/study-abroad/belgium";
 import StudyAbroadTurkey from "@/pages/study-abroad/turkey";
 
+// About Pages
+import WhoWeAre from "@/pages/about/who-we-are";
+import MissionVision from "@/pages/about/mission-vision";
+
 function Router() {
   return (
     <Switch>
@@ -191,6 +195,10 @@ function Router() {
       <Route path="/scholarships" component={ScholarshipsPage} />
       <Route path="/services" component={ServicesPage} />
       <Route path="/study-abroad-journey" component={StudyAbroadJourney} />
+      
+      {/* About Routes */}
+      <Route path="/about/who-we-are" component={WhoWeAre} />
+      <Route path="/about/mission-vision" component={MissionVision} />
       
       {/* Study Abroad Routes */}
       <Route path="/study-abroad/usa" component={StudyAbroadUSA} />
