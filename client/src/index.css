@@ -70,16 +70,6 @@
   }
 }
 
-/* Scrollbar utilities */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
 /* Performance optimizations */
 * {
   box-sizing: border-box;
