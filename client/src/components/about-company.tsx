@@ -1,6 +1,6 @@
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { CheckCircle, ChevronLeft, ChevronRight, Zap } from "lucide-react";
+import { CheckCircle, Zap } from "lucide-react";
 
 // Import only 6 key images for better performance
 import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
@@ -40,23 +40,6 @@ const companyFeatures = [
 export default function AboutCompany() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Auto-advance carousel every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prev) => (prev + 1) % aboutImages.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextImage = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev + 1) % aboutImages.length);
-  }, []);
-
-  const prevImage = useCallback(() => {
-    setCurrentImageIndex((prev) => (prev - 1 + aboutImages.length) % aboutImages.length);
-  }, []);
 
   return (
     <section ref={ref} className="relative py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50">
@@ -100,81 +83,23 @@ export default function AboutCompany() {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          
-          {/* Left Side - Modern Image Carousel */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: -60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <div className="relative">
-              {/* Main Image Container */}
-              <div className="relative h-[500px] lg:h-[600px] bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
-                
-                {/* Image Display */}
-                <div className="relative h-full">
-                  <motion.img
-                    key={currentImageIndex}
-                    src={aboutImages[currentImageIndex]}
-                    alt={`Company Image ${currentImageIndex + 1}`}
-                    className="w-full h-full object-cover"
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.6 }}
-                  />
-                  
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                  
-                  {/* Image Caption */}
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
-                      <h4 className="font-bold text-gray-800 mb-1">Our Journey</h4>
-                      <p className="text-sm text-gray-600">Building futures through education</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Navigation Buttons */}
-                <button
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 group"
-                >
-                  <ChevronLeft className="w-5 h-5 text-gray-700 group-hover:text-blue-600" />
-                </button>
-                
-                <button
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full p-3 transition-all duration-300 group"
-                >
-                  <ChevronRight className="w-5 h-5 text-gray-700 group-hover:text-blue-600" />
-                </button>
-
-                {/* Dot Indicators */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
-                  {aboutImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentImageIndex(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        currentImageIndex === index 
-                          ? 'bg-blue-600 scale-125' 
-                          : 'bg-white/60 hover:bg-white/80'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Floating Statistics Cards */}
+        {/* Content Section - Top */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
+        >
+          {/* Content Container with Border */}
+          <div className="bg-white/70 backdrop-blur-sm border-2 border-gray-200 rounded-3xl p-8 lg:p-12 shadow-xl max-w-5xl mx-auto">
+            
+            {/* Statistics Cards at Top */}
+            <div className="flex justify-center gap-6 mb-8">
               <motion.div
-                className="absolute -top-6 left-8 bg-white rounded-2xl px-6 py-4 shadow-xl border border-gray-100"
-                initial={{ opacity: 0, y: -30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
+                className="bg-white rounded-2xl px-6 py-4 shadow-lg border border-gray-100"
+                initial={{ opacity: 0, y: -20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+                transition={{ duration: 0.8, delay: 1.0 }}
               >
                 <div className="text-center">
                   <div className="text-2xl font-bold text-blue-600">17+</div>
@@ -183,82 +108,153 @@ export default function AboutCompany() {
               </motion.div>
 
               <motion.div
-                className="absolute -bottom-6 right-8 bg-white rounded-2xl px-6 py-4 shadow-xl border border-gray-100"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 1.4 }}
+                className="bg-white rounded-2xl px-6 py-4 shadow-lg border border-gray-100"
+                initial={{ opacity: 0, y: -20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+                transition={{ duration: 0.8, delay: 1.1 }}
               >
                 <div className="text-center">
                   <div className="text-2xl font-bold text-indigo-600">250+</div>
                   <div className="text-xs text-gray-600 font-medium">Ambassadors</div>
                 </div>
               </motion.div>
-            </div>
-          </motion.div>
 
-          {/* Right Side - Why Choose Us Content */}
-          <motion.div
-            className="lg:pl-8"
-            initial={{ opacity: 0, x: 60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
-          >
-            {/* Content Container with Border */}
-            <div className="bg-white/70 backdrop-blur-sm border-2 border-gray-200 rounded-3xl p-8 shadow-xl">
-              
-              {/* Benefits Grid */}
-              <div className="grid grid-cols-1 gap-4">
-                {companyFeatures.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-start space-x-4 group hover:bg-green-50/50 p-3 rounded-2xl transition-all duration-300"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                  >
-                    {/* Check Icon */}
-                    <div className="flex-shrink-0 mt-1">
-                      <CheckCircle className="w-6 h-6 text-green-500 group-hover:text-green-600 transition-colors duration-300" />
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-gray-800 text-base mb-1 group-hover:text-gray-900 transition-colors duration-300">
-                        {item.title}
-                      </h4>
-                      <p className="text-sm text-gray-600 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* CTA Button */}
               <motion.div
-                className="mt-8 pt-6 border-t border-gray-200"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 1.8 }}
+                className="bg-white rounded-2xl px-6 py-4 shadow-lg border border-gray-100"
+                initial={{ opacity: 0, y: -20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+                transition={{ duration: 0.8, delay: 1.2 }}
               >
-                <motion.button 
-                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  whileHover={{ 
-                    scale: 1.02,
-                    boxShadow: "0 20px 40px -12px rgba(59, 130, 246, 0.4)"
-                  }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="flex items-center justify-center">
-                    <Zap className="w-5 h-5 mr-2" />
-                    Start Your Journey Today
-                  </span>
-                </motion.button>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-emerald-600">200+</div>
+                  <div className="text-xs text-gray-600 font-medium">Expert Staff</div>
+                </div>
               </motion.div>
             </div>
-          </motion.div>
+            
+            {/* Benefits Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {companyFeatures.map((item, index) => (
+                <motion.div
+                  key={index}
+                  className="flex items-start space-x-4 group hover:bg-green-50/50 p-4 rounded-2xl transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                >
+                  {/* Check Icon */}
+                  <div className="flex-shrink-0 mt-1">
+                    <CheckCircle className="w-6 h-6 text-green-500 group-hover:text-green-600 transition-colors duration-300" />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-gray-800 text-base mb-2 group-hover:text-gray-900 transition-colors duration-300">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
 
-        </div>
+            {/* CTA Button */}
+            <motion.div
+              className="mt-10 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
+            >
+              <motion.button 
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 px-12 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px -12px rgba(59, 130, 246, 0.4)"
+                }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="flex items-center justify-center">
+                  <Zap className="w-5 h-5 mr-2" />
+                  Start Your Journey Today
+                </span>
+              </motion.button>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Infinite Carousel Section - Bottom */}
+        <motion.div
+          className="relative"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 1.0 }}
+        >
+          {/* Section Title */}
+          <div className="text-center mb-8">
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
+              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                Our Journey in Pictures
+              </span>
+            </h3>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Witness our commitment to excellence through moments that define our educational consultancy journey
+            </p>
+          </div>
+
+          {/* Infinite Carousel Container */}
+          <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100">
+            {/* Gradient Overlays for smooth edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+            
+            {/* Scrolling Images Container */}
+            <div className="flex animate-scroll-rtl">
+              {/* First set of images */}
+              {aboutImages.map((img, index) => (
+                <div
+                  key={`first-${index}`}
+                  className="flex-shrink-0 w-80 h-60 mx-3 relative group"
+                >
+                  <img
+                    src={img}
+                    alt={`Company Image ${index + 1}`}
+                    className="w-full h-full object-cover rounded-xl shadow-lg transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3">
+                      <h4 className="font-semibold text-gray-800 text-sm">Our Journey</h4>
+                      <p className="text-xs text-gray-600">Building futures together</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              
+              {/* Duplicate set for seamless loop */}
+              {aboutImages.map((img, index) => (
+                <div
+                  key={`second-${index}`}
+                  className="flex-shrink-0 w-80 h-60 mx-3 relative group"
+                >
+                  <img
+                    src={img}
+                    alt={`Company Image ${index + 1}`}
+                    className="w-full h-full object-cover rounded-xl shadow-lg transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3">
+                      <h4 className="font-semibold text-gray-800 text-sm">Our Journey</h4>
+                      <p className="text-xs text-gray-600">Building futures together</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
