@@ -178,15 +178,6 @@ export default function AboutCompany() {
           >
             {/* Single Unified Content Container */}
             <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-8 flex flex-col justify-center">
-              {/* Why Choose Us Heading */}
-              <motion.h3 
-                className="text-2xl font-bold text-gray-900 mb-6 text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-              >
-                Why Choose Us
-              </motion.h3>
               <div className="space-y-8">
                 {expandableContent.map((item, index) => (
                   <motion.div
