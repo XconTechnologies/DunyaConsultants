@@ -1,7 +1,5 @@
-import { useRef, useState, useCallback, useMemo } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import OptimizedImage from "@/components/optimized-image";
 
 // Import only 6 key images for better performance
 import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
@@ -41,15 +39,6 @@ const expandableContent = [
 export default function AboutCompany() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [expandedItems, setExpandedItems] = useState<number[]>([]);
-
-  const toggleExpand = useCallback((index: number) => {
-    setExpandedItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
-  }, []);
 
   return (
     <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
@@ -97,18 +86,18 @@ export default function AboutCompany() {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-20 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           
           {/* Left Side - Modern Scrollable Image Gallery */}
           <motion.div
-            className="relative"
+            className="relative h-[600px] lg:h-[700px]"
             initial={{ opacity: 0, x: -60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <div className="relative">
+            <div className="relative h-full">
               {/* Main Container with Modern Design */}
-              <div className="relative h-[600px] lg:h-[700px] bg-gradient-to-br from-white/40 via-blue-50/50 to-indigo-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
+              <div className="relative h-full bg-gradient-to-br from-white/40 via-blue-50/50 to-indigo-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
                 
                 {/* Floating Decorative Elements */}
                 <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl rotate-12 shadow-xl opacity-90"></div>
@@ -120,7 +109,7 @@ export default function AboutCompany() {
                 <div className="relative h-full overflow-hidden rounded-[1.5rem]">
                   
                   {/* Scrolling Container */}
-                  <div className="h-full overflow-y-scroll scrollbar-hide">
+                  <div className="h-full overflow-y-auto scrollbar-hide">
                     <div className="space-y-6 p-2">
                       {aboutImages.map((img, index) => (
                         <motion.div
@@ -205,85 +194,34 @@ export default function AboutCompany() {
             </div>
           </motion.div>
 
-          {/* Right Side - Enhanced Content */}
+          {/* Right Side - Single Content Box */}
           <motion.div
-            className="lg:pl-8"
+            className="h-[600px] lg:h-[700px]"
             initial={{ opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
-
-            {/* Enhanced Expandable Features */}
-            <div className="space-y-4">
-              {expandableContent.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="group"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                >
-                  <div className="bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02]">
-                    <button
-                      onClick={() => toggleExpand(index)}
-                      className="w-full flex items-center justify-between p-6 hover:bg-gray-50 transition-all duration-300"
-                    >
-                      <span className="text-gray-900 font-semibold text-left text-lg">
-                        {item.title}
-                      </span>
-                      <motion.div
-                        animate={{ rotate: expandedItems.includes(index) ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <ChevronDown className="w-5 h-5 text-gray-600" />
-                      </motion.div>
-                    </button>
-                    
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ 
-                        height: expandedItems.includes(index) ? "auto" : 0,
-                        opacity: expandedItems.includes(index) ? 1 : 0
-                      }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6 text-gray-700 leading-relaxed bg-gradient-to-r from-gray-50 to-blue-50">
-                        <div className="pt-2 border-t border-gray-200">
-                          {item.content}
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
+            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-2xl p-8 overflow-y-auto">
+              {/* Content Sections */}
+              <div className="space-y-6">
+                {expandableContent.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="border-b border-gray-200 pb-6 last:border-b-0"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                  >
+                    <h3 className="text-base font-semibold text-gray-900 mb-3">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-gray-700 leading-relaxed">
+                      {item.content}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-
-            {/* Enhanced Button */}
-            <motion.div
-              className="mt-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 1.3 }}
-            >
-              <motion.button 
-                className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-bold py-4 px-10 rounded-2xl shadow-2xl"
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.5)"
-                }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.2 }}
-              >
-                <span className="relative z-10">Read More</span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
-            </motion.div>
           </motion.div>
 
         </div>
