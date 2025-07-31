@@ -48,15 +48,15 @@ export default function Home() {
       </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>
+        <BranchesCarousel />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
         <CountriesSection />
       </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>
         <ConsultationBookingCalendar />
-      </Suspense>
-      
-      <Suspense fallback={<SectionSkeleton />}>
-        <BranchesCarousel />
       </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>

@@ -163,42 +163,9 @@ export default function AboutCompany() {
                 </div>
               </div>
 
-              {/* Enhanced Floating Statistics */}
-              <motion.div
-                className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-white to-blue-50 rounded-2xl px-8 py-4 shadow-2xl border border-blue-100"
-                initial={{ opacity: 0, y: -30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -30 }}
-                transition={{ duration: 0.8, delay: 1.2 }}
-              >
-                <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">17+</div>
-                  <div className="text-sm text-gray-600 font-medium">Cities</div>
-                </div>
-              </motion.div>
 
-              <motion.div
-                className="absolute -bottom-6 left-12 bg-gradient-to-r from-white to-indigo-50 rounded-2xl px-8 py-4 shadow-2xl border border-indigo-100"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 1.4 }}
-              >
-                <div className="text-center">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">250+</div>
-                  <div className="text-sm text-gray-600 font-medium">Ambassadors</div>
-                </div>
-              </motion.div>
 
-              <motion.div
-                className="absolute top-1/2 -right-8 transform -translate-y-1/2 bg-gradient-to-r from-white to-emerald-50 rounded-2xl px-6 py-3 shadow-2xl border border-emerald-100"
-                initial={{ opacity: 0, x: 30 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
-                transition={{ duration: 0.8, delay: 1.6 }}
-              >
-                <div className="text-center">
-                  <div className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">200+</div>
-                  <div className="text-xs text-gray-600 font-medium">Expert Staff</div>
-                </div>
-              </motion.div>
+
             </div>
           </motion.div>
 
