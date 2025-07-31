@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Check } from "lucide-react";
 
 // Import only 6 key images for better performance
 import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
@@ -87,7 +88,7 @@ export default function AboutCompany() {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-20 lg:gap-24 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           
           {/* Left Side - Modern Scrollable Image Gallery */}
           <motion.div
@@ -236,13 +237,13 @@ export default function AboutCompany() {
 
           {/* Right Side - Single Unified Content Box */}
           <motion.div
-            className="lg:pl-8"
+            className="h-[600px] lg:h-[700px]"
             initial={{ opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
             {/* Single Unified Content Container */}
-            <div className="bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-8">
+            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-8 overflow-y-auto">
               <div className="space-y-6">
                 {expandableContent.map((item, index) => (
                   <motion.div
@@ -252,10 +253,15 @@ export default function AboutCompany() {
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   >
-                    <h3 className="text-base font-semibold text-gray-900 mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-700 leading-relaxed">
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
+                        <Check className="w-4 h-4 text-white" />
+                      </div>
+                      <h3 className="text-base font-semibold text-gray-900 flex-1">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-gray-700 leading-relaxed ml-9">
                       {item.content}
                     </p>
                   </motion.div>
