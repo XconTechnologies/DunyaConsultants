@@ -87,35 +87,7 @@ export default function Navigation() {
         href: "/consultation"
       }
     },
-    "Services": {
-      icon: BookOpen,
-      sections: [
-        {
-          title: "Core Services",
-          icon: BookOpen,
-          items: [
-            { name: "University Selection", href: "/services/university-selection", description: "Find your perfect match" },
-            { name: "Course & Career Counselling", href: "/services/counselling", description: "Expert guidance" },
-            { name: "Application Assistance", href: "/services/applications", description: "Complete application support" }
-          ]
-        },
-        {
-          title: "Specialized Support",
-          icon: Award,
-          items: [
-            { name: "Scholarship Guidance", href: "/services/scholarships", description: "Financial aid assistance" },
-            { name: "Visa Processing", href: "/services/visa", description: "Hassle-free visa support" },
-            { name: "Test Preparation", href: "/test-prep", description: "IELTS, PTE, TOEFL & more" }
-          ]
-        }
-      ],
-      featured: {
-        title: "End-to-End Support",
-        description: "From application to arrival",
-        cta: "Get Started",
-        href: "/services"
-      }
-    },
+
     "Test Prep": {
       icon: Award,
       sections: [
@@ -225,46 +197,16 @@ export default function Navigation() {
         href: "/blog"
       }
     },
-    "Contact": {
-      icon: MessageCircle,
-      sections: [
-        {
-          title: "Get in Touch",
-          icon: Phone,
-          items: [
-            { name: "Inquiry Form", href: "/contact/form", description: "Send us your questions" },
-            { name: "Live Chat", href: "/contact/chat", description: "Instant support available" },
-            { name: "WhatsApp", href: "/contact/whatsapp", description: "Message us directly" }
-          ]
-        },
-        {
-          title: "Connect",
-          icon: Users,
-          items: [
-            { name: "Office Timings", href: "/contact/hours", description: "When we're available" },
-            { name: "Social Media", href: "/contact/social", description: "Follow us online" },
-            { name: "Newsletter", href: "/contact/newsletter", description: "Subscribe for updates" }
-          ]
-        }
-      ],
-      featured: {
-        title: "24/7 Support",
-        description: "We're here to help you succeed",
-        cta: "Contact Now",
-        href: "/contact"
-      }
-    }
+
   };
 
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", megaMenu: true },
     { name: "Study Abroad", megaMenu: true },
-    { name: "Services", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },
     { name: "Blog", megaMenu: true },
-    { name: "Contact", megaMenu: true },
   ];
 
   return (
