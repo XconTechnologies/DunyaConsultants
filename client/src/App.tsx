@@ -186,6 +186,7 @@ function Router() {
       {/* Dynamic route for new blog posts */}
       <Route path="/blog/:slug" component={Blog} />
       <Route path="/ielts" component={IELTS} />
+      <Route path="/test-prep/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/test-prep/pte" component={PTE} />
       <Route path="/test-prep/toefl" component={TOEFL} />
