@@ -70,18 +70,14 @@
   }
 }
 
-/* Custom animations for scrolling */
-@keyframes scroll-horizontal {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+/* Scrollbar utilities */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.animate-scroll-horizontal {
-  animation: scroll-horizontal 30s linear infinite;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* Performance optimizations */
