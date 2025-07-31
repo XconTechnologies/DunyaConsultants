@@ -105,7 +105,7 @@ export default function PTE() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div

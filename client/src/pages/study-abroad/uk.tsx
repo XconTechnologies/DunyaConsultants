@@ -85,7 +85,7 @@ Address: Alif Tower, Sargodha
       
       {/* Hero Section */}
       <section 
-        className="relative bg-[#124FD3] text-white pt-24 pb-20"
+        className="relative bg-[#124FD3] text-white pt-32 pb-20"
         style={{
           backgroundImage: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%)',
           backgroundSize: 'cover'
