@@ -116,15 +116,15 @@ export default function AboutCompany() {
                       <motion.div
                         className="space-y-4"
                         animate={{
-                          y: [0, -100, 0]
+                          y: [0, -50, 0]
                         }}
                         transition={{
-                          duration: 20,
+                          duration: 15,
                           repeat: Infinity,
                           ease: "linear"
                         }}
                       >
-                        {[...leftImages, ...leftImages].map((img, index) => (
+                        {leftImages.map((img, index) => (
                           <motion.div
                             key={`left-${index}`}
                             className="relative group"
@@ -155,15 +155,15 @@ export default function AboutCompany() {
                       <motion.div
                         className="space-y-4"
                         animate={{
-                          y: [-100, 0, -100]
+                          y: [-50, 0, -50]
                         }}
                         transition={{
-                          duration: 20,
+                          duration: 15,
                           repeat: Infinity,
                           ease: "linear"
                         }}
                       >
-                        {[...rightImages, ...rightImages].map((img, index) => (
+                        {rightImages.map((img, index) => (
                           <motion.div
                             key={`right-${index}`}
                             className="relative group"
