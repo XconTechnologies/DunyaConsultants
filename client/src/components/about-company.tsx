@@ -177,25 +177,36 @@ export default function AboutCompany() {
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
             {/* Single Unified Content Container */}
-            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-8 flex flex-col justify-center">
-              <div className="space-y-8">
+            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-center">
+              {/* Why Choose Heading */}
+              <motion.div
+                className="mb-6 text-center"
+                initial={{ opacity: 0, y: -20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                <h2 className="text-xl font-bold text-gray-900 mb-2">Why Choose</h2>
+                <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full"></div>
+              </motion.div>
+
+              <div className="space-y-5">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="border-b border-gray-200 pb-6 last:border-b-0"
+                    className="border-b border-gray-200 pb-4 last:border-b-0"
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   >
-                    <div className="flex items-start gap-3 mb-3">
-                      <div className="flex-shrink-0 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
-                        <Check className="w-4 h-4 text-white" />
+                    <div className="flex items-start gap-2 mb-2">
+                      <div className="flex-shrink-0 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
+                        <Check className="w-3 h-3 text-white" />
                       </div>
-                      <h3 className="text-base font-semibold text-gray-900 flex-1">
+                      <h3 className="text-sm font-semibold text-gray-900 flex-1 leading-tight">
                         {item.title}
                       </h3>
                     </div>
-                    <p className="text-sm text-gray-700 leading-relaxed ml-9">
+                    <p className="text-xs text-gray-700 leading-relaxed ml-7">
                       {item.content}
                     </p>
                   </motion.div>
