@@ -94,7 +94,7 @@ export default function AboutCompany() {
           >
             <div className="relative">
               {/* Main Container with Modern Design */}
-              <div className="relative h-[600px] lg:h-[700px] bg-gradient-to-br from-white/40 via-blue-50/50 to-indigo-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
+              <div className="relative h-[450px] lg:h-[500px] bg-gradient-to-br from-white/40 via-blue-50/50 to-indigo-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
                 
                 {/* Floating Decorative Elements */}
                 <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl rotate-12 shadow-xl opacity-90"></div>
@@ -232,7 +232,7 @@ export default function AboutCompany() {
 
           {/* Right Side - Single Unified Content Box */}
           <motion.div
-            className="h-[600px] lg:h-[700px]"
+            className="h-[450px] lg:h-[500px]"
             initial={{ opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
