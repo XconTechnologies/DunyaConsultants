@@ -158,6 +158,27 @@ export default function AboutCompany() {
                   </div>
                 </motion.div>
               ))}
+              
+              {/* Additional Call-to-Action Card to fill space */}
+              <motion.div
+                className="xl:col-span-2 bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-dashed border-blue-200 p-6 rounded-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: 1.4 }}
+              >
+                <div className="text-center">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Zap className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <h4 className="font-bold text-gray-800 text-lg mb-2">Ready to Start Your Journey?</h4>
+                  <p className="text-sm text-gray-600 mb-4">
+                    Join thousands of successful students who have achieved their dreams with our expert guidance and personalized support.
+                  </p>
+                  <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-300">
+                    Get Free Consultation
+                  </button>
+                </div>
+              </motion.div>
             </div>
 
             {/* CTA Button */}
