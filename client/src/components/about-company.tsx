@@ -86,18 +86,18 @@ export default function AboutCompany() {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+        <div className="grid lg:grid-cols-2 gap-20 lg:gap-24 items-start">
           
           {/* Left Side - Modern Scrollable Image Gallery */}
           <motion.div
-            className="relative h-[600px] lg:h-[700px]"
+            className="relative"
             initial={{ opacity: 0, x: -60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <div className="relative h-full">
+            <div className="relative">
               {/* Main Container with Modern Design */}
-              <div className="relative h-full bg-gradient-to-br from-white/40 via-blue-50/50 to-indigo-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
+              <div className="relative h-[600px] lg:h-[700px] bg-gradient-to-br from-white/40 via-blue-50/50 to-indigo-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
                 
                 {/* Floating Decorative Elements */}
                 <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl rotate-12 shadow-xl opacity-90"></div>
@@ -109,7 +109,7 @@ export default function AboutCompany() {
                 <div className="relative h-full overflow-hidden rounded-[1.5rem]">
                   
                   {/* Scrolling Container */}
-                  <div className="h-full overflow-y-auto scrollbar-hide">
+                  <div className="h-full overflow-y-scroll scrollbar-hide">
                     <div className="space-y-6 p-2">
                       {aboutImages.map((img, index) => (
                         <motion.div
@@ -194,15 +194,15 @@ export default function AboutCompany() {
             </div>
           </motion.div>
 
-          {/* Right Side - Single Content Box */}
+          {/* Right Side - Single Unified Content Box */}
           <motion.div
-            className="h-[600px] lg:h-[700px]"
+            className="lg:pl-8"
             initial={{ opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
-            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-2xl p-8 overflow-y-auto">
-              {/* Content Sections */}
+            {/* Single Unified Content Container */}
+            <div className="bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-8">
               <div className="space-y-6">
                 {expandableContent.map((item, index) => (
                   <motion.div
