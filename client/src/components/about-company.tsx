@@ -34,6 +34,10 @@ const companyFeatures = [
   {
     title: "Study Abroad Guidance",
     description: "So, what are you waiting for? Get your consultancy booked with the best visa consultant in Lahore – Dunya Consultants today and get answers to your education queries!"
+  },
+  {
+    title: "Expert Career Counseling",
+    description: "Our experienced counselors provide comprehensive career guidance to help students choose the right academic path and build successful international careers with personalized support throughout their journey."
   }
 ];
 
@@ -44,7 +48,7 @@ export default function AboutCompany() {
   return (
     <section ref={ref} className="relative py-20 lg:py-24 overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50">
       
-      <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -91,7 +95,7 @@ export default function AboutCompany() {
           transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
         >
           {/* Content Container with Border */}
-          <div className="bg-white/70 backdrop-blur-sm border-2 border-gray-200 rounded-3xl p-8 lg:p-12 shadow-xl max-w-5xl mx-auto">
+          <div className="bg-white/70 backdrop-blur-sm border-2 border-gray-200 rounded-3xl p-8 lg:p-12 shadow-xl max-w-7xl mx-auto">
             
             {/* Statistics Cards at Top */}
             <div className="flex justify-center gap-6 mb-8">
@@ -133,7 +137,7 @@ export default function AboutCompany() {
             </div>
             
             {/* Benefits Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {companyFeatures.map((item, index) => (
                 <motion.div
                   key={index}
