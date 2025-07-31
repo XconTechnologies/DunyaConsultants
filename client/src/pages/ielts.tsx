@@ -1,662 +1,375 @@
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import {
-  BookOpen,
-  Calendar,
-  Clock,
-  Users,
-  Award,
-  CheckCircle,
-  Star,
-  MapPin,
-  Phone,
-  Mail,
-  ArrowRight,
-  Play,
-  Download,
-  Globe,
-  Headphones,
-  PenTool,
-  MessageSquare,
-  Target,
-  TrendingUp
-} from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React from "react";
+import { motion } from "framer-motion";
+import { Award, Clock, Users, CheckCircle, BookOpen, PenTool, Headphones, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
-const ieltsFeatures = [
-  {
-    icon: Headphones,
-    title: "Listening",
-    duration: "30 minutes",
-    sections: 4,
-    description: "Conversations and monologues in various accents",
-    tips: ["Practice with different accents", "Take notes while listening", "Pay attention to keywords"]
-  },
-  {
-    icon: BookOpen,
-    title: "Reading",
-    duration: "60 minutes",
-    sections: 3,
-    description: "Academic and general training texts",
-    tips: ["Skim for main ideas first", "Manage your time effectively", "Practice different question types"]
-  },
-  {
-    icon: PenTool,
-    title: "Writing",
-    duration: "60 minutes",
-    sections: 2,
-    description: "Task 1: Graph/Chart description, Task 2: Essay",
-    tips: ["Plan your structure", "Use varied vocabulary", "Check grammar and spelling"]
-  },
-  {
-    icon: MessageSquare,
-    title: "Speaking",
-    duration: "11-14 minutes",
-    sections: 3,
-    description: "Face-to-face conversation with examiner",
-    tips: ["Speak clearly and fluently", "Expand your answers", "Use natural expressions"]
-  }
-];
+export default function IELTS() {
+  const testSections = [
+    {
+      title: "Listening",
+      duration: "30 minutes",
+      icon: Headphones,
+      description: "4 sections with conversations and monologues in various accents",
+      tasks: ["Conversations", "Monologues", "Academic Discussions", "Lectures"]
+    },
+    {
+      title: "Reading",
+      duration: "60 minutes", 
+      icon: BookOpen,
+      description: "3 passages with 40 questions testing reading comprehension",
+      tasks: ["Academic Texts", "General Training", "Multiple Choice", "True/False/Not Given"]
+    },
+    {
+      title: "Writing",
+      duration: "60 minutes",
+      icon: PenTool,
+      description: "Task 1: Chart/Graph description, Task 2: Essay writing",
+      tasks: ["Task 1 - Data Description", "Task 2 - Essay Writing", "Academic Writing", "Coherence & Cohesion"]
+    },
+    {
+      title: "Speaking",
+      duration: "11-14 minutes",
+      icon: MessageSquare,
+      description: "3 parts face-to-face interview with certified examiner",
+      tasks: ["Introduction & Interview", "Long Turn", "Discussion", "Fluency Assessment"]
+    }
+  ];
 
-const testCenters = [
-  {
-    name: "British Council Lahore",
-    address: "17 Shadman Market, Lahore",
-    phone: "+92-42-111-424-424",
-    email: "info.lahore@britishcouncil.org.pk",
-    availability: "Daily",
-    nextSlot: "2024-07-25"
-  },
-  {
-    name: "British Council Karachi",
-    address: "Block 5, Clifton, Karachi",
-    phone: "+92-21-111-424-424",
-    email: "info.karachi@britishcouncil.org.pk",
-    availability: "Daily",
-    nextSlot: "2024-07-22"
-  },
-  {
-    name: "British Council Islamabad",
-    address: "House 5, Street 58, F-7/4, Islamabad",
-    phone: "+92-51-111-424-424",
-    email: "info.islamabad@britishcouncil.org.pk",
-    availability: "Daily",
-    nextSlot: "2024-07-28"
-  },
-  {
-    name: "IDP Education Lahore",
-    address: "96-B, MM Alam Road, Gulberg III, Lahore",
-    phone: "+92-42-111-111-432",
-    email: "lahore@idp.com",
-    availability: "6 days/week",
-    nextSlot: "2024-07-20"
-  }
-];
+  const preparationCourses = [
+    {
+      title: "IELTS Foundation Course",
+      duration: "6 weeks",
+      price: "PKR 20,000",
+      features: ["Complete IELTS format training", "All four skills development", "Weekly mock tests", "Study materials included"]
+    },
+    {
+      title: "IELTS Complete Course", 
+      duration: "10 weeks",
+      price: "PKR 35,000",
+      features: ["Comprehensive preparation", "Individual feedback", "Multiple mock tests", "Speaking practice sessions", "Score improvement guarantee"]
+    },
+    {
+      title: "IELTS Intensive Course",
+      duration: "14 weeks", 
+      price: "PKR 45,000",
+      features: ["Intensive training", "One-on-one sessions", "Unlimited mock tests", "Personal mentor", "University application guidance"]
+    },
+    {
+      title: "IELTS Online Course",
+      duration: "8 weeks",
+      price: "PKR 25,000",
+      features: ["Online live classes", "Recorded sessions", "Digital materials", "Online mock tests", "Flexible schedule"]
+    }
+  ];
 
-const preparationCourses = [
-  {
-    title: "IELTS Foundation Course",
-    duration: "8 weeks",
-    price: "PKR 25,000",
-    features: ["Basic to Intermediate level", "All 4 modules covered", "Practice tests included", "Study materials provided"],
-    popular: false
-  },
-  {
-    title: "IELTS Intensive Course",
-    duration: "4 weeks",
-    price: "PKR 35,000",
-    features: ["Intermediate to Advanced", "Daily practice sessions", "Mock tests weekly", "Individual feedback"],
-    popular: true
-  },
-  {
-    title: "IELTS One-on-One",
-    duration: "Flexible",
-    price: "PKR 3,000/hour",
-    features: ["Personalized training", "Flexible scheduling", "Targeted improvement", "Expert instructors"],
-    popular: false
-  }
-];
+  const bandRequirements = [
+    { level: "Student Visa", band: "6.0+", description: "Minimum requirement for most universities" },
+    { level: "Undergraduate", band: "6.5+", description: "Bachelor's degree programs" },
+    { level: "Postgraduate", band: "7.0+", description: "Master's and PhD programs" },
+    { level: "Professional", band: "7.5+", description: "Medical, nursing, teaching professions" }
+  ];
 
-const bandRequirements = [
-  { country: "UK", undergraduate: "6.0-6.5", postgraduate: "6.5-7.0", immigration: "6.0" },
-  { country: "Australia", undergraduate: "6.0-6.5", postgraduate: "6.5-7.0", immigration: "6.0" },
-  { country: "Canada", undergraduate: "6.0-6.5", postgraduate: "6.5-7.0", immigration: "6.0" },
-  { country: "USA", undergraduate: "6.0-6.5", postgraduate: "6.5-7.0", immigration: "N/A" },
-  { country: "New Zealand", undergraduate: "6.0", postgraduate: "6.5", immigration: "6.5" }
-];
-
-export default function IELTSPage() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const [selectedCenter, setSelectedCenter] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
-  const [activeTab, setActiveTab] = useState("overview");
+  const tips = [
+    {
+      title: "Daily Practice",
+      description: "Dedicate at least 2 hours daily to practice all four IELTS skills"
+    },
+    {
+      title: "Vocabulary Building", 
+      description: "Learn 10-15 new words daily and use them in sentences"
+    },
+    {
+      title: "Mock Tests",
+      description: "Take full-length practice tests weekly to build stamina and confidence"
+    },
+    {
+      title: "Time Management",
+      description: "Practice completing tasks within allocated time limits"
+    },
+    {
+      title: "Speaking Practice",
+      description: "Record yourself speaking and practice with native speakers when possible"
+    },
+    {
+      title: "Reading Strategies",
+      description: "Develop skimming and scanning techniques for better comprehension"
+    }
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <Navigation />
+      
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary via-blue-700 to-secondary text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-purple-600/30"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="relative py-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <Award className="w-5 h-5" />
-              <span className="text-sm font-medium">IELTS Preparation & Booking</span>
+            <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-6">
+              <Award className="w-5 h-5 mr-2" />
+              <span className="text-sm font-medium">IELTS Academic & General</span>
             </div>
-            
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Master Your<br />
-              <span className="text-yellow-300">IELTS Journey</span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+              IELTS
             </h1>
-            
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Comprehensive IELTS preparation, expert coaching, and convenient test booking. 
-              Achieve your target band score with Pakistan's leading IELTS specialists.
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              World's most popular English language proficiency test for higher education and global migration
             </p>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">95%</div>
-                <div className="text-sm text-blue-100">Success Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">15K+</div>
-                <div className="text-sm text-blue-100">Students Trained</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">8.5</div>
-                <div className="text-sm text-blue-100">Average Band Score</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">20+</div>
-                <div className="text-sm text-blue-100">Expert Trainers</div>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-              <Button size="lg" className="bg-yellow-400 text-yellow-900 hover:bg-yellow-300 text-lg px-8">
-                Book IELTS Test
-                <Calendar className="w-5 h-5 ml-2" />
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
+                Book Your Test
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 text-lg px-8">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                 Start Preparation
-                <BookOpen className="w-5 h-5 ml-2" />
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* IELTS Overview Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-5 mb-12">
-              <TabsTrigger value="overview">Overview</TabsTrigger>
-              <TabsTrigger value="preparation">Preparation</TabsTrigger>
-              <TabsTrigger value="booking">Test Booking</TabsTrigger>
-              <TabsTrigger value="requirements">Band Requirements</TabsTrigger>
-              <TabsTrigger value="tips">Expert Tips</TabsTrigger>
-            </TabsList>
+      {/* Test Format Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                IELTS Test{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Format
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Understanding the IELTS test structure and sections
+              </p>
+            </motion.div>
+          </div>
 
-            <TabsContent value="overview" className="space-y-12">
-              {/* Test Format */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {testSections.map((section, index) => (
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <h2 className="text-3xl font-bold text-neutral-800 mb-8 text-center">IELTS Test Format</h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {ieltsFeatures.map((feature, index) => (
-                    <Card key={feature.title} className="shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                      <CardContent className="p-6">
-                        <div className="text-center mb-4">
-                          <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <feature.icon className="w-8 h-8 text-white" />
-                          </div>
-                          <h3 className="text-xl font-bold text-neutral-800">{feature.title}</h3>
-                          <div className="text-sm text-neutral-600 mt-2">
-                            <div className="flex items-center justify-center space-x-4">
-                              <span className="flex items-center">
-                                <Clock className="w-4 h-4 mr-1" />
-                                {feature.duration}
-                              </span>
-                              <span className="flex items-center">
-                                <Target className="w-4 h-4 mr-1" />
-                                {feature.sections} sections
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <p className="text-neutral-600 text-sm mb-4">{feature.description}</p>
-                        
-                        <div className="space-y-2">
-                          <h4 className="font-semibold text-neutral-800 text-sm">Key Tips:</h4>
-                          {feature.tips.map((tip, tipIndex) => (
-                            <div key={tipIndex} className="flex items-start space-x-2">
-                              <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-neutral-600">{tip}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Quick Test Info */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8"
-              >
-                <div className="grid md:grid-cols-3 gap-8">
-                  <div className="text-center">
-                    <Globe className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-neutral-800 mb-2">Global Recognition</h3>
-                    <p className="text-neutral-600">Accepted by 11,000+ organizations worldwide</p>
-                  </div>
-                  <div className="text-center">
-                    <Calendar className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-neutral-800 mb-2">Flexible Dates</h3>
-                    <p className="text-neutral-600">48 test dates available throughout the year</p>
-                  </div>
-                  <div className="text-center">
-                    <Award className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-neutral-800 mb-2">Quick Results</h3>
-                    <p className="text-neutral-600">Get your results within 13 days</p>
-                  </div>
-                </div>
-              </motion.div>
-            </TabsContent>
-
-            <TabsContent value="preparation" className="space-y-12">
-              {/* Preparation Courses */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <h2 className="text-3xl font-bold text-neutral-800 mb-8 text-center">IELTS Preparation Courses</h2>
-                <div className="grid md:grid-cols-3 gap-8">
-                  {preparationCourses.map((course, index) => (
-                    <Card key={course.title} className={`shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${course.popular ? 'ring-2 ring-primary' : ''}`}>
-                      {course.popular && (
-                        <div className="bg-gradient-to-r from-primary to-secondary text-white text-center py-2 text-sm font-medium">
-                          Most Popular
-                        </div>
-                      )}
-                      <CardContent className="p-6">
-                        <div className="text-center mb-6">
-                          <h3 className="text-xl font-bold text-neutral-800 mb-2">{course.title}</h3>
-                          <div className="text-3xl font-bold text-primary mb-2">{course.price}</div>
-                          <div className="text-sm text-neutral-600">{course.duration}</div>
-                        </div>
-                        
-                        <div className="space-y-3 mb-6">
-                          {course.features.map((feature, featureIndex) => (
-                            <div key={featureIndex} className="flex items-center space-x-3">
-                              <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                              <span className="text-neutral-600">{feature}</span>
-                            </div>
-                          ))}
-                        </div>
-                        
-                        <Button className={`w-full ${course.popular ? 'bg-primary hover:bg-primary/90' : 'bg-neutral-800 hover:bg-neutral-700'}`}>
-                          Enroll Now
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Free Resources */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-8"
-              >
-                <h3 className="text-2xl font-bold text-neutral-800 mb-6 text-center">Free IELTS Resources</h3>
-                <div className="grid md:grid-cols-4 gap-6">
-                  <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-                    <Download className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h4 className="font-bold text-neutral-800 mb-2">Practice Tests</h4>
-                    <p className="text-sm text-neutral-600 mb-4">Complete mock tests with answers</p>
-                    <Button size="sm" variant="outline">Download</Button>
-                  </Card>
-                  <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-                    <Play className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h4 className="font-bold text-neutral-800 mb-2">Video Lessons</h4>
-                    <p className="text-sm text-neutral-600 mb-4">Expert-led preparation videos</p>
-                    <Button size="sm" variant="outline">Watch Now</Button>
-                  </Card>
-                  <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-                    <BookOpen className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h4 className="font-bold text-neutral-800 mb-2">Study Guides</h4>
-                    <p className="text-sm text-neutral-600 mb-4">Comprehensive preparation materials</p>
-                    <Button size="sm" variant="outline">Access</Button>
-                  </Card>
-                  <Card className="text-center p-6 hover:shadow-lg transition-shadow">
-                    <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h4 className="font-bold text-neutral-800 mb-2">Band Predictor</h4>
-                    <p className="text-sm text-neutral-600 mb-4">Estimate your current level</p>
-                    <Button size="sm" variant="outline">Try Now</Button>
-                  </Card>
-                </div>
-              </motion.div>
-            </TabsContent>
-
-            <TabsContent value="booking" className="space-y-12">
-              {/* Test Booking Form */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <div className="max-w-4xl mx-auto">
-                  <h2 className="text-3xl font-bold text-neutral-800 mb-8 text-center">Book Your IELTS Test</h2>
-                  
-                  <Card className="shadow-lg p-8">
-                    <div className="grid md:grid-cols-2 gap-8">
-                      <div className="space-y-6">
-                        <div>
-                          <label className="block text-sm font-medium text-neutral-700 mb-2">Test Type</label>
-                          <Select>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select test type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="academic">IELTS Academic</SelectItem>
-                              <SelectItem value="general">IELTS General Training</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        
-                        <div>
-                          <label className="block text-sm font-medium text-neutral-700 mb-2">Test Center</label>
-                          <Select value={selectedCenter} onValueChange={setSelectedCenter}>
-                            <SelectTrigger>
-                              <SelectValue placeholder="Select test center" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {testCenters.map((center) => (
-                                <SelectItem key={center.name} value={center.name}>
-                                  {center.name}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        
-                        <div>
-                          <label className="block text-sm font-medium text-neutral-700 mb-2">Preferred Date</label>
-                          <Input type="date" value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-4">
-                          <div>
-                            <label className="block text-sm font-medium text-neutral-700 mb-2">Full Name</label>
-                            <Input placeholder="As per passport" />
-                          </div>
-                          <div>
-                            <label className="block text-sm font-medium text-neutral-700 mb-2">Email</label>
-                            <Input type="email" placeholder="your@email.com" />
-                          </div>
-                        </div>
-                        
-                        <div>
-                          <label className="block text-sm font-medium text-neutral-700 mb-2">Phone Number</label>
-                          <Input placeholder="+92 300 1234567" />
-                        </div>
-                        
-                        <Button className="w-full bg-primary hover:bg-primary/90 text-lg py-3">
-                          Book Test - PKR 54,500
-                          <ArrowRight className="w-5 h-5 ml-2" />
-                        </Button>
+                <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
+                  <CardHeader>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <section.icon className="w-6 h-6 text-white" />
                       </div>
-                      
-                      <div className="space-y-6">
-                        <div className="bg-blue-50 p-6 rounded-lg">
-                          <h3 className="font-bold text-neutral-800 mb-4">Test Fee Includes:</h3>
-                          <div className="space-y-2">
-                            <div className="flex items-center space-x-2">
-                              <CheckCircle className="w-4 h-4 text-green-500" />
-                              <span className="text-sm">IELTS test fee</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <CheckCircle className="w-4 h-4 text-green-500" />
-                              <span className="text-sm">Test Report Form (TRF)</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <CheckCircle className="w-4 h-4 text-green-500" />
-                              <span className="text-sm">Online results access</span>
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <CheckCircle className="w-4 h-4 text-green-500" />
-                              <span className="text-sm">Free score sending to 5 institutions</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="bg-yellow-50 p-6 rounded-lg">
-                          <h3 className="font-bold text-neutral-800 mb-4">Important Notes:</h3>
-                          <div className="space-y-2 text-sm text-neutral-600">
-                            <p>• Valid passport required for registration</p>
-                            <p>• Results available within 13 calendar days</p>
-                            <p>• Rescheduling available (fees apply)</p>
-                            <p>• Test center specific guidelines apply</p>
-                          </div>
-                        </div>
+                      <div>
+                        <CardTitle className="text-xl">{section.title}</CardTitle>
+                        <CardDescription className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" />
+                          {section.duration}
+                        </CardDescription>
                       </div>
                     </div>
-                  </Card>
-                </div>
-              </motion.div>
-
-              {/* Test Centers */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <h3 className="text-2xl font-bold text-neutral-800 mb-8 text-center">Available Test Centers</h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {testCenters.map((center, index) => (
-                    <Card key={center.name} className="shadow-lg hover:shadow-xl transition-shadow">
-                      <CardContent className="p-6">
-                        <h4 className="font-bold text-neutral-800 mb-3">{center.name}</h4>
-                        <div className="space-y-2 text-sm">
-                          <div className="flex items-center space-x-2">
-                            <MapPin className="w-4 h-4 text-neutral-500" />
-                            <span>{center.address}</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Phone className="w-4 h-4 text-neutral-500" />
-                            <span>{center.phone}</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Mail className="w-4 h-4 text-neutral-500" />
-                            <span>{center.email}</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Calendar className="w-4 h-4 text-neutral-500" />
-                            <span>Next available: {center.nextSlot}</span>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </motion.div>
-            </TabsContent>
-
-            <TabsContent value="requirements" className="space-y-12">
-              {/* Band Requirements Table */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <h2 className="text-3xl font-bold text-neutral-800 mb-8 text-center">IELTS Band Requirements by Country</h2>
-                
-                <Card className="shadow-lg overflow-hidden">
-                  <div className="overflow-x-auto">
-                    <table className="w-full">
-                      <thead className="bg-gradient-to-r from-primary to-secondary text-white">
-                        <tr>
-                          <th className="px-6 py-4 text-left">Country</th>
-                          <th className="px-6 py-4 text-center">Undergraduate</th>
-                          <th className="px-6 py-4 text-center">Postgraduate</th>
-                          <th className="px-6 py-4 text-center">Immigration</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {bandRequirements.map((req, index) => (
-                          <tr key={req.country} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                            <td className="px-6 py-4 font-medium">{req.country}</td>
-                            <td className="px-6 py-4 text-center">{req.undergraduate}</td>
-                            <td className="px-6 py-4 text-center">{req.postgraduate}</td>
-                            <td className="px-6 py-4 text-center">{req.immigration}</td>
-                          </tr>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 mb-4">{section.description}</p>
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-gray-900">Components:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {section.tasks.map((task, taskIndex) => (
+                          <Badge key={taskIndex} variant="secondary" className="text-xs">
+                            {task}
+                          </Badge>
                         ))}
-                      </tbody>
-                    </table>
-                  </div>
+                      </div>
+                    </div>
+                  </CardContent>
                 </Card>
-                
-                <div className="text-center mt-6">
-                  <p className="text-neutral-600 text-sm">
-                    *Requirements may vary by institution. Always check specific university requirements.
-                  </p>
-                </div>
               </motion.div>
-            </TabsContent>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <TabsContent value="tips" className="space-y-12">
-              {/* Expert Tips */}
+      {/* Preparation Courses Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                IELTS Preparation{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Courses
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Choose the perfect course to achieve your target IELTS band score
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {preparationCourses.map((course, index) => (
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <h2 className="text-3xl font-bold text-neutral-800 mb-8 text-center">Expert IELTS Tips</h2>
-                
-                <div className="grid md:grid-cols-2 gap-8">
-                  <Card className="shadow-lg">
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Star className="w-5 h-5 mr-2 text-yellow-500" />
-                        Before the Test
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Practice with authentic IELTS materials</span>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Take regular mock tests under timed conditions</span>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Focus on your weakest skills first</span>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Build vocabulary systematically</span>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Get familiar with test format</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  
-                  <Card className="shadow-lg">
-                    <CardHeader>
-                      <CardTitle className="flex items-center">
-                        <Award className="w-5 h-5 mr-2 text-blue-500" />
-                        On Test Day
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Arrive at least 30 minutes early</span>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Bring valid passport and pencils</span>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Read instructions carefully</span>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Manage your time effectively</span>
-                      </div>
-                      <div className="flex items-start space-x-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-neutral-700">Stay calm and confident</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
+                <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
+                  <CardHeader className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                      <BookOpen className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-xl">{course.title}</CardTitle>
+                    <CardDescription className="flex items-center justify-center gap-2">
+                      <Clock className="w-4 h-4" />
+                      {course.duration}
+                    </CardDescription>
+                    <div className="text-2xl font-bold text-blue-600">{course.price}</div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {course.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center gap-2 text-sm">
+                          <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button className="w-full mt-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+                      Enroll Now
+                    </Button>
+                  </CardContent>
+                </Card>
               </motion.div>
-            </TabsContent>
-          </Tabs>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Band Requirements Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Band{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Requirements
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                IELTS band score requirements for different purposes
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {bandRequirements.map((requirement, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="text-center border-blue-100 hover:border-blue-300 transition-all duration-300">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{requirement.level}</CardTitle>
+                    <div className="text-3xl font-bold text-blue-600">{requirement.band}</div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 text-sm">{requirement.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tips Section */}
+      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Expert{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Tips
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Professional strategies to achieve your target IELTS band score
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {tips.map((tip, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-white rounded-xl p-6 border border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg"
+              >
+                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <CheckCircle className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{tip.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{tip.description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white">
+        <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold mb-6">
-              Ready to Achieve Your Target Band Score?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Join thousands of successful candidates who achieved their IELTS goals with our expert guidance
+            <h2 className="text-4xl font-bold mb-6">Ready to Achieve Your IELTS Goals?</h2>
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+              Join thousands of successful students who achieved their target band scores with our expert guidance
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-primary hover:bg-blue-50 text-lg px-8">
-                Start Free Consultation
-                <Phone className="w-5 h-5 ml-2" />
+              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
+                Contact Our Experts
               </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 text-lg px-8">
-                Call Now: +92 304 1110947
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                Download Study Materials
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
