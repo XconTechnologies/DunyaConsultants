@@ -118,7 +118,7 @@ export default function Duolingo() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-green-600 via-blue-600 to-purple-600 text-white overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -130,10 +130,10 @@ export default function Duolingo() {
               <Award className="w-5 h-5 mr-2" />
               <span className="text-sm font-medium">Duolingo English Test</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-green-200 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
               Duolingo English Test
             </h1>
-            <p className="text-xl md:text-2xl text-green-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Online English proficiency test accepted by 4,000+ universities worldwide
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

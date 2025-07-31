@@ -105,7 +105,7 @@ export default function TOEFL() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 text-white overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -117,14 +117,14 @@ export default function TOEFL() {
               <Award className="w-5 h-5 mr-2" />
               <span className="text-sm font-medium">TOEFL iBT</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
               TOEFL iBT
             </h1>
-            <p className="text-xl md:text-2xl text-purple-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Academic English assessment accepted by 11,500+ universities in over 160 countries
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-purple-900 hover:bg-purple-50">
+              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
                 Register for Test
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">

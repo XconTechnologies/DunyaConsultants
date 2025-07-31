@@ -105,7 +105,7 @@ export default function PTE() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-green-900 via-emerald-900 to-teal-900 text-white overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -117,14 +117,14 @@ export default function PTE() {
               <Award className="w-5 h-5 mr-2" />
               <span className="text-sm font-medium">PTE Academic</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-green-200 bg-clip-text text-transparent">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
               PTE Academic
             </h1>
-            <p className="text-xl md:text-2xl text-green-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Computer-based English test trusted by thousands of universities and organizations worldwide
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-green-900 hover:bg-green-50">
+              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
                 Book Your Test
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">

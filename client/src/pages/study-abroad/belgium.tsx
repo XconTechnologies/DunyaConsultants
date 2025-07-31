@@ -86,7 +86,7 @@ Address: Alif Tower, Sargodha
       <section 
         className="relative bg-[#124FD3] text-white pt-24 pb-20"
         style={{
-          backgroundImage: 'linear-gradient(135deg, #000000 0%, #FFD700 33%, #FF0000 67%, #000000 100%)',
+          backgroundImage: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%)',
           backgroundSize: 'cover'
         }}
       >
