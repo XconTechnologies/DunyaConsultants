@@ -14,46 +14,26 @@ const aboutImages = [
   img1, img2, img3, img4, img5, img6
 ];
 
-const whyChooseUsContent = [
+const companyFeatures = [
   {
-    title: "World-recognized education system",
-    description: "Access to internationally acclaimed educational institutions and programs"
+    title: "17 City Branches & 200 Certified Counsellors",
+    description: "With its head office in Lahore, Dunya Consultants has branches in over 17 cities across the country and a team of more than 200 certified counsellors."
   },
   {
-    title: "Internationally accepted degrees",
-    description: "Qualifications recognized worldwide for global career opportunities"
+    title: "250 Ambassadors & 50+ Foreign Universities", 
+    description: "We are proud to have around 250 ambassadors working with us internationally and have partnered with 30 top educational institutions in Pakistan and more than 20 foreign universities."
   },
   {
-    title: "Flexible education system",
-    description: "Customizable study paths tailored to individual goals and interests"
+    title: "Scholarship Programs",
+    description: "Since the student visa process can be quite challenging, that's why our Education Consultants are trained enough to provide personalized support to every student so that they can have a smooth and hassle-free experience."
   },
   {
-    title: "Diverse Career Opportunity",
-    description: "Multiple pathways leading to successful international careers"
+    title: "Smooth Visa Approval Process", 
+    description: "As a growing study abroad consultants' firm, we help students in visa interview preparations and guide them throughout the student visa application process."
   },
   {
-    title: "Excellent support for international students",
-    description: "Comprehensive assistance throughout your educational journey"
-  },
-  {
-    title: "Research and training opportunities",
-    description: "Access to cutting-edge research facilities and professional development"
-  },
-  {
-    title: "Exclusive campus life",
-    description: "Rich cultural experiences and vibrant student communities"
-  },
-  {
-    title: "Travel opportunities to different countries",
-    description: "Explore new cultures while pursuing your education abroad"
-  },
-  {
-    title: "Earn while learning",
-    description: "Work opportunities to support your studies and gain experience"
-  },
-  {
-    title: "Comprehensive visa guidance and support",
-    description: "Expert assistance with visa applications and immigration processes"
+    title: "Study Abroad Guidance",
+    description: "So, what are you waiting for? Get your consultancy booked with the best visa consultant in Lahore – Dunya Consultants today and get answers to your education queries!"
   }
 ];
 
@@ -104,7 +84,7 @@ export default function AboutCompany() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              Why Choose To Study With Us?
+              Who We Are
             </span>
           </motion.h2>
           
@@ -114,8 +94,9 @@ export default function AboutCompany() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Dunya Consultants stands among Pakistan's premier education consultants, 
-            providing comprehensive guidance for study abroad programs and international education opportunities.
+            Dunya Consultants is one of the best education consultants in Pakistan. 
+            We stand among the top study abroad consultants and provide detailed 
+            guidance on study abroad programs to students.
           </motion.p>
         </div>
 
@@ -227,7 +208,7 @@ export default function AboutCompany() {
               
               {/* Benefits Grid */}
               <div className="grid grid-cols-1 gap-4">
-                {whyChooseUsContent.map((item, index) => (
+                {companyFeatures.map((item, index) => (
                   <motion.div
                     key={index}
                     className="flex items-start space-x-4 group hover:bg-green-50/50 p-3 rounded-2xl transition-all duration-300"
