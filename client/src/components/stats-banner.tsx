@@ -129,7 +129,6 @@ export default function StatsBanner() {
           }} />
         </div>
       </div>
-
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(20)].map((_, i) => (
@@ -164,7 +163,6 @@ export default function StatsBanner() {
           </motion.div>
         ))}
       </div>
-
       <div className="container mx-auto px-4 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
         {/* Header */}
         <motion.div
@@ -189,7 +187,7 @@ export default function StatsBanner() {
           </motion.div>
           
           <motion.h2
-            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-[#1e3a8a]"
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-[#fefefe]"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -368,7 +366,6 @@ export default function StatsBanner() {
           </motion.div>
         </motion.div>
       </div>
-
       <style>{`
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
