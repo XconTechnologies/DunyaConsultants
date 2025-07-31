@@ -41,7 +41,6 @@ export default function AboutCompany() {
     <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
       {/* Simplified Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"></div>
-
       <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
@@ -185,7 +184,7 @@ export default function AboutCompany() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Why Choose</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Why Choose Us</h2>
                 <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
               </motion.div>
 
