@@ -180,13 +180,13 @@ export default function AboutCompany() {
             <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-center">
               {/* Why Choose Heading */}
               <motion.div
-                className="mb-6 text-center"
+                className="mb-6"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <h2 className="text-xl font-bold text-gray-900 mb-2">Why Choose</h2>
-                <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto rounded-full"></div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Why Choose</h2>
+                <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
               </motion.div>
 
               <div className="space-y-5">
