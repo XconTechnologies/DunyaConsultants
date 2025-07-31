@@ -39,12 +39,8 @@ export default function AboutCompany() {
 
   return (
     <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Enhanced Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-64 h-64 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-100 rounded-full mix-blend-multiply filter blur-2xl opacity-20"></div>
-      </div>
+      {/* Simplified Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"></div>
 
       <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         
@@ -111,36 +107,32 @@ export default function AboutCompany() {
                       <motion.div
                         className="space-y-4"
                         animate={{
-                          y: [0, -50, 0]
+                          y: [0, -600]
                         }}
                         transition={{
-                          duration: 15,
+                          duration: 12,
                           repeat: Infinity,
-                          ease: "linear"
+                          ease: "linear",
+                          repeatType: "loop"
                         }}
                       >
-                        {leftImages.map((img, index) => (
-                          <motion.div
+                        {[...leftImages, ...leftImages, ...leftImages].map((img, index) => (
+                          <div
                             key={`left-${index}`}
-                            className="relative group"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                            transition={{ duration: 0.6, delay: 0.8 + (index % 3) * 0.1 }}
+                            className="relative"
                           >
-                            <div className="relative overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+                            <div className="relative overflow-hidden rounded-xl shadow-md">
                               <div className="relative h-32 lg:h-40">
                                 <img
                                   src={img}
-                                  alt={`Company Image ${index + 1}`}
-                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                  loading="lazy"
+                                  alt=""
+                                  className="w-full h-full object-cover"
+                                  loading="eager"
+                                  decoding="async"
                                 />
-                                
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </div>
                             </div>
-                          </motion.div>
+                          </div>
                         ))}
                       </motion.div>
                     </div>
@@ -150,36 +142,32 @@ export default function AboutCompany() {
                       <motion.div
                         className="space-y-4"
                         animate={{
-                          y: [-50, 0, -50]
+                          y: [0, 600]
                         }}
                         transition={{
-                          duration: 15,
+                          duration: 12,
                           repeat: Infinity,
-                          ease: "linear"
+                          ease: "linear",
+                          repeatType: "loop"
                         }}
                       >
-                        {rightImages.map((img, index) => (
-                          <motion.div
+                        {[...rightImages, ...rightImages, ...rightImages].map((img, index) => (
+                          <div
                             key={`right-${index}`}
-                            className="relative group"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                            transition={{ duration: 0.6, delay: 1.0 + (index % 3) * 0.1 }}
+                            className="relative"
                           >
-                            <div className="relative overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+                            <div className="relative overflow-hidden rounded-xl shadow-md">
                               <div className="relative h-32 lg:h-40">
                                 <img
                                   src={img}
-                                  alt={`Company Image ${index + 1}`}
-                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                  loading="lazy"
+                                  alt=""
+                                  className="w-full h-full object-cover"
+                                  loading="eager"
+                                  decoding="async"
                                 />
-                                
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </div>
                             </div>
-                          </motion.div>
+                          </div>
                         ))}
                       </motion.div>
                     </div>
