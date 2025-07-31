@@ -70,6 +70,20 @@
   }
 }
 
+/* Custom animations for scrolling */
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-horizontal {
+  animation: scroll-horizontal 30s linear infinite;
+}
+
 /* Performance optimizations */
 * {
   box-sizing: border-box;

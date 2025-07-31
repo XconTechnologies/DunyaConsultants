@@ -1,70 +1,53 @@
-import { useRef, useState, useCallback, useMemo } from "react";
+import { useRef, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import OptimizedImage from "@/components/optimized-image";
+import { CheckCircle, Zap } from "lucide-react";
 
-// Import only 6 key images for better performance
+// Import all company images for scrolling carousel
 import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
 import img2 from "@assets/Avari Carnival (152 of 1139)_1751536114473.webp";
 import img3 from "@assets/Branch Manager of the year_1751536114473.webp";
 import img4 from "@assets/Dunya AGM (183 of 577)_1751536114474.webp";
 import img5 from "@assets/Dunya AGM (187 of 577)_1751536114474.webp";
 import img6 from "@assets/Dunya AGM (319 of 577)_1751536114475.webp";
+import img7 from "@assets/Dunya AGM (337 of 577)_1751536114475.webp";
+import img8 from "@assets/Dunya AGM (350 of 577)_1751536114475.webp";
+import img9 from "@assets/IMG-20250510-WA0020_1751536114476.webp";
+import img10 from "@assets/IMG-20250510-WA0028_1751536114476.webp";
+import img11 from "@assets/IMG-20250510-WA0070_1751536114476.webp";
+import img12 from "@assets/MHQ07389_1751536114477.webp";
 
-const aboutImages = [
-  img1, img2, img3, img4, img5, img6
+const allImages = [
+  img1, img2, img3, img4, img5, img6, 
+  img7, img8, img9, img10, img11, img12
 ];
 
-const expandableContent = [
-  {
-    title: "17 City Branches & 200 Certified Counsellors",
-    content: "With its head office in Lahore, Dunya Consultants has branches in over 17 cities across the country and a team of more than 200 certified counsellors."
-  },
-  {
-    title: "250 Ambassadors & 50+ Foreign Universities", 
-    content: "We are proud to have around 250 ambassadors working with us internationally and have partnered with 30 top educational institutions in Pakistan and more than 20 foreign universities."
-  },
-  {
-    title: "Scholarship Programs",
-    content: "Since the student visa process can be quite challenging, that's why our Education Consultants are trained enough to provide personalized support to every student so that they can have a smooth and hassle-free experience."
-  },
-  {
-    title: "Smooth Visa Approval Process", 
-    content: "As a growing study abroad consultants' firm, we help students in visa interview preparations and guide them throughout the student visa application process."
-  },
-  {
-    title: "Study Abroad Guidance",
-    content: "So, what are you waiting for? Get your consultancy booked with the best visa consultant in Lahore – Dunya Consultants today and get answers to your education queries!"
-  }
+const whyChooseFeatures = [
+  "World-recognized education guidance system",
+  "Internationally accepted consultation services",
+  "Flexible education planning system",
+  "Diverse Career Opportunity guidance",
+  "Excellent support for international students",
+  "Research and training opportunities access",
+  "Exclusive university partnerships",
+  "Travel opportunities coordination",
+  "Earn while learning programs",
+  "Comprehensive visa processing support",
+  "Curricular Practical Training (CPT) guidance",
+  "Optional Practical Training (OPT) assistance"
 ];
 
 export default function AboutCompany() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [expandedItems, setExpandedItems] = useState<number[]>([]);
 
-  const toggleExpand = useCallback((index: number) => {
-    setExpandedItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
-  }, []);
-
-  // Optimized image sets with fewer images for fast loading
-  const leftColumnImages = useMemo(() => [
-    ...aboutImages.slice(0, 3), 
-    ...aboutImages.slice(0, 3)
-  ], []);
-  
-  const rightColumnImages = useMemo(() => [
-    ...aboutImages.slice(3, 6), 
-    ...aboutImages.slice(3, 6)
+  // Create scrolling image array (duplicate for seamless loop)
+  const scrollingImages = useMemo(() => [
+    ...allImages, ...allImages
   ], []);
 
   return (
     <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Simplified Background */}
+      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-indigo-50">
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-xl opacity-20"></div>
@@ -72,7 +55,7 @@ export default function AboutCompany() {
 
       <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Centered Header Section */}
+        {/* Header Section */}
         <div className="text-center mb-16">
           <motion.div
             className="inline-flex items-center px-4 py-2 bg-blue-50 rounded-full mb-4"
@@ -107,175 +90,101 @@ export default function AboutCompany() {
           </motion.p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
           
-          {/* Left Side - Enhanced Scrolling Images */}
+          {/* Left Side - Scrolling Image Carousel */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, x: -60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <div className="relative">
-              {/* Glass morphism container */}
-              <div className="relative h-[550px] lg:h-[650px] bg-white/20 backdrop-blur-sm border border-white/30 rounded-3xl p-4 shadow-2xl">
-                
-                {/* Decorative elements */}
-                <div className="absolute -top-6 -left-6 w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-2xl rotate-12 shadow-lg"></div>
-                <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl -rotate-12 shadow-lg"></div>
-                <div className="absolute top-1/2 -right-4 w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl rotate-45 shadow-lg"></div>
-
-                {/* Simplified Left Column - Static Grid */}
-                <div className="absolute left-6 top-6 w-[calc(50%-16px)] h-[calc(100%-48px)] overflow-hidden rounded-2xl">
-                  <div className="grid grid-cols-1 gap-4 h-full">
-                    {leftColumnImages.slice(0, 3).map((img, index) => (
-                      <div
-                        key={`left-${index}`}
-                        className="relative rounded-xl overflow-hidden shadow-lg"
-                      >
-                        <img
-                          src={img}
-                          alt={`Company Image ${index + 1}`}
-                          className="w-full h-full object-cover"
-                          loading="eager"
-                          decoding="async"
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Simplified Right Column - Static Grid */}
-                <div className="absolute right-6 top-6 w-[calc(50%-16px)] h-[calc(100%-48px)] overflow-hidden rounded-2xl">
-                  <div className="grid grid-cols-1 gap-4 h-full">
-                    {rightColumnImages.slice(0, 3).map((img, index) => (
-                      <div
-                        key={`right-${index}`}
-                        className="relative rounded-xl overflow-hidden shadow-lg"
-                      >
-                        <img
-                          src={img}
-                          alt={`Company Image ${index + 1}`}
-                          className="w-full h-full object-cover"
-                          loading="eager"
-                          decoding="async"
-                        />
-                      </div>
-                    ))}
-                  </div>
+            <div className="relative h-[600px] overflow-hidden rounded-3xl bg-gradient-to-br from-blue-100 to-indigo-100 shadow-2xl">
+              {/* Horizontal Scrolling Images */}
+              <div className="absolute inset-0 flex">
+                <div className="flex gap-4 animate-scroll-horizontal">
+                  {scrollingImages.map((img, index) => (
+                    <div
+                      key={index}
+                      className="flex-shrink-0 w-72 h-full rounded-2xl overflow-hidden shadow-lg"
+                    >
+                      <img
+                        src={img}
+                        alt={`Company Event ${(index % allImages.length) + 1}`}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
-
-              {/* Floating stats */}
-              <motion.div
-                className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white rounded-2xl px-6 py-3 shadow-xl border border-gray-100"
-                initial={{ opacity: 0, y: -20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600">17+</div>
-                  <div className="text-xs text-gray-600">Cities</div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-8 left-8 bg-white rounded-2xl px-6 py-3 shadow-xl border border-gray-100"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-              >
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-indigo-600">250+</div>
-                  <div className="text-xs text-gray-600">Ambassadors</div>
-                </div>
-              </motion.div>
+              
+              {/* Fade overlays */}
+              <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-blue-100 to-transparent z-10"></div>
+              <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-indigo-100 to-transparent z-10"></div>
             </div>
           </motion.div>
 
-          {/* Right Side - Enhanced Content */}
+          {/* Right Side - Why Choose Us Checkmark List */}
           <motion.div
             className="lg:pl-8"
             initial={{ opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
+            {/* Card Container */}
+            <div className="bg-white rounded-3xl border border-gray-200 shadow-lg p-8">
+              {/* Header with Icon */}
+              <div className="flex items-center mb-6">
+                <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                  <Zap className="w-5 h-5 text-blue-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#1e3a8a]">
+                  Why Choose Dunya Consultants?
+                </h3>
+              </div>
 
-            {/* Enhanced Expandable Features */}
-            <div className="space-y-4">
-              {expandableContent.map((item, index) => (
-                <motion.div
-                  key={index}
-                  className="group"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                >
-                  <div className="bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-[1.02]">
-                    <button
-                      onClick={() => toggleExpand(index)}
-                      className="w-full flex items-center justify-between p-6 hover:bg-gray-50 transition-all duration-300"
-                    >
-                      <span className="text-gray-900 font-semibold text-left text-lg">
-                        {item.title}
-                      </span>
-                      <motion.div
-                        animate={{ rotate: expandedItems.includes(index) ? 180 : 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <ChevronDown className="w-5 h-5 text-gray-600" />
-                      </motion.div>
-                    </button>
-                    
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ 
-                        height: expandedItems.includes(index) ? "auto" : 0,
-                        opacity: expandedItems.includes(index) ? 1 : 0
-                      }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6 text-gray-700 leading-relaxed bg-gradient-to-r from-gray-50 to-blue-50">
-                        <div className="pt-2 border-t border-gray-200">
-                          {item.content}
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+              {/* Features Grid */}
+              <div className="grid grid-cols-1 gap-4">
+                {whyChooseFeatures.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex items-center space-x-3 py-2"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                    transition={{ duration: 0.6, delay: 0.8 + (index * 0.05) }}
+                  >
+                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                    <span className="text-gray-700 font-medium">{feature}</span>
+                  </motion.div>
+                ))}
+              </div>
 
-            {/* Enhanced Button */}
-            <motion.div
-              className="mt-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.8, delay: 1.3 }}
-            >
-              <motion.button 
-                className="relative overflow-hidden bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-bold py-4 px-10 rounded-2xl shadow-2xl"
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.5)"
-                }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.2 }}
+              {/* CTA Button */}
+              <motion.div
+                className="mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.8, delay: 1.3 }}
               >
-                <span className="relative z-10">Read More</span>
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "0%" }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
-            </motion.div>
+                <motion.button 
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold py-4 px-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                  whileHover={{ 
+                    scale: 1.02,
+                    boxShadow: "0 20px 40px -12px rgba(59, 130, 246, 0.4)"
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Start Your Journey Today
+                </motion.button>
+              </motion.div>
+            </div>
           </motion.div>
 
         </div>
       </div>
+
+
     </section>
   );
 }
