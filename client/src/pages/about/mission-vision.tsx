@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Target, Eye, Heart, Globe, Users, Award, ArrowRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 export default function MissionVision() {
   const values = [
@@ -37,6 +39,7 @@ export default function MissionVision() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <Navigation />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -297,6 +300,8 @@ export default function MissionVision() {
           </motion.div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }

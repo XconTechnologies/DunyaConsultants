@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { Users, Globe, Award, Target, Building2, GraduationCap, Heart, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
+import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
 
 export default function WhoWeAre() {
   const stats = [
@@ -37,6 +40,7 @@ export default function WhoWeAre() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <Navigation />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -116,7 +120,7 @@ export default function WhoWeAre() {
               
               <div className="mt-8">
                 <Link href="/about/mission-vision">
-                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
                     Learn About Our Mission
                   </Button>
                 </Link>
@@ -212,8 +216,12 @@ export default function WhoWeAre() {
           >
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
               <div className="text-center">
-                <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                  <Users className="w-12 h-12 text-white" />
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-500 to-purple-600">
+                  <img 
+                    src={umerFarooqPhoto} 
+                    alt="Umer Farooq - CEO of Dunya Consultants" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Umer Farooq</h3>
                 <p className="text-xl text-blue-600 font-semibold mb-6">Chief Executive Officer</p>
@@ -265,6 +273,8 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
       </section>
+      
+      <Footer />
     </div>
   );
 }
