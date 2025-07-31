@@ -13,6 +13,10 @@ const aboutImages = [
   img1, img2, img3, img4, img5, img6
 ];
 
+// Split images for dual scrolling sections
+const leftImages = [img1, img3, img5];
+const rightImages = [img2, img4, img6];
+
 const expandableContent = [
   {
     title: "17 City Branches & 200 Certified Counsellors",
@@ -30,10 +34,7 @@ const expandableContent = [
     title: "Smooth Visa Approval Process", 
     content: "As a growing study abroad consultants' firm, we help students in visa interview preparations and guide them throughout the student visa application process."
   },
-  {
-    title: "Study Abroad Guidance",
-    content: "So, what are you waiting for? Get your consultancy booked with the best visa consultant in Lahore – Dunya Consultants today and get answers to your education queries!"
-  }
+
 ];
 
 export default function AboutCompany() {
@@ -105,51 +106,90 @@ export default function AboutCompany() {
                 <div className="absolute top-1/3 -right-3 w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl rotate-45 shadow-lg opacity-80"></div>
                 <div className="absolute bottom-1/3 -left-3 w-8 h-8 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl -rotate-45 shadow-lg opacity-80"></div>
 
-                {/* Enhanced Scrollable Image Gallery */}
+                {/* Dual Scrolling Image Gallery */}
                 <div className="relative h-full overflow-hidden rounded-[1.5rem]">
-                  
-                  {/* Scrolling Container */}
-                  <div className="h-full overflow-y-scroll scrollbar-hide">
-                    <div className="space-y-6 p-2">
-                      {aboutImages.map((img, index) => (
-                        <motion.div
-                          key={index}
-                          className="relative group"
-                          initial={{ opacity: 0, y: 50 }}
-                          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-                          transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                        >
-                          <div className="relative overflow-hidden rounded-2xl shadow-xl group-hover:shadow-2xl transition-all duration-500 transform group-hover:scale-[1.02]">
-                            {/* Image with Overlay Effects */}
-                            <div className="relative h-48 lg:h-56">
-                              <img
-                                src={img}
-                                alt={`Company Image ${index + 1}`}
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                loading="lazy"
-                              />
-                              
-                              {/* Gradient Overlay */}
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                              
-                              {/* Content Overlay */}
-                              <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                <div className="text-white">
-                                  <h4 className="font-bold text-lg mb-1">Our Journey</h4>
-                                  <p className="text-sm text-gray-200">Building futures together</p>
-                                </div>
+                  <div className="grid grid-cols-2 gap-4 h-full">
+                    
+                    {/* Left Column - Scrolling Up to Down */}
+                    <div className="h-full overflow-hidden">
+                      <motion.div
+                        className="space-y-4"
+                        animate={{
+                          y: [0, -100, 0]
+                        }}
+                        transition={{
+                          duration: 20,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }}
+                      >
+                        {[...leftImages, ...leftImages].map((img, index) => (
+                          <motion.div
+                            key={`left-${index}`}
+                            className="relative group"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                            transition={{ duration: 0.6, delay: 0.8 + (index % 3) * 0.1 }}
+                          >
+                            <div className="relative overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+                              <div className="relative h-32 lg:h-40">
+                                <img
+                                  src={img}
+                                  alt={`Company Image ${index + 1}`}
+                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                  loading="lazy"
+                                />
+                                
+                                {/* Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </div>
                             </div>
-                            
-                            {/* Decorative Border */}
-                            <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-indigo-400/20 group-hover:border-white/30 transition-all duration-500"></div>
-                          </div>
-                        </motion.div>
-                      ))}
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    </div>
+
+                    {/* Right Column - Scrolling Down to Up */}
+                    <div className="h-full overflow-hidden">
+                      <motion.div
+                        className="space-y-4"
+                        animate={{
+                          y: [-100, 0, -100]
+                        }}
+                        transition={{
+                          duration: 20,
+                          repeat: Infinity,
+                          ease: "linear"
+                        }}
+                      >
+                        {[...rightImages, ...rightImages].map((img, index) => (
+                          <motion.div
+                            key={`right-${index}`}
+                            className="relative group"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                            transition={{ duration: 0.6, delay: 1.0 + (index % 3) * 0.1 }}
+                          >
+                            <div className="relative overflow-hidden rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105">
+                              <div className="relative h-32 lg:h-40">
+                                <img
+                                  src={img}
+                                  alt={`Company Image ${index + 1}`}
+                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                  loading="lazy"
+                                />
+                                
+                                {/* Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </motion.div>
                     </div>
                   </div>
                   
-                  {/* Scroll Fade Effects */}
+                  {/* Gradient Fade Effects */}
                   <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-blue-50/80 to-transparent pointer-events-none z-10"></div>
                   <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-blue-50/80 to-transparent pointer-events-none z-10"></div>
                 </div>
