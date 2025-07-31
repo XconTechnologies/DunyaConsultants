@@ -101,14 +101,7 @@ export default function Navigation() {
             { name: "Duolingo", href: "/test-prep/duolingo", description: "Online English proficiency" }
           ]
         },
-        {
-          title: "Preparation Support",
-          icon: BookOpen,
-          items: [
-            { name: "Spoken English", href: "/test-prep/spoken-english", description: "Improve speaking skills" },
-            { name: "Interview Prep", href: "/test-prep/interview", description: "Visa interview coaching" }
-          ]
-        }
+
       ],
       featured: {
         title: "Free Mock Tests",
@@ -315,7 +308,7 @@ export default function Navigation() {
 
       {/* Mega Menu */}
       <AnimatePresence>
-        {activeMegaMenu && megaMenuData[activeMegaMenu] && (
+        {activeMegaMenu && megaMenuData[activeMegaMenu as keyof typeof megaMenuData] && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -330,7 +323,7 @@ export default function Navigation() {
                 {/* Menu Sections */}
                 <div className="lg:col-span-3">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {megaMenuData[activeMegaMenu].sections.map((section, idx) => (
+                    {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].sections.map((section: any, idx: number) => (
                       <div key={idx} className="space-y-3">
                         <div className="flex items-center space-x-2 mb-3">
                           <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
@@ -341,7 +334,7 @@ export default function Navigation() {
                           <h3 className="text-lg font-bold text-neutral-800">{section.title}</h3>
                         </div>
                         <div className="space-y-2">
-                          {section.items.map((item, itemIdx) => (
+                          {section.items.map((item: any, itemIdx: number) => (
                             <Link key={itemIdx} href={item.href}>
                               <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
                                 <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -368,19 +361,19 @@ export default function Navigation() {
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
                     <div className="relative z-10">
                       <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">
-                        {React.createElement(megaMenuData[activeMegaMenu].icon, { 
+                        {React.createElement(megaMenuData[activeMegaMenu as keyof typeof megaMenuData].icon, { 
                           className: "w-6 h-6 text-white" 
                         })}
                       </div>
                       <h3 className="text-lg font-bold mb-2">
-                        {megaMenuData[activeMegaMenu].featured.title}
+                        {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.title}
                       </h3>
                       <p className="text-white/90 mb-3 text-sm">
-                        {megaMenuData[activeMegaMenu].featured.description}
+                        {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.description}
                       </p>
-                      <Link href={megaMenuData[activeMegaMenu].featured.href}>
+                      <Link href={megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.href}>
                         <button className="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 text-sm font-medium">
-                          {megaMenuData[activeMegaMenu].featured.cta} →
+                          {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.cta} →
                         </button>
                       </Link>
                     </div>
@@ -425,12 +418,12 @@ export default function Navigation() {
             <div className="px-4 py-4 space-y-4">
               {navItems.map((item) => (
                 <div key={item.name || item.href}>
-                  {item.submenu ? (
+                  {(item as any).submenu ? (
                     <div className="space-y-2">
                       <div className="text-neutral-800 font-medium py-2 border-b border-gray-100">
                         {item.name}
                       </div>
-                      {item.submenu.map((subItem) => (
+                      {(item as any).submenu.map((subItem: any) => (
                         <Link key={subItem.name} href={subItem.href}>
                           <button
                             onClick={() => setIsOpen(false)}
