@@ -72,10 +72,10 @@ function SuccessStoriesCarousel({ stories }: { stories: any[] }) {
         >
           {stories.map((story, index) => (
             <div key={index} className="w-full flex-shrink-0">
-              <div className="grid lg:grid-cols-3 gap-8 items-center bg-white rounded-xl p-8 shadow-lg">
+              <div className="grid lg:grid-cols-3 gap-6 items-center bg-white rounded-xl p-6 shadow-lg max-w-4xl mx-auto">
                 {/* Image Section */}
                 <div className="order-2 lg:order-1 lg:col-span-2">
-                  <div className="relative aspect-[3/4] rounded-lg overflow-hidden">
+                  <div className="relative aspect-square rounded-lg overflow-hidden">
                     <img 
                       src={story.image}
                       alt={`${story.studentName} success story`}
