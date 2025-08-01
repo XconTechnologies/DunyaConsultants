@@ -23,42 +23,80 @@ import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 
 export default function OurSuccessStories() {
-  // Finland visa success images
+  // Finland visa success images - using proper asset import paths
   const finlandSuccessImages = [
-    "/attached_assets/WhatsApp Image 2025-05-14 at 16.20.13_fe907d87_1754049278735.jpg",
-    "/attached_assets/WhatsApp Image 2025-05-14 at 16.20.15_7db41ca4_1754049278736.jpg",
-    "/attached_assets/WhatsApp Image 2025-05-14 at 16.20.15_9da6acc1_1754049278738.jpg",
-    "/attached_assets/WhatsApp Image 2025-05-14 at 16.40.26_1df4b8bf_1754049278740.jpg",
-    "/attached_assets/WhatsApp Image 2025-05-15 at 12.46.07_99d45e3b_1754049278741.jpg",
-    "/attached_assets/WhatsApp Image 2025-06-10 at 11.17.34_fb382c5f_1754049278741.jpg",
-    "/attached_assets/WhatsApp Image 2025-06-12 at 17.41.22_4fca03db_1754049278742.jpg",
-    "/attached_assets/WhatsApp Image 2025-06-12 at 17.59.01_b55a7be2_1754049278743.jpg",
-    "/attached_assets/WhatsApp Image 2025-06-16 at 17.36.55_72932ae9_1754049278744.jpg",
-    "/attached_assets/WhatsApp Image 2025-06-18 at 12.22.14_dc11bfff_1754049278745.jpg",
-    "/attached_assets/WhatsApp Image 2025-06-18 at 12.22.15_cb694013_1754049278746.jpg",
-    "/attached_assets/IMG-20250623-WA0012_1754049278747.jpg"
+    "WhatsApp Image 2025-05-14 at 16.20.13_fe907d87_1754049278735.jpg",
+    "WhatsApp Image 2025-05-14 at 16.20.15_7db41ca4_1754049278736.jpg", 
+    "WhatsApp Image 2025-05-14 at 16.20.15_9da6acc1_1754049278738.jpg",
+    "WhatsApp Image 2025-05-14 at 16.40.26_1df4b8bf_1754049278740.jpg",
+    "WhatsApp Image 2025-05-15 at 12.46.07_99d45e3b_1754049278741.jpg",
+    "WhatsApp Image 2025-06-10 at 11.17.34_fb382c5f_1754049278741.jpg",
+    "WhatsApp Image 2025-06-12 at 17.41.22_4fca03db_1754049278742.jpg",
+    "WhatsApp Image 2025-06-12 at 17.59.01_b55a7be2_1754049278743.jpg",
+    "WhatsApp Image 2025-06-16 at 17.36.55_72932ae9_1754049278744.jpg",
+    "WhatsApp Image 2025-06-18 at 12.22.14_dc11bfff_1754049278745.jpg",
+    "WhatsApp Image 2025-06-18 at 12.22.15_cb694013_1754049278746.jpg",
+    "IMG-20250623-WA0012_1754049278747.jpg"
   ];
 
-  // Carousel state
-  const [currentIndex, setCurrentIndex] = useState(0);
+  // Carousel state for infinite scroll
+  const [translateX, setTranslateX] = useState(0);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  
+  // Responsive items to show
+  const getItemsToShow = () => {
+    if (windowWidth < 640) return 1; // Mobile: 1 image
+    if (windowWidth < 768) return 2; // Tablet: 2 images
+    if (windowWidth < 1024) return 3; // Small desktop: 3 images
+    return 4; // Large desktop: 4 images
+  };
+  
+  const itemsToShow = getItemsToShow();
+  const itemWidth = 100 / itemsToShow;
+  
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   // Auto-scroll effect for infinite loop
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === finlandSuccessImages.length - 1 ? 0 : prevIndex + 1
-      );
+      setTranslateX(prev => {
+        const nextPosition = prev - itemWidth;
+        // Reset to beginning when we've scrolled through all original items
+        if (Math.abs(nextPosition) >= (finlandSuccessImages.length * itemWidth)) {
+          return 0;
+        }
+        return nextPosition;
+      });
     }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(interval);
-  }, [finlandSuccessImages.length]);
+  }, [itemWidth, finlandSuccessImages.length]);
 
   const nextSlide = () => {
-    setCurrentIndex(currentIndex === finlandSuccessImages.length - 1 ? 0 : currentIndex + 1);
+    setTranslateX(prev => {
+      const nextPosition = prev - itemWidth;
+      if (Math.abs(nextPosition) >= (finlandSuccessImages.length * itemWidth)) {
+        return 0;
+      }
+      return nextPosition;
+    });
   };
 
   const prevSlide = () => {
-    setCurrentIndex(currentIndex === 0 ? finlandSuccessImages.length - 1 : currentIndex - 1);
+    setTranslateX(prev => {
+      if (prev >= 0) {
+        return -((finlandSuccessImages.length - itemsToShow) * itemWidth);
+      }
+      return prev + itemWidth;
+    });
   };
 
   const achievements = [
@@ -176,7 +214,7 @@ export default function OurSuccessStories() {
                 <span className="text-sm font-medium text-blue-600">Finland Visa Success</span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                🇫🇮 Finland Visa{" "}
+                Finland Visa{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Success Stories
                 </span>
@@ -187,71 +225,82 @@ export default function OurSuccessStories() {
             </motion.div>
           </div>
 
-          {/* Carousel Container */}
-          <div className="relative max-w-5xl mx-auto">
+          {/* Infinite Loop Carousel Container */}
+          <div className="relative max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="relative overflow-hidden rounded-2xl shadow-2xl bg-white"
+              className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-4"
             >
-              {/* Carousel Images */}
-              <div className="relative h-96 md:h-[500px] lg:h-[600px]">
-                {finlandSuccessImages.map((image, index) => (
-                  <div
-                    key={index}
-                    className={`absolute inset-0 transition-opacity duration-500 ${
-                      index === currentIndex ? 'opacity-100' : 'opacity-0'
-                    }`}
-                  >
-                    <img
-                      src={image}
-                      alt={`Finland visa success story ${index + 1}`}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-                
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+              {/* Carousel Track */}
+              <div className="overflow-hidden">
+                <div 
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{ 
+                    transform: `translateX(${translateX}%)`,
+                    width: `${(finlandSuccessImages.length * 2) * itemWidth}%` // Double the width for seamless loop
+                  }}
+                >
+                  {/* Original images */}
+                  {finlandSuccessImages.map((image, index) => (
+                    <div
+                      key={`original-${index}`}
+                      className="flex-shrink-0 px-2"
+                      style={{ width: `${itemWidth}%` }}
+                    >
+                      <div className="relative h-80 md:h-96 rounded-xl overflow-hidden shadow-lg">
+                        <img
+                          src={`/attached_assets/${image}`}
+                          alt={`Finland visa success story ${index + 1}`}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                      </div>
+                    </div>
+                  ))}
+                  {/* Duplicate images for seamless loop */}
+                  {finlandSuccessImages.map((image, index) => (
+                    <div
+                      key={`duplicate-${index}`}
+                      className="flex-shrink-0 px-2"
+                      style={{ width: `${itemWidth}%` }}
+                    >
+                      <div className="relative h-80 md:h-96 rounded-xl overflow-hidden shadow-lg">
+                        <img
+                          src={`/attached_assets/${image}`}
+                          alt={`Finland visa success story ${index + 1}`}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               {/* Navigation Buttons */}
               <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group z-10"
               >
                 <ChevronLeft className="w-6 h-6 text-gray-700 group-hover:text-blue-600" />
               </button>
               
               <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group z-10"
               >
                 <ChevronRight className="w-6 h-6 text-gray-700 group-hover:text-blue-600" />
               </button>
-
-              {/* Dots Indicator */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
-                {finlandSuccessImages.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentIndex 
-                        ? 'bg-white scale-110' 
-                        : 'bg-white/50 hover:bg-white/80'
-                    }`}
-                  />
-                ))}
-              </div>
             </motion.div>
 
-            {/* Carousel Counter */}
+            {/* Carousel Info */}
             <div className="text-center mt-6">
               <span className="text-gray-500 text-sm">
-                {currentIndex + 1} / {finlandSuccessImages.length}
+                Showing {itemsToShow} of {finlandSuccessImages.length} Finland visa success stories
               </span>
             </div>
           </div>
