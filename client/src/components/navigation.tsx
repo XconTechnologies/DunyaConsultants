@@ -41,7 +41,6 @@ export default function Navigation() {
           title: "Company",
           icon: Users,
           items: [
-            { name: "Our Story", href: "/about/story", description: "Learn about our journey and mission" },
             { name: "Who We Are", href: "/about/who-we-are", description: "Meet our dedicated team" },
             { name: "Mission & Vision", href: "/about/mission-vision", description: "Our goals and values" }
           ]
@@ -50,7 +49,7 @@ export default function Navigation() {
           title: "Why Choose Us",
           icon: Star,
           items: [
-            { name: "Success Stories", href: "/about/our-success-stories", description: "Student achievements" },
+            { name: "Our Success Stories", href: "/about/our-success-stories", description: "Student achievements" },
             { name: "Why Choose Us", href: "/about/why-choose-us", description: "Our unique advantages" }
           ]
         }
