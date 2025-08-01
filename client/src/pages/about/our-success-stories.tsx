@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { 
   GraduationCap, 
   Trophy, 
@@ -39,6 +40,18 @@ export default function OurSuccessStories() {
     image1, image2, image3, image4, image5, image6,
     image7, image8, image9, image10, image11, image12
   ];
+
+  // Carousel state for infinite scroll
+  const [translateX, setTranslateX] = useState(0);
+  
+  // Auto-scroll effect for infinite loop
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTranslateX(prev => prev - 0.5); // Continuous smooth movement
+    }, 20); // Very frequent updates for smooth motion
+
+    return () => clearInterval(interval);
+  }, []);
 
   const achievements = [
     {
@@ -165,51 +178,54 @@ export default function OurSuccessStories() {
             </p>
           </motion.div>
 
-          {/* Animated Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {finlandSuccessImages.slice(0, 9).map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.1,
-                  ease: "easeOut"
+          {/* Infinite Carousel */}
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-6 mb-16">
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-none"
+                style={{ 
+                  transform: `translateX(${translateX}%)`,
+                  width: `${finlandSuccessImages.length * 300}px` // Fixed width for smooth scrolling
                 }}
-                whileHover={{ 
-                  scale: 1.05,
-                  rotateY: 5,
-                  transition: { duration: 0.3 }
+                onTransitionEnd={() => {
+                  // Reset position when we've scrolled through all images
+                  if (translateX <= -100) {
+                    setTranslateX(0);
+                  }
                 }}
-                className="group relative overflow-hidden rounded-2xl shadow-lg bg-white border border-gray-100"
               >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img
-                    src={image}
-                    alt={`Finland visa success story ${index + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                
-                {/* Overlay Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <CheckCircle className="w-5 h-5 text-green-400" />
-                    <span className="text-sm font-medium">Visa Approved</span>
+                {/* Render images multiple times for seamless loop */}
+                {[...finlandSuccessImages, ...finlandSuccessImages, ...finlandSuccessImages].map((image, index) => (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 mx-3"
+                    style={{ width: '280px' }}
+                  >
+                    <div className="relative h-80 rounded-xl overflow-hidden shadow-lg bg-white border group">
+                      <img
+                        src={image}
+                        alt={`Finland visa success story ${(index % finlandSuccessImages.length) + 1}`}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      
+                      {/* Success Badge */}
+                      <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
+                        <CheckCircle className="w-3 h-3" />
+                        <span>Success</span>
+                      </div>
+                      
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="absolute bottom-4 left-4 right-4 text-white">
+                          <h3 className="text-lg font-semibold mb-1">Finland Student Visa</h3>
+                          <p className="text-sm text-gray-200">Successfully Approved</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-semibold">Finland Student Visa</h3>
-                  <p className="text-sm text-gray-200">Successfully processed</p>
-                </div>
-
-                {/* Floating Badge */}
-                <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                  <Star className="w-3 h-3" />
-                  <span>Success</span>
-                </div>
-              </motion.div>
-            ))}
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Success Highlights */}
