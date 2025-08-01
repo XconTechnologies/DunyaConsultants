@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { 
   GraduationCap, 
   Trophy, 
@@ -13,29 +14,52 @@ import {
   CheckCircle,
   Quote,
   BookOpen,
-  Target
+  Target,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 
 export default function OurSuccessStories() {
-  // Placeholder data - user will provide actual content
-  const successStories = [
-    {
-      studentName: "Sample Student Name",
-      country: "Country",
-      university: "University Name",
-      program: "Program Name",
-      year: "2024",
-      achievement: "Achievement Details",
-      story: "Student success story details will be added here based on user-provided data.",
-      scholarship: "Scholarship Amount",
-      image: "/api/placeholder/150/150"
-    }
+  // Finland visa success images
+  const finlandSuccessImages = [
+    "/attached_assets/WhatsApp Image 2025-05-14 at 16.20.13_fe907d87_1754049278735.jpg",
+    "/attached_assets/WhatsApp Image 2025-05-14 at 16.20.15_7db41ca4_1754049278736.jpg",
+    "/attached_assets/WhatsApp Image 2025-05-14 at 16.20.15_9da6acc1_1754049278738.jpg",
+    "/attached_assets/WhatsApp Image 2025-05-14 at 16.40.26_1df4b8bf_1754049278740.jpg",
+    "/attached_assets/WhatsApp Image 2025-05-15 at 12.46.07_99d45e3b_1754049278741.jpg",
+    "/attached_assets/WhatsApp Image 2025-06-10 at 11.17.34_fb382c5f_1754049278741.jpg",
+    "/attached_assets/WhatsApp Image 2025-06-12 at 17.41.22_4fca03db_1754049278742.jpg",
+    "/attached_assets/WhatsApp Image 2025-06-12 at 17.59.01_b55a7be2_1754049278743.jpg",
+    "/attached_assets/WhatsApp Image 2025-06-16 at 17.36.55_72932ae9_1754049278744.jpg",
+    "/attached_assets/WhatsApp Image 2025-06-18 at 12.22.14_dc11bfff_1754049278745.jpg",
+    "/attached_assets/WhatsApp Image 2025-06-18 at 12.22.15_cb694013_1754049278746.jpg",
+    "/attached_assets/IMG-20250623-WA0012_1754049278747.jpg"
   ];
+
+  // Carousel state
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Auto-scroll effect for infinite loop
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === finlandSuccessImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [finlandSuccessImages.length]);
+
+  const nextSlide = () => {
+    setCurrentIndex(currentIndex === finlandSuccessImages.length - 1 ? 0 : currentIndex + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex(currentIndex === 0 ? finlandSuccessImages.length - 1 : currentIndex - 1);
+  };
 
   const achievements = [
     {
@@ -138,7 +162,7 @@ export default function OurSuccessStories() {
         </div>
       </section>
 
-      {/* Success Stories Grid */}
+      {/* Finland Visa Success Stories Carousel */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -147,78 +171,120 @@ export default function OurSuccessStories() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Student{" "}
+              <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-6">
+                <Globe className="w-5 h-5 mr-2 text-blue-600" />
+                <span className="text-sm font-medium text-blue-600">Finland Visa Success</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                🇫🇮 Finland Visa{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Success Stories
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Inspiring journeys of students who made their dreams come true
+                Witness the incredible journey of our students who secured Finland student visas with exceptional results
               </p>
             </motion.div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {successStories.map((story, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+          {/* Carousel Container */}
+          <div className="relative max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="relative overflow-hidden rounded-2xl shadow-2xl bg-white"
+            >
+              {/* Carousel Images */}
+              <div className="relative h-96 md:h-[500px] lg:h-[600px]">
+                {finlandSuccessImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className={`absolute inset-0 transition-opacity duration-500 ${
+                      index === currentIndex ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`Finland visa success story ${index + 1}`}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
+                
+                {/* Overlay gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+              </div>
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group"
               >
-                <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-xl">
-                  <CardHeader className="text-center">
-                    <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
-                      <GraduationCap className="w-12 h-12 text-white" />
-                    </div>
-                    <CardTitle className="text-xl text-gray-900">{story.studentName}</CardTitle>
-                    <div className="space-y-2">
-                      <Badge variant="secondary" className="bg-blue-50 text-blue-700">
-                        {story.university}
-                      </Badge>
-                      <p className="text-sm text-gray-600">{story.program}</p>
-                      <div className="flex items-center justify-center text-sm text-gray-500">
-                        <MapPin className="w-4 h-4 mr-1" />
-                        {story.country}
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <Quote className="w-6 h-6 text-blue-400 mb-2" />
-                    <p className="text-gray-600 italic">{story.story}</p>
-                    <div className="space-y-2 pt-4 border-t">
-                      <div className="flex items-center text-sm">
-                        <Award className="w-4 h-4 text-yellow-500 mr-2" />
-                        <span className="font-medium">{story.scholarship}</span>
-                      </div>
-                      <div className="flex items-center text-sm">
-                        <Star className="w-4 h-4 text-blue-500 mr-2" />
-                        <span className="text-gray-600">{story.achievement}</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                <ChevronLeft className="w-6 h-6 text-gray-700 group-hover:text-blue-600" />
+              </button>
+              
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-700 group-hover:text-blue-600" />
+              </button>
+
+              {/* Dots Indicator */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-2">
+                {finlandSuccessImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentIndex 
+                        ? 'bg-white scale-110' 
+                        : 'bg-white/50 hover:bg-white/80'
+                    }`}
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Carousel Counter */}
+            <div className="text-center mt-6">
+              <span className="text-gray-500 text-sm">
+                {currentIndex + 1} / {finlandSuccessImages.length}
+              </span>
+            </div>
           </div>
 
-          {/* Placeholder message for user to add content */}
+          {/* Success Highlights */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mt-16 text-center"
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-16 grid md:grid-cols-3 gap-8"
           >
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-8">
-              <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                Ready for Your Success Stories
-              </h3>
-              <p className="text-gray-600">
-                This page is ready to showcase your authentic student success stories. 
-                Please provide the real success story data to populate this section.
-              </p>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Trophy className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">High Success Rate</h3>
+              <p className="text-gray-600">95% visa approval rate for Finland applications</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Star className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Scholarship Winners</h3>
+              <p className="text-gray-600">Multiple students secured scholarships up to €6000</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <GraduationCap className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Top Universities</h3>
+              <p className="text-gray-600">Admissions to leading Finnish institutions</p>
             </div>
           </motion.div>
         </div>
