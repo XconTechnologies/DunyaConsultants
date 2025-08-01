@@ -22,7 +22,7 @@ import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 
 // Import Finland visa success images - using the actual files from attached_assets
-import image1 from '@assets/1705387657661_1753962152110.jpeg';
+// Removed image1 as requested by user
 import image2 from '@assets/IMG-20250623-WA0011_1754049301060.jpg';
 import image3 from '@assets/IMG-20250623-WA0012_1754049278747.jpg';
 import image4 from '@assets/IMG-20250623-WA0013_1754049301061.jpg';
@@ -37,7 +37,7 @@ import image12 from '@assets/WhatsApp Image 2025-05-14 at 16.20.13_fe907d87_1754
 
 export default function OurSuccessStories() {
   const finlandSuccessImages = [
-    image1, image2, image3, image4, image5, image6,
+    image2, image3, image4, image5, image6,
     image7, image8, image9, image10, image11, image12
   ];
 
