@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
 import { 
   GraduationCap, 
   Trophy, 
@@ -15,8 +14,7 @@ import {
   Quote,
   BookOpen,
   Target,
-  ChevronLeft,
-  ChevronRight
+
 } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -41,66 +39,6 @@ export default function OurSuccessStories() {
     image1, image2, image3, image4, image5, image6,
     image7, image8, image9, image10, image11, image12
   ];
-
-  // Carousel state for infinite scroll
-  const [translateX, setTranslateX] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
-  
-  // Responsive items to show
-  const getItemsToShow = () => {
-    if (windowWidth < 640) return 1; // Mobile: 1 image
-    if (windowWidth < 768) return 2; // Tablet: 2 images
-    if (windowWidth < 1024) return 3; // Small desktop: 3 images
-    return 4; // Large desktop: 4 images
-  };
-  
-  const itemsToShow = getItemsToShow();
-  const itemWidth = 100 / itemsToShow;
-  
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-  
-  // Auto-scroll effect for infinite loop
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTranslateX(prev => {
-        const nextPosition = prev - itemWidth;
-        // Reset to beginning when we've scrolled through all original items
-        if (Math.abs(nextPosition) >= (finlandSuccessImages.length * itemWidth)) {
-          return 0;
-        }
-        return nextPosition;
-      });
-    }, 3000); // Change slide every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [itemWidth, finlandSuccessImages.length]);
-
-  const nextSlide = () => {
-    setTranslateX(prev => {
-      const nextPosition = prev - itemWidth;
-      if (Math.abs(nextPosition) >= (finlandSuccessImages.length * itemWidth)) {
-        return 0;
-      }
-      return nextPosition;
-    });
-  };
-
-  const prevSlide = () => {
-    setTranslateX(prev => {
-      if (prev >= 0) {
-        return -((finlandSuccessImages.length - itemsToShow) * itemWidth);
-      }
-      return prev + itemWidth;
-    });
-  };
 
   const achievements = [
     {
@@ -203,123 +141,119 @@ export default function OurSuccessStories() {
         </div>
       </section>
 
-      {/* Finland Visa Success Stories Carousel */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-6">
-                <Globe className="w-5 h-5 mr-2 text-blue-600" />
-                <span className="text-sm font-medium text-blue-600">Finland Visa Success</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                Finland Visa{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Success Stories
-                </span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Witness the incredible journey of our students who secured Finland student visas with exceptional results
-              </p>
-            </motion.div>
-          </div>
+      {/* Finland Visa Success Stories */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-6">
+              <Globe className="w-5 h-5 mr-2 text-blue-600" />
+              <span className="text-sm font-medium text-blue-600">Finland Visa Success</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Finland Visa{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Success Stories
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Witness the incredible journey of our students who secured Finland student visas with exceptional results
+            </p>
+          </motion.div>
 
-          {/* Infinite Loop Carousel Container */}
-          <div className="relative max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="relative overflow-hidden rounded-2xl shadow-2xl bg-gray-50 p-6"
-            >
-              {/* Carousel Track */}
-              <div className="overflow-hidden">
-                <div 
-                  className="flex transition-transform duration-500 ease-in-out gap-4"
-                  style={{ 
-                    transform: `translateX(${translateX}%)`,
-                    width: `${(finlandSuccessImages.length * 2) * itemWidth}%` // Double the width for seamless loop
-                  }}
-                >
-                  {/* Original images */}
-                  {finlandSuccessImages.map((image, index) => (
-                    <div
-                      key={`original-${index}`}
-                      className="flex-shrink-0"
-                      style={{ width: `${itemWidth}%` }}
-                    >
-                      <div className="relative h-72 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg bg-white border">
-                        <img
-                          src={image}
-                          alt={`Finland visa success story ${index + 1}`}
-                          className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
-                      </div>
-                    </div>
-                  ))}
-                  {/* Duplicate images for seamless loop */}
-                  {finlandSuccessImages.map((image, index) => (
-                    <div
-                      key={`duplicate-${index}`}
-                      className="flex-shrink-0"
-                      style={{ width: `${itemWidth}%` }}
-                    >
-                      <div className="relative h-72 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg bg-white border">
-                        <img
-                          src={image}
-                          alt={`Finland visa success story ${index + 1}`}
-                          className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
-                      </div>
-                    </div>
-                  ))}
+          {/* Animated Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {finlandSuccessImages.slice(0, 9).map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1,
+                  ease: "easeOut"
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  rotateY: 5,
+                  transition: { duration: 0.3 }
+                }}
+                className="group relative overflow-hidden rounded-2xl shadow-lg bg-white border border-gray-100"
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={image}
+                    alt={`Finland visa success story ${index + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-              </div>
+                
+                {/* Overlay Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <CheckCircle className="w-5 h-5 text-green-400" />
+                    <span className="text-sm font-medium">Visa Approved</span>
+                  </div>
+                  <h3 className="text-lg font-semibold">Finland Student Visa</h3>
+                  <p className="text-sm text-gray-200">Successfully processed</p>
+                </div>
 
-
-            </motion.div>
-
-
+                {/* Floating Badge */}
+                <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
+                  <Star className="w-3 h-3" />
+                  <span>Success</span>
+                </div>
+              </motion.div>
+            ))}
           </div>
 
           {/* Success Highlights */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-16 grid md:grid-cols-3 gap-8"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="grid md:grid-cols-3 gap-8"
           >
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Trophy className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">High Success Rate</h3>
-              <p className="text-gray-600">95% visa approval rate for Finland applications</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Star className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Scholarship Winners</h3>
-              <p className="text-gray-600">Multiple students secured scholarships up to €6000</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <GraduationCap className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Top Universities</h3>
-              <p className="text-gray-600">Admissions to leading Finnish institutions</p>
-            </div>
+            {[
+              {
+                icon: Trophy,
+                title: "High Success Rate",
+                description: "95% visa approval rate for Finland applications",
+                gradient: "from-blue-500 to-blue-600"
+              },
+              {
+                icon: Star,
+                title: "Scholarship Winners", 
+                description: "Multiple students secured scholarships up to €6000",
+                gradient: "from-green-500 to-green-600"
+              },
+              {
+                icon: GraduationCap,
+                title: "Top Universities",
+                description: "Admissions to leading Finnish institutions",
+                gradient: "from-purple-500 to-purple-600"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="text-center"
+              >
+                <div className={`w-16 h-16 bg-gradient-to-r ${item.gradient} rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg`}>
+                  <item.icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
+                <p className="text-gray-600">{item.description}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
