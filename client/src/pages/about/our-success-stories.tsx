@@ -75,11 +75,11 @@ function SuccessStoriesCarousel({ stories }: { stories: any[] }) {
               <div className="grid lg:grid-cols-2 gap-8 items-center bg-white rounded-xl p-8 shadow-lg">
                 {/* Image Section */}
                 <div className="order-2 lg:order-1">
-                  <div className="relative w-full h-80 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
+                  <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
                     <img 
                       src={story.image}
                       alt={`${story.studentName} success story`}
-                      className="max-w-full max-h-full object-contain rounded-lg"
+                      className="w-full h-full object-cover"
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.src = '/api/placeholder/400/300';
