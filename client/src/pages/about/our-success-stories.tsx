@@ -1,5 +1,10 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+
+// Import success story images
+import cyprusImage from '@assets/finlan_1754042907120.jpg';
+import finlandImage1 from '@assets/IMG-20250623-WA0011_1754042924688.jpg';
+import finlandImage2 from '@assets/IMG-20250623-WA0012_1754042928861.jpg';
 import { 
   GraduationCap, 
   Trophy, 
@@ -73,7 +78,7 @@ function SuccessStoriesCarousel({ stories }: { stories: any[] }) {
                 <div className="order-2 lg:order-1">
                   <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
                     <img 
-                      src={`/attached_assets/${story.image}`}
+                      src={story.image}
                       alt={`${story.studentName} success story`}
                       className="w-full h-full object-cover"
                       onError={(e) => {
@@ -200,7 +205,7 @@ export default function OurSuccessStories() {
       scholarship: "20% Scholarship",
       ieltsScore: "IELTS 6",
       contact: "Umer Nadeem: 0325-611-1947",
-      image: "finlan_1754042907120.jpg"
+      image: cyprusImage
     },
     {
       studentName: "Fasih Ahmed",
@@ -214,7 +219,7 @@ export default function OurSuccessStories() {
       ieltsScore: "IELTS 6.5",
       specialBenefit: "5 Years Multiple Entry Visa",
       contact: "Awais Ali: 0333-486-1947",
-      image: "IMG-20250623-WA0011_1754042924688.jpg"
+      image: finlandImage1
     },
     {
       studentName: "Fasih Ahmed",
@@ -228,7 +233,7 @@ export default function OurSuccessStories() {
       ieltsScore: "IELTS 6.5",
       specialBenefit: "5 Years Multiple Entry Visa",
       contact: "Awais Ali: 0333-486-1947",
-      image: "IMG-20250623-WA0012_1754042928861.jpg"
+      image: finlandImage2
     }
   ];
 
