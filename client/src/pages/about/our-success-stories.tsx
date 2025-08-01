@@ -22,22 +22,24 @@ import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 
-// Import Finland visa success images - Finland study visa posts only (no Umer Farooq)
-import image1 from '@assets/IMG-20250623-WA0011_1754049301060.jpg';
-import image2 from '@assets/IMG-20250623-WA0012_1754049278747.jpg';
-import image3 from '@assets/IMG-20250623-WA0013_1754049301061.jpg';
-import image4 from '@assets/IMG-20250623-WA0014_1754049278748.jpg';
-import image5 from '@assets/WhatsApp Image 2025-05-14 at 16.20.14_2ad80b19_1754049278749.jpg';
-import image6 from '@assets/WhatsApp Image 2025-05-14 at 16.20.14_663cf00a_1754049278749.jpg';
-import image7 from '@assets/WhatsApp Image 2025-06-13 at 15.22.21_168eba8b_1754049309050.jpg';
-import image8 from '@assets/WhatsApp Image 2025-06-16 at 12.12.25_5460ad33_1754049309051.jpg';
-import image9 from '@assets/WhatsApp Image 2025-06-18 at 12.22.14_ea3c798e_1754049309052.jpg';
-import image10 from '@assets/WhatsApp Image 2025-05-14 at 16.20.13_fe907d87_1754049278735.jpg';
+// Import Finland visa success images - using the actual files from attached_assets
+import image1 from '@assets/1705387657661_1753962152110.jpeg';
+import image2 from '@assets/IMG-20250623-WA0011_1754049301060.jpg';
+import image3 from '@assets/IMG-20250623-WA0012_1754049278747.jpg';
+import image4 from '@assets/IMG-20250623-WA0013_1754049301061.jpg';
+import image5 from '@assets/IMG-20250623-WA0014_1754049278748.jpg';
+import image6 from '@assets/WhatsApp Image 2025-05-14 at 16.20.14_2ad80b19_1754049278749.jpg';
+import image7 from '@assets/WhatsApp Image 2025-05-14 at 16.20.14_663cf00a_1754049278749.jpg';
+import image8 from '@assets/WhatsApp Image 2025-06-13 at 15.22.21_168eba8b_1754049309050.jpg';
+import image9 from '@assets/WhatsApp Image 2025-06-16 at 12.12.25_5460ad33_1754049309051.jpg';
+import image10 from '@assets/WhatsApp Image 2025-06-18 at 12.22.14_ea3c798e_1754049309052.jpg';
+import image11 from '@assets/image_1754049820938.png';
+import image12 from '@assets/WhatsApp Image 2025-05-14 at 16.20.13_fe907d87_1754049278735.jpg';
 
 export default function OurSuccessStories() {
   const finlandSuccessImages = [
     image1, image2, image3, image4, image5, image6,
-    image7, image8, image9, image10
+    image7, image8, image9, image10, image11, image12
   ];
 
   // Carousel state for infinite scroll
@@ -243,57 +245,41 @@ export default function OurSuccessStories() {
                     width: `${(finlandSuccessImages.length * 2) * itemWidth}%` // Double the width for seamless loop
                   }}
                 >
-                  {/* Original images with animations */}
+                  {/* Original images */}
                   {finlandSuccessImages.map((image, index) => (
-                    <motion.div
+                    <div
                       key={`original-${index}`}
-                      initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="flex-shrink-0 group"
+                      className="flex-shrink-0"
                       style={{ width: `${itemWidth}%` }}
                     >
-                      <div className="relative h-72 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg bg-white border group-hover:shadow-2xl transition-all duration-300">
+                      <div className="relative h-72 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg bg-white border">
                         <img
                           src={image}
                           alt={`Finland visa success story ${index + 1}`}
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent group-hover:from-black/10 transition-all duration-300"></div>
-                        
-                        {/* Success Badge */}
-                        <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          ✓ Approved
-                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
-                  {/* Duplicate images for seamless loop with animations */}
+                  {/* Duplicate images for seamless loop */}
                   {finlandSuccessImages.map((image, index) => (
-                    <motion.div
+                    <div
                       key={`duplicate-${index}`}
-                      initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ duration: 0.6, delay: (index + finlandSuccessImages.length) * 0.1 }}
-                      className="flex-shrink-0 group"
+                      className="flex-shrink-0"
                       style={{ width: `${itemWidth}%` }}
                     >
-                      <div className="relative h-72 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg bg-white border group-hover:shadow-2xl transition-all duration-300">
+                      <div className="relative h-72 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg bg-white border">
                         <img
                           src={image}
                           alt={`Finland visa success story ${index + 1}`}
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent group-hover:from-black/10 transition-all duration-300"></div>
-                        
-                        {/* Success Badge */}
-                        <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-semibold px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          ✓ Approved
-                        </div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
                       </div>
-                    </motion.div>
+                    </div>
                   ))}
                 </div>
               </div>
