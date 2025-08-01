@@ -1,9 +1,5 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-
-// Import success story images
-import finlandImage1 from '@assets/IMG-20250623-WA0011_1754042924688.jpg';
-import finlandImage2 from '@assets/IMG-20250623-WA0012_1754042928861.jpg';
 import { 
   GraduationCap, 
   Trophy, 
@@ -72,12 +68,12 @@ function SuccessStoriesCarousel({ stories }: { stories: any[] }) {
         >
           {stories.map((story, index) => (
             <div key={index} className="w-full flex-shrink-0">
-              <div className="grid lg:grid-cols-2 gap-8 items-center bg-white rounded-xl p-8 shadow-lg max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-8 items-center bg-white rounded-xl p-8 shadow-lg">
                 {/* Image Section */}
                 <div className="order-2 lg:order-1">
-                  <div className="relative aspect-square rounded-lg overflow-hidden">
+                  <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
                     <img 
-                      src={story.image}
+                      src={`/attached_assets/${story.image}`}
                       alt={`${story.studentName} success story`}
                       className="w-full h-full object-cover"
                       onError={(e) => {
@@ -194,6 +190,19 @@ export default function OurSuccessStories() {
   // Success stories with authentic images
   const successStories = [
     {
+      studentName: "Shahveer Anjum",
+      country: "Cyprus",
+      university: "Cyprus University",
+      program: "Bachelors in Computer Engineering",
+      year: "2024",
+      achievement: "Cyprus Study Visa Approved",
+      story: "Congratulations to Shahveer Anjum on getting Cyprus Study Visa with 20% scholarship and IELTS 6. A remarkable achievement in Computer Engineering with Dunya Consultants' guidance.",
+      scholarship: "20% Scholarship",
+      ieltsScore: "IELTS 6",
+      contact: "Umer Nadeem: 0325-611-1947",
+      image: "finlan_1754042907120.jpg"
+    },
+    {
       studentName: "Fasih Ahmed",
       country: "Finland",
       university: "Finnish University",
@@ -205,7 +214,7 @@ export default function OurSuccessStories() {
       ieltsScore: "IELTS 6.5",
       specialBenefit: "5 Years Multiple Entry Visa",
       contact: "Awais Ali: 0333-486-1947",
-      image: finlandImage1
+      image: "IMG-20250623-WA0011_1754042924688.jpg"
     },
     {
       studentName: "Fasih Ahmed",
@@ -219,7 +228,7 @@ export default function OurSuccessStories() {
       ieltsScore: "IELTS 6.5",
       specialBenefit: "5 Years Multiple Entry Visa",
       contact: "Awais Ali: 0333-486-1947",
-      image: finlandImage2
+      image: "IMG-20250623-WA0012_1754042928861.jpg"
     }
   ];
 
