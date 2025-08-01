@@ -51,8 +51,7 @@ export default function Navigation() {
           icon: Star,
           items: [
             { name: "Success Stories", href: "/about/success-stories", description: "Student achievements" },
-            { name: "Why Choose Us", href: "/about/why-choose-us", description: "Our unique advantages" },
-            { name: "Leadership & Team", href: "/about/team", description: "Expert counselors" }
+            { name: "Why Choose Us", href: "/about/why-choose-us", description: "Our unique advantages" }
           ]
         }
       ],
