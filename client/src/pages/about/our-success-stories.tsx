@@ -73,7 +73,7 @@ function SuccessStoriesCarousel({ stories }: { stories: any[] }) {
                 <div className="order-2 lg:order-1">
                   <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
                     <img 
-                      src={story.image} 
+                      src={`/attached_assets/${story.image}`}
                       alt={`${story.studentName} success story`}
                       className="w-full h-full object-cover"
                       onError={(e) => {
@@ -117,10 +117,26 @@ function SuccessStoriesCarousel({ stories }: { stories: any[] }) {
                         </div>
                       </div>
                       <div className="flex items-center">
-                        <GraduationCap className="w-5 h-5 text-blue-500 mr-3" />
+                        <Star className="w-5 h-5 text-green-500 mr-3" />
                         <div>
-                          <p className="text-sm text-gray-500">University</p>
-                          <p className="font-semibold text-gray-900">{story.university}</p>
+                          <p className="text-sm text-gray-500">IELTS Score</p>
+                          <p className="font-semibold text-gray-900">{story.ieltsScore}</p>
+                        </div>
+                      </div>
+                      {story.specialBenefit && (
+                        <div className="flex items-center sm:col-span-2">
+                          <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
+                          <div>
+                            <p className="text-sm text-gray-500">Special Benefit</p>
+                            <p className="font-semibold text-gray-900">{story.specialBenefit}</p>
+                          </div>
+                        </div>
+                      )}
+                      <div className="flex items-center sm:col-span-2">
+                        <Users className="w-5 h-5 text-orange-500 mr-3" />
+                        <div>
+                          <p className="text-sm text-gray-500">Contact</p>
+                          <p className="font-semibold text-gray-900">{story.contact}</p>
                         </div>
                       </div>
                     </div>
@@ -174,15 +190,45 @@ export default function OurSuccessStories() {
   // Success stories with authentic images
   const successStories = [
     {
-      studentName: "Finland Success Story",
+      studentName: "Shahveer Anjum",
+      country: "Cyprus",
+      university: "Cyprus University",
+      program: "Bachelors in Computer Engineering",
+      year: "2024",
+      achievement: "Cyprus Study Visa Approved",
+      story: "Congratulations to Shahveer Anjum on getting Cyprus Study Visa with 20% scholarship and IELTS 6. A remarkable achievement in Computer Engineering with Dunya Consultants' guidance.",
+      scholarship: "20% Scholarship",
+      ieltsScore: "IELTS 6",
+      contact: "Umer Nadeem: 0325-611-1947",
+      image: "finlan_1754042907120.jpg"
+    },
+    {
+      studentName: "Fasih Ahmed",
       country: "Finland",
       university: "Finnish University",
-      program: "International Program",
+      program: "Sustainable International Business",
       year: "2024",
-      achievement: "Successfully placed in Finland",
-      story: "Another successful placement by Dunya Consultants. Our dedicated team helped this student achieve their dreams of studying in Finland.",
-      scholarship: "Full Scholarship",
-      image: "https://drive.usercontent.google.com/download?id=18S_MDDpEaayvczzVKdxrx4o1ItwX8tyc&export=view"
+      achievement: "Finland Student Visa Approved",
+      story: "Congratulations to Fasih Ahmed on getting Finland Student Visa with 2000€ scholarship, IELTS 6.5, and 5 Years Multiple Entry Visa. A successful placement in Sustainable International Business program.",
+      scholarship: "2000€ Scholarship",
+      ieltsScore: "IELTS 6.5",
+      specialBenefit: "5 Years Multiple Entry Visa",
+      contact: "Awais Ali: 0333-486-1947",
+      image: "IMG-20250623-WA0011_1754042924688.jpg"
+    },
+    {
+      studentName: "Fasih Ahmed",
+      country: "Finland", 
+      university: "Finnish University",
+      program: "Sustainable International Business",
+      year: "2024",
+      achievement: "Finland Student Visa Approved - Office Meeting",
+      story: "Another view of Fasih Ahmed's success story - celebrating the Finland Student Visa approval at our office. This moment captures the joy of achieving dreams through dedication and expert guidance.",
+      scholarship: "2000€ Scholarship",
+      ieltsScore: "IELTS 6.5",
+      specialBenefit: "5 Years Multiple Entry Visa",
+      contact: "Awais Ali: 0333-486-1947",
+      image: "IMG-20250623-WA0012_1754042928861.jpg"
     }
   ];
 
