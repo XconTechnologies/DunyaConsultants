@@ -47,8 +47,15 @@ export default function OurSuccessStories() {
   // Auto-scroll effect for infinite loop
   useEffect(() => {
     const interval = setInterval(() => {
-      setTranslateX(prev => prev - 0.5); // Continuous smooth movement
-    }, 20); // Very frequent updates for smooth motion
+      setTranslateX(prev => {
+        const nextPos = prev - 0.1; // Much slower movement
+        // Reset when we've moved one full set
+        if (nextPos <= -33.33) { // After moving through one set (33.33% of total width)
+          return 0;
+        }
+        return nextPos;
+      });
+    }, 50); // Slower update frequency
 
     return () => clearInterval(interval);
   }, []);
@@ -182,30 +189,24 @@ export default function OurSuccessStories() {
           <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-6 mb-16">
             <div className="overflow-hidden">
               <div 
-                className="flex transition-none"
+                className="flex gap-4"
                 style={{ 
                   transform: `translateX(${translateX}%)`,
-                  width: `${finlandSuccessImages.length * 300}px` // Fixed width for smooth scrolling
-                }}
-                onTransitionEnd={() => {
-                  // Reset position when we've scrolled through all images
-                  if (translateX <= -100) {
-                    setTranslateX(0);
-                  }
+                  width: '300%' // Triple width for seamless looping
                 }}
               >
-                {/* Render images multiple times for seamless loop */}
+                {/* Triple the images for seamless infinite loop */}
                 {[...finlandSuccessImages, ...finlandSuccessImages, ...finlandSuccessImages].map((image, index) => (
                   <div
                     key={index}
-                    className="flex-shrink-0 mx-3"
+                    className="flex-shrink-0"
                     style={{ width: '280px' }}
                   >
                     <div className="relative h-80 rounded-xl overflow-hidden shadow-lg bg-white border group">
                       <img
                         src={image}
                         alt={`Finland visa success story ${(index % finlandSuccessImages.length) + 1}`}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                       />
                       
                       {/* Success Badge */}
