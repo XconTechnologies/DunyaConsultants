@@ -22,21 +22,24 @@ import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 
+// Import Finland visa success images - using the actual files from attached_assets
+import image1 from '@assets/1705387657661_1753962152110.jpeg';
+import image2 from '@assets/IMG-20250623-WA0011_1754049301060.jpg';
+import image3 from '@assets/IMG-20250623-WA0012_1754049278747.jpg';
+import image4 from '@assets/IMG-20250623-WA0013_1754049301061.jpg';
+import image5 from '@assets/IMG-20250623-WA0014_1754049278748.jpg';
+import image6 from '@assets/WhatsApp Image 2025-05-14 at 16.20.14_2ad80b19_1754049278749.jpg';
+import image7 from '@assets/WhatsApp Image 2025-05-14 at 16.20.14_663cf00a_1754049278749.jpg';
+import image8 from '@assets/WhatsApp Image 2025-06-13 at 15.22.21_168eba8b_1754049309050.jpg';
+import image9 from '@assets/WhatsApp Image 2025-06-16 at 12.12.25_5460ad33_1754049309051.jpg';
+import image10 from '@assets/WhatsApp Image 2025-06-18 at 12.22.14_ea3c798e_1754049309052.jpg';
+import image11 from '@assets/image_1754049820938.png';
+import image12 from '@assets/WhatsApp Image 2025-05-14 at 16.20.13_fe907d87_1754049278735.jpg';
+
 export default function OurSuccessStories() {
-  // Finland visa success images - using proper asset import paths
   const finlandSuccessImages = [
-    "WhatsApp Image 2025-05-14 at 16.20.13_fe907d87_1754049278735.jpg",
-    "WhatsApp Image 2025-05-14 at 16.20.15_7db41ca4_1754049278736.jpg", 
-    "WhatsApp Image 2025-05-14 at 16.20.15_9da6acc1_1754049278738.jpg",
-    "WhatsApp Image 2025-05-14 at 16.40.26_1df4b8bf_1754049278740.jpg",
-    "WhatsApp Image 2025-05-15 at 12.46.07_99d45e3b_1754049278741.jpg",
-    "WhatsApp Image 2025-06-10 at 11.17.34_fb382c5f_1754049278741.jpg",
-    "WhatsApp Image 2025-06-12 at 17.41.22_4fca03db_1754049278742.jpg",
-    "WhatsApp Image 2025-06-12 at 17.59.01_b55a7be2_1754049278743.jpg",
-    "WhatsApp Image 2025-06-16 at 17.36.55_72932ae9_1754049278744.jpg",
-    "WhatsApp Image 2025-06-18 at 12.22.14_dc11bfff_1754049278745.jpg",
-    "WhatsApp Image 2025-06-18 at 12.22.15_cb694013_1754049278746.jpg",
-    "IMG-20250623-WA0012_1754049278747.jpg"
+    image1, image2, image3, image4, image5, image6,
+    image7, image8, image9, image10, image11, image12
   ];
 
   // Carousel state for infinite scroll
@@ -251,7 +254,7 @@ export default function OurSuccessStories() {
                     >
                       <div className="relative h-80 md:h-96 rounded-xl overflow-hidden shadow-lg">
                         <img
-                          src={`/attached_assets/${image}`}
+                          src={image}
                           alt={`Finland visa success story ${index + 1}`}
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                           loading="lazy"
@@ -269,7 +272,7 @@ export default function OurSuccessStories() {
                     >
                       <div className="relative h-80 md:h-96 rounded-xl overflow-hidden shadow-lg">
                         <img
-                          src={`/attached_assets/${image}`}
+                          src={image}
                           alt={`Finland visa success story ${index + 1}`}
                           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                           loading="lazy"
@@ -281,28 +284,10 @@ export default function OurSuccessStories() {
                 </div>
               </div>
 
-              {/* Navigation Buttons */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group z-10"
-              >
-                <ChevronLeft className="w-6 h-6 text-gray-700 group-hover:text-blue-600" />
-              </button>
-              
-              <button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 group z-10"
-              >
-                <ChevronRight className="w-6 h-6 text-gray-700 group-hover:text-blue-600" />
-              </button>
+
             </motion.div>
 
-            {/* Carousel Info */}
-            <div className="text-center mt-6">
-              <span className="text-gray-500 text-sm">
-                Showing {itemsToShow} of {finlandSuccessImages.length} Finland visa success stories
-              </span>
-            </div>
+
           </div>
 
           {/* Success Highlights */}
