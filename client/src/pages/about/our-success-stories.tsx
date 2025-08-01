@@ -72,9 +72,9 @@ function SuccessStoriesCarousel({ stories }: { stories: any[] }) {
         >
           {stories.map((story, index) => (
             <div key={index} className="w-full flex-shrink-0">
-              <div className="grid lg:grid-cols-2 gap-8 items-center bg-white rounded-xl p-8 shadow-lg">
+              <div className="grid lg:grid-cols-3 gap-8 items-center bg-white rounded-xl p-8 shadow-lg">
                 {/* Image Section */}
-                <div className="order-2 lg:order-1">
+                <div className="order-2 lg:order-1 lg:col-span-2">
                   <div className="relative aspect-[3/4] rounded-lg overflow-hidden">
                     <img 
                       src={story.image}
@@ -90,7 +90,7 @@ function SuccessStoriesCarousel({ stories }: { stories: any[] }) {
                 </div>
 
                 {/* Content Section */}
-                <div className="order-1 lg:order-2 space-y-6">
+                <div className="order-1 lg:order-2 lg:col-span-1 space-y-6">
                   <div className="text-center lg:text-left">
                     <Badge variant="secondary" className="bg-blue-50 text-blue-700 mb-4">
                       Success Story
