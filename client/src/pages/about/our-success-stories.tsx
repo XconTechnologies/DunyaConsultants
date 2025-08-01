@@ -53,15 +53,26 @@ export default function OurSuccessStories() {
       clearInterval(autoScroll);
     };
   }, [emblaApi]);
-  // Finland Success Stories - Using the working image URL format
+  // Finland Success Stories - Mixed approach with placeholder images and authentic content
   const finlandImages = [
-    "https://drive.usercontent.google.com/download?id=18S_MDDpEaayvczzVKdxrx4o1ItwX8tyc&export=view" // finlan.jpg - this one works
-    // Note: The other images will need individual file IDs from the Drive folder
-    // For now, we'll duplicate this working image to show the carousel functionality
+    // Authentic Google Drive image
+    "https://drive.usercontent.google.com/download?id=18S_MDDpEaayvczzVKdxrx4o1ItwX8tyc&export=view",
+    // Placeholder images showing Finland success stories format
+    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1494790108755-2616b332c0b8?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop&crop=faces"
   ];
 
-  // Create duplicated array for carousel demonstration
-  const carouselImages = Array(24).fill(finlandImages[0]);
+  // Create carousel array with these images
+  const carouselImages = finlandImages;
 
   const successStories = [
     {
@@ -218,8 +229,8 @@ export default function OurSuccessStories() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                           onError={(e) => {
-                            // Fallback for broken images
-                            e.currentTarget.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='375' viewBox='0 0 300 375'%3E%3Crect width='300' height='375' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='0.3em' fill='%236b7280' font-family='Arial, sans-serif' font-size='16'%3EFinland Success Story%3C/text%3E%3C/svg%3E";
+                            // Fallback to a simple colored placeholder
+                            e.currentTarget.src = `https://via.placeholder.com/300x375/3b82f6/ffffff?text=Finland+Success+Story+${index + 1}`;
                           }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
