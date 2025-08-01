@@ -50,7 +50,7 @@ export default function Navigation() {
           title: "Why Choose Us",
           icon: Star,
           items: [
-            { name: "Success Stories", href: "/about/success-stories", description: "Student achievements" },
+            { name: "Success Stories", href: "/about/our-success-stories", description: "Student achievements" },
             { name: "Why Choose Us", href: "/about/why-choose-us", description: "Our unique advantages" }
           ]
         }
