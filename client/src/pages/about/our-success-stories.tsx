@@ -75,7 +75,7 @@ function SuccessStoriesCarousel({ stories }: { stories: any[] }) {
               <div className="grid lg:grid-cols-2 gap-8 items-center bg-white rounded-xl p-8 shadow-lg">
                 {/* Image Section */}
                 <div className="order-2 lg:order-1">
-                  <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+                  <div className="relative aspect-[3/4] rounded-lg overflow-hidden">
                     <img 
                       src={story.image}
                       alt={`${story.studentName} success story`}
