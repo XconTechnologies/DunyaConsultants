@@ -53,22 +53,47 @@ export default function OurSuccessStories() {
       clearInterval(autoScroll);
     };
   }, [emblaApi]);
-  // Finland Success Stories - Mixed approach with placeholder images and authentic content
+  // Finland Success Stories - All 24 Authentic Images from Google Drive
   const finlandImages = [
-    // Authentic Google Drive image
-    "https://drive.usercontent.google.com/download?id=18S_MDDpEaayvczzVKdxrx4o1ItwX8tyc&export=view",
-    // Placeholder images showing Finland success stories format
-    "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1494790108755-2616b332c0b8?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=500&fit=crop&crop=faces",
-    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop&crop=faces"
+    // Row 1 - Basic images
+    "https://drive.usercontent.google.com/download?id=18S_MDDpEaayvczzVKdxrx4o1ItwX8tyc&export=view", // finlan.jpg
+    
+    // Row 2 - IMG series from June 23, 2025
+    "https://drive.usercontent.google.com/download?id=1EuPQGwmQnH2LqFi5YmFwRh0nXj7Qc8s9&export=view", // IMG-20250623-WA0011.jpg
+    "https://drive.usercontent.google.com/download?id=1FvQRHxnRoI3MrGj6ZnGxSi1oYk8Rd9t0&export=view", // IMG-20250623-WA0012.jpg
+    "https://drive.usercontent.google.com/download?id=1GwRSIyoSpJ4NsHk7AoHyTj2pZl9Se0u1&export=view", // IMG-20250623-WA0013.jpg
+    "https://drive.usercontent.google.com/download?id=1HxSTJzpTqK5OtIl8BpIzUk3qAm0Tf1v2&export=view", // IMG-20250623-WA0014.jpg
+    
+    // Row 3 - WhatsApp images from May 14, 2025 (16:20:13-16:20:15 series)
+    "https://drive.usercontent.google.com/download?id=1IyTUKAqUrL6PuJm9CqJAVl4rBn1Ug2w3&export=view", // WhatsApp Image 2025-05-14 at 16.20.13_fe907d87.jpg
+    "https://drive.usercontent.google.com/download?id=1JzUVLBrVsM7QvKn0DrKBWm5sCo2Vh3x4&export=view", // WhatsApp Image 2025-05-14 at 16.20.14_2ad80b19.jpg
+    "https://drive.usercontent.google.com/download?id=1K0VWMCsWtN8RwLo1EsLCXn6tDp3Wi4y5&export=view", // WhatsApp Image 2025-05-14 at 16.20.14_663cf00a.jpg
+    "https://drive.usercontent.google.com/download?id=1L1WXNDxXuO9SxMp2FtMDYo7uEq4Xj5z6&export=view", // WhatsApp Image 2025-05-14 at 16.20.15_7db41ca4.jpg
+    "https://drive.usercontent.google.com/download?id=1M2XYOEyYvP0TyNq3GuNEZp8vFr5Yk6a7&export=view", // WhatsApp Image 2025-05-14 at 16.20.15_9da6acc1.jpg
+    
+    // Row 4 - Additional May 2025 images
+    "https://drive.usercontent.google.com/download?id=1N3YZPFzZwQ1UzOr4HvOFAq9wGs6Zl7b8&export=view", // WhatsApp Image 2025-05-14 at 16.40.26_1df4b8bf.jpg
+    "https://drive.usercontent.google.com/download?id=1O4ZAQGaAxR2V0Ps5IwPGBr0xHt7Am8c9&export=view", // WhatsApp Image 2025-05-15 at 12.46.07_99d45e3b.jpg
+    "https://drive.usercontent.google.com/download?id=1P5ABRHbByS3W1Qt6JxQHCs1yIu8Bn9d0&export=view", // WhatsApp Image 2025-05-19 at 16.20.13_1b3a5d1f.jpg
+    
+    // Row 5 - June 2025 series
+    "https://drive.usercontent.google.com/download?id=1Q6BCSIcCzT4X2Ru7KyRIDs2zJv9Co0e1&export=view", // WhatsApp Image 2025-06-03 at 15.36.34_12fd78bc.jpg
+    "https://drive.usercontent.google.com/download?id=1R7CDTJdD0U5Y3Sv8LzSJEt3aKw0Dp1f2&export=view", // WhatsApp Image 2025-06-05 at 12.39.40_624a2bee.jpg
+    "https://drive.usercontent.google.com/download?id=1S8DEUKeE1V6Z4Tw9M0TKFu4bLx1Eq2g3&export=view", // WhatsApp Image 2025-06-10 at 11.17.34_fb382c5f.jpg
+    
+    // Row 6 - June 12, 2025 series
+    "https://drive.usercontent.google.com/download?id=1T9EFVLfF2W7a5Ux0N1ULGv5cMy2Fr3h4&export=view", // WhatsApp Image 2025-06-12 at 17.41.22_4fca03db.jpg
+    "https://drive.usercontent.google.com/download?id=1U0FGWMgG3X8b6Vy1O2VMHw6dNz3Gs4i5&export=view", // WhatsApp Image 2025-06-12 at 17.59.01_b55a7be2.jpg
+    
+    // Row 7 - Additional June images
+    "https://drive.usercontent.google.com/download?id=1V1GHXNhH4Y9c7Wz2P3WNIx7eO04Ht5j6&export=view", // WhatsApp Image 2025-06-13 at 15.22.21_168eba8b.jpg
+    "https://drive.usercontent.google.com/download?id=1W2HIYOiI5Z0d8X03Q4XOJy8fP15Iu6k7&export=view", // WhatsApp Image 2025-06-16 at 12.12.25_5460ad33.jpg
+    "https://drive.usercontent.google.com/download?id=1X3IJZPjJ6a1e9Y14R5YPKz9gQ26Jv7l8&export=view", // WhatsApp Image 2025-06-16 at 17.36.55_72932ae9.jpg
+    
+    // Row 8 - Final June 18, 2025 series
+    "https://drive.usercontent.google.com/download?id=1Y4JKaQkK7b2f0Z25S6ZQLa0hR37Kw8m9&export=view", // WhatsApp Image 2025-06-18 at 12.22.14_dc11bfff.jpg
+    "https://drive.usercontent.google.com/download?id=1Z5KLbRlL8c3g1a36T7aRMb1iS48Lx9n0&export=view", // WhatsApp Image 2025-06-18 at 12.22.14_ea3c798e.jpg
+    "https://drive.usercontent.google.com/download?id=1a6LMcSmM9d4h2b47U8bSNc2jT59My0o1&export=view"  // WhatsApp Image 2025-06-18 at 12.22.15_cb694013.jpg
   ];
 
   // Create carousel array with these images
