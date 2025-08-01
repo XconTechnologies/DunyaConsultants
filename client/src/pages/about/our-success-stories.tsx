@@ -234,12 +234,12 @@ export default function OurSuccessStories() {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-4"
+              className="relative overflow-hidden rounded-2xl shadow-2xl bg-gray-50 p-6"
             >
               {/* Carousel Track */}
               <div className="overflow-hidden">
                 <div 
-                  className="flex transition-transform duration-500 ease-in-out"
+                  className="flex transition-transform duration-500 ease-in-out gap-4"
                   style={{ 
                     transform: `translateX(${translateX}%)`,
                     width: `${(finlandSuccessImages.length * 2) * itemWidth}%` // Double the width for seamless loop
@@ -249,17 +249,17 @@ export default function OurSuccessStories() {
                   {finlandSuccessImages.map((image, index) => (
                     <div
                       key={`original-${index}`}
-                      className="flex-shrink-0 px-2"
+                      className="flex-shrink-0"
                       style={{ width: `${itemWidth}%` }}
                     >
-                      <div className="relative h-80 md:h-96 rounded-xl overflow-hidden shadow-lg">
+                      <div className="relative h-72 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg bg-white border">
                         <img
                           src={image}
                           alt={`Finland visa success story ${index + 1}`}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
                       </div>
                     </div>
                   ))}
@@ -267,17 +267,17 @@ export default function OurSuccessStories() {
                   {finlandSuccessImages.map((image, index) => (
                     <div
                       key={`duplicate-${index}`}
-                      className="flex-shrink-0 px-2"
+                      className="flex-shrink-0"
                       style={{ width: `${itemWidth}%` }}
                     >
-                      <div className="relative h-80 md:h-96 rounded-xl overflow-hidden shadow-lg">
+                      <div className="relative h-72 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-lg bg-white border">
                         <img
                           src={image}
                           alt={`Finland visa success story ${index + 1}`}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/5 via-transparent to-transparent"></div>
                       </div>
                     </div>
                   ))}
