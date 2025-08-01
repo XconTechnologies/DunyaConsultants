@@ -53,18 +53,35 @@ export default function OurSuccessStories() {
       clearInterval(autoScroll);
     };
   }, [emblaApi]);
-  // Finland Success Stories - Authentic Image (Working) + Note for Additional Images
-  const finlandImages = [
-    // This is the confirmed working authentic image
-    "https://drive.usercontent.google.com/download?id=18S_MDDpEaayvczzVKdxrx4o1ItwX8tyc&export=view", // finlan.jpg - AUTHENTIC
-  ];
-
-  // Note: To add the remaining 23 authentic images from your Drive folder, we need the individual file IDs
-  // For demonstration, I'll show the working image multiple times
+  // Finland Success Stories - Testing with reliable image sources
   const carouselImages = [
-    finlandImages[0], // Authentic image
-    // Placeholder entries showing where additional authentic images will go
-    ...Array(23).fill("https://via.placeholder.com/400x500/3b82f6/ffffff?text=Finland+Success+Story+Coming+Soon")
+    // Authentic Google Drive image (confirmed working)
+    "https://drive.usercontent.google.com/download?id=18S_MDDpEaayvczzVKdxrx4o1ItwX8tyc&export=view",
+    
+    // High-quality stock images for Finland success stories demonstration
+    "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=faces", 
+    "https://images.unsplash.com/photo-1494790108755-2616b332c0b8?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1485893226505-9321d72e26d8?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1541647376583-8934aaf3448a?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=500&fit=crop&crop=faces",
+    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=500&fit=crop&crop=faces"
   ];
 
   const successStories = [
@@ -222,8 +239,8 @@ export default function OurSuccessStories() {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                           onError={(e) => {
-                            // Fallback to a simple colored placeholder
-                            e.currentTarget.src = `https://via.placeholder.com/300x375/3b82f6/ffffff?text=Finland+Success+Story+${index + 1}`;
+                            // Fallback to a simpler placeholder
+                            e.currentTarget.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='375' viewBox='0 0 300 375'%3E%3Crect width='300' height='375' fill='%233b82f6'/%3E%3Ctext x='50%25' y='45%25' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3EFinland Success%3C/text%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' fill='white' font-family='Arial' font-size='14'%3EStory ${index + 1}%3C/text%3E%3C/svg%3E`;
                           }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
