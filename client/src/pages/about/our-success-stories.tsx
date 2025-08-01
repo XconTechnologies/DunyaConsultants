@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 import { 
   GraduationCap, 
   Trophy, 
@@ -21,7 +22,51 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
+// Import all Finland visa success images
+import finlandSuccess1 from '@assets/WhatsApp Image 2025-05-14 at 16.20.13_fe907d87_1754048683577.jpg';
+import finlandSuccess2 from '@assets/WhatsApp Image 2025-05-14 at 16.20.15_7db41ca4_1754048683577.jpg';
+import finlandSuccess3 from '@assets/WhatsApp Image 2025-05-14 at 16.20.15_9da6acc1_1754048683578.jpg';
+import finlandSuccess4 from '@assets/WhatsApp Image 2025-05-14 at 16.40.26_1df4b8bf_1754048683579.jpg';
+import finlandSuccess5 from '@assets/WhatsApp Image 2025-05-15 at 12.46.07_99d45e3b_1754048683580.jpg';
+import finlandSuccess6 from '@assets/WhatsApp Image 2025-06-10 at 11.17.34_fb382c5f_1754048683581.jpg';
+import finlandSuccess7 from '@assets/WhatsApp Image 2025-06-12 at 17.41.22_4fca03db_1754048683582.jpg';
+import finlandSuccess8 from '@assets/WhatsApp Image 2025-06-12 at 17.59.01_b55a7be2_1754048683583.jpg';
+import finlandSuccess9 from '@assets/WhatsApp Image 2025-06-16 at 17.36.55_72932ae9_1754048683584.jpg';
+import finlandSuccess10 from '@assets/WhatsApp Image 2025-06-18 at 12.22.14_dc11bfff_1754048683585.jpg';
+import finlandSuccess11 from '@assets/WhatsApp Image 2025-06-18 at 12.22.15_cb694013_1754048683585.jpg';
+import finlandSuccess12 from '@assets/IMG-20250623-WA0012_1754048683586.jpg';
+
 export default function OurSuccessStories() {
+  // Finland visa success images for infinite carousel
+  const finlandImages = [
+    finlandSuccess1,
+    finlandSuccess2,
+    finlandSuccess3,
+    finlandSuccess4,
+    finlandSuccess5,
+    finlandSuccess6,
+    finlandSuccess7,
+    finlandSuccess8,
+    finlandSuccess9,
+    finlandSuccess10,
+    finlandSuccess11,
+    finlandSuccess12
+  ];
+
+  // State for infinite carousel
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Auto-scroll effect for infinite carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === finlandImages.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [finlandImages.length]);
+
   // Placeholder data - user will provide actual content
   const successStories = [
     {
@@ -78,10 +123,10 @@ export default function OurSuccessStories() {
               <span className="text-sm font-medium">Our Success Stories</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-              Our Success Stories
+              🇫🇮 Finland Dreams Come True!
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
-              Real stories of students who achieved their dreams with Dunya Consultants
+              Witness the incredible journey of Pakistani students conquering Finland with our expert guidance
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
@@ -95,7 +140,7 @@ export default function OurSuccessStories() {
         </div>
       </section>
 
-      {/* Success Statistics */}
+      {/* Finland Visa Success Carousel */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -105,13 +150,142 @@ export default function OurSuccessStories() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Our{" "}
+                🎉 Finland Visa{" "}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Success Gallery
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Real visa approvals, real students, real dreams achieved - Your Finland journey starts here!
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Infinite Loop Carousel */}
+          <div className="relative h-96 md:h-[500px] overflow-hidden rounded-2xl shadow-2xl">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
+            {finlandImages.map((image, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ 
+                  opacity: index === currentIndex ? 1 : 0,
+                  scale: index === currentIndex ? 1 : 1.1
+                }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="absolute inset-0"
+              >
+                <img
+                  src={image}
+                  alt={`Finland Visa Success ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            ))}
+            
+            {/* Carousel Indicators */}
+            <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+              {finlandImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentIndex 
+                      ? 'bg-white shadow-lg scale-125' 
+                      : 'bg-white/50 hover:bg-white/75'
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Success Counter Overlay */}
+            <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 z-20">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600">
+                  {currentIndex + 1}/{finlandImages.length}
+                </div>
+                <div className="text-sm text-gray-600 font-medium">
+                  Success Stories
+                </div>
+              </div>
+            </div>
+
+            {/* Catchy Success Message */}
+            <div className="absolute bottom-16 left-6 right-6 text-center z-20">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="bg-gradient-to-r from-blue-600/90 to-purple-600/90 backdrop-blur-sm rounded-lg p-4"
+              >
+                <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                  🎯 Another Finland Dream Achieved!
+                </h3>
+                <p className="text-blue-100 text-sm md:text-base">
+                  Join hundreds of Pakistani students who trusted Dunya Consultants for their Finland visa success
+                </p>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Quick Stats */}
+          <div className="grid md:grid-cols-3 gap-8 mt-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 border border-blue-100"
+            >
+              <div className="text-4xl font-bold text-blue-600 mb-2">100+</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Finland Visas Approved</h3>
+              <p className="text-gray-600">Successful student visa approvals in 2024-2025</p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-center bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 border border-green-100"
+            >
+              <div className="text-4xl font-bold text-green-600 mb-2">98%</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Success Rate</h3>
+              <p className="text-gray-600">Finland visa approval success rate</p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-center bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-6 border border-purple-100"
+            >
+              <div className="text-4xl font-bold text-purple-600 mb-2">15+</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Partner Universities</h3>
+              <p className="text-gray-600">Top Finnish institutions we work with</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Success Statistics */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Our Global{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Achievements
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Numbers that reflect our commitment to student success
+                Numbers that reflect our commitment to student success worldwide
               </p>
             </motion.div>
           </div>
