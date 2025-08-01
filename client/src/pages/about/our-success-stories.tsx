@@ -13,11 +13,8 @@ import {
   CheckCircle,
   Quote,
   BookOpen,
-  Target,
-  ChevronLeft,
-  ChevronRight
+  Target
 } from 'lucide-react';
-import { useState } from 'react';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
@@ -25,72 +22,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 
 export default function OurSuccessStories() {
-  const [activeCountry, setActiveCountry] = useState('Finland');
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  // Define visa post type
-  type VisaPost = {
-    id: number;
-    studentName: string;
-    visaType: string;
-    approvalDate: string;
-    program: string;
-    university: string;
-    description: string;
-    image: string;
-  };
-
-  // Finland visa approval posts - based on Google Drive content
-  const finlandVisaPosts: VisaPost[] = [
+  // Placeholder data - user will provide actual content
+  const successStories = [
     {
-      id: 1,
-      studentName: "Student Name 1",
-      visaType: "Study Visa",
-      approvalDate: "May 2025",
-      program: "Master's Program",
+      studentName: "Sample Student Name",
+      country: "Country",
       university: "University Name",
-      description: "Successfully approved Finland study visa",
-      image: "/api/placeholder/400/300"
-    },
-    {
-      id: 2,
-      studentName: "Student Name 2", 
-      visaType: "Study Visa",
-      approvalDate: "June 2025",
-      program: "Bachelor's Program",
-      university: "University Name",
-      description: "Finland visa approval success",
-      image: "/api/placeholder/400/300"
-    },
-    // More posts will be added based on actual data from drive
+      program: "Program Name",
+      year: "2024",
+      achievement: "Achievement Details",
+      story: "Student success story details will be added here based on user-provided data.",
+      scholarship: "Scholarship Amount",
+      image: "/api/placeholder/150/150"
+    }
   ];
-
-  // Country-wise visa approvals
-  const countryVisaData: Record<string, VisaPost[]> = {
-    'Finland': finlandVisaPosts,
-    'Sweden': [], // Will be populated with actual data
-    'Canada': [], // Will be populated with actual data
-    'Australia': [], // Will be populated with actual data
-    'UK': [], // Will be populated with actual data
-    'USA': [] // Will be populated with actual data
-  };
-
-  const currentCountryPosts = countryVisaData[activeCountry] || [];
-  const postsPerSlide = 3;
-  const totalSlides = Math.ceil(currentCountryPosts.length / postsPerSlide);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
-
-  const getCurrentSlidePosts = () => {
-    const startIndex = currentSlide * postsPerSlide;
-    return currentCountryPosts.slice(startIndex, startIndex + postsPerSlide);
-  };
 
   const achievements = [
     {
@@ -193,7 +138,7 @@ export default function OurSuccessStories() {
         </div>
       </section>
 
-      {/* Visa Approval Success Stories by Country */}
+      {/* Success Stories Grid */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -203,146 +148,79 @@ export default function OurSuccessStories() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Visa Approval{" "}
+                Student{" "}
                 <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Success Stories
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Recent visa approvals organized by destination countries
+                Inspiring journeys of students who made their dreams come true
               </p>
             </motion.div>
           </div>
 
-          {/* Country Tabs */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {Object.keys(countryVisaData).map((country) => (
-              <button
-                key={country}
-                onClick={() => {
-                  setActiveCountry(country);
-                  setCurrentSlide(0);
-                }}
-                className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                  activeCountry === country
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white text-gray-600 hover:bg-blue-50 border border-gray-200'
-                }`}
+          <div className="grid lg:grid-cols-3 gap-8">
+            {successStories.map((story, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <span className="flex items-center gap-2">
-                  <Globe className="w-4 h-4" />
-                  {country}
-                  {countryVisaData[country].length > 0 && (
-                    <Badge variant="secondary" className="ml-2 bg-blue-100 text-blue-700">
-                      {countryVisaData[country].length}
-                    </Badge>
-                  )}
-                </span>
-              </button>
+                <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-xl">
+                  <CardHeader className="text-center">
+                    <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
+                      <GraduationCap className="w-12 h-12 text-white" />
+                    </div>
+                    <CardTitle className="text-xl text-gray-900">{story.studentName}</CardTitle>
+                    <div className="space-y-2">
+                      <Badge variant="secondary" className="bg-blue-50 text-blue-700">
+                        {story.university}
+                      </Badge>
+                      <p className="text-sm text-gray-600">{story.program}</p>
+                      <div className="flex items-center justify-center text-sm text-gray-500">
+                        <MapPin className="w-4 h-4 mr-1" />
+                        {story.country}
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <Quote className="w-6 h-6 text-blue-400 mb-2" />
+                    <p className="text-gray-600 italic">{story.story}</p>
+                    <div className="space-y-2 pt-4 border-t">
+                      <div className="flex items-center text-sm">
+                        <Award className="w-4 h-4 text-yellow-500 mr-2" />
+                        <span className="font-medium">{story.scholarship}</span>
+                      </div>
+                      <div className="flex items-center text-sm">
+                        <Star className="w-4 h-4 text-blue-500 mr-2" />
+                        <span className="text-gray-600">{story.achievement}</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             ))}
           </div>
 
-          {/* Carousel for Selected Country */}
-          {currentCountryPosts.length > 0 ? (
-            <div className="relative">
-              {/* Carousel Navigation */}
-              {totalSlides > 1 && (
-                <>
-                  <button
-                    onClick={prevSlide}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200"
-                  >
-                    <ChevronLeft className="w-6 h-6 text-gray-600" />
-                  </button>
-                  <button
-                    onClick={nextSlide}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200"
-                  >
-                    <ChevronRight className="w-6 h-6 text-gray-600" />
-                  </button>
-                </>
-              )}
-
-              {/* Visa Posts Grid */}
-              <div className="overflow-hidden">
-                <motion.div
-                  key={`${activeCountry}-${currentSlide}`}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="grid lg:grid-cols-3 md:grid-cols-2 gap-8"
-                >
-                  {getCurrentSlidePosts().map((post: VisaPost, index: number) => (
-                    <Card key={post.id} className="border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-xl">
-                      <CardHeader className="text-center">
-                        <div className="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg mb-4 flex items-center justify-center">
-                          <CheckCircle className="w-16 h-16 text-white" />
-                        </div>
-                        <CardTitle className="text-lg text-gray-900">{post.studentName}</CardTitle>
-                        <Badge variant="secondary" className="bg-green-100 text-green-700">
-                          Visa Approved
-                        </Badge>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <div className="space-y-2">
-                          <div className="flex items-center text-sm">
-                            <Award className="w-4 h-4 text-blue-500 mr-2" />
-                            <span className="font-medium">{post.visaType}</span>
-                          </div>
-                          <div className="flex items-center text-sm">
-                            <Calendar className="w-4 h-4 text-gray-500 mr-2" />
-                            <span className="text-gray-600">{post.approvalDate}</span>
-                          </div>
-                          <div className="flex items-center text-sm">
-                            <GraduationCap className="w-4 h-4 text-purple-500 mr-2" />
-                            <span className="text-gray-600">{post.program}</span>
-                          </div>
-                          <div className="flex items-center text-sm">
-                            <MapPin className="w-4 h-4 text-green-500 mr-2" />
-                            <span className="text-gray-600">{post.university}</span>
-                          </div>
-                        </div>
-                        <p className="text-gray-600 text-sm mt-4">{post.description}</p>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </motion.div>
-              </div>
-
-              {/* Slide Indicators */}
-              {totalSlides > 1 && (
-                <div className="flex justify-center space-x-2 mt-8">
-                  {Array.from({ length: totalSlides }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        currentSlide === index ? 'bg-blue-600' : 'bg-gray-300'
-                      }`}
-                    />
-                  ))}
-                </div>
-              )}
+          {/* Placeholder message for user to add content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mt-16 text-center"
+          >
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-8">
+              <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Ready for Your Success Stories
+              </h3>
+              <p className="text-gray-600">
+                This page is ready to showcase your authentic student success stories. 
+                Please provide the real success story data to populate this section.
+              </p>
             </div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center py-16"
-            >
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 max-w-2xl mx-auto">
-                <Globe className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {activeCountry} Visa Success Stories Coming Soon
-                </h3>
-                <p className="text-gray-600">
-                  We're preparing to showcase our successful {activeCountry} visa approvals. 
-                  Check back soon or contact us for the latest success stories.
-                </p>
-              </div>
-            </motion.div>
-          )}
+          </motion.div>
         </div>
       </section>
 
