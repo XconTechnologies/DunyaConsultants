@@ -43,9 +43,12 @@ export default function OurSuccessStories() {
 
   // Carousel state for infinite scroll
   const [translateX, setTranslateX] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   
   // Auto-scroll effect for infinite loop
   useEffect(() => {
+    if (isPaused) return; // Don't run when paused
+    
     const interval = setInterval(() => {
       setTranslateX(prev => {
         const nextPos = prev - 0.1; // Much slower movement
@@ -58,7 +61,7 @@ export default function OurSuccessStories() {
     }, 50); // Slower update frequency
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isPaused]);
 
   const achievements = [
     {
@@ -186,7 +189,11 @@ export default function OurSuccessStories() {
           </motion.div>
 
           {/* Infinite Carousel */}
-          <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-6 mb-16">
+          <div 
+            className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-6 mb-16"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             <div className="overflow-hidden">
               <div 
                 className="flex gap-4"
