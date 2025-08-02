@@ -110,7 +110,7 @@ export default function OfficesList() {
     return matchesSearch && matchesRegion;
   });
 
-  const regions = ['all', ...new Set(offices.map(office => office.region))];
+  const regions = ['all', ...Array.from(new Set(offices.map(office => office.region)))];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">

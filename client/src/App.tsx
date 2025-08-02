@@ -93,6 +93,11 @@ import ServicesPage from "@/pages/services";
 import NotFound from "@/pages/not-found";
 import OfficesList from "@/pages/offices/OfficesList";
 import OfficeDetails from "@/pages/offices/OfficeDetails";
+import SargodhaHeadOffice from "@/pages/offices/SargodhaHeadOffice";
+import LahoreDHA from "@/pages/offices/LahoreDHA";
+import IslamabadBlueArea from "@/pages/offices/IslamabadBlueArea";
+import KarachiGulshan from "@/pages/offices/KarachiGulshan";
+import FaisalabadCivilLines from "@/pages/offices/FaisalabadCivilLines";
 import StudyAbroadJourney from "@/pages/study-abroad-journey";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
 import AdminLogin from "@/pages/admin/login";
@@ -223,6 +228,11 @@ function Router() {
       <Route path="/study-abroad/turkey" component={StudyAbroadTurkey} />
       
       <Route path="/offices" component={OfficesList} />
+      <Route path="/offices/sargodha-head-office" component={SargodhaHeadOffice} />
+      <Route path="/offices/lahore-dha" component={LahoreDHA} />
+      <Route path="/offices/islamabad-blue-area" component={IslamabadBlueArea} />
+      <Route path="/offices/karachi-gulshan" component={KarachiGulshan} />
+      <Route path="/offices/faisalabad-civil-lines" component={FaisalabadCivilLines} />
       <Route path="/offices/:officeId" component={OfficeDetails} />
       
       {/* Admin Routes */}
