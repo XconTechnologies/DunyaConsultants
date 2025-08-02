@@ -349,6 +349,97 @@ export default function Navigation() {
                         ))}
                       </div>
                     </div>
+                  ) : activeMegaMenu === "Test Prep" ? (
+                    // Special layout for Test Prep with 2-column tests
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2 mb-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                          {React.createElement(Award, { 
+                            className: "w-4 h-4 text-white" 
+                          })}
+                        </div>
+                        <h3 className="text-lg font-bold text-neutral-800">English Tests</h3>
+                      </div>
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+                        {megaMenuData["Test Prep"].sections[0].items.map((item: any, itemIdx: number) => (
+                          <Link key={itemIdx} href={item.href}>
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                              <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
+                              <div>
+                                <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
+                                  {item.name}
+                                </div>
+                                <div className="text-sm text-neutral-600 mt-1">
+                                  {item.description}
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : activeMegaMenu === "Offices" ? (
+                    // Special layout for Offices with 2-column offices
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2 mb-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                          {React.createElement(MapPin, { 
+                            className: "w-4 h-4 text-white" 
+                          })}
+                        </div>
+                        <h3 className="text-lg font-bold text-neutral-800">Pakistan Offices</h3>
+                      </div>
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+                        {megaMenuData["Offices"].sections[0].items.map((item: any, itemIdx: number) => (
+                          <Link key={itemIdx} href={item.href}>
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                              <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
+                              <div>
+                                <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
+                                  {item.name}
+                                </div>
+                                <div className="text-sm text-neutral-600 mt-1">
+                                  {item.description}
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : activeMegaMenu === "Blog" ? (
+                    // Special layout for Blog with 2-column sections
+                    <div className="grid grid-cols-2 gap-6">
+                      {megaMenuData["Blog"].sections.map((section: any, idx: number) => (
+                        <div key={idx} className="space-y-3">
+                          <div className="flex items-center space-x-2 mb-3">
+                            <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                              {React.createElement(section.icon, { 
+                                className: "w-4 h-4 text-white" 
+                              })}
+                            </div>
+                            <h3 className="text-lg font-bold text-neutral-800">{section.title}</h3>
+                          </div>
+                          <div className="space-y-2">
+                            {section.items.map((item: any, itemIdx: number) => (
+                              <Link key={itemIdx} href={item.href}>
+                                <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                                  <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
+                                  <div>
+                                    <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
+                                      {item.name}
+                                    </div>
+                                    <div className="text-sm text-neutral-600 mt-1">
+                                      {item.description}
+                                    </div>
+                                  </div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   ) : (
                     // Default layout for other menus
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
