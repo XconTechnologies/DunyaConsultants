@@ -70,15 +70,14 @@ export default function OurSuccessStories() {
     ukImage19, ukImage20
   ];
 
-  // Carousel state for infinite scroll - Finland
+  // Tab state for country selection
+  const [activeTab, setActiveTab] = useState('UK');
+  
+  // Carousel state for infinite scroll
   const [translateX, setTranslateX] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   
-  // Carousel state for UK visa success
-  const [ukTranslateX, setUkTranslateX] = useState(0);
-  const [ukIsPaused, setUkIsPaused] = useState(false);
-  
-  // Auto-scroll effect for infinite loop - Finland
+  // Auto-scroll effect for infinite loop
   useEffect(() => {
     if (isPaused) return; // Don't run when paused
     
@@ -96,23 +95,10 @@ export default function OurSuccessStories() {
     return () => clearInterval(interval);
   }, [isPaused]);
 
-  // Auto-scroll effect for UK visa carousel
+  // Reset carousel position when tab changes
   useEffect(() => {
-    if (ukIsPaused) return; // Don't run when paused
-    
-    const interval = setInterval(() => {
-      setUkTranslateX(prev => {
-        const nextPos = prev - 0.1; // Much slower movement
-        // Reset when we've moved one full set
-        if (nextPos <= -33.33) { // After moving through one set (33.33% of total width)
-          return 0;
-        }
-        return nextPos;
-      });
-    }, 50); // Slower update frequency
-
-    return () => clearInterval(interval);
-  }, [ukIsPaused]);
+    setTranslateX(0);
+  }, [activeTab]);
 
   const achievements = [
     {
@@ -215,7 +201,7 @@ export default function OurSuccessStories() {
         </div>
       </section>
 
-      {/* Finland Visa Success Stories */}
+      {/* Our Success Stories - Visas */}
       <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -226,20 +212,42 @@ export default function OurSuccessStories() {
           >
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-6">
               <Globe className="w-5 h-5 mr-2 text-blue-600" />
-              <span className="text-sm font-medium text-blue-600">Finland Visa Success</span>
+              <span className="text-sm font-medium text-blue-600">Visa Success Stories</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Finland Visa{" "}
+              Our Success Stories{" "}
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Success Stories
+                – Visas
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Witness the incredible journey of our students who secured Finland student visas with exceptional results
+              Witness the incredible journey of our students who secured student visas with exceptional results
             </p>
           </motion.div>
 
-          {/* Infinite Carousel */}
+          {/* Country Tabs */}
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex bg-white rounded-lg p-1 shadow-lg border">
+              {[
+                { id: 'UK', name: 'United Kingdom', color: 'indigo' },
+                { id: 'Finland', name: 'Finland', color: 'blue' }
+              ].map((country) => (
+                <button
+                  key={country.id}
+                  onClick={() => setActiveTab(country.id)}
+                  className={`px-6 py-3 rounded-md font-medium transition-all duration-300 ${
+                    activeTab === country.id
+                      ? `bg-gradient-to-r from-${country.color}-500 to-${country.color}-600 text-white shadow-md`
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  }`}
+                >
+                  {country.name}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Visa Success Carousel */}
           <div 
             className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-6 mb-16"
             onMouseEnter={() => setIsPaused(true)}
@@ -254,121 +262,55 @@ export default function OurSuccessStories() {
                 }}
               >
                 {/* Triple the images for seamless infinite loop */}
-                {[...finlandSuccessImages, ...finlandSuccessImages, ...finlandSuccessImages].map((image, index) => (
-                  <div
-                    key={index}
-                    className="flex-shrink-0"
-                    style={{ width: '280px' }}
-                  >
-                    <div className="relative h-80 rounded-xl overflow-hidden shadow-lg bg-white border group">
-                      <img
-                        src={image}
-                        alt={`Finland visa success story ${(index % finlandSuccessImages.length) + 1}`}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                      />
-                      
-                      {/* Success Badge */}
-                      <div className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                        <CheckCircle className="w-3 h-3" />
-                        <span>Success</span>
-                      </div>
-                      
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-4 left-4 right-4 text-white">
-                          <h3 className="text-lg font-semibold mb-1">Finland Student Visa</h3>
-                          <p className="text-sm text-gray-200">Successfully Approved</p>
+                {(activeTab === 'UK' 
+                  ? [...ukSuccessImages, ...ukSuccessImages, ...ukSuccessImages]
+                  : [...finlandSuccessImages, ...finlandSuccessImages, ...finlandSuccessImages]
+                ).map((image, index) => {
+                  const imageArray = activeTab === 'UK' ? ukSuccessImages : finlandSuccessImages;
+                  return (
+                    <div
+                      key={index}
+                      className="flex-shrink-0"
+                      style={{ width: '280px' }}
+                    >
+                      <div className="relative h-80 rounded-xl overflow-hidden shadow-lg bg-white border group">
+                        <img
+                          src={image}
+                          alt={`${activeTab} visa success story ${(index % imageArray.length) + 1}`}
+                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                        />
+                        
+                        {/* Success Badge */}
+                        <div className={`absolute top-4 right-4 ${
+                          activeTab === 'UK' ? 'bg-indigo-500' : 'bg-green-500'
+                        } text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1`}>
+                          <CheckCircle className="w-3 h-3" />
+                          <span>Success</span>
+                        </div>
+                        
+                        {/* Hover Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute bottom-4 left-4 right-4 text-white">
+                            <h3 className="text-lg font-semibold mb-1">{activeTab} Student Visa</h3>
+                            <p className="text-sm text-gray-200">Successfully Approved</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* UK Visa Success Stories */}
-      <section className="py-20 bg-gradient-to-br from-indigo-50 via-white to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <div className="inline-flex items-center px-4 py-2 bg-indigo-100 rounded-full mb-6">
-              <Globe className="w-5 h-5 mr-2 text-indigo-600" />
-              <span className="text-sm font-medium text-indigo-600">UK Visa Success</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              UK Visa{" "}
-              <span className="bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
-                Success Stories
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Celebrating our students' remarkable achievements in securing UK student visas with top universities
-            </p>
-          </motion.div>
-
-          {/* UK Infinite Carousel */}
-          <div 
-            className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-6 mb-16"
-            onMouseEnter={() => setUkIsPaused(true)}
-            onMouseLeave={() => setUkIsPaused(false)}
-          >
-            <div className="overflow-hidden">
-              <div 
-                className="flex gap-4"
-                style={{ 
-                  transform: `translateX(${ukTranslateX}%)`,
-                  width: '300%' // Triple width for seamless looping
-                }}
-              >
-                {/* Triple the images for seamless infinite loop */}
-                {[...ukSuccessImages, ...ukSuccessImages, ...ukSuccessImages].map((image, index) => (
-                  <div
-                    key={index}
-                    className="flex-shrink-0"
-                    style={{ width: '280px' }}
-                  >
-                    <div className="relative h-80 rounded-xl overflow-hidden shadow-lg bg-white border group">
-                      <img
-                        src={image}
-                        alt={`UK visa success story ${(index % ukSuccessImages.length) + 1}`}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                      />
-                      
-                      {/* Success Badge */}
-                      <div className="absolute top-4 right-4 bg-indigo-500 text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1">
-                        <CheckCircle className="w-3 h-3" />
-                        <span>Success</span>
-                      </div>
-                      
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="absolute bottom-4 left-4 right-4 text-white">
-                          <h3 className="text-lg font-semibold mb-1">UK Student Visa</h3>
-                          <p className="text-sm text-gray-200">Successfully Approved</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
 
-          {/* UK Success Highlights */}
+          {/* Success Highlights */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             className="grid md:grid-cols-3 gap-8"
           >
-            {[
+            {(activeTab === 'UK' ? [
               {
                 icon: Trophy,
                 title: "Fast Visa Processing",
@@ -387,7 +329,26 @@ export default function OurSuccessStories() {
                 description: "Admissions to University of Sunderland, Ulster University & more",
                 gradient: "from-purple-500 to-purple-600"
               }
-            ].map((item, index) => (
+            ] : [
+              {
+                icon: Trophy,
+                title: "High Success Rate",
+                description: "95% visa approval rate for Finland applications",
+                gradient: "from-blue-500 to-blue-600"
+              },
+              {
+                icon: Star,
+                title: "Scholarship Winners", 
+                description: "Multiple students secured scholarships up to €6000",
+                gradient: "from-green-500 to-green-600"
+              },
+              {
+                icon: GraduationCap,
+                title: "Top Universities",
+                description: "Admissions to leading Finnish institutions",
+                gradient: "from-purple-500 to-purple-600"
+              }
+            ]).map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
