@@ -92,7 +92,14 @@ import ScholarshipsPage from "@/pages/scholarships";
 import ServicesPage from "@/pages/services";
 import NotFound from "@/pages/not-found";
 import OfficesList from "@/pages/offices/OfficesList";
-import OfficeDetails from "@/pages/offices/OfficeDetails";
+import SargodhaOffice from "@/pages/offices/sargodha";
+import LahoreDHAOffice from "@/pages/offices/lahore-dha";
+import LahoreJoharOffice from "@/pages/offices/lahore-johar";
+import IslamabadOffice from "@/pages/offices/islamabad";
+import KarachiOffice from "@/pages/offices/karachi";
+import FaisalabadOffice from "@/pages/offices/faisalabad";
+import GujranwalaOffice from "@/pages/offices/gujranwala";
+import SialkotOffice from "@/pages/offices/sialkot";
 import StudyAbroadJourney from "@/pages/study-abroad-journey";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
 import AdminLogin from "@/pages/admin/login";
@@ -222,8 +229,16 @@ function Router() {
       <Route path="/study-abroad/belgium" component={StudyAbroadBelgium} />
       <Route path="/study-abroad/turkey" component={StudyAbroadTurkey} />
       
+      {/* Office Routes */}
       <Route path="/offices" component={OfficesList} />
-      <Route path="/offices/:officeId" component={OfficeDetails} />
+      <Route path="/offices/sargodha" component={SargodhaOffice} />
+      <Route path="/offices/lahore-dha" component={LahoreDHAOffice} />
+      <Route path="/offices/lahore-johar" component={LahoreJoharOffice} />
+      <Route path="/offices/islamabad" component={IslamabadOffice} />
+      <Route path="/offices/karachi" component={KarachiOffice} />
+      <Route path="/offices/faisalabad" component={FaisalabadOffice} />
+      <Route path="/offices/gujranwala" component={GujranwalaOffice} />
+      <Route path="/offices/sialkot" component={SialkotOffice} />
       
       {/* Admin Routes */}
       <Route path="/admin/login" component={AdminLogin} />
