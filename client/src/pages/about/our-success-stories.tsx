@@ -407,54 +407,7 @@ export default function OurSuccessStories() {
         </div>
       </section>
 
-      {/* Finland Success Highlights */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          {/* Success Highlights */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {[
-              {
-                icon: Trophy,
-                title: "High Success Rate",
-                description: "95% visa approval rate for Finland applications",
-                gradient: "from-blue-500 to-blue-600"
-              },
-              {
-                icon: Star,
-                title: "Scholarship Winners", 
-                description: "Multiple students secured scholarships up to €6000",
-                gradient: "from-green-500 to-green-600"
-              },
-              {
-                icon: GraduationCap,
-                title: "Top Universities",
-                description: "Admissions to leading Finnish institutions",
-                gradient: "from-purple-500 to-purple-600"
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="text-center"
-              >
-                <div className={`w-16 h-16 bg-gradient-to-r ${item.gradient} rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg`}>
-                  <item.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+
 
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
