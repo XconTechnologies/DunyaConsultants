@@ -297,14 +297,7 @@ export default function OurSuccessStories() {
                           alt={`${activeTab} visa success story ${(index % imageArray.length) + 1}`}
                           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                         />
-                        
-                        {/* Success Badge */}
-                        <div className={`absolute top-4 right-4 ${
-                          activeTab === 'UK' ? 'bg-indigo-500' : activeTab === 'Finland' ? 'bg-green-500' : 'bg-yellow-500'
-                        } text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1`}>
-                          <CheckCircle className="w-3 h-3" />
-                          <span>Success</span>
-                        </div>
+
                         
                         {/* Hover Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
