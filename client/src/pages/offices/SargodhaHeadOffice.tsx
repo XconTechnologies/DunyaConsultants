@@ -1,6 +1,5 @@
-import { useRoute } from "wouter";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,9 +7,8 @@ import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-// Office data with detailed information
-const offices = [
-  {
+export default function SargodhaHeadOffice() {
+  const office = {
     id: "sargodha-head",
     city: "Sargodha",
     name: "Head Office",
@@ -21,13 +19,13 @@ const offices = [
     gradient: "from-blue-600 to-purple-600",
     isHeadOffice: true,
     region: "Punjab",
-    services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"],
+    services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling", "Document Verification", "Scholarship Guidance"],
     manager: "Mr. Abdul Majeed",
     staffCount: 25,
     established: "2015",
     successRate: "98%",
     studentsServed: "5000+",
-    specializations: ["UK Universities", "Canada Immigration", "IELTS Preparation", "Scholarship Guidance"],
+    specializations: ["UK Universities", "Canada Immigration", "IELTS Preparation", "Scholarship Guidance", "Australian Universities", "US Universities"],
     description: "Our flagship office and headquarters, established in 2015 as the foundation of Dunya Consultants. This comprehensive center serves as our main hub for operations across Pakistan and international partnerships.",
     testimonials: [
       {
@@ -39,131 +37,34 @@ const offices = [
         name: "Fatima Khan", 
         university: "University of Manchester",
         message: "From IELTS preparation to final visa approval, the head office team supported me at every step. Highly professional service."
-      }
-    ],
-    facilities: ["Private Consultation Rooms", "IELTS Testing Center", "Document Processing Unit", "Student Lounge", "Free WiFi", "Parking Available"],
-    nearbyLandmarks: ["Sargodha University", "District Courts", "City Hospital", "Main Bus Stand"]
-  },
-  {
-    id: "lahore-dha",
-    city: "Lahore",
-    name: "DHA Phase 1",
-    address: "1st Floor, 174 6th Street 123, Sector H, DHA Phase 1, Lahore",
-    phone: "+92 300‑167‑1947",
-    email: "lahore.dha@dunyaconsultants.com",
-    hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-green-600 to-teal-600",
-    region: "Punjab",
-    services: ["Visa Processing", "University Applications", "Document Verification"],
-    manager: "Ms. Sarah Ahmed",
-    staffCount: 15,
-    established: "2017",
-    successRate: "96%",
-    studentsServed: "3500+",
-    specializations: ["Australian Universities", "UK Visa Services", "Medical Programs", "Engineering Courses"],
-    description: "Located in the heart of DHA Phase 1, our Lahore office serves the educational capital of Punjab with premium consultation services and personalized guidance for international education.",
-    testimonials: [
+      },
       {
-        name: "Ali Raza",
+        name: "Ali Ahmad",
         university: "Monash University",
-        message: "The DHA office team was incredibly helpful in securing my Australian student visa. Their expertise in documentation was outstanding."
+        message: "The head office provided comprehensive support for my Australian student visa. Their expertise made the process smooth and stress-free."
       }
     ],
-    facilities: ["Modern Consultation Rooms", "Document Scanning", "Interview Preparation Hall", "Waiting Lounge", "Refreshments"],
-    nearbyLandmarks: ["DHA Sports Club", "Packages Mall", "Fortress Stadium", "American Consulate"]
-  },
-  {
-    id: "islamabad",
-    city: "Islamabad",
-    name: "Blue Area",
-    address: "Office 216, 2nd Floor, Evacuee Trust Complex, F-5/1, Islamabad",
-    phone: "+92 308‑520‑6949",
-    email: "islamabad@dunyaconsultants.com",
-    hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-purple-600 to-pink-600",
-    region: "Federal",
-    services: ["Visa Processing", "Embassy Relations", "Document Attestation"],
-    manager: "Mr. Usman Ali",
-    staffCount: 18,
-    established: "2018",
-    successRate: "97%",
-    studentsServed: "2800+",
-    specializations: ["US Universities", "Embassy Liaison", "Government Documentation", "Diplomatic Services"],
-    description: "Strategically positioned in the federal capital, our Islamabad office specializes in embassy relations and government documentation services, providing direct access to diplomatic missions.",
-    testimonials: [
-      {
-        name: "Zara Sheikh",
-        university: "Harvard University",
-        message: "The Islamabad team's connections with embassies made my US visa process smooth and efficient. Professional service at its best."
-      }
-    ],
-    facilities: ["Embassy Liaison Desk", "Government Documentation", "VIP Consultation", "Conference Room", "Digital Services"],
-    nearbyLandmarks: ["US Embassy", "UK High Commission", "Parliament House", "Supreme Court"]
-  },
-  {
-    id: "karachi",
-    city: "Karachi",
-    name: "Gulshan-e-Iqbal",
-    address: "205 Madina City Mall, Block 13-A, Gulshan-e-Iqbal, Karachi",
-    phone: "+92 305‑555‑1947",
-    email: "karachi@dunyaconsultants.com",
-    hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-orange-600 to-red-600",
-    region: "Sindh",
-    services: ["Visa Processing", "University Applications", "IELTS Training"],
-    manager: "Mr. Hassan Malik",
-    staffCount: 20,
-    established: "2016",
-    successRate: "95%",
-    studentsServed: "4200+",
-    specializations: ["Business Programs", "Maritime Studies", "Medical Education", "Engineering"],
-    description: "Our largest office outside Punjab, serving the commercial hub of Pakistan with comprehensive educational consultancy services and strong connections to international universities.",
-    testimonials: [
-      {
-        name: "Ayesha Siddiqui",
-        university: "University of Sydney",
-        message: "The Karachi team helped me navigate the complex Australian visa requirements. Their attention to detail was remarkable."
-      }
-    ],
-    facilities: ["IELTS Preparation Center", "Group Discussion Rooms", "Career Counseling", "Student Resource Center", "Online Testing"],
-    nearbyLandmarks: ["University of Karachi", "NED University", "Jinnah Terminal", "Teen Talwar"]
-  }
-];
-
-export default function OfficeDetails() {
-  const [match, params] = useRoute("/offices/:officeId");
-  const office = offices.find(o => o.id === params?.officeId);
-
-  if (!office) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Office Not Found</h1>
-          <Link href="/offices">
-            <Button>← Back to Offices</Button>
-          </Link>
-        </div>
-      </div>
-    );
-  }
+    facilities: ["Private Consultation Rooms", "IELTS Testing Center", "Document Processing Unit", "Student Lounge", "Free WiFi", "Parking Available", "Conference Hall", "Reception Area"],
+    nearbyLandmarks: ["Sargodha University", "District Courts", "City Hospital", "Main Bus Stand", "Government College", "Sargodha Stadium"]
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      <Navigation />
+      
       {/* Header */}
-      <div className={`bg-gradient-to-r ${office.gradient} text-white py-16`}>
+      <div className={`bg-gradient-to-r ${office.gradient} text-white pt-32 pb-16`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center mb-6">
             <Link href="/offices">
               <Button variant="ghost" className="text-white hover:bg-white/20 mr-4">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Offices
+                Back to All Offices
               </Button>
             </Link>
-            {office.isHeadOffice && (
-              <Badge className="bg-white/20 text-white border-white/30">
-                Head Office
-              </Badge>
-            )}
+            <Badge className="bg-white/20 text-white border-white/30">
+              Head Office
+            </Badge>
           </div>
           
           <motion.div
@@ -261,7 +162,7 @@ export default function OfficeDetails() {
                   <div className="grid md:grid-cols-2 gap-4">
                     {office.services.map((service, index) => (
                       <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                        <div className={`w-3 h-3 rounded-full bg-gradient-to-r ${office.gradient}`}></div>
+                        <CheckCircle className="w-5 h-5 text-green-500" />
                         <span className="font-medium">{service}</span>
                       </div>
                     ))}
@@ -369,7 +270,7 @@ export default function OfficeDetails() {
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-purple-600">{office.staffCount}</div>
-                    <div className="text-sm text-gray-600">Expert Staff</div>
+                    <div className="text-sm text-gray-600">Team Members</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-orange-600">{office.established}</div>
@@ -379,7 +280,7 @@ export default function OfficeDetails() {
               </Card>
             </motion.div>
 
-            {/* Office Manager */}
+            {/* Manager Info */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -397,8 +298,8 @@ export default function OfficeDetails() {
                     <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
                       {office.manager.split(' ').map(n => n[0]).join('')}
                     </div>
-                    <h3 className="font-bold">{office.manager}</h3>
-                    <p className="text-gray-600 text-sm">Office Manager</p>
+                    <h3 className="font-semibold">{office.manager}</h3>
+                    <p className="text-sm text-gray-600">Office Manager</p>
                   </div>
                 </CardContent>
               </Card>
@@ -412,14 +313,17 @@ export default function OfficeDetails() {
             >
               <Card>
                 <CardHeader>
-                  <CardTitle>Nearby Landmarks</CardTitle>
+                  <CardTitle className="flex items-center">
+                    <MapPin className="w-5 h-5 mr-2" />
+                    Nearby Landmarks
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
                     {office.nearbyLandmarks.map((landmark, index) => (
-                      <div key={index} className="flex items-center space-x-2 text-sm">
-                        <MapPin className="w-3 h-3 text-gray-400" />
-                        <span>{landmark}</span>
+                      <div key={index} className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span className="text-sm">{landmark}</span>
                       </div>
                     ))}
                   </div>
@@ -428,7 +332,32 @@ export default function OfficeDetails() {
             </motion.div>
           </div>
         </div>
+
+        {/* Call to Action */}
+        <motion.div
+          className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
+          <h2 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h2>
+          <p className="mb-6 opacity-90">
+            Visit our head office for personalized consultation and expert guidance on your international education goals.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="secondary" size="lg">
+              <Calendar className="w-4 h-4 mr-2" />
+              Book Appointment
+            </Button>
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-600">
+              <Phone className="w-4 h-4 mr-2" />
+              Call Now
+            </Button>
+          </div>
+        </motion.div>
       </div>
+      
+      <Footer />
     </div>
   );
 }

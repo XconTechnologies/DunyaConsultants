@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Link } from "wouter";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 const blogPosts = [
   {

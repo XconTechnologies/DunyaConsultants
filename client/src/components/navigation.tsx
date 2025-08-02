@@ -116,11 +116,29 @@ export default function Navigation() {
           icon: MapPin,
           items: [
             { name: "All Office Locations", href: "/offices", description: "Browse all branches" },
-            { name: "Sargodha Head Office", href: "/offices/sargodha", description: "Main headquarters" },
+            { name: "Sargodha Head Office", href: "/offices/sargodha-head", description: "Main headquarters" },
             { name: "Lahore DHA", href: "/offices/lahore-dha", description: "DHA Phase 1 office" },
-            { name: "Lahore Johar Town", href: "/offices/lahore-johar", description: "Student counseling center" },
             { name: "Islamabad Blue Area", href: "/offices/islamabad", description: "Federal capital office" },
-            { name: "Karachi DHA", href: "/offices/karachi", description: "Sindh province office" }
+            { name: "Karachi Gulshan", href: "/offices/karachi", description: "Sindh province office" },
+            { name: "Faisalabad Civil Lines", href: "/offices/faisalabad", description: "Industrial city office" }
+          ]
+        },
+        {
+          title: "Office Services",
+          icon: Globe,
+          items: [
+            { name: "Book Consultation", href: "/consultation-booking", description: "Schedule your visit" },
+            { name: "Contact Details", href: "/offices", description: "Phone & addresses" },
+            { name: "Office Hours", href: "/offices", description: "Mon-Sat: 9 AM-7 PM" }
+          ]
+        },
+        {
+          title: "Services",
+          icon: Calendar,
+          items: [
+            { name: "Appointment Booking", href: "/offices/booking", description: "Schedule your consultation" },
+            { name: "Office Timings", href: "/offices/hours", description: "Mon-Sat: 10 AM-6 PM" },
+            { name: "Google Maps", href: "/offices/maps", description: "Directions & locations" }
           ]
         }
       ],

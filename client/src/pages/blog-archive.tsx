@@ -4,6 +4,8 @@ import { Calendar, Clock, User, Eye, Search, Filter, Grid, List, ChevronRight, T
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import type { BlogPost } from "@shared/schema";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 interface BlogArchivePost {
   id: string;
