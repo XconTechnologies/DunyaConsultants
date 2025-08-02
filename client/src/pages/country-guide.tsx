@@ -25,8 +25,6 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
 
 const countries = [
   {
@@ -248,7 +246,6 @@ export default function CountryGuide() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
-      <Navigation />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary via-blue-700 to-secondary text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">

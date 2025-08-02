@@ -28,8 +28,6 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
 
 interface BlogPost {
   id: string;
@@ -543,7 +541,6 @@ export default function Blogs() {
   if (selectedPost) {
     return (
       <div className="min-h-screen bg-white">
-        <Navigation />
         {/* Article Header */}
         <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
