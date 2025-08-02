@@ -324,7 +324,7 @@ export default function Navigation() {
                     // Special layout for Study Abroad with 2-column countries
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
                           {React.createElement(Globe, { 
                             className: "w-4 h-4 text-white" 
                           })}
@@ -334,7 +334,7 @@ export default function Navigation() {
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2">
                         {megaMenuData["Study Abroad"].sections[0].items.map((item: any, itemIdx: number) => (
                           <Link key={itemIdx} href={item.href}>
-                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-200">
                               <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
                               <div>
                                 <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
@@ -353,7 +353,7 @@ export default function Navigation() {
                     // Special layout for Test Prep with 2-column tests
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center">
                           {React.createElement(Award, { 
                             className: "w-4 h-4 text-white" 
                           })}
@@ -363,7 +363,7 @@ export default function Navigation() {
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2">
                         {megaMenuData["Test Prep"].sections[0].items.map((item: any, itemIdx: number) => (
                           <Link key={itemIdx} href={item.href}>
-                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-indigo-50 hover:to-indigo-100 transition-all duration-200">
                               <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
                               <div>
                                 <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
@@ -382,7 +382,7 @@ export default function Navigation() {
                     // Special layout for Offices with 2-column offices
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center">
                           {React.createElement(MapPin, { 
                             className: "w-4 h-4 text-white" 
                           })}
@@ -392,7 +392,7 @@ export default function Navigation() {
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2">
                         {megaMenuData["Offices"].sections[0].items.map((item: any, itemIdx: number) => (
                           <Link key={itemIdx} href={item.href}>
-                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-cyan-50 hover:to-cyan-100 transition-all duration-200">
                               <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
                               <div>
                                 <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
@@ -411,7 +411,7 @@ export default function Navigation() {
                     // Special layout for Blog with 2-column items (flattened from all sections)
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
                           {React.createElement(Newspaper, { 
                             className: "w-4 h-4 text-white" 
                           })}
@@ -422,7 +422,7 @@ export default function Navigation() {
                         {/* Flatten all blog items from all sections into 2 columns */}
                         {megaMenuData["Blog"].sections.flatMap((section: any) => section.items).map((item: any, itemIdx: number) => (
                           <Link key={itemIdx} href={item.href}>
-                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-purple-50 hover:to-purple-100 transition-all duration-200">
                               <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
                               <div>
                                 <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
@@ -443,7 +443,7 @@ export default function Navigation() {
                       {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].sections.map((section: any, idx: number) => (
                         <div key={idx} className="space-y-3">
                           <div className="flex items-center space-x-2 mb-3">
-                            <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center">
                               {React.createElement(section.icon, { 
                                 className: "w-4 h-4 text-white" 
                               })}
@@ -453,7 +453,7 @@ export default function Navigation() {
                           <div className="space-y-2">
                             {section.items.map((item: any, itemIdx: number) => (
                               <Link key={itemIdx} href={item.href}>
-                                <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-200">
+                                <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-200">
                                   <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200" />
                                   <div>
                                     <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
@@ -475,8 +475,8 @@ export default function Navigation() {
 
                 {/* Featured Section */}
                 <div className="lg:col-span-1">
-                  <div className="bg-gradient-to-br from-primary via-secondary to-accent rounded-xl p-5 text-white relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
+                  <div className="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 rounded-xl p-5 text-white relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 to-indigo-600/30"></div>
                     <div className="relative z-10">
                       <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">
                         {React.createElement(megaMenuData[activeMegaMenu as keyof typeof megaMenuData].icon, { 
