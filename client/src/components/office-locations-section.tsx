@@ -92,7 +92,9 @@ const offices: Office[] = [
     address: "Dunya Consultants, Peoples Colony Underpass, Gujranwala",
     phone: "+92 332‑999‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-yellow-600 to-orange-600"
+    gradient: "from-yellow-600 to-orange-600",
+    region: "Punjab",
+    services: ["Student Counseling", "Visa Processing", "Test Preparation"]
   },
   {
     id: "sialkot",

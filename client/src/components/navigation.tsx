@@ -118,33 +118,36 @@ export default function Navigation() {
             { name: "All Office Locations", href: "/offices", description: "Browse all branches" },
             { name: "Sargodha Head Office", href: "/offices/sargodha-head", description: "Main headquarters" },
             { name: "Lahore DHA", href: "/offices/lahore-dha", description: "DHA Phase 1 office" },
+            { name: "Lahore Johar Town", href: "/offices/lahore-johar", description: "Johar Town office" },
             { name: "Islamabad Blue Area", href: "/offices/islamabad", description: "Federal capital office" },
             { name: "Karachi Gulshan", href: "/offices/karachi", description: "Sindh province office" },
-            { name: "Faisalabad Civil Lines", href: "/offices/faisalabad", description: "Industrial city office" }
+            { name: "Faisalabad Civil Lines", href: "/offices/faisalabad", description: "Industrial city office" },
+            { name: "Gujranwala", href: "/offices/gujranwala", description: "Peoples Colony office" },
+            { name: "Sialkot", href: "/offices/sialkot", description: "Cantonment office" },
+            { name: "Gujrat", href: "/offices/gujrat", description: "GT Road office" },
+            { name: "Bahawalpur", href: "/offices/bahawalpur", description: "Muslim Town office" },
+            { name: "Mian Channu", href: "/offices/mian-channu", description: "Moti Plaza office" },
+            { name: "Mandi Bahauddin", href: "/offices/mandi-bahauddin", description: "Punjab Center office" },
+            { name: "Sheikhupura", href: "/offices/sheikhupura", description: "Stadium Road office" },
+            { name: "Multan", href: "/offices/multan", description: "Shalimar Metro office" },
+            { name: "Peshawar", href: "/offices/peshawar", description: "Phase 3 office" },
+            { name: "Jhelum", href: "/offices/jhelum", description: "Sultan Plaza office" },
+            { name: "Mardan", href: "/offices/mardan", description: "Walyan Commercial office" }
           ]
         },
         {
-          title: "Office Services",
+          title: "International Offices",
           icon: Globe,
           items: [
-            { name: "Book Consultation", href: "/consultation-booking", description: "Schedule your visit" },
-            { name: "Contact Details", href: "/offices", description: "Phone & addresses" },
-            { name: "Office Hours", href: "/offices", description: "Mon-Sat: 9 AM-7 PM" }
-          ]
-        },
-        {
-          title: "Services",
-          icon: Calendar,
-          items: [
-            { name: "Appointment Booking", href: "/offices/booking", description: "Schedule your consultation" },
-            { name: "Office Timings", href: "/offices/hours", description: "Mon-Sat: 10 AM-6 PM" },
-            { name: "Google Maps", href: "/offices/maps", description: "Directions & locations" }
+            { name: "Jeddah, Saudi Arabia", href: "/offices/jeddah", description: "Engineering Square office" },
+            { name: "Istanbul, Turkey", href: "/offices/istanbul", description: "Ataköy Towers office" },
+            { name: "Edinburgh, Scotland", href: "/offices/edinburgh", description: "Ferry Road Place office" }
           ]
         }
       ],
       featured: {
-        title: "20+ Office Locations",
-        description: "Nationwide coverage across Pakistan",
+        title: "18+ Office Locations",
+        description: "Nationwide & international coverage",
         cta: "Find Office",
         href: "/offices"
       }

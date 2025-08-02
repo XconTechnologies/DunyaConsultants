@@ -95,9 +95,24 @@ import OfficesList from "@/pages/offices/OfficesList";
 import OfficeDetails from "@/pages/offices/OfficeDetails";
 import SargodhaHeadOffice from "@/pages/offices/SargodhaHeadOffice";
 import LahoreDHA from "@/pages/offices/LahoreDHA";
+import LahoreJohar from "@/pages/offices/lahore-johar";
 import IslamabadBlueArea from "@/pages/offices/IslamabadBlueArea";
 import KarachiGulshan from "@/pages/offices/KarachiGulshan";
 import FaisalabadCivilLines from "@/pages/offices/FaisalabadCivilLines";
+import GujranwalaOffice from "@/pages/offices/gujranwala";
+import SialkotOffice from "@/pages/offices/sialkot";
+import GujratOffice from "@/pages/offices/gujrat";
+import BahawalpurOffice from "@/pages/offices/bahawalpur";
+import MianChannuOffice from "@/pages/offices/mian-channu";
+import MandiBahauddinOffice from "@/pages/offices/mandi-bahauddin";
+import SheikhupuraOffice from "@/pages/offices/sheikhupura";
+import MultanOffice from "@/pages/offices/multan";
+import PeshawarOffice from "@/pages/offices/peshawar";
+import JhelumOffice from "@/pages/offices/jhelum";
+import MardanOffice from "@/pages/offices/mardan";
+import JeddahOffice from "@/pages/offices/jeddah";
+import IstanbulOffice from "@/pages/offices/istanbul";
+import EdinburghOffice from "@/pages/offices/edinburgh";
 import StudyAbroadJourney from "@/pages/study-abroad-journey";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
 import AdminLogin from "@/pages/admin/login";
@@ -230,9 +245,24 @@ function Router() {
       <Route path="/offices" component={OfficesList} />
       <Route path="/offices/sargodha-head-office" component={SargodhaHeadOffice} />
       <Route path="/offices/lahore-dha" component={LahoreDHA} />
+      <Route path="/offices/lahore-johar" component={LahoreJohar} />
       <Route path="/offices/islamabad-blue-area" component={IslamabadBlueArea} />
       <Route path="/offices/karachi-gulshan" component={KarachiGulshan} />
       <Route path="/offices/faisalabad-civil-lines" component={FaisalabadCivilLines} />
+      <Route path="/offices/gujranwala" component={GujranwalaOffice} />
+      <Route path="/offices/sialkot" component={SialkotOffice} />
+      <Route path="/offices/gujrat" component={GujratOffice} />
+      <Route path="/offices/bahawalpur" component={BahawalpurOffice} />
+      <Route path="/offices/mian-channu" component={MianChannuOffice} />
+      <Route path="/offices/mandi-bahauddin" component={MandiBahauddinOffice} />
+      <Route path="/offices/sheikhupura" component={SheikhupuraOffice} />
+      <Route path="/offices/multan" component={MultanOffice} />
+      <Route path="/offices/peshawar" component={PeshawarOffice} />
+      <Route path="/offices/jhelum" component={JhelumOffice} />
+      <Route path="/offices/mardan" component={MardanOffice} />
+      <Route path="/offices/jeddah" component={JeddahOffice} />
+      <Route path="/offices/istanbul" component={IstanbulOffice} />
+      <Route path="/offices/edinburgh" component={EdinburghOffice} />
       <Route path="/offices/:officeId" component={OfficeDetails} />
       
       {/* Admin Routes */}
