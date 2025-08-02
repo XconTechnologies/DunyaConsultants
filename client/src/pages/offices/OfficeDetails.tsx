@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 // Office data with detailed information
 const offices = [

@@ -6,6 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
+import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 
 // Office data
 const offices = [
@@ -112,6 +114,7 @@ export default function OfficesList() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      <Navigation />
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
         <div className="container mx-auto px-4">
@@ -309,6 +312,7 @@ export default function OfficesList() {
           </div>
         </motion.div>
       </div>
+      <Footer />
     </div>
   );
 }
