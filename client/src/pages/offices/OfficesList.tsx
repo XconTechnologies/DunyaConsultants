@@ -95,6 +95,202 @@ const offices = [
     staffCount: 10,
     successRate: "93%",
     studentsServed: "2200+"
+  },
+  {
+    id: "gujranwala",
+    city: "Gujranwala",
+    name: "Peoples Colony",
+    address: "1st Floor, Plaza 83, Peoples Colony No. 1, Gujranwala",
+    phone: "+92 300‑167‑1955",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-cyan-600 to-blue-600",
+    region: "Punjab",
+    services: ["Student Counseling", "University Applications", "Test Preparation"],
+    staffCount: 8,
+    successRate: "92%",
+    studentsServed: "1800+"
+  },
+  {
+    id: "sialkot",
+    city: "Sialkot",
+    name: "Cantonment",
+    address: "2nd Floor, Malik Center, Paris Road, Sialkot Cantt, Sialkot",
+    phone: "+92 300‑167‑1956",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-purple-600 to-pink-600",
+    region: "Punjab",
+    services: ["Visa Processing", "Document Verification", "Career Guidance"],
+    staffCount: 7,
+    successRate: "91%",
+    studentsServed: "1600+"
+  },
+  {
+    id: "gujrat",
+    city: "Gujrat",
+    name: "GT Road",
+    address: "1st Floor, Malik Plaza, G.T Road, Gujrat",
+    phone: "+92 300‑167‑1957",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-teal-600 to-green-600",
+    region: "Punjab",
+    services: ["Student Counseling", "University Applications", "Document Preparation"],
+    staffCount: 6,
+    successRate: "90%",
+    studentsServed: "1400+"
+  },
+  {
+    id: "bahawalpur",
+    city: "Bahawalpur",
+    name: "Muslim Town",
+    address: "Ground Floor, Al-Madina Plaza, Muslim Town, Bahawalpur",
+    phone: "+92 300‑167‑1958",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-amber-600 to-orange-600",
+    region: "Punjab",
+    services: ["Visa Processing", "Test Preparation", "Career Guidance"],
+    staffCount: 5,
+    successRate: "89%",
+    studentsServed: "1200+"
+  },
+  {
+    id: "mian-channu",
+    city: "Mian Channu",
+    name: "Moti Plaza",
+    address: "1st Floor, Moti Plaza, Faisalabad Road, Mian Channu",
+    phone: "+92 300‑167‑1959",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-rose-600 to-red-600",
+    region: "Punjab",
+    services: ["Student Counseling", "Document Verification", "University Applications"],
+    staffCount: 4,
+    successRate: "88%",
+    studentsServed: "1000+"
+  },
+  {
+    id: "mandi-bahauddin",
+    city: "Mandi Bahauddin",
+    name: "Punjab Center",
+    address: "Ground Floor, Punjab Center, GT Road, Mandi Bahauddin",
+    phone: "+92 300‑167‑1960",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-emerald-600 to-teal-600",
+    region: "Punjab",
+    services: ["Visa Processing", "Student Counseling", "Test Preparation"],
+    staffCount: 4,
+    successRate: "87%",
+    studentsServed: "900+"
+  },
+  {
+    id: "sheikhupura",
+    city: "Sheikhupura",
+    name: "Stadium Road",
+    address: "1st Floor, Al-Noor Plaza, Stadium Road, Sheikhupura",
+    phone: "+92 300‑167‑1961",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-violet-600 to-purple-600",
+    region: "Punjab",
+    services: ["University Applications", "Document Preparation", "Career Guidance"],
+    staffCount: 5,
+    successRate: "89%",
+    studentsServed: "1100+"
+  },
+  {
+    id: "multan",
+    city: "Multan",
+    name: "Shalimar Metro",
+    address: "2nd Floor, Shalimar Metro Center, Gulgasht Colony, Multan",
+    phone: "+92 300‑167‑1962",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-lime-600 to-green-600",
+    region: "Punjab",
+    services: ["Visa Processing", "University Applications", "Student Counseling"],
+    staffCount: 9,
+    successRate: "93%",
+    studentsServed: "2000+"
+  },
+  {
+    id: "peshawar",
+    city: "Peshawar",
+    name: "Phase 3",
+    address: "Ground Floor, Malik Center, Phase 3, Hayatabad, Peshawar",
+    phone: "+92 300‑167‑1963",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-sky-600 to-blue-600",
+    region: "KPK",
+    services: ["Student Counseling", "Visa Processing", "Test Preparation"],
+    staffCount: 7,
+    successRate: "91%",
+    studentsServed: "1700+"
+  },
+  {
+    id: "jhelum",
+    city: "Jhelum",
+    name: "Sultan Plaza",
+    address: "1st Floor, Sultan Plaza, Civil Lines, Jhelum",
+    phone: "+92 300‑167‑1964",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-indigo-600 to-purple-600",
+    region: "Punjab",
+    services: ["University Applications", "Document Verification", "Career Guidance"],
+    staffCount: 6,
+    successRate: "90%",
+    studentsServed: "1300+"
+  },
+  {
+    id: "mardan",
+    city: "Mardan",
+    name: "Walyan Commercial",
+    address: "Ground Floor, Walyan Commercial Center, Mardan",
+    phone: "+92 300‑167‑1965",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-slate-600 to-gray-600",
+    region: "KPK",
+    services: ["Student Counseling", "Visa Processing", "University Applications"],
+    staffCount: 5,
+    successRate: "88%",
+    studentsServed: "1200+"
+  },
+  {
+    id: "jeddah",
+    city: "Jeddah",
+    name: "Engineering Square",
+    address: "Above Topten, Engineering Square, Makarona Street, 2nd Floor, Office 27, Jeddah 23447",
+    phone: "+966 50‑851‑0785",
+    hours: "Mon–Thu 10 AM–5 PM",
+    gradient: "from-amber-600 to-yellow-600",
+    region: "International",
+    services: ["Visa Processing", "Document Attestation", "Student Support"],
+    staffCount: 8,
+    successRate: "96%",
+    studentsServed: "1800+"
+  },
+  {
+    id: "istanbul",
+    city: "Istanbul",
+    name: "Ataköy Towers",
+    address: "Ataköy Towers, Ataköy 7‑8‑9‑10 Kısım Mah., Çobançeşme E‑5 Yan Yol Cad., A Blok Apt. No: 20/1, Bakırköy, Istanbul",
+    phone: "+90 505‑305‑8047",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-red-600 to-rose-600",
+    region: "International",
+    services: ["Student Counseling", "University Applications", "Cultural Guidance"],
+    staffCount: 9,
+    successRate: "97%",
+    studentsServed: "2200+"
+  },
+  {
+    id: "edinburgh",
+    city: "Edinburgh",
+    name: "Ferry Road Place",
+    address: "4 Ferry Road Place, Edinburgh EH4 4AX",
+    phone: "+44 7448‑419291",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-slate-600 to-gray-600",
+    region: "International",
+    services: ["Student Support", "University Applications", "Career Guidance"],
+    staffCount: 7,
+    successRate: "98%",
+    studentsServed: "1500+"
   }
 ];
 
@@ -116,7 +312,7 @@ export default function OfficesList() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <Navigation />
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -126,7 +322,7 @@ export default function OfficesList() {
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Office Locations</h1>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
-              Visit any of our strategically located offices across Pakistan for personalized consultation 
+              Visit any of our strategically located offices across Pakistan and internationally for personalized consultation 
               and expert guidance on your international education journey.
             </p>
           </motion.div>
@@ -199,8 +395,16 @@ export default function OfficesList() {
                             Head Office
                           </Badge>
                         )}
+                        {office.region === 'International' && (
+                          <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs">
+                            International
+                          </Badge>
+                        )}
                       </div>
                       <p className="text-gray-600 font-medium">{office.name}</p>
+                      <Badge variant="outline" className="text-xs mt-1">
+                        {office.region}
+                      </Badge>
                     </div>
                     <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${office.gradient} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}>
                       <Building2 className="w-6 h-6 text-white" />
@@ -291,9 +495,34 @@ export default function OfficesList() {
           </div>
         )}
 
+        {/* Stats Overview */}
+        <motion.div
+          className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-6 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className="text-center">
+            <div className="text-3xl font-bold text-blue-600 mb-2">21</div>
+            <div className="text-gray-600">Total Offices</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-green-600 mb-2">18</div>
+            <div className="text-gray-600">Pakistan Offices</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-purple-600 mb-2">3</div>
+            <div className="text-gray-600">International Offices</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-orange-600 mb-2">35,000+</div>
+            <div className="text-gray-600">Students Served</div>
+          </div>
+        </motion.div>
+
         {/* Contact Banner */}
         <motion.div
-          className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center"
+          className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
