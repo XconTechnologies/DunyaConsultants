@@ -57,6 +57,16 @@ import ukImage18 from '@assets/WhatsApp Image 2025-05-29 at 16.48.23_87f75f66_17
 import ukImage19 from '@assets/WhatsApp Image 2025-05-30 at 15.01.00_c1d31a2b_1754052308516.jpg';
 import ukImage20 from '@assets/WhatsApp Image 2025-05-30 at 17.32.36_e39cc5c9_1754052308516.jpg';
 
+// Import Sweden visa success images
+import swedenImage1 from '@assets/IMG-20250718-WA0049_1754129628346.jpg';
+import swedenImage2 from '@assets/IMG-20250718-WA0048_1754129628349.jpg';
+import swedenImage3 from '@assets/IMG-20250718-WA0047_1754129628350.jpg';
+import swedenImage4 from '@assets/IMG-20250718-WA0046_1754129628351.jpg';
+import swedenImage5 from '@assets/IMG-20250718-WA0045_1754129628352.jpg';
+import swedenImage6 from '@assets/23,07,2025_1754129628353.jpg';
+import swedenImage7 from '@assets/2_1754129628353.jpg';
+import swedenImage8 from '@assets/1_1754129628354.jpg';
+
 export default function OurSuccessStories() {
   const finlandSuccessImages = [
     image2, image3, image4, image5, image6,
@@ -68,6 +78,11 @@ export default function OurSuccessStories() {
     ukImage7, ukImage8, ukImage9, ukImage10, ukImage11, ukImage12,
     ukImage13, ukImage14, ukImage15, ukImage16, ukImage17, ukImage18,
     ukImage19, ukImage20
+  ];
+
+  const swedenSuccessImages = [
+    swedenImage1, swedenImage2, swedenImage3, swedenImage4,
+    swedenImage5, swedenImage6, swedenImage7, swedenImage8
   ];
 
   // Tab state for country selection
@@ -230,7 +245,8 @@ export default function OurSuccessStories() {
             <div className="inline-flex bg-white rounded-lg p-1 shadow-lg border">
               {[
                 { id: 'UK', name: 'United Kingdom', color: 'indigo' },
-                { id: 'Finland', name: 'Finland', color: 'blue' }
+                { id: 'Finland', name: 'Finland', color: 'blue' },
+                { id: 'Sweden', name: 'Sweden', color: 'yellow' }
               ].map((country) => (
                 <button
                   key={country.id}
@@ -264,9 +280,11 @@ export default function OurSuccessStories() {
                 {/* Triple the images for seamless infinite loop */}
                 {(activeTab === 'UK' 
                   ? [...ukSuccessImages, ...ukSuccessImages, ...ukSuccessImages]
-                  : [...finlandSuccessImages, ...finlandSuccessImages, ...finlandSuccessImages]
+                  : activeTab === 'Finland'
+                  ? [...finlandSuccessImages, ...finlandSuccessImages, ...finlandSuccessImages]
+                  : [...swedenSuccessImages, ...swedenSuccessImages, ...swedenSuccessImages]
                 ).map((image, index) => {
-                  const imageArray = activeTab === 'UK' ? ukSuccessImages : finlandSuccessImages;
+                  const imageArray = activeTab === 'UK' ? ukSuccessImages : activeTab === 'Finland' ? finlandSuccessImages : swedenSuccessImages;
                   return (
                     <div
                       key={index}
@@ -282,7 +300,7 @@ export default function OurSuccessStories() {
                         
                         {/* Success Badge */}
                         <div className={`absolute top-4 right-4 ${
-                          activeTab === 'UK' ? 'bg-indigo-500' : 'bg-green-500'
+                          activeTab === 'UK' ? 'bg-indigo-500' : activeTab === 'Finland' ? 'bg-green-500' : 'bg-yellow-500'
                         } text-white px-3 py-1 rounded-full text-xs font-medium flex items-center space-x-1`}>
                           <CheckCircle className="w-3 h-3" />
                           <span>Success</span>
@@ -329,7 +347,7 @@ export default function OurSuccessStories() {
                 description: "Admissions to University of Sunderland, Ulster University & more",
                 gradient: "from-purple-500 to-purple-600"
               }
-            ] : [
+            ] : activeTab === 'Finland' ? [
               {
                 icon: Trophy,
                 title: "High Success Rate",
@@ -347,6 +365,25 @@ export default function OurSuccessStories() {
                 title: "Top Universities",
                 description: "Admissions to leading Finnish institutions",
                 gradient: "from-purple-500 to-purple-600"
+              }
+            ] : [
+              {
+                icon: Trophy,
+                title: "Lightning Fast Processing",
+                description: "Sweden visas approved in 3-7 days with exceptional results",
+                gradient: "from-yellow-500 to-yellow-600"
+              },
+              {
+                icon: Star,
+                title: "Top Universities", 
+                description: "Admissions to Halmstad University, Uppsala University & more",
+                gradient: "from-blue-500 to-blue-600"
+              },
+              {
+                icon: GraduationCap,
+                title: "Multiple Entry Visas",
+                description: "Schengen multiple entry visas for enhanced mobility",
+                gradient: "from-orange-500 to-orange-600"
               }
             ]).map((item, index) => (
               <motion.div
