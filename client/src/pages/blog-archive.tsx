@@ -34,6 +34,32 @@ export default function BlogArchive() {
     queryKey: ['/api/blog-posts/published'],
   });
 
+  // Map of blog post slugs to their actual featured images from Dunya Consultants
+  const featuredImages: Record<string, string> = {
+    'kaplan-test-of-english': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Kaplan-Test-of-English-KTE.webp',
+    'global-talent-visa-australia-guide': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Global-talent-visa-Australia.webp',
+    'anglia-ruskin-university': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Anglia-Ruskin-University-A-Trusted-Partner-of-Dunya-Consultants.webp',
+    'cyprus-visa-pakistan': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Cyprus-Visa-for-Pakistan.webp',
+    'engineering-law-canada': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Engineering-and-Law-Programs-in-Canada-Best-Universities-for-Pakistani-Students-in-2025.webp',
+    'turkey-best-choice-pakistani-students': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Why-Turkey-is-Best-Choice-for-Pakistani-Students.webp',
+    'uk-llm-pakistani-bar': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/From-UK-LLM-to-Pakistani-Bar.webp',
+    'study-nursing-in-the-uk': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Study-Nursing-in-the-UK.webp',
+    'global-talent-visa-uk': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Global-Talent-Visa-UK.webp',
+    'top-study-abroad-countries': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Top-study-abroad-countries.webp',
+    'master-of-laws-llm-australia': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Master-of-Laws-LLM-in-Australia-A-Comprehensive-Guide.webp',
+    'oxford-test-accepted-universities-uk': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Oxford-Test-Accepted-Universities-in-UK.webp',
+    'how-to-improve-ielts-listening-skills': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/How-to-Improve-IELTS-Listening-Skills.webp',
+    'uk-internship-international-students': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/UK-Internship-for-International-Students.webp',
+    'gmat-test-fee-in-pakistan': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/GMAT-Exam-Date-2025-Registration-Date.webp',
+    'ielts-preparation-tips-and-tricks': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Top-10-IELTS-Preparation-Tips-and-Tricks-for-a-High-Band-Score.webp',
+    'how-to-apply-for-ielts-in-pakistan': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/How-to-Apply-For-IELTS-in-Pakistan.webp',
+    'bachelors-in-ict-software-engineering': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Bachelors-in-ICT-Software-Engineering.webp',
+    'bachelors-in-industrial-engineering-and-management': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Bachelors-in-Industrial-Engineering-and-Management.webp',
+    'teesside-university-trusted-partner': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Teesside-University-A-Trusted-Partner-of-Dunya-Consultants.webp',
+    'ielts-acceptability-2025': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/IELTS-Acceptability-in-2025-Which-Countries-Universities-Recognize-It.webp',
+    'difference-between-ielts-general-and-academic': 'https://dunyaconsultants.com/wp-content/uploads/2025/02/Difference-between-IELTS-General-and-Academic.webp'
+  };
+
   // Convert API data to archive format
   const archivePosts: BlogArchivePost[] = useMemo(() => {
     return blogPosts.map(post => ({
@@ -50,7 +76,7 @@ export default function BlogArchive() {
       readTime: "5 min",
       views: post.views || 0,
       tags: post.tags || [],
-      image: post.featuredImage || "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: featuredImages[post.slug] || post.featuredImage || "https://dunyaconsultants.com/wp-content/uploads/2025/03/Kaplan-Test-of-English-KTE.webp",
       featured: false,
       trending: (post.views || 0) > 1000,
       href: `/blog/${post.slug}`
