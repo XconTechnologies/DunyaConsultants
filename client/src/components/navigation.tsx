@@ -52,6 +52,13 @@ export default function Navigation() {
             { name: "Our Success Stories", href: "/about/our-success-stories", description: "Student achievements" },
             { name: "Why Choose Us", href: "/about/why-choose-us", description: "Our unique advantages" }
           ]
+        },
+        {
+          title: "Resources",
+          icon: BookOpen,
+          items: [
+            { name: "Blog", href: "/blog", description: "Latest updates and guides" }
+          ]
         }
       ],
       featured: {
@@ -156,31 +163,10 @@ export default function Navigation() {
       icon: Newspaper,
       sections: [
         {
-          title: "Study Abroad",
-          icon: Globe,
+          title: "Blog Articles",
+          icon: BookOpen,
           items: [
-            { name: "Blog Archive", href: "/blog", description: "Browse all our blog articles" },
-            { name: "Top Study Abroad Countries", href: "/blog/top-study-abroad-countries", description: "Best destinations for international students" },
-            { name: "Global Talent Visa Australia", href: "/blog/global-talent-visa-australia", description: "Complete guide to Australian visa" },
-            { name: "Study Nursing in the UK", href: "/blog/study-nursing-uk", description: "Healthcare education opportunities" }
-          ]
-        },
-        {
-          title: "Test Preparation",
-          icon: Award,
-          items: [
-            { name: "Kaplan Test of English", href: "/blog/kaplan-test-of-english", description: "Complete KTE guide & tips" },
-            { name: "IELTS Preparation Tips", href: "/blog/ielts-preparation-tips", description: "Top 10 tips for high band score" },
-            { name: "How to Improve IELTS Listening", href: "/blog/improve-ielts-listening", description: "Listening skills enhancement" }
-          ]
-        },
-        {
-          title: "Student Stories",
-          icon: Heart,
-          items: [
-            { name: "Student Experiences", href: "/blog/experiences", description: "Success stories & journeys" },
-            { name: "University Reviews", href: "/blog/reviews", description: "Campus life & academics" },
-            { name: "Career Outcomes", href: "/blog/careers", description: "Post-graduation success" }
+            { name: "Blog Archive", href: "/blog", description: "Browse all our blog articles" }
           ]
         }
       ],
