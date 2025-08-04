@@ -545,7 +545,7 @@ export default function Blogs() {
       <div className="min-h-screen bg-white">
         <Navigation />
         {/* Article Header */}
-        <section className="pt-32 pb-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white">
+        <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <Button 
               onClick={() => setSelectedPost(null)}
@@ -801,7 +801,7 @@ export default function Blogs() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="my-12 p-8 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-xl text-white relative overflow-hidden"
+              className="my-12 p-8 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-xl text-white relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-black/10"></div>
               <div className="relative z-10 text-center">
@@ -813,7 +813,7 @@ export default function Blogs() {
                 </motion.div>
                 <p className="text-xl mb-6">Don't let your dreams wait! Get personalized guidance from our experts today.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                  <Button className="bg-white text-blue-600 hover:bg-blue-50 flex-1">
+                  <Button className="bg-white text-orange-600 hover:bg-orange-50 flex-1">
                     Book Free Consultation
                   </Button>
                   <Button variant="outline" className="border-white text-white hover:bg-white/10 flex-1">
@@ -856,9 +856,9 @@ export default function Blogs() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-primary via-blue-700 to-secondary text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-blue-500/30"></div>
+          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-purple-600/30"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -875,7 +875,7 @@ export default function Blogs() {
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Study Abroad<br />
-              <span className="text-blue-200">Blog & Insights</span>
+              <span className="text-yellow-300">Blog & Insights</span>
             </h1>
             
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
@@ -884,19 +884,19 @@ export default function Blogs() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-200">100+</div>
+                <div className="text-3xl font-bold text-yellow-300">100+</div>
                 <div className="text-sm text-blue-100">Expert Articles</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-200">25+</div>
+                <div className="text-3xl font-bold text-yellow-300">25+</div>
                 <div className="text-sm text-blue-100">Countries Covered</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-200">50K+</div>
+                <div className="text-3xl font-bold text-yellow-300">50K+</div>
                 <div className="text-sm text-blue-100">Monthly Readers</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-200">Daily</div>
+                <div className="text-3xl font-bold text-yellow-300">Daily</div>
                 <div className="text-sm text-blue-100">Fresh Content</div>
               </div>
             </div>
