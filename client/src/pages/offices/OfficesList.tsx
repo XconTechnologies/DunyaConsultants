@@ -12,7 +12,7 @@ import Footer from "@/components/footer";
 // Office data
 const offices = [
   {
-    id: "sargodha-head",
+    id: "sargodha-head-office",
     city: "Sargodha",
     name: "Head Office",
     address: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
@@ -55,7 +55,7 @@ const offices = [
     studentsServed: "2800+"
   },
   {
-    id: "islamabad",
+    id: "islamabad-blue-area",
     city: "Islamabad",
     name: "Blue Area",
     address: "Mezzanine‑3, ATS Centre, Fazal‑e‑Haq Road, Blue Area, Islamabad",
@@ -69,7 +69,7 @@ const offices = [
     studentsServed: "2800+"
   },
   {
-    id: "karachi",
+    id: "karachi-gulshan",
     city: "Karachi",
     name: "Gulshan-e-Iqbal",
     address: "205 Madina City Mall, Block 13-A, Gulshan-e-Iqbal, Karachi",
@@ -83,7 +83,7 @@ const offices = [
     studentsServed: "4200+"
   },
   {
-    id: "faisalabad",
+    id: "faisalabad-civil-lines",
     city: "Faisalabad",
     name: "Civil Lines",
     address: "Al-Fatah Centre, Katchery Rd, Civil Lines, Faisalabad",
