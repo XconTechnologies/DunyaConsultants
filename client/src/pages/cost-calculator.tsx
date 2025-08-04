@@ -222,12 +222,12 @@ export default function CostCalculator() {
             className="text-center mb-12"
           >
             <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
                 <Calculator className="w-8 h-8 text-white" />
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                 Live Cost Calculator
               </span>
             </h1>
@@ -413,7 +413,7 @@ export default function CostCalculator() {
 
                       {/* Total */}
                       <div className="border-t pt-4">
-                        <div className="flex justify-between items-center p-4 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg text-white">
+                        <div className="flex justify-between items-center p-4 bg-gradient-to-r from-primary to-secondary rounded-lg text-white">
                           <span className="text-lg font-bold">Total Cost</span>
                           <span className="text-2xl font-bold">
                             {formatCurrency(results.total, results.currency)}
@@ -447,7 +447,7 @@ export default function CostCalculator() {
 
                       {/* CTA */}
                       <div className="pt-4">
-                        <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-primary/90 hover:to-secondary/90">
+                        <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
                           Book Free Consultation
                         </Button>
                       </div>

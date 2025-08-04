@@ -131,7 +131,7 @@ export default function AudienceSection() {
   };
 
   return (
-    <section id="audience" className="py-12 bg-gradient-to-br from-blue-50 to-blue-100">
+    <section id="audience" className="py-12 bg-gradient-to-br from-neutral-50 to-blue-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-10"

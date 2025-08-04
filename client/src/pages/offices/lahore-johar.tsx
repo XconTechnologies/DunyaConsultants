@@ -45,7 +45,7 @@ export default function LahoreJohar() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <Navigation />
       
       {/* Header */}

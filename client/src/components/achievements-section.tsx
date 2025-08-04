@@ -34,7 +34,7 @@ export default function AchievementsSection() {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 to-blue-100">
+    <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -48,7 +48,7 @@ export default function AchievementsSection() {
           </div>
           
           <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
-            Recognized <span className="bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">Excellence</span>
+            Recognized <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Excellence</span>
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
@@ -105,7 +105,7 @@ export default function AchievementsSection() {
             <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
               Be part of our growing community of successful students who have achieved their international education dreams
             </p>
-            <button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+            <button className="bg-gradient-to-r from-primary to-secondary text-white font-semibold px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
               Start Your Journey Today
             </button>
           </div>

@@ -155,7 +155,7 @@ export default function USAGuide() {
   const [activeTab, setActiveTab] = useState("overview");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100" ref={ref}>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-700 to-blue-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">

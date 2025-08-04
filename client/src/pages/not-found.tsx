@@ -7,7 +7,7 @@ import Footer from "@/components/footer";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
       <div className="pt-32 pb-20 flex items-center justify-center">
         <Card className="w-full max-w-md mx-4 shadow-lg">

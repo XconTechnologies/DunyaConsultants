@@ -133,7 +133,7 @@ export default function MobileProcessSection() {
           <div className="flex justify-center space-x-4 md:hidden">
             <button
               onClick={toggleAllSteps}
-              className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               {expandAll ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
               <span className="font-medium">{expandAll ? 'Collapse All' : 'Expand All'}</span>
@@ -145,7 +145,7 @@ export default function MobileProcessSection() {
         <div className="hidden md:block">
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-blue-700"></div>
+            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary to-secondary"></div>
             
             <div className="space-y-8">
               {processSteps.map((step, index) => (
@@ -157,7 +157,7 @@ export default function MobileProcessSection() {
                   className="relative flex items-start space-x-6"
                 >
                   {/* Step Number */}
-                  <div className="relative z-10 flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full text-white font-bold text-lg shadow-lg">
+                  <div className="relative z-10 flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full text-white font-bold text-lg shadow-lg">
                     {step.step}
                   </div>
                   
@@ -226,7 +226,7 @@ export default function MobileProcessSection() {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                      <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm">
                         {step.step}
                       </div>
                       <div className="text-left">
@@ -312,7 +312,7 @@ export default function MobileProcessSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mt-12 text-center"
         >
-          <Card className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-8">
+          <Card className="bg-gradient-to-r from-primary to-secondary text-white p-8">
             <h3 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h3>
             <p className="text-blue-100 mb-6">
               Begin with a free consultation and take the first step towards your international education goals

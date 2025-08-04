@@ -721,7 +721,7 @@ export default function Blogs() {
                   {/* Contact QR Code */}
                   <Card className="p-6 shadow-lg text-center">
                     <h3 className="text-lg font-bold mb-4">Quick Contact</h3>
-                    <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                    <div className="w-32 h-32 bg-gradient-to-br from-primary to-secondary rounded-lg mx-auto mb-4 flex items-center justify-center">
                       <div className="w-24 h-24 bg-white rounded-lg flex items-center justify-center">
                         <div className="text-xs font-mono">
                           QR<br/>CODE
@@ -781,7 +781,7 @@ export default function Blogs() {
                   </Card>
 
                   {/* Newsletter Signup */}
-                  <Card className="p-6 shadow-lg bg-gradient-to-br from-blue-600 to-blue-700 text-white">
+                  <Card className="p-6 shadow-lg bg-gradient-to-br from-primary to-secondary text-white">
                     <h3 className="text-lg font-bold mb-4">Weekly Insights</h3>
                     <p className="text-blue-100 text-sm mb-4">Get expert tips and latest updates delivered to your inbox</p>
                     <div className="space-y-3">

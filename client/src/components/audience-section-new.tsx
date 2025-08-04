@@ -140,7 +140,7 @@ export default function AudienceSectionNew() {
           
           <h2 className="text-4xl lg:text-6xl font-bold text-neutral-800 mb-6">
             Tailored Solutions for{" "}
-            <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Everyone
             </span>
           </h2>
@@ -244,7 +244,7 @@ export default function AudienceSectionNew() {
               Join thousands of successful students, partners, and universities who have achieved their goals with our tailored solutions
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold px-8 py-3 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <button className="bg-gradient-to-r from-primary to-secondary text-white font-semibold px-8 py-3 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                 Schedule Free Consultation
               </button>
               <button className="border-2 border-primary text-primary font-semibold px-8 py-3 rounded-xl hover:bg-primary hover:text-white transition-all duration-300">

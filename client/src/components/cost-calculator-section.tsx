@@ -323,7 +323,7 @@ export default function CostCalculatorSection() {
 
             {/* Live Chat Support */}
             <div className="space-y-6">
-              <Card className="p-6 bg-gradient-to-br from-blue-600 to-blue-700 text-white">
+              <Card className="p-6 bg-gradient-to-br from-primary to-secondary text-white">
                 <div className="text-center">
                   <MessageCircle className="w-12 h-12 mx-auto mb-4 opacity-90" />
                   <h4 className="text-xl font-bold mb-2">Need Instant Help?</h4>

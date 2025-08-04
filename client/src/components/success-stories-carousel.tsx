@@ -101,7 +101,7 @@ export default function SuccessStoriesCarousel() {
           </div>
           
           <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
-            Students <span className="bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">Love</span> Our Service
+            Students <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Love</span> Our Service
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed mb-4">
@@ -195,7 +195,7 @@ export default function SuccessStoriesCarousel() {
                         </div>
 
                         {/* Visual Side */}
-                        <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-8 lg:p-12 flex items-center justify-center relative overflow-hidden">
+                        <div className="bg-gradient-to-br from-primary to-secondary p-8 lg:p-12 flex items-center justify-center relative overflow-hidden">
                           {/* Background Pattern */}
                           <div className="absolute inset-0 opacity-10">
                             <div className="absolute top-0 left-0 w-full h-full" style={{

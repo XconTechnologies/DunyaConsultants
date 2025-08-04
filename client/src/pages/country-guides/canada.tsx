@@ -344,7 +344,7 @@ export default function CanadaGuide() {
                           </div>
                         </div>
 
-                        <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white">
+                        <Button className="w-full bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white">
                           Get Admission Guidance for {university.name}
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
@@ -430,7 +430,7 @@ export default function CanadaGuide() {
                 <Card className="shadow-lg">
                   <CardContent className="p-0">
                     <table className="w-full">
-                      <thead className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+                      <thead className="bg-gradient-to-r from-red-600 to-red-800 text-white">
                         <tr>
                           <th className="px-6 py-4 text-left">City</th>
                           <th className="px-6 py-4 text-center">Housing</th>
@@ -558,7 +558,7 @@ export default function CanadaGuide() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-blue-800 text-white">
+      <section className="py-20 bg-gradient-to-r from-red-700 to-red-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -247,7 +247,7 @@ export default function CountryGuide() {
   const currentCountry = countries.find(c => c.id === selectedCountry);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100" ref={ref}>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
       <Navigation />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-700 to-blue-800 text-white relative overflow-hidden">
@@ -435,7 +435,7 @@ export default function CountryGuide() {
                               <div className="flex items-start justify-between mb-4">
                                 <div className="flex-1">
                                   <div className="flex items-center space-x-3 mb-2">
-                                    <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold">
+                                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold">
                                       #{university.rank}
                                     </div>
                                     <div>
@@ -527,7 +527,7 @@ export default function CountryGuide() {
                       <Card key={benefit.title} className="shadow-lg hover:shadow-xl transition-shadow">
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
-                            <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center flex-shrink-0">
                               <benefit.icon className="w-6 h-6 text-white" />
                             </div>
                             <div>
@@ -554,7 +554,7 @@ export default function CountryGuide() {
                       <Card key={step.step} className="shadow-lg">
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-6">
-                            <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
                               {step.step}
                             </div>
                             <div className="flex-1">
@@ -570,7 +570,7 @@ export default function CountryGuide() {
                     ))}
                   </div>
 
-                  <Card className="shadow-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center">
+                  <Card className="shadow-lg bg-gradient-to-r from-primary to-secondary text-white text-center">
                     <CardContent className="p-8">
                       <h3 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h3>
                       <p className="text-blue-100 mb-6">

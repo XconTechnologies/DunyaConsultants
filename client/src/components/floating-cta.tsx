@@ -88,7 +88,7 @@ export default function FloatingCTA() {
             >
               <button
                 onClick={toggleExpanded}
-                className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full shadow-2xl flex items-center justify-center text-white relative overflow-hidden group z-[10001]"
+                className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full shadow-2xl flex items-center justify-center text-white relative overflow-hidden group z-[10001]"
               >
                 {/* Pulse Animation */}
                 <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20"></div>
@@ -123,7 +123,7 @@ export default function FloatingCTA() {
               <Card className="shadow-2xl border-0 bg-white z-[10000] relative">
                 <CardContent className="p-0">
                   {/* Header */}
-                  <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4 text-white relative">
+                  <div className="bg-gradient-to-r from-primary to-secondary p-4 text-white relative">
                     <button
                       onClick={toggleExpanded}
                       className="absolute top-2 right-2 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
@@ -216,7 +216,7 @@ export default function FloatingCTA() {
                     <div className="space-y-2">
                       <Button 
                         asChild
-                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
+                        className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
                         size="lg"
                       >
                         <a href={`tel:${selectedCounselor.phone.replace(/\s+/g, '')}`}>

@@ -430,7 +430,7 @@ export default function CourseMatchTool() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-center"
             >
-              <Card className="shadow-xl border-0 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white">
+              <Card className="shadow-xl border-0 bg-gradient-to-r from-primary via-secondary to-accent text-white">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h3>
                   <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
@@ -481,12 +481,12 @@ export default function CourseMatchTool() {
             className="text-center mb-12"
           >
             <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
                 <Brain className="w-8 h-8 text-white" />
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                 Smart Course Match Tool
               </span>
             </h1>
@@ -583,7 +583,7 @@ export default function CourseMatchTool() {
                       (Array.isArray(answers[quizQuestions[currentQuestion].id]) && 
                        (answers[quizQuestions[currentQuestion].id] as string[]).length === 0)
                     }
-                    className="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-primary/90 hover:to-secondary/90"
+                    className="px-8 py-3 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90"
                   >
                     {currentQuestion === quizQuestions.length - 1 ? 'Get My Recommendations' : 'Next Question'}
                     <ArrowRight className="w-4 h-4 ml-2" />
