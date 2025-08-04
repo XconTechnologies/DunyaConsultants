@@ -18,7 +18,7 @@ const offices = [
     address: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
     phone: "+92 304 1110947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-purple-600",
+    gradient: "from-blue-600 to-blue-700",
     isHeadOffice: true,
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"]
@@ -30,7 +30,7 @@ const offices = [
     address: "1st Floor, 174 6th Street 123, Sector H, DHA Phase 1, Lahore",
     phone: "+92 300‑167‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-green-600 to-teal-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "Document Verification"]
   },
@@ -41,7 +41,7 @@ const offices = [
     address: "1st Floor, 85 /R‑1, Phase 2, Johar Town, Lahore",
     phone: "+92 300‑827‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-orange-600 to-red-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Student Counseling", "Test Preparation", "Career Guidance"]
   },
@@ -52,7 +52,7 @@ const offices = [
     address: "Mezzanine‑3, ATS Centre, Fazal‑e‑Haq Road, Blue Area, Islamabad",
     phone: "+92 333‑777‑5458",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-indigo-600 to-blue-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Federal",
     services: ["Visa Processing", "Embassy Relations", "Document Attestation"]
   },
@@ -63,7 +63,7 @@ const offices = [
     address: "205 Madina City Mall, Block 13-A, Gulshan-e-Iqbal, Karachi",
     phone: "+92 305‑555‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-orange-600 to-red-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Sindh",
     services: ["Visa Processing", "University Applications", "IELTS Training"]
   },
@@ -74,7 +74,7 @@ const offices = [
     address: "Al-Fatah Centre, Katchery Rd, Civil Lines, Faisalabad",
     phone: "+92 333‑820‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-yellow-600 to-orange-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Student Counseling", "Document Preparation", "Test Preparation"]
   },
@@ -85,7 +85,7 @@ const offices = [
     address: "1st Floor, Plaza 83, Peoples Colony No. 1, Gujranwala",
     phone: "+92 300‑167‑1955",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-cyan-600 to-blue-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Student Counseling", "University Applications", "Test Preparation"]
   },
@@ -96,7 +96,7 @@ const offices = [
     address: "2nd Floor, Malik Center, Paris Road, Sialkot Cantt, Sialkot",
     phone: "+92 300‑167‑1956",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-purple-600 to-pink-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Visa Processing", "Document Verification", "Career Guidance"]
   },
@@ -107,7 +107,7 @@ const offices = [
     address: "1st Floor, Malik Plaza, G.T Road, Gujrat",
     phone: "+92 300‑167‑1957",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-teal-600 to-green-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Student Counseling", "University Applications", "Document Preparation"]
   },
@@ -118,7 +118,7 @@ const offices = [
     address: "Ground Floor, Al-Madina Plaza, Muslim Town, Bahawalpur",
     phone: "+92 300‑167‑1958",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-amber-600 to-orange-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Visa Processing", "Test Preparation", "Career Guidance"]
   },
@@ -129,7 +129,7 @@ const offices = [
     address: "1st Floor, Moti Plaza, Faisalabad Road, Mian Channu",
     phone: "+92 300‑167‑1959",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-rose-600 to-red-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Student Counseling", "Document Verification", "University Applications"]
   },
@@ -140,7 +140,7 @@ const offices = [
     address: "Ground Floor, Punjab Center, GT Road, Mandi Bahauddin",
     phone: "+92 300‑167‑1960",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-emerald-600 to-teal-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Visa Processing", "Student Counseling", "Test Preparation"]
   },
@@ -151,7 +151,7 @@ const offices = [
     address: "1st Floor, Al-Noor Plaza, Stadium Road, Sheikhupura",
     phone: "+92 300‑167‑1961",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-violet-600 to-purple-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["University Applications", "Document Preparation", "Career Guidance"]
   },
@@ -162,7 +162,7 @@ const offices = [
     address: "2nd Floor, Shalimar Metro Center, Gulgasht Colony, Multan",
     phone: "+92 300‑167‑1962",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-lime-600 to-green-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "Student Counseling"]
   },
@@ -173,7 +173,7 @@ const offices = [
     address: "Ground Floor, Malik Center, Phase 3, Hayatabad, Peshawar",
     phone: "+92 300‑167‑1963",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-sky-600 to-blue-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "KPK",
     services: ["Student Counseling", "Visa Processing", "Test Preparation"]
   },
@@ -184,7 +184,7 @@ const offices = [
     address: "1st Floor, Sultan Plaza, Civil Lines, Jhelum",
     phone: "+92 300‑167‑1964",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-indigo-600 to-purple-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "Punjab",
     services: ["University Applications", "Document Verification", "Career Guidance"]
   },
@@ -195,7 +195,7 @@ const offices = [
     address: "Ground Floor, Walyan Commercial Center, Mardan",
     phone: "+92 300‑167‑1965",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-slate-600 to-gray-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "KPK",
     services: ["Student Counseling", "Visa Processing", "University Applications"]
   },
@@ -206,7 +206,7 @@ const offices = [
     address: "Above Topten, Engineering Square, Makarona Street, 2nd Floor, Office 27, Jeddah 23447",
     phone: "+966 50‑851‑0785",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-amber-600 to-yellow-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "International",
     services: ["Visa Processing", "Document Attestation", "Student Support"]
   },
@@ -217,7 +217,7 @@ const offices = [
     address: "Ataköy Towers, Ataköy 7‑8‑9‑10 Kısım Mah., Çobançeşme E‑5 Yan Yol Cad., A Blok Apt. No: 20/1, Bakırköy, Istanbul",
     phone: "+90 505‑305‑8047",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-red-600 to-rose-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "International",
     services: ["Student Counseling", "University Applications", "Cultural Guidance"]
   },
@@ -228,7 +228,7 @@ const offices = [
     address: "4 Ferry Road Place, Edinburgh EH4 4AX",
     phone: "+44 7448‑419291",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-slate-600 to-gray-600",
+    gradient: "from-blue-600 to-blue-700",
     region: "International",
     services: ["Student Support", "University Applications", "Career Guidance"]
   }
@@ -249,10 +249,10 @@ export default function OfficesList() {
   const regions = ['all', ...Array.from(new Set(offices.map(office => office.region)))];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
       <Navigation />
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white pt-32 pb-16">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

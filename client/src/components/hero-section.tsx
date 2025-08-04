@@ -11,7 +11,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center gradient-bg overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 overflow-hidden">
       <div className="absolute inset-0 bg-black/20"></div>
       
       {/* Background Pattern Overlay */}

@@ -4,7 +4,7 @@ import Footer from "@/components/footer";
 
 export default function BusinessCardGeneratorPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
       <Navigation />
       <div className="pt-24">
         <BusinessCardGenerator />

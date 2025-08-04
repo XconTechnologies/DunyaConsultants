@@ -183,7 +183,7 @@ export default function RedesignedProcessSection() {
             <span className="text-sm font-medium text-neutral-600">Step-by-Step Process</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent">
               Your Journey to International Education
             </span>
           </h2>
@@ -203,12 +203,12 @@ export default function RedesignedProcessSection() {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="absolute z-20 w-80 h-80 rounded-full bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center shadow-2xl"
+                className="absolute z-20 w-80 h-80 rounded-full bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 flex items-center justify-center shadow-2xl"
               >
                 <div className="w-72 h-72 rounded-full bg-white flex flex-col items-center justify-center text-center p-8">
                   <GraduationCap className="w-16 h-16 text-primary mb-4" />
                   <h3 className="text-2xl font-bold text-neutral-800 mb-2">Your Journey to</h3>
-                  <h3 className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
                     International Education
                   </h3>
                   <p className="text-sm text-neutral-600 mt-3">
@@ -476,7 +476,7 @@ export default function RedesignedProcessSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl p-8 text-white relative overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-2xl p-8 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-600/20"></div>
             <div className="relative z-10">
               <h3 className="text-3xl font-bold mb-4">Begin Your Educational Journey Today</h3>

@@ -164,7 +164,7 @@ export default function StudentJourneyVisualization() {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50 overflow-hidden">
+    <section className="py-16 bg-gradient-to-br from-blue-50 to-blue-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -178,7 +178,7 @@ export default function StudentJourneyVisualization() {
           </div>
           
           <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
-            Your Path to <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Global Education</span>
+            Your Path to <span className="bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">Global Education</span>
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
@@ -191,7 +191,7 @@ export default function StudentJourneyVisualization() {
           {/* Progress Line */}
           <div className="absolute top-20 left-0 w-full h-1 bg-gray-200 rounded-full hidden lg:block">
             <motion.div
-              className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
+              className="h-full bg-gradient-to-r from-blue-600 to-blue-700 rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
@@ -218,7 +218,7 @@ export default function StudentJourneyVisualization() {
                   }`}
                 >
                   {/* Step Number */}
-                  <div className="absolute -top-4 left-6 w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                  <div className="absolute -top-4 left-6 w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
                     {step.id}
                   </div>
 
@@ -290,7 +290,7 @@ export default function StudentJourneyVisualization() {
                 {index < journeySteps.length - 1 && (
                   <div className="hidden lg:block absolute top-20 -right-2 w-4 h-1 bg-gray-200">
                     <motion.div
-                      className="h-full bg-gradient-to-r from-primary to-secondary"
+                      className="h-full bg-gradient-to-r from-blue-600 to-blue-700"
                       initial={{ width: 0 }}
                       animate={{ width: activeStep > index ? '100%' : '0%' }}
                       transition={{ duration: 0.5, delay: 0.2 }}

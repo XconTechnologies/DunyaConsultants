@@ -141,7 +141,7 @@ export default function EducationJourneySection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent">
               Your Journey to International Education
             </span>
           </h2>
@@ -166,7 +166,7 @@ export default function EducationJourneySection() {
                   onClick={() => setActiveStep(step.id)}
                   className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     activeStep === step.id
-                      ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-md'
+                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md'
                       : 'text-neutral-600 hover:text-primary hover:bg-neutral-50'
                   }`}
                 >
@@ -174,7 +174,7 @@ export default function EducationJourneySection() {
                   {activeStep === step.id && (
                     <motion.div
                       layoutId="activeIndicator"
-                      className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full -z-10"
+                      className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full -z-10"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
@@ -295,7 +295,7 @@ export default function EducationJourneySection() {
                 </div>
                 {index < journeySteps.length - 1 && (
                   <div className={`absolute top-6 left-12 w-20 lg:w-32 h-1 transition-all duration-500 ${
-                    activeStep > step.id ? 'bg-gradient-to-r from-primary to-secondary' : 'bg-neutral-200'
+                    activeStep > step.id ? 'bg-gradient-to-r from-blue-600 to-blue-700' : 'bg-neutral-200'
                   }`} />
                 )}
               </div>
@@ -310,7 +310,7 @@ export default function EducationJourneySection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl p-8 text-white relative overflow-hidden">
+          <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-2xl p-8 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-600/20" />
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-4">

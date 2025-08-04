@@ -115,7 +115,7 @@ export default function IELTSExamDay() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100" ref={ref}>
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-700 to-blue-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -203,7 +203,7 @@ export default function IELTSExamDay() {
                   {examDaySchedule.map((item, index) => (
                     <div key={index} className="flex items-start space-x-6 pb-6 border-b border-gray-100 last:border-b-0 last:pb-0">
                       <div className="flex-shrink-0">
-                        <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="w-20 h-20 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold">
                           {item.time}
                         </div>
                       </div>
@@ -423,7 +423,7 @@ export default function IELTSExamDay() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <Card className="shadow-lg bg-gradient-to-r from-primary to-secondary text-white">
+            <Card className="shadow-lg bg-gradient-to-r from-blue-600 to-blue-700 text-white">
               <CardContent className="p-8 text-center">
                 <h3 className="text-2xl font-bold mb-6">Need Help on Test Day?</h3>
                 <div className="grid md:grid-cols-3 gap-6">

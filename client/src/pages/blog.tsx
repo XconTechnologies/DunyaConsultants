@@ -676,7 +676,7 @@ export default function Blog() {
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
             >
               <span className="block">Dunya Consultants</span>
-              <span className="block bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
                 Blog
               </span>
             </motion.h1>

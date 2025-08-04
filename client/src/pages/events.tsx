@@ -353,7 +353,7 @@ export default function Events() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100" ref={ref}>
       <Navigation />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-700 to-blue-800 text-white relative overflow-hidden">
@@ -503,7 +503,7 @@ export default function Events() {
                     >
                       <Card className={`overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${event.featured ? 'ring-2 ring-primary' : ''}`}>
                         {event.featured && (
-                          <div className="bg-gradient-to-r from-primary to-secondary text-white text-center py-1 text-sm font-medium">
+                          <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center py-1 text-sm font-medium">
                             Featured Event
                           </div>
                         )}
@@ -561,7 +561,7 @@ export default function Events() {
 
                           <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                              <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-xs font-bold">
+                              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white text-xs font-bold">
                                 {event.speaker.name.split(' ').map(n => n[0]).join('')}
                               </div>
                               <div className="text-sm">
@@ -600,11 +600,11 @@ export default function Events() {
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                   >
                     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ring-2 ring-primary">
-                      <div className="bg-gradient-to-r from-primary to-secondary text-white text-center py-2 text-sm font-medium">
+                      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center py-2 text-sm font-medium">
                         ⭐ Featured Event
                       </div>
                       {/* Same card content structure as above */}
-                      <div className="relative h-48 bg-gradient-to-br from-primary to-secondary">
+                      <div className="relative h-48 bg-gradient-to-br from-blue-600 to-blue-700">
                         <div className="absolute inset-0 bg-black/20"></div>
                         <div className="absolute bottom-4 left-4 text-white">
                           <div className="text-2xl font-bold">{formatDate(event.date).split(',')[1]}</div>
@@ -636,7 +636,7 @@ export default function Events() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

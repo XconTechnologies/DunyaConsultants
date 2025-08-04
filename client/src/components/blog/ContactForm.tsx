@@ -52,7 +52,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
   return (
     <div className={`bg-gradient-to-br from-blue-800 to-blue-900 rounded-xl p-6 text-white shadow-xl border border-blue-600/20 ${className}`}>
       <div className="text-center mb-6">
-        <h3 className="text-xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">Contact Us</h3>
+        <h3 className="text-xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">Contact Us</h3>
         <p className="text-blue-200/80 text-sm mt-1">Get expert guidance for your study abroad journey</p>
       </div>
       
