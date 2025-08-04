@@ -854,11 +854,38 @@ export default function Blogs() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50" ref={ref}>
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-blue-500/30"></div>
+        {/* Enhanced Background with Animated Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-500/20"></div>
+          <motion.div
+            animate={{ 
+              scale: [1, 1.1, 1],
+              rotate: [0, 5, 0],
+            }}
+            transition={{ 
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-blue-400/10 blur-3xl"
+          />
+          <motion.div
+            animate={{ 
+              scale: [1.1, 1, 1.1],
+              rotate: [0, -5, 0],
+            }}
+            transition={{ 
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-blue-300/10 blur-3xl"
+          />
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -868,38 +895,72 @@ export default function Blogs() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <BookOpen className="w-5 h-5" />
-              <span className="text-sm font-medium">Education Insights</span>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md rounded-full px-8 py-4 mb-8 border border-white/20"
+            >
+              <BookOpen className="w-5 h-5 text-blue-200" />
+              <span className="text-sm font-medium text-blue-100">Education Insights & Expert Guidance</span>
+            </motion.div>
             
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            >
               Study Abroad<br />
-              <span className="text-blue-200">Blog & Insights</span>
-            </h1>
+              <span className="bg-gradient-to-r from-blue-200 via-blue-100 to-blue-200 bg-clip-text text-transparent">
+                Blog & Insights
+              </span>
+            </motion.h1>
             
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Expert guidance, insider tips, and comprehensive guides to help you navigate your international education journey successfully.
-            </p>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed"
+            >
+              Expert guidance, insider tips, and comprehensive guides to help you navigate your international education journey successfully. Your trusted source for study abroad success.
+            </motion.p>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-200">100+</div>
-                <div className="text-sm text-blue-100">Expert Articles</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-200">25+</div>
-                <div className="text-sm text-blue-100">Countries Covered</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-200">50K+</div>
-                <div className="text-sm text-blue-100">Monthly Readers</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-200">Daily</div>
-                <div className="text-sm text-blue-100">Fresh Content</div>
-              </div>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto"
+            >
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+              >
+                <div className="text-4xl font-bold text-white mb-2">100+</div>
+                <div className="text-sm text-blue-200">Expert Articles</div>
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+              >
+                <div className="text-4xl font-bold text-white mb-2">25+</div>
+                <div className="text-sm text-blue-200">Countries Covered</div>
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+              >
+                <div className="text-4xl font-bold text-white mb-2">50K+</div>
+                <div className="text-sm text-blue-200">Monthly Readers</div>
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+              >
+                <div className="text-4xl font-bold text-white mb-2">Daily</div>
+                <div className="text-sm text-blue-200">Fresh Content</div>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -914,23 +975,24 @@ export default function Blogs() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-12"
           >
-            <Card className="p-6 shadow-lg">
-              <div className="flex flex-col lg:flex-row gap-4 items-center">
+            <Card className="p-8 shadow-xl border-0 bg-gradient-to-r from-blue-50 to-blue-100/50 backdrop-blur-sm">
+              <div className="flex flex-col lg:flex-row gap-6 items-center">
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400 w-4 h-4" />
+                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-500 w-5 h-5" />
                     <Input
                       placeholder="Search articles, topics, or destinations..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10"
+                      className="pl-12 h-12 border-blue-200 focus:border-blue-400 focus:ring-blue-400 text-base bg-white/80 backdrop-blur-sm"
                     />
                   </div>
                 </div>
                 
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                    <SelectTrigger className="w-48">
+                    <SelectTrigger className="w-52 h-12 border-blue-200 focus:border-blue-400 focus:ring-blue-400 bg-white/80 backdrop-blur-sm">
+                      <Filter className="w-4 h-4 mr-2 text-blue-500" />
                       <SelectValue placeholder="Select Category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -957,14 +1019,14 @@ export default function Blogs() {
               <h2 className="text-3xl font-bold text-neutral-800 mb-8">Featured Articles</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 {featuredPosts.slice(0, 2).map((post, index) => (
-                  <Card key={post.id} className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ring-2 ring-primary/20">
-                    <div className="relative h-64 bg-gradient-to-br from-primary to-secondary">
-                      <div className="absolute inset-0 bg-black/20"></div>
+                  <Card key={post.id} className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 ring-2 ring-blue-200 hover:ring-blue-400 transform hover:-translate-y-2">
+                    <div className="relative h-64 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
+                      <div className="absolute inset-0 bg-black/10"></div>
                       <div className="absolute top-4 left-4">
-                        <Badge className="bg-yellow-400 text-yellow-900">Featured</Badge>
+                        <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-yellow-900 font-semibold">✨ Featured</Badge>
                       </div>
                       <div className="absolute bottom-4 left-4 text-white">
-                        <Badge variant="secondary" className="mb-2">{post.category}</Badge>
+                        <Badge className="mb-2 bg-blue-500/80 text-white border-0">{post.category}</Badge>
                         <h3 className="text-xl font-bold line-clamp-2">{post.title}</h3>
                       </div>
                     </div>
@@ -995,7 +1057,7 @@ export default function Blogs() {
 
                       <Button 
                         onClick={() => setSelectedPost(post)}
-                        className="w-full bg-primary hover:bg-primary/90"
+                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 transition-all duration-300 transform hover:scale-105"
                       >
                         Read Article
                         <ChevronRight className="w-4 h-4 ml-2" />
@@ -1029,11 +1091,11 @@ export default function Blogs() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600">
-                      <div className="absolute inset-0 bg-black/20"></div>
+                  <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 ring-1 ring-blue-100 hover:ring-blue-300">
+                    <div className="relative h-48 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700">
+                      <div className="absolute inset-0 bg-black/10"></div>
                       <div className="absolute top-4 right-4">
-                        <Badge variant="secondary">{post.category}</Badge>
+                        <Badge className="bg-blue-500/80 text-white border-0">{post.category}</Badge>
                       </div>
                       <div className="absolute bottom-4 left-4 text-white">
                         <div className="text-lg font-bold">{formatDate(post.publishedDate).split(' ')[1]}</div>
@@ -1071,7 +1133,7 @@ export default function Blogs() {
                         <Button 
                           size="sm" 
                           onClick={() => setSelectedPost(post)}
-                          className="bg-primary hover:bg-primary/90"
+                          className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 transition-all duration-300 transform hover:scale-105"
                         >
                           Read More
                           <ChevronRight className="w-4 h-4 ml-1" />
@@ -1095,31 +1157,62 @@ export default function Blogs() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-br from-blue-800 via-blue-700 to-blue-600 text-white relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <motion.div
+            animate={{ 
+              scale: [1, 1.2, 1],
+              rotate: [0, 10, 0],
+            }}
+            transition={{ 
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl"
+          />
+          <motion.div
+            animate={{ 
+              scale: [1.2, 1, 1.2],
+              rotate: [0, -10, 0],
+            }}
+            transition={{ 
+              duration: 35,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-blue-400/10 blur-3xl"
+          />
+        </div>
+        
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <h2 className="text-4xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Stay Updated with Latest Insights
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Get weekly expert tips, scholarship updates, and study abroad insights delivered to your inbox
+            <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+              Get weekly expert tips, scholarship updates, and study abroad insights delivered to your inbox. Join 50,000+ students already subscribed!
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
               <Input 
-                placeholder="Enter your email" 
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                placeholder="Enter your email address" 
+                className="bg-white/15 border-white/30 text-white placeholder:text-white/70 backdrop-blur-md h-12 focus:border-white focus:ring-white"
               />
-              <Button className="bg-white text-primary hover:bg-blue-50 whitespace-nowrap">
-                Subscribe
+              <Button className="bg-white text-blue-700 hover:bg-blue-50 whitespace-nowrap h-12 px-8 font-semibold transition-all duration-300 transform hover:scale-105">
+                Subscribe Free
               </Button>
             </div>
+            <p className="text-sm text-blue-200 mt-4">✨ No spam, unsubscribe anytime</p>
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+      <Footer />
+    </>
   );
 }
