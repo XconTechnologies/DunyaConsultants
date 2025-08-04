@@ -595,12 +595,16 @@ export default function CountriesSection() {
           </div>
         ) : (
           /* Horizontal Scrolling Carousel for Popular Countries */
-          <div className="relative overflow-hidden py-4">
+          <div 
+            className="relative overflow-hidden py-4"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             <motion.div
               className="flex gap-6"
-              animate={{
+              animate={!isAutoScrollPaused ? {
                 x: [0, -1800]
-              }}
+              } : {}}
               transition={{
                 duration: 25,
                 repeat: Infinity,
