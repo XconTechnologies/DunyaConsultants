@@ -43,40 +43,7 @@ export default function AboutCompany() {
       <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"></div>
       <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header Section */}
-        <div className="text-center mb-20">
-          <motion.div
-            className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full mb-6 border border-blue-200"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mr-3 animate-pulse"></div>
-            <span className="text-sm font-bold text-blue-800 tracking-wider uppercase">
-              About Company
-            </span>
-          </motion.div>
-          
-          <motion.h2 
-            className="text-4xl lg:text-5xl font-bold mb-8 bg-gradient-to-r from-blue-800 via-indigo-700 to-blue-900 bg-clip-text text-transparent"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Who We Are
-          </motion.h2>
-          
-          <motion.p 
-            className="text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto font-medium"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            Dunya Consultants is one of the best education consultants in Pakistan. 
-            We stand among the top study abroad consultants and provide detailed 
-            guidance on study abroad programs to students.
-          </motion.p>
-        </div>
+
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           
@@ -177,6 +144,21 @@ export default function AboutCompany() {
           >
             {/* Single Unified Content Container */}
             <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-center">
+              {/* About Company Button */}
+              <motion.div
+                className="mb-6"
+                initial={{ opacity: 0, y: -20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full mb-4 border border-blue-200">
+                  <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-sm font-bold text-blue-800 tracking-wider uppercase">
+                    About Company
+                  </span>
+                </div>
+              </motion.div>
+
               {/* Why Choose Heading */}
               <motion.div
                 className="mb-6"
