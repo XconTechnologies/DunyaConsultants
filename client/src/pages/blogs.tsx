@@ -545,7 +545,7 @@ export default function Blogs() {
       <div className="min-h-screen bg-white">
         <Navigation />
         {/* Article Header */}
-        <section className="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white">
+        <section className="pt-32 pb-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <Button 
               onClick={() => setSelectedPost(null)}
@@ -801,7 +801,7 @@ export default function Blogs() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="my-12 p-8 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 rounded-xl text-white relative overflow-hidden"
+              className="my-12 p-8 bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 rounded-xl text-white relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-black/10"></div>
               <div className="relative z-10 text-center">
@@ -813,7 +813,7 @@ export default function Blogs() {
                 </motion.div>
                 <p className="text-xl mb-6">Don't let your dreams wait! Get personalized guidance from our experts today.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                  <Button className="bg-white text-orange-600 hover:bg-orange-50 flex-1">
+                  <Button className="bg-white text-blue-600 hover:bg-blue-50 flex-1">
                     Book Free Consultation
                   </Button>
                   <Button variant="outline" className="border-white text-white hover:bg-white/10 flex-1">
