@@ -17,14 +17,11 @@ const offices = [
     name: "Head Office",
     address: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
     phone: "+92 304 1110947",
-    hours: "Mon–Sat 9 AM–7 PM",
+    hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-blue-600 to-purple-600",
     isHeadOffice: true,
     region: "Punjab",
-    services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"],
-    staffCount: 25,
-    successRate: "98%",
-    studentsServed: "5000+"
+    services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"]
   },
   {
     id: "lahore-dha",
@@ -35,10 +32,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-green-600 to-teal-600",
     region: "Punjab",
-    services: ["Visa Processing", "University Applications", "Document Verification"],
-    staffCount: 15,
-    successRate: "96%",
-    studentsServed: "3500+"
+    services: ["Visa Processing", "University Applications", "Document Verification"]
   },
   {
     id: "lahore-johar",
@@ -49,10 +43,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-orange-600 to-red-600",
     region: "Punjab",
-    services: ["Student Counseling", "Test Preparation", "Career Guidance"],
-    staffCount: 12,
-    successRate: "94%",
-    studentsServed: "2800+"
+    services: ["Student Counseling", "Test Preparation", "Career Guidance"]
   },
   {
     id: "islamabad",
@@ -63,10 +54,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-indigo-600 to-blue-600",
     region: "Federal",
-    services: ["Visa Processing", "Embassy Relations", "Document Attestation"],
-    staffCount: 18,
-    successRate: "97%",
-    studentsServed: "2800+"
+    services: ["Visa Processing", "Embassy Relations", "Document Attestation"]
   },
   {
     id: "karachi",
@@ -77,10 +65,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-orange-600 to-red-600",
     region: "Sindh",
-    services: ["Visa Processing", "University Applications", "IELTS Training"],
-    staffCount: 20,
-    successRate: "95%",
-    studentsServed: "4200+"
+    services: ["Visa Processing", "University Applications", "IELTS Training"]
   },
   {
     id: "faisalabad",
@@ -91,10 +76,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-yellow-600 to-orange-600",
     region: "Punjab",
-    services: ["Student Counseling", "Document Preparation", "Test Preparation"],
-    staffCount: 10,
-    successRate: "93%",
-    studentsServed: "2200+"
+    services: ["Student Counseling", "Document Preparation", "Test Preparation"]
   },
   {
     id: "gujranwala",
@@ -105,10 +87,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-cyan-600 to-blue-600",
     region: "Punjab",
-    services: ["Student Counseling", "University Applications", "Test Preparation"],
-    staffCount: 8,
-    successRate: "92%",
-    studentsServed: "1800+"
+    services: ["Student Counseling", "University Applications", "Test Preparation"]
   },
   {
     id: "sialkot",
@@ -119,10 +98,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-purple-600 to-pink-600",
     region: "Punjab",
-    services: ["Visa Processing", "Document Verification", "Career Guidance"],
-    staffCount: 7,
-    successRate: "91%",
-    studentsServed: "1600+"
+    services: ["Visa Processing", "Document Verification", "Career Guidance"]
   },
   {
     id: "gujrat",
@@ -133,10 +109,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-teal-600 to-green-600",
     region: "Punjab",
-    services: ["Student Counseling", "University Applications", "Document Preparation"],
-    staffCount: 6,
-    successRate: "90%",
-    studentsServed: "1400+"
+    services: ["Student Counseling", "University Applications", "Document Preparation"]
   },
   {
     id: "bahawalpur",
@@ -147,10 +120,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-amber-600 to-orange-600",
     region: "Punjab",
-    services: ["Visa Processing", "Test Preparation", "Career Guidance"],
-    staffCount: 5,
-    successRate: "89%",
-    studentsServed: "1200+"
+    services: ["Visa Processing", "Test Preparation", "Career Guidance"]
   },
   {
     id: "mian-channu",
@@ -161,10 +131,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-rose-600 to-red-600",
     region: "Punjab",
-    services: ["Student Counseling", "Document Verification", "University Applications"],
-    staffCount: 4,
-    successRate: "88%",
-    studentsServed: "1000+"
+    services: ["Student Counseling", "Document Verification", "University Applications"]
   },
   {
     id: "mandi-bahauddin",
@@ -175,10 +142,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-emerald-600 to-teal-600",
     region: "Punjab",
-    services: ["Visa Processing", "Student Counseling", "Test Preparation"],
-    staffCount: 4,
-    successRate: "87%",
-    studentsServed: "900+"
+    services: ["Visa Processing", "Student Counseling", "Test Preparation"]
   },
   {
     id: "sheikhupura",
@@ -189,10 +153,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-violet-600 to-purple-600",
     region: "Punjab",
-    services: ["University Applications", "Document Preparation", "Career Guidance"],
-    staffCount: 5,
-    successRate: "89%",
-    studentsServed: "1100+"
+    services: ["University Applications", "Document Preparation", "Career Guidance"]
   },
   {
     id: "multan",
@@ -203,10 +164,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-lime-600 to-green-600",
     region: "Punjab",
-    services: ["Visa Processing", "University Applications", "Student Counseling"],
-    staffCount: 9,
-    successRate: "93%",
-    studentsServed: "2000+"
+    services: ["Visa Processing", "University Applications", "Student Counseling"]
   },
   {
     id: "peshawar",
@@ -217,10 +175,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-sky-600 to-blue-600",
     region: "KPK",
-    services: ["Student Counseling", "Visa Processing", "Test Preparation"],
-    staffCount: 7,
-    successRate: "91%",
-    studentsServed: "1700+"
+    services: ["Student Counseling", "Visa Processing", "Test Preparation"]
   },
   {
     id: "jhelum",
@@ -231,10 +186,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-indigo-600 to-purple-600",
     region: "Punjab",
-    services: ["University Applications", "Document Verification", "Career Guidance"],
-    staffCount: 6,
-    successRate: "90%",
-    studentsServed: "1300+"
+    services: ["University Applications", "Document Verification", "Career Guidance"]
   },
   {
     id: "mardan",
@@ -245,10 +197,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-slate-600 to-gray-600",
     region: "KPK",
-    services: ["Student Counseling", "Visa Processing", "University Applications"],
-    staffCount: 5,
-    successRate: "88%",
-    studentsServed: "1200+"
+    services: ["Student Counseling", "Visa Processing", "University Applications"]
   },
   {
     id: "jeddah",
@@ -256,13 +205,10 @@ const offices = [
     name: "Engineering Square",
     address: "Above Topten, Engineering Square, Makarona Street, 2nd Floor, Office 27, Jeddah 23447",
     phone: "+966 50‑851‑0785",
-    hours: "Mon–Thu 10 AM–5 PM",
+    hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-amber-600 to-yellow-600",
     region: "International",
-    services: ["Visa Processing", "Document Attestation", "Student Support"],
-    staffCount: 8,
-    successRate: "96%",
-    studentsServed: "1800+"
+    services: ["Visa Processing", "Document Attestation", "Student Support"]
   },
   {
     id: "istanbul",
@@ -273,10 +219,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-red-600 to-rose-600",
     region: "International",
-    services: ["Student Counseling", "University Applications", "Cultural Guidance"],
-    staffCount: 9,
-    successRate: "97%",
-    studentsServed: "2200+"
+    services: ["Student Counseling", "University Applications", "Cultural Guidance"]
   },
   {
     id: "edinburgh",
@@ -287,10 +230,7 @@ const offices = [
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-slate-600 to-gray-600",
     region: "International",
-    services: ["Student Support", "University Applications", "Career Guidance"],
-    staffCount: 7,
-    successRate: "98%",
-    studentsServed: "1500+"
+    services: ["Student Support", "University Applications", "Career Guidance"]
   }
 ];
 
@@ -406,67 +346,38 @@ export default function OfficesList() {
                         {office.region}
                       </Badge>
                     </div>
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${office.gradient} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
                       <Building2 className="w-6 h-6 text-white" />
                     </div>
                   </div>
 
-                  {/* Quick Stats */}
-                  <div className="grid grid-cols-3 gap-2 mb-4 text-center">
-                    <div>
-                      <div className="text-sm font-bold text-green-600">{office.successRate}</div>
-                      <div className="text-xs text-gray-500">Success</div>
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-blue-600">{office.staffCount}</div>
-                      <div className="text-xs text-gray-500">Staff</div>
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-purple-600">{office.studentsServed}</div>
-                      <div className="text-xs text-gray-500">Students</div>
-                    </div>
-                  </div>
+
 
                   {/* Contact Info */}
                   <div className="space-y-3 mb-4">
                     <div className="flex items-start space-x-3">
-                      <MapPin className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                      <MapPin className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
                       <p className="text-sm text-gray-600 leading-relaxed">{office.address}</p>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <Phone className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <Phone className="w-4 h-4 text-blue-600 flex-shrink-0" />
                       <a href={`tel:${office.phone}`} className="text-sm text-blue-600 hover:underline">
                         {office.phone}
                       </a>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <Clock className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                      <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
                       <p className="text-sm text-gray-600">{office.hours}</p>
                     </div>
                   </div>
 
-                  {/* Services */}
-                  <div className="mb-4">
-                    <p className="text-xs font-medium text-gray-500 mb-2">Key Services:</p>
-                    <div className="flex flex-wrap gap-1">
-                      {office.services.slice(0, 3).map((service, idx) => (
-                        <Badge key={idx} variant="outline" className="text-xs px-2 py-1">
-                          {service}
-                        </Badge>
-                      ))}
-                      {office.services.length > 3 && (
-                        <Badge variant="outline" className="text-xs px-2 py-1">
-                          +{office.services.length - 3} more
-                        </Badge>
-                      )}
-                    </div>
-                  </div>
+
 
                   {/* Action Buttons */}
                   <div className="flex space-x-2">
                     <Link href={`/offices/${office.id}`} className="flex-1">
                       <Button 
-                        className={`w-full bg-gradient-to-r ${office.gradient} hover:opacity-90 text-white font-medium shadow-md text-sm`}
+                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-md text-sm"
                       >
                         View Details
                       </Button>
@@ -474,7 +385,7 @@ export default function OfficesList() {
                     <Button 
                       variant="outline" 
                       size="sm"
-                      className="flex-1 border hover:bg-gray-50 font-medium text-sm"
+                      className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium text-sm"
                     >
                       <Phone className="w-3 h-3 mr-1" />
                       Call

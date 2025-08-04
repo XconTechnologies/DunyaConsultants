@@ -20,10 +20,7 @@ export default function LahoreDHA() {
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "Document Verification", "IELTS Training", "Career Counseling"],
     manager: "Ms. Sarah Ahmed",
-    staffCount: 15,
     established: "2017",
-    successRate: "96%",
-    studentsServed: "3500+",
     specializations: ["Australian Universities", "UK Visa Services", "Medical Programs", "Engineering Courses", "Business Studies"],
     description: "Located in the heart of DHA Phase 1, our Lahore office serves the educational capital of Punjab with premium consultation services and personalized guidance for international education.",
     testimonials: [
@@ -52,7 +49,7 @@ export default function LahoreDHA() {
       <Navigation />
       
       {/* Header */}
-      <div className={`bg-gradient-to-r ${office.gradient} text-white pt-32 pb-16`}>
+      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center mb-6">
             <Link href="/offices">
@@ -251,25 +248,13 @@ export default function LahoreDHA() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <Award className="w-5 h-5 mr-2" />
-                    Office Statistics
+                    <Award className="w-5 h-5 mr-2 text-blue-600" />
+                    Office Details
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{office.successRate}</div>
-                    <div className="text-sm text-gray-600">Success Rate</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">{office.studentsServed}</div>
-                    <div className="text-sm text-gray-600">Students Served</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{office.staffCount}</div>
-                    <div className="text-sm text-gray-600">Team Members</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-600">{office.established}</div>
+                    <div className="text-2xl font-bold text-blue-600">{office.established}</div>
                     <div className="text-sm text-gray-600">Established</div>
                   </div>
                 </CardContent>
@@ -291,7 +276,7 @@ export default function LahoreDHA() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
                       {office.manager.split(' ').map(n => n[0]).join('')}
                     </div>
                     <h3 className="font-semibold">{office.manager}</h3>

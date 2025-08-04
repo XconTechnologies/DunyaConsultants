@@ -20,10 +20,7 @@ export default function GujranwalaOffice() {
     region: "Punjab",
     services: ["Student Counseling", "Visa Processing", "Test Preparation", "University Applications", "Document Verification"],
     manager: "Mr. Tariq Ahmed",
-    staffCount: 10,
     established: "2019",
-    successRate: "92%",
-    studentsServed: "2200+",
     specializations: ["UK Universities", "Australian Visa Services", "Engineering Programs", "Business Studies", "Medical Courses"],
     description: "Serving the industrial city of Gujranwala, our office provides comprehensive educational consultancy services with a focus on technical and business programs for international study.",
     testimonials: [
@@ -52,7 +49,7 @@ export default function GujranwalaOffice() {
       <Navigation />
       
       {/* Header */}
-      <div className={`bg-gradient-to-r ${office.gradient} text-white pt-32 pb-16`}>
+      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center mb-6">
             <Link href="/offices">
@@ -136,26 +133,18 @@ export default function GujranwalaOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <Award className="w-5 h-5 mr-2 text-green-600" />
-                  Office Statistics
+                  <Award className="w-5 h-5 mr-2 text-blue-600" />
+                  Office Details
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Success Rate</span>
-                  <Badge variant="secondary" className="bg-green-100 text-green-700">{office.successRate}</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Students Served</span>
-                  <Badge variant="secondary" className="bg-blue-100 text-blue-700">{office.studentsServed}</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Staff Members</span>
-                  <Badge variant="secondary" className="bg-purple-100 text-purple-700">{office.staffCount}</Badge>
-                </div>
-                <div className="flex justify-between items-center">
                   <span className="text-gray-600">Established</span>
-                  <Badge variant="secondary" className="bg-orange-100 text-orange-700">{office.established}</Badge>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-700">{office.established}</Badge>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Manager</span>
+                  <Badge variant="secondary" className="bg-blue-100 text-blue-700">{office.manager}</Badge>
                 </div>
               </CardContent>
             </Card>

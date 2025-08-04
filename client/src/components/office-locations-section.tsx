@@ -426,7 +426,7 @@ export default function OfficeLocationsSection() {
                           </div>
                           <p className="text-sm font-medium text-gray-600 truncate">{office.name}</p>
                         </div>
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${office.gradient} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2`}>
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2">
                           <Building2 className="w-6 h-6 text-white" />
                         </div>
                       </div>
@@ -434,12 +434,12 @@ export default function OfficeLocationsSection() {
                       {/* Office Details - Compact */}
                       <div className="space-y-2 mb-4">
                         <div className="flex items-start space-x-2">
-                          <MapPin className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
+                          <MapPin className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
                           <p className="text-xs text-gray-600 leading-relaxed line-clamp-2">{office.address}</p>
                         </div>
                         
                         <div className="flex items-center space-x-2">
-                          <Phone className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                          <Phone className="w-4 h-4 text-blue-600 flex-shrink-0" />
                           <a 
                             href={`tel:${office.phone}`}
                             className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200 text-xs truncate"
@@ -449,7 +449,7 @@ export default function OfficeLocationsSection() {
                         </div>
                         
                         <div className="flex items-center space-x-2">
-                          <Clock className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                          <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
                           <p className="text-xs text-gray-600 truncate">{office.hours}</p>
                         </div>
                       </div>
@@ -458,7 +458,7 @@ export default function OfficeLocationsSection() {
                       <div className="flex space-x-2">
                         <Button 
                           size="sm"
-                          className={`flex-1 bg-gradient-to-r ${office.gradient} hover:opacity-90 text-white font-medium shadow-md text-xs`}
+                          className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-md text-xs"
                         >
                           <Phone className="w-3 h-3 mr-1" />
                           Call
@@ -466,7 +466,7 @@ export default function OfficeLocationsSection() {
                         <Button 
                           variant="outline" 
                           size="sm"
-                          className="flex-1 border hover:bg-gray-50 font-medium text-xs"
+                          className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium text-xs"
                         >
                           Directions
                         </Button>

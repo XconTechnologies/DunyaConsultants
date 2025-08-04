@@ -20,10 +20,7 @@ export default function KarachiGulshan() {
     region: "Sindh",
     services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling", "Document Verification"],
     manager: "Mr. Hassan Malik",
-    staffCount: 20,
     established: "2016",
-    successRate: "95%",
-    studentsServed: "4200+",
     specializations: ["Business Programs", "Maritime Studies", "Medical Education", "Engineering", "Australian Universities"],
     description: "Our largest office outside Punjab, serving the commercial hub of Pakistan with comprehensive educational consultancy services and strong connections to international universities.",
     testimonials: [
@@ -52,7 +49,7 @@ export default function KarachiGulshan() {
       <Navigation />
       
       {/* Header */}
-      <div className={`bg-gradient-to-r ${office.gradient} text-white pt-32 pb-16`}>
+      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center mb-6">
             <Link href="/offices">
@@ -254,25 +251,13 @@ export default function KarachiGulshan() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <Award className="w-5 h-5 mr-2" />
-                    Office Statistics
+                    <Award className="w-5 h-5 mr-2 text-blue-600" />
+                    Office Details
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{office.successRate}</div>
-                    <div className="text-sm text-gray-600">Success Rate</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">{office.studentsServed}</div>
-                    <div className="text-sm text-gray-600">Students Served</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{office.staffCount}</div>
-                    <div className="text-sm text-gray-600">Team Members</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-600">{office.established}</div>
+                    <div className="text-2xl font-bold text-blue-600">{office.established}</div>
                     <div className="text-sm text-gray-600">Established</div>
                   </div>
                 </CardContent>
@@ -294,7 +279,7 @@ export default function KarachiGulshan() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
                       {office.manager.split(' ').map(n => n[0]).join('')}
                     </div>
                     <h3 className="font-semibold">{office.manager}</h3>
