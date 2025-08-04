@@ -115,6 +115,50 @@ export default function Navigation() {
         href: "/test-prep"
       }
     },
+    "Offices": {
+      icon: Building2,
+      sections: [
+        {
+          title: "Pakistan Offices",
+          icon: MapPin,
+          items: [
+            { name: "All Office Locations", href: "/offices", description: "Browse all branches" },
+            { name: "Sargodha Head Office", href: "/offices/sargodha-head", description: "Main headquarters" },
+            { name: "Lahore DHA", href: "/offices/lahore-dha", description: "DHA Phase 1 office" },
+            { name: "Lahore Johar Town", href: "/offices/lahore-johar", description: "Johar Town office" },
+            { name: "Islamabad Blue Area", href: "/offices/islamabad", description: "Federal capital office" },
+            { name: "Karachi Gulshan", href: "/offices/karachi", description: "Sindh province office" },
+            { name: "Faisalabad Civil Lines", href: "/offices/faisalabad", description: "Industrial city office" },
+            { name: "Gujranwala", href: "/offices/gujranwala", description: "Peoples Colony office" },
+            { name: "Sialkot", href: "/offices/sialkot", description: "Cantonment office" },
+            { name: "Gujrat", href: "/offices/gujrat", description: "GT Road office" },
+            { name: "Bahawalpur", href: "/offices/bahawalpur", description: "Muslim Town office" },
+            { name: "Mian Channu", href: "/offices/mian-channu", description: "Moti Plaza office" },
+            { name: "Mandi Bahauddin", href: "/offices/mandi-bahauddin", description: "Punjab Center office" },
+            { name: "Sheikhupura", href: "/offices/sheikhupura", description: "Stadium Road office" },
+            { name: "Multan", href: "/offices/multan", description: "Shalimar Metro office" },
+            { name: "Peshawar", href: "/offices/peshawar", description: "Phase 3 office" },
+            { name: "Jhelum", href: "/offices/jhelum", description: "Sultan Plaza office" },
+            { name: "Mardan", href: "/offices/mardan", description: "Walyan Commercial office" }
+          ]
+        },
+        {
+          title: "International Offices",
+          icon: Globe,
+          items: [
+            { name: "Jeddah, Saudi Arabia", href: "/offices/jeddah", description: "Engineering Square office" },
+            { name: "Istanbul, Turkey", href: "/offices/istanbul", description: "Ataköy Towers office" },
+            { name: "Edinburgh, Scotland", href: "/offices/edinburgh", description: "Ferry Road Place office" }
+          ]
+        }
+      ],
+      featured: {
+        title: "18+ Office Locations",
+        description: "Nationwide & international coverage",
+        cta: "Find Office",
+        href: "/offices"
+      }
+    },
 
   };
 
@@ -123,6 +167,7 @@ export default function Navigation() {
     { name: "About Us", megaMenu: true },
     { name: "Study Abroad", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
+    { name: "Offices", megaMenu: true },
   ];
 
   return (
@@ -303,7 +348,35 @@ export default function Navigation() {
                         ))}
                       </div>
                     </div>
-
+                  ) : activeMegaMenu === "Offices" ? (
+                    // Special layout for Offices with 2-column offices
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2 mb-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center">
+                          {React.createElement(MapPin, { 
+                            className: "w-4 h-4 text-white" 
+                          })}
+                        </div>
+                        <h3 className="text-lg font-bold text-neutral-800">Pakistan Offices</h3>
+                      </div>
+                      <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+                        {megaMenuData["Offices"].sections[0].items.map((item: any, itemIdx: number) => (
+                          <Link key={itemIdx} href={item.href}>
+                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-cyan-50 hover:to-cyan-100 transition-all duration-200">
+                              <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
+                              <div>
+                                <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
+                                  {item.name}
+                                </div>
+                                <div className="text-sm text-neutral-600 mt-1">
+                                  {item.description}
+                                </div>
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   ) : (
                     // Default layout for other menus
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
