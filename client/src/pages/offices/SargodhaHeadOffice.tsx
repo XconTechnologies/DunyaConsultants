@@ -162,7 +162,7 @@ export default function SargodhaHeadOffice() {
                   <div className="grid md:grid-cols-2 gap-4">
                     {office.services.map((service, index) => (
                       <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <CheckCircle className="w-5 h-5 text-blue-500" />
                         <span className="font-medium">{service}</span>
                       </div>
                     ))}
@@ -234,7 +234,7 @@ export default function SargodhaHeadOffice() {
                   <div className="grid md:grid-cols-2 gap-3">
                     {office.facilities.map((facility, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>{facility}</span>
                       </div>
                     ))}
@@ -265,15 +265,15 @@ export default function SargodhaHeadOffice() {
                     <div className="text-sm text-gray-600">Success Rate</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">{office.studentsServed}</div>
+                    <div className="text-2xl font-bold text-blue-600">{office.studentsServed}</div>
                     <div className="text-sm text-gray-600">Students Served</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{office.staffCount}</div>
+                    <div className="text-2xl font-bold text-blue-600">{office.staffCount}</div>
                     <div className="text-sm text-gray-600">Team Members</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-600">{office.established}</div>
+                    <div className="text-2xl font-bold text-blue-600">{office.established}</div>
                     <div className="text-sm text-gray-600">Established</div>
                   </div>
                 </CardContent>

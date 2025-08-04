@@ -21,11 +21,11 @@ const categoryIcons = {
 };
 
 const categoryColors = {
-  explorer: 'from-green-500 to-emerald-500',
-  scholar: 'from-blue-500 to-indigo-500',
-  communicator: 'from-purple-500 to-pink-500',
-  planner: 'from-orange-500 to-red-500',
-  commitment: 'from-yellow-500 to-amber-500',
+  explorer: 'from-blue-500 to-blue-500',
+  scholar: 'from-blue-500 to-blue-500',
+  communicator: 'from-blue-500 to-blue-500',
+  planner: 'from-blue-500 to-blue-500',
+  commitment: 'from-blue-500 to-amber-500',
 };
 
 export default function AchievementGallery({ isOpen, onClose }: AchievementGalleryProps) {
@@ -81,7 +81,7 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-600 p-6 text-white">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-3xl font-bold">Achievement Gallery</h2>
@@ -190,7 +190,7 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
                       <h4 className="font-semibold text-gray-900">{achievement.title}</h4>
                       <p className="text-sm text-gray-600 mt-1">{achievement.description}</p>
                       <div className="flex items-center justify-center mt-2 space-x-2">
-                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
+                        <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
                           +{achievement.points} points
                         </span>
                         <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full capitalize">
@@ -220,7 +220,7 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div 
-                    className="bg-green-500 h-2 rounded-full transition-all duration-500"
+                    className="bg-blue-500 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${Math.min((userStats.pagesVisited / 10) * 100, 100)}%` }}
                   />
                 </div>

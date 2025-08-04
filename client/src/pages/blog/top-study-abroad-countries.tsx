@@ -112,8 +112,8 @@ export default function TopStudyAbroadCountries() {
                   The US is home to the largest number of international students worldwide, providing diverse courses, top-ranked universities, and strong career opportunities after graduation. Students can also benefit from a multicultural environment that enhances their personal and professional development.
                 </p>
                 
-                <div className="bg-green-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-green-800 mb-3">USA Study Advantages</h4>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-blue-800 mb-3">USA Study Advantages</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Ivy League schools and globally recognized institutions</li>
                     <li>Largest number of international students worldwide</li>
@@ -134,8 +134,8 @@ export default function TopStudyAbroadCountries() {
                   Besides its strong education system, Canada is known for its affordable tuition fees, friendly communities, and best student life. The country also provides numerous scholarship programs, work opportunities, and pathways to permanent residency for graduates.
                 </p>
                 
-                <div className="bg-purple-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-purple-800 mb-3">Canada Study Benefits</h4>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-blue-800 mb-3">Canada Study Benefits</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>26+ institutions ranked in global university rankings</li>
                     <li>Nearly 500,000 international students annually</li>
@@ -156,8 +156,8 @@ export default function TopStudyAbroadCountries() {
                   Students can choose from a wide variety of courses, including business, medicine, engineering, and English language studies. Australia also provides numerous scholarships for international students and allows them to work part-time while studying.
                 </p>
                 
-                <div className="bg-orange-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-orange-800 mb-3">Australia Study Features</h4>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-blue-800 mb-3">Australia Study Features</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>43 universities with many ranking among world's best</li>
                     <li>Wide variety of courses in business, medicine, engineering</li>
@@ -178,8 +178,8 @@ export default function TopStudyAbroadCountries() {
                   Some of the leading institutions in the country include the Technical University of Munich, the University of Bonn, and the University of Hamburg. In addition to high-quality education, Germany provides a vibrant student life, a strong economy, and advanced technology.
                 </p>
                 
-                <div className="bg-red-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-red-800 mb-3">Germany Study Highlights</h4>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-blue-800 mb-3">Germany Study Highlights</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Free or low-cost education at public universities</li>
                     <li>Leading institutions like TUM, University of Bonn, Hamburg</li>
@@ -200,8 +200,8 @@ export default function TopStudyAbroadCountries() {
                   Apart from academics, Ireland has a rich cultural heritage, vibrant campus life, and a strong support system for international students. The country also provides various work opportunities after graduation, making it an attractive choice for students from around the world.
                 </p>
                 
-                <div className="bg-teal-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-teal-800 mb-3">European Study Experience</h4>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-blue-800 mb-3">European Study Experience</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Unique and interactive learning approaches</li>
                     <li>Direct engagement with instructors and classmates</li>
@@ -299,15 +299,15 @@ export default function TopStudyAbroadCountries() {
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Canada</span>
-                  <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Best Immigration</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Best Immigration</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Australia</span>
-                  <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">High Quality</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">High Quality</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Germany</span>
-                  <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Low Tuition</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Low Tuition</span>
                 </div>
               </div>
             </div>

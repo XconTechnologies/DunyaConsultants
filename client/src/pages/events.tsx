@@ -375,7 +375,7 @@ export default function Events() {
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Upcoming<br />
-              <span className="text-yellow-300">Events & Seminars</span>
+              <span className="text-blue-300">Events & Seminars</span>
             </h1>
             
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
@@ -385,19 +385,19 @@ export default function Events() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">50+</div>
+                <div className="text-3xl font-bold text-blue-300">50+</div>
                 <div className="text-sm text-blue-100">Events This Year</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">5000+</div>
+                <div className="text-3xl font-bold text-blue-300">5000+</div>
                 <div className="text-sm text-blue-100">Participants</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">25+</div>
+                <div className="text-3xl font-bold text-blue-300">25+</div>
                 <div className="text-sm text-blue-100">Countries Covered</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">100%</div>
+                <div className="text-3xl font-bold text-blue-300">100%</div>
                 <div className="text-sm text-blue-100">Free Events</div>
               </div>
             </div>

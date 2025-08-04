@@ -103,8 +103,8 @@ export default function KaplanTestOfEnglish() {
                 </div>
 
                 {/* Listening, Reading & Grammar Section */}
-                <div className="bg-green-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-green-800 flex items-center">
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-3 text-blue-800 flex items-center">
                     <BookOpen className="w-5 h-5 mr-2" />
                     Listening, Reading & Grammar – No Time Limit
                   </h3>
@@ -114,8 +114,8 @@ export default function KaplanTestOfEnglish() {
                 </div>
 
                 {/* Speaking Section */}
-                <div className="bg-orange-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-orange-800 flex items-center">
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-3 text-blue-800 flex items-center">
                     <MessageCircle className="w-5 h-5 mr-2" />
                     Speaking – Timed Section (10 Minutes)
                   </h3>
@@ -134,7 +134,7 @@ export default function KaplanTestOfEnglish() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div className="flex items-start p-4 bg-gray-50 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-2">Practice Regularly</h4>
                       <p className="text-gray-600 text-sm">Listen to English podcasts and practice writing messages in English.</p>
@@ -142,7 +142,7 @@ export default function KaplanTestOfEnglish() {
                   </div>
                   
                   <div className="flex items-start p-4 bg-gray-50 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-2">Immerse Yourself</h4>
                       <p className="text-gray-600 text-sm">Speak with a friend, read articles, and try thinking in English.</p>
@@ -150,7 +150,7 @@ export default function KaplanTestOfEnglish() {
                   </div>
                   
                   <div className="flex items-start p-4 bg-gray-50 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-2">Multiple-Choice Practice</h4>
                       <p className="text-gray-600 text-sm">Since the test uses this format, practicing similar questions can help.</p>
@@ -158,7 +158,7 @@ export default function KaplanTestOfEnglish() {
                   </div>
                   
                   <div className="flex items-start p-4 bg-gray-50 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-2">Practice Questions</h4>
                       <p className="text-gray-600 text-sm">You will get a chance to practice Kaplan test questions before the real one, so don't stress.</p>
@@ -170,10 +170,10 @@ export default function KaplanTestOfEnglish() {
               {/* Cost Section */}
               <div className="mb-8" id="cost">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Cost for Kaplan Assessment Exam</h2>
-                <div className="bg-yellow-50 p-6 rounded-lg mb-6">
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
                   <div className="flex items-center mb-4">
-                    <DollarSign className="w-6 h-6 text-yellow-600 mr-3" />
-                    <h3 className="text-xl font-semibold text-yellow-800">Pricing Information</h3>
+                    <DollarSign className="w-6 h-6 text-blue-600 mr-3" />
+                    <h3 className="text-xl font-semibold text-blue-800">Pricing Information</h3>
                   </div>
                   <p className="text-gray-700 leading-relaxed mb-4">
                     The KTE costs around <strong>£118 (€140)</strong>, which is not the cheapest option. However, you may get a <strong>25% discount</strong> if the university you're applying to is a Kaplan partner. Check with the university to see if you qualify.
@@ -294,15 +294,15 @@ export default function KaplanTestOfEnglish() {
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Reading</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">No limit</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">No limit</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Listening</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">No limit</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">No limit</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Speaking</span>
-                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">10 min</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">10 min</span>
                   </div>
                 </div>
               </div>

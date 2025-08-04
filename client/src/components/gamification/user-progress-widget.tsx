@@ -45,7 +45,7 @@ export default function UserProgressWidget() {
       <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
         {/* Collapsed View */}
         <motion.div
-          className="p-4 cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+          className="p-4 cursor-pointer bg-gradient-to-r from-blue-600 to-blue-600 text-white"
           onClick={() => setIsExpanded(!isExpanded)}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -81,7 +81,7 @@ export default function UserProgressWidget() {
           {/* Progress Bar */}
           <div className="mt-3 bg-white/20 rounded-full h-2 overflow-hidden">
             <motion.div
-              className="bg-yellow-400 h-full rounded-full"
+              className="bg-blue-400 h-full rounded-full"
               initial={{ width: 0 }}
               animate={{ width: `${progressToNextLevel}%` }}
               transition={{ duration: 1, ease: "easeOut" }}
@@ -108,21 +108,21 @@ export default function UserProgressWidget() {
                     <div className="text-xs text-gray-600">Pages Visited</div>
                   </div>
                   
-                  <div className="text-center p-3 bg-green-50 rounded-lg">
-                    <Star className="w-6 h-6 text-green-600 mx-auto mb-1" />
-                    <div className="font-bold text-lg text-green-600">{userStats.toolsUsed}</div>
+                  <div className="text-center p-3 bg-blue-50 rounded-lg">
+                    <Star className="w-6 h-6 text-blue-600 mx-auto mb-1" />
+                    <div className="font-bold text-lg text-blue-600">{userStats.toolsUsed}</div>
                     <div className="text-xs text-gray-600">Tools Used</div>
                   </div>
                   
-                  <div className="text-center p-3 bg-purple-50 rounded-lg">
-                    <Trophy className="w-6 h-6 text-purple-600 mx-auto mb-1" />
-                    <div className="font-bold text-lg text-purple-600">{userStats.badgesEarned}</div>
+                  <div className="text-center p-3 bg-blue-50 rounded-lg">
+                    <Trophy className="w-6 h-6 text-blue-600 mx-auto mb-1" />
+                    <div className="font-bold text-lg text-blue-600">{userStats.badgesEarned}</div>
                     <div className="text-xs text-gray-600">Badges Earned</div>
                   </div>
                   
-                  <div className="text-center p-3 bg-orange-50 rounded-lg">
-                    <Zap className="w-6 h-6 text-orange-600 mx-auto mb-1" />
-                    <div className="font-bold text-lg text-orange-600">{userStats.formsCompleted}</div>
+                  <div className="text-center p-3 bg-blue-50 rounded-lg">
+                    <Zap className="w-6 h-6 text-blue-600 mx-auto mb-1" />
+                    <div className="font-bold text-lg text-blue-600">{userStats.formsCompleted}</div>
                     <div className="text-xs text-gray-600">Forms Completed</div>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export default function UserProgressWidget() {
                   </div>
                   <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
                     <motion.div
-                      className="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full"
+                      className="bg-gradient-to-r from-blue-500 to-blue-500 h-full rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${progressToNextLevel}%` }}
                       transition={{ duration: 1, ease: "easeOut" }}
@@ -162,7 +162,7 @@ export default function UserProgressWidget() {
                 {/* View All Achievements Button */}
                 <button
                   onClick={() => setShowGallery(true)}
-                  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <Trophy className="w-5 h-5" />
                   <span>View All Achievements</span>

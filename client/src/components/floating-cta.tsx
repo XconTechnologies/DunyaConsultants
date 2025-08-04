@@ -99,7 +99,7 @@ export default function FloatingCTA() {
                 </div>
                 
                 {/* Notification Badge */}
-                <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center">
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
                   <span className="text-xs text-white font-bold">!</span>
                 </div>
               </button>
@@ -144,11 +144,11 @@ export default function FloatingCTA() {
                     {/* Live Indicators */}
                     <div className="flex items-center justify-between text-sm">
                       <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                         <span>15 counselors online</span>
                       </div>
                       <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-300 fill-current" />
+                        <Star className="w-4 h-4 text-blue-300 fill-current" />
                         <span>4.8/5 rating</span>
                       </div>
                     </div>

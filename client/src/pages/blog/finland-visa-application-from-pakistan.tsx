@@ -103,22 +103,22 @@ export function FinlandVisaApplicationFromPakistan() {
                 <p className="text-gray-700 mb-6">To apply for higher education programs in Finland, you must meet specific Finland student visa requirements based on the level of study:</p>
                 
                 {/* Bachelor's Requirements */}
-                <div className="bg-green-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-green-800 flex items-center">
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-3 text-blue-800 flex items-center">
                     <BookOpen className="w-5 h-5 mr-2" />
                     Bachelor's Programs
                   </h3>
                   <ul className="text-gray-700 space-y-2">
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-blue-600 mr-2 mt-1 flex-shrink-0" />
                       Completion of 12 years of education (Higher Secondary Certificate)
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-blue-600 mr-2 mt-1 flex-shrink-0" />
                       English language proficiency (IELTS 6.0 or equivalent)
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 text-green-600 mr-2 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-blue-600 mr-2 mt-1 flex-shrink-0" />
                       Age requirement: 18-30 years
                     </li>
                   </ul>
@@ -228,8 +228,8 @@ export function FinlandVisaApplicationFromPakistan() {
               <div className="mb-8" id="fees">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Application Fees & Deadlines 2025</h2>
                 
-                <div className="bg-yellow-50 p-6 rounded-lg mb-6 border border-yellow-200">
-                  <h3 className="text-xl font-semibold mb-4 text-yellow-800 flex items-center">
+                <div className="bg-blue-50 p-6 rounded-lg mb-6 border border-blue-200">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800 flex items-center">
                     <DollarSign className="w-5 h-5 mr-2" />
                     Application Fees
                   </h3>
@@ -241,29 +241,29 @@ export function FinlandVisaApplicationFromPakistan() {
                     </div>
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-gray-900 mb-2">Residence Permit</h4>
-                      <p className="text-2xl font-bold text-green-600">€350-450</p>
+                      <p className="text-2xl font-bold text-blue-600">€350-450</p>
                       <p className="text-sm text-gray-600">Processing fee</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-red-50 p-6 rounded-lg mb-6 border border-red-200">
-                  <h3 className="text-xl font-semibold mb-4 text-red-800 flex items-center">
+                <div className="bg-blue-50 p-6 rounded-lg mb-6 border border-blue-200">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800 flex items-center">
                     <Clock className="w-5 h-5 mr-2" />
                     Important Deadlines 2025
                   </h3>
                   <div className="space-y-3">
                     <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                       <span className="font-medium">Application Period Opens</span>
-                      <span className="text-red-600 font-semibold">January 3, 2025</span>
+                      <span className="text-blue-600 font-semibold">January 3, 2025</span>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                       <span className="font-medium">Application Deadline</span>
-                      <span className="text-red-600 font-semibold">January 15, 2025</span>
+                      <span className="text-blue-600 font-semibold">January 15, 2025</span>
                     </div>
                     <div className="flex justify-between items-center p-3 bg-white rounded-lg">
                       <span className="font-medium">Admission Results</span>
-                      <span className="text-green-600 font-semibold">May 2025</span>
+                      <span className="text-blue-600 font-semibold">May 2025</span>
                     </div>
                   </div>
                 </div>
@@ -382,21 +382,21 @@ export function FinlandVisaApplicationFromPakistan() {
                   Application Timeline
                 </h3>
                 <div className="space-y-3 text-sm">
-                  <div className="flex items-center justify-between p-2 bg-green-50 rounded">
+                  <div className="flex items-center justify-between p-2 bg-blue-50 rounded">
                     <span>Applications Open</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Jan 3</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Jan 3</span>
                   </div>
-                  <div className="flex items-center justify-between p-2 bg-red-50 rounded">
+                  <div className="flex items-center justify-between p-2 bg-blue-50 rounded">
                     <span>Application Deadline</span>
-                    <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Jan 15</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Jan 15</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-blue-50 rounded">
                     <span>Admission Results</span>
                     <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">May 2025</span>
                   </div>
-                  <div className="flex items-center justify-between p-2 bg-purple-50 rounded">
+                  <div className="flex items-center justify-between p-2 bg-blue-50 rounded">
                     <span>Studies Begin</span>
-                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Aug 2025</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Aug 2025</span>
                   </div>
                 </div>
               </div>

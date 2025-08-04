@@ -362,7 +362,7 @@ export default function CourseMatchTool() {
                                   <Star
                                     key={i}
                                     className={`w-4 h-4 ${
-                                      i < Math.round(rec.score / 20) ? 'text-yellow-400 fill-current' : 'text-neutral-300'
+                                      i < Math.round(rec.score / 20) ? 'text-blue-400 fill-current' : 'text-neutral-300'
                                     }`}
                                   />
                                 ))}
@@ -380,7 +380,7 @@ export default function CourseMatchTool() {
                         <div className="space-y-1">
                           {rec.courses.slice(0, 3).map((course, i) => (
                             <div key={i} className="flex items-center space-x-2">
-                              <CheckCircle className="w-4 h-4 text-green-600" />
+                              <CheckCircle className="w-4 h-4 text-blue-600" />
                               <span className="text-sm text-neutral-600">{course}</span>
                             </div>
                           ))}
@@ -403,7 +403,7 @@ export default function CourseMatchTool() {
                       {/* Stats */}
                       <div className="grid grid-cols-2 gap-4 pt-4 border-t">
                         <div className="text-center">
-                          <div className="text-lg font-bold text-green-600">{rec.visaSuccessRate}%</div>
+                          <div className="text-lg font-bold text-blue-600">{rec.visaSuccessRate}%</div>
                           <div className="text-xs text-neutral-500">Visa Success Rate</div>
                         </div>
                         <div className="text-center">

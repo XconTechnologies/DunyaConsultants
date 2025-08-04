@@ -81,19 +81,19 @@ export default function GlobalTalentVisaAustraliaGuide() {
                 </p>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">A recognized Australian individual or organization must nominate you as a top talent in your field.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">You must have international recognition for exceptional skills in a profession, sport, arts, or academic research.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">You must show that you can earn a salary of AUD 162,000 or more per year in Australia.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">Your expertise should benefit Australia's economy as well as society in the long run.</span>
                   </li>
                 </ul>

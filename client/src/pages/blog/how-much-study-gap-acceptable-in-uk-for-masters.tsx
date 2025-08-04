@@ -29,8 +29,8 @@ export default function StudyGapAcceptableUKMasters() {
                 </p>
               </div>
 
-              <div className="bg-indigo-50 border-l-4 border-indigo-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-indigo-900">Key Takeaway</h3>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold mb-3 text-blue-900">Key Takeaway</h3>
                 <p className="text-gray-700">
                   UK universities generally accept study gaps of up to 2-3 years for Master's programs, provided you can justify the gap with valid reasons and demonstrate continued academic or professional development during that period.
                 </p>
@@ -41,8 +41,8 @@ export default function StudyGapAcceptableUKMasters() {
                 A study gap refers to the period between completing your undergraduate degree and starting your Master's program. This gap can occur due to various reasons including work experience, personal circumstances, financial constraints, or simply taking time to decide on your career path.
               </p>
 
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-green-900">Generally Acceptable Gap Duration</h3>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold mb-3 text-blue-900">Generally Acceptable Gap Duration</h3>
                 <ul className="text-gray-700 space-y-2">
                   <li>• <strong>0-2 years:</strong> Highly acceptable with minimal explanation required</li>
                   <li>• <strong>2-3 years:</strong> Acceptable with proper justification</li>
@@ -129,8 +129,8 @@ export default function StudyGapAcceptableUKMasters() {
               </div>
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">How to Justify Your Study Gap</h2>
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-yellow-900">Statement of Purpose Strategy</h3>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold mb-3 text-blue-900">Statement of Purpose Strategy</h3>
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-semibold text-gray-800 mb-2">1. Be Honest and Transparent</h4>
@@ -159,8 +159,8 @@ export default function StudyGapAcceptableUKMasters() {
                     <li>• Letters of recommendation from employers</li>
                   </ul>
                 </div>
-                <div className="bg-purple-50 border-l-4 border-purple-500 p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-purple-900">For Other Activities</h3>
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-blue-900">For Other Activities</h3>
                   <ul className="text-gray-700 space-y-2">
                     <li>• Certificates from courses or training</li>
                     <li>• Volunteer work confirmation letters</li>
@@ -173,8 +173,8 @@ export default function StudyGapAcceptableUKMasters() {
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">Tips for Strengthening Your Application</h2>
               <div className="space-y-4 mb-8">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold mb-2 text-green-900">Academic Preparation</h3>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h3 className="text-lg font-semibold mb-2 text-blue-900">Academic Preparation</h3>
                   <ul className="text-gray-700 space-y-1">
                     <li>• Take relevant online courses (Coursera, edX, etc.)</li>
                     <li>• Maintain or improve English language skills</li>
@@ -194,8 +194,8 @@ export default function StudyGapAcceptableUKMasters() {
               </div>
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">Common Mistakes to Avoid</h2>
-              <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-red-900">What NOT to Do</h3>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold mb-3 text-blue-900">What NOT to Do</h3>
                 <ul className="text-gray-700 space-y-2">
                   <li>• Don't try to hide or misrepresent your gap</li>
                   <li>• Don't provide vague or unconvincing explanations</li>
@@ -222,23 +222,23 @@ export default function StudyGapAcceptableUKMasters() {
               </div>
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">Timeline for Application</h2>
-              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-lg p-6 mb-8">
+              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-blue-200 rounded-lg p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">Recommended Timeline</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <span className="text-indigo-600 font-bold">12-18 months before:</span>
+                    <span className="text-blue-600 font-bold">12-18 months before:</span>
                     <span className="text-gray-700">Begin researching universities and programs</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="text-indigo-600 font-bold">9-12 months before:</span>
+                    <span className="text-blue-600 font-bold">9-12 months before:</span>
                     <span className="text-gray-700">Prepare for and take English proficiency tests</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="text-indigo-600 font-bold">6-9 months before:</span>
+                    <span className="text-blue-600 font-bold">6-9 months before:</span>
                     <span className="text-gray-700">Gather documentation and begin application preparation</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="text-indigo-600 font-bold">3-6 months before:</span>
+                    <span className="text-blue-600 font-bold">3-6 months before:</span>
                     <span className="text-gray-700">Submit applications and prepare for interviews</span>
                   </div>
                 </div>
@@ -310,8 +310,8 @@ export default function StudyGapAcceptableUKMasters() {
                 </ul>
               </div>
 
-              <div className="bg-indigo-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-indigo-900">Quick Guide</h3>
+              <div className="bg-blue-50 p-6 rounded-lg">
+                <h3 className="text-lg font-semibold mb-4 text-blue-900">Quick Guide</h3>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li>• 0-2 years: Highly acceptable</li>
                   <li>• 2-3 years: Generally acceptable</li>
@@ -320,8 +320,8 @@ export default function StudyGapAcceptableUKMasters() {
                 </ul>
               </div>
 
-              <div className="bg-green-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-green-900">Best Practices</h3>
+              <div className="bg-blue-50 p-6 rounded-lg">
+                <h3 className="text-lg font-semibold mb-4 text-blue-900">Best Practices</h3>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li>• Be honest about your gap</li>
                   <li>• Provide proper documentation</li>
@@ -331,8 +331,8 @@ export default function StudyGapAcceptableUKMasters() {
                 </ul>
               </div>
 
-              <div className="bg-yellow-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-yellow-900">Required Documents</h3>
+              <div className="bg-blue-50 p-6 rounded-lg">
+                <h3 className="text-lg font-semibold mb-4 text-blue-900">Required Documents</h3>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li>• Employment certificates</li>
                   <li>• Course completion certificates</li>

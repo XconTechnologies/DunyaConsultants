@@ -25,7 +25,7 @@ export default function ContactInfoSection() {
               style={{ top: '10%', left: '10%' }}
             />
             <motion.div 
-              className="absolute w-96 h-96 bg-purple-500 rounded-full blur-3xl opacity-20"
+              className="absolute w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-20"
               animate={{ 
                 x: [0, -80, 0], 
                 y: [0, 60, 0],
@@ -35,7 +35,7 @@ export default function ContactInfoSection() {
               style={{ top: '50%', right: '10%' }}
             />
             <motion.div 
-              className="absolute w-80 h-80 bg-emerald-500 rounded-full blur-3xl opacity-25"
+              className="absolute w-80 h-80 bg-blue-500 rounded-full blur-3xl opacity-25"
               animate={{ 
                 x: [0, 60, 0], 
                 y: [0, -80, 0],
@@ -77,7 +77,7 @@ export default function ContactInfoSection() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="w-40 h-40 bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-full flex flex-col items-center justify-center text-white shadow-2xl relative overflow-hidden">
+              <div className="w-40 h-40 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-500 rounded-full flex flex-col items-center justify-center text-white shadow-2xl relative overflow-hidden">
                 {/* Animated ring */}
                 <motion.div
                   className="absolute inset-0 border-4 border-white rounded-full"
@@ -132,11 +132,11 @@ export default function ContactInfoSection() {
                 whileHover={{ scale: 1.1 }}
               >
                 <a href="mailto:info@dunyaconsultants.com">
-                  <div className="w-24 h-24 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
                     <Mail className="w-6 h-6 mb-1" />
                     <p className="text-xs font-semibold">Email</p>
                     {/* Connecting Line */}
-                    <div className="absolute right-full top-1/2 w-16 h-0.5 bg-purple-300/50 transform -translate-y-1/2"></div>
+                    <div className="absolute right-full top-1/2 w-16 h-0.5 bg-blue-300/50 transform -translate-y-1/2"></div>
                   </div>
                   <div className="absolute top-1/2 right-28 transform -translate-y-1/2 bg-neutral-800 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                     info@dunyaconsultants.com
@@ -153,18 +153,18 @@ export default function ContactInfoSection() {
                 transition={{ duration: 0.6, delay: 0.9 }}
                 whileHover={{ scale: 1.1 }}
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
                   <Briefcase className="w-6 h-6 mb-1" />
                   <p className="text-xs font-semibold">Business</p>
                   {/* Connecting Line */}
-                  <div className="absolute bottom-full right-1/2 w-0.5 h-16 bg-orange-300/50 transform translate-x-1/2"></div>
+                  <div className="absolute bottom-full right-1/2 w-0.5 h-16 bg-blue-300/50 transform translate-x-1/2"></div>
                 </div>
                 <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20">
                   <div className="space-y-1">
-                    <a href="mailto:umer@dunyaconsultants.com" className="block hover:text-orange-300">
+                    <a href="mailto:umer@dunyaconsultants.com" className="block hover:text-blue-300">
                       umer@dunyaconsultants.com
                     </a>
-                    <a href="https://wa.me/923216051057" className="block hover:text-green-300">
+                    <a href="https://wa.me/923216051057" className="block hover:text-blue-300">
                       +923216051057
                     </a>
                   </div>
@@ -180,18 +180,18 @@ export default function ContactInfoSection() {
                 transition={{ duration: 0.6, delay: 1.1 }}
                 whileHover={{ scale: 1.1 }}
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
                   <MessageCircle className="w-6 h-6 mb-1" />
                   <p className="text-xs font-semibold">Admission</p>
                   {/* Connecting Line */}
-                  <div className="absolute bottom-full left-1/2 w-0.5 h-16 bg-emerald-300/50 transform -translate-x-1/2"></div>
+                  <div className="absolute bottom-full left-1/2 w-0.5 h-16 bg-blue-300/50 transform -translate-x-1/2"></div>
                 </div>
                 <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20">
                   <div className="space-y-1">
-                    <a href="https://wa.me/923011231947" className="block hover:text-green-300">
+                    <a href="https://wa.me/923011231947" className="block hover:text-blue-300">
                       +923011231947
                     </a>
-                    <a href="https://wa.me/923219991947" className="block hover:text-green-300">
+                    <a href="https://wa.me/923219991947" className="block hover:text-blue-300">
                       +923219991947
                     </a>
                   </div>
@@ -218,13 +218,13 @@ export default function ContactInfoSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="tel:+923041110947"
-                className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl transition-all duration-300 inline-block"
+                className="bg-gradient-to-r from-blue-400 to-blue-500 text-white px-8 py-4 rounded-full font-bold hover:shadow-xl transition-all duration-300 inline-block"
               >
                 Call Now: (+92) 304 1110947
               </a>
               <a 
                 href="https://wa.me/923041110947"
-                className="bg-green-500 text-white px-8 py-4 rounded-full font-bold hover:bg-green-600 transition-all duration-300 inline-flex items-center space-x-2"
+                className="bg-blue-500 text-white px-8 py-4 rounded-full font-bold hover:bg-blue-600 transition-all duration-300 inline-flex items-center space-x-2"
               >
                 <MessageCircle className="w-5 h-5" />
                 <span>WhatsApp</span>

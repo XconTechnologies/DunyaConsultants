@@ -94,7 +94,7 @@ Address: Alif Tower, Sargodha
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6">
-              Study in <span className="text-red-400">Turkey</span>
+              Study in <span className="text-blue-400">Turkey</span>
             </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto text-gray-100 mb-8">
               Experience quality education at the crossroads of Europe and Asia with 200+ universities and rich cultural heritage
@@ -128,7 +128,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-red-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <DollarSign className="w-8 h-8 text-red-600 mr-3" />
+                    <DollarSign className="w-8 h-8 text-blue-600 mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">$200 - $1,500</p>
                       <p className="text-gray-600">Annual Tuition Fee</p>
@@ -179,9 +179,9 @@ Address: Alif Tower, Sargodha
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-3">
-                          <div className="flex justify-between items-center p-3 bg-red-50 rounded">
+                          <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
                             <span className="font-medium">Undergraduate:</span>
-                            <span className="text-red-600 font-semibold">{req.ug}</span>
+                            <span className="text-blue-600 font-semibold">{req.ug}</span>
                           </div>
                           <div className="flex justify-between items-center p-3 bg-gray-50 rounded">
                             <span className="font-medium">Postgraduate:</span>
@@ -205,11 +205,11 @@ Address: Alif Tower, Sargodha
               </CardHeader>
               <CardContent>
                 <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="bg-red-50 border-red-200">
+                  <Card className="bg-blue-50 border-blue-200">
                     <CardContent className="p-6 text-center">
-                      <h4 className="font-semibold text-red-900 mb-2">Public Universities</h4>
-                      <p className="text-3xl font-bold text-red-600">$200 - $700</p>
-                      <p className="text-red-700">per year</p>
+                      <h4 className="font-semibold text-blue-900 mb-2">Public Universities</h4>
+                      <p className="text-3xl font-bold text-blue-600">$200 - $700</p>
+                      <p className="text-blue-700">per year</p>
                     </CardContent>
                   </Card>
                   <Card className="bg-gray-50 border-gray-200">
@@ -235,7 +235,7 @@ Address: Alif Tower, Sargodha
                 <div className="grid md:grid-cols-2 gap-4">
                   {whyChooseTurkey.map((benefit, index) => (
                     <div key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" />
                       <span className="text-gray-700">{benefit}</span>
                     </div>
                   ))}
@@ -261,9 +261,9 @@ Address: Alif Tower, Sargodha
                   ))}
                 </div>
                 
-                <div className="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <h4 className="font-semibold text-red-800 mb-2">💡 Important Note:</h4>
-                  <p className="text-red-700 text-sm">Turkey offers extensive scholarship programs including Türkiye Scholarships covering full tuition, accommodation, and monthly stipends. Students can work part-time with proper permits.</p>
+                <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-2">💡 Important Note:</h4>
+                  <p className="text-blue-700 text-sm">Turkey offers extensive scholarship programs including Türkiye Scholarships covering full tuition, accommodation, and monthly stipends. Students can work part-time with proper permits.</p>
                 </div>
               </CardContent>
             </Card>
@@ -301,7 +301,7 @@ Address: Alif Tower, Sargodha
                 <ul className="space-y-3">
                   {documentChecklist.map((doc, index) => (
                     <li key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-blue-500 mt-1 flex-shrink-0" />
                       <span className="text-sm text-gray-700">{doc}</span>
                     </li>
                   ))}
@@ -325,13 +325,13 @@ Address: Alif Tower, Sargodha
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="text-center p-4 bg-red-50 rounded-lg">
-                  <p className="font-semibold text-red-900">UAN Number</p>
-                  <p className="text-xl font-bold text-red-600">(+92) 304 1110947</p>
+                <div className="text-center p-4 bg-blue-50 rounded-lg">
+                  <p className="font-semibold text-blue-900">UAN Number</p>
+                  <p className="text-xl font-bold text-blue-600">(+92) 304 1110947</p>
                 </div>
                 
                 <ApplicationForm country="Turkey">
-                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     Book Free Consultation
                   </Button>

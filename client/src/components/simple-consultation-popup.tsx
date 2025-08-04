@@ -191,8 +191,8 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
             </form>
           ) : (
             <div className="text-center py-8">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-green-600" />
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Calendar className="w-8 h-8 text-blue-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Consultation Booked Successfully!</h3>
               <p className="text-gray-600 mb-4">

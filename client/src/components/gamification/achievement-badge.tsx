@@ -15,9 +15,9 @@ const getBadgeColor = (level: string) => {
     case 'silver':
       return 'from-gray-400 to-gray-600';
     case 'gold':
-      return 'from-yellow-400 to-yellow-600';
+      return 'from-blue-400 to-blue-600';
     case 'platinum':
-      return 'from-purple-400 to-purple-600';
+      return 'from-blue-400 to-blue-600';
     default:
       return 'from-blue-400 to-blue-600';
   }
@@ -117,7 +117,7 @@ export default function AchievementBadge({
           <div className="bg-gray-900 text-white px-3 py-2 rounded-lg shadow-xl min-w-max max-w-xs">
             <div className="font-semibold text-sm">{achievement.title}</div>
             <div className="text-xs text-gray-300 mt-1">{achievement.description}</div>
-            <div className="text-xs text-yellow-400 mt-1">+{achievement.points} points</div>
+            <div className="text-xs text-blue-400 mt-1">+{achievement.points} points</div>
             <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
           </div>
         </motion.div>
@@ -125,7 +125,7 @@ export default function AchievementBadge({
 
       {/* New Badge Pulse Animation */}
       <motion.div
-        className="absolute inset-0 rounded-full border-4 border-yellow-400"
+        className="absolute inset-0 rounded-full border-4 border-blue-400"
         initial={{ scale: 1, opacity: 1 }}
         animate={{ scale: 1.2, opacity: 0 }}
         transition={{ 

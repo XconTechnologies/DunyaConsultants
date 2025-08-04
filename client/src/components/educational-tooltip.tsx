@@ -21,12 +21,12 @@ const tooltipIcons = {
 };
 
 const tooltipColors = {
-  info: "from-blue-500 to-cyan-500",
-  educational: "from-green-500 to-emerald-500",
-  achievement: "from-yellow-500 to-orange-500",
-  process: "from-purple-500 to-pink-500",
-  location: "from-red-500 to-rose-500",
-  statistic: "from-indigo-500 to-blue-500",
+  info: "from-blue-500 to-blue-500",
+  educational: "from-blue-500 to-blue-500",
+  achievement: "from-blue-500 to-blue-500",
+  process: "from-blue-500 to-blue-500",
+  location: "from-blue-500 to-blue-500",
+  statistic: "from-blue-500 to-blue-500",
 };
 
 export default function EducationalTooltip({ 

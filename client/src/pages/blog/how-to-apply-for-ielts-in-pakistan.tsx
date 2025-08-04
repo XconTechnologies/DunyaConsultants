@@ -62,7 +62,7 @@ const HowToApplyForIELTSInPakistan: React.FC = () => {
         <Navigation />
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <p className="text-red-600 mb-4">Failed to load the article</p>
+            <p className="text-blue-600 mb-4">Failed to load the article</p>
             <Link href="/blog" className="text-blue-600 hover:text-blue-800">
               ← Back to Blog
             </Link>
@@ -149,9 +149,9 @@ const HowToApplyForIELTSInPakistan: React.FC = () => {
               </div>
 
               {/* Application Steps */}
-              <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-                <h3 className="text-lg font-semibold text-green-800 mb-4">Application Steps</h3>
-                <div className="space-y-2 text-sm text-green-700">
+              <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                <h3 className="text-lg font-semibold text-blue-800 mb-4">Application Steps</h3>
+                <div className="space-y-2 text-sm text-blue-700">
                   <div>• Create online account</div>
                   <div>• Choose test center & date</div>
                   <div>• Pay test fee</div>

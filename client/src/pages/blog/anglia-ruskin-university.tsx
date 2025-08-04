@@ -67,7 +67,7 @@ export default function AngliaRuskinUniversity() {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex items-center">
-                      <Star className="w-5 h-5 text-yellow-500 mr-2" />
+                      <Star className="w-5 h-5 text-blue-500 mr-2" />
                       <span className="text-gray-700">University of the Year 2023</span>
                     </div>
                     <div className="flex items-center">
@@ -79,7 +79,7 @@ export default function AngliaRuskinUniversity() {
                       <span className="text-gray-700">162 Years of History</span>
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="w-5 h-5 text-green-500 mr-2" />
+                      <MapPin className="w-5 h-5 text-blue-500 mr-2" />
                       <span className="text-gray-700">Multiple UK Campus Locations</span>
                     </div>
                   </div>
@@ -187,12 +187,12 @@ export default function AngliaRuskinUniversity() {
                     <p className="text-sm text-gray-600">Complete guidance through ARU application process</p>
                   </div>
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <FileText className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                    <FileText className="w-8 h-8 text-blue-500 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Visa Assistance</h4>
                     <p className="text-sm text-gray-600">Expert help with UK student visa applications</p>
                   </div>
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <DollarSign className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
+                    <DollarSign className="w-8 h-8 text-blue-500 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Scholarship Guidance</h4>
                     <p className="text-sm text-gray-600">Access to scholarship opportunities and funding</p>
                   </div>

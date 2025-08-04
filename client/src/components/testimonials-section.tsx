@@ -93,13 +93,13 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-green-50 via-blue-50 to-purple-50 relative overflow-hidden">
+    <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 via-blue-50 to-blue-50 relative overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-green-200 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-full opacity-20 animate-pulse"></div>
         <div className="absolute top-32 right-20 w-16 h-16 bg-blue-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute bottom-20 left-32 w-24 h-24 bg-purple-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-32 right-10 w-12 h-12 bg-pink-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute bottom-20 left-32 w-24 h-24 bg-blue-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute bottom-32 right-10 w-12 h-12 bg-blue-200 rounded-full opacity-20 animate-pulse" style={{animationDelay: '1.5s'}}></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -116,10 +116,10 @@ export default function TestimonialsSection() {
             animate={isInView ? { scale: 1 } : { scale: 0.8 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="text-green-600 text-2xl font-bold italic transform -rotate-2 inline-block">
+            <span className="text-blue-600 text-2xl font-bold italic transform -rotate-2 inline-block">
               Testimonial
             </span>
-            <div className="w-16 h-1 bg-green-500 mx-auto mt-1"></div>
+            <div className="w-16 h-1 bg-blue-500 mx-auto mt-1"></div>
           </motion.div>
           
           <motion.h2 
@@ -128,7 +128,7 @@ export default function TestimonialsSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-blue-600">Students Say</span>
+            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-600">Students Say</span>
           </motion.h2>
           
           <motion.p 
@@ -164,12 +164,12 @@ export default function TestimonialsSection() {
                 
                 <Card className="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 group-hover:scale-105">
                   {/* Quote Icon */}
-                  <div className="absolute top-4 right-4 text-green-100 opacity-50 group-hover:opacity-70 transition-opacity">
+                  <div className="absolute top-4 right-4 text-blue-100 opacity-50 group-hover:opacity-70 transition-opacity">
                     <Quote className="w-8 h-8" />
                   </div>
                   
                   {/* Achievement Badge */}
-                  <div className="absolute top-4 left-4 bg-gradient-to-r from-green-500 to-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                  <div className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
                     <Award className="w-3 h-3 mr-1" />
                     {testimonial.achievement}
                   </div>
@@ -178,7 +178,7 @@ export default function TestimonialsSection() {
                     {/* Rating */}
                     <div className="flex items-center mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-blue-400" />
                       ))}
                     </div>
 
@@ -193,9 +193,9 @@ export default function TestimonialsSection() {
                         <img 
                           src={testimonial.image} 
                           alt={testimonial.name}
-                          className="w-12 h-12 rounded-full object-cover border-2 border-green-200"
+                          className="w-12 h-12 rounded-full object-cover border-2 border-blue-200"
                         />
-                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
                           <GraduationCap className="w-3 h-3 text-white" />
                         </div>
                       </div>
@@ -217,7 +217,7 @@ export default function TestimonialsSection() {
               onClick={prevSlide}
               variant="outline"
               size="icon"
-              className="rounded-full bg-white hover:bg-green-50 border-2 border-green-200 text-green-600 shadow-md"
+              className="rounded-full bg-white hover:bg-blue-50 border-2 border-blue-200 text-blue-600 shadow-md"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -230,8 +230,8 @@ export default function TestimonialsSection() {
                   onClick={() => setCurrentSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
-                      ? 'bg-green-600 scale-125' 
-                      : 'bg-green-200 hover:bg-green-400'
+                      ? 'bg-blue-600 scale-125' 
+                      : 'bg-blue-200 hover:bg-blue-400'
                   }`}
                 />
               ))}
@@ -241,7 +241,7 @@ export default function TestimonialsSection() {
               onClick={nextSlide}
               variant="outline"
               size="icon"
-              className="rounded-full bg-white hover:bg-green-50 border-2 border-green-200 text-green-600 shadow-md"
+              className="rounded-full bg-white hover:bg-blue-50 border-2 border-blue-200 text-blue-600 shadow-md"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
@@ -255,12 +255,12 @@ export default function TestimonialsSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 1.2 }}
         >
-          <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 text-white">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-600 rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">Ready to Write Your Success Story?</h3>
-            <p className="text-green-100 mb-6">Join thousands of Pakistani students who've achieved their international education dreams</p>
+            <p className="text-blue-100 mb-6">Join thousands of Pakistani students who've achieved their international education dreams</p>
             <Button 
               size="lg"
-              className="bg-white text-green-600 hover:bg-green-50 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <MessageCircle className="mr-2" size={20} />
               Start Your Journey Today

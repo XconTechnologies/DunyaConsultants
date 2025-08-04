@@ -61,15 +61,15 @@ export default function CyprusVisaPakistan() {
                       <span className="text-gray-700">Duration: Up to 3 months (extendable)</span>
                     </div>
                     <div className="flex items-center">
-                      <DollarSign className="w-5 h-5 text-green-500 mr-2" />
+                      <DollarSign className="w-5 h-5 text-blue-500 mr-2" />
                       <span className="text-gray-700">Visa Fee: €60-€90</span>
                     </div>
                     <div className="flex items-center">
-                      <FileText className="w-5 h-5 text-orange-500 mr-2" />
+                      <FileText className="w-5 h-5 text-blue-500 mr-2" />
                       <span className="text-gray-700">Processing Time: 1 month</span>
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="w-5 h-5 text-red-500 mr-2" />
+                      <MapPin className="w-5 h-5 text-blue-500 mr-2" />
                       <span className="text-gray-700">Residence Permit: €70</span>
                     </div>
                   </div>
@@ -124,7 +124,7 @@ export default function CyprusVisaPakistan() {
                     "A portfolio or writing samples (if required for your course)"
                   ].map((doc, index) => (
                     <div key={index} className="flex items-start p-4 bg-gray-50 rounded-lg">
-                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-0.5 flex-shrink-0" />
                       <p className="text-gray-700">{doc}</p>
                     </div>
                   ))}
@@ -197,9 +197,9 @@ export default function CyprusVisaPakistan() {
                 {/* Fee Breakdown */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <DollarSign className="w-8 h-8 text-green-500 mx-auto mb-2" />
+                    <DollarSign className="w-8 h-8 text-blue-500 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Short-Stay Visa</h4>
-                    <p className="text-2xl font-bold text-green-600">€90</p>
+                    <p className="text-2xl font-bold text-blue-600">€90</p>
                     <p className="text-sm text-gray-600">Category C</p>
                   </div>
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
@@ -209,9 +209,9 @@ export default function CyprusVisaPakistan() {
                     <p className="text-sm text-gray-600">Category D</p>
                   </div>
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <FileText className="w-8 h-8 text-orange-500 mx-auto mb-2" />
+                    <FileText className="w-8 h-8 text-blue-500 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Residence Permit</h4>
-                    <p className="text-2xl font-bold text-orange-600">€70</p>
+                    <p className="text-2xl font-bold text-blue-600">€70</p>
                     <p className="text-sm text-gray-600">Required in Cyprus</p>
                   </div>
                 </div>
@@ -233,9 +233,9 @@ export default function CyprusVisaPakistan() {
                     </h4>
                     <p className="text-sm text-gray-600">Government-funded scholarships for international students</p>
                   </div>
-                  <div className="p-4 bg-purple-50 rounded-lg">
+                  <div className="p-4 bg-blue-50 rounded-lg">
                     <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                      <Award className="w-5 h-5 text-purple-500 mr-2" />
+                      <Award className="w-5 h-5 text-blue-500 mr-2" />
                       Erasmus Mundus Joint Master Degrees
                     </h4>
                     <p className="text-sm text-gray-600">EU-funded prestigious master's programs</p>

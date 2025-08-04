@@ -85,7 +85,7 @@ export default function TBTestForUKVisaInPakistan() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-start space-x-2"
                     >
-                      <CheckCircle className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-500 mt-1 flex-shrink-0" />
                       <span className="text-gray-700">{requirement}</span>
                     </motion.div>
                   ))}
@@ -99,13 +99,13 @@ export default function TBTestForUKVisaInPakistan() {
                   The UK TB test centres are very conscious about the screening for your Tuberculosis to avoid spread of this infectious disease. That's why it is included in the medical for UK visa. Let's discuss below why it is compulsory:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <Card className="bg-gradient-to-br from-green-50 to-emerald-100 border-green-200">
+                  <Card className="bg-gradient-to-br from-green-50 to-emerald-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <CheckCircle className="h-6 w-6 text-green-600 mr-2" />
-                        <h3 className="font-semibold text-green-800">Fulfill immigration requirements</h3>
+                        <CheckCircle className="h-6 w-6 text-blue-600 mr-2" />
+                        <h3 className="font-semibold text-blue-800">Fulfill immigration requirements</h3>
                       </div>
-                      <p className="text-green-700 text-sm">Essential requirement for UK visa compliance</p>
+                      <p className="text-blue-700 text-sm">Essential requirement for UK visa compliance</p>
                     </CardContent>
                   </Card>
                   <Card className="bg-gradient-to-br from-blue-50 to-cyan-100 border-blue-200">
@@ -117,22 +117,22 @@ export default function TBTestForUKVisaInPakistan() {
                       <p className="text-blue-700 text-sm">Protects both individual and public health</p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-gradient-to-br from-purple-50 to-violet-100 border-purple-200">
+                  <Card className="bg-gradient-to-br from-purple-50 to-violet-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <CheckCircle className="h-6 w-6 text-purple-600 mr-2" />
-                        <h3 className="font-semibold text-purple-800">Guarantees public health protection</h3>
+                        <CheckCircle className="h-6 w-6 text-blue-600 mr-2" />
+                        <h3 className="font-semibold text-blue-800">Guarantees public health protection</h3>
                       </div>
-                      <p className="text-purple-700 text-sm">Maintains UK's public health standards</p>
+                      <p className="text-blue-700 text-sm">Maintains UK's public health standards</p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-orange-200">
+                  <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <CheckCircle className="h-6 w-6 text-orange-600 mr-2" />
-                        <h3 className="font-semibold text-orange-800">Prevents the spread of TB</h3>
+                        <CheckCircle className="h-6 w-6 text-blue-600 mr-2" />
+                        <h3 className="font-semibold text-blue-800">Prevents the spread of TB</h3>
                       </div>
-                      <p className="text-orange-700 text-sm">Controls infectious disease transmission</p>
+                      <p className="text-blue-700 text-sm">Controls infectious disease transmission</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -165,19 +165,19 @@ export default function TBTestForUKVisaInPakistan() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-yellow-50 border-l-4 border-yellow-500 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-yellow-800 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-center">
                   <DollarSign className="mr-3 h-6 w-6" />
                   TB Test for UK Visa Fees
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   You will need to pay the UK TB test fee to qualify for a UK student visa from Pakistan. The test fee for TB screening test for UK visa is around <strong>seventy-eight dollars</strong>.
                 </p>
-                <div className="bg-white p-4 rounded-lg border border-yellow-200">
+                <div className="bg-white p-4 rounded-lg border border-blue-200">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-gray-800">TB Test Fee:</span>
-                    <span className="text-2xl font-bold text-yellow-700">$78 USD</span>
+                    <span className="text-2xl font-bold text-blue-700">$78 USD</span>
                   </div>
                   <p className="text-sm text-gray-600 mt-2">
                     <strong>Note:</strong> This fee should be paid directly at the authorized clinic in USD. Remember that you cannot get a refund if your test results come positive for Tuberculosis.
@@ -199,7 +199,7 @@ export default function TBTestForUKVisaInPakistan() {
                       <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
-                            <MapPin className="h-6 w-6 text-red-500 mt-1 flex-shrink-0" />
+                            <MapPin className="h-6 w-6 text-blue-500 mt-1 flex-shrink-0" />
                             <div className="lg:col-span-3">
                               <h3 className="font-bold text-gray-800 mb-2">{center.name}</h3>
                               <p className="text-gray-600 mb-2 flex items-center">
@@ -238,8 +238,8 @@ export default function TBTestForUKVisaInPakistan() {
               </div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-green-800">Conclusion</h2>
+              <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+                <h2 className="text-2xl font-bold mb-4 text-blue-800">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Being a citizen of Pakistan, one of the most essential United Kingdom student visa requirements is to get your TB screening done. Without a TB test for UK visa, you are not allowed to stay in the UK for a period of more than six months. After getting your screening done, you will receive a TB clearance certificate for UK visa which needs to be submitted while applying.
                 </p>

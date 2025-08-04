@@ -166,7 +166,7 @@ export default function EligibilityChecker() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -176,7 +176,7 @@ export default function EligibilityChecker() {
         >
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Study Abroad{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
               Eligibility Checker
             </span>
           </h1>
@@ -196,8 +196,8 @@ export default function EligibilityChecker() {
                 <div className="flex items-center justify-center mb-4">
                   <div className={`w-24 h-24 rounded-full flex items-center justify-center ${
                     result.eligible 
-                      ? "bg-green-100 text-green-600" 
-                      : "bg-orange-100 text-orange-600"
+                      ? "bg-blue-100 text-blue-600" 
+                      : "bg-blue-100 text-blue-600"
                   }`}>
                     {result.eligible ? (
                       <CheckCircle className="w-12 h-12" />
@@ -226,8 +226,8 @@ export default function EligibilityChecker() {
                   <div className="w-full bg-gray-200 rounded-full h-3">
                     <div
                       className={`h-3 rounded-full ${
-                        result.score >= 80 ? "bg-green-500" :
-                        result.score >= 60 ? "bg-yellow-500" : "bg-red-500"
+                        result.score >= 80 ? "bg-blue-500" :
+                        result.score >= 60 ? "bg-blue-500" : "bg-blue-500"
                       }`}
                       style={{ width: `${result.score}%` }}
                     />
@@ -243,7 +243,7 @@ export default function EligibilityChecker() {
                   <div className="space-y-3">
                     {result.recommendations.map((recommendation, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
                         <p className="text-gray-700">{recommendation}</p>
                       </div>
                     ))}
@@ -278,7 +278,7 @@ export default function EligibilityChecker() {
                     Take Test Again
                   </Button>
                   <Button
-                    className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                    className="flex-1 bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700"
                   >
                     Book Free Consultation
                   </Button>
@@ -544,7 +544,7 @@ export default function EligibilityChecker() {
                       <Button
                         type="submit"
                         disabled={submitMutation.isPending}
-                        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                        className="bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700"
                       >
                         {submitMutation.isPending ? "Checking..." : "Check Eligibility"}
                       </Button>

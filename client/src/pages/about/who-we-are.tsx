@@ -76,7 +76,7 @@ export default function WhoWeAre() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
                   <stat.icon className="w-8 h-8 text-white" />
                 </div>
                 <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
@@ -99,7 +99,7 @@ export default function WhoWeAre() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Leading Education Consultants in{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Pakistan
                 </span>
               </h2>
@@ -120,7 +120,7 @@ export default function WhoWeAre() {
               
               <div className="mt-8">
                 <Link href="/about/mission-vision">
-                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+                  <Button size="lg" className="bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white">
                     Learn About Our Mission
                   </Button>
                 </Link>
@@ -134,11 +134,11 @@ export default function WhoWeAre() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="relative bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl p-8 h-96">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl"></div>
+              <div className="relative bg-gradient-to-br from-blue-100 to-blue-100 rounded-2xl p-8 h-96">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-500/20 rounded-2xl"></div>
                 <div className="relative h-full flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
                       <GraduationCap className="w-12 h-12 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Excellence in Education</h3>
@@ -164,7 +164,7 @@ export default function WhoWeAre() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Why We Are{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Unique
                 </span>
               </h2>
@@ -183,7 +183,7 @@ export default function WhoWeAre() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
               >
-                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
                   <item.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
@@ -214,9 +214,9 @@ export default function WhoWeAre() {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 border border-blue-100">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl p-8 border border-blue-100">
               <div className="text-center">
-                <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-500 to-purple-600">
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border-4 border-gradient-to-r from-blue-500 to-blue-600">
                   <img 
                     src={umerFarooqPhoto} 
                     alt="Umer Farooq - CEO of Dunya Consultants" 
@@ -247,7 +247,7 @@ export default function WhoWeAre() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-900 via-blue-900 to-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

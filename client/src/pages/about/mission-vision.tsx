@@ -73,7 +73,7 @@ export default function MissionVision() {
               transition={{ duration: 0.6 }}
             >
               <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
                   <Target className="w-8 h-8 text-white" />
                 </div>
                 <h2 className="text-4xl font-bold text-gray-900">Our Mission</h2>
@@ -97,11 +97,11 @@ export default function MissionVision() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="relative bg-gradient-to-br from-blue-100 to-purple-100 rounded-2xl p-8 h-96">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl"></div>
+              <div className="relative bg-gradient-to-br from-blue-100 to-blue-100 rounded-2xl p-8 h-96">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-500/20 rounded-2xl"></div>
                 <div className="relative h-full flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
                       <Target className="w-12 h-12 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Academic Excellence</h3>
@@ -127,13 +127,13 @@ export default function MissionVision() {
               className="lg:order-2"
             >
               <div className="flex items-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
                   <Eye className="w-8 h-8 text-white" />
                 </div>
                 <h2 className="text-4xl font-bold text-gray-900">Our Vision</h2>
               </div>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p className="text-2xl font-semibold text-purple-600 mb-4">
+                <p className="text-2xl font-semibold text-blue-600 mb-4">
                   "To unlock the transformative power of education for our clients with our dedication to provide excellent service and personalized support to each of them."
                 </p>
                 <p>
@@ -151,11 +151,11 @@ export default function MissionVision() {
               transition={{ duration: 0.6 }}
               className="lg:order-1 relative"
             >
-              <div className="relative bg-gradient-to-br from-purple-100 to-pink-100 rounded-2xl p-8 h-96">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-2xl"></div>
+              <div className="relative bg-gradient-to-br from-blue-100 to-blue-100 rounded-2xl p-8 h-96">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-500/20 rounded-2xl"></div>
                 <div className="relative h-full flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center">
+                    <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
                       <Eye className="w-12 h-12 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Transformative Education</h3>
@@ -181,7 +181,7 @@ export default function MissionVision() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Our Core{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Values
                 </span>
               </h2>
@@ -200,7 +200,7 @@ export default function MissionVision() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl p-6 border border-blue-100 hover:border-blue-200 transition-all duration-300 hover:shadow-lg"
               >
-                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
                   <value.icon className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
@@ -221,13 +221,13 @@ export default function MissionVision() {
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-8">
               Built To Make{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                 Study Abroad Easy
               </span>
             </h2>
             <div className="max-w-4xl mx-auto bg-white rounded-2xl p-8 shadow-lg border border-blue-100">
               <div className="text-center">
-                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center">
                   <Globe className="w-10 h-10 text-white" />
                 </div>
                 <p className="text-xl text-gray-700 leading-relaxed">
@@ -262,7 +262,7 @@ export default function MissionVision() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl p-6 border border-blue-100"
               >
-                <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                <div className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent mb-2">
                   {stat.number}
                 </div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
@@ -273,7 +273,7 @@ export default function MissionVision() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-900 via-blue-900 to-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

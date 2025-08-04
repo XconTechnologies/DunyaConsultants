@@ -174,13 +174,13 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
             <span className="text-sm text-blue-100">110 Link Stadium Road Sargodha</span>
           </div>
           <div className="flex items-center space-x-3 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
               <Phone className="w-4 h-4 text-white" />
             </div>
             <a href="tel:+923041110947" className="text-sm text-blue-100 hover:text-white transition-colors">(+92) 304 1110947</a>
           </div>
           <div className="flex items-center space-x-3 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
               <Mail className="w-4 h-4 text-white" />
             </div>
             <a href="mailto:query@teamdunya.com" className="text-sm text-blue-100 hover:text-white transition-colors">query@teamdunya.com</a>

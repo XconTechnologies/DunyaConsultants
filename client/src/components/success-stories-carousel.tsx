@@ -87,7 +87,7 @@ export default function SuccessStoriesCarousel() {
   }, []);
 
   return (
-    <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section className="py-16 bg-gradient-to-br from-blue-50 to-blue-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -96,7 +96,7 @@ export default function SuccessStoriesCarousel() {
           className="text-center mb-12"
         >
           <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-6 shadow-lg">
-            <Star className="w-5 h-5 text-yellow-500 fill-current" />
+            <Star className="w-5 h-5 text-blue-500 fill-current" />
             <span className="text-sm font-medium text-neutral-700">Success Stories</span>
           </div>
           
@@ -155,10 +155,10 @@ export default function SuccessStoriesCarousel() {
                           {/* Rating */}
                           <div className="flex items-center mb-4">
                             {[...Array(review.rating)].map((_, i) => (
-                              <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                              <Star key={i} className="w-5 h-5 text-blue-400 fill-current" />
                             ))}
                             {review.verified && (
-                              <div className="ml-2 inline-flex items-center space-x-1 bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">
+                              <div className="ml-2 inline-flex items-center space-x-1 bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded-full">
                                 <CheckCircle className="w-3 h-3" />
                                 <span>Verified</span>
                               </div>

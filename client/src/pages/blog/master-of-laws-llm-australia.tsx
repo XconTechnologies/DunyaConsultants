@@ -129,15 +129,15 @@ export default function MasterOfLawsLLMAustralia() {
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>University of Sydney</span>
-                  <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Top Choice</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Top Choice</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Australian National University</span>
-                  <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Prestigious</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Prestigious</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>UNSW Sydney</span>
-                  <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Research</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Research</span>
                 </div>
               </div>
             </div>

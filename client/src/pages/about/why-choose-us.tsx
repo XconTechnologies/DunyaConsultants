@@ -175,7 +175,7 @@ export default function WhyChooseUs() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Our{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Advantages
                 </span>
               </h2>
@@ -196,7 +196,7 @@ export default function WhyChooseUs() {
                 <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
                   <CardHeader>
                     <div className="flex items-start justify-between">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-4">
                         <advantage.icon className="w-6 h-6 text-white" />
                       </div>
                       <div className="text-sm font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
@@ -220,7 +220,7 @@ export default function WhyChooseUs() {
       </section>
 
       {/* Achievements Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 to-purple-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <motion.div
@@ -244,7 +244,7 @@ export default function WhyChooseUs() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-5xl font-bold text-yellow-400 mb-2">
+                <div className="text-5xl font-bold text-blue-400 mb-2">
                   {achievement.number}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{achievement.label}</h3>
@@ -266,7 +266,7 @@ export default function WhyChooseUs() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Complete{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Services
                 </span>
               </h2>
@@ -285,7 +285,7 @@ export default function WhyChooseUs() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex items-start space-x-3 bg-white p-6 rounded-lg shadow-sm"
               >
-                <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" />
+                <CheckCircle className="w-6 h-6 text-blue-500 flex-shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-2">{service.title}</h3>
                   <p className="text-gray-600">{service.description}</p>
@@ -307,7 +307,7 @@ export default function WhyChooseUs() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Student{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Testimonials
                 </span>
               </h2>
@@ -328,7 +328,7 @@ export default function WhyChooseUs() {
                 <Card className="h-full">
                   <CardContent className="p-6">
                     <div className="mb-4">
-                      <div className="flex text-yellow-400 mb-3">
+                      <div className="flex text-blue-400 mb-3">
                         {[...Array(5)].map((_, i) => (
                           <Star key={i} className="w-4 h-4 fill-current" />
                         ))}
@@ -349,7 +349,7 @@ export default function WhyChooseUs() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

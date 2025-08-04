@@ -73,7 +73,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Top Universities Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">Top 10 Universities for Masters in Business Analytics in UK</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Top 10 Universities for Masters in Business Analytics in UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The education system of the United Kingdom helps students discover their skills as well as abilities. This focus on personal growth makes the country one of the most popular choices for students. The majority of the students prefer studying here over other countries due to its strong support for students.
                 </p>
@@ -82,12 +82,12 @@ export default function MSCBusinessAnalyticsInUK() {
                 </p>
 
                 {/* Universities Table */}
-                <div className="bg-indigo-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-indigo-800">Top Universities for MSc Business Analytics</h3>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Top Universities for MSc Business Analytics</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse border border-gray-300">
                       <thead>
-                        <tr className="bg-indigo-100">
+                        <tr className="bg-blue-100">
                           <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Sr. No</th>
                           <th className="border border-gray-300 px-4 py-2 text-left font-semibold">University Name</th>
                         </tr>
@@ -141,32 +141,32 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Eligibility Criteria Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-purple-500 pl-4">Eligibility Criteria for MS in Business Analytics in UK</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Eligibility Criteria for MS in Business Analytics in UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   To get admission to a UK university for a business analytics course in UK, students need to meet all eligibility requirements as discussed below. These requirements make sure that students have the required academic background and skills to succeed in the course.
                 </p>
 
-                <div className="bg-purple-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-purple-800">Key Requirements</h3>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Key Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="text-purple-600 mr-2">•</span>
+                      <span className="text-blue-600 mr-2">•</span>
                       <span>You must have a Bachelor's degree from a recognized university. The degree should be in Engineering, Management, or a field related to Business Analytics.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-purple-600 mr-2">•</span>
+                      <span className="text-blue-600 mr-2">•</span>
                       <span>You should have scored a minimum of sixty percent or equivalent marks in your Bachelor's degree.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-purple-600 mr-2">•</span>
+                      <span className="text-blue-600 mr-2">•</span>
                       <span>English language proficiency test scores (IELTS, TOEFL, or PTE)</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-purple-600 mr-2">•</span>
+                      <span className="text-blue-600 mr-2">•</span>
                       <span>GRE or GMAT scores may be required by some universities</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-purple-600 mr-2">•</span>
+                      <span className="text-blue-600 mr-2">•</span>
                       <span>Strong mathematical and analytical background</span>
                     </li>
                   </ul>
@@ -175,36 +175,36 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Documents Required Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-green-500 pl-4">Documents Required for MSc in Business Analytics in UK Universities</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Documents Required for MSc in Business Analytics in UK Universities</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The list of documents you will have to submit may be different for every university. Some universities might ask for some additional documents. Let's discuss below all the required documents to get admission to the business analyst course in the UK:
                 </p>
 
-                <div className="bg-green-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-green-800">Required Documents</h3>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Required Documents</h3>
                   <ol className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-green-200 text-green-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
+                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
                       <span>A SOP (Statement of Purpose) explaining why you are willing to study the course.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-green-200 text-green-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
+                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
                       <span>Copies of your educational transcripts.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-green-200 text-green-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
+                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
                       <span>English language proficiency test scores, such as TOEFL, IELTS, or PTE.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-green-200 text-green-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
+                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
                       <span>An updated CV or resume.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-green-200 text-green-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
+                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
                       <span>A recommendation letter from your past school or employer (if required).</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-green-200 text-green-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">6</span>
+                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">6</span>
                       <span>Test scores from eligibility tests such as GRE or GMAT (if needed).</span>
                     </li>
                   </ol>
@@ -213,7 +213,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Cost of Studying Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-orange-500 pl-4">Cost of Studying MSc in Business Analytics UK</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Cost of Studying MSc in Business Analytics UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   If you plan to apply to top universities in UK for masters in business analytics, the average tuition charges usually range from 25,750 euros to 35,900 euros every year. The cost of living is based on the city or area you select to live in as well as your personal lifestyle. Living in more expensive cities like Winchester or London will raise your living costs.
                 </p>
@@ -221,11 +221,11 @@ export default function MSCBusinessAnalyticsInUK() {
                   On average, students in the UK spend between 1000 dollars and 1600 dollars every month for their living costs, which include food, travel, rent, and other daily needs. Remember that these prices can differ depending on your choices and where you live.
                 </p>
 
-                <div className="bg-orange-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-orange-800">Cost Breakdown</h3>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Cost Breakdown</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h4 className="font-semibold text-orange-700 mb-2">Tuition Fees</h4>
+                      <h4 className="font-semibold text-blue-700 mb-2">Tuition Fees</h4>
                       <ul className="space-y-1 text-gray-700">
                         <li>• Average Cost: €25,750 - €35,900 per year</li>
                         <li>• Top Universities: €30,000 - €40,000</li>
@@ -233,7 +233,7 @@ export default function MSCBusinessAnalyticsInUK() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-orange-700 mb-2">Living Expenses</h4>
+                      <h4 className="font-semibold text-blue-700 mb-2">Living Expenses</h4>
                       <ul className="space-y-1 text-gray-700">
                         <li>• Monthly Living Costs: $1,000 - $1,600</li>
                         <li>• London/Winchester: Higher costs</li>
@@ -246,13 +246,13 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Scholarships Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-teal-500 pl-4">Scholarships Programs for Best Universities in UK for Business Analytics</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Scholarships Programs for Best Universities in UK for Business Analytics</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   UK universities make it easier for international students to apply for and study MS graduate programs. It provides a variety of scholarship programs funded by the government. Here are some popular scholarships available for students applying for the Masters in Business Analytics in UK:
                 </p>
 
-                <div className="bg-teal-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-teal-800">Available Scholarships</h3>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Available Scholarships</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <ul className="space-y-2 text-gray-700">
@@ -286,7 +286,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* FAQs */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-purple-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
@@ -294,27 +294,27 @@ export default function MSCBusinessAnalyticsInUK() {
                     <p className="text-gray-700">You need a Bachelor's degree in Engineering, Management, or a related field with minimum 60% marks, English proficiency test scores (IELTS/TOEFL/PTE), and may require GRE/GMAT scores depending on the university. Strong mathematical and analytical background is essential.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-green-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What is the scope of a Masters in business analytics in UK?</h3>
                     <p className="text-gray-700">The scope is excellent with high demand for business analytics professionals across industries. Graduates can work as Data Analysts, Business Intelligence Analysts, Data Scientists, Strategy Consultants, and Analytics Managers in companies worldwide with competitive salaries and growth opportunities.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-purple-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">How long is a Masters in business analytics UK?</h3>
                     <p className="text-gray-700">A Masters in Business Analytics in the UK typically takes 1-2 years to complete. The program is intensive and designed to provide comprehensive knowledge and practical skills for solving real-world business problems using data analytics.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-orange-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What are the career opportunities after MSc Business Analytics?</h3>
                     <p className="text-gray-700">Career opportunities include roles in Data Analytics, Business Intelligence, Strategic Planning, Operations Research, Market Research, Financial Analytics, and Consulting. Major employers include tech companies, financial institutions, consulting firms, and multinational corporations.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-red-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Which universities offer the best MSc Business Analytics programs in UK?</h3>
                     <p className="text-gray-700">Top universities include University of Edinburgh Business School, Lancaster University Management School, Imperial College Business School, Warwick Business School, Manchester Alliance, and Nottingham University Business School, all offering excellent programs with strong industry connections.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-teal-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What are the scholarship opportunities for international students?</h3>
                     <p className="text-gray-700">Scholarship opportunities include British Council scholarships, Imperial Business Analytics scholarships, Sanctuary International Visitors Support Scheme, and British Chevening Scholarships. These can significantly reduce tuition costs and living expenses.</p>
                   </div>
@@ -369,8 +369,8 @@ export default function MSCBusinessAnalyticsInUK() {
             </div>
 
             {/* Top Universities */}
-            <div className="bg-indigo-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-indigo-800">Top 5 Universities</h3>
+            <div className="bg-blue-50 p-6 rounded-lg mb-6">
+              <h3 className="text-xl font-bold mb-4 text-blue-800">Top 5 Universities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>1. University of Edinburgh Business School</li>
                 <li>2. Lancaster University Management School</li>
@@ -381,8 +381,8 @@ export default function MSCBusinessAnalyticsInUK() {
             </div>
 
             {/* Scholarship Opportunities */}
-            <div className="bg-purple-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-purple-800">Scholarship Opportunities</h3>
+            <div className="bg-blue-50 p-6 rounded-lg mb-6">
+              <h3 className="text-xl font-bold mb-4 text-blue-800">Scholarship Opportunities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• British Council Scholarships</li>
                 <li>• Imperial Business Analytics</li>

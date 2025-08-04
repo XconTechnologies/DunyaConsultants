@@ -61,15 +61,15 @@ export default function EngineeringLawProgramsCanada() {
                       <span className="text-gray-700">Top Global Education Quality</span>
                     </div>
                     <div className="flex items-center">
-                      <Briefcase className="w-5 h-5 text-green-500 mr-2" />
+                      <Briefcase className="w-5 h-5 text-blue-500 mr-2" />
                       <span className="text-gray-700">Work While Studying</span>
                     </div>
                     <div className="flex items-center">
-                      <Users className="w-5 h-5 text-orange-500 mr-2" />
+                      <Users className="w-5 h-5 text-blue-500 mr-2" />
                       <span className="text-gray-700">Multicultural Environment</span>
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="w-5 h-5 text-red-500 mr-2" />
+                      <MapPin className="w-5 h-5 text-blue-500 mr-2" />
                       <span className="text-gray-700">Post-Graduation Work Permit</span>
                     </div>
                   </div>
@@ -115,7 +115,7 @@ export default function EngineeringLawProgramsCanada() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">
+                        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                           Top Ranked
                         </span>
                       </div>
@@ -159,7 +159,7 @@ export default function EngineeringLawProgramsCanada() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+                        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                           Historic
                         </span>
                       </div>
@@ -203,7 +203,7 @@ export default function EngineeringLawProgramsCanada() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
+                        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                           Co-op Focus
                         </span>
                       </div>
@@ -291,7 +291,7 @@ export default function EngineeringLawProgramsCanada() {
                         </div>
                       </div>
                       <div className="text-right">
-                        <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium">
+                        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
                           Research Leader
                         </span>
                       </div>

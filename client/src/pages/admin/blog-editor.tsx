@@ -435,7 +435,7 @@ export default function BlogEditor() {
                     className="text-lg"
                   />
                   {errors.title && (
-                    <p className="text-red-500 text-sm mt-1">{errors.title.message}</p>
+                    <p className="text-blue-500 text-sm mt-1">{errors.title.message}</p>
                   )}
                 </CardContent>
               </Card>
@@ -455,7 +455,7 @@ export default function BlogEditor() {
                     className="font-mono"
                   />
                   {errors.slug && (
-                    <p className="text-red-500 text-sm mt-1">{errors.slug.message}</p>
+                    <p className="text-blue-500 text-sm mt-1">{errors.slug.message}</p>
                   )}
                 </CardContent>
               </Card>
@@ -472,7 +472,7 @@ export default function BlogEditor() {
                     rows={3}
                   />
                   {errors.excerpt && (
-                    <p className="text-red-500 text-sm mt-1">{errors.excerpt.message}</p>
+                    <p className="text-blue-500 text-sm mt-1">{errors.excerpt.message}</p>
                   )}
                 </CardContent>
               </Card>
@@ -568,7 +568,7 @@ export default function BlogEditor() {
                     className="text-sm leading-relaxed"
                   />
                   {errors.content && (
-                    <p className="text-red-500 text-sm mt-1">{errors.content.message}</p>
+                    <p className="text-blue-500 text-sm mt-1">{errors.content.message}</p>
                   )}
                   <p className="text-sm text-gray-500 mt-2">
                     Supports Markdown formatting. Use the toolbar above to format text or insert images.

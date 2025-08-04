@@ -38,25 +38,25 @@ const UKInternshipInternationalStudents: React.FC = () => {
     {
       title: "Summer Internships",
       description: "Last 8 to 12 weeks during summer break. Give students practical experience in fields like engineering, finance, and media. Many companies use these to find future employees.",
-      icon: <Clock className="w-8 h-8 text-green-600" />,
+      icon: <Clock className="w-8 h-8 text-blue-600" />,
       color: "from-green-50 to-emerald-50"
     },
     {
       title: "Industry-Specific Internships",
       description: "Fields like technology, healthcare, and finance have special internships. Big companies such as Deloitte, PwC, and the NHS provide well-structured programs with training.",
-      icon: <Briefcase className="w-8 h-8 text-purple-600" />,
+      icon: <Briefcase className="w-8 h-8 text-blue-600" />,
       color: "from-purple-50 to-violet-50"
     },
     {
       title: "Year-Long Internships",
       description: "Some UK universities provide 'sandwich courses' where students work in a company for an entire academic year. Common in business, engineering, and technology programs.",
-      icon: <Users className="w-8 h-8 text-orange-600" />,
+      icon: <Users className="w-8 h-8 text-blue-600" />,
       color: "from-orange-50 to-amber-50"
     },
     {
       title: "Remote Internships",
       description: "With more people working online, remote internships have become popular. Allow students to work for UK-based companies from anywhere, adjusting to UK time zone.",
-      icon: <MapPin className="w-8 h-8 text-red-600" />,
+      icon: <MapPin className="w-8 h-8 text-blue-600" />,
       color: "from-red-50 to-rose-50"
     }
   ];
@@ -171,7 +171,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
                     <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6">
                       <div className="flex items-center mb-4">
-                        <Briefcase className="w-8 h-8 text-green-600 mr-3" />
+                        <Briefcase className="w-8 h-8 text-blue-600 mr-3" />
                         <h3 className="text-xl font-semibold text-gray-900">Career Benefits</h3>
                       </div>
                       <p className="text-gray-700">Internships provide valuable work experience, networking opportunities, and potential pathways to full-time employment in the UK.</p>
@@ -234,9 +234,9 @@ const UKInternshipInternationalStudents: React.FC = () => {
                     ))}
                   </div>
 
-                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 my-8">
-                    <h3 className="text-lg font-semibold text-yellow-900 mb-2">Important Considerations</h3>
-                    <ul className="text-yellow-800 space-y-2">
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-6 my-8">
+                    <h3 className="text-lg font-semibold text-blue-900 mb-2">Important Considerations</h3>
+                    <ul className="text-blue-800 space-y-2">
                       <li>• Internships should not take up more than one-third of your course time</li>
                       <li>• Many universities allow students to work part-time alongside studies</li>
                       <li>• Some internships are paid while others are unpaid</li>
@@ -249,11 +249,11 @@ const UKInternshipInternationalStudents: React.FC = () => {
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Special Opportunities</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white rounded-lg p-4">
-                        <h4 className="font-semibold text-purple-900 mb-2">Teesside University</h4>
+                        <h4 className="font-semibold text-blue-900 mb-2">Teesside University</h4>
                         <p className="text-sm text-gray-700">After completing a one-year master's degree, students get 100% guaranteed internship opportunities</p>
                       </div>
                       <div className="bg-white rounded-lg p-4">
-                        <h4 className="font-semibold text-purple-900 mb-2">Industry Leaders</h4>
+                        <h4 className="font-semibold text-blue-900 mb-2">Industry Leaders</h4>
                         <p className="text-sm text-gray-700">Major companies like Deloitte, PwC, and NHS offer structured internship programs</p>
                       </div>
                     </div>
@@ -262,9 +262,9 @@ const UKInternshipInternationalStudents: React.FC = () => {
                   <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                     Benefits of UK Internships
                   </h2>
-                  <div className="bg-green-50 border-l-4 border-green-500 p-6 my-8">
-                    <h3 className="text-lg font-semibold text-green-900 mb-2">Career Advantages</h3>
-                    <ul className="text-green-800 space-y-2">
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-6 my-8">
+                    <h3 className="text-lg font-semibold text-blue-900 mb-2">Career Advantages</h3>
+                    <ul className="text-blue-800 space-y-2">
                       <li>✓ Practical work experience in your field of study</li>
                       <li>✓ Networking opportunities with industry professionals</li>
                       <li>✓ Potential full-time job offers (50% success rate)</li>

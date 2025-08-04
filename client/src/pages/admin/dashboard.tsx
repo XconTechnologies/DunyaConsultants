@@ -366,7 +366,7 @@ export default function AdminDashboard() {
                                 variant="outline"
                                 onClick={() => handlePublish(post.id)}
                                 title="Publish Article"
-                                className="text-green-600 hover:text-green-700"
+                                className="text-blue-600 hover:text-blue-700"
                               >
                                 <CheckCircle className="w-4 h-4" />
                               </Button>
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
                               variant="outline"
                               onClick={() => handleDelete("blog", post.id)}
                               title="Delete Article"
-                              className="text-red-600 hover:text-red-700"
+                              className="text-blue-600 hover:text-blue-700"
                             >
                               <Trash2 className="w-4 h-4" />
                             </Button>

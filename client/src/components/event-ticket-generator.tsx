@@ -124,7 +124,7 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className="relative bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl shadow-2xl border border-blue-200 overflow-hidden"
+        className="relative bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl shadow-2xl border border-blue-200 overflow-hidden"
         style={{ width: '800px', height: '400px' }}
       >
         {/* Background Pattern */}
@@ -137,7 +137,7 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
         </div>
 
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6">
+        <div className="relative bg-gradient-to-r from-blue-600 to-blue-600 text-white p-6">
           <div className="flex justify-between items-start">
             <div className="flex items-center">
               <img 
@@ -227,13 +227,13 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
 
         {/* Decorative Elements */}
         <div className="absolute top-4 right-4 w-16 h-16 bg-blue-100 rounded-full opacity-20"></div>
-        <div className="absolute bottom-4 left-4 w-12 h-12 bg-purple-100 rounded-full opacity-20"></div>
+        <div className="absolute bottom-4 left-4 w-12 h-12 bg-blue-100 rounded-full opacity-20"></div>
       </motion.div>
 
       {/* Download Button */}
       <motion.button
         onClick={downloadTicket}
-        className="download-btn bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center space-x-2 shadow-lg"
+        className="download-btn bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-blue-700 transition-all duration-300 flex items-center space-x-2 shadow-lg"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >

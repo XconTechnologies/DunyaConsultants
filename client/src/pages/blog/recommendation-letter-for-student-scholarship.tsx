@@ -150,7 +150,7 @@ export default function RecommendationLetterStudentScholarship() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-green-800 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Second Paragraph - Specific Examples
                     </h3>
@@ -163,7 +163,7 @@ export default function RecommendationLetterStudentScholarship() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-purple-800 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4 flex items-center">
                       <Target className="w-5 h-5 mr-2" />
                       Third Paragraph - Future Potential
                     </h3>
@@ -176,7 +176,7 @@ export default function RecommendationLetterStudentScholarship() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-orange-800 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Closing Paragraph
                     </h3>
@@ -399,11 +399,11 @@ export default function RecommendationLetterStudentScholarship() {
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Header & Contact Info</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Required</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Required</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Introduction</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Required</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Required</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Specific Examples</span>
@@ -411,7 +411,7 @@ export default function RecommendationLetterStudentScholarship() {
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Strong Endorsement</span>
-                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Essential</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Essential</span>
                   </div>
                 </div>
               </div>

@@ -186,19 +186,19 @@ const NewYearResolutionsStudents2025: React.FC = () => {
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Financial</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Budgeting</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Budgeting</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Personal</span>
-                    <span className="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded">Mental Health</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Mental Health</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Language</span>
-                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Communication</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Communication</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Cultural</span>
-                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Adaptation</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Adaptation</span>
                   </div>
                 </div>
               </div>

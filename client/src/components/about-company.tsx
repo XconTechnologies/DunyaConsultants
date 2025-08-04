@@ -40,7 +40,7 @@ export default function AboutCompany() {
   return (
     <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
       {/* Simplified Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-blue-100"></div>
       <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         
 
@@ -56,13 +56,13 @@ export default function AboutCompany() {
           >
             <div className="relative">
               {/* Main Container with Modern Design */}
-              <div className="relative h-[450px] lg:h-[500px] bg-gradient-to-br from-white/40 via-blue-50/50 to-indigo-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
+              <div className="relative h-[450px] lg:h-[500px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
                 
                 {/* Floating Decorative Elements */}
-                <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl rotate-12 shadow-xl opacity-90"></div>
-                <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl -rotate-12 shadow-xl opacity-90"></div>
-                <div className="absolute top-1/3 -right-3 w-10 h-10 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl rotate-45 shadow-lg opacity-80"></div>
-                <div className="absolute bottom-1/3 -left-3 w-8 h-8 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-xl -rotate-45 shadow-lg opacity-80"></div>
+                <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-blue-500 rounded-3xl rotate-12 shadow-xl opacity-90"></div>
+                <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl -rotate-12 shadow-xl opacity-90"></div>
+                <div className="absolute top-1/3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl rotate-45 shadow-lg opacity-80"></div>
+                <div className="absolute bottom-1/3 -left-3 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl -rotate-45 shadow-lg opacity-80"></div>
 
                 {/* Dual Scrolling Image Gallery */}
                 <div className="relative h-full overflow-hidden rounded-[1.5rem]">
@@ -151,8 +151,8 @@ export default function AboutCompany() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full mb-4 border border-blue-200">
-                  <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full mr-3 animate-pulse"></div>
+                <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-100 rounded-full mb-4 border border-blue-200">
+                  <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-blue-500 rounded-full mr-3 animate-pulse"></div>
                   <span className="text-sm font-bold text-blue-800 tracking-wider uppercase">
                     About Company
                   </span>
@@ -167,7 +167,7 @@ export default function AboutCompany() {
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Why Choose Us</h2>
-                <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
+                <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-blue-500 rounded-full"></div>
               </motion.div>
 
               <div className="space-y-5">
@@ -180,7 +180,7 @@ export default function AboutCompany() {
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   >
                     <div className="flex items-start gap-2 mb-2">
-                      <div className="flex-shrink-0 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center mt-0.5">
+                      <div className="flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center mt-0.5">
                         <Check className="w-3 h-3 text-white" />
                       </div>
                       <h3 className="text-sm font-semibold text-gray-900 flex-1 leading-tight">

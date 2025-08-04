@@ -62,7 +62,7 @@ export default function AchievementNotification() {
             className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"
           >
             {/* Celebration Header */}
-            <div className="bg-gradient-to-r from-yellow-400 to-orange-500 px-4 py-3 relative overflow-hidden">
+            <div className="bg-gradient-to-r from-blue-400 to-blue-500 px-4 py-3 relative overflow-hidden">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
                   <Sparkles className="w-5 h-5 text-white" />
@@ -115,7 +115,7 @@ export default function AchievementNotification() {
                   <h3 className="font-bold text-gray-900 text-lg">{achievement.title}</h3>
                   <p className="text-gray-600 text-sm mt-1">{achievement.description}</p>
                   <div className="flex items-center mt-2 space-x-3">
-                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                       +{achievement.points} points
                     </span>
                     <span className="text-xs text-gray-500 capitalize">
@@ -127,7 +127,7 @@ export default function AchievementNotification() {
             </div>
 
             {/* Progress indicator */}
-            <div className="h-1 bg-gradient-to-r from-yellow-400 to-orange-500" />
+            <div className="h-1 bg-gradient-to-r from-blue-400 to-blue-500" />
           </motion.div>
         ))}
       </AnimatePresence>

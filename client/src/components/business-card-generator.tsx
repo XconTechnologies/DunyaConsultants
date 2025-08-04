@@ -22,9 +22,9 @@ interface BusinessCardData {
 
 const themes = [
   { id: 'blue', name: 'Ocean Blue', primary: 'from-blue-400 to-blue-600', secondary: 'bg-blue-50', accent: 'text-blue-600' },
-  { id: 'purple', name: 'Royal Purple', primary: 'from-purple-400 to-purple-600', secondary: 'bg-purple-50', accent: 'text-purple-600' },
-  { id: 'green', name: 'Forest Green', primary: 'from-green-400 to-green-600', secondary: 'bg-green-50', accent: 'text-green-600' },
-  { id: 'rose', name: 'Elegant Rose', primary: 'from-rose-400 to-rose-600', secondary: 'bg-rose-50', accent: 'text-rose-600' },
+  { id: 'purple', name: 'Royal Purple', primary: 'from-blue-400 to-blue-600', secondary: 'bg-blue-50', accent: 'text-blue-600' },
+  { id: 'green', name: 'Forest Green', primary: 'from-blue-400 to-blue-600', secondary: 'bg-blue-50', accent: 'text-blue-600' },
+  { id: 'rose', name: 'Elegant Rose', primary: 'from-blue-400 to-blue-600', secondary: 'bg-blue-50', accent: 'text-blue-600' },
   { id: 'amber', name: 'Golden Amber', primary: 'from-amber-400 to-amber-600', secondary: 'bg-amber-50', accent: 'text-amber-600' },
   { id: 'slate', name: 'Modern Slate', primary: 'from-slate-400 to-slate-600', secondary: 'bg-slate-50', accent: 'text-slate-600' }
 ];
@@ -350,7 +350,7 @@ export default function BusinessCardGenerator() {
                 >
                   {copied ? (
                     <>
-                      <Check className="w-4 h-4 mr-2 text-green-600" />
+                      <Check className="w-4 h-4 mr-2 text-blue-600" />
                       Copied!
                     </>
                   ) : (
@@ -364,7 +364,7 @@ export default function BusinessCardGenerator() {
             </div>
 
             {/* Tips Section */}
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+            <div className="bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl p-6 border border-blue-100">
               <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
                 <Briefcase className="w-5 h-5 mr-2" />
                 Design Tips

@@ -239,7 +239,7 @@ export default function CostCalculatorSection() {
   };
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -363,12 +363,12 @@ export default function CostCalculatorSection() {
                 </div>
               </Card>
 
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <div className="flex items-start">
-                  <div className="text-yellow-600 mr-3 mt-1">💡</div>
+                  <div className="text-blue-600 mr-3 mt-1">💡</div>
                   <div>
-                    <div className="font-medium text-yellow-800 mb-1">Pro Tip</div>
-                    <div className="text-sm text-yellow-700">
+                    <div className="font-medium text-blue-800 mb-1">Pro Tip</div>
+                    <div className="text-sm text-blue-700">
                       Start your planning 12-18 months in advance to secure the best scholarships and ensure smooth visa processing.
                     </div>
                   </div>

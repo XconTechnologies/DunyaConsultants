@@ -71,17 +71,17 @@ export default function TestimonialSection() {
     return Array.from({ length: 5 }, (_, index) => (
       <Star 
         key={index} 
-        className={`w-6 h-6 ${index < rating ? 'text-green-600 fill-green-600' : 'text-gray-300'}`} 
+        className={`w-6 h-6 ${index < rating ? 'text-blue-600 fill-green-600' : 'text-gray-300'}`} 
       />
     ));
   };
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-orange-50 to-pink-50 relative overflow-hidden">
+    <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-blue-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-green-500 rounded-full translate-x-32 -translate-y-32" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-orange-500 rounded-full -translate-x-48 translate-y-48" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full translate-x-32 -translate-y-32" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full -translate-x-48 translate-y-48" />
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -104,7 +104,7 @@ export default function TestimonialSection() {
           >
             Testimonial
             {/* Decorative underline */}
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-green-600 rounded-full opacity-70" />
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-blue-600 rounded-full opacity-70" />
           </motion.h2>
         </motion.div>
 
@@ -123,7 +123,7 @@ export default function TestimonialSection() {
           <div className="relative bg-white rounded-2xl shadow-2xl p-8 lg:p-12 border border-gray-100">
             {/* Red Paperclip */}
             <div className="absolute -top-3 left-8">
-              <div className="w-8 h-16 bg-red-500 rounded-full transform rotate-12 shadow-md" 
+              <div className="w-8 h-16 bg-blue-500 rounded-full transform rotate-12 shadow-md" 
                    style={{
                      clipPath: 'polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)'
                    }}>
@@ -162,7 +162,7 @@ export default function TestimonialSection() {
             <div className="flex justify-between items-end">
               <div>
                 <div className="text-right">
-                  <p className="text-2xl font-bold text-green-700 mb-2" 
+                  <p className="text-2xl font-bold text-blue-700 mb-2" 
                      style={{ fontFamily: 'Brush Script MT, cursive' }}>
                     —{currentTestimonial.name}
                   </p>
@@ -192,7 +192,7 @@ export default function TestimonialSection() {
               onClick={() => setCurrentIndex(index)}
               className={`w-4 h-4 rounded-full transition-all duration-300 ${
                 index === currentIndex 
-                  ? 'bg-green-600 scale-125 shadow-lg' 
+                  ? 'bg-blue-600 scale-125 shadow-lg' 
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}
             />
@@ -216,10 +216,10 @@ export default function TestimonialSection() {
               whileHover={{ scale: 1.05 }}
             >
               <div className={`bg-white rounded-lg p-4 shadow-md border-2 ${
-                index === currentIndex ? 'border-green-500' : 'border-transparent'
+                index === currentIndex ? 'border-blue-500' : 'border-transparent'
               }`}>
                 <div className="text-center">
-                  <p className="font-bold text-green-700 text-lg mb-1">
+                  <p className="font-bold text-blue-700 text-lg mb-1">
                     {testimonial.name}
                   </p>
                   <div className="flex justify-center mb-2">

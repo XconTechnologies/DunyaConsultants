@@ -143,7 +143,7 @@ export default function IELTSExamDay() {
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               What to Expect<br />
-              <span className="text-yellow-300">On Exam Day</span>
+              <span className="text-blue-300">On Exam Day</span>
             </h1>
             
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
@@ -166,9 +166,9 @@ export default function IELTSExamDay() {
             className="mb-12"
           >
             <div className="grid md:grid-cols-3 gap-6">
-              <Alert className="border-red-200 bg-red-50">
-                <AlertCircle className="h-4 w-4 text-red-600" />
-                <AlertDescription className="text-red-800">
+              <Alert className="border-blue-200 bg-blue-50">
+                <AlertCircle className="h-4 w-4 text-blue-600" />
+                <AlertDescription className="text-blue-800">
                   <strong>Arrive 30 minutes early</strong> - Late arrivals will not be admitted to the test
                 </AlertDescription>
               </Alert>
@@ -180,9 +180,9 @@ export default function IELTSExamDay() {
                 </AlertDescription>
               </Alert>
               
-              <Alert className="border-green-200 bg-green-50">
-                <CheckCircle className="h-4 w-4 text-green-600" />
-                <AlertDescription className="text-green-800">
+              <Alert className="border-blue-200 bg-blue-50">
+                <CheckCircle className="h-4 w-4 text-blue-600" />
+                <AlertDescription className="text-blue-800">
                   <strong>Follow dress code</strong> - Smart casual attire, avoid metal accessories
                 </AlertDescription>
               </Alert>
@@ -229,16 +229,16 @@ export default function IELTSExamDay() {
               <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl">
-                    <CheckCircle className="w-6 h-6 mr-3 text-green-500" />
+                    <CheckCircle className="w-6 h-6 mr-3 text-blue-500" />
                     What to Bring
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {whatToBring.map((item, index) => (
-                    <div key={index} className="flex items-start space-x-3 p-4 rounded-lg bg-green-50">
+                    <div key={index} className="flex items-start space-x-3 p-4 rounded-lg bg-blue-50">
                       <div className="flex-shrink-0 mt-1">
                         {item.essential ? (
-                          <Badge className="bg-red-500 hover:bg-red-600">Essential</Badge>
+                          <Badge className="bg-blue-500 hover:bg-blue-600">Essential</Badge>
                         ) : (
                           <Badge variant="outline">Optional</Badge>
                         )}
@@ -255,21 +255,21 @@ export default function IELTSExamDay() {
               <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl">
-                    <AlertCircle className="w-6 h-6 mr-3 text-red-500" />
+                    <AlertCircle className="w-6 h-6 mr-3 text-blue-500" />
                     What NOT to Bring
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     {whatNotToBring.map((item, index) => (
-                      <div key={index} className="flex items-center space-x-3 p-3 rounded-lg bg-red-50">
-                        <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0"></div>
+                      <div key={index} className="flex items-center space-x-3 p-3 rounded-lg bg-blue-50">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0"></div>
                         <span className="text-neutral-700">{item}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="mt-6 p-4 bg-yellow-50 rounded-lg">
-                    <p className="text-sm text-yellow-800">
+                  <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                    <p className="text-sm text-blue-800">
                       <strong>Note:</strong> Personal belongings will be stored in secure lockers. 
                       The test center is not responsible for lost or damaged items.
                     </p>
@@ -317,24 +317,24 @@ export default function IELTSExamDay() {
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-xl font-bold text-neutral-800 mb-4 flex items-center">
-                      <CheckCircle className="w-5 h-5 mr-2 text-green-500" />
+                      <CheckCircle className="w-5 h-5 mr-2 text-blue-500" />
                       Allowed During Test
                     </h3>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Raise hand to ask questions</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Use provided tissues if needed</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Drink water during breaks</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Use bathroom with escort</span>
                       </div>
                     </div>
@@ -342,24 +342,24 @@ export default function IELTSExamDay() {
                   
                   <div>
                     <h3 className="text-xl font-bold text-neutral-800 mb-4 flex items-center">
-                      <AlertCircle className="w-5 h-5 mr-2 text-red-500" />
+                      <AlertCircle className="w-5 h-5 mr-2 text-blue-500" />
                       Strictly Prohibited
                     </h3>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Talking to other candidates</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Looking at other papers</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Eating or smoking</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>Leaving without permission</span>
                       </div>
                     </div>
@@ -391,7 +391,7 @@ export default function IELTSExamDay() {
                       Speaking test may be conducted on the same day as your written test, 
                       typically after the Writing module with a short break.
                     </p>
-                    <Badge className="bg-green-500 hover:bg-green-600">Most Common</Badge>
+                    <Badge className="bg-blue-500 hover:bg-blue-600">Most Common</Badge>
                   </div>
                   
                   <div className="text-center">

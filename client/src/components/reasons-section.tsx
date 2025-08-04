@@ -20,49 +20,49 @@ export default function ReasonsSection() {
       icon: <Award className="w-8 h-8" />,
       title: "15+ Years of Excellence",
       description: "Established in 2009, we have successfully guided thousands of students with our proven track record and expertise in international education.",
-      gradient: "from-yellow-400 to-orange-500"
+      gradient: "from-blue-400 to-blue-500"
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: "98% Visa Success Rate", 
       description: "Our expert documentation and application process ensures highest visa approval rates, giving you confidence in your study abroad journey.",
-      gradient: "from-green-400 to-teal-500"
+      gradient: "from-blue-400 to-blue-500"
     },
     {
       icon: <Users className="w-8 h-8" />,
       title: "200+ Certified Counselors",
       description: "Our team of qualified education counselors provides personalized guidance based on your academic background and career aspirations.",
-      gradient: "from-blue-400 to-indigo-500"
+      gradient: "from-blue-400 to-blue-500"
     },
     {
       icon: <Clock className="w-8 h-8" />,
       title: "24/7 Student Support",
       description: "Round-the-clock assistance for all your queries, concerns, and emergencies throughout your study abroad journey.",
-      gradient: "from-purple-400 to-pink-500"
+      gradient: "from-blue-400 to-blue-500"
     },
     {
       icon: <GraduationCap className="w-8 h-8" />,
       title: "400+ University Partners",
       description: "Direct partnerships with top universities across 30+ countries, ensuring you get the best placement opportunities worldwide.",
-      gradient: "from-red-400 to-rose-500"
+      gradient: "from-blue-400 to-blue-500"
     },
     {
       icon: <Globe className="w-8 h-8" />,
       title: "17+ Office Locations",
       description: "Extensive network across Pakistan with offices in major cities, providing convenient access to our services nationwide.",
-      gradient: "from-cyan-400 to-blue-500"
+      gradient: "from-blue-400 to-blue-500"
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
       title: "Free Career Counseling",
       description: "Comprehensive career guidance and aptitude assessments to help you choose the right course and country for your future.",
-      gradient: "from-emerald-400 to-green-500"
+      gradient: "from-blue-400 to-blue-500"
     },
     {
       icon: <Heart className="w-8 h-8" />,
       title: "Post-Arrival Support",
       description: "Continued assistance even after you reach your destination, including accommodation, bank account setup, and cultural orientation.",
-      gradient: "from-pink-400 to-red-500"
+      gradient: "from-blue-400 to-blue-500"
     }
   ];
 
@@ -71,8 +71,8 @@ export default function ReasonsSection() {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full -translate-x-48 -translate-y-48" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full translate-x-48 translate-y-48" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-indigo-500 rounded-full" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full translate-x-48 translate-y-48" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-600 rounded-full" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -89,7 +89,7 @@ export default function ReasonsSection() {
           >
             <span className="text-gray-800">8 Reasons that Sets us apart from</span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800">
               Other Educational Consultants in Pakistan
             </span>
           </motion.h2>
@@ -178,7 +178,7 @@ export default function ReasonsSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <motion.button
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 via-blue-600 to-blue-600 text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

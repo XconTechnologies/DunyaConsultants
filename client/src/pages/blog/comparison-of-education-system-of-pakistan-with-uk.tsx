@@ -48,7 +48,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </div>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-red-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Education System Comparison of Pakistan & UK
                   </h2>
                   <div className="bg-blue-50 p-6 rounded-lg mb-6">
@@ -69,8 +69,8 @@ export default function ComparisonEducationSystemPakistanUK() {
                     Primary and Elementary Education
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-red-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-red-800 mb-3">🇵🇰 Pakistan</h4>
+                    <div className="bg-blue-50 p-6 rounded-lg">
+                      <h4 className="text-xl font-bold text-blue-800 mb-3">🇵🇰 Pakistan</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Children start at age 5-6 years</li>
                         <li>• Later start in rural areas</li>
@@ -104,8 +104,8 @@ export default function ComparisonEducationSystemPakistanUK() {
                     Secondary Education
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-red-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-red-800 mb-3">🇵🇰 Pakistan</h4>
+                    <div className="bg-blue-50 p-6 rounded-lg">
+                      <h4 className="text-xl font-bold text-blue-800 mb-3">🇵🇰 Pakistan</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Duration: 4 years (grades 9-12)</li>
                         <li>• Government schools and colleges</li>
@@ -138,8 +138,8 @@ export default function ComparisonEducationSystemPakistanUK() {
                     Higher Education
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-red-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-red-800 mb-3">🇵🇰 Pakistan</h4>
+                    <div className="bg-blue-50 p-6 rounded-lg">
+                      <h4 className="text-xl font-bold text-blue-800 mb-3">🇵🇰 Pakistan</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Begins after grade 12</li>
                         <li>• Colleges and universities</li>
@@ -167,7 +167,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-red-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Key Differences Overview
                   </h2>
                   <div className="overflow-x-auto">
@@ -211,12 +211,12 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-red-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Academic Calendar Comparison
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-red-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-red-800 mb-3">Pakistan Academic Year</h4>
+                    <div className="bg-blue-50 p-6 rounded-lg">
+                      <h4 className="text-xl font-bold text-blue-800 mb-3">Pakistan Academic Year</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• <strong>Duration:</strong> April to March</li>
                         <li>• <strong>Exception:</strong> Grades 11-12 (September to June)</li>
@@ -237,10 +237,10 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-red-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Challenges in Pakistan Education System
                   </h2>
-                  <div className="bg-yellow-50 p-6 rounded-lg">
+                  <div className="bg-blue-50 p-6 rounded-lg">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <h4 className="font-bold text-gray-900 mb-2">Major Challenges:</h4>
@@ -265,7 +265,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-red-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     FAQs
                   </h2>
                   <div className="space-y-6">
@@ -310,7 +310,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-red-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Conclusion
                   </h2>
                   <p className="text-lg text-gray-700">
@@ -330,7 +330,7 @@ export default function ComparisonEducationSystemPakistanUK() {
               <div className="sticky top-8 space-y-8">
                 <ContactForm />
                 
-                <div className="bg-red-50 p-6 rounded-lg">
+                <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">System Comparison</h3>
                   <div className="space-y-3">
                     <div className="flex justify-between">

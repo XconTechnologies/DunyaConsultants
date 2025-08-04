@@ -418,15 +418,15 @@ export default function OfficesList() {
             <div className="text-gray-600">Total Offices</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-green-600 mb-2">18</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">18</div>
             <div className="text-gray-600">Pakistan Offices</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-purple-600 mb-2">3</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">3</div>
             <div className="text-gray-600">International Offices</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-orange-600 mb-2">35,000+</div>
+            <div className="text-3xl font-bold text-blue-600 mb-2">35,000+</div>
             <div className="text-gray-600">Students Served</div>
           </div>
         </motion.div>

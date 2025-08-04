@@ -25,7 +25,7 @@ const offices: Office[] = [
     address: "Alif Tower, Bahadur Shah Zafar Road, Sargodha",
     phone: "+92 323‑251‑6319",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-purple-600",
+    gradient: "from-blue-600 to-blue-600",
     isHeadOffice: true,
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"]
@@ -37,7 +37,7 @@ const offices: Office[] = [
     address: "1st Floor, 174 6th Street 123, Sector H, DHA Phase 1, Lahore",
     phone: "+92 300‑167‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-green-600 to-teal-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "Document Verification"]
   },
@@ -48,7 +48,7 @@ const offices: Office[] = [
     address: "1st Floor, 85 /R‑1, Phase 2, Johar Town, Lahore",
     phone: "+92 300‑827‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-orange-600 to-red-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Punjab",
     services: ["Student Counseling", "Test Preparation", "Career Guidance"]
   },
@@ -59,7 +59,7 @@ const offices: Office[] = [
     address: "Mezzanine‑3, ATS Centre, Fazal‑e‑Haq Road, Blue Area, Islamabad",
     phone: "+92 333‑777‑5458",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-indigo-600 to-blue-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Federal",
     services: ["Visa Processing", "Embassy Relations", "Document Attestation"]
   },
@@ -70,7 +70,7 @@ const offices: Office[] = [
     address: "05‑C Prime Point Building, Main 2, Khayaban‑e‑Ittehad Road, DHA, Karachi",
     phone: "+92 332‑364‑3373",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-cyan-600 to-blue-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Sindh",
     services: ["Visa Processing", "University Applications", "Financial Guidance"]
   },
@@ -81,7 +81,7 @@ const offices: Office[] = [
     address: "Mezzanine Floor, Centre Point Plaza, Koh‑i‑Noor City, Jaranwala Road, Faisalabad",
     phone: "+92 332‑662‑8487",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-purple-600 to-pink-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Punjab",
     services: ["Student Counseling", "Test Preparation", "Scholarship Guidance"]
   },
@@ -92,7 +92,7 @@ const offices: Office[] = [
     address: "Dunya Consultants, Peoples Colony Underpass, Gujranwala",
     phone: "+92 332‑999‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-yellow-600 to-orange-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Punjab",
     services: ["Student Counseling", "Visa Processing", "Test Preparation"]
   },
@@ -103,7 +103,7 @@ const offices: Office[] = [
     address: "2nd Floor, Bank Islami, Cantt Plaza, Sialkot Cantonment",
     phone: "+92 323‑002‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-emerald-600 to-green-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Punjab",
     services: ["Student Counseling", "Visa Processing", "Document Verification"]
   },
@@ -114,7 +114,7 @@ const offices: Office[] = [
     address: "Beside KFC, Service Morh Road, GT Road, Gujrat",
     phone: "+92 300‑105‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-rose-600 to-pink-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Punjab",
     services: ["University Applications", "IELTS Training", "Career Counseling"]
   },
@@ -125,7 +125,7 @@ const offices: Office[] = [
     address: "Rafi Qamar Road, near Muslim Town, Goth Muslim Town, Bahawalpur",
     phone: "+92 300‑173‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-violet-600 to-purple-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Punjab",
     services: ["Visa Processing", "Test Preparation", "Document Preparation"]
   },
@@ -136,7 +136,7 @@ const offices: Office[] = [
     address: "1st Floor, Moti Plaza, Allama Iqbal Road, Mian Channu",
     phone: "+92 300‑984‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-teal-600 to-cyan-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Punjab",
     services: ["Student Counseling", "University Applications", "Career Guidance"]
   },
@@ -147,7 +147,7 @@ const offices: Office[] = [
     address: "Punjab Center, Mandi Bahauddin",
     phone: "+92 321‑300‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-amber-600 to-yellow-600",
+    gradient: "from-amber-600 to-blue-600",
     region: "Punjab",
     services: ["Visa Processing", "Document Preparation", "Test Preparation"]
   },
@@ -158,7 +158,7 @@ const offices: Office[] = [
     address: "Beside Darul Barkat Medicare Hospital, Stadium Road, Sheikhupura",
     phone: "+92 300‑507‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-lime-600 to-green-600",
+    gradient: "from-lime-600 to-blue-600",
     region: "Punjab",
     services: ["University Applications", "Career Counseling", "IELTS Training"]
   },
@@ -169,7 +169,7 @@ const offices: Office[] = [
     address: "Shalimar Metro Station, Bosan Road, New Sabzazar Colony, Multan",
     phone: "+92 305‑444‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-red-600 to-rose-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "Document Verification"]
   },
@@ -213,7 +213,7 @@ const offices: Office[] = [
     address: "Above Topten, Engineering Square, Makarona Street, 2nd Floor, Office 27, Jeddah 23447",
     phone: "+966 50‑851‑0785",
     hours: "Mon–Thu 10 AM–5 PM",
-    gradient: "from-amber-600 to-yellow-600",
+    gradient: "from-amber-600 to-blue-600",
     region: "International",
     services: ["Visa Processing", "Document Attestation", "Student Support"]
   },
@@ -224,7 +224,7 @@ const offices: Office[] = [
     address: "Ataköy Towers, Ataköy 7‑8‑9‑10 Kısım Mah., Çobançeşme E‑5 Yan Yol Cad., A Blok Apt. No: 20/1, Bakırköy, Istanbul",
     phone: "+90 505‑305‑8047",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-red-600 to-rose-600",
+    gradient: "from-blue-600 to-blue-600",
     region: "International",
     services: ["Student Counseling", "University Applications", "Student Support"]
   },
@@ -335,7 +335,7 @@ export default function OfficeLocationsSection() {
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -414,12 +414,12 @@ export default function OfficeLocationsSection() {
                           <div className="flex items-center space-x-1 mb-1">
                             <h3 className="text-lg font-bold text-gray-800 truncate">{office.city}</h3>
                             {office.isHeadOffice && (
-                              <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0">
+                              <span className="bg-gradient-to-r from-blue-500 to-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0">
                                 HQ
                               </span>
                             )}
                             {office.region === "International" && (
-                              <span className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0">
+                              <span className="bg-gradient-to-r from-blue-500 to-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0">
                                 🌍 INT
                               </span>
                             )}

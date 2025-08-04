@@ -269,7 +269,7 @@ export default function CountryGuide() {
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Your Complete<br />
-              <span className="text-yellow-300">Country Guide</span>
+              <span className="text-blue-300">Country Guide</span>
             </h1>
             
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
@@ -279,19 +279,19 @@ export default function CountryGuide() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">50+</div>
+                <div className="text-3xl font-bold text-blue-300">50+</div>
                 <div className="text-sm text-blue-100">Countries Covered</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">5000+</div>
+                <div className="text-3xl font-bold text-blue-300">5000+</div>
                 <div className="text-sm text-blue-100">Universities</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">15K+</div>
+                <div className="text-3xl font-bold text-blue-300">15K+</div>
                 <div className="text-sm text-blue-100">Students Placed</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">95%</div>
+                <div className="text-3xl font-bold text-blue-300">95%</div>
                 <div className="text-sm text-blue-100">Visa Success</div>
               </div>
             </div>
@@ -391,15 +391,15 @@ export default function CountryGuide() {
                           <h4 className="font-bold text-neutral-800">Average Cost</h4>
                           <p className="text-primary font-semibold">{currentCountry.averageCost}</p>
                         </div>
-                        <div className="text-center p-4 bg-green-50 rounded-lg">
-                          <Clock className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                        <div className="text-center p-4 bg-blue-50 rounded-lg">
+                          <Clock className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                           <h4 className="font-bold text-neutral-800">Work Rights</h4>
-                          <p className="text-green-600 font-semibold">{currentCountry.workRights}</p>
+                          <p className="text-blue-600 font-semibold">{currentCountry.workRights}</p>
                         </div>
-                        <div className="text-center p-4 bg-purple-50 rounded-lg">
-                          <CheckCircle className="w-8 h-8 text-purple-600 mx-auto mb-2" />
+                        <div className="text-center p-4 bg-blue-50 rounded-lg">
+                          <CheckCircle className="w-8 h-8 text-blue-600 mx-auto mb-2" />
                           <h4 className="font-bold text-neutral-800">Visa Success</h4>
-                          <p className="text-purple-600 font-semibold">{currentCountry.visaSuccess}</p>
+                          <p className="text-blue-600 font-semibold">{currentCountry.visaSuccess}</p>
                         </div>
                       </div>
 
@@ -408,7 +408,7 @@ export default function CountryGuide() {
                         <div className="grid md:grid-cols-2 gap-4">
                           {currentCountry.highlights.map((highlight, index) => (
                             <div key={index} className="flex items-center space-x-3">
-                              <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                              <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0" />
                               <span className="text-neutral-700">{highlight}</span>
                             </div>
                           ))}
@@ -447,7 +447,7 @@ export default function CountryGuide() {
                                     </div>
                                   </div>
                                 </div>
-                                <Badge className={university.type === "Private" ? "bg-blue-500" : "bg-green-500"}>
+                                <Badge className={university.type === "Private" ? "bg-blue-500" : "bg-blue-500"}>
                                   {university.type}
                                 </Badge>
                               </div>
@@ -459,14 +459,14 @@ export default function CountryGuide() {
                                   <div className="font-bold text-primary">{university.tuition}</div>
                                 </div>
                                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                                  <Users className="w-5 h-5 text-orange-500 mx-auto mb-1" />
+                                  <Users className="w-5 h-5 text-blue-500 mx-auto mb-1" />
                                   <div className="text-sm text-neutral-600">Acceptance Rate</div>
-                                  <div className="font-bold text-orange-500">{university.acceptance}</div>
+                                  <div className="font-bold text-blue-500">{university.acceptance}</div>
                                 </div>
                                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                                  <Star className="w-5 h-5 text-yellow-500 mx-auto mb-1" />
+                                  <Star className="w-5 h-5 text-blue-500 mx-auto mb-1" />
                                   <div className="text-sm text-neutral-600">World Rank</div>
-                                  <div className="font-bold text-yellow-500">#{university.rank}</div>
+                                  <div className="font-bold text-blue-500">#{university.rank}</div>
                                 </div>
                               </div>
 
@@ -484,7 +484,7 @@ export default function CountryGuide() {
                                 <div className="space-y-2">
                                   {university.highlights.map((highlight, idx) => (
                                     <div key={idx} className="flex items-center space-x-2">
-                                      <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                                      <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
                                       <span className="text-sm text-neutral-600">{highlight}</span>
                                     </div>
                                   ))}

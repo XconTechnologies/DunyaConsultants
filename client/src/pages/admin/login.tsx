@@ -107,7 +107,7 @@ export default function AdminLogin() {
                   disabled={isLoading}
                 />
                 {errors.username && (
-                  <p className="text-sm text-red-600">{errors.username.message}</p>
+                  <p className="text-sm text-blue-600">{errors.username.message}</p>
                 )}
               </div>
 
@@ -125,7 +125,7 @@ export default function AdminLogin() {
                   disabled={isLoading}
                 />
                 {errors.password && (
-                  <p className="text-sm text-red-600">{errors.password.message}</p>
+                  <p className="text-sm text-blue-600">{errors.password.message}</p>
                 )}
               </div>
 

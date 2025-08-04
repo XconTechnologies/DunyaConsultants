@@ -65,7 +65,7 @@ const journeySteps = [
     description: "Personalized university recommendations based on your profile, preferences, and career aspirations",
     duration: "2-3 weeks",
     icon: GraduationCap,
-    color: "bg-green-500",
+    color: "bg-blue-500",
     bgGradient: "from-green-500 to-green-600",
     deliverables: [
       "Detailed university research and ranking analysis",
@@ -94,7 +94,7 @@ const journeySteps = [
     description: "Comprehensive preparation for required tests and systematic collection of all necessary documents",
     duration: "4-8 weeks",
     icon: FileText,
-    color: "bg-purple-500",
+    color: "bg-blue-500",
     bgGradient: "from-purple-500 to-purple-600",
     deliverables: [
       "IELTS/PTE/TOEFL/Duolingo preparation and scheduling",
@@ -123,7 +123,7 @@ const journeySteps = [
     description: "Strategic application submission to selected universities with optimized materials and timing",
     duration: "3-4 weeks",
     icon: Send,
-    color: "bg-orange-500",
+    color: "bg-blue-500",
     bgGradient: "from-orange-500 to-orange-600",
     deliverables: [
       "Complete application form completion and review",
@@ -152,7 +152,7 @@ const journeySteps = [
     description: "Active monitoring of application status and strategic communication with admission offices",
     duration: "2-6 weeks",
     icon: CheckCircle,
-    color: "bg-teal-500",
+    color: "bg-blue-500",
     bgGradient: "from-teal-500 to-teal-600",
     deliverables: [
       "Application status tracking and updates",
@@ -181,7 +181,7 @@ const journeySteps = [
     description: "Complete visa application process with document preparation and interview scheduling",
     duration: "4-8 weeks",
     icon: Globe,
-    color: "bg-red-500",
+    color: "bg-blue-500",
     bgGradient: "from-red-500 to-red-600",
     deliverables: [
       "Visa application form completion",
@@ -210,7 +210,7 @@ const journeySteps = [
     description: "Comprehensive preparation for your journey including accommodation, travel, and orientation",
     duration: "2-4 weeks",
     icon: Plane,
-    color: "bg-indigo-500",
+    color: "bg-blue-500",
     bgGradient: "from-indigo-500 to-indigo-600",
     deliverables: [
       "Accommodation booking and confirmation",
@@ -239,7 +239,7 @@ const journeySteps = [
     description: "Smooth transition to your new country with settlement support and ongoing guidance",
     duration: "2-4 weeks",
     icon: MapPin,
-    color: "bg-pink-500",
+    color: "bg-blue-500",
     bgGradient: "from-pink-500 to-pink-600",
     deliverables: [
       "Airport pickup and initial orientation",
@@ -381,15 +381,15 @@ export default function StudyAbroadJourney() {
               <div className="text-sm text-gray-600">Complete Phases</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-green-600">12-18</div>
+              <div className="text-3xl font-bold text-blue-600">12-18</div>
               <div className="text-sm text-gray-600">Months Duration</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-purple-600">95%</div>
+              <div className="text-3xl font-bold text-blue-600">95%</div>
               <div className="text-sm text-gray-600">Success Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600">5000+</div>
+              <div className="text-3xl font-bold text-blue-600">5000+</div>
               <div className="text-sm text-gray-600">Students Helped</div>
             </div>
           </div>
@@ -450,13 +450,13 @@ export default function StudyAbroadJourney() {
                       {/* Deliverables */}
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                          <CheckSquare className="w-5 h-5 mr-2 text-green-600" />
+                          <CheckSquare className="w-5 h-5 mr-2 text-blue-600" />
                           Key Deliverables
                         </h4>
                         <ul className="space-y-2">
                           {step.deliverables.map((item, idx) => (
                             <li key={idx} className="flex items-start text-gray-600">
-                              <CheckCircle className="w-4 h-4 mr-2 mt-1 text-green-500 flex-shrink-0" />
+                              <CheckCircle className="w-4 h-4 mr-2 mt-1 text-blue-500 flex-shrink-0" />
                               {item}
                             </li>
                           ))}
@@ -466,7 +466,7 @@ export default function StudyAbroadJourney() {
                       {/* Pro Tips */}
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                          <Star className="w-5 h-5 mr-2 text-yellow-600" />
+                          <Star className="w-5 h-5 mr-2 text-blue-600" />
                           Pro Tips
                         </h4>
                         <ul className="space-y-2">
@@ -482,13 +482,13 @@ export default function StudyAbroadJourney() {
                       {/* Common Challenges */}
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                          <Target className="w-5 h-5 mr-2 text-red-600" />
+                          <Target className="w-5 h-5 mr-2 text-blue-600" />
                           Common Challenges
                         </h4>
                         <ul className="space-y-2">
                           {step.commonChallenges.map((challenge, idx) => (
                             <li key={idx} className="flex items-start text-gray-600">
-                              <span className="w-2 h-2 bg-red-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                              <span className="w-2 h-2 bg-blue-400 rounded-full mr-3 mt-2 flex-shrink-0"></span>
                               {challenge}
                             </li>
                           ))}
@@ -551,7 +551,7 @@ export default function StudyAbroadJourney() {
                     </div>
                     
                     <div className="mb-4">
-                      <Badge className="bg-green-100 text-green-800 mb-2">
+                      <Badge className="bg-blue-100 text-blue-800 mb-2">
                         {story.achievement}
                       </Badge>
                       <p className="font-medium text-gray-900">{story.destination}</p>

@@ -172,9 +172,9 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-orange-50 border-l-4 border-orange-500 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-orange-800 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-center">
                   <Star className="mr-3 h-6 w-6" />
                   Why Choose January Intake?
                 </h2>
@@ -195,14 +195,14 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-orange-200 h-full">
+                      <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-blue-200 h-full">
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
                             <div className="flex-shrink-0">
-                              <advantage.icon className="h-8 w-8 text-orange-600" />
+                              <advantage.icon className="h-8 w-8 text-blue-600" />
                             </div>
                             <div>
-                              <h3 className="text-lg font-bold text-orange-800 mb-2">{advantage.advantage}</h3>
+                              <h3 className="text-lg font-bold text-blue-800 mb-2">{advantage.advantage}</h3>
                               <p className="text-gray-700 text-sm">{advantage.description}</p>
                             </div>
                           </div>
@@ -241,7 +241,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                         >
                           <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{uni.university}</td>
                           <td className="border border-gray-300 px-4 py-3 text-gray-700 text-sm">{uni.programs.join(", ")}</td>
-                          <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium text-orange-700">{uni.requirements}</td>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium text-blue-700">{uni.requirements}</td>
                           <td className="border border-gray-300 px-4 py-3 text-gray-700 font-medium">{uni.deadline}</td>
                         </motion.tr>
                       ))}
@@ -265,17 +265,17 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.2 }}
                     >
-                      <Card className="bg-gradient-to-br from-red-50 to-orange-100 border-red-200">
+                      <Card className="bg-gradient-to-br from-red-50 to-orange-100 border-blue-200">
                         <CardContent className="p-6">
                           <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-xl font-bold text-red-800">{program.field}</h3>
-                            <span className="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">
+                            <h3 className="text-xl font-bold text-blue-800">{program.field}</h3>
+                            <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
                               {program.universities}
                             </span>
                           </div>
                           <div className="flex flex-wrap gap-2">
                             {program.programs.map((prog, idx) => (
-                              <span key={idx} className="bg-white text-red-700 text-sm px-3 py-1 rounded-full border border-red-200">
+                              <span key={idx} className="bg-white text-blue-700 text-sm px-3 py-1 rounded-full border border-blue-200">
                                 {prog}
                               </span>
                             ))}
@@ -300,9 +300,9 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500"
+                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500"
                     >
-                      <CheckCircle className="h-5 w-5 text-pink-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{requirement}</span>
                     </motion.div>
                   ))}
@@ -337,7 +337,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                         </div>
                       </div>
                       {index < applicationSteps.length - 1 && (
-                        <div className="absolute left-5 top-10 w-0.5 h-6 bg-orange-300"></div>
+                        <div className="absolute left-5 top-10 w-0.5 h-6 bg-blue-300"></div>
                       )}
                     </motion.div>
                   ))}
@@ -351,7 +351,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                   Plan your January intake application according to this timeline:
                 </p>
                 
-                <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-lg border border-orange-200">
+                <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-lg border border-blue-200">
                   <div className="space-y-4">
                     {timelineEvents.map((event, index) => (
                       <motion.div
@@ -362,7 +362,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                         className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-sm"
                       >
                         <div className="flex-shrink-0 w-24 text-center">
-                          <span className="bg-orange-100 text-orange-800 text-sm font-semibold px-3 py-1 rounded-full">
+                          <span className="bg-blue-100 text-blue-800 text-sm font-semibold px-3 py-1 rounded-full">
                             {event.month}
                           </span>
                         </div>
@@ -404,8 +404,8 @@ export default function JanuaryIntakeUniversitiesInUK() {
               </motion.div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-orange-50 border-l-4 border-orange-500 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-orange-800">Start Your UK Journey in January</h2>
+              <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+                <h2 className="text-2xl font-bold mb-4 text-blue-800">Start Your UK Journey in January</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   January intake provides an excellent opportunity for international students to begin their UK education with reduced competition and additional preparation time. With proper planning and early application submission, you can secure admission to top UK universities for the spring semester.
                 </p>
@@ -463,28 +463,28 @@ export default function JanuaryIntakeUniversitiesInUK() {
           <div className="w-80">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-orange-200">
+              <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-orange-800 mb-4 flex items-center">
+                  <h3 className="font-bold text-blue-800 mb-4 flex items-center">
                     <Calendar className="mr-2 h-5 w-5" />
                     January Intake Facts
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-orange-700">Start Date:</span>
-                      <span className="font-semibold text-orange-800">Jan-Feb</span>
+                      <span className="text-blue-700">Start Date:</span>
+                      <span className="font-semibold text-blue-800">Jan-Feb</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-orange-700">Application Deadline:</span>
-                      <span className="font-semibold text-orange-800">Oct-Dec</span>
+                      <span className="text-blue-700">Application Deadline:</span>
+                      <span className="font-semibold text-blue-800">Oct-Dec</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-orange-700">Graduation:</span>
-                      <span className="font-semibold text-orange-800">Summer</span>
+                      <span className="text-blue-700">Graduation:</span>
+                      <span className="font-semibold text-blue-800">Summer</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-orange-700">Competition:</span>
-                      <span className="font-semibold text-orange-800">Lower</span>
+                      <span className="text-blue-700">Competition:</span>
+                      <span className="font-semibold text-blue-800">Lower</span>
                     </div>
                   </div>
                 </CardContent>
@@ -495,17 +495,17 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 <CardContent className="p-6">
                   <h3 className="font-bold text-gray-800 mb-4">Top January Universities</h3>
                   <div className="space-y-3">
-                    <div className="p-2 bg-orange-50 rounded text-sm">
+                    <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">University of Greenwich</div>
-                      <div className="text-orange-600 text-xs">Business, Engineering</div>
+                      <div className="text-blue-600 text-xs">Business, Engineering</div>
                     </div>
-                    <div className="p-2 bg-red-50 rounded text-sm">
+                    <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">Middlesex University</div>
-                      <div className="text-red-600 text-xs">MBA, Data Science</div>
+                      <div className="text-blue-600 text-xs">MBA, Data Science</div>
                     </div>
-                    <div className="p-2 bg-pink-50 rounded text-sm">
+                    <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">University of Hertfordshire</div>
-                      <div className="text-pink-600 text-xs">Aerospace, Finance</div>
+                      <div className="text-blue-600 text-xs">Aerospace, Finance</div>
                     </div>
                   </div>
                 </CardContent>
@@ -519,19 +519,19 @@ export default function JanuaryIntakeUniversitiesInUK() {
                     <input 
                       type="text" 
                       placeholder="Your Name" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                     <input 
                       type="email" 
                       placeholder="Email Address" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                     <input 
                       type="tel" 
                       placeholder="Phone Number" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent">
+                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                       <option>Preferred Field</option>
                       <option>Business & Management</option>
                       <option>Engineering</option>

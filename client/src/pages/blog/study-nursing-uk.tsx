@@ -17,7 +17,7 @@ export default function StudyNursingUK() {
               <p className="mt-2 text-gray-600">Complete Guide for International Students</p>
             </div>
             <div className="text-right">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
                 <Heart className="w-4 h-4 mr-1" />
                 Healthcare Education
               </span>
@@ -41,23 +41,23 @@ export default function StudyNursingUK() {
               </div>
 
               {/* Quick Facts */}
-              <div className="bg-red-50 rounded-lg p-6 mb-8">
-                <h3 className="text-lg font-semibold text-red-900 mb-4">Program Overview</h3>
+              <div className="bg-blue-50 rounded-lg p-6 mb-8">
+                <h3 className="text-lg font-semibold text-blue-900 mb-4">Program Overview</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-center">
-                    <Clock className="w-5 h-5 text-red-600 mr-2" />
+                    <Clock className="w-5 h-5 text-blue-600 mr-2" />
                     <span className="text-sm">Duration: 4 years</span>
                   </div>
                   <div className="flex items-center">
-                    <DollarSign className="w-5 h-5 text-red-600 mr-2" />
+                    <DollarSign className="w-5 h-5 text-blue-600 mr-2" />
                     <span className="text-sm">Cost: £14,000-£30,000/year</span>
                   </div>
                   <div className="flex items-center">
-                    <FileText className="w-5 h-5 text-red-600 mr-2" />
+                    <FileText className="w-5 h-5 text-blue-600 mr-2" />
                     <span className="text-sm">IELTS: 7.0 overall, 6.5 each</span>
                   </div>
                   <div className="flex items-center">
-                    <Users className="w-5 h-5 text-red-600 mr-2" />
+                    <Users className="w-5 h-5 text-blue-600 mr-2" />
                     <span className="text-sm">Includes practical placements</span>
                   </div>
                 </div>
@@ -79,7 +79,7 @@ export default function StudyNursingUK() {
 
               {/* Best Universities */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   Top 10 UK Universities for Nursing
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -105,8 +105,8 @@ export default function StudyNursingUK() {
                           </p>
                         </div>
                         <div className="text-right">
-                          <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                            <span className="text-red-600 font-bold text-sm">{uni.rank}</span>
+                          <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span className="text-blue-600 font-bold text-sm">{uni.rank}</span>
                           </div>
                         </div>
                       </div>
@@ -117,7 +117,7 @@ export default function StudyNursingUK() {
 
               {/* Eligibility Criteria */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   Eligibility Criteria for International Students
                 </h2>
                 <div className="bg-white rounded-lg p-6">
@@ -126,11 +126,11 @@ export default function StudyNursingUK() {
                       <h3 className="font-semibold text-gray-900 mb-3">Academic Requirements</h3>
                       <ul className="space-y-2">
                         <li className="flex items-start">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5" />
+                          <CheckCircle className="w-5 h-5 text-blue-500 mr-2 mt-0.5" />
                           <span className="text-sm">Qualifications equal to UK A-levels or relevant bachelor's degree</span>
                         </li>
                         <li className="flex items-start">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5" />
+                          <CheckCircle className="w-5 h-5 text-blue-500 mr-2 mt-0.5" />
                           <span className="text-sm">Strong background in sciences (Biology, Chemistry)</span>
                         </li>
                       </ul>
@@ -139,15 +139,15 @@ export default function StudyNursingUK() {
                       <h3 className="font-semibold text-gray-900 mb-3">Other Requirements</h3>
                       <ul className="space-y-2">
                         <li className="flex items-start">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5" />
+                          <CheckCircle className="w-5 h-5 text-blue-500 mr-2 mt-0.5" />
                           <span className="text-sm">IELTS 7.0 overall, 6.5 in each section</span>
                         </li>
                         <li className="flex items-start">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5" />
+                          <CheckCircle className="w-5 h-5 text-blue-500 mr-2 mt-0.5" />
                           <span className="text-sm">Pass character and health checks</span>
                         </li>
                         <li className="flex items-start">
-                          <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5" />
+                          <CheckCircle className="w-5 h-5 text-blue-500 mr-2 mt-0.5" />
                           <span className="text-sm">Criminal record check (DBS)</span>
                         </li>
                       </ul>
@@ -158,7 +158,7 @@ export default function StudyNursingUK() {
 
               {/* Required Documents */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   Required Documents
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -188,13 +188,13 @@ export default function StudyNursingUK() {
 
               {/* Application Process */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   Application Process
                 </h2>
                 <div className="space-y-4">
                   <div className="bg-white border rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-semibold mr-3">1</div>
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold mr-3">1</div>
                       <h3 className="text-lg font-semibold">Choose Your University & Program</h3>
                     </div>
                     <p className="text-gray-600 ml-11">Research nursing programs (Adult Nursing, Mental Health Nursing, etc.) and check entry requirements</p>
@@ -202,7 +202,7 @@ export default function StudyNursingUK() {
                   
                   <div className="bg-white border rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-semibold mr-3">2</div>
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold mr-3">2</div>
                       <h3 className="text-lg font-semibold">Apply Through UCAS</h3>
                     </div>
                     <p className="text-gray-600 ml-11">Create UCAS account, write personal statement, and submit references</p>
@@ -210,7 +210,7 @@ export default function StudyNursingUK() {
                   
                   <div className="bg-white border rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-semibold mr-3">3</div>
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold mr-3">3</div>
                       <h3 className="text-lg font-semibold">Prove English Proficiency</h3>
                     </div>
                     <p className="text-gray-600 ml-11">Take IELTS or equivalent test and check each university's specific requirements</p>
@@ -218,7 +218,7 @@ export default function StudyNursingUK() {
                   
                   <div className="bg-white border rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-semibold mr-3">4</div>
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold mr-3">4</div>
                       <h3 className="text-lg font-semibold">Complete Additional Requirements</h3>
                     </div>
                     <p className="text-gray-600 ml-11">Health checks, DBS check, immunization records, and possible interview</p>
@@ -226,7 +226,7 @@ export default function StudyNursingUK() {
                   
                   <div className="bg-white border rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center text-red-600 font-semibold mr-3">5</div>
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-semibold mr-3">5</div>
                       <h3 className="text-lg font-semibold">After Applying</h3>
                     </div>
                     <p className="text-gray-600 ml-11">Track UCAS application, accept offer, arrange accommodation, and prepare for studies</p>
@@ -236,7 +236,7 @@ export default function StudyNursingUK() {
 
               {/* Cost Information */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   Cost for International Students
                 </h2>
                 <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-lg p-6">
@@ -258,15 +258,15 @@ export default function StudyNursingUK() {
                       <h3 className="font-semibold text-gray-900 mb-3">Financial Support</h3>
                       <div className="space-y-2 text-sm">
                         <div className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                          <CheckCircle className="w-4 h-4 text-blue-500 mr-2" />
                           <span>Scholarships available</span>
                         </div>
                         <div className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                          <CheckCircle className="w-4 h-4 text-blue-500 mr-2" />
                           <span>Financial aid programs</span>
                         </div>
                         <div className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                          <CheckCircle className="w-4 h-4 text-blue-500 mr-2" />
                           <span>NHS bursaries (for some programs)</span>
                         </div>
                       </div>
@@ -277,7 +277,7 @@ export default function StudyNursingUK() {
 
               {/* Career Prospects */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   Career Prospects
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -291,9 +291,9 @@ export default function StudyNursingUK() {
                       <li>• Mental health services</li>
                     </ul>
                   </div>
-                  <div className="bg-green-50 rounded-lg p-4">
-                    <h3 className="font-semibold text-green-900 mb-2">Specializations</h3>
-                    <ul className="text-sm text-green-800 space-y-1">
+                  <div className="bg-blue-50 rounded-lg p-4">
+                    <h3 className="font-semibold text-blue-900 mb-2">Specializations</h3>
+                    <ul className="text-sm text-blue-800 space-y-1">
                       <li>• Adult nursing</li>
                       <li>• Mental health nursing</li>
                       <li>• Children's nursing</li>
@@ -306,7 +306,7 @@ export default function StudyNursingUK() {
 
               {/* NHS Information */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-red-500 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   NHS Career Pathway
                 </h2>
                 <div className="bg-blue-50 rounded-lg p-6">
@@ -356,7 +356,7 @@ export default function StudyNursingUK() {
                     <span className="ml-2">info@dunyaconsultants.com</span>
                   </div>
                 </div>
-                <button className="w-full bg-red-600 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition-colors mt-4">
+                <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors mt-4">
                   Get Consultation
                 </button>
               </div>
@@ -365,12 +365,12 @@ export default function StudyNursingUK() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h3>
                 <div className="space-y-2">
-                  <a href="#universities" className="block text-sm text-gray-600 hover:text-red-600">Top Universities</a>
-                  <a href="#eligibility" className="block text-sm text-gray-600 hover:text-red-600">Eligibility</a>
-                  <a href="#documents" className="block text-sm text-gray-600 hover:text-red-600">Documents</a>
-                  <a href="#application" className="block text-sm text-gray-600 hover:text-red-600">Application Process</a>
-                  <a href="#cost" className="block text-sm text-gray-600 hover:text-red-600">Cost Information</a>
-                  <a href="#career" className="block text-sm text-gray-600 hover:text-red-600">Career Prospects</a>
+                  <a href="#universities" className="block text-sm text-gray-600 hover:text-blue-600">Top Universities</a>
+                  <a href="#eligibility" className="block text-sm text-gray-600 hover:text-blue-600">Eligibility</a>
+                  <a href="#documents" className="block text-sm text-gray-600 hover:text-blue-600">Documents</a>
+                  <a href="#application" className="block text-sm text-gray-600 hover:text-blue-600">Application Process</a>
+                  <a href="#cost" className="block text-sm text-gray-600 hover:text-blue-600">Cost Information</a>
+                  <a href="#career" className="block text-sm text-gray-600 hover:text-blue-600">Career Prospects</a>
                 </div>
               </div>
 

@@ -100,7 +100,7 @@ export default function BangorUniversityAcceptanceRate() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
                       <BookOpen className="w-5 h-5 mr-2" />
                       International Year Zero Program
                     </h3>
@@ -116,7 +116,7 @@ export default function BangorUniversityAcceptanceRate() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-purple-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Bachelor's or Undergraduate Degrees
                     </h3>
@@ -124,15 +124,15 @@ export default function BangorUniversityAcceptanceRate() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-orange-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Master's or Postgraduate Degrees
                     </h3>
                     <p className="text-gray-700">You should have a minimum of a 2:2 degree, 50-55 percent, or a 6.0 GPA.</p>
                   </div>
 
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-yellow-800 mb-3 flex items-center">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
                       <AlertCircle className="w-5 h-5 mr-2" />
                       Study Gap Requirements
                     </h3>
@@ -153,8 +153,8 @@ export default function BangorUniversityAcceptanceRate() {
                   If the required score is not met, students can take a Pre-sessional English course. A six-week course is provided for IELTS scores below 5.0, and a twelve-week course is mandatory for scores below 4.5. These English courses help improve the English language before starting the main degree.
                 </p>
 
-                <div className="bg-green-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-green-800">English Proficiency Requirements</h3>
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">English Proficiency Requirements</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Undergraduate Programs:</h4>
@@ -206,7 +206,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
                       <h3 className="text-lg font-semibold text-gray-800">Choose a Course</h3>
                     </div>
                     <p className="text-gray-700">After checking Bangor University term dates 2025, Select your desired program from Bangor University's courses.</p>
@@ -214,7 +214,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
                       <h3 className="text-lg font-semibold text-gray-800">Upload Documents</h3>
                     </div>
                     <p className="text-gray-700">Submit all the required documents to complete your profile.</p>
@@ -222,7 +222,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
                       <h3 className="text-lg font-semibold text-gray-800">Write a Personal Statement</h3>
                     </div>
                     <p className="text-gray-700">Provide a SOP about yourself as well as your goals.</p>
@@ -230,7 +230,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
                       <h3 className="text-lg font-semibold text-gray-800">Review Your Application</h3>
                     </div>
                     <p className="text-gray-700">Double-check all details for accuracy.</p>
@@ -238,7 +238,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">6</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">6</div>
                       <h3 className="text-lg font-semibold text-gray-800">Pay the Application Fee</h3>
                     </div>
                     <p className="text-gray-700">Submit the non-refundable fee to finalize your application.</p>
@@ -255,8 +255,8 @@ export default function BangorUniversityAcceptanceRate() {
                 </p>
 
                 <div className="space-y-6">
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-red-800 mb-4">Undergraduate Programs</h3>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4">Undergraduate Programs</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <p className="text-gray-700 mb-2"><strong>Early Deadline:</strong> January 31, 2025</p>
@@ -269,8 +269,8 @@ export default function BangorUniversityAcceptanceRate() {
                     </div>
                   </div>
 
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-green-800 mb-4">Postgraduate Programs</h3>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4">Postgraduate Programs</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <p className="text-gray-700 mb-2"><strong>September 2024 Intake:</strong> End of June</p>
@@ -418,7 +418,7 @@ export default function BangorUniversityAcceptanceRate() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Acceptance Rate:</span>
-                    <span className="font-medium text-green-600">70-80%</span>
+                    <span className="font-medium text-blue-600">70-80%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">UK Ranking:</span>

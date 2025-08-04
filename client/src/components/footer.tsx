@@ -38,7 +38,7 @@ export default function Footer() {
           {/* Contact Us Card */}
           <div className="lg:col-span-1">
             <motion.div 
-              className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl p-6 shadow-lg relative overflow-hidden"
+              className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-6 shadow-lg relative overflow-hidden"
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
             >

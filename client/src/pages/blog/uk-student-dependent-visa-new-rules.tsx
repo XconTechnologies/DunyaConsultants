@@ -75,26 +75,26 @@ export default function UKStudentDependentVisaNewRules() {
               </div>
 
               {/* Important Notice */}
-              <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-red-800 mb-4 flex items-center">
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold text-blue-800 mb-4 flex items-center">
                   <AlertTriangle className="w-5 h-5 mr-2" />
                   Important 2024 Policy Changes
                 </h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
-                    <AlertTriangle className="w-4 h-4 text-red-500 mr-3 mt-1" />
+                    <AlertTriangle className="w-4 h-4 text-blue-500 mr-3 mt-1" />
                     Master's students (except research-based) are no longer eligible to bring dependents
                   </li>
                   <li className="flex items-start">
-                    <AlertTriangle className="w-4 h-4 text-red-500 mr-3 mt-1" />
+                    <AlertTriangle className="w-4 h-4 text-blue-500 mr-3 mt-1" />
                     New financial requirements and documentation needed
                   </li>
                   <li className="flex items-start">
-                    <AlertTriangle className="w-4 h-4 text-red-500 mr-3 mt-1" />
+                    <AlertTriangle className="w-4 h-4 text-blue-500 mr-3 mt-1" />
                     Increased visa fees and processing times
                   </li>
                   <li className="flex items-start">
-                    <AlertTriangle className="w-4 h-4 text-red-500 mr-3 mt-1" />
+                    <AlertTriangle className="w-4 h-4 text-blue-500 mr-3 mt-1" />
                     Stricter application requirements for all categories
                   </li>
                 </ul>
@@ -123,7 +123,7 @@ export default function UKStudentDependentVisaNewRules() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Who Can Apply as Dependents
                     </h3>
@@ -142,8 +142,8 @@ export default function UKStudentDependentVisaNewRules() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Major Changes in 2024 UK Immigration Rules</h2>
                 
                 <div className="space-y-6">
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-red-800 mb-4">Master's Students Restriction</h3>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4">Master's Students Restriction</h3>
                     <p className="text-gray-700 mb-3">
                       <strong>Effective January 2024:</strong> Most Master's degree students can no longer bring dependents to the UK. This affects:
                     </p>
@@ -152,7 +152,7 @@ export default function UKStudentDependentVisaNewRules() {
                       <li>• Professional qualification courses</li>
                       <li>• Pre-Master's and pathway programs</li>
                     </ul>
-                    <p className="text-green-700 mt-3">
+                    <p className="text-blue-700 mt-3">
                       <strong>Exceptions:</strong> Research-based Master's (MRes, MPhil) and PhD students can still bring dependents.
                     </p>
                   </div>
@@ -189,8 +189,8 @@ export default function UKStudentDependentVisaNewRules() {
                     </ul>
                   </div>
                   
-                  <div className="bg-green-50 border-l-4 border-green-400 p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-2">Relationship Documents</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">Relationship Documents</h3>
                     <ul className="space-y-1 text-gray-700">
                       <li>• Marriage certificate (for spouse applications)</li>
                       <li>• Birth certificate (for children under 18)</li>
@@ -199,8 +199,8 @@ export default function UKStudentDependentVisaNewRules() {
                     </ul>
                   </div>
                   
-                  <div className="bg-purple-50 border-l-4 border-purple-400 p-6">
-                    <h3 className="text-lg font-semibold text-purple-800 mb-2">Student Status Documents</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">Student Status Documents</h3>
                     <ul className="space-y-1 text-gray-700">
                       <li>• Copy of student visa or BRP</li>
                       <li>• University enrollment confirmation letter</li>
@@ -209,8 +209,8 @@ export default function UKStudentDependentVisaNewRules() {
                     </ul>
                   </div>
                   
-                  <div className="bg-orange-50 border-l-4 border-orange-400 p-6">
-                    <h3 className="text-lg font-semibold text-orange-800 mb-2">Additional Requirements for Children 16+</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">Additional Requirements for Children 16+</h3>
                     <ul className="space-y-1 text-gray-700">
                       <li>• Educational enrollment evidence</li>
                       <li>• Proof of financial dependency</li>
@@ -236,7 +236,7 @@ export default function UKStudentDependentVisaNewRules() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
                       <h3 className="text-lg font-semibold text-gray-800">Gather Documents</h3>
                     </div>
                     <p className="text-gray-700">Collect all required documents including relationship proof, financial evidence, and student status documentation.</p>
@@ -244,7 +244,7 @@ export default function UKStudentDependentVisaNewRules() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
                       <h3 className="text-lg font-semibold text-gray-800">Complete Online Application</h3>
                     </div>
                     <p className="text-gray-700">Fill out the dependent visa application form online through the official UK government website.</p>
@@ -252,7 +252,7 @@ export default function UKStudentDependentVisaNewRules() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
                       <h3 className="text-lg font-semibold text-gray-800">Pay Fees & Book Appointment</h3>
                     </div>
                     <p className="text-gray-700">Pay the visa fees and book biometric appointment at nearest visa application center.</p>
@@ -260,7 +260,7 @@ export default function UKStudentDependentVisaNewRules() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
                       <h3 className="text-lg font-semibold text-gray-800">Attend Biometric Appointment</h3>
                     </div>
                     <p className="text-gray-700">Attend the appointment to provide biometric data and submit all required documents.</p>
@@ -268,7 +268,7 @@ export default function UKStudentDependentVisaNewRules() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-indigo-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">6</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">6</div>
                       <h3 className="text-lg font-semibold text-gray-800">Wait for Decision</h3>
                     </div>
                     <p className="text-gray-700">Wait for the decision which typically takes 3-8 weeks for applications from outside the UK.</p>
@@ -280,8 +280,8 @@ export default function UKStudentDependentVisaNewRules() {
               <section id="visa-fees" className="mb-10">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">UK Student Dependent Visa Fees 2024</h2>
                 
-                <div className="bg-yellow-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-yellow-800 flex items-center">
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800 flex items-center">
                     <DollarSign className="w-5 h-5 mr-2" />
                     Current Fee Structure
                   </h3>
@@ -307,8 +307,8 @@ export default function UKStudentDependentVisaNewRules() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Important Policy Updates & Notices</h2>
                 
                 <div className="space-y-4">
-                  <div className="bg-red-100 border border-red-300 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-red-800 mb-3">Master's Students Notice</h3>
+                  <div className="bg-blue-100 border border-blue-300 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Master's Students Notice</h3>
                     <p className="text-gray-700">
                       As of January 2024, most Master's degree students cannot bring dependents. This significantly affects international students planning to study with their families. Only research-based programs (MRes, MPhil) are exempt.
                     </p>
@@ -321,8 +321,8 @@ export default function UKStudentDependentVisaNewRules() {
                     </p>
                   </div>
                   
-                  <div className="bg-green-100 border border-green-300 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-3">Financial Evidence Requirements</h3>
+                  <div className="bg-blue-100 border border-blue-300 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Financial Evidence Requirements</h3>
                     <p className="text-gray-700">
                       All financial documents must be in English or officially translated. Bank statements must show funds held for 28 consecutive days ending no more than 31 days before application submission.
                     </p>
@@ -437,7 +437,7 @@ export default function UKStudentDependentVisaNewRules() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">2024 Changes:</span>
-                    <span className="font-medium text-red-600">Major</span>
+                    <span className="font-medium text-blue-600">Major</span>
                   </div>
                 </div>
               </div>
@@ -451,15 +451,15 @@ export default function UKStudentDependentVisaNewRules() {
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>PhD Students</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Eligible</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Eligible</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Research Master's</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Eligible</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Eligible</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Taught Master's</span>
-                    <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Not Eligible</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Not Eligible</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Government Sponsored</span>

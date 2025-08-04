@@ -38,8 +38,8 @@ const audienceData: AudienceData[] = [
     subtitle: "Your Dream University Awaits",
     description: "With a keen ear for your choices and preferences, our counselling experience is so seamless that you will land in your dream university!",
     icon: GraduationCap,
-    color: "from-blue-500 to-purple-600",
-    bgGradient: "from-blue-50 to-purple-50",
+    color: "from-blue-500 to-blue-600",
+    bgGradient: "from-blue-50 to-blue-50",
     offerings: [
       {
         icon: Video,
@@ -90,8 +90,8 @@ const audienceData: AudienceData[] = [
     subtitle: "Diverse Recruitment & Network Access",
     description: "Connect with our extensive network of qualified students and enhance your institution's global visibility through our comprehensive recruitment solutions.",
     icon: Users,
-    color: "from-orange-500 to-red-600",
-    bgGradient: "from-orange-50 to-red-50",
+    color: "from-blue-500 to-blue-600",
+    bgGradient: "from-blue-50 to-blue-50",
     offerings: [
       {
         icon: TrendingUp,
@@ -118,7 +118,7 @@ export default function AudienceSectionNew() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-blue-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full" style={{

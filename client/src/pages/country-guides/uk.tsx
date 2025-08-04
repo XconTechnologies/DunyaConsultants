@@ -163,7 +163,7 @@ export default function UKGuide() {
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Study in the<br />
-              <span className="text-yellow-300">United Kingdom</span>
+              <span className="text-blue-300">United Kingdom</span>
             </h1>
             
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
@@ -173,19 +173,19 @@ export default function UKGuide() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">{ukStats.universities}</div>
+                <div className="text-3xl font-bold text-blue-300">{ukStats.universities}</div>
                 <div className="text-sm text-blue-100">Universities</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">{ukStats.internationalStudents}</div>
+                <div className="text-3xl font-bold text-blue-300">{ukStats.internationalStudents}</div>
                 <div className="text-sm text-blue-100">International Students</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">{ukStats.globalRank}</div>
+                <div className="text-3xl font-bold text-blue-300">{ukStats.globalRank}</div>
                 <div className="text-sm text-blue-100">Global Education Rank</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">{ukStats.visaSuccess}</div>
+                <div className="text-3xl font-bold text-blue-300">{ukStats.visaSuccess}</div>
                 <div className="text-sm text-blue-100">Visa Success Rate</div>
               </div>
             </div>
@@ -218,17 +218,17 @@ export default function UKGuide() {
                     <p className="text-sm text-neutral-600">3-year Bachelor's, 1-year Master's</p>
                   </Card>
                   <Card className="shadow-lg text-center p-6">
-                    <Award className="w-12 h-12 text-purple-600 mx-auto mb-4" />
+                    <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">Historic Excellence</h3>
                     <p className="text-sm text-neutral-600">Centuries of academic tradition</p>
                   </Card>
                   <Card className="shadow-lg text-center p-6">
-                    <Globe className="w-12 h-12 text-green-600 mx-auto mb-4" />
+                    <Globe className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">Gateway to Europe</h3>
                     <p className="text-sm text-neutral-600">Easy access to European countries</p>
                   </Card>
                   <Card className="shadow-lg text-center p-6">
-                    <BookOpen className="w-12 h-12 text-orange-600 mx-auto mb-4" />
+                    <BookOpen className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">English Heritage</h3>
                     <p className="text-sm text-neutral-600">Birthplace of English language</p>
                   </Card>
@@ -246,35 +246,35 @@ export default function UKGuide() {
                         <span className="font-medium">Total Universities</span>
                         <span className="font-bold text-blue-600">{ukStats.universities}</span>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-green-50 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">International Students</span>
-                        <span className="font-bold text-green-600">{ukStats.internationalStudents}</span>
+                        <span className="font-bold text-blue-600">{ukStats.internationalStudents}</span>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-purple-50 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Annual Tuition Range</span>
-                        <span className="font-bold text-purple-600">{ukStats.averageCost}</span>
+                        <span className="font-bold text-blue-600">{ukStats.averageCost}</span>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-orange-50 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Post-Study Work Visa</span>
-                        <span className="font-bold text-orange-600">{ukStats.workPermit}</span>
+                        <span className="font-bold text-blue-600">{ukStats.workPermit}</span>
                       </div>
                     </div>
                     <div className="space-y-4">
-                      <div className="flex items-center justify-between p-3 bg-red-50 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Global Education Rank</span>
-                        <span className="font-bold text-red-600">{ukStats.globalRank}</span>
+                        <span className="font-bold text-blue-600">{ukStats.globalRank}</span>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-yellow-50 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Visa Success Rate</span>
-                        <span className="font-bold text-yellow-600">{ukStats.visaSuccess}</span>
+                        <span className="font-bold text-blue-600">{ukStats.visaSuccess}</span>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-indigo-50 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Program Duration</span>
-                        <span className="font-bold text-indigo-600">{ukStats.programDuration}</span>
+                        <span className="font-bold text-blue-600">{ukStats.programDuration}</span>
                       </div>
-                      <div className="flex items-center justify-between p-3 bg-pink-50 rounded-lg">
+                      <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Intake Seasons</span>
-                        <span className="font-bold text-pink-600">{ukStats.intakeSeasons}</span>
+                        <span className="font-bold text-blue-600">{ukStats.intakeSeasons}</span>
                       </div>
                     </div>
                   </div>
@@ -324,20 +324,20 @@ export default function UKGuide() {
                             <div className="text-sm text-neutral-600">Annual Tuition</div>
                             <div className="font-bold text-blue-600">{university.tuition}</div>
                           </div>
-                          <div className="text-center p-4 bg-orange-50 rounded-lg">
-                            <Users className="w-6 h-6 text-orange-600 mx-auto mb-2" />
+                          <div className="text-center p-4 bg-blue-50 rounded-lg">
+                            <Users className="w-6 h-6 text-blue-600 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Acceptance Rate</div>
-                            <div className="font-bold text-orange-600">{university.acceptance}</div>
+                            <div className="font-bold text-blue-600">{university.acceptance}</div>
                           </div>
-                          <div className="text-center p-4 bg-green-50 rounded-lg">
-                            <Building className="w-6 h-6 text-green-600 mx-auto mb-2" />
+                          <div className="text-center p-4 bg-blue-50 rounded-lg">
+                            <Building className="w-6 h-6 text-blue-600 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Campus</div>
-                            <div className="font-bold text-green-600">{university.campusSize}</div>
+                            <div className="font-bold text-blue-600">{university.campusSize}</div>
                           </div>
-                          <div className="text-center p-4 bg-purple-50 rounded-lg">
-                            <GraduationCap className="w-6 h-6 text-purple-600 mx-auto mb-2" />
+                          <div className="text-center p-4 bg-blue-50 rounded-lg">
+                            <GraduationCap className="w-6 h-6 text-blue-600 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Student Body</div>
-                            <div className="font-bold text-purple-600">{university.studentBody}</div>
+                            <div className="font-bold text-blue-600">{university.studentBody}</div>
                           </div>
                         </div>
 
@@ -354,7 +354,7 @@ export default function UKGuide() {
                             <h5 className="font-bold text-neutral-800 mb-3">Specialized Schools</h5>
                             <div className="flex flex-wrap gap-2">
                               {university.specialties.map((specialty, idx) => (
-                                <Badge key={idx} className="bg-indigo-500 hover:bg-indigo-600 text-xs">{specialty}</Badge>
+                                <Badge key={idx} className="bg-blue-500 hover:bg-blue-600 text-xs">{specialty}</Badge>
                               ))}
                             </div>
                           </div>
@@ -365,7 +365,7 @@ export default function UKGuide() {
                           <div className="grid md:grid-cols-2 gap-3">
                             {university.highlights.map((highlight, idx) => (
                               <div key={idx} className="flex items-center space-x-2">
-                                <Star className="w-4 h-4 text-yellow-500 flex-shrink-0" />
+                                <Star className="w-4 h-4 text-blue-500 flex-shrink-0" />
                                 <span className="text-sm text-neutral-600">{highlight}</span>
                               </div>
                             ))}
@@ -440,19 +440,19 @@ export default function UKGuide() {
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Tutorial system</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Research opportunities</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">World-class libraries</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Academic societies</span>
                       </li>
                     </ul>
@@ -462,26 +462,26 @@ export default function UKGuide() {
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Users className="w-6 h-6 mr-2 text-purple-500" />
+                      <Users className="w-6 h-6 mr-2 text-blue-500" />
                       Cultural Experience
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Historic architecture</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Theatre and arts</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Royal traditions</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">European travel</span>
                       </li>
                     </ul>
@@ -491,26 +491,26 @@ export default function UKGuide() {
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <TrendingUp className="w-6 h-6 mr-2 text-green-500" />
+                      <TrendingUp className="w-6 h-6 mr-2 text-blue-500" />
                       Career Support
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Graduate Route visa</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Industry connections</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Internship programs</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
+                        <CheckCircle className="w-4 h-4 text-blue-500" />
                         <span className="text-sm">Alumni networks</span>
                       </li>
                     </ul>

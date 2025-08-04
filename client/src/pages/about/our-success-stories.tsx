@@ -184,7 +184,7 @@ export default function OurSuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Our{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Achievements
                 </span>
               </h2>
@@ -217,7 +217,7 @@ export default function OurSuccessStories() {
       </section>
 
       {/* Our Success Stories - Visas */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -231,7 +231,7 @@ export default function OurSuccessStories() {
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Our Success Stories{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                 – Visas
               </span>
             </h2>
@@ -326,7 +326,7 @@ export default function OurSuccessStories() {
                 icon: Trophy,
                 title: "Fast Visa Processing",
                 description: "UK visas approved in 3-7 days with expert guidance",
-                gradient: "from-indigo-500 to-indigo-600"
+                gradient: "from-blue-500 to-blue-600"
               },
               {
                 icon: Star,
@@ -338,7 +338,7 @@ export default function OurSuccessStories() {
                 icon: GraduationCap,
                 title: "Premier Universities",
                 description: "Admissions to University of Sunderland, Ulster University & more",
-                gradient: "from-purple-500 to-purple-600"
+                gradient: "from-blue-500 to-blue-600"
               }
             ] : activeTab === 'Finland' ? [
               {
@@ -351,20 +351,20 @@ export default function OurSuccessStories() {
                 icon: Star,
                 title: "Scholarship Winners", 
                 description: "Multiple students secured scholarships up to €6000",
-                gradient: "from-green-500 to-green-600"
+                gradient: "from-blue-500 to-blue-600"
               },
               {
                 icon: GraduationCap,
                 title: "Top Universities",
                 description: "Admissions to leading Finnish institutions",
-                gradient: "from-purple-500 to-purple-600"
+                gradient: "from-blue-500 to-blue-600"
               }
             ] : [
               {
                 icon: Trophy,
                 title: "Lightning Fast Processing",
                 description: "Sweden visas approved in 3-7 days with exceptional results",
-                gradient: "from-yellow-500 to-yellow-600"
+                gradient: "from-blue-500 to-blue-600"
               },
               {
                 icon: Star,
@@ -376,7 +376,7 @@ export default function OurSuccessStories() {
                 icon: GraduationCap,
                 title: "Multiple Entry Visas",
                 description: "Schengen multiple entry visas for enhanced mobility",
-                gradient: "from-orange-500 to-orange-600"
+                gradient: "from-blue-500 to-blue-600"
               }
             ]).map((item, index) => (
               <motion.div
@@ -401,7 +401,7 @@ export default function OurSuccessStories() {
 
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -25,11 +25,11 @@ export default function AssistanceSection() {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-red-50 to-orange-50 relative overflow-hidden">
+    <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-blue-100 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-red-500 rounded-full -translate-x-32 -translate-y-32" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500 rounded-full translate-x-48 translate-y-48" />
+        <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500 rounded-full -translate-x-32 -translate-y-32" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full translate-x-48 translate-y-48" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

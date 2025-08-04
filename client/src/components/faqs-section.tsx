@@ -44,7 +44,7 @@ export default function FAQsSection() {
       id: "visa",
       title: "Visa Process",
       icon: Plane,
-      color: "from-green-500 to-green-600",
+      color: "from-blue-500 to-blue-600",
       faqs: [
         {
           question: "How long does the visa process take?",
@@ -76,7 +76,7 @@ export default function FAQsSection() {
       id: "finances",
       title: "Finances & Scholarships",
       icon: DollarSign,
-      color: "from-purple-500 to-purple-600",
+      color: "from-blue-500 to-blue-600",
       faqs: [
         {
           question: "How much does it cost to study abroad?",
@@ -108,7 +108,7 @@ export default function FAQsSection() {
       id: "general",
       title: "General Questions",
       icon: HelpCircle,
-      color: "from-orange-500 to-orange-600",
+      color: "from-blue-500 to-blue-600",
       faqs: [
         {
           question: "Why should I choose Dunya Consultants?",
@@ -173,23 +173,23 @@ export default function FAQsSection() {
               <p className="text-gray-600">Questions Answered</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 border-green-500">
+          <Card className="text-center shadow-lg border-l-4 border-blue-500">
             <CardContent className="p-6">
-              <Clock className="h-10 w-10 text-green-600 mx-auto mb-3" />
+              <Clock className="h-10 w-10 text-blue-600 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">24/7</h3>
               <p className="text-gray-600">Support Available</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 border-purple-500">
+          <Card className="text-center shadow-lg border-l-4 border-blue-500">
             <CardContent className="p-6">
-              <GraduationCap className="h-10 w-10 text-purple-600 mx-auto mb-3" />
+              <GraduationCap className="h-10 w-10 text-blue-600 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">98%</h3>
               <p className="text-gray-600">Success Rate</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 border-orange-500">
+          <Card className="text-center shadow-lg border-l-4 border-blue-500">
             <CardContent className="p-6">
-              <HelpCircle className="h-10 w-10 text-orange-600 mx-auto mb-3" />
+              <HelpCircle className="h-10 w-10 text-blue-600 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">15+</h3>
               <p className="text-gray-600">Years Experience</p>
             </CardContent>
@@ -280,7 +280,7 @@ export default function FAQsSection() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="tel:+923041110947"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all"
+                  className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all"
                 >
                   Call Us: +92 304 1110947
                 </a>

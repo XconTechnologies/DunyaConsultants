@@ -166,9 +166,9 @@ export default function GlobalTalentVisaUK() {
               <div className="mb-8" id="costs">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Cost to apply for Global Talent UK Visa</h2>
                 
-                <div className="bg-yellow-50 border border-yellow-200 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-yellow-800 mb-3">Total Cost Breakdown</h4>
-                  <div className="space-y-3 text-yellow-700">
+                <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg mb-6">
+                  <h4 className="font-semibold text-blue-800 mb-3">Total Cost Breakdown</h4>
+                  <div className="space-y-3 text-blue-700">
                     <p className="font-medium">The total cost to apply for a UK Global Talent Visa is <strong>£716</strong>.</p>
                     <div className="space-y-2">
                       <div className="flex justify-between">
@@ -197,9 +197,9 @@ export default function GlobalTalentVisaUK() {
                 </p>
 
                 <div className="space-y-4">
-                  <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-                    <h4 className="font-semibold text-green-800 mb-2">Standard Processing</h4>
-                    <p className="text-green-700">3 weeks for standard applications</p>
+                  <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <h4 className="font-semibold text-blue-800 mb-2">Standard Processing</h4>
+                    <p className="text-blue-700">3 weeks for standard applications</p>
                   </div>
                   
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
@@ -207,9 +207,9 @@ export default function GlobalTalentVisaUK() {
                     <p className="text-blue-700">You may have the option to pay extra for a faster decision</p>
                   </div>
                   
-                  <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
-                    <h4 className="font-semibold text-orange-800 mb-2">Longer Processing Cases</h4>
-                    <p className="text-orange-700">Your application might take longer if you are applying with a family member who needs an appointment while you do not, if your documents need verification, if you are required to attend an interview, or if there are concerns due to your personal history.</p>
+                  <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <h4 className="font-semibold text-blue-800 mb-2">Longer Processing Cases</h4>
+                    <p className="text-blue-700">Your application might take longer if you are applying with a family member who needs an appointment while you do not, if your documents need verification, if you are required to attend an interview, or if there are concerns due to your personal history.</p>
                   </div>
                 </div>
 
@@ -307,15 +307,15 @@ export default function GlobalTalentVisaUK() {
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Academia & Research</span>
-                  <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Researcher</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Researcher</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Arts & Culture</span>
-                  <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Creative</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Creative</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Science & Innovation</span>
-                  <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Innovator</span>
+                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Innovator</span>
                 </div>
               </div>
             </div>

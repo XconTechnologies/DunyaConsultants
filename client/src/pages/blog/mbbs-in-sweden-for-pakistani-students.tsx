@@ -101,7 +101,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
       <div className="min-h-screen bg-white">
       
       {/* Hero Section */}
-      <section className="relative h-96 bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 overflow-hidden">
+      <section className="relative h-96 bg-gradient-to-r from-blue-600 via-blue-700 to-purple-800 overflow-hidden">
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
         <div 
@@ -197,7 +197,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
 
               {/* Eligibility Criteria */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-green-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Eligibility Criteria for Sweden Medical University
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -211,9 +211,9 @@ export default function MBBSInSwedenForPakistaniStudents() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-4 p-4 bg-green-50 rounded-lg"
+                        className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg"
                       >
-                        <div className="flex-shrink-0 w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mt-1">
+                        <div className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mt-1">
                           ✓
                         </div>
                         <span className="text-gray-800">{requirement}</span>
@@ -225,7 +225,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
 
               {/* Requirements */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-purple-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   MBBS in Sweden for Pakistani Students Requirements
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -239,9 +239,9 @@ export default function MBBSInSwedenForPakistaniStudents() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.05 }}
-                        className="flex items-center gap-3 p-3 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
+                        className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
-                        <FileText className="h-5 w-5 text-purple-600" />
+                        <FileText className="h-5 w-5 text-blue-600" />
                         <span className="text-gray-800 text-sm">{document}</span>
                       </motion.div>
                     ))}
@@ -251,7 +251,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
 
               {/* Application Process */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-orange-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Application Process to Study in Sweden Medical University
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -265,9 +265,9 @@ export default function MBBSInSwedenForPakistaniStudents() {
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.2 }}
-                        className="flex gap-6 p-6 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors"
+                        className="flex gap-6 p-6 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
-                        <div className="flex-shrink-0 w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                        <div className="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
                           {step.step}
                         </div>
                         <div>
@@ -282,17 +282,17 @@ export default function MBBSInSwedenForPakistaniStudents() {
 
               {/* Fee Structure */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-red-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   MBBS in Sweden for Pakistani Students Fee Structure
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
                   <div className="grid md:grid-cols-2 gap-8">
                     <div>
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">Annual Tuition Fees</h3>
-                      <div className="bg-red-50 p-6 rounded-lg">
+                      <div className="bg-blue-50 p-6 rounded-lg">
                         <div className="flex items-center gap-3 mb-4">
-                          <DollarSign className="h-6 w-6 text-red-600" />
-                          <span className="text-2xl font-bold text-red-600">85,000 - 95,000 SEK</span>
+                          <DollarSign className="h-6 w-6 text-blue-600" />
+                          <span className="text-2xl font-bold text-blue-600">85,000 - 95,000 SEK</span>
                         </div>
                         <p className="text-gray-700 text-sm leading-relaxed">
                           Annual tuition fees for MBBS programs. Amount may vary based on programs, universities, and curriculum.
@@ -322,7 +322,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
 
               {/* Scholarships */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-yellow-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Scholarships to Study MBBS in Sweden
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -336,9 +336,9 @@ export default function MBBSInSwedenForPakistaniStudents() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-center gap-3 p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors"
+                        className="flex items-center gap-3 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
-                        <Award className="h-5 w-5 text-yellow-600" />
+                        <Award className="h-5 w-5 text-blue-600" />
                         <span className="text-gray-800 font-medium">{scholarship}</span>
                       </motion.div>
                     ))}
@@ -348,10 +348,10 @@ export default function MBBSInSwedenForPakistaniStudents() {
 
               {/* Conclusion */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Conclusion
                 </h2>
-                <div className="bg-white rounded-xl p-8 shadow-lg border-l-4 border-indigo-600">
+                <div className="bg-white rounded-xl p-8 shadow-lg border-l-4 border-blue-600">
                   <p className="text-lg text-gray-700 leading-relaxed">
                     Sweden offers excellent opportunities for Pakistani students to pursue MBBS with world-class education, modern facilities, and reasonable costs. The country's focus on practical learning and research makes it an ideal destination for medical education. With proper preparation and guidance from experienced consultants, you can successfully secure admission to top Swedish medical universities.
                   </p>
@@ -360,7 +360,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
 
               {/* FAQs */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-emerald-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-blue-600 pl-4">
                   Frequently Asked Questions
                 </h2>
                 <div className="space-y-6">
@@ -373,7 +373,7 @@ export default function MBBSInSwedenForPakistaniStudents() {
                       className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
                     >
                       <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-start gap-3">
-                        <span className="flex-shrink-0 w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                        <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
                           Q
                         </span>
                         {faq.question}
@@ -426,21 +426,21 @@ export default function MBBSInSwedenForPakistaniStudents() {
               </Card>
 
               {/* Contact Form */}
-              <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+              <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Phone className="h-5 w-5 text-green-600" />
+                    <Phone className="h-5 w-5 text-blue-600" />
                     Get Expert Guidance
                   </h3>
                   <p className="text-gray-700 text-sm mb-4 leading-relaxed">
                     Ready to start your MBBS journey in Sweden? Our experts are here to help with admissions, visa guidance, and scholarship applications.
                   </p>
                   <div className="space-y-3">
-                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                       <Phone className="h-4 w-4 mr-2" />
                       Call (+92) 304 1110947
                     </Button>
-                    <Button variant="outline" className="w-full border-green-600 text-green-600 hover:bg-green-50">
+                    <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
                       <Mail className="h-4 w-4 mr-2" />
                       Email Consultation
                     </Button>
@@ -449,25 +449,25 @@ export default function MBBSInSwedenForPakistaniStudents() {
               </Card>
 
               {/* Office Location */}
-              <Card className="bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200">
+              <Card className="bg-gradient-to-br from-purple-50 to-violet-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Building className="h-5 w-5 text-purple-600" />
+                    <Building className="h-5 w-5 text-blue-600" />
                     Visit Our Office
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-start gap-3">
-                      <MapPin className="h-4 w-4 text-purple-600 mt-1 flex-shrink-0" />
+                      <MapPin className="h-4 w-4 text-blue-600 mt-1 flex-shrink-0" />
                       <span className="text-gray-700">
                         110 Link Stadium Road Sargodha, Pakistan
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Phone className="h-4 w-4 text-purple-600" />
+                      <Phone className="h-4 w-4 text-blue-600" />
                       <span className="text-gray-700">(+92) 304 1110947</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Mail className="h-4 w-4 text-purple-600" />
+                      <Mail className="h-4 w-4 text-blue-600" />
                       <span className="text-gray-700">query@teamdunya.com</span>
                     </div>
                   </div>

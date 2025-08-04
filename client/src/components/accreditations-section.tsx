@@ -122,7 +122,7 @@ export default function AccreditationsSection() {
               <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-neutral-100">
                 {/* Status Badge */}
                 <div className="absolute top-3 right-3">
-                  <div className="bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full flex items-center space-x-1">
+                  <div className="bg-blue-100 text-blue-700 text-xs font-semibold px-2 py-1 rounded-full flex items-center space-x-1">
                     <CheckCircle className="w-3 h-3" />
                     <span className="hidden sm:inline">Verified</span>
                   </div>
@@ -178,7 +178,7 @@ export default function AccreditationsSection() {
                 <div className="text-sm text-neutral-600">Compliance Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">24/7</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
                 <div className="text-sm text-neutral-600">Quality Assurance</div>
               </div>
             </div>

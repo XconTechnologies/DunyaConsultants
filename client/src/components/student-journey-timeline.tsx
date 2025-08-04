@@ -28,7 +28,7 @@ const journeySteps = [
     description: "Personalized university recommendations based on your profile and preferences",
     duration: "2-3 weeks",
     icon: GraduationCap,
-    color: "bg-purple-500",
+    color: "bg-blue-500",
     deliverables: ["University Shortlist", "Program Matching", "Entry Requirements", "Scholarship Options"]
   },
   {
@@ -37,7 +37,7 @@ const journeySteps = [
     description: "IELTS, TOEFL, PTE, or other required language and academic test preparation",
     duration: "4-8 weeks",
     icon: BookOpen,
-    color: "bg-green-500",
+    color: "bg-blue-500",
     deliverables: ["Test Registration", "Study Materials", "Mock Tests", "Score Achievement"]
   },
   {
@@ -46,7 +46,7 @@ const journeySteps = [
     description: "Complete documentation including transcripts, SOP, LORs, and financial documents",
     duration: "3-4 weeks",
     icon: FileText,
-    color: "bg-orange-500",
+    color: "bg-blue-500",
     deliverables: ["SOP Writing", "LOR Collection", "Document Verification", "Portfolio Creation"]
   },
   {
@@ -55,7 +55,7 @@ const journeySteps = [
     description: "Submit applications to selected universities with complete documentation",
     duration: "1-2 weeks",
     icon: Send,
-    color: "bg-red-500",
+    color: "bg-blue-500",
     deliverables: ["Online Applications", "Document Upload", "Application Fees", "Tracking Setup"]
   },
   {
@@ -64,7 +64,7 @@ const journeySteps = [
     description: "Receive offers, compare options, and confirm your preferred university",
     duration: "6-12 weeks",
     icon: CheckCircle,
-    color: "bg-teal-500",
+    color: "bg-blue-500",
     deliverables: ["Offer Letters", "Scholarship Awards", "Acceptance Confirmation", "Deposit Payment"]
   },
   {
@@ -73,7 +73,7 @@ const journeySteps = [
     description: "Complete visa application with proper documentation and interview preparation",
     duration: "4-8 weeks",
     icon: MapPin,
-    color: "bg-indigo-500",
+    color: "bg-blue-500",
     deliverables: ["Visa Application", "Financial Documents", "Interview Prep", "Visa Approval"]
   },
   {
@@ -82,7 +82,7 @@ const journeySteps = [
     description: "Final preparations including accommodation, travel, and orientation support",
     duration: "2-4 weeks",
     icon: Plane,
-    color: "bg-pink-500",
+    color: "bg-blue-500",
     deliverables: ["Accommodation Booking", "Travel Arrangements", "Orientation Guide", "Emergency Contacts"]
   }
 ];
@@ -291,7 +291,7 @@ export default function StudentJourneyTimeline() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <motion.button
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

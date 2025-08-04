@@ -145,7 +145,7 @@ export default function CoursesSection() {
             whileHover={{ scale: 1.02 }}
           >
             <span className="text-neutral-800">Courses & </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-600">
               Programs
             </span>
           </motion.h2>
@@ -282,7 +282,7 @@ export default function CoursesSection() {
                 </div>
                 <div className="absolute bottom-4 left-4 text-white">
                   <div className="flex items-center gap-2">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <Star className="w-4 h-4 fill-yellow-400 text-blue-400" />
                     <span className="font-medium">{course.rating}</span>
                     <span className="text-sm opacity-90">({course.students} students)</span>
                   </div>
@@ -322,7 +322,7 @@ export default function CoursesSection() {
 
                 {/* Apply Button */}
                 <motion.button
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 px-6 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2 group"
+                  className="w-full bg-gradient-to-r from-blue-600 to-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:from-blue-700 hover:to-blue-700 transition-all duration-300 flex items-center justify-center gap-2 group"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >

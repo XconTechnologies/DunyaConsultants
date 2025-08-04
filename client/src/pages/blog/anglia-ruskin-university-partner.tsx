@@ -14,7 +14,7 @@ export default function AngliaRuskinUniversityPartner() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Link 
             href="/blog" 
-            className="inline-flex items-center text-purple-200 hover:text-white mb-6 transition-colors"
+            className="inline-flex items-center text-blue-200 hover:text-white mb-6 transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Blog
@@ -26,7 +26,7 @@ export default function AngliaRuskinUniversityPartner() {
             transition={{ duration: 0.6 }}
           >
             <div className="mb-4">
-              <span className="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                 University Partnership
               </span>
             </div>
@@ -35,11 +35,11 @@ export default function AngliaRuskinUniversityPartner() {
               Anglia Ruskin University – A Trusted Partner of Dunya Consultants
             </h1>
             
-            <p className="text-xl text-purple-100 mb-6">
+            <p className="text-xl text-blue-100 mb-6">
               Discover why Anglia Ruskin University is the perfect choice for Pakistani students seeking quality education in the UK. Complete guide to programs, rankings, and admission requirements.
             </p>
             
-            <div className="flex flex-wrap items-center gap-6 text-sm text-purple-200">
+            <div className="flex flex-wrap items-center gap-6 text-sm text-blue-200">
               <div className="flex items-center">
                 <User className="h-4 w-4 mr-2" />
                 Dunya Consultants
@@ -78,9 +78,9 @@ export default function AngliaRuskinUniversityPartner() {
                 className="w-full h-64 object-cover rounded-lg mb-8"
               />
 
-              <div className="bg-purple-50 border-l-4 border-purple-500 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
                 <div className="flex items-center mb-2">
-                  <Award className="h-5 w-5 text-purple-500 mr-2" />
+                  <Award className="h-5 w-5 text-blue-500 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-900">About Anglia Ruskin University</h3>
                 </div>
                 <p className="text-gray-700">
@@ -92,7 +92,7 @@ export default function AngliaRuskinUniversityPartner() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Award className="h-8 w-8 text-yellow-500 mb-3" />
+                  <Award className="h-8 w-8 text-blue-500 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Gold Teaching Excellence</h3>
                   <p className="text-gray-600">ARU has been awarded a Gold rating for teaching excellence and won Times Higher Education University of the Year 2023.</p>
                 </div>
@@ -102,12 +102,12 @@ export default function AngliaRuskinUniversityPartner() {
                   <p className="text-gray-600">Comprehensive support system with flexible study options to help students balance education with personal life.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Globe className="h-8 w-8 text-green-500 mb-3" />
+                  <Globe className="h-8 w-8 text-blue-500 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Global Recognition</h3>
                   <p className="text-gray-600">Ranked among the top universities in the UK and worldwide by Times Higher Education rankings.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <TrendingUp className="h-8 w-8 text-purple-500 mb-3" />
+                  <TrendingUp className="h-8 w-8 text-blue-500 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Career Success</h3>
                   <p className="text-gray-600">High employment rates with strong industry partnerships providing internships and work experience.</p>
                 </div>
@@ -120,45 +120,45 @@ export default function AngliaRuskinUniversityPartner() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Business and Management</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Computer Science & IT</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Health & Social Care</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Engineering</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Psychology</span>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Arts & Media</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Education</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Life Sciences</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Nursing</span>
                     </div>
                   </div>
@@ -167,12 +167,12 @@ export default function AngliaRuskinUniversityPartner() {
 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">University Rankings</h2>
               
-              <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-6 mb-8">
+              <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
                 <h3 className="text-lg font-semibold mb-4">ARU's Position in Global Rankings</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                     <span className="font-medium">Times University Guide 2024</span>
-                    <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-semibold">115th UK</span>
+                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">115th UK</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                     <span className="font-medium">Guardian University Guide 2024</span>
@@ -180,11 +180,11 @@ export default function AngliaRuskinUniversityPartner() {
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                     <span className="font-medium">THE World University Rankings</span>
-                    <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">301-350 Global</span>
+                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">301-350 Global</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                     <span className="font-medium">US News Global Universities</span>
-                    <span className="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm font-semibold">814th Global</span>
+                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold">814th Global</span>
                   </div>
                 </div>
               </div>
@@ -195,31 +195,31 @@ export default function AngliaRuskinUniversityPartner() {
                 <h3 className="text-lg font-semibold mb-4">How We Support Pakistani Students</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Complete Application Support:</strong> From choosing the right program to submitting your application
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Visa Guidance:</strong> Expert assistance with UK student visa applications and requirements
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Scholarship Opportunities:</strong> Guidance on available scholarships and financial aid options
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Pre-departure Support:</strong> Comprehensive briefing on UK life, culture, and academic expectations
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Ongoing Support:</strong> Continuous assistance throughout your studies at ARU
                     </div>
@@ -229,9 +229,9 @@ export default function AngliaRuskinUniversityPartner() {
 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Admission Requirements</h2>
               
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
                 <div className="flex items-center mb-2">
-                  <AlertCircle className="h-5 w-5 text-yellow-500 mr-2" />
+                  <AlertCircle className="h-5 w-5 text-blue-500 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-900">Entry Requirements</h3>
                 </div>
                 <div className="space-y-3 text-gray-700">
@@ -261,17 +261,17 @@ export default function AngliaRuskinUniversityPartner() {
                   <h4 className="font-semibold text-blue-800 mb-2">Modern Facilities</h4>
                   <p className="text-sm text-blue-700">State-of-the-art laboratories, libraries, and learning spaces equipped with latest technology</p>
                 </div>
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-green-800 mb-2">Student Accommodation</h4>
-                  <p className="text-sm text-green-700">Comfortable and secure on-campus housing options with modern amenities</p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Student Accommodation</h4>
+                  <p className="text-sm text-blue-700">Comfortable and secure on-campus housing options with modern amenities</p>
                 </div>
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-2">Sports & Recreation</h4>
-                  <p className="text-sm text-purple-700">Comprehensive sports facilities including gym, swimming pool, and sports courts</p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Sports & Recreation</h4>
+                  <p className="text-sm text-blue-700">Comprehensive sports facilities including gym, swimming pool, and sports courts</p>
                 </div>
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-orange-800 mb-2">Student Support</h4>
-                  <p className="text-sm text-orange-700">Dedicated international student support services and counseling</p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Student Support</h4>
+                  <p className="text-sm text-blue-700">Dedicated international student support services and counseling</p>
                 </div>
               </div>
 
@@ -316,14 +316,14 @@ export default function AngliaRuskinUniversityPartner() {
                 </div>
               </div>
 
-              <div className="bg-purple-600 text-white rounded-lg p-6">
+              <div className="bg-blue-600 text-white rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-2">Ready to Study at Anglia Ruskin University?</h3>
                 <p className="mb-4">
                   As a trusted partner of ARU, Dunya Consultants provides comprehensive support for Pakistani students. From application to arrival, we're here to make your UK education dream a reality.
                 </p>
                 <Link 
                   href="/contact" 
-                  className="inline-block bg-white text-purple-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                  className="inline-block bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Start Your Application
                 </Link>
@@ -379,18 +379,18 @@ export default function AngliaRuskinUniversityPartner() {
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                   <div>
                     <input
                       type="email"
                       placeholder="Your Email"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                   <div>
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                       <option>Select Program Level</option>
                       <option>Undergraduate</option>
                       <option>Postgraduate</option>
@@ -401,12 +401,12 @@ export default function AngliaRuskinUniversityPartner() {
                     <textarea
                       placeholder="Your Message"
                       rows={3}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-purple-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-purple-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+                    className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                   >
                     Get Information
                   </button>

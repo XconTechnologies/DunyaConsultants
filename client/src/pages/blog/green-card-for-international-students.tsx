@@ -158,7 +158,7 @@ export default function GreenCardInternationalStudents() {
                 {/* Work Permit */}
                 <div id="work-permit" className="mt-6">
                   <h3 className="text-xl font-semibold mb-3 text-gray-800">Work Permit</h3>
-                  <div className="bg-green-50 border-l-4 border-green-500 p-4 my-4">
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-4 my-4">
                     <p className="text-gray-700 leading-relaxed">
                       Green card holders have unlimited work authorization in the United States. Unlike F1 students who have restrictions on where and how much they can work, green card holders can work anywhere, anytime, and for any employer without needing special permits or sponsorship.
                     </p>
@@ -173,12 +173,12 @@ export default function GreenCardInternationalStudents() {
                       One of the biggest financial benefits is access to in-state tuition rates at public universities. Green card holders pay significantly less than international students:
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
-                      <div className="bg-red-50 p-4 rounded-lg">
-                        <h4 className="font-semibold text-red-800 mb-2">International Student Tuition</h4>
+                      <div className="bg-blue-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-blue-800 mb-2">International Student Tuition</h4>
                         <p className="text-gray-700">$25,000 - $50,000 per year</p>
                       </div>
-                      <div className="bg-green-50 p-4 rounded-lg">
-                        <h4 className="font-semibold text-green-800 mb-2">Green Card Holder Tuition</h4>
+                      <div className="bg-blue-50 p-4 rounded-lg">
+                        <h4 className="font-semibold text-blue-800 mb-2">Green Card Holder Tuition</h4>
                         <p className="text-gray-700">$10,000 - $15,000 per year</p>
                       </div>
                     </div>
@@ -204,7 +204,7 @@ export default function GreenCardInternationalStudents() {
                 {/* Job Opportunities */}
                 <div id="job-opportunities" className="mt-6">
                   <h3 className="text-xl font-semibold mb-3 text-gray-800">Job Opportunities</h3>
-                  <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 my-4">
+                  <div className="bg-blue-50 border-l-4 border-blue-500 p-4 my-4">
                     <p className="text-gray-700 leading-relaxed mb-3">
                       Green card holders have access to all job opportunities in the United States, including:
                     </p>
@@ -231,17 +231,17 @@ export default function GreenCardInternationalStudents() {
                       <p>After graduation, students can work on OPT (Optional Practical Training), then H-1B visa, and eventually apply for employment-based green card through their employer.</p>
                     </div>
                     
-                    <div className="border-l-4 border-green-500 pl-4">
+                    <div className="border-l-4 border-blue-500 pl-4">
                       <h3 className="font-semibold text-lg mb-2">2. EB-5 Investment Visa</h3>
                       <p>Students or their families can invest $800,000 - $1,050,000 in a U.S. business project to qualify for green card.</p>
                     </div>
                     
-                    <div className="border-l-4 border-purple-500 pl-4">
+                    <div className="border-l-4 border-blue-500 pl-4">
                       <h3 className="font-semibold text-lg mb-2">3. Family-Based Green Card</h3>
                       <p>Students who marry U.S. citizens or have immediate family members who are citizens/permanent residents can apply.</p>
                     </div>
                     
-                    <div className="border-l-4 border-orange-500 pl-4">
+                    <div className="border-l-4 border-blue-500 pl-4">
                       <h3 className="font-semibold text-lg mb-2">4. Diversity Visa Lottery</h3>
                       <p>Students from eligible countries can participate in the annual Diversity Visa Lottery program.</p>
                     </div>
@@ -334,31 +334,31 @@ export default function GreenCardInternationalStudents() {
               </div>
 
               {/* Green Card Pathways */}
-              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                <h3 className="font-bold text-lg text-green-900 mb-4">Green Card Pathways</h3>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <h3 className="font-bold text-lg text-blue-900 mb-4">Green Card Pathways</h3>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <div className="font-medium text-green-800">Employment-Based</div>
+                    <div className="font-medium text-blue-800">Employment-Based</div>
                     <div className="text-gray-600">EB-1, EB-2, EB-3 categories</div>
                   </div>
                   <div>
-                    <div className="font-medium text-green-800">Family-Based</div>
+                    <div className="font-medium text-blue-800">Family-Based</div>
                     <div className="text-gray-600">Through US citizen/resident family</div>
                   </div>
                   <div>
-                    <div className="font-medium text-green-800">EB-5 Investment</div>
+                    <div className="font-medium text-blue-800">EB-5 Investment</div>
                     <div className="text-gray-600">$800K minimum investment</div>
                   </div>
                   <div>
-                    <div className="font-medium text-green-800">Diversity Lottery</div>
+                    <div className="font-medium text-blue-800">Diversity Lottery</div>
                     <div className="text-gray-600">Annual random selection</div>
                   </div>
                 </div>
               </div>
 
               {/* Benefits Summary */}
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                <h3 className="font-bold text-lg text-yellow-900 mb-4">Key Benefits</h3>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <h3 className="font-bold text-lg text-blue-900 mb-4">Key Benefits</h3>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li>• Federal financial aid eligibility</li>
                   <li>• In-state tuition rates</li>

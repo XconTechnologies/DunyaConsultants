@@ -81,7 +81,7 @@ export default function Top10UniversitiesLondon() {
                   <h3 className="text-xl font-semibold mb-4 text-blue-800">London's Educational Advantages</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-center">
-                      <Star className="w-5 h-5 text-yellow-500 mr-3" />
+                      <Star className="w-5 h-5 text-blue-500 mr-3" />
                       Home to 40+ world-class universities
                     </li>
                     <li className="flex items-center">
@@ -89,15 +89,15 @@ export default function Top10UniversitiesLondon() {
                       Rich cultural heritage and diverse student community
                     </li>
                     <li className="flex items-center">
-                      <MapPin className="w-5 h-5 text-green-500 mr-3" />
+                      <MapPin className="w-5 h-5 text-blue-500 mr-3" />
                       Gateway to European opportunities
                     </li>
                     <li className="flex items-center">
-                      <Target className="w-5 h-5 text-purple-500 mr-3" />
+                      <Target className="w-5 h-5 text-blue-500 mr-3" />
                       Strong industry connections and career prospects
                     </li>
                     <li className="flex items-center">
-                      <BookOpen className="w-5 h-5 text-orange-500 mr-3" />
+                      <BookOpen className="w-5 h-5 text-blue-500 mr-3" />
                       Historic institutions with global recognition
                     </li>
                   </ul>
@@ -134,7 +134,7 @@ export default function Top10UniversitiesLondon() {
                   {/* Imperial College London */}
                   <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-green-50 to-emerald-50">
                     <div className="flex items-center mb-4">
-                      <div className="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">2</div>
+                      <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">2</div>
                       <h3 className="text-2xl font-bold text-gray-900">Imperial College London</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -152,7 +152,7 @@ export default function Top10UniversitiesLondon() {
                   {/* King's College London */}
                   <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-purple-50 to-violet-50">
                     <div className="flex items-center mb-4">
-                      <div className="w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">3</div>
+                      <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">3</div>
                       <h3 className="text-2xl font-bold text-gray-900">King's College London</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -170,7 +170,7 @@ export default function Top10UniversitiesLondon() {
                   {/* London School of Economics */}
                   <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-yellow-50 to-amber-50">
                     <div className="flex items-center mb-4">
-                      <div className="w-10 h-10 bg-yellow-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">4</div>
+                      <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">4</div>
                       <h3 className="text-2xl font-bold text-gray-900">London School of Economics (LSE)</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -188,7 +188,7 @@ export default function Top10UniversitiesLondon() {
                   {/* Queen Mary University of London */}
                   <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-red-50 to-rose-50">
                     <div className="flex items-center mb-4">
-                      <div className="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">5</div>
+                      <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">5</div>
                       <h3 className="text-2xl font-bold text-gray-900">Queen Mary University of London</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
@@ -226,8 +226,8 @@ export default function Top10UniversitiesLondon() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Admission Process</h2>
                 
                 <div className="space-y-4">
-                  <div className="bg-green-50 border-l-4 border-green-400 p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-2">1. Research and Choose Universities</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">1. Research and Choose Universities</h3>
                     <p className="text-gray-700">Research programs, entry requirements, and application deadlines for your chosen universities.</p>
                   </div>
                   
@@ -236,13 +236,13 @@ export default function Top10UniversitiesLondon() {
                     <p className="text-gray-700">Academic transcripts, English proficiency test results, personal statement, and letters of recommendation.</p>
                   </div>
                   
-                  <div className="bg-purple-50 border-l-4 border-purple-400 p-6">
-                    <h3 className="text-lg font-semibold text-purple-800 mb-2">3. Submit Applications</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">3. Submit Applications</h3>
                     <p className="text-gray-700">Apply through UCAS for undergraduate programs or directly to universities for postgraduate programs.</p>
                   </div>
                   
-                  <div className="bg-orange-50 border-l-4 border-orange-400 p-6">
-                    <h3 className="text-lg font-semibold text-orange-800 mb-2">4. Apply for Student Visa</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">4. Apply for Student Visa</h3>
                     <p className="text-gray-700">Once accepted, apply for your Student visa (formerly Tier 4) to study in the UK.</p>
                   </div>
                 </div>
@@ -252,8 +252,8 @@ export default function Top10UniversitiesLondon() {
               <section id="cost-living" className="mb-10">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Cost of Living in London</h2>
                 
-                <div className="bg-yellow-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-yellow-800">Average Monthly Expenses</h3>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Average Monthly Expenses</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-700 mb-2"><strong>Accommodation:</strong> £600-£1,200</p>
@@ -375,7 +375,7 @@ export default function Top10UniversitiesLondon() {
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Russell Group</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Top Tier</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Top Tier</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Specialist Colleges</span>
@@ -383,11 +383,11 @@ export default function Top10UniversitiesLondon() {
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Modern Universities</span>
-                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Practical</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Practical</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>University of London</span>
-                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Federation</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Federation</span>
                   </div>
                 </div>
               </div>

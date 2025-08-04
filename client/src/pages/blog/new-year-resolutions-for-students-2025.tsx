@@ -48,7 +48,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </div>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-green-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     What Should be a New Year's Resolution for Students to Study Abroad?
                   </h2>
                   <p className="text-lg text-gray-700 mb-6">
@@ -80,7 +80,7 @@ export default function NewYearResolutionsForStudents2025() {
                   <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Master the Art of Research
                   </h3>
-                  <div className="bg-purple-50 p-6 rounded-lg mb-6">
+                  <div className="bg-blue-50 p-6 rounded-lg mb-6">
                     <p className="text-lg text-gray-700">
                       To achieve your career dreams, become an expert in research. Start by identifying 
                       countries and programs you want to study. Research is a skill you will need 
@@ -97,7 +97,7 @@ export default function NewYearResolutionsForStudents2025() {
                   <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Learn to Manage Money
                   </h3>
-                  <div className="bg-green-50 p-6 rounded-lg mb-6">
+                  <div className="bg-blue-50 p-6 rounded-lg mb-6">
                     <p className="text-lg text-gray-700">
                       Studying abroad can be expensive, but learning how to budget wisely can help 
                       you avoid financial problems. Start by tracking your expenses as a new year's 
@@ -115,7 +115,7 @@ export default function NewYearResolutionsForStudents2025() {
                   <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Focus on Mental Health
                   </h3>
-                  <div className="bg-yellow-50 p-6 rounded-lg mb-6">
+                  <div className="bg-blue-50 p-6 rounded-lg mb-6">
                     <p className="text-lg text-gray-700">
                       Studying abroad is the best experience, but it can also feel overwhelming. 
                       Make your mental health a priority by maintaining a balance between your 
@@ -133,7 +133,7 @@ export default function NewYearResolutionsForStudents2025() {
                   <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Learn the Local Language
                   </h3>
-                  <div className="bg-orange-50 p-6 rounded-lg mb-6">
+                  <div className="bg-blue-50 p-6 rounded-lg mb-6">
                     <p className="text-lg text-gray-700">
                       Learning the local language is one of the best ways to prepare for studying 
                       abroad. It is a required skill that will help you adapt to a new environment, 
@@ -150,7 +150,7 @@ export default function NewYearResolutionsForStudents2025() {
                   <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Aim for Top Test Scores
                   </h3>
-                  <div className="bg-red-50 p-6 rounded-lg mb-6">
+                  <div className="bg-blue-50 p-6 rounded-lg mb-6">
                     <p className="text-lg text-gray-700">
                       Good test scores are essential for getting into top universities as well as 
                       scholarships. Whether you are preparing for TOEFL, GRE, GMAT, IELTS, SAT, 
@@ -168,7 +168,7 @@ export default function NewYearResolutionsForStudents2025() {
                   <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Plan Your Travel Goals
                   </h3>
-                  <div className="bg-teal-50 p-6 rounded-lg mb-6">
+                  <div className="bg-blue-50 p-6 rounded-lg mb-6">
                     <p className="text-lg text-gray-700">
                       Studying abroad as a new year resolution 2025 for students also means exploring 
                       new places and creating unforgettable memories. Use this opportunity to visit 
@@ -182,7 +182,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-green-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Study Abroad Success Tips
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -204,7 +204,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-green-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     FAQs
                   </h2>
                   <div className="space-y-6">
@@ -232,7 +232,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-green-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Conclusion
                   </h2>
                   <p className="text-lg text-gray-700">
@@ -251,7 +251,7 @@ export default function NewYearResolutionsForStudents2025() {
               <div className="sticky top-8 space-y-8">
                 <ContactForm />
                 
-                <div className="bg-green-50 p-6 rounded-lg">
+                <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Resolution Categories</h3>
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
@@ -259,15 +259,15 @@ export default function NewYearResolutionsForStudents2025() {
                       <span className="text-gray-700">Academic Excellence</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-green-600 rounded-full"></div>
+                      <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
                       <span className="text-gray-700">Financial Planning</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-purple-600 rounded-full"></div>
+                      <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
                       <span className="text-gray-700">Personal Growth</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-orange-600 rounded-full"></div>
+                      <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
                       <span className="text-gray-700">Language Skills</span>
                     </div>
                   </div>

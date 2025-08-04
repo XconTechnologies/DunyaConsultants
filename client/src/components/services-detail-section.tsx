@@ -54,7 +54,7 @@ export default function ServicesDetailSection() {
       title: "Visa Filing",
       icon: FileText,
       description: "Expert visa application and documentation services",
-      color: "from-green-500 to-green-600",
+      color: "from-blue-500 to-blue-600",
       price: "PKR 15,000 - 35,000",
       duration: "2-4 months",
       features: [
@@ -80,7 +80,7 @@ export default function ServicesDetailSection() {
       title: "SOP & Documentation Support",
       icon: PenTool,
       description: "Professional statement writing and document preparation",
-      color: "from-purple-500 to-purple-600",
+      color: "from-blue-500 to-blue-600",
       price: "PKR 8,000 - 20,000",
       duration: "2-4 weeks",
       features: [
@@ -106,7 +106,7 @@ export default function ServicesDetailSection() {
       title: "IELTS/PTE Coaching",
       icon: BookOpen,
       description: "Comprehensive English language test preparation",
-      color: "from-orange-500 to-orange-600",
+      color: "from-blue-500 to-blue-600",
       price: "PKR 12,000 - 25,000",
       duration: "2-6 months",
       features: [
@@ -132,7 +132,7 @@ export default function ServicesDetailSection() {
       title: "Pre-departure Briefing",
       icon: Plane,
       description: "Complete preparation for international study experience",
-      color: "from-red-500 to-red-600",
+      color: "from-blue-500 to-blue-600",
       price: "PKR 5,000 - 15,000",
       duration: "1-2 weeks",
       features: [
@@ -158,7 +158,7 @@ export default function ServicesDetailSection() {
       title: "Accommodation & Travel",
       icon: Home,
       description: "Housing and travel arrangement services",
-      color: "from-teal-500 to-teal-600",
+      color: "from-blue-500 to-blue-600",
       price: "PKR 10,000 - 30,000",
       duration: "2-6 weeks",
       features: [
@@ -289,9 +289,9 @@ export default function ServicesDetailSection() {
 
                 <TabsContent value="overview" className="p-6">
                   <div className="grid md:grid-cols-3 gap-8">
-                    <Card className="text-center shadow-lg border-l-4 border-green-500">
+                    <Card className="text-center shadow-lg border-l-4 border-blue-500">
                       <CardContent className="p-6">
-                        <Award className="h-12 w-12 text-green-600 mx-auto mb-3" />
+                        <Award className="h-12 w-12 text-blue-600 mx-auto mb-3" />
                         <h3 className="text-2xl font-bold text-gray-900">{services[selectedService].successRate}</h3>
                         <p className="text-gray-600">Success Rate</p>
                       </CardContent>
@@ -303,9 +303,9 @@ export default function ServicesDetailSection() {
                         <p className="text-gray-600">Clients Served</p>
                       </CardContent>
                     </Card>
-                    <Card className="text-center shadow-lg border-l-4 border-purple-500">
+                    <Card className="text-center shadow-lg border-l-4 border-blue-500">
                       <CardContent className="p-6">
-                        <Clock className="h-12 w-12 text-purple-600 mx-auto mb-3" />
+                        <Clock className="h-12 w-12 text-blue-600 mx-auto mb-3" />
                         <h3 className="text-2xl font-bold text-gray-900">{services[selectedService].duration}</h3>
                         <p className="text-gray-600">Typical Duration</p>
                       </CardContent>
@@ -352,7 +352,7 @@ export default function ServicesDetailSection() {
                       <Card key={index} className="shadow-md hover:shadow-lg transition-shadow">
                         <CardContent className="p-4">
                           <div className="flex items-center space-x-3">
-                            <CheckCircle className={`h-6 w-6 text-green-600 flex-shrink-0`} />
+                            <CheckCircle className={`h-6 w-6 text-blue-600 flex-shrink-0`} />
                             <span className="text-gray-800 font-medium">{feature}</span>
                           </div>
                         </CardContent>
@@ -360,31 +360,31 @@ export default function ServicesDetailSection() {
                     ))}
                   </div>
                   
-                  <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+                  <div className="mt-8 p-6 bg-gradient-to-r from-blue-50 to-blue-50 rounded-xl">
                     <h4 className="text-xl font-semibold text-gray-900 mb-4">What's Included</h4>
                     <div className="grid md:grid-cols-3 gap-4 text-sm">
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        <CheckCircle className="h-4 w-4 text-blue-600" />
                         <span>Expert consultation</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        <CheckCircle className="h-4 w-4 text-blue-600" />
                         <span>24/7 support</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        <CheckCircle className="h-4 w-4 text-blue-600" />
                         <span>Progress tracking</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        <CheckCircle className="h-4 w-4 text-blue-600" />
                         <span>Regular updates</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        <CheckCircle className="h-4 w-4 text-blue-600" />
                         <span>Money-back guarantee</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        <CheckCircle className="h-4 w-4 text-blue-600" />
                         <span>Post-service support</span>
                       </div>
                     </div>
@@ -409,7 +409,7 @@ export default function ServicesDetailSection() {
                           </div>
                           <div className="flex items-center space-x-1 mb-3">
                             {[...Array(testimonial.rating)].map((_, i) => (
-                              <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                              <Star key={i} className="h-4 w-4 fill-yellow-400 text-blue-400" />
                             ))}
                           </div>
                           <p className="text-gray-700 text-sm leading-relaxed">"{testimonial.comment}"</p>

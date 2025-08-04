@@ -167,7 +167,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
               A Complete Guide to Turkey Burslari Scholarship
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-orange-100 max-w-3xl leading-relaxed">
+            <p className="text-xl md:text-2xl mb-8 text-blue-100 max-w-3xl leading-relaxed">
               Comprehensive guide to Turkey's prestigious government scholarship program offering full funding for international students.
             </p>
             <div className="flex flex-wrap gap-4 text-sm">
@@ -202,7 +202,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
             >
               
               {/* Introduction */}
-              <div className="bg-white rounded-xl p-8 shadow-lg mb-8 border-l-4 border-red-600">
+              <div className="bg-white rounded-xl p-8 shadow-lg mb-8 border-l-4 border-blue-600">
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
                   Are you dreaming of continuing your higher studies in Turkey but need more resources to cover your tuition fees and living expenses? If yes, then there is good news for you. <strong>Turkey Burslari Scholarship Program</strong> is available for those students who are searching for some financial help to study abroad.
                 </p>
@@ -213,7 +213,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
 
               {/* Universities List */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-red-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Turkiye Burslari Scholarship Universities List
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -227,9 +227,9 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-center gap-4 p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+                        className="flex items-center gap-4 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
-                        <div className="flex-shrink-0 w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-semibold">
+                        <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-semibold">
                           {index + 1}
                         </div>
                         <span className="text-gray-800 font-medium">{university}</span>
@@ -241,7 +241,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
 
               {/* Types of Scholarships */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-orange-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Types of Turkey Burslari Scholarship for International Students
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -251,7 +251,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
                   <div className="space-y-8">
                     {scholarshipTypes.map((category, categoryIndex) => (
                       <div key={categoryIndex}>
-                        <h3 className="text-xl font-semibold text-gray-900 mb-4 text-orange-600">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4 text-blue-600">
                           {category.category}
                         </h3>
                         <div className="grid gap-4">
@@ -261,7 +261,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: (categoryIndex * 4 + typeIndex) * 0.1 }}
-                              className="p-4 bg-orange-50 rounded-lg border-l-4 border-orange-400"
+                              className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400"
                             >
                               <h4 className="font-semibold text-gray-900 mb-2">{type.name}</h4>
                               <p className="text-gray-700 text-sm">{type.description}</p>
@@ -276,7 +276,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
 
               {/* Scholarship Benefits */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-yellow-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Scholarship Benefits and Coverage
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -287,9 +287,9 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-4 p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors"
+                        className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
-                        <div className="flex-shrink-0 w-8 h-8 bg-yellow-600 text-white rounded-full flex items-center justify-center">
+                        <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center">
                           <CheckCircle className="h-4 w-4" />
                         </div>
                         <div>
@@ -304,7 +304,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
 
               {/* Eligibility Criteria */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-green-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Eligibility Criteria for Turkey Burslari Scholarships
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -318,9 +318,9 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.1 }}
-                        className="flex items-start gap-4 p-4 bg-green-50 rounded-lg"
+                        className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg"
                       >
-                        <div className="flex-shrink-0 w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mt-1">
+                        <div className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mt-1">
                           ✓
                         </div>
                         <span className="text-gray-800">{requirement}</span>
@@ -358,7 +358,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
 
               {/* Application Process */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-purple-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   How to Apply for the Turkey Burslari Scholarship?
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -372,9 +372,9 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.2 }}
-                        className="flex gap-6 p-6 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
+                        className="flex gap-6 p-6 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
-                        <div className="flex-shrink-0 w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                        <div className="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
                           {step.step}
                         </div>
                         <div>
@@ -389,25 +389,25 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
 
               {/* Application Deadline */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-indigo-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Turkey Burslari Scholarship Deadline
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
                   <div className="grid md:grid-cols-2 gap-8">
-                    <div className="bg-indigo-50 p-6 rounded-lg">
-                      <h3 className="text-xl font-semibold text-indigo-900 mb-4">Application Period</h3>
+                    <div className="bg-blue-50 p-6 rounded-lg">
+                      <h3 className="text-xl font-semibold text-blue-900 mb-4">Application Period</h3>
                       <div className="space-y-3">
                         <div className="flex justify-between items-center">
                           <span className="text-gray-700">Application Opens:</span>
-                          <span className="font-semibold text-indigo-600">January</span>
+                          <span className="font-semibold text-blue-600">January</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-700">Application Deadline:</span>
-                          <span className="font-semibold text-indigo-600">February</span>
+                          <span className="font-semibold text-blue-600">February</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-gray-700">Results Announcement:</span>
-                          <span className="font-semibold text-indigo-600">May-June</span>
+                          <span className="font-semibold text-blue-600">May-June</span>
                         </div>
                       </div>
                     </div>
@@ -438,10 +438,10 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
 
               {/* Conclusion */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-teal-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
                   Conclusion
                 </h2>
-                <div className="bg-white rounded-xl p-8 shadow-lg border-l-4 border-teal-600">
+                <div className="bg-white rounded-xl p-8 shadow-lg border-l-4 border-blue-600">
                   <p className="text-lg text-gray-700 leading-relaxed">
                     The Turkey Burslari Scholarship is one of the most comprehensive and generous scholarship programs available to international students. With full financial coverage, quality education at top Turkish universities, and cultural immersion opportunities, it provides an excellent pathway for Pakistani students to pursue higher education. Success requires careful preparation, strong academic performance, and timely application submission. With proper guidance and dedication, you can secure this prestigious scholarship and embark on an enriching educational journey in Turkey.
                   </p>
@@ -450,7 +450,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
 
               {/* FAQs */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-emerald-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-blue-600 pl-4">
                   Frequently Asked Questions
                 </h2>
                 <div className="space-y-6">
@@ -463,7 +463,7 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
                       className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
                     >
                       <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-start gap-3">
-                        <span className="flex-shrink-0 w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                        <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
                           Q
                         </span>
                         {faq.question}
@@ -484,10 +484,10 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
             <div className="sticky top-8 space-y-8">
               
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-red-50 to-orange-50 border-red-200">
+              <Card className="bg-gradient-to-br from-red-50 to-orange-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Award className="h-5 w-5 text-red-600" />
+                    <Award className="h-5 w-5 text-blue-600" />
                     Quick Facts
                   </h3>
                   <div className="space-y-4 text-sm">
@@ -516,21 +516,21 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
               </Card>
 
               {/* Contact Form */}
-              <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+              <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Phone className="h-5 w-5 text-green-600" />
+                    <Phone className="h-5 w-5 text-blue-600" />
                     Get Expert Guidance
                   </h3>
                   <p className="text-gray-700 text-sm mb-4 leading-relaxed">
                     Ready to apply for Turkey Burslari Scholarship? Our experts are here to help with application preparation, document guidance, and interview coaching.
                   </p>
                   <div className="space-y-3">
-                    <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                       <Phone className="h-4 w-4 mr-2" />
                       Call (+92) 304 1110947
                     </Button>
-                    <Button variant="outline" className="w-full border-green-600 text-green-600 hover:bg-green-50">
+                    <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
                       <Mail className="h-4 w-4 mr-2" />
                       Email Consultation
                     </Button>
@@ -539,25 +539,25 @@ export default function TurkeyBurslariScholarshipCompleteGuide() {
               </Card>
 
               {/* Office Location */}
-              <Card className="bg-gradient-to-br from-purple-50 to-violet-50 border-purple-200">
+              <Card className="bg-gradient-to-br from-purple-50 to-violet-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Building className="h-5 w-5 text-purple-600" />
+                    <Building className="h-5 w-5 text-blue-600" />
                     Visit Our Office
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-start gap-3">
-                      <MapPin className="h-4 w-4 text-purple-600 mt-1 flex-shrink-0" />
+                      <MapPin className="h-4 w-4 text-blue-600 mt-1 flex-shrink-0" />
                       <span className="text-gray-700">
                         110 Link Stadium Road Sargodha, Pakistan
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Phone className="h-4 w-4 text-purple-600" />
+                      <Phone className="h-4 w-4 text-blue-600" />
                       <span className="text-gray-700">(+92) 304 1110947</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Mail className="h-4 w-4 text-purple-600" />
+                      <Mail className="h-4 w-4 text-blue-600" />
                       <span className="text-gray-700">query@teamdunya.com</span>
                     </div>
                   </div>

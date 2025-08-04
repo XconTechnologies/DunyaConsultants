@@ -75,27 +75,27 @@ export default function DubaiVisaForPakistani() {
               </div>
 
               {/* Key Benefits */}
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-green-800 mb-4">Benefits of Dubai Student Visa</h3>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold text-blue-800 mb-4">Benefits of Dubai Student Visa</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Stay in Dubai for entire study duration
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Work part-time while studying (with restrictions)
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Access to world-class education facilities
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Renewable based on program duration
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Opportunity for post-graduation employment
                   </li>
                 </ul>
@@ -151,7 +151,7 @@ export default function DubaiVisaForPakistani() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Health & Legal Requirements
                     </h3>
@@ -164,7 +164,7 @@ export default function DubaiVisaForPakistani() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-purple-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
                       <AlertTriangle className="w-5 h-5 mr-2" />
                       Academic Requirements for Long-term Visa
                     </h3>
@@ -182,8 +182,8 @@ export default function DubaiVisaForPakistani() {
               <section id="entry-requirements" className="mb-10">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Dubai Entry Requirements from Pakistan Students</h2>
                 
-                <div className="bg-yellow-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-yellow-800">Essential Entry Documents</h3>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Essential Entry Documents</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-700 mb-2"><strong>Valid Passport:</strong> 6+ months validity</p>
@@ -214,8 +214,8 @@ export default function DubaiVisaForPakistani() {
                     </ul>
                   </div>
                   
-                  <div className="bg-green-50 border-l-4 border-green-400 p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-2">Academic Documents</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">Academic Documents</h3>
                     <ul className="space-y-1 text-gray-700">
                       <li>• University acceptance letter</li>
                       <li>• Academic transcripts (attested)</li>
@@ -224,8 +224,8 @@ export default function DubaiVisaForPakistani() {
                     </ul>
                   </div>
                   
-                  <div className="bg-purple-50 border-l-4 border-purple-400 p-6">
-                    <h3 className="text-lg font-semibold text-purple-800 mb-2">Financial & Legal Documents</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">Financial & Legal Documents</h3>
                     <ul className="space-y-1 text-gray-700">
                       <li>• Bank statements (last 6 months)</li>
                       <li>• Sponsorship letter</li>
@@ -251,7 +251,7 @@ export default function DubaiVisaForPakistani() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
                       <h3 className="text-lg font-semibold text-gray-800">Prepare Documents</h3>
                     </div>
                     <p className="text-gray-700">Gather all required documents including personal, academic, and financial papers with proper attestation.</p>
@@ -259,7 +259,7 @@ export default function DubaiVisaForPakistani() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
                       <h3 className="text-lg font-semibold text-gray-800">Submit Application</h3>
                     </div>
                     <p className="text-gray-700">Submit visa application through UAE embassy or authorized visa processing center in Pakistan.</p>
@@ -267,7 +267,7 @@ export default function DubaiVisaForPakistani() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
                       <h3 className="text-lg font-semibold text-gray-800">Medical & Biometrics</h3>
                     </div>
                     <p className="text-gray-700">Complete medical examination and biometric data collection as required by UAE authorities.</p>
@@ -275,7 +275,7 @@ export default function DubaiVisaForPakistani() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
+                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
                       <h3 className="text-lg font-semibold text-gray-800">Receive Visa</h3>
                     </div>
                     <p className="text-gray-700">Upon approval, receive your Dubai student visa and prepare for travel to begin your studies.</p>
@@ -287,8 +287,8 @@ export default function DubaiVisaForPakistani() {
               <section id="visa-costs" className="mb-10">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Dubai Student Visa Costs and Fees</h2>
                 
-                <div className="bg-yellow-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-yellow-800 flex items-center">
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800 flex items-center">
                     <DollarSign className="w-5 h-5 mr-2" />
                     Fee Breakdown
                   </h3>
@@ -413,7 +413,7 @@ export default function DubaiVisaForPakistani() {
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>University Admission</span>
-                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Required</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Required</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Financial Proof</span>
@@ -421,11 +421,11 @@ export default function DubaiVisaForPakistani() {
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Medical Checkup</span>
-                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Mandatory</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Mandatory</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>GDRFA Approval</span>
-                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Critical</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Critical</span>
                   </div>
                 </div>
               </div>

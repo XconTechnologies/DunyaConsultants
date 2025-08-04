@@ -40,7 +40,7 @@ export default function ScholarshipsSection() {
       benefits: ["Full tuition", "Living allowance", "Health cover", "Return airfare"],
       applicationProcess: "Apply through Australian Embassy or online portal in your country.",
       website: "https://www.australiaawards.gov.au/",
-      color: "from-green-500 to-green-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       id: 3,
@@ -56,7 +56,7 @@ export default function ScholarshipsSection() {
       benefits: ["Tuition support", "Living stipend", "Health insurance", "Professional development"],
       applicationProcess: "Apply through Fulbright Commission in Pakistan or IIE website.",
       website: "https://foreign.fulbrightonline.org/",
-      color: "from-red-500 to-red-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       id: 4,
@@ -72,7 +72,7 @@ export default function ScholarshipsSection() {
       benefits: ["CAD $50,000 annually", "3-year support", "Research opportunities"],
       applicationProcess: "Nominated by Canadian institution, online application through ResearchNet.",
       website: "https://vanier.gc.ca/",
-      color: "from-purple-500 to-purple-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       id: 5,
@@ -88,7 +88,7 @@ export default function ScholarshipsSection() {
       benefits: ["Monthly stipend", "Health insurance", "Travel allowance", "Study materials"],
       applicationProcess: "Online application through DAAD portal with required documents.",
       website: "https://www.daad.de/",
-      color: "from-orange-500 to-orange-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       id: 6,
@@ -104,7 +104,7 @@ export default function ScholarshipsSection() {
       benefits: ["Full tuition", "Living allowance", "Airfare", "Thesis grant"],
       applicationProcess: "Apply through Commonwealth Scholarship Commission online portal.",
       website: "https://cscuk.fcdo.gov.uk/",
-      color: "from-teal-500 to-teal-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       id: 7,
@@ -120,7 +120,7 @@ export default function ScholarshipsSection() {
       benefits: ["Partial to full tuition", "Merit recognition", "Networking opportunities"],
       applicationProcess: "Automatic consideration with admission application.",
       website: "https://www.utoronto.ca/",
-      color: "from-indigo-500 to-indigo-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       id: 8,
@@ -136,7 +136,7 @@ export default function ScholarshipsSection() {
       benefits: ["Living allowance", "Fee remission", "Overseas health cover"],
       applicationProcess: "Apply with research degree application through university portal.",
       website: "https://www.unimelb.edu.au/",
-      color: "from-pink-500 to-pink-600"
+      color: "from-blue-500 to-blue-600"
     }
   ];
 
@@ -184,23 +184,23 @@ export default function ScholarshipsSection() {
               <p className="text-gray-600">Available Scholarships</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 border-green-500">
+          <Card className="text-center shadow-lg border-l-4 border-blue-500">
             <CardContent className="p-6">
-              <Users className="h-10 w-10 text-green-600 mx-auto mb-3" />
+              <Users className="h-10 w-10 text-blue-600 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">{stats.government}</h3>
               <p className="text-gray-600">Government Scholarships</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 border-purple-500">
+          <Card className="text-center shadow-lg border-l-4 border-blue-500">
             <CardContent className="p-6">
-              <BookOpen className="h-10 w-10 text-purple-600 mx-auto mb-3" />
+              <BookOpen className="h-10 w-10 text-blue-600 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">{stats.university}</h3>
               <p className="text-gray-600">University Scholarships</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 border-orange-500">
+          <Card className="text-center shadow-lg border-l-4 border-blue-500">
             <CardContent className="p-6">
-              <MapPin className="h-10 w-10 text-orange-600 mx-auto mb-3" />
+              <MapPin className="h-10 w-10 text-blue-600 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">{stats.countries}</h3>
               <p className="text-gray-600">Countries</p>
             </CardContent>
@@ -221,7 +221,7 @@ export default function ScholarshipsSection() {
               onClick={() => setSelectedCountry(country)}
               className={`px-6 py-3 rounded-xl font-medium transition-all ${
                 selectedCountry === country
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-blue-600 to-blue-600 text-white shadow-lg"
                   : "hover:bg-gray-100"
               }`}
             >
@@ -264,14 +264,14 @@ export default function ScholarshipsSection() {
                 <CardContent className="p-6 flex-1 flex flex-col">
                   <div className="space-y-4 mb-6">
                     <div className="flex items-center space-x-3">
-                      <DollarSign className="h-5 w-5 text-green-600" />
+                      <DollarSign className="h-5 w-5 text-blue-600" />
                       <div>
                         <p className="font-semibold text-gray-900">{scholarship.amount}</p>
                       </div>
                     </div>
                     
                     <div className="flex items-center space-x-3">
-                      <Calendar className="h-5 w-5 text-red-600" />
+                      <Calendar className="h-5 w-5 text-blue-600" />
                       <div>
                         <p className="text-sm text-gray-600">Deadline</p>
                         <p className="font-semibold text-gray-900">{scholarship.deadline}</p>
@@ -309,7 +309,7 @@ export default function ScholarshipsSection() {
                       <ul className="text-sm text-gray-600 space-y-1">
                         {scholarship.benefits.slice(0, 3).map((benefit, i) => (
                           <li key={i} className="flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
                             <span>{benefit}</span>
                           </li>
                         ))}
@@ -362,11 +362,11 @@ export default function ScholarshipsSection() {
                       <span>Scholarship search and identification</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                       <span>Application essay writing and review</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
                       <span>Interview preparation and coaching</span>
                     </div>
                   </div>
@@ -379,7 +379,7 @@ export default function ScholarshipsSection() {
                   <div className="space-y-3">
                     <Button 
                       size="lg" 
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-xl transition-all"
+                      className="w-full bg-gradient-to-r from-blue-600 to-blue-600 text-white hover:shadow-xl transition-all"
                       onClick={() => window.open(`tel:+923041110947`, '_self')}
                     >
                       Book Free Consultation

@@ -131,14 +131,14 @@ export default function RequirementsComputerScienceUSA() {
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-green-50 p-4 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-3 text-green-800">Financial Documents</h3>
+                    <div className="bg-blue-50 p-4 rounded-lg">
+                      <h3 className="font-semibold text-lg mb-3 text-blue-800">Financial Documents</h3>
                       <ul className="space-y-2 text-sm">
                         <li>• <strong>Proof of financial support</strong> – Evidence showing you can afford tuition fees, living costs, and health insurance</li>
                       </ul>
                     </div>
-                    <div className="bg-yellow-50 p-4 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-3 text-yellow-800">Recommendation</h3>
+                    <div className="bg-blue-50 p-4 rounded-lg">
+                      <h3 className="font-semibold text-lg mb-3 text-blue-800">Recommendation</h3>
                       <ul className="space-y-2 text-sm">
                         <li>• <strong>Letters of recommendation</strong> – Letters from teachers or people who can vouch for your skills and qualities</li>
                       </ul>
@@ -374,23 +374,23 @@ export default function RequirementsComputerScienceUSA() {
               </div>
 
               {/* Application Timeline */}
-              <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                <h3 className="font-bold text-lg text-green-900 mb-4">Application Timeline</h3>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <h3 className="font-bold text-lg text-blue-900 mb-4">Application Timeline</h3>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <div className="font-medium text-green-800">12-18 months before</div>
+                    <div className="font-medium text-blue-800">12-18 months before</div>
                     <div className="text-gray-600">Research & Planning</div>
                   </div>
                   <div>
-                    <div className="font-medium text-green-800">8-12 months before</div>
+                    <div className="font-medium text-blue-800">8-12 months before</div>
                     <div className="text-gray-600">Test Preparation</div>
                   </div>
                   <div>
-                    <div className="font-medium text-green-800">6-8 months before</div>
+                    <div className="font-medium text-blue-800">6-8 months before</div>
                     <div className="text-gray-600">Application Submission</div>
                   </div>
                   <div>
-                    <div className="font-medium text-green-800">3-6 months before</div>
+                    <div className="font-medium text-blue-800">3-6 months before</div>
                     <div className="text-gray-600">Financial Planning</div>
                   </div>
                 </div>

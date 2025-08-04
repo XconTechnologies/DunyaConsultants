@@ -10,7 +10,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Link 
             href="/blog" 
-            className="inline-flex items-center text-red-200 hover:text-white mb-6 transition-colors"
+            className="inline-flex items-center text-blue-200 hover:text-white mb-6 transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Blog
@@ -22,7 +22,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
             transition={{ duration: 0.6 }}
           >
             <div className="mb-4">
-              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                 Study Abroad
               </span>
             </div>
@@ -31,11 +31,11 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               Why Turkey is Best Choice for Pakistani Students?
             </h1>
             
-            <p className="text-xl text-red-100 mb-6">
+            <p className="text-xl text-blue-100 mb-6">
               Discover why Turkey has become the top destination for Pakistani students seeking quality education, cultural familiarity, and affordable study options in Europe.
             </p>
             
-            <div className="flex flex-wrap items-center gap-6 text-sm text-red-200">
+            <div className="flex flex-wrap items-center gap-6 text-sm text-blue-200">
               <div className="flex items-center">
                 <User className="h-4 w-4 mr-2" />
                 Dunya Consultants
@@ -70,9 +70,9 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                 className="w-full h-64 object-cover rounded-lg mb-8"
               />
 
-              <div className="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
                 <div className="flex items-center mb-2">
-                  <MapPin className="h-5 w-5 text-red-500 mr-2" />
+                  <MapPin className="h-5 w-5 text-blue-500 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-900">Why Turkey?</h3>
                 </div>
                 <p className="text-gray-700">
@@ -84,7 +84,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <DollarSign className="h-8 w-8 text-green-600 mb-3" />
+                  <DollarSign className="h-8 w-8 text-blue-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Affordable Education</h3>
                   <p className="text-gray-600">Tuition fees range from $200-$4,000 per year, making it one of the most cost-effective study destinations.</p>
                 </div>
@@ -94,12 +94,12 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                   <p className="text-gray-600">Strong Islamic culture and historical ties with Pakistan provide a familiar and comfortable environment.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Award className="h-8 w-8 text-purple-600 mb-3" />
+                  <Award className="h-8 w-8 text-blue-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Quality Education</h3>
                   <p className="text-gray-600">Turkish universities are globally recognized with modern facilities and experienced faculty.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <TrendingUp className="h-8 w-8 text-orange-600 mb-3" />
+                  <TrendingUp className="h-8 w-8 text-blue-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Career Opportunities</h3>
                   <p className="text-gray-600">Growing economy and job market with opportunities in various sectors.</p>
                 </div>
@@ -111,25 +111,25 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                 <h3 className="text-lg font-semibold mb-4">Why Turkish Education System Stands Out</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>International Recognition:</strong> Turkish degrees are recognized worldwide and by Higher Education Commission (HEC) Pakistan
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Modern Infrastructure:</strong> State-of-the-art laboratories, libraries, and research facilities
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>English Programs:</strong> Many universities offer programs in English, eliminating language barriers
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Research Opportunities:</strong> Strong emphasis on research and innovation across disciplines
                     </div>
@@ -243,9 +243,9 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Admission Requirements</h2>
               
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
                 <div className="flex items-center mb-2">
-                  <AlertCircle className="h-5 w-5 text-yellow-500 mr-2" />
+                  <AlertCircle className="h-5 w-5 text-blue-500 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-900">General Requirements</h3>
                 </div>
                 <ul className="list-disc list-inside text-gray-700 space-y-2">
@@ -262,21 +262,21 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Scholarship Opportunities</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-green-800 mb-2">Türkiye Scholarships</h4>
-                  <p className="text-sm text-green-700">Government scholarship covering tuition, accommodation, and monthly stipend</p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Türkiye Scholarships</h4>
+                  <p className="text-sm text-blue-700">Government scholarship covering tuition, accommodation, and monthly stipend</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                   <h4 className="font-semibold text-blue-800 mb-2">University Scholarships</h4>
                   <p className="text-sm text-blue-700">Merit-based scholarships offered by individual universities</p>
                 </div>
-                <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-purple-800 mb-2">Private Scholarships</h4>
-                  <p className="text-sm text-purple-700">Scholarships from private organizations and foundations</p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Private Scholarships</h4>
+                  <p className="text-sm text-blue-700">Scholarships from private organizations and foundations</p>
                 </div>
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-orange-800 mb-2">Exchange Programs</h4>
-                  <p className="text-sm text-orange-700">Student exchange programs with Pakistani universities</p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Exchange Programs</h4>
+                  <p className="text-sm text-blue-700">Student exchange programs with Pakistani universities</p>
                 </div>
               </div>
 
@@ -286,25 +286,25 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                 <h3 className="text-lg font-semibold mb-4">Student Life & Experience</h3>
                 <div className="space-y-3">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Accommodation:</strong> Affordable dormitories and shared apartments available
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Transportation:</strong> Excellent public transport system with student discounts
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Healthcare:</strong> Affordable healthcare system accessible to students
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Part-time Work:</strong> Students can work part-time with proper permits
                     </div>
@@ -312,14 +312,14 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                 </div>
               </div>
 
-              <div className="bg-red-600 text-white rounded-lg p-6">
+              <div className="bg-blue-600 text-white rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-2">Ready to Study in Turkey?</h3>
                 <p className="mb-4">
                   Join thousands of Pakistani students who have chosen Turkey for their international education. Dunya Consultants provides complete support from application to arrival.
                 </p>
                 <Link 
                   href="/contact" 
-                  className="inline-block bg-white text-red-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                  className="inline-block bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Start Your Journey
                 </Link>
@@ -375,18 +375,18 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                   <div>
                     <input
                       type="email"
                       placeholder="Your Email"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                   <div>
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                       <option>Select Study Level</option>
                       <option>Bachelor's</option>
                       <option>Master's</option>
@@ -395,7 +395,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full bg-red-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                    className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
                   >
                     Get Information
                   </button>

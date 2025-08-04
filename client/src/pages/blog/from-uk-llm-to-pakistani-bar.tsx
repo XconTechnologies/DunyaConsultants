@@ -96,8 +96,8 @@ export default function FromUKLLMToPakistaniBar() {
                 </h2>
                 
                 <div className="space-y-4">
-                  <div className="flex items-start p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
-                    <UserCheck className="w-6 h-6 text-yellow-600 mr-3 mt-1 flex-shrink-0" />
+                  <div className="flex items-start p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
+                    <UserCheck className="w-6 h-6 text-blue-600 mr-3 mt-1 flex-shrink-0" />
                     <div>
                       <p className="text-gray-700 font-medium">
                         You must register with the Pakistan Bar Council to practice law in Pakistan.
@@ -105,8 +105,8 @@ export default function FromUKLLMToPakistaniBar() {
                     </div>
                   </div>
 
-                  <div className="flex items-start p-4 bg-red-50 border-l-4 border-red-400 rounded-r-lg">
-                    <AlertCircle className="w-6 h-6 text-red-600 mr-3 mt-1 flex-shrink-0" />
+                  <div className="flex items-start p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
+                    <AlertCircle className="w-6 h-6 text-blue-600 mr-3 mt-1 flex-shrink-0" />
                     <div>
                       <p className="text-gray-700 font-medium">
                         Even with a UK LLM, you cannot practice Pakistani law without registration.
@@ -114,8 +114,8 @@ export default function FromUKLLMToPakistaniBar() {
                     </div>
                   </div>
 
-                  <div className="flex items-start p-4 bg-green-50 border-l-4 border-green-400 rounded-r-lg">
-                    <CheckCircle className="w-6 h-6 text-green-600 mr-3 mt-1 flex-shrink-0" />
+                  <div className="flex items-start p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
+                    <CheckCircle className="w-6 h-6 text-blue-600 mr-3 mt-1 flex-shrink-0" />
                     <div>
                       <p className="text-gray-700 font-medium">
                         If you have qualifications in other jurisdictions, you can give legal advice on foreign and international laws in Pakistan.

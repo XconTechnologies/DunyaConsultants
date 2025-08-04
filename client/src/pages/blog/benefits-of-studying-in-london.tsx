@@ -99,8 +99,8 @@ export default function BenefitsOfStudyingInLondon() {
                   London is one of the top cities in the world as well as a major financial hub. This makes it the best place for building your future. The city provides numerous opportunities for professional growth to prepare you for life after university. Here are the top reasons why London is famous for studying abroad.
                 </p>
 
-                <div className="bg-green-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-green-800">Key Advantages of Studying in London</h3>
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Key Advantages of Studying in London</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-700 mb-2"><strong>Academic Excellence:</strong> World-renowned universities</p>
@@ -144,7 +144,7 @@ export default function BenefitsOfStudyingInLondon() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
                       <Building className="w-5 h-5 mr-2" />
                       Specialized Colleges
                     </h3>
@@ -170,8 +170,8 @@ export default function BenefitsOfStudyingInLondon() {
                   No matter where you are from, you can find others with similar backgrounds and aims to connect with. This not only helps during your studies but also gives you the chance to make friendships and contacts from around the world.
                 </p>
 
-                <div className="bg-purple-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-purple-800 flex items-center">
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800 flex items-center">
                     <Users className="w-5 h-5 mr-2" />
                     Diverse Student Community
                   </h3>
@@ -230,19 +230,19 @@ export default function BenefitsOfStudyingInLondon() {
                     </div>
                   </div>
 
-                  <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-3">Graduate Employment Statistics</h3>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Graduate Employment Statistics</h3>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div>
-                        <p className="text-2xl font-bold text-green-600">95%</p>
+                        <p className="text-2xl font-bold text-blue-600">95%</p>
                         <p className="text-gray-700">Graduate Employment Rate</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-green-600">£35K</p>
+                        <p className="text-2xl font-bold text-blue-600">£35K</p>
                         <p className="text-gray-700">Average Starting Salary</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-green-600">6 months</p>
+                        <p className="text-2xl font-bold text-blue-600">6 months</p>
                         <p className="text-gray-700">Average Job Search Time</p>
                       </div>
                     </div>
@@ -262,8 +262,8 @@ export default function BenefitsOfStudyingInLondon() {
                   You can find affordable fun in beautiful London at night. Many theatres provide discounted tickets on the day of the performance, so you can enjoy a great show without spending too much. Music events are also budget-friendly, with lots of free options or tickets under ten pounds every day.
                 </p>
 
-                <div className="bg-orange-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-orange-800">Entertainment & Culture Hub</h3>
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Entertainment & Culture Hub</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Venues & Entertainment:</h4>
@@ -329,8 +329,8 @@ export default function BenefitsOfStudyingInLondon() {
                     </div>
                   </div>
 
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-yellow-800 mb-3">Cost of Living Breakdown</h3>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Cost of Living Breakdown</h3>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div>
                         <p className="text-gray-700 mb-1"><strong>Accommodation:</strong></p>
@@ -446,7 +446,7 @@ export default function BenefitsOfStudyingInLondon() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Employment Rate:</span>
-                    <span className="font-medium text-green-600">95%+</span>
+                    <span className="font-medium text-blue-600">95%+</span>
                   </div>
                 </div>
               </div>

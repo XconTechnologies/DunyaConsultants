@@ -335,7 +335,7 @@ export default function OfficeDetails() {
                   <div className="grid md:grid-cols-2 gap-3">
                     {office.facilities.map((facility, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>{facility}</span>
                       </div>
                     ))}
@@ -366,15 +366,15 @@ export default function OfficeDetails() {
                     <div className="text-sm text-gray-600">Success Rate</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-green-600">{office.studentsServed}</div>
+                    <div className="text-2xl font-bold text-blue-600">{office.studentsServed}</div>
                     <div className="text-sm text-gray-600">Students Served</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-600">{office.staffCount}</div>
+                    <div className="text-2xl font-bold text-blue-600">{office.staffCount}</div>
                     <div className="text-sm text-gray-600">Expert Staff</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-600">{office.established}</div>
+                    <div className="text-2xl font-bold text-blue-600">{office.established}</div>
                     <div className="text-sm text-gray-600">Established</div>
                   </div>
                 </CardContent>

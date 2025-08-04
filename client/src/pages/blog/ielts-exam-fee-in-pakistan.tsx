@@ -63,7 +63,7 @@ export default function IELTSExamFeeInPakistan() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-indigo-600 via-purple-700 to-pink-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-indigo-600 via-blue-700 to-pink-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -96,9 +96,9 @@ export default function IELTSExamFeeInPakistan() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-indigo-50 border-l-4 border-indigo-500 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-indigo-800 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-center">
                   <BookOpen className="mr-3 h-6 w-6" />
                   What is the IELTS Full Form?
                 </h2>
@@ -127,10 +127,10 @@ export default function IELTSExamFeeInPakistan() {
                       </p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-gradient-to-br from-purple-50 to-violet-100 border-purple-200">
+                  <Card className="bg-gradient-to-br from-purple-50 to-violet-100 border-blue-200">
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-bold text-purple-800 mb-3">IELTS Academic</h3>
-                      <p className="text-purple-700 text-sm leading-relaxed">
+                      <h3 className="text-xl font-bold text-blue-800 mb-3">IELTS Academic</h3>
+                      <p className="text-blue-700 text-sm leading-relaxed">
                         IELTS Academic is specifically made for students. It is used to apply for undergraduate as well as postgraduate programs. All questions in this test are framed designed for students willing to pursue higher education from an international country.
                       </p>
                     </CardContent>
@@ -155,7 +155,7 @@ export default function IELTSExamFeeInPakistan() {
                             <div className="lg:col-span-3">
                               <div className="flex items-center justify-between mb-2">
                                 <h3 className="text-xl font-bold text-gray-800">{section.section}</h3>
-                                <span className="text-sm font-semibold text-indigo-600 bg-indigo-100 px-3 py-1 rounded-full">
+                                <span className="text-sm font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
                                   {section.duration}
                                 </span>
                               </div>
@@ -219,9 +219,9 @@ export default function IELTSExamFeeInPakistan() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-indigo-50 rounded-lg border-l-4 border-indigo-500"
+                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500"
                     >
-                      <CheckCircle className="h-5 w-5 text-indigo-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{doc}</span>
                     </motion.div>
                   ))}
@@ -247,7 +247,7 @@ export default function IELTSExamFeeInPakistan() {
                             </div>
                             <div className="lg:col-span-3">
                               <h3 className="text-lg font-bold text-gray-800 mb-1">{center.center}</h3>
-                              <p className="text-indigo-600 font-semibold mb-2">{center.city}</p>
+                              <p className="text-blue-600 font-semibold mb-2">{center.city}</p>
                               <p className="text-gray-600 text-sm">{center.address}</p>
                             </div>
                           </div>
@@ -263,28 +263,28 @@ export default function IELTSExamFeeInPakistan() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-purple-50 border-l-4 border-purple-500 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-purple-800">IELTS Band Score Requirements</h2>
+                <h2 className="text-2xl font-bold mb-4 text-blue-800">IELTS Band Score Requirements</h2>
                 <div className="grid md:grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
-                    <div className="text-2xl font-bold text-purple-600 mb-2">5.5 - 6.0</div>
-                    <p className="text-sm text-purple-700">Undergraduate Programs</p>
+                  <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
+                    <div className="text-2xl font-bold text-blue-600 mb-2">5.5 - 6.0</div>
+                    <p className="text-sm text-blue-700">Undergraduate Programs</p>
                   </div>
-                  <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
-                    <div className="text-2xl font-bold text-purple-600 mb-2">6.0 - 6.5</div>
-                    <p className="text-sm text-purple-700">Postgraduate Programs</p>
+                  <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
+                    <div className="text-2xl font-bold text-blue-600 mb-2">6.0 - 6.5</div>
+                    <p className="text-sm text-blue-700">Postgraduate Programs</p>
                   </div>
-                  <div className="text-center p-4 bg-white rounded-lg border border-purple-200">
-                    <div className="text-2xl font-bold text-purple-600 mb-2">7.0+</div>
-                    <p className="text-sm text-purple-700">Top Universities</p>
+                  <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
+                    <div className="text-2xl font-bold text-blue-600 mb-2">7.0+</div>
+                    <p className="text-sm text-blue-700">Top Universities</p>
                   </div>
                 </div>
               </motion.div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-green-800">Conclusion</h2>
+              <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+                <h2 className="text-2xl font-bold mb-4 text-blue-800">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   To get admission in any international country, every Pakistani student needs to prove their English language proficiency. The standardized international English language testing system exam used to assess English proficiency is IELTS. Students will have to obtain a required band in their IELTS examination in order to get admission in any certified institution.
                 </p>
@@ -330,28 +330,28 @@ export default function IELTSExamFeeInPakistan() {
           <div className="w-80">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-indigo-50 to-purple-100 border-indigo-200">
+              <Card className="bg-gradient-to-br from-indigo-50 to-purple-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-indigo-800 mb-4 flex items-center">
+                  <h3 className="font-bold text-blue-800 mb-4 flex items-center">
                     <DollarSign className="mr-2 h-5 w-5" />
                     IELTS Quick Facts
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-indigo-700">Computer-Based:</span>
-                      <span className="font-semibold text-indigo-800">$205</span>
+                      <span className="text-blue-700">Computer-Based:</span>
+                      <span className="font-semibold text-blue-800">$205</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-indigo-700">Paper-Based:</span>
-                      <span className="font-semibold text-indigo-800">$229</span>
+                      <span className="text-blue-700">Paper-Based:</span>
+                      <span className="font-semibold text-blue-800">$229</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-indigo-700">Total Duration:</span>
-                      <span className="font-semibold text-indigo-800">2h 45m</span>
+                      <span className="text-blue-700">Total Duration:</span>
+                      <span className="font-semibold text-blue-800">2h 45m</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-indigo-700">Validity:</span>
-                      <span className="font-semibold text-indigo-800">2 years</span>
+                      <span className="text-blue-700">Validity:</span>
+                      <span className="font-semibold text-blue-800">2 years</span>
                     </div>
                   </div>
                 </CardContent>
@@ -366,17 +366,17 @@ export default function IELTSExamFeeInPakistan() {
                       <span className="text-sm font-medium">Listening</span>
                       <span className="text-xs text-blue-600">30 min</span>
                     </div>
-                    <div className="flex items-center justify-between p-2 bg-green-50 rounded">
+                    <div className="flex items-center justify-between p-2 bg-blue-50 rounded">
                       <span className="text-sm font-medium">Reading</span>
-                      <span className="text-xs text-green-600">60 min</span>
+                      <span className="text-xs text-blue-600">60 min</span>
                     </div>
-                    <div className="flex items-center justify-between p-2 bg-yellow-50 rounded">
+                    <div className="flex items-center justify-between p-2 bg-blue-50 rounded">
                       <span className="text-sm font-medium">Writing</span>
-                      <span className="text-xs text-yellow-600">60 min</span>
+                      <span className="text-xs text-blue-600">60 min</span>
                     </div>
-                    <div className="flex items-center justify-between p-2 bg-purple-50 rounded">
+                    <div className="flex items-center justify-between p-2 bg-blue-50 rounded">
                       <span className="text-sm font-medium">Speaking</span>
-                      <span className="text-xs text-purple-600">11-14 min</span>
+                      <span className="text-xs text-blue-600">11-14 min</span>
                     </div>
                   </div>
                 </CardContent>
@@ -390,19 +390,19 @@ export default function IELTSExamFeeInPakistan() {
                     <input 
                       type="text" 
                       placeholder="Your Name" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                     <input 
                       type="email" 
                       placeholder="Email Address" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                     <input 
                       type="tel" 
                       placeholder="Phone Number" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                       <option>Test Type</option>
                       <option>Academic</option>
                       <option>General Training</option>

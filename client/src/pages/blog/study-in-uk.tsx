@@ -65,7 +65,7 @@ const StudyInUK = () => {
             {/* Key Benefits */}
             <div className="bg-white rounded-lg p-6">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
-                <CheckCircle className="h-6 w-6 text-green-600 mr-3" />
+                <CheckCircle className="h-6 w-6 text-blue-600 mr-3" />
                 Key Benefits of Studying in the UK
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -127,23 +127,23 @@ const StudyInUK = () => {
                   <h4 className="font-semibold text-gray-900 mb-3">Essential Documents</h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
                       <span>Original Passport</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
                       <span>Confirmation of Acceptance for Study (CAS)</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
                       <span>Tuberculosis (TB) Test Results</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
                       <span>Birth Certificate</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 text-green-600" />
+                      <CheckCircle className="h-4 w-4 text-blue-600" />
                       <span>Proof of Financial Support</span>
                     </li>
                   </ul>
@@ -171,7 +171,7 @@ const StudyInUK = () => {
             {/* Language Requirements */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <GraduationCap className="h-6 w-6 text-purple-600 mr-3" />
+                <GraduationCap className="h-6 w-6 text-blue-600 mr-3" />
                 English Language Requirements
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -189,15 +189,15 @@ const StudyInUK = () => {
                   </div>
                 </div>
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
-                  <h4 className="font-semibold text-purple-900 mb-3">PTE Requirements</h4>
+                  <h4 className="font-semibold text-blue-900 mb-3">PTE Requirements</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-purple-800">Undergraduate:</span>
-                      <span className="font-medium text-purple-900">59 minimum each</span>
+                      <span className="text-blue-800">Undergraduate:</span>
+                      <span className="font-medium text-blue-900">59 minimum each</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-purple-800">Postgraduate:</span>
-                      <span className="font-medium text-purple-900">59 minimum each</span>
+                      <span className="text-blue-800">Postgraduate:</span>
+                      <span className="font-medium text-blue-900">59 minimum each</span>
                     </div>
                   </div>
                 </div>
@@ -207,15 +207,15 @@ const StudyInUK = () => {
             {/* Tuition Fees */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <DollarSign className="h-6 w-6 text-green-600 mr-3" />
+                <DollarSign className="h-6 w-6 text-blue-600 mr-3" />
                 Tuition Fees Structure
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 text-center">
-                  <GraduationCap className="h-12 w-12 text-green-600 mx-auto mb-4" />
-                  <h4 className="font-semibold text-green-900 mb-2">Undergraduate Programs</h4>
-                  <p className="text-2xl font-bold text-green-800">£11,000 - £17,000</p>
-                  <p className="text-sm text-green-700 mt-2">Per Academic Year</p>
+                  <GraduationCap className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+                  <h4 className="font-semibold text-blue-900 mb-2">Undergraduate Programs</h4>
+                  <p className="text-2xl font-bold text-blue-800">£11,000 - £17,000</p>
+                  <p className="text-sm text-blue-700 mt-2">Per Academic Year</p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 text-center">
                   <GraduationCap className="h-12 w-12 text-blue-600 mx-auto mb-4" />
@@ -229,7 +229,7 @@ const StudyInUK = () => {
             {/* Application Documents */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <CreditCard className="h-6 w-6 text-orange-600 mr-3" />
+                <CreditCard className="h-6 w-6 text-blue-600 mr-3" />
                 Required Application Documents
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -299,7 +299,7 @@ const StudyInUK = () => {
             {/* Study Programs */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <Globe className="h-6 w-6 text-indigo-600 mr-3" />
+                <Globe className="h-6 w-6 text-blue-600 mr-3" />
                 Study Programs Available
               </h3>
               <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-6">
@@ -308,15 +308,15 @@ const StudyInUK = () => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-white rounded-lg p-4 text-center">
-                    <h4 className="font-semibold text-indigo-900 mb-2">Undergraduate Programs</h4>
+                    <h4 className="font-semibold text-blue-900 mb-2">Undergraduate Programs</h4>
                     <p className="text-sm text-gray-600">3-year Bachelor's degrees</p>
                   </div>
                   <div className="bg-white rounded-lg p-4 text-center">
-                    <h4 className="font-semibold text-indigo-900 mb-2">Postgraduate Programs</h4>
+                    <h4 className="font-semibold text-blue-900 mb-2">Postgraduate Programs</h4>
                     <p className="text-sm text-gray-600">1-2 year Master's degrees</p>
                   </div>
                   <div className="bg-white rounded-lg p-4 text-center">
-                    <h4 className="font-semibold text-indigo-900 mb-2">Research Programs</h4>
+                    <h4 className="font-semibold text-blue-900 mb-2">Research Programs</h4>
                     <p className="text-sm text-gray-600">PhD and research opportunities</p>
                   </div>
                 </div>

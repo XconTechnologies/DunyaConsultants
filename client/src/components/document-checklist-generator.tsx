@@ -285,11 +285,11 @@ export default function DocumentChecklistGenerator() {
   const progress = stats.required > 0 ? (stats.completedRequired / stats.required) * 100 : 0;
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-blue-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute bottom-10 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-10 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -307,7 +307,7 @@ export default function DocumentChecklistGenerator() {
           
           <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
             Document Checklist{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
               Generator
             </span>
           </h2>
@@ -381,7 +381,7 @@ export default function DocumentChecklistGenerator() {
                 <Button
                   onClick={handleGenerateChecklist}
                   disabled={!selectedCountry || !selectedLevel}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-8 py-4 text-lg rounded-xl shadow-xl disabled:opacity-50"
+                  className="bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white font-bold px-8 py-4 text-lg rounded-xl shadow-xl disabled:opacity-50"
                 >
                   <FileText className="w-5 h-5 mr-2" />
                   Generate My Checklist
@@ -400,7 +400,7 @@ export default function DocumentChecklistGenerator() {
             className="max-w-6xl mx-auto"
           >
             {/* Progress Summary */}
-            <Card className="mb-8 shadow-xl border-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+            <Card className="mb-8 shadow-xl border-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white">
               <CardContent className="p-8">
                 <div className="flex items-center justify-between mb-6">
                   <div>
@@ -447,10 +447,10 @@ export default function DocumentChecklistGenerator() {
                     <CardHeader>
                       <CardTitle className="flex items-center text-lg">
                         {category === 'Identity' && <User className="w-5 h-5 mr-2 text-blue-600" />}
-                        {category === 'Academic' && <GraduationCap className="w-5 h-5 mr-2 text-green-600" />}
-                        {category === 'Financial' && <Calendar className="w-5 h-5 mr-2 text-yellow-600" />}
-                        {category === 'Health' && <AlertCircle className="w-5 h-5 mr-2 text-red-600" />}
-                        {category === 'Background' && <FileText className="w-5 h-5 mr-2 text-purple-600" />}
+                        {category === 'Academic' && <GraduationCap className="w-5 h-5 mr-2 text-blue-600" />}
+                        {category === 'Financial' && <Calendar className="w-5 h-5 mr-2 text-blue-600" />}
+                        {category === 'Health' && <AlertCircle className="w-5 h-5 mr-2 text-blue-600" />}
+                        {category === 'Background' && <FileText className="w-5 h-5 mr-2 text-blue-600" />}
                         {category} Documents
                       </CardTitle>
                     </CardHeader>
@@ -464,9 +464,9 @@ export default function DocumentChecklistGenerator() {
                             transition={{ duration: 0.5 }}
                             className={`p-4 rounded-lg border-2 transition-all duration-300 ${
                               completedDocuments.has(document.id)
-                                ? 'border-green-200 bg-green-50'
+                                ? 'border-blue-200 bg-blue-50'
                                 : document.required
-                                ? 'border-red-200 bg-red-50'
+                                ? 'border-blue-200 bg-blue-50'
                                 : 'border-gray-200 bg-gray-50'
                             }`}
                           >
@@ -480,7 +480,7 @@ export default function DocumentChecklistGenerator() {
                                 <div className="flex items-center space-x-2 mb-2">
                                   <h4 className="font-bold text-gray-800">{document.name}</h4>
                                   {document.required ? (
-                                    <span className="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">
+                                    <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
                                       Required
                                     </span>
                                   ) : (
@@ -501,7 +501,7 @@ export default function DocumentChecklistGenerator() {
                                 )}
                               </div>
                               {completedDocuments.has(document.id) && (
-                                <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                                <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0" />
                               )}
                             </div>
                           </motion.div>
@@ -520,14 +520,14 @@ export default function DocumentChecklistGenerator() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-center mt-12"
             >
-              <Card className="shadow-xl border-0 bg-gradient-to-r from-green-600 to-blue-600 text-white">
+              <Card className="shadow-xl border-0 bg-gradient-to-r from-blue-600 to-blue-600 text-white">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold mb-4">Need Help with Your Documents?</h3>
-                  <p className="text-green-100 mb-6 max-w-2xl mx-auto">
+                  <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
                     Our expert counselors can help you prepare, review, and organize all your documents 
                     to ensure a successful application.
                   </p>
-                  <Button className="bg-white text-green-600 hover:bg-green-50 font-bold px-8 py-3 rounded-xl shadow-xl">
+                  <Button className="bg-white text-blue-600 hover:bg-blue-50 font-bold px-8 py-3 rounded-xl shadow-xl">
                     Get Document Assistance
                   </Button>
                 </CardContent>

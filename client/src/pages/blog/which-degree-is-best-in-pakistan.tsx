@@ -41,20 +41,20 @@ export default function WhichDegreeIsBestInPakistan() {
                 </p>
 
                 {/* Quick Overview */}
-                <div className="bg-purple-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-purple-800">Top Degree Categories Overview</h3>
+                <div className="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Top Degree Categories Overview</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold text-purple-700 mb-2">Engineering</h4>
-                      <p className="text-purple-600">Highest Paying Field</p>
+                      <h4 className="text-2xl font-bold text-blue-700 mb-2">Engineering</h4>
+                      <p className="text-blue-600">Highest Paying Field</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold text-purple-700 mb-2">IT & CS</h4>
-                      <p className="text-purple-600">Fastest Growing Sector</p>
+                      <h4 className="text-2xl font-bold text-blue-700 mb-2">IT & CS</h4>
+                      <p className="text-blue-600">Fastest Growing Sector</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold text-purple-700 mb-2">Business</h4>
-                      <p className="text-purple-600">Corporate Opportunities</p>
+                      <h4 className="text-2xl font-bold text-blue-700 mb-2">Business</h4>
+                      <p className="text-blue-600">Corporate Opportunities</p>
                     </div>
                   </div>
                 </div>
@@ -62,14 +62,14 @@ export default function WhichDegreeIsBestInPakistan() {
 
               {/* What is Bachelor Degree */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-purple-500 pl-4">What is Bachelor Degree in Pakistan?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">What is Bachelor Degree in Pakistan?</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   In Pakistan, a <strong>bachelor's degree</strong> is an educational qualification that can take around <strong>3-5 years to complete</strong>, depending on the program and university. The duration of the program is also dependent on whether it is an honors or a professional bachelor's degree.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div className="bg-white border-l-4 border-indigo-500 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-indigo-800">Honors Bachelor's Degree</h4>
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                    <h4 className="text-lg font-semibold mb-3 text-blue-800">Honors Bachelor's Degree</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Duration: 3-4 years typically</li>
                       <li>• Focus on theoretical knowledge</li>
@@ -90,7 +90,7 @@ export default function WhichDegreeIsBestInPakistan() {
 
               {/* List of Best BS Fields */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">List of the Best BS Fields in Pakistan</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">List of the Best BS Fields in Pakistan</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Getting a graduation degree in Pakistan is a must to get a job in a well-reputable company. For that, you have to research <strong>which degree has the highest scope in Pakistan</strong>. As you all know, degrees with career growth potential and the highest scope provide not just job security but also allow you to earn a decent amount.
                 </p>
@@ -113,8 +113,8 @@ export default function WhichDegreeIsBestInPakistan() {
 
                 {/* Engineering Degrees */}
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-green-700">Engineering Degrees</h3>
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg border-l-4 border-green-500 mb-4">
+                  <h3 className="text-2xl font-bold mb-4 text-blue-700">Engineering Degrees</h3>
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Engineering has also been a popular career choice, with many different fields to choose from. You need to research <strong>which engineering field has the highest scope in Pakistan</strong>.
                     </p>
@@ -126,8 +126,8 @@ export default function WhichDegreeIsBestInPakistan() {
 
                 {/* IT and Computer Science */}
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-purple-700">Degree in Information Technology (IT) and Computer Science</h3>
-                  <div className="bg-gradient-to-r from-purple-50 to-violet-50 p-6 rounded-lg border-l-4 border-purple-500 mb-4">
+                  <h3 className="text-2xl font-bold mb-4 text-blue-700">Degree in Information Technology (IT) and Computer Science</h3>
+                  <div className="bg-gradient-to-r from-purple-50 to-violet-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Degrees in <strong>IT and computer science</strong> are also the best degrees in Pakistan after FSC for high-paying careers in areas like data science, software development, and cybersecurity.
                     </p>
@@ -139,8 +139,8 @@ export default function WhichDegreeIsBestInPakistan() {
 
                 {/* Medicine and Healthcare */}
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-red-700">Medicine and Healthcare Degrees</h3>
-                  <div className="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-lg border-l-4 border-red-500 mb-4">
+                  <h3 className="text-2xl font-bold mb-4 text-blue-700">Medicine and Healthcare Degrees</h3>
+                  <div className="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Medical programs are highly valued and are considered one of the top-paying careers globally. The <strong>best medical field in Pakistan</strong> offers a diverse range of options.
                     </p>
@@ -152,8 +152,8 @@ export default function WhichDegreeIsBestInPakistan() {
 
                 {/* Chartered Accounting */}
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-orange-700">Chartered Accounting (CA)</h3>
-                  <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg border-l-4 border-orange-500 mb-4">
+                  <h3 className="text-2xl font-bold mb-4 text-blue-700">Chartered Accounting (CA)</h3>
+                  <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Becoming a <strong>CA</strong> is another name on the list of the <strong>best scope degrees in Pakistan</strong>. It is a highly competitive field with great job opportunities. CAs are experts in managing finances. Over the past decades, the demand for skilled CAs has increased.
                     </p>
@@ -229,7 +229,7 @@ export default function WhichDegreeIsBestInPakistan() {
 
               {/* FAQs */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-purple-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
@@ -237,27 +237,27 @@ export default function WhichDegreeIsBestInPakistan() {
                     <p className="text-gray-700">Yes, medical fields have excellent scope in Pakistan. With growing healthcare needs, there's high demand for doctors, specialists, nurses, pharmacists, and healthcare administrators. Medical professionals can earn competitive salaries and have opportunities for private practice and specialization.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-green-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Which engineering has the highest scope in Pakistan?</h3>
                     <p className="text-gray-700">Software Engineering, Computer Engineering, and Electrical Engineering currently have the highest scope in Pakistan. The technology sector's rapid growth has created numerous opportunities in software development, telecommunications, and automation industries.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-purple-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Is there a data science scope in Pakistan?</h3>
                     <p className="text-gray-700">Absolutely! Data science has tremendous scope in Pakistan with increasing digitalization. Companies are seeking data scientists for analytics, business intelligence, and AI/ML projects. Salaries range from 80K to 400K+ per month depending on experience and skills.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-orange-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Which university is best for BS Artificial Intelligence in Pakistan?</h3>
                     <p className="text-gray-700">Top universities for BS AI in Pakistan include FAST-NUCES, LUMS, NUST, University of Karachi, and Punjab University. These institutions offer comprehensive AI programs with modern labs, experienced faculty, and industry partnerships for practical exposure.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-red-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What is the best degree for high salary in Pakistan?</h3>
                     <p className="text-gray-700">Medicine (MBBS), Engineering (especially Software/Computer), IT/Computer Science, and Business Administration typically offer the highest salaries. However, success depends on skills, experience, and market demand in your chosen specialization.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-teal-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Should I choose degree based on passion or scope?</h3>
                     <p className="text-gray-700">Ideally, choose a degree that combines both passion and scope. Consider your interests, aptitude, market demand, and future growth potential. Consult with career counselors and industry professionals to make an informed decision that aligns with both personal satisfaction and career prospects.</p>
                   </div>
@@ -269,10 +269,10 @@ export default function WhichDegreeIsBestInPakistan() {
                 <h3 className="text-2xl font-bold mb-4">Need Help Choosing the Right Degree?</h3>
                 <p className="text-lg mb-4">Get expert career counseling and degree selection guidance. Our experienced counselors will help you choose the perfect degree program that matches your interests, aptitude, and career goals for a successful future in Pakistan.</p>
                 <div className="flex gap-4">
-                  <a href="tel:+923041110947" className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  <a href="tel:+923041110947" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -285,28 +285,28 @@ export default function WhichDegreeIsBestInPakistan() {
             <ContactForm />
             
             {/* Quick Facts */}
-            <div className="bg-purple-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-purple-800">Top Degree Facts</h3>
+            <div className="bg-blue-50 p-6 rounded-lg mb-6">
+              <h3 className="text-xl font-bold mb-4 text-blue-800">Top Degree Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Engineering Duration</span>
-                  <span className="text-sm font-bold text-purple-700">4 Years</span>
+                  <span className="text-sm font-bold text-blue-700">4 Years</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Medical Duration</span>
-                  <span className="text-sm font-bold text-purple-700">5 Years</span>
+                  <span className="text-sm font-bold text-blue-700">5 Years</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Business Duration</span>
-                  <span className="text-sm font-bold text-purple-700">4 Years</span>
+                  <span className="text-sm font-bold text-blue-700">4 Years</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">IT/CS Duration</span>
-                  <span className="text-sm font-bold text-purple-700">4 Years</span>
+                  <span className="text-sm font-bold text-blue-700">4 Years</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">CA Duration</span>
-                  <span className="text-sm font-bold text-purple-700">3-5 Years</span>
+                  <span className="text-sm font-bold text-blue-700">3-5 Years</span>
                 </div>
               </div>
             </div>
@@ -327,8 +327,8 @@ export default function WhichDegreeIsBestInPakistan() {
             </div>
 
             {/* Career Tips */}
-            <div className="bg-green-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-green-800">Career Selection Tips</h3>
+            <div className="bg-blue-50 p-6 rounded-lg mb-6">
+              <h3 className="text-xl font-bold mb-4 text-blue-800">Career Selection Tips</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Research market demand</li>
                 <li>• Consider salary prospects</li>

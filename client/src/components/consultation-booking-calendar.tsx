@@ -156,7 +156,7 @@ export default function ConsultationBookingCalendar() {
 
   if (isSubmitted) {
     return (
-      <section ref={ref} className="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+      <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-blue-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ scale: 0 }}
@@ -168,7 +168,7 @@ export default function ConsultationBookingCalendar() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"
+              className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6"
             >
               <Check className="w-10 h-10 text-white" />
             </motion.div>
@@ -186,7 +186,7 @@ export default function ConsultationBookingCalendar() {
   }
 
   return (
-    <section id="consultation" ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+    <section id="consultation" ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-blue-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -225,7 +225,7 @@ export default function ConsultationBookingCalendar() {
                   <div key={stepNumber} className="flex flex-col items-center" style={{ width: '20%' }}>
                     <motion.div
                       className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg border-4 border-white shadow-lg ${
-                        isCompleted ? 'bg-green-500' : isActive ? 'bg-blue-500' : 'bg-gray-300'
+                        isCompleted ? 'bg-blue-500' : isActive ? 'bg-blue-500' : 'bg-gray-300'
                       }`}
                       animate={{ scale: isActive ? 1.1 : 1 }}
                       transition={{ duration: 0.3 }}
@@ -249,7 +249,7 @@ export default function ConsultationBookingCalendar() {
             <div className="relative mt-4">
               <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 rounded transform -translate-y-1/2" style={{ left: '10%', right: '10%' }}></div>
               <motion.div
-                className="absolute top-1/2 left-0 h-1 bg-green-500 rounded transform -translate-y-1/2"
+                className="absolute top-1/2 left-0 h-1 bg-blue-500 rounded transform -translate-y-1/2"
                 style={{ 
                   left: '10%',
                   width: `${((currentStep - 1) / (totalSteps - 1)) * 80}%`

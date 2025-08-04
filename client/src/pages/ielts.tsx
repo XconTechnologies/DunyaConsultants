@@ -346,7 +346,7 @@ export default function IELTS() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 via-indigo-900 to-purple-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-900 via-blue-900 to-purple-900 text-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

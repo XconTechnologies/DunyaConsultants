@@ -29,8 +29,8 @@ export default function IELTSBandScoreGuide() {
                 </p>
               </div>
 
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-green-900">Key Information</h3>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold mb-3 text-blue-900">Key Information</h3>
                 <p className="text-gray-700">
                   The IELTS test has four parts: Listening, Writing, Reading, and Speaking. Each part is scored separately, and you also get an overall IELTS score between 1 and 9. A higher IELTS band score increases your chances of getting into a good university.
                 </p>
@@ -143,8 +143,8 @@ export default function IELTSBandScoreGuide() {
                 <li><strong>Grammatical Range and Accuracy:</strong> Your grammar skills</li>
               </ul>
 
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold mb-3 text-yellow-900">Score Calculation Formula</h3>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold mb-3 text-blue-900">Score Calculation Formula</h3>
                 <p className="text-gray-700">
                   Your overall IELTS band score is calculated by taking the average of your four individual scores (Listening, Reading, Writing, Speaking) and rounding to the nearest whole or half band.
                 </p>
@@ -152,8 +152,8 @@ export default function IELTSBandScoreGuide() {
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">University Requirements by Band Score</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-green-50 border-l-4 border-green-500 p-6">
-                  <h3 className="text-xl font-semibold mb-3 text-green-900">Band 6.0-6.5</h3>
+                <div className="bg-blue-50 border-l-4 border-blue-500 p-6">
+                  <h3 className="text-xl font-semibold mb-3 text-blue-900">Band 6.0-6.5</h3>
                   <p className="text-gray-700 mb-2">Undergraduate programs</p>
                   <ul className="text-sm text-gray-600 space-y-1">
                     <li>• Most UK universities</li>
@@ -217,8 +217,8 @@ export default function IELTSBandScoreGuide() {
                 </ul>
               </div>
 
-              <div className="bg-green-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-green-900">Score Improvement Tips</h3>
+              <div className="bg-blue-50 p-6 rounded-lg">
+                <h3 className="text-lg font-semibold mb-4 text-blue-900">Score Improvement Tips</h3>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li>• Practice all four skills daily</li>
                   <li>• Take mock tests regularly</li>

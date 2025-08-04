@@ -232,7 +232,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Featured{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Success Stories
                 </span>
               </h2>
@@ -252,7 +252,7 @@ export default function SuccessStories() {
               >
                 <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-xl">
                   <CardHeader className="text-center">
-                    <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
+                    <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-4">
                       <GraduationCap className="w-12 h-12 text-white" />
                     </div>
                     <CardTitle className="text-xl text-gray-900">{story.name}</CardTitle>
@@ -272,7 +272,7 @@ export default function SuccessStories() {
                     <p className="text-gray-600 italic">{story.story}</p>
                     <div className="space-y-2 pt-4 border-t">
                       <div className="flex items-center text-sm">
-                        <Award className="w-4 h-4 text-yellow-500 mr-2" />
+                        <Award className="w-4 h-4 text-blue-500 mr-2" />
                         <span className="font-medium">{story.scholarship}</span>
                       </div>
                       <div className="flex items-center text-sm">
@@ -289,7 +289,7 @@ export default function SuccessStories() {
       </section>
 
       {/* Achievements Statistics */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 to-purple-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <motion.div
@@ -313,7 +313,7 @@ export default function SuccessStories() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-5xl font-bold text-yellow-400 mb-2">
+                <div className="text-5xl font-bold text-blue-400 mb-2">
                   {achievement.count}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{achievement.category}</h3>
@@ -342,7 +342,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Recent{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Successes
                 </span>
               </h2>
@@ -376,7 +376,7 @@ export default function SuccessStories() {
                     <MapPin className="w-4 h-4 mr-1" />
                     {success.country}
                   </div>
-                  <div className="flex items-center text-sm font-medium text-green-600">
+                  <div className="flex items-center text-sm font-medium text-blue-600">
                     <Award className="w-4 h-4 mr-1" />
                     {success.scholarship}
                   </div>
@@ -398,7 +398,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Student{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Testimonials
                 </span>
               </h2>
@@ -418,7 +418,7 @@ export default function SuccessStories() {
               >
                 <Card className="h-full">
                   <CardContent className="p-6">
-                    <div className="flex text-yellow-400 mb-4">
+                    <div className="flex text-blue-400 mb-4">
                       {[...Array(testimonial.rating)].map((_, i) => (
                         <Star key={i} className="w-4 h-4 fill-current" />
                       ))}
@@ -449,7 +449,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Our{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
                   Journey
                 </span>
               </h2>
@@ -460,7 +460,7 @@ export default function SuccessStories() {
           </div>
 
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-purple-600"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-blue-600"></div>
             
             {companyMilestones.map((milestone, index) => (
               <motion.div
@@ -476,7 +476,7 @@ export default function SuccessStories() {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                           {milestone.year}
                         </div>
                         <Calendar className="w-5 h-5 text-blue-500 ml-3" />
@@ -489,7 +489,7 @@ export default function SuccessStories() {
                   </Card>
                 </div>
                 
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full border-4 border-white"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full border-4 border-white"></div>
               </motion.div>
             ))}
           </div>
@@ -497,7 +497,7 @@ export default function SuccessStories() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -95,7 +95,7 @@ export default function GoogleReviewsSection() {
     return Array.from({ length: 5 }, (_, index) => (
       <Star 
         key={index} 
-        className={`w-5 h-5 ${index < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} 
+        className={`w-5 h-5 ${index < rating ? 'text-blue-400 fill-yellow-400' : 'text-gray-300'}`} 
       />
     ));
   };
@@ -176,7 +176,7 @@ export default function GoogleReviewsSection() {
             </div>
             <div className="text-center">
               <p className="text-sm text-gray-600">Scholarship</p>
-              <p className="text-lg font-bold text-green-600">{currentReview.scholarship}</p>
+              <p className="text-lg font-bold text-blue-600">{currentReview.scholarship}</p>
             </div>
           </div>
 

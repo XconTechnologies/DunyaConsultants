@@ -64,7 +64,7 @@ export default function MOIAcceptedUniversitiesInUK() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-emerald-600 via-teal-700 to-cyan-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-emerald-600 via-blue-700 to-cyan-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -161,9 +161,9 @@ export default function MOIAcceptedUniversitiesInUK() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-emerald-50 rounded-lg border-l-4 border-emerald-500"
+                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500"
                     >
-                      <CheckCircle className="h-5 w-5 text-emerald-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{criteria}</span>
                     </motion.div>
                   ))}
@@ -203,42 +203,42 @@ export default function MOIAcceptedUniversitiesInUK() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-gradient-to-br from-emerald-50 to-teal-100 border-l-4 border-emerald-500 rounded-r-lg"
+                className="mb-8 p-6 bg-gradient-to-br from-emerald-50 to-teal-100 border-l-4 border-blue-500 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-emerald-800 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-center">
                   <Award className="mr-3 h-6 w-6" />
                   Benefits of MOI Universities
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-emerald-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-emerald-800">No IELTS/PTE Required</h3>
-                        <p className="text-emerald-700 text-sm">Save time and money on English proficiency tests</p>
+                        <h3 className="font-semibold text-blue-800">No IELTS/PTE Required</h3>
+                        <p className="text-blue-700 text-sm">Save time and money on English proficiency tests</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-emerald-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-emerald-800">Faster Application Process</h3>
-                        <p className="text-emerald-700 text-sm">Streamlined admission without waiting for test results</p>
+                        <h3 className="font-semibold text-blue-800">Faster Application Process</h3>
+                        <p className="text-blue-700 text-sm">Streamlined admission without waiting for test results</p>
                       </div>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-emerald-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-emerald-800">Cost-Effective Option</h3>
-                        <p className="text-emerald-700 text-sm">Avoid expensive test fees and preparation costs</p>
+                        <h3 className="font-semibold text-blue-800">Cost-Effective Option</h3>
+                        <p className="text-blue-700 text-sm">Avoid expensive test fees and preparation costs</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 text-emerald-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-emerald-800">Valid for Visa Application</h3>
-                        <p className="text-emerald-700 text-sm">Accepted by UKVI for student visa applications</p>
+                        <h3 className="font-semibold text-blue-800">Valid for Visa Application</h3>
+                        <p className="text-blue-700 text-sm">Accepted by UKVI for student visa applications</p>
                       </div>
                     </div>
                   </div>
@@ -246,8 +246,8 @@ export default function MOIAcceptedUniversitiesInUK() {
               </motion.div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-green-800">Conclusion</h2>
+              <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
+                <h2 className="text-2xl font-bold mb-4 text-blue-800">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Students who are interested to study in the UK without taking the IELTS or PTE can apply for <strong>MOI accepted universities in UK</strong>. There are various universities in UK for international students that accept Medium of Instruction as evidence of English proficiency. These universities make the application process much smoother for all students who have studied before in English.
                 </p>
@@ -293,28 +293,28 @@ export default function MOIAcceptedUniversitiesInUK() {
           <div className="w-80">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-emerald-50 to-teal-100 border-emerald-200">
+              <Card className="bg-gradient-to-br from-emerald-50 to-teal-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-emerald-800 mb-4 flex items-center">
+                  <h3 className="font-bold text-blue-800 mb-4 flex items-center">
                     <GraduationCap className="mr-2 h-5 w-5" />
                     MOI Quick Facts
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-emerald-700">Total Universities:</span>
-                      <span className="font-semibold text-emerald-800">17+</span>
+                      <span className="text-blue-700">Total Universities:</span>
+                      <span className="font-semibold text-blue-800">17+</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-emerald-700">Cost Savings:</span>
-                      <span className="font-semibold text-emerald-800">$200-400</span>
+                      <span className="text-blue-700">Cost Savings:</span>
+                      <span className="font-semibold text-blue-800">$200-400</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-emerald-700">Processing Time:</span>
-                      <span className="font-semibold text-emerald-800">1-2 weeks</span>
+                      <span className="text-blue-700">Processing Time:</span>
+                      <span className="font-semibold text-blue-800">1-2 weeks</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-emerald-700">Visa Validity:</span>
-                      <span className="font-semibold text-emerald-800">Accepted</span>
+                      <span className="text-blue-700">Visa Validity:</span>
+                      <span className="font-semibold text-blue-800">Accepted</span>
                     </div>
                   </div>
                 </CardContent>
@@ -325,22 +325,22 @@ export default function MOIAcceptedUniversitiesInUK() {
                 <CardContent className="p-6">
                   <h3 className="font-bold text-gray-800 mb-4">Top MOI Universities</h3>
                   <div className="space-y-3">
-                    <div className="flex items-center space-x-3 p-3 bg-emerald-50 rounded-lg">
-                      <div className="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
                       <div>
                         <p className="font-semibold text-gray-800">University of Law</p>
                         <p className="text-xs text-gray-600">Top Law School</p>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-3 p-3 bg-teal-50 rounded-lg">
-                      <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
                       <div>
                         <p className="font-semibold text-gray-800">University of Hertfordshire</p>
                         <p className="text-xs text-gray-600">Modern University</p>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-3 p-3 bg-cyan-50 rounded-lg">
-                      <div className="w-8 h-8 bg-cyan-600 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
                       <div>
                         <p className="font-semibold text-gray-800">University of South Wales</p>
                         <p className="text-xs text-gray-600">Innovation University</p>
@@ -358,19 +358,19 @@ export default function MOIAcceptedUniversitiesInUK() {
                     <input 
                       type="text" 
                       placeholder="Your Name" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                     <input 
                       type="email" 
                       placeholder="Email Address" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                     <input 
                       type="tel" 
                       placeholder="Phone Number" 
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent">
+                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                       <option>Previous Education Medium</option>
                       <option>English Medium</option>
                       <option>Mixed Medium</option>

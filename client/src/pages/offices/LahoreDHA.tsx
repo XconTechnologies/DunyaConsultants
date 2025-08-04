@@ -155,7 +155,7 @@ export default function LahoreDHA() {
                   <div className="grid md:grid-cols-2 gap-4">
                     {office.services.map((service, index) => (
                       <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <CheckCircle className="w-5 h-5 text-blue-500" />
                         <span className="font-medium">{service}</span>
                       </div>
                     ))}
@@ -201,7 +201,7 @@ export default function LahoreDHA() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {office.testimonials.map((testimonial, index) => (
-                    <div key={index} className="border-l-4 border-green-500 pl-4 py-2">
+                    <div key={index} className="border-l-4 border-blue-500 pl-4 py-2">
                       <p className="text-gray-700 italic mb-2">"{testimonial.message}"</p>
                       <div className="text-sm">
                         <p className="font-medium">{testimonial.name}</p>
@@ -227,7 +227,7 @@ export default function LahoreDHA() {
                   <div className="grid md:grid-cols-2 gap-3">
                     {office.facilities.map((facility, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span>{facility}</span>
                       </div>
                     ))}
@@ -303,7 +303,7 @@ export default function LahoreDHA() {
                   <div className="space-y-2">
                     {office.nearbyLandmarks.map((landmark, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                         <span className="text-sm">{landmark}</span>
                       </div>
                     ))}
@@ -330,7 +330,7 @@ export default function LahoreDHA() {
               <Calendar className="w-4 h-4 mr-2" />
               Schedule Visit
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-green-600">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-600">
               <Phone className="w-4 h-4 mr-2" />
               Call DHA Office
             </Button>

@@ -127,7 +127,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
             <Card className="bg-white shadow-2xl border-0">
               <CardContent className="p-0">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white relative">
+                <div className="bg-gradient-to-r from-blue-600 to-blue-600 p-6 text-white relative">
                   <button
                     onClick={onClose}
                     className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
@@ -240,7 +240,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                         <Button
                           type="submit"
                           disabled={isSubmitting || !formData.name || !formData.email || !formData.phone}
-                          className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 py-3 text-lg font-semibold"
+                          className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 py-3 text-lg font-semibold"
                         >
                           {isSubmitting ? (
                             <div className="flex items-center justify-center space-x-2">
@@ -255,17 +255,17 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                     ) : (
                       /* Success State */
                       <div className="text-center py-12">
-                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                        <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
                             <div className="w-3 h-3 bg-white rounded-full" />
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-green-600 mb-2">Consultation Booked!</h3>
+                        <h3 className="text-2xl font-bold text-blue-600 mb-2">Consultation Booked!</h3>
                         <p className="text-gray-600 mb-4">
                           Thank you for booking a consultation with us. Our expert counselor will contact you within 24 hours.
                         </p>
-                        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                          <p className="text-sm text-green-700">
+                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                          <p className="text-sm text-blue-700">
                             <strong>Next Steps:</strong> You'll receive a confirmation email with consultation details and a calendar invite.
                           </p>
                         </div>
@@ -274,7 +274,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                   </div>
 
                   {/* Right Side - Contact Info */}
-                  <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 lg:p-8">
+                  <div className="bg-gradient-to-br from-blue-50 to-blue-50 p-6 lg:p-8">
                     <div className="space-y-6">
                       <div>
                         <h3 className="text-xl font-bold text-gray-800 mb-4">Why Choose Free Consultation?</h3>

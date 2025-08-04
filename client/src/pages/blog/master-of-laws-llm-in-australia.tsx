@@ -124,19 +124,19 @@ export default function MasterOfLawsLLMAustralia() {
                   If you want to study LLM in Australia, you must meet certain LLM degree requirements as mentioned below:
                 </p>
 
-                <div className="bg-yellow-50 p-6 rounded-lg mb-8">
-                  <h3 className="text-xl font-semibold text-yellow-900 mb-4">Key Requirements</h3>
+                <div className="bg-blue-50 p-6 rounded-lg mb-8">
+                  <h3 className="text-xl font-semibold text-blue-900 mb-4">Key Requirements</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start text-gray-700">
-                      <Scale className="w-5 h-5 text-yellow-600 mr-3 mt-1" />
+                      <Scale className="w-5 h-5 text-blue-600 mr-3 mt-1" />
                       <span>You need a bachelor's degree in law (LLB) from a recognized university.</span>
                     </li>
                     <li className="flex items-start text-gray-700">
-                      <Globe className="w-5 h-5 text-yellow-600 mr-3 mt-1" />
+                      <Globe className="w-5 h-5 text-blue-600 mr-3 mt-1" />
                       <span>You need to score between 6.5 and 7 in the IELTS test to prove your English skills.</span>
                     </li>
                     <li className="flex items-start text-gray-700">
-                      <Award className="w-5 h-5 text-yellow-600 mr-3 mt-1" />
+                      <Award className="w-5 h-5 text-blue-600 mr-3 mt-1" />
                       <span>Some universities prefer students who have at least two years of work experience in law or a related field.</span>
                     </li>
                   </ul>
@@ -159,31 +159,31 @@ export default function MasterOfLawsLLMAustralia() {
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <DollarSign className="w-5 h-5 text-green-600 mr-2" />
+                      <DollarSign className="w-5 h-5 text-blue-600 mr-2" />
                       <span className="font-semibold">Proof of Finances</span>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <User className="w-5 h-5 text-purple-600 mr-2" />
+                      <User className="w-5 h-5 text-blue-600 mr-2" />
                       <span className="font-semibold">Identification Proof</span>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <BookOpen className="w-5 h-5 text-orange-600 mr-2" />
+                      <BookOpen className="w-5 h-5 text-blue-600 mr-2" />
                       <span className="font-semibold">Statement of Purpose</span>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <Users className="w-5 h-5 text-red-600 mr-2" />
+                      <Users className="w-5 h-5 text-blue-600 mr-2" />
                       <span className="font-semibold">Recommendation Letter</span>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <FileText className="w-5 h-5 text-teal-600 mr-2" />
+                      <FileText className="w-5 h-5 text-blue-600 mr-2" />
                       <span className="font-semibold">CV or Resume</span>
                     </div>
                   </div>
@@ -205,43 +205,43 @@ export default function MasterOfLawsLLMAustralia() {
                     </p>
                   </div>
 
-                  <div className="bg-green-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold text-green-900 mb-3">2. Choose the Right University and Program</h3>
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-blue-900 mb-3">2. Choose the Right University and Program</h3>
                     <p className="text-gray-700">
                       Research different universities and their LLM programs. Compare course details, fees, and career opportunities to find the one that best matches your goals.
                     </p>
                   </div>
 
-                  <div className="bg-purple-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold text-purple-900 mb-3">3. Prepare Your Documents</h3>
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-blue-900 mb-3">3. Prepare Your Documents</h3>
                     <p className="text-gray-700">
                       Gather all necessary documents, including academic transcripts, English proficiency test scores, a Statement of Purpose (SOP), a Letter of Recommendation (LOR), and a resume (if required). Some universities may also ask for proof of financial stability.
                     </p>
                   </div>
 
-                  <div className="bg-orange-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold text-orange-900 mb-3">4. Submit Your Application</h3>
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-blue-900 mb-3">4. Submit Your Application</h3>
                     <p className="text-gray-700">
                       Complete the online application form on the university's website and submit all required documents before the deadline.
                     </p>
                   </div>
 
-                  <div className="bg-red-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold text-red-900 mb-3">5. Receive an Offer Letter</h3>
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-blue-900 mb-3">5. Receive an Offer Letter</h3>
                     <p className="text-gray-700">
                       If your application is successful, you will receive an offer letter from the university. Review the terms and conditions carefully.
                     </p>
                   </div>
 
-                  <div className="bg-teal-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold text-teal-900 mb-3">6. Apply for a Student Visa</h3>
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-blue-900 mb-3">6. Apply for a Student Visa</h3>
                     <p className="text-gray-700">
                       Once you accept the offer, apply for an Australian student visa (subclass 500) through the Department of Home Affairs.
                     </p>
                   </div>
 
-                  <div className="bg-pink-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold text-pink-900 mb-3">7. Plan Your Travel</h3>
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold text-blue-900 mb-3">7. Plan Your Travel</h3>
                     <p className="text-gray-700">
                       After receiving your visa, book your flight, arrange accommodation, and prepare for your journey to Australia.
                     </p>
@@ -272,12 +272,12 @@ export default function MasterOfLawsLLMAustralia() {
                 </h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                  <div className="bg-yellow-50 p-4 rounded-lg">
-                    <h3 className="text-lg font-semibold text-yellow-900 mb-2">Government Scholarships</h3>
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h3 className="text-lg font-semibold text-blue-900 mb-2">Government Scholarships</h3>
                     <p className="text-gray-700">Australia Awards, Endeavour Scholarships</p>
                   </div>
-                  <div className="bg-green-50 p-4 rounded-lg">
-                    <h3 className="text-lg font-semibold text-green-900 mb-2">University Scholarships</h3>
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <h3 className="text-lg font-semibold text-blue-900 mb-2">University Scholarships</h3>
                     <p className="text-gray-700">Merit-based and need-based scholarships</p>
                   </div>
                 </div>

@@ -76,8 +76,8 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
               </div>
 
               {/* Success Rate Highlight */}
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-green-800 mb-4">UK Visa Success Rate</h3>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold text-blue-800 mb-4">UK Visa Success Rate</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-700 mb-2"><strong>Overall Success Rate:</strong> 98%</p>
@@ -101,7 +101,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 1: Insufficient Proof of Funds */}
               <section id="insufficient-funds" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 border-red-500 pl-4">1. Insufficient Proof of Funds</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">1. Insufficient Proof of Funds</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The majority of you have already heard that someone's UK visa was rejected due to a bank statement. The UKVI requires students to prove they can pay for their tuition fees as well as living costs. The exact bank statement for UK visa depends on your program length and location.
@@ -111,33 +111,33 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                   To avoid issues regarding this, keep the required acceptable bank statement for UK student visa in your bank account for the specified time before applying. Moreover, make sure your bank statements are recent (from the last twenty-eight days).
                 </p>
 
-                <div className="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
-                  <h4 className="text-lg font-semibold mb-4 text-red-800 flex items-center">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+                  <h4 className="text-lg font-semibold mb-4 text-blue-800 flex items-center">
                     <CreditCard className="w-5 h-5 mr-2" />
                     Financial Requirements Checklist
                   </h4>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-green-600 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-blue-600 flex-shrink-0" />
                       Maintain funds for 28 consecutive days before application
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-green-600 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-blue-600 flex-shrink-0" />
                       Provide recent bank statements (last 28 days)
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-green-600 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-blue-600 flex-shrink-0" />
                       Show proof of tuition fees and living expenses
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-green-600 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 text-blue-600 flex-shrink-0" />
                       Ensure bank statements are certified and translated
                     </li>
                   </ul>
                 </div>
 
-                <div className="bg-yellow-50 p-6 rounded-lg">
-                  <h4 className="text-lg font-semibold mb-3 text-yellow-800">Required Amounts (2025):</h4>
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h4 className="text-lg font-semibold mb-3 text-blue-800">Required Amounts (2025):</h4>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-700 mb-1"><strong>London:</strong> £1,334/month</p>
@@ -153,7 +153,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 2: Documentation Errors */}
               <section id="documentation-errors" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 border-green-500 pl-4">2. Avoid Documentation Errors</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">2. Avoid Documentation Errors</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Another common mistake is not submitting enough evidence to support your application. Having correct and complete documents is essential for your UK student visa application. Missing or wrong details, like wrong dates or spelling mistakes, can delay your process.
@@ -178,8 +178,8 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                     </ul>
                   </div>
 
-                  <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-orange-800 mb-3">Common Documentation Mistakes:</h4>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-3">Common Documentation Mistakes:</h4>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <ul className="space-y-1 text-gray-700">
@@ -202,7 +202,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 3: English Proficiency */}
               <section id="english-proficiency" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 border-purple-500 pl-4">3. Incorrect English Proficiency Proof</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">3. Incorrect English Proficiency Proof</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Many students make the mistake of submitting wrong or invalid English language test results. The UKVI has specific requirements for English proficiency tests, and not all test centers or test types are accepted.
@@ -212,8 +212,8 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                   Make sure you take your English test at a UKVI-approved test center and achieve the minimum required scores for your course level. Also, check that your test results are still valid (usually within 2 years).
                 </p>
 
-                <div className="bg-purple-50 p-6 rounded-lg">
-                  <h4 className="text-lg font-semibold mb-4 text-purple-800">Accepted English Tests & Minimum Scores:</h4>
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h4 className="text-lg font-semibold mb-4 text-blue-800">Accepted English Tests & Minimum Scores:</h4>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <h5 className="font-semibold mb-2">Undergraduate (B2 Level):</h5>
@@ -237,7 +237,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 4: CAS Details */}
               <section id="cas-details" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 border-orange-500 pl-4">4. Not Checking CAS Details</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">4. Not Checking CAS Details</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Your Confirmation of Acceptance for Studies (CAS) is a crucial document that contains important information about your course and personal details. Many students make the mistake of not carefully reviewing their CAS before submitting their visa application.
@@ -247,8 +247,8 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                   Any errors in your CAS can lead to visa rejection or delays. Always verify all information on your CAS matches your other documents and notify your university immediately if you find any discrepancies.
                 </p>
 
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold mb-4 text-orange-800 flex items-center">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-4 text-blue-800 flex items-center">
                     <Shield className="w-5 h-5 mr-2" />
                     CAS Verification Checklist
                   </h4>
@@ -277,7 +277,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 5: Past Records */}
               <section id="past-records" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">5. Not Disclosing Past Records</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">5. Not Disclosing Past Records</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Honesty is crucial in your visa application. Some students make the mistake of not disclosing previous visa refusals, immigration violations, or criminal records, thinking it might harm their chances.
@@ -287,8 +287,8 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                   However, the UKVI has access to extensive databases and can easily verify your information. Not disclosing relevant information is considered deception and will result in automatic rejection and potential bans from future applications.
                 </p>
 
-                <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold mb-3 text-red-800 flex items-center">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold mb-3 text-blue-800 flex items-center">
                     <AlertCircle className="w-5 h-5 mr-2" />
                     Always Disclose:
                   </h4>
@@ -307,8 +307,8 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Additional Success Tips</h2>
 
                 <div className="space-y-6">
-                  <div className="bg-green-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-green-800">Pro Tips for Visa Success:</h3>
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    <h3 className="text-xl font-semibold mb-4 text-blue-800">Pro Tips for Visa Success:</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <ul className="space-y-2 text-gray-700">
@@ -430,7 +430,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Success Rate:</span>
-                    <span className="font-medium text-green-600">99%</span>
+                    <span className="font-medium text-blue-600">99%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Processing Time:</span>
@@ -454,28 +454,28 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
               {/* Common Mistakes Summary */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <XCircle className="w-5 h-5 mr-2 text-red-500" />
+                  <XCircle className="w-5 h-5 mr-2 text-blue-500" />
                   Top 5 Mistakes
                 </h3>
                 <div className="space-y-3 text-sm">
-                  <div className="p-2 bg-red-50 rounded">
-                    <p className="font-medium text-red-800">Insufficient Funds</p>
+                  <div className="p-2 bg-blue-50 rounded">
+                    <p className="font-medium text-blue-800">Insufficient Funds</p>
                     <p className="text-gray-600">Not maintaining 28-day balance</p>
                   </div>
-                  <div className="p-2 bg-orange-50 rounded">
-                    <p className="font-medium text-orange-800">Wrong Documents</p>
+                  <div className="p-2 bg-blue-50 rounded">
+                    <p className="font-medium text-blue-800">Wrong Documents</p>
                     <p className="text-gray-600">Missing or incorrect papers</p>
                   </div>
-                  <div className="p-2 bg-yellow-50 rounded">
-                    <p className="font-medium text-yellow-800">English Test Issues</p>
+                  <div className="p-2 bg-blue-50 rounded">
+                    <p className="font-medium text-blue-800">English Test Issues</p>
                     <p className="text-gray-600">Invalid test or low scores</p>
                   </div>
-                  <div className="p-2 bg-purple-50 rounded">
-                    <p className="font-medium text-purple-800">CAS Errors</p>
+                  <div className="p-2 bg-blue-50 rounded">
+                    <p className="font-medium text-blue-800">CAS Errors</p>
                     <p className="text-gray-600">Not verifying CAS details</p>
                   </div>
-                  <div className="p-2 bg-indigo-50 rounded">
-                    <p className="font-medium text-indigo-800">Hidden History</p>
+                  <div className="p-2 bg-blue-50 rounded">
+                    <p className="font-medium text-blue-800">Hidden History</p>
                     <p className="text-gray-600">Not disclosing past records</p>
                   </div>
                 </div>

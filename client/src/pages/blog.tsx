@@ -196,15 +196,15 @@ function getCategoryGradient(category: string): string {
 
 function getCategoryBadgeColor(category: string): string {
   const colors: Record<string, string> = {
-    "Test Preparation": "bg-emerald-500",
+    "Test Preparation": "bg-blue-500",
     "Visa Guides": "bg-blue-500",
-    "Study Abroad": "bg-purple-500", 
-    "Legal Education": "bg-orange-500",
-    "Healthcare Studies": "bg-pink-500",
-    "University Partnership": "bg-cyan-500",
-    "Study Destinations": "bg-green-500",
-    "UK Immigration": "bg-indigo-500",
-    "Study in Canada": "bg-red-500",
+    "Study Abroad": "bg-blue-500", 
+    "Legal Education": "bg-blue-500",
+    "Healthcare Studies": "bg-blue-500",
+    "University Partnership": "bg-blue-500",
+    "Study Destinations": "bg-blue-500",
+    "UK Immigration": "bg-blue-500",
+    "Study in Canada": "bg-blue-500",
     "General": "bg-gray-500"
   };
   return colors[category || "General"] || "bg-blue-500";
@@ -434,7 +434,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Pakistani LLB degree</span>
-                      <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">Required</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Required</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Bar Council registration</span>
@@ -442,11 +442,11 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Local law understanding</span>
-                      <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Essential</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Essential</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Professional networking</span>
-                      <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Helpful</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Helpful</span>
                     </div>
                   </div>
                 </div>
@@ -459,7 +459,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>University of Dundee</span>
-                      <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">#1 Ranked</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">#1 Ranked</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>University of Glasgow</span>
@@ -467,11 +467,11 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>University of Edinburgh</span>
-                      <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Prestigious</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Prestigious</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Kingston University London</span>
-                      <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">London Based</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">London Based</span>
                     </div>
                   </div>
                 </div>
@@ -488,15 +488,15 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Academia & Research</span>
-                      <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">Researcher</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Researcher</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Arts & Culture</span>
-                      <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">Creative</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Creative</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Science & Innovation</span>
-                      <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Innovator</span>
+                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Innovator</span>
                     </div>
                   </div>
                 </div>
@@ -814,7 +814,7 @@ export default function Blog() {
                   <p className="text-gray-600">Handpicked by our education experts</p>
                 </div>
               </div>
-              <div className="text-sm text-gray-500 bg-yellow-50 px-3 py-1 rounded-full">
+              <div className="text-sm text-gray-500 bg-blue-50 px-3 py-1 rounded-full">
                 {featuredPosts.length} featured posts
               </div>
             </div>
@@ -1100,14 +1100,14 @@ export default function Blog() {
                         />
                         {post.featured && (
                           <div className="absolute top-3 left-3">
-                            <span className="bg-yellow-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                            <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
                               Featured
                             </span>
                           </div>
                         )}
                         {post.trending && (
                           <div className="absolute top-3 right-3">
-                            <span className="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
+                            <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
                               <TrendingUp className="h-3 w-3 mr-1" />
                               Trending
                             </span>
@@ -1264,11 +1264,11 @@ export default function Blog() {
                 <div className="text-gray-600">Students Placed</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-green-600 mb-2">98%</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">98%</div>
                 <div className="text-gray-600">Visa Success Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600 mb-2">17+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">17+</div>
                 <div className="text-gray-600">Office Locations</div>
               </div>
             </div>

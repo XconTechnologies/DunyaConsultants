@@ -53,7 +53,7 @@ export default function BranchesCarousel() {
   const duplicatedBranches = [...branches, ...branches];
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 via-white to-cyan-50 overflow-hidden">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">

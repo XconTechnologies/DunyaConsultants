@@ -63,7 +63,7 @@ const OxfordTestAcceptedUniversitiesUK: React.FC = () => {
         <Navigation />
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <p className="text-red-600 mb-4">Failed to load the article</p>
+            <p className="text-blue-600 mb-4">Failed to load the article</p>
             <Link href="/blog" className="text-blue-600 hover:text-blue-800">
               ← Back to Blog
             </Link>
@@ -150,9 +150,9 @@ const OxfordTestAcceptedUniversitiesUK: React.FC = () => {
               </div>
 
               {/* Featured Universities */}
-              <div className="bg-green-50 p-6 rounded-lg border border-green-200">
-                <h3 className="text-lg font-semibold text-green-800 mb-4">Top OIETC Universities</h3>
-                <div className="space-y-2 text-sm text-green-700">
+              <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
+                <h3 className="text-lg font-semibold text-blue-800 mb-4">Top OIETC Universities</h3>
+                <div className="space-y-2 text-sm text-blue-700">
                   <div>• University of Edinburgh</div>
                   <div>• University of Nottingham</div>
                   <div>• Bangor University</div>

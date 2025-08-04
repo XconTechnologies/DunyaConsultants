@@ -43,7 +43,7 @@ export default function AboutSection() {
     { value: "17", label: "City Branches", color: "text-primary" },
     { value: "200", label: "Certified Counsellors", color: "text-secondary" },
     { value: "250", label: "Ambassadors", color: "text-accent" },
-    { value: "20+", label: "University Partners", color: "text-purple-600" }
+    { value: "20+", label: "University Partners", color: "text-blue-600" }
   ];
 
   return (

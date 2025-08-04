@@ -30,7 +30,7 @@ const contactInfo = [
     title: "Phone",
     details: "+92 304 1110947",
     description: "Call us for immediate assistance",
-    color: "from-green-500 to-green-600"
+    color: "from-blue-500 to-blue-600"
   },
   {
     icon: Mail,
@@ -44,14 +44,14 @@ const contactInfo = [
     title: "Head Office",
     details: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
     description: "Visit us for personal consultation",
-    color: "from-purple-500 to-purple-600"
+    color: "from-blue-500 to-blue-600"
   },
   {
     icon: Clock,
     title: "Working Hours",
     details: "Mon - Sat: 9:00 AM - 6:00 PM",
     description: "Sunday: Closed",
-    color: "from-orange-500 to-orange-600"
+    color: "from-blue-500 to-blue-600"
   }
 ];
 
@@ -109,7 +109,7 @@ export default function ContactSection() {
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Get In{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
               Touch
             </span>
           </h2>
@@ -302,7 +302,7 @@ export default function ContactSection() {
                     <Button
                       type="submit"
                       disabled={submitMutation.isPending}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 py-6 text-lg font-semibold"
+                      className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 py-6 text-lg font-semibold"
                     >
                       {submitMutation.isPending ? (
                         "Sending..."
@@ -328,7 +328,7 @@ export default function ContactSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 lg:p-12 text-white">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-600 rounded-3xl p-8 lg:p-12 text-white">
             <h3 className="text-3xl font-bold mb-4">Need Immediate Assistance?</h3>
             <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
               Call our expert counselors directly for immediate support and guidance.

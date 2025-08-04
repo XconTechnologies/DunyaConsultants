@@ -101,10 +101,10 @@ const upcomingEvents: Event[] = [
 
 const getEventTypeColor = (type: string) => {
   const colors = {
-    'Fair': 'bg-purple-100 text-purple-800 border-purple-200',
+    'Fair': 'bg-blue-100 text-blue-800 border-blue-200',
     'Webinar': 'bg-blue-100 text-blue-800 border-blue-200',
-    'Workshop': 'bg-green-100 text-green-800 border-green-200',
-    'Info Session': 'bg-orange-100 text-orange-800 border-orange-200'
+    'Workshop': 'bg-blue-100 text-blue-800 border-blue-200',
+    'Info Session': 'bg-blue-100 text-blue-800 border-blue-200'
   };
   return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800 border-gray-200';
 };
@@ -361,7 +361,7 @@ export default function EventsSection() {
                             alt={event.title}
                             className="w-full h-full object-cover"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-purple-600/80" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-blue-600/80" />
                           <div className="absolute top-3 left-3">
                             <span className="px-2 py-1 bg-white/90 text-blue-600 rounded-full text-xs font-medium">
                               {event.type}
@@ -478,8 +478,8 @@ export default function EventsSection() {
             {/* Success Message */}
             {showSuccess && !showTicket && (
               <div className="p-6 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
@@ -496,7 +496,7 @@ export default function EventsSection() {
                 )}
                 <button
                   onClick={() => setShowTicket(true)}
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-purple-700 transition-all duration-300 flex items-center space-x-2 mx-auto"
+                  className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-blue-700 transition-all duration-300 flex items-center space-x-2 mx-auto"
                 >
                   <Ticket className="w-4 h-4" />
                   <span>View & Download Ticket</span>
@@ -670,9 +670,9 @@ export default function EventsSection() {
               />
               
               <div className="mt-6 text-center">
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
-                  <h4 className="font-semibold text-green-800 mb-2">✅ Registration Complete!</h4>
-                  <div className="text-sm text-green-700 space-y-1">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">✅ Registration Complete!</h4>
+                  <div className="text-sm text-blue-700 space-y-1">
                     <p>• Your event ticket has been generated successfully</p>
                     <p>• Confirmation email sent to {ticketData.email}</p>
                     <p>• Please download and bring this ticket to the event</p>

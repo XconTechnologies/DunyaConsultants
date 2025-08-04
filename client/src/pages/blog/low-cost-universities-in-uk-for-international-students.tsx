@@ -113,7 +113,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                     "University of Buckingham"
                   ].map((university, index) => (
                     <div key={index} className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
-                      <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 text-blue-600 flex-shrink-0" />
                       <span className="text-gray-800 font-medium">{university}</span>
                     </div>
                   ))}
@@ -292,7 +292,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                     { name: "Ulster University", location: "Northern Ireland" }
                   ].map((uni, index) => (
                     <div key={index} className="flex items-center space-x-3 p-3 bg-white rounded border">
-                      <Star className="h-4 w-4 text-yellow-500 flex-shrink-0" />
+                      <Star className="h-4 w-4 text-blue-500 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-gray-900 text-sm">{uni.name}</p>
                         <p className="text-xs text-gray-600">{uni.location}</p>

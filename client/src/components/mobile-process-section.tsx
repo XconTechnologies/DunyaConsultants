@@ -183,7 +183,7 @@ export default function MobileProcessSection() {
                           <ul className="space-y-1">
                             {step.deliverables.map((item, idx) => (
                               <li key={idx} className="flex items-center space-x-2 text-sm text-neutral-600">
-                                <CheckCircle className="w-3 h-3 text-green-500" />
+                                <CheckCircle className="w-3 h-3 text-blue-500" />
                                 <span>{item}</span>
                               </li>
                             ))}
@@ -267,7 +267,7 @@ export default function MobileProcessSection() {
                           <div className="space-y-3">
                             <div>
                               <h4 className="font-semibold text-neutral-800 mb-2 flex items-center">
-                                <CheckCircle className="w-4 h-4 mr-2 text-green-500" />
+                                <CheckCircle className="w-4 h-4 mr-2 text-blue-500" />
                                 What You'll Receive:
                               </h4>
                               <ul className="space-y-1 ml-6">

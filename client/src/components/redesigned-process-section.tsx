@@ -28,8 +28,8 @@ const processSteps = [
     subtitle: "Destination & Institution Selection",
     description: "Conduct comprehensive research on countries, universities, and programs. Make informed decisions based on rankings, career prospects, costs, and immigration policies.",
     icon: Globe,
-    color: "from-emerald-500 to-emerald-600",
-    bgColor: "bg-emerald-50",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-50",
     pattern: "waves",
     duration: "Week 2-3",
     deliverables: [
@@ -45,8 +45,8 @@ const processSteps = [
     subtitle: "Standardized Test Excellence",
     description: "Prepare for required standardized tests (IELTS, TOEFL, GRE, GMAT) with expert coaching and achieve competitive scores for university admission.",
     icon: BookOpen,
-    color: "from-violet-500 to-violet-600",
-    bgColor: "bg-violet-50",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-50",
     pattern: "grid",
     duration: "Week 2-8",
     deliverables: [
@@ -79,8 +79,8 @@ const processSteps = [
     subtitle: "Strategic Application Management",
     description: "Submit comprehensive applications to selected universities with optimized documentation, ensuring all requirements are met and deadlines are adhered to.",
     icon: Send,
-    color: "from-orange-500 to-orange-600",
-    bgColor: "bg-orange-50",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-50",
     pattern: "triangles",
     duration: "Week 8-10",
     deliverables: [
@@ -96,8 +96,8 @@ const processSteps = [
     subtitle: "University Response Management",
     description: "Track application progress, handle university communications, and make informed decisions on admission offers while preparing for the next steps.",
     icon: CheckCircle,
-    color: "from-green-500 to-green-600",
-    bgColor: "bg-green-50",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-50",
     pattern: "hexagons",
     duration: "Week 10-14",
     deliverables: [
@@ -113,8 +113,8 @@ const processSteps = [
     subtitle: "Immigration Documentation",
     description: "Navigate the complex visa application process with expert guidance, ensuring all immigration requirements are met for successful visa approval.",
     icon: Shield,
-    color: "from-red-500 to-red-600",
-    bgColor: "bg-red-50",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-50",
     pattern: "waves",
     duration: "Week 14-18",
     deliverables: [
@@ -130,8 +130,8 @@ const processSteps = [
     subtitle: "Journey Readiness",
     description: "Complete final preparations including accommodation arrangements, travel planning, orientation sessions, and essential checklist completion for a smooth departure.",
     icon: Plane,
-    color: "from-cyan-500 to-cyan-600",
-    bgColor: "bg-cyan-50",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-50",
     pattern: "dots",
     duration: "Week 18-20",
     deliverables: [
@@ -166,8 +166,8 @@ export default function RedesignedProcessSection() {
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-10 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute top-0 right-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-500"></div>
+        <div className="absolute top-0 right-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-500"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={ref}>
@@ -179,7 +179,7 @@ export default function RedesignedProcessSection() {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center space-x-2 bg-white rounded-full px-4 py-2 shadow-lg mb-6">
-            <Star className="w-5 h-5 text-yellow-500" />
+            <Star className="w-5 h-5 text-blue-500" />
             <span className="text-sm font-medium text-neutral-600">Step-by-Step Process</span>
           </div>
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
@@ -316,7 +316,7 @@ export default function RedesignedProcessSection() {
                           <div className="space-y-1">
                             {step.deliverables.slice(0, 2).map((deliverable, i) => (
                               <div key={i} className="flex items-center space-x-2">
-                                <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0" />
+                                <CheckCircle className="w-3 h-3 text-blue-500 flex-shrink-0" />
                                 <span className="text-xs text-neutral-600">{deliverable}</span>
                               </div>
                             ))}
@@ -419,7 +419,7 @@ export default function RedesignedProcessSection() {
                       <div className="space-y-1">
                         {step.deliverables.slice(0, 2).map((deliverable, i) => (
                           <div key={i} className="flex items-center space-x-2">
-                            <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0" />
+                            <CheckCircle className="w-3 h-3 text-blue-500 flex-shrink-0" />
                             <span className="text-xs text-neutral-600">{deliverable}</span>
                           </div>
                         ))}
@@ -454,16 +454,16 @@ export default function RedesignedProcessSection() {
               <div className="text-3xl font-bold text-blue-600 mb-2">18-20</div>
               <div className="text-neutral-700 font-medium">Weeks Timeline</div>
             </div>
-            <div className="p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-lg border border-green-200">
-              <div className="text-3xl font-bold text-green-600 mb-2">95%</div>
+            <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg border border-blue-200">
+              <div className="text-3xl font-bold text-blue-600 mb-2">95%</div>
               <div className="text-neutral-700 font-medium">Visa Success Rate</div>
             </div>      
-            <div className="p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-lg border border-purple-200">
-              <div className="text-3xl font-bold text-purple-600 mb-2">250+</div>
+            <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg border border-blue-200">
+              <div className="text-3xl font-bold text-blue-600 mb-2">250+</div>
               <div className="text-neutral-700 font-medium">Partner Universities</div>
             </div>
-            <div className="p-6 bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl shadow-lg border border-orange-200">
-              <div className="text-3xl font-bold text-orange-600 mb-2">24/7</div>
+            <div className="p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg border border-blue-200">
+              <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
               <div className="text-neutral-700 font-medium">Expert Support</div>
             </div>
           </div>
@@ -477,7 +477,7 @@ export default function RedesignedProcessSection() {
           className="text-center"
         >
           <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl p-8 text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-600/20"></div>
             <div className="relative z-10">
               <h3 className="text-3xl font-bold mb-4">Begin Your Educational Journey Today</h3>
               <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">

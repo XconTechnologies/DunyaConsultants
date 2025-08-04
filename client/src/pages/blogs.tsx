@@ -650,7 +650,7 @@ export default function Blogs() {
                               </motion.div>
                               <h3 className="text-2xl font-bold mb-2">🎓 Study Visa Success Rate: 95%</h3>
                               <p className="mb-4">Join thousands of successful students who got their visas with our expert guidance</p>
-                              <Button className="bg-white text-green-600 hover:bg-green-50">
+                              <Button className="bg-white text-blue-600 hover:bg-blue-50">
                                 Start Your Visa Journey
                               </Button>
                             </div>

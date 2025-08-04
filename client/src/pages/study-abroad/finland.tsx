@@ -138,7 +138,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-green-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <FileText className="w-8 h-8 text-green-600 mr-3" />
+                    <FileText className="w-8 h-8 text-blue-600 mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">€560/month</p>
                       <p className="text-gray-600">Living Cost Requirement</p>
@@ -150,7 +150,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-purple-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <GraduationCap className="w-8 h-8 text-purple-600 mr-3" />
+                    <GraduationCap className="w-8 h-8 text-blue-600 mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">13</p>
                       <p className="text-gray-600">Universities Available</p>
@@ -181,9 +181,9 @@ Address: Alif Tower, Sargodha
                             <span className="font-medium">Undergraduate:</span>
                             <span className="text-blue-600 font-semibold">{req.ug}</span>
                           </div>
-                          <div className="flex justify-between items-center p-3 bg-green-50 rounded">
+                          <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
                             <span className="font-medium">Postgraduate:</span>
-                            <span className="text-green-600 font-semibold">{req.pg}</span>
+                            <span className="text-blue-600 font-semibold">{req.pg}</span>
                           </div>
                         </div>
                       </CardContent>
@@ -210,11 +210,11 @@ Address: Alif Tower, Sargodha
                       <p className="text-blue-700">per year</p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-green-50 border-green-200">
+                  <Card className="bg-blue-50 border-blue-200">
                     <CardContent className="p-6 text-center">
-                      <h4 className="font-semibold text-green-900 mb-2">Master's Programs</h4>
-                      <p className="text-3xl font-bold text-green-600">€10,000 - €18,000</p>
-                      <p className="text-green-700">per year</p>
+                      <h4 className="font-semibold text-blue-900 mb-2">Master's Programs</h4>
+                      <p className="text-3xl font-bold text-blue-600">€10,000 - €18,000</p>
+                      <p className="text-blue-700">per year</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -233,7 +233,7 @@ Address: Alif Tower, Sargodha
                 <div className="grid md:grid-cols-2 gap-4">
                   {whyChooseFinland.map((benefit, index) => (
                     <div key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-blue-500 mt-1 flex-shrink-0" />
                       <span className="text-gray-700">{benefit}</span>
                     </div>
                   ))}
@@ -299,7 +299,7 @@ Address: Alif Tower, Sargodha
                 <ul className="space-y-3">
                   {documentChecklist.map((doc, index) => (
                     <li key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-4 h-4 text-green-500 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-blue-500 mt-1 flex-shrink-0" />
                       <span className="text-sm text-gray-700">{doc}</span>
                     </li>
                   ))}
@@ -329,7 +329,7 @@ Address: Alif Tower, Sargodha
                 </div>
                 
                 <ApplicationForm country="Finland">
-                  <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
+                  <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     Book Free Consultation
                   </Button>

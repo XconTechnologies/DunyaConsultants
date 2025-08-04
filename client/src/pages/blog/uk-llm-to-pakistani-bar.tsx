@@ -133,31 +133,31 @@ export default function UKLLMToPakistaniBar() {
                 <h3 className="text-lg font-semibold mb-4">Required Documents for HEC</h3>
                 <div className="space-y-3">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Original UK LLM degree:</strong> Issued by recognized UK university
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Academic transcripts:</strong> Complete record of courses and grades
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Undergraduate law degree:</strong> LLB or equivalent from Pakistan/recognized institution
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Passport copies:</strong> All relevant pages showing UK residence
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 text-green-500 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 text-blue-500 mr-3 mt-0.5" />
                     <div>
                       <strong>Verification documents:</strong> Attested by Pakistani Embassy/High Commission
                     </div>
@@ -167,9 +167,9 @@ export default function UKLLMToPakistaniBar() {
 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Bar Council Enrollment Process</h2>
               
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
                 <div className="flex items-center mb-2">
-                  <AlertCircle className="h-5 w-5 text-yellow-500 mr-2" />
+                  <AlertCircle className="h-5 w-5 text-blue-500 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-900">Provincial Bar Council Requirements</h3>
                 </div>
                 <div className="space-y-3 text-gray-700">
@@ -238,17 +238,17 @@ export default function UKLLMToPakistaniBar() {
                   <p className="text-gray-600">Join multinational corporations as legal counsel with expertise in international law.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Users className="h-8 w-8 text-green-600 mb-3" />
+                  <Users className="h-8 w-8 text-blue-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Law Firms</h3>
                   <p className="text-gray-600">Work with top-tier law firms handling international transactions and disputes.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <BookOpen className="h-8 w-8 text-purple-600 mb-3" />
+                  <BookOpen className="h-8 w-8 text-blue-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Academia</h3>
                   <p className="text-gray-600">Teach law at universities and contribute to legal research and scholarship.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Award className="h-8 w-8 text-orange-600 mb-3" />
+                  <Award className="h-8 w-8 text-blue-600 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Government Services</h3>
                   <p className="text-gray-600">Join civil service as legal advisor or pursue judicial service.</p>
                 </div>
@@ -261,37 +261,37 @@ export default function UKLLMToPakistaniBar() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>International Trade Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Banking and Finance Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Intellectual Property Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Corporate and Commercial Law</span>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Human Rights Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Environmental Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>Energy and Natural Resources</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                      <CheckCircle className="h-4 w-4 text-blue-500 mr-2" />
                       <span>International Arbitration</span>
                     </div>
                   </div>
@@ -301,39 +301,39 @@ export default function UKLLMToPakistaniBar() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Common Challenges and Solutions</h2>
               
               <div className="space-y-4 mb-8">
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-red-800 mb-2">Challenge: Lengthy HEC Process</h4>
-                  <p className="text-sm text-red-700"><strong>Solution:</strong> Apply early, ensure all documents are properly attested, and follow up regularly with HEC.</p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Challenge: Lengthy HEC Process</h4>
+                  <p className="text-sm text-blue-700"><strong>Solution:</strong> Apply early, ensure all documents are properly attested, and follow up regularly with HEC.</p>
                 </div>
-                <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-orange-800 mb-2">Challenge: Document Verification Issues</h4>
-                  <p className="text-sm text-orange-700"><strong>Solution:</strong> Use authorized agents or visit Pakistani Embassy/High Commission personally.</p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Challenge: Document Verification Issues</h4>
+                  <p className="text-sm text-blue-700"><strong>Solution:</strong> Use authorized agents or visit Pakistani Embassy/High Commission personally.</p>
                 </div>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-yellow-800 mb-2">Challenge: Bar Council Requirements</h4>
-                  <p className="text-sm text-yellow-700"><strong>Solution:</strong> Consult with local lawyers and ensure all provincial requirements are met.</p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h4 className="font-semibold text-blue-800 mb-2">Challenge: Bar Council Requirements</h4>
+                  <p className="text-sm text-blue-700"><strong>Solution:</strong> Consult with local lawyers and ensure all provincial requirements are met.</p>
                 </div>
               </div>
 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Professional Development</h2>
               
-              <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
                 <h3 className="text-lg font-semibold mb-4">Continuing Legal Education</h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
+                    <span className="text-blue-600 mr-2">•</span>
                     <span><strong>Mandatory CPD:</strong> Complete required continuing professional development hours</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
+                    <span className="text-blue-600 mr-2">•</span>
                     <span><strong>Professional Networks:</strong> Join legal associations and professional bodies</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
+                    <span className="text-blue-600 mr-2">•</span>
                     <span><strong>Specialized Training:</strong> Attend workshops and seminars in your area of practice</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-green-600 mr-2">•</span>
+                    <span className="text-blue-600 mr-2">•</span>
                     <span><strong>International Connections:</strong> Maintain links with UK legal community</span>
                   </li>
                 </ul>

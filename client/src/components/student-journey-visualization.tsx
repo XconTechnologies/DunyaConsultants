@@ -27,7 +27,7 @@ export default function StudentJourneyVisualization() {
       title: "Initial Consultation",
       description: "Free assessment of your profile and career goals",
       icon: UserCheck,
-      color: "from-blue-500 to-cyan-500",
+      color: "from-blue-500 to-blue-500",
       duration: "30 mins",
       completion: "Day 1",
       details: [
@@ -42,7 +42,7 @@ export default function StudentJourneyVisualization() {
       title: "University Selection",
       description: "Choose the best universities matching your profile",
       icon: GraduationCap,
-      color: "from-purple-500 to-indigo-500",
+      color: "from-blue-500 to-blue-500",
       duration: "1-2 weeks",
       completion: "Week 1-2",
       details: [
@@ -57,7 +57,7 @@ export default function StudentJourneyVisualization() {
       title: "Application Process",
       description: "Complete applications with required documents",
       icon: FileText,
-      color: "from-green-500 to-emerald-500",
+      color: "from-blue-500 to-blue-500",
       duration: "4-6 weeks",
       completion: "Month 1-2",
       details: [
@@ -72,7 +72,7 @@ export default function StudentJourneyVisualization() {
       title: "Test Preparation",
       description: "IELTS, TOEFL, GRE, GMAT coaching and practice",
       icon: BookOpen,
-      color: "from-orange-500 to-red-500",
+      color: "from-blue-500 to-blue-500",
       duration: "2-4 months",
       completion: "Month 2-4",
       details: [
@@ -87,7 +87,7 @@ export default function StudentJourneyVisualization() {
       title: "Admission Success",
       description: "Receive acceptance letters from universities",
       icon: Award,
-      color: "from-yellow-500 to-orange-500",
+      color: "from-blue-500 to-blue-500",
       duration: "2-4 months",
       completion: "Month 3-6",
       details: [
@@ -102,7 +102,7 @@ export default function StudentJourneyVisualization() {
       title: "Visa Processing",
       description: "Student visa application and approval",
       icon: MapPin,
-      color: "from-teal-500 to-green-500",
+      color: "from-blue-500 to-blue-500",
       duration: "4-8 weeks",
       completion: "Month 4-7",
       details: [
@@ -117,7 +117,7 @@ export default function StudentJourneyVisualization() {
       title: "Pre-Departure",
       description: "Final preparations for your journey",
       icon: Plane,
-      color: "from-indigo-500 to-purple-500",
+      color: "from-blue-500 to-blue-500",
       duration: "2-4 weeks",
       completion: "Month 6-8",
       details: [
@@ -132,7 +132,7 @@ export default function StudentJourneyVisualization() {
       title: "Study Success",
       description: "Begin your international education journey",
       icon: Trophy,
-      color: "from-pink-500 to-rose-500",
+      color: "from-blue-500 to-blue-500",
       duration: "Ongoing",
       completion: "Achievement",
       details: [
@@ -263,7 +263,7 @@ export default function StudentJourneyVisualization() {
                       activeStep === index
                         ? 'bg-primary text-white'
                         : activeStep > index
-                        ? 'bg-green-100 text-green-700'
+                        ? 'bg-blue-100 text-blue-700'
                         : 'bg-gray-100 text-gray-600'
                     }`}>
                       {activeStep === index ? (

@@ -43,7 +43,7 @@ const services = [
     ],
     duration: "1-2 months",
     price: "Starting from $200",
-    color: "from-green-500 to-green-600"
+    color: "from-blue-500 to-blue-600"
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ const services = [
     ],
     duration: "2-4 weeks",
     price: "Starting from $100",
-    color: "from-purple-500 to-purple-600"
+    color: "from-blue-500 to-blue-600"
   },
   {
     id: 4,
@@ -73,7 +73,7 @@ const services = [
     ],
     duration: "1-3 months",
     price: "Starting from $120",
-    color: "from-orange-500 to-orange-600"
+    color: "from-blue-500 to-blue-600"
   },
   {
     id: 5,
@@ -88,7 +88,7 @@ const services = [
     ],
     duration: "1 week",
     price: "Complimentary",
-    color: "from-teal-500 to-teal-600"
+    color: "from-blue-500 to-blue-600"
   },
   {
     id: 6,
@@ -103,7 +103,7 @@ const services = [
     ],
     duration: "2-3 weeks",
     price: "Starting from $80",
-    color: "from-indigo-500 to-indigo-600"
+    color: "from-blue-500 to-blue-600"
   }
 ];
 
@@ -120,7 +120,7 @@ export default function ServicesOverview() {
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Our Comprehensive{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
               Services
             </span>
           </h2>
@@ -157,7 +157,7 @@ export default function ServicesOverview() {
                     <div className="space-y-2">
                       {service.features.map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-2">
-                          <CheckCircle className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
                           <span className="text-sm text-gray-700">{feature}</span>
                         </div>
                       ))}
@@ -196,7 +196,7 @@ export default function ServicesOverview() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 lg:p-12 text-white">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-600 rounded-3xl p-8 lg:p-12 text-white">
             <h3 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h3>
             <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
               Get personalized guidance from our expert counselors and take the first step towards your dream education abroad.

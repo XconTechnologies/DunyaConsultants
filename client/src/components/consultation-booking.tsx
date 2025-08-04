@@ -122,7 +122,7 @@ export default function ConsultationBooking() {
 
   if (isCompleted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-12 px-4">
         <div className="max-w-2xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -131,8 +131,8 @@ export default function ConsultationBooking() {
           >
             <Card className="bg-white shadow-2xl border-0 text-center">
               <CardContent className="p-12">
-                <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-12 h-12 text-green-600" />
+                <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-12 h-12 text-blue-600" />
                 </div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
                   Consultation Booked Successfully!
@@ -168,7 +168,7 @@ export default function ConsultationBooking() {
                   <Button onClick={resetForm} variant="outline" className="flex-1">
                     Book Another Consultation
                   </Button>
-                  <Button className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600">
+                  <Button className="flex-1 bg-gradient-to-r from-blue-600 to-blue-600">
                     Contact Us
                   </Button>
                 </div>
@@ -181,7 +181,7 @@ export default function ConsultationBooking() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -191,7 +191,7 @@ export default function ConsultationBooking() {
         >
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Book Your Free{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
               Consultation
             </span>
           </h1>
@@ -517,12 +517,12 @@ export default function ConsultationBooking() {
                             <p className="text-sm text-gray-600">30-45 minutes</p>
                           </div>
                           <div className="bg-white rounded-lg p-4 border border-blue-200">
-                            <MessageCircle className="w-8 h-8 text-green-600 mb-2" />
+                            <MessageCircle className="w-8 h-8 text-blue-600 mb-2" />
                             <h4 className="font-medium text-gray-900">Video Call</h4>
                             <p className="text-sm text-gray-600">45-60 minutes</p>
                           </div>
                           <div className="bg-white rounded-lg p-4 border border-blue-200">
-                            <MapPin className="w-8 h-8 text-purple-600 mb-2" />
+                            <MapPin className="w-8 h-8 text-blue-600 mb-2" />
                             <h4 className="font-medium text-gray-900">In-Person</h4>
                             <p className="text-sm text-gray-600">60 minutes</p>
                           </div>
@@ -633,7 +633,7 @@ export default function ConsultationBooking() {
                     <Button
                       type="submit"
                       disabled={submitMutation.isPending}
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 flex items-center gap-2"
+                      className="bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 flex items-center gap-2"
                     >
                       {submitMutation.isPending ? "Booking..." : "Book Consultation"}
                       <CheckCircle className="w-4 h-4" />

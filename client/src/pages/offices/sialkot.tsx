@@ -174,7 +174,7 @@ export default function SialkotOffice() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-center space-x-3 p-3 rounded-lg bg-gray-50 hover:bg-blue-50 transition-colors"
                     >
-                      <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-blue-500 flex-shrink-0" />
                       <span className="text-gray-700">{service}</span>
                     </motion.div>
                   ))}
@@ -185,7 +185,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <Star className="w-5 h-5 mr-2 text-yellow-600" />
+                  <Star className="w-5 h-5 mr-2 text-blue-600" />
                   Specializations
                 </CardTitle>
               </CardHeader>
@@ -207,7 +207,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <Building2 className="w-5 h-5 mr-2 text-purple-600" />
+                  <Building2 className="w-5 h-5 mr-2 text-blue-600" />
                   Office Facilities
                 </CardTitle>
               </CardHeader>
@@ -215,7 +215,7 @@ export default function SialkotOffice() {
                 <div className="grid grid-cols-2 gap-2">
                   {office.facilities.map((facility, index) => (
                     <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                      <CheckCircle className="w-3 h-3 text-green-500" />
+                      <CheckCircle className="w-3 h-3 text-blue-500" />
                       <span>{facility}</span>
                     </div>
                   ))}
@@ -260,7 +260,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <MessageCircle className="w-5 h-5 mr-2 text-green-600" />
+                  <MessageCircle className="w-5 h-5 mr-2 text-blue-600" />
                   Student Testimonials
                 </CardTitle>
               </CardHeader>
@@ -286,7 +286,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <MapPin className="w-5 h-5 mr-2 text-red-600" />
+                  <MapPin className="w-5 h-5 mr-2 text-blue-600" />
                   Nearby Landmarks
                 </CardTitle>
               </CardHeader>
@@ -294,7 +294,7 @@ export default function SialkotOffice() {
                 <div className="space-y-2">
                   {office.nearbyLandmarks.map((landmark, index) => (
                     <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                      <MapPin className="w-3 h-3 text-red-500" />
+                      <MapPin className="w-3 h-3 text-blue-500" />
                       <span>{landmark}</span>
                     </div>
                   ))}

@@ -126,28 +126,28 @@ export default function LLMInUKForPakistaniStudents() {
 
               {/* Eligibility Criteria */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-orange-500 pl-4">Eligibility Criteria for LLM in UK Universities</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Eligibility Criteria for LLM in UK Universities</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The eligibility criteria may vary a little from one university to another, but overall, they are the same. Let's discuss the eligibility requirements below:
                 </p>
 
-                <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg border-l-4 border-orange-500 mb-6">
-                  <h3 className="text-xl font-bold mb-4 text-orange-800">Key Eligibility Requirements</h3>
+                <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+                  <h3 className="text-xl font-bold mb-4 text-blue-800">Key Eligibility Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
+                      <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
                       A <strong>graduation degree in law</strong> is a must, with a <strong>65 to 75 percent final grade</strong>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
+                      <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
                       <strong>IELTS score of minimum 6.5 band</strong>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
+                      <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
                       <strong>Work/practical experience</strong> is not mandatory but adds great value to your application
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
+                      <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
                       Few universities might ask for the <strong>LSAT Test (Law School Admission)</strong>, but this is typically not a requirement
                     </li>
                   </ul>
@@ -156,7 +156,7 @@ export default function LLMInUKForPakistaniStudents() {
 
               {/* Documents Required */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-red-500 pl-4">Documents Required for Admission to LLM UK</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Documents Required for Admission to LLM UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The list of the documents needed to get admission to the <strong>best universities for law in the UK</strong> is given below:
                 </p>
@@ -171,8 +171,8 @@ export default function LLMInUKForPakistaniStudents() {
                     </ul>
                   </div>
                   
-                  <div className="bg-white border-l-4 border-green-500 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-green-800">Supporting Documents</h4>
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                    <h4 className="text-lg font-semibold mb-3 text-blue-800">Supporting Documents</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Statement of Purpose (SOP)</li>
                       <li>• Updated CV</li>
@@ -180,8 +180,8 @@ export default function LLMInUKForPakistaniStudents() {
                     </ul>
                   </div>
                   
-                  <div className="bg-white border-l-4 border-purple-500 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-purple-800">Financial Documents</h4>
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                    <h4 className="text-lg font-semibold mb-3 text-blue-800">Financial Documents</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Proof of funds</li>
                       <li>• Bank statements</li>
@@ -189,8 +189,8 @@ export default function LLMInUKForPakistaniStudents() {
                     </ul>
                   </div>
                   
-                  <div className="bg-white border-l-4 border-orange-500 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-orange-800">Experience Documents</h4>
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                    <h4 className="text-lg font-semibold mb-3 text-blue-800">Experience Documents</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Work experience certificates</li>
                       <li>• Professional references</li>
@@ -202,7 +202,7 @@ export default function LLMInUKForPakistaniStudents() {
 
               {/* LLM Fees */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-purple-500 pl-4">LLM Fees in UK for Pakistani Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">LLM Fees in UK for Pakistani Students</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Studying an <strong>LLM in UK</strong> not only includes the tuition fee but also additional expenses such as the living cost in the UK, entrance exam fees, and other pre-arrival expenses.
                 </p>
@@ -235,14 +235,14 @@ export default function LLMInUKForPakistaniStudents() {
 
               {/* LLM Scholarships */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-green-500 pl-4">LLM Scholarships for Pakistani Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">LLM Scholarships for Pakistani Students</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The scholarship programs offered in UK are the best option for those who cannot afford full tuition fees and are searching for some financial help. The list of the <strong>law scholarships for Pakistani students in UK</strong> are given below.
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-                    <h4 className="font-semibold text-green-800 mb-2">University-Specific Scholarships</h4>
+                  <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                    <h4 className="font-semibold text-blue-800 mb-2">University-Specific Scholarships</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Bosco Tso & Emily Ng Scholarship (King's College London)</li>
                       <li>• UCL Laws Academic Excellence Scholarships (University College London)</li>
@@ -277,8 +277,8 @@ export default function LLMInUKForPakistaniStudents() {
                     </ul>
                   </div>
                   
-                  <div className="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-                    <h4 className="font-semibold text-green-800 mb-2">Corporate Sector</h4>
+                  <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                    <h4 className="font-semibold text-blue-800 mb-2">Corporate Sector</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Corporate Lawyer</li>
                       <li>• Compliance Officer</li>
@@ -287,8 +287,8 @@ export default function LLMInUKForPakistaniStudents() {
                     </ul>
                   </div>
                   
-                  <div className="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-500">
-                    <h4 className="font-semibold text-purple-800 mb-2">Academic & Research</h4>
+                  <div className="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                    <h4 className="font-semibold text-blue-800 mb-2">Academic & Research</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Legal Researcher</li>
                       <li>• University Lecturer</li>
@@ -312,7 +312,7 @@ export default function LLMInUKForPakistaniStudents() {
 
               {/* FAQs */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-purple-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
@@ -320,27 +320,27 @@ export default function LLMInUKForPakistaniStudents() {
                     <p className="text-gray-700">The LLM in UK is basically a degree of masters in law and the duration of this program is one year for Pakistani students. Some universities may offer part-time options that extend to 2 years.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-green-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What are the job opportunities after completing my LLM in UK?</h3>
                     <p className="text-gray-700">You can get a job in professional legal roles like solicitors, barristers, and legal consultants after completing your LLM in UK. Other opportunities include corporate law, compliance, academia, and legal research positions.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-purple-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Is IELTS required for LLM admission in UK?</h3>
                     <p className="text-gray-700">Yes, IELTS is a basic requirement for getting admission in LLM UK. Most universities accept IELTS with a 6.5-7 score. Some top universities may require higher scores of 7.0 or above.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-orange-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">How many marks are required to study LLM in the UK?</h3>
                     <p className="text-gray-700">Most UK universities require a minimum of 65-75% in your undergraduate law degree. Top universities like Oxford and Cambridge may require higher grades of 75-80% or equivalent GPA.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-red-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Can I practice law in Pakistan after completing LLM from UK?</h3>
                     <p className="text-gray-700">Yes, you can practice law in Pakistan after completing LLM from UK. However, you may need to fulfill additional requirements such as enrolling with the Pakistan Bar Council and completing any necessary conversion procedures.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-teal-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Are scholarships available for Pakistani students pursuing LLM in UK?</h3>
                     <p className="text-gray-700">Yes, several scholarships are available including Gates Cambridge Scholarship, Oxford-Finnis Graduate Scholarship, and university-specific scholarships from institutions like King's College London, UCL, and Queen Mary University.</p>
                   </div>
@@ -395,8 +395,8 @@ export default function LLMInUKForPakistaniStudents() {
             </div>
 
             {/* Top Universities */}
-            <div className="bg-orange-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-orange-800">Top LLM Universities</h3>
+            <div className="bg-blue-50 p-6 rounded-lg mb-6">
+              <h3 className="text-xl font-bold mb-4 text-blue-800">Top LLM Universities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• London School of Economics</li>
                 <li>• University of Oxford</li>
@@ -409,8 +409,8 @@ export default function LLMInUKForPakistaniStudents() {
             </div>
 
             {/* Scholarship Opportunities */}
-            <div className="bg-green-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-green-800">Scholarship Opportunities</h3>
+            <div className="bg-blue-50 p-6 rounded-lg mb-6">
+              <h3 className="text-xl font-bold mb-4 text-blue-800">Scholarship Opportunities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Gates Cambridge Scholarship</li>
                 <li>• Oxford-Finnis Scholarship</li>
