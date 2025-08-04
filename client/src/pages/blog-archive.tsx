@@ -369,21 +369,9 @@ export default function BlogArchive() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300 group ${
-                    viewMode === "list" ? "flex flex-row" : "flex flex-col"
-                  }`}
+                  className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300 group"
                 >
-                  <div className={viewMode === "list" ? "w-1/3" : "w-full"}>
-                    <div className="relative overflow-hidden aspect-[16/9]">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                  </div>
-
-                  <div className={`p-6 ${viewMode === "list" ? "w-2/3" : "w-full"}`}>
+                  <div className="p-6 w-full">
                     <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
                       {post.title}
                     </h3>
@@ -392,15 +380,15 @@ export default function BlogArchive() {
                       {post.excerpt}
                     </p>
 
-                    <div className="flex items-center justify-between text-sm text-gray-500">
-                      <span>{post.date}</span>
-                      <span>No Comments</span>
-                    </div>
-
-                    <div className="mt-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1 text-sm text-gray-500">
+                        <Calendar className="w-4 h-4" />
+                        <span>{post.date}</span>
+                      </div>
                       <Link href={post.href}>
-                        <span className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200">
-                          Read More »
+                        <span className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200 flex items-center gap-1">
+                          Read More
+                          <ArrowRight className="w-4 h-4" />
                         </span>
                       </Link>
                     </div>
