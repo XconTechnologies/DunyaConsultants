@@ -185,7 +185,7 @@ export default function CyprusVisaPakistan() {
                 <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
                   Cyprus Visa Fees for Pakistani Students
                 </h2>
-                <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
+                <div className="bg-gradient-to-br from-blue-50 to-green-100 p-6 rounded-lg">
                   <p className="text-gray-700 leading-relaxed mb-4">
                     Pakistani students planning to study in Cyprus need to pay certain visa fees. The Cyprus visa price in Pakistan for a short-stay visa (Category C) is €90, while the long-stay visa (Category D) costs €60.
                   </p>

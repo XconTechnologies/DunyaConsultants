@@ -146,7 +146,7 @@ export default function IELTS() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 IELTS Test{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                   Format
                 </span>
               </h2>
@@ -167,7 +167,7 @@ export default function IELTS() {
                 <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
                   <CardHeader>
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
                         <section.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
@@ -210,7 +210,7 @@ export default function IELTS() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 IELTS Preparation{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                   Courses
                 </span>
               </h2>
@@ -230,7 +230,7 @@ export default function IELTS() {
               >
                 <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
                   <CardHeader className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full flex items-center justify-center">
                       <BookOpen className="w-8 h-8 text-white" />
                     </div>
                     <CardTitle className="text-xl">{course.title}</CardTitle>
@@ -249,7 +249,7 @@ export default function IELTS() {
                         </li>
                       ))}
                     </ul>
-                    <Button className="w-full mt-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+                    <Button className="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-purple-700 text-white">
                       Enroll Now
                     </Button>
                   </CardContent>
@@ -271,7 +271,7 @@ export default function IELTS() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Band{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                   Requirements
                 </span>
               </h2>
@@ -315,7 +315,7 @@ export default function IELTS() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Expert{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
                   Tips
                 </span>
               </h2>
@@ -334,7 +334,7 @@ export default function IELTS() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white rounded-xl p-6 border border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg"
               >
-                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{tip.title}</h3>

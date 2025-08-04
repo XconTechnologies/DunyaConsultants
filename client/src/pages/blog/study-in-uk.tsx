@@ -188,7 +188,7 @@ const StudyInUK = () => {
                     </div>
                   </div>
                 </div>
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
+                <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-lg p-6">
                   <h4 className="font-semibold text-blue-900 mb-3">PTE Requirements</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between">
@@ -211,7 +211,7 @@ const StudyInUK = () => {
                 Tuition Fees Structure
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 text-center">
+                <div className="bg-gradient-to-br from-blue-50 to-green-100 rounded-lg p-6 text-center">
                   <GraduationCap className="h-12 w-12 text-blue-600 mx-auto mb-4" />
                   <h4 className="font-semibold text-blue-900 mb-2">Undergraduate Programs</h4>
                   <p className="text-2xl font-bold text-blue-800">£11,000 - £17,000</p>
@@ -302,7 +302,7 @@ const StudyInUK = () => {
                 <Globe className="h-6 w-6 text-blue-600 mr-3" />
                 Study Programs Available
               </h3>
-              <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg p-6">
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-6">
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The UK offers an extensive range of academic programs across various disciplines. With 166 universities providing over 50,000 different programs, Pakistani students have access to:
                 </p>

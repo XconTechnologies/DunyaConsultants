@@ -541,7 +541,7 @@ export default function StudyAbroadJourney() {
                 <Card className="h-full hover:shadow-lg transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
-                      <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                      <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-xl">
                         {story.name.split(' ').map(n => n[0]).join('')}
                       </div>
                       <div className="ml-4">

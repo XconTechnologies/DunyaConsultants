@@ -10,7 +10,7 @@ export default function AngliaRuskinUniversityPartner() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Link 
             href="/blog" 
@@ -167,7 +167,7 @@ export default function AngliaRuskinUniversityPartner() {
 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">University Rankings</h2>
               
-              <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+              <div className="bg-gradient-to-r from-blue-50 to-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
                 <h3 className="text-lg font-semibold mb-4">ARU's Position in Global Rankings</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg">

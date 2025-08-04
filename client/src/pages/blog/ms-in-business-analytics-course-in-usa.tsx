@@ -346,7 +346,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Start Your Journey to MS in Business Analytics in USA</h3>
                 <p className="text-lg mb-4">Let our expert counselors guide you through the entire application process, from university selection to visa approval. We'll help you secure admission to top US universities and achieve your career goals.</p>
                 <div className="flex gap-4">

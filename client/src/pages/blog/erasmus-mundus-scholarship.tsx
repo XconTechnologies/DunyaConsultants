@@ -166,7 +166,7 @@ export default function ErasmusMundusScholarship() {
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                      <tr className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Benefit Type</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Amount (EUR)</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Coverage Details</th>
@@ -212,7 +212,7 @@ export default function ErasmusMundusScholarship() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.2 }}
                     >
-                      <Card className="bg-gradient-to-br from-purple-50 to-blue-100 border-blue-200">
+                      <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
                         <CardContent className="p-6">
                           <h3 className="text-xl font-bold text-blue-800 mb-3">{program.type}</h3>
                           <div className="grid md:grid-cols-3 gap-4 text-sm">
@@ -525,7 +525,7 @@ export default function ErasmusMundusScholarship() {
                       <option>Social Sciences</option>
                       <option>Other</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-purple-700">
                       Get Scholarship Guidance
                     </Button>
                   </form>

@@ -10,7 +10,7 @@ export default function MasterOfLawsLLMAustralia() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">

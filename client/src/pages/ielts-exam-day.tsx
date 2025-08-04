@@ -291,7 +291,7 @@ export default function IELTSExamDay() {
               {securityMeasures.map((measure, index) => (
                 <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow">
                   <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Shield className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-lg font-bold text-neutral-800 mb-3">{measure.title}</h3>
@@ -383,7 +383,7 @@ export default function IELTSExamDay() {
               <CardContent className="p-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Users className="w-10 h-10 text-white" />
                     </div>
                     <h3 className="text-xl font-bold text-neutral-800 mb-4">Same Day Speaking</h3>

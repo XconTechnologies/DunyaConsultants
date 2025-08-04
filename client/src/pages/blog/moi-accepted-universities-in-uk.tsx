@@ -64,7 +64,7 @@ export default function MOIAcceptedUniversitiesInUK() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-emerald-600 via-blue-700 to-cyan-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-cyan-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -121,7 +121,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                 <div className="overflow-x-auto mb-6">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white">
+                      <tr className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Sr. No</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">UK Universities</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Location</th>
@@ -186,7 +186,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-start space-x-4 p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow"
                     >
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                         {step.step}
                       </div>
                       <div className="lg:col-span-3">
@@ -203,7 +203,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-gradient-to-br from-emerald-50 to-teal-100 border-l-4 border-blue-500 rounded-r-lg"
+                className="mb-8 p-6 bg-gradient-to-br from-blue-50 to-teal-100 border-l-4 border-blue-500 rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-center">
                   <Award className="mr-3 h-6 w-6" />
@@ -293,7 +293,7 @@ export default function MOIAcceptedUniversitiesInUK() {
           <div className="w-80">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-emerald-50 to-teal-100 border-blue-200">
+              <Card className="bg-gradient-to-br from-blue-50 to-teal-100 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="font-bold text-blue-800 mb-4 flex items-center">
                     <GraduationCap className="mr-2 h-5 w-5" />
@@ -376,7 +376,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                       <option>Mixed Medium</option>
                       <option>Other</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700">
                       Get MOI Assessment
                     </Button>
                   </form>

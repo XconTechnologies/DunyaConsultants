@@ -222,7 +222,7 @@ export default function StudyGapAcceptableUKMasters() {
               </div>
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">Timeline for Application</h2>
-              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 border border-blue-200 rounded-lg p-6 mb-8">
+              <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">Recommended Timeline</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">

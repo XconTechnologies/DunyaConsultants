@@ -239,7 +239,7 @@ export default function StudyNursingUK() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   Cost for International Students
                 </h2>
-                <div className="bg-gradient-to-r from-red-50 to-pink-50 rounded-lg p-6">
+                <div className="bg-gradient-to-r from-blue-50 to-pink-50 rounded-lg p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-3">Tuition Fees</h3>

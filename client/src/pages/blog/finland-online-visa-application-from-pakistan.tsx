@@ -171,7 +171,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                   <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
                     Finland Application Fee & Deadline 2025
                   </h2>
-                  <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-lg">
+                  <div className="bg-gradient-to-r from-blue-50 to-red-50 p-6 rounded-lg">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="text-center">
                         <div className="text-3xl font-bold text-blue-600 mb-2">€100</div>

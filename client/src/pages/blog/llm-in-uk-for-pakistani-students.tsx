@@ -131,7 +131,7 @@ export default function LLMInUKForPakistaniStudents() {
                   The eligibility criteria may vary a little from one university to another, but overall, they are the same. Let's discuss the eligibility requirements below:
                 </p>
 
-                <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
                   <h3 className="text-xl font-bold mb-4 text-blue-800">Key Eligibility Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
@@ -210,7 +210,7 @@ export default function LLMInUKForPakistaniStudents() {
                   The average <strong>LLM fee in UK</strong> is somewhere between <strong>19,500 GBP to 44,000 GBP each year</strong>, based on the university you select. Moreover, living costs in the United Kingdom can be somewhere between <strong>1,215 GBP to 1,715 GBP each month</strong> and includes taxes, insurance, traveling prices, accommodation costs, etc.
                 </p>
 
-                <div className="bg-gradient-to-r from-purple-600 to-indigo-700 text-white p-8 rounded-lg mb-6">
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 rounded-lg mb-6">
                   <h3 className="text-2xl font-bold mb-4">Cost Breakdown</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>

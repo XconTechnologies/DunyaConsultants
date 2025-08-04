@@ -304,7 +304,7 @@ export default function AustraliaGuide() {
                       <CardContent className="p-8">
                         <div className="flex items-start justify-between mb-6">
                           <div className="flex items-center space-x-4">
-                            <div className="w-16 h-16 bg-gradient-to-br from-orange-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
                               #{university.rank}
                             </div>
                             <div>
@@ -343,7 +343,7 @@ export default function AustraliaGuide() {
                           </div>
                         </div>
 
-                        <Button className="w-full bg-gradient-to-r from-orange-600 to-blue-600 hover:from-orange-700 hover:to-blue-700 text-white">
+                        <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-orange-700 hover:to-blue-700 text-white">
                           Get Admission Guidance for {university.name}
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
@@ -366,7 +366,7 @@ export default function AustraliaGuide() {
                 <Card className="shadow-lg">
                   <CardContent className="p-0">
                     <table className="w-full">
-                      <thead className="bg-gradient-to-r from-orange-600 to-blue-600 text-white">
+                      <thead className="bg-gradient-to-r from-blue-600 to-blue-600 text-white">
                         <tr>
                           <th className="px-6 py-4 text-left">City</th>
                           <th className="px-6 py-4 text-center">Housing</th>
@@ -494,7 +494,7 @@ export default function AustraliaGuide() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-orange-600 to-blue-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

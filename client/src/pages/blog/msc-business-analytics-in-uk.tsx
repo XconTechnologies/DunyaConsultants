@@ -322,7 +322,7 @@ export default function MSCBusinessAnalyticsInUK() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Start Your Journey to MSc Business Analytics in UK</h3>
                 <p className="text-lg mb-4">Let our expert counselors guide you through the entire application process for top UK universities. We'll help you choose the right program, prepare strong application materials, and secure your student visa for a successful business analytics career.</p>
                 <div className="flex gap-4">

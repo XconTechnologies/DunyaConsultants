@@ -366,7 +366,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
             <div className="sticky top-8 space-y-8">
               
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-emerald-50 to-teal-50 border-blue-200">
+              <Card className="bg-gradient-to-br from-blue-50 to-teal-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                     <BookOpen className="h-5 w-5 text-blue-600" />
@@ -421,7 +421,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
               </Card>
 
               {/* Office Location */}
-              <Card className="bg-gradient-to-br from-purple-50 to-violet-50 border-blue-200">
+              <Card className="bg-gradient-to-br from-blue-50 to-violet-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                     <Building className="h-5 w-5 text-blue-600" />

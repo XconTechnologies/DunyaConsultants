@@ -114,7 +114,7 @@ export default function WhichDegreeIsBestInPakistan() {
                 {/* Engineering Degrees */}
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-4 text-blue-700">Engineering Degrees</h3>
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
+                  <div className="bg-gradient-to-r from-blue-50 to-emerald-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Engineering has also been a popular career choice, with many different fields to choose from. You need to research <strong>which engineering field has the highest scope in Pakistan</strong>.
                     </p>
@@ -127,7 +127,7 @@ export default function WhichDegreeIsBestInPakistan() {
                 {/* IT and Computer Science */}
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-4 text-blue-700">Degree in Information Technology (IT) and Computer Science</h3>
-                  <div className="bg-gradient-to-r from-purple-50 to-violet-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
+                  <div className="bg-gradient-to-r from-blue-50 to-violet-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Degrees in <strong>IT and computer science</strong> are also the best degrees in Pakistan after FSC for high-paying careers in areas like data science, software development, and cybersecurity.
                     </p>
@@ -140,7 +140,7 @@ export default function WhichDegreeIsBestInPakistan() {
                 {/* Medicine and Healthcare */}
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-4 text-blue-700">Medicine and Healthcare Degrees</h3>
-                  <div className="bg-gradient-to-r from-red-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
+                  <div className="bg-gradient-to-r from-blue-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Medical programs are highly valued and are considered one of the top-paying careers globally. The <strong>best medical field in Pakistan</strong> offers a diverse range of options.
                     </p>
@@ -153,7 +153,7 @@ export default function WhichDegreeIsBestInPakistan() {
                 {/* Chartered Accounting */}
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold mb-4 text-blue-700">Chartered Accounting (CA)</h3>
-                  <div className="bg-gradient-to-r from-orange-50 to-amber-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
+                  <div className="bg-gradient-to-r from-blue-50 to-amber-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
                     <p className="text-gray-700 leading-relaxed mb-4">
                       Becoming a <strong>CA</strong> is another name on the list of the <strong>best scope degrees in Pakistan</strong>. It is a highly competitive field with great job opportunities. CAs are experts in managing finances. Over the past decades, the demand for skilled CAs has increased.
                     </p>
@@ -265,7 +265,7 @@ export default function WhichDegreeIsBestInPakistan() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-purple-600 to-indigo-700 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Need Help Choosing the Right Degree?</h3>
                 <p className="text-lg mb-4">Get expert career counseling and degree selection guidance. Our experienced counselors will help you choose the perfect degree program that matches your interests, aptitude, and career goals for a successful future in Pakistan.</p>
                 <div className="flex gap-4">

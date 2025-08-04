@@ -67,7 +67,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                   There are some fixed requirements that every student needs to meet for <strong>work in Canada for Pakistani students</strong>. Let's discuss these requirements in detail below:
                 </p>
                 
-                <div className="bg-gradient-to-r from-red-50 to-rose-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+                <div className="bg-gradient-to-r from-blue-50 to-rose-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
                   <h3 className="text-xl font-bold mb-4 text-blue-800">Key Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
@@ -112,7 +112,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                   </div>
 
                   {/* Work-Study Programs */}
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg border-l-4 border-blue-500">
+                  <div className="bg-gradient-to-r from-blue-50 to-emerald-50 p-6 rounded-lg border-l-4 border-blue-500">
                     <h3 className="text-2xl font-bold mb-3 text-blue-800">Work-Study Programs</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Work-study programs are created to help students cover their expenses financially. These <strong>overseas jobs for Pakistanis in Canada</strong> provide part-time work opportunities either on campus or with official off-campus employers.
@@ -120,7 +120,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                   </div>
 
                   {/* Off-Campus Jobs */}
-                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500">
+                  <div className="bg-gradient-to-r from-blue-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500">
                     <h3 className="text-2xl font-bold mb-3 text-blue-800">Off-Campus Jobs</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Pakistani students can likewise search for off-campus work opportunities in fields like <strong>customer service, hospitality, retail, and healthcare</strong>. Furthermore, restaurant jobs in Canada allow Pakistani students to get experience in the Canadian work environment.
@@ -128,7 +128,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                   </div>
 
                   {/* Co-op Programs */}
-                  <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-lg border-l-4 border-blue-500">
+                  <div className="bg-gradient-to-r from-blue-50 to-red-50 p-6 rounded-lg border-l-4 border-blue-500">
                     <h3 className="text-2xl font-bold mb-3 text-blue-800">Co-op Programs</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Few Canadian universities also provide <strong>co-op programs</strong> that combine paid work placements and classroom learning related to your course of study. They provide the best employment experience along with networking opportunities.
@@ -136,7 +136,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                   </div>
 
                   {/* Internships */}
-                  <div className="bg-gradient-to-r from-teal-50 to-cyan-50 p-6 rounded-lg border-l-4 border-blue-500">
+                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-lg border-l-4 border-blue-500">
                     <h3 className="text-2xl font-bold mb-3 text-blue-800">Internships</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Internships are one of the best options for Pakistani students to get practical job experience. These internships are typically for short periods and can be found when you search for <strong>IT jobs in Canada for Pakistani students</strong>, including finance, technology, and marketing.
@@ -199,7 +199,7 @@ export default function JobsInCanadaForPakistaniStudents() {
               <div className="mb-8">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Best Canada Jobs 2024 for Pakistani Students</h2>
                 
-                <div className="bg-gradient-to-r from-purple-600 to-pink-700 text-white p-8 rounded-lg mb-6">
+                <div className="bg-gradient-to-r from-blue-600 to-pink-700 text-white p-8 rounded-lg mb-6">
                   <h3 className="text-2xl font-bold mb-4">Popular Job Categories</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -329,7 +329,7 @@ export default function JobsInCanadaForPakistaniStudents() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-red-600 to-pink-700 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-pink-700 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Ready to Explore Job Opportunities in Canada?</h3>
                 <p className="text-lg mb-4">Get expert guidance on Canadian universities, work permits, and career opportunities. Our experienced counselors will help you understand the job market and plan your career path in Canada.</p>
                 <div className="flex gap-4">

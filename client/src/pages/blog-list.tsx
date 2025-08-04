@@ -301,7 +301,7 @@ export default function BlogList() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6"
+            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-6"
           >
             Our Blog
           </motion.h1>
@@ -321,7 +321,7 @@ export default function BlogList() {
             className="mb-8"
           >
             <Link href="/blog/archive">
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg">
+              <Button className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg">
                 View Full Archive
               </Button>
             </Link>
@@ -422,7 +422,7 @@ export default function BlogList() {
         >
           <Button 
             size="lg" 
-            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-xl"
+            className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-xl"
           >
             Load More Articles
           </Button>

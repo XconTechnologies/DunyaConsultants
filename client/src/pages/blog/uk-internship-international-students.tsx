@@ -169,7 +169,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-6">
+                    <div className="bg-gradient-to-br from-blue-50 to-emerald-50 rounded-lg p-6">
                       <div className="flex items-center mb-4">
                         <Briefcase className="w-8 h-8 text-blue-600 mr-3" />
                         <h3 className="text-xl font-semibold text-gray-900">Career Benefits</h3>
@@ -245,7 +245,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-6 my-8">
+                  <div className="bg-gradient-to-r from-blue-50 to-pink-50 rounded-lg p-6 my-8">
                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Special Opportunities</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-white rounded-lg p-4">

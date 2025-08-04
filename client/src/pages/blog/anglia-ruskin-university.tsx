@@ -148,7 +148,7 @@ export default function AngliaRuskinUniversity() {
                       <li>• Top 40 universities in UK (THE)</li>
                     </ul>
                   </div>
-                  <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg">
+                  <div className="bg-gradient-to-br from-blue-50 to-green-100 p-6 rounded-lg">
                     <h4 className="font-semibold text-gray-900 mb-3">Global Rankings</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• 301-350 range globally (THE)</li>

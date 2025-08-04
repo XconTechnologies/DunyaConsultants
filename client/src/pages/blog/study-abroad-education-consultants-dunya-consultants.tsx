@@ -81,7 +81,7 @@ const StudyAbroadEducationConsultants = () => {
                   </p>
                 </div>
                 
-                <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6">
+                <div className="bg-gradient-to-br from-blue-50 to-green-100 rounded-lg p-6">
                   <Users className="h-10 w-10 text-blue-600 mb-4" />
                   <h4 className="text-lg font-semibold text-blue-900 mb-3">Personal Growth</h4>
                   <p className="text-blue-800 text-sm">
@@ -89,7 +89,7 @@ const StudyAbroadEducationConsultants = () => {
                   </p>
                 </div>
                 
-                <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
+                <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-lg p-6">
                   <TrendingUp className="h-10 w-10 text-blue-600 mb-4" />
                   <h4 className="text-lg font-semibold text-blue-900 mb-3">Enhanced Career Prospects</h4>
                   <p className="text-blue-800 text-sm">
@@ -216,7 +216,7 @@ const StudyAbroadEducationConsultants = () => {
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-6">
+                <div className="bg-gradient-to-br from-blue-50 to-orange-50 rounded-lg p-6">
                   <Award className="h-10 w-10 text-blue-600 mb-4" />
                   <h4 className="text-lg font-semibold text-blue-900 mb-3">Expertise and Experience</h4>
                   <p className="text-blue-800 text-sm">
@@ -232,7 +232,7 @@ const StudyAbroadEducationConsultants = () => {
                   </p>
                 </div>
                 
-                <div className="bg-gradient-to-br from-green-50 to-teal-50 rounded-lg p-6">
+                <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-lg p-6">
                   <Globe className="h-10 w-10 text-blue-600 mb-4" />
                   <h4 className="text-lg font-semibold text-blue-900 mb-3">Strong International Network</h4>
                   <p className="text-blue-800 text-sm">
@@ -240,7 +240,7 @@ const StudyAbroadEducationConsultants = () => {
                   </p>
                 </div>
                 
-                <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg p-6">
+                <div className="bg-gradient-to-br from-blue-50 to-pink-50 rounded-lg p-6">
                   <Heart className="h-10 w-10 text-blue-600 mb-4" />
                   <h4 className="text-lg font-semibold text-blue-900 mb-3">Continuous Support</h4>
                   <p className="text-blue-800 text-sm">

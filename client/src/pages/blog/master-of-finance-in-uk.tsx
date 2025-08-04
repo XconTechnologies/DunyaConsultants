@@ -10,7 +10,7 @@ export default function MasterOfFinanceInUK() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-emerald-600 via-blue-600 to-cyan-600 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-blue-600 via-blue-600 to-cyan-600 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -369,7 +369,7 @@ export default function MasterOfFinanceInUK() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-teal-600 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Start Your Journey to Master of Finance in UK</h3>
                 <p className="text-lg mb-4">Let our expert counselors guide you through the entire application process for top UK universities. We'll help you choose the right program, prepare strong application materials, and secure your student visa for a successful finance career.</p>
                 <div className="flex gap-4">

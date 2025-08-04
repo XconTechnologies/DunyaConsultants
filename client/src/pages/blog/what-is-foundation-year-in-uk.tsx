@@ -70,7 +70,7 @@ export default function WhatIsFoundationYearInUK() {
                   Furthermore, this foundation year provides you the chance to get a detailed understanding of your selected course before enrolling in the full three-year graduation program. Once students have completed their foundation year, they are qualified to progress to their chosen undergraduate course, either at the same institution or a different one.
                 </p>
 
-                <div className="bg-gradient-to-r from-teal-50 to-cyan-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
                   <h3 className="text-xl font-bold mb-4 text-blue-800">Key Benefits of Foundation Year</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start">
@@ -148,7 +148,7 @@ export default function WhatIsFoundationYearInUK() {
                   The entry requirements for a <strong>cheap foundation year in UK</strong> is based on the university as well as the program you choose. Let's discuss below the <strong>foundation year requirements UK</strong> that you should confirm before applying:
                 </p>
 
-                <div className="bg-gradient-to-r from-cyan-50 to-blue-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+                <div className="bg-gradient-to-r from-blue-50 to-blue-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
                   <h3 className="text-xl font-bold mb-4 text-blue-800">Basic Eligibility Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
@@ -205,7 +205,7 @@ export default function WhatIsFoundationYearInUK() {
                   However, the average <strong>fee for foundation year in UK</strong> is somewhere between <strong>2500 GBP and 6000 GBP</strong> but differs from one university to the other. You should also know about living costs in the UK, which is around <strong>1500 GBP each month</strong>.
                 </p>
 
-                <div className="bg-gradient-to-r from-purple-600 to-pink-700 text-white p-8 rounded-lg mb-6">
+                <div className="bg-gradient-to-r from-blue-600 to-pink-700 text-white p-8 rounded-lg mb-6">
                   <h3 className="text-2xl font-bold mb-4">Cost Breakdown</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -331,7 +331,7 @@ export default function WhatIsFoundationYearInUK() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-teal-700 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Ready to Start Your Foundation Year Journey in UK?</h3>
                 <p className="text-lg mb-4">Get expert guidance on UK foundation programs, university selection, and application process. Our experienced counselors will help you choose the right foundation year program that aligns with your academic goals and career aspirations.</p>
                 <div className="flex gap-4">

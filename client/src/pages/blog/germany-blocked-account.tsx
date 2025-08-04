@@ -10,7 +10,7 @@ export default function GermanyBlockedAccount() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-red-600 via-blue-600 to-red-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-blue-600 via-blue-600 to-red-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -352,7 +352,7 @@ export default function GermanyBlockedAccount() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-red-600 to-yellow-600 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-yellow-600 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Need Help with Your Germany Blocked Account?</h3>
                 <p className="text-lg mb-4">Our expert counselors can guide you through the entire process of opening a blocked account and securing your German student visa. We'll help you choose the right provider and ensure all requirements are met for a successful application.</p>
                 <div className="flex gap-4">

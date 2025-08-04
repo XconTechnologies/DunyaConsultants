@@ -195,7 +195,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                     >
-                      <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-blue-200 h-full">
+                      <Card className="bg-gradient-to-br from-blue-50 to-red-100 border-blue-200 h-full">
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
                             <div className="flex-shrink-0">
@@ -223,7 +223,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-orange-600 to-red-600 text-white">
+                      <tr className="bg-gradient-to-r from-blue-600 to-red-600 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">University</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Popular Programs</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">English Requirement</th>
@@ -265,7 +265,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.2 }}
                     >
-                      <Card className="bg-gradient-to-br from-red-50 to-orange-100 border-blue-200">
+                      <Card className="bg-gradient-to-br from-blue-50 to-orange-100 border-blue-200">
                         <CardContent className="p-6">
                           <div className="flex items-center justify-between mb-3">
                             <h3 className="text-xl font-bold text-blue-800">{program.field}</h3>
@@ -326,7 +326,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       className="relative"
                     >
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold">
                           {index + 1}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -351,7 +351,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                   Plan your January intake application according to this timeline:
                 </p>
                 
-                <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-lg border border-blue-200">
+                <div className="bg-gradient-to-r from-blue-50 to-red-50 p-6 rounded-lg border border-blue-200">
                   <div className="space-y-4">
                     {timelineEvents.map((event, index) => (
                       <motion.div
@@ -463,7 +463,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
           <div className="w-80">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-blue-200">
+              <Card className="bg-gradient-to-br from-blue-50 to-red-100 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="font-bold text-blue-800 mb-4 flex items-center">
                     <Calendar className="mr-2 h-5 w-5" />
@@ -539,7 +539,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       <option>Health Sciences</option>
                       <option>Other</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700">
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-red-600 hover:from-orange-700 hover:to-red-700">
                       Get Application Help
                     </Button>
                   </form>

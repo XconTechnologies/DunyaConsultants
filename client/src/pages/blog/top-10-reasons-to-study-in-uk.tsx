@@ -87,7 +87,7 @@ export default function Top10ReasonsToStudyInUK() {
                 </div>
 
                 {/* Reason 2 */}
-                <div className="bg-gradient-to-r from-purple-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-start">
                     <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">2</div>
                     <div>
@@ -100,7 +100,7 @@ export default function Top10ReasonsToStudyInUK() {
                 </div>
 
                 {/* Reason 3 */}
-                <div className="bg-gradient-to-r from-green-50 to-emerald-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-50 to-emerald-50 p-6 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-start">
                     <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">3</div>
                     <div>
@@ -113,7 +113,7 @@ export default function Top10ReasonsToStudyInUK() {
                 </div>
 
                 {/* Reason 4 */}
-                <div className="bg-gradient-to-r from-orange-50 to-red-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-50 to-red-50 p-6 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-start">
                     <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">4</div>
                     <div>
@@ -126,7 +126,7 @@ export default function Top10ReasonsToStudyInUK() {
                 </div>
 
                 {/* Reason 5 */}
-                <div className="bg-gradient-to-r from-teal-50 to-cyan-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-start">
                     <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">5</div>
                     <div>
@@ -139,7 +139,7 @@ export default function Top10ReasonsToStudyInUK() {
                 </div>
 
                 {/* Reason 6 */}
-                <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-50 to-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-start">
                     <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">6</div>
                     <div>
@@ -152,7 +152,7 @@ export default function Top10ReasonsToStudyInUK() {
                 </div>
 
                 {/* Reason 7 */}
-                <div className="bg-gradient-to-r from-pink-50 to-rose-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-50 to-rose-50 p-6 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-start">
                     <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">7</div>
                     <div>
@@ -165,7 +165,7 @@ export default function Top10ReasonsToStudyInUK() {
                 </div>
 
                 {/* Reason 8 */}
-                <div className="bg-gradient-to-r from-yellow-50 to-amber-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-50 to-amber-50 p-6 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-start">
                     <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">8</div>
                     <div>
@@ -178,7 +178,7 @@ export default function Top10ReasonsToStudyInUK() {
                 </div>
 
                 {/* Reason 9 */}
-                <div className="bg-gradient-to-r from-violet-50 to-purple-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-start">
                     <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">9</div>
                     <div>
@@ -191,7 +191,7 @@ export default function Top10ReasonsToStudyInUK() {
                 </div>
 
                 {/* Reason 10 */}
-                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <div className="bg-gradient-to-r from-blue-50 to-teal-50 p-6 rounded-lg border-l-4 border-blue-500">
                   <div className="flex items-start">
                     <div className="bg-blue-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">10</div>
                     <div>

@@ -104,7 +104,7 @@ export default function GRETestFeeInPakistan() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-green-600 via-blue-700 to-blue-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -155,7 +155,7 @@ export default function GRETestFeeInPakistan() {
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-green-600 to-teal-600 text-white">
+                      <tr className="bg-gradient-to-r from-blue-600 to-teal-600 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Service</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">USD Fee</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">PKR Equivalent</th>
@@ -203,7 +203,7 @@ export default function GRETestFeeInPakistan() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.2 }}
                     >
-                      <Card className="bg-gradient-to-br from-teal-50 to-green-100 border-blue-200">
+                      <Card className="bg-gradient-to-br from-blue-50 to-green-100 border-blue-200">
                         <CardContent className="p-6">
                           <h3 className="text-xl font-bold text-blue-800 mb-3">{section.section}</h3>
                           <div className="grid md:grid-cols-3 gap-4 text-sm">
@@ -282,7 +282,7 @@ export default function GRETestFeeInPakistan() {
                       className="relative"
                     >
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold">
                           {index + 1}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -409,7 +409,7 @@ export default function GRETestFeeInPakistan() {
           <div className="w-80">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-green-50 to-teal-100 border-blue-200">
+              <Card className="bg-gradient-to-br from-blue-50 to-teal-100 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="font-bold text-blue-800 mb-4 flex items-center">
                     <Calculator className="mr-2 h-5 w-5" />
@@ -484,7 +484,7 @@ export default function GRETestFeeInPakistan() {
                       <option>320-330</option>
                       <option>330+</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700">
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-teal-600 hover:from-green-700 hover:to-teal-700">
                       Get GRE Prep Info
                     </Button>
                   </form>

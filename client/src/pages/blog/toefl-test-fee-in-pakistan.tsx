@@ -335,7 +335,7 @@ export default function TOEFLTestFeeInPakistan() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-orange-600 to-purple-700 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-purple-700 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Ready to Take Your TOEFL Exam?</h3>
                 <p className="text-lg mb-4">Get expert guidance for TOEFL preparation and registration. Our experienced instructors will help you achieve your target scores and secure admission to your dream university abroad.</p>
                 <div className="flex gap-4">

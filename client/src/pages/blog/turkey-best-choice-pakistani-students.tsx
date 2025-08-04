@@ -327,7 +327,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
               </section>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-red-50 to-red-100 p-8 rounded-lg text-center">
+              <div className="bg-gradient-to-r from-blue-50 to-red-100 p-8 rounded-lg text-center">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Start Your Turkish Education Journey?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants for Turkish university applications, visa processing, and scholarship opportunities.

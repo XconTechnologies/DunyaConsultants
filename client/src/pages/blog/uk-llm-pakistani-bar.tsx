@@ -261,7 +261,7 @@ export default function UKLLMPakistaniBar() {
                 <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 border-blue-500 pl-4">
                   Career Options with UK LLM
                 </h2>
-                <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg p-6">
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="bg-white rounded-lg p-4">
                       <h3 className="font-semibold text-gray-900 mb-2">Legal Consultant</h3>

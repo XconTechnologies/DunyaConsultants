@@ -193,7 +193,7 @@ export default function NewYearResolutionsForStudents2025() {
                         before your planned start date for best results.
                       </p>
                     </div>
-                    <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-lg">
+                    <div className="bg-gradient-to-r from-blue-50 to-blue-50 p-6 rounded-lg">
                       <h4 className="text-xl font-bold text-gray-900 mb-3">Personal Growth</h4>
                       <p className="text-gray-700">
                         Studying abroad is not just about studies, but also about growing personally, 

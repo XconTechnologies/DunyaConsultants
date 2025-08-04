@@ -252,7 +252,7 @@ export default function OfficesList() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <Navigation />
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white pt-32 pb-16">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -433,7 +433,7 @@ export default function OfficesList() {
 
         {/* Contact Banner */}
         <motion.div
-          className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center"
+          className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-white text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}

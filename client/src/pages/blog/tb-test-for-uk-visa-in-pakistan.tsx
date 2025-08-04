@@ -99,7 +99,7 @@ export default function TBTestForUKVisaInPakistan() {
                   The UK TB test centres are very conscious about the screening for your Tuberculosis to avoid spread of this infectious disease. That's why it is included in the medical for UK visa. Let's discuss below why it is compulsory:
                 </p>
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <Card className="bg-gradient-to-br from-green-50 to-emerald-100 border-blue-200">
+                  <Card className="bg-gradient-to-br from-blue-50 to-emerald-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
                         <CheckCircle className="h-6 w-6 text-blue-600 mr-2" />
@@ -117,7 +117,7 @@ export default function TBTestForUKVisaInPakistan() {
                       <p className="text-blue-700 text-sm">Protects both individual and public health</p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-gradient-to-br from-purple-50 to-violet-100 border-blue-200">
+                  <Card className="bg-gradient-to-br from-blue-50 to-violet-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
                         <CheckCircle className="h-6 w-6 text-blue-600 mr-2" />
@@ -126,7 +126,7 @@ export default function TBTestForUKVisaInPakistan() {
                       <p className="text-blue-700 text-sm">Maintains UK's public health standards</p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-gradient-to-br from-orange-50 to-red-100 border-blue-200">
+                  <Card className="bg-gradient-to-br from-blue-50 to-red-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
                         <CheckCircle className="h-6 w-6 text-blue-600 mr-2" />
@@ -333,7 +333,7 @@ export default function TBTestForUKVisaInPakistan() {
                       <option>Canada</option>
                       <option>Australia</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-purple-700">
                       Get Free Consultation
                     </Button>
                   </form>

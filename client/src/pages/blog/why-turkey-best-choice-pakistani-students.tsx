@@ -6,7 +6,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-gradient-to-r from-red-600 to-yellow-600 text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-yellow-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Link 
             href="/blog" 

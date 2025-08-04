@@ -63,7 +63,7 @@ export default function IELTSExamFeeInPakistan() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-indigo-600 via-blue-700 to-pink-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-pink-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -127,7 +127,7 @@ export default function IELTSExamFeeInPakistan() {
                       </p>
                     </CardContent>
                   </Card>
-                  <Card className="bg-gradient-to-br from-purple-50 to-violet-100 border-blue-200">
+                  <Card className="bg-gradient-to-br from-blue-50 to-violet-100 border-blue-200">
                     <CardContent className="p-6">
                       <h3 className="text-xl font-bold text-blue-800 mb-3">IELTS Academic</h3>
                       <p className="text-blue-700 text-sm leading-relaxed">
@@ -149,7 +149,7 @@ export default function IELTSExamFeeInPakistan() {
                       <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
-                            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white">
+                            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white">
                               {section.icon}
                             </div>
                             <div className="lg:col-span-3">
@@ -179,7 +179,7 @@ export default function IELTSExamFeeInPakistan() {
                 <div className="overflow-x-auto mb-6">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+                      <tr className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Paper Bases</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">IELTS Fee (USD)</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">IELTS Fee (PKR)</th>
@@ -242,7 +242,7 @@ export default function IELTSExamFeeInPakistan() {
                       <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
-                            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                               {center.city.charAt(0)}
                             </div>
                             <div className="lg:col-span-3">
@@ -330,7 +330,7 @@ export default function IELTSExamFeeInPakistan() {
           <div className="w-80">
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
-              <Card className="bg-gradient-to-br from-indigo-50 to-purple-100 border-blue-200">
+              <Card className="bg-gradient-to-br from-blue-50 to-purple-100 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="font-bold text-blue-800 mb-4 flex items-center">
                     <DollarSign className="mr-2 h-5 w-5" />
@@ -408,7 +408,7 @@ export default function IELTSExamFeeInPakistan() {
                       <option>General Training</option>
                       <option>UKVI</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                    <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
                       Get Test Information
                     </Button>
                   </form>

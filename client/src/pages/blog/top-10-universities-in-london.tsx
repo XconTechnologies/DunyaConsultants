@@ -132,7 +132,7 @@ export default function Top10UniversitiesLondon() {
                   </div>
 
                   {/* Imperial College London */}
-                  <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-green-50 to-emerald-50">
+                  <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-blue-50 to-emerald-50">
                     <div className="flex items-center mb-4">
                       <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">2</div>
                       <h3 className="text-2xl font-bold text-gray-900">Imperial College London</h3>
@@ -150,7 +150,7 @@ export default function Top10UniversitiesLondon() {
                   </div>
 
                   {/* King's College London */}
-                  <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-purple-50 to-violet-50">
+                  <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-blue-50 to-violet-50">
                     <div className="flex items-center mb-4">
                       <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">3</div>
                       <h3 className="text-2xl font-bold text-gray-900">King's College London</h3>
@@ -168,7 +168,7 @@ export default function Top10UniversitiesLondon() {
                   </div>
 
                   {/* London School of Economics */}
-                  <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-yellow-50 to-amber-50">
+                  <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-blue-50 to-amber-50">
                     <div className="flex items-center mb-4">
                       <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">4</div>
                       <h3 className="text-2xl font-bold text-gray-900">London School of Economics (LSE)</h3>
@@ -186,7 +186,7 @@ export default function Top10UniversitiesLondon() {
                   </div>
 
                   {/* Queen Mary University of London */}
-                  <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-red-50 to-rose-50">
+                  <div className="border border-gray-200 rounded-lg p-6 bg-gradient-to-r from-blue-50 to-rose-50">
                     <div className="flex items-center mb-4">
                       <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg mr-4">5</div>
                       <h3 className="text-2xl font-bold text-gray-900">Queen Mary University of London</h3>

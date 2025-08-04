@@ -637,7 +637,7 @@ export default function Blogs() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse", repeatDelay: 3 }}
-                            className="my-12 p-6 bg-gradient-to-r from-green-500 to-blue-500 rounded-xl text-white relative overflow-hidden"
+                            className="my-12 p-6 bg-gradient-to-r from-blue-500 to-blue-500 rounded-xl text-white relative overflow-hidden"
                           >
                             <div className="absolute inset-0 bg-black/10"></div>
                             <div className="relative z-10 text-center">
