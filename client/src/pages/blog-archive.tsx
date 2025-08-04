@@ -29,9 +29,15 @@ export default function BlogArchive() {
   const [sortBy, setSortBy] = useState("latest");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  // Fetch published blog posts from API
+  // Fetch published blog posts from API with optimization
   const { data: blogPosts = [], isLoading, error } = useQuery<BlogPost[]>({
     queryKey: ['/api/blog-posts/published'],
+    staleTime: Infinity, // Never consider data stale - load instantly
+    gcTime: Infinity, // Keep in cache forever
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchInterval: false,
+    refetchIntervalInBackground: false,
   });
 
   // Map of blog post slugs to their actual featured images based on content
@@ -82,7 +88,8 @@ export default function BlogArchive() {
 
   // Convert API data to archive format
   const archivePosts: BlogArchivePost[] = useMemo(() => {
-    return blogPosts.map(post => ({
+    if (!blogPosts || !Array.isArray(blogPosts)) return [];
+    return blogPosts.map((post: BlogPost) => ({
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || post.content.slice(0, 200) + "...",
@@ -151,7 +158,8 @@ export default function BlogArchive() {
     return filtered;
   }, [archivePosts, searchTerm, selectedCategory, sortBy]);
 
-  if (isLoading) {
+  // Show loading only if there's no data at all and still loading
+  if (isLoading && (!blogPosts || blogPosts.length === 0)) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center">
         <div className="text-center">
