@@ -9,7 +9,7 @@ export default function NewYearResolutionsForStudents2025() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative w-full h-96 bg-gradient-to-r from-blue-900 to-blue-700">
+      <div className="relative w-full h-96 bg-gradient-to-r from-blue-600 to-blue-800">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{

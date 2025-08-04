@@ -139,7 +139,7 @@ export default function CanadaGuide() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100" ref={ref}>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-blue-800/30"></div>
         </div>

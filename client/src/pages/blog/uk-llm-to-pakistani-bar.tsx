@@ -10,7 +10,7 @@ export default function UKLLMToPakistaniBar() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-800 to-blue-900 text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Link 
             href="/blog" 

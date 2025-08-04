@@ -49,7 +49,7 @@ export default function LahoreDHA() {
       <Navigation />
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 text-white pt-32 pb-16">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center mb-6">
             <Link href="/offices">

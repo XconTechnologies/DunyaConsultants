@@ -545,7 +545,7 @@ export default function Blogs() {
       <div className="min-h-screen bg-white">
         <Navigation />
         {/* Article Header */}
-        <section className="pt-32 pb-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white">
+        <section className="pt-32 pb-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <Button 
               onClick={() => setSelectedPost(null)}
@@ -858,7 +858,7 @@ export default function Blogs() {
       <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50" ref={ref}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white relative overflow-hidden">
+      <section className="pt-32 pb-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white relative overflow-hidden">
         {/* Enhanced Background with Animated Elements */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-500/20"></div>

@@ -186,7 +186,7 @@ export default function BlogArchive() {
       <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
         {/* Enhanced Hero Section */}
-        <section className="pt-32 pb-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white relative overflow-hidden">
+        <section className="pt-32 pb-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white relative overflow-hidden">
           {/* Animated Background Elements */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-500/20"></div>
