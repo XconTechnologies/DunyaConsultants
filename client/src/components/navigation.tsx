@@ -159,24 +159,6 @@ export default function Navigation() {
         href: "/offices"
       }
     },
-    "Blog": {
-      icon: Newspaper,
-      sections: [
-        {
-          title: "Blog Articles",
-          icon: BookOpen,
-          items: [
-            { name: "Blog Archive", href: "/blog", description: "Browse all our blog articles" }
-          ]
-        }
-      ],
-      featured: {
-        title: "Latest Updates",
-        description: "Stay informed about study abroad",
-        cta: "View Archive",
-        href: "/blog"
-      }
-    },
 
   };
 
@@ -186,7 +168,6 @@ export default function Navigation() {
     { name: "Study Abroad", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },
-    { name: "Blog", megaMenu: true },
   ];
 
   return (
