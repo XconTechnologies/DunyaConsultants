@@ -856,9 +856,9 @@ export default function Blogs() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary via-blue-700 to-secondary text-white relative overflow-hidden">
+      <section className="pt-32 pb-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-purple-600/30"></div>
+          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-blue-500/30"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -875,7 +875,7 @@ export default function Blogs() {
             
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               Study Abroad<br />
-              <span className="text-yellow-300">Blog & Insights</span>
+              <span className="text-blue-200">Blog & Insights</span>
             </h1>
             
             <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
@@ -884,19 +884,19 @@ export default function Blogs() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">100+</div>
+                <div className="text-3xl font-bold text-blue-200">100+</div>
                 <div className="text-sm text-blue-100">Expert Articles</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">25+</div>
+                <div className="text-3xl font-bold text-blue-200">25+</div>
                 <div className="text-sm text-blue-100">Countries Covered</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">50K+</div>
+                <div className="text-3xl font-bold text-blue-200">50K+</div>
                 <div className="text-sm text-blue-100">Monthly Readers</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-yellow-300">Daily</div>
+                <div className="text-3xl font-bold text-blue-200">Daily</div>
                 <div className="text-sm text-blue-100">Fresh Content</div>
               </div>
             </div>
