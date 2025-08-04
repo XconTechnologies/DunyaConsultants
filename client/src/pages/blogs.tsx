@@ -1020,17 +1020,12 @@ export default function Blogs() {
               <div className="grid md:grid-cols-2 gap-8">
                 {featuredPosts.slice(0, 2).map((post, index) => (
                   <Card key={post.id} className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 ring-2 ring-blue-200 hover:ring-blue-400 transform hover:-translate-y-2">
-                    <div className="relative h-64 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
-                      <div className="absolute inset-0 bg-black/10"></div>
-                      <div className="absolute top-4 left-4">
-                        <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-yellow-900 font-semibold">✨ Featured</Badge>
-                      </div>
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <Badge className="mb-2 bg-blue-500/80 text-white border-0">{post.category}</Badge>
-                        <h3 className="text-xl font-bold line-clamp-2">{post.title}</h3>
-                      </div>
-                    </div>
                     <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-yellow-900 font-semibold">✨ Featured</Badge>
+                        <Badge className="bg-blue-500/80 text-white border-0">{post.category}</Badge>
+                      </div>
+                      <h3 className="text-xl font-bold text-neutral-800 mb-4 line-clamp-2">{post.title}</h3>
                       <p className="text-neutral-600 mb-4 line-clamp-3">{post.excerpt}</p>
                       
                       <div className="flex items-center justify-between mb-4">
@@ -1092,18 +1087,14 @@ export default function Blogs() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
                   <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 ring-1 ring-blue-100 hover:ring-blue-300">
-                    <div className="relative h-48 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700">
-                      <div className="absolute inset-0 bg-black/10"></div>
-                      <div className="absolute top-4 right-4">
-                        <Badge className="bg-blue-500/80 text-white border-0">{post.category}</Badge>
-                      </div>
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <div className="text-lg font-bold">{formatDate(post.publishedDate).split(' ')[1]}</div>
-                        <div className="text-sm opacity-90">{formatDate(post.publishedDate).split(' ')[0]} {formatDate(post.publishedDate).split(' ')[2]}</div>
-                      </div>
-                    </div>
-
                     <CardContent className="p-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <Badge className="bg-blue-500/80 text-white border-0">{post.category}</Badge>
+                        <div className="text-sm text-neutral-600">
+                          <div className="font-medium">{formatDate(post.publishedDate).split(' ')[1]}</div>
+                          <div className="text-xs">{formatDate(post.publishedDate).split(' ')[0]} {formatDate(post.publishedDate).split(' ')[2]}</div>
+                        </div>
+                      </div>
                       <h3 className="text-xl font-bold text-neutral-800 mb-3 line-clamp-2">
                         {post.title}
                       </h3>

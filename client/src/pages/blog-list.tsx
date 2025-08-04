@@ -382,26 +382,16 @@ export default function BlogList() {
               className="group"
             >
               <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-0 shadow-lg">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 left-4">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
                     <Badge className="bg-blue-500 text-white font-medium">
                       {post.category}
                     </Badge>
-                  </div>
-                  <div className="absolute top-4 right-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium text-gray-700 flex items-center gap-1">
+                    <div className="bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-700 flex items-center gap-1">
                       <Eye className="w-3 h-3" />
                       {post.views}
                     </div>
                   </div>
-                </div>
-                
-                <CardContent className="p-6">
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                     <div className="flex items-center gap-1">
                       <Calendar className="w-4 h-4" />
