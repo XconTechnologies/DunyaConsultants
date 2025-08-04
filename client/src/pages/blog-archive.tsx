@@ -185,10 +185,7 @@ export default function BlogArchive() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
               >
-                Blog Archive
-                <span className="bg-gradient-to-r from-blue-200 via-blue-100 to-blue-200 bg-clip-text text-transparent block">
-                  & Resources
-                </span>
+                Blog
               </motion.h1>
               
               <motion.p 
@@ -275,23 +272,23 @@ export default function BlogArchive() {
             <div className="lg:col-span-3">
               <div className="sticky top-8 space-y-8">
                 {/* Search */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl shadow-lg p-6 border border-blue-200">
-                  <h3 className="text-lg font-semibold text-blue-900 mb-4">Search Articles</h3>
+                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Search Articles</h3>
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-blue-500" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     <input
                       type="text"
                       placeholder="Search articles..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-10 pr-4 py-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80"
+                      className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                     />
                   </div>
                 </div>
 
                 {/* Categories */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl shadow-lg p-6 border border-blue-200">
-                  <h3 className="text-lg font-semibold text-blue-900 mb-4">Categories</h3>
+                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Categories</h3>
                   <div className="space-y-2">
                     {categories.map((category) => (
                       <button
@@ -299,19 +296,15 @@ export default function BlogArchive() {
                         onClick={() => setSelectedCategory(category.name)}
                         className={`w-full flex items-center justify-between p-3 rounded-lg text-left transition-all duration-200 ${
                           selectedCategory === category.name
-                            ? "bg-blue-600 text-white shadow-md transform scale-105"
-                            : "hover:bg-blue-100 text-blue-700 hover:shadow-sm"
+                            ? "bg-blue-50 text-blue-700 border border-blue-200"
+                            : "hover:bg-gray-50 text-gray-700"
                         }`}
                       >
                         <div className="flex items-center space-x-3">
                           <BookOpen className="h-4 w-4" />
                           <span className="font-medium">{category.name}</span>
                         </div>
-                        <span className={`text-sm px-2 py-1 rounded-full ${
-                          selectedCategory === category.name
-                            ? "bg-blue-500 text-white"
-                            : "bg-blue-200 text-blue-700"
-                        }`}>
+                        <span className="text-sm bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
                           {category.count}
                         </span>
                       </button>
@@ -320,12 +313,12 @@ export default function BlogArchive() {
                 </div>
 
                 {/* Sort Options */}
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl shadow-lg p-6 border border-blue-200">
-                  <h3 className="text-lg font-semibold text-blue-900 mb-4">Sort By</h3>
+                <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Sort By</h3>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="w-full p-3 border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white/80"
+                    className="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   >
                     <option value="latest">Latest First</option>
                     <option value="oldest">Oldest First</option>
@@ -341,10 +334,10 @@ export default function BlogArchive() {
               {/* Results Header */}
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <h2 className="text-3xl font-bold text-blue-900">
+                  <h2 className="text-2xl font-bold text-gray-900">
                     {filteredPosts.length} Articles
                   </h2>
-                  <p className="text-blue-600 mt-1">
+                  <p className="text-gray-600 mt-1">
                     {selectedCategory !== "All" ? `in ${selectedCategory}` : "across all categories"}
                     {searchTerm && ` matching "${searchTerm}"`}
                   </p>
@@ -353,10 +346,10 @@ export default function BlogArchive() {
 
               {/* Articles Grid/List */}
               {filteredPosts.length === 0 ? (
-                <div className="text-center py-12 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl border border-blue-200">
-                  <BookOpen className="h-12 w-12 text-blue-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-blue-900 mb-2">No articles found</h3>
-                  <p className="text-blue-600">Try adjusting your search or filter criteria</p>
+                <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
+                  <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">No articles found</h3>
+                  <p className="text-gray-600">Try adjusting your search or filter criteria</p>
                 </div>
               ) : (
                 <div className={
@@ -370,89 +363,41 @@ export default function BlogArchive() {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className={`bg-white rounded-2xl shadow-lg border border-blue-100 overflow-hidden hover:shadow-2xl transition-all duration-300 group transform hover:-translate-y-2 ${
+                      className={`bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300 group ${
                         viewMode === "list" ? "flex flex-row" : "flex flex-col"
                       }`}
                     >
                       <div className={viewMode === "list" ? "w-1/3" : "w-full"}>
-                        <div className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-blue-700 aspect-[16/9]">
+                        <div className="relative overflow-hidden aspect-[16/9]">
                           <img
                             src={post.image}
                             alt={post.title}
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                           />
-                          <div className="absolute inset-0 bg-blue-900/20"></div>
-                          {post.trending && (
-                            <div className="absolute top-4 left-4">
-                              <span className="bg-gradient-to-r from-orange-400 to-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                                🔥 Trending
-                              </span>
-                            </div>
-                          )}
-                          <div className="absolute bottom-4 left-4">
-                            <span className="bg-blue-600/90 text-white px-3 py-1 rounded-full text-xs font-medium">
-                              {post.category}
-                            </span>
-                          </div>
                         </div>
                       </div>
 
                       <div className={`p-6 ${viewMode === "list" ? "w-2/3" : "w-full"}`}>
-                        <div className="flex items-center space-x-4 mb-3">
-                          <div className="flex items-center space-x-2 text-blue-600 text-sm">
-                            <Calendar className="h-4 w-4" />
-                            <span>{post.date}</span>
-                          </div>
-                          <div className="flex items-center space-x-2 text-blue-600 text-sm">
-                            <Clock className="h-4 w-4" />
-                            <span>{post.readTime}</span>
-                          </div>
-                        </div>
-
-                        <h3 className="text-xl font-bold text-blue-900 mb-3 group-hover:text-blue-700 transition-colors duration-200 line-clamp-2">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2">
                           {post.title}
                         </h3>
 
-                        <p className="text-blue-700 mb-4 line-clamp-3">
+                        <p className="text-gray-600 mb-4 line-clamp-3">
                           {post.excerpt}
                         </p>
 
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex items-center space-x-2 text-blue-600 text-sm">
-                              <Eye className="h-4 w-4" />
-                              <span>{post.views}</span>
-                            </div>
-                            <div className="flex items-center space-x-2 text-blue-600 text-sm">
-                              <User className="h-4 w-4" />
-                              <span>{post.author}</span>
-                            </div>
-                          </div>
-
-                          <Link href={post.href}>
-                            <motion.button
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:from-blue-700 hover:to-blue-800 flex items-center space-x-2"
-                            >
-                              <span>Read More</span>
-                              <ArrowRight className="h-4 w-4" />
-                            </motion.button>
-                          </Link>
+                        <div className="flex items-center justify-between text-sm text-gray-500">
+                          <span>{post.date}</span>
+                          <span>No Comments</span>
                         </div>
 
-                        {post.tags && post.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mt-4">
-                            {post.tags.slice(0, 3).map((tag) => (
-                              <span
-                                key={tag}
-                                className="bg-blue-100 text-blue-700 px-2 py-1 rounded-md text-xs font-medium"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
+                        <div className="mt-4">
+                          <Link href={post.href}>
+                            <span className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200">
+                              Read More »
+                            </span>
+                          </Link>
+                        </div>
                       </div>
                     </motion.article>
                   ))}
