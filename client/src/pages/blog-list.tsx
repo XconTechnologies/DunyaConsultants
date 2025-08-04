@@ -381,28 +381,8 @@ export default function BlogList() {
               whileHover={{ y: -5 }}
               className="group"
             >
-              <Card className="overflow-hidden hover:shadow-2xl transition-all duration-300 border-0 shadow-lg">
+              <Card className="hover:shadow-xl transition-all duration-300 border shadow-md">
                 <CardContent className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <Badge className="bg-blue-500 text-white font-medium">
-                      {post.category}
-                    </Badge>
-                    <div className="bg-gray-100 rounded-full px-3 py-1 text-xs font-medium text-gray-700 flex items-center gap-1">
-                      <Eye className="w-3 h-3" />
-                      {post.views}
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{post.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      <span>{post.readTime}</span>
-                    </div>
-                  </div>
-                  
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
@@ -412,20 +392,18 @@ export default function BlogList() {
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-                        <User className="w-4 h-4 text-white" />
-                      </div>
-                      <span className="text-sm text-gray-700 font-medium">{post.author}</span>
+                    <div className="flex items-center gap-1 text-sm text-gray-500">
+                      <Calendar className="w-4 h-4" />
+                      <span>{post.date}</span>
                     </div>
                     
                     <Link href={post.slug}>
                       <Button 
                         size="sm" 
-                        className="bg-blue-500 hover:bg-blue-600 text-white group-hover:bg-blue-600"
+                        className="bg-blue-500 hover:bg-blue-600 text-white"
                       >
                         Read More
-                        <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="w-4 h-4 ml-2" />
                       </Button>
                     </Link>
                   </div>

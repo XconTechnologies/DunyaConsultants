@@ -1019,44 +1019,25 @@ export default function Blogs() {
               <h2 className="text-3xl font-bold text-neutral-800 mb-8">Featured Articles</h2>
               <div className="grid md:grid-cols-2 gap-8">
                 {featuredPosts.slice(0, 2).map((post, index) => (
-                  <Card key={post.id} className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 ring-2 ring-blue-200 hover:ring-blue-400 transform hover:-translate-y-2">
+                  <Card key={post.id} className="hover:shadow-xl transition-all duration-300 border shadow-md">
                     <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <Badge className="bg-gradient-to-r from-yellow-400 to-orange-400 text-yellow-900 font-semibold">✨ Featured</Badge>
-                        <Badge className="bg-blue-500/80 text-white border-0">{post.category}</Badge>
-                      </div>
-                      <h3 className="text-xl font-bold text-neutral-800 mb-4 line-clamp-2">{post.title}</h3>
+                      <h3 className="text-xl font-bold text-neutral-800 mb-3 line-clamp-2">{post.title}</h3>
                       <p className="text-neutral-600 mb-4 line-clamp-3">{post.excerpt}</p>
                       
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="flex items-center space-x-3">
-                          <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-xs font-bold">
-                            {post.author.name.split(' ').map(n => n[0]).join('')}
-                          </div>
-                          <div className="text-sm">
-                            <div className="font-medium text-neutral-800">{post.author.name}</div>
-                            <div className="text-neutral-500">{formatDate(post.publishedDate)}</div>
-                          </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1 text-sm text-neutral-500">
+                          <Calendar className="w-4 h-4" />
+                          <span>{formatDate(post.publishedDate)}</span>
                         </div>
-                        <div className="flex items-center space-x-4 text-neutral-500 text-sm">
-                          <div className="flex items-center space-x-1">
-                            <Eye className="w-4 h-4" />
-                            <span>{post.views}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Clock className="w-4 h-4" />
-                            <span>{post.readTime}</span>
-                          </div>
-                        </div>
-                      </div>
 
-                      <Button 
-                        onClick={() => setSelectedPost(post)}
-                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 transition-all duration-300 transform hover:scale-105"
-                      >
-                        Read Article
-                        <ChevronRight className="w-4 h-4 ml-2" />
-                      </Button>
+                        <Button 
+                          onClick={() => setSelectedPost(post)}
+                          className="bg-blue-600 hover:bg-blue-700 text-white"
+                        >
+                          Read More
+                          <ChevronRight className="w-4 h-4 ml-2" />
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
                 ))}
@@ -1086,15 +1067,8 @@ export default function Blogs() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-0 ring-1 ring-blue-100 hover:ring-blue-300">
+                  <Card className="hover:shadow-xl transition-all duration-300 border shadow-md">
                     <CardContent className="p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <Badge className="bg-blue-500/80 text-white border-0">{post.category}</Badge>
-                        <div className="text-sm text-neutral-600">
-                          <div className="font-medium">{formatDate(post.publishedDate).split(' ')[1]}</div>
-                          <div className="text-xs">{formatDate(post.publishedDate).split(' ')[0]} {formatDate(post.publishedDate).split(' ')[2]}</div>
-                        </div>
-                      </div>
                       <h3 className="text-xl font-bold text-neutral-800 mb-3 line-clamp-2">
                         {post.title}
                       </h3>
@@ -1103,31 +1077,18 @@ export default function Blogs() {
                         {post.excerpt}
                       </p>
 
-                      <div className="flex flex-wrap gap-1 mb-4">
-                        {post.tags.slice(0, 3).map((tag) => (
-                          <Badge key={tag} variant="outline" className="text-xs">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-xs font-bold">
-                            {post.author.name.split(' ').map(n => n[0]).join('')}
-                          </div>
-                          <div className="text-sm">
-                            <div className="font-medium text-neutral-800">{post.author.name}</div>
-                            <div className="text-neutral-500">{post.readTime}</div>
-                          </div>
+                        <div className="flex items-center gap-1 text-sm text-neutral-500">
+                          <Calendar className="w-4 h-4" />
+                          <span>{formatDate(post.publishedDate)}</span>
                         </div>
                         <Button 
                           size="sm" 
                           onClick={() => setSelectedPost(post)}
-                          className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white border-0 transition-all duration-300 transform hover:scale-105"
+                          className="bg-blue-600 hover:bg-blue-700 text-white"
                         >
                           Read More
-                          <ChevronRight className="w-4 h-4 ml-1" />
+                          <ChevronRight className="w-4 h-4 ml-2" />
                         </Button>
                       </div>
                     </CardContent>
