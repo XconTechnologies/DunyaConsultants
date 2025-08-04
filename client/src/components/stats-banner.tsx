@@ -349,7 +349,7 @@ export default function StatsBanner() {
             transition={{ duration: 0.3 }}
           >
             <Shield className="w-5 h-5 text-blue-400" />
-            <span className="text-white/80 font-medium">Trusted Excellence Since 2010</span>
+            <span className="text-white/80 font-medium">Trusted Excellence Since 2021</span>
             <motion.div
               animate={{ 
                 scale: [1, 1.2, 1],
