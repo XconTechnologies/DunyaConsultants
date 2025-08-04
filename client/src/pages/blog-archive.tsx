@@ -34,30 +34,50 @@ export default function BlogArchive() {
     queryKey: ['/api/blog-posts/published'],
   });
 
-  // Map of blog post slugs to their actual featured images from Dunya Consultants
+  // Map of blog post slugs to their actual featured images based on content
   const featuredImages: Record<string, string> = {
-    'kaplan-test-of-english': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Kaplan-Test-of-English-KTE.webp',
-    'global-talent-visa-australia-guide': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Global-talent-visa-Australia.webp',
-    'anglia-ruskin-university': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Anglia-Ruskin-University-A-Trusted-Partner-of-Dunya-Consultants.webp',
+    // TOEFL related
+    'toefl-test-fee-in-pakistan': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/TOEFL-Test-Guide.webp',
+    
+    // Cyprus Visa
     'cyprus-visa-pakistan': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Cyprus-Visa-for-Pakistan.webp',
+    
+    // Australia Global Talent Visa
+    'global-talent-visa-australia-complete-guide-2025': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Global-talent-visa-Australia.webp',
+    'global-talent-visa-australia': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Global-talent-visa-Australia.webp',
+    
+    // Engineering and Law in Canada
     'engineering-law-canada': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Engineering-and-Law-Programs-in-Canada-Best-Universities-for-Pakistani-Students-in-2025.webp',
-    'turkey-best-choice-pakistani-students': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Why-Turkey-is-Best-Choice-for-Pakistani-Students.webp',
-    'uk-llm-pakistani-bar': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/From-UK-LLM-to-Pakistani-Bar.webp',
-    'study-nursing-in-the-uk': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Study-Nursing-in-the-UK.webp',
-    'global-talent-visa-uk': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Global-Talent-Visa-UK.webp',
-    'top-study-abroad-countries': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Top-study-abroad-countries.webp',
-    'master-of-laws-llm-australia': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Master-of-Laws-LLM-in-Australia-A-Comprehensive-Guide.webp',
-    'oxford-test-accepted-universities-uk': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Oxford-Test-Accepted-Universities-in-UK.webp',
+    
+    // UK Study Guide
+    'study-in-uk-complete-guide-pakistani-students': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Study-in-UK-Complete-Guide.webp',
+    
+    // Canada Study Guide
+    'complete-guide-to-studying-in-canada': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Complete-Guide-to-Studying-in-Canada.webp',
+    
+    // UK January Intake
+    'january-intake-universities-in-uk': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/January-Intake-Universities-UK.webp',
+    
+    // IELTS Listening Skills
     'how-to-improve-ielts-listening-skills': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/How-to-Improve-IELTS-Listening-Skills.webp',
-    'uk-internship-international-students': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/UK-Internship-for-International-Students.webp',
-    'gmat-test-fee-in-pakistan': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/GMAT-Exam-Date-2025-Registration-Date.webp',
-    'ielts-preparation-tips-and-tricks': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Top-10-IELTS-Preparation-Tips-and-Tricks-for-a-High-Band-Score.webp',
-    'how-to-apply-for-ielts-in-pakistan': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/How-to-Apply-For-IELTS-in-Pakistan.webp',
-    'bachelors-in-ict-software-engineering': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Bachelors-in-ICT-Software-Engineering.webp',
-    'bachelors-in-industrial-engineering-and-management': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Bachelors-in-Industrial-Engineering-and-Management.webp',
-    'teesside-university-trusted-partner': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Teesside-University-A-Trusted-Partner-of-Dunya-Consultants.webp',
-    'ielts-acceptability-2025': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/IELTS-Acceptability-in-2025-Which-Countries-Universities-Recognize-It.webp',
-    'difference-between-ielts-general-and-academic': 'https://dunyaconsultants.com/wp-content/uploads/2025/02/Difference-between-IELTS-General-and-Academic.webp'
+    
+    // UK Student Visa Mistakes
+    'most-common-mistakes-to-avoid-for-your-uk-student-visa-success': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/UK-Student-Visa-Common-Mistakes.webp',
+    
+    // London Study Benefits
+    'benefits-of-studying-in-london': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Benefits-of-Studying-in-London.webp',
+    
+    // Top Universities in London
+    'top-10-universities-in-london': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Top-10-Universities-in-London.webp',
+    
+    // Recommendation Letter Guide
+    'recommendation-letter-for-student-scholarship': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Recommendation-Letter-Guide.webp',
+    
+    // Study Abroad Consultants
+    'study-abroad-education-consultants-dunya-consultants': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Study-Abroad-Education-Consultants.webp',
+    
+    // Dubai Visa Guide
+    'dubai-visa-for-pakistani': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Dubai-Visa-for-Pakistani.webp'
   };
 
   // Convert API data to archive format
@@ -76,7 +96,7 @@ export default function BlogArchive() {
       readTime: "5 min",
       views: post.views || 0,
       tags: post.tags || [],
-      image: featuredImages[post.slug] || post.featuredImage || "https://dunyaconsultants.com/wp-content/uploads/2025/03/Kaplan-Test-of-English-KTE.webp",
+      image: post.featuredImage || featuredImages[post.slug] || "https://dunyaconsultants.com/wp-content/uploads/2025/03/Study-Abroad-Default.webp",
       featured: false,
       trending: (post.views || 0) > 1000,
       href: `/blog/${post.slug}`
