@@ -119,36 +119,10 @@ export default function Navigation() {
       icon: Building2,
       sections: [
         {
-          title: "Pakistan Offices",
+          title: "All Locations",
           icon: MapPin,
           items: [
-            { name: "All Office Locations", href: "/offices", description: "Browse all branches" },
-            { name: "Sargodha Head Office", href: "/offices/sargodha-head", description: "Main headquarters" },
-            { name: "Lahore DHA", href: "/offices/lahore-dha", description: "DHA Phase 1 office" },
-            { name: "Lahore Johar Town", href: "/offices/lahore-johar", description: "Johar Town office" },
-            { name: "Islamabad Blue Area", href: "/offices/islamabad", description: "Federal capital office" },
-            { name: "Karachi Gulshan", href: "/offices/karachi", description: "Sindh province office" },
-            { name: "Faisalabad Civil Lines", href: "/offices/faisalabad", description: "Industrial city office" },
-            { name: "Gujranwala", href: "/offices/gujranwala", description: "Peoples Colony office" },
-            { name: "Sialkot", href: "/offices/sialkot", description: "Cantonment office" },
-            { name: "Gujrat", href: "/offices/gujrat", description: "GT Road office" },
-            { name: "Bahawalpur", href: "/offices/bahawalpur", description: "Muslim Town office" },
-            { name: "Mian Channu", href: "/offices/mian-channu", description: "Moti Plaza office" },
-            { name: "Mandi Bahauddin", href: "/offices/mandi-bahauddin", description: "Punjab Center office" },
-            { name: "Sheikhupura", href: "/offices/sheikhupura", description: "Stadium Road office" },
-            { name: "Multan", href: "/offices/multan", description: "Shalimar Metro office" },
-            { name: "Peshawar", href: "/offices/peshawar", description: "Phase 3 office" },
-            { name: "Jhelum", href: "/offices/jhelum", description: "Sultan Plaza office" },
-            { name: "Mardan", href: "/offices/mardan", description: "Walyan Commercial office" }
-          ]
-        },
-        {
-          title: "International Offices",
-          icon: Globe,
-          items: [
-            { name: "Jeddah, Saudi Arabia", href: "/offices/jeddah", description: "Engineering Square office" },
-            { name: "Istanbul, Turkey", href: "/offices/istanbul", description: "Ataköy Towers office" },
-            { name: "Edinburgh, Scotland", href: "/offices/edinburgh", description: "Ferry Road Place office" }
+            { name: "All Office Locations", href: "/offices", description: "View all 18+ office locations nationwide & internationally" }
           ]
         }
       ],
