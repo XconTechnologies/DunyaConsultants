@@ -149,8 +149,10 @@ export default function OfficeDetails() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      <Navigation />
+      
       {/* Header */}
-      <div className={`bg-gradient-to-r ${office.gradient} text-white py-16`}>
+      <div className={`bg-gradient-to-r ${office.gradient} text-white pt-32 pb-16`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center mb-6">
             <Link href="/offices">
@@ -234,7 +236,7 @@ export default function OfficeDetails() {
                   </div>
                   
                   <div className="flex gap-4 pt-4">
-                    <Button className={`bg-gradient-to-r ${office.gradient}`}>
+                    <Button className={`bg-gradient-to-r ${office.gradient} text-white hover:opacity-90`}>
                       <Calendar className="w-4 h-4 mr-2" />
                       Book Consultation
                     </Button>
@@ -429,6 +431,8 @@ export default function OfficeDetails() {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 }
