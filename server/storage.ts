@@ -266,11 +266,12 @@ export class DatabaseStorage implements IStorage {
 
   // Blog Management Methods
   async getBlogPosts(published?: boolean): Promise<BlogPost[]> {
-    let query = db.select().from(blogPosts);
     if (published !== undefined) {
-      query = query.where(eq(blogPosts.isPublished, published));
+      return await db.select().from(blogPosts)
+        .where(eq(blogPosts.isPublished, published))
+        .orderBy(desc(blogPosts.createdAt));
     }
-    return await query.orderBy(desc(blogPosts.createdAt));
+    return await db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt));
   }
 
   async getBlogPost(id: number): Promise<BlogPost | undefined> {
@@ -312,11 +313,12 @@ export class DatabaseStorage implements IStorage {
 
   // Services Management Methods
   async getServices(active?: boolean): Promise<Service[]> {
-    let query = db.select().from(services);
     if (active !== undefined) {
-      query = query.where(eq(services.isActive, active));
+      return await db.select().from(services)
+        .where(eq(services.isActive, active))
+        .orderBy(asc(services.displayOrder), desc(services.createdAt));
     }
-    return await query.orderBy(asc(services.displayOrder), desc(services.createdAt));
+    return await db.select().from(services).orderBy(asc(services.displayOrder), desc(services.createdAt));
   }
 
   async getService(id: number): Promise<Service | undefined> {
@@ -348,11 +350,12 @@ export class DatabaseStorage implements IStorage {
 
   // Pages Management Methods
   async getPages(published?: boolean): Promise<Page[]> {
-    let query = db.select().from(pages);
     if (published !== undefined) {
-      query = query.where(eq(pages.isPublished, published));
+      return await db.select().from(pages)
+        .where(eq(pages.isPublished, published))
+        .orderBy(desc(pages.createdAt));
     }
-    return await query.orderBy(desc(pages.createdAt));
+    return await db.select().from(pages).orderBy(desc(pages.createdAt));
   }
 
   async getPage(id: number): Promise<Page | undefined> {
