@@ -190,7 +190,7 @@ export default function RequirementsComputerScienceUSA() {
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center font-bold text-sm">6</div>
+                      <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">6</div>
                       <div>
                         <h3 className="font-semibold text-gray-800 mb-1">Confirm Seat</h3>
                         <p className="text-gray-600">If you are accepted, you'll need to pay a deposit fee to confirm your seat. This fee is required to secure your place.</p>
@@ -203,13 +203,13 @@ export default function RequirementsComputerScienceUSA() {
               {/* Cost Information */}
               <section id="cost" className="mb-8">
                 <h2 className="text-2xl font-bold mb-4 text-gray-800">Cost to study Computer Science Abroad in the USA</h2>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                   <p className="text-gray-700 mb-4">
                     The cost of studying Computer Science in the USA varies depending on the university type, location, and program level. Here's a general breakdown of expenses:
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold text-lg mb-3 text-yellow-800">Public Universities</h4>
+                      <h4 className="font-semibold text-lg mb-3 text-blue-800">Public Universities</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Tuition: $25,000-$40,000 per year</li>
                         <li>• Living expenses: $15,000-$20,000 per year</li>
@@ -218,7 +218,7 @@ export default function RequirementsComputerScienceUSA() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-lg mb-3 text-yellow-800">Private Universities</h4>
+                      <h4 className="font-semibold text-lg mb-3 text-blue-800">Private Universities</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Tuition: $40,000-$60,000 per year</li>
                         <li>• Living expenses: $15,000-$20,000 per year</li>
@@ -278,8 +278,8 @@ export default function RequirementsComputerScienceUSA() {
                   <p>There are various scholarship opportunities available for international students pursuing Computer Science in the USA:</p>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                      <h3 className="font-semibold text-lg text-green-800 mb-3">Merit-Based Scholarships</h3>
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h3 className="font-semibold text-lg text-blue-800 mb-3">Merit-Based Scholarships</h3>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Presidential Scholarships</li>
                         <li>• Dean's Excellence Awards</li>

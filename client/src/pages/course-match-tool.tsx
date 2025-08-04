@@ -311,7 +311,7 @@ export default function CourseMatchTool() {
 
   if (showResults) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-purple-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
         <Navigation />
         
         <div className="pt-20 pb-16">
@@ -324,7 +324,7 @@ export default function CourseMatchTool() {
               className="text-center mb-12"
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 bg-clip-text text-transparent">
                   Your Perfect Study Matches
                 </span>
               </h1>

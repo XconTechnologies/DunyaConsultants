@@ -9,14 +9,14 @@ export default function NewYearResolutionsForStudents2025() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative w-full h-96 bg-gradient-to-r from-green-600 to-blue-700">
+      <div className="relative w-full h-96 bg-gradient-to-r from-blue-900 to-blue-700">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url("https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-green-600/80 to-blue-700/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-blue-700/80" />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
           <div>
             <h1 className="text-5xl font-bold mb-4">New Year Resolutions for Students 2025</h1>

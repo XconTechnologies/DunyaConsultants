@@ -12,24 +12,24 @@ export default function AchievementsSection() {
       title: "Award Winner",
       description: "Best Education Consultancy 2024",
       subtitle: "Excellence in Service",
-      color: "from-yellow-400 to-orange-500",
-      bgColor: "from-yellow-50 to-orange-50"
+      color: "from-blue-400 to-blue-500",
+      bgColor: "from-blue-50 to-blue-100"
     },
     {
       icon: TrendingUp,
       title: "Growing Fast",
       description: "500+ new students monthly",
       subtitle: "Expanding Rapidly",
-      color: "from-green-400 to-teal-500",
-      bgColor: "from-green-50 to-teal-50"
+      color: "from-blue-500 to-blue-600",
+      bgColor: "from-blue-100 to-blue-200"
     },
     {
       icon: Globe,
       title: "Global Reach",
       description: "Offices across Pakistan",
       subtitle: "Nationwide Network",
-      color: "from-purple-400 to-pink-500",
-      bgColor: "from-purple-50 to-pink-50"
+      color: "from-blue-600 to-blue-700",
+      bgColor: "from-blue-50 to-blue-100"
     }
   ];
 

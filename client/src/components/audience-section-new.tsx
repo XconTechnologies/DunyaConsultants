@@ -64,8 +64,8 @@ const audienceData: AudienceData[] = [
     subtitle: "Innovative Technology & Expert Webinars",
     description: "We provide end-to-end support with cutting-edge technology solutions and expert-led training sessions for our educational partners.",
     icon: Building,
-    color: "from-emerald-500 to-teal-600",
-    bgGradient: "from-emerald-50 to-teal-50",
+    color: "from-blue-500 to-blue-600",
+    bgGradient: "from-blue-50 to-blue-100",
     offerings: [
       {
         icon: Laptop,

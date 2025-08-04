@@ -74,27 +74,27 @@ export default function RecommendationLetterStudentScholarship() {
               </div>
 
               {/* Why Recommendation Letters Matter */}
-              <div className="bg-green-50 border-l-4 border-green-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-green-800 mb-4">Why Recommendation Letters Matter</h3>
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
+                <h3 className="text-xl font-semibold text-blue-800 mb-4">Why Recommendation Letters Matter</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Essential for university and scholarship applications
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Highlights your academic performance and character
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Provides third-party validation of your abilities
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Can differentiate you from other applicants
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 text-green-500 mr-3" />
+                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3" />
                     Required by universities and immigration authorities
                   </li>
                 </ul>
@@ -195,8 +195,8 @@ export default function RecommendationLetterStudentScholarship() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Writing Tips and Guidelines</h2>
                 
                 <div className="space-y-4">
-                  <div className="bg-green-50 border-l-4 border-green-400 p-6">
-                    <h3 className="text-lg font-semibold text-green-800 mb-2">1. Be Specific and Detailed</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">1. Be Specific and Detailed</h3>
                     <p className="text-gray-700">Use concrete examples and specific achievements rather than generic praise. Quantify accomplishments whenever possible.</p>
                   </div>
                   
@@ -205,13 +205,13 @@ export default function RecommendationLetterStudentScholarship() {
                     <p className="text-gray-700">Use formal language and professional formatting. Avoid casual expressions or overly emotional language.</p>
                   </div>
                   
-                  <div className="bg-purple-50 border-l-4 border-purple-400 p-6">
-                    <h3 className="text-lg font-semibold text-purple-800 mb-2">3. Focus on Relevance</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">3. Focus on Relevance</h3>
                     <p className="text-gray-700">Highlight qualities and experiences most relevant to the program or opportunity the student is pursuing.</p>
                   </div>
                   
-                  <div className="bg-orange-50 border-l-4 border-orange-400 p-6">
-                    <h3 className="text-lg font-semibold text-orange-800 mb-2">4. Be Honest and Authentic</h3>
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">4. Be Honest and Authentic</h3>
                     <p className="text-gray-700">Provide genuine assessment based on actual interactions and observations. Avoid exaggeration or false claims.</p>
                   </div>
                 </div>
@@ -262,31 +262,31 @@ export default function RecommendationLetterStudentScholarship() {
               <section id="common-mistakes" className="mb-10">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Common Mistakes to Avoid</h2>
                 
-                <div className="bg-red-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-red-800">Avoid These Common Errors</h3>
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Avoid These Common Errors</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start">
-                      <span className="w-2 h-2 bg-red-600 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Using generic templates without personalization</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 bg-red-600 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Being too brief or lacking specific examples</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 bg-red-600 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Exceeding one page in length</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 bg-red-600 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Including negative comments or weaknesses</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 bg-red-600 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Using informal language or casual tone</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 bg-red-600 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Failing to proofread for grammar and spelling errors</span>
                     </li>
                   </ul>

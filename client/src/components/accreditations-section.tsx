@@ -15,7 +15,7 @@ export default function AccreditationsSection() {
           <div className="text-center">
             <div className="text-blue-600 font-bold text-xs leading-tight">ICEF</div>
             <div className="text-blue-800 font-bold text-sm">AGENCY</div>
-            <div className="text-xs text-gray-500">STATUS</div>
+            <div className="text-xs text-blue-500">STATUS</div>
           </div>
         </div>
       ),
@@ -27,10 +27,10 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="w-16 h-6 bg-gradient-to-r from-red-600 to-blue-600 rounded flex items-center justify-center mb-1">
+            <div className="w-16 h-6 bg-gradient-to-r from-blue-800 to-blue-600 rounded flex items-center justify-center mb-1">
               <span className="text-white font-bold text-xs">BC</span>
             </div>
-            <div className="text-xs text-gray-600">British Council</div>
+            <div className="text-xs text-blue-600">British Council</div>
           </div>
         </div>
       ),
@@ -42,10 +42,10 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="text-green-600 font-bold text-xs">Language</div>
-            <div className="text-teal-600 font-bold text-xs">Cert</div>
-            <div className="w-12 h-0.5 bg-gradient-to-r from-green-500 to-teal-500 rounded mx-auto mt-1"></div>
-            <div className="text-xs text-gray-500 mt-1">INTERNATIONAL</div>
+            <div className="text-blue-600 font-bold text-xs">Language</div>
+            <div className="text-blue-800 font-bold text-xs">Cert</div>
+            <div className="w-12 h-0.5 bg-gradient-to-r from-blue-500 to-blue-700 rounded mx-auto mt-1"></div>
+            <div className="text-xs text-blue-500 mt-1">INTERNATIONAL</div>
           </div>
         </div>
       ),
@@ -57,11 +57,11 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="w-8 h-6 bg-green-500 rounded-full flex items-center justify-center mb-1 mx-auto">
+            <div className="w-8 h-6 bg-blue-500 rounded-full flex items-center justify-center mb-1 mx-auto">
               <div className="w-2 h-2 bg-white rounded-full"></div>
             </div>
-            <div className="text-green-600 font-bold text-xs">Duolingo</div>
-            <div className="text-xs text-gray-500">English Test</div>
+            <div className="text-blue-600 font-bold text-xs">Duolingo</div>
+            <div className="text-xs text-blue-500">English Test</div>
           </div>
         </div>
       ),
@@ -73,9 +73,9 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="text-orange-600 font-bold text-lg">PTE</div>
-            <div className="text-red-600 font-medium text-xs">Academic</div>
-            <div className="text-gray-500 text-xs">Pearson</div>
+            <div className="text-blue-600 font-bold text-lg">PTE</div>
+            <div className="text-blue-800 font-medium text-xs">Academic</div>
+            <div className="text-blue-500 text-xs">Pearson</div>
           </div>
         </div>
       ),

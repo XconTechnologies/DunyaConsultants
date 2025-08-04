@@ -10,7 +10,7 @@ export default function ContactInfoSection() {
   return (
     <section className="py-20 relative overflow-hidden" ref={ref}>
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-blue-800">
         <div className="absolute inset-0 opacity-20">
           <div className="w-full h-full relative">
             {/* Floating circles */}
