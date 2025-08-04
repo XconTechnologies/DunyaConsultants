@@ -206,9 +206,7 @@ export default function OurSuccessStories() {
                 <div className="text-5xl font-bold text-blue-600 mb-2">
                   {achievement.value}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {achievement.metric}
-                </h3>
+                
                 <p className="text-gray-600">{achievement.description}</p>
               </motion.div>
             ))}
