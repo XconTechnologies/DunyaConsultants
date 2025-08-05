@@ -50,26 +50,23 @@ export default function DubaiVisaForPakistani() {
               {/* Introduction */}
               <div className="mb-8">
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  Dubai is also known as the City of Gold. It is not only one of the richest places in the world but also a top choice for education. It provides the best facilities for both local as well as international students. If you are from Pakistan and willing to study in Dubai, you need to apply for a Dubai study visa.
+                  Dubai is also known as the City of Gold. It is not only one of the richest places in the world but also a top choice for education. It provides the best facilities for both local as well as international students. If you are from Pakistan and willing to study in Dubai, you need to apply for a Dubai study visa. This is required if you want to pursue a full-time undergraduate or postgraduate program.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  This is required if you want to pursue a full-time undergraduate or postgraduate program. However, before you make any plans, it is essential to understand the Dubai study visa requirements from Pakistan. These include the mandatory documents and steps to follow to obtain the visa.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  Once you fulfill all the requirements, you can begin your education in Dubai. Moreover, students can also get work experience while studying. However, there are particular rules that need to be followed when working under a student visa.
+                  However, before you make any plans, it is essential to understand the Dubai study visa requirements from Pakistan. These include the mandatory documents and steps to follow to obtain the visa. Once you fulfill all the requirements, you can begin your education in Dubai. Moreover, students can also get work experience while studying. However, there are particular rules that need to be followed when working under a student visa. To get more details, please keep reading below!
                 </p>
               </div>
 
               {/* Table of Contents */}
-              <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
+              <div className="mb-8 bg-blue-50 p-6 rounded-lg">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li><a href="#what-is-dubai-visa" className="hover:text-blue-600">What is a Dubai Student Visa?</a></li>
-                  <li><a href="#eligibility-criteria" className="hover:text-blue-600">Eligibility Criteria</a></li>
-                  <li><a href="#entry-requirements" className="hover:text-blue-600">Entry Requirements</a></li>
-                  <li><a href="#required-documents" className="hover:text-blue-600">Required Documents</a></li>
-                  <li><a href="#application-process" className="hover:text-blue-600">Application Process</a></li>
-                  <li><a href="#visa-costs" className="hover:text-blue-600">Visa Costs and Fees</a></li>
+                  <li><a href="#eligibility-criteria" className="hover:text-blue-600">Eligibility Criteria for Dubai Student Visa from Pakistan</a></li>
+                  <li><a href="#entry-requirements" className="hover:text-blue-600">Dubai Entry Requirements from Pakistan Students</a></li>
+                  <li><a href="#application-process" className="hover:text-blue-600">How to Apply Dubai Visa from Pakistan?</a></li>
+                  <li><a href="#visa-price" className="hover:text-blue-600">Dubai Student Visa Price in Pakistan</a></li>
+                  <li><a href="#conclusion" className="hover:text-blue-600">Conclusion</a></li>
                   <li><a href="#faqs" className="hover:text-blue-600">Frequently Asked Questions</a></li>
                 </ul>
               </div>
@@ -136,45 +133,41 @@ export default function DubaiVisaForPakistani() {
                   To apply Dubai visa from Pakistan, students need to fulfill the following requirements as given below:
                 </p>
 
-                <div className="space-y-4">
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
-                      <FileText className="w-5 h-5 mr-2" />
-                      Basic Requirements
-                    </h3>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• You should have an official acceptance letter from a Dubai university</li>
-                      <li>• You should be at least eighteen years old</li>
-                      <li>• Older students need to submit a certificate showing they are continuing studies</li>
-                      <li>• You need a sponsor (parent/relative or university)</li>
-                    </ul>
-                  </div>
+                <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+                  <ul className="space-y-4 text-gray-700">
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span>You should have an official acceptance letter from a Dubai university.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span>You should be at least eighteen years old.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span>Older students need to submit a certificate showing that they are continuing their studies.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span>You need a sponsor for your study visa, which can either be a parent/relative or university.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span>You need to pass a medical check-up to make sure you are in good health.</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                      <span>Your visa application should be approved by the GDRFA (General Directorate of Residency and Foreigners Affairs).</span>
+                    </li>
+                  </ul>
+                </div>
 
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
-                      <CheckCircle className="w-5 h-5 mr-2" />
-                      Health & Legal Requirements
-                    </h3>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• Pass a medical check-up to ensure good health</li>
-                      <li>• Visa application approved by GDRFA (General Directorate of Residency and Foreigners Affairs)</li>
-                      <li>• Clean criminal background check</li>
-                      <li>• Valid passport with at least 6 months validity</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
-                      <AlertTriangle className="w-5 h-5 mr-2" />
-                      Academic Requirements for Long-term Visa
-                    </h3>
-                    <ul className="space-y-2 text-gray-700">
-                      <li>• School students: Minimum 95% in high school graduation</li>
-                      <li>• University students: At least GPA of 3.75</li>
-                      <li>• Valid transcripts from recognized institutions</li>
-                      <li>• English proficiency test scores (IELTS/TOEFL)</li>
-                    </ul>
-                  </div>
+                <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6">
+                  <h3 className="text-lg font-semibold text-yellow-800 mb-3">Academic Requirements for Long-term Visa</h3>
+                  <ul className="space-y-2 text-yellow-700">
+                    <li><strong>School Students:</strong> Minimum 95% in high school graduation from any public or private secondary school</li>
+                    <li><strong>University Students:</strong> At least GPA of 3.75, whether they studied abroad or in Dubai</li>
+                  </ul>
                 </div>
               </section>
 
@@ -182,55 +175,58 @@ export default function DubaiVisaForPakistani() {
               <section id="entry-requirements" className="mb-10">
                 <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Dubai Entry Requirements from Pakistan Students</h2>
                 
-                <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Essential Entry Documents</h3>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-gray-700 mb-2"><strong>Valid Passport:</strong> 6+ months validity</p>
-                      <p className="text-gray-700 mb-2"><strong>Student Visa:</strong> Approved by UAE authorities</p>
-                      <p className="text-gray-700 mb-2"><strong>Admission Letter:</strong> From Dubai university</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-700 mb-2"><strong>Health Certificate:</strong> Medical fitness proof</p>
-                      <p className="text-gray-700 mb-2"><strong>Insurance:</strong> Valid health insurance</p>
-                      <p className="text-gray-700"><strong>Financial Proof:</strong> Bank statements</p>
-                    </div>
-                  </div>
-                </div>
-              </section>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  While applying for a study visa for the UAE, you have to provide all documents and meet entry requirements as mentioned below:
+                </p>
 
-              {/* Required Documents Section */}
-              <section id="required-documents" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Required Documents for Dubai Student Visa</h2>
-                
                 <div className="space-y-6">
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-2">Personal Documents</h3>
-                    <ul className="space-y-1 text-gray-700">
-                      <li>• Valid passport with 6 months validity</li>
-                      <li>• Passport-size photographs (white background)</li>
-                      <li>• Birth certificate (attested)</li>
-                      <li>• National ID card copy</li>
+                    <h3 className="text-lg font-semibold text-blue-800 mb-4 flex items-center">
+                      <FileText className="w-5 h-5 mr-2" />
+                      Essential Documents
+                    </h3>
+                    <ul className="space-y-3 text-gray-700">
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>An acceptance letter from the Dubai college or university</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Passport-sized photos (up to twelve)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Your passport has several photocopies</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Evidence that you have sufficient money to pay for your living expenses and tuition fees</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Evidence of where you will stay, such as a tenancy agreement or student accommodation</span>
+                      </li>
                     </ul>
                   </div>
-                  
-                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-2">Academic Documents</h3>
-                    <ul className="space-y-1 text-gray-700">
-                      <li>• University acceptance letter</li>
-                      <li>• Academic transcripts (attested)</li>
-                      <li>• Degree certificates</li>
-                      <li>• English proficiency test results</li>
-                    </ul>
-                  </div>
-                  
-                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-2">Financial & Legal Documents</h3>
-                    <ul className="space-y-1 text-gray-700">
-                      <li>• Bank statements (last 6 months)</li>
-                      <li>• Sponsorship letter</li>
-                      <li>• Police clearance certificate</li>
-                      <li>• Medical fitness certificate</li>
+
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6">
+                    <h3 className="text-lg font-semibold text-yellow-800 mb-4 flex items-center">
+                      <AlertTriangle className="w-5 h-5 mr-2" />
+                      Medical Requirements
+                    </h3>
+                    <ul className="space-y-3 text-yellow-700">
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-yellow-600 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>A medical certificate from a government-approved health center in Dubai</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-yellow-600 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>All candidates over eighteen should take medical tests for TB, Hepatitis B and C, HIV, Leprosy, and Syphilis</span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 text-yellow-600 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>Those applying for postgraduate program must include a certificate from their past college or university</span>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -238,74 +234,119 @@ export default function DubaiVisaForPakistani() {
 
               {/* Application Process Section */}
               <section id="application-process" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Dubai Student Visa Application Process</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">How to Apply Dubai Visa from Pakistan?</h2>
                 
-                <div className="space-y-4">
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  The step-by-step guide to applying for a UAE visa for Pakistani students is as follows:
+                </p>
+
+                <div className="space-y-6">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">1</div>
-                      <h3 className="text-lg font-semibold text-gray-800">Get University Admission</h3>
+                    <div className="flex items-center mb-4">
+                      <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">1</div>
+                      <h3 className="text-xl font-semibold text-gray-800">Planning and Preparation</h3>
                     </div>
-                    <p className="text-gray-700">Apply and receive acceptance letter from a recognized Dubai university or educational institution.</p>
+                    <p className="text-gray-700">Before choosing a university or college in Dubai, you need to decide what you want to study, where you will live, and your overall expenses.</p>
                   </div>
-                  
+
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
-                      <h3 className="text-lg font-semibold text-gray-800">Prepare Documents</h3>
+                    <div className="flex items-center mb-4">
+                      <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">2</div>
+                      <h3 className="text-xl font-semibold text-gray-800">Test Preparation</h3>
                     </div>
-                    <p className="text-gray-700">Gather all required documents including personal, academic, and financial papers with proper attestation.</p>
+                    <p className="text-gray-700">Get ready for any entrance exams required by the university, and take tests such as IELTS or TOEFL if mandatory.</p>
                   </div>
-                  
+
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
-                      <h3 className="text-lg font-semibold text-gray-800">Submit Application</h3>
+                    <div className="flex items-center mb-4">
+                      <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">3</div>
+                      <h3 className="text-xl font-semibold text-gray-800">Financial Preparation</h3>
                     </div>
-                    <p className="text-gray-700">Submit visa application through UAE embassy or authorized visa processing center in Pakistan.</p>
+                    <p className="text-gray-700">Make sure you have sufficient money to cover your tuition fees, travel, food, living expenses, and other costs while studying in Dubai.</p>
                   </div>
-                  
+
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
-                      <h3 className="text-lg font-semibold text-gray-800">Medical & Biometrics</h3>
+                    <div className="flex items-center mb-4">
+                      <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">4</div>
+                      <h3 className="text-xl font-semibold text-gray-800">University Application</h3>
                     </div>
-                    <p className="text-gray-700">Complete medical examination and biometric data collection as required by UAE authorities.</p>
+                    <p className="text-gray-700">Each university will have its own requirements. Make sure to fulfill those and complete the application process.</p>
                   </div>
-                  
+
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
-                      <h3 className="text-lg font-semibold text-gray-800">Receive Visa</h3>
+                    <div className="flex items-center mb-4">
+                      <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">5</div>
+                      <h3 className="text-xl font-semibold text-gray-800">Confirmation and Payment</h3>
                     </div>
-                    <p className="text-gray-700">Upon approval, receive your Dubai student visa and prepare for travel to begin your studies.</p>
+                    <p className="text-gray-700">Once you meet all requirements, you will receive a confirmation letter. After that, you must pay the required Dubai visa price.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <div className="flex items-center mb-4">
+                      <div className="bg-blue-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">6</div>
+                      <h3 className="text-xl font-semibold text-gray-800">Visa Application</h3>
+                    </div>
+                    <p className="text-gray-700">Once you receive your confirmation letter, you can apply for a Dubai Study Visa. The Dubai visa processing time in Pakistan is typically about ten to fifteen working days.</p>
                   </div>
                 </div>
               </section>
 
-              {/* Visa Costs Section */}
-              <section id="visa-costs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Dubai Student Visa Costs and Fees</h2>
+              {/* Visa Price Section */}
+              <section id="visa-price" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Dubai Student Visa Price in Pakistan</h2>
                 
-                <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800 flex items-center">
-                    <DollarSign className="w-5 h-5 mr-2" />
-                    Fee Breakdown
-                  </h3>
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <p className="text-gray-700 mb-2"><strong>Processing Fee:</strong> AED 2,300 - 2,700</p>
-                      <p className="text-gray-700 mb-2"><strong>Security Deposit:</strong> AED 2,500 - 3,000</p>
-                      <p className="text-gray-700 mb-2"><strong>Medical Examination:</strong> AED 300 - 500</p>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Students applying for a Dubai Study Visa need to pay a certain study visa price, which may vary based on the course, selected university, and type of application. However, there are some mandatory costs.
+                </p>
+
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <div className="flex items-center mb-4">
+                      <DollarSign className="w-8 h-8 text-blue-600 mr-3" />
+                      <h3 className="text-lg font-semibold text-blue-800">Visa Processing Fee</h3>
                     </div>
-                    <div>
-                      <p className="text-gray-700 mb-2"><strong>Health Insurance:</strong> AED 1,300 - 1,400</p>
-                      <p className="text-gray-700 mb-2"><strong>Emirates ID:</strong> AED 370</p>
-                      <p className="text-gray-700"><strong>Total Approximate:</strong> AED 6,770 - 8,270</p>
+                    <p className="text-3xl font-bold text-blue-600 mb-2">2,300 - 2,700 AED</p>
+                    <p className="text-gray-600">Mandatory processing charges</p>
+                  </div>
+
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+                    <div className="flex items-center mb-4">
+                      <CheckCircle className="w-8 h-8 text-green-600 mr-3" />
+                      <h3 className="text-lg font-semibold text-green-800">Refundable Deposit</h3>
                     </div>
+                    <p className="text-3xl font-bold text-green-600 mb-2">2,500 - 3,000 AED</p>
+                    <p className="text-gray-600">Refundable visa security deposit</p>
+                  </div>
+
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+                    <div className="flex items-center mb-4">
+                      <AlertTriangle className="w-8 h-8 text-yellow-600 mr-3" />
+                      <h3 className="text-lg font-semibold text-yellow-800">Medical Insurance</h3>
+                    </div>
+                    <p className="text-3xl font-bold text-yellow-600 mb-2">1,300 - 1,400 AED</p>
+                    <p className="text-gray-600">Mandatory health insurance</p>
                   </div>
                 </div>
               </section>
+
+              {/* Conclusion Section */}
+              <section id="conclusion" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
+                
+                <div className="bg-blue-50 p-6 rounded-lg">
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Dubai provides high-quality education as well as the best career opportunities. It is home to many top universities and the latest facilities, where both native and international students can get a great education.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    The process of applying for a Dubai student visa might seem difficult at first, but with the right preparation, it becomes easier. To apply for a Dubai study visa from Pakistan, the major thing is to get accepted into a college or university in Dubai.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    Once you get admission, you can follow the steps mentioned earlier to complete the visa application process smoothly.
+                  </p>
+                </div>
+              </section>
+
+
 
               {/* FAQs Section */}
               <section id="faqs" className="mb-10">
@@ -334,18 +375,7 @@ export default function DubaiVisaForPakistani() {
                 </div>
               </section>
 
-              {/* Conclusion */}
-              <section className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
-                
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Obtaining a Dubai student visa from Pakistan requires careful preparation and adherence to all requirements. The process involves multiple steps including university admission, document preparation, and visa application submission.
-                </p>
 
-                <p className="text-gray-700 leading-relaxed">
-                  With proper planning and expert guidance, Pakistani students can successfully obtain their Dubai student visa and pursue their educational goals in one of the world's most dynamic cities.
-                </p>
-              </section>
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
