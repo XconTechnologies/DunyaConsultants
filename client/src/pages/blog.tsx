@@ -542,14 +542,16 @@ export default function Blog() {
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  // Fetch published blog posts from database
-  const { data: dbBlogPosts = [], isLoading } = useQuery<DBBlogPost[]>({
+  // Fetch published blog posts from database with optimized caching
+  const { data: dbBlogPosts = [], isLoading } = useQuery({
     queryKey: ['/api/blog-posts/published'],
+    staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
+    gcTime: 10 * 60 * 1000, // Keep in cache for 10 minutes (renamed from cacheTime in v5)
   });
 
   // Convert database posts to local format
   const blogPosts: BlogPost[] = useMemo(() => {
-    return dbBlogPosts.map(post => ({
+    return (dbBlogPosts as DBBlogPost[]).map((post: DBBlogPost) => ({
       id: post.id.toString(),
       title: post.title,
       excerpt: post.excerpt || "Read this comprehensive guide to learn more about this important topic.",
@@ -600,10 +602,49 @@ export default function Blog() {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navigation />
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading blog posts...</p>
+        {/* Hero Section Skeleton */}
+        <div className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-800">
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div className="text-center text-white">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+                <BookOpen className="w-4 h-4 mr-2" />
+                <span className="text-sm font-medium">Educational Resources</span>
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold mb-6">Study Abroad Insights</h1>
+              <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+                Expert guidance, latest updates, and success stories from your trusted education consultants
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Content Skeleton */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid lg:grid-cols-4 gap-8">
+            <div className="lg:col-span-3">
+              <div className="grid md:grid-cols-2 gap-6">
+                {[1,2,3,4].map(i => (
+                  <div key={i} className="bg-white rounded-xl shadow-sm border animate-pulse">
+                    <div className="h-48 bg-gray-200 rounded-t-xl"></div>
+                    <div className="p-6">
+                      <div className="h-4 bg-gray-200 rounded mb-3"></div>
+                      <div className="h-6 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-xl shadow-sm p-6 animate-pulse">
+                <div className="h-6 bg-gray-200 rounded mb-4"></div>
+                <div className="space-y-3">
+                  {[1,2,3].map(i => (
+                    <div key={i} className="h-4 bg-gray-200 rounded"></div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <Footer />
