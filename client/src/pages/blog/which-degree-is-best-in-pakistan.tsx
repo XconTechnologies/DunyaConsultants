@@ -1,31 +1,50 @@
-import Navigation from '../../components/navigation';
-import Footer from '../../components/footer';
-import ContactForm from '../../components/blog/ContactForm';
-import ContactSection from '../../components/blog/ContactSection';
+import React from 'react';
+import { Calendar, Clock, User, AlertTriangle, FileText, CheckCircle, Users, DollarSign, TrendingUp, Briefcase, GraduationCap, BookOpen } from 'lucide-react';
+import Navigation from '@/components/navigation';
+import Footer from '@/components/footer';
+import ContactForm from '@/components/blog/ContactForm';
 
 export default function WhichDegreeIsBestInPakistan() {
   return (
-    
     <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="max-w-[1440px] mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center text-white">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"
-            }}
-          />
-          <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4">Which Degree is Best in Pakistan?</h1>
-            <p className="text-2xl font-light">Complete guide to choosing the right degree with highest scope and career opportunities</p>
+      
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                Career Guide
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Which Degree is Best in Pakistan?
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Complete guide to choosing the right degree with highest scope, career opportunities, and earning potential in Pakistan's evolving job market.
+            </p>
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>January 28, 2025</span>
+              </div>
+              <div className="flex items-center">
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>12 min read</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Main Content */}
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Main Article */}
+          {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Introduction */}
@@ -39,241 +58,442 @@ export default function WhichDegreeIsBestInPakistan() {
                 <p className="text-gray-700 leading-relaxed mb-6">
                   If you are one of them, do not worry. Here is a detailed guide for you. We have done proper research on the trending courses and made a list of <strong>professional degrees in Pakistan</strong> to make it easier for you.
                 </p>
+              </div>
 
-                {/* Quick Overview */}
-                <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Top Degree Categories Overview</h3>
+              {/* Table of Contents */}
+              <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
+                <ul className="space-y-2 text-gray-600">
+                  <li><a href="#top-degrees" className="hover:text-blue-600">Top Degrees in Pakistan</a></li>
+                  <li><a href="#it-computer-science" className="hover:text-blue-600">IT & Computer Science</a></li>
+                  <li><a href="#engineering" className="hover:text-blue-600">Engineering Fields</a></li>
+                  <li><a href="#business-administration" className="hover:text-blue-600">Business Administration</a></li>
+                  <li><a href="#medical-fields" className="hover:text-blue-600">Medical & Healthcare</a></li>
+                  <li><a href="#emerging-fields" className="hover:text-blue-600">Emerging Career Fields</a></li>
+                  <li><a href="#career-guidance" className="hover:text-blue-600">Career Selection Tips</a></li>
+                  <li><a href="#faqs" className="hover:text-blue-600">Frequently Asked Questions</a></li>
+                </ul>
+              </div>
+
+              {/* Top Degrees Overview */}
+              <section id="top-degrees" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Top Degrees in Pakistan 2025</h2>
+                
+                <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-6">
+                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Quick Overview</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold text-blue-700 mb-2">Engineering</h4>
-                      <p className="text-blue-600">Highest Paying Field</p>
-                    </div>
-                    <div className="text-center">
                       <h4 className="text-2xl font-bold text-blue-700 mb-2">IT & CS</h4>
-                      <p className="text-blue-600">Fastest Growing Sector</p>
+                      <p className="text-blue-600">Highest Growth Potential</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold text-blue-700 mb-2">Business</h4>
-                      <p className="text-blue-600">Corporate Opportunities</p>
+                      <h4 className="text-2xl font-bold text-blue-700 mb-2">Engineering</h4>
+                      <p className="text-blue-600">Traditional High-Paying</p>
+                    </div>
+                    <div className="text-center">
+                      <h4 className="text-2xl font-bold text-blue-700 mb-2">Medical</h4>
+                      <p className="text-blue-600">Social Prestige & Security</p>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* What is Bachelor Degree */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">What is Bachelor Degree in Pakistan?</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  In Pakistan, a <strong>bachelor's degree</strong> is an educational qualification that can take around <strong>3-5 years to complete</strong>, depending on the program and university. The duration of the program is also dependent on whether it is an honors or a professional bachelor's degree.
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-blue-800">Honors Bachelor's Degree</h4>
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      <li>• Duration: 3-4 years typically</li>
-                      <li>• Focus on theoretical knowledge</li>
-                      <li>• Academic research oriented</li>
-                    </ul>
-                  </div>
-                  
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-blue-800">Professional Bachelor's Degree</h4>
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      <li>• Duration: 4-5 years normally</li>
-                      <li>• Practical skill development</li>
-                      <li>• Industry-focused training</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              {/* List of Best BS Fields */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">List of the Best BS Fields in Pakistan</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Getting a graduation degree in Pakistan is a must to get a job in a well-reputable company. For that, you have to research <strong>which degree has the highest scope in Pakistan</strong>. As you all know, degrees with career growth potential and the highest scope provide not just job security but also allow you to earn a decent amount.
-                </p>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  Let's discuss in detail the <strong>high-scope fields in Pakistan</strong> below:
+                  Pakistan's economy is rapidly evolving with digitalization, infrastructure development, and increasing global integration. This transformation creates new opportunities in technology, healthcare, engineering, and business sectors. Understanding market demands and future trends is crucial for making informed career decisions.
+                </p>
+              </section>
+
+              {/* IT & Computer Science Section */}
+              <section id="it-computer-science" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Information Technology & Computer Science</h2>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+                  <h3 className="text-xl font-semibold text-blue-800 mb-4 flex items-center">
+                    <BookOpen className="w-5 h-5 mr-2" />
+                    Why IT is the Top Choice
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Growth Factors:</h4>
+                      <ul className="space-y-1 text-gray-700">
+                        <li>• IT exports exceed $2.6 billion annually</li>
+                        <li>• 15-25% annual salary increases</li>
+                        <li>• Global remote work opportunities</li>
+                        <li>• High entrepreneurship potential</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">Salary Ranges:</h4>
+                      <ul className="space-y-1 text-gray-700">
+                        <li>• Entry Level: PKR 40,000 - 80,000</li>
+                        <li>• Mid-Level: PKR 100,000 - 250,000</li>
+                        <li>• Senior Level: PKR 300,000 - 800,000</li>
+                        <li>• Leadership: PKR 1,000,000+</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-3">Specialization Areas</h4>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <ul className="space-y-2 text-gray-700">
+                        <li>• Software Development & Programming</li>
+                        <li>• Cybersecurity & Information Security</li>
+                        <li>• Data Science & Analytics</li>
+                      </ul>
+                      <ul className="space-y-2 text-gray-700">
+                        <li>• Artificial Intelligence & Machine Learning</li>
+                        <li>• Mobile App Development</li>
+                        <li>• Cloud Computing & DevOps</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Engineering Section */}
+              <section id="engineering" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Engineering Fields</h2>
+                
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Engineering has been a popular career choice with many different fields to choose from. You need to research <strong>which engineering field has the highest scope in Pakistan</strong>. Engineers can earn a decent income in today's world, and the tech industry has grown rapidly, making engineering an exciting and rewarding career option.
                 </p>
 
-                {/* Business Administration */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-blue-700">Business Administration</h3>
-                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
-                    <p className="text-gray-700 leading-relaxed mb-4">
-                      Business degrees like <strong>BBA and MBA</strong> are the best in Pakistan for students who want to enter the corporate world. The <strong>BBA scope in Pakistan</strong> provides new job opportunities in finance, management, and marketing.
-                    </p>
-                    <p className="text-gray-700 leading-relaxed">
-                      Furthermore, business graduates are in high demand in the corporate sector because they are suitable for a variety of roles. A BBA degree is a great option for those searching for high-paying jobs.
-                    </p>
+                <div className="space-y-6">
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-2">High-Demand Engineering Fields</h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Electrical Engineering:</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Power generation and transmission</li>
+                          <li>• Electronics and telecommunications</li>
+                          <li>• Renewable energy systems</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Mechanical Engineering:</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Manufacturing and production</li>
+                          <li>• Automotive industry</li>
+                          <li>• Industrial automation</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <DollarSign className="w-5 h-5 mr-2" />
+                      Engineering Salary Expectations
+                    </h4>
+                    <div className="grid md:grid-cols-4 gap-4 text-center">
+                      <div className="bg-blue-50 p-4 rounded">
+                        <h5 className="font-semibold text-blue-700">Fresh Graduates</h5>
+                        <p className="text-gray-700">PKR 35,000 - 60,000</p>
+                      </div>
+                      <div className="bg-blue-50 p-4 rounded">
+                        <h5 className="font-semibold text-blue-700">Experienced (5+ years)</h5>
+                        <p className="text-gray-700">PKR 80,000 - 200,000</p>
+                      </div>
+                      <div className="bg-blue-50 p-4 rounded">
+                        <h5 className="font-semibold text-blue-700">Senior Engineers</h5>
+                        <p className="text-gray-700">PKR 250,000 - 500,000</p>
+                      </div>
+                      <div className="bg-blue-50 p-4 rounded">
+                        <h5 className="font-semibold text-blue-700">Project Managers</h5>
+                        <p className="text-gray-700">PKR 400,000 - 800,000</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </section>
 
-                {/* Engineering Degrees */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-blue-700">Engineering Degrees</h3>
-                  <div className="bg-gradient-to-r from-blue-50 to-emerald-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
-                    <p className="text-gray-700 leading-relaxed mb-4">
-                      Engineering has also been a popular career choice, with many different fields to choose from. You need to research <strong>which engineering field has the highest scope in Pakistan</strong>.
-                    </p>
-                    <p className="text-gray-700 leading-relaxed">
-                      Engineers can earn a decent income in today's world. In the past decade, the tech industry, <strong>of which engineering has the highest scope in Pakistan</strong>, has grown rapidly, making engineering an exciting and rewarding career option.
-                    </p>
+              {/* Business Administration Section */}
+              <section id="business-administration" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Business Administration</h2>
+                
+                <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-6">
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    Business degrees like <strong>BBA and MBA</strong> are among the best in Pakistan for students who want to enter the corporate world. The <strong>BBA scope in Pakistan</strong> provides new job opportunities in finance, management, and marketing.
+                  </p>
+                  <p className="text-gray-700 leading-relaxed">
+                    Furthermore, business graduates are in high demand in the corporate sector because they are suitable for a variety of roles. A BBA degree is a great option for those searching for high-paying jobs.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-3">Specialized Business Fields</h4>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <ul className="space-y-2 text-gray-700">
+                        <li>• Finance and Banking</li>
+                        <li>• Marketing and Sales</li>
+                        <li>• Human Resource Management</li>
+                      </ul>
+                      <ul className="space-y-2 text-gray-700">
+                        <li>• Supply Chain and Operations</li>
+                        <li>• International Business</li>
+                        <li>• Management and Strategy</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 p-6 rounded-lg">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-3">Career Progression in Business</h4>
+                    <div className="space-y-3">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-gray-800">Management Trainee</span>
+                        <span className="text-blue-600 font-semibold">PKR 40,000 - 70,000/month</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-gray-800">Middle Management</span>
+                        <span className="text-blue-600 font-semibold">PKR 100,000 - 250,000/month</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-gray-800">Senior Management</span>
+                        <span className="text-blue-600 font-semibold">PKR 300,000 - 600,000/month</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-gray-800">Executive Level</span>
+                        <span className="text-blue-600 font-semibold">PKR 800,000 - 2,000,000/month</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </section>
 
-                {/* IT and Computer Science */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-blue-700">Degree in Information Technology (IT) and Computer Science</h3>
-                  <div className="bg-gradient-to-r from-blue-50 to-violet-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
-                    <p className="text-gray-700 leading-relaxed mb-4">
-                      Degrees in <strong>IT and computer science</strong> are also the best degrees in Pakistan after FSC for high-paying careers in areas like data science, software development, and cybersecurity.
-                    </p>
-                    <p className="text-gray-700 leading-relaxed">
-                      With the increase in the technology sector, the <strong>scope of BS IT in Pakistan</strong> has also increased. Graduates in these fields can find great career opportunities locally and can even work remotely for foreign companies and earn competitive salaries.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Medicine and Healthcare */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-blue-700">Medicine and Healthcare Degrees</h3>
-                  <div className="bg-gradient-to-r from-blue-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
-                    <p className="text-gray-700 leading-relaxed mb-4">
-                      Medical programs are highly valued and are considered one of the top-paying careers globally. The <strong>best medical field in Pakistan</strong> offers a diverse range of options.
-                    </p>
-                    <p className="text-gray-700 leading-relaxed">
-                      This field includes roles like doctors, surgeons, anesthesiologists, dentists, occupational therapists, radiologists, audiologists, etc. With the healthcare industry growing day by day, there is a strong requirement for skilled professionals.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Chartered Accounting */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold mb-4 text-blue-700">Chartered Accounting (CA)</h3>
-                  <div className="bg-gradient-to-r from-blue-50 to-amber-50 p-6 rounded-lg border-l-4 border-blue-500 mb-4">
-                    <p className="text-gray-700 leading-relaxed mb-4">
-                      Becoming a <strong>CA</strong> is another name on the list of the <strong>best scope degrees in Pakistan</strong>. It is a highly competitive field with great job opportunities. CAs are experts in managing finances. Over the past decades, the demand for skilled CAs has increased.
-                    </p>
-                    <p className="text-gray-700 leading-relaxed">
-                      Moreover, a Chartered Accountant working at the State Bank of Pakistan can earn around <strong>3.5 lakhs rupees per month</strong>. They also have many job opportunities available in various sectors.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Best Degrees Comparison */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Career Scope Comparison</h2>
-                <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                  <table className="w-full">
-                    <thead className="bg-blue-600 text-white">
-                      <tr>
-                        <th className="px-6 py-3 text-left font-semibold">Field</th>
-                        <th className="px-6 py-3 text-left font-semibold">Duration</th>
-                        <th className="px-6 py-3 text-left font-semibold">Career Scope</th>
-                        <th className="px-6 py-3 text-left font-semibold">Salary Range</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-gray-200">
-                      <tr className="hover:bg-white">
-                        <td className="px-6 py-4 text-gray-700 font-medium">Business Administration</td>
-                        <td className="px-6 py-4 text-gray-700">4 years</td>
-                        <td className="px-6 py-4 text-gray-700">Finance, Management, Marketing</td>
-                        <td className="px-6 py-4 text-gray-700">50K-200K/month</td>
-                      </tr>
-                      <tr className="hover:bg-white">
-                        <td className="px-6 py-4 text-gray-700 font-medium">Engineering</td>
-                        <td className="px-6 py-4 text-gray-700">4 years</td>
-                        <td className="px-6 py-4 text-gray-700">Technology, Construction, Manufacturing</td>
-                        <td className="px-6 py-4 text-gray-700">60K-300K/month</td>
-                      </tr>
-                      <tr className="hover:bg-white">
-                        <td className="px-6 py-4 text-gray-700 font-medium">IT & Computer Science</td>
-                        <td className="px-6 py-4 text-gray-700">4 years</td>
-                        <td className="px-6 py-4 text-gray-700">Software Development, Data Science</td>
-                        <td className="px-6 py-4 text-gray-700">70K-400K/month</td>
-                      </tr>
-                      <tr className="hover:bg-white">
-                        <td className="px-6 py-4 text-gray-700 font-medium">Medicine (MBBS)</td>
-                        <td className="px-6 py-4 text-gray-700">5 years</td>
-                        <td className="px-6 py-4 text-gray-700">Healthcare, Surgery, Specialization</td>
-                        <td className="px-6 py-4 text-gray-700">100K-500K/month</td>
-                      </tr>
-                      <tr className="hover:bg-white">
-                        <td className="px-6 py-4 text-gray-700 font-medium">Chartered Accounting</td>
-                        <td className="px-6 py-4 text-gray-700">3-5 years</td>
-                        <td className="px-6 py-4 text-gray-700">Finance, Auditing, Taxation</td>
-                        <td className="px-6 py-4 text-gray-700">80K-350K/month</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              {/* Conclusion */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-gray-500 pl-4">Conclusion</h2>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Are you also searching for <strong>which subject is best for BS in Pakistan</strong>? No doubt, choosing a suitable program for the BS degree in Pakistan is an exciting as well as quite challenging task. To make the right decision, you should know about demanding fields and programs in such a competitive world that would benefit you in the long run.
-                </p>
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  Furthermore, completing your graduation from the best university in Pakistan is equally essential. At present, <strong>IT fields in Pakistan are most trending</strong> keeping in mind the career growth opportunities and high salary packages available.
-                </p>
-                <p className="text-gray-700 leading-relaxed">
-                  For expert guidance on selecting the right degree and university, consult with <strong>Dunya Consultants</strong> to make an informed decision about your academic future.
-                </p>
-              </div>
-
-              {/* FAQs */}
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+              {/* Medical Fields Section */}
+              <section id="medical-fields" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Medical & Healthcare Fields</h2>
                 
                 <div className="space-y-6">
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Is there a scope for the medical-related fields in Pakistan?</h3>
-                    <p className="text-gray-700">Yes, medical fields have excellent scope in Pakistan. With growing healthcare needs, there's high demand for doctors, specialists, nurses, pharmacists, and healthcare administrators. Medical professionals can earn competitive salaries and have opportunities for private practice and specialization.</p>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4">Medical Doctor (MBBS)</h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Key Benefits:</h4>
+                        <ul className="space-y-1 text-gray-700">
+                          <li>• High social status and respect</li>
+                          <li>• Job security and stability</li>
+                          <li>• Private practice opportunities</li>
+                          <li>• Specialization potential</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Earning Potential:</h4>
+                        <ul className="space-y-1 text-gray-700">
+                          <li>• Junior Doctors: PKR 50,000 - 100,000</li>
+                          <li>• Specialists: PKR 200,000 - 500,000</li>
+                          <li>• Consultants: PKR 500,000 - 1,500,000</li>
+                          <li>• Private Practice: PKR 1,000,000+</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Which engineering has the highest scope in Pakistan?</h3>
-                    <p className="text-gray-700">Software Engineering, Computer Engineering, and Electrical Engineering currently have the highest scope in Pakistan. The technology sector's rapid growth has created numerous opportunities in software development, telecommunications, and automation industries.</p>
-                  </div>
-
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Is there a data science scope in Pakistan?</h3>
-                    <p className="text-gray-700">Absolutely! Data science has tremendous scope in Pakistan with increasing digitalization. Companies are seeking data scientists for analytics, business intelligence, and AI/ML projects. Salaries range from 80K to 400K+ per month depending on experience and skills.</p>
-                  </div>
-
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Which university is best for BS Artificial Intelligence in Pakistan?</h3>
-                    <p className="text-gray-700">Top universities for BS AI in Pakistan include FAST-NUCES, LUMS, NUST, University of Karachi, and Punjab University. These institutions offer comprehensive AI programs with modern labs, experienced faculty, and industry partnerships for practical exposure.</p>
-                  </div>
-
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">What is the best degree for high salary in Pakistan?</h3>
-                    <p className="text-gray-700">Medicine (MBBS), Engineering (especially Software/Computer), IT/Computer Science, and Business Administration typically offer the highest salaries. However, success depends on skills, experience, and market demand in your chosen specialization.</p>
-                  </div>
-
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">Should I choose degree based on passion or scope?</h3>
-                    <p className="text-gray-700">Ideally, choose a degree that combines both passion and scope. Consider your interests, aptitude, market demand, and future growth potential. Consult with career counselors and industry professionals to make an informed decision that aligns with both personal satisfaction and career prospects.</p>
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-3">Allied Health Sciences</h4>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <ul className="space-y-2 text-gray-700">
+                        <li>• Pharmacy (PharmD)</li>
+                        <li>• Physiotherapy (DPT)</li>
+                        <li>• Medical Laboratory Technology</li>
+                      </ul>
+                      <ul className="space-y-2 text-gray-700">
+                        <li>• Radiology and Medical Imaging</li>
+                        <li>• Nursing (Generic BSN)</li>
+                        <li>• Dental Surgery (BDS)</li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </section>
+
+              {/* Emerging Fields Section */}
+              <section id="emerging-fields" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Emerging High-Potential Fields</h2>
+                
+                <div className="space-y-6">
+                  <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4">Data Science & Analytics</h3>
+                    <p className="text-gray-700 mb-4">
+                      Every industry needs data professionals due to government digitization initiatives, e-commerce growth, and research expansion.
+                    </p>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Key Skills:</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Statistical analysis and modeling</li>
+                          <li>• Machine learning and AI</li>
+                          <li>• Big data technologies</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Salary Potential:</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Data Analyst: PKR 60,000 - 150,000</li>
+                          <li>• Data Scientist: PKR 120,000 - 300,000</li>
+                          <li>• Senior Data Scientist: PKR 350,000+</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-blue-800 mb-3">Digital Marketing & E-commerce</h4>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Growth Drivers:</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Increasing internet penetration</li>
+                          <li>• Mobile commerce expansion</li>
+                          <li>• SME digitization trends</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Career Opportunities:</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Digital marketing specialist</li>
+                          <li>• E-commerce manager</li>
+                          <li>• SEO/SEM specialist</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* Career Guidance Section */}
+              <section id="career-guidance" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Career Selection Tips</h2>
+                
+                <div className="space-y-6">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <h3 className="text-xl font-semibold text-blue-800 mb-4 flex items-center">
+                      <CheckCircle className="w-5 h-5 mr-2" />
+                      Factors to Consider
+                    </h3>
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Personal Interests</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• What subjects do you enjoy?</li>
+                          <li>• What are your natural strengths?</li>
+                          <li>• Do you prefer analytical or creative work?</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Market Demand</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Job growth projections</li>
+                          <li>• Industry expansion trends</li>
+                          <li>• Skills shortage areas</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Financial Considerations</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Starting salary expectations</li>
+                          <li>• Career growth potential</li>
+                          <li>• Educational investment</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-100 border border-blue-300 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Success Strategies</h3>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Academic Excellence</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Consistent effort and dedication</li>
+                          <li>• Active learning techniques</li>
+                          <li>• Practical application focus</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800 mb-2">Professional Development</h4>
+                        <ul className="space-y-1 text-gray-700 text-sm">
+                          <li>• Industry certifications</li>
+                          <li>• Networking and mentorship</li>
+                          <li>• Continuous skill updates</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* FAQs Section */}
+              <section id="faqs" className="mb-10">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+
+                <div className="space-y-4">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Which degree has the highest salary potential in Pakistan?</h3>
+                    <p className="text-gray-700">Information Technology and Computer Science degrees offer the highest salary potential, with senior professionals earning PKR 1,000,000+ monthly. Medicine and specialized engineering fields also offer excellent earning potential.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Which engineering field has the most scope in Pakistan?</h3>
+                    <p className="text-gray-700">Electrical, Software, and Mechanical engineering have the highest scope. Software engineering particularly offers global opportunities and high growth potential in Pakistan's expanding tech sector.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: Is BBA a good choice for career growth?</h3>
+                    <p className="text-gray-700">Yes, BBA provides excellent career growth opportunities in corporate sectors, banking, marketing, and management. It offers versatility and opens doors to various industries.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: What are the emerging high-paying fields in Pakistan?</h3>
+                    <p className="text-gray-700">Data Science, Digital Marketing, Cybersecurity, AI/Machine Learning, and Renewable Energy are emerging high-paying fields with excellent growth prospects.</p>
+                  </div>
+
+                  <div className="bg-white border border-gray-200 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Q: How important is university ranking for career success?</h3>
+                    <p className="text-gray-700">While university ranking matters, skills, practical experience, and networking often have more impact on career success. Focus on programs with strong industry connections and practical training.</p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Conclusion */}
+              <section className="mb-8">
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
+                
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  The best degree in Pakistan depends on individual interests, aptitudes, and career goals, but certain fields offer exceptional opportunities in the current economic landscape. Information Technology and Computer Science stands out as the top choice due to high demand, excellent salaries, and global opportunities.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Engineering, Healthcare, and Business Administration remain strong traditional choices with modern relevance. Success in any field requires dedication, continuous learning, and strategic career planning.
+                </p>
+
+                <p className="text-gray-700 leading-relaxed">
+                  Students should focus on programs that offer both immediate job prospects and long-term growth potential, while also considering international opportunities and technological advancement.
+                </p>
+              </section>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-8 rounded-lg mb-8">
-                <h3 className="text-2xl font-bold mb-4">Need Help Choosing the Right Degree?</h3>
-                <p className="text-lg mb-4">Get expert career counseling and degree selection guidance. Our experienced counselors will help you choose the perfect degree program that matches your interests, aptitude, and career goals for a successful future in Pakistan.</p>
-                <div className="flex gap-4">
-                  <a href="tel:+923041110947" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                    Call Now: (+92) 304 1110947
+              <div className="bg-blue-50 p-8 rounded-lg text-center">
+                <h3 className="text-2xl font-bold mb-4 text-blue-800">Need Career Guidance?</h3>
+                <p className="text-gray-700 mb-6">
+                  Get expert guidance from Dunya Consultants on choosing the right degree and career path for your future success.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <a 
+                    href="tel:+923041110947" 
+                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                  >
+                    Call Now: +92 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                    Get Free Consultation
+                  <a 
+                    href="mailto:info@dunyaconsultants.com" 
+                    className="bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors"
+                  >
+                    Email Us
                   </a>
                 </div>
               </div>
@@ -281,90 +501,72 @@ export default function WhichDegreeIsBestInPakistan() {
           </div>
 
           {/* Sidebar */}
-          <div className="w-80">
-            <ContactForm />
-            
-            {/* Quick Facts */}
-            <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-800">Top Degree Facts</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-700">Engineering Duration</span>
-                  <span className="text-sm font-bold text-blue-700">4 Years</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-700">Medical Duration</span>
-                  <span className="text-sm font-bold text-blue-700">5 Years</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-700">Business Duration</span>
-                  <span className="text-sm font-bold text-blue-700">4 Years</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-700">IT/CS Duration</span>
-                  <span className="text-sm font-bold text-blue-700">4 Years</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-gray-700">CA Duration</span>
-                  <span className="text-sm font-bold text-blue-700">3-5 Years</span>
+          <div className="lg:col-span-1">
+            <div className="sticky top-8 space-y-6">
+              {/* Quick Facts */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <FileText className="w-5 h-5 mr-2 text-blue-500" />
+                  Quick Facts
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Top Paying Field:</span>
+                    <span className="font-medium">IT & Computer Science</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Most Traditional:</span>
+                    <span className="font-medium">Engineering & Medical</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Fastest Growing:</span>
+                    <span className="font-medium">Data Science</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Best ROI:</span>
+                    <span className="font-medium">Business Admin</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Global Demand:</span>
+                    <span className="font-medium text-blue-600">Very High</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* High Scope Fields */}
-            <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-800">High Scope Fields</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>• Software Engineering</li>
-                <li>• Data Science</li>
-                <li>• Artificial Intelligence</li>
-                <li>• Cybersecurity</li>
-                <li>• Digital Marketing</li>
-                <li>• Financial Management</li>
-                <li>• Healthcare</li>
-                <li>• Telecommunications</li>
-              </ul>
-            </div>
-
-            {/* Career Tips */}
-            <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-800">Career Selection Tips</h3>
-              <ul className="space-y-2 text-sm text-gray-700">
-                <li>• Research market demand</li>
-                <li>• Consider salary prospects</li>
-                <li>• Assess your interests</li>
-                <li>• Evaluate growth potential</li>
-                <li>• Check university rankings</li>
-                <li>• Consult career counselors</li>
-              </ul>
-            </div>
-
-            {/* Related Articles */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
-              <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block text-blue-600 hover:text-blue-800 text-sm">
-                  Best Universities in Pakistan for Engineering
-                </a>
-                <a href="/blog/canada-student-visa" className="block text-blue-600 hover:text-blue-800 text-sm">
-                  IT Job Market in Pakistan 2025
-                </a>
-                <a href="/blog/scholarship-opportunities" className="block text-blue-600 hover:text-blue-800 text-sm">
-                  Career Guidance for Pakistani Students
-                </a>
+              {/* Salary Comparison */}
+              <div className="bg-white rounded-lg shadow-sm border p-6">
+                <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
+                  <TrendingUp className="w-5 h-5 mr-2 text-blue-500" />
+                  Average Starting Salaries
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>IT & CS</span>
+                    <span className="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">PKR 40-80k</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Engineering</span>
+                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">PKR 35-60k</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Medical</span>
+                    <span className="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded">PKR 50-100k</span>
+                  </div>
+                  <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                    <span>Business</span>
+                    <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">PKR 40-70k</span>
+                  </div>
+                </div>
               </div>
+
+              {/* Contact Form */}
+              <ContactForm />
             </div>
           </div>
         </div>
-
-        {/* Contact Section */}
-        <ContactSection 
-          title="Need Career Guidance for Degree Selection?"
-          description="Get expert counseling to choose the right degree program that matches your interests and career goals. Our experienced advisors will help you make informed decisions about your academic future in Pakistan's competitive job market."
-        />
       </div>
+      
       <Footer />
-    
     </div>
   );
 }
