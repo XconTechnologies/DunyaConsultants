@@ -127,9 +127,9 @@ export default function OurSuccessStories() {
       description: "Visa approval success rate"
     },
     {
-      metric: "Countries",
-      value: "25+",
-      description: "Countries where students are studying"
+      metric: "Branches",
+      value: "15+",
+      description: "Office branches across Pakistan"
     },
     {
       metric: "Universities",
@@ -228,9 +228,9 @@ export default function OurSuccessStories() {
               <span className="text-sm font-medium text-blue-600">Visa Success Stories</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Our Success Stories{" "}
+              Journey to Success{" "}
               <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
-                – Visas
+                – Visa Triumphs
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -244,7 +244,7 @@ export default function OurSuccessStories() {
               {[
                 { id: 'UK', name: 'United Kingdom', color: 'indigo' },
                 { id: 'Finland', name: 'Finland', color: 'blue' },
-                { id: 'Sweden', name: 'Sweden', color: 'yellow' }
+                { id: 'Sweden', name: 'Sweden', color: 'blue' }
               ].map((country) => (
                 <button
                   key={country.id}
@@ -320,24 +320,6 @@ export default function OurSuccessStories() {
             className="grid md:grid-cols-3 gap-8"
           >
             {(activeTab === 'UK' ? [
-              {
-                icon: Trophy,
-                title: "Fast Visa Processing",
-                description: "UK visas approved in 3-7 days with expert guidance",
-                gradient: "from-blue-500 to-blue-600"
-              },
-              {
-                icon: Star,
-                title: "Scholarship Success", 
-                description: "Students secured scholarships up to £4400",
-                gradient: "from-blue-500 to-blue-600"
-              },
-              {
-                icon: GraduationCap,
-                title: "Premier Universities",
-                description: "Admissions to University of Sunderland, Ulster University & more",
-                gradient: "from-blue-500 to-blue-600"
-              }
             ] : activeTab === 'Finland' ? [
               {
                 icon: Trophy,
