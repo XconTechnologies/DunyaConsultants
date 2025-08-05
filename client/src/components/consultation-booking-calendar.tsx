@@ -22,10 +22,21 @@ const consultationTypes = [
 
 // Office locations for booking
 const officeLocations = [
-  { id: "lahore", name: "Lahore DHA", address: "1st Floor, 174-6 Street, Sector H, DHA Phase 1" },
+  { id: "lahore-dha", name: "Lahore DHA", address: "1st Floor, 174-6 Street, Sector H, DHA Phase 1" },
   { id: "sargodha", name: "Sargodha (Head Office)", address: "Main Boulevard, University Road" },
   { id: "islamabad", name: "Islamabad", address: "Blue Area, F-6 Sector" },
   { id: "karachi", name: "Karachi", address: "Clifton Block 2, Main Shahrah-e-Faisal" },
+  { id: "lahore-mm", name: "Lahore MM Alam", address: "Shop No. 45, 2nd Floor, MM Alam Road" },
+  { id: "lahore-fortress", name: "Lahore Fortress", address: "2nd Floor, Fortress Stadium, Cantt" },
+  { id: "lahore-johar", name: "Lahore Johar Town", address: "Office No. 12, Main Boulevard, Johar Town" },
+  { id: "gujranwala", name: "Gujranwala", address: "1st Floor, GT Road, Civil Lines" },
+  { id: "sialkot", name: "Sialkot", address: "2nd Floor, Kutchery Road" },
+  { id: "faisalabad", name: "Faisalabad", address: "3rd Floor, Jaranwala Road" },
+  { id: "multan", name: "Multan", address: "1st Floor, Abdali Road" },
+  { id: "rawalpindi", name: "Rawalpindi", address: "2nd Floor, Committee Chowk" },
+  { id: "peshawar", name: "Peshawar", address: "1st Floor, University Road" },
+  { id: "quetta", name: "Quetta", address: "Ground Floor, Jinnah Road" },
+  { id: "hyderabad", name: "Hyderabad", address: "2nd Floor, Saddar Area" },
   { id: "online", name: "Online Consultation", address: "Video Call via Zoom/Teams" }
 ];
 
@@ -306,7 +317,7 @@ export default function ConsultationBookingCalendar() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Select Office Location</h3>
                 <p className="text-gray-600 mb-8">Choose your preferred consultation location</p>
                 
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto">
                   {officeLocations.map((location) => (
                     <motion.button
                       key={location.id}
@@ -314,7 +325,7 @@ export default function ConsultationBookingCalendar() {
                         setSelectedLocation(location.id);
                         handleInputChange('location', location.id);
                       }}
-                      className={`w-full p-6 rounded-xl border-2 text-left transition-all duration-300 ${
+                      className={`p-4 rounded-xl border-2 text-left transition-all duration-300 ${
                         selectedLocation === location.id
                           ? 'border-blue-500 bg-blue-50'
                           : 'border-gray-200 hover:border-blue-300'
@@ -322,11 +333,11 @@ export default function ConsultationBookingCalendar() {
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                     >
-                      <div className="flex items-center">
-                        <MapPin className="w-5 h-5 text-blue-600 mr-3" />
-                        <div>
-                          <div className="font-semibold text-gray-900">{location.name}</div>
-                          <div className="text-sm text-gray-600">{location.address}</div>
+                      <div className="flex items-start">
+                        <MapPin className="w-4 h-4 text-blue-600 mr-2 mt-1 flex-shrink-0" />
+                        <div className="min-w-0">
+                          <div className="font-semibold text-gray-900 text-sm truncate">{location.name}</div>
+                          <div className="text-xs text-gray-600 line-clamp-2">{location.address}</div>
                         </div>
                       </div>
                     </motion.button>
