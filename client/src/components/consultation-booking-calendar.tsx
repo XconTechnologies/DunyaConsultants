@@ -317,7 +317,7 @@ export default function ConsultationBookingCalendar() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Select Office Location</h3>
                 <p className="text-gray-600 mb-8">Choose your preferred consultation location</p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto pr-2 scrollbar-hide">
                   {officeLocations.map((location) => (
                     <motion.button
                       key={location.id}
