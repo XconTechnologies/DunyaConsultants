@@ -230,88 +230,18 @@ const allBlogPosts = [
     views: 2150
   },
   {
-    title: "Dubai Study Visa Requirements from Pakistan",
-    slug: "dubai-study-visa-requirements-from-pakistan",
-    excerpt: "Complete guide to Dubai study visa requirements for Pakistani students, including eligibility criteria, documentation, application process, and costs.",
-    content: `Dubai is also known as the City of Gold. It is not only one of the richest places in the world but also a top choice for education. It provides the best facilities for both local as well as international students.
-
-If you are from Pakistan and willing to study in Dubai, you need to apply for a Dubai study visa. This is required if you want to pursue a full-time undergraduate or postgraduate program.
-
-However, before you make any plans, it is essential to understand the Dubai study visa requirements from Pakistan. These include the mandatory documents and steps to follow to obtain the visa. Once you fulfill all the requirements, you can begin your education in Dubai. Moreover, students can also get work experience while studying. However, there are particular rules that need to be followed when working under a student visa.
-
-## What is a Dubai Student Visa?
-
-A Dubai visa for Pakistani students' visa is a special visa for those who are planning to study in Dubai. This visa lets you enter and stay in the city for the entire time you are studying.
-
-It can be renewed based on the duration of your selected program. Moreover, with a UAE visa for Pakistani students, you can work part-time while studying. However, certain rules must be followed for this.
-
-## Eligibility Criteria for Dubai Student Visa from Pakistan
-
-To apply Dubai visa from Pakistan, students need to fulfill the following requirements as given below:
-
-- You should have an official acceptance letter from a Dubai university.
-- You should be at least eighteen years old.
-- Older students need to submit a certificate showing that they are continuing their studies.
-- You need a sponsor for your study visa, which can either be a parent/relative or university.
-- You need to pass a medical check-up to make sure you are in good health.
-- Your visa application should be approved by the GDRFA (General Directorate of Residency and Foreigners Affairs).
-- For a long-term Dubai study visa – School students should have scored a minimum of ninety-five percent in their high school graduation from any public or private secondary school. Moreover, University students should have at least a GPA of 3.75, whether they studied abroad or in Dubai.
-
-## Dubai Entry Requirements from Pakistan Students
-
-While applying for a study visa for the UAE, you have to provide all documents and meet entry requirements as mentioned below:
-
-- An acceptance letter from the Dubai college or university.
-- Passport-sized photos (up to twelve).
-- Your passport has several photocopies.
-- Evidence that you have sufficient money to pay for your living expenses and tuition fees.
-- Evidence of where you will stay, such as a tenancy agreement or student accommodation.
-- A medical certificate from a government-approved health center in Dubai. All candidates over eighteen should take medical tests for TB, Hepatitis B and C, HIV, Leprosy, and Syphilis.
-- Those who are applying for a postgraduate program must include a certificate from their past college or university.
-
-## How to Apply Dubai Visa from Pakistan?
-
-The step-by-step guide to applying for a UAE visa for Pakistani students is as follows:
-
-1. Before choosing a university or college in Dubai, you need to decide what you want to study, where you will live, and your overall expenses.
-2. Get ready for any entrance exams required by the university, and take tests such as IELTS or TOEFL if mandatory.
-3. Make sure you have sufficient money to cover your tuition fees, travel, food, living expenses, and other costs while studying in Dubai.
-4. Each university will have its own requirements. Make sure to fulfill those and complete the application process.
-5. Once you meet all requirements, you will receive a confirmation letter. After that, you must pay the required Dubai visa price.
-6. Once you receive your confirmation letter, you can apply for a Dubai Study Visa. The Dubai visa processing time in Pakistan is typically about ten to fifteen working days.
-
-## Dubai Student Visa Price in Pakistan
-
-Students applying for a Dubai Study Visa need to pay a certain study visa price, which may vary based on the course, selected university, and type of application. However, there are some mandatory costs. The visa processing fee can be somewhere between 2300 AED and 2700 AED.
-
-Moreover, students also need to pay a refundable visa deposit, which typically ranges between 2500 AED and 3000 AED. Additionally, medical insurance costs are also mandatory, usually ranging between 1300 AED to 1400 AED.
-
-## Conclusion
-
-Dubai provides high-quality education as well as the best career opportunities. It is home to many top universities and the latest facilities, where both native and international students can get a great education. The process of applying for a Dubai student visa might seem difficult at first, but with the right preparation, it becomes easier. To apply for a Dubai study visa from Pakistan, the major thing is to get accepted into a college or university in Dubai. Once you get admission, you can follow the steps mentioned earlier to complete the visa application process smoothly.
-
-## Frequently Asked Questions
-
-### What are the requirements for MBBS in Dubai for Pakistani students?
-
-To study MBBS in Dubai, you should be at least seventeen years old and must have finished high school with science subjects, including chemistry, biology, and physics.
-
-### How to get UAE Visa from Pakistan?
-
-You need to secure an offer letter from a UAE university. Then, prepare the required documents, including a valid passport, and pay the visa fees.
-
-### What IELTS score do you need for a Dubai Study Visa?
-
-To apply for a Dubai study visa, you typically need an IELTS score of 6.0 overall, with no band less than 5.5. However, requirements may vary by university and program level.`,
+    title: "Dubai Visa for Pakistani: Complete Guide 2025",
+    slug: "dubai-visa-for-pakistani",
+    excerpt: "Complete guide for Pakistani citizens applying for Dubai visa",
+    content: "Step-by-step guide to Dubai visa application for Pakistani citizens...",
     published: true,
     authorId: 1,
-    tags: ["Dubai", "UAE", "Study Visa", "Pakistan", "Student Visa", "Middle East"],
-    metaTitle: "Dubai Study Visa Requirements from Pakistan - Complete Guide 2025",
-    metaDescription: "Complete guide to Dubai study visa requirements for Pakistani students. Learn about eligibility criteria, documentation, application process, and visa costs.",
-    featuredImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    readingTime: 15,
-    views: 4250,
-    category: "Visa Guides"
+    tags: ["Dubai", "UAE", "Visa", "Pakistan"],
+    metaTitle: "Dubai Visa for Pakistani Citizens: Complete Guide 2025",
+    metaDescription: "Complete guide for Pakistani citizens on Dubai visa requirements, application process, types, and fees",
+    featuredImage: "/blog/dubai-visa-pakistan.jpg",
+    readingTime: 10,
+    views: 3450
   },
   {
     title: "UK Student Dependent Visa New Rules",
