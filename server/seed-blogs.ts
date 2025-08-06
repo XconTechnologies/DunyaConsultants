@@ -302,20 +302,6 @@ const allBlogPosts = [
     views: 2210
   },
   {
-    title: "Low Cost Universities in UK for International Students",
-    slug: "low-cost-universities-in-uk-for-international-students",
-    excerpt: "Affordable UK universities with quality education for international students",
-    content: "List of budget-friendly UK universities offering quality education...",
-    published: true,
-    authorId: 1,
-    tags: ["UK", "Low Cost", "Universities", "International Students"],
-    metaTitle: "Low Cost Universities in UK for International Students",
-    metaDescription: "Discover affordable UK universities offering quality education with low tuition fees for international students",
-    featuredImage: "/blog/low-cost-uk-unis.jpg",
-    readingTime: 13,
-    views: 2890
-  },
-  {
     title: "MS in Business Analytics Course in USA",
     slug: "ms-in-business-analytics-course-in-usa",
     excerpt: "Complete guide to MS in Business Analytics programs in USA",

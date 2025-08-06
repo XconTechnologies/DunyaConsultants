@@ -147,7 +147,7 @@ function Router() {
       <Route path="/course-match-tool" component={CourseMatchTool} />
       <Route path="/document-checklist" component={DocumentChecklist} />
       <Route path="/events" component={Events} />
-      <Route path="/blogs" component={Blogs} />
+      <Route path="/blogs" component={BlogArchive} />
       <Route path="/blog" component={BlogArchive} />
       <Route path="/blog/list" component={BlogList} />
       <Route path="/blog/kaplan-test-of-english" component={KaplanTestOfEnglish} />
