@@ -146,34 +146,7 @@ const allBlogPosts = [
     readingTime: 18,
     views: 3200
   },
-  {
-    title: "How Much Study Gap Acceptable in UK for Masters",
-    slug: "how-much-study-gap-acceptable-in-uk-for-masters",
-    excerpt: "Understanding study gap requirements for UK Masters programs",
-    content: "Detailed information about acceptable study gaps for UK Masters programs...",
-    published: true,
-    authorId: 1,
-    tags: ["UK", "Masters", "Study Gap", "Requirements"],
-    metaTitle: "Study Gap Requirements for UK Masters Programs",
-    metaDescription: "Learn about acceptable study gap duration for UK Masters programs and how to justify gaps in your application",
-    featuredImage: "/blog/uk-study-gap.jpg",
-    readingTime: 7,
-    views: 1890
-  },
-  {
-    title: "Green Card for International Students: Complete Guide 2025",
-    slug: "green-card-for-international-students",
-    excerpt: "Comprehensive guide to obtaining US Green Card as an international student",
-    content: "Step-by-step process for international students to obtain US Green Card...",
-    published: true,
-    authorId: 1,
-    tags: ["USA", "Green Card", "International Students", "Immigration"],
-    metaTitle: "Green Card for International Students: Complete Guide 2025",
-    metaDescription: "Complete guide for international students on obtaining US Green Card including eligibility, process, and requirements",
-    featuredImage: "/blog/green-card-students.jpg",
-    readingTime: 14,
-    views: 2750
-  },
+
   {
     title: "Requirements to Study Computer Science in USA",
     slug: "requirements-to-study-computer-science-in-usa",
