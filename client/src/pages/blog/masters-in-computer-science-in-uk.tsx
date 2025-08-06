@@ -348,9 +348,68 @@ export default function MastersInComputerScienceInUK() {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
-            <ContactForm />
-            <ContactSection />
+          <div className="lg:col-span-1">
+            <div className="sticky top-8 space-y-6">
+              
+              {/* Quick Facts */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <Target className="w-5 h-5 mr-2 text-blue-500" />
+                  Quick Facts
+                </h3>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Degree Type:</span>
+                    <span className="font-medium">Masters (MSc/MEng)</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Duration:</span>
+                    <span className="font-medium">1 Year</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Tuition Fees:</span>
+                    <span className="font-medium">£15,000-£40,000</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Entry Requirements:</span>
+                    <span className="font-medium">60-70% Bachelor's</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">English Test:</span>
+                    <span className="font-medium">IELTS/TOEFL</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Requirements */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                  <CheckCircle className="w-5 h-5 mr-2 text-blue-500" />
+                  Key Requirements
+                </h3>
+                <ul className="space-y-2 text-sm">
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">Bachelor's degree in related field</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">English proficiency test</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">Personal statement required</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span className="text-gray-700">Letters of recommendation</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Contact Form */}
+              <ContactForm />
+            </div>
           </div>
         </div>
       </div>
