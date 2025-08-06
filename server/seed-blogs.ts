@@ -89,6 +89,21 @@ const allBlogPosts = [
     category: "Immigration Guide"
   },
   {
+    title: "Masters in Computer Science in UK",
+    slug: "masters-in-computer-science-in-uk",
+    excerpt: "Complete guide to pursuing a Master's degree in Computer Science in the UK, including top universities, eligibility requirements, costs, and career opportunities for international students.",
+    content: "Are you looking for the best place to study for a Master's in Computer Science? The United Kingdom is home to more than 551,000 international students and provides a welcoming learning environment where they can meet people from all over the world. The IT industry is growing quickly, and skilled computer science experts are needed throughout the industry. This makes Computer Science one of the most popular and valuable fields currently. Around 157 UK universities offer Masters in Computer Science in UK and provide top-quality education.",
+    published: true,
+    authorId: 1,
+    tags: ["UK", "Computer Science", "Masters", "University", "Study Abroad", "Technology"],
+    metaTitle: "Masters in Computer Science in UK - Complete Guide 2025",
+    metaDescription: "Complete guide to pursuing a Master's degree in Computer Science in the UK including top universities, eligibility requirements, costs, and career opportunities",
+    featuredImage: "/blog/masters-computer-science-uk.jpg",
+    readingTime: 12,
+    views: 1850,
+    category: "Study Abroad"
+  },
+  {
     title: "How Much Study Gap is Acceptable in UK for Masters?",
     slug: "study-gap-acceptable-uk-masters",
     excerpt: "Complete guide to understanding study gap acceptance for UK Masters programs, including acceptable gap periods, documentation requirements, and tips for strengthening your application",
