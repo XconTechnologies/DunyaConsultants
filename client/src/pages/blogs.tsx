@@ -519,6 +519,14 @@ export default function Blogs() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
 
+  // Calculate category counts
+  const categoriesWithCounts = categories.map(category => {
+    const count = category === "All" 
+      ? blogPosts.length 
+      : blogPosts.filter(post => post.category === category).length;
+    return { name: category, count };
+  });
+
   const filteredPosts = blogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -996,9 +1004,9 @@ export default function Blogs() {
                       <SelectValue placeholder="Select Category" />
                     </SelectTrigger>
                     <SelectContent>
-                      {categories.map((category) => (
-                        <SelectItem key={category} value={category}>
-                          {category}
+                      {categoriesWithCounts.map((category) => (
+                        <SelectItem key={category.name} value={category.name}>
+                          {category.name}
                         </SelectItem>
                       ))}
                     </SelectContent>
