@@ -87,6 +87,7 @@ import TurkeyBurslariScholarshipCompleteGuide from "@/pages/blog/turkey-burslari
 import TBTestForUKVisaBlogPage from "@/pages/blog/tb-test-for-uk-visa-in-pakistan";
 import MOIAcceptedUniversitiesBlogPage from "@/pages/blog/moi-accepted-universities-in-uk";
 import IELTSExamFeeBlogPage from "@/pages/blog/ielts-exam-fee-in-pakistan";
+import MastersInComputerScienceInUK from "@/pages/blog/masters-in-computer-science-in-uk";
 import ContactPage from "@/pages/contact";
 import FAQsPage from "@/pages/faqs";
 import ScholarshipsPage from "@/pages/scholarships";
@@ -209,6 +210,7 @@ function Router() {
       <Route path="/blog/erasmus-mundus-scholarship" component={ErasmusMundusScholarship} />
       <Route path="/blog/january-intake-universities-in-uk" component={JanuaryIntakeUniversitiesInUK} />
       <Route path="/blog/gre-test-fee-in-pakistan" component={GRETestFeeInPakistan} />
+      <Route path="/blog/masters-in-computer-science-in-uk" component={MastersInComputerScienceInUK} />
       {/* Dynamic route for new blog posts */}
       <Route path="/blog/:slug" component={Blog} />
       <Route path="/ielts" component={IELTS} />
