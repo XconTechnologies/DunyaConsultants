@@ -1,5 +1,6 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
 import {
   BookOpen,
   Calendar,
@@ -20,7 +21,8 @@ import {
   Users,
   Video,
   FileText,
-  Award
+  Award,
+  Loader2
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -32,77 +34,233 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 interface BlogPost {
-  id: string;
+  id: number;
   title: string;
   excerpt: string;
   content: string;
-  author: {
-    name: string;
-    title: string;
-    avatar: string;
-  };
+  authorName: string;
   publishedDate: string;
-  readTime: string;
   category: string;
   tags: string[];
-  featured: boolean;
+  isPublished: boolean;
   views: number;
-  comments: number;
-  image: string;
   slug: string;
+  featuredImage?: string;
 }
 
-const blogPosts: BlogPost[] = [
-  {
-    id: "1",
-    title: "Why Turkey is the Best Choice for Pakistani Students in 2024",
-    excerpt: "Discover why Turkey has emerged as the top study destination for Pakistani students, offering quality education, cultural compatibility, and excellent career prospects.",
-    content: `Turkey has rapidly emerged as one of the most attractive study destinations for Pakistani students, and for good reason. With its strategic location bridging Europe and Asia, rich cultural heritage, and world-class educational institutions, Turkey offers an unparalleled study abroad experience.
+export default function BlogsPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 9;
 
-## Quality Education at Affordable Costs
+  // Scroll to top when navigating
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-Turkish universities are gaining international recognition for their academic excellence. With over 200 universities, including many ranked among the world's top institutions, Turkey offers diverse programs in English and Turkish. The cost of education is significantly lower compared to Western countries, with annual tuition fees ranging from $2,000 to $8,000.
+  // Fetch published blog posts
+  const { data: blogPosts = [], isLoading, error } = useQuery<BlogPost[]>({
+    queryKey: ['/api/blog-posts/published'],
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
 
-## Cultural Compatibility and Islamic Values
+  // Get unique categories for filtering
+  const categories = blogPosts.length > 0 
+    ? Array.from(new Set(blogPosts.map(post => post.category).filter(Boolean)))
+    : [];
 
-For Pakistani students, Turkey offers a unique advantage of cultural familiarity. As a predominantly Muslim country, Turkey provides an environment where Pakistani students can practice their faith freely while pursuing higher education. The cultural similarities make the transition smoother for students and their families.
+  // Filter posts based on search and category
+  const filteredPosts = blogPosts.filter(post => {
+    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesCategory = selectedCategory === "all" || post.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
 
-## Strategic Location and Travel Benefits
+  // Pagination
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const currentPosts = filteredPosts.slice(startIndex, startIndex + postsPerPage);
 
-Turkey's location offers easy access to both European and Asian countries. Students can explore diverse cultures and opportunities within the region. The visa-free or visa-on-arrival access to many countries makes Turkey an ideal base for international exposure.
+  // Calculate read time based on content length
+  const calculateReadTime = (content: string) => {
+    const wordsPerMinute = 200;
+    const wordCount = content.split(' ').length;
+    const readTime = Math.ceil(wordCount / wordsPerMinute);
+    return `${readTime} min read`;
+  };
 
-## Government Scholarships and Support
+  // Format date
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
 
-The Turkish government offers extensive scholarship programs, including the prestigious Türkiye Scholarships, which cover tuition fees, accommodation, health insurance, and monthly stipends. These scholarships are specifically designed to attract international students and foster cultural exchange.
+  if (selectedPost) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        
+        {/* Article Hero */}
+        <section className="pt-32 pb-16 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <Button 
+              onClick={() => setSelectedPost(null)}
+              variant="outline" 
+              className="mb-8 border-white/30 text-white hover:bg-white/10"
+            >
+              ← Back to All Posts
+            </Button>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-4xl"
+            >
+              <div className="flex flex-wrap items-center gap-4 mb-6">
+                <Badge className="bg-white/20 text-white border-white/30">
+                  {selectedPost.category}
+                </Badge>
+                {selectedPost.tags.map((tag, index) => (
+                  <Badge key={index} variant="outline" className="border-white/30 text-white">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                {selectedPost.title}
+              </h1>
+              
+              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                {selectedPost.excerpt}
+              </p>
+              
+              <div className="flex flex-wrap items-center gap-6 text-blue-100">
+                <div className="flex items-center space-x-2">
+                  <User className="w-5 h-5" />
+                  <span>{selectedPost.authorName}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Calendar className="w-5 h-5" />
+                  <span>{formatDate(selectedPost.publishedDate)}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Clock className="w-5 h-5" />
+                  <span>{calculateReadTime(selectedPost.content)}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Eye className="w-5 h-5" />
+                  <span>{selectedPost.views} views</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
 
-## Career Opportunities and Industry Connections
+        {/* Article Content */}
+        <section className="py-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-4 gap-8">
+              {/* Main Content */}
+              <div className="lg:col-span-3">
+                <div className="prose prose-lg max-w-none">
+                  {selectedPost.content.split('\n\n').map((paragraph, index) => {
+                    // Insert lead form after 3rd paragraph
+                    if (index === 3) {
+                      return (
+                        <div key={`content-${index}`}>
+                          <p className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>
+                          
+                          {/* Inline Lead Form */}
+                          <div className="my-12 p-8 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl border border-blue-200">
+                            <div className="text-center mb-6">
+                              <h3 className="text-2xl font-bold text-neutral-800 mb-2">Get Free Study Abroad Consultation</h3>
+                              <p className="text-neutral-600">Expert guidance tailored to your academic goals</p>
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-4 max-w-lg mx-auto">
+                              <Input placeholder="Your Name" className="bg-white" />
+                              <Input placeholder="Email Address" type="email" className="bg-white" />
+                              <Input placeholder="Phone Number" type="tel" className="bg-white" />
+                              <Select>
+                                <SelectTrigger className="bg-white">
+                                  <SelectValue placeholder="Study Destination" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="usa">United States</SelectItem>
+                                  <SelectItem value="uk">United Kingdom</SelectItem>
+                                  <SelectItem value="canada">Canada</SelectItem>
+                                  <SelectItem value="australia">Australia</SelectItem>
+                                  <SelectItem value="turkey">Turkey</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                            <Button className="w-full mt-4 bg-primary hover:bg-primary/90 text-white py-3">
+                              Get Free Consultation
+                            </Button>
+                          </div>
+                        </div>
+                      );
+                    }
 
-Turkey's growing economy and strong ties with Pakistan create excellent career opportunities for graduates. Many Turkish companies have operations in Pakistan, providing direct pathways for employment. The country's strategic importance in international trade opens doors to global career prospects.
+                    // Insert animated banner after 6th paragraph
+                    if (index === 6) {
+                      return (
+                        <div key={`content-${index}`}>
+                          <p className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>
+                          
+                          {/* Animated Study Visa Banner */}
+                          <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse", repeatDelay: 3 }}
+                            className="my-12 p-6 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl text-white relative overflow-hidden"
+                          >
+                            <div className="absolute inset-0 bg-black/10"></div>
+                            <div className="relative z-10 text-center">
+                              <motion.div
+                                animate={{ rotate: [0, 10, -10, 0] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                                className="inline-block mb-4"
+                              >
+                                <GraduationCap className="w-12 h-12 mx-auto" />
+                              </motion.div>
+                              <h3 className="text-2xl font-bold mb-2">🎓 Study Visa Success Rate: 95%</h3>
+                              <p className="mb-4">Join thousands of successful students who got their visas with our expert guidance</p>
+                              <Button className="bg-white text-blue-600 hover:bg-blue-50">
+                                Start Your Visa Journey
+                              </Button>
+                            </div>
+                          </motion.div>
+                        </div>
+                      );
+                    }
 
-## Language Advantages
-
-While many programs are offered in English, learning Turkish opens additional opportunities in the region. Turkish is spoken by over 80 million people and is increasingly valuable in international business and diplomacy.
-
-## Living Standards and Safety
-
-Turkey offers a high standard of living at a reasonable cost. Cities like Istanbul, Ankara, and Izmir provide modern amenities, efficient public transportation, and a safe environment for international students. The hospitality of Turkish people towards Pakistani students is particularly noteworthy.
-
-Turkey represents an optimal balance of quality education, cultural comfort, affordability, and career prospects, making it the ideal choice for Pakistani students seeking international education.`,
-    author: {
-      name: "Dr. Mehmet Özkan",
-      title: "Education Consultant",
-      avatar: "/api/placeholder/50/50"
-    },
-    publishedDate: "2024-03-17",
-    readTime: "8 min read",
-    category: "Study Destinations",
-    tags: ["Turkey", "Pakistani Students", "Scholarships", "Education"],
-    featured: true,
-    views: 2450,
-    comments: 23,
-    image: "/api/placeholder/600/400",
-    slug: "why-turkey-best-choice-pakistani-students"
-  },
+                    if (paragraph.startsWith('## ')) {
+                      return <h2 key={index} className="text-2xl font-bold text-neutral-800 mt-8 mb-4">{paragraph.replace('## ', '')}</h2>;
+                    } else if (paragraph.startsWith('### ')) {
+                      return <h3 key={index} className="text-xl font-semibold text-neutral-800 mt-6 mb-3">{paragraph.replace('### ', '')}</h3>;
+                    } else if (paragraph.startsWith('- **') || paragraph.startsWith('* **')) {
+                      return (
+                        <div key={index} className="mb-2">
+                          <p className="text-neutral-700 leading-relaxed">{paragraph}</p>
+                        </div>
+                      );
+                    } else {
+                      return <p key={index} className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>;
+                    }
+                  })}
+                </div>
+              </div>
   {
     id: "2",
     title: "Complete Guide to Canadian Student Visa Application 2024",
