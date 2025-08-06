@@ -314,7 +314,7 @@ export default function BlogArchive() {
                 >
                   {categories.map((category) => (
                     <option key={category.name} value={category.name}>
-                      {category.name} ({category.count})
+                      {category.name}
                     </option>
                   ))}
                 </select>
