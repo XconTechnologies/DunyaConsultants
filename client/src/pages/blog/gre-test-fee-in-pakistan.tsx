@@ -99,23 +99,43 @@ export default function GRETestFeeInPakistan() {
   ];
 
   return (
-    
     <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="max-w-[1440px] mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 flex items-center justify-center text-white">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"
-            }}
-          />
-          <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4">GRE Test Fee in Pakistan</h1>
-            <p className="text-2xl font-light">Complete guide to GRE costs, registration, and test centers</p>
+      
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                Test Preparation
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              GRE Test Fee in Pakistan
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Complete guide to GRE costs, registration process, and test centers available in Pakistan with detailed fee breakdown.
+            </p>
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>January 16, 2025</span>
+              </div>
+              <div className="flex items-center">
+                <User className="w-5 h-5 mr-2" />
+                <span>Dunya Consultants</span>
+              </div>
+              <div className="flex items-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>10 min read</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">

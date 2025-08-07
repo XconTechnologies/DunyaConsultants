@@ -5,23 +5,40 @@ import ContactSection from '../../components/blog/ContactSection';
 
 export default function CanadaStudentVisaForPakistani() {
   return (
-    
     <div className="min-h-screen bg-white">
       <Navigation />
-      <div className="max-w-[1440px] mx-auto px-4 py-8">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center text-white">
-          <div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1551632811-561732d1e306?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"
-            }}
-          />
-          <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4">Canada Student Visa for Pakistani Students</h1>
-            <p className="text-2xl font-light">Complete guide to online study visa application process from Pakistan</p>
+      
+      {/* Hero Section */}
+      <div className="bg-[#124FD3] text-white py-20">
+        <div className="max-w-[1440px] mx-auto px-4 py-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="mb-6">
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                Visa Guides
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Canada Student Visa for Pakistani Students
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Complete guide to online study visa application process from Pakistan with step-by-step instructions and requirements.
+            </p>
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
+              <div className="flex items-center">
+                <span>January 17, 2025</span>
+              </div>
+              <div className="flex items-center">
+                <span>Dunya Consultants</span>
+              </div>
+              <div className="flex items-center">
+                <span>12 min read</span>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div className="max-w-[1440px] mx-auto px-4 py-8">
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -70,7 +87,7 @@ export default function CanadaStudentVisaForPakistani() {
                   You will need to apply for a <strong>visa for Canada</strong> only if:
                 </p>
 
-                <div className="bg-gradient-to-r from-blue-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
+                <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
                   <h3 className="text-xl font-bold mb-4 text-blue-800">Visa Requirements</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start">
@@ -194,7 +211,7 @@ export default function CanadaStudentVisaForPakistani() {
                     <p className="text-gray-700">Upload all required documents asked by them.</p>
                   </div>
                   
-                  <div className="bg-gradient-to-r from-blue-50 to-pink-50 p-6 rounded-lg border-l-4 border-blue-500">
+                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg border-l-4 border-blue-500">
                     <h4 className="text-lg font-bold mb-2 text-blue-800">Step 5: Pay Fees</h4>
                     <p className="text-gray-700">After that, you will need to pay the student visa application fee of around 150 CAD.</p>
                   </div>
@@ -316,7 +333,7 @@ export default function CanadaStudentVisaForPakistani() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-blue-600 to-pink-700 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Ready to Apply for Canada Student Visa?</h3>
                 <p className="text-lg mb-4">Get expert assistance with your Canada student visa application process. Our experienced consultants will guide you through document preparation, application submission, and interview preparation for successful visa approval.</p>
                 <div className="flex gap-4">
