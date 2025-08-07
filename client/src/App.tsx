@@ -120,6 +120,15 @@ import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import BlogEditor from "@/pages/admin/blog-editor";
 
+// Study Destination Blog Posts
+import StudyInUSAGuide from "@/pages/blog/study-in-usa-guide";
+import StudyInUKCompleteGuide from "@/pages/blog/study-in-uk-complete-guide";
+import StudyInCanadaCompleteGuide from "@/pages/blog/study-in-canada-complete-guide";
+import StudyInFinlandGuide from "@/pages/blog/study-in-finland-guide";
+import StudyInAustraliaGuide from "@/pages/blog/study-in-australia-guide";
+import StudyInBelgiumGuide from "@/pages/blog/study-in-belgium-guide";
+import StudyInTurkeyGuide from "@/pages/blog/study-in-turkey-guide";
+
 // Study Abroad Pages
 import StudyAbroadUSA from "@/pages/study-abroad/usa";
 import StudyAbroadUK from "@/pages/study-abroad/uk";
@@ -209,6 +218,16 @@ function Router() {
       <Route path="/blog/erasmus-mundus-scholarship" component={ErasmusMundusScholarship} />
       <Route path="/blog/january-intake-universities-in-uk" component={JanuaryIntakeUniversitiesInUK} />
       <Route path="/blog/gre-test-fee-in-pakistan" component={GRETestFeeInPakistan} />
+      
+      {/* Study Destination Blog Posts */}
+      <Route path="/blog/study-in-usa-guide" component={StudyInUSAGuide} />
+      <Route path="/blog/study-in-uk-complete-guide" component={StudyInUKCompleteGuide} />
+      <Route path="/blog/study-in-canada-complete-guide" component={StudyInCanadaCompleteGuide} />
+      <Route path="/blog/study-in-finland-guide" component={StudyInFinlandGuide} />
+      <Route path="/blog/study-in-australia-guide" component={StudyInAustraliaGuide} />
+      <Route path="/blog/study-in-belgium-guide" component={StudyInBelgiumGuide} />
+      <Route path="/blog/study-in-turkey-guide" component={StudyInTurkeyGuide} />
+      
       {/* Dynamic route for new blog posts */}
       <Route path="/blog/:slug" component={Blog} />
       <Route path="/ielts" component={IELTS} />
