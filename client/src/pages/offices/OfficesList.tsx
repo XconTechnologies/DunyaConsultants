@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { MapPin, Phone, Clock, Building2, Users, Star, Search, Filter } from "lucide-react";
+import { MapPin, Phone, Clock, Building2, Users, Star, Search, Filter, Navigation as NavigationIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -238,6 +238,13 @@ export default function OfficesList() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
 
+  // Function to handle get directions
+  const handleGetDirections = (address: string) => {
+    const encodedAddress = encodeURIComponent(address);
+    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`;
+    window.open(googleMapsUrl, '_blank');
+  };
+
   const filteredOffices = offices.filter(office => {
     const matchesSearch = office.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          office.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -375,16 +382,17 @@ export default function OfficesList() {
 
                   {/* Action Buttons */}
                   <div className="flex space-x-2">
-                    <Link href={`/offices/${office.id}`} className="flex-1">
-                      <Button 
-                        className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-md text-sm"
-                      >
-                        View Details
-                      </Button>
-                    </Link>
+                    <Button 
+                      onClick={() => handleGetDirections(office.address)}
+                      className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-md text-sm"
+                    >
+                      <NavigationIcon className="w-3 h-3 mr-1" />
+                      Get Directions
+                    </Button>
                     <Button 
                       variant="outline" 
                       size="sm"
+                      onClick={() => window.open(`tel:${office.phone}`, '_self')}
                       className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium text-sm"
                     >
                       <Phone className="w-3 h-3 mr-1" />
