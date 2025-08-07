@@ -20,26 +20,29 @@ const consultationTypes = [
   { id: "comprehensive", name: "Comprehensive Planning", duration: "90 mins", price: "Free" }
 ];
 
-// Office locations for booking - Real office data
+// Office locations for booking - Authentic office data from offices page
 const officeLocations = [
-  { id: "sargodha", name: "Sargodha (Head Office)", address: "Alif Tower, Bahadur Shah Zafar Road, Sargodha", phone: "+92 323‑251‑6319" },
-  { id: "lahore-dha", name: "Lahore DHA", address: "1st Floor, 174 6th Street 123, Sector H, DHA Phase 1, Lahore", phone: "+92 300‑167‑1947" },
-  { id: "lahore-johar", name: "Lahore Johar Town", address: "1st Floor, 85 /R‑1, Phase 2, Johar Town, Lahore", phone: "+92 300‑827‑1947" },
-  { id: "islamabad", name: "Islamabad", address: "Mezzanine‑3, ATS Centre, Fazal‑e‑Haq Road, Blue Area, Islamabad", phone: "+92 333‑777‑5458" },
-  { id: "karachi", name: "Karachi", address: "05‑C Prime Point Building, Main 2, Khayaban‑e‑Ittehad Road, DHA, Karachi", phone: "+92 332‑364‑3373" },
-  { id: "faisalabad", name: "Faisalabad", address: "Mezzanine Floor, Centre Point Plaza, Koh‑i‑Noor City, Jaranwala Road, Faisalabad", phone: "+92 332‑662‑8487" },
-  { id: "gujranwala", name: "Gujranwala", address: "Mezzanine Floor, Ravi Palace, GT Road, Gujranwala", phone: "+92 333‑777‑5458" },
-  { id: "sialkot", name: "Sialkot", address: "2nd Floor, KTN Centre, Kutchery Road, Sialkot", phone: "+92 332‑255‑8487" },
-  { id: "multan", name: "Multan", address: "2nd Floor, Lal Commercial Complex, Abdali Road, Multan", phone: "+92 333‑777‑5458" },
-  { id: "rawalpindi", name: "Rawalpindi", address: "1st Floor, Sadiq Plaza, Committee Chowk, Rawalpindi", phone: "+92 332‑255‑8487" },
-  { id: "peshawar", name: "Peshawar", address: "2nd Floor, Shaheen Complex, University Road, Peshawar", phone: "+92 333‑777‑5458" },
-  { id: "quetta", name: "Quetta", address: "Ground Floor, Baloch Centre, Jinnah Road, Quetta", phone: "+92 332‑255‑8487" },
-  { id: "hyderabad", name: "Hyderabad", address: "1st Floor, Al‑Habib Plaza, Saddar, Hyderabad", phone: "+92 332‑364‑3373" },
-  { id: "bahawalpur", name: "Bahawalpur", address: "Ground Floor, City Centre Plaza, Circular Road, Bahawalpur", phone: "+92 332‑662‑8487" },
-  { id: "sahiwal", name: "Sahiwal", address: "1st Floor, Metro Plaza, Farid Town, Sahiwal", phone: "+92 333‑777‑5458" },
-  { id: "rahim-yar-khan", name: "Rahim Yar Khan", address: "Ground Floor, Royal Complex, Model Town, Rahim Yar Khan", phone: "+92 332‑255‑8487" },
-  { id: "mirpur", name: "Mirpur AJK", address: "2nd Floor, Kashmir Plaza, Main Bazaar, Mirpur", phone: "+92 332‑364‑3373" },
-  { id: "online", name: "Online Consultation", address: "Video Call via Zoom/Teams", phone: "+92 304‑111‑0947" }
+  { id: "sargodha", name: "Sargodha (Head Office)", address: "Alif Tower, Bahadur Shah Zafar Road, Sargodha", phone: "+92 304-111-0947" },
+  { id: "lahore-dha", name: "Lahore DHA Phase 1", address: "1st Floor, 174-6 Street 123, Sector H, DHA Phase 1, Lahore", phone: "+92 300-827-1947" },
+  { id: "lahore-johar", name: "Lahore Johar Town", address: "1st Floor, 85 /R-1, Phase 2, Johar Town, Lahore", phone: "+92 300-827-1947" },
+  { id: "islamabad", name: "Islamabad Blue Area", address: "Mezzanine-3, ATS Centre, Fazal-e-Haq Road, Blue Area, Islamabad", phone: "+92 333-777-5458" },
+  { id: "karachi", name: "Karachi Gulistan-e-Johar", address: "05-C Prime Point Building, Main 2, Gulistan-e-Johar, Karachi", phone: "+92 332-364-3373" },
+  { id: "faisalabad", name: "Faisalabad Civil Lines", address: "1st Floor Centre, Mktg City Civil Lines, Faisalabad", phone: "+92 332-662-8487" },
+  { id: "gujranwala", name: "Gujranwala Peoples Colony", address: "1st Floor, Plaza 83, Peoples Colony No. 1, Gujranwala", phone: "+92 333-777-5458" },
+  { id: "sialkot", name: "Sialkot Cantonment", address: "2nd Floor, Malik Centre, Kutla Road, Sialkot Cantt, Sialkot", phone: "+92 332-255-8487" },
+  { id: "gujrat", name: "Gujrat GT Road", address: "1st Floor, Malik Plaza, G.T Road, Gujrat", phone: "+92 333-777-5458" },
+  { id: "bahawalpur", name: "Bahawalpur Muslim Town", address: "Ground Floor, Al-Madina Plaza, Muslim Town, Bahawalpur", phone: "+92 332-662-8487" },
+  { id: "mian-channu", name: "Mian Channu Moti Plaza", address: "1st Floor, Moti Plaza, Faisalabad Road, Mian Channu", phone: "+92 333-777-5458" },
+  { id: "mandi-bahauddin", name: "Mandi Bahauddin Punjabi Center", address: "Ground Floor, Punjabi Center, GT Road, Mandi Bahauddin", phone: "+92 332-255-8487" },
+  { id: "sheikhupura", name: "Sheikhupura Stadium Road", address: "1st Floor, Al-Noor Plaza, Stadium Road, Sheikhupura", phone: "+92 333-777-5458" },
+  { id: "multan", name: "Multan Gulgasht Colony", address: "2nd Floor, Gulgasht Metro Center, Gulgasht Colony, Multan", phone: "+92 332-662-8487" },
+  { id: "peshawar", name: "Peshawar Phase 3", address: "Ground Floor, Malik Center, Phase 3, Hayatabad, Peshawar", phone: "+92 333-777-5458" },
+  { id: "jhelum", name: "Jhelum Sultan Plaza", address: "1st Floor, Sultan Plaza, Civil Lines, Jhelum", phone: "+92 332-255-8487" },
+  { id: "mardan", name: "Mardan Warsak Commercial", address: "Ground Floor, Warsak Commercial Center, Mardan", phone: "+92 333-777-5458" },
+  { id: "jeddah", name: "Jeddah Engineering Square (International)", address: "Aisha Towers, Engineering Square, Makarrona Street, 2nd Floor, Office 27, Jeddah 23447", phone: "+966-53-635-6950" },
+  { id: "istanbul", name: "Istanbul Aksaray Square (International)", address: "Ankara Towers, Aksaray 7-8-9-50 Susan Main, Gülenquma", phone: "+90 500-355-0042" },
+  { id: "edinburgh", name: "Edinburgh Ferry Road Place (International)", address: "4 Ferry Road Place, Edinburgh EH4 4AX", phone: "+44 7448-419291" },
+  { id: "online", name: "Online Consultation", address: "Video Call via Zoom/Teams", phone: "+92 304-111-0947" }
 ];
 
 interface BookingFormData {
