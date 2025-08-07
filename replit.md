@@ -47,6 +47,7 @@ Preferred communication style: Simple, everyday language.
 - Display of 400+ Global University Partners
 - Test Preparation Pages (IELTS, PTE, TOEFL, Duolingo with authentic content and pricing)
 - Extensive Blog System (SEO-optimized, dynamic content)
+- Complete Study Destination Guides (USA, UK, Canada, Finland, Australia, Belgium, Turkey)
 - Event Management (with registration forms)
 - Consultation Booking (real-time calendar)
 

@@ -637,6 +637,416 @@ const allBlogPosts = [
     category: "Study Destinations"
   },
   {
+    title: "Study in USA: Complete Guide for Pakistani Students",
+    slug: "study-in-usa",
+    excerpt: "Comprehensive guide to studying in the United States, including admission requirements, visa process, scholarships, and top universities for Pakistani students.",
+    content: `The United States remains the world's most popular destination for international students, attracting over 1 million students annually. For Pakistani students, studying in the USA offers unparalleled opportunities for academic excellence, research, and career growth.
+
+## World-Class Education System
+
+The US education system is renowned for its flexibility, diversity, and quality. With over 4,000 universities and colleges, students can choose from a vast array of programs and specializations. American degrees are globally recognized and highly valued by employers worldwide.
+
+## Top Universities for Pakistani Students
+
+- Harvard University
+- Stanford University
+- Massachusetts Institute of Technology (MIT)
+- University of California system
+- New York University
+- University of Texas system
+
+## Admission Requirements
+
+Most US universities require:
+- Bachelor's degree for graduate programs
+- TOEFL/IELTS scores (minimum 79/6.5)
+- GRE/GMAT for graduate programs
+- SAT/ACT for undergraduate programs
+- Letters of recommendation
+- Statement of purpose
+- Transcripts evaluation
+
+## Financial Aid and Scholarships
+
+Many universities offer merit-based scholarships, research assistantships, and teaching assistantships. The average annual tuition ranges from $20,000 to $60,000 depending on the institution and program.
+
+## Student Visa Process
+
+F-1 student visa is required for full-time study. The process involves:
+1. Acceptance at a SEVP-approved school
+2. Payment of SEVIS fee
+3. DS-160 form completion
+4. Visa interview at US consulate
+
+## Career Opportunities
+
+The USA offers excellent post-graduation work opportunities through Optional Practical Training (OPT) and H-1B visa programs. Silicon Valley, New York, and other major cities provide abundant career prospects.`,
+    published: true,
+    authorId: 1,
+    tags: ["USA", "Study Abroad", "Pakistani Students", "Universities", "Student Visa"],
+    metaTitle: "Study in USA: Complete Guide for Pakistani Students 2025",
+    metaDescription: "Comprehensive guide to studying in the United States including admission requirements, visa process, scholarships, and top universities for Pakistani students.",
+    featuredImage: "/blog/study-in-usa.jpg",
+    readingTime: 15,
+    views: 4250,
+    category: "Study Destinations"
+  },
+  {
+    title: "Study in Canada: Complete Guide for Pakistani Students",
+    slug: "study-in-canada",
+    excerpt: "Everything you need to know about studying in Canada, including admission requirements, visa process, work permits, and pathway to permanent residence.",
+    content: `Canada has become one of the most sought-after destinations for Pakistani students, offering high-quality education, multicultural environment, and excellent post-graduation opportunities.
+
+## Why Choose Canada?
+
+Canada offers:
+- World-class education system
+- Affordable tuition fees compared to USA and UK
+- Post-graduation work permit opportunities
+- Pathway to permanent residence
+- Safe and welcoming environment
+- Bilingual education opportunities
+
+## Top Canadian Universities
+
+- University of Toronto
+- University of British Columbia
+- McGill University
+- University of Alberta
+- York University
+- Concordia University
+
+## Admission Requirements
+
+- Academic transcripts
+- IELTS/TOEFL scores (minimum 6.5/90)
+- Statement of purpose
+- Letters of recommendation
+- Financial proof
+- Some programs may require GRE/GMAT
+
+## Study Permit Process
+
+1. Get acceptance letter from designated learning institution
+2. Prove financial support ($10,000+ per year)
+3. Submit study permit application
+4. Biometrics and medical exam if required
+5. Attend visa interview if requested
+
+## Work Opportunities
+
+- Part-time work during studies (20 hours/week)
+- Full-time work during breaks
+- Post-Graduation Work Permit (PGWP) up to 3 years
+- Provincial Nominee Program (PNP) opportunities
+
+## Cost of Living
+
+Annual expenses typically range from CAD 15,000 to CAD 25,000 including accommodation, food, and other necessities.`,
+    published: true,
+    authorId: 1,
+    tags: ["Canada", "Study Abroad", "Pakistani Students", "Study Permit", "Universities"],
+    metaTitle: "Study in Canada: Complete Guide for Pakistani Students 2025",
+    metaDescription: "Everything you need to know about studying in Canada including admission requirements, visa process, work permits, and pathway to permanent residence.",
+    featuredImage: "/blog/study-in-canada.jpg",
+    readingTime: 12,
+    views: 3890,
+    category: "Study Destinations"
+  },
+  {
+    title: "Study in Finland: Complete Guide for Pakistani Students",
+    slug: "study-in-finland",
+    excerpt: "Discover why Finland is an excellent choice for Pakistani students, offering free education, high-quality programs, and excellent student support services.",
+    content: `Finland offers one of the world's best education systems, consistently ranking at the top in global education rankings. For Pakistani students, Finland presents unique opportunities for quality education in a Nordic setting.
+
+## Why Study in Finland?
+
+- Free education for EU students
+- High-quality education system
+- English-taught programs available
+- Safe and peaceful environment
+- Strong focus on innovation and technology
+- Excellent student support services
+
+## Top Finnish Universities
+
+- University of Helsinki
+- Aalto University
+- Tampere University
+- University of Turku
+- University of Oulu
+- LUT University
+
+## Admission Requirements
+
+- Bachelor's degree for master's programs
+- IELTS/TOEFL (minimum 6.5/92)
+- Transcripts and certificates
+- Statement of purpose
+- CV/Resume
+- Letters of recommendation
+
+## Student Visa Process
+
+1. Apply and get accepted to Finnish university
+2. Prove financial resources (€6,720 per year)
+3. Submit residence permit application
+4. Attend appointment at Finnish consulate
+5. Wait for decision (1-4 months)
+
+## Living in Finland
+
+- Monthly living costs: €700-1,200
+- Student housing available
+- Excellent public transportation
+- Healthcare included in student services
+- Beautiful natural environment
+
+## Work and Career Opportunities
+
+- Part-time work allowed during studies
+- Post-graduation job search period
+- Growing tech and startup ecosystem
+- Opportunities in engineering, IT, and research`,
+    published: true,
+    authorId: 1,
+    tags: ["Finland", "Study Abroad", "Pakistani Students", "Nordic Education", "Free Education"],
+    metaTitle: "Study in Finland: Complete Guide for Pakistani Students 2025",
+    metaDescription: "Discover why Finland is an excellent choice for Pakistani students, offering free education, high-quality programs, and excellent student support.",
+    featuredImage: "/blog/study-in-finland.jpg",
+    readingTime: 10,
+    views: 2340,
+    category: "Study Destinations"
+  },
+  {
+    title: "Study in Australia: Complete Guide for Pakistani Students",
+    slug: "study-in-australia",
+    excerpt: "Everything about studying in Australia including top universities, visa requirements, work opportunities, and pathway to permanent residence for Pakistani students.",
+    content: `Australia is one of the top destinations for Pakistani students, offering world-class education, diverse culture, and excellent post-study work opportunities in a beautiful country.
+
+## Why Choose Australia?
+
+- Group of Eight (Go8) universities
+- Post-study work visa up to 4 years
+- Multicultural society
+- High standard of living
+- Strong job market
+- Pathway to permanent residence
+
+## Top Australian Universities
+
+- Australian National University
+- University of Melbourne
+- University of Sydney
+- University of New South Wales
+- University of Queensland
+- Monash University
+
+## Admission Requirements
+
+- Academic transcripts
+- IELTS/PTE scores (minimum 6.5/65)
+- Statement of purpose
+- Work experience (for some programs)
+- Portfolio (for creative programs)
+
+## Student Visa (Subclass 500)
+
+Requirements:
+- Confirmation of Enrolment (CoE)
+- Financial capacity proof
+- English proficiency
+- Health insurance (OSHC)
+- Health and character requirements
+
+## Work Rights
+
+- 48 hours per fortnight during studies
+- Unlimited hours during breaks
+- Post-study work visa (2-4 years)
+- Skills assessment for permanent residence
+
+## Cost of Living
+
+- Tuition fees: AUD 20,000-45,000 per year
+- Living expenses: AUD 20,000-25,000 per year
+- Accommodation: AUD 150-350 per week
+
+## Career Opportunities
+
+Australia has strong job market in:
+- Information Technology
+- Healthcare
+- Engineering
+- Business and Finance
+- Education`,
+    published: true,
+    authorId: 1,
+    tags: ["Australia", "Study Abroad", "Pakistani Students", "Student Visa", "Go8 Universities"],
+    metaTitle: "Study in Australia: Complete Guide for Pakistani Students 2025",
+    metaDescription: "Everything about studying in Australia including top universities, visa requirements, work opportunities, and permanent residence pathway.",
+    featuredImage: "/blog/study-in-australia.jpg",
+    readingTime: 13,
+    views: 3650,
+    category: "Study Destinations"
+  },
+  {
+    title: "Study in Belgium: Complete Guide for Pakistani Students",
+    slug: "study-in-belgium",
+    excerpt: "Comprehensive guide to studying in Belgium, covering universities, admission requirements, student visa process, and living costs for Pakistani students.",
+    content: `Belgium, located in the heart of Europe, offers excellent higher education opportunities with a rich cultural heritage and strategic location for Pakistani students.
+
+## Why Study in Belgium?
+
+- High-quality European education
+- Central location in Europe
+- Multilingual environment (Dutch, French, English)
+- Affordable tuition fees
+- Rich history and culture
+- Gateway to European job market
+
+## Top Belgian Universities
+
+- KU Leuven
+- Ghent University
+- University of Antwerp
+- Vrije Universiteit Brussel
+- Université catholique de Louvain
+- University of Liège
+
+## Admission Requirements
+
+- Academic certificates
+- Language proficiency (English/Dutch/French)
+- Motivation letter
+- CV
+- Financial proof
+- Some programs require entrance exams
+
+## Student Visa Process
+
+For studies longer than 90 days:
+1. University acceptance
+2. Financial guarantee (€9,900 per year)
+3. Medical certificate
+4. Criminal background check
+5. Submit visa application
+6. Biometrics appointment
+
+## Living in Belgium
+
+- Monthly living costs: €800-1,200
+- Student accommodation available
+- Excellent public transportation
+- Healthcare coverage
+- Rich cultural experiences
+
+## Work Opportunities
+
+- Part-time work (20 hours/week) during studies
+- Student jobs in various sectors
+- Post-graduation job search opportunities
+- EU job market access
+
+## Language Requirements
+
+- English-taught programs available
+- Dutch/French beneficial for daily life
+- Language courses offered by universities`,
+    published: true,
+    authorId: 1,
+    tags: ["Belgium", "Study Abroad", "Pakistani Students", "European Education", "Student Visa"],
+    metaTitle: "Study in Belgium: Complete Guide for Pakistani Students 2025",
+    metaDescription: "Comprehensive guide to studying in Belgium covering universities, admission requirements, student visa process, and living costs.",
+    featuredImage: "/blog/study-in-belgium.jpg",
+    readingTime: 11,
+    views: 1890,
+    category: "Study Destinations"
+  },
+  {
+    title: "Study in Turkey: Complete Guide for Pakistani Students",
+    slug: "study-in-turkey",
+    excerpt: "Everything you need to know about studying in Turkey, including scholarships, universities, admission process, and cultural compatibility for Pakistani students.",
+    content: `Turkey has emerged as one of the most popular study destinations for Pakistani students, offering quality education, cultural familiarity, and excellent scholarship opportunities.
+
+## Why Choose Turkey?
+
+- Cultural and religious compatibility
+- High-quality education system
+- Affordable living costs
+- Strategic location (Europe-Asia bridge)
+- Government scholarships available
+- Growing job market
+
+## Top Turkish Universities
+
+- Boğaziçi University
+- Middle East Technical University
+- Istanbul Technical University
+- Sabancı University
+- Koç University
+- Istanbul University
+
+## Türkiye Scholarships
+
+Government scholarship program offering:
+- Full tuition coverage
+- Monthly stipend
+- Accommodation
+- Health insurance
+- Turkish language course
+- Round-trip airfare
+
+## Admission Requirements
+
+- Academic transcripts
+- Language proficiency (Turkish/English)
+- Letters of recommendation
+- Statement of purpose
+- Health report
+- Financial proof (if not on scholarship)
+
+## Student Visa Process
+
+1. University acceptance letter
+2. Financial guarantee or scholarship letter
+3. Health insurance
+4. Accommodation proof
+5. Submit visa application
+6. Embassy interview
+
+## Living in Turkey
+
+- Monthly living costs: $300-600
+- Rich cultural heritage
+- Diverse cuisine
+- Beautiful landscapes
+- Modern cities and facilities
+
+## Work Opportunities
+
+- Part-time work permitted with permits
+- Growing Turkish-Pakistani business ties
+- Opportunities in various sectors
+- Language advantage for Pakistani students
+
+## Cultural Benefits
+
+- Islamic values respected
+- Halal food readily available
+- Prayer facilities in universities
+- Cultural festivals and events`,
+    published: true,
+    authorId: 1,
+    tags: ["Turkey", "Study Abroad", "Pakistani Students", "Türkiye Scholarships", "Islamic Culture"],
+    metaTitle: "Study in Turkey: Complete Guide for Pakistani Students 2025",
+    metaDescription: "Everything about studying in Turkey including scholarships, universities, admission process, and cultural compatibility for Pakistani students.",
+    featuredImage: "/blog/study-in-turkey.jpg",
+    readingTime: 12,
+    views: 3420,
+    category: "Study Destinations"
+  },
+  {
     title: "A Complete Guide to Bangor University UK",
     slug: "bangor-university-acceptance-rate",
     excerpt: "Comprehensive guide to Bangor University admission requirements, acceptance rates, application process, and everything Pakistani students need to know.",
