@@ -22,6 +22,7 @@ import CanadaGuide from "@/pages/country-guides/canada";
 import AustraliaGuide from "@/pages/country-guides/australia";
 import BusinessCardGenerator from "@/pages/business-card-generator";
 import Blog from "@/pages/blog";
+import BlogPost from "@/pages/blog-post";
 import BlogList from "@/pages/blog-list";
 import BlogArchive from "@/pages/blog-archive";
 import KaplanTestOfEnglish from "@/pages/blog/kaplan-test-of-english";
@@ -212,7 +213,7 @@ function Router() {
       <Route path="/blog/gre-test-fee-in-pakistan" component={GRETestFeeInPakistan} />
       <Route path="/blog/masters-in-computer-science-in-uk" component={MastersInComputerScienceInUK} />
       {/* Dynamic route for new blog posts */}
-      <Route path="/blog/:slug" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/test-prep/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />

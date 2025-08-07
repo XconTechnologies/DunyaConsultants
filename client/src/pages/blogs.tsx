@@ -48,7 +48,7 @@ export default function Blogs() {
   const [selectedCategory, setSelectedCategory] = useState("All");
 
   // Fetch blog posts from API
-  const { data: blogPosts = [], isLoading } = useQuery({
+  const { data: blogPosts = [], isLoading } = useQuery<BlogPost[]>({
     queryKey: ['/api/blog-posts/published'],
   });
 
