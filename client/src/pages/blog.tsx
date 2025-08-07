@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Search, Grid, List, Calendar, Clock, User, Eye, TrendingUp, ArrowRight, Tag, Globe, BookOpen, Award, Heart, Users, Star, ArrowLeft, Target, MessageCircle } from "lucide-react";
+import { Search, Grid, List, Calendar, Clock, User, Eye, TrendingUp, ArrowRight, Tag, Globe, BookOpen, Award, Heart, Users, Star, ArrowLeft, Target, MessageCircle, Phone, Mail } from "lucide-react";
 import ContactForm from '@/components/blog/ContactForm';
 import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
@@ -210,17 +210,93 @@ function getCategoryBadgeColor(category: string): string {
   return colors[category || "General"] || "bg-blue-500";
 }
 
-// Dynamic Blog Post Component
+// Helper function to parse content into sections with table of contents
+function parseContentToSections(content: string) {
+  if (!content) return [];
+  
+  // Split content by common section indicators
+  const lines = content.split('\n');
+  const sections: Array<{id: string, title: string, content: string}> = [];
+  let currentSection: {id: string, title: string, content: string} | null = null;
+  
+  lines.forEach(line => {
+    const trimmedLine = line.trim();
+    
+    // Look for section headings (## or **bold text**)
+    if (trimmedLine.startsWith('##') || 
+        (trimmedLine.startsWith('**') && trimmedLine.endsWith('**') && trimmedLine.length > 10)) {
+      
+      // Save previous section
+      if (currentSection) {
+        sections.push(currentSection);
+      }
+      
+      // Create new section
+      let title = trimmedLine;
+      if (title.startsWith('##')) {
+        title = title.replace(/^##\s*/, '').trim();
+      } else if (title.startsWith('**') && title.endsWith('**')) {
+        title = title.replace(/^\*\*/, '').replace(/\*\*$/, '').trim();
+      }
+      
+      const id = title.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+      
+      currentSection = {
+        id,
+        title,
+        content: ''
+      };
+    } else if (currentSection && trimmedLine) {
+      // Add content to current section
+      currentSection.content += line + '\n';
+    } else if (!currentSection && trimmedLine) {
+      // Content before any section headers - create a default introduction section
+      if (sections.length === 0) {
+        currentSection = {
+          id: 'introduction',
+          title: 'Introduction',
+          content: line + '\n'
+        };
+      }
+    }
+  });
+  
+  // Add the last section
+  if (currentSection) {
+    sections.push(currentSection);
+  }
+  
+  return sections.filter(section => section.content.trim().length > 0);
+}
+
+// Dynamic Blog Post Component - Enhanced with Kaplan Blog Design
 function DynamicBlogPost({ slug }: { slug: string }) {
   const { data: blogPost, isLoading, error } = useQuery<DBBlogPost>({
     queryKey: [`/api/blog-posts/${slug}`],
   });
 
-  // Remove loading state - show content immediately
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        <div className="flex items-center justify-center h-64">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading article...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   if (error || !blogPost) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-white">
         <Navigation />
         <div className="flex items-center justify-center min-h-[60vh]">
           <div className="text-center">
@@ -236,16 +312,20 @@ function DynamicBlogPost({ slug }: { slug: string }) {
     );
   }
 
+  // Parse content to create sections (similar to Kaplan blog structure)
+  const contentSections = parseContentToSections(blogPost.content || '');
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
-      {/* Hero Section */}
+      
+      {/* Hero Section - Same as Kaplan Blog */}
       <div className="bg-[#124FD3] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className={`${getCategoryBadgeColor(blogPost.category || 'General')} text-white px-4 py-2 rounded-full text-sm font-medium`}>
-                {blogPost.category || 'General'}
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                {blogPost.category || 'Study Destinations'}
               </span>
             </div>
             <h1 className="text-5xl font-bold mb-6 leading-tight">
@@ -258,8 +338,8 @@ function DynamicBlogPost({ slug }: { slug: string }) {
             )}
             <div className="flex items-center justify-center space-x-6 text-blue-200">
               <div className="flex items-center">
-                <Calendar className="w-5 h-5 mr-2" />
-                <span>{new Date(blogPost.createdAt || new Date()).toLocaleDateString()}</span>
+                <Clock className="w-5 h-5 mr-2" />
+                <span>{new Date(blogPost.publishedAt || blogPost.createdAt || new Date()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
               </div>
               <div className="flex items-center">
                 <User className="w-5 h-5 mr-2" />
@@ -279,20 +359,51 @@ function DynamicBlogPost({ slug }: { slug: string }) {
           {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-lg shadow-sm p-8">
-              {/* Featured Image */}
-              {blogPost.featuredImage && (
-                <div className="mb-8">
-                  <img 
-                    src={blogPost.featuredImage} 
-                    alt={blogPost.title}
-                    className="w-full h-64 object-cover rounded-lg"
-                  />
+              
+              {/* Introduction */}
+              <div className="mb-8">
+                {blogPost.excerpt && (
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    {blogPost.excerpt}
+                  </p>
+                )}
+              </div>
+
+              {/* Table of Contents */}
+              {contentSections.length > 0 && (
+                <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                  <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
+                  <ul className="space-y-2 text-gray-600">
+                    {contentSections.map((section, index) => (
+                      <li key={index}>
+                        <a href={`#${section.id}`} className="hover:text-blue-600">
+                          {section.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
 
-              {/* Article Content */}
+              {/* Article Content with Enhanced Styling */}
               <div className="prose prose-lg max-w-none">
-                <div dangerouslySetInnerHTML={{ __html: blogPost.content || '' }} />
+                {contentSections.length > 0 ? (
+                  contentSections.map((section, index) => (
+                    <div key={index} className="mb-8" id={section.id}>
+                      <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">
+                        {section.title}
+                      </h2>
+                      <div 
+                        className="text-gray-700 leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: section.content }} 
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <div className="text-gray-700 leading-relaxed">
+                    <div dangerouslySetInnerHTML={{ __html: blogPost.content || '' }} />
+                  </div>
+                )}
               </div>
 
               {/* Tags */}
@@ -309,6 +420,34 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                 </div>
               )}
 
+              {/* Call to Action - Same as Kaplan Blog */}
+              <div className="mt-12 p-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-100">
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    Ready to Start Your Study Abroad Journey?
+                  </h3>
+                  <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+                    Get personalized guidance from Pakistan's most trusted education consultants. 
+                    Book your free consultation today and take the first step towards your international education dreams.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Link 
+                      href="/contact" 
+                      className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <Phone className="w-5 h-5 mr-2" />
+                      Book Free Consultation
+                    </Link>
+                    <Link 
+                      href="/contact" 
+                      className="inline-flex items-center px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
+                    >
+                      <Mail className="w-5 h-5 mr-2" />
+                      Email Us
+                    </Link>
+                  </div>
+                </div>
+              </div>
 
             </article>
           </div>
