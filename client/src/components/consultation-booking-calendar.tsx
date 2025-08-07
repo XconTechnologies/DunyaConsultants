@@ -20,24 +20,26 @@ const consultationTypes = [
   { id: "comprehensive", name: "Comprehensive Planning", duration: "90 mins", price: "Free" }
 ];
 
-// Office locations for booking
+// Office locations for booking - Real office data
 const officeLocations = [
-  { id: "lahore-dha", name: "Lahore DHA", address: "1st Floor, 174-6 Street, Sector H, DHA Phase 1" },
-  { id: "sargodha", name: "Sargodha (Head Office)", address: "Main Boulevard, University Road" },
-  { id: "islamabad", name: "Islamabad", address: "Blue Area, F-6 Sector" },
-  { id: "karachi", name: "Karachi", address: "Clifton Block 2, Main Shahrah-e-Faisal" },
-  { id: "lahore-mm", name: "Lahore MM Alam", address: "Shop No. 45, 2nd Floor, MM Alam Road" },
-  { id: "lahore-fortress", name: "Lahore Fortress", address: "2nd Floor, Fortress Stadium, Cantt" },
-  { id: "lahore-johar", name: "Lahore Johar Town", address: "Office No. 12, Main Boulevard, Johar Town" },
-  { id: "gujranwala", name: "Gujranwala", address: "1st Floor, GT Road, Civil Lines" },
-  { id: "sialkot", name: "Sialkot", address: "2nd Floor, Kutchery Road" },
-  { id: "faisalabad", name: "Faisalabad", address: "3rd Floor, Jaranwala Road" },
-  { id: "multan", name: "Multan", address: "1st Floor, Abdali Road" },
-  { id: "rawalpindi", name: "Rawalpindi", address: "2nd Floor, Committee Chowk" },
-  { id: "peshawar", name: "Peshawar", address: "1st Floor, University Road" },
-  { id: "quetta", name: "Quetta", address: "Ground Floor, Jinnah Road" },
-  { id: "hyderabad", name: "Hyderabad", address: "2nd Floor, Saddar Area" },
-  { id: "online", name: "Online Consultation", address: "Video Call via Zoom/Teams" }
+  { id: "sargodha", name: "Sargodha (Head Office)", address: "Alif Tower, Bahadur Shah Zafar Road, Sargodha", phone: "+92 323‑251‑6319" },
+  { id: "lahore-dha", name: "Lahore DHA", address: "1st Floor, 174 6th Street 123, Sector H, DHA Phase 1, Lahore", phone: "+92 300‑167‑1947" },
+  { id: "lahore-johar", name: "Lahore Johar Town", address: "1st Floor, 85 /R‑1, Phase 2, Johar Town, Lahore", phone: "+92 300‑827‑1947" },
+  { id: "islamabad", name: "Islamabad", address: "Mezzanine‑3, ATS Centre, Fazal‑e‑Haq Road, Blue Area, Islamabad", phone: "+92 333‑777‑5458" },
+  { id: "karachi", name: "Karachi", address: "05‑C Prime Point Building, Main 2, Khayaban‑e‑Ittehad Road, DHA, Karachi", phone: "+92 332‑364‑3373" },
+  { id: "faisalabad", name: "Faisalabad", address: "Mezzanine Floor, Centre Point Plaza, Koh‑i‑Noor City, Jaranwala Road, Faisalabad", phone: "+92 332‑662‑8487" },
+  { id: "gujranwala", name: "Gujranwala", address: "Mezzanine Floor, Ravi Palace, GT Road, Gujranwala", phone: "+92 333‑777‑5458" },
+  { id: "sialkot", name: "Sialkot", address: "2nd Floor, KTN Centre, Kutchery Road, Sialkot", phone: "+92 332‑255‑8487" },
+  { id: "multan", name: "Multan", address: "2nd Floor, Lal Commercial Complex, Abdali Road, Multan", phone: "+92 333‑777‑5458" },
+  { id: "rawalpindi", name: "Rawalpindi", address: "1st Floor, Sadiq Plaza, Committee Chowk, Rawalpindi", phone: "+92 332‑255‑8487" },
+  { id: "peshawar", name: "Peshawar", address: "2nd Floor, Shaheen Complex, University Road, Peshawar", phone: "+92 333‑777‑5458" },
+  { id: "quetta", name: "Quetta", address: "Ground Floor, Baloch Centre, Jinnah Road, Quetta", phone: "+92 332‑255‑8487" },
+  { id: "hyderabad", name: "Hyderabad", address: "1st Floor, Al‑Habib Plaza, Saddar, Hyderabad", phone: "+92 332‑364‑3373" },
+  { id: "bahawalpur", name: "Bahawalpur", address: "Ground Floor, City Centre Plaza, Circular Road, Bahawalpur", phone: "+92 332‑662‑8487" },
+  { id: "sahiwal", name: "Sahiwal", address: "1st Floor, Metro Plaza, Farid Town, Sahiwal", phone: "+92 333‑777‑5458" },
+  { id: "rahim-yar-khan", name: "Rahim Yar Khan", address: "Ground Floor, Royal Complex, Model Town, Rahim Yar Khan", phone: "+92 332‑255‑8487" },
+  { id: "mirpur", name: "Mirpur AJK", address: "2nd Floor, Kashmir Plaza, Main Bazaar, Mirpur", phone: "+92 332‑364‑3373" },
+  { id: "online", name: "Online Consultation", address: "Video Call via Zoom/Teams", phone: "+92 304‑111‑0947" }
 ];
 
 interface BookingFormData {
