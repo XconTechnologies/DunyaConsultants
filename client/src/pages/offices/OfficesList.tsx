@@ -414,30 +414,7 @@ export default function OfficesList() {
           </div>
         )}
 
-        {/* Stats Overview */}
-        <motion.div
-          className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-6 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">21</div>
-            <div className="text-gray-600">Total Offices</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">18</div>
-            <div className="text-gray-600">Pakistan Offices</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">3</div>
-            <div className="text-gray-600">International Offices</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-2">35,000+</div>
-            <div className="text-gray-600">Students Served</div>
-          </div>
-        </motion.div>
+
 
         {/* Contact Banner */}
         <motion.div
