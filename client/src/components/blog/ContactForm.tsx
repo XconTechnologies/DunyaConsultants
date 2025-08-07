@@ -65,7 +65,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               value={formData.name}
               onChange={(e) => handleInputChange('name', e.target.value)}
               required
-              className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-white placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
+              className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-black placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
             />
           </div>
           <div className="relative">
@@ -75,7 +75,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               value={formData.phone}
               onChange={(e) => handleInputChange('phone', e.target.value)}
               required
-              className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-white placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
+              className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-black placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
             />
           </div>
         </div>
@@ -87,13 +87,13 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
             value={formData.qualification}
             onChange={(e) => handleInputChange('qualification', e.target.value)}
             required
-            className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-white placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
+            className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-black placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
           />
         </div>
 
         <div className="relative">
           <Select value={formData.country} onValueChange={(value) => handleInputChange('country', value)}>
-            <SelectTrigger className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm">
+            <SelectTrigger className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-black focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm">
               <SelectValue placeholder="Select Your Interested Country*" className="text-white" />
             </SelectTrigger>
             <SelectContent className="bg-white shadow-lg border border-gray-200">
@@ -119,7 +119,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               placeholder="Percentage/GPA/CGPA"
               value={formData.percentage}
               onChange={(e) => handleInputChange('percentage', e.target.value)}
-              className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-white placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
+              className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-black placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
             />
           </div>
           <div className="relative">
@@ -128,7 +128,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
               placeholder="PTE / IELTS SCORE"
               value={formData.testScore}
               onChange={(e) => handleInputChange('testScore', e.target.value)}
-              className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-white placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
+              className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-black placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
             />
           </div>
         </div>
@@ -139,7 +139,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
             value={formData.message}
             onChange={(e) => handleInputChange('message', e.target.value)}
             rows={3}
-            className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-white placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent resize-none pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
+            className="bg-transparent border-0 border-b-2 border-white/50 rounded-none text-black placeholder-white focus:border-white focus:border-b-[3px] focus:bg-transparent resize-none pb-3 pt-3 px-2 transition-all duration-200 focus:ring-0 focus:ring-offset-0 text-sm"
           />
         </div>
 

@@ -738,6 +738,11 @@ export default function Blog() {
                     }`}
                   >
                     {category}
+                    {category !== "All" && (
+                      <span className="ml-2 px-1.5 py-0.5 bg-white/20 rounded-full text-xs">
+                        {blogPosts.filter(post => post.category === category).length}
+                      </span>
+                    )}
                   </button>
                 ))}
               </div>
@@ -887,7 +892,7 @@ export default function Blog() {
           >
             {categories.map((category) => (
               <option key={category} value={category}>
-                {category}
+                {category} {category !== "All" && `(${blogPosts.filter(post => post.category === category).length})`}
               </option>
             ))}
           </select>
