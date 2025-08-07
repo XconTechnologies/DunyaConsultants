@@ -1,98 +1,33 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Clock, User, BookOpen, CheckCircle, AlertCircle, FileText, Award, Users, Target, Globe, TrendingUp, Star, University } from 'lucide-react';
-import { Link } from 'wouter';
+import { Calendar, Clock, User, BookOpen, CheckCircle, AlertCircle, FileText, Award, Users, Target, Globe, TrendingUp, Star, University, PenTool, MessageSquare, Headphones, BookOpen as Book } from 'lucide-react';
 import ContactForm from '@/components/blog/ContactForm';
+import ContactSection from '@/components/blog/ContactSection';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 
-interface BlogPost {
-  id: number;
-  title: string;
-  content: string;
-  excerpt: string;
-  published_at: string;
-  author_id: number;
-  category: string;
-  tags: string[];
-  featured_image?: string;
-}
-
-const DifferenceBetweenIELTSGeneralAndAcademic: React.FC = () => {
-  const [blogPost, setBlogPost] = useState<BlogPost | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchBlogPost = async () => {
-      try {
-        const response = await fetch('/api/blog-posts/difference-between-ielts-general-and-academic');
-        if (!response.ok) {
-          throw new Error('Failed to fetch blog post');
-        }
-        const data = await response.json();
-        setBlogPost(data);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load content');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBlogPost();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading article...</p>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-
-  if (error || !blogPost) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <p className="text-blue-600 mb-4">Failed to load the article</p>
-            <Link href="/blog" className="text-blue-600 hover:text-blue-800">
-              ← Back to Blog
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-
+export default function DifferenceBetweenIELTSGeneralAndAcademic() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
+      
       {/* Hero Section */}
       <div className="bg-[#124FD3] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <Link href="/blog" className="inline-flex items-center text-white/80 hover:text-white mb-4">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to Blog
-              </Link>
+              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+                Test Preparation
+              </span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              {blogPost.title}
+            <h1 className="text-5xl font-bold mb-6 leading-tight">
+              Difference Between IELTS General and Academic
             </h1>
-            <div className="flex items-center justify-center space-x-6 text-white/80">
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+              Complete comparison guide to help you choose between IELTS Academic and General Training modules.
+            </p>
+            <div className="flex items-center justify-center space-x-6 text-blue-200">
               <div className="flex items-center">
-                <Clock className="w-5 h-5 mr-2" />
-                <span>{new Date(blogPost.published_at).toLocaleDateString()}</span>
+                <Calendar className="w-5 h-5 mr-2" />
+                <span>January 19, 2025</span>
               </div>
               <div className="flex items-center">
                 <User className="w-5 h-5 mr-2" />
@@ -100,76 +35,66 @@ const DifferenceBetweenIELTSGeneralAndAcademic: React.FC = () => {
               </div>
               <div className="flex items-center">
                 <Clock className="w-5 h-5 mr-2" />
-                <span>8 min read</span>
+                <span>7 min read</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Article Content */}
+          {/* Main Content */}
           <div className="lg:col-span-3">
-            <article className="bg-white">
-              <div className="prose prose-lg max-w-none">
-                <div 
-                  className="text-gray-700"
-                  dangerouslySetInnerHTML={{ __html: blogPost.content }}
-                />
+            <article className="bg-white rounded-lg shadow-sm p-8">
+              {/* Introduction */}
+              <div className="mb-8">
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  IELTS (International English Language Testing System) offers two distinct test formats: Academic and General Training. 
+                  Choosing the right format is crucial for your success and depends on your specific goals and requirements.
+                </p>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  This comprehensive guide will help you understand the key differences between IELTS Academic and General Training 
+                  modules, helping you make an informed decision about which test to take.
+                </p>
+              </div>
+
+              {/* Quick Comparison Table */}
+              <div className="mb-8 bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                <h2 className="text-2xl font-bold mb-4 text-blue-800">Quick Comparison</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h3 className="font-semibold text-blue-700 mb-2">IELTS Academic</h3>
+                    <ul className="text-sm text-gray-700 space-y-1">
+                      <li>• For higher education abroad</li>
+                      <li>• University applications</li>
+                      <li>• Professional registration</li>
+                      <li>• Academic contexts</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-blue-700 mb-2">IELTS General Training</h3>
+                    <ul className="text-sm text-gray-700 space-y-1">
+                      <li>• For immigration purposes</li>
+                      <li>• Work experience abroad</li>
+                      <li>• Secondary education</li>
+                      <li>• Practical contexts</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </article>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-8 space-y-6">
-              {/* Quick Facts */}
-              <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-semibold text-blue-800 mb-4">Quick Facts</h3>
-                <div className="space-y-3 text-sm text-blue-700">
-                  <div className="flex justify-between">
-                    <span>Test Types:</span>
-                    <span className="font-semibold">Academic & General</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Duration:</span>
-                    <span className="font-semibold">2h 45min</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Skills Tested:</span>
-                    <span className="font-semibold">4 (L, R, W, S)</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Band Score:</span>
-                    <span className="font-semibold">0-9</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Test Comparison */}
-              <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-semibold text-blue-800 mb-4">Key Differences</h3>
-                <div className="space-y-2 text-sm text-blue-700">
-                  <div>• Academic: University study</div>
-                  <div>• General: Work & immigration</div>
-                  <div>• Reading tasks differ</div>
-                  <div>• Writing tasks differ</div>
-                  <div>• Same listening & speaking</div>
-                </div>
-              </div>
-
-              {/* Contact Form */}
-              <ContactForm />
-            </div>
+            <ContactForm />
           </div>
         </div>
       </div>
 
+      <ContactSection />
       <Footer />
     </div>
   );
-};
-
-export default DifferenceBetweenIELTSGeneralAndAcademic;
+}
