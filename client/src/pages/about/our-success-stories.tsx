@@ -87,9 +87,6 @@ export default function OurSuccessStories() {
 
   // Tab state for country selection
   const [activeTab, setActiveTab] = useState('UK');
-  
-  // Hover state for animation pause
-  const [isPaused, setIsPaused] = useState(false);
 
   const achievements = [
     {
@@ -216,60 +213,68 @@ export default function OurSuccessStories() {
             </div>
           </div>
 
-          {/* Visa Success Carousel */}
-          <div 
-            className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-6 mb-16"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
-          >
-            <div className="overflow-hidden">
-              <motion.div 
-                className="flex gap-4"
-                style={{ width: '300%' }}
-                animate={!isPaused ? {
-                  x: ['0%', '-33.33%']
-                } : {}}
-                transition={{
-                  duration: 40,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                key={activeTab} // Reset animation when tab changes
-              >
-                {/* Triple the images for seamless infinite loop */}
-                {(activeTab === 'UK' 
-                  ? [...ukSuccessImages, ...ukSuccessImages, ...ukSuccessImages]
-                  : activeTab === 'Finland'
-                  ? [...finlandSuccessImages, ...finlandSuccessImages, ...finlandSuccessImages]
-                  : [...swedenSuccessImages, ...swedenSuccessImages, ...swedenSuccessImages]
-                ).map((image, index) => {
-                  const imageArray = activeTab === 'UK' ? ukSuccessImages : activeTab === 'Finland' ? finlandSuccessImages : swedenSuccessImages;
-                  return (
-                    <div
-                      key={`${activeTab}-${index}`}
-                      className="flex-shrink-0"
-                      style={{ width: '280px' }}
+          {/* Visa Success Vertical Scrolling Columns */}
+          <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-6 mb-16">
+            <div className="flex gap-2 h-[500px] relative">
+              {/* Top fade overlay */}
+              <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
+              
+              {/* Bottom fade overlay */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+              
+              {(() => {
+                // Get current tab images
+                const currentImages = activeTab === 'UK' ? ukSuccessImages : activeTab === 'Finland' ? finlandSuccessImages : swedenSuccessImages;
+                
+                // Split images into 4 columns
+                const splitIntoColumns = (array: string[], numColumns: number) => {
+                  const columns = Array.from({ length: numColumns }, () => [] as string[]);
+                  array.forEach((item, index) => {
+                    columns[index % numColumns].push(item);
+                  });
+                  return columns;
+                };
+                
+                const columns = splitIntoColumns(currentImages, 4);
+                
+                return columns.map((column, columnIndex) => (
+                  <div key={`${activeTab}-column-${columnIndex}`} className="flex-1 overflow-hidden">
+                    <motion.div
+                      className="flex flex-col gap-3"
+                      animate={{
+                        y: [0, -120 * column.length]
+                      }}
+                      transition={{
+                        duration: 20 + columnIndex * 3,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
                     >
-                      <div className="relative h-80 rounded-xl overflow-hidden shadow-lg bg-white border group">
-                        <img
-                          src={image}
-                          alt={`${activeTab} visa success story ${(index % imageArray.length) + 1}`}
-                          className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                        />
-
-                        
-                        {/* Hover Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="absolute bottom-4 left-4 right-4 text-white">
-                            <h3 className="text-lg font-semibold mb-1">{activeTab} Student Visa</h3>
-                            <p className="text-sm text-gray-200">Successfully Approved</p>
+                      {/* Duplicate column for seamless loop */}
+                      {[...column, ...column].map((image, index) => (
+                        <div
+                          key={`${activeTab}-${columnIndex}-${index}`}
+                          className="group flex items-center justify-center min-h-[120px] bg-white rounded-lg overflow-hidden shadow-sm border"
+                        >
+                          <img
+                            src={image}
+                            alt={`${activeTab} visa success story ${(index % column.length) + 1}`}
+                            className="w-full h-32 object-contain group-hover:scale-105 transition-transform duration-300"
+                          />
+                          
+                          {/* Hover Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div className="absolute bottom-2 left-2 right-2 text-white">
+                              <h3 className="text-sm font-semibold">{activeTab} Student Visa</h3>
+                              <p className="text-xs text-gray-200">Successfully Approved</p>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </motion.div>
+                      ))}
+                    </motion.div>
+                  </div>
+                ));
+              })()}
             </div>
           </div>
 
