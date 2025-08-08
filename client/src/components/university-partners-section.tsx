@@ -139,39 +139,6 @@ export default function UniversityPartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  // Split universities into 5 columns for vertical scrolling
-  const splitIntoColumns = (array: typeof universityPartners, numColumns: number) => {
-    const columns = Array.from({ length: numColumns }, () => [] as typeof universityPartners);
-    array.forEach((item, index) => {
-      columns[index % numColumns].push(item);
-    });
-    return columns;
-  };
-
-  const columns = splitIntoColumns(universityPartners, 5);
-
-  // Get country colors for modern styling
-  const getCountryColor = (country: string): string => {
-    const colors: Record<string, string> = {
-      "All": "from-gray-500 to-gray-700",
-      "UK": "from-blue-500 to-blue-700",
-      "Germany": "from-blue-500 to-blue-600", 
-      "Canada": "from-blue-500 to-blue-700",
-      "USA": "from-blue-600 to-blue-600",
-      "Australia": "from-blue-500 to-blue-500",
-      "Turkey": "from-blue-600 to-blue-800",
-      "Netherlands": "from-blue-500 to-blue-600",
-      "Finland": "from-blue-400 to-white",
-      "Ireland": "from-blue-600 to-blue-500",
-      "France": "from-blue-500 to-blue-600",
-      "UAE": "from-blue-600 to-blue-600",
-      "Caribbean": "from-blue-500 to-blue-600",
-      "Wales": "from-blue-600 to-blue-600",
-      "Scotland": "from-blue-600 to-white"
-    };
-    return colors[country] || "from-gray-500 to-gray-700";
-  };
-
   return (
     <section ref={ref} id="university-partners" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -197,49 +164,29 @@ export default function UniversityPartnersSection() {
 
 
 
-        {/* Vertical Scrolling Columns */}
+        {/* Static University Partners Grid */}
         <motion.div
-          className="relative mb-6 overflow-hidden"
+          className="relative mb-6"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="flex gap-2 max-w-6xl mx-auto h-[500px] relative">
-            {/* Top fade overlay */}
-            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
-            
-            {/* Bottom fade overlay */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
-            
-            {columns.map((column, columnIndex) => (
-              <div key={columnIndex} className="flex-1 overflow-hidden">
-                <motion.div
-                  className="flex flex-col gap-1"
-                  animate={{
-                    y: [0, -100 * column.length]
-                  }}
-                  transition={{
-                    duration: 15 + columnIndex * 2,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  {/* Duplicate column for seamless loop */}
-                  {[...column, ...column].map((university, index) => (
-                    <motion.div
-                      key={`${university.name}-${columnIndex}-${index}`}
-                      className="group flex items-center justify-center p-1 min-h-[100px]"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <img
-                        src={university.logoUrl}
-                        alt={`${university.name} logo`}
-                        className="h-24 w-40 object-contain transition-all duration-300"
-                      />
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2 max-w-6xl mx-auto">
+            {universityPartners.map((university, index) => (
+              <motion.div
+                key={`${university.name}-${index}`}
+                className="group flex items-center justify-center p-1 min-h-[100px] bg-gray-50/50 rounded-lg hover:bg-gray-100/80 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: index * 0.02 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <img
+                  src={university.logoUrl}
+                  alt={`${university.name} logo`}
+                  className="max-h-16 max-w-32 object-contain transition-all duration-300 group-hover:scale-110"
+                />
+              </motion.div>
             ))}
           </div>
         </motion.div>
