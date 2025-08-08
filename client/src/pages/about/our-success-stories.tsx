@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { 
   GraduationCap, 
   Trophy, 
@@ -88,32 +88,8 @@ export default function OurSuccessStories() {
   // Tab state for country selection
   const [activeTab, setActiveTab] = useState('UK');
   
-  // Carousel state for infinite scroll
-  const [translateX, setTranslateX] = useState(0);
+  // Hover state for animation pause
   const [isPaused, setIsPaused] = useState(false);
-  
-  // Auto-scroll effect for infinite loop
-  useEffect(() => {
-    if (isPaused) return; // Don't run when paused
-    
-    const interval = setInterval(() => {
-      setTranslateX(prev => {
-        const nextPos = prev - 0.1; // Much slower movement
-        // Reset when we've moved one full set
-        if (nextPos <= -33.33) { // After moving through one set (33.33% of total width)
-          return 0;
-        }
-        return nextPos;
-      });
-    }, 50); // Slower update frequency
-
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
-  // Reset carousel position when tab changes
-  useEffect(() => {
-    setTranslateX(0);
-  }, [activeTab]);
 
   const achievements = [
     {
@@ -247,12 +223,18 @@ export default function OurSuccessStories() {
             onMouseLeave={() => setIsPaused(false)}
           >
             <div className="overflow-hidden">
-              <div 
+              <motion.div 
                 className="flex gap-4"
-                style={{ 
-                  transform: `translateX(${translateX}%)`,
-                  width: '300%' // Triple width for seamless looping
+                style={{ width: '300%' }}
+                animate={!isPaused ? {
+                  x: ['0%', '-33.33%']
+                } : {}}
+                transition={{
+                  duration: 40,
+                  repeat: Infinity,
+                  ease: "linear"
                 }}
+                key={activeTab} // Reset animation when tab changes
               >
                 {/* Triple the images for seamless infinite loop */}
                 {(activeTab === 'UK' 
@@ -264,7 +246,7 @@ export default function OurSuccessStories() {
                   const imageArray = activeTab === 'UK' ? ukSuccessImages : activeTab === 'Finland' ? finlandSuccessImages : swedenSuccessImages;
                   return (
                     <div
-                      key={index}
+                      key={`${activeTab}-${index}`}
                       className="flex-shrink-0"
                       style={{ width: '280px' }}
                     >
@@ -287,7 +269,7 @@ export default function OurSuccessStories() {
                     </div>
                   );
                 })}
-              </div>
+              </motion.div>
             </div>
           </div>
 
