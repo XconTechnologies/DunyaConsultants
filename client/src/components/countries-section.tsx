@@ -413,6 +413,7 @@ export default function CountriesSection() {
   const countriesPerSlide = 4;
   const totalSlides = Math.ceil(displayCountries.length / countriesPerSlide);
 
+  // Create infinite scrolling by cycling through all slides
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % totalSlides);
   };
@@ -421,9 +422,19 @@ export default function CountriesSection() {
     setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
+  // Get current countries for infinite scrolling
   const getCurrentCountries = () => {
     const start = currentSlide * countriesPerSlide;
-    return displayCountries.slice(start, start + countriesPerSlide);
+    const currentSet = displayCountries.slice(start, start + countriesPerSlide);
+    
+    // If we don't have enough cards, wrap around to fill the remaining slots
+    if (currentSet.length < countriesPerSlide && displayCountries.length > countriesPerSlide) {
+      const remaining = countriesPerSlide - currentSet.length;
+      const wrappedCards = displayCountries.slice(0, remaining);
+      return [...currentSet, ...wrappedCards];
+    }
+    
+    return currentSet;
   };
 
   const isGridView = activeTab === 'all';
@@ -586,25 +597,21 @@ export default function CountriesSection() {
         ) : (
           /* Horizontal Scrolling Carousel for Popular Countries */
           <div className="relative">
-            {/* Navigation Arrows */}
-            {totalSlides > 1 && (
-              <>
-                <Button
-                  onClick={prevSlide}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0"
-                  variant="outline"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </Button>
-                <Button
-                  onClick={nextSlide}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0"
-                  variant="outline"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </Button>
-              </>
-            )}
+            {/* Navigation Arrows - Always visible for infinite scroll */}
+            <Button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              variant="outline"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <Button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              variant="outline"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
 
             {/* Cards Container */}
             <div className="overflow-hidden px-16">
@@ -680,22 +687,20 @@ export default function CountriesSection() {
               </motion.div>
             </div>
 
-            {/* Slide Indicators */}
-            {totalSlides > 1 && (
-              <div className="flex justify-center mt-8 gap-2">
-                {Array.from({ length: totalSlides }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentSlide 
-                        ? 'bg-blue-600 scale-110' 
-                        : 'bg-blue-200 hover:bg-blue-300'
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
+            {/* Slide Indicators for infinite scroll */}
+            <div className="flex justify-center mt-8 gap-2">
+              {Array.from({ length: totalSlides }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'bg-blue-600 scale-110' 
+                      : 'bg-blue-200 hover:bg-blue-300'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         )}
       </div>
