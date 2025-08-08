@@ -180,9 +180,9 @@ export default function OurSuccessStories() {
               <span className="text-sm font-medium text-blue-600">Visa Success Stories</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Journey to Success{" "}
+              Success Stories{" "}
               <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
-                – Visa Triumphs
+                – Visa Wins
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
