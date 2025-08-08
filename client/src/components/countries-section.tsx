@@ -403,7 +403,6 @@ export default function CountriesSection() {
   const [applicationCountry, setApplicationCountry] = useState<Country | null>(null);
   const [activeTab, setActiveTab] = useState<'popular' | 'all'>('popular');
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoScrollPaused, setIsAutoScrollPaused] = useState(false);
 
   // Popular countries (most requested destinations)
   const popularCountries = countries.filter(country => 
@@ -434,18 +433,8 @@ export default function CountriesSection() {
     setShowApplicationForm(true);
   };
 
-  useEffect(() => {
-    if (!isAutoScrollPaused && totalSlides > 1 && activeTab === 'popular') {
-      const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % totalSlides);
-      }, 3000);
+  // Auto-scrolling disabled - users must use manual arrow navigation
 
-      return () => clearInterval(interval);
-    }
-  }, [isAutoScrollPaused, totalSlides, activeTab]);
-
-  const handleMouseEnter = () => setIsAutoScrollPaused(true);
-  const handleMouseLeave = () => setIsAutoScrollPaused(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -598,19 +587,9 @@ export default function CountriesSection() {
           /* Horizontal Scrolling Carousel for Popular Countries */
           <div 
             className="relative overflow-hidden py-4"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
           >
             <motion.div
               className="flex gap-6"
-              animate={!isAutoScrollPaused ? {
-                x: [0, -1800]
-              } : {}}
-              transition={{
-                duration: 25,
-                repeat: Infinity,
-                ease: "linear"
-              }}
             >
               {/* First set of countries */}
               {popularCountries.map((country, index) => (
