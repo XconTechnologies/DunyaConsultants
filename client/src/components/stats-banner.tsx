@@ -70,11 +70,9 @@ export default function StatsBanner() {
       case 3: // Countries Covered - Scroll to study destinations section
         scrollToSection('study-destinations');
         break;
-      case 4: // Visa Success Rate - Go to our success stories page
-        setLocation('/about/our-success-stories');
+      case 4: // Visa Success Rate - No navigation
         break;
-      case 5: // Expert Counselors - Go to who we are page
-        setLocation('/about/who-we-are');
+      case 5: // Expert Counselors - No navigation
         break;
       default:
         break;
