@@ -63,46 +63,96 @@ export default function AboutCompany() {
                 <div className="absolute top-1/3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl rotate-45 shadow-lg opacity-80"></div>
                 <div className="absolute bottom-1/3 -left-3 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl -rotate-45 shadow-lg opacity-80"></div>
 
-                {/* Static Image Grid */}
-                <div className="relative h-full rounded-[1.5rem] p-2">
-                  <div className="grid grid-cols-2 gap-3 h-full">
-                    {/* First 4 images in 2x2 grid */}
-                    {displayImages.slice(0, 4).map((img, index) => (
-                      <motion.div
-                        key={`static-${index}`}
-                        className="relative h-full"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-                      >
-                        <div className="relative overflow-hidden rounded-xl shadow-lg bg-white h-full group hover:shadow-xl transition-all duration-300">
-                          <img
-                            src={img}
-                            alt={`Company image ${index + 1}`}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            loading="eager"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                  
-                  {/* Fifth image as overlay in bottom-right corner */}
+                {/* Artistic Overlapping Image Layout */}
+                <div className="relative h-full rounded-[1.5rem] p-4">
+                  {/* Decorative circles like in the reference image */}
+                  <div className="absolute top-4 left-4 w-4 h-4 bg-orange-500 rounded-full z-10"></div>
+                  <div className="absolute top-6 right-6 w-6 h-6 bg-blue-900 rounded-full z-10"></div>
+                  <div className="absolute bottom-8 left-6 w-5 h-5 bg-orange-500 rounded-full z-10"></div>
+                  <div className="absolute bottom-4 right-4 w-4 h-4 bg-blue-900 rounded-full z-10"></div>
+
+                  {/* Main large image - back layer */}
                   <motion.div
-                    className="absolute bottom-4 right-4 w-20 h-20 lg:w-24 lg:h-24"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-                    transition={{ duration: 0.5, delay: 0.8 }}
+                    className="absolute top-4 left-6 w-64 h-40 z-10"
+                    initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
+                    animate={isInView ? { opacity: 1, scale: 1, rotate: -2 } : { opacity: 0, scale: 0.8, rotate: -2 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
                   >
-                    <div className="relative overflow-hidden rounded-xl shadow-xl bg-white ring-4 ring-white group hover:shadow-2xl transition-all duration-300">
+                    <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white ring-4 ring-white group hover:shadow-3xl transition-all duration-300">
+                      <img
+                        src={displayImages[0]}
+                        alt="Main company image"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="eager"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Medium image - overlapping on top-right */}
+                  <motion.div
+                    className="absolute top-12 right-8 w-48 h-32 z-20"
+                    initial={{ opacity: 0, scale: 0.8, rotate: 3 }}
+                    animate={isInView ? { opacity: 1, scale: 1, rotate: 3 } : { opacity: 0, scale: 0.8, rotate: 3 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    <div className="relative overflow-hidden rounded-xl shadow-xl bg-white ring-3 ring-white group hover:shadow-2xl transition-all duration-300">
+                      <img
+                        src={displayImages[1]}
+                        alt="Company image 2"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="eager"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Small image - bottom left */}
+                  <motion.div
+                    className="absolute bottom-16 left-4 w-36 h-24 z-30"
+                    initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                    animate={isInView ? { opacity: 1, scale: 1, rotate: -5 } : { opacity: 0, scale: 0.8, rotate: -5 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                  >
+                    <div className="relative overflow-hidden rounded-lg shadow-lg bg-white ring-3 ring-white group hover:shadow-xl transition-all duration-300">
+                      <img
+                        src={displayImages[2]}
+                        alt="Company image 3"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="eager"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Medium-small image - overlapping bottom right */}
+                  <motion.div
+                    className="absolute bottom-20 right-12 w-40 h-28 z-25"
+                    initial={{ opacity: 0, scale: 0.8, rotate: 2 }}
+                    animate={isInView ? { opacity: 1, scale: 1, rotate: 2 } : { opacity: 0, scale: 0.8, rotate: 2 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                  >
+                    <div className="relative overflow-hidden rounded-xl shadow-xl bg-white ring-3 ring-white group hover:shadow-2xl transition-all duration-300">
+                      <img
+                        src={displayImages[3]}
+                        alt="Company image 4"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="eager"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Small accent image - top center overlap */}
+                  <motion.div
+                    className="absolute top-24 left-1/2 transform -translate-x-1/2 w-32 h-20 z-35"
+                    initial={{ opacity: 0, scale: 0.8, rotate: -3 }}
+                    animate={isInView ? { opacity: 1, scale: 1, rotate: -3 } : { opacity: 0, scale: 0.8, rotate: -3 }}
+                    transition={{ duration: 0.6, delay: 1.0 }}
+                  >
+                    <div className="relative overflow-hidden rounded-lg shadow-lg bg-white ring-2 ring-white group hover:shadow-xl transition-all duration-300">
                       <img
                         src={displayImages[4]}
                         alt="Company image 5"
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                         loading="eager"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </motion.div>
                 </div>
