@@ -2,20 +2,8 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Check } from "lucide-react";
 
-// Import only 6 key images for better performance
-import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
-import img2 from "@assets/Avari Carnival (152 of 1139)_1751536114473.webp";
-import img3 from "@assets/Branch Manager of the year_1751536114473.webp";
-import img4 from "@assets/Dunya AGM (183 of 577)_1751536114474.webp";
-import img5 from "@assets/Dunya AGM (187 of 577)_1751536114474.webp";
-import img6 from "@assets/Dunya AGM (319 of 577)_1751536114475.webp";
-
-const aboutImages = [
-  img1, img2, img3, img4, img5, img6
-];
-
-// Select 5 images for static display
-const displayImages = [img1, img2, img3, img4, img5];
+// Import the company collage image
+import companyCollage from "@assets/image_1754657399088.png";
 
 const expandableContent = [
   {
@@ -63,96 +51,22 @@ export default function AboutCompany() {
                 <div className="absolute top-1/3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl rotate-45 shadow-lg opacity-80"></div>
                 <div className="absolute bottom-1/3 -left-3 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl -rotate-45 shadow-lg opacity-80"></div>
 
-                {/* Artistic Overlapping Image Layout */}
+                {/* Single Company Collage Image */}
                 <div className="relative h-full rounded-[1.5rem] p-4">
-                  {/* Decorative circles like in the reference image */}
-                  <div className="absolute top-4 left-4 w-4 h-4 bg-orange-500 rounded-full z-10"></div>
-                  <div className="absolute top-6 right-6 w-6 h-6 bg-blue-900 rounded-full z-10"></div>
-                  <div className="absolute bottom-8 left-6 w-5 h-5 bg-orange-500 rounded-full z-10"></div>
-                  <div className="absolute bottom-4 right-4 w-4 h-4 bg-blue-900 rounded-full z-10"></div>
-
-                  {/* Main large image - back layer */}
                   <motion.div
-                    className="absolute top-4 left-6 w-64 h-40 z-10"
-                    initial={{ opacity: 0, scale: 0.8, rotate: -2 }}
-                    animate={isInView ? { opacity: 1, scale: 1, rotate: -2 } : { opacity: 0, scale: 0.8, rotate: -2 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="relative w-full h-full"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
                   >
-                    <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white ring-4 ring-white group hover:shadow-3xl transition-all duration-300">
+                    <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white ring-4 ring-white group hover:shadow-3xl transition-all duration-300 h-full">
                       <img
-                        src={displayImages[0]}
-                        alt="Main company image"
+                        src={companyCollage}
+                        alt="Company collage showcasing achievements and team"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         loading="eager"
                       />
-                    </div>
-                  </motion.div>
-
-                  {/* Medium image - overlapping on top-right */}
-                  <motion.div
-                    className="absolute top-12 right-8 w-48 h-32 z-20"
-                    initial={{ opacity: 0, scale: 0.8, rotate: 3 }}
-                    animate={isInView ? { opacity: 1, scale: 1, rotate: 3 } : { opacity: 0, scale: 0.8, rotate: 3 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                  >
-                    <div className="relative overflow-hidden rounded-xl shadow-xl bg-white ring-3 ring-white group hover:shadow-2xl transition-all duration-300">
-                      <img
-                        src={displayImages[1]}
-                        alt="Company image 2"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        loading="eager"
-                      />
-                    </div>
-                  </motion.div>
-
-                  {/* Small image - bottom left */}
-                  <motion.div
-                    className="absolute bottom-16 left-4 w-36 h-24 z-30"
-                    initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-                    animate={isInView ? { opacity: 1, scale: 1, rotate: -5 } : { opacity: 0, scale: 0.8, rotate: -5 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                  >
-                    <div className="relative overflow-hidden rounded-lg shadow-lg bg-white ring-3 ring-white group hover:shadow-xl transition-all duration-300">
-                      <img
-                        src={displayImages[2]}
-                        alt="Company image 3"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        loading="eager"
-                      />
-                    </div>
-                  </motion.div>
-
-                  {/* Medium-small image - overlapping bottom right */}
-                  <motion.div
-                    className="absolute bottom-20 right-12 w-40 h-28 z-25"
-                    initial={{ opacity: 0, scale: 0.8, rotate: 2 }}
-                    animate={isInView ? { opacity: 1, scale: 1, rotate: 2 } : { opacity: 0, scale: 0.8, rotate: 2 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                  >
-                    <div className="relative overflow-hidden rounded-xl shadow-xl bg-white ring-3 ring-white group hover:shadow-2xl transition-all duration-300">
-                      <img
-                        src={displayImages[3]}
-                        alt="Company image 4"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        loading="eager"
-                      />
-                    </div>
-                  </motion.div>
-
-                  {/* Small accent image - top center overlap */}
-                  <motion.div
-                    className="absolute top-24 left-1/2 transform -translate-x-1/2 w-32 h-20 z-35"
-                    initial={{ opacity: 0, scale: 0.8, rotate: -3 }}
-                    animate={isInView ? { opacity: 1, scale: 1, rotate: -3 } : { opacity: 0, scale: 0.8, rotate: -3 }}
-                    transition={{ duration: 0.6, delay: 1.0 }}
-                  >
-                    <div className="relative overflow-hidden rounded-lg shadow-lg bg-white ring-2 ring-white group hover:shadow-xl transition-all duration-300">
-                      <img
-                        src={displayImages[4]}
-                        alt="Company image 5"
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                        loading="eager"
-                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </motion.div>
                 </div>
