@@ -215,7 +215,7 @@ export default function OurSuccessStories() {
 
           {/* Visa Success Vertical Scrolling Columns */}
           <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white p-6 mb-16">
-            <div className="flex gap-2 h-[500px] relative">
+            <div className="flex gap-4 h-[600px] relative">
               {/* Top fade overlay */}
               <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
               
@@ -226,7 +226,7 @@ export default function OurSuccessStories() {
                 // Get current tab images
                 const currentImages = activeTab === 'UK' ? ukSuccessImages : activeTab === 'Finland' ? finlandSuccessImages : swedenSuccessImages;
                 
-                // Split images into 4 columns
+                // Split images into 3 columns
                 const splitIntoColumns = (array: string[], numColumns: number) => {
                   const columns = Array.from({ length: numColumns }, () => [] as string[]);
                   array.forEach((item, index) => {
@@ -235,17 +235,17 @@ export default function OurSuccessStories() {
                   return columns;
                 };
                 
-                const columns = splitIntoColumns(currentImages, 4);
+                const columns = splitIntoColumns(currentImages, 3);
                 
                 return columns.map((column, columnIndex) => (
                   <div key={`${activeTab}-column-${columnIndex}`} className="flex-1 overflow-hidden">
                     <motion.div
-                      className="flex flex-col gap-3"
+                      className="flex flex-col gap-4"
                       animate={{
-                        y: [0, -120 * column.length]
+                        y: [0, -200 * column.length]
                       }}
                       transition={{
-                        duration: 20 + columnIndex * 3,
+                        duration: 25 + columnIndex * 4,
                         repeat: Infinity,
                         ease: "linear"
                       }}
@@ -254,19 +254,19 @@ export default function OurSuccessStories() {
                       {[...column, ...column].map((image, index) => (
                         <div
                           key={`${activeTab}-${columnIndex}-${index}`}
-                          className="group flex items-center justify-center min-h-[120px] bg-white rounded-lg overflow-hidden shadow-sm border"
+                          className="group relative bg-white rounded-lg overflow-hidden shadow-lg border hover:shadow-xl transition-shadow duration-300"
                         >
                           <img
                             src={image}
                             alt={`${activeTab} visa success story ${(index % column.length) + 1}`}
-                            className="w-full h-32 object-contain group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-48 object-contain group-hover:scale-105 transition-transform duration-300"
                           />
                           
                           {/* Hover Overlay */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <div className="absolute bottom-2 left-2 right-2 text-white">
-                              <h3 className="text-sm font-semibold">{activeTab} Student Visa</h3>
-                              <p className="text-xs text-gray-200">Successfully Approved</p>
+                            <div className="absolute bottom-3 left-3 right-3 text-white">
+                              <h3 className="text-lg font-semibold mb-1">{activeTab} Student Visa</h3>
+                              <p className="text-sm text-gray-200">Successfully Approved</p>
                             </div>
                           </div>
                         </div>
