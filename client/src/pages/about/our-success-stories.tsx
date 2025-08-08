@@ -241,29 +241,35 @@ export default function OurSuccessStories() {
                   <div key={`${activeTab}-column-${columnIndex}`} className="flex-1 overflow-hidden">
                     <motion.div
                       className="flex flex-col gap-4"
+                      style={{ willChange: 'transform' }}
                       animate={{
-                        y: [0, -200 * column.length]
+                        y: [0, -(320 + 16) * column.length] // h-80 (320px) + gap-4 (16px)
                       }}
                       transition={{
-                        duration: 25 + columnIndex * 4,
+                        duration: 12 + columnIndex * 2, // Much faster: 12, 14, 16 seconds
                         repeat: Infinity,
-                        ease: "linear"
+                        ease: "linear",
+                        repeatType: "loop"
                       }}
                     >
                       {/* Duplicate column for seamless loop */}
                       {[...column, ...column].map((image, index) => (
                         <div
                           key={`${activeTab}-${columnIndex}-${index}`}
-                          className="group relative bg-white rounded-lg overflow-hidden shadow-lg border hover:shadow-xl transition-shadow duration-300"
+                          className="group relative bg-white rounded-lg overflow-hidden shadow-lg border hover:shadow-xl transition-shadow duration-200"
+                          style={{ willChange: 'transform' }}
                         >
                           <img
                             src={image}
                             alt={`${activeTab} visa success story ${(index % column.length) + 1}`}
-                            className="w-full h-80 object-contain group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-80 object-contain group-hover:scale-105 transition-transform duration-200"
+                            loading="lazy"
+                            decoding="async"
+                            style={{ willChange: 'transform' }}
                           />
                           
                           {/* Hover Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                             <div className="absolute bottom-3 left-3 right-3 text-white">
                               <h3 className="text-lg font-semibold mb-1">{activeTab} Student Visa</h3>
                               <p className="text-sm text-gray-200">Successfully Approved</p>
