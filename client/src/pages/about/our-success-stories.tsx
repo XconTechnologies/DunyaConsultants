@@ -259,7 +259,7 @@ export default function OurSuccessStories() {
                           <img
                             src={image}
                             alt={`${activeTab} visa success story ${(index % column.length) + 1}`}
-                            className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                            className="w-full h-80 object-contain group-hover:scale-105 transition-transform duration-300"
                           />
                           
                           {/* Hover Overlay */}
