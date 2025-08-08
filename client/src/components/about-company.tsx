@@ -64,29 +64,68 @@ export default function AboutCompany() {
                 <div className="absolute top-1/3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl rotate-45 shadow-lg opacity-80"></div>
                 <div className="absolute bottom-1/3 -left-3 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl -rotate-45 shadow-lg opacity-80"></div>
 
-                {/* Static Image Grid */}
-                <div className="relative h-full rounded-[1.5rem] p-4">
+                {/* Dual Scrolling Image Gallery */}
+                <div className="relative h-full overflow-hidden rounded-[1.5rem]">
                   <div className="grid grid-cols-2 gap-4 h-full">
-                    {aboutImages.map((img, index) => (
-                      <div
-                        key={`image-${index}`}
-                        className="relative"
-                      >
-                        <div className="relative overflow-hidden rounded-xl shadow-md bg-white h-full">
-                          <img
-                            src={img}
-                            alt={`Company image ${index + 1}`}
-                            className="w-full h-full object-cover transition-all duration-300 hover:scale-105"
-                            loading="eager"
-                            onLoad={(e) => {
-                              e.currentTarget.style.opacity = '1';
-                            }}
-                            style={{ opacity: '0', transition: 'opacity 0.3s ease' }}
-                          />
-                        </div>
+                    
+                    {/* Left Column - Scrolling Up to Down */}
+                    <div className="h-full overflow-hidden">
+                      <div className="flex flex-col space-y-4 animate-scroll-up">
+                        {[...leftImages, ...leftImages, ...leftImages].map((img, index) => (
+                          <div
+                            key={`left-${index}`}
+                            className="relative flex-shrink-0"
+                          >
+                            <div className="relative overflow-hidden rounded-xl shadow-md bg-white">
+                              <div className="relative h-32 lg:h-40">
+                                <img
+                                  src={img}
+                                  alt={`Company image ${(index % 3) + 1}`}
+                                  className="w-full h-full object-cover"
+                                  loading="eager"
+                                  onLoad={(e) => {
+                                    e.currentTarget.style.opacity = '1';
+                                  }}
+                                  style={{ opacity: '0', transition: 'opacity 0.3s ease' }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
+
+                    {/* Right Column - Scrolling Down to Up */}
+                    <div className="h-full overflow-hidden">
+                      <div className="flex flex-col space-y-4 animate-scroll-down">
+                        {[...rightImages, ...rightImages, ...rightImages].map((img, index) => (
+                          <div
+                            key={`right-${index}`}
+                            className="relative flex-shrink-0"
+                          >
+                            <div className="relative overflow-hidden rounded-xl shadow-md bg-white">
+                              <div className="relative h-32 lg:h-40">
+                                <img
+                                  src={img}
+                                  alt={`Company image ${(index % 3) + 1}`}
+                                  className="w-full h-full object-cover"
+                                  loading="eager"
+                                  onLoad={(e) => {
+                                    e.currentTarget.style.opacity = '1';
+                                  }}
+                                  style={{ opacity: '0', transition: 'opacity 0.3s ease' }}
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
+                  
+                  {/* Gradient Fade Effects */}
+                  <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-blue-50/80 to-transparent pointer-events-none z-10"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-blue-50/80 to-transparent pointer-events-none z-10"></div>
                 </div>
               </div>
 
