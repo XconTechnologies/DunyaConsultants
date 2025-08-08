@@ -158,9 +158,28 @@ export default function OurSuccessStories() {
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
               Our Success Stories
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto">
               Real stories of students who achieved their dreams with Dunya Consultants
             </p>
+            
+            {/* Achievements Statistics */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+              {achievements.map((achievement, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="text-4xl lg:text-5xl font-bold text-white mb-2">
+                    {achievement.value}
+                  </div>
+                  <p className="text-blue-100 text-sm lg:text-base">{achievement.description}</p>
+                </motion.div>
+              ))}
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
                 Share Your Story
@@ -173,46 +192,6 @@ export default function OurSuccessStories() {
         </div>
       </section>
 
-      {/* Success Statistics */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Our{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
-                  Achievements
-                </span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Numbers that reflect our commitment to student success
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((achievement, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="text-5xl font-bold text-blue-600 mb-2">
-                  {achievement.value}
-                </div>
-                
-                <p className="text-gray-600">{achievement.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Our Success Stories - Visas */}
       <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-blue-50">
