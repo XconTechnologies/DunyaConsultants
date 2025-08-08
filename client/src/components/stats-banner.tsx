@@ -201,9 +201,7 @@ export default function StatsBanner() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            Transforming dreams into reality since 2009. Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.
-          </motion.p>
+          >Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.</motion.p>
         </motion.div>
 
         {/* Stats Cards */}
