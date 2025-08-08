@@ -484,6 +484,7 @@ export default function CountriesSection() {
   return (
     <section 
       ref={ref}
+      id="study-destinations"
       className="relative py-16 bg-gradient-to-b from-slate-50 to-white overflow-hidden"
     >
       {/* Rest of the component remains the same */}

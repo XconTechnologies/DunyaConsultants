@@ -58,8 +58,8 @@ export default function StatsBanner() {
   // Click handlers for each stat
   const handleStatClick = (index: number) => {
     switch (index) {
-      case 0: // Students Placed - Go to success stories
-        setLocation('/success-stories');
+      case 0: // Students Placed - Go to our success stories page
+        setLocation('/about/our-success-stories');
         break;
       case 1: // Office Branches - Go to offices page
         setLocation('/offices');
@@ -70,11 +70,11 @@ export default function StatsBanner() {
       case 3: // Countries Covered - Scroll to study destinations section
         scrollToSection('study-destinations');
         break;
-      case 4: // Visa Success Rate - Go to success stories
-        setLocation('/success-stories');
+      case 4: // Visa Success Rate - Go to our success stories page
+        setLocation('/about/our-success-stories');
         break;
-      case 5: // Expert Counselors - Go to about page
-        setLocation('/about');
+      case 5: // Expert Counselors - Go to who we are page
+        setLocation('/about/who-we-are');
         break;
       default:
         break;

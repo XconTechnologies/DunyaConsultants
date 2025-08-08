@@ -173,7 +173,7 @@ export default function UniversityPartnersSection() {
   };
 
   return (
-    <section ref={ref} className="py-32 bg-white">
+    <section ref={ref} id="university-partners" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
