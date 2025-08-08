@@ -588,13 +588,33 @@ export default function CountriesSection() {
           <div 
             className="relative overflow-hidden py-4"
           >
+            {/* Navigation Arrows */}
+            {totalSlides > 1 && (
+              <>
+                <Button
+                  onClick={prevSlide}
+                  className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0"
+                  variant="outline"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </Button>
+                <Button
+                  onClick={nextSlide}
+                  className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0"
+                  variant="outline"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </Button>
+              </>
+            )}
+
             <motion.div
               className="flex gap-6"
             >
-              {/* First set of countries */}
-              {popularCountries.map((country, index) => (
+              {/* Current slide countries */}
+              {getCurrentCountries().map((country, index) => (
                 <motion.div
-                  key={`first-${country.id}`}
+                  key={`slide-${currentSlide}-${country.id}`}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
