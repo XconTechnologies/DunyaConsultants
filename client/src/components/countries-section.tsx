@@ -585,22 +585,20 @@ export default function CountriesSection() {
           </div>
         ) : (
           /* Horizontal Scrolling Carousel for Popular Countries */
-          <div 
-            className="relative overflow-hidden py-4"
-          >
+          <div className="relative">
             {/* Navigation Arrows */}
             {totalSlides > 1 && (
               <>
                 <Button
                   onClick={prevSlide}
-                  className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0"
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0"
                   variant="outline"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </Button>
                 <Button
                   onClick={nextSlide}
-                  className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0"
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0"
                   variant="outline"
                 >
                   <ChevronRight className="w-5 h-5" />
@@ -608,133 +606,96 @@ export default function CountriesSection() {
               </>
             )}
 
-            <motion.div
-              className="flex gap-6"
-            >
-              {/* Current slide countries */}
-              {getCurrentCountries().map((country, index) => (
-                <motion.div
-                  key={`slide-${currentSlide}-${country.id}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group flex-shrink-0 w-[300px] h-[420px]"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={country.bgImage} 
-                      alt={country.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-b ${country.gradient} opacity-70`} />
-                    <div className="absolute top-4 left-4">
-                      <span className="text-3xl">{country.flag}</span>
-                    </div>
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold">{country.name}</h3>
-                      <p className="text-sm opacity-90">{country.studentCount}+ students</p>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                      {country.description}
-                    </p>
-                    
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-blue-600" />
-                        <span className="text-sm text-gray-600">{country.averageCost}</span>
+            {/* Cards Container */}
+            <div className="overflow-hidden px-16">
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                key={currentSlide}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                {getCurrentCountries().map((country, index) => (
+                  <motion.div
+                    key={`slide-${currentSlide}-${country.id}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <img 
+                        src={country.bgImage} 
+                        alt={country.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className={`absolute inset-0 bg-gradient-to-b ${country.gradient} opacity-70`} />
+                      <div className="absolute top-4 left-4">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm font-medium">
+                          {country.code}
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-blue-600" />
-                        <span className="text-sm text-gray-600">{country.visaSuccessRate}% visa success</span>
+                      <div className="absolute bottom-4 left-4 text-white">
+                        <h3 className="text-xl font-bold">{country.name}</h3>
+                        <p className="text-sm opacity-90">{country.studentCount}+ students</p>
                       </div>
                     </div>
                     
-                    <div className="flex gap-2 mb-4">
-                      <Button
-                        onClick={() => setSelectedCountry(country)}
-                        variant="outline"
-                        size="sm"
-                        className="flex-1"
-                      >
-                        View Details
-                      </Button>
-                      <Button
-                        onClick={() => handleApplyNow(country)}
-                        size="sm"
-                        className="flex-1"
-                      >
-                        Apply Now
-                      </Button>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-              
-              {/* Duplicate set for seamless loop */}
-              {popularCountries.map((country, index) => (
-                <motion.div
-                  key={`second-${country.id}`}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group flex-shrink-0 w-[300px] h-[420px]"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={country.bgImage} 
-                      alt={country.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-b ${country.gradient} opacity-70`} />
-                    <div className="absolute top-4 left-4">
-                      <span className="text-3xl">{country.flag}</span>
-                    </div>
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="text-xl font-bold">{country.name}</h3>
-                      <p className="text-sm opacity-90">{country.studentCount}+ students</p>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                      {country.description}
-                    </p>
-                    
-                    <div className="space-y-2 mb-4">
-                      <div className="flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-blue-600" />
-                        <span className="text-sm text-gray-600">{country.averageCost}</span>
+                    <div className="p-6">
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                        {country.description}
+                      </p>
+                      
+                      <div className="space-y-2 mb-4">
+                        <div className="flex items-center gap-2">
+                          <DollarSign className="w-4 h-4 text-blue-600" />
+                          <span className="text-sm text-gray-600">{country.averageCost}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="w-4 h-4 text-green-600" />
+                          <span className="text-sm text-gray-600">{country.visaSuccessRate}% visa success</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-blue-600" />
-                        <span className="text-sm text-gray-600">{country.visaSuccessRate}% visa success</span>
+                      
+                      <div className="flex gap-2">
+                        <Button
+                          onClick={() => setSelectedCountry(country)}
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50"
+                        >
+                          View Details
+                        </Button>
+                        <Button
+                          onClick={() => handleApplyNow(country)}
+                          size="sm"
+                          className="flex-1 bg-blue-600 hover:bg-blue-700"
+                        >
+                          Apply Now
+                        </Button>
                       </div>
                     </div>
-                    
-                    <div className="flex gap-2 mb-4">
-                      <Button
-                        onClick={() => setSelectedCountry(country)}
-                        variant="outline"
-                        size="sm"
-                        className="flex-1"
-                      >
-                        View Details
-                      </Button>
-                      <Button
-                        onClick={() => handleApplyNow(country)}
-                        size="sm"
-                        className="flex-1"
-                      >
-                        Apply Now
-                      </Button>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Slide Indicators */}
+            {totalSlides > 1 && (
+              <div className="flex justify-center mt-8 gap-2">
+                {Array.from({ length: totalSlides }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentSlide 
+                        ? 'bg-blue-600 scale-110' 
+                        : 'bg-blue-200 hover:bg-blue-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
