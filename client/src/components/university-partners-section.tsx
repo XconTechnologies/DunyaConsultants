@@ -197,29 +197,49 @@ export default function UniversityPartnersSection() {
 
 
 
-        {/* Static University Grid */}
+        {/* Vertical Scrolling Columns */}
         <motion.div
-          className="relative mb-6"
+          className="relative mb-6 overflow-hidden"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 max-w-6xl mx-auto">
-            {universityPartners.map((university, index) => (
-              <motion.div
-                key={`${university.name}-${index}`}
-                className="group flex items-center justify-center p-2 min-h-[100px] bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <img
-                  src={university.logoUrl}
-                  alt={`${university.name} logo`}
-                  className="h-16 w-32 object-contain transition-all duration-300"
-                />
-              </motion.div>
+          <div className="flex gap-2 max-w-6xl mx-auto h-[500px] relative">
+            {/* Top fade overlay */}
+            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
+            
+            {/* Bottom fade overlay */}
+            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+            
+            {columns.map((column, columnIndex) => (
+              <div key={columnIndex} className="flex-1 overflow-hidden">
+                <motion.div
+                  className="flex flex-col gap-1"
+                  animate={{
+                    y: [0, -100 * column.length]
+                  }}
+                  transition={{
+                    duration: 15 + columnIndex * 2,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  {/* Duplicate column for seamless loop */}
+                  {[...column, ...column].map((university, index) => (
+                    <motion.div
+                      key={`${university.name}-${columnIndex}-${index}`}
+                      className="group flex items-center justify-center p-1 min-h-[100px]"
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <img
+                        src={university.logoUrl}
+                        alt={`${university.name} logo`}
+                        className="h-24 w-40 object-contain transition-all duration-300"
+                      />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>
