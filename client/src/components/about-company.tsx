@@ -14,9 +14,8 @@ const aboutImages = [
   img1, img2, img3, img4, img5, img6
 ];
 
-// Split images for dual scrolling sections
-const leftImages = [img1, img3, img5];
-const rightImages = [img2, img4, img6];
+// Select 5 images for static display
+const displayImages = [img1, img2, img3, img4, img5];
 
 const expandableContent = [
   {
@@ -64,68 +63,48 @@ export default function AboutCompany() {
                 <div className="absolute top-1/3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl rotate-45 shadow-lg opacity-80"></div>
                 <div className="absolute bottom-1/3 -left-3 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl -rotate-45 shadow-lg opacity-80"></div>
 
-                {/* Dual Scrolling Image Gallery */}
-                <div className="relative h-full overflow-hidden rounded-[1.5rem]">
-                  <div className="grid grid-cols-2 gap-4 h-full">
-                    
-                    {/* Left Column - Scrolling Up to Down */}
-                    <div className="h-full overflow-hidden">
-                      <div className="flex flex-col space-y-4 animate-scroll-up">
-                        {[...leftImages, ...leftImages, ...leftImages].map((img, index) => (
-                          <div
-                            key={`left-${index}`}
-                            className="relative flex-shrink-0"
-                          >
-                            <div className="relative overflow-hidden rounded-xl shadow-md bg-white">
-                              <div className="relative h-32 lg:h-40">
-                                <img
-                                  src={img}
-                                  alt={`Company image ${(index % 3) + 1}`}
-                                  className="w-full h-full object-cover"
-                                  loading="eager"
-                                  onLoad={(e) => {
-                                    e.currentTarget.style.opacity = '1';
-                                  }}
-                                  style={{ opacity: '0', transition: 'opacity 0.3s ease' }}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Right Column - Scrolling Down to Up */}
-                    <div className="h-full overflow-hidden">
-                      <div className="flex flex-col space-y-4 animate-scroll-down">
-                        {[...rightImages, ...rightImages, ...rightImages].map((img, index) => (
-                          <div
-                            key={`right-${index}`}
-                            className="relative flex-shrink-0"
-                          >
-                            <div className="relative overflow-hidden rounded-xl shadow-md bg-white">
-                              <div className="relative h-32 lg:h-40">
-                                <img
-                                  src={img}
-                                  alt={`Company image ${(index % 3) + 1}`}
-                                  className="w-full h-full object-cover"
-                                  loading="eager"
-                                  onLoad={(e) => {
-                                    e.currentTarget.style.opacity = '1';
-                                  }}
-                                  style={{ opacity: '0', transition: 'opacity 0.3s ease' }}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                {/* Static Image Grid */}
+                <div className="relative h-full rounded-[1.5rem] p-2">
+                  <div className="grid grid-cols-2 gap-3 h-full">
+                    {/* First 4 images in 2x2 grid */}
+                    {displayImages.slice(0, 4).map((img, index) => (
+                      <motion.div
+                        key={`static-${index}`}
+                        className="relative h-full"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                      >
+                        <div className="relative overflow-hidden rounded-xl shadow-lg bg-white h-full group hover:shadow-xl transition-all duration-300">
+                          <img
+                            src={img}
+                            alt={`Company image ${index + 1}`}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="eager"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
                   
-                  {/* Gradient Fade Effects */}
-                  <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-blue-50/80 to-transparent pointer-events-none z-10"></div>
-                  <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-blue-50/80 to-transparent pointer-events-none z-10"></div>
+                  {/* Fifth image as overlay in bottom-right corner */}
+                  <motion.div
+                    className="absolute bottom-4 right-4 w-20 h-20 lg:w-24 lg:h-24"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                  >
+                    <div className="relative overflow-hidden rounded-xl shadow-xl bg-white ring-4 ring-white group hover:shadow-2xl transition-all duration-300">
+                      <img
+                        src={displayImages[4]}
+                        alt="Company image 5"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        loading="eager"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </motion.div>
                 </div>
               </div>
 
