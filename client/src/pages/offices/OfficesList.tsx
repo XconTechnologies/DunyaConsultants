@@ -231,6 +231,17 @@ const offices = [
     gradient: "from-slate-600 to-gray-600",
     region: "International",
     services: ["Student Support", "University Applications", "Career Guidance"]
+  },
+  {
+    id: "cairo",
+    city: "Cairo",
+    name: "Zahraa Maadi",
+    address: "Zahraa Maadi, Carrefour street. Grand plaza tower, 5th floor, Office No 508, Cairo, Egypt",
+    phone: "+20 10 29094396",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-orange-600 to-amber-600",
+    region: "International",
+    services: ["Visa Processing", "Student Counseling", "University Applications"]
   }
 ];
 
