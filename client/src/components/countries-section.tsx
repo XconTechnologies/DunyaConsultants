@@ -585,7 +585,7 @@ export default function CountriesSection() {
                     <Button
                       onClick={() => handleApplyNow(country)}
                       size="sm"
-                      className="flex-1"
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
                     >
                       Apply Now
                     </Button>
@@ -676,7 +676,7 @@ export default function CountriesSection() {
                         <Button
                           onClick={() => handleApplyNow(country)}
                           size="sm"
-                          className="flex-1 bg-blue-600 hover:bg-blue-700"
+                          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
                         >
                           Apply Now
                         </Button>
