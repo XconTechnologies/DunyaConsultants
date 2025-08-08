@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useLocation } from "wouter";
 import { 
   Users, 
   Building, 
@@ -44,6 +45,41 @@ const AnimatedCounter = ({ number, suffix, isVisible }: { number: number; suffix
 export default function StatsBanner() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const [, setLocation] = useLocation();
+
+  // Scroll to section function
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Click handlers for each stat
+  const handleStatClick = (index: number) => {
+    switch (index) {
+      case 0: // Students Placed - Go to success stories
+        setLocation('/success-stories');
+        break;
+      case 1: // Office Branches - Go to offices page
+        setLocation('/offices');
+        break;
+      case 2: // University Partners - Scroll to university partners section
+        scrollToSection('university-partners');
+        break;
+      case 3: // Countries Covered - Scroll to study destinations section
+        scrollToSection('study-destinations');
+        break;
+      case 4: // Visa Success Rate - Go to success stories
+        setLocation('/success-stories');
+        break;
+      case 5: // Expert Counselors - Go to about page
+        setLocation('/about');
+        break;
+      default:
+        break;
+    }
+  };
 
   const stats = [
     {
@@ -216,7 +252,7 @@ export default function StatsBanner() {
             return (
               <motion.div
                 key={index}
-                className="group relative"
+                className="group relative cursor-pointer"
                 initial={{ opacity: 0, y: 100, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.8 }}
                 transition={{ 
@@ -231,6 +267,7 @@ export default function StatsBanner() {
                   y: -10,
                   transition: { duration: 0.3, type: "spring", stiffness: 200 }
                 }}
+                onClick={() => handleStatClick(index)}
               >
                 {/* Background Pattern */}
                 <div 
@@ -242,7 +279,7 @@ export default function StatsBanner() {
                 <div className={`absolute -inset-2 bg-gradient-to-r ${stat.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
                 
                 {/* Main Card */}
-                <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full">
+                <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
                   {/* Icon Container */}
                   <div className="relative mb-4 flex justify-center">
                     <motion.div
