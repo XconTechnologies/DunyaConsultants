@@ -3,6 +3,8 @@ import { Mail, User, Building, Handshake, Users, Globe, Phone, MapPin } from 'lu
 
 import Asset_1 from "@assets/Asset-1.png";
 
+import New_Logo_White from "@assets/New Logo White.png";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -12,7 +14,7 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <img 
-                src={Asset_1} 
+                src={New_Logo_White} 
                 alt="Dunya Consultants Logo" 
                 className="h-12 w-auto"
               />
