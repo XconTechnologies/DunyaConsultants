@@ -205,51 +205,51 @@ export default function StatsBanner() {
               href="https://www.facebook.com/DunyaConsultant/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-50 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaFacebook className="w-5 h-5 text-blue-600" />
+              <FaFacebook className="w-4 h-4 text-white" />
             </motion.a>
             <motion.a
               href="https://www.instagram.com/dunya.consultants/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-pink-50 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaInstagram className="w-5 h-5 text-pink-600" />
+              <FaInstagram className="w-4 h-4 text-white" />
             </motion.a>
             <motion.a
               href="https://www.tiktok.com/@dunya.consultants"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-50 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaTiktok className="w-5 h-5 text-gray-800" />
+              <FaTiktok className="w-4 h-4 text-white" />
             </motion.a>
             <motion.a
               href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-50 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaYoutube className="w-5 h-5 text-red-600" />
+              <FaYoutube className="w-4 h-4 text-white" />
             </motion.a>
             <motion.a
               href="https://pk.linkedin.com/company/dunyaconsultant"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-50 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaLinkedin className="w-5 h-5 text-blue-700" />
+              <FaLinkedin className="w-4 h-4 text-white" />
             </motion.a>
           </motion.div>
           
