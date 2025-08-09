@@ -259,7 +259,7 @@ export default function StatsBanner() {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             whileHover={{ scale: 1.05 }}
-          >Turning Ambition to Admission</motion.h2>
+          >Turning <span className="font-bold italic">Ambition</span> to <span className="font-bold italic">Admission</span></motion.h2>
           
           <motion.p
             className="text-white/80 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed"
