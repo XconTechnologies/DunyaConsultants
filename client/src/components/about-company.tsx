@@ -117,7 +117,7 @@ export default function AboutCompany() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <h2 className="text-2xl font-bold mb-2" style={{ color: '#2764E8' }}>Why Choose Us Dunya Consultants?</h2>
+                <h2 className="text-2xl font-bold mb-2 text-[#2764E8]">Why Choose Us Dunya Consultants?</h2>
                 <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-blue-500 rounded-full"></div>
               </motion.div>
 
