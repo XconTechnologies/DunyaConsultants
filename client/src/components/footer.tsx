@@ -31,22 +31,6 @@ export default function Footer() {
                 Your trusted partner for global education opportunities. 
                 Dedicated to helping students achieve their academic dreams worldwide.
               </p>
-              
-              {/* Social Stats */}
-              <div className="flex items-center space-x-6 mb-4">
-                <div className="text-center">
-                  <div className="text-lg font-bold text-white">5,000+</div>
-                  <div className="text-xs text-blue-200">Students Placed</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold text-white">17+</div>
-                  <div className="text-xs text-blue-200">Office Branches</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold text-white">98%</div>
-                  <div className="text-xs text-blue-200">Success Rate</div>
-                </div>
-              </div>
             </div>
 
             {/* Quick Links */}
