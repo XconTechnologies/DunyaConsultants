@@ -162,7 +162,7 @@ Address: Alif Tower, Sargodha
             {/* Tuition Fee Details */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1e3a8a] flex items-center">
+                <CardTitle className="text-2xl text-[#2764E8] flex items-center">
                   <DollarSign className="w-6 h-6 mr-2" />
                   Tuition Fee Structure
                 </CardTitle>
@@ -215,7 +215,7 @@ Address: Alif Tower, Sargodha
             {/* Why Choose USA */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1e3a8a] flex items-center">
+                <CardTitle className="text-2xl text-[#2764E8] flex items-center">
                   <Zap className="w-6 h-6 mr-2" />
                   Why Choose To Study In USA?
                 </CardTitle>
@@ -235,7 +235,7 @@ Address: Alif Tower, Sargodha
             {/* Visa Requirements */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1e3a8a] flex items-center">
+                <CardTitle className="text-2xl text-[#2764E8] flex items-center">
                   <FileText className="w-6 h-6 mr-2" />
                   Study Visa Requirements
                 </CardTitle>
@@ -261,7 +261,7 @@ Address: Alif Tower, Sargodha
             {/* Smart Tools */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-xl text-[#1e3a8a] flex items-center">
+                <CardTitle className="text-xl text-[#2764E8] flex items-center">
                   <Calculator className="w-5 h-5 mr-2" />
                   Smart Tools for USA
                 </CardTitle>
@@ -276,7 +276,7 @@ Address: Alif Tower, Sargodha
             {/* Documents Checklist */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-xl text-[#1e3a8a] flex items-center">
+                <CardTitle className="text-xl text-[#2764E8] flex items-center">
                   <FileCheck className="w-5 h-5 mr-2" />
                   Documents Checklist
                 </CardTitle>
@@ -303,7 +303,7 @@ Address: Alif Tower, Sargodha
             {/* Quick Contact */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl text-[#1e3a8a] flex items-center">
+                <CardTitle className="text-xl text-[#2764E8] flex items-center">
                   <MapPin className="w-5 h-5 mr-2" />
                   Get Expert Guidance
                 </CardTitle>
