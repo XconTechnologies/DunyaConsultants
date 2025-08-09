@@ -264,6 +264,10 @@ export default function OfficesList() {
     return matchesSearch && matchesRegion;
   });
 
+  // Separate Pakistan and International offices
+  const pakistanOffices = filteredOffices.filter(office => office.region !== 'International');
+  const internationalOffices = filteredOffices.filter(office => office.region === 'International');
+
   const regions = ['all', ...Array.from(new Set(offices.map(office => office.region)))];
 
   return (
@@ -326,95 +330,195 @@ export default function OfficesList() {
           </div>
         </motion.div>
 
-        {/* Office Grid */}
-        <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          {filteredOffices.map((office, index) => (
-            <motion.div
-              key={office.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer">
-                <div className={`h-2 bg-gradient-to-r ${office.gradient}`}></div>
-                <CardContent className="p-6">
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-2 mb-2">
-                        <h3 className="text-xl font-bold text-gray-800">{office.city}</h3>
-                        {office.isHeadOffice && (
-                          <Badge className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs">
-                            Head Office
+        {/* Pakistan Offices Section */}
+        {(selectedRegion === 'all' || selectedRegion !== 'International') && pakistanOffices.length > 0 && (
+          <motion.div
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="flex items-center mb-8">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
+              <div className="px-6">
+                <h2 className="text-3xl font-bold text-gray-800 text-center bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                  Pakistan Offices
+                </h2>
+                <p className="text-gray-600 text-center mt-2">Our nationwide network across Pakistan</p>
+              </div>
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {pakistanOffices.map((office, index) => (
+                <motion.div
+                  key={office.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer">
+                    <div className={`h-2 bg-gradient-to-r ${office.gradient}`}></div>
+                    <CardContent className="p-6">
+                      {/* Header */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <h3 className="text-xl font-bold text-gray-800">{office.city}</h3>
+                            {office.isHeadOffice && (
+                              <Badge className="bg-gradient-to-r from-blue-500 to-purple-500 text-white text-xs">
+                                Head Office
+                              </Badge>
+                            )}
+                          </div>
+                          <p className="text-gray-600 font-medium">{office.name}</p>
+                          <Badge variant="outline" className="text-xs mt-1">
+                            {office.region}
                           </Badge>
-                        )}
-                        {office.region === 'International' && (
-                          <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs">
-                            International
-                          </Badge>
-                        )}
+                        </div>
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                          <Building2 className="w-6 h-6 text-white" />
+                        </div>
                       </div>
-                      <p className="text-gray-600 font-medium">{office.name}</p>
-                      <Badge variant="outline" className="text-xs mt-1">
-                        {office.region}
-                      </Badge>
-                    </div>
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-                      <Building2 className="w-6 h-6 text-white" />
-                    </div>
-                  </div>
 
+                      {/* Contact Info */}
+                      <div className="space-y-3 mb-4">
+                        <div className="flex items-start space-x-3">
+                          <MapPin className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                          <p className="text-sm text-gray-600 leading-relaxed">{office.address}</p>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Phone className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                          <a href={`tel:${office.phone}`} className="text-sm text-blue-600 hover:underline">
+                            {office.phone}
+                          </a>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                          <p className="text-sm text-gray-600">{office.hours}</p>
+                        </div>
+                      </div>
 
+                      {/* Action Buttons */}
+                      <div className="flex space-x-2">
+                        <Button 
+                          onClick={() => handleGetDirections(office.address)}
+                          className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-md text-sm"
+                        >
+                          <NavigationIcon className="w-3 h-3 mr-1" />
+                          Get Directions
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => window.open(`tel:${office.phone}`, '_self')}
+                          className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium text-sm"
+                        >
+                          <Phone className="w-3 h-3 mr-1" />
+                          Call
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
-                  {/* Contact Info */}
-                  <div className="space-y-3 mb-4">
-                    <div className="flex items-start space-x-3">
-                      <MapPin className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <p className="text-sm text-gray-600 leading-relaxed">{office.address}</p>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Phone className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                      <a href={`tel:${office.phone}`} className="text-sm text-blue-600 hover:underline">
-                        {office.phone}
-                      </a>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                      <p className="text-sm text-gray-600">{office.hours}</p>
-                    </div>
-                  </div>
+        {/* International Offices Section */}
+        {(selectedRegion === 'all' || selectedRegion === 'International') && internationalOffices.length > 0 && (
+          <motion.div
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <div className="flex items-center mb-8">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
+              <div className="px-6">
+                <h2 className="text-3xl font-bold text-gray-800 text-center bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                  International Offices
+                </h2>
+                <p className="text-gray-600 text-center mt-2">Our global presence to serve you worldwide</p>
+              </div>
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-300 to-transparent"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {internationalOffices.map((office, index) => (
+                <motion.div
+                  key={office.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer border-amber-200">
+                    <div className={`h-2 bg-gradient-to-r ${office.gradient}`}></div>
+                    <CardContent className="p-6">
+                      {/* Header */}
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <h3 className="text-xl font-bold text-gray-800">{office.city}</h3>
+                            <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs">
+                              International
+                            </Badge>
+                          </div>
+                          <p className="text-gray-600 font-medium">{office.name}</p>
+                          <Badge variant="outline" className="text-xs mt-1 border-amber-300 text-amber-700">
+                            {office.region}
+                          </Badge>
+                        </div>
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                          <Building2 className="w-6 h-6 text-white" />
+                        </div>
+                      </div>
 
+                      {/* Contact Info */}
+                      <div className="space-y-3 mb-4">
+                        <div className="flex items-start space-x-3">
+                          <MapPin className="w-4 h-4 text-amber-600 mt-0.5 flex-shrink-0" />
+                          <p className="text-sm text-gray-600 leading-relaxed">{office.address}</p>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Phone className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                          <a href={`tel:${office.phone}`} className="text-sm text-amber-600 hover:underline">
+                            {office.phone}
+                          </a>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Clock className="w-4 h-4 text-amber-600 flex-shrink-0" />
+                          <p className="text-sm text-gray-600">{office.hours}</p>
+                        </div>
+                      </div>
 
-
-                  {/* Action Buttons */}
-                  <div className="flex space-x-2">
-                    <Button 
-                      onClick={() => handleGetDirections(office.address)}
-                      className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-md text-sm"
-                    >
-                      <NavigationIcon className="w-3 h-3 mr-1" />
-                      Get Directions
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => window.open(`tel:${office.phone}`, '_self')}
-                      className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium text-sm"
-                    >
-                      <Phone className="w-3 h-3 mr-1" />
-                      Call
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+                      {/* Action Buttons */}
+                      <div className="flex space-x-2">
+                        <Button 
+                          onClick={() => handleGetDirections(office.address)}
+                          className="flex-1 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-medium shadow-md text-sm"
+                        >
+                          <NavigationIcon className="w-3 h-3 mr-1" />
+                          Get Directions
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => window.open(`tel:${office.phone}`, '_self')}
+                          className="flex-1 border-amber-600 text-amber-600 hover:bg-amber-50 font-medium text-sm"
+                        >
+                          <Phone className="w-3 h-3 mr-1" />
+                          Call
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* No Results */}
         {filteredOffices.length === 0 && (
