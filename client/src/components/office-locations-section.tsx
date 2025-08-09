@@ -208,7 +208,7 @@ const offices: Office[] = [
   },
   {
     id: "jeddah",
-    city: "Jeddah",
+    city: "Saudi Arabia (Jeddah)",
     name: "Engineering Square",
     address: "Above Topten, Engineering Square, Makarona Street, 2nd Floor, Office 27, Jeddah 23447",
     phone: "+966 50‑851‑0785",
@@ -219,7 +219,7 @@ const offices: Office[] = [
   },
   {
     id: "istanbul",
-    city: "Istanbul",
+    city: "Turkey (Istanbul)",
     name: "Ataköy Towers",
     address: "Ataköy Towers, Ataköy 7‑8‑9‑10 Kısım Mah., Çobançeşme E‑5 Yan Yol Cad., A Blok Apt. No: 20/1, Bakırköy, Istanbul",
     phone: "+90 505‑305‑8047",
@@ -230,7 +230,7 @@ const offices: Office[] = [
   },
   {
     id: "edinburgh",
-    city: "Edinburgh",
+    city: "United Kingdom (Edinburgh)",
     name: "Ferry Road Place",
     address: "4 Ferry Road Place, Edinburgh EH4 4AX",
     phone: "+44 7448‑419291",
@@ -238,6 +238,17 @@ const offices: Office[] = [
     gradient: "from-slate-600 to-gray-600",
     region: "International",
     services: ["Student Support", "University Applications", "Career Guidance"]
+  },
+  {
+    id: "cairo",
+    city: "Egypt (Cairo)",
+    name: "Zahraa Maadi",
+    address: "Zahraa Maadi, Carrefour street. Grand plaza tower, 5th floor, Office No 508, Cairo, Egypt",
+    phone: "+20 10 29094396",
+    hours: "Mon–Sat 10 AM–6 PM",
+    gradient: "from-orange-600 to-amber-600",
+    region: "International",
+    services: ["Visa Processing", "Student Counseling", "University Applications"]
   }
 ];
 
