@@ -254,7 +254,7 @@ export default function StatsBanner() {
           </motion.div>
           
           <motion.h2
-            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-white"
+            className="text-3xl lg:text-4xl mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-white font-normal"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.8, delay: 0.2 }}
