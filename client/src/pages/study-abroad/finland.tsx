@@ -324,7 +324,7 @@ Address: Alif Tower, Sargodha
                 <ApplicationForm country="Finland">
                   <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                     <Calendar className="w-4 h-4 mr-2" />
-                    Book Free Consultation
+                    Apply Now
                   </Button>
                 </ApplicationForm>
                 
