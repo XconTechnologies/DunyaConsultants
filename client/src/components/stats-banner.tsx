@@ -84,9 +84,9 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'Students Placed',
       description: 'Success Stories',
-      gradient: 'from-blue-400 via-blue-500 to-blue-600',
-      glowColor: 'shadow-emerald-500/25',
-      bgPattern: 'radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.3) 0%, transparent 50%)'
+      gradient: 'custom-blue-gradient',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: `radial-gradient(circle at 20% 50%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
     },
     {
       icon: Building,
@@ -94,9 +94,9 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'Office Branches',
       description: 'Nationwide Coverage',
-      gradient: 'from-blue-400 via-blue-500 to-blue-600',
-      glowColor: 'shadow-violet-500/25',
-      bgPattern: 'radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.3) 0%, transparent 50%)'
+      gradient: 'custom-blue-gradient',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: `radial-gradient(circle at 80% 20%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
     },
     {
       icon: Award,
@@ -104,9 +104,9 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'University Partners',
       description: 'Global Network',
-      gradient: 'from-blue-400 via-blue-500 to-blue-600',
-      glowColor: 'shadow-green-500/25',
-      bgPattern: 'radial-gradient(circle at 50% 80%, rgba(34, 197, 94, 0.3) 0%, transparent 50%)'
+      gradient: 'custom-blue-gradient',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: `radial-gradient(circle at 50% 80%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
     },
     {
       icon: MapPin,
@@ -114,9 +114,9 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'Countries Covered',
       description: 'Global Reach',
-      gradient: 'from-blue-400 via-blue-500 to-blue-600',
-      glowColor: 'shadow-red-500/25',
-      bgPattern: 'radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.3) 0%, transparent 50%)'
+      gradient: 'custom-blue-gradient',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: `radial-gradient(circle at 30% 30%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
     },
     {
       icon: Star,
@@ -124,21 +124,21 @@ export default function StatsBanner() {
       suffix: '+',
       label: 'Expert Counselors',
       description: 'Professional Team',
-      gradient: 'from-blue-400 via-blue-500 to-blue-600',
-      glowColor: 'shadow-cyan-500/25',
-      bgPattern: 'radial-gradient(circle at 40% 60%, rgba(6, 182, 212, 0.3) 0%, transparent 50%)'
+      gradient: 'custom-blue-gradient',
+      glowColor: 'shadow-blue-500/25',
+      bgPattern: `radial-gradient(circle at 40% 60%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
     }
   ];
 
   return (
-    <div className="relative min-h-[400px] bg-gradient-to-br from-slate-900 via-blue-900 to-blue-900 overflow-hidden">
+    <div className="relative min-h-[400px] overflow-hidden" style={{ background: `linear-gradient(135deg, #1e293b 0%, #2764E8 50%, #1e50c7 100%)` }}>
       {/* Animated Background */}
       <div className="absolute inset-0">
         {/* Gradient Orbs */}
-        <div className="absolute top-10 -left-10 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-        <div className="absolute top-0 -right-10 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-10 left-20 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-        <div className="absolute bottom-0 right-10 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-6000"></div>
+        <div className="absolute top-10 -left-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" style={{ backgroundColor: '#2764E8' }}></div>
+        <div className="absolute top-0 -right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" style={{ backgroundColor: '#2764E8' }}></div>
+        <div className="absolute -bottom-10 left-20 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" style={{ backgroundColor: '#2764E8' }}></div>
+        <div className="absolute bottom-0 right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-6000" style={{ backgroundColor: '#2764E8' }}></div>
         
         {/* Dynamic Grid */}
         <div className="absolute inset-0 opacity-[0.07]">
@@ -198,13 +198,13 @@ export default function StatsBanner() {
             whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
             transition={{ duration: 0.3 }}
           >
-            <Target className="w-5 h-5 text-blue-400" />
+            <Target className="w-5 h-5" style={{ color: '#2764E8' }} />
             <span className="text-white/90 font-medium">Excellence in Numbers</span>
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             >
-              <Sparkles className="w-4 h-4 text-blue-400" />
+              <Sparkles className="w-4 h-4" style={{ color: '#2764E8' }} />
             </motion.div>
           </motion.div>
           
@@ -247,7 +247,7 @@ export default function StatsBanner() {
                 <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
                   {/* Icon Container */}
                   <div className="relative mb-4 flex justify-center">
-                    <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`}>
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#2764E8' }}>
                       <IconComponent className="w-5 h-5 text-white" />
                     </div>
                     
@@ -264,7 +264,7 @@ export default function StatsBanner() {
                         ease: "easeInOut"
                       }}
                     >
-                      <Sparkles className="w-6 h-6 text-blue-400 opacity-70" />
+                      <Sparkles className="w-6 h-6 opacity-70" style={{ color: '#2764E8' }} />
                     </motion.div>
                   </div>
 
@@ -308,7 +308,7 @@ export default function StatsBanner() {
             }}
             transition={{ duration: 0.3 }}
           >
-            <Shield className="w-5 h-5 text-blue-400" />
+            <Shield className="w-5 h-5" style={{ color: '#2764E8' }} />
             <span className="text-white/80 font-medium">Trusted Excellence Since 2021</span>
             <motion.div
               animate={{ 
@@ -321,7 +321,7 @@ export default function StatsBanner() {
                 ease: "easeInOut"
               }}
             >
-              <div className="w-2 h-2 bg-blue-400 rounded-full" />
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#2764E8' }} />
             </motion.div>
           </motion.div>
         </motion.div>

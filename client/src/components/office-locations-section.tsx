@@ -213,7 +213,7 @@ const offices: Office[] = [
     address: "Above Topten, Engineering Square, Makarona Street, 2nd Floor, Office 27, Jeddah 23447",
     phone: "+966 50‑851‑0785",
     hours: "Mon–Thu 10 AM–5 PM",
-    gradient: "from-amber-600 to-blue-600",
+    gradient: "custom-blue",
     region: "International",
     services: ["Visa Processing", "Document Attestation", "Student Support"]
   },
@@ -246,7 +246,7 @@ const offices: Office[] = [
     address: "Zahraa Maadi, Carrefour street. Grand plaza tower, 5th floor, Office No 508, Cairo, Egypt",
     phone: "+20 10 29094396",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-orange-600 to-amber-600",
+    gradient: "custom-blue",
     region: "International",
     services: ["Visa Processing", "Student Counseling", "University Applications"]
   }
@@ -342,11 +342,11 @@ export default function OfficeLocationsSection() {
 
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-[#e8f0ff] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ backgroundColor: '#2764E8' }}></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000" style={{ backgroundColor: '#2764E8' }}></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -359,7 +359,7 @@ export default function OfficeLocationsSection() {
           className="font-bold text-center text-gray-900 mb-8 cursor-default"
           whileHover={{ 
             scale: 1.05,
-            color: '#3b82f6',
+            color: '#2764E8',
             transition: { duration: 0.3 }
           }}
         >
@@ -417,7 +417,7 @@ export default function OfficeLocationsSection() {
                   transition={{ duration: 0.6, delay: (index % cardsPerView) * 0.1 }}
                 >
                   <Card className="h-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-0 bg-white group hover:scale-105">
-                    <div className={`h-1.5 bg-gradient-to-r ${office.gradient}`}></div>
+                    <div className="h-1.5" style={{ backgroundColor: office.gradient === "custom-blue" ? '#2764E8' : '#2764E8' }}></div>
                     <CardContent className="p-4">
                       {/* Header - Compact */}
                       <div className="flex items-start justify-between mb-4">
@@ -425,19 +425,19 @@ export default function OfficeLocationsSection() {
                           <div className="flex items-center space-x-1 mb-1">
                             <h3 className="text-lg font-bold text-gray-800 truncate">{office.city}</h3>
                             {office.isHeadOffice && (
-                              <span className="bg-gradient-to-r from-blue-500 to-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0">
+                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#2764E8' }}>
                                 HQ
                               </span>
                             )}
                             {office.region === "International" && (
-                              <span className="bg-gradient-to-r from-blue-500 to-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0">
+                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#2764E8' }}>
                                 🌍 INT
                               </span>
                             )}
                           </div>
                           <p className="text-sm font-medium text-gray-600 truncate">{office.name}</p>
                         </div>
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2">
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2" style={{ backgroundColor: '#2764E8' }}>
                           <Building2 className="w-6 h-6 text-white" />
                         </div>
                       </div>
@@ -445,22 +445,23 @@ export default function OfficeLocationsSection() {
                       {/* Office Details - Compact */}
                       <div className="space-y-2 mb-4">
                         <div className="flex items-start space-x-2">
-                          <MapPin className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#2764E8' }} />
                           <p className="text-xs text-gray-600 leading-relaxed line-clamp-2">{office.address}</p>
                         </div>
                         
                         <div className="flex items-center space-x-2">
-                          <Phone className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                          <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#2764E8' }} />
                           <a 
                             href={`tel:${office.phone}`}
-                            className="text-blue-600 hover:text-blue-700 font-medium transition-colors duration-200 text-xs truncate"
+                            className="font-medium transition-colors duration-200 text-xs truncate hover:opacity-80"
+                            style={{ color: '#2764E8' }}
                           >
                             {office.phone}
                           </a>
                         </div>
                         
                         <div className="flex items-center space-x-2">
-                          <Clock className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: '#2764E8' }} />
                           <p className="text-xs text-gray-600 truncate">{office.hours}</p>
                         </div>
                       </div>
@@ -469,7 +470,8 @@ export default function OfficeLocationsSection() {
                       <div className="flex space-x-2">
                         <Button 
                           size="sm"
-                          className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium shadow-md text-xs"
+                          className="flex-1 text-white font-medium shadow-md text-xs hover:opacity-90"
+                          style={{ backgroundColor: '#2764E8' }}
                         >
                           <Phone className="w-3 h-3 mr-1" />
                           Call

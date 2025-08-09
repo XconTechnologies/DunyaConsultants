@@ -38,8 +38,8 @@ const audienceData: AudienceData[] = [
     subtitle: "Your Dream University Awaits",
     description: "With a keen ear for your choices and preferences, our counselling experience is so seamless that you will land in your dream university!",
     icon: GraduationCap,
-    color: "from-blue-500 to-blue-600",
-    bgGradient: "from-blue-50 to-blue-50",
+    color: "custom-blue",
+    bgGradient: "custom-bg-blue",
     offerings: [
       {
         icon: Video,
@@ -64,8 +64,8 @@ const audienceData: AudienceData[] = [
     subtitle: "Innovative Technology & Expert Webinars",
     description: "We provide end-to-end support with cutting-edge technology solutions and expert-led training sessions for our educational partners.",
     icon: Building,
-    color: "from-blue-500 to-blue-600",
-    bgGradient: "from-blue-50 to-blue-100",
+    color: "custom-blue",
+    bgGradient: "custom-bg-blue",
     offerings: [
       {
         icon: Laptop,
@@ -90,8 +90,8 @@ const audienceData: AudienceData[] = [
     subtitle: "Diverse Recruitment & Network Access",
     description: "Connect with our extensive network of qualified students and enhance your institution's global visibility through our comprehensive recruitment solutions.",
     icon: Users,
-    color: "from-blue-500 to-blue-600",
-    bgGradient: "from-blue-50 to-blue-50",
+    color: "custom-blue",
+    bgGradient: "custom-bg-blue",
     offerings: [
       {
         icon: TrendingUp,
@@ -118,7 +118,7 @@ export default function AudienceSectionNew() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-blue-50 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-slate-50 via-[#e8f0ff] to-[#e8f0ff] relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full" style={{
@@ -165,11 +165,11 @@ export default function AudienceSectionNew() {
               onClick={() => setActiveCard(index)}
             >
               {/* Background Gradient */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${item.bgGradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl`}></div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-3xl" style={{ backgroundColor: item.bgGradient === "custom-bg-blue" ? '#e8f0ff' : '#e8f0ff' }}></div>
               
               {/* Icon */}
               <div className="relative z-10 mb-6">
-                <div className={`w-20 h-20 bg-gradient-to-br ${item.color} rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
+                <div className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500" style={{ backgroundColor: item.color === "custom-blue" ? '#2764E8' : '#2764E8' }}>
                   <item.icon className="w-10 h-10 text-white" />
                 </div>
               </div>
@@ -194,7 +194,7 @@ export default function AudienceSectionNew() {
                   <div className="grid gap-3">
                     {item.offerings.map((offering, idx) => (
                       <div key={idx} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
-                        <div className={`w-8 h-8 bg-gradient-to-br ${item.color} rounded-lg flex items-center justify-center flex-shrink-0`}>
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: item.color === "custom-blue" ? '#2764E8' : '#2764E8' }}>
                           <offering.icon className="w-4 h-4 text-white" />
                         </div>
                         <div>
@@ -208,7 +208,7 @@ export default function AudienceSectionNew() {
 
                 {/* Action Button */}
                 <div className="mt-8">
-                  <button className={`w-full bg-gradient-to-r ${item.color} text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300`}>
+                  <button className="w-full text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300" style={{ backgroundColor: item.color === "custom-blue" ? '#2764E8' : '#2764E8' }}>
                     Get Started with {item.title} Solutions
                   </button>
                 </div>
