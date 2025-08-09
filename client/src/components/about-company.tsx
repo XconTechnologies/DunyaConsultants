@@ -1,22 +1,30 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, Shield, Award, Globe, Users } from "lucide-react";
 
 // Import the company collage image
 import companyCollage from "@assets/image_1754657399088.png";
 
 const expandableContent = [
   {
-    title: "17 City Branches & 200 Certified Counsellors",
-    content: "With its head office in Lahore, Dunya Consultants has branches in over 17 cities across the country and a team of more than 200 certified counsellors."
+    icon: Shield,
+    title: "Honesty",
+    content: "Clear guidance at every step. We explain options, costs, and timelines so you always know what's happening."
   },
   {
-    title: "250 Ambassadors & 50+ Foreign Universities", 
-    content: "We are proud to have around 250 ambassadors working with us internationally and have partnered with 30 top educational institutions in Pakistan and more than 20 foreign universities."
+    icon: Award,
+    title: "Certified Consultants", 
+    content: "Friendly experts help with course selection, documents, applications, and visa from start to finish."
   },
   {
-    title: "Smooth Visa Approval Process", 
-    content: "As a growing study abroad consultants' firm, we help students in visa interview preparations and guide them throughout the student visa application process."
+    icon: Globe,
+    title: "Multiple Destinations", 
+    content: "Apply to Turkey, the US, the UK, Canada, and more, with support in Pakistan and abroad."
+  },
+  {
+    icon: Users,
+    title: "Official Representatives", 
+    content: "We work directly with trusted universities so your application is accurate and gets priority."
   }
 ];
 
@@ -122,17 +130,19 @@ export default function AboutCompany() {
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   >
-                    <div className="flex items-start gap-2 mb-2">
-                      <div className="flex-shrink-0 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center mt-0.5">
-                        <Check className="w-3 h-3 text-white" />
+                    <div className="flex items-start gap-3 mb-2">
+                      <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <item.icon className="w-5 h-5 text-blue-600" />
                       </div>
-                      <h3 className="text-sm font-semibold text-gray-900 flex-1 leading-tight">
-                        {item.title}
-                      </h3>
+                      <div>
+                        <h3 className="text-sm font-semibold text-gray-900 mb-1 leading-tight">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs text-gray-700 leading-relaxed">
+                          {item.content}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-xs text-gray-700 leading-relaxed ml-7">
-                      {item.content}
-                    </p>
                   </motion.div>
                 ))}
               </div>
