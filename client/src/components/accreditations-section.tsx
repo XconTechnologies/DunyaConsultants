@@ -97,8 +97,8 @@ export default function AccreditationsSection() {
             <span className="text-sm font-medium text-neutral-700">Trusted & Certified</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
-            Our <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Accreditations</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#2764E8' }}>
+            Our <span style={{ color: '#2764E8' }}>Accreditations</span>
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">

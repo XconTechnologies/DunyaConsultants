@@ -355,8 +355,8 @@ export default function OfficeLocationsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          style={{ fontSize: '32px' }}
-          className="font-bold text-center text-gray-900 mb-8 cursor-default"
+          className="font-bold text-center mb-8 cursor-default"
+          style={{ fontSize: '32px', color: '#2764E8' }}
           whileHover={{ 
             scale: 1.05,
             color: '#2764E8',

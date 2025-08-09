@@ -138,9 +138,9 @@ export default function AudienceSectionNew() {
             <span className="text-sm font-medium text-neutral-700">Personalized Approach</span>
           </div>
           
-          <h2 className="text-4xl lg:text-6xl font-bold text-neutral-800 mb-6">
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: '#2764E8' }}>
             Tailored Solutions for{" "}
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <span style={{ color: '#2764E8' }}>
               Everyone
             </span>
           </h2>

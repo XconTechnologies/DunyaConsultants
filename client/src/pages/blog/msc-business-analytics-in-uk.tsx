@@ -43,7 +43,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Program Duration Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8' }}>What is the Duration for MSc in Business Analytics in UK?</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>What is the Duration for MSc in Business Analytics in UK?</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   A business analytics masters in the UK typically takes around one to two years to complete. The program is created to be intensive, giving students the skills and knowledge to solve real-world business problems using data.
                 </p>
@@ -73,7 +73,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Top Universities Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Top 10 Universities for Masters in Business Analytics in UK</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Top 10 Universities for Masters in Business Analytics in UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The education system of the United Kingdom helps students discover their skills as well as abilities. This focus on personal growth makes the country one of the most popular choices for students. The majority of the students prefer studying here over other countries due to its strong support for students.
                 </p>
@@ -141,7 +141,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Eligibility Criteria Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Eligibility Criteria for MS in Business Analytics in UK</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Eligibility Criteria for MS in Business Analytics in UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   To get admission to a UK university for a business analytics course in UK, students need to meet all eligibility requirements as discussed below. These requirements make sure that students have the required academic background and skills to succeed in the course.
                 </p>
@@ -175,7 +175,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Documents Required Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Documents Required for MSc in Business Analytics in UK Universities</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Documents Required for MSc in Business Analytics in UK Universities</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The list of documents you will have to submit may be different for every university. Some universities might ask for some additional documents. Let's discuss below all the required documents to get admission to the business analyst course in the UK:
                 </p>
@@ -213,7 +213,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Cost of Studying Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Cost of Studying MSc in Business Analytics UK</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Cost of Studying MSc in Business Analytics UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   If you plan to apply to top universities in UK for masters in business analytics, the average tuition charges usually range from 25,750 euros to 35,900 euros every year. The cost of living is based on the city or area you select to live in as well as your personal lifestyle. Living in more expensive cities like Winchester or London will raise your living costs.
                 </p>
@@ -246,7 +246,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Scholarships Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Scholarships Programs for Best Universities in UK for Business Analytics</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Scholarships Programs for Best Universities in UK for Business Analytics</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   UK universities make it easier for international students to apply for and study MS graduate programs. It provides a variety of scholarship programs funded by the government. Here are some popular scholarships available for students applying for the Masters in Business Analytics in UK:
                 </p>
@@ -272,7 +272,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Conclusion */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 border-l-4 border-gray-500 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-4 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The UK is the best place to study business, and students will have a great experience while you are there. An MSc in Business Analytics in UK is a master's degree that focuses on developing the skills and knowledge needed to excel in data-driven business environments.
                 </p>
@@ -286,7 +286,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* FAQs */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">

@@ -87,9 +87,9 @@ export default function ReasonsSection() {
             className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
             whileHover={{ scale: 1.02 }}
           >
-            <span className="text-gray-800">8 Reasons that Sets us apart from</span>
+            <span style={{ color: '#2764E8' }}>8 Reasons that Sets us apart from</span>
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800">
+            <span style={{ color: '#2764E8' }}>
               Other Educational Consultants in Pakistan
             </span>
           </motion.h2>

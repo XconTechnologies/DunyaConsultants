@@ -140,8 +140,8 @@ export default function EducationJourneySection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#2764E8' }}>
+            <span style={{ color: '#2764E8' }}>
               Your Journey to International Education
             </span>
           </h2>
@@ -205,7 +205,7 @@ export default function EducationJourneySection() {
                         <div className="text-sm font-medium text-neutral-500 uppercase tracking-wide">
                           Step {step.id} • {step.duration}
                         </div>
-                        <h3 className="text-2xl font-bold text-neutral-800 mt-1">
+                        <h3 className="text-2xl font-bold mt-1" style={{ color: '#2764E8' }}>
                           {step.title}
                         </h3>
                       </div>
@@ -313,7 +313,7 @@ export default function EducationJourneySection() {
           <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl p-8 text-white relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-600/20" />
             <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-4">
+              <h3 className="text-2xl font-bold mb-4" style={{ color: 'white' }}>
                 Ready to Start Your Journey?
               </h3>
               <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">

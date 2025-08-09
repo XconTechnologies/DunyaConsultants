@@ -299,12 +299,7 @@ export default function EventsSection() {
         >
           <motion.h2 
             className="text-3xl lg:text-4xl font-bold mb-4"
-            style={{
-              background: 'linear-gradient(135deg, #1e40af 0%, #3730a3 50%, #6366f1 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text'
-            }}
+            style={{ color: '#2764E8' }}
             whileHover={{ scale: 1.02 }}
           >
             Events & Workshops
