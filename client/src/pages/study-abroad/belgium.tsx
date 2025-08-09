@@ -332,8 +332,9 @@ Address: Alif Tower, Sargodha
                 
                 <Button 
                   variant="outline" 
-                  className="w-full">
+                  className="w-full"
                   onClick={() => window.open('https://wa.me/923041110947?text=Hello, I want to start my application for studying in Belgium. Please guide me through the process.')}
+                >
                   <Globe className="w-4 h-4 mr-2" />
                   Start Your Application
                 </Button>
