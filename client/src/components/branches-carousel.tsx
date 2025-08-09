@@ -108,7 +108,7 @@ export default function BranchesCarousel() {
                         className="w-20 h-20 object-contain"
                       />
                     ) : (
-                      <IconComponent className="w-12 h-12 text-[#1e3a8a]" />
+                      <IconComponent className="w-12 h-12 text-[#2764E8]" />
                     )}
                   </div>
                 </div>

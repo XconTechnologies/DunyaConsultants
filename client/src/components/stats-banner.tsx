@@ -14,6 +14,7 @@ import {
   Star,
   MapPin
 } from "lucide-react";
+import { FaFacebook, FaInstagram, FaTiktok, FaYoutube, FaLinkedin } from "react-icons/fa";
 
 const AnimatedCounter = ({ number, suffix, isVisible }: { number: number; suffix: string; isVisible: boolean }) => {
   const [count, setCount] = useState(0);
@@ -193,6 +194,65 @@ export default function StatsBanner() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
+          {/* Social Media Icons */}
+          <motion.div
+            className="flex justify-center items-center gap-4 mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <motion.a
+              href="https://www.facebook.com/DunyaConsultant/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(59, 89, 152, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaFacebook className="w-5 h-5 text-white" />
+            </motion.a>
+            <motion.a
+              href="https://www.instagram.com/dunya.consultants/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(225, 48, 108, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaInstagram className="w-5 h-5 text-white" />
+            </motion.a>
+            <motion.a
+              href="https://www.tiktok.com/@dunya.consultants"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaTiktok className="w-5 h-5 text-white" />
+            </motion.a>
+            <motion.a
+              href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 0, 0, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaYoutube className="w-5 h-5 text-white" />
+            </motion.a>
+            <motion.a
+              href="https://pk.linkedin.com/company/dunyaconsultant"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 119, 181, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaLinkedin className="w-5 h-5 text-white" />
+            </motion.a>
+          </motion.div>
+
           <motion.div
             className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-xl rounded-full px-8 py-3 mb-6 border border-white/10"
             whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
@@ -209,7 +269,7 @@ export default function StatsBanner() {
           </motion.div>
           
           <motion.h2
-            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-[#ffffff]" style={{ color: '#2764E8' }}
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-white"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.8, delay: 0.2 }}
