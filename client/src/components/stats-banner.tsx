@@ -194,78 +194,63 @@ export default function StatsBanner() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          {/* Social Media Icons */}
+
+
           <motion.div
-            className="flex justify-center items-center gap-4 mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            className="inline-flex items-center gap-4 bg-white rounded-full px-8 py-4 mb-6 shadow-lg border border-gray-200"
+            whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+            transition={{ duration: 0.3 }}
           >
             <motion.a
               href="https://www.facebook.com/DunyaConsultant/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(59, 89, 152, 0.3)" }}
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-50 transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaFacebook className="w-5 h-5 text-white" />
+              <FaFacebook className="w-5 h-5 text-blue-600" />
             </motion.a>
             <motion.a
               href="https://www.instagram.com/dunya.consultants/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(225, 48, 108, 0.3)" }}
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-pink-50 transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaInstagram className="w-5 h-5 text-white" />
+              <FaInstagram className="w-5 h-5 text-pink-600" />
             </motion.a>
             <motion.a
               href="https://www.tiktok.com/@dunya.consultants"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 0, 0, 0.3)" }}
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-50 transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaTiktok className="w-5 h-5 text-white" />
+              <FaTiktok className="w-5 h-5 text-gray-800" />
             </motion.a>
             <motion.a
               href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 0, 0, 0.3)" }}
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-red-50 transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaYoutube className="w-5 h-5 text-white" />
+              <FaYoutube className="w-5 h-5 text-red-600" />
             </motion.a>
             <motion.a
               href="https://pk.linkedin.com/company/dunyaconsultant"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300"
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 119, 181, 0.3)" }}
+              className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-blue-50 transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <FaLinkedin className="w-5 h-5 text-white" />
+              <FaLinkedin className="w-5 h-5 text-blue-700" />
             </motion.a>
-          </motion.div>
-
-          <motion.div
-            className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-xl rounded-full px-8 py-3 mb-6 border border-white/10"
-            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-            transition={{ duration: 0.3 }}
-          >
-            <Target className="w-5 h-5" style={{ color: '#2764E8' }} />
-            <span className="text-white/90 font-medium">Excellence in Numbers</span>
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            >
-              <Sparkles className="w-4 h-4" style={{ color: '#2764E8' }} />
-            </motion.div>
           </motion.div>
           
           <motion.h2
