@@ -70,9 +70,7 @@ export default function StatsBanner() {
       case 3: // Countries Covered - Scroll to study destinations section
         scrollToSection('study-destinations');
         break;
-      case 4: // Visa Success Rate - No navigation
-        break;
-      case 5: // Expert Counselors - No navigation
+      case 4: // Expert Counselors - No navigation
         break;
       default:
         break;
@@ -82,7 +80,7 @@ export default function StatsBanner() {
   const stats = [
     {
       icon: Users,
-      number: 5000,
+      number: 2500,
       suffix: '+',
       label: 'Students Placed',
       description: 'Success Stories',
@@ -119,16 +117,6 @@ export default function StatsBanner() {
       gradient: 'from-blue-400 via-blue-500 to-blue-600',
       glowColor: 'shadow-red-500/25',
       bgPattern: 'radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.3) 0%, transparent 50%)'
-    },
-    {
-      icon: Shield,
-      number: 98,
-      suffix: '%',
-      label: 'Visa Success Rate',
-      description: 'Proven Results',
-      gradient: 'from-blue-400 via-blue-500 to-blue-600',
-      glowColor: 'shadow-blue-500/25',
-      bgPattern: 'radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.3) 0%, transparent 50%)'
     },
     {
       icon: Star,
@@ -237,32 +225,13 @@ export default function StatsBanner() {
         </motion.div>
 
         {/* Stats Cards */}
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <motion.div
+              <div
                 key={index}
                 className="group relative cursor-pointer"
-                initial={{ opacity: 0, y: 100, scale: 0.8 }}
-                animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 100, scale: 0.8 }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: index * 0.2 + 0.8,
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 12
-                }}
-                whileHover={{ 
-                  scale: 1.08,
-                  y: -10,
-                  transition: { duration: 0.3, type: "spring", stiffness: 200 }
-                }}
                 onClick={() => handleStatClick(index)}
               >
                 {/* Background Pattern */}
@@ -278,15 +247,11 @@ export default function StatsBanner() {
                 <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
                   {/* Icon Container */}
                   <div className="relative mb-4 flex justify-center">
-                    <motion.div
-                      className={`w-10 h-10 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`}
-                      whileHover={{ rotate: 360, scale: 1.1 }}
-                      transition={{ duration: 0.6 }}
-                    >
+                    <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${stat.gradient} flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`}>
                       <IconComponent className="w-5 h-5 text-white" />
-                    </motion.div>
+                    </div>
                     
-                    {/* Floating Sparkles */}
+                    {/* Floating Sparkles - Only star animation kept */}
                     <motion.div
                       className="absolute -top-2 -right-2 w-6 h-6"
                       animate={{
@@ -305,18 +270,13 @@ export default function StatsBanner() {
 
                   {/* Content */}
                   <div className="text-center space-y-2">
-                    <motion.div
-                      className="text-lg lg:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500"
-                      initial={{ scale: 0 }}
-                      animate={isInView ? { scale: 1 } : { scale: 0 }}
-                      transition={{ duration: 0.8, delay: index * 0.2 + 1.2, type: "spring", stiffness: 100 }}
-                    >
+                    <div className="text-lg lg:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500">
                       <AnimatedCounter 
                         number={stat.number} 
                         suffix={stat.suffix} 
                         isVisible={isInView} 
                       />
-                    </motion.div>
+                    </div>
                     
                     <h3 className="text-white font-semibold text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500">
                       {stat.label}
@@ -326,42 +286,11 @@ export default function StatsBanner() {
                       {stat.description}
                     </p>
                   </div>
-
-                  {/* Progress Indicator */}
-                  <motion.div
-                    className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full overflow-hidden"
-                    initial={{ width: 0 }}
-                    animate={isInView ? { width: 48 } : { width: 0 }}
-                    transition={{ duration: 1, delay: index * 0.2 + 1.5 }}
-                  >
-                    <motion.div
-                      className={`h-full bg-gradient-to-r ${stat.gradient}`}
-                      initial={{ x: '-100%' }}
-                      animate={isInView ? { x: 0 } : { x: '-100%' }}
-                      transition={{ duration: 1.5, delay: index * 0.2 + 1.8 }}
-                    />
-                  </motion.div>
-
-                  {/* Hover Effect Arrow */}
-                  <motion.div
-                    className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    animate={{
-                      x: [0, 5, 0],
-                      y: [0, -5, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <TrendingUp className="w-5 h-5 text-white/60" />
-                  </motion.div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
         {/* Bottom Element */}
         <motion.div
