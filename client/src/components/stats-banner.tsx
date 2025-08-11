@@ -188,7 +188,7 @@ export default function StatsBanner() {
       </div>
       <div className="container mx-auto px-4 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
         {/* Social Icons - Left Side Vertical */}
-        <div className="absolute left-8 top-20 z-20 bg-white rounded-full px-3 py-4 shadow-lg border border-gray-200">
+        <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 bg-white rounded-full px-3 py-4 shadow-lg border border-gray-200">
           <div className="flex flex-col gap-3">
             <a
               href="https://www.facebook.com/DunyaConsultant/"
@@ -284,7 +284,7 @@ export default function StatsBanner() {
                         ease: "easeInOut"
                       }}
                     >
-                      <Sparkles className="w-6 h-6 opacity-70" style={{ color: '#2764E8' }} />
+                      <Sparkles className="w-6 h-6 text-white opacity-80" />
                     </motion.div>
                   </div>
 
