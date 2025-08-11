@@ -22,8 +22,8 @@ const AnimatedCounter = ({ number, suffix, isVisible }: { number: number; suffix
   useEffect(() => {
     if (!isVisible) return;
     
-    const duration = 2000;
-    const steps = 60;
+    const duration = 800;
+    const steps = 40;
     const increment = number / steps;
     let current = 0;
     
@@ -236,7 +236,7 @@ export default function StatsBanner() {
         {/* Header */}
         <div className="text-center mb-10">
           <h2 className="text-3xl lg:text-4xl mb-4 text-white font-normal">
-            Turning <span className="font-bold italic">Ambition</span> to <span className="font-bold italic">Admission</span>
+            Turning <span className="font-bold italic">Ambition</span> into <span className="font-bold italic">Admission</span>
           </h2>
           
           <p className="text-white/80 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
