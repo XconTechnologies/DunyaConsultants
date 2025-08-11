@@ -90,7 +90,7 @@ export default function AboutCompany() {
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
             {/* Single Unified Content Container */}
-            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-start overflow-hidden">
+            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-between overflow-hidden">
               {/* About Company Button */}
               <motion.div
                 className="mb-4"
@@ -117,16 +117,16 @@ export default function AboutCompany() {
                 <div className="w-12 h-0.5 bg-gradient-to-r from-[#1D50C9] to-blue-500 rounded-full"></div>
               </motion.div>
 
-              <div className="space-y-3 flex-1 overflow-y-auto">
+              <div className="space-y-3">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="border-b border-gray-200 pb-3 last:border-b-0"
+                    className="border-b border-gray-200 pb-3 last:border-b-0 last:pb-0"
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   >
-                    <div className="flex items-start gap-2 mb-1">
+                    <div className="flex items-start gap-2">
                       <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                         <item.icon className="w-4 h-4" style={{ color: '#1D50C9' }} />
                       </div>
