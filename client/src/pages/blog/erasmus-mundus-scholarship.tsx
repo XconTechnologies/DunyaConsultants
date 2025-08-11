@@ -115,7 +115,7 @@ export default function ErasmusMundusScholarship() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#4285F4] via-[#4285F4] to-[#3367D6] flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -148,9 +148,9 @@ export default function ErasmusMundusScholarship() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-blue-800 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
                   <DollarSign className="mr-3 h-6 w-6" />
                   Complete Financial Coverage
                 </h2>
@@ -166,7 +166,7 @@ export default function ErasmusMundusScholarship() {
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+                      <tr className="bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Benefit Type</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Amount (EUR)</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Coverage Details</th>
@@ -182,7 +182,7 @@ export default function ErasmusMundusScholarship() {
                           className={index % 2 === 0 ? "bg-white" : "bg-white"}
                         >
                           <td className="border border-gray-300 px-4 py-3 text-gray-800 font-semibold">{item.benefit}</td>
-                          <td className="border border-gray-300 px-4 py-3 text-gray-700 font-bold text-blue-700">{item.amount}</td>
+                          <td className="border border-gray-300 px-4 py-3 text-gray-700 font-bold text-#1a73e8">{item.amount}</td>
                           <td className="border border-gray-300 px-4 py-3 text-gray-600">{item.description}</td>
                         </motion.tr>
                       ))}
@@ -191,7 +191,7 @@ export default function ErasmusMundusScholarship() {
                 </div>
                 
                 <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-sm text-blue-800">
+                  <p className="text-sm text-#1565c0">
                     <strong>Total Value:</strong> €30,000+ per student for Master's programs | €40,000+ for Doctoral programs
                   </p>
                 </div>
@@ -214,19 +214,19 @@ export default function ErasmusMundusScholarship() {
                     >
                       <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
                         <CardContent className="p-6">
-                          <h3 className="text-xl font-bold text-blue-800 mb-3">{program.type}</h3>
+                          <h3 className="text-xl font-bold text-#1565c0 mb-3">{program.type}</h3>
                           <div className="grid md:grid-cols-3 gap-4 text-sm">
                             <div>
-                              <span className="text-blue-700 font-medium">Duration:</span>
-                              <div className="font-semibold text-blue-800">{program.duration}</div>
+                              <span className="text-#1a73e8 font-medium">Duration:</span>
+                              <div className="font-semibold text-#1565c0">{program.duration}</div>
                             </div>
                             <div>
-                              <span className="text-blue-700 font-medium">Subjects:</span>
-                              <div className="font-semibold text-blue-800">{program.subjects.join(", ")}</div>
+                              <span className="text-#1a73e8 font-medium">Subjects:</span>
+                              <div className="font-semibold text-#1565c0">{program.subjects.join(", ")}</div>
                             </div>
                             <div>
-                              <span className="text-blue-700 font-medium">Mobility:</span>
-                              <div className="font-semibold text-blue-800">{program.universities}</div>
+                              <span className="text-#1a73e8 font-medium">Mobility:</span>
+                              <div className="font-semibold text-#1565c0">{program.universities}</div>
                             </div>
                           </div>
                         </CardContent>
@@ -249,9 +249,9 @@ export default function ErasmusMundusScholarship() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500"
+                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 #4285F4"
                     >
-                      <CheckCircle className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{requirement}</span>
                     </motion.div>
                   ))}
@@ -278,15 +278,15 @@ export default function ErasmusMundusScholarship() {
                           <h3 className="text-lg font-bold text-gray-800 mb-3">{program.program}</h3>
                           <div className="space-y-2 text-sm">
                             <div className="flex items-center space-x-2">
-                              <Globe className="h-4 w-4 text-blue-500" />
+                              <Globe className="h-4 w-4 #4285F4" />
                               <span className="text-gray-700">{program.universities}</span>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <Clock className="h-4 w-4 text-blue-500" />
+                              <Clock className="h-4 w-4 #4285F4" />
                               <span className="text-gray-700">{program.duration}</span>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <Target className="h-4 w-4 text-blue-500" />
+                              <Target className="h-4 w-4 #4285F4" />
                               <span className="text-gray-700">{program.focus}</span>
                             </div>
                           </div>
@@ -314,7 +314,7 @@ export default function ErasmusMundusScholarship() {
                       className="relative"
                     >
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#4285F4] to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
                           {index + 1}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -345,9 +345,9 @@ export default function ErasmusMundusScholarship() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500"
+                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 #4285F4"
                     >
-                      <Star className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                      <Star className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{tip}</span>
                     </motion.div>
                   ))}
@@ -359,35 +359,35 @@ export default function ErasmusMundusScholarship() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-blue-800">Application Deadlines</h2>
+                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Application Deadlines</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Erasmus Mundus applications typically follow these timeline patterns:
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <Calendar className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <Calendar className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>December - February:</strong> Most program application deadlines</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <Calendar className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <Calendar className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>March - May:</strong> Selection process and interviews</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <Calendar className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <Calendar className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>June - July:</strong> Scholarship results announcement</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <Calendar className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                    <Calendar className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>September:</strong> Program commencement in Europe</span>
                   </div>
                 </div>
               </motion.div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-blue-800">Start Your European Journey</h2>
+              <div className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg">
+                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Start Your European Journey</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The Erasmus Mundus Scholarship represents an extraordinary opportunity to pursue world-class education across multiple European countries with full financial support. This prestigious program not only covers all expenses but also provides invaluable international experience and networking opportunities.
                 </p>
@@ -447,26 +447,26 @@ export default function ErasmusMundusScholarship() {
               {/* Quick Facts */}
               <Card className="bg-gradient-to-br from-blue-50 to-purple-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-blue-800 mb-4 flex items-center">
+                  <h3 className="font-bold text-#1565c0 mb-4 flex items-center">
                     <Award className="mr-2 h-5 w-5" />
                     Scholarship Overview
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-blue-700">Coverage:</span>
-                      <span className="font-semibold text-blue-800">100% Funded</span>
+                      <span className="text-#1a73e8">Coverage:</span>
+                      <span className="font-semibold text-#1565c0">100% Funded</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-blue-700">Duration:</span>
-                      <span className="font-semibold text-blue-800">1-4 Years</span>
+                      <span className="text-#1a73e8">Duration:</span>
+                      <span className="font-semibold text-#1565c0">1-4 Years</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-blue-700">Countries:</span>
-                      <span className="font-semibold text-blue-800">27+ EU Nations</span>
+                      <span className="text-#1a73e8">Countries:</span>
+                      <span className="font-semibold text-#1565c0">27+ EU Nations</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-blue-700">Programs:</span>
-                      <span className="font-semibold text-blue-800">200+ Available</span>
+                      <span className="text-#1a73e8">Programs:</span>
+                      <span className="font-semibold text-#1565c0">200+ Available</span>
                     </div>
                   </div>
                 </CardContent>
@@ -479,19 +479,19 @@ export default function ErasmusMundusScholarship() {
                   <div className="space-y-3">
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">Engineering & Technology</div>
-                      <div className="text-blue-600 text-xs">40+ Programs Available</div>
+                      <div className="#3367D6 text-xs">40+ Programs Available</div>
                     </div>
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">Business & Economics</div>
-                      <div className="text-blue-600 text-xs">35+ Programs Available</div>
+                      <div className="#3367D6 text-xs">35+ Programs Available</div>
                     </div>
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">Environmental Studies</div>
-                      <div className="text-blue-600 text-xs">25+ Programs Available</div>
+                      <div className="#3367D6 text-xs">25+ Programs Available</div>
                     </div>
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">Social Sciences</div>
-                      <div className="text-blue-600 text-xs">30+ Programs Available</div>
+                      <div className="#3367D6 text-xs">30+ Programs Available</div>
                     </div>
                   </div>
                 </CardContent>
@@ -525,7 +525,7 @@ export default function ErasmusMundusScholarship() {
                       <option>Social Sciences</option>
                       <option>Other</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-purple-700">
+                    <Button className="w-full bg-gradient-to-r from-[#4285F4] to-#1565c0 hover:from-#1a73e8 hover:to-purple-700">
                       Get Scholarship Guidance
                     </Button>
                   </form>

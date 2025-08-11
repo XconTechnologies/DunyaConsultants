@@ -239,7 +239,7 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 #3367D6 mx-auto mb-4"></div>
           <p className="text-gray-600">Loading admin dashboard...</p>
         </div>
       </div>
@@ -254,7 +254,7 @@ export default function AdminDashboard() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <BarChart3 className="w-8 h-8 text-blue-600" />
+                <BarChart3 className="w-8 h-8 #3367D6" />
                 <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
               </div>
             </div>
@@ -366,7 +366,7 @@ export default function AdminDashboard() {
                                 variant="outline"
                                 onClick={() => handlePublish(post.id)}
                                 title="Publish Article"
-                                className="text-blue-600 hover:text-blue-700"
+                                className="#3367D6 hover:text-#1a73e8"
                               >
                                 <CheckCircle className="w-4 h-4" />
                               </Button>
@@ -376,7 +376,7 @@ export default function AdminDashboard() {
                               variant="outline"
                               onClick={() => handleDelete("blog", post.id)}
                               title="Delete Article"
-                              className="text-blue-600 hover:text-blue-700"
+                              className="#3367D6 hover:text-#1a73e8"
                             >
                               <Trash2 className="w-4 h-4" />
                             </Button>

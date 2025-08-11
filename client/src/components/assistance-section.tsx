@@ -28,8 +28,8 @@ export default function AssistanceSection() {
     <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-blue-100 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500 rounded-full -translate-x-32 -translate-y-32" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-600 rounded-full translate-x-48 translate-y-48" />
+        <div className="absolute top-0 left-0 w-64 h-64 #4285F4 rounded-full -translate-x-32 -translate-y-32" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 #3367D6 rounded-full translate-x-48 translate-y-48" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -68,7 +68,7 @@ export default function AssistanceSection() {
                   transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                   whileHover={{ scale: 1.02, shadow: "lg" }}
                 >
-                  <div className="text-blue-600 bg-blue-50 p-2 rounded-lg">
+                  <div className="#3367D6 bg-blue-50 p-2 rounded-lg">
                     {feature.icon}
                   </div>
                   <div>
@@ -87,7 +87,7 @@ export default function AssistanceSection() {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <motion.button
-                className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+                className="flex-1 bg-gradient-to-r from-[#4285F4] to-[#1a73e8] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-#1a73e8 hover:to-#1565c0 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -96,7 +96,7 @@ export default function AssistanceSection() {
               </motion.button>
               
               <motion.button
-                className="flex-1 bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+                className="flex-1 bg-white #3367D6 px-8 py-4 rounded-lg font-semibold text-lg border-2 #3367D6 hover:#3367D6 hover:text-white transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -117,7 +117,7 @@ export default function AssistanceSection() {
               {/* Header */}
               <div className="text-center mb-8">
                 <motion.div
-                  className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full mb-4"
+                  className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-full mb-4"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                 >
                   <Headphones className="w-8 h-8 text-white" />
@@ -178,7 +178,7 @@ export default function AssistanceSection() {
 
                 <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+                  className="w-full bg-gradient-to-r from-[#4285F4] to-[#1a73e8] text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-#1a73e8 hover:to-#1565c0 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -211,7 +211,7 @@ export default function AssistanceSection() {
 
             {/* Background decorative elements */}
             <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-r from-blue-400 to-blue-500 rounded-full opacity-20 animate-pulse" />
-            <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full opacity-20 animate-pulse" />
+            <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-full opacity-20 animate-pulse" />
           </motion.div>
         </div>
       </div>

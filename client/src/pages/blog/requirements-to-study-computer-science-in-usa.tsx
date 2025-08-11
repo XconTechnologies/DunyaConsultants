@@ -9,11 +9,11 @@ export default function RequirementsComputerScienceUSA() {
       <Navigation />
       
       {/* Hero Section - Exact Kaplan Style */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Destinations
               </span>
             </div>
@@ -65,13 +65,13 @@ export default function RequirementsComputerScienceUSA() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#what-field" className="hover:text-blue-600">What Field of Study is Computer Science?</a></li>
-                  <li><a href="#eligibility" className="hover:text-blue-600">Eligibility Criteria to Study Computer Science in USA</a></li>
-                  <li><a href="#documents" className="hover:text-blue-600">Documents Required for Fields of Computer Science</a></li>
-                  <li><a href="#admission-process" className="hover:text-blue-600">Admission Process for Computer Science Study in USA</a></li>
-                  <li><a href="#cost" className="hover:text-blue-600">Cost to study Computer Science Abroad in the USA</a></li>
-                  <li><a href="#universities" className="hover:text-blue-600">List of the Best Universities to Study Computer Science in USA</a></li>
-                  <li><a href="#scholarships" className="hover:text-blue-600">Scholarships for Education for Computer Science in the USA</a></li>
+                  <li><a href="#what-field" className="hover:#3367D6">What Field of Study is Computer Science?</a></li>
+                  <li><a href="#eligibility" className="hover:#3367D6">Eligibility Criteria to Study Computer Science in USA</a></li>
+                  <li><a href="#documents" className="hover:#3367D6">Documents Required for Fields of Computer Science</a></li>
+                  <li><a href="#admission-process" className="hover:#3367D6">Admission Process for Computer Science Study in USA</a></li>
+                  <li><a href="#cost" className="hover:#3367D6">Cost to study Computer Science Abroad in the USA</a></li>
+                  <li><a href="#universities" className="hover:#3367D6">List of the Best Universities to Study Computer Science in USA</a></li>
+                  <li><a href="#scholarships" className="hover:#3367D6">Scholarships for Education for Computer Science in the USA</a></li>
                 </ul>
               </div>
 
@@ -95,7 +95,7 @@ export default function RequirementsComputerScienceUSA() {
                   <p>
                     To get admission to a Bachelor's degree in US CS, there are certain requirements you need to meet. These may vary slightly depending on the university, but the basic qualifications are as follows:
                   </p>
-                  <div className="bg-blue-50 border-l-4 border-blue-500 p-4 my-4">
+                  <div className="bg-blue-50 border-l-4 #4285F4 p-4 my-4">
                     <ul className="space-y-2">
                       <li>• You will need to provide a copy of your passport and get a visa to study in the USA.</li>
                       <li>• You must have finished your high school education.</li>
@@ -132,13 +132,13 @@ export default function RequirementsComputerScienceUSA() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-blue-50 p-4 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-3 text-blue-800">Financial Documents</h3>
+                      <h3 className="font-semibold text-lg mb-3 text-#1565c0">Financial Documents</h3>
                       <ul className="space-y-2 text-sm">
                         <li>• <strong>Proof of financial support</strong> – Evidence showing you can afford tuition fees, living costs, and health insurance</li>
                       </ul>
                     </div>
                     <div className="bg-blue-50 p-4 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-3 text-blue-800">Recommendation</h3>
+                      <h3 className="font-semibold text-lg mb-3 text-#1565c0">Recommendation</h3>
                       <ul className="space-y-2 text-sm">
                         <li>• <strong>Letters of recommendation</strong> – Letters from teachers or people who can vouch for your skills and qualities</li>
                       </ul>
@@ -155,42 +155,42 @@ export default function RequirementsComputerScienceUSA() {
                   
                   <div className="space-y-4">
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
+                      <div className="flex-shrink-0 w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
                       <div>
                         <h3 className="font-semibold text-gray-800 mb-1">Research Universities</h3>
                         <p className="text-gray-600">Look for good universities that provide Computer Science courses.</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
+                      <div className="flex-shrink-0 w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
                       <div>
                         <h3 className="font-semibold text-gray-800 mb-1">Submit Application</h3>
                         <p className="text-gray-600">Once you have selected a university, fill out the application form for the Bachelor's degree and pay the application fee.</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
+                      <div className="flex-shrink-0 w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
                       <div>
                         <h3 className="font-semibold text-gray-800 mb-1">Submit Documents</h3>
                         <p className="text-gray-600">Check the required documents and send their scanned copies.</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
+                      <div className="flex-shrink-0 w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center font-bold text-sm">4</div>
                       <div>
                         <h3 className="font-semibold text-gray-800 mb-1">Interview Process</h3>
                         <p className="text-gray-600">After you submit your application, you will get an email about the interview.</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">5</div>
+                      <div className="flex-shrink-0 w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center font-bold text-sm">5</div>
                       <div>
                         <h3 className="font-semibold text-gray-800 mb-1">Admission Decision</h3>
                         <p className="text-gray-600">Prepare for the interview and wait for the admission decision.</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold text-sm">6</div>
+                      <div className="flex-shrink-0 w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center font-bold text-sm">6</div>
                       <div>
                         <h3 className="font-semibold text-gray-800 mb-1">Confirm Seat</h3>
                         <p className="text-gray-600">If you are accepted, you'll need to pay a deposit fee to confirm your seat. This fee is required to secure your place.</p>
@@ -209,7 +209,7 @@ export default function RequirementsComputerScienceUSA() {
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold text-lg mb-3 text-blue-800">Public Universities</h4>
+                      <h4 className="font-semibold text-lg mb-3 text-#1565c0">Public Universities</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Tuition: $25,000-$40,000 per year</li>
                         <li>• Living expenses: $15,000-$20,000 per year</li>
@@ -218,7 +218,7 @@ export default function RequirementsComputerScienceUSA() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-lg mb-3 text-blue-800">Private Universities</h4>
+                      <h4 className="font-semibold text-lg mb-3 text-#1565c0">Private Universities</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Tuition: $40,000-$60,000 per year</li>
                         <li>• Living expenses: $15,000-$20,000 per year</li>
@@ -238,32 +238,32 @@ export default function RequirementsComputerScienceUSA() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                      <h3 className="font-semibold text-lg text-blue-600 mb-2">MIT</h3>
+                      <h3 className="font-semibold text-lg #3367D6 mb-2">MIT</h3>
                       <p className="text-gray-600 text-sm">Massachusetts Institute of Technology</p>
                       <p className="text-gray-700 mt-2">Rank: #1 in Computer Science</p>
                     </div>
                     <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                      <h3 className="font-semibold text-lg text-blue-600 mb-2">Stanford University</h3>
+                      <h3 className="font-semibold text-lg #3367D6 mb-2">Stanford University</h3>
                       <p className="text-gray-600 text-sm">Stanford, California</p>
                       <p className="text-gray-700 mt-2">Rank: #2 in Computer Science</p>
                     </div>
                     <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                      <h3 className="font-semibold text-lg text-blue-600 mb-2">UC Berkeley</h3>
+                      <h3 className="font-semibold text-lg #3367D6 mb-2">UC Berkeley</h3>
                       <p className="text-gray-600 text-sm">University of California, Berkeley</p>
                       <p className="text-gray-700 mt-2">Rank: #3 in Computer Science</p>
                     </div>
                     <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                      <h3 className="font-semibold text-lg text-blue-600 mb-2">Carnegie Mellon</h3>
+                      <h3 className="font-semibold text-lg #3367D6 mb-2">Carnegie Mellon</h3>
                       <p className="text-gray-600 text-sm">Pittsburgh, Pennsylvania</p>
                       <p className="text-gray-700 mt-2">Rank: #4 in Computer Science</p>
                     </div>
                     <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                      <h3 className="font-semibold text-lg text-blue-600 mb-2">Harvard University</h3>
+                      <h3 className="font-semibold text-lg #3367D6 mb-2">Harvard University</h3>
                       <p className="text-gray-600 text-sm">Cambridge, Massachusetts</p>
                       <p className="text-gray-700 mt-2">Top Ivy League CS Program</p>
                     </div>
                     <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                      <h3 className="font-semibold text-lg text-blue-600 mb-2">Caltech</h3>
+                      <h3 className="font-semibold text-lg #3367D6 mb-2">Caltech</h3>
                       <p className="text-gray-600 text-sm">California Institute of Technology</p>
                       <p className="text-gray-700 mt-2">Top STEM Research University</p>
                     </div>
@@ -279,7 +279,7 @@ export default function RequirementsComputerScienceUSA() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <h3 className="font-semibold text-lg text-blue-800 mb-3">Merit-Based Scholarships</h3>
+                      <h3 className="font-semibold text-lg text-#1565c0 mb-3">Merit-Based Scholarships</h3>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Presidential Scholarships</li>
                         <li>• Dean's Excellence Awards</li>
@@ -288,7 +288,7 @@ export default function RequirementsComputerScienceUSA() {
                       </ul>
                     </div>
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <h3 className="font-semibold text-lg text-blue-800 mb-3">Government Scholarships</h3>
+                      <h3 className="font-semibold text-lg text-#1565c0 mb-3">Government Scholarships</h3>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Fulbright Scholarship Program</li>
                         <li>• Government-sponsored programs</li>
@@ -344,7 +344,7 @@ export default function RequirementsComputerScienceUSA() {
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="font-bold text-lg text-blue-900 mb-4">Quick Facts</h3>
+                <h3 className="font-bold text-lg text-#1e3a8a mb-4">Quick Facts</h3>
                 <ul className="space-y-3 text-sm">
                   <li className="flex justify-between">
                     <span className="text-gray-600">Duration:</span>
@@ -375,22 +375,22 @@ export default function RequirementsComputerScienceUSA() {
 
               {/* Application Timeline */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                <h3 className="font-bold text-lg text-blue-900 mb-4">Application Timeline</h3>
+                <h3 className="font-bold text-lg text-#1e3a8a mb-4">Application Timeline</h3>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <div className="font-medium text-blue-800">12-18 months before</div>
+                    <div className="font-medium text-#1565c0">12-18 months before</div>
                     <div className="text-gray-600">Research & Planning</div>
                   </div>
                   <div>
-                    <div className="font-medium text-blue-800">8-12 months before</div>
+                    <div className="font-medium text-#1565c0">8-12 months before</div>
                     <div className="text-gray-600">Test Preparation</div>
                   </div>
                   <div>
-                    <div className="font-medium text-blue-800">6-8 months before</div>
+                    <div className="font-medium text-#1565c0">6-8 months before</div>
                     <div className="text-gray-600">Application Submission</div>
                   </div>
                   <div>
-                    <div className="font-medium text-blue-800">3-6 months before</div>
+                    <div className="font-medium text-#1565c0">3-6 months before</div>
                     <div className="text-gray-600">Financial Planning</div>
                   </div>
                 </div>

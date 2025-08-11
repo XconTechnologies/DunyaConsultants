@@ -47,7 +47,7 @@ const IELTSPreparationTipsAndTricks: React.FC = () => {
         <Navigation />
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 #4285F4 mx-auto mb-4"></div>
             <p className="text-gray-600">Loading article...</p>
           </div>
         </div>
@@ -62,8 +62,8 @@ const IELTSPreparationTipsAndTricks: React.FC = () => {
         <Navigation />
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <p className="text-blue-600 mb-4">Failed to load the article</p>
-            <Link href="/blog" className="text-blue-600 hover:text-blue-800">
+            <p className="#3367D6 mb-4">Failed to load the article</p>
+            <Link href="/blog" className="#3367D6 hover:text-#1565c0">
               ← Back to Blog
             </Link>
           </div>
@@ -77,7 +77,7 @@ const IELTSPreparationTipsAndTricks: React.FC = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
@@ -127,8 +127,8 @@ const IELTSPreparationTipsAndTricks: React.FC = () => {
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
               <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-semibold text-blue-800 mb-4">Quick Facts</h3>
-                <div className="space-y-3 text-sm text-blue-700">
+                <h3 className="text-lg font-semibold text-#1565c0 mb-4">Quick Facts</h3>
+                <div className="space-y-3 text-sm text-#1a73e8">
                   <div className="flex justify-between">
                     <span>Test Duration:</span>
                     <span className="font-semibold">2 hours 45 mins</span>
@@ -150,8 +150,8 @@ const IELTSPreparationTipsAndTricks: React.FC = () => {
 
               {/* Preparation Tips */}
               <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-semibold text-blue-800 mb-4">Key Preparation Tips</h3>
-                <div className="space-y-2 text-sm text-blue-700">
+                <h3 className="text-lg font-semibold text-#1565c0 mb-4">Key Preparation Tips</h3>
+                <div className="space-y-2 text-sm text-#1a73e8">
                   <div>• Practice daily with mock tests</div>
                   <div>• Focus on time management</div>
                   <div>• Improve vocabulary systematically</div>

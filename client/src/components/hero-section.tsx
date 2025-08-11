@@ -71,7 +71,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{ fontSize: '64px' }}
           >
-            <span style={{ color: '#4285F4' }}>
+            <span style={{ color: '#2764E8' }}>
               Dedication To Education
             </span>
           </motion.h1>
@@ -120,7 +120,7 @@ export default function HeroSection() {
             <Button 
               size="default"
               onClick={() => scrollToSection("contact")}
-              className="bg-accent hover:bg-blue-500 text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+              className="bg-accent hover:bg-[#4285F4] text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
             >
               <Rocket className="mr-2" size={16} />
               Start Your Journey

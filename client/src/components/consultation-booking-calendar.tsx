@@ -184,7 +184,7 @@ export default function ConsultationBookingCalendar() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="w-20 h-20 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6"
+              className="w-20 h-20 #4285F4 rounded-full flex items-center justify-center mx-auto mb-6"
             >
               <Check className="w-10 h-10 text-white" />
             </motion.div>
@@ -241,7 +241,7 @@ export default function ConsultationBookingCalendar() {
                   <div key={stepNumber} className="flex flex-col items-center" style={{ width: '20%' }}>
                     <motion.div
                       className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg border-4 border-white shadow-lg ${
-                        isCompleted ? 'bg-blue-500' : isActive ? 'bg-blue-500' : 'bg-gray-300'
+                        isCompleted ? '#4285F4' : isActive ? '#4285F4' : 'bg-gray-300'
                       }`}
                       animate={{ scale: isActive ? 1.1 : 1 }}
                       transition={{ duration: 0.3 }}
@@ -249,10 +249,10 @@ export default function ConsultationBookingCalendar() {
                       {isCompleted ? <Check className="w-6 h-6" /> : stepNumber}
                     </motion.div>
                     <div className="text-center mt-2">
-                      <div className={`text-sm font-medium ${isActive ? 'text-blue-600' : 'text-gray-600'}`}>
+                      <div className={`text-sm font-medium ${isActive ? '#3367D6' : 'text-gray-600'}`}>
                         Step {stepNumber}
                       </div>
-                      <div className={`text-xs ${isActive ? 'text-blue-800' : 'text-gray-500'}`}>
+                      <div className={`text-xs ${isActive ? 'text-#1565c0' : 'text-gray-500'}`}>
                         {title}
                       </div>
                     </div>
@@ -265,7 +265,7 @@ export default function ConsultationBookingCalendar() {
             <div className="relative mt-4">
               <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 rounded transform -translate-y-1/2" style={{ left: '10%', right: '10%' }}></div>
               <motion.div
-                className="absolute top-1/2 left-0 h-1 bg-blue-500 rounded transform -translate-y-1/2"
+                className="absolute top-1/2 left-0 h-1 #4285F4 rounded transform -translate-y-1/2"
                 style={{ 
                   left: '10%',
                   width: `${((currentStep - 1) / (totalSteps - 1)) * 80}%`
@@ -302,7 +302,7 @@ export default function ConsultationBookingCalendar() {
                       }}
                       className={`p-6 rounded-xl border-2 text-left transition-all duration-300 ${
                         selectedType === type.id
-                          ? 'border-blue-500 bg-blue-50'
+                          ? '#4285F4 bg-blue-50'
                           : 'border-gray-200 hover:border-blue-300'
                       }`}
                       whileHover={{ scale: 1.02 }}
@@ -332,14 +332,14 @@ export default function ConsultationBookingCalendar() {
                       }}
                       className={`p-4 rounded-xl border-2 text-left transition-all duration-300 ${
                         selectedLocation === location.id
-                          ? 'border-blue-500 bg-blue-50'
+                          ? '#4285F4 bg-blue-50'
                           : 'border-gray-200 hover:border-blue-300'
                       }`}
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                     >
                       <div className="flex items-start">
-                        <MapPin className="w-4 h-4 text-blue-600 mr-2 mt-1 flex-shrink-0" />
+                        <MapPin className="w-4 h-4 #3367D6 mr-2 mt-1 flex-shrink-0" />
                         <div className="min-w-0">
                           <div className="font-semibold text-gray-900 text-sm truncate">{location.name}</div>
                           <div className="text-xs text-gray-600 line-clamp-2">{location.address}</div>
@@ -367,7 +367,7 @@ export default function ConsultationBookingCalendar() {
                       }}
                       className={`p-4 rounded-xl border text-center transition-all duration-300 ${
                         selectedDate === day.date
-                          ? 'border-blue-500 bg-blue-500 text-white'
+                          ? '#4285F4 #4285F4 text-white'
                           : 'border-gray-200 hover:border-blue-300'
                       }`}
                       whileHover={{ scale: 1.05 }}
@@ -398,7 +398,7 @@ export default function ConsultationBookingCalendar() {
                       }}
                       className={`p-4 rounded-lg border text-center transition-all duration-300 ${
                         selectedTime === time
-                          ? 'border-blue-500 bg-blue-500 text-white'
+                          ? '#4285F4 #4285F4 text-white'
                           : 'border-gray-200 hover:border-blue-300'
                       }`}
                       whileHover={{ scale: 1.05 }}
@@ -478,8 +478,8 @@ export default function ConsultationBookingCalendar() {
 
                   {/* Booking Summary */}
                   <div className="bg-blue-50 rounded-lg p-6">
-                    <h4 className="font-semibold text-blue-900 mb-4">Booking Summary</h4>
-                    <div className="space-y-2 text-sm text-blue-800">
+                    <h4 className="font-semibold text-#1e3a8a mb-4">Booking Summary</h4>
+                    <div className="space-y-2 text-sm text-#1565c0">
                       <div><strong>Type:</strong> {consultationTypes.find(t => t.id === selectedType)?.name}</div>
                       <div><strong>Location:</strong> {officeLocations.find(l => l.id === selectedLocation)?.name}</div>
                       <div><strong>Date:</strong> {selectedDate && new Date(selectedDate).toLocaleDateString()}</div>

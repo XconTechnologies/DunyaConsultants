@@ -55,7 +55,7 @@ export default function AboutCompany() {
                 
                 {/* Floating Decorative Elements */}
                 <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-blue-500 rounded-3xl rotate-12 shadow-xl opacity-90"></div>
-                <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl -rotate-12 shadow-xl opacity-90"></div>
+                <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-br from-[#4285F4] to-[#3367D6] rounded-3xl -rotate-12 shadow-xl opacity-90"></div>
                 <div className="absolute top-1/3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl rotate-45 shadow-lg opacity-80"></div>
                 <div className="absolute bottom-1/3 -left-3 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl -rotate-45 shadow-lg opacity-80"></div>
 
@@ -103,8 +103,8 @@ export default function AboutCompany() {
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
                 <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-100 rounded-full mb-4 border border-blue-200">
-                  <div className="w-3 h-3 bg-gradient-to-r from-blue-500 to-blue-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-sm font-bold text-blue-800 tracking-wider uppercase">
+                  <div className="w-3 h-3 bg-gradient-to-r from-[#4285F4] to-blue-500 rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-sm font-bold text-#1565c0 tracking-wider uppercase">
                     About Company
                   </span>
                 </div>
@@ -118,7 +118,7 @@ export default function AboutCompany() {
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
                 <h2 className="text-2xl font-bold mb-2 text-[#4285F4]">Why Choose Dunya Consultants?</h2>
-                <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-blue-500 rounded-full"></div>
+                <div className="w-16 h-1 bg-gradient-to-r from-[#4285F4] to-blue-500 rounded-full"></div>
               </motion.div>
 
               <div className="space-y-5">
@@ -132,7 +132,7 @@ export default function AboutCompany() {
                   >
                     <div className="flex items-start gap-3 mb-2">
                       <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <item.icon className="w-5 h-5 text-blue-600" />
+                        <item.icon className="w-5 h-5 #3367D6" />
                       </div>
                       <div>
                         <h3 className="text-sm font-semibold text-gray-900 mb-1 leading-tight">

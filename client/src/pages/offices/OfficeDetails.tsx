@@ -18,7 +18,7 @@ const offices = [
     phone: "+92 304 1110947",
     email: "info@dunyaconsultants.com",
     hours: "Mon–Sat 9 AM–7 PM",
-    gradient: "from-blue-600 to-purple-600",
+    gradient: "from-[#4285F4] to-purple-600",
     isHeadOffice: true,
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"],
@@ -212,7 +212,7 @@ export default function OfficeDetails() {
                       <Phone className="w-5 h-5 text-gray-500" />
                       <div>
                         <p className="font-medium">Phone</p>
-                        <a href={`tel:${office.phone}`} className="text-blue-600 hover:underline">
+                        <a href={`tel:${office.phone}`} className="#3367D6 hover:underline">
                           {office.phone}
                         </a>
                       </div>
@@ -221,7 +221,7 @@ export default function OfficeDetails() {
                       <Mail className="w-5 h-5 text-gray-500" />
                       <div>
                         <p className="font-medium">Email</p>
-                        <a href={`mailto:${office.email}`} className="text-blue-600 hover:underline">
+                        <a href={`mailto:${office.email}`} className="#3367D6 hover:underline">
                           {office.email}
                         </a>
                       </div>
@@ -309,7 +309,7 @@ export default function OfficeDetails() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {office.testimonials.map((testimonial, index) => (
-                    <div key={index} className="border-l-4 border-blue-500 pl-4 py-2">
+                    <div key={index} className="border-l-4 #4285F4 pl-4 py-2">
                       <p className="text-gray-700 italic mb-2">"{testimonial.message}"</p>
                       <div className="text-sm">
                         <p className="font-medium">{testimonial.name}</p>
@@ -335,7 +335,7 @@ export default function OfficeDetails() {
                   <div className="grid md:grid-cols-2 gap-3">
                     {office.facilities.map((facility, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
                         <span>{facility}</span>
                       </div>
                     ))}
@@ -362,19 +362,19 @@ export default function OfficeDetails() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{office.successRate}</div>
+                    <div className="text-2xl font-bold #3367D6">{office.successRate}</div>
                     <div className="text-sm text-gray-600">Success Rate</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{office.studentsServed}</div>
+                    <div className="text-2xl font-bold #3367D6">{office.studentsServed}</div>
                     <div className="text-sm text-gray-600">Students Served</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{office.staffCount}</div>
+                    <div className="text-2xl font-bold #3367D6">{office.staffCount}</div>
                     <div className="text-sm text-gray-600">Expert Staff</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-600">{office.established}</div>
+                    <div className="text-2xl font-bold #3367D6">{office.established}</div>
                     <div className="text-sm text-gray-600">Established</div>
                   </div>
                 </CardContent>
@@ -396,7 +396,7 @@ export default function OfficeDetails() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
+                    <div className="w-16 h-16 bg-gradient-to-r from-[#4285F4] to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
                       {office.manager.split(' ').map(n => n[0]).join('')}
                     </div>
                     <h3 className="font-bold">{office.manager}</h3>

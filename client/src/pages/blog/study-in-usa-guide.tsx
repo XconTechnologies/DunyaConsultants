@@ -10,11 +10,11 @@ export default function StudyInUSAGuide() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Destination
               </span>
             </div>
@@ -64,20 +64,20 @@ export default function StudyInUSAGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-usa" className="hover:text-blue-600">Why Choose to Study in USA?</a></li>
-                  <li><a href="#education-system" className="hover:text-blue-600">USA Education System Overview</a></li>
-                  <li><a href="#admission-requirements" className="hover:text-blue-600">Admission Requirements</a></li>
-                  <li><a href="#visa-requirements" className="hover:text-blue-600">Study Visa Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:text-blue-600">Tuition Fees and Living Costs</a></li>
-                  <li><a href="#application-process" className="hover:text-blue-600">Application Process</a></li>
-                  <li><a href="#documents-checklist" className="hover:text-blue-600">Required Documents</a></li>
-                  <li><a href="#faqs" className="hover:text-blue-600">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-usa" className="hover:#3367D6">Why Choose to Study in USA?</a></li>
+                  <li><a href="#education-system" className="hover:#3367D6">USA Education System Overview</a></li>
+                  <li><a href="#admission-requirements" className="hover:#3367D6">Admission Requirements</a></li>
+                  <li><a href="#visa-requirements" className="hover:#3367D6">Study Visa Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:#3367D6">Tuition Fees and Living Costs</a></li>
+                  <li><a href="#application-process" className="hover:#3367D6">Application Process</a></li>
+                  <li><a href="#documents-checklist" className="hover:#3367D6">Required Documents</a></li>
+                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* USA Overview */}
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-blue-800 mb-4">Study in USA at a Glance</h3>
+              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+                <h3 className="text-xl font-semibold text-#1565c0 mb-4">Study in USA at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-700 mb-2"><strong>Universities:</strong> 5,000+ institutions</p>
@@ -94,7 +94,7 @@ export default function StudyInUSAGuide() {
 
               {/* Why Study in USA Section */}
               <section id="why-study-usa" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Why Choose to Study in USA?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Why Choose to Study in USA?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The United States offers numerous advantages for international students, making it the world's top destination for higher education.
@@ -103,7 +103,7 @@ export default function StudyInUSAGuide() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <GraduationCap className="w-5 h-5 mr-2" />
                         World-recognized Education System
                       </h3>
@@ -111,7 +111,7 @@ export default function StudyInUSAGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <Users className="w-5 h-5 mr-2" />
                         Diverse Career Opportunities
                       </h3>
@@ -119,7 +119,7 @@ export default function StudyInUSAGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <BookOpen className="w-5 h-5 mr-2" />
                         Flexible Education System
                       </h3>
@@ -129,7 +129,7 @@ export default function StudyInUSAGuide() {
 
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <CheckCircle className="w-5 h-5 mr-2" />
                         Research and Training Opportunities
                       </h3>
@@ -137,7 +137,7 @@ export default function StudyInUSAGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <DollarSign className="w-5 h-5 mr-2" />
                         Earn While Learning
                       </h3>
@@ -145,7 +145,7 @@ export default function StudyInUSAGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         Travel Opportunities
                       </h3>
@@ -157,14 +157,14 @@ export default function StudyInUSAGuide() {
 
               {/* Visa Requirements Section */}
               <section id="visa-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Study Visa Requirements for Pakistani Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Study Visa Requirements for Pakistani Students</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Pakistani students must obtain an F-1 student visa to study in the USA. The visa process requires several documents and fees.
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Visa Fees for Pakistani Students</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Visa Fees for Pakistani Students</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Required Fees:</h4>
@@ -188,22 +188,22 @@ export default function StudyInUSAGuide() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">I-20 Certificate</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">I-20 Certificate</h3>
                     <p className="text-gray-700">Certificate of Eligibility Form provided by the International Student Services Office at your university.</p>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Financial Support Documents</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Financial Support Documents</h3>
                     <p className="text-gray-700">Current proof of support that covers expenses for program duration as indicated on Form I-20 (bank statements, award letters, or loan approval letters).</p>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Form DS-160</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Form DS-160</h3>
                     <p className="text-gray-700">Nonimmigrant Visa Application available at your local US Embassy or Consulate's website.</p>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Additional Requirements</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Additional Requirements</h3>
                     <ul className="space-y-1 text-gray-700">
                       <li>• Two passport-size photos</li>
                       <li>• Passport valid for minimum 6 months</li>
@@ -216,7 +216,7 @@ export default function StudyInUSAGuide() {
 
               {/* Tuition Costs Section */}
               <section id="tuition-costs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Average Annual Tuition Fees</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Average Annual Tuition Fees</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Tuition fees in the USA vary significantly depending on the type of institution and program level.
@@ -224,7 +224,7 @@ export default function StudyInUSAGuide() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">Undergraduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Undergraduate Programs</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span className="text-gray-700">Public (In-state):</span>
@@ -242,7 +242,7 @@ export default function StudyInUSAGuide() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">Graduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Graduate Programs</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span className="text-gray-700">Annual Range:</span>
@@ -259,7 +259,7 @@ export default function StudyInUSAGuide() {
 
               {/* Documents Checklist Section */}
               <section id="documents-checklist" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Required Documents Checklist</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Required Documents Checklist</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Ensure you have all the required documents before starting your application process.
@@ -267,7 +267,7 @@ export default function StudyInUSAGuide() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Original Passport
                     </h3>
@@ -275,7 +275,7 @@ export default function StudyInUSAGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <FileText className="w-5 h-5 mr-2" />
                       Educational Documents
                     </h3>
@@ -287,7 +287,7 @@ export default function StudyInUSAGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <BookOpen className="w-5 h-5 mr-2" />
                       Test Scores
                     </h3>
@@ -298,7 +298,7 @@ export default function StudyInUSAGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Supporting Documents
                     </h3>
@@ -313,7 +313,7 @@ export default function StudyInUSAGuide() {
 
               {/* FAQ Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -340,13 +340,13 @@ export default function StudyInUSAGuide() {
 
               {/* CTA Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold text-blue-800 mb-4">Ready to Start Your USA Study Journey?</h3>
+                <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Start Your USA Study Journey?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants is here to guide you through every step of the application process. Contact us today for personalized assistance.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/contact" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                  <a href="/contact" className="#3367D6 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
                     Get Free Consultation
                   </a>
-                  <a href="tel:+923041110947" className="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  <a href="tel:+923041110947" className="border #3367D6 #3367D6 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                     Call Now: +92 304 111 0947
                   </a>
                 </div>
@@ -362,7 +362,7 @@ export default function StudyInUSAGuide() {
               
               {/* Quick Info */}
               <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-blue-800">Quick Study Info</h3>
+                <h3 className="text-lg font-semibold mb-4 text-#1565c0">Quick Study Info</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Student Visa:</span>
@@ -387,10 +387,10 @@ export default function StudyInUSAGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/study-in-uk" className="block text-blue-600 hover:text-blue-800 text-sm">Study in UK: Complete Guide</a>
-                  <a href="/blog/study-in-canada" className="block text-blue-600 hover:text-blue-800 text-sm">Study in Canada Guide</a>
-                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block text-blue-600 hover:text-blue-800 text-sm">IELTS Preparation Tips</a>
-                  <a href="/blog/requirements-to-study-computer-science-in-usa" className="block text-blue-600 hover:text-blue-800 text-sm">Computer Science in USA</a>
+                  <a href="/blog/study-in-uk" className="block #3367D6 hover:text-#1565c0 text-sm">Study in UK: Complete Guide</a>
+                  <a href="/blog/study-in-canada" className="block #3367D6 hover:text-#1565c0 text-sm">Study in Canada Guide</a>
+                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #3367D6 hover:text-#1565c0 text-sm">IELTS Preparation Tips</a>
+                  <a href="/blog/requirements-to-study-computer-science-in-usa" className="block #3367D6 hover:text-#1565c0 text-sm">Computer Science in USA</a>
                 </div>
               </div>
 

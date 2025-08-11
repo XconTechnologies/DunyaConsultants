@@ -154,20 +154,20 @@ export default function UniversityPartnersSection() {
   const getCountryColor = (country: string): string => {
     const colors: Record<string, string> = {
       "All": "from-gray-500 to-gray-700",
-      "UK": "from-blue-500 to-blue-700",
-      "Germany": "from-blue-500 to-blue-600", 
-      "Canada": "from-blue-500 to-blue-700",
-      "USA": "from-blue-600 to-blue-600",
-      "Australia": "from-blue-500 to-blue-500",
-      "Turkey": "from-blue-600 to-blue-800",
-      "Netherlands": "from-blue-500 to-blue-600",
+      "UK": "from-[#4285F4] to-[#1a73e8]",
+      "Germany": "from-[#4285F4] to-[#3367D6]", 
+      "Canada": "from-[#4285F4] to-[#1a73e8]",
+      "USA": "from-[#4285F4] to-[#3367D6]",
+      "Australia": "from-[#4285F4] to-blue-500",
+      "Turkey": "from-[#4285F4] to-#1565c0",
+      "Netherlands": "from-[#4285F4] to-[#3367D6]",
       "Finland": "from-blue-400 to-white",
-      "Ireland": "from-blue-600 to-blue-500",
-      "France": "from-blue-500 to-blue-600",
-      "UAE": "from-blue-600 to-blue-600",
-      "Caribbean": "from-blue-500 to-blue-600",
-      "Wales": "from-blue-600 to-blue-600",
-      "Scotland": "from-blue-600 to-white"
+      "Ireland": "from-[#4285F4] to-blue-500",
+      "France": "from-[#4285F4] to-[#3367D6]",
+      "UAE": "from-[#4285F4] to-[#3367D6]",
+      "Caribbean": "from-[#4285F4] to-[#3367D6]",
+      "Wales": "from-[#4285F4] to-[#3367D6]",
+      "Scotland": "from-[#4285F4] to-white"
     };
     return colors[country] || "from-gray-500 to-gray-700";
   };

@@ -25,7 +25,7 @@ const offices: Office[] = [
     address: "Alif Tower, Bahadur Shah Zafar Road, Sargodha",
     phone: "+92 323‑251‑6319",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     isHeadOffice: true,
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"]
@@ -37,7 +37,7 @@ const offices: Office[] = [
     address: "1st Floor, 174 6th Street 123, Sector H, DHA Phase 1, Lahore",
     phone: "+92 300‑167‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "Document Verification"]
   },
@@ -48,7 +48,7 @@ const offices: Office[] = [
     address: "1st Floor, 85 /R‑1, Phase 2, Johar Town, Lahore",
     phone: "+92 300‑827‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Punjab",
     services: ["Student Counseling", "Test Preparation", "Career Guidance"]
   },
@@ -59,7 +59,7 @@ const offices: Office[] = [
     address: "Mezzanine‑3, ATS Centre, Fazal‑e‑Haq Road, Blue Area, Islamabad",
     phone: "+92 333‑777‑5458",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Federal",
     services: ["Visa Processing", "Embassy Relations", "Document Attestation"]
   },
@@ -70,7 +70,7 @@ const offices: Office[] = [
     address: "05‑C Prime Point Building, Main 2, Khayaban‑e‑Ittehad Road, DHA, Karachi",
     phone: "+92 332‑364‑3373",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Sindh",
     services: ["Visa Processing", "University Applications", "Financial Guidance"]
   },
@@ -81,7 +81,7 @@ const offices: Office[] = [
     address: "Mezzanine Floor, Centre Point Plaza, Koh‑i‑Noor City, Jaranwala Road, Faisalabad",
     phone: "+92 332‑662‑8487",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Punjab",
     services: ["Student Counseling", "Test Preparation", "Scholarship Guidance"]
   },
@@ -92,7 +92,7 @@ const offices: Office[] = [
     address: "Dunya Consultants, Peoples Colony Underpass, Gujranwala",
     phone: "+92 332‑999‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Punjab",
     services: ["Student Counseling", "Visa Processing", "Test Preparation"]
   },
@@ -103,7 +103,7 @@ const offices: Office[] = [
     address: "2nd Floor, Bank Islami, Cantt Plaza, Sialkot Cantonment",
     phone: "+92 323‑002‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Punjab",
     services: ["Student Counseling", "Visa Processing", "Document Verification"]
   },
@@ -114,7 +114,7 @@ const offices: Office[] = [
     address: "Beside KFC, Service Morh Road, GT Road, Gujrat",
     phone: "+92 300‑105‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Punjab",
     services: ["University Applications", "IELTS Training", "Career Counseling"]
   },
@@ -125,7 +125,7 @@ const offices: Office[] = [
     address: "Rafi Qamar Road, near Muslim Town, Goth Muslim Town, Bahawalpur",
     phone: "+92 300‑173‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Punjab",
     services: ["Visa Processing", "Test Preparation", "Document Preparation"]
   },
@@ -136,7 +136,7 @@ const offices: Office[] = [
     address: "1st Floor, Moti Plaza, Allama Iqbal Road, Mian Channu",
     phone: "+92 300‑984‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Punjab",
     services: ["Student Counseling", "University Applications", "Career Guidance"]
   },
@@ -147,7 +147,7 @@ const offices: Office[] = [
     address: "Punjab Center, Mandi Bahauddin",
     phone: "+92 321‑300‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-amber-600 to-blue-600",
+    gradient: "from-amber-600 to-[#3367D6]",
     region: "Punjab",
     services: ["Visa Processing", "Document Preparation", "Test Preparation"]
   },
@@ -158,7 +158,7 @@ const offices: Office[] = [
     address: "Beside Darul Barkat Medicare Hospital, Stadium Road, Sheikhupura",
     phone: "+92 300‑507‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-lime-600 to-blue-600",
+    gradient: "from-lime-600 to-[#3367D6]",
     region: "Punjab",
     services: ["University Applications", "Career Counseling", "IELTS Training"]
   },
@@ -169,7 +169,7 @@ const offices: Office[] = [
     address: "Shalimar Metro Station, Bosan Road, New Sabzazar Colony, Multan",
     phone: "+92 305‑444‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "Document Verification"]
   },
@@ -180,7 +180,7 @@ const offices: Office[] = [
     address: "Office 27, 4th Floor, Alhaj Tower 2, near Phase 3 Chowk, Peshawar",
     phone: "+92 317‑111‑4726",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-sky-600 to-blue-600",
+    gradient: "from-sky-600 to-[#3367D6]",
     region: "KPK",
     services: ["Student Counseling", "Visa Processing", "University Applications"]
   },
@@ -224,7 +224,7 @@ const offices: Office[] = [
     address: "Ataköy Towers, Ataköy 7‑8‑9‑10 Kısım Mah., Çobançeşme E‑5 Yan Yol Cad., A Blok Apt. No: 20/1, Bakırköy, Istanbul",
     phone: "+90 505‑305‑8047",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     region: "International",
     services: ["Student Counseling", "University Applications", "Student Support"]
   },
@@ -479,7 +479,7 @@ export default function OfficeLocationsSection() {
                         <Button 
                           variant="outline" 
                           size="sm"
-                          className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50 font-medium text-xs"
+                          className="flex-1 #3367D6 #3367D6 hover:bg-blue-50 font-medium text-xs"
                         >
                           Directions
                         </Button>
@@ -499,7 +499,7 @@ export default function OfficeLocationsSection() {
                 onClick={() => setCurrentIndex(index * cardsPerView)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   Math.floor(currentIndex / cardsPerView) === index
-                    ? 'bg-blue-600 w-8'
+                    ? '#3367D6 w-8'
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
               />

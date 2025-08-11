@@ -116,7 +116,7 @@ export default function OurSuccessStories() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -154,7 +154,7 @@ export default function OurSuccessStories() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
                 Share Your Story
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
@@ -176,12 +176,12 @@ export default function OurSuccessStories() {
             className="text-center mb-16"
           >
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-6">
-              <Globe className="w-5 h-5 mr-2 text-blue-600" />
-              <span className="text-sm font-medium text-blue-600">Visa Success Stories</span>
+              <Globe className="w-5 h-5 mr-2 #3367D6" />
+              <span className="text-sm font-medium #3367D6">Visa Success Stories</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Success Stories{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
                 – Visa Wins
               </span>
             </h2>
@@ -297,38 +297,38 @@ export default function OurSuccessStories() {
                 icon: Trophy,
                 title: "High Success Rate",
                 description: "95% visa approval rate for Finland applications",
-                gradient: "from-blue-500 to-blue-600"
+                gradient: "from-[#4285F4] to-[#3367D6]"
               },
               {
                 icon: Star,
                 title: "Scholarship Winners", 
                 description: "Multiple students secured scholarships up to €6000",
-                gradient: "from-blue-500 to-blue-600"
+                gradient: "from-[#4285F4] to-[#3367D6]"
               },
               {
                 icon: GraduationCap,
                 title: "Top Universities",
                 description: "Admissions to leading Finnish institutions",
-                gradient: "from-blue-500 to-blue-600"
+                gradient: "from-[#4285F4] to-[#3367D6]"
               }
             ] : [
               {
                 icon: Trophy,
                 title: "Lightning Fast Processing",
                 description: "Sweden visas approved in 3-7 days with exceptional results",
-                gradient: "from-blue-500 to-blue-600"
+                gradient: "from-[#4285F4] to-[#3367D6]"
               },
               {
                 icon: Star,
                 title: "Top Universities", 
                 description: "Admissions to Halmstad University, Uppsala University & more",
-                gradient: "from-blue-500 to-blue-600"
+                gradient: "from-[#4285F4] to-[#3367D6]"
               },
               {
                 icon: GraduationCap,
                 title: "Multiple Entry Visas",
                 description: "Schengen multiple entry visas for enhanced mobility",
-                gradient: "from-blue-500 to-blue-600"
+                gradient: "from-[#4285F4] to-[#3367D6]"
               }
             ]).map((item, index) => (
               <motion.div
@@ -353,7 +353,7 @@ export default function OurSuccessStories() {
 
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -367,7 +367,7 @@ export default function OurSuccessStories() {
               Join thousands of students who have achieved their international education dreams with Dunya Consultants
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
+              <Button size="lg" className="bg-white #3367D6 hover:bg-blue-50">
                 Start Your Journey
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">

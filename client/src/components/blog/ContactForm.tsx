@@ -50,7 +50,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
   };
 
   return (
-    <div className={`bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white shadow-xl border border-blue-600/20 ${className}`}>
+    <div className={`bg-gradient-to-r from-[#4285F4] to-#1565c0 rounded-xl p-6 text-white shadow-xl border #3367D6/20 ${className}`}>
       <div className="text-center mb-6">
         <h3 className="text-xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">Contact Us</h3>
         <p className="text-blue-200/80 text-sm mt-1">Get expert guidance for your study abroad journey</p>
@@ -147,7 +147,7 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] hover:from-[#4285F4] hover:to-[#1a73e8] text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-200 text-sm border-0 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? (
               <span className="flex items-center space-x-2">
@@ -168,19 +168,19 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
       <div className="mt-6 pt-5 border-t border-white/20">
         <div className="grid grid-cols-1 gap-3">
           <div className="flex items-center space-x-3 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 #3367D6 rounded-full flex items-center justify-center">
               <MapPin className="w-4 h-4 text-white" />
             </div>
             <span className="text-sm text-blue-100">110 Link Stadium Road Sargodha</span>
           </div>
           <div className="flex items-center space-x-3 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 #3367D6 rounded-full flex items-center justify-center">
               <Phone className="w-4 h-4 text-white" />
             </div>
             <a href="tel:+923041110947" className="text-sm text-blue-100 hover:text-white transition-colors">(+92) 304 1110947</a>
           </div>
           <div className="flex items-center space-x-3 p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+            <div className="w-8 h-8 #3367D6 rounded-full flex items-center justify-center">
               <Mail className="w-4 h-4 text-white" />
             </div>
             <a href="mailto:query@teamdunya.com" className="text-sm text-blue-100 hover:text-white transition-colors">query@teamdunya.com</a>

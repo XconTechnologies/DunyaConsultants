@@ -9,14 +9,14 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative w-full h-96 bg-gradient-to-r from-blue-600 to-purple-700">
+      <div className="relative w-full h-96 bg-gradient-to-r from-[#4285F4] to-purple-700">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url("https://images.unsplash.com/photo-1539037116277-4db20889f2d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/80 to-purple-700/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4]/80 to-purple-700/80" />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
           <div>
             <h1 className="text-5xl font-bold mb-4">Finland Admissions 2025</h1>
@@ -50,7 +50,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                 </div>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
                     Best Finnish Universities for International Students
                   </h2>
                   <p className="text-lg text-gray-700 mb-6">
@@ -77,7 +77,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
                     Eligibility Criteria for Finland Study Visa from Pakistan
                   </h2>
                   <p className="text-lg text-gray-700 mb-6">
@@ -87,14 +87,14 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                   <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg">
                     <div className="space-y-4">
                       <div className="flex items-start space-x-3">
-                        <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">1</div>
+                        <div className="#3367D6 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">1</div>
                         <p className="text-gray-700">
                           <strong>For Bachelor's programs:</strong> You must have a high school diploma that 
                           qualifies you for university in your home country.
                         </p>
                       </div>
                       <div className="flex items-start space-x-3">
-                        <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">2</div>
+                        <div className="#3367D6 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">2</div>
                         <p className="text-gray-700">
                           <strong>For Master's programs:</strong> You must have a bachelor's degree. Additionally, 
                           University of Applied Sciences (UAS) master's programs require two years of relevant job experience.
@@ -105,7 +105,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
                     Requirements to Study in Finland for International Students
                   </h2>
                   <p className="text-lg text-gray-700 mb-6">
@@ -115,27 +115,27 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                   <div className="bg-white p-6 rounded-lg">
                     <ul className="space-y-3 text-gray-700">
                       <li className="flex items-center space-x-3">
-                        <span className="text-blue-600">✓</span>
+                        <span className="#3367D6">✓</span>
                         <span>Filled-out application form</span>
                       </li>
                       <li className="flex items-center space-x-3">
-                        <span className="text-blue-600">✓</span>
+                        <span className="#3367D6">✓</span>
                         <span>Proof of English proficiency (IELTS, TOEFL)</span>
                       </li>
                       <li className="flex items-center space-x-3">
-                        <span className="text-blue-600">✓</span>
+                        <span className="#3367D6">✓</span>
                         <span>Academic transcripts & degree certificates</span>
                       </li>
                       <li className="flex items-center space-x-3">
-                        <span className="text-blue-600">✓</span>
+                        <span className="#3367D6">✓</span>
                         <span>Statement of Purpose or application essays (if required)</span>
                       </li>
                       <li className="flex items-center space-x-3">
-                        <span className="text-blue-600">✓</span>
+                        <span className="#3367D6">✓</span>
                         <span>Recommendation letters & motivation letters</span>
                       </li>
                       <li className="flex items-center space-x-3">
-                        <span className="text-blue-600">✓</span>
+                        <span className="#3367D6">✓</span>
                         <span>Portfolio (if needed for programs like design or architecture)</span>
                       </li>
                     </ul>
@@ -143,7 +143,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
                     How to Apply for a Finland Student Visa from Pakistan?
                   </h2>
                   <p className="text-lg text-gray-700 mb-6">
@@ -158,7 +158,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                       "Go to the nearest Finnish embassy or authorized service center to provide your fingerprints and verify your identity."
                     ].map((step, index) => (
                       <div key={index} className="flex items-start space-x-4 bg-blue-50 p-4 rounded-lg">
-                        <div className="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
+                        <div className="#3367D6 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">
                           {index + 1}
                         </div>
                         <p className="text-gray-700">{step}</p>
@@ -168,18 +168,18 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
                     Finland Application Fee & Deadline 2025
                   </h2>
                   <div className="bg-gradient-to-r from-blue-50 to-red-50 p-6 rounded-lg">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="text-center">
-                        <div className="text-3xl font-bold text-blue-600 mb-2">€100</div>
+                        <div className="text-3xl font-bold #3367D6 mb-2">€100</div>
                         <p className="text-gray-700 font-medium">Application Fee</p>
                         <p className="text-sm text-gray-600">For both Bachelor's and Master's programs</p>
                       </div>
                       <div className="text-center">
-                        <div className="text-3xl font-bold text-blue-600 mb-2">Jan 22, 2025</div>
+                        <div className="text-3xl font-bold #3367D6 mb-2">Jan 22, 2025</div>
                         <p className="text-gray-700 font-medium">Application Deadline</p>
                         <p className="text-sm text-gray-600">Major intake deadline</p>
                       </div>
@@ -194,7 +194,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
                     FAQs
                   </h2>
                   <div className="space-y-6">
@@ -229,7 +229,7 @@ export default function FinlandOnlineVisaApplicationFromPakistan() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-blue-600 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
                     Conclusion
                   </h2>
                   <p className="text-lg text-gray-700">

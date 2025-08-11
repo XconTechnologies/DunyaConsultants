@@ -20,7 +20,7 @@ const services = [
     title: "Career Counselling",
     description: "Expert guidance to help you choose the right career path and educational opportunities that align with your goals and interests.",
     icon: "🔍",
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgPattern: "bg-gradient-to-br from-blue-50 to-blue-100",
     process: [
       "Initial consultation and assessment",
@@ -42,7 +42,7 @@ const services = [
     title: "University Selection",
     description: "Strategic university selection based on your academic profile, career goals, and financial considerations for best-fit institutions.",
     icon: "🏫",
-    color: "from-blue-500 to-blue-600", 
+    color: "from-[#4285F4] to-[#3367D6]", 
     bgPattern: "bg-gradient-to-br from-blue-50 to-blue-100",
     process: [
       "Academic profile analysis",
@@ -64,7 +64,7 @@ const services = [
     title: "Admission Support",
     description: "Complete admission process management ensuring your applications meet all requirements and deadlines for maximum success.",
     icon: "📝",
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgPattern: "bg-gradient-to-br from-blue-50 to-blue-100", 
     process: [
       "Application requirement analysis",
@@ -86,7 +86,7 @@ const services = [
     title: "Document Preparation",
     description: "Professional document preparation and verification ensuring all your paperwork meets international standards and requirements.",
     icon: "✍️",
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgPattern: "bg-gradient-to-br from-blue-50 to-blue-100",
     process: [
       "Document requirement analysis",
@@ -108,7 +108,7 @@ const services = [
     title: "Application Submission",
     description: "Systematic application submission management with tracking and follow-up to ensure your applications reach admissions offices safely.",
     icon: "📤",
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgPattern: "bg-gradient-to-br from-blue-50 to-blue-100",
     process: [
       "Final application review",
@@ -130,7 +130,7 @@ const services = [
     title: "Interview Preparation", 
     description: "Comprehensive interview coaching to help you confidently present yourself to admissions committees and visa officers.",
     icon: "🛂",
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgPattern: "bg-gradient-to-br from-blue-50 to-blue-100",
     process: [
       "Mock interview sessions",
@@ -152,7 +152,7 @@ const services = [
     title: "Pre-Departure Support",
     description: "Essential preparation for your journey abroad, covering everything from travel arrangements to cultural adaptation and settling guidance.",
     icon: "🏠",
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgPattern: "bg-gradient-to-br from-blue-50 to-blue-100",
     process: [
       "Travel documentation check",
@@ -174,7 +174,7 @@ const services = [
     title: "Test Preparation Support",
     description: "Comprehensive test preparation for IELTS, PTE, TOEFL and other standardized tests with expert coaching and practice materials.",
     icon: "📚",
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgPattern: "bg-gradient-to-br from-blue-50 to-blue-100",
     process: [
       "Assessment and level testing",
@@ -326,7 +326,7 @@ export default function ServicesSection() {
                       <div className="space-y-2">
                         {service.benefits.slice(0, 2).map((benefit, idx) => (
                           <div key={idx} className="flex items-center space-x-2">
-                            <Star className="w-3 h-3 text-blue-500 fill-current" />
+                            <Star className="w-3 h-3 #4285F4 fill-current" />
                             <span className="text-xs text-neutral-700">{benefit}</span>
                           </div>
                         ))}
@@ -392,13 +392,13 @@ export default function ServicesSection() {
                             {/* Benefits */}
                             <div>
                               <h3 className="text-xl font-semibold mb-6 flex items-center">
-                                <CheckCircle className="w-6 h-6 mr-3 text-blue-600" />
+                                <CheckCircle className="w-6 h-6 mr-3 #3367D6" />
                                 Key Benefits
                               </h3>
                               <div className="space-y-4">
                                 {selectedService.benefits.map((benefit, idx) => (
                                   <div key={idx} className="flex items-start space-x-3">
-                                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1" />
+                                    <CheckCircle className="w-5 h-5 #3367D6 mt-1" />
                                     <span className="text-neutral-700 leading-relaxed">{benefit}</span>
                                   </div>
                                 ))}
@@ -411,7 +411,7 @@ export default function ServicesSection() {
                               <div className="grid md:grid-cols-2 gap-4">
                                 {selectedService.includes.map((item, idx) => (
                                   <div key={idx} className="flex items-center space-x-3 p-4 bg-gray-50 rounded-xl border border-gray-100">
-                                    <CheckCircle className="w-5 h-5 text-blue-600" />
+                                    <CheckCircle className="w-5 h-5 #3367D6" />
                                     <span className="text-neutral-700 font-medium">{item}</span>
                                   </div>
                                 ))}

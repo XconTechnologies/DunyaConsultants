@@ -10,7 +10,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
@@ -237,7 +237,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 4: CAS Details */}
               <section id="cas-details" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">4. Not Checking CAS Details</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 #4285F4 pl-4">4. Not Checking CAS Details</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Your Confirmation of Acceptance for Studies (CAS) is a crucial document that contains important information about your course and personal details. Many students make the mistake of not carefully reviewing their CAS before submitting their visa application.
@@ -248,7 +248,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 </p>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold mb-4 text-blue-800 flex items-center">
+                  <h4 className="text-lg font-semibold mb-4 text-#1565c0 flex items-center">
                     <Shield className="w-5 h-5 mr-2" />
                     CAS Verification Checklist
                   </h4>
@@ -277,7 +277,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 5: Past Records */}
               <section id="past-records" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">5. Not Disclosing Past Records</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 #4285F4 pl-4">5. Not Disclosing Past Records</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Honesty is crucial in your visa application. Some students make the mistake of not disclosing previous visa refusals, immigration violations, or criminal records, thinking it might harm their chances.
@@ -288,7 +288,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 </p>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold mb-3 text-blue-800 flex items-center">
+                  <h4 className="text-lg font-semibold mb-3 text-#1565c0 flex items-center">
                     <AlertCircle className="w-5 h-5 mr-2" />
                     Always Disclose:
                   </h4>
@@ -304,11 +304,11 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Success Tips */}
               <section id="success-tips" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Additional Success Tips</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Additional Success Tips</h2>
 
                 <div className="space-y-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">Pro Tips for Visa Success:</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Pro Tips for Visa Success:</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <ul className="space-y-2 text-gray-700">
@@ -330,7 +330,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">What to Do If Your Visa Is Rejected:</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">What to Do If Your Visa Is Rejected:</h3>
                     <div className="space-y-2 text-gray-700">
                       <p><strong>Option 1: Reapply</strong> - Address the rejection reasons and submit a new application</p>
                       <p><strong>Option 2: Appeal</strong> - Challenge the decision if you believe it was incorrect (limited grounds)</p>
@@ -342,7 +342,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* FAQs */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -379,7 +379,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Applying for a UK student visa doesn't have to be stressful if you avoid these common mistakes. The key is thorough preparation, attention to detail, and ensuring all your documents are complete and accurate.
@@ -396,14 +396,14 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-blue-800">Need Help with Your UK Student Visa?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Need Help with Your UK Student Visa?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants to avoid common mistakes and ensure your visa success.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="tel:+923041110947" 
-                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                    className="#3367D6 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Call Now: +92 304 1110947
                   </a>
@@ -424,13 +424,13 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <FileText className="w-5 h-5 mr-2 text-blue-500" />
+                  <FileText className="w-5 h-5 mr-2 #4285F4" />
                   Visa Success Tips
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Success Rate:</span>
-                    <span className="font-medium text-blue-600">99%</span>
+                    <span className="font-medium #3367D6">99%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Processing Time:</span>
@@ -454,28 +454,28 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
               {/* Common Mistakes Summary */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <XCircle className="w-5 h-5 mr-2 text-blue-500" />
+                  <XCircle className="w-5 h-5 mr-2 #4285F4" />
                   Top 5 Mistakes
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-blue-800">Insufficient Funds</p>
+                    <p className="font-medium text-#1565c0">Insufficient Funds</p>
                     <p className="text-gray-600">Not maintaining 28-day balance</p>
                   </div>
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-blue-800">Wrong Documents</p>
+                    <p className="font-medium text-#1565c0">Wrong Documents</p>
                     <p className="text-gray-600">Missing or incorrect papers</p>
                   </div>
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-blue-800">English Test Issues</p>
+                    <p className="font-medium text-#1565c0">English Test Issues</p>
                     <p className="text-gray-600">Invalid test or low scores</p>
                   </div>
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-blue-800">CAS Errors</p>
+                    <p className="font-medium text-#1565c0">CAS Errors</p>
                     <p className="text-gray-600">Not verifying CAS details</p>
                   </div>
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-blue-800">Hidden History</p>
+                    <p className="font-medium text-#1565c0">Hidden History</p>
                     <p className="text-gray-600">Not disclosing past records</p>
                   </div>
                 </div>

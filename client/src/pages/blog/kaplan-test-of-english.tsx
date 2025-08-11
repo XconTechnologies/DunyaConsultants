@@ -10,11 +10,11 @@ export default function KaplanTestOfEnglish() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Test Preparation
               </span>
             </div>
@@ -64,18 +64,18 @@ export default function KaplanTestOfEnglish() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#what-is-kaplan" className="hover:text-blue-600">What is Kaplan Test?</a></li>
-                  <li><a href="#test-sections" className="hover:text-blue-600">Sections of Kaplan English Test</a></li>
-                  <li><a href="#preparation" className="hover:text-blue-600">How to Prepare for KTE?</a></li>
-                  <li><a href="#cost" className="hover:text-blue-600">Cost for Kaplan Assessment Exam</a></li>
-                  <li><a href="#conclusion" className="hover:text-blue-600">Conclusion</a></li>
-                  <li><a href="#faqs" className="hover:text-blue-600">FAQs</a></li>
+                  <li><a href="#what-is-kaplan" className="hover:#3367D6">What is Kaplan Test?</a></li>
+                  <li><a href="#test-sections" className="hover:#3367D6">Sections of Kaplan English Test</a></li>
+                  <li><a href="#preparation" className="hover:#3367D6">How to Prepare for KTE?</a></li>
+                  <li><a href="#cost" className="hover:#3367D6">Cost for Kaplan Assessment Exam</a></li>
+                  <li><a href="#conclusion" className="hover:#3367D6">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:#3367D6">FAQs</a></li>
                 </ul>
               </div>
 
               {/* What is Kaplan Test Section */}
               <div className="mb-8" id="what-is-kaplan">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">What is Kaplan Test?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">What is Kaplan Test?</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The <strong>Kaplan English Test</strong> is an adaptive online test that checks your English language skills in different areas. During the test, you may need to listen to conversations, write an essay, read emails and articles, answer comprehension questions, or speak into your computer's microphone.
                 </p>
@@ -86,14 +86,14 @@ export default function KaplanTestOfEnglish() {
 
               {/* Test Sections */}
               <div className="mb-8" id="test-sections">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Sections of Kaplan English Test</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Sections of Kaplan English Test</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   In the Kaplan testing center, The Kaplan English Test checks your skills in reading, listening, writing, and speaking.
                 </p>
 
                 {/* Writing Section */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-blue-800 flex items-center">
+                  <h3 className="text-xl font-semibold mb-3 text-#1565c0 flex items-center">
                     <FileText className="w-5 h-5 mr-2" />
                     Writing – Timed Section (25-40 Minutes)
                   </h3>
@@ -104,7 +104,7 @@ export default function KaplanTestOfEnglish() {
 
                 {/* Listening, Reading & Grammar Section */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-blue-800 flex items-center">
+                  <h3 className="text-xl font-semibold mb-3 text-#1565c0 flex items-center">
                     <BookOpen className="w-5 h-5 mr-2" />
                     Listening, Reading & Grammar – No Time Limit
                   </h3>
@@ -115,7 +115,7 @@ export default function KaplanTestOfEnglish() {
 
                 {/* Speaking Section */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-blue-800 flex items-center">
+                  <h3 className="text-xl font-semibold mb-3 text-#1565c0 flex items-center">
                     <MessageCircle className="w-5 h-5 mr-2" />
                     Speaking – Timed Section (10 Minutes)
                   </h3>
@@ -127,14 +127,14 @@ export default function KaplanTestOfEnglish() {
 
               {/* Preparation Section */}
               <div className="mb-8" id="preparation">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">How to Prepare for KTE?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">How to Prepare for KTE?</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The best way to get ready for the Kaplan English test is to practice your English skills regularly. Let's discuss below how you can practice before going to Kaplan testing center.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   <div className="flex items-start p-4 bg-gray-50 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-1" />
+                    <CheckCircle className="w-5 h-5 #4285F4 mr-3 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-2">Practice Regularly</h4>
                       <p className="text-gray-600 text-sm">Listen to English podcasts and practice writing messages in English.</p>
@@ -142,7 +142,7 @@ export default function KaplanTestOfEnglish() {
                   </div>
                   
                   <div className="flex items-start p-4 bg-gray-50 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-1" />
+                    <CheckCircle className="w-5 h-5 #4285F4 mr-3 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-2">Immerse Yourself</h4>
                       <p className="text-gray-600 text-sm">Speak with a friend, read articles, and try thinking in English.</p>
@@ -150,7 +150,7 @@ export default function KaplanTestOfEnglish() {
                   </div>
                   
                   <div className="flex items-start p-4 bg-gray-50 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-1" />
+                    <CheckCircle className="w-5 h-5 #4285F4 mr-3 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-2">Multiple-Choice Practice</h4>
                       <p className="text-gray-600 text-sm">Since the test uses this format, practicing similar questions can help.</p>
@@ -158,7 +158,7 @@ export default function KaplanTestOfEnglish() {
                   </div>
                   
                   <div className="flex items-start p-4 bg-gray-50 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-blue-500 mr-3 mt-1" />
+                    <CheckCircle className="w-5 h-5 #4285F4 mr-3 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-2">Practice Questions</h4>
                       <p className="text-gray-600 text-sm">You will get a chance to practice Kaplan test questions before the real one, so don't stress.</p>
@@ -169,11 +169,11 @@ export default function KaplanTestOfEnglish() {
 
               {/* Cost Section */}
               <div className="mb-8" id="cost">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Cost for Kaplan Assessment Exam</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Cost for Kaplan Assessment Exam</h2>
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
                   <div className="flex items-center mb-4">
-                    <DollarSign className="w-6 h-6 text-blue-600 mr-3" />
-                    <h3 className="text-xl font-semibold text-blue-800">Pricing Information</h3>
+                    <DollarSign className="w-6 h-6 #3367D6 mr-3" />
+                    <h3 className="text-xl font-semibold text-#1565c0">Pricing Information</h3>
                   </div>
                   <p className="text-gray-700 leading-relaxed mb-4">
                     The KTE costs around <strong>£118 (€140)</strong>, which is not the cheapest option. However, you may get a <strong>25% discount</strong> if the university you're applying to is a Kaplan partner. Check with the university to see if you qualify.
@@ -186,7 +186,7 @@ export default function KaplanTestOfEnglish() {
 
               {/* Conclusion Section */}
               <div className="mb-8" id="conclusion">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The <strong>Kaplan English Test</strong> is an online test you can take from home to check your English skills. It measures your ability in listening, grammar, writing, reading, and speaking, covering levels from beginner (A1) to advanced (C2). The test is adaptive, meaning the questions change based on your level.
                 </p>
@@ -197,12 +197,12 @@ export default function KaplanTestOfEnglish() {
 
               {/* FAQs Section */}
               <div className="mb-8" id="faqs">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">FAQs</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">FAQs</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
                     <h3 className="text-lg font-semibold mb-3 text-gray-800 flex items-center">
-                      <AlertCircle className="w-5 h-5 text-blue-500 mr-2" />
+                      <AlertCircle className="w-5 h-5 #4285F4 mr-2" />
                       How many times can you take the Kaplan exam?
                     </h3>
                     <p className="text-gray-700 leading-relaxed">
@@ -212,7 +212,7 @@ export default function KaplanTestOfEnglish() {
                   
                   <div className="bg-gray-50 p-6 rounded-lg">
                     <h3 className="text-lg font-semibold mb-3 text-gray-800 flex items-center">
-                      <AlertCircle className="w-5 h-5 text-blue-500 mr-2" />
+                      <AlertCircle className="w-5 h-5 #4285F4 mr-2" />
                       How can I practice Kaplan test questions?
                     </h3>
                     <p className="text-gray-700 leading-relaxed">
@@ -224,14 +224,14 @@ export default function KaplanTestOfEnglish() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-blue-800">Need Help with KTE Preparation?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Need Help with KTE Preparation?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants for your Kaplan Test of English preparation and study abroad journey.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="tel:+923041110947" 
-                    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center"
+                    className="#3367D6 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors flex items-center justify-center"
                   >
                     <Phone className="w-5 h-5 mr-2" />
                     Call Now: +92 304 1110947
@@ -254,7 +254,7 @@ export default function KaplanTestOfEnglish() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <Target className="w-5 h-5 mr-2 text-blue-500" />
+                  <Target className="w-5 h-5 mr-2 #4285F4" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -284,25 +284,25 @@ export default function KaplanTestOfEnglish() {
               {/* Test Sections */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                  <BookOpen className="w-5 h-5 mr-2 #4285F4" />
                   Test Sections
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Writing</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">25-40 min</span>
+                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">25-40 min</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Reading</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">No limit</span>
+                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">No limit</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Listening</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">No limit</span>
+                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">No limit</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Speaking</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">10 min</span>
+                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">10 min</span>
                   </div>
                 </div>
               </div>

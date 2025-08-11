@@ -47,7 +47,7 @@ const NewYearResolutionsStudents2025: React.FC = () => {
         <Navigation />
         <div className="max-w-7xl mx-auto px-4 py-16">
           <div className="flex items-center justify-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 #3367D6"></div>
             <span className="ml-2 text-gray-600">Loading article...</span>
           </div>
         </div>
@@ -64,7 +64,7 @@ const NewYearResolutionsStudents2025: React.FC = () => {
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">Failed to load the article</h1>
             <p className="text-gray-600 mb-6">{error || 'Article not found'}</p>
-            <Link href="/blog" className="text-blue-600 hover:text-blue-800">
+            <Link href="/blog" className="#3367D6 hover:text-#1565c0">
               ← Return to Blog
             </Link>
           </div>
@@ -79,11 +79,11 @@ const NewYearResolutionsStudents2025: React.FC = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
                 {blogPost.category}
               </span>
             </div>
@@ -129,7 +129,7 @@ const NewYearResolutionsStudents2025: React.FC = () => {
                     {blogPost.tags.map((tag) => (
                       <span 
                         key={tag}
-                        className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full"
+                        className="px-3 py-1 bg-blue-100 text-#1565c0 text-sm font-medium rounded-full"
                       >
                         {tag}
                       </span>
@@ -146,7 +146,7 @@ const NewYearResolutionsStudents2025: React.FC = () => {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <Target className="w-5 h-5 mr-2 text-blue-500" />
+                  <Target className="w-5 h-5 mr-2 #4285F4" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -176,29 +176,29 @@ const NewYearResolutionsStudents2025: React.FC = () => {
               {/* Resolution Categories */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                  <BookOpen className="w-5 h-5 mr-2 #4285F4" />
                   Resolution Categories
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Academic</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Test Scores</span>
+                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Test Scores</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Financial</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Budgeting</span>
+                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Budgeting</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Personal</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Mental Health</span>
+                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Mental Health</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Language</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Communication</span>
+                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Communication</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Cultural</span>
-                    <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Adaptation</span>
+                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Adaptation</span>
                   </div>
                 </div>
               </div>

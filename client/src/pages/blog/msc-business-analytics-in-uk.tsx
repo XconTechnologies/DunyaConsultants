@@ -10,7 +10,7 @@ export default function MSCBusinessAnalyticsInUK() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#4285F4] via-[#4285F4] to-[#3367D6] flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -83,7 +83,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
                 {/* Universities Table */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Top Universities for MSc Business Analytics</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Top Universities for MSc Business Analytics</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse border border-gray-300">
                       <thead>
@@ -147,26 +147,26 @@ export default function MSCBusinessAnalyticsInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Key Requirements</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Key Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>You must have a Bachelor's degree from a recognized university. The degree should be in Engineering, Management, or a field related to Business Analytics.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>You should have scored a minimum of sixty percent or equivalent marks in your Bachelor's degree.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>English language proficiency test scores (IELTS, TOEFL, or PTE)</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>GRE or GMAT scores may be required by some universities</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>Strong mathematical and analytical background</span>
                     </li>
                   </ul>
@@ -181,30 +181,30 @@ export default function MSCBusinessAnalyticsInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Required Documents</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Required Documents</h3>
                   <ol className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
+                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
                       <span>A SOP (Statement of Purpose) explaining why you are willing to study the course.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
+                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
                       <span>Copies of your educational transcripts.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
+                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
                       <span>English language proficiency test scores, such as TOEFL, IELTS, or PTE.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
+                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
                       <span>An updated CV or resume.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
+                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
                       <span>A recommendation letter from your past school or employer (if required).</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">6</span>
+                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">6</span>
                       <span>Test scores from eligibility tests such as GRE or GMAT (if needed).</span>
                     </li>
                   </ol>
@@ -222,10 +222,10 @@ export default function MSCBusinessAnalyticsInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Cost Breakdown</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Cost Breakdown</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h4 className="font-semibold text-blue-700 mb-2">Tuition Fees</h4>
+                      <h4 className="font-semibold text-#1a73e8 mb-2">Tuition Fees</h4>
                       <ul className="space-y-1 text-gray-700">
                         <li>• Average Cost: €25,750 - €35,900 per year</li>
                         <li>• Top Universities: €30,000 - €40,000</li>
@@ -233,7 +233,7 @@ export default function MSCBusinessAnalyticsInUK() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-blue-700 mb-2">Living Expenses</h4>
+                      <h4 className="font-semibold text-#1a73e8 mb-2">Living Expenses</h4>
                       <ul className="space-y-1 text-gray-700">
                         <li>• Monthly Living Costs: $1,000 - $1,600</li>
                         <li>• London/Winchester: Higher costs</li>
@@ -252,7 +252,7 @@ export default function MSCBusinessAnalyticsInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Available Scholarships</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Available Scholarships</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <ul className="space-y-2 text-gray-700">
@@ -289,32 +289,32 @@ export default function MSCBusinessAnalyticsInUK() {
                 <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #4285F4', color: '#4285F4' }}>Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What do I need to study MSc Business Analytics in the UK?</h3>
                     <p className="text-gray-700">You need a Bachelor's degree in Engineering, Management, or a related field with minimum 60% marks, English proficiency test scores (IELTS/TOEFL/PTE), and may require GRE/GMAT scores depending on the university. Strong mathematical and analytical background is essential.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What is the scope of a Masters in business analytics in UK?</h3>
                     <p className="text-gray-700">The scope is excellent with high demand for business analytics professionals across industries. Graduates can work as Data Analysts, Business Intelligence Analysts, Data Scientists, Strategy Consultants, and Analytics Managers in companies worldwide with competitive salaries and growth opportunities.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">How long is a Masters in business analytics UK?</h3>
                     <p className="text-gray-700">A Masters in Business Analytics in the UK typically takes 1-2 years to complete. The program is intensive and designed to provide comprehensive knowledge and practical skills for solving real-world business problems using data analytics.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What are the career opportunities after MSc Business Analytics?</h3>
                     <p className="text-gray-700">Career opportunities include roles in Data Analytics, Business Intelligence, Strategic Planning, Operations Research, Market Research, Financial Analytics, and Consulting. Major employers include tech companies, financial institutions, consulting firms, and multinational corporations.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Which universities offer the best MSc Business Analytics programs in UK?</h3>
                     <p className="text-gray-700">Top universities include University of Edinburgh Business School, Lancaster University Management School, Imperial College Business School, Warwick Business School, Manchester Alliance, and Nottingham University Business School, all offering excellent programs with strong industry connections.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What are the scholarship opportunities for international students?</h3>
                     <p className="text-gray-700">Scholarship opportunities include British Council scholarships, Imperial Business Analytics scholarships, Sanctuary International Visitors Support Scheme, and British Chevening Scholarships. These can significantly reduce tuition costs and living expenses.</p>
                   </div>
@@ -322,14 +322,14 @@ export default function MSCBusinessAnalyticsInUK() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Start Your Journey to MSc Business Analytics in UK</h3>
                 <p className="text-lg mb-4">Let our expert counselors guide you through the entire application process for top UK universities. We'll help you choose the right program, prepare strong application materials, and secure your student visa for a successful business analytics career.</p>
                 <div className="flex gap-4">
-                  <a href="tel:+923041110947" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  <a href="tel:+923041110947" className="bg-white #3367D6 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#3367D6 transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -343,34 +343,34 @@ export default function MSCBusinessAnalyticsInUK() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-800">Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-#1565c0">Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Program Duration</span>
-                  <span className="text-sm font-bold text-blue-700">1-2 Years</span>
+                  <span className="text-sm font-bold text-#1a73e8">1-2 Years</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Average Tuition</span>
-                  <span className="text-sm font-bold text-blue-700">€25,750-€35,900</span>
+                  <span className="text-sm font-bold text-#1a73e8">€25,750-€35,900</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Monthly Living</span>
-                  <span className="text-sm font-bold text-blue-700">$1,000-$1,600</span>
+                  <span className="text-sm font-bold text-#1a73e8">$1,000-$1,600</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Minimum GPA</span>
-                  <span className="text-sm font-bold text-blue-700">60%</span>
+                  <span className="text-sm font-bold text-#1a73e8">60%</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Career Prospects</span>
-                  <span className="text-sm font-bold text-blue-700">Excellent</span>
+                  <span className="text-sm font-bold text-#1a73e8">Excellent</span>
                 </div>
               </div>
             </div>
 
             {/* Top Universities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-800">Top 5 Universities</h3>
+              <h3 className="text-xl font-bold mb-4 text-#1565c0">Top 5 Universities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>1. University of Edinburgh Business School</li>
                 <li>2. Lancaster University Management School</li>

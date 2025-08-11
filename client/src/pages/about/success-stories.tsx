@@ -191,7 +191,7 @@ export default function SuccessStories() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -210,7 +210,7 @@ export default function SuccessStories() {
               Celebrating our students' achievements and the journey that brought us here
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
                 Share Your Story
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
@@ -232,7 +232,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Featured{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
                   Success Stories
                 </span>
               </h2>
@@ -252,12 +252,12 @@ export default function SuccessStories() {
               >
                 <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-xl">
                   <CardHeader className="text-center">
-                    <div className="w-24 h-24 mx-auto bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mb-4">
+                    <div className="w-24 h-24 mx-auto bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-full flex items-center justify-center mb-4">
                       <GraduationCap className="w-12 h-12 text-white" />
                     </div>
                     <CardTitle className="text-xl text-gray-900">{story.name}</CardTitle>
                     <div className="space-y-2">
-                      <Badge variant="secondary" className="bg-blue-50 text-blue-700">
+                      <Badge variant="secondary" className="bg-blue-50 text-#1a73e8">
                         {story.university}
                       </Badge>
                       <p className="text-sm text-gray-600">{story.program}</p>
@@ -272,11 +272,11 @@ export default function SuccessStories() {
                     <p className="text-gray-600 italic">{story.story}</p>
                     <div className="space-y-2 pt-4 border-t">
                       <div className="flex items-center text-sm">
-                        <Award className="w-4 h-4 text-blue-500 mr-2" />
+                        <Award className="w-4 h-4 #4285F4 mr-2" />
                         <span className="font-medium">{story.scholarship}</span>
                       </div>
                       <div className="flex items-center text-sm">
-                        <Star className="w-4 h-4 text-blue-500 mr-2" />
+                        <Star className="w-4 h-4 #4285F4 mr-2" />
                         <span className="text-gray-600">{story.achievement}</span>
                       </div>
                     </div>
@@ -289,7 +289,7 @@ export default function SuccessStories() {
       </section>
 
       {/* Achievements Statistics */}
-      <section className="py-20 bg-gradient-to-r from-blue-900 to-blue-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-#1e3a8a to-#1e3a8a text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <motion.div
@@ -342,7 +342,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Recent{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
                   Successes
                 </span>
               </h2>
@@ -367,7 +367,7 @@ export default function SuccessStories() {
                     {success.date}
                   </Badge>
                 </div>
-                <p className="text-sm text-blue-600 font-medium mb-1">
+                <p className="text-sm #3367D6 font-medium mb-1">
                   {success.university}
                 </p>
                 <p className="text-sm text-gray-600 mb-2">{success.program}</p>
@@ -376,7 +376,7 @@ export default function SuccessStories() {
                     <MapPin className="w-4 h-4 mr-1" />
                     {success.country}
                   </div>
-                  <div className="flex items-center text-sm font-medium text-blue-600">
+                  <div className="flex items-center text-sm font-medium #3367D6">
                     <Award className="w-4 h-4 mr-1" />
                     {success.scholarship}
                   </div>
@@ -398,7 +398,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Student{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
                   Testimonials
                 </span>
               </h2>
@@ -428,7 +428,7 @@ export default function SuccessStories() {
                     <div className="border-t pt-4">
                       <p className="font-semibold text-gray-900">{testimonial.author}</p>
                       <p className="text-sm text-gray-600">{testimonial.position}</p>
-                      <p className="text-sm text-blue-600 font-medium">{testimonial.country}</p>
+                      <p className="text-sm #3367D6 font-medium">{testimonial.country}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -449,7 +449,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Our{" "}
-                <span className="bg-gradient-to-r from-blue-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
                   Journey
                 </span>
               </h2>
@@ -460,7 +460,7 @@ export default function SuccessStories() {
           </div>
 
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-blue-500 to-blue-600"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#4285F4] to-[#3367D6]"></div>
             
             {companyMilestones.map((milestone, index) => (
               <motion.div
@@ -476,10 +476,10 @@ export default function SuccessStories() {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="w-12 h-12 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-full flex items-center justify-center text-white font-bold">
                           {milestone.year}
                         </div>
-                        <Calendar className="w-5 h-5 text-blue-500 ml-3" />
+                        <Calendar className="w-5 h-5 #4285F4 ml-3" />
                       </div>
                       <h3 className="font-semibold text-gray-900 mb-2">
                         {milestone.milestone}
@@ -489,7 +489,7 @@ export default function SuccessStories() {
                   </Card>
                 </div>
                 
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full border-4 border-white"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-full border-4 border-white"></div>
               </motion.div>
             ))}
           </div>
@@ -497,7 +497,7 @@ export default function SuccessStories() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -511,7 +511,7 @@ export default function SuccessStories() {
               Join thousands of successful students who chose Dunya Consultants for their international education journey
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-blue-50">
+              <Button size="lg" className="bg-white #3367D6 hover:bg-blue-50">
                 Start Your Journey
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">

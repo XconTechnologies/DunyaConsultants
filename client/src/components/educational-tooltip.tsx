@@ -21,12 +21,12 @@ const tooltipIcons = {
 };
 
 const tooltipColors = {
-  info: "from-blue-500 to-blue-500",
-  educational: "from-blue-500 to-blue-500",
-  achievement: "from-blue-500 to-blue-500",
-  process: "from-blue-500 to-blue-500",
-  location: "from-blue-500 to-blue-500",
-  statistic: "from-blue-500 to-blue-500",
+  info: "from-[#4285F4] to-blue-500",
+  educational: "from-[#4285F4] to-blue-500",
+  achievement: "from-[#4285F4] to-blue-500",
+  process: "from-[#4285F4] to-blue-500",
+  location: "from-[#4285F4] to-blue-500",
+  statistic: "from-[#4285F4] to-blue-500",
 };
 
 export default function EducationalTooltip({ 
@@ -54,7 +54,7 @@ export default function EducationalTooltip({
               initial={{ opacity: 0, scale: 0.8 }}
               whileHover={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3 }}
-              className="absolute -top-1 -right-1 w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100"
+              className="absolute -top-1 -right-1 w-4 h-4 #4285F4 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100"
             >
               <Info className="w-2.5 h-2.5 text-white" />
             </motion.div>

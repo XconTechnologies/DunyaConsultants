@@ -139,9 +139,9 @@ export default function AustraliaGuide() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100" ref={ref}>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-700 to-blue-600 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-#1e3a8a via-#1a73e8 to-[#3367D6] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-blue-800/30 to-blue-600/30"></div>
+          <div className="w-full h-full bg-gradient-to-r from-#1565c0/30 to-[#3367D6]/30"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -215,22 +215,22 @@ export default function AustraliaGuide() {
                 <h2 className="text-3xl font-bold text-neutral-800 mb-8 text-center">Why Choose Australia for Studies?</h2>
                 <div className="grid md:grid-cols-4 gap-6">
                   <Card className="shadow-lg text-center p-6">
-                    <Sun className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                    <Sun className="w-12 h-12 #3367D6 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">Great Climate</h3>
                     <p className="text-sm text-neutral-600">Year-round sunshine and warmth</p>
                   </Card>
                   <Card className="shadow-lg text-center p-6">
-                    <Waves className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                    <Waves className="w-12 h-12 #3367D6 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">Beautiful Beaches</h3>
                     <p className="text-sm text-neutral-600">World-famous coastal lifestyle</p>
                   </Card>
                   <Card className="shadow-lg text-center p-6">
-                    <TrendingUp className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                    <TrendingUp className="w-12 h-12 #3367D6 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">Strong Economy</h3>
                     <p className="text-sm text-neutral-600">Excellent job opportunities</p>
                   </Card>
                   <Card className="shadow-lg text-center p-6">
-                    <Users className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                    <Users className="w-12 h-12 #3367D6 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">Multicultural</h3>
                     <p className="text-sm text-neutral-600">Diverse and welcoming society</p>
                   </Card>
@@ -246,37 +246,37 @@ export default function AustraliaGuide() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Total Universities</span>
-                        <span className="font-bold text-blue-600">{australiaStats.universities}</span>
+                        <span className="font-bold #3367D6">{australiaStats.universities}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">International Students</span>
-                        <span className="font-bold text-blue-600">{australiaStats.internationalStudents}</span>
+                        <span className="font-bold #3367D6">{australiaStats.internationalStudents}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Annual Tuition Range</span>
-                        <span className="font-bold text-blue-600">{australiaStats.averageCost}</span>
+                        <span className="font-bold #3367D6">{australiaStats.averageCost}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Post-Study Work Visa</span>
-                        <span className="font-bold text-blue-600">{australiaStats.workPermit}</span>
+                        <span className="font-bold #3367D6">{australiaStats.workPermit}</span>
                       </div>
                     </div>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Global Education Rank</span>
-                        <span className="font-bold text-blue-600">{australiaStats.globalRank}</span>
+                        <span className="font-bold #3367D6">{australiaStats.globalRank}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Visa Success Rate</span>
-                        <span className="font-bold text-blue-600">{australiaStats.visaSuccess}</span>
+                        <span className="font-bold #3367D6">{australiaStats.visaSuccess}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Program Duration</span>
-                        <span className="font-bold text-blue-600">{australiaStats.programDuration}</span>
+                        <span className="font-bold #3367D6">{australiaStats.programDuration}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Intake Seasons</span>
-                        <span className="font-bold text-blue-600">{australiaStats.intakeSeasons}</span>
+                        <span className="font-bold #3367D6">{australiaStats.intakeSeasons}</span>
                       </div>
                     </div>
                   </div>
@@ -304,7 +304,7 @@ export default function AustraliaGuide() {
                       <CardContent className="p-8">
                         <div className="flex items-start justify-between mb-6">
                           <div className="flex items-center space-x-4">
-                            <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            <div className="w-16 h-16 bg-gradient-to-br from-[#4285F4] to-[#3367D6] rounded-full flex items-center justify-center text-white font-bold text-xl">
                               #{university.rank}
                             </div>
                             <div>
@@ -315,35 +315,35 @@ export default function AustraliaGuide() {
                               </p>
                             </div>
                           </div>
-                          <Badge className="bg-blue-500">
+                          <Badge className="#4285F4">
                             {university.type}
                           </Badge>
                         </div>
 
                         <div className="grid md:grid-cols-4 gap-4 mb-6">
                           <div className="text-center p-4 bg-blue-50 rounded-lg">
-                            <DollarSign className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                            <DollarSign className="w-6 h-6 #3367D6 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Annual Tuition</div>
-                            <div className="font-bold text-blue-600">{university.tuition}</div>
+                            <div className="font-bold #3367D6">{university.tuition}</div>
                           </div>
                           <div className="text-center p-4 bg-blue-50 rounded-lg">
-                            <Users className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                            <Users className="w-6 h-6 #3367D6 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Acceptance Rate</div>
-                            <div className="font-bold text-blue-600">{university.acceptance}</div>
+                            <div className="font-bold #3367D6">{university.acceptance}</div>
                           </div>
                           <div className="text-center p-4 bg-blue-50 rounded-lg">
-                            <Building className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                            <Building className="w-6 h-6 #3367D6 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Campus</div>
-                            <div className="font-bold text-blue-600">{university.campusSize}</div>
+                            <div className="font-bold #3367D6">{university.campusSize}</div>
                           </div>
                           <div className="text-center p-4 bg-blue-50 rounded-lg">
-                            <GraduationCap className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                            <GraduationCap className="w-6 h-6 #3367D6 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Student Body</div>
-                            <div className="font-bold text-blue-600">{university.studentBody}</div>
+                            <div className="font-bold #3367D6">{university.studentBody}</div>
                           </div>
                         </div>
 
-                        <Button className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-orange-700 hover:to-blue-700 text-white">
+                        <Button className="w-full bg-gradient-to-r from-[#4285F4] to-[#3367D6] hover:from-orange-700 hover:to-[#1a73e8] text-white">
                           Get Admission Guidance for {university.name}
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
@@ -366,7 +366,7 @@ export default function AustraliaGuide() {
                 <Card className="shadow-lg">
                   <CardContent className="p-0">
                     <table className="w-full">
-                      <thead className="bg-gradient-to-r from-blue-600 to-blue-600 text-white">
+                      <thead className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white">
                         <tr>
                           <th className="px-6 py-4 text-left">City</th>
                           <th className="px-6 py-4 text-center">Housing</th>
@@ -382,7 +382,7 @@ export default function AustraliaGuide() {
                             <td className="px-6 py-4 text-center">{city.housing}</td>
                             <td className="px-6 py-4 text-center">{city.food}</td>
                             <td className="px-6 py-4 text-center">{city.transport}</td>
-                            <td className="px-6 py-4 text-center font-bold text-blue-600">{city.total}</td>
+                            <td className="px-6 py-4 text-center font-bold #3367D6">{city.total}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -404,26 +404,26 @@ export default function AustraliaGuide() {
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Sun className="w-6 h-6 mr-2 text-blue-500" />
+                      <Sun className="w-6 h-6 mr-2 #4285F4" />
                       Outdoor Lifestyle
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Beach culture</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Surfing and water sports</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Hiking and camping</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">BBQ culture</span>
                       </li>
                     </ul>
@@ -433,26 +433,26 @@ export default function AustraliaGuide() {
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Users className="w-6 h-6 mr-2 text-blue-500" />
+                      <Users className="w-6 h-6 mr-2 #4285F4" />
                       Multicultural Society
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Diverse communities</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">International cuisine</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Cultural festivals</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Friendly locals</span>
                       </li>
                     </ul>
@@ -462,26 +462,26 @@ export default function AustraliaGuide() {
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <TrendingUp className="w-6 h-6 mr-2 text-blue-500" />
+                      <TrendingUp className="w-6 h-6 mr-2 #4285F4" />
                       Work Opportunities
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">20 hours/week during studies</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Full-time during breaks</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Post-study work visa</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">High minimum wage</span>
                       </li>
                     </ul>
@@ -494,7 +494,7 @@ export default function AustraliaGuide() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -508,7 +508,7 @@ export default function AustraliaGuide() {
               Experience world-class education with an unbeatable lifestyle
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 text-lg px-8">
+              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50 text-lg px-8">
                 Book Free Australia Consultation
                 <Calendar className="w-5 h-5 ml-2" />
               </Button>

@@ -11,7 +11,7 @@ const journeySteps = [
     description: "Free personalized counseling session to understand your goals, academic background, and career aspirations.",
     duration: "Week 1",
     icon: Users,
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgColor: "bg-blue-50",
     details: [
       "Career assessment and goal setting",
@@ -27,7 +27,7 @@ const journeySteps = [
     description: "Research and shortlist universities based on your profile, preferences, and budget requirements.",
     duration: "Week 2-3",
     icon: GraduationCap,
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgColor: "bg-blue-50",
     details: [
       "University research and ranking analysis",
@@ -43,7 +43,7 @@ const journeySteps = [
     description: "Prepare for required tests (IELTS/PTE/TOEFL) and gather all necessary documents for applications.",
     duration: "Week 4-8",
     icon: FileText,
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgColor: "bg-blue-50",
     details: [
       "IELTS/PTE/TOEFL preparation",
@@ -59,7 +59,7 @@ const journeySteps = [
     description: "Submit applications to selected universities with all required documents and application fees.",
     duration: "Week 9-12",
     icon: Globe,
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgColor: "bg-blue-50",
     details: [
       "Online application completion",
@@ -75,7 +75,7 @@ const journeySteps = [
     description: "Receive and evaluate offer letters, accept the best option, and confirm your enrollment.",
     duration: "Week 13-16",
     icon: Award,
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgColor: "bg-blue-50",
     details: [
       "Offer letter evaluation",
@@ -91,7 +91,7 @@ const journeySteps = [
     description: "Complete visa documentation, attend interviews, and secure your student visa for travel.",
     duration: "Week 17-20",
     icon: MapPin,
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgColor: "bg-blue-50",
     details: [
       "Visa application preparation",
@@ -107,7 +107,7 @@ const journeySteps = [
     description: "Final preparations including accommodation, travel arrangements, and orientation sessions.",
     duration: "Week 21-24",
     icon: Plane,
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#4285F4] to-[#3367D6]",
     bgColor: "bg-blue-50",
     details: [
       "Accommodation arrangements",
@@ -222,7 +222,7 @@ export default function EducationJourneySection() {
                           transition={{ duration: 0.3, delay: index * 0.1 }}
                           className="flex items-center space-x-3"
                         >
-                          <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 #4285F4 flex-shrink-0" />
                           <span className="text-sm text-neutral-600">{detail}</span>
                         </motion.div>
                       ))}
@@ -311,7 +311,7 @@ export default function EducationJourneySection() {
           className="text-center"
         >
           <div className="bg-gradient-to-r from-primary via-secondary to-accent rounded-2xl p-8 text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-600/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4]/20 to-[#3367D6]/20" />
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-4" style={{ color: 'white' }}>
                 Ready to Start Your Journey?

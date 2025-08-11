@@ -169,7 +169,7 @@ export default function Footer() {
                   
                   <motion.a
                     href="mailto:abdul.majeed@dunyaconsultants.com"
-                    className="inline-flex items-center space-x-2 bg-white text-blue-600 hover:bg-blue-50 px-4 py-2 rounded-lg text-xs font-medium transition-colors"
+                    className="inline-flex items-center space-x-2 bg-white #3367D6 hover:bg-blue-50 px-4 py-2 rounded-lg text-xs font-medium transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >

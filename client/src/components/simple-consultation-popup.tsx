@@ -95,7 +95,7 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
         style={{ marginTop: '2rem' }}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white relative">
+        <div className="bg-gradient-to-r from-[#4285F4] to-[#1a73e8] p-6 text-white relative">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
@@ -120,7 +120,7 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
               {/* Personal Information */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                  <User className="w-5 h-5 mr-2 text-blue-600" />
+                  <User className="w-5 h-5 mr-2 #3367D6" />
                   Personal Information
                 </h3>
                 
@@ -130,7 +130,7 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                     required
-                    className="border-gray-300 focus:border-blue-500"
+                    className="border-gray-300 focus:#4285F4"
                   />
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -140,7 +140,7 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
                       value={formData.email}
                       onChange={(e) => handleInputChange("email", e.target.value)}
                       required
-                      className="border-gray-300 focus:border-blue-500"
+                      className="border-gray-300 focus:#4285F4"
                     />
                     
                     <Input
@@ -149,7 +149,7 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
                       value={formData.phone}
                       onChange={(e) => handleInputChange("phone", e.target.value)}
                       required
-                      className="border-gray-300 focus:border-blue-500"
+                      className="border-gray-300 focus:#4285F4"
                     />
                   </div>
                 </div>
@@ -160,7 +160,7 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
                 <h3 className="text-lg font-semibold text-gray-800">Consultation Details</h3>
                 
                 <Select value={formData.consultationType} onValueChange={(value) => handleInputChange("consultationType", value)}>
-                  <SelectTrigger className="border-gray-300 focus:border-blue-500">
+                  <SelectTrigger className="border-gray-300 focus:#4285F4">
                     <SelectValue placeholder="Select Consultation Type *" />
                   </SelectTrigger>
                   <SelectContent>
@@ -176,7 +176,7 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
                   placeholder="Tell us about your study abroad goals and any specific questions..."
                   value={formData.message}
                   onChange={(e) => handleInputChange("message", e.target.value)}
-                  className="border-gray-300 focus:border-blue-500 min-h-[100px]"
+                  className="border-gray-300 focus:#4285F4 min-h-[100px]"
                 />
               </div>
 
@@ -184,7 +184,7 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
               <Button
                 type="submit"
                 disabled={isSubmitting || !formData.name || !formData.email || !formData.phone}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-lg transition-colors"
+                className="w-full #3367D6 hover:bg-#1a73e8 text-white font-semibold py-3 text-lg transition-colors"
               >
                 {isSubmitting ? "Booking Consultation..." : "Book Free Consultation"}
               </Button>
@@ -192,14 +192,14 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
           ) : (
             <div className="text-center py-8">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-blue-600" />
+                <Calendar className="w-8 h-8 #3367D6" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Consultation Booked Successfully!</h3>
               <p className="text-gray-600 mb-4">
                 Thank you for booking your free consultation. Our expert counselor will contact you within 24 hours.
               </p>
               <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="text-sm text-blue-700">
+                <p className="text-sm text-#1a73e8">
                   <strong>Next Steps:</strong> Prepare your academic documents and think about your preferred study destinations.
                 </p>
               </div>
@@ -212,15 +212,15 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
           <h4 className="font-semibold text-gray-800 mb-3">Contact Information</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="flex items-center space-x-2">
-              <Phone className="w-4 h-4 text-blue-600" />
+              <Phone className="w-4 h-4 #3367D6" />
               <span>+92 304 1110947</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Mail className="w-4 h-4 text-blue-600" />
+              <Mail className="w-4 h-4 #3367D6" />
               <span>info@dunyaconsultants.com</span>
             </div>
             <div className="flex items-center space-x-2">
-              <MapPin className="w-4 h-4 text-blue-600" />
+              <MapPin className="w-4 h-4 #3367D6" />
               <span>Alif Tower, Sargodha</span>
             </div>
           </div>

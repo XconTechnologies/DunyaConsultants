@@ -356,9 +356,9 @@ export default function Events() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
       <Navigation />
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-700 to-blue-800 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-#1e3a8a via-#1a73e8 to-#1565c0 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-blue-800/30"></div>
+          <div className="w-full h-full bg-gradient-to-r from-[#4285F4]/30 to-#1565c0/30"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -508,7 +508,7 @@ export default function Events() {
                           </div>
                         )}
                         
-                        <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600">
+                        <div className="relative h-48 bg-gradient-to-br from-[#4285F4] to-purple-600">
                           <div className="absolute inset-0 bg-black/20"></div>
                           <div className="absolute top-4 right-4">
                             <Badge variant={event.price === "Free" ? "secondary" : "default"} className="bg-white/90 text-neutral-800">

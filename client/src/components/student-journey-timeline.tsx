@@ -19,7 +19,7 @@ const journeySteps = [
     description: "Free assessment of your academic background, career goals, and preferred destinations",
     duration: "1-2 weeks",
     icon: UserCheck,
-    color: "bg-blue-500",
+    color: "#4285F4",
     deliverables: ["Profile Assessment", "Country Selection", "Budget Planning", "Timeline Overview"]
   },
   {
@@ -28,7 +28,7 @@ const journeySteps = [
     description: "Personalized university recommendations based on your profile and preferences",
     duration: "2-3 weeks",
     icon: GraduationCap,
-    color: "bg-blue-500",
+    color: "#4285F4",
     deliverables: ["University Shortlist", "Program Matching", "Entry Requirements", "Scholarship Options"]
   },
   {
@@ -37,7 +37,7 @@ const journeySteps = [
     description: "IELTS, TOEFL, PTE, or other required language and academic test preparation",
     duration: "4-8 weeks",
     icon: BookOpen,
-    color: "bg-blue-500",
+    color: "#4285F4",
     deliverables: ["Test Registration", "Study Materials", "Mock Tests", "Score Achievement"]
   },
   {
@@ -46,7 +46,7 @@ const journeySteps = [
     description: "Complete documentation including transcripts, SOP, LORs, and financial documents",
     duration: "3-4 weeks",
     icon: FileText,
-    color: "bg-blue-500",
+    color: "#4285F4",
     deliverables: ["SOP Writing", "LOR Collection", "Document Verification", "Portfolio Creation"]
   },
   {
@@ -55,7 +55,7 @@ const journeySteps = [
     description: "Submit applications to selected universities with complete documentation",
     duration: "1-2 weeks",
     icon: Send,
-    color: "bg-blue-500",
+    color: "#4285F4",
     deliverables: ["Online Applications", "Document Upload", "Application Fees", "Tracking Setup"]
   },
   {
@@ -64,7 +64,7 @@ const journeySteps = [
     description: "Receive offers, compare options, and confirm your preferred university",
     duration: "6-12 weeks",
     icon: CheckCircle,
-    color: "bg-blue-500",
+    color: "#4285F4",
     deliverables: ["Offer Letters", "Scholarship Awards", "Acceptance Confirmation", "Deposit Payment"]
   },
   {
@@ -73,7 +73,7 @@ const journeySteps = [
     description: "Complete visa application with proper documentation and interview preparation",
     duration: "4-8 weeks",
     icon: MapPin,
-    color: "bg-blue-500",
+    color: "#4285F4",
     deliverables: ["Visa Application", "Financial Documents", "Interview Prep", "Visa Approval"]
   },
   {
@@ -82,7 +82,7 @@ const journeySteps = [
     description: "Final preparations including accommodation, travel, and orientation support",
     duration: "2-4 weeks",
     icon: Plane,
-    color: "bg-blue-500",
+    color: "#4285F4",
     deliverables: ["Accommodation Booking", "Travel Arrangements", "Orientation Guide", "Emergency Contacts"]
   }
 ];
@@ -169,7 +169,7 @@ export default function StudentJourneyTimeline() {
                   {/* Step Icon & Number */}
                   <div className="flex items-center mb-5 relative z-10">
                     <motion.div
-                      className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white shadow-lg mr-4"
+                      className="w-12 h-12 bg-gradient-to-br from-[#4285F4] to-[#3367D6] rounded-full flex items-center justify-center text-white shadow-lg mr-4"
                       whileHover={{ rotate: 5, scale: 1.1 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -183,7 +183,7 @@ export default function StudentJourneyTimeline() {
                     </motion.div>
                     <div className="flex flex-col">
                       <motion.span
-                        className="text-xs text-blue-600 font-bold uppercase tracking-wider"
+                        className="text-xs #3367D6 font-bold uppercase tracking-wider"
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.15 + 0.3 }}
@@ -228,9 +228,9 @@ export default function StudentJourneyTimeline() {
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                     transition={{ duration: 0.5, delay: index * 0.15 + 0.5 }}
                   >
-                    <div className="text-xs font-medium text-blue-600 mb-3 uppercase tracking-wide flex items-center">
+                    <div className="text-xs font-medium #3367D6 mb-3 uppercase tracking-wide flex items-center">
                       <motion.div
-                        className="w-2 h-2 bg-blue-500 rounded-full mr-2"
+                        className="w-2 h-2 #4285F4 rounded-full mr-2"
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                       />
@@ -258,7 +258,7 @@ export default function StudentJourneyTimeline() {
 
                   {/* Hover Effect Indicator */}
                   <motion.div
-                    className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#4285F4] to-[#3367D6] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     layoutId={`step-indicator-${step.id}`}
                   />
                 </motion.div>
@@ -291,7 +291,7 @@ export default function StudentJourneyTimeline() {
           transition={{ duration: 0.8, delay: 0.8 }}
         >
           <motion.button
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -305,7 +305,7 @@ export default function StudentJourneyTimeline() {
             </motion.div>
           </motion.button>
           <p className="text-gray-600 mt-4 text-sm">
-            Total Journey Duration: <span className="font-semibold text-blue-600">6-12 months</span>
+            Total Journey Duration: <span className="font-semibold #3367D6">6-12 months</span>
           </p>
         </motion.div>
       </div>

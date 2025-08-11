@@ -115,7 +115,7 @@ export default function AchievementNotification() {
                   <h3 className="font-bold text-gray-900 text-lg">{achievement.title}</h3>
                   <p className="text-gray-600 text-sm mt-1">{achievement.description}</p>
                   <div className="flex items-center mt-2 space-x-3">
-                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-#1565c0">
                       +{achievement.points} points
                     </span>
                     <span className="text-xs text-gray-500 capitalize">

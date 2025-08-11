@@ -10,7 +10,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#124FD3] via-[#124FD3] to-[#0d3db8] flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#4285F4] via-[#4285F4] to-[#3367D6] flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -40,7 +40,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
               {/* What is MS in Business Analytics USA Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">What is MS in Business Analytics USA?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">What is MS in Business Analytics USA?</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The MS business analytics course in USA, also called MSBA or MBAn, is a program made to help students learn how to use machine learning and data science to solve real-world business problems. This course helps to build practical skills that are needed in today's business world.
                 </p>
@@ -50,19 +50,19 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
                 {/* Program Overview */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Program Overview</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Program Overview</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold text-blue-700 mb-2">8-12 Months</h4>
-                      <p className="text-blue-600">Program Duration</p>
+                      <h4 className="text-2xl font-bold text-#1a73e8 mb-2">8-12 Months</h4>
+                      <p className="#3367D6">Program Duration</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold text-blue-700 mb-2">3.0-3.6 GPA</h4>
-                      <p className="text-blue-600">Required GPA</p>
+                      <h4 className="text-2xl font-bold text-#1a73e8 mb-2">3.0-3.6 GPA</h4>
+                      <p className="#3367D6">Required GPA</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold text-blue-700 mb-2">STEM</h4>
-                      <p className="text-blue-600">Designated Field</p>
+                      <h4 className="text-2xl font-bold text-#1a73e8 mb-2">STEM</h4>
+                      <p className="#3367D6">Designated Field</p>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
               {/* Top Universities Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">List of Universities Offering MS in Business Analytics in USA</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">List of Universities Offering MS in Business Analytics in USA</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   MS business analytics in USA is a great choice if you are interested in working with data and want to build a career in this field. After completing a business analyst course in USA, you can work for leading companies like Citibank, Wells Fargo, and Capital One.
                 </p>
@@ -80,7 +80,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
                 {/* Universities Table */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Top Universities for MS in Business Analytics</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Top Universities for MS in Business Analytics</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse border border-gray-300">
                       <thead>
@@ -138,7 +138,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
               {/* Eligibility Requirements Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Eligibility Requirements in Best Universities in USA for Business Analytics</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Eligibility Requirements in Best Universities in USA for Business Analytics</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   International students applying for a business analyst course in the USA must fulfill certain eligibility requirements. Before applying, remember to check the specific rules of the university you are interested in, as they can vary from one university to the other.
                 </p>
@@ -147,26 +147,26 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Key Requirements</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Key Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>You need a graduation degree or equivalent to apply. Few universities might ask for your educational transcripts.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>At least 7.5 IELTS scores are normally required, with a minimum of 7 in every section. Some universities also accept PTE, TOEFL, or other equivalent English proficiency test scores.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>You might be asked to submit your GMAT or GRE test results.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>You may need to write an SOP explaining why you are willing to study business analytics in USA universities.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="#3367D6 mr-2">•</span>
                       <span>Those who have professional work experience will have to share it with the institution they are applying to.</span>
                     </li>
                   </ul>
@@ -175,20 +175,20 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
               {/* Application Process Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">The Process to Apply for Affordable MS in Business Analytics in the USA</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">The Process to Apply for Affordable MS in Business Analytics in the USA</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The best MSBA programs in USA in the USA are usually provided during the Fall and Winter terms. Those who are interested in applying will have to search for the best university for business analytics in USA.
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Application Steps</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Application Steps</h3>
                   <ol className="space-y-4 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
+                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
                       <span>Every university might have slightly different rules, so it is crucial to understand them clearly.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
+                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
                       <div>
                         <span>Next, you will have to pay an application fee and submit all required documents. These include:</span>
                         <ul className="mt-2 ml-4 space-y-1">
@@ -201,7 +201,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-blue-800 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
+                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
                       <span>Once your admission application is accepted, you will get an offer letter from the university. After this, you can apply for your US student visa to start your studies.</span>
                     </li>
                   </ol>
@@ -210,16 +210,16 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
               {/* Cost of Studying Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Cost of Studying MS in Business Analytics USA</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Cost of Studying MS in Business Analytics USA</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The average fee of studying for MS in business analytics in USA with low fees depends on the university you choose. The MS in business analytics in USA fees can range between $39,000 to $85,000 per year, depending on the institution and program reputation.
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Cost Breakdown</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Cost Breakdown</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <h4 className="font-semibold text-blue-700 mb-2">Tuition Fees</h4>
+                      <h4 className="font-semibold text-#1a73e8 mb-2">Tuition Fees</h4>
                       <ul className="space-y-1 text-gray-700">
                         <li>• Public Universities: $39,000 - $55,000</li>
                         <li>• Private Universities: $60,000 - $85,000</li>
@@ -227,7 +227,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-blue-700 mb-2">Living Expenses</h4>
+                      <h4 className="font-semibold text-#1a73e8 mb-2">Living Expenses</h4>
                       <ul className="space-y-1 text-gray-700">
                         <li>• Accommodation: $12,000 - $18,000</li>
                         <li>• Food & Utilities: $8,000 - $12,000</li>
@@ -240,16 +240,16 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
               {/* Job Opportunities Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Job Opportunities for Master of Business Analytics in USA</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Job Opportunities for Master of Business Analytics in USA</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   After completing an MS in Business Analytics in the USA, graduates have access to excellent career opportunities in various industries. The field is experiencing rapid growth with high demand for skilled professionals.
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Top Career Opportunities</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Top Career Opportunities</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold text-blue-700 mb-3">High-Demand Roles</h4>
+                      <h4 className="font-semibold text-#1a73e8 mb-3">High-Demand Roles</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Data Analyst</li>
                         <li>• Business Intelligence Analyst</li>
@@ -260,7 +260,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-blue-700 mb-3">Average Salaries</h4>
+                      <h4 className="font-semibold text-#1a73e8 mb-3">Average Salaries</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Entry Level: $70,000 - $90,000</li>
                         <li>• Mid Level: $90,000 - $120,000</li>
@@ -272,22 +272,22 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                 </div>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">Top Employers</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Top Employers</h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center">
-                      <h4 className="font-semibold text-blue-700">Financial Services</h4>
+                      <h4 className="font-semibold text-#1a73e8">Financial Services</h4>
                       <p className="text-sm text-gray-600">Citibank, Wells Fargo, Capital One</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="font-semibold text-blue-700">Technology</h4>
+                      <h4 className="font-semibold text-#1a73e8">Technology</h4>
                       <p className="text-sm text-gray-600">Google, Microsoft, Amazon</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="font-semibold text-blue-700">Consulting</h4>
+                      <h4 className="font-semibold text-#1a73e8">Consulting</h4>
                       <p className="text-sm text-gray-600">McKinsey, Deloitte, Accenture</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="font-semibold text-blue-700">Healthcare</h4>
+                      <h4 className="font-semibold text-#1a73e8">Healthcare</h4>
                       <p className="text-sm text-gray-600">Johnson & Johnson, Pfizer</p>
                     </div>
                   </div>
@@ -310,35 +310,35 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
               {/* FAQs */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What is the duration of the MS in business analytics USA?</h3>
                     <p className="text-gray-700">The MS in Business Analytics program in the USA typically takes 8-12 months to complete. Some universities offer accelerated programs that can be completed in 10 months, while others may extend to 18 months depending on the curriculum structure.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Is GRE needed for MS business analytics in USA?</h3>
                     <p className="text-gray-700">GRE requirements vary by university. Many top-tier universities require GRE scores, while some have made it optional or waived it entirely. It's recommended to check specific university requirements and consider taking the GRE to strengthen your application.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Are business analytics courses in USA considered STEM courses?</h3>
                     <p className="text-gray-700">Yes, MS in Business Analytics programs in the USA are typically designated as STEM courses. This designation allows international students to apply for a 24-month STEM OPT extension, providing up to 36 months of work authorization after graduation.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What is the average salary after MS in Business Analytics in USA?</h3>
                     <p className="text-gray-700">The average starting salary for MS in Business Analytics graduates ranges from $70,000 to $90,000 annually. With experience, professionals can earn $120,000 to $160,000 or more, depending on location, company, and specialization.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Which universities offer the best MS in Business Analytics programs?</h3>
                     <p className="text-gray-700">Top universities include MIT, UCLA, University of Notre Dame, Purdue University, and USC. These institutions are known for their excellent faculty, industry connections, and high job placement rates for graduates.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What are the job prospects after completing MS in Business Analytics?</h3>
                     <p className="text-gray-700">Job prospects are excellent with opportunities in data analysis, business intelligence, consulting, finance, healthcare, and technology sectors. The field is experiencing rapid growth with high demand for skilled professionals across various industries.</p>
                   </div>
@@ -346,14 +346,14 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Start Your Journey to MS in Business Analytics in USA</h3>
                 <p className="text-lg mb-4">Let our expert counselors guide you through the entire application process, from university selection to visa approval. We'll help you secure admission to top US universities and achieve your career goals.</p>
                 <div className="flex gap-4">
-                  <a href="tel:+923041110947" className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  <a href="tel:+923041110947" className="bg-white #3367D6 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#3367D6 transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -367,34 +367,34 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-800">Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-#1565c0">Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Program Duration</span>
-                  <span className="text-sm font-bold text-blue-700">8-12 months</span>
+                  <span className="text-sm font-bold text-#1a73e8">8-12 months</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Tuition Fees</span>
-                  <span className="text-sm font-bold text-blue-700">$39,000-$85,000</span>
+                  <span className="text-sm font-bold text-#1a73e8">$39,000-$85,000</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Average Starting Salary</span>
-                  <span className="text-sm font-bold text-blue-700">$70,000-$90,000</span>
+                  <span className="text-sm font-bold text-#1a73e8">$70,000-$90,000</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">STEM Designation</span>
-                  <span className="text-sm font-bold text-blue-700">Yes</span>
+                  <span className="text-sm font-bold text-#1a73e8">Yes</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">OPT Extension</span>
-                  <span className="text-sm font-bold text-blue-700">24 months</span>
+                  <span className="text-sm font-bold text-#1a73e8">24 months</span>
                 </div>
               </div>
             </div>
 
             {/* Top Universities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-800">Top 5 Universities</h3>
+              <h3 className="text-xl font-bold mb-4 text-#1565c0">Top 5 Universities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>1. Massachusetts Institute of Technology (MIT)</li>
                 <li>2. University of California, Los Angeles (UCLA)</li>
@@ -406,7 +406,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
             {/* Career Opportunities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-800">Career Opportunities</h3>
+              <h3 className="text-xl font-bold mb-4 text-#1565c0">Career Opportunities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Data Analyst</li>
                 <li>• Business Intelligence Analyst</li>
@@ -421,13 +421,13 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/requirements-to-study-computer-science-in-usa" className="block text-blue-600 hover:text-blue-800 text-sm">
+                <a href="/blog/requirements-to-study-computer-science-in-usa" className="block #3367D6 hover:text-#1565c0 text-sm">
                   Requirements to Study Computer Science in USA
                 </a>
-                <a href="/blog/green-card-for-international-students" className="block text-blue-600 hover:text-blue-800 text-sm">
+                <a href="/blog/green-card-for-international-students" className="block #3367D6 hover:text-#1565c0 text-sm">
                   Green Card for International Students
                 </a>
-                <a href="/blog/study-abroad-education-consultants-dunya-consultants" className="block text-blue-600 hover:text-blue-800 text-sm">
+                <a href="/blog/study-abroad-education-consultants-dunya-consultants" className="block #3367D6 hover:text-#1565c0 text-sm">
                   Study Abroad Education Consultants
                 </a>
               </div>

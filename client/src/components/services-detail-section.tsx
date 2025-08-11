@@ -28,7 +28,7 @@ export default function ServicesDetailSection() {
       title: "Admission Guidance",
       icon: GraduationCap,
       description: "Complete university application and admission support",
-      color: "from-blue-500 to-blue-600",
+      color: "from-[#4285F4] to-[#3367D6]",
       price: "PKR 25,000 - 50,000",
       duration: "3-6 months",
       features: [
@@ -54,7 +54,7 @@ export default function ServicesDetailSection() {
       title: "Visa Filing",
       icon: FileText,
       description: "Expert visa application and documentation services",
-      color: "from-blue-500 to-blue-600",
+      color: "from-[#4285F4] to-[#3367D6]",
       price: "PKR 15,000 - 35,000",
       duration: "2-4 months",
       features: [
@@ -80,7 +80,7 @@ export default function ServicesDetailSection() {
       title: "SOP & Documentation Support",
       icon: PenTool,
       description: "Professional statement writing and document preparation",
-      color: "from-blue-500 to-blue-600",
+      color: "from-[#4285F4] to-[#3367D6]",
       price: "PKR 8,000 - 20,000",
       duration: "2-4 weeks",
       features: [
@@ -106,7 +106,7 @@ export default function ServicesDetailSection() {
       title: "IELTS/PTE Coaching",
       icon: BookOpen,
       description: "Comprehensive English language test preparation",
-      color: "from-blue-500 to-blue-600",
+      color: "from-[#4285F4] to-[#3367D6]",
       price: "PKR 12,000 - 25,000",
       duration: "2-6 months",
       features: [
@@ -132,7 +132,7 @@ export default function ServicesDetailSection() {
       title: "Pre-departure Briefing",
       icon: Plane,
       description: "Complete preparation for international study experience",
-      color: "from-blue-500 to-blue-600",
+      color: "from-[#4285F4] to-[#3367D6]",
       price: "PKR 5,000 - 15,000",
       duration: "1-2 weeks",
       features: [
@@ -158,7 +158,7 @@ export default function ServicesDetailSection() {
       title: "Accommodation & Travel",
       icon: Home,
       description: "Housing and travel arrangement services",
-      color: "from-blue-500 to-blue-600",
+      color: "from-[#4285F4] to-[#3367D6]",
       price: "PKR 10,000 - 30,000",
       duration: "2-6 weeks",
       features: [
@@ -289,23 +289,23 @@ export default function ServicesDetailSection() {
 
                 <TabsContent value="overview" className="p-6">
                   <div className="grid md:grid-cols-3 gap-8">
-                    <Card className="text-center shadow-lg border-l-4 border-blue-500">
+                    <Card className="text-center shadow-lg border-l-4 #4285F4">
                       <CardContent className="p-6">
-                        <Award className="h-12 w-12 text-blue-600 mx-auto mb-3" />
+                        <Award className="h-12 w-12 #3367D6 mx-auto mb-3" />
                         <h3 className="text-2xl font-bold text-gray-900">{services[selectedService].successRate}</h3>
                         <p className="text-gray-600">Success Rate</p>
                       </CardContent>
                     </Card>
-                    <Card className="text-center shadow-lg border-l-4 border-blue-500">
+                    <Card className="text-center shadow-lg border-l-4 #4285F4">
                       <CardContent className="p-6">
-                        <Users className="h-12 w-12 text-blue-600 mx-auto mb-3" />
+                        <Users className="h-12 w-12 #3367D6 mx-auto mb-3" />
                         <h3 className="text-2xl font-bold text-gray-900">{services[selectedService].clientsServed}</h3>
                         <p className="text-gray-600">Clients Served</p>
                       </CardContent>
                     </Card>
-                    <Card className="text-center shadow-lg border-l-4 border-blue-500">
+                    <Card className="text-center shadow-lg border-l-4 #4285F4">
                       <CardContent className="p-6">
-                        <Clock className="h-12 w-12 text-blue-600 mx-auto mb-3" />
+                        <Clock className="h-12 w-12 #3367D6 mx-auto mb-3" />
                         <h3 className="text-2xl font-bold text-gray-900">{services[selectedService].duration}</h3>
                         <p className="text-gray-600">Typical Duration</p>
                       </CardContent>
@@ -352,7 +352,7 @@ export default function ServicesDetailSection() {
                       <Card key={index} className="shadow-md hover:shadow-lg transition-shadow">
                         <CardContent className="p-4">
                           <div className="flex items-center space-x-3">
-                            <CheckCircle className={`h-6 w-6 text-blue-600 flex-shrink-0`} />
+                            <CheckCircle className={`h-6 w-6 #3367D6 flex-shrink-0`} />
                             <span className="text-gray-800 font-medium">{feature}</span>
                           </div>
                         </CardContent>
@@ -364,27 +364,27 @@ export default function ServicesDetailSection() {
                     <h4 className="text-xl font-semibold text-gray-900 mb-4">What's Included</h4>
                     <div className="grid md:grid-cols-3 gap-4 text-sm">
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-blue-600" />
+                        <CheckCircle className="h-4 w-4 #3367D6" />
                         <span>Expert consultation</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-blue-600" />
+                        <CheckCircle className="h-4 w-4 #3367D6" />
                         <span>24/7 support</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-blue-600" />
+                        <CheckCircle className="h-4 w-4 #3367D6" />
                         <span>Progress tracking</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-blue-600" />
+                        <CheckCircle className="h-4 w-4 #3367D6" />
                         <span>Regular updates</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-blue-600" />
+                        <CheckCircle className="h-4 w-4 #3367D6" />
                         <span>Money-back guarantee</span>
                       </div>
                       <div className="flex items-center space-x-2">
-                        <CheckCircle className="h-4 w-4 text-blue-600" />
+                        <CheckCircle className="h-4 w-4 #3367D6" />
                         <span>Post-service support</span>
                       </div>
                     </div>

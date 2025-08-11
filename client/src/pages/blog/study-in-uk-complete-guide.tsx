@@ -10,11 +10,11 @@ export default function StudyInUKCompleteGuide() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Destination
               </span>
             </div>
@@ -64,20 +64,20 @@ export default function StudyInUKCompleteGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-uk" className="hover:text-blue-600">Why Choose to Study in UK?</a></li>
-                  <li><a href="#education-system" className="hover:text-blue-600">UK Education System</a></li>
-                  <li><a href="#visa-requirements" className="hover:text-blue-600">Study Visa Requirements</a></li>
-                  <li><a href="#english-requirements" className="hover:text-blue-600">English Language Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:text-blue-600">Tuition Fees and Living Costs</a></li>
-                  <li><a href="#documents-checklist" className="hover:text-blue-600">Required Documents</a></li>
-                  <li><a href="#application-process" className="hover:text-blue-600">Application Process</a></li>
-                  <li><a href="#faqs" className="hover:text-blue-600">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-uk" className="hover:#3367D6">Why Choose to Study in UK?</a></li>
+                  <li><a href="#education-system" className="hover:#3367D6">UK Education System</a></li>
+                  <li><a href="#visa-requirements" className="hover:#3367D6">Study Visa Requirements</a></li>
+                  <li><a href="#english-requirements" className="hover:#3367D6">English Language Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:#3367D6">Tuition Fees and Living Costs</a></li>
+                  <li><a href="#documents-checklist" className="hover:#3367D6">Required Documents</a></li>
+                  <li><a href="#application-process" className="hover:#3367D6">Application Process</a></li>
+                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* UK Overview */}
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-blue-800 mb-4">Study in UK at a Glance</h3>
+              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+                <h3 className="text-xl font-semibold text-#1565c0 mb-4">Study in UK at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-700 mb-2"><strong>Universities:</strong> 166 institutions</p>
@@ -94,7 +94,7 @@ export default function StudyInUKCompleteGuide() {
 
               {/* Why Study in UK Section */}
               <section id="why-study-uk" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Why Choose to Study in UK?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Why Choose to Study in UK?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The UK offers numerous advantages for international students, making it a top choice for quality education.
@@ -103,7 +103,7 @@ export default function StudyInUKCompleteGuide() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <DollarSign className="w-5 h-5 mr-2" />
                         Cost-effective Education
                       </h3>
@@ -111,7 +111,7 @@ export default function StudyInUKCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <Clock className="w-5 h-5 mr-2" />
                         Shorter Programs
                       </h3>
@@ -119,7 +119,7 @@ export default function StudyInUKCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <Users className="w-5 h-5 mr-2" />
                         No Language Barrier
                       </h3>
@@ -127,7 +127,7 @@ export default function StudyInUKCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <CheckCircle className="w-5 h-5 mr-2" />
                         Highest Visa Ratio
                       </h3>
@@ -137,7 +137,7 @@ export default function StudyInUKCompleteGuide() {
 
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <BookOpen className="w-5 h-5 mr-2" />
                         Work-Study Programs
                       </h3>
@@ -145,7 +145,7 @@ export default function StudyInUKCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         Cultural Diversity
                       </h3>
@@ -153,7 +153,7 @@ export default function StudyInUKCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <GraduationCap className="w-5 h-5 mr-2" />
                         Quality of Life
                       </h3>
@@ -161,7 +161,7 @@ export default function StudyInUKCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <AlertCircle className="w-5 h-5 mr-2" />
                         Simple Visa Process
                       </h3>
@@ -173,7 +173,7 @@ export default function StudyInUKCompleteGuide() {
 
               {/* Visa Requirements Section */}
               <section id="visa-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Study Visa Requirements for Pakistani Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Study Visa Requirements for Pakistani Students</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Pakistani students must obtain a Student Route visa to study in the UK. Here are the essential requirements:
@@ -181,17 +181,17 @@ export default function StudyInUKCompleteGuide() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Original Passport</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Original Passport</h3>
                     <p className="text-gray-700">Valid passport required for visa application.</p>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">CAS (Confirmation of Acceptance for Study)</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">CAS (Confirmation of Acceptance for Study)</h3>
                     <p className="text-gray-700">Confirmation letter from your UK university accepting you for study.</p>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Medical Certificate</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Medical Certificate</h3>
                     <p className="text-gray-700">Tuberculosis (TB) test results required for Pakistani applicants. Must be from UKVI approved TB test centers:</p>
                     <ul className="mt-2 text-gray-700 space-y-1">
                       <li>• AMC</li>
@@ -201,12 +201,12 @@ export default function StudyInUKCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Proof of Relationship</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Proof of Relationship</h3>
                     <p className="text-gray-700">Birth Certificate or Family Registration Certificate if applicable.</p>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Proof of Finances</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Proof of Finances</h3>
                     <p className="text-gray-700">Bank statements and financial documents showing ability to pay tuition and living expenses.</p>
                   </div>
                 </div>
@@ -214,7 +214,7 @@ export default function StudyInUKCompleteGuide() {
 
               {/* English Requirements Section */}
               <section id="english-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">English Language Requirements</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">English Language Requirements</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   UK universities require proof of English proficiency through standardized tests.
@@ -222,7 +222,7 @@ export default function StudyInUKCompleteGuide() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">IELTS Requirements</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">IELTS Requirements</h3>
                     <div className="space-y-3">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Undergraduate:</h4>
@@ -236,7 +236,7 @@ export default function StudyInUKCompleteGuide() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">PTE Requirements</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">PTE Requirements</h3>
                     <div className="space-y-3">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Undergraduate:</h4>
@@ -253,7 +253,7 @@ export default function StudyInUKCompleteGuide() {
 
               {/* Tuition Costs Section */}
               <section id="tuition-costs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Tuition Fees</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Tuition Fees</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   UK tuition fees are competitive and offer excellent value for money.
@@ -261,17 +261,17 @@ export default function StudyInUKCompleteGuide() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">Undergraduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Undergraduate Programs</h3>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">£11,000 - £17,000</div>
+                      <div className="text-3xl font-bold #3367D6 mb-2">£11,000 - £17,000</div>
                       <p className="text-gray-700 text-sm">per year</p>
                     </div>
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">Graduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Graduate Programs</h3>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">£11,000 - £17,000</div>
+                      <div className="text-3xl font-bold #3367D6 mb-2">£11,000 - £17,000</div>
                       <p className="text-gray-700 text-sm">per year</p>
                     </div>
                   </div>
@@ -280,11 +280,11 @@ export default function StudyInUKCompleteGuide() {
 
               {/* Documents Checklist Section */}
               <section id="documents-checklist" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Required Documents Checklist</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Required Documents Checklist</h2>
                 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       All Educational Documents
                     </h3>
@@ -292,7 +292,7 @@ export default function StudyInUKCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <FileText className="w-5 h-5 mr-2" />
                       Statement of Purpose
                     </h3>
@@ -300,7 +300,7 @@ export default function StudyInUKCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <BookOpen className="w-5 h-5 mr-2" />
                       IELTS Score (if applicable)
                     </h3>
@@ -308,7 +308,7 @@ export default function StudyInUKCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       2 Recommendation Letters
                     </h3>
@@ -316,7 +316,7 @@ export default function StudyInUKCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <GraduationCap className="w-5 h-5 mr-2" />
                       Experience Certificate
                     </h3>
@@ -324,7 +324,7 @@ export default function StudyInUKCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <AlertCircle className="w-5 h-5 mr-2" />
                       Europass CV
                     </h3>
@@ -335,7 +335,7 @@ export default function StudyInUKCompleteGuide() {
 
               {/* FAQ Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -362,13 +362,13 @@ export default function StudyInUKCompleteGuide() {
 
               {/* CTA Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold text-blue-800 mb-4">Ready to Start Your UK Study Journey?</h3>
+                <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Start Your UK Study Journey?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants provides expert guidance for UK university applications and visa processes. Contact us for personalized assistance.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/contact" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                  <a href="/contact" className="#3367D6 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
                     Get Free Consultation
                   </a>
-                  <a href="tel:+923041110947" className="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  <a href="tel:+923041110947" className="border #3367D6 #3367D6 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                     Call Now: +92 304 111 0947
                   </a>
                 </div>
@@ -384,7 +384,7 @@ export default function StudyInUKCompleteGuide() {
               
               {/* Quick Info */}
               <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-blue-800">Quick Study Info</h3>
+                <h3 className="text-lg font-semibold mb-4 text-#1565c0">Quick Study Info</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Student Visa:</span>
@@ -409,10 +409,10 @@ export default function StudyInUKCompleteGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/study-in-usa-guide" className="block text-blue-600 hover:text-blue-800 text-sm">Study in USA Guide</a>
-                  <a href="/blog/study-in-canada" className="block text-blue-600 hover:text-blue-800 text-sm">Study in Canada Guide</a>
-                  <a href="/blog/study-nursing-uk" className="block text-blue-600 hover:text-blue-800 text-sm">Study Nursing in UK</a>
-                  <a href="/blog/study-gap-acceptable-uk-masters" className="block text-blue-600 hover:text-blue-800 text-sm">Study Gap Acceptable in UK</a>
+                  <a href="/blog/study-in-usa-guide" className="block #3367D6 hover:text-#1565c0 text-sm">Study in USA Guide</a>
+                  <a href="/blog/study-in-canada" className="block #3367D6 hover:text-#1565c0 text-sm">Study in Canada Guide</a>
+                  <a href="/blog/study-nursing-uk" className="block #3367D6 hover:text-#1565c0 text-sm">Study Nursing in UK</a>
+                  <a href="/blog/study-gap-acceptable-uk-masters" className="block #3367D6 hover:text-#1565c0 text-sm">Study Gap Acceptable in UK</a>
                 </div>
               </div>
 

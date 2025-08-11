@@ -127,7 +127,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
             <Card className="bg-white shadow-2xl border-0">
               <CardContent className="p-0">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-blue-600 to-blue-600 p-6 text-white relative">
+                <div className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] p-6 text-white relative">
                   <button
                     onClick={onClose}
                     className="absolute top-4 right-4 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
@@ -154,7 +154,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                         {/* Personal Information */}
                         <div className="space-y-4">
                           <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                            <User className="w-5 h-5 mr-2 text-blue-600" />
+                            <User className="w-5 h-5 mr-2 #3367D6" />
                             Personal Information
                           </h3>
                           
@@ -164,7 +164,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                               value={formData.name}
                               onChange={(e) => handleInputChange("name", e.target.value)}
                               required
-                              className="border-gray-300 focus:border-blue-500"
+                              className="border-gray-300 focus:#4285F4"
                             />
                             
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -174,7 +174,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                                 value={formData.email}
                                 onChange={(e) => handleInputChange("email", e.target.value)}
                                 required
-                                className="border-gray-300 focus:border-blue-500"
+                                className="border-gray-300 focus:#4285F4"
                               />
                               
                               <Input
@@ -183,7 +183,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                                 value={formData.phone}
                                 onChange={(e) => handleInputChange("phone", e.target.value)}
                                 required
-                                className="border-gray-300 focus:border-blue-500"
+                                className="border-gray-300 focus:#4285F4"
                               />
                             </div>
                           </div>
@@ -192,12 +192,12 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                         {/* Consultation Details */}
                         <div className="space-y-4">
                           <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                            <Clock className="w-5 h-5 mr-2 text-blue-600" />
+                            <Clock className="w-5 h-5 mr-2 #3367D6" />
                             Consultation Details
                           </h3>
                           
                           <Select value={formData.consultationType} onValueChange={(value) => handleInputChange("consultationType", value)}>
-                            <SelectTrigger className="border-gray-300 focus:border-blue-500">
+                            <SelectTrigger className="border-gray-300 focus:#4285F4">
                               <SelectValue placeholder="Select Consultation Type *" />
                             </SelectTrigger>
                             <SelectContent>
@@ -213,11 +213,11 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                               value={formData.preferredDate}
                               onChange={(e) => handleInputChange("preferredDate", e.target.value)}
                               min={new Date().toISOString().split('T')[0]}
-                              className="border-gray-300 focus:border-blue-500"
+                              className="border-gray-300 focus:#4285F4"
                             />
                             
                             <Select value={formData.preferredTime} onValueChange={(value) => handleInputChange("preferredTime", value)}>
-                              <SelectTrigger className="border-gray-300 focus:border-blue-500">
+                              <SelectTrigger className="border-gray-300 focus:#4285F4">
                                 <SelectValue placeholder="Preferred Time" />
                               </SelectTrigger>
                               <SelectContent>
@@ -233,14 +233,14 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                             value={formData.message}
                             onChange={(e) => handleInputChange("message", e.target.value)}
                             rows={4}
-                            className="border-gray-300 focus:border-blue-500"
+                            className="border-gray-300 focus:#4285F4"
                           />
                         </div>
 
                         <Button
                           type="submit"
                           disabled={isSubmitting || !formData.name || !formData.email || !formData.phone}
-                          className="w-full bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700 py-3 text-lg font-semibold"
+                          className="w-full bg-gradient-to-r from-[#4285F4] to-[#3367D6] hover:from-#1a73e8 hover:to-[#1a73e8] py-3 text-lg font-semibold"
                         >
                           {isSubmitting ? (
                             <div className="flex items-center justify-center space-x-2">
@@ -256,16 +256,16 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                       /* Success State */
                       <div className="text-center py-12">
                         <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                          <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                          <div className="w-8 h-8 #4285F4 rounded-full flex items-center justify-center">
                             <div className="w-3 h-3 bg-white rounded-full" />
                           </div>
                         </div>
-                        <h3 className="text-2xl font-bold text-blue-600 mb-2">Consultation Booked!</h3>
+                        <h3 className="text-2xl font-bold #3367D6 mb-2">Consultation Booked!</h3>
                         <p className="text-gray-600 mb-4">
                           Thank you for booking a consultation with us. Our expert counselor will contact you within 24 hours.
                         </p>
                         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                          <p className="text-sm text-blue-700">
+                          <p className="text-sm text-#1a73e8">
                             <strong>Next Steps:</strong> You'll receive a confirmation email with consultation details and a calendar invite.
                           </p>
                         </div>
@@ -280,19 +280,19 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                         <h3 className="text-xl font-bold text-gray-800 mb-4">Why Choose Free Consultation?</h3>
                         <div className="space-y-3 text-sm text-gray-600">
                           <div className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 flex-shrink-0" />
                             <p>Get personalized study abroad guidance from certified counselors</p>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 flex-shrink-0" />
                             <p>Learn about visa requirements and application processes</p>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 flex-shrink-0" />
                             <p>Discover scholarship opportunities and financial aid options</p>
                           </div>
                           <div className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0" />
+                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 flex-shrink-0" />
                             <p>Get university selection assistance based on your profile</p>
                           </div>
                         </div>
@@ -302,15 +302,15 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
                         <h4 className="font-semibold text-gray-800 mb-4">Contact Information</h4>
                         <div className="space-y-3">
                           <div className="flex items-center space-x-3 text-sm">
-                            <Phone className="w-4 h-4 text-blue-600" />
+                            <Phone className="w-4 h-4 #3367D6" />
                             <span>+92 304 1110947</span>
                           </div>
                           <div className="flex items-center space-x-3 text-sm">
-                            <Mail className="w-4 h-4 text-blue-600" />
+                            <Mail className="w-4 h-4 #3367D6" />
                             <span>info@dunyaconsultants.com</span>
                           </div>
                           <div className="flex items-start space-x-3 text-sm">
-                            <MapPin className="w-4 h-4 text-blue-600 mt-0.5" />
+                            <MapPin className="w-4 h-4 #3367D6 mt-0.5" />
                             <span>Alif Tower Buhadur shah zafar road, Sargodha</span>
                           </div>
                         </div>
@@ -318,7 +318,7 @@ export default function ConsultationPopup({ isOpen, onClose }: ConsultationPopup
 
                       <div className="bg-white/50 rounded-lg p-4">
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-blue-600">17+</div>
+                          <div className="text-2xl font-bold #3367D6">17+</div>
                           <div className="text-xs text-gray-600">Office Locations</div>
                         </div>
                       </div>

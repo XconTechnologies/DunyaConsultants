@@ -20,7 +20,7 @@ export default function AchievementsSection() {
       title: "Growing Fast",
       description: "500+ new students monthly",
       subtitle: "Expanding Rapidly",
-      color: "from-blue-500 to-blue-600",
+      color: "from-[#4285F4] to-[#3367D6]",
       bgColor: "from-blue-100 to-blue-200"
     },
     {
@@ -28,7 +28,7 @@ export default function AchievementsSection() {
       title: "Global Reach",
       description: "Offices across Pakistan",
       subtitle: "Nationwide Network",
-      color: "from-blue-600 to-blue-700",
+      color: "from-[#4285F4] to-[#1a73e8]",
       bgColor: "from-blue-50 to-blue-100"
     }
   ];

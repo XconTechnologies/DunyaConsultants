@@ -10,11 +10,11 @@ export default function StudyInAustraliaGuide() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Destination
               </span>
             </div>
@@ -64,20 +64,20 @@ export default function StudyInAustraliaGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-australia" className="hover:text-blue-600">Why Choose to Study in Australia?</a></li>
-                  <li><a href="#education-system" className="hover:text-blue-600">Australian Education System</a></li>
-                  <li><a href="#visa-requirements" className="hover:text-blue-600">Study Visa Requirements</a></li>
-                  <li><a href="#english-requirements" className="hover:text-blue-600">English Language Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:text-blue-600">Tuition Fees and Living Costs</a></li>
-                  <li><a href="#documents-checklist" className="hover:text-blue-600">Required Documents</a></li>
-                  <li><a href="#work-opportunities" className="hover:text-blue-600">Work Opportunities</a></li>
-                  <li><a href="#faqs" className="hover:text-blue-600">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-australia" className="hover:#3367D6">Why Choose to Study in Australia?</a></li>
+                  <li><a href="#education-system" className="hover:#3367D6">Australian Education System</a></li>
+                  <li><a href="#visa-requirements" className="hover:#3367D6">Study Visa Requirements</a></li>
+                  <li><a href="#english-requirements" className="hover:#3367D6">English Language Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:#3367D6">Tuition Fees and Living Costs</a></li>
+                  <li><a href="#documents-checklist" className="hover:#3367D6">Required Documents</a></li>
+                  <li><a href="#work-opportunities" className="hover:#3367D6">Work Opportunities</a></li>
+                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Australia Overview */}
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-blue-800 mb-4">Study in Australia at a Glance</h3>
+              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+                <h3 className="text-xl font-semibold text-#1565c0 mb-4">Study in Australia at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-700 mb-2"><strong>Universities:</strong> 42 institutions</p>
@@ -94,7 +94,7 @@ export default function StudyInAustraliaGuide() {
 
               {/* Why Study in Australia Section */}
               <section id="why-study-australia" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Why Choose to Study in Australia?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Why Choose to Study in Australia?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Australia offers numerous advantages that make it an exceptional destination for Pakistani students seeking quality education and excellent career prospects.
@@ -103,7 +103,7 @@ export default function StudyInAustraliaGuide() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <Award className="w-5 h-5 mr-2" />
                         Highest Ranking Standard of Living
                       </h3>
@@ -111,7 +111,7 @@ export default function StudyInAustraliaGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <DollarSign className="w-5 h-5 mr-2" />
                         Lower Living Expenses and Tuition Fees
                       </h3>
@@ -119,7 +119,7 @@ export default function StudyInAustraliaGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <GraduationCap className="w-5 h-5 mr-2" />
                         Globally Recognized Institutes
                       </h3>
@@ -127,7 +127,7 @@ export default function StudyInAustraliaGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <Users className="w-5 h-5 mr-2" />
                         Diverse Environment
                       </h3>
@@ -137,7 +137,7 @@ export default function StudyInAustraliaGuide() {
 
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <BookOpen className="w-5 h-5 mr-2" />
                         Great Emphasis on Research
                       </h3>
@@ -145,7 +145,7 @@ export default function StudyInAustraliaGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <CheckCircle className="w-5 h-5 mr-2" />
                         Real-world Learning
                       </h3>
@@ -153,7 +153,7 @@ export default function StudyInAustraliaGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <Clock className="w-5 h-5 mr-2" />
                         Work While Studying
                       </h3>
@@ -161,7 +161,7 @@ export default function StudyInAustraliaGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         Post-Study Work Opportunities
                       </h3>
@@ -173,7 +173,7 @@ export default function StudyInAustraliaGuide() {
 
               {/* Visa Requirements Section */}
               <section id="visa-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Study Visa Requirements for Pakistani Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Study Visa Requirements for Pakistani Students</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Pakistani students must obtain a Student visa (subclass 500) to study in Australia. The visa fee is 630 AUD.
@@ -181,7 +181,7 @@ export default function StudyInAustraliaGuide() {
 
                 <div className="space-y-4">
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Essential Requirements</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Essential Requirements</h3>
                     <ul className="text-gray-700 space-y-2">
                       <li>• <strong>Original Passport:</strong> Valid for the duration of your stay</li>
                       <li>• <strong>Proof of Enrollment:</strong> Confirmation of Enrollment (CoE) from Australian institution</li>
@@ -192,7 +192,7 @@ export default function StudyInAustraliaGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Additional Requirements</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Additional Requirements</h3>
                     <ul className="text-gray-700 space-y-2">
                       <li>• <strong>IELTS Test Scorecard:</strong> Meeting university and visa requirements</li>
                       <li>• <strong>Financial Evidence:</strong> Proof of sufficient funds for tuition and living expenses</li>
@@ -202,7 +202,7 @@ export default function StudyInAustraliaGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3">Supporting Documents</h3>
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Supporting Documents</h3>
                     <ul className="text-gray-700 space-y-2">
                       <li>• High school transcripts</li>
                       <li>• Transcripts from all post-secondary institutions</li>
@@ -215,14 +215,14 @@ export default function StudyInAustraliaGuide() {
 
               {/* English Requirements Section */}
               <section id="english-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">English Language Requirements</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">English Language Requirements</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Australian universities require proof of English proficiency for both admission and visa purposes.
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-blue-800">IELTS Requirements</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">IELTS Requirements</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Undergraduate Programs:</h4>
@@ -241,7 +241,7 @@ export default function StudyInAustraliaGuide() {
 
               {/* Tuition Costs Section */}
               <section id="tuition-costs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Tuition Fees and Living Costs</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Tuition Fees and Living Costs</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Australia offers competitive tuition fees with excellent value for money considering the quality of education.
@@ -249,17 +249,17 @@ export default function StudyInAustraliaGuide() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">Undergraduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Undergraduate Programs</h3>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">AUD $17,000 - $50,000</div>
+                      <div className="text-3xl font-bold #3367D6 mb-2">AUD $17,000 - $50,000</div>
                       <p className="text-gray-700 text-sm">per year (varies by program and university)</p>
                     </div>
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-blue-800">Graduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Graduate Programs</h3>
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600 mb-2">AUD $17,000 - $53,000</div>
+                      <div className="text-3xl font-bold #3367D6 mb-2">AUD $17,000 - $53,000</div>
                       <p className="text-gray-700 text-sm">per year (varies by program and university)</p>
                     </div>
                   </div>
@@ -273,24 +273,24 @@ export default function StudyInAustraliaGuide() {
 
               {/* Work Opportunities Section */}
               <section id="work-opportunities" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Work Opportunities</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Work Opportunities</h2>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h3 className="text-lg font-semibold text-blue-800 mb-3">Work While Studying</h3>
+                  <h3 className="text-lg font-semibold text-#1565c0 mb-3">Work While Studying</h3>
                   <p className="text-gray-700 mb-4">International students can work up to 20 hours per week during studies and full-time during study breaks.</p>
                   
-                  <h3 className="text-lg font-semibold text-blue-800 mb-3 mt-6">Post-Study Work Rights</h3>
+                  <h3 className="text-lg font-semibold text-#1565c0 mb-3 mt-6">Post-Study Work Rights</h3>
                   <p className="text-gray-700">Graduates may be eligible for Temporary Graduate visa (subclass 485) allowing them to work in Australia after completing their studies.</p>
                 </div>
               </section>
 
               {/* Documents Checklist Section */}
               <section id="documents-checklist" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Required Documents Checklist</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Required Documents Checklist</h2>
                 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Original Passport
                     </h3>
@@ -298,7 +298,7 @@ export default function StudyInAustraliaGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <FileText className="w-5 h-5 mr-2" />
                       All Attested Educational Documents
                     </h3>
@@ -306,7 +306,7 @@ export default function StudyInAustraliaGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <GraduationCap className="w-5 h-5 mr-2" />
                       Degree & Transcript Attested Copies
                     </h3>
@@ -314,7 +314,7 @@ export default function StudyInAustraliaGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <BookOpen className="w-5 h-5 mr-2" />
                       IELTS / PTE / TOEFL Score Card
                     </h3>
@@ -322,7 +322,7 @@ export default function StudyInAustraliaGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-blue-800 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Supporting Documents
                     </h3>
@@ -337,7 +337,7 @@ export default function StudyInAustraliaGuide() {
 
               {/* FAQ Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -369,13 +369,13 @@ export default function StudyInAustraliaGuide() {
 
               {/* CTA Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold text-blue-800 mb-4">Ready to Start Your Australia Study Journey?</h3>
+                <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Start Your Australia Study Journey?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants provides comprehensive guidance for Australian university applications, visa processes, and scholarship opportunities. Contact us for expert assistance.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/contact" className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                  <a href="/contact" className="#3367D6 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
                     Get Free Consultation
                   </a>
-                  <a href="tel:+923041110947" className="border border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  <a href="tel:+923041110947" className="border #3367D6 #3367D6 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                     Call Now: +92 304 111 0947
                   </a>
                 </div>
@@ -391,7 +391,7 @@ export default function StudyInAustraliaGuide() {
               
               {/* Quick Info */}
               <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-blue-800">Quick Study Info</h3>
+                <h3 className="text-lg font-semibold mb-4 text-#1565c0">Quick Study Info</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Visa Fee:</span>
@@ -416,10 +416,10 @@ export default function StudyInAustraliaGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/global-talent-visa-australia" className="block text-blue-600 hover:text-blue-800 text-sm">Global Talent Visa Australia</a>
-                  <a href="/blog/study-in-uk-complete-guide" className="block text-blue-600 hover:text-blue-800 text-sm">Study in UK Guide</a>
-                  <a href="/blog/study-in-canada-complete-guide" className="block text-blue-600 hover:text-blue-800 text-sm">Study in Canada Guide</a>
-                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block text-blue-600 hover:text-blue-800 text-sm">IELTS Preparation Tips</a>
+                  <a href="/blog/global-talent-visa-australia" className="block #3367D6 hover:text-#1565c0 text-sm">Global Talent Visa Australia</a>
+                  <a href="/blog/study-in-uk-complete-guide" className="block #3367D6 hover:text-#1565c0 text-sm">Study in UK Guide</a>
+                  <a href="/blog/study-in-canada-complete-guide" className="block #3367D6 hover:text-#1565c0 text-sm">Study in Canada Guide</a>
+                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #3367D6 hover:text-#1565c0 text-sm">IELTS Preparation Tips</a>
                 </div>
               </div>
 

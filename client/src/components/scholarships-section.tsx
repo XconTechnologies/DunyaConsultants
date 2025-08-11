@@ -24,7 +24,7 @@ export default function ScholarshipsSection() {
       benefits: ["Full tuition fees", "Monthly stipend", "Economy return airfare", "Visa costs"],
       applicationProcess: "Online application through Chevening website, references, academic transcripts, English test scores.",
       website: "https://www.chevening.org/",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#4285F4] to-[#3367D6]"
     },
     {
       id: 2,
@@ -40,7 +40,7 @@ export default function ScholarshipsSection() {
       benefits: ["Full tuition", "Living allowance", "Health cover", "Return airfare"],
       applicationProcess: "Apply through Australian Embassy or online portal in your country.",
       website: "https://www.australiaawards.gov.au/",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#4285F4] to-[#3367D6]"
     },
     {
       id: 3,
@@ -56,7 +56,7 @@ export default function ScholarshipsSection() {
       benefits: ["Tuition support", "Living stipend", "Health insurance", "Professional development"],
       applicationProcess: "Apply through Fulbright Commission in Pakistan or IIE website.",
       website: "https://foreign.fulbrightonline.org/",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#4285F4] to-[#3367D6]"
     },
     {
       id: 4,
@@ -72,7 +72,7 @@ export default function ScholarshipsSection() {
       benefits: ["CAD $50,000 annually", "3-year support", "Research opportunities"],
       applicationProcess: "Nominated by Canadian institution, online application through ResearchNet.",
       website: "https://vanier.gc.ca/",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#4285F4] to-[#3367D6]"
     },
     {
       id: 5,
@@ -88,7 +88,7 @@ export default function ScholarshipsSection() {
       benefits: ["Monthly stipend", "Health insurance", "Travel allowance", "Study materials"],
       applicationProcess: "Online application through DAAD portal with required documents.",
       website: "https://www.daad.de/",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#4285F4] to-[#3367D6]"
     },
     {
       id: 6,
@@ -104,7 +104,7 @@ export default function ScholarshipsSection() {
       benefits: ["Full tuition", "Living allowance", "Airfare", "Thesis grant"],
       applicationProcess: "Apply through Commonwealth Scholarship Commission online portal.",
       website: "https://cscuk.fcdo.gov.uk/",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#4285F4] to-[#3367D6]"
     },
     {
       id: 7,
@@ -120,7 +120,7 @@ export default function ScholarshipsSection() {
       benefits: ["Partial to full tuition", "Merit recognition", "Networking opportunities"],
       applicationProcess: "Automatic consideration with admission application.",
       website: "https://www.utoronto.ca/",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#4285F4] to-[#3367D6]"
     },
     {
       id: 8,
@@ -136,7 +136,7 @@ export default function ScholarshipsSection() {
       benefits: ["Living allowance", "Fee remission", "Overseas health cover"],
       applicationProcess: "Apply with research degree application through university portal.",
       website: "https://www.unimelb.edu.au/",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#4285F4] to-[#3367D6]"
     }
   ];
 
@@ -177,30 +177,30 @@ export default function ScholarshipsSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid md:grid-cols-4 gap-6 mb-12"
         >
-          <Card className="text-center shadow-lg border-l-4 border-blue-500">
+          <Card className="text-center shadow-lg border-l-4 #4285F4">
             <CardContent className="p-6">
-              <Award className="h-10 w-10 text-blue-600 mx-auto mb-3" />
+              <Award className="h-10 w-10 #3367D6 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">{stats.total}</h3>
               <p className="text-gray-600">Available Scholarships</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 border-blue-500">
+          <Card className="text-center shadow-lg border-l-4 #4285F4">
             <CardContent className="p-6">
-              <Users className="h-10 w-10 text-blue-600 mx-auto mb-3" />
+              <Users className="h-10 w-10 #3367D6 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">{stats.government}</h3>
               <p className="text-gray-600">Government Scholarships</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 border-blue-500">
+          <Card className="text-center shadow-lg border-l-4 #4285F4">
             <CardContent className="p-6">
-              <BookOpen className="h-10 w-10 text-blue-600 mx-auto mb-3" />
+              <BookOpen className="h-10 w-10 #3367D6 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">{stats.university}</h3>
               <p className="text-gray-600">University Scholarships</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 border-blue-500">
+          <Card className="text-center shadow-lg border-l-4 #4285F4">
             <CardContent className="p-6">
-              <MapPin className="h-10 w-10 text-blue-600 mx-auto mb-3" />
+              <MapPin className="h-10 w-10 #3367D6 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">{stats.countries}</h3>
               <p className="text-gray-600">Countries</p>
             </CardContent>
@@ -221,7 +221,7 @@ export default function ScholarshipsSection() {
               onClick={() => setSelectedCountry(country)}
               className={`px-6 py-3 rounded-xl font-medium transition-all ${
                 selectedCountry === country
-                  ? "bg-gradient-to-r from-blue-600 to-blue-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white shadow-lg"
                   : "hover:bg-gray-100"
               }`}
             >
@@ -264,14 +264,14 @@ export default function ScholarshipsSection() {
                 <CardContent className="p-6 flex-1 flex flex-col">
                   <div className="space-y-4 mb-6">
                     <div className="flex items-center space-x-3">
-                      <DollarSign className="h-5 w-5 text-blue-600" />
+                      <DollarSign className="h-5 w-5 #3367D6" />
                       <div>
                         <p className="font-semibold text-gray-900">{scholarship.amount}</p>
                       </div>
                     </div>
                     
                     <div className="flex items-center space-x-3">
-                      <Calendar className="h-5 w-5 text-blue-600" />
+                      <Calendar className="h-5 w-5 #3367D6" />
                       <div>
                         <p className="text-sm text-gray-600">Deadline</p>
                         <p className="font-semibold text-gray-900">{scholarship.deadline}</p>
@@ -279,7 +279,7 @@ export default function ScholarshipsSection() {
                     </div>
 
                     <div className="flex items-center space-x-3">
-                      <GraduationCap className="h-5 w-5 text-blue-600" />
+                      <GraduationCap className="h-5 w-5 #3367D6" />
                       <div>
                         <p className="text-sm text-gray-600">Eligibility</p>
                         <p className="font-semibold text-gray-900">{scholarship.eligibility}</p>
@@ -297,7 +297,7 @@ export default function ScholarshipsSection() {
                       <ul className="text-sm text-gray-600 space-y-1">
                         {scholarship.requirements.slice(0, 3).map((req, i) => (
                           <li key={i} className="flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                            <div className="w-1.5 h-1.5 #3367D6 rounded-full mt-2 flex-shrink-0"></div>
                             <span>{req}</span>
                           </li>
                         ))}
@@ -309,7 +309,7 @@ export default function ScholarshipsSection() {
                       <ul className="text-sm text-gray-600 space-y-1">
                         {scholarship.benefits.slice(0, 3).map((benefit, i) => (
                           <li key={i} className="flex items-start space-x-2">
-                            <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                            <div className="w-1.5 h-1.5 #3367D6 rounded-full mt-2 flex-shrink-0"></div>
                             <span>{benefit}</span>
                           </li>
                         ))}
@@ -358,28 +358,28 @@ export default function ScholarshipsSection() {
                   </p>
                   <div className="space-y-2 text-sm text-gray-600">
                     <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                      <div className="w-2 h-2 #3367D6 rounded-full"></div>
                       <span>Scholarship search and identification</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                      <div className="w-2 h-2 #3367D6 rounded-full"></div>
                       <span>Application essay writing and review</span>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                      <div className="w-2 h-2 #3367D6 rounded-full"></div>
                       <span>Interview preparation and coaching</span>
                     </div>
                   </div>
                 </div>
                 <div className="text-center">
                   <div className="mb-6">
-                    <div className="text-3xl font-bold text-blue-600 mb-2">₹2.5 Crore+</div>
+                    <div className="text-3xl font-bold #3367D6 mb-2">₹2.5 Crore+</div>
                     <p className="text-gray-600">Scholarships secured for our students</p>
                   </div>
                   <div className="space-y-3">
                     <Button 
                       size="lg" 
-                      className="w-full bg-gradient-to-r from-blue-600 to-blue-600 text-white hover:shadow-xl transition-all"
+                      className="w-full bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white hover:shadow-xl transition-all"
                       onClick={() => window.open(`tel:+923041110947`, '_self')}
                     >
                       Book Free Consultation

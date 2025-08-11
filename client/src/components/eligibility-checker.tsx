@@ -196,8 +196,8 @@ export default function EligibilityChecker() {
                 <div className="flex items-center justify-center mb-4">
                   <div className={`w-24 h-24 rounded-full flex items-center justify-center ${
                     result.eligible 
-                      ? "bg-blue-100 text-blue-600" 
-                      : "bg-blue-100 text-blue-600"
+                      ? "bg-blue-100 #3367D6" 
+                      : "bg-blue-100 #3367D6"
                   }`}>
                     {result.eligible ? (
                       <CheckCircle className="w-12 h-12" />
@@ -221,13 +221,13 @@ export default function EligibilityChecker() {
                 <div className="bg-gray-50 rounded-xl p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-semibold text-gray-900">Eligibility Score</h3>
-                    <span className="text-2xl font-bold text-blue-600">{result.score}/100</span>
+                    <span className="text-2xl font-bold #3367D6">{result.score}/100</span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-3">
                     <div
                       className={`h-3 rounded-full ${
-                        result.score >= 80 ? "bg-blue-500" :
-                        result.score >= 60 ? "bg-blue-500" : "bg-blue-500"
+                        result.score >= 80 ? "#4285F4" :
+                        result.score >= 60 ? "#4285F4" : "#4285F4"
                       }`}
                       style={{ width: `${result.score}%` }}
                     />
@@ -237,13 +237,13 @@ export default function EligibilityChecker() {
                 {/* Recommendations */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Award className="w-5 h-5 text-blue-600" />
+                    <Award className="w-5 h-5 #3367D6" />
                     Recommendations
                   </h3>
                   <div className="space-y-3">
                     {result.recommendations.map((recommendation, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <CheckCircle className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" />
+                        <CheckCircle className="w-5 h-5 #4285F4 mt-0.5 flex-shrink-0" />
                         <p className="text-gray-700">{recommendation}</p>
                       </div>
                     ))}
@@ -253,13 +253,13 @@ export default function EligibilityChecker() {
                 {/* Next Steps */}
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-blue-600" />
+                    <MapPin className="w-5 h-5 #3367D6" />
                     Next Steps
                   </h3>
                   <div className="space-y-3">
                     {result.nextSteps.map((step, index) => (
                       <div key={index} className="flex items-start gap-3">
-                        <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm font-medium mt-0.5">
+                        <div className="w-6 h-6 bg-blue-100 #3367D6 rounded-full flex items-center justify-center text-sm font-medium mt-0.5">
                           {index + 1}
                         </div>
                         <p className="text-gray-700">{step}</p>
@@ -278,7 +278,7 @@ export default function EligibilityChecker() {
                     Take Test Again
                   </Button>
                   <Button
-                    className="flex-1 bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700"
+                    className="flex-1 bg-gradient-to-r from-[#4285F4] to-[#3367D6] hover:from-#1a73e8 hover:to-[#1a73e8]"
                   >
                     Book Free Consultation
                   </Button>
@@ -295,19 +295,19 @@ export default function EligibilityChecker() {
                     <div key={index} className="flex items-center gap-2">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
                         index <= currentStep
-                          ? "bg-blue-600 text-white"
+                          ? "#3367D6 text-white"
                           : "bg-gray-200 text-gray-500"
                       }`}>
                         <step.icon className="w-5 h-5" />
                       </div>
                       <span className={`text-sm font-medium ${
-                        index <= currentStep ? "text-blue-600" : "text-gray-500"
+                        index <= currentStep ? "#3367D6" : "text-gray-500"
                       }`}>
                         {step.title}
                       </span>
                       {index < steps.length - 1 && (
                         <div className={`w-8 h-0.5 mx-4 ${
-                          index < currentStep ? "bg-blue-600" : "bg-gray-200"
+                          index < currentStep ? "#3367D6" : "bg-gray-200"
                         }`} />
                       )}
                     </div>
@@ -544,7 +544,7 @@ export default function EligibilityChecker() {
                       <Button
                         type="submit"
                         disabled={submitMutation.isPending}
-                        className="bg-gradient-to-r from-blue-600 to-blue-600 hover:from-blue-700 hover:to-blue-700"
+                        className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] hover:from-#1a73e8 hover:to-[#1a73e8]"
                       >
                         {submitMutation.isPending ? "Checking..." : "Check Eligibility"}
                       </Button>

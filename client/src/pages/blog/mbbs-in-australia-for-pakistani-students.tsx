@@ -91,7 +91,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
       <div className="min-h-screen bg-white">
       
       {/* Hero Section */}
-      <section className="relative h-96 bg-gradient-to-r from-[#124FD3] via-[#124FD3] to-[#0d3db8] overflow-hidden">
+      <section className="relative h-96 bg-gradient-to-r from-[#4285F4] via-[#4285F4] to-[#3367D6] overflow-hidden">
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50"></div>
         <div 
@@ -148,7 +148,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
             >
               
               {/* Introduction */}
-              <div className="bg-white rounded-xl p-8 shadow-lg mb-8 border-l-4 border-blue-600">
+              <div className="bg-white rounded-xl p-8 shadow-lg mb-8 border-l-4 #3367D6">
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
                   Are you a Pakistani student planning to do an <strong>MBBS in Australia</strong>? Unsurprisingly, hundreds of students wish the same every year. There are some of the best medical colleges in Australia for international students. These institutions not only provide the best quality education but also increase career opportunities for students.
                 </p>
@@ -159,7 +159,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
 
               {/* Requirements Section */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #3367D6 pl-4">
                   What are the Requirements for an MBBS Degree in Australia?
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -175,7 +175,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                         transition={{ delay: index * 0.1 }}
                         className="flex items-start gap-4 p-4 bg-blue-50 rounded-lg"
                       >
-                        <div className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-semibold mt-1">
+                        <div className="flex-shrink-0 w-6 h-6 #3367D6 text-white rounded-full flex items-center justify-center text-sm font-semibold mt-1">
                           ✓
                         </div>
                         <span className="text-gray-800">{requirement}</span>
@@ -187,7 +187,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
 
               {/* Documents Needed */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #3367D6 pl-4">
                   Documents Needed for Admission to MBBS University in Australia
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -203,7 +203,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                         transition={{ delay: index * 0.05 }}
                         className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
-                        <FileText className="h-5 w-5 text-blue-600" />
+                        <FileText className="h-5 w-5 #3367D6" />
                         <span className="text-gray-800 text-sm">{document}</span>
                       </motion.div>
                     ))}
@@ -213,7 +213,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
 
               {/* Application Process */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #3367D6 pl-4">
                   Application Process for Admission to Low-cost MBBS in Australia
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -229,7 +229,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                         transition={{ delay: index * 0.2 }}
                         className="flex gap-6 p-6 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
-                        <div className="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                        <div className="flex-shrink-0 w-12 h-12 #3367D6 text-white rounded-full flex items-center justify-center font-bold text-lg">
                           {step.step}
                         </div>
                         <div>
@@ -244,7 +244,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
 
               {/* Fee Structure */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #3367D6 pl-4">
                   MBBS in Australia for Pakistani Students Fee Structure
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -253,8 +253,8 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                       <h3 className="text-xl font-semibold text-gray-900 mb-4">Annual Tuition Fees</h3>
                       <div className="bg-blue-50 p-6 rounded-lg">
                         <div className="flex items-center gap-3 mb-4">
-                          <DollarSign className="h-6 w-6 text-blue-600" />
-                          <span className="text-2xl font-bold text-blue-600">AUD 68,000 - 85,000</span>
+                          <DollarSign className="h-6 w-6 #3367D6" />
+                          <span className="text-2xl font-bold #3367D6">AUD 68,000 - 85,000</span>
                         </div>
                         <p className="text-gray-700 text-sm leading-relaxed">
                           Annual tuition fees for MBBS programs at top Australian universities. Fees vary by institution and program structure.
@@ -284,7 +284,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
 
               {/* Top Universities */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #3367D6 pl-4">
                   Top Medical Universities with Affordable MBBS Costs in Australia
                 </h2>
                 <div className="bg-white rounded-xl p-8 shadow-lg">
@@ -294,7 +294,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead>
-                        <tr className="border-b-2 border-blue-600">
+                        <tr className="border-b-2 #3367D6">
                           <th className="text-left py-3 text-gray-900 font-semibold">University Name</th>
                           <th className="text-right py-3 text-gray-900 font-semibold">Annual Fees (AUD)</th>
                         </tr>
@@ -309,7 +309,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                             className="border-b border-gray-200 hover:bg-blue-50 transition-colors"
                           >
                             <td className="py-4 text-gray-800">{university.name}</td>
-                            <td className="py-4 text-right font-semibold text-blue-600">{university.fees}</td>
+                            <td className="py-4 text-right font-semibold #3367D6">{university.fees}</td>
                           </motion.tr>
                         ))}
                       </tbody>
@@ -320,10 +320,10 @@ export default function MBBSInAustraliaForPakistaniStudents() {
 
               {/* Conclusion */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #3367D6 pl-4">
                   Conclusion
                 </h2>
-                <div className="bg-white rounded-xl p-8 shadow-lg border-l-4 border-blue-600">
+                <div className="bg-white rounded-xl p-8 shadow-lg border-l-4 #3367D6">
                   <p className="text-lg text-gray-700 leading-relaxed">
                     Australia offers exceptional opportunities for Pakistani students to pursue MBBS with world-renowned medical education, state-of-the-art facilities, and excellent career prospects. The country's focus on practical training and research excellence makes it an ideal destination for aspiring medical professionals. With proper preparation, entrance exam scores, and professional guidance, you can successfully secure admission to Australia's top medical universities and build a rewarding medical career.
                   </p>
@@ -332,7 +332,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
 
               {/* FAQs */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-blue-600 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8 border-l-4 #3367D6 pl-4">
                   Frequently Asked Questions
                 </h2>
                 <div className="space-y-6">
@@ -345,7 +345,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                       className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow"
                     >
                       <h3 className="text-lg font-semibold text-gray-900 mb-3 flex items-start gap-3">
-                        <span className="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                        <span className="flex-shrink-0 w-6 h-6 #3367D6 text-white rounded-full flex items-center justify-center text-sm font-bold">
                           Q
                         </span>
                         {faq.question}
@@ -369,7 +369,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
               <Card className="bg-gradient-to-br from-blue-50 to-teal-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <BookOpen className="h-5 w-5 text-blue-600" />
+                    <BookOpen className="h-5 w-5 #3367D6" />
                     Quick Facts
                   </h3>
                   <div className="space-y-4 text-sm">
@@ -401,18 +401,18 @@ export default function MBBSInAustraliaForPakistaniStudents() {
               <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Phone className="h-5 w-5 text-blue-600" />
+                    <Phone className="h-5 w-5 #3367D6" />
                     Get Expert Guidance
                   </h3>
                   <p className="text-gray-700 text-sm mb-4 leading-relaxed">
                     Ready to start your MBBS journey in Australia? Our experts are here to help with admissions, visa guidance, and entrance exam preparation.
                   </p>
                   <div className="space-y-3">
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                    <Button className="w-full #3367D6 hover:bg-#1a73e8 text-white">
                       <Phone className="h-4 w-4 mr-2" />
                       Call (+92) 304 1110947
                     </Button>
-                    <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
+                    <Button variant="outline" className="w-full #3367D6 #3367D6 hover:bg-blue-50">
                       <Mail className="h-4 w-4 mr-2" />
                       Email Consultation
                     </Button>
@@ -424,22 +424,22 @@ export default function MBBSInAustraliaForPakistaniStudents() {
               <Card className="bg-gradient-to-br from-blue-50 to-violet-50 border-blue-200">
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Building className="h-5 w-5 text-blue-600" />
+                    <Building className="h-5 w-5 #3367D6" />
                     Visit Our Office
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-start gap-3">
-                      <MapPin className="h-4 w-4 text-blue-600 mt-1 flex-shrink-0" />
+                      <MapPin className="h-4 w-4 #3367D6 mt-1 flex-shrink-0" />
                       <span className="text-gray-700">
                         110 Link Stadium Road Sargodha, Pakistan
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Phone className="h-4 w-4 text-blue-600" />
+                      <Phone className="h-4 w-4 #3367D6" />
                       <span className="text-gray-700">(+92) 304 1110947</span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <Mail className="h-4 w-4 text-blue-600" />
+                      <Mail className="h-4 w-4 #3367D6" />
                       <span className="text-gray-700">query@teamdunya.com</span>
                     </div>
                   </div>

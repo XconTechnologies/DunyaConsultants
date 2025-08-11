@@ -28,7 +28,7 @@ const services = [
     ],
     duration: "2-3 months",
     price: "Starting from $150",
-    color: "from-blue-500 to-blue-600"
+    color: "from-[#4285F4] to-[#3367D6]"
   },
   {
     id: 2,
@@ -43,7 +43,7 @@ const services = [
     ],
     duration: "1-2 months",
     price: "Starting from $200",
-    color: "from-blue-500 to-blue-600"
+    color: "from-[#4285F4] to-[#3367D6]"
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ const services = [
     ],
     duration: "2-4 weeks",
     price: "Starting from $100",
-    color: "from-blue-500 to-blue-600"
+    color: "from-[#4285F4] to-[#3367D6]"
   },
   {
     id: 4,
@@ -73,7 +73,7 @@ const services = [
     ],
     duration: "1-3 months",
     price: "Starting from $120",
-    color: "from-blue-500 to-blue-600"
+    color: "from-[#4285F4] to-[#3367D6]"
   },
   {
     id: 5,
@@ -88,7 +88,7 @@ const services = [
     ],
     duration: "1 week",
     price: "Complimentary",
-    color: "from-blue-500 to-blue-600"
+    color: "from-[#4285F4] to-[#3367D6]"
   },
   {
     id: 6,
@@ -103,7 +103,7 @@ const services = [
     ],
     duration: "2-3 weeks",
     price: "Starting from $80",
-    color: "from-blue-500 to-blue-600"
+    color: "from-[#4285F4] to-[#3367D6]"
   }
 ];
 
@@ -157,7 +157,7 @@ export default function ServicesOverview() {
                     <div className="space-y-2">
                       {service.features.map((feature, idx) => (
                         <div key={idx} className="flex items-start gap-2">
-                          <CheckCircle className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                          <CheckCircle className="w-4 h-4 #4285F4 mt-0.5 flex-shrink-0" />
                           <span className="text-sm text-gray-700">{feature}</span>
                         </div>
                       ))}
@@ -169,7 +169,7 @@ export default function ServicesOverview() {
                         <Clock className="w-4 h-4" />
                         <span>{service.duration}</span>
                       </div>
-                      <div className="flex items-center gap-1 text-sm font-semibold text-blue-600">
+                      <div className="flex items-center gap-1 text-sm font-semibold #3367D6">
                         <Award className="w-4 h-4" />
                         <span>{service.price}</span>
                       </div>
@@ -196,7 +196,7 @@ export default function ServicesOverview() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-blue-600 rounded-3xl p-8 lg:p-12 text-white">
+          <div className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-3xl p-8 lg:p-12 text-white">
             <h3 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h3>
             <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
               Get personalized guidance from our expert counselors and take the first step towards your dream education abroad.
@@ -204,14 +204,14 @@ export default function ServicesOverview() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 rounded-full font-semibold"
+                className="bg-white #3367D6 hover:bg-blue-50 px-8 py-3 rounded-full font-semibold"
               >
                 Book Free Consultation
               </Button>
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-full font-semibold"
+                className="border-white text-white hover:bg-white hover:#3367D6 px-8 py-3 rounded-full font-semibold"
               >
                 Download Brochure
               </Button>

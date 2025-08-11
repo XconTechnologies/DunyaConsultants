@@ -10,11 +10,11 @@ export default function AngliaRuskinUniversity() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
                 University Guides
               </span>
             </div>
@@ -62,12 +62,12 @@ export default function AngliaRuskinUniversity() {
               <section className="mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <Award className="w-6 h-6 text-blue-500 mr-2" />
+                    <Award className="w-6 h-6 #4285F4 mr-2" />
                     ARU Key Achievements
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex items-center">
-                      <Star className="w-5 h-5 text-blue-500 mr-2" />
+                      <Star className="w-5 h-5 #4285F4 mr-2" />
                       <span className="text-gray-700">University of the Year 2023</span>
                     </div>
                     <div className="flex items-center">
@@ -75,11 +75,11 @@ export default function AngliaRuskinUniversity() {
                       <span className="text-gray-700">Gold Teaching Excellence Award</span>
                     </div>
                     <div className="flex items-center">
-                      <Calendar className="w-5 h-5 text-blue-500 mr-2" />
+                      <Calendar className="w-5 h-5 #4285F4 mr-2" />
                       <span className="text-gray-700">162 Years of History</span>
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="w-5 h-5 text-blue-500 mr-2" />
+                      <MapPin className="w-5 h-5 #4285F4 mr-2" />
                       <span className="text-gray-700">Multiple UK Campus Locations</span>
                     </div>
                   </div>
@@ -88,7 +88,7 @@ export default function AngliaRuskinUniversity() {
 
               {/* Why Choose ARU */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
                   Why Choose Anglia Ruskin University to Study?
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
@@ -122,7 +122,7 @@ export default function AngliaRuskinUniversity() {
                     }
                   ].map((reason, index) => (
                     <div key={index} className="flex items-start p-4 bg-gray-50 rounded-lg">
-                      <div className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold flex-shrink-0">
+                      <div className="w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center mr-4 text-sm font-bold flex-shrink-0">
                         {reason.number}
                       </div>
                       <p className="text-gray-700">{reason.text}</p>
@@ -133,7 +133,7 @@ export default function AngliaRuskinUniversity() {
 
               {/* ARU Rankings */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
                   Anglia Ruskin University Ranking in UK
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
@@ -164,7 +164,7 @@ export default function AngliaRuskinUniversity() {
 
               {/* Partnership with Dunya Consultants */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
                   How is Anglia Ruskin University London a Trusted Partner of Dunya Consultants?
                 </h2>
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg mb-6">
@@ -182,17 +182,17 @@ export default function AngliaRuskinUniversity() {
                 {/* Partnership Benefits */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <GraduationCap className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                    <GraduationCap className="w-8 h-8 #4285F4 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Admission Support</h4>
                     <p className="text-sm text-gray-600">Complete guidance through ARU application process</p>
                   </div>
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <FileText className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                    <FileText className="w-8 h-8 #4285F4 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Visa Assistance</h4>
                     <p className="text-sm text-gray-600">Expert help with UK student visa applications</p>
                   </div>
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <DollarSign className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+                    <DollarSign className="w-8 h-8 #4285F4 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Scholarship Guidance</h4>
                     <p className="text-sm text-gray-600">Access to scholarship opportunities and funding</p>
                   </div>
@@ -201,7 +201,7 @@ export default function AngliaRuskinUniversity() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
                   Conclusion
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -214,7 +214,7 @@ export default function AngliaRuskinUniversity() {
 
               {/* FAQs */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-blue-500 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
                   FAQs
                 </h2>
                 <div className="space-y-6">
@@ -247,7 +247,7 @@ export default function AngliaRuskinUniversity() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="tel:+923041110947"
-                    className="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                    className="inline-flex items-center justify-center px-6 py-3 #3367D6 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-2" />
                     Call Now: (+92) 304 1110947
@@ -272,7 +272,7 @@ export default function AngliaRuskinUniversity() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Target className="w-5 h-5 mr-2 text-blue-500" />
+                  <Target className="w-5 h-5 mr-2 #4285F4" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -302,28 +302,28 @@ export default function AngliaRuskinUniversity() {
               {/* Popular Courses */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                  <BookOpen className="w-5 h-5 mr-2 #4285F4" />
                   Popular Courses
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Computer Science</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Business & Finance</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Medicine & Nursing</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Arts & Drama</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Engineering</span>
                   </li>
                 </ul>

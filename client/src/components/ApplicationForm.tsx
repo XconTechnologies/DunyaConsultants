@@ -62,18 +62,18 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
         </DialogTrigger>
         <DialogContent className="max-w-md bg-white">
           <DialogHeader>
-            <DialogTitle className="text-center text-blue-600">Application Submitted Successfully!</DialogTitle>
+            <DialogTitle className="text-center #3367D6">Application Submitted Successfully!</DialogTitle>
           </DialogHeader>
           <div className="text-center space-y-4">
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-              <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-8 h-8 #3367D6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
             <p className="text-gray-600">Thank you for applying to study in {country}. Our team will contact you within 24 hours.</p>
             <div className="p-4 bg-blue-50 rounded-lg">
-              <p className="font-semibold text-blue-900">Quick Contact</p>
-              <p className="text-blue-600">(+92) 304 1110947</p>
+              <p className="font-semibold text-#1e3a8a">Quick Contact</p>
+              <p className="#3367D6">(+92) 304 1110947</p>
             </div>
           </div>
         </DialogContent>
@@ -88,7 +88,7 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
       </DialogTrigger>
       <DialogContent className="max-w-lg bg-white max-h-[80vh] overflow-y-auto" aria-describedby="application-form-description">
         <DialogHeader>
-          <DialogTitle className="text-xl text-[#124FD3] flex items-center justify-between">
+          <DialogTitle className="text-xl text-[#4285F4] flex items-center justify-between">
             Apply to {country}
           </DialogTitle>
         </DialogHeader>
@@ -191,7 +191,7 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
 
           <Button 
             type="submit" 
-            className="w-full bg-[#124FD3] hover:bg-[#0d3fb8] text-white py-3"
+            className="w-full bg-[#4285F4] hover:bg-[#0d3fb8] text-white py-3"
             disabled={isSubmitting}
           >
             {isSubmitting ? (

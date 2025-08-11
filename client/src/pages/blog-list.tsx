@@ -301,7 +301,7 @@ export default function BlogList() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent mb-6"
+            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#4285F4] to-#1565c0 bg-clip-text text-transparent mb-6"
           >
             Our Blog
           </motion.h1>
@@ -321,7 +321,7 @@ export default function BlogList() {
             className="mb-8"
           >
             <Link href="/blog/archive">
-              <Button className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg">
+              <Button className="bg-gradient-to-r from-[#4285F4] to-#1565c0 hover:from-#1a73e8 hover:to-purple-700 text-white px-8 py-3 rounded-lg font-semibold shadow-lg">
                 View Full Archive
               </Button>
             </Link>
@@ -358,7 +358,7 @@ export default function BlogList() {
                     onClick={() => setSelectedCategory(category)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                       selectedCategory === category
-                        ? 'bg-blue-500 text-white shadow-lg'
+                        ? '#4285F4 text-white shadow-lg'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
@@ -383,7 +383,7 @@ export default function BlogList() {
             >
               <Card className="hover:shadow-xl transition-all duration-300 border shadow-md">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:#3367D6 transition-colors line-clamp-2">
                     {post.title}
                   </h3>
                   
@@ -400,7 +400,7 @@ export default function BlogList() {
                     <Link href={post.slug}>
                       <Button 
                         size="sm" 
-                        className="bg-blue-500 hover:bg-blue-600 text-white"
+                        className="#4285F4 hover:#3367D6 text-white"
                       >
                         Read More
                         <ArrowRight className="w-4 h-4 ml-2" />
@@ -422,7 +422,7 @@ export default function BlogList() {
         >
           <Button 
             size="lg" 
-            className="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 rounded-xl"
+            className="bg-gradient-to-r from-[#4285F4] to-[#1a73e8] hover:from-[#4285F4] hover:to-purple-700 text-white px-8 py-3 rounded-xl"
           >
             Load More Articles
           </Button>

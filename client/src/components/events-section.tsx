@@ -101,10 +101,10 @@ const upcomingEvents: Event[] = [
 
 const getEventTypeColor = (type: string) => {
   const colors = {
-    'Fair': 'bg-blue-100 text-blue-800 border-blue-200',
-    'Webinar': 'bg-blue-100 text-blue-800 border-blue-200',
-    'Workshop': 'bg-blue-100 text-blue-800 border-blue-200',
-    'Info Session': 'bg-blue-100 text-blue-800 border-blue-200'
+    'Fair': 'bg-blue-100 text-#1565c0 border-blue-200',
+    'Webinar': 'bg-blue-100 text-#1565c0 border-blue-200',
+    'Workshop': 'bg-blue-100 text-#1565c0 border-blue-200',
+    'Info Session': 'bg-blue-100 text-#1565c0 border-blue-200'
   };
   return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800 border-gray-200';
 };
@@ -319,9 +319,10 @@ export default function EventsSection() {
               onClick={() => setActiveFilter(filter.id)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeFilter === filter.id
-                  ? 'bg-blue-600 text-white shadow-lg'
+                  ? 'text-white shadow-lg'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
+              style={activeFilter === filter.id ? { backgroundColor: '#4285F4' } : {}}
             >
               {filter.label}
             </button>
@@ -356,9 +357,9 @@ export default function EventsSection() {
                             alt={event.title}
                             className="w-full h-full object-cover"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/80 to-blue-600/80" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#4285F4]/80 to-[#3367D6]/80" />
                           <div className="absolute top-3 left-3">
-                            <span className="px-2 py-1 bg-white/90 text-blue-600 rounded-full text-xs font-medium">
+                            <span className="px-2 py-1 bg-white/90 #3367D6 rounded-full text-xs font-medium">
                               {event.type}
                             </span>
                           </div>
@@ -379,15 +380,15 @@ export default function EventsSection() {
 
                           <div className="space-y-2 text-gray-600 mb-4">
                             <div className="flex items-center gap-2">
-                              <Clock className="w-4 h-4 text-blue-500" />
+                              <Clock className="w-4 h-4" style={{ color: "#ffffff" }} />
                               <span className="text-xs">{event.time}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <MapPin className="w-4 h-4 text-blue-500" />
+                              <MapPin className="w-4 h-4" style={{ color: "#ffffff" }} />
                               <span className="text-xs line-clamp-1">{event.location}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Users className="w-4 h-4 text-blue-500" />
+                              <Users className="w-4 h-4" style={{ color: "#ffffff" }} />
                               <span className="text-xs">{event.attendees} attending</span>
                             </div>
                           </div>
@@ -395,7 +396,7 @@ export default function EventsSection() {
                           {/* Register Button */}
                           <motion.button
                             onClick={() => handleRegistration(event)}
-                            className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-300 cursor-pointer active:bg-blue-800"
+                            className="w-full #3367D6 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-#1a73e8 transition-all duration-300 cursor-pointer active:bg-#1565c0"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
@@ -438,7 +439,7 @@ export default function EventsSection() {
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 currentSlide === index
-                  ? 'bg-blue-600 w-8'
+                  ? '#3367D6 w-8'
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}
             />
@@ -474,7 +475,7 @@ export default function EventsSection() {
             {showSuccess && !showTicket && (
               <div className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 #3367D6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
@@ -484,14 +485,14 @@ export default function EventsSection() {
                 </p>
                 {emailSent && (
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-                    <p className="text-blue-800 text-sm">
+                    <p className="text-#1565c0 text-sm">
                       📧 Confirmation email sent to {formData.email}
                     </p>
                   </div>
                 )}
                 <button
                   onClick={() => setShowTicket(true)}
-                  className="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:from-blue-700 hover:to-blue-700 transition-all duration-300 flex items-center space-x-2 mx-auto"
+                  className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white px-6 py-2 rounded-lg font-medium hover:from-[#1a73e8] hover:to-[#1a73e8] transition-all duration-300 flex items-center space-x-2 mx-auto"
                 >
                   <Ticket className="w-4 h-4" />
                   <span>View & Download Ticket</span>
@@ -616,7 +617,7 @@ export default function EventsSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full #3367D6 text-white py-3 px-6 rounded-lg font-medium hover:bg-#1a73e8 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center gap-2">
@@ -666,8 +667,8 @@ export default function EventsSection() {
               
               <div className="mt-6 text-center">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                  <h4 className="font-semibold text-blue-800 mb-2">✅ Registration Complete!</h4>
-                  <div className="text-sm text-blue-700 space-y-1">
+                  <h4 className="font-semibold text-#1565c0 mb-2">✅ Registration Complete!</h4>
+                  <div className="text-sm text-#1a73e8 space-y-1">
                     <p>• Your event ticket has been generated successfully</p>
                     <p>• Confirmation email sent to {ticketData.email}</p>
                     <p>• Please download and bring this ticket to the event</p>

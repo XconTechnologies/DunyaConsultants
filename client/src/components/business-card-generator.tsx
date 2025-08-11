@@ -21,10 +21,10 @@ interface BusinessCardData {
 }
 
 const themes = [
-  { id: 'blue', name: 'Ocean Blue', primary: 'from-blue-400 to-blue-600', secondary: 'bg-blue-50', accent: 'text-blue-600' },
-  { id: 'purple', name: 'Royal Purple', primary: 'from-blue-400 to-blue-600', secondary: 'bg-blue-50', accent: 'text-blue-600' },
-  { id: 'green', name: 'Forest Green', primary: 'from-blue-400 to-blue-600', secondary: 'bg-blue-50', accent: 'text-blue-600' },
-  { id: 'rose', name: 'Elegant Rose', primary: 'from-blue-400 to-blue-600', secondary: 'bg-blue-50', accent: 'text-blue-600' },
+  { id: 'blue', name: 'Ocean Blue', primary: 'from-blue-400 to-[#3367D6]', secondary: 'bg-blue-50', accent: '#3367D6' },
+  { id: 'purple', name: 'Royal Purple', primary: 'from-blue-400 to-[#3367D6]', secondary: 'bg-blue-50', accent: '#3367D6' },
+  { id: 'green', name: 'Forest Green', primary: 'from-blue-400 to-[#3367D6]', secondary: 'bg-blue-50', accent: '#3367D6' },
+  { id: 'rose', name: 'Elegant Rose', primary: 'from-blue-400 to-[#3367D6]', secondary: 'bg-blue-50', accent: '#3367D6' },
   { id: 'amber', name: 'Golden Amber', primary: 'from-amber-400 to-amber-600', secondary: 'bg-amber-50', accent: 'text-amber-600' },
   { id: 'slate', name: 'Modern Slate', primary: 'from-slate-400 to-slate-600', secondary: 'bg-slate-50', accent: 'text-slate-600' }
 ];
@@ -90,7 +90,7 @@ export default function BusinessCardGenerator() {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-block bg-blue-50 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-4"
+            className="inline-block bg-blue-50 #3367D6 px-4 py-2 rounded-full text-sm font-medium mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
@@ -117,7 +117,7 @@ export default function BusinessCardGenerator() {
           >
             <div className="bg-white rounded-2xl p-8 shadow-xl">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <User className="w-6 h-6 mr-3 text-blue-600" />
+                <User className="w-6 h-6 mr-3 #3367D6" />
                 Personal Information
               </h2>
               
@@ -209,7 +209,7 @@ export default function BusinessCardGenerator() {
             {/* Design Customization */}
             <div className="bg-white rounded-2xl p-8 shadow-xl">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Palette className="w-6 h-6 mr-3 text-blue-600" />
+                <Palette className="w-6 h-6 mr-3 #3367D6" />
                 Design Customization
               </h2>
               
@@ -314,7 +314,7 @@ export default function BusinessCardGenerator() {
                 <Button
                   onClick={handleDownload}
                   disabled={isGenerating}
-                  className="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                  className="flex-1 bg-gradient-to-r from-[#4285F4] to-[#1a73e8] hover:from-#1a73e8 hover:to-#1565c0"
                 >
                   <AnimatePresence mode="wait">
                     {isGenerating ? (
@@ -350,7 +350,7 @@ export default function BusinessCardGenerator() {
                 >
                   {copied ? (
                     <>
-                      <Check className="w-4 h-4 mr-2 text-blue-600" />
+                      <Check className="w-4 h-4 mr-2 #3367D6" />
                       Copied!
                     </>
                   ) : (
@@ -365,12 +365,12 @@ export default function BusinessCardGenerator() {
 
             {/* Tips Section */}
             <div className="bg-gradient-to-br from-blue-50 to-blue-50 rounded-2xl p-6 border border-blue-100">
-              <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
+              <h3 className="text-lg font-semibold text-#1e3a8a mb-4 flex items-center">
                 <Briefcase className="w-5 h-5 mr-2" />
                 Design Tips
               </h3>
               
-              <ul className="space-y-2 text-sm text-blue-800">
+              <ul className="space-y-2 text-sm text-#1565c0">
                 <li>• Keep text concise and easy to read</li>
                 <li>• Choose colors that represent your brand</li>
                 <li>• Ensure contact information is accurate</li>

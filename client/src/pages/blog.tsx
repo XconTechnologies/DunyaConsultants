@@ -181,33 +181,33 @@ const categories = [
 function getCategoryGradient(category: string): string {
   const gradients: Record<string, string> = {
     "Test Preparation": "from-emerald-600 to-teal-600",
-    "Visa Guides": "from-blue-600 to-indigo-600", 
+    "Visa Guides": "from-[#4285F4] to-indigo-600", 
     "Study Abroad": "from-purple-600 to-violet-600",
     "Legal Education": "from-orange-600 to-red-600",
     "Healthcare Studies": "from-pink-600 to-rose-600",
-    "University Partnership": "from-cyan-600 to-blue-600",
+    "University Partnership": "from-cyan-600 to-[#3367D6]",
     "Study Destinations": "from-green-600 to-emerald-600",
     "UK Immigration": "from-indigo-600 to-purple-600",
     "Study in Canada": "from-red-600 to-pink-600",
     "General": "from-gray-600 to-slate-600"
   };
-  return gradients[category || "General"] || "from-blue-600 to-purple-600";
+  return gradients[category || "General"] || "from-[#4285F4] to-purple-600";
 }
 
 function getCategoryBadgeColor(category: string): string {
   const colors: Record<string, string> = {
-    "Test Preparation": "bg-blue-500",
-    "Visa Guides": "bg-blue-500",
-    "Study Abroad": "bg-blue-500", 
-    "Legal Education": "bg-blue-500",
-    "Healthcare Studies": "bg-blue-500",
-    "University Partnership": "bg-blue-500",
-    "Study Destinations": "bg-blue-500",
-    "UK Immigration": "bg-blue-500",
-    "Study in Canada": "bg-blue-500",
+    "Test Preparation": "#4285F4",
+    "Visa Guides": "#4285F4",
+    "Study Abroad": "#4285F4", 
+    "Legal Education": "#4285F4",
+    "Healthcare Studies": "#4285F4",
+    "University Partnership": "#4285F4",
+    "Study Destinations": "#4285F4",
+    "UK Immigration": "#4285F4",
+    "Study in Canada": "#4285F4",
     "General": "bg-gray-500"
   };
-  return colors[category || "General"] || "bg-blue-500";
+  return colors[category || "General"] || "#4285F4";
 }
 
 // Helper function to parse content into sections with table of contents
@@ -285,7 +285,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
         <Navigation />
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 #4285F4 mx-auto mb-4"></div>
             <p className="text-gray-600">Loading article...</p>
           </div>
         </div>
@@ -302,7 +302,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
             <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
-            <Link href="/blog" className="text-blue-600 hover:text-blue-800">
+            <Link href="/blog" className="#3367D6 hover:text-#1565c0">
               ← Back to Blog
             </Link>
           </div>
@@ -320,11 +320,11 @@ function DynamicBlogPost({ slug }: { slug: string }) {
       <Navigation />
       
       {/* Hero Section - Same as Kaplan Blog */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
                 {blogPost.category || 'Study Destinations'}
               </span>
             </div>
@@ -376,7 +376,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <ul className="space-y-2 text-gray-600">
                     {contentSections.map((section, index) => (
                       <li key={index}>
-                        <a href={`#${section.id}`} className="hover:text-blue-600">
+                        <a href={`#${section.id}`} className="hover:#3367D6">
                           {section.title}
                         </a>
                       </li>
@@ -390,7 +390,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                 {contentSections.length > 0 ? (
                   contentSections.map((section, index) => (
                     <div key={index} className="mb-8" id={section.id}>
-                      <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">
+                      <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">
                         {section.title}
                       </h2>
                       <div 
@@ -412,7 +412,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {blogPost.tags.map((tag, index) => (
-                      <span key={index} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
+                      <span key={index} className="bg-blue-100 text-#1565c0 px-3 py-1 rounded-full text-sm">
                         {tag}
                       </span>
                     ))}
@@ -433,14 +433,14 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link 
                       href="/contact" 
-                      className="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
+                      className="inline-flex items-center px-6 py-3 #3367D6 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
                     >
                       <Phone className="w-5 h-5 mr-2" />
                       Book Free Consultation
                     </Link>
                     <Link 
                       href="/contact" 
-                      className="inline-flex items-center px-6 py-3 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
+                      className="inline-flex items-center px-6 py-3 border-2 #3367D6 #3367D6 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
                     >
                       <Mail className="w-5 h-5 mr-2" />
                       Email Us
@@ -458,7 +458,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <Target className="w-5 h-5 mr-2 text-blue-500" />
+                  <Target className="w-5 h-5 mr-2 #4285F4" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -554,92 +554,92 @@ function DynamicBlogPost({ slug }: { slug: string }) {
               {blogPost.slug === 'from-uk-llm-to-pakistani-bar' ? (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
                   <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                    <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                    <BookOpen className="w-5 h-5 mr-2 #4285F4" />
                     Key Requirements
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Pakistani LLB degree</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Required</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Required</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Bar Council registration</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Mandatory</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Mandatory</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Local law understanding</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Essential</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Essential</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Professional networking</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Helpful</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Helpful</span>
                     </div>
                   </div>
                 </div>
               ) : blogPost.slug === 'study-nursing-in-the-uk' ? (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
                   <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                    <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                    <BookOpen className="w-5 h-5 mr-2 #4285F4" />
                     Top Nursing Universities
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>University of Dundee</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">#1 Ranked</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">#1 Ranked</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>University of Glasgow</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Top Choice</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Top Choice</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>University of Edinburgh</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Prestigious</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Prestigious</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Kingston University London</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">London Based</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">London Based</span>
                     </div>
                   </div>
                 </div>
               ) : blogPost.slug === 'global-talent-visa-uk' ? (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
                   <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                    <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                    <BookOpen className="w-5 h-5 mr-2 #4285F4" />
                     Eligible Fields
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Digital Technology</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Tech Leader</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Tech Leader</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Academia & Research</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Researcher</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Researcher</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Arts & Culture</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Creative</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Creative</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Science & Innovation</span>
-                      <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Innovator</span>
+                      <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Innovator</span>
                     </div>
                   </div>
                 </div>
               ) : (
                 <div className="bg-white rounded-lg shadow-sm border p-6">
                   <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                    <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                    <BookOpen className="w-5 h-5 mr-2 #4285F4" />
                     Related Topics
                   </h3>
                   <div className="space-y-3">
-                    <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                    <Link href="/blog" className="block text-sm #3367D6 hover:text-#1565c0 hover:underline">
                       Study Abroad Guide 2025
                     </Link>
-                    <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                    <Link href="/blog" className="block text-sm #3367D6 hover:text-#1565c0 hover:underline">
                       University Selection Tips
                     </Link>
-                    <Link href="/blog" className="block text-sm text-blue-600 hover:text-blue-800 hover:underline">
+                    <Link href="/blog" className="block text-sm #3367D6 hover:text-#1565c0 hover:underline">
                       Visa Application Process
                     </Link>
                   </div>
@@ -730,7 +730,7 @@ export default function Blog() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       {/* Enhanced Hero Section with Blue Theme */}
-      <div className="relative overflow-hidden" style={{ backgroundColor: '#124FD3' }}>
+      <div className="relative overflow-hidden" style={{ backgroundColor: '#4285F4' }}>
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -872,7 +872,7 @@ export default function Blog() {
                     onClick={() => setSelectedCategory(category)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                       selectedCategory === category
-                        ? 'bg-blue-600 text-white shadow-lg'
+                        ? '#3367D6 text-white shadow-lg'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
@@ -892,7 +892,7 @@ export default function Blog() {
               <button
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded-lg transition-all duration-200 ${
-                  viewMode === "grid" ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'
+                  viewMode === "grid" ? 'bg-white shadow-sm #3367D6' : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
                 <Grid className="w-5 h-5" />
@@ -900,7 +900,7 @@ export default function Blog() {
               <button
                 onClick={() => setViewMode("list")}
                 className={`p-2 rounded-lg transition-all duration-200 ${
-                  viewMode === "list" ? 'bg-white shadow-sm text-blue-600' : 'text-gray-500 hover:text-gray-700'
+                  viewMode === "list" ? 'bg-white shadow-sm #3367D6' : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
                 <List className="w-5 h-5" />
@@ -987,7 +987,7 @@ export default function Blog() {
                       
                       <div className="p-8">
                         <div className="flex items-center space-x-3 mb-4">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-#1565c0">
                             {post.category}
                           </span>
                           <span className="text-gray-400">•</span>
@@ -1008,7 +1008,7 @@ export default function Blog() {
                             ))}
                           </div>
                           
-                          <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors">
+                          <div className="flex items-center #3367D6 font-semibold group-hover:text-#1a73e8 transition-colors">
                             <span className="text-sm">Read Article</span>
                             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
                           </div>
@@ -1045,11 +1045,11 @@ export default function Blog() {
         >
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-3">
-              <Globe className="w-6 h-6 text-blue-600" />
+              <Globe className="w-6 h-6 #3367D6" />
               <h2 className="text-3xl font-bold text-gray-900">
                 {selectedCategory === "All" ? "All Articles" : selectedCategory}
               </h2>
-              <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-blue-100 text-#1565c0 rounded-full text-sm font-medium">
                 {filteredPosts.length} articles
               </span>
             </div>
@@ -1099,13 +1099,13 @@ export default function Blog() {
                           {post.category}
                         </span>
                         {post.featured && (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-500 to-orange-500 text-white shadow-sm">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-[#4285F4] to-orange-500 text-white shadow-sm">
                             <Star className="w-3 h-3 mr-1" />
                             Featured
                           </span>
                         )}
                         {post.trending && (
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-500 to-emerald-500 text-white shadow-sm">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-[#4285F4] to-emerald-500 text-white shadow-sm">
                             <TrendingUp className="w-3 h-3 mr-1" />
                             Trending
                           </span>
@@ -1143,7 +1143,7 @@ export default function Blog() {
                       
                       {/* Title */}
                       <h3 className={`
-                        font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2
+                        font-bold text-gray-900 mb-4 group-hover:#3367D6 transition-colors duration-300 line-clamp-2
                         ${viewMode === "list" ? "text-2xl" : "text-xl"}
                       `}>
                         {post.title}
@@ -1158,14 +1158,14 @@ export default function Blog() {
                       <div className="flex items-center justify-between">
                         <div className="flex flex-wrap gap-2">
                           {post.tags.slice(0, 3).map((tag) => (
-                            <span key={tag} className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors">
+                            <span key={tag} className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-50 text-#1a73e8 hover:bg-blue-100 transition-colors">
                               <Tag className="w-3 h-3 mr-1" />
                               {tag}
                             </span>
                           ))}
                         </div>
                         
-                        <div className="flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors duration-300">
+                        <div className="flex items-center #3367D6 font-semibold group-hover:text-#1a73e8 transition-colors duration-300">
                           <span className="text-sm">Read Article</span>
                           <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                         </div>
@@ -1215,14 +1215,14 @@ export default function Blog() {
                         />
                         {post.featured && (
                           <div className="absolute top-3 left-3">
-                            <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                            <span className="#4285F4 text-white px-2 py-1 rounded-full text-xs font-semibold">
                               Featured
                             </span>
                           </div>
                         )}
                         {post.trending && (
                           <div className="absolute top-3 right-3">
-                            <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
+                            <span className="#4285F4 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
                               <TrendingUp className="h-3 w-3 mr-1" />
                               Trending
                             </span>
@@ -1233,7 +1233,7 @@ export default function Blog() {
                     
                     <div className={`p-6 ${viewMode === "list" ? "flex-1" : ""}`}>
                       <div className="flex items-center space-x-2 mb-3">
-                        <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-medium">
+                        <span className="bg-blue-100 text-#1565c0 px-3 py-1 rounded-full text-xs font-medium">
                           {post.category}
                         </span>
                         <div className="flex items-center text-gray-500 text-xs">
@@ -1267,7 +1267,7 @@ export default function Blog() {
                         </div>
                         <Link
                           href={post.href}
-                          className="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center"
+                          className="#3367D6 hover:text-#1a73e8 text-sm font-medium flex items-center"
                         >
                           Read More
                           <ArrowRight className="h-3 w-3 ml-1" />
@@ -1301,7 +1301,7 @@ export default function Blog() {
       </div>
 
       {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
+      <div className="bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -1325,7 +1325,7 @@ export default function Blog() {
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-xl text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/20"
               />
-              <button className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+              <button className="px-6 py-3 bg-white #3367D6 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
                 Subscribe
               </button>
             </div>
@@ -1346,7 +1346,7 @@ export default function Blog() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 mb-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-#1a73e8 mb-6">
               <Target className="w-4 h-4 mr-2" />
               <span className="text-sm font-medium">Ready to Start?</span>
             </div>
@@ -1361,7 +1361,7 @@ export default function Blog() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <a 
                 href="tel:+923041110947" 
-                className="flex-1 bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center"
+                className="flex-1 #3367D6 text-white px-8 py-4 rounded-xl font-semibold hover:bg-#1a73e8 transition-colors flex items-center justify-center"
               >
                 📞 Call Now
               </a>
@@ -1375,15 +1375,15 @@ export default function Blog() {
             
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">5,000+</div>
+                <div className="text-3xl font-bold #3367D6 mb-2">5,000+</div>
                 <div className="text-gray-600">Students Placed</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">98%</div>
+                <div className="text-3xl font-bold #3367D6 mb-2">98%</div>
                 <div className="text-gray-600">Visa Success Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">17+</div>
+                <div className="text-3xl font-bold #3367D6 mb-2">17+</div>
                 <div className="text-gray-600">Office Locations</div>
               </div>
             </div>

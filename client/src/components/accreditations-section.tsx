@@ -57,11 +57,11 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="w-8 h-6 bg-blue-500 rounded-full flex items-center justify-center mb-1 mx-auto">
+            <div className="w-8 h-6 #4285F4 rounded-full flex items-center justify-center mb-1 mx-auto">
               <div className="w-2 h-2 bg-white rounded-full"></div>
             </div>
-            <div className="text-blue-600 font-bold text-xs">Duolingo</div>
-            <div className="text-xs text-blue-500">English Test</div>
+            <div className="#3367D6 font-bold text-xs">Duolingo</div>
+            <div className="text-xs #4285F4">English Test</div>
           </div>
         </div>
       ),
@@ -178,7 +178,7 @@ export default function AccreditationsSection() {
                 <div className="text-sm text-neutral-600">Compliance Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
+                <div className="text-3xl font-bold #3367D6 mb-2">24/7</div>
                 <div className="text-sm text-neutral-600">Quality Assurance</div>
               </div>
             </div>

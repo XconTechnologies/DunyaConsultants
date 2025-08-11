@@ -139,9 +139,9 @@ export default function CanadaGuide() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100" ref={ref}>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-blue-600/30 to-blue-800/30"></div>
+          <div className="w-full h-full bg-gradient-to-r from-[#4285F4]/30 to-#1565c0/30"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -163,32 +163,32 @@ export default function CanadaGuide() {
               <span className="text-sm font-medium">Study in Canada</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-blue-900">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-#1e3a8a">
               Study in<br />
-              <span className="text-blue-600">Canada</span>
+              <span className="#3367D6">Canada</span>
             </h1>
             
-            <p className="text-xl text-blue-800 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-#1565c0 max-w-3xl mx-auto mb-8">
               Experience world-class education in one of the world's most welcoming countries. 
               Discover affordable quality education with excellent immigration pathways and multicultural society.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">{canadaStats.universities}</div>
-                <div className="text-sm text-blue-800">Universities</div>
+                <div className="text-3xl font-bold #3367D6">{canadaStats.universities}</div>
+                <div className="text-sm text-#1565c0">Universities</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">{canadaStats.internationalStudents}</div>
-                <div className="text-sm text-blue-800">International Students</div>
+                <div className="text-3xl font-bold #3367D6">{canadaStats.internationalStudents}</div>
+                <div className="text-sm text-#1565c0">International Students</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">{canadaStats.globalRank}</div>
-                <div className="text-sm text-blue-800">Global Education Rank</div>
+                <div className="text-3xl font-bold #3367D6">{canadaStats.globalRank}</div>
+                <div className="text-sm text-#1565c0">Global Education Rank</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">{canadaStats.visaSuccess}</div>
-                <div className="text-sm text-blue-800">Visa Success Rate</div>
+                <div className="text-3xl font-bold #3367D6">{canadaStats.visaSuccess}</div>
+                <div className="text-sm text-#1565c0">Visa Success Rate</div>
               </div>
             </div>
           </motion.div>
@@ -216,22 +216,22 @@ export default function CanadaGuide() {
                 <h2 className="text-3xl font-bold text-neutral-800 mb-8 text-center">Why Choose Canada for Studies?</h2>
                 <div className="grid md:grid-cols-4 gap-6">
                   <Card className="shadow-lg text-center p-6">
-                    <Heart className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                    <Heart className="w-12 h-12 #3367D6 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">Welcoming Society</h3>
                     <p className="text-sm text-neutral-600">Friendly and inclusive culture</p>
                   </Card>
                   <Card className="shadow-lg text-center p-6">
-                    <Shield className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                    <Shield className="w-12 h-12 #3367D6 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">Safe Environment</h3>
                     <p className="text-sm text-neutral-600">Low crime rates, peaceful society</p>
                   </Card>
                   <Card className="shadow-lg text-center p-6">
-                    <TrendingUp className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                    <TrendingUp className="w-12 h-12 #3367D6 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">PR Pathways</h3>
                     <p className="text-sm text-neutral-600">Multiple immigration programs</p>
                   </Card>
                   <Card className="shadow-lg text-center p-6">
-                    <DollarSign className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+                    <DollarSign className="w-12 h-12 #3367D6 mx-auto mb-4" />
                     <h3 className="font-bold text-neutral-800 mb-2">Affordable Education</h3>
                     <p className="text-sm text-neutral-600">Lower costs than US/UK</p>
                   </Card>
@@ -247,37 +247,37 @@ export default function CanadaGuide() {
                     <div className="space-y-4">
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Total Universities</span>
-                        <span className="font-bold text-blue-600">{canadaStats.universities}</span>
+                        <span className="font-bold #3367D6">{canadaStats.universities}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">International Students</span>
-                        <span className="font-bold text-blue-600">{canadaStats.internationalStudents}</span>
+                        <span className="font-bold #3367D6">{canadaStats.internationalStudents}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Annual Tuition Range</span>
-                        <span className="font-bold text-blue-600">{canadaStats.averageCost}</span>
+                        <span className="font-bold #3367D6">{canadaStats.averageCost}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Post-Graduation Work Permit</span>
-                        <span className="font-bold text-blue-600">{canadaStats.workPermit}</span>
+                        <span className="font-bold #3367D6">{canadaStats.workPermit}</span>
                       </div>
                     </div>
                     <div className="space-y-4">
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Global Education Rank</span>
-                        <span className="font-bold text-blue-600">{canadaStats.globalRank}</span>
+                        <span className="font-bold #3367D6">{canadaStats.globalRank}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Visa Success Rate</span>
-                        <span className="font-bold text-blue-600">{canadaStats.visaSuccess}</span>
+                        <span className="font-bold #3367D6">{canadaStats.visaSuccess}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Program Duration</span>
-                        <span className="font-bold text-blue-600">{canadaStats.programDuration}</span>
+                        <span className="font-bold #3367D6">{canadaStats.programDuration}</span>
                       </div>
                       <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
                         <span className="font-medium">Intake Seasons</span>
-                        <span className="font-bold text-blue-600">{canadaStats.intakeSeasons}</span>
+                        <span className="font-bold #3367D6">{canadaStats.intakeSeasons}</span>
                       </div>
                     </div>
                   </div>
@@ -305,7 +305,7 @@ export default function CanadaGuide() {
                       <CardContent className="p-8">
                         <div className="flex items-start justify-between mb-6">
                           <div className="flex items-center space-x-4">
-                            <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-red-800 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            <div className="w-16 h-16 bg-gradient-to-br from-[#4285F4] to-red-800 rounded-full flex items-center justify-center text-white font-bold text-xl">
                               #{university.rank}
                             </div>
                             <div>
@@ -316,35 +316,35 @@ export default function CanadaGuide() {
                               </p>
                             </div>
                           </div>
-                          <Badge className="bg-blue-500">
+                          <Badge className="#4285F4">
                             {university.type}
                           </Badge>
                         </div>
 
                         <div className="grid md:grid-cols-4 gap-4 mb-6">
                           <div className="text-center p-4 bg-blue-50 rounded-lg">
-                            <DollarSign className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                            <DollarSign className="w-6 h-6 #3367D6 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Annual Tuition</div>
-                            <div className="font-bold text-blue-600">{university.tuition}</div>
+                            <div className="font-bold #3367D6">{university.tuition}</div>
                           </div>
                           <div className="text-center p-4 bg-blue-50 rounded-lg">
-                            <Users className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                            <Users className="w-6 h-6 #3367D6 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Acceptance Rate</div>
-                            <div className="font-bold text-blue-600">{university.acceptance}</div>
+                            <div className="font-bold #3367D6">{university.acceptance}</div>
                           </div>
                           <div className="text-center p-4 bg-blue-50 rounded-lg">
-                            <Building className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                            <Building className="w-6 h-6 #3367D6 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Campus Size</div>
-                            <div className="font-bold text-blue-600">{university.campusSize}</div>
+                            <div className="font-bold #3367D6">{university.campusSize}</div>
                           </div>
                           <div className="text-center p-4 bg-blue-50 rounded-lg">
-                            <GraduationCap className="w-6 h-6 text-blue-600 mx-auto mb-2" />
+                            <GraduationCap className="w-6 h-6 #3367D6 mx-auto mb-2" />
                             <div className="text-sm text-neutral-600">Student Body</div>
-                            <div className="font-bold text-blue-600">{university.studentBody}</div>
+                            <div className="font-bold #3367D6">{university.studentBody}</div>
                           </div>
                         </div>
 
-                        <Button className="w-full bg-gradient-to-r from-blue-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white">
+                        <Button className="w-full bg-gradient-to-r from-[#4285F4] to-red-800 hover:from-red-700 hover:to-red-900 text-white">
                           Get Admission Guidance for {university.name}
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
@@ -371,19 +371,19 @@ export default function CanadaGuide() {
                   <CardContent>
                     <ul className="space-y-3">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-5 h-5 text-blue-500" />
+                        <CheckCircle className="w-5 h-5 #4285F4" />
                         <span>Canadian Experience Class (CEC)</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-5 h-5 text-blue-500" />
+                        <CheckCircle className="w-5 h-5 #4285F4" />
                         <span>Federal Skilled Worker Program</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-5 h-5 text-blue-500" />
+                        <CheckCircle className="w-5 h-5 #4285F4" />
                         <span>Comprehensive Ranking System</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-5 h-5 text-blue-500" />
+                        <CheckCircle className="w-5 h-5 #4285F4" />
                         <span>Additional points for Canadian education</span>
                       </li>
                     </ul>
@@ -397,19 +397,19 @@ export default function CanadaGuide() {
                   <CardContent>
                     <ul className="space-y-3">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-5 h-5 text-blue-500" />
+                        <CheckCircle className="w-5 h-5 #4285F4" />
                         <span>Ontario Immigrant Nominee Program</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-5 h-5 text-blue-500" />
+                        <CheckCircle className="w-5 h-5 #4285F4" />
                         <span>British Columbia PNP</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-5 h-5 text-blue-500" />
+                        <CheckCircle className="w-5 h-5 #4285F4" />
                         <span>Alberta Immigrant Nominee Program</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-5 h-5 text-blue-500" />
+                        <CheckCircle className="w-5 h-5 #4285F4" />
                         <span>Quebec Experience Program</span>
                       </li>
                     </ul>
@@ -430,7 +430,7 @@ export default function CanadaGuide() {
                 <Card className="shadow-lg">
                   <CardContent className="p-0">
                     <table className="w-full">
-                      <thead className="bg-gradient-to-r from-blue-600 to-red-800 text-white">
+                      <thead className="bg-gradient-to-r from-[#4285F4] to-red-800 text-white">
                         <tr>
                           <th className="px-6 py-4 text-left">City</th>
                           <th className="px-6 py-4 text-center">Housing</th>
@@ -446,7 +446,7 @@ export default function CanadaGuide() {
                             <td className="px-6 py-4 text-center">{city.housing}</td>
                             <td className="px-6 py-4 text-center">{city.food}</td>
                             <td className="px-6 py-4 text-center">{city.transport}</td>
-                            <td className="px-6 py-4 text-center font-bold text-blue-600">{city.total}</td>
+                            <td className="px-6 py-4 text-center font-bold #3367D6">{city.total}</td>
                           </tr>
                         ))}
                       </tbody>
@@ -468,26 +468,26 @@ export default function CanadaGuide() {
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Heart className="w-6 h-6 mr-2 text-blue-500" />
+                      <Heart className="w-6 h-6 mr-2 #4285F4" />
                       Multicultural Society
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Diverse communities</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Cultural festivals</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Two official languages</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Inclusive environment</span>
                       </li>
                     </ul>
@@ -497,26 +497,26 @@ export default function CanadaGuide() {
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <Globe className="w-6 h-6 mr-2 text-blue-500" />
+                      <Globe className="w-6 h-6 mr-2 #4285F4" />
                       Natural Beauty
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Rocky Mountains</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Great Lakes</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">National parks</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Outdoor activities</span>
                       </li>
                     </ul>
@@ -526,26 +526,26 @@ export default function CanadaGuide() {
                 <Card className="shadow-lg">
                   <CardHeader>
                     <CardTitle className="flex items-center">
-                      <TrendingUp className="w-6 h-6 mr-2 text-blue-500" />
+                      <TrendingUp className="w-6 h-6 mr-2 #4285F4" />
                       Work Opportunities
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">20 hours/week during studies</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Full-time during breaks</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">3-year PGWP</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <CheckCircle className="w-4 h-4 text-blue-500" />
+                        <CheckCircle className="w-4 h-4 #4285F4" />
                         <span className="text-sm">Path to PR</span>
                       </li>
                     </ul>
@@ -558,7 +558,7 @@ export default function CanadaGuide() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-700 to-red-900 text-white">
+      <section className="py-20 bg-gradient-to-r from-#1a73e8 to-red-900 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -572,7 +572,7 @@ export default function CanadaGuide() {
               Start your journey to Canadian education and permanent residency
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-blue-900 hover:bg-blue-50 text-lg px-8">
+              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50 text-lg px-8">
                 Book Free Canada Consultation
                 <Calendar className="w-5 h-5 ml-2" />
               </Button>

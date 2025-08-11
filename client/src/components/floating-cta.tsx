@@ -99,7 +99,7 @@ export default function FloatingCTA() {
                 </div>
                 
                 {/* Notification Badge */}
-                <div className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                <div className="absolute -top-1 -right-1 w-5 h-5 #4285F4 rounded-full flex items-center justify-center">
                   <span className="text-xs text-white font-bold">!</span>
                 </div>
               </button>

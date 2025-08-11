@@ -9,7 +9,7 @@ export default function TopStudyAbroadCountries() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#124FD3] text-white py-20">
+      <div className="bg-[#4285F4] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-sm font-medium mb-4">
@@ -60,21 +60,21 @@ export default function TopStudyAbroadCountries() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#best-countries" className="hover:text-blue-600">List of the Best Countries to Study Abroad</a></li>
-                  <li><a href="#united-kingdom" className="hover:text-blue-600">United Kingdom</a></li>
-                  <li><a href="#united-states" className="hover:text-blue-600">United States</a></li>
-                  <li><a href="#canada" className="hover:text-blue-600">Canada</a></li>
-                  <li><a href="#australia" className="hover:text-blue-600">Australia</a></li>
-                  <li><a href="#germany" className="hover:text-blue-600">Germany</a></li>
-                  <li><a href="#europe" className="hover:text-blue-600">Europe</a></li>
-                  <li><a href="#conclusion" className="hover:text-blue-600">Conclusion</a></li>
-                  <li><a href="#faqs" className="hover:text-blue-600">FAQs</a></li>
+                  <li><a href="#best-countries" className="hover:#3367D6">List of the Best Countries to Study Abroad</a></li>
+                  <li><a href="#united-kingdom" className="hover:#3367D6">United Kingdom</a></li>
+                  <li><a href="#united-states" className="hover:#3367D6">United States</a></li>
+                  <li><a href="#canada" className="hover:#3367D6">Canada</a></li>
+                  <li><a href="#australia" className="hover:#3367D6">Australia</a></li>
+                  <li><a href="#germany" className="hover:#3367D6">Germany</a></li>
+                  <li><a href="#europe" className="hover:#3367D6">Europe</a></li>
+                  <li><a href="#conclusion" className="hover:#3367D6">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:#3367D6">FAQs</a></li>
                 </ul>
               </div>
 
               {/* Best Countries Overview */}
               <div className="mb-8" id="best-countries">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">List of the Best Countries to Study Abroad</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">List of the Best Countries to Study Abroad</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Choosing the best country for studying abroad is not just about picking a well-known university. It is about finding a place according to your education goals and future career plans. Each country provides different benefits. Here are some of the best countries for international students:
                 </p>
@@ -82,7 +82,7 @@ export default function TopStudyAbroadCountries() {
 
               {/* United Kingdom */}
               <div className="mb-8" id="united-kingdom">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">United Kingdom</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">United Kingdom</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The UK is one of the most popular places for international students, with a long history of high quality education. It is home to the famous universities such as Oxford and Cambridge, which have been educating students since the 12th and 13th centuries. Studying in the UK can be challenging, but it is also highly rewarding.
                 </p>
@@ -91,7 +91,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-blue-800 mb-3">UK Study Benefits</h4>
+                  <h4 className="font-semibold text-#1565c0 mb-3">UK Study Benefits</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>World-renowned universities like Oxford and Cambridge</li>
                     <li>High-quality education with flexible course structures</li>
@@ -104,7 +104,7 @@ export default function TopStudyAbroadCountries() {
 
               {/* United States */}
               <div className="mb-8" id="united-states">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">United States</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">United States</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The United States is one of the most favorite places for international students. It has a vast range of universities and colleges, including Ivy League schools and other globally recognized institutions.
                 </p>
@@ -113,7 +113,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-blue-800 mb-3">USA Study Advantages</h4>
+                  <h4 className="font-semibold text-#1565c0 mb-3">USA Study Advantages</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Ivy League schools and globally recognized institutions</li>
                     <li>Largest number of international students worldwide</li>
@@ -126,7 +126,7 @@ export default function TopStudyAbroadCountries() {
 
               {/* Canada */}
               <div className="mb-8" id="canada">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Canada</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Canada</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The country is also home to world-leading universities, with more than 26 institutions ranked in the QS World University Rankings and THE World University Rankings. Canadian universities host almost half a million international students each year.
                 </p>
@@ -135,7 +135,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-blue-800 mb-3">Canada Study Benefits</h4>
+                  <h4 className="font-semibold text-#1565c0 mb-3">Canada Study Benefits</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>26+ institutions ranked in global university rankings</li>
                     <li>Nearly 500,000 international students annually</li>
@@ -148,7 +148,7 @@ export default function TopStudyAbroadCountries() {
 
               {/* Australia */}
               <div className="mb-8" id="australia">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Australia</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Australia</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Studying in Australia is a great option for students looking for a high-quality education, a diverse culture, and beautiful surroundings. The country has 43 universities, many of which rank among the best in the world.
                 </p>
@@ -157,7 +157,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-blue-800 mb-3">Australia Study Features</h4>
+                  <h4 className="font-semibold text-#1565c0 mb-3">Australia Study Features</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>43 universities with many ranking among world's best</li>
                     <li>Wide variety of courses in business, medicine, engineering</li>
@@ -170,7 +170,7 @@ export default function TopStudyAbroadCountries() {
 
               {/* Germany */}
               <div className="mb-8" id="germany">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Germany</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Germany</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Germany is one of the best study destinations for international students, especially for those looking for affordable education. Unlike many other countries, Germany provides free or low-cost education in its public universities, making it an attractive choice for students.
                 </p>
@@ -179,7 +179,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-blue-800 mb-3">Germany Study Highlights</h4>
+                  <h4 className="font-semibold text-#1565c0 mb-3">Germany Study Highlights</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Free or low-cost education at public universities</li>
                     <li>Leading institutions like TUM, University of Bonn, Hamburg</li>
@@ -192,7 +192,7 @@ export default function TopStudyAbroadCountries() {
 
               {/* Europe */}
               <div className="mb-8" id="europe">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Europe</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Europe</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The country provides a unique and interactive learning approach, where students engage directly with their instructors and classmates. Universities and colleges in Europe focus on innovation and research, providing students with the skills they need to succeed in their careers.
                 </p>
@@ -201,7 +201,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-blue-800 mb-3">European Study Experience</h4>
+                  <h4 className="font-semibold text-#1565c0 mb-3">European Study Experience</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Unique and interactive learning approaches</li>
                     <li>Direct engagement with instructors and classmates</li>
@@ -214,7 +214,7 @@ export default function TopStudyAbroadCountries() {
 
               {/* Conclusion */}
               <div className="mb-8" id="conclusion">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   When choosing a country to study abroad, it is important to consider factors such as academic goals, tuition fees, lifestyle, job opportunities, and cultural experiences. Whether you are looking for affordable education, top-ranked universities, or strong career opportunities, each of these countries has something unique to provide.
                 </p>
@@ -225,7 +225,7 @@ export default function TopStudyAbroadCountries() {
 
               {/* FAQs */}
               <div className="mb-8" id="faqs">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -259,7 +259,7 @@ export default function TopStudyAbroadCountries() {
             {/* Quick Facts */}
             <div className="bg-white rounded-lg shadow-sm border p-6">
               <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                <BookOpen className="w-5 h-5 mr-2 #4285F4" />
                 Quick Facts
               </h3>
               <div className="space-y-3 text-sm">
@@ -289,25 +289,25 @@ export default function TopStudyAbroadCountries() {
             {/* Top Destinations */}
             <div className="bg-white rounded-lg shadow-sm border p-6">
               <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                <BookOpen className="w-5 h-5 mr-2 text-blue-500" />
+                <BookOpen className="w-5 h-5 mr-2 #4285F4" />
                 Top Destinations
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>United Kingdom</span>
-                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Most Popular</span>
+                  <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Most Popular</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Canada</span>
-                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Best Immigration</span>
+                  <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Best Immigration</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Australia</span>
-                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">High Quality</span>
+                  <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">High Quality</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Germany</span>
-                  <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Low Tuition</span>
+                  <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Low Tuition</span>
                 </div>
               </div>
             </div>

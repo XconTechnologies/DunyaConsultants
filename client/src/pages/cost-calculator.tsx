@@ -371,7 +371,7 @@ export default function CostCalculator() {
                 <Card className="shadow-xl border-0">
                   <CardHeader>
                     <CardTitle className="flex items-center space-x-2">
-                      <DollarSign className="w-5 h-5 text-blue-600" />
+                      <DollarSign className="w-5 h-5 #3367D6" />
                       <span>Cost Breakdown - {results.country}</span>
                     </CardTitle>
                   </CardHeader>
@@ -381,31 +381,31 @@ export default function CostCalculator() {
                       <div className="space-y-3">
                         <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                           <span className="font-medium">Tuition Fees ({results.duration} years)</span>
-                          <span className="font-bold text-blue-600">
+                          <span className="font-bold #3367D6">
                             {formatCurrency(results.tuition, results.currency)}
                           </span>
                         </div>
                         <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                           <span className="font-medium">Living Expenses</span>
-                          <span className="font-bold text-blue-600">
+                          <span className="font-bold #3367D6">
                             {formatCurrency(results.living, results.currency)}
                           </span>
                         </div>
                         <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                           <span className="font-medium">Visa Fee</span>
-                          <span className="font-bold text-blue-600">
+                          <span className="font-bold #3367D6">
                             {formatCurrency(results.visa, results.currency)}
                           </span>
                         </div>
                         <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                           <span className="font-medium">Health Insurance</span>
-                          <span className="font-bold text-blue-600">
+                          <span className="font-bold #3367D6">
                             {formatCurrency(results.insurance, results.currency)}
                           </span>
                         </div>
                         <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                           <span className="font-medium">Flight Cost</span>
-                          <span className="font-bold text-blue-600">
+                          <span className="font-bold #3367D6">
                             {formatCurrency(results.flight, results.currency)}
                           </span>
                         </div>
@@ -425,20 +425,20 @@ export default function CostCalculator() {
                       <div className="space-y-3 pt-4">
                         <div className="p-3 bg-blue-50 rounded-lg">
                           <div className="flex items-start space-x-2">
-                            <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                            <Info className="w-5 h-5 #3367D6 flex-shrink-0 mt-0.5" />
                             <div>
-                              <p className="font-medium text-blue-800">Work Rights</p>
-                              <p className="text-sm text-blue-700">{results.workRights}</p>
+                              <p className="font-medium text-#1565c0">Work Rights</p>
+                              <p className="text-sm text-#1a73e8">{results.workRights}</p>
                             </div>
                           </div>
                         </div>
                         {results.prPathway && (
                           <div className="p-3 bg-blue-50 rounded-lg">
                             <div className="flex items-start space-x-2">
-                              <Heart className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                              <Heart className="w-5 h-5 #3367D6 flex-shrink-0 mt-0.5" />
                               <div>
-                                <p className="font-medium text-blue-800">PR Pathway Available</p>
-                                <p className="text-sm text-blue-700">This country offers pathways to permanent residency for international students.</p>
+                                <p className="font-medium text-#1565c0">PR Pathway Available</p>
+                                <p className="text-sm text-#1a73e8">This country offers pathways to permanent residency for international students.</p>
                               </div>
                             </div>
                           </div>

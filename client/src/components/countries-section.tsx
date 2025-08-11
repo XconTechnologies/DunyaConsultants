@@ -56,7 +56,7 @@ const countries: Country[] = [
     currency: "British Pound (GBP)",
     timeZone: "GMT/BST",
     bgImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-blue-800",
+    gradient: "from-[#4285F4] to-#1565c0",
     intakeSeason: "September & January",
     livingCost: "£12,000-18,000/year",
     applicationDeadline: "January 15, 2025"
@@ -83,7 +83,7 @@ const countries: Country[] = [
     currency: "US Dollar (USD)",
     timeZone: "Multiple zones",
     bgImage: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     intakeSeason: "Fall & Spring",
     livingCost: "$15,000-25,000/year",
     applicationDeadline: "December 1, 2024"
@@ -110,7 +110,7 @@ const countries: Country[] = [
     currency: "Canadian Dollar (CAD)",
     timeZone: "Multiple zones",
     bgImage: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-white",
+    gradient: "from-[#4285F4] to-white",
     intakeSeason: "September & January",
     livingCost: "CAD 12,000-18,000/year",
     applicationDeadline: "February 1, 2025"
@@ -137,7 +137,7 @@ const countries: Country[] = [
     currency: "Australian Dollar (AUD)",
     timeZone: "Multiple zones",
     bgImage: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-gold",
+    gradient: "from-[#4285F4] to-gold",
     intakeSeason: "February & July",
     livingCost: "AUD 18,000-25,000/year",
     applicationDeadline: "October 31, 2024"
@@ -164,7 +164,7 @@ const countries: Country[] = [
     currency: "Turkish Lira (TRY)",
     timeZone: "TRT",
     bgImage: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-blue-500",
+    gradient: "from-[#4285F4] to-blue-500",
     intakeSeason: "September & February",
     livingCost: "$3,000-6,000/year",
     applicationDeadline: "July 15, 2025"
@@ -191,7 +191,7 @@ const countries: Country[] = [
     currency: "UAE Dirham (AED)",
     timeZone: "GST",
     bgImage: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=600&fit=crop",
-    gradient: "from-blue-500 to-blue-600",
+    gradient: "from-[#4285F4] to-[#3367D6]",
     intakeSeason: "September & January",
     livingCost: "$8,000-15,000/year",
     applicationDeadline: "June 30, 2025"
@@ -218,7 +218,7 @@ const countries: Country[] = [
     currency: "Danish Krone (DKK)",
     timeZone: "CET",
     bgImage: "https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-white",
+    gradient: "from-[#4285F4] to-white",
     intakeSeason: "September & February",
     livingCost: "€10,000-15,000/year",
     applicationDeadline: "March 15, 2025"
@@ -245,7 +245,7 @@ const countries: Country[] = [
     currency: "Swedish Krona (SEK)",
     timeZone: "CET",
     bgImage: "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=800&h=600&fit=crop",
-    gradient: "from-blue-500 to-blue-400",
+    gradient: "from-[#4285F4] to-blue-400",
     intakeSeason: "August & January",
     livingCost: "SEK 8,000-12,000/month",
     applicationDeadline: "January 15, 2025"
@@ -272,7 +272,7 @@ const countries: Country[] = [
     currency: "Euro (EUR)",
     timeZone: "GMT/IST",
     bgImage: "https://images.unsplash.com/photo-1549918864-48ac978761a4?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-blue-500",
+    gradient: "from-[#4285F4] to-blue-500",
     intakeSeason: "September & February",
     livingCost: "€8,000-12,000/year",
     applicationDeadline: "May 1, 2025"
@@ -299,7 +299,7 @@ const countries: Country[] = [
     currency: "Euro (EUR)",
     timeZone: "EET",
     bgImage: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-white",
+    gradient: "from-[#4285F4] to-white",
     intakeSeason: "August & January",
     livingCost: "€7,000-12,000/year",
     applicationDeadline: "January 31, 2025"
@@ -326,7 +326,7 @@ const countries: Country[] = [
     currency: "Euro (EUR)",
     timeZone: "EET",
     bgImage: "https://images.unsplash.com/photo-1544552866-d3ed42536cfd?w=800&h=600&fit=crop",
-    gradient: "from-blue-500 to-blue-400",
+    gradient: "from-[#4285F4] to-blue-400",
     intakeSeason: "September & February",
     livingCost: "€4,000-7,000/year",
     applicationDeadline: "July 31, 2025"
@@ -353,7 +353,7 @@ const countries: Country[] = [
     currency: "Kyrgyzstani Som (KGS)",
     timeZone: "KGT",
     bgImage: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
-    gradient: "from-blue-600 to-blue-500",
+    gradient: "from-[#4285F4] to-blue-500",
     intakeSeason: "September & February",
     livingCost: "$1,500-3,000/year",
     applicationDeadline: "August 15, 2025"
@@ -520,7 +520,7 @@ export default function CountriesSection() {
               onClick={() => setActiveTab('all')}
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'all' 
-                  ? 'bg-blue-600 text-white shadow-sm' 
+                  ? '#3367D6 text-white shadow-sm' 
                   : 'bg-transparent text-gray-600 hover:text-gray-800'
               }`}
               variant="ghost"
@@ -559,11 +559,11 @@ export default function CountriesSection() {
                   
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center gap-2">
-                      <DollarSign className="w-4 h-4 text-blue-600" />
+                      <DollarSign className="w-4 h-4" style={{ color: '#4285F4' }} />
                       <span className="text-sm text-gray-600">{country.averageCost}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-blue-600" />
+                      <CheckCircle className="w-4 h-4" style={{ color: '#4285F4' }} />
                       <span className="text-sm text-gray-600">{country.visaSuccessRate}% visa success</span>
                     </div>
                   </div>
@@ -580,7 +580,10 @@ export default function CountriesSection() {
                     <Button
                       onClick={() => handleApplyNow(country)}
                       size="sm"
-                      className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                      className="flex-1 text-white hover:scale-105 transition-transform"
+                      style={{ backgroundColor: '#4285F4' }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3367D6'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4285F4'}
                     >
                       Apply Now
                     </Button>
@@ -595,14 +598,16 @@ export default function CountriesSection() {
             {/* Navigation Arrows - Always visible for infinite scroll */}
             <Button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              style={{ color: "#4285F4" }}
               variant="outline"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
             <Button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 text-blue-600 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              style={{ color: "#4285F4" }}
               variant="outline"
             >
               <ChevronRight className="w-5 h-5" />
@@ -645,7 +650,7 @@ export default function CountriesSection() {
                       
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center gap-2">
-                          <DollarSign className="w-4 h-4 text-blue-600" />
+                          <DollarSign className="w-4 h-4" style={{ color: '#4285F4' }} />
                           <span className="text-sm text-gray-600">{country.averageCost}</span>
                         </div>
                         <div className="flex items-center gap-2">
@@ -659,14 +664,18 @@ export default function CountriesSection() {
                           onClick={() => setSelectedCountry(country)}
                           variant="outline"
                           size="sm"
-                          className="flex-1 border-blue-600 text-blue-600 hover:bg-blue-50"
+                          className="flex-1 hover:bg-blue-50"
+                          style={{ color: '#4285F4', borderColor: '#4285F4' }}
                         >
                           View Details
                         </Button>
                         <Button
                           onClick={() => handleApplyNow(country)}
                           size="sm"
-                          className="flex-1 bg-blue-600 hover:bg-blue-700 text-white"
+                          className="flex-1 text-white hover:scale-105 transition-transform"
+                      style={{ backgroundColor: '#4285F4' }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#3367D6'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#4285F4'}
                         >
                           Apply Now
                         </Button>
@@ -685,9 +694,10 @@ export default function CountriesSection() {
                   onClick={() => setCurrentSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
-                      ? 'bg-blue-600 scale-110' 
+                      ? 'scale-110' 
                       : 'bg-blue-200 hover:bg-blue-300'
                   }`}
+                  style={index === currentSlide ? { backgroundColor: '#4285F4' } : {}}
                 />
               ))}
             </div>
@@ -722,15 +732,15 @@ export default function CountriesSection() {
                   
                   <div className="space-y-2">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-blue-600" />
+                      <Clock className="w-4 h-4 #3367D6" />
                       <span className="text-sm">Duration: {selectedCountry.studyDuration}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Globe className="w-4 h-4 text-blue-600" />
+                      <Globe className="w-4 h-4 #3367D6" />
                       <span className="text-sm">Language: {selectedCountry.language}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <DollarSign className="w-4 h-4 text-blue-600" />
+                      <DollarSign className="w-4 h-4 #3367D6" />
                       <span className="text-sm">Currency: {selectedCountry.currency}</span>
                     </div>
                   </div>
@@ -761,19 +771,19 @@ export default function CountriesSection() {
               <div className="mt-6 pt-6 border-t">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-blue-600">{selectedCountry.visaSuccessRate}%</div>
+                    <div className="text-2xl font-bold #3367D6">{selectedCountry.visaSuccessRate}%</div>
                     <div className="text-sm text-gray-600">Visa Success</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-blue-600">{selectedCountry.scholarships}</div>
+                    <div className="text-2xl font-bold #3367D6">{selectedCountry.scholarships}</div>
                     <div className="text-sm text-gray-600">Scholarships</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-blue-600">{selectedCountry.studentCount}+</div>
+                    <div className="text-2xl font-bold #3367D6">{selectedCountry.studentCount}+</div>
                     <div className="text-sm text-gray-600">Students</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-blue-600">{selectedCountry.averageCost}</div>
+                    <div className="text-2xl font-bold #3367D6">{selectedCountry.averageCost}</div>
                     <div className="text-sm text-gray-600">Avg. Cost</div>
                   </div>
                 </div>
