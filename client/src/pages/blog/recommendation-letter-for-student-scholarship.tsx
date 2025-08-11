@@ -10,11 +10,11 @@ export default function RecommendationLetterStudentScholarship() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Tips
               </span>
             </div>
@@ -64,37 +64,37 @@ export default function RecommendationLetterStudentScholarship() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#what-is-lor" className="hover:#3367D6">What is a Letter of Recommendation?</a></li>
-                  <li><a href="#format" className="hover:#3367D6">Recommendation Letter Format</a></li>
-                  <li><a href="#writing-tips" className="hover:#3367D6">Writing Tips and Guidelines</a></li>
-                  <li><a href="#sample-template" className="hover:#3367D6">Sample Template</a></li>
-                  <li><a href="#common-mistakes" className="hover:#3367D6">Common Mistakes to Avoid</a></li>
-                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
+                  <li><a href="#what-is-lor" className="hover:#1845B3">What is a Letter of Recommendation?</a></li>
+                  <li><a href="#format" className="hover:#1845B3">Recommendation Letter Format</a></li>
+                  <li><a href="#writing-tips" className="hover:#1845B3">Writing Tips and Guidelines</a></li>
+                  <li><a href="#sample-template" className="hover:#1845B3">Sample Template</a></li>
+                  <li><a href="#common-mistakes" className="hover:#1845B3">Common Mistakes to Avoid</a></li>
+                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Why Recommendation Letters Matter */}
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold text-#1565c0 mb-4">Why Recommendation Letters Matter</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Essential for university and scholarship applications
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Highlights your academic performance and character
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Provides third-party validation of your abilities
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Can differentiate you from other applicants
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Required by universities and immigration authorities
                   </li>
                 </ul>
@@ -102,7 +102,7 @@ export default function RecommendationLetterStudentScholarship() {
 
               {/* What is LOR Section */}
               <section id="what-is-lor" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">What is a Letter of Recommendation for Student?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">What is a Letter of Recommendation for Student?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   A reference letter for student from teacher is a letter that includes the student's skills, qualities, school performance, and talents. It is usually written by a school principal or teacher to show the abilities of students and support their goals for further education.
@@ -129,7 +129,7 @@ export default function RecommendationLetterStudentScholarship() {
 
               {/* Format Section */}
               <section id="format" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Recommendation Letter Format</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Recommendation Letter Format</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   A recommendation letter for university usually has three to four paragraphs. Let's discuss about letter of recommendation format in detail below:
@@ -192,7 +192,7 @@ export default function RecommendationLetterStudentScholarship() {
 
               {/* Writing Tips Section */}
               <section id="writing-tips" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Writing Tips and Guidelines</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Writing Tips and Guidelines</h2>
                 
                 <div className="space-y-4">
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
@@ -219,7 +219,7 @@ export default function RecommendationLetterStudentScholarship() {
 
               {/* Sample Template Section */}
               <section id="sample-template" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Sample Letter Template</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Sample Letter Template</h2>
                 
                 <div className="bg-gray-100 p-6 rounded-lg">
                   <div className="font-mono text-sm space-y-4 text-gray-800">
@@ -260,33 +260,33 @@ export default function RecommendationLetterStudentScholarship() {
 
               {/* Common Mistakes Section */}
               <section id="common-mistakes" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Common Mistakes to Avoid</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Common Mistakes to Avoid</h2>
                 
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-semibold mb-4 text-#1565c0">Avoid These Common Errors</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start">
-                      <span className="w-2 h-2 #3367D6 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 #1845B3 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Using generic templates without personalization</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 #3367D6 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 #1845B3 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Being too brief or lacking specific examples</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 #3367D6 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 #1845B3 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Exceeding one page in length</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 #3367D6 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 #1845B3 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Including negative comments or weaknesses</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 #3367D6 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 #1845B3 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Using informal language or casual tone</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="w-2 h-2 #3367D6 rounded-full mt-2 mr-3"></span>
+                      <span className="w-2 h-2 #1845B3 rounded-full mt-2 mr-3"></span>
                       <span className="text-gray-700">Failing to proofread for grammar and spelling errors</span>
                     </li>
                   </ul>
@@ -295,7 +295,7 @@ export default function RecommendationLetterStudentScholarship() {
 
               {/* FAQs Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -322,7 +322,7 @@ export default function RecommendationLetterStudentScholarship() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Conclusion</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   As a student, it is important to ask a mentor, supervisor, teacher, or manager for a recommendation letter. This recommendation letter for student helps the university admission officers to know you better and understand your abilities. It shows your skills as well as strengths through what your referee says about you.
@@ -342,7 +342,7 @@ export default function RecommendationLetterStudentScholarship() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="tel:+923041110947" 
-                    className="#3367D6 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
+                    className="#1845B3 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Call Now: +92 304 1110947
                   </a>
@@ -363,7 +363,7 @@ export default function RecommendationLetterStudentScholarship() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <Target className="w-5 h-5 mr-2 #4285F4" />
+                  <Target className="w-5 h-5 mr-2 #1D50C9" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -393,25 +393,25 @@ export default function RecommendationLetterStudentScholarship() {
               {/* Letter Components */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <BookOpen className="w-5 h-5 mr-2 #4285F4" />
+                  <BookOpen className="w-5 h-5 mr-2 #1D50C9" />
                   Essential Components
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Header & Contact Info</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Required</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Required</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Introduction</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Required</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Required</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Specific Examples</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Critical</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Critical</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Strong Endorsement</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Essential</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Essential</span>
                   </div>
                 </div>
               </div>

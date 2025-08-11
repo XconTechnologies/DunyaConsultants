@@ -10,11 +10,11 @@ export default function MasterOfLawsLLMAustralia() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white py-20">
+      <div className="bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study in Australia
               </span>
             </div>
@@ -70,7 +70,7 @@ export default function MasterOfLawsLLMAustralia() {
                   Studying LLM in Australia allows students to explore different legal fields. It also improves analytical as well as problem-solving skills. After completing their LLM from Australia, graduates can either continue their studies with a doctorate or pursue careers as barristers, lawyers, or solicitors. Moreover, an Australian LLM provides the best career opportunities in the legal field.
                 </p>
 
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   List of the Best Universities for Master of Laws in Australia
                 </h2>
 
@@ -82,41 +82,41 @@ export default function MasterOfLawsLLMAustralia() {
                   <h3 className="text-xl font-semibold text-#1e3a8a mb-4">Top Universities for LLM in Australia</h3>
                   <ul className="space-y-2">
                     <li className="flex items-center text-gray-700">
-                      <CheckCircle className="w-5 h-5 #3367D6 mr-3" />
+                      <CheckCircle className="w-5 h-5 #1845B3 mr-3" />
                       University of Adelaide
                     </li>
                     <li className="flex items-center text-gray-700">
-                      <CheckCircle className="w-5 h-5 #3367D6 mr-3" />
+                      <CheckCircle className="w-5 h-5 #1845B3 mr-3" />
                       Australian National University
                     </li>
                     <li className="flex items-center text-gray-700">
-                      <CheckCircle className="w-5 h-5 #3367D6 mr-3" />
+                      <CheckCircle className="w-5 h-5 #1845B3 mr-3" />
                       The University of Melbourne
                     </li>
                     <li className="flex items-center text-gray-700">
-                      <CheckCircle className="w-5 h-5 #3367D6 mr-3" />
+                      <CheckCircle className="w-5 h-5 #1845B3 mr-3" />
                       University of Technology Sydney
                     </li>
                     <li className="flex items-center text-gray-700">
-                      <CheckCircle className="w-5 h-5 #3367D6 mr-3" />
+                      <CheckCircle className="w-5 h-5 #1845B3 mr-3" />
                       University of Sydney
                     </li>
                     <li className="flex items-center text-gray-700">
-                      <CheckCircle className="w-5 h-5 #3367D6 mr-3" />
+                      <CheckCircle className="w-5 h-5 #1845B3 mr-3" />
                       UNSW Sydney
                     </li>
                     <li className="flex items-center text-gray-700">
-                      <CheckCircle className="w-5 h-5 #3367D6 mr-3" />
+                      <CheckCircle className="w-5 h-5 #1845B3 mr-3" />
                       Monash University
                     </li>
                     <li className="flex items-center text-gray-700">
-                      <CheckCircle className="w-5 h-5 #3367D6 mr-3" />
+                      <CheckCircle className="w-5 h-5 #1845B3 mr-3" />
                       University of Queensland
                     </li>
                   </ul>
                 </div>
 
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Eligibility Criteria for Best University for Law in Australia
                 </h2>
 
@@ -128,21 +128,21 @@ export default function MasterOfLawsLLMAustralia() {
                   <h3 className="text-xl font-semibold text-#1e3a8a mb-4">Key Requirements</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start text-gray-700">
-                      <Scale className="w-5 h-5 #3367D6 mr-3 mt-1" />
+                      <Scale className="w-5 h-5 #1845B3 mr-3 mt-1" />
                       <span>You need a bachelor's degree in law (LLB) from a recognized university.</span>
                     </li>
                     <li className="flex items-start text-gray-700">
-                      <Globe className="w-5 h-5 #3367D6 mr-3 mt-1" />
+                      <Globe className="w-5 h-5 #1845B3 mr-3 mt-1" />
                       <span>You need to score between 6.5 and 7 in the IELTS test to prove your English skills.</span>
                     </li>
                     <li className="flex items-start text-gray-700">
-                      <Award className="w-5 h-5 #3367D6 mr-3 mt-1" />
+                      <Award className="w-5 h-5 #1845B3 mr-3 mt-1" />
                       <span>Some universities prefer students who have at least two years of work experience in law or a related field.</span>
                     </li>
                   </ul>
                 </div>
 
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Documents Required for Masters in Law Australia
                 </h2>
 
@@ -153,43 +153,43 @@ export default function MasterOfLawsLLMAustralia() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <FileText className="w-5 h-5 #3367D6 mr-2" />
+                      <FileText className="w-5 h-5 #1845B3 mr-2" />
                       <span className="font-semibold">Educational Certificates</span>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <DollarSign className="w-5 h-5 #3367D6 mr-2" />
+                      <DollarSign className="w-5 h-5 #1845B3 mr-2" />
                       <span className="font-semibold">Proof of Finances</span>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <User className="w-5 h-5 #3367D6 mr-2" />
+                      <User className="w-5 h-5 #1845B3 mr-2" />
                       <span className="font-semibold">Identification Proof</span>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <BookOpen className="w-5 h-5 #3367D6 mr-2" />
+                      <BookOpen className="w-5 h-5 #1845B3 mr-2" />
                       <span className="font-semibold">Statement of Purpose</span>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <Users className="w-5 h-5 #3367D6 mr-2" />
+                      <Users className="w-5 h-5 #1845B3 mr-2" />
                       <span className="font-semibold">Recommendation Letter</span>
                     </div>
                   </div>
                   <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center mb-2">
-                      <FileText className="w-5 h-5 #3367D6 mr-2" />
+                      <FileText className="w-5 h-5 #1845B3 mr-2" />
                       <span className="font-semibold">CV or Resume</span>
                     </div>
                   </div>
                 </div>
 
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   How to Apply for a Master's Degree in Law from Australia?
                 </h2>
 
@@ -248,7 +248,7 @@ export default function MasterOfLawsLLMAustralia() {
                   </div>
                 </div>
 
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Cost of Studying LLM from Best University in Australia for Law
                 </h2>
 
@@ -267,7 +267,7 @@ export default function MasterOfLawsLLMAustralia() {
                   </div>
                 </div>
 
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Scholarships for LLM in Australia
                 </h2>
 
@@ -304,7 +304,7 @@ export default function MasterOfLawsLLMAustralia() {
                 <div className="border-t pt-6 mt-8">
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Share this Article</h3>
                   <div className="flex space-x-4">
-                    <button className="#3367D6 text-white px-4 py-2 rounded-lg hover:bg-#1a73e8 transition-colors">
+                    <button className="#1845B3 text-white px-4 py-2 rounded-lg hover:bg-#1a73e8 transition-colors">
                       <Share2 className="w-4 h-4 mr-2 inline" />
                       Share
                     </button>
@@ -347,12 +347,12 @@ export default function MasterOfLawsLLMAustralia() {
               <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#universities" className="#3367D6 hover:underline">Best Universities</a></li>
-                  <li><a href="#eligibility" className="#3367D6 hover:underline">Eligibility Criteria</a></li>
-                  <li><a href="#documents" className="#3367D6 hover:underline">Required Documents</a></li>
-                  <li><a href="#application" className="#3367D6 hover:underline">Application Process</a></li>
-                  <li><a href="#costs" className="#3367D6 hover:underline">Cost of Study</a></li>
-                  <li><a href="#scholarships" className="#3367D6 hover:underline">Scholarships</a></li>
+                  <li><a href="#universities" className="#1845B3 hover:underline">Best Universities</a></li>
+                  <li><a href="#eligibility" className="#1845B3 hover:underline">Eligibility Criteria</a></li>
+                  <li><a href="#documents" className="#1845B3 hover:underline">Required Documents</a></li>
+                  <li><a href="#application" className="#1845B3 hover:underline">Application Process</a></li>
+                  <li><a href="#costs" className="#1845B3 hover:underline">Cost of Study</a></li>
+                  <li><a href="#scholarships" className="#1845B3 hover:underline">Scholarships</a></li>
                 </ul>
               </div>
 
@@ -360,7 +360,7 @@ export default function MasterOfLawsLLMAustralia() {
               <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Share this Article</h3>
                 <div className="flex space-x-2">
-                  <button className="flex-1 #3367D6 text-white py-2 px-4 rounded-lg text-sm hover:bg-#1a73e8 transition-colors">
+                  <button className="flex-1 #1845B3 text-white py-2 px-4 rounded-lg text-sm hover:bg-#1a73e8 transition-colors">
                     Facebook
                   </button>
                   <button className="flex-1 bg-sky-500 text-white py-2 px-4 rounded-lg text-sm hover:bg-sky-600 transition-colors">

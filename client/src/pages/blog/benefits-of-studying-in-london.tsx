@@ -10,11 +10,11 @@ export default function BenefitsOfStudyingInLondon() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Destinations
               </span>
             </div>
@@ -64,18 +64,18 @@ export default function BenefitsOfStudyingInLondon() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-london" className="hover:#3367D6">Why Study in London?</a></li>
-                  <li><a href="#top-universities" className="hover:#3367D6">Top-Rated Universities</a></li>
-                  <li><a href="#international-community" className="hover:#3367D6">International Student Community</a></li>
-                  <li><a href="#career-opportunities" className="hover:#3367D6">Career Opportunities</a></li>
-                  <li><a href="#nightlife-culture" className="hover:#3367D6">Culture & Nightlife</a></li>
-                  <li><a href="#student-accommodation" className="hover:#3367D6">Student Accommodation</a></li>
-                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-london" className="hover:#1845B3">Why Study in London?</a></li>
+                  <li><a href="#top-universities" className="hover:#1845B3">Top-Rated Universities</a></li>
+                  <li><a href="#international-community" className="hover:#1845B3">International Student Community</a></li>
+                  <li><a href="#career-opportunities" className="hover:#1845B3">Career Opportunities</a></li>
+                  <li><a href="#nightlife-culture" className="hover:#1845B3">Culture & Nightlife</a></li>
+                  <li><a href="#student-accommodation" className="hover:#1845B3">Student Accommodation</a></li>
+                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* London Facts */}
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold text-#1565c0 mb-4">London at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -93,7 +93,7 @@ export default function BenefitsOfStudyingInLondon() {
 
               {/* Why Study in London Section */}
               <section id="why-study-london" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Why Study in London?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Why Study in London?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   London is one of the top cities in the world as well as a major financial hub. This makes it the best place for building your future. The city provides numerous opportunities for professional growth to prepare you for life after university. Here are the top reasons why London is famous for studying abroad.
@@ -118,7 +118,7 @@ export default function BenefitsOfStudyingInLondon() {
 
               {/* Top Universities Section */}
               <section id="top-universities" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Top-Rated Universities</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Top-Rated Universities</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   There are some of the best inner London universities, such as London Metropolitan University, London South Bank University, and University of East London. Studying in London means you will get an education that is highly valued everywhere.
@@ -160,7 +160,7 @@ export default function BenefitsOfStudyingInLondon() {
 
               {/* International Community Section */}
               <section id="international-community" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">International Student Population</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">International Student Population</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Most of you have already heard that is London good for Pakistani students? Obviously yes! London has more than 382,000 students which creates a lively and huge student community. The city also provides many student groups, societies, and clubs according to different cultures.
@@ -194,7 +194,7 @@ export default function BenefitsOfStudyingInLondon() {
 
               {/* Career Opportunities Section */}
               <section id="career-opportunities" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Career Opportunities</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Career Opportunities</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The majority of the graduates choose to start their careers in London compared to other cities. This is why students choose UK for study. London is home to several biggest companies, with more than hundreds of Europe's biggest businesses based here.
@@ -234,15 +234,15 @@ export default function BenefitsOfStudyingInLondon() {
                     <h3 className="text-lg font-semibold text-#1565c0 mb-3">Graduate Employment Statistics</h3>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div>
-                        <p className="text-2xl font-bold #3367D6">95%</p>
+                        <p className="text-2xl font-bold #1845B3">95%</p>
                         <p className="text-gray-700">Graduate Employment Rate</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold #3367D6">£35K</p>
+                        <p className="text-2xl font-bold #1845B3">£35K</p>
                         <p className="text-gray-700">Average Starting Salary</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold #3367D6">6 months</p>
+                        <p className="text-2xl font-bold #1845B3">6 months</p>
                         <p className="text-gray-700">Average Job Search Time</p>
                       </div>
                     </div>
@@ -252,7 +252,7 @@ export default function BenefitsOfStudyingInLondon() {
 
               {/* Culture & Nightlife Section */}
               <section id="nightlife-culture" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Best Nightlife & Culture</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Best Nightlife & Culture</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   London is full of entertainment, from theatre shows to live music events. The city has more than seven thousand bars and pubs, five thousand restaurants, and more than 350 music venues.
@@ -291,7 +291,7 @@ export default function BenefitsOfStudyingInLondon() {
 
               {/* Student Accommodation Section */}
               <section id="student-accommodation" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Student Accommodation</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Student Accommodation</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Moving to London is a big step, and choosing the right place to stay is extremely important. Student accommodation plays a big role in your experience. You need a place that fits your budget, helps with your studies, as well as supports your social life.
@@ -351,7 +351,7 @@ export default function BenefitsOfStudyingInLondon() {
 
               {/* FAQs Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -383,7 +383,7 @@ export default function BenefitsOfStudyingInLondon() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Conclusion</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   London is a lively city with something for everyone. It is home to some of the best universities in the world. London provides students the chance to study at top universities and be part of a global community. You will meet people from all over the world, get new experiences, and have opportunities to grow academically as well as professionally.
@@ -403,7 +403,7 @@ export default function BenefitsOfStudyingInLondon() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="tel:+923041110947" 
-                    className="#3367D6 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
+                    className="#1845B3 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Call Now: +92 304 1110947
                   </a>
@@ -424,7 +424,7 @@ export default function BenefitsOfStudyingInLondon() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <MapPin className="w-5 h-5 mr-2 #4285F4" />
+                  <MapPin className="w-5 h-5 mr-2 #1D50C9" />
                   London Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -446,7 +446,7 @@ export default function BenefitsOfStudyingInLondon() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Employment Rate:</span>
-                    <span className="font-medium #3367D6">95%+</span>
+                    <span className="font-medium #1845B3">95%+</span>
                   </div>
                 </div>
               </div>
@@ -454,7 +454,7 @@ export default function BenefitsOfStudyingInLondon() {
               {/* Top Universities */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <GraduationCap className="w-5 h-5 mr-2 #4285F4" />
+                  <GraduationCap className="w-5 h-5 mr-2 #1D50C9" />
                   Top London Universities
                 </h3>
                 <div className="space-y-3 text-sm">

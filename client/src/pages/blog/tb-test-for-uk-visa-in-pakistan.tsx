@@ -33,7 +33,7 @@ export default function TBTestForUKVisaInPakistan() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#4285F4] via-[#4285F4] to-[#3367D6] flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#1D50C9] via-[#1D50C9] to-[#1845B3] flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -66,7 +66,7 @@ export default function TBTestForUKVisaInPakistan() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
                   <AlertCircle className="mr-3 h-6 w-6" />
@@ -85,7 +85,7 @@ export default function TBTestForUKVisaInPakistan() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-start space-x-2"
                     >
-                      <CheckCircle className="h-5 w-5 #4285F4 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #1D50C9 mt-1 flex-shrink-0" />
                       <span className="text-gray-700">{requirement}</span>
                     </motion.div>
                   ))}
@@ -102,7 +102,7 @@ export default function TBTestForUKVisaInPakistan() {
                   <Card className="bg-gradient-to-br from-blue-50 to-emerald-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <CheckCircle className="h-6 w-6 #3367D6 mr-2" />
+                        <CheckCircle className="h-6 w-6 #1845B3 mr-2" />
                         <h3 className="font-semibold text-#1565c0">Fulfill immigration requirements</h3>
                       </div>
                       <p className="text-#1a73e8 text-sm">Essential requirement for UK visa compliance</p>
@@ -111,7 +111,7 @@ export default function TBTestForUKVisaInPakistan() {
                   <Card className="bg-gradient-to-br from-blue-50 to-cyan-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <CheckCircle className="h-6 w-6 #3367D6 mr-2" />
+                        <CheckCircle className="h-6 w-6 #1845B3 mr-2" />
                         <h3 className="font-semibold text-#1565c0">Ensures protection and safety</h3>
                       </div>
                       <p className="text-#1a73e8 text-sm">Protects both individual and public health</p>
@@ -120,7 +120,7 @@ export default function TBTestForUKVisaInPakistan() {
                   <Card className="bg-gradient-to-br from-blue-50 to-violet-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <CheckCircle className="h-6 w-6 #3367D6 mr-2" />
+                        <CheckCircle className="h-6 w-6 #1845B3 mr-2" />
                         <h3 className="font-semibold text-#1565c0">Guarantees public health protection</h3>
                       </div>
                       <p className="text-#1a73e8 text-sm">Maintains UK's public health standards</p>
@@ -129,7 +129,7 @@ export default function TBTestForUKVisaInPakistan() {
                   <Card className="bg-gradient-to-br from-blue-50 to-red-100 border-blue-200">
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <CheckCircle className="h-6 w-6 #3367D6 mr-2" />
+                        <CheckCircle className="h-6 w-6 #1845B3 mr-2" />
                         <h3 className="font-semibold text-#1565c0">Prevents the spread of TB</h3>
                       </div>
                       <p className="text-#1a73e8 text-sm">Controls infectious disease transmission</p>
@@ -151,9 +151,9 @@ export default function TBTestForUKVisaInPakistan() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-white rounded-lg border-l-4 #4285F4"
+                      className="flex items-start space-x-3 p-4 bg-white rounded-lg border-l-4 #1D50C9"
                     >
-                      <FileText className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                      <FileText className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{doc}</span>
                     </motion.div>
                   ))}
@@ -165,7 +165,7 @@ export default function TBTestForUKVisaInPakistan() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
                   <DollarSign className="mr-3 h-6 w-6" />
@@ -199,7 +199,7 @@ export default function TBTestForUKVisaInPakistan() {
                       <Card className="bg-white border border-gray-200 hover:shadow-lg transition-shadow">
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
-                            <MapPin className="h-6 w-6 #4285F4 mt-1 flex-shrink-0" />
+                            <MapPin className="h-6 w-6 #1D50C9 mt-1 flex-shrink-0" />
                             <div className="lg:col-span-3">
                               <h3 className="font-bold text-gray-800 mb-2">{center.name}</h3>
                               <p className="text-gray-600 mb-2 flex items-center">
@@ -238,7 +238,7 @@ export default function TBTestForUKVisaInPakistan() {
               </div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg">
+              <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Being a citizen of Pakistan, one of the most essential United Kingdom student visa requirements is to get your TB screening done. Without a TB test for UK visa, you are not allowed to stay in the UK for a period of more than six months. After getting your screening done, you will receive a TB clearance certificate for UK visa which needs to be submitted while applying.
@@ -333,7 +333,7 @@ export default function TBTestForUKVisaInPakistan() {
                       <option>Canada</option>
                       <option>Australia</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-[#4285F4] to-#1565c0 hover:from-#1a73e8 hover:to-purple-700">
+                    <Button className="w-full bg-gradient-to-r from-[#1D50C9] to-#1565c0 hover:from-#1a73e8 hover:to-purple-700">
                       Get Free Consultation
                     </Button>
                   </form>

@@ -134,7 +134,7 @@ export default function WhyChooseUs() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -175,7 +175,7 @@ export default function WhyChooseUs() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Our{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Advantages
                 </span>
               </h2>
@@ -196,10 +196,10 @@ export default function WhyChooseUs() {
                 <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
                   <CardHeader>
                     <div className="flex items-start justify-between">
-                      <div className="w-12 h-12 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-lg flex items-center justify-center mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center mb-4">
                         <advantage.icon className="w-6 h-6 text-white" />
                       </div>
-                      <div className="text-sm font-semibold #3367D6 bg-blue-50 px-3 py-1 rounded-full">
+                      <div className="text-sm font-semibold #1845B3 bg-blue-50 px-3 py-1 rounded-full">
                         {advantage.stats}
                       </div>
                     </div>
@@ -266,7 +266,7 @@ export default function WhyChooseUs() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Complete{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Services
                 </span>
               </h2>
@@ -285,7 +285,7 @@ export default function WhyChooseUs() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="flex items-start space-x-3 bg-white p-6 rounded-lg shadow-sm"
               >
-                <CheckCircle className="w-6 h-6 #4285F4 flex-shrink-0 mt-0.5" />
+                <CheckCircle className="w-6 h-6 #1D50C9 flex-shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-2">{service.title}</h3>
                   <p className="text-gray-600">{service.description}</p>
@@ -307,7 +307,7 @@ export default function WhyChooseUs() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Student{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Testimonials
                 </span>
               </h2>
@@ -338,7 +338,7 @@ export default function WhyChooseUs() {
                     <div className="border-t pt-4">
                       <p className="font-semibold text-gray-900">{testimonial.author}</p>
                       <p className="text-sm text-gray-600">{testimonial.university}</p>
-                      <p className="text-sm #3367D6 font-medium">{testimonial.country}</p>
+                      <p className="text-sm #1845B3 font-medium">{testimonial.country}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -349,7 +349,7 @@ export default function WhyChooseUs() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -363,7 +363,7 @@ export default function WhyChooseUs() {
               Join thousands of successful students who chose Dunya Consultants for their international education
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white #3367D6 hover:bg-blue-50">
+              <Button size="lg" className="bg-white #1845B3 hover:bg-blue-50">
                 Book Free Consultation
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">

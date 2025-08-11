@@ -118,7 +118,7 @@ export default function Duolingo() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -159,7 +159,7 @@ export default function Duolingo() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Test{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Format
                 </span>
               </h2>
@@ -180,7 +180,7 @@ export default function Duolingo() {
                 <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
                   <CardHeader>
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-lg flex items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                         <section.icon className="w-6 h-6 text-white" />
                       </div>
                       <div>
@@ -223,7 +223,7 @@ export default function Duolingo() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Why Choose{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Duolingo?
                 </span>
               </h2>
@@ -242,7 +242,7 @@ export default function Duolingo() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white rounded-xl p-6 border border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg"
               >
-                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{advantage.title}</h3>
@@ -264,7 +264,7 @@ export default function Duolingo() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Preparation{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Courses
                 </span>
               </h2>
@@ -284,7 +284,7 @@ export default function Duolingo() {
               >
                 <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg">
                   <CardHeader className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-full flex items-center justify-center">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
                       <BookOpen className="w-8 h-8 text-white" />
                     </div>
                     <CardTitle className="text-xl">{course.title}</CardTitle>
@@ -292,18 +292,18 @@ export default function Duolingo() {
                       <Clock className="w-4 h-4" />
                       {course.duration}
                     </CardDescription>
-                    <div className="text-2xl font-bold #3367D6">{course.price}</div>
+                    <div className="text-2xl font-bold #1845B3">{course.price}</div>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
                       {course.features.map((feature, featureIndex) => (
                         <li key={featureIndex} className="flex items-center gap-2 text-sm">
-                          <CheckCircle className="w-4 h-4 #4285F4 flex-shrink-0" />
+                          <CheckCircle className="w-4 h-4 #1D50C9 flex-shrink-0" />
                           {feature}
                         </li>
                       ))}
                     </ul>
-                    <Button className="w-full mt-6 bg-gradient-to-r from-[#4285F4] to-[#3367D6] hover:from-#1a73e8 hover:to-[#1a73e8] text-white">
+                    <Button className="w-full mt-6 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-#1a73e8 hover:to-[#1a73e8] text-white">
                       Enroll Now
                     </Button>
                   </CardContent>
@@ -325,7 +325,7 @@ export default function Duolingo() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Score{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Requirements
                 </span>
               </h2>
@@ -346,7 +346,7 @@ export default function Duolingo() {
                 <Card className="text-center border-blue-100 hover:border-blue-300 transition-all duration-300">
                   <CardHeader>
                     <CardTitle className="text-lg">{requirement.level}</CardTitle>
-                    <div className="text-3xl font-bold #3367D6">{requirement.score}</div>
+                    <div className="text-3xl font-bold #1845B3">{requirement.score}</div>
                   </CardHeader>
                   <CardContent>
                     <p className="text-gray-600 text-sm">{requirement.description}</p>
@@ -369,7 +369,7 @@ export default function Duolingo() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Success{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Tips
                 </span>
               </h2>
@@ -388,7 +388,7 @@ export default function Duolingo() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl p-6 border border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-lg"
               >
-                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-lg flex items-center justify-center">
+                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                   <CheckCircle className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{tip.title}</h3>
@@ -400,7 +400,7 @@ export default function Duolingo() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#4285F4] via-blue-600 to-[#3367D6] text-white">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] via-blue-600 to-[#1845B3] text-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

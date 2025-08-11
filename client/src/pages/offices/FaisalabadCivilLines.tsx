@@ -49,7 +49,7 @@ export default function FaisalabadCivilLines() {
       <Navigation />
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white pt-32 pb-16">
+      <div className="bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center mb-6">
             <Link href="/offices">
@@ -107,7 +107,7 @@ export default function FaisalabadCivilLines() {
                       <Phone className="w-5 h-5 text-gray-500" />
                       <div>
                         <p className="font-medium">Phone</p>
-                        <a href={`tel:${office.phone}`} className="#3367D6 hover:underline">
+                        <a href={`tel:${office.phone}`} className="#1845B3 hover:underline">
                           {office.phone}
                         </a>
                       </div>
@@ -116,7 +116,7 @@ export default function FaisalabadCivilLines() {
                       <Mail className="w-5 h-5 text-gray-500" />
                       <div>
                         <p className="font-medium">Email</p>
-                        <a href={`mailto:${office.email}`} className="#3367D6 hover:underline">
+                        <a href={`mailto:${office.email}`} className="#1845B3 hover:underline">
                           {office.email}
                         </a>
                       </div>
@@ -158,7 +158,7 @@ export default function FaisalabadCivilLines() {
                   <div className="grid md:grid-cols-2 gap-4">
                     {office.services.map((service, index) => (
                       <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                        <CheckCircle className="w-5 h-5 #4285F4" />
+                        <CheckCircle className="w-5 h-5 #1D50C9" />
                         <span className="font-medium">{service}</span>
                       </div>
                     ))}
@@ -204,7 +204,7 @@ export default function FaisalabadCivilLines() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   {office.testimonials.map((testimonial, index) => (
-                    <div key={index} className="border-l-4 #4285F4 pl-4 py-2">
+                    <div key={index} className="border-l-4 #1D50C9 pl-4 py-2">
                       <p className="text-gray-700 italic mb-2">"{testimonial.message}"</p>
                       <div className="text-sm">
                         <p className="font-medium">{testimonial.name}</p>
@@ -230,7 +230,7 @@ export default function FaisalabadCivilLines() {
                   <div className="grid md:grid-cols-2 gap-3">
                     {office.facilities.map((facility, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span>{facility}</span>
                       </div>
                     ))}
@@ -251,13 +251,13 @@ export default function FaisalabadCivilLines() {
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center">
-                    <Award className="w-5 h-5 mr-2 #3367D6" />
+                    <Award className="w-5 h-5 mr-2 #1845B3" />
                     Office Details
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold #3367D6">{office.established}</div>
+                    <div className="text-2xl font-bold #1845B3">{office.established}</div>
                     <div className="text-sm text-gray-600">Established</div>
                   </div>
                 </CardContent>
@@ -279,7 +279,7 @@ export default function FaisalabadCivilLines() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-[#4285F4] to-[#1a73e8] rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
+                    <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1a73e8] rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
                       {office.manager.split(' ').map(n => n[0]).join('')}
                     </div>
                     <h3 className="font-semibold">{office.manager}</h3>
@@ -306,7 +306,7 @@ export default function FaisalabadCivilLines() {
                   <div className="space-y-2">
                     {office.nearbyLandmarks.map((landmark, index) => (
                       <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span className="text-sm">{landmark}</span>
                       </div>
                     ))}
@@ -319,7 +319,7 @@ export default function FaisalabadCivilLines() {
 
         {/* Call to Action */}
         <motion.div
-          className="mt-16 bg-gradient-to-r from-[#4285F4] to-orange-600 rounded-2xl p-8 text-white text-center"
+          className="mt-16 bg-gradient-to-r from-[#1D50C9] to-orange-600 rounded-2xl p-8 text-white text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -333,7 +333,7 @@ export default function FaisalabadCivilLines() {
               <Calendar className="w-4 h-4 mr-2" />
               Book Counseling Session
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:#3367D6">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:#1845B3">
               <Phone className="w-4 h-4 mr-2" />
               Call Faisalabad Office
             </Button>

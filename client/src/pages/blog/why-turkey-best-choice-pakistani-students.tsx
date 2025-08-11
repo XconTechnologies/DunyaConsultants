@@ -6,7 +6,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#4285F4] to-yellow-600 text-white">
+      <div className="bg-gradient-to-r from-[#1D50C9] to-yellow-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Link 
             href="/blog" 
@@ -22,7 +22,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
             transition={{ duration: 0.6 }}
           >
             <div className="mb-4">
-              <span className="#4285F4 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-3 py-1 rounded-full text-sm font-medium">
                 Study Abroad
               </span>
             </div>
@@ -70,9 +70,9 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                 className="w-full h-64 object-cover rounded-lg mb-8"
               />
 
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <div className="flex items-center mb-2">
-                  <MapPin className="h-5 w-5 #4285F4 mr-2" />
+                  <MapPin className="h-5 w-5 #1D50C9 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-900">Why Turkey?</h3>
                 </div>
                 <p className="text-gray-700">
@@ -84,22 +84,22 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <DollarSign className="h-8 w-8 #3367D6 mb-3" />
+                  <DollarSign className="h-8 w-8 #1845B3 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Affordable Education</h3>
                   <p className="text-gray-600">Tuition fees range from $200-$4,000 per year, making it one of the most cost-effective study destinations.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Globe className="h-8 w-8 #3367D6 mb-3" />
+                  <Globe className="h-8 w-8 #1845B3 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Cultural Similarity</h3>
                   <p className="text-gray-600">Strong Islamic culture and historical ties with Pakistan provide a familiar and comfortable environment.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Award className="h-8 w-8 #3367D6 mb-3" />
+                  <Award className="h-8 w-8 #1845B3 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Quality Education</h3>
                   <p className="text-gray-600">Turkish universities are globally recognized with modern facilities and experienced faculty.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <TrendingUp className="h-8 w-8 #3367D6 mb-3" />
+                  <TrendingUp className="h-8 w-8 #1845B3 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Career Opportunities</h3>
                   <p className="text-gray-600">Growing economy and job market with opportunities in various sectors.</p>
                 </div>
@@ -111,25 +111,25 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                 <h3 className="text-lg font-semibold mb-4">Why Turkish Education System Stands Out</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>International Recognition:</strong> Turkish degrees are recognized worldwide and by Higher Education Commission (HEC) Pakistan
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Modern Infrastructure:</strong> State-of-the-art laboratories, libraries, and research facilities
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>English Programs:</strong> Many universities offer programs in English, eliminating language barriers
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Research Opportunities:</strong> Strong emphasis on research and innovation across disciplines
                     </div>
@@ -215,25 +215,25 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                 <h3 className="text-lg font-semibold mb-4">Why Pakistani Students Feel at Home</h3>
                 <div className="space-y-3">
                   <div className="flex items-start">
-                    <Star className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <Star className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Islamic Culture:</strong> Strong Islamic values and traditions similar to Pakistan
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <Star className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <Star className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Food Similarity:</strong> Turkish cuisine shares many similarities with Pakistani food
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <Star className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <Star className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Historical Ties:</strong> Ottoman Empire's historical connection with Indian subcontinent
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <Star className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <Star className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Pakistani Community:</strong> Large Pakistani student community for support and networking
                     </div>
@@ -243,9 +243,9 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Admission Requirements</h2>
               
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <div className="flex items-center mb-2">
-                  <AlertCircle className="h-5 w-5 #4285F4 mr-2" />
+                  <AlertCircle className="h-5 w-5 #1D50C9 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-900">General Requirements</h3>
                 </div>
                 <ul className="list-disc list-inside text-gray-700 space-y-2">
@@ -286,25 +286,25 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                 <h3 className="text-lg font-semibold mb-4">Student Life & Experience</h3>
                 <div className="space-y-3">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Accommodation:</strong> Affordable dormitories and shared apartments available
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Transportation:</strong> Excellent public transport system with student discounts
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Healthcare:</strong> Affordable healthcare system accessible to students
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Part-time Work:</strong> Students can work part-time with proper permits
                     </div>
@@ -312,14 +312,14 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                 </div>
               </div>
 
-              <div className="#3367D6 text-white rounded-lg p-6">
+              <div className="#1845B3 text-white rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-2">Ready to Study in Turkey?</h3>
                 <p className="mb-4">
                   Join thousands of Pakistani students who have chosen Turkey for their international education. Dunya Consultants provides complete support from application to arrival.
                 </p>
                 <Link 
                   href="/contact" 
-                  className="inline-block bg-white #3367D6 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                  className="inline-block bg-white #1845B3 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Start Your Journey
                 </Link>
@@ -334,13 +334,13 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#reasons" className="#3367D6 hover:text-#1565c0">Top Reasons</a></li>
-                  <li><a href="#education" className="#3367D6 hover:text-#1565c0">Educational Excellence</a></li>
-                  <li><a href="#costs" className="#3367D6 hover:text-#1565c0">Cost Comparison</a></li>
-                  <li><a href="#universities" className="#3367D6 hover:text-#1565c0">Top Universities</a></li>
-                  <li><a href="#culture" className="#3367D6 hover:text-#1565c0">Cultural Benefits</a></li>
-                  <li><a href="#admission" className="#3367D6 hover:text-#1565c0">Admission Requirements</a></li>
-                  <li><a href="#scholarships" className="#3367D6 hover:text-#1565c0">Scholarships</a></li>
+                  <li><a href="#reasons" className="#1845B3 hover:text-#1565c0">Top Reasons</a></li>
+                  <li><a href="#education" className="#1845B3 hover:text-#1565c0">Educational Excellence</a></li>
+                  <li><a href="#costs" className="#1845B3 hover:text-#1565c0">Cost Comparison</a></li>
+                  <li><a href="#universities" className="#1845B3 hover:text-#1565c0">Top Universities</a></li>
+                  <li><a href="#culture" className="#1845B3 hover:text-#1565c0">Cultural Benefits</a></li>
+                  <li><a href="#admission" className="#1845B3 hover:text-#1565c0">Admission Requirements</a></li>
+                  <li><a href="#scholarships" className="#1845B3 hover:text-#1565c0">Scholarships</a></li>
                 </ul>
               </div>
 
@@ -375,18 +375,18 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#4285F4"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#1D50C9"
                     />
                   </div>
                   <div>
                     <input
                       type="email"
                       placeholder="Your Email"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#4285F4"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#1D50C9"
                     />
                   </div>
                   <div>
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#4285F4">
+                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#1D50C9">
                       <option>Select Study Level</option>
                       <option>Bachelor's</option>
                       <option>Master's</option>
@@ -395,7 +395,7 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full #3367D6 text-white py-3 px-4 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
+                    className="w-full #1845B3 text-white py-3 px-4 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Get Information
                   </button>

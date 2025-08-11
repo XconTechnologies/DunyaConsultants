@@ -324,7 +324,7 @@ export default function CourseMatchTool() {
               className="text-center mb-12"
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-[#4285F4] via-#1a73e8 to-#1565c0 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] via-#1a73e8 to-#1565c0 bg-clip-text text-transparent">
                   Your Perfect Study Matches
                 </span>
               </h1>
@@ -380,7 +380,7 @@ export default function CourseMatchTool() {
                         <div className="space-y-1">
                           {rec.courses.slice(0, 3).map((course, i) => (
                             <div key={i} className="flex items-center space-x-2">
-                              <CheckCircle className="w-4 h-4 #3367D6" />
+                              <CheckCircle className="w-4 h-4 #1845B3" />
                               <span className="text-sm text-neutral-600">{course}</span>
                             </div>
                           ))}
@@ -403,11 +403,11 @@ export default function CourseMatchTool() {
                       {/* Stats */}
                       <div className="grid grid-cols-2 gap-4 pt-4 border-t">
                         <div className="text-center">
-                          <div className="text-lg font-bold #3367D6">{rec.visaSuccessRate}%</div>
+                          <div className="text-lg font-bold #1845B3">{rec.visaSuccessRate}%</div>
                           <div className="text-xs text-neutral-500">Visa Success Rate</div>
                         </div>
                         <div className="text-center">
-                          <div className="text-lg font-bold #3367D6">{rec.prPathway ? 'Yes' : 'No'}</div>
+                          <div className="text-lg font-bold #1845B3">{rec.prPathway ? 'Yes' : 'No'}</div>
                           <div className="text-xs text-neutral-500">PR Pathway</div>
                         </div>
                       </div>

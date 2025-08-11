@@ -15,11 +15,11 @@ const getBadgeColor = (level: string) => {
     case 'silver':
       return 'from-gray-400 to-gray-600';
     case 'gold':
-      return 'from-blue-400 to-[#3367D6]';
+      return 'from-blue-400 to-[#1845B3]';
     case 'platinum':
-      return 'from-blue-400 to-[#3367D6]';
+      return 'from-blue-400 to-[#1845B3]';
     default:
-      return 'from-blue-400 to-[#3367D6]';
+      return 'from-blue-400 to-[#1845B3]';
   }
 };
 

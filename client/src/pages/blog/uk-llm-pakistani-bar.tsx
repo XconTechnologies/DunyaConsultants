@@ -41,19 +41,19 @@ export default function UKLLMPakistaniBar() {
                 <h3 className="text-lg font-semibold text-#1e3a8a mb-4">Key Information</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex items-center">
-                    <BookOpen className="w-5 h-5 #3367D6 mr-2" />
+                    <BookOpen className="w-5 h-5 #1845B3 mr-2" />
                     <span className="text-sm">LLM Duration: 1-2 years</span>
                   </div>
                   <div className="flex items-center">
-                    <Scale className="w-5 h-5 #3367D6 mr-2" />
+                    <Scale className="w-5 h-5 #1845B3 mr-2" />
                     <span className="text-sm">Pakistani LLB Required</span>
                   </div>
                   <div className="flex items-center">
-                    <Users className="w-5 h-5 #3367D6 mr-2" />
+                    <Users className="w-5 h-5 #1845B3 mr-2" />
                     <span className="text-sm">Bar Council Registration</span>
                   </div>
                   <div className="flex items-center">
-                    <FileText className="w-5 h-5 #3367D6 mr-2" />
+                    <FileText className="w-5 h-5 #1845B3 mr-2" />
                     <span className="text-sm">Additional Qualification Needed</span>
                   </div>
                 </div>
@@ -82,13 +82,13 @@ export default function UKLLMPakistaniBar() {
 
               {/* Eligibility for Pakistani Bar */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #1D50C9 pl-4">
                   Eligibility to Practice Law in Pakistan
                 </h2>
                 <div className="bg-white rounded-lg p-6">
                   <div className="space-y-4">
                     <div className="flex items-start">
-                      <CheckCircle className="w-5 h-5 #4285F4 mr-3 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 #1D50C9 mr-3 mt-0.5" />
                       <div>
                         <h3 className="font-semibold text-gray-900">Bar Council Registration</h3>
                         <p className="text-gray-600 text-sm mt-1">
@@ -97,7 +97,7 @@ export default function UKLLMPakistaniBar() {
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <CheckCircle className="w-5 h-5 #4285F4 mr-3 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 #1D50C9 mr-3 mt-0.5" />
                       <div>
                         <h3 className="font-semibold text-gray-900">Additional Qualification Required</h3>
                         <p className="text-gray-600 text-sm mt-1">
@@ -106,7 +106,7 @@ export default function UKLLMPakistaniBar() {
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <CheckCircle className="w-5 h-5 #4285F4 mr-3 mt-0.5" />
+                      <CheckCircle className="w-5 h-5 #1D50C9 mr-3 mt-0.5" />
                       <div>
                         <h3 className="font-semibold text-gray-900">Foreign Law Consultation</h3>
                         <p className="text-gray-600 text-sm mt-1">
@@ -120,7 +120,7 @@ export default function UKLLMPakistaniBar() {
 
               {/* Pakistani Legal System */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #1D50C9 pl-4">
                   Understanding the Pakistani Legal System
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -147,7 +147,7 @@ export default function UKLLMPakistaniBar() {
 
               {/* Role of UK LLM */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #1D50C9 pl-4">
                   Role of UK LLM in Pakistani Legal Career
                 </h2>
                 <div className="bg-blue-50 rounded-lg p-6">
@@ -177,13 +177,13 @@ export default function UKLLMPakistaniBar() {
 
               {/* Steps to Practice Law */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #1D50C9 pl-4">
                   Steps to Practice Law in Pakistan
                 </h2>
                 <div className="space-y-4">
                   <div className="bg-white border rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center #3367D6 font-semibold mr-3">1</div>
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center #1845B3 font-semibold mr-3">1</div>
                       <h3 className="text-lg font-semibold">Complete Pakistani LLB</h3>
                     </div>
                     <p className="text-gray-600 ml-11">
@@ -193,7 +193,7 @@ export default function UKLLMPakistaniBar() {
                   
                   <div className="bg-white border rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center #3367D6 font-semibold mr-3">2</div>
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center #1845B3 font-semibold mr-3">2</div>
                       <h3 className="text-lg font-semibold">Apply to Pakistan Bar Council</h3>
                     </div>
                     <p className="text-gray-600 ml-11">
@@ -203,7 +203,7 @@ export default function UKLLMPakistaniBar() {
                   
                   <div className="bg-white border rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center #3367D6 font-semibold mr-3">3</div>
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center #1845B3 font-semibold mr-3">3</div>
                       <h3 className="text-lg font-semibold">Complete Registration Process</h3>
                     </div>
                     <p className="text-gray-600 ml-11">
@@ -213,7 +213,7 @@ export default function UKLLMPakistaniBar() {
                   
                   <div className="bg-white border rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center #3367D6 font-semibold mr-3">4</div>
+                      <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center #1845B3 font-semibold mr-3">4</div>
                       <h3 className="text-lg font-semibold">Gain Local Experience</h3>
                     </div>
                     <p className="text-gray-600 ml-11">
@@ -225,7 +225,7 @@ export default function UKLLMPakistaniBar() {
 
               {/* Important Considerations */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #1D50C9 pl-4">
                   Important Considerations
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -258,7 +258,7 @@ export default function UKLLMPakistaniBar() {
 
               {/* Career Options */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #1D50C9 pl-4">
                   Career Options with UK LLM
                 </h2>
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6">
@@ -287,7 +287,7 @@ export default function UKLLMPakistaniBar() {
 
               {/* FAQs */}
               <section className="mb-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #4285F4 pl-4">
+                <h2 className="text-2xl font-bold text-gray-900 mb-4 border-l-4 #1D50C9 pl-4">
                   Frequently Asked Questions
                 </h2>
                 <div className="space-y-4">
@@ -338,7 +338,7 @@ export default function UKLLMPakistaniBar() {
                     <span className="ml-2">info@dunyaconsultants.com</span>
                   </div>
                 </div>
-                <button className="w-full #3367D6 text-white py-2 px-4 rounded-lg hover:bg-#1a73e8 transition-colors mt-4">
+                <button className="w-full #1845B3 text-white py-2 px-4 rounded-lg hover:bg-#1a73e8 transition-colors mt-4">
                   Get Consultation
                 </button>
               </div>
@@ -347,13 +347,13 @@ export default function UKLLMPakistaniBar() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Contents</h3>
                 <nav className="space-y-2 text-sm">
-                  <a href="#eligibility" className="block text-gray-600 hover:#3367D6">Eligibility Requirements</a>
-                  <a href="#legal-system" className="block text-gray-600 hover:#3367D6">Pakistani Legal System</a>
-                  <a href="#uk-llm-role" className="block text-gray-600 hover:#3367D6">Role of UK LLM</a>
-                  <a href="#steps" className="block text-gray-600 hover:#3367D6">Steps to Practice</a>
-                  <a href="#considerations" className="block text-gray-600 hover:#3367D6">Important Considerations</a>
-                  <a href="#career" className="block text-gray-600 hover:#3367D6">Career Options</a>
-                  <a href="#faqs" className="block text-gray-600 hover:#3367D6">FAQs</a>
+                  <a href="#eligibility" className="block text-gray-600 hover:#1845B3">Eligibility Requirements</a>
+                  <a href="#legal-system" className="block text-gray-600 hover:#1845B3">Pakistani Legal System</a>
+                  <a href="#uk-llm-role" className="block text-gray-600 hover:#1845B3">Role of UK LLM</a>
+                  <a href="#steps" className="block text-gray-600 hover:#1845B3">Steps to Practice</a>
+                  <a href="#considerations" className="block text-gray-600 hover:#1845B3">Important Considerations</a>
+                  <a href="#career" className="block text-gray-600 hover:#1845B3">Career Options</a>
+                  <a href="#faqs" className="block text-gray-600 hover:#1845B3">FAQs</a>
                 </nav>
               </div>
 

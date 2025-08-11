@@ -202,7 +202,7 @@ img {
 
 /* Custom Brand Colors */
 :root {
-  --brand-primary: #4285F4; /* New primary blue from logo */
+  --brand-primary: #1D50C9; /* Updated primary blue */
   --brand-hero: #2764E8; /* Original hero section blue */
 }
 
@@ -228,5 +228,5 @@ img {
 }
 
 .social-icon-background:hover {
-  background-color: #3367D6 !important;
+  background-color: #1845B3 !important;
 }

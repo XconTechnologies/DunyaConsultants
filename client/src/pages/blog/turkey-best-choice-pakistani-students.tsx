@@ -17,11 +17,11 @@ export default function TurkeyBestChoicePakistaniStudents() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study in Turkey
               </span>
             </div>
@@ -59,24 +59,24 @@ export default function TurkeyBestChoicePakistaniStudents() {
               <section className="mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <Flag className="w-6 h-6 #4285F4 mr-2" />
+                    <Flag className="w-6 h-6 #1D50C9 mr-2" />
                     Turkey Study Overview
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center">
-                      <div className="text-2xl font-bold #3367D6">200+</div>
+                      <div className="text-2xl font-bold #1845B3">200+</div>
                       <div className="text-sm text-#1565c0">Universities</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold #3367D6">94.2%</div>
+                      <div className="text-2xl font-bold #1845B3">94.2%</div>
                       <div className="text-sm text-#1565c0">Enrollment Rate</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold #3367D6">129</div>
+                      <div className="text-2xl font-bold #1845B3">129</div>
                       <div className="text-sm text-#1565c0">Public Universities</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold #3367D6">5/5</div>
+                      <div className="text-2xl font-bold #1845B3">5/5</div>
                       <div className="text-sm text-#1565c0">Bologna Score</div>
                     </div>
                   </div>
@@ -98,7 +98,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
 
               {/* Best Universities Section */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Best Universities in Turkey for International Students
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
@@ -127,7 +127,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
 
               {/* Why Education in Turkey Section */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Why Education in Turkey is Best for Pakistani Students?
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-8">
@@ -140,7 +140,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   {/* Top Universities */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <GraduationCap className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <GraduationCap className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">Top Universities in Turkey</h3>
                         <p className="text-gray-700 leading-relaxed mb-4">
@@ -156,7 +156,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   {/* High-Quality Education */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <Award className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <Award className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">High-Quality Education</h3>
                         <p className="text-gray-700 leading-relaxed mb-4">
@@ -172,7 +172,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   {/* Growing Education Hub */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <Building2 className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <Building2 className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">A Growing Education Hub</h3>
                         <p className="text-gray-700 leading-relaxed">
@@ -185,7 +185,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   {/* Affordable Living */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <DollarSign className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <DollarSign className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">Affordable and Comfortable Living</h3>
                         <p className="text-gray-700 leading-relaxed">
@@ -198,7 +198,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   {/* Muslim-Friendly Country */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <Heart className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <Heart className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">A Muslim-Friendly Country</h3>
                         <p className="text-gray-700 leading-relaxed">
@@ -211,7 +211,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   {/* Cultural Diversity */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <Globe className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <Globe className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">Cultural Diversity & Safe Environment</h3>
                         <p className="text-gray-700 leading-relaxed">
@@ -224,7 +224,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   {/* English-Taught Programs */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <BookOpen className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <BookOpen className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">English-Taught Programs</h3>
                         <p className="text-gray-700 leading-relaxed">
@@ -237,7 +237,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   {/* Student-Friendly Cities */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <MapPin className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <MapPin className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">Student-Friendly Cities</h3>
                         <p className="text-gray-700 leading-relaxed">
@@ -250,7 +250,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   {/* Scholarships */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <Star className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <Star className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">Scholarships for Pakistani Students</h3>
                         <p className="text-gray-700 leading-relaxed">
@@ -265,7 +265,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Conclusion
                 </h2>
                 <p className="text-gray-700 leading-relaxed">
@@ -275,7 +275,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
 
               {/* FAQs */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   FAQs
                 </h2>
                 <div className="space-y-6">
@@ -335,7 +335,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="tel:+923041110947"
-                    className="inline-flex items-center justify-center px-6 py-3 #3367D6 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
+                    className="inline-flex items-center justify-center px-6 py-3 #1845B3 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-2" />
                     Call Now: (+92) 304 1110947
@@ -360,7 +360,7 @@ export default function TurkeyBestChoicePakistaniStudents() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Target className="w-5 h-5 mr-2 #4285F4" />
+                  <Target className="w-5 h-5 mr-2 #1D50C9" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -390,28 +390,28 @@ export default function TurkeyBestChoicePakistaniStudents() {
               {/* Top Reasons */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Star className="w-5 h-5 mr-2 #4285F4" />
+                  <Star className="w-5 h-5 mr-2 #1D50C9" />
                   Top Reasons
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Affordable tuition and living costs</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Muslim-friendly environment</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">High-quality education</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Scholarship opportunities</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Cultural diversity</span>
                   </li>
                 </ul>

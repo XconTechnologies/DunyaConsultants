@@ -10,7 +10,7 @@ export default function GermanyBlockedAccount() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#4285F4] via-blue-600 to-red-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#1D50C9] via-blue-600 to-red-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -46,15 +46,15 @@ export default function GermanyBlockedAccount() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">€11,904</h4>
-                      <p className="#3367D6">Required Amount</p>
+                      <p className="#1845B3">Required Amount</p>
                     </div>
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">€992</h4>
-                      <p className="#3367D6">Monthly Withdrawal Limit</p>
+                      <p className="#1845B3">Monthly Withdrawal Limit</p>
                     </div>
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">12 Months</h4>
-                      <p className="#3367D6">Coverage Period</p>
+                      <p className="#1845B3">Coverage Period</p>
                     </div>
                   </div>
                 </div>
@@ -62,7 +62,7 @@ export default function GermanyBlockedAccount() {
 
               {/* What is a Blocked Account Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">What is a Block Account in Germany?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">What is a Block Account in Germany?</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   A Germany block account is a type of bank account where international students deposit a fixed amount. It is particularly created for international students, au pairs, job seekers, or those who plan to live in Germany for a longer period.
                 </p>
@@ -84,7 +84,7 @@ export default function GermanyBlockedAccount() {
 
               {/* Who Needs a Blocked Account Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Who Needs a Blocked Account in Germany?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Who Needs a Blocked Account in Germany?</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Those who are not from a European Union or Schengen country and require a German visa will likely need a Germany block account. This applies to the following visas mentioned below:
                 </p>
@@ -109,7 +109,7 @@ export default function GermanyBlockedAccount() {
 
               {/* Mandatory Amount Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Mandatory Germany Blocked Account Amount</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Mandatory Germany Blocked Account Amount</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   All international students have to deposit around <strong>€11,904</strong> as their Germany blocked account amount for international students 2024 – 2025. Students can withdraw 992 euros every month for twelve months to cover their living expenses.
                 </p>
@@ -142,7 +142,7 @@ export default function GermanyBlockedAccount() {
 
               {/* Where to Open Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Where Can I Open a Blocked Account in Germany?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Where Can I Open a Blocked Account in Germany?</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Most people often ask: Which bank is best for blocked accounts in Germany? It is also possible to open an account and deposit the Germany block account amount directly with a German bank, but not every branch provides this service, which can make the process more complex.
                 </p>
@@ -191,7 +191,7 @@ export default function GermanyBlockedAccount() {
 
               {/* Documents Required Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Documents Required for Blocked Account for Germany</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Documents Required for Blocked Account for Germany</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The list of documents needed for Germany blocked account is as follows:
                 </p>
@@ -225,7 +225,7 @@ export default function GermanyBlockedAccount() {
 
               {/* How to Open Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">How Can I Open my Blocked Bank Account?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">How Can I Open my Blocked Bank Account?</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   You need to open a blocked account before applying for your residence permit or German visa, which means you will usually have to do this while you are still in your own country. The steps for opening a blocked account in Germany can vary depending on the provider you pick, but in general, you will need to:
                 </p>
@@ -274,7 +274,7 @@ export default function GermanyBlockedAccount() {
 
               {/* Costs Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Costs for a Germany Block Account 2024</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Costs for a Germany Block Account 2024</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The providers of a blocked account charge a fee for providing services. The costs can vary, but here are the average fees you will need to pay:
                 </p>
@@ -316,35 +316,35 @@ export default function GermanyBlockedAccount() {
 
               {/* FAQs */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Can I open a bank account in Germany if I don't live there?</h3>
                     <p className="text-gray-700">Yes, you can open a blocked account from your home country through online providers like Fintiba, Expatrio, or Coracle. These services are specifically designed for international students who need to open accounts before arriving in Germany.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Is blocked account necessary in Germany?</h3>
                     <p className="text-gray-700">Yes, a blocked account is mandatory for most non-EU international students applying for German student visas. It serves as proof that you have sufficient funds (€11,904) to support yourself during your first year of studies in Germany.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">How to withdraw money from blocked account Germany?</h3>
                     <p className="text-gray-700">You can withdraw a maximum of €992 per month from your blocked account once you arrive in Germany. The withdrawal is typically done through ATMs or bank transfers, and the amount is automatically released each month for your living expenses.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">How much money is required for a blocked account in Germany?</h3>
                     <p className="text-gray-700">For 2024-2025, international students must deposit €11,904 in their blocked account. This amount is based on the BAföG rate and covers living expenses for 12 months at €992 per month.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Which provider is best for Germany blocked account?</h3>
                     <p className="text-gray-700">Popular providers include Fintiba, Expatrio, Coracle, and Studley. Expatrio charges €109 total (including monthly fees), while Coracle charges €99. Choose based on your budget, customer service needs, and additional services offered.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Can I deposit more than €11,904 in my blocked account?</h3>
                     <p className="text-gray-700">Yes, you can deposit more than the required €11,904. However, you'll still be limited to withdrawing €992 per month unless you deposit significantly more. Any excess amount will be available after the first year or through special arrangements.</p>
                   </div>
@@ -352,14 +352,14 @@ export default function GermanyBlockedAccount() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-[#4285F4] to-yellow-600 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-[#1D50C9] to-yellow-600 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Need Help with Your Germany Blocked Account?</h3>
                 <p className="text-lg mb-4">Our expert counselors can guide you through the entire process of opening a blocked account and securing your German student visa. We'll help you choose the right provider and ensure all requirements are met for a successful application.</p>
                 <div className="flex gap-4">
-                  <a href="tel:+923041110947" className="bg-white #3367D6 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#3367D6 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -427,13 +427,13 @@ export default function GermanyBlockedAccount() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block #3367D6 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
                   Study in UK: Complete Guide for Pakistani Students
                 </a>
-                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #3367D6 hover:text-#1565c0 text-sm">
+                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #1845B3 hover:text-#1565c0 text-sm">
                   MS in Business Analytics Course in USA
                 </a>
-                <a href="/blog/master-of-finance-in-uk" className="block #3367D6 hover:text-#1565c0 text-sm">
+                <a href="/blog/master-of-finance-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
                   A Beginner's Guide to Master of Finance in UK
                 </a>
               </div>

@@ -96,7 +96,7 @@ export default function SuccessStoriesCarousel() {
           className="text-center mb-12"
         >
           <div className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-6 shadow-lg">
-            <Star className="w-5 h-5 #4285F4 fill-current" />
+            <Star className="w-5 h-5 #1D50C9 fill-current" />
             <span className="text-sm font-medium text-neutral-700">Success Stories</span>
           </div>
           

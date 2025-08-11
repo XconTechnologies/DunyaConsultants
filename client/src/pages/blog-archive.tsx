@@ -163,8 +163,8 @@ export default function BlogArchive() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 #3367D6 mx-auto"></div>
-          <p className="mt-4 #3367D6">Loading blog posts...</p>
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 #1845B3 mx-auto"></div>
+          <p className="mt-4 #1845B3">Loading blog posts...</p>
         </div>
       </div>
     );
@@ -174,7 +174,7 @@ export default function BlogArchive() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center">
         <div className="text-center">
-          <p className="#3367D6">Error loading blog posts</p>
+          <p className="#1845B3">Error loading blog posts</p>
           <p className="text-gray-600 mt-2">Please try again later</p>
         </div>
       </div>
@@ -186,10 +186,10 @@ export default function BlogArchive() {
       <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
         {/* Enhanced Hero Section */}
-        <section className="pt-32 pb-20 bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white relative overflow-hidden">
+        <section className="pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white relative overflow-hidden">
           {/* Animated Background Elements */}
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4]/20 to-blue-500/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#1D50C9]/20 to-blue-500/20"></div>
             <motion.div
               animate={{ 
                 scale: [1, 1.1, 1],
@@ -261,7 +261,7 @@ export default function BlogArchive() {
                   onClick={() => setViewMode("grid")}
                   className={`p-3 rounded-xl transition-all duration-300 ${
                     viewMode === "grid" 
-                      ? "bg-white #3367D6 shadow-lg" 
+                      ? "bg-white #1845B3 shadow-lg" 
                       : "bg-white/20 text-white hover:bg-white/30"
                   }`}
                 >
@@ -273,7 +273,7 @@ export default function BlogArchive() {
                   onClick={() => setViewMode("list")}
                   className={`p-3 rounded-xl transition-all duration-300 ${
                     viewMode === "list" 
-                      ? "bg-white #3367D6 shadow-lg" 
+                      ? "bg-white #1845B3 shadow-lg" 
                       : "bg-white/20 text-white hover:bg-white/30"
                   }`}
                 >
@@ -372,7 +372,7 @@ export default function BlogArchive() {
                   className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300 group"
                 >
                   <div className="p-6 w-full">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:#3367D6 transition-colors duration-200 line-clamp-2">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:#1845B3 transition-colors duration-200 line-clamp-2">
                       {post.title}
                     </h3>
 
@@ -386,7 +386,7 @@ export default function BlogArchive() {
                         <span>{post.date}</span>
                       </div>
                       <Link href={post.href}>
-                        <span className="#3367D6 hover:text-#1a73e8 font-medium transition-colors duration-200 flex items-center gap-1">
+                        <span className="#1845B3 hover:text-#1a73e8 font-medium transition-colors duration-200 flex items-center gap-1">
                           Read More
                           <ArrowRight className="w-4 h-4" />
                         </span>

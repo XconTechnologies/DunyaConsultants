@@ -10,11 +10,11 @@ export default function FromUKLLMToPakistaniBar() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Legal Career Guide
               </span>
             </div>
@@ -52,24 +52,24 @@ export default function FromUKLLMToPakistaniBar() {
               <section className="mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <Scale className="w-6 h-6 #4285F4 mr-2" />
+                    <Scale className="w-6 h-6 #1D50C9 mr-2" />
                     UK LLM to Pakistani Bar Overview
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center">
-                      <div className="text-2xl font-bold #3367D6">5 Years</div>
+                      <div className="text-2xl font-bold #1845B3">5 Years</div>
                       <div className="text-sm text-#1565c0">LLB Duration</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold #3367D6">1 Year</div>
+                      <div className="text-2xl font-bold #1845B3">1 Year</div>
                       <div className="text-sm text-#1565c0">Conversion Course</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold #3367D6">Required</div>
+                      <div className="text-2xl font-bold #1845B3">Required</div>
                       <div className="text-sm text-#1565c0">Bar Registration</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold #3367D6">Mixed</div>
+                      <div className="text-2xl font-bold #1845B3">Mixed</div>
                       <div className="text-sm text-#1565c0">Legal System</div>
                     </div>
                   </div>
@@ -91,13 +91,13 @@ export default function FromUKLLMToPakistaniBar() {
 
               {/* Eligibility Criteria */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Eligibility Criteria to Practice Bar at Law in Pakistan with UK Degree
                 </h2>
                 
                 <div className="space-y-4">
                   <div className="flex items-start p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
-                    <UserCheck className="w-6 h-6 #3367D6 mr-3 mt-1 flex-shrink-0" />
+                    <UserCheck className="w-6 h-6 #1845B3 mr-3 mt-1 flex-shrink-0" />
                     <div>
                       <p className="text-gray-700 font-medium">
                         You must register with the Pakistan Bar Council to practice law in Pakistan.
@@ -106,7 +106,7 @@ export default function FromUKLLMToPakistaniBar() {
                   </div>
 
                   <div className="flex items-start p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
-                    <AlertCircle className="w-6 h-6 #3367D6 mr-3 mt-1 flex-shrink-0" />
+                    <AlertCircle className="w-6 h-6 #1845B3 mr-3 mt-1 flex-shrink-0" />
                     <div>
                       <p className="text-gray-700 font-medium">
                         Even with a UK LLM, you cannot practice Pakistani law without registration.
@@ -115,7 +115,7 @@ export default function FromUKLLMToPakistaniBar() {
                   </div>
 
                   <div className="flex items-start p-4 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg">
-                    <CheckCircle className="w-6 h-6 #3367D6 mr-3 mt-1 flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 #1845B3 mr-3 mt-1 flex-shrink-0" />
                     <div>
                       <p className="text-gray-700 font-medium">
                         If you have qualifications in other jurisdictions, you can give legal advice on foreign and international laws in Pakistan.
@@ -127,7 +127,7 @@ export default function FromUKLLMToPakistaniBar() {
 
               {/* How to Practice Law */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   How to Practice Law in Pakistan after doing a Masters in Law from UK?
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-8">
@@ -140,24 +140,24 @@ export default function FromUKLLMToPakistaniBar() {
                   {/* Understanding Pakistani Legal System */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <Scale className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <Scale className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">Understanding the Pakistani Legal System</h3>
                         <ul className="space-y-2 text-gray-700">
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>In Pakistan, the legal profession mainly consists of Advocates (similar to barristers in the UK). The role of solicitors does not exist in Pakistan.</span>
                           </li>
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>To become an advocate with British law in Pakistan, you need an LLB degree from a recognized Pakistani university.</span>
                           </li>
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>To legally practice, you must register with a Bar Association and pay membership fees.</span>
                           </li>
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>You need to fulfill certain requirements and submit documents as part of the Bar enrollment process.</span>
                           </li>
                         </ul>
@@ -168,20 +168,20 @@ export default function FromUKLLMToPakistaniBar() {
                   {/* Role of UK LLM */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <GraduationCap className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <GraduationCap className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">Role of a UK LLM in Pakistan</h3>
                         <ul className="space-y-2 text-gray-700">
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>A LLM in UK universities does not automatically qualify you to practice law in Pakistan.</span>
                           </li>
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>It helps improve expertise in a specific area of law, making you a stronger candidate in the legal field.</span>
                           </li>
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>An LLM can be valuable for legal consultants, corporate lawyers, or academics in Pakistan.</span>
                           </li>
                         </ul>
@@ -192,24 +192,24 @@ export default function FromUKLLMToPakistaniBar() {
                   {/* Steps to Practice Law */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <FileCheck className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <FileCheck className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">Steps to Practice Law in Pakistan</h3>
                         <ol className="space-y-3 text-gray-700">
                           <li className="flex items-start">
-                            <span className="#4285F4 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1 flex-shrink-0">1</span>
+                            <span className="#1D50C9 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1 flex-shrink-0">1</span>
                             <span>If you don't have an LLB Degree from Pakistan, you must complete an LLB from a recognized Pakistani university.</span>
                           </li>
                           <li className="flex items-start">
-                            <span className="#4285F4 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1 flex-shrink-0">2</span>
+                            <span className="#1D50C9 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1 flex-shrink-0">2</span>
                             <span>After earning an LLB, apply to join the Pakistan Bar Council to become a licensed advocate.</span>
                           </li>
                           <li className="flex items-start">
-                            <span className="#4285F4 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1 flex-shrink-0">3</span>
+                            <span className="#1D50C9 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1 flex-shrink-0">3</span>
                             <span>You must submit the necessary documents, pay fees, and take an oath before you can start practicing.</span>
                           </li>
                           <li className="flex items-start">
-                            <span className="#4285F4 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1 flex-shrink-0">4</span>
+                            <span className="#1D50C9 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 mt-1 flex-shrink-0">4</span>
                             <span>Interning or working at a university of law LLM in Pakistan will help you understand local laws and build connections.</span>
                           </li>
                         </ol>
@@ -220,20 +220,20 @@ export default function FromUKLLMToPakistaniBar() {
                   {/* Important Points */}
                   <div className="border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start mb-4">
-                      <Star className="w-6 h-6 #4285F4 mr-3 mt-1" />
+                      <Star className="w-6 h-6 #1D50C9 mr-3 mt-1" />
                       <div>
                         <h3 className="text-xl font-bold text-gray-900 mb-3">Important Points to Consider</h3>
                         <ul className="space-y-2 text-gray-700">
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>Pakistani law is different from UK law, so you will need to study local legal procedures.</span>
                           </li>
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>Many legal documents are in English, so good language skills are helpful.</span>
                           </li>
                           <li className="flex items-start">
-                            <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                            <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                             <span>Building a strong network in the legal community can open better career opportunities.</span>
                           </li>
                         </ul>
@@ -246,7 +246,7 @@ export default function FromUKLLMToPakistaniBar() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Conclusion
                 </h2>
                 <p className="text-gray-700 leading-relaxed">
@@ -256,7 +256,7 @@ export default function FromUKLLMToPakistaniBar() {
 
               {/* FAQs */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   FAQs
                 </h2>
                 <div className="space-y-6">
@@ -316,7 +316,7 @@ export default function FromUKLLMToPakistaniBar() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="tel:+923041110947"
-                    className="inline-flex items-center justify-center px-6 py-3 #3367D6 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
+                    className="inline-flex items-center justify-center px-6 py-3 #1845B3 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-2" />
                     Call Now: (+92) 304 1110947
@@ -341,7 +341,7 @@ export default function FromUKLLMToPakistaniBar() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Target className="w-5 h-5 mr-2 #4285F4" />
+                  <Target className="w-5 h-5 mr-2 #1D50C9" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -371,28 +371,28 @@ export default function FromUKLLMToPakistaniBar() {
               {/* Key Requirements */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-2 #4285F4" />
+                  <CheckCircle className="w-5 h-5 mr-2 #1D50C9" />
                   Key Requirements
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Pakistani LLB degree required</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Bar Council registration</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Local law understanding</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Professional networking</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Practical training</span>
                   </li>
                 </ul>

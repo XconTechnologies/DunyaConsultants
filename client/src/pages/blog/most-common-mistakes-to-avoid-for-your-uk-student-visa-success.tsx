@@ -10,11 +10,11 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="text-white px-4 py-2 rounded-full text-sm font-medium" style={{ backgroundColor: '#4285F4' }}>
+              <span className="text-white px-4 py-2 rounded-full text-sm font-medium" style={{ backgroundColor: '#1D50C9' }}>
                 Visa Guides
               </span>
             </div>
@@ -64,20 +64,20 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#common-mistakes" className="hover:underline" style={{ color: '#4285F4' }}>Common Mistakes to Avoid</a></li>
-                  <li><a href="#insufficient-funds" className="hover:underline" style={{ color: '#4285F4' }}>1. Insufficient Proof of Funds</a></li>
-                  <li><a href="#documentation-errors" className="hover:underline" style={{ color: '#4285F4' }}>2. Documentation Errors</a></li>
-                  <li><a href="#english-proficiency" className="hover:underline" style={{ color: '#4285F4' }}>3. Incorrect English Proficiency Proof</a></li>
-                  <li><a href="#cas-details" className="hover:underline" style={{ color: '#4285F4' }}>4. Not Checking CAS Details</a></li>
-                  <li><a href="#past-records" className="hover:underline" style={{ color: '#4285F4' }}>5. Not Disclosing Past Records</a></li>
-                  <li><a href="#success-tips" className="hover:underline" style={{ color: '#4285F4' }}>Additional Success Tips</a></li>
-                  <li><a href="#faqs" className="hover:underline" style={{ color: '#4285F4' }}>Frequently Asked Questions</a></li>
+                  <li><a href="#common-mistakes" className="hover:underline" style={{ color: '#1D50C9' }}>Common Mistakes to Avoid</a></li>
+                  <li><a href="#insufficient-funds" className="hover:underline" style={{ color: '#1D50C9' }}>1. Insufficient Proof of Funds</a></li>
+                  <li><a href="#documentation-errors" className="hover:underline" style={{ color: '#1D50C9' }}>2. Documentation Errors</a></li>
+                  <li><a href="#english-proficiency" className="hover:underline" style={{ color: '#1D50C9' }}>3. Incorrect English Proficiency Proof</a></li>
+                  <li><a href="#cas-details" className="hover:underline" style={{ color: '#1D50C9' }}>4. Not Checking CAS Details</a></li>
+                  <li><a href="#past-records" className="hover:underline" style={{ color: '#1D50C9' }}>5. Not Disclosing Past Records</a></li>
+                  <li><a href="#success-tips" className="hover:underline" style={{ color: '#1D50C9' }}>Additional Success Tips</a></li>
+                  <li><a href="#faqs" className="hover:underline" style={{ color: '#1D50C9' }}>Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Success Rate Highlight */}
-              <div className="p-6 mb-8" style={{ backgroundColor: '#e8f0ff', borderLeft: '4px solid #4285F4' }}>
-                <h3 className="text-xl font-semibold mb-4" style={{ color: '#4285F4' }}>UK Visa Success Rate</h3>
+              <div className="p-6 mb-8" style={{ backgroundColor: '#e8f0ff', borderLeft: '4px solid #1D50C9' }}>
+                <h3 className="text-xl font-semibold mb-4" style={{ color: '#1D50C9' }}>UK Visa Success Rate</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-700 mb-2"><strong>Overall Success Rate:</strong> 98%</p>
@@ -92,7 +92,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Common Mistakes Section */}
               <section id="common-mistakes" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #4285F4' }}>Common Mistakes to Avoid while Applying for a UK Student Visa</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D50C9' }}>Common Mistakes to Avoid while Applying for a UK Student Visa</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Keep in mind that if you have made a mistake on the visa application form, it will lead to your visa rejection. Let's discuss these common mistakes below:
@@ -101,7 +101,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 1: Insufficient Proof of Funds */}
               <section id="insufficient-funds" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #4285F4' }}>1. Insufficient Proof of Funds</h3>
+                <h3 className="text-2xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D50C9' }}>1. Insufficient Proof of Funds</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The majority of you have already heard that someone's UK visa was rejected due to a bank statement. The UKVI requires students to prove they can pay for their tuition fees as well as living costs. The exact bank statement for UK visa depends on your program length and location.
@@ -112,32 +112,32 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 </p>
 
                 <div className="rounded-lg p-6 mb-6" style={{ backgroundColor: '#e8f0ff', border: '1px solid #b3d1ff' }}>
-                  <h4 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#4285F4' }}>
+                  <h4 className="text-lg font-semibold mb-4 flex items-center" style={{ color: '#1D50C9' }}>
                     <CreditCard className="w-5 h-5 mr-2" />
                     Financial Requirements Checklist
                   </h4>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#4285F4' }} />
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#1D50C9' }} />
                       Maintain funds for 28 consecutive days before application
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#4285F4' }} />
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#1D50C9' }} />
                       Provide recent bank statements (last 28 days)
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#4285F4' }} />
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#1D50C9' }} />
                       Show proof of tuition fees and living expenses
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#4285F4' }} />
+                      <CheckCircle className="w-4 h-4 mr-2 mt-1 flex-shrink-0" style={{ color: '#1D50C9' }} />
                       Ensure bank statements are certified and translated
                     </li>
                   </ul>
                 </div>
 
                 <div className="p-6 rounded-lg" style={{ backgroundColor: '#e8f0ff' }}>
-                  <h4 className="text-lg font-semibold mb-3" style={{ color: '#4285F4' }}>Required Amounts (2025):</h4>
+                  <h4 className="text-lg font-semibold mb-3" style={{ color: '#1D50C9' }}>Required Amounts (2025):</h4>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-700 mb-1"><strong>London:</strong> £1,334/month</p>
@@ -153,7 +153,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 2: Documentation Errors */}
               <section id="documentation-errors" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #4285F4' }}>2. Avoid Documentation Errors</h3>
+                <h3 className="text-2xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D50C9' }}>2. Avoid Documentation Errors</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Another common mistake is not submitting enough evidence to support your application. Having correct and complete documents is essential for your UK student visa application. Missing or wrong details, like wrong dates or spelling mistakes, can delay your process.
@@ -165,7 +165,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold mb-3 flex items-center" style={{ color: '#4285F4' }}>
+                    <h4 className="text-lg font-semibold mb-3 flex items-center" style={{ color: '#1D50C9' }}>
                       <FileText className="w-5 h-5 mr-2" />
                       Documentation Best Practices
                     </h4>
@@ -179,7 +179,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                   </div>
 
                   <div className="rounded-lg p-6" style={{ backgroundColor: '#e8f0ff', border: '1px solid #b3d1ff' }}>
-                    <h4 className="text-lg font-semibold mb-3" style={{ color: '#4285F4' }}>Common Documentation Mistakes:</h4>
+                    <h4 className="text-lg font-semibold mb-3" style={{ color: '#1D50C9' }}>Common Documentation Mistakes:</h4>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <ul className="space-y-1 text-gray-700">
@@ -202,7 +202,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 3: English Proficiency */}
               <section id="english-proficiency" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #4285F4' }}>3. Incorrect English Proficiency Proof</h3>
+                <h3 className="text-2xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D50C9' }}>3. Incorrect English Proficiency Proof</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Many students make the mistake of submitting wrong or invalid English language test results. The UKVI has specific requirements for English proficiency tests, and not all test centers or test types are accepted.
@@ -213,7 +213,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 </p>
 
                 <div className="p-6 rounded-lg" style={{ backgroundColor: '#e8f0ff' }}>
-                  <h4 className="text-lg font-semibold mb-4" style={{ color: '#4285F4' }}>Accepted English Tests & Minimum Scores:</h4>
+                  <h4 className="text-lg font-semibold mb-4" style={{ color: '#1D50C9' }}>Accepted English Tests & Minimum Scores:</h4>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <h5 className="font-semibold mb-2">Undergraduate (B2 Level):</h5>
@@ -237,7 +237,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 4: CAS Details */}
               <section id="cas-details" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 #4285F4 pl-4">4. Not Checking CAS Details</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 #1D50C9 pl-4">4. Not Checking CAS Details</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Your Confirmation of Acceptance for Studies (CAS) is a crucial document that contains important information about your course and personal details. Many students make the mistake of not carefully reviewing their CAS before submitting their visa application.
@@ -277,7 +277,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 5: Past Records */}
               <section id="past-records" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 #4285F4 pl-4">5. Not Disclosing Past Records</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 #1D50C9 pl-4">5. Not Disclosing Past Records</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Honesty is crucial in your visa application. Some students make the mistake of not disclosing previous visa refusals, immigration violations, or criminal records, thinking it might harm their chances.
@@ -304,7 +304,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Success Tips */}
               <section id="success-tips" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Additional Success Tips</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Additional Success Tips</h2>
 
                 <div className="space-y-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
@@ -342,7 +342,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* FAQs */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -379,7 +379,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Conclusion</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Applying for a UK student visa doesn't have to be stressful if you avoid these common mistakes. The key is thorough preparation, attention to detail, and ensuring all your documents are complete and accurate.
@@ -403,7 +403,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="tel:+923041110947" 
-                    className="#3367D6 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
+                    className="#1845B3 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Call Now: +92 304 1110947
                   </a>
@@ -424,13 +424,13 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <FileText className="w-5 h-5 mr-2 #4285F4" />
+                  <FileText className="w-5 h-5 mr-2 #1D50C9" />
                   Visa Success Tips
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Success Rate:</span>
-                    <span className="font-medium #3367D6">99%</span>
+                    <span className="font-medium #1845B3">99%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Processing Time:</span>
@@ -454,7 +454,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
               {/* Common Mistakes Summary */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <XCircle className="w-5 h-5 mr-2 #4285F4" />
+                  <XCircle className="w-5 h-5 mr-2 #1D50C9" />
                   Top 5 Mistakes
                 </h3>
                 <div className="space-y-3 text-sm">

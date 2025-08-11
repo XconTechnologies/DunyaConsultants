@@ -9,11 +9,11 @@ export default function GreenCardInternationalStudents() {
       <Navigation />
       
       {/* Hero Section - Exact Kaplan Style */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Immigration Guide
               </span>
             </div>
@@ -65,18 +65,18 @@ export default function GreenCardInternationalStudents() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#who-can-apply" className="hover:#3367D6">Who can Apply for International Students Green Card in the USA?</a></li>
-                  <li><a href="#employment-based" className="hover:#3367D6">Employment-based immigration</a></li>
-                  <li><a href="#family-based" className="hover:#3367D6">Family-based immigration</a></li>
-                  <li><a href="#diversity-visa" className="hover:#3367D6">Diversity Visa Lottery</a></li>
-                  <li><a href="#refugees-asylees" className="hover:#3367D6">Refugees & asylees</a></li>
-                  <li><a href="#green-card-benefits" className="hover:#3367D6">Green Card Benefits for Students</a></li>
-                  <li><a href="#scholarships" className="hover:#3367D6">Scholarships for Green Card Holders</a></li>
-                  <li><a href="#study-opportunities" className="hover:#3367D6">Study Opportunities</a></li>
-                  <li><a href="#work-permit" className="hover:#3367D6">Work Permit</a></li>
-                  <li><a href="#lower-tuition" className="hover:#3367D6">Lower Tuition Fee</a></li>
-                  <li><a href="#travel-flexibility" className="hover:#3367D6">Travel Flexibility & Other Advantages</a></li>
-                  <li><a href="#job-opportunities" className="hover:#3367D6">Job Opportunities</a></li>
+                  <li><a href="#who-can-apply" className="hover:#1845B3">Who can Apply for International Students Green Card in the USA?</a></li>
+                  <li><a href="#employment-based" className="hover:#1845B3">Employment-based immigration</a></li>
+                  <li><a href="#family-based" className="hover:#1845B3">Family-based immigration</a></li>
+                  <li><a href="#diversity-visa" className="hover:#1845B3">Diversity Visa Lottery</a></li>
+                  <li><a href="#refugees-asylees" className="hover:#1845B3">Refugees & asylees</a></li>
+                  <li><a href="#green-card-benefits" className="hover:#1845B3">Green Card Benefits for Students</a></li>
+                  <li><a href="#scholarships" className="hover:#1845B3">Scholarships for Green Card Holders</a></li>
+                  <li><a href="#study-opportunities" className="hover:#1845B3">Study Opportunities</a></li>
+                  <li><a href="#work-permit" className="hover:#1845B3">Work Permit</a></li>
+                  <li><a href="#lower-tuition" className="hover:#1845B3">Lower Tuition Fee</a></li>
+                  <li><a href="#travel-flexibility" className="hover:#1845B3">Travel Flexibility & Other Advantages</a></li>
+                  <li><a href="#job-opportunities" className="hover:#1845B3">Job Opportunities</a></li>
                 </ul>
               </div>
 
@@ -132,7 +132,7 @@ export default function GreenCardInternationalStudents() {
                 {/* Scholarships for Green Card Holders */}
                 <div id="scholarships" className="mt-6">
                   <h3 className="text-xl font-semibold mb-3 text-gray-800">Scholarships for Green Card Holders</h3>
-                  <div className="bg-blue-50 border-l-4 #4285F4 p-4 my-4">
+                  <div className="bg-blue-50 border-l-4 #1D50C9 p-4 my-4">
                     <p className="text-gray-700 leading-relaxed mb-3">
                       Green card holders can apply for federal financial aid, which includes grants, scholarship for green card holders, and low-interest loans. This is more than what international students can get because they are not eligible for most US government help.
                     </p>
@@ -158,7 +158,7 @@ export default function GreenCardInternationalStudents() {
                 {/* Work Permit */}
                 <div id="work-permit" className="mt-6">
                   <h3 className="text-xl font-semibold mb-3 text-gray-800">Work Permit</h3>
-                  <div className="bg-blue-50 border-l-4 #4285F4 p-4 my-4">
+                  <div className="bg-blue-50 border-l-4 #1D50C9 p-4 my-4">
                     <p className="text-gray-700 leading-relaxed">
                       Green card holders have unlimited work authorization in the United States. Unlike F1 students who have restrictions on where and how much they can work, green card holders can work anywhere, anytime, and for any employer without needing special permits or sponsorship.
                     </p>
@@ -204,7 +204,7 @@ export default function GreenCardInternationalStudents() {
                 {/* Job Opportunities */}
                 <div id="job-opportunities" className="mt-6">
                   <h3 className="text-xl font-semibold mb-3 text-gray-800">Job Opportunities</h3>
-                  <div className="bg-blue-50 border-l-4 #4285F4 p-4 my-4">
+                  <div className="bg-blue-50 border-l-4 #1D50C9 p-4 my-4">
                     <p className="text-gray-700 leading-relaxed mb-3">
                       Green card holders have access to all job opportunities in the United States, including:
                     </p>
@@ -226,22 +226,22 @@ export default function GreenCardInternationalStudents() {
                   <p>International students typically pursue green cards through these main pathways:</p>
                   
                   <div className="space-y-6">
-                    <div className="border-l-4 #4285F4 pl-4">
+                    <div className="border-l-4 #1D50C9 pl-4">
                       <h3 className="font-semibold text-lg mb-2">1. Employment-Based Green Card (EB-1, EB-2, EB-3)</h3>
                       <p>After graduation, students can work on OPT (Optional Practical Training), then H-1B visa, and eventually apply for employment-based green card through their employer.</p>
                     </div>
                     
-                    <div className="border-l-4 #4285F4 pl-4">
+                    <div className="border-l-4 #1D50C9 pl-4">
                       <h3 className="font-semibold text-lg mb-2">2. EB-5 Investment Visa</h3>
                       <p>Students or their families can invest $800,000 - $1,050,000 in a U.S. business project to qualify for green card.</p>
                     </div>
                     
-                    <div className="border-l-4 #4285F4 pl-4">
+                    <div className="border-l-4 #1D50C9 pl-4">
                       <h3 className="font-semibold text-lg mb-2">3. Family-Based Green Card</h3>
                       <p>Students who marry U.S. citizens or have immediate family members who are citizens/permanent residents can apply.</p>
                     </div>
                     
-                    <div className="border-l-4 #4285F4 pl-4">
+                    <div className="border-l-4 #1D50C9 pl-4">
                       <h3 className="font-semibold text-lg mb-2">4. Diversity Visa Lottery</h3>
                       <p>Students from eligible countries can participate in the annual Diversity Visa Lottery program.</p>
                     </div>

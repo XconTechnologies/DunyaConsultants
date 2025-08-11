@@ -10,11 +10,11 @@ export default function StudyInUSAGuide() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Destination
               </span>
             </div>
@@ -64,19 +64,19 @@ export default function StudyInUSAGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-usa" className="hover:#3367D6">Why Choose to Study in USA?</a></li>
-                  <li><a href="#education-system" className="hover:#3367D6">USA Education System Overview</a></li>
-                  <li><a href="#admission-requirements" className="hover:#3367D6">Admission Requirements</a></li>
-                  <li><a href="#visa-requirements" className="hover:#3367D6">Study Visa Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:#3367D6">Tuition Fees and Living Costs</a></li>
-                  <li><a href="#application-process" className="hover:#3367D6">Application Process</a></li>
-                  <li><a href="#documents-checklist" className="hover:#3367D6">Required Documents</a></li>
-                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-usa" className="hover:#1845B3">Why Choose to Study in USA?</a></li>
+                  <li><a href="#education-system" className="hover:#1845B3">USA Education System Overview</a></li>
+                  <li><a href="#admission-requirements" className="hover:#1845B3">Admission Requirements</a></li>
+                  <li><a href="#visa-requirements" className="hover:#1845B3">Study Visa Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:#1845B3">Tuition Fees and Living Costs</a></li>
+                  <li><a href="#application-process" className="hover:#1845B3">Application Process</a></li>
+                  <li><a href="#documents-checklist" className="hover:#1845B3">Required Documents</a></li>
+                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* USA Overview */}
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold text-#1565c0 mb-4">Study in USA at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -94,7 +94,7 @@ export default function StudyInUSAGuide() {
 
               {/* Why Study in USA Section */}
               <section id="why-study-usa" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Why Choose to Study in USA?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Why Choose to Study in USA?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The United States offers numerous advantages for international students, making it the world's top destination for higher education.
@@ -157,7 +157,7 @@ export default function StudyInUSAGuide() {
 
               {/* Visa Requirements Section */}
               <section id="visa-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Study Visa Requirements for Pakistani Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Study Visa Requirements for Pakistani Students</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Pakistani students must obtain an F-1 student visa to study in the USA. The visa process requires several documents and fees.
@@ -216,7 +216,7 @@ export default function StudyInUSAGuide() {
 
               {/* Tuition Costs Section */}
               <section id="tuition-costs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Average Annual Tuition Fees</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Average Annual Tuition Fees</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Tuition fees in the USA vary significantly depending on the type of institution and program level.
@@ -259,7 +259,7 @@ export default function StudyInUSAGuide() {
 
               {/* Documents Checklist Section */}
               <section id="documents-checklist" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Required Documents Checklist</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Required Documents Checklist</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Ensure you have all the required documents before starting your application process.
@@ -313,7 +313,7 @@ export default function StudyInUSAGuide() {
 
               {/* FAQ Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -343,10 +343,10 @@ export default function StudyInUSAGuide() {
                 <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Start Your USA Study Journey?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants is here to guide you through every step of the application process. Contact us today for personalized assistance.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/contact" className="#3367D6 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
+                  <a href="/contact" className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
                     Get Free Consultation
                   </a>
-                  <a href="tel:+923041110947" className="border #3367D6 #3367D6 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  <a href="tel:+923041110947" className="border #1845B3 #1845B3 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                     Call Now: +92 304 111 0947
                   </a>
                 </div>
@@ -387,10 +387,10 @@ export default function StudyInUSAGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/study-in-uk" className="block #3367D6 hover:text-#1565c0 text-sm">Study in UK: Complete Guide</a>
-                  <a href="/blog/study-in-canada" className="block #3367D6 hover:text-#1565c0 text-sm">Study in Canada Guide</a>
-                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #3367D6 hover:text-#1565c0 text-sm">IELTS Preparation Tips</a>
-                  <a href="/blog/requirements-to-study-computer-science-in-usa" className="block #3367D6 hover:text-#1565c0 text-sm">Computer Science in USA</a>
+                  <a href="/blog/study-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">Study in UK: Complete Guide</a>
+                  <a href="/blog/study-in-canada" className="block #1845B3 hover:text-#1565c0 text-sm">Study in Canada Guide</a>
+                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #1845B3 hover:text-#1565c0 text-sm">IELTS Preparation Tips</a>
+                  <a href="/blog/requirements-to-study-computer-science-in-usa" className="block #1845B3 hover:text-#1565c0 text-sm">Computer Science in USA</a>
                 </div>
               </div>
 

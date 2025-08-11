@@ -7,7 +7,7 @@ import New_Logo_White from "@assets/New Logo White.png";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #4285F4 0%, #1E4BA8 50%, #163C8C 100%)' }}>
+    <footer className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1D50C9 0%, #1E4BA8 50%, #163C8C 100%)' }}>
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
@@ -169,7 +169,7 @@ export default function Footer() {
                   
                   <motion.a
                     href="mailto:abdul.majeed@dunyaconsultants.com"
-                    className="inline-flex items-center space-x-2 bg-white #3367D6 hover:bg-blue-50 px-4 py-2 rounded-lg text-xs font-medium transition-colors"
+                    className="inline-flex items-center space-x-2 bg-white #1845B3 hover:bg-blue-50 px-4 py-2 rounded-lg text-xs font-medium transition-colors"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >

@@ -15,7 +15,7 @@ export default function ContactInfoSection() {
           <div className="w-full h-full relative">
             {/* Floating circles */}
             <motion.div 
-              className="absolute w-72 h-72 #4285F4 rounded-full blur-3xl opacity-30"
+              className="absolute w-72 h-72 #1D50C9 rounded-full blur-3xl opacity-30"
               animate={{ 
                 x: [0, 100, 0], 
                 y: [0, -50, 0],
@@ -25,7 +25,7 @@ export default function ContactInfoSection() {
               style={{ top: '10%', left: '10%' }}
             />
             <motion.div 
-              className="absolute w-96 h-96 #4285F4 rounded-full blur-3xl opacity-20"
+              className="absolute w-96 h-96 #1D50C9 rounded-full blur-3xl opacity-20"
               animate={{ 
                 x: [0, -80, 0], 
                 y: [0, 60, 0],
@@ -35,7 +35,7 @@ export default function ContactInfoSection() {
               style={{ top: '50%', right: '10%' }}
             />
             <motion.div 
-              className="absolute w-80 h-80 #4285F4 rounded-full blur-3xl opacity-25"
+              className="absolute w-80 h-80 #1D50C9 rounded-full blur-3xl opacity-25"
               animate={{ 
                 x: [0, 60, 0], 
                 y: [0, -80, 0],
@@ -55,7 +55,7 @@ export default function ContactInfoSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl font-bold mb-6" style={{ color: '#4285F4' }}>
+          <h2 className="text-5xl font-bold mb-6" style={{ color: '#1D50C9' }}>
             Let's Connect
           </h2>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
@@ -111,7 +111,7 @@ export default function ContactInfoSection() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 whileHover={{ scale: 1.1 }}
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-[#3367D6] rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-[#1845B3] rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
                   <MapPin className="w-6 h-6 mb-1" />
                   <p className="text-xs font-semibold">Office</p>
                   {/* Connecting Line */}
@@ -132,7 +132,7 @@ export default function ContactInfoSection() {
                 whileHover={{ scale: 1.1 }}
               >
                 <a href="mailto:info@dunyaconsultants.com">
-                  <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-[#3367D6] rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
+                  <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-[#1845B3] rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
                     <Mail className="w-6 h-6 mb-1" />
                     <p className="text-xs font-semibold">Email</p>
                     {/* Connecting Line */}
@@ -153,7 +153,7 @@ export default function ContactInfoSection() {
                 transition={{ duration: 0.6, delay: 0.9 }}
                 whileHover={{ scale: 1.1 }}
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-[#3367D6] rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-[#1845B3] rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
                   <Briefcase className="w-6 h-6 mb-1" />
                   <p className="text-xs font-semibold">Business</p>
                   {/* Connecting Line */}
@@ -180,7 +180,7 @@ export default function ContactInfoSection() {
                 transition={{ duration: 0.6, delay: 1.1 }}
                 whileHover={{ scale: 1.1 }}
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-[#3367D6] rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
+                <div className="w-24 h-24 bg-gradient-to-br from-blue-400 to-[#1845B3] rounded-full flex flex-col items-center justify-center text-white shadow-xl cursor-pointer group relative">
                   <MessageCircle className="w-6 h-6 mb-1" />
                   <p className="text-xs font-semibold">Admission</p>
                   {/* Connecting Line */}
@@ -224,7 +224,7 @@ export default function ContactInfoSection() {
               </a>
               <a 
                 href="https://wa.me/923041110947"
-                className="#4285F4 text-white px-8 py-4 rounded-full font-bold hover:#3367D6 transition-all duration-300 inline-flex items-center space-x-2"
+                className="#1D50C9 text-white px-8 py-4 rounded-full font-bold hover:#1845B3 transition-all duration-300 inline-flex items-center space-x-2"
               >
                 <MessageCircle className="w-5 h-5" />
                 <span>WhatsApp</span>

@@ -10,11 +10,11 @@ export default function DifferenceBetweenIELTSGeneralAndAcademic() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Test Preparation
               </span>
             </div>
@@ -60,7 +60,7 @@ export default function DifferenceBetweenIELTSGeneralAndAcademic() {
               </div>
 
               {/* Quick Comparison Table */}
-              <div className="mb-8 bg-blue-50 p-6 rounded-lg border-l-4 #4285F4">
+              <div className="mb-8 bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0">Quick Comparison</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>

@@ -154,20 +154,20 @@ export default function UniversityPartnersSection() {
   const getCountryColor = (country: string): string => {
     const colors: Record<string, string> = {
       "All": "from-gray-500 to-gray-700",
-      "UK": "from-[#4285F4] to-[#1a73e8]",
-      "Germany": "from-[#4285F4] to-[#3367D6]", 
-      "Canada": "from-[#4285F4] to-[#1a73e8]",
-      "USA": "from-[#4285F4] to-[#3367D6]",
-      "Australia": "from-[#4285F4] to-blue-500",
-      "Turkey": "from-[#4285F4] to-#1565c0",
-      "Netherlands": "from-[#4285F4] to-[#3367D6]",
+      "UK": "from-[#1D50C9] to-[#1a73e8]",
+      "Germany": "from-[#1D50C9] to-[#1845B3]", 
+      "Canada": "from-[#1D50C9] to-[#1a73e8]",
+      "USA": "from-[#1D50C9] to-[#1845B3]",
+      "Australia": "from-[#1D50C9] to-blue-500",
+      "Turkey": "from-[#1D50C9] to-#1565c0",
+      "Netherlands": "from-[#1D50C9] to-[#1845B3]",
       "Finland": "from-blue-400 to-white",
-      "Ireland": "from-[#4285F4] to-blue-500",
-      "France": "from-[#4285F4] to-[#3367D6]",
-      "UAE": "from-[#4285F4] to-[#3367D6]",
-      "Caribbean": "from-[#4285F4] to-[#3367D6]",
-      "Wales": "from-[#4285F4] to-[#3367D6]",
-      "Scotland": "from-[#4285F4] to-white"
+      "Ireland": "from-[#1D50C9] to-blue-500",
+      "France": "from-[#1D50C9] to-[#1845B3]",
+      "UAE": "from-[#1D50C9] to-[#1845B3]",
+      "Caribbean": "from-[#1D50C9] to-[#1845B3]",
+      "Wales": "from-[#1D50C9] to-[#1845B3]",
+      "Scotland": "from-[#1D50C9] to-white"
     };
     return colors[country] || "from-gray-500 to-gray-700";
   };
@@ -183,7 +183,7 @@ export default function UniversityPartnersSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105" style={{ color: '#4285F4' }}
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105" style={{ color: '#1D50C9' }}
             whileHover={{ scale: 1.05 }}
           >
             Our Global University Partners

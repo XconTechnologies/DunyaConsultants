@@ -71,7 +71,7 @@ export default function AdminLogin() {
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="mx-auto w-16 h-16 bg-gradient-to-r from-[#4285F4] to-indigo-600 rounded-full flex items-center justify-center mb-4">
+          <div className="mx-auto w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-indigo-600 rounded-full flex items-center justify-center mb-4">
             <Shield className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Portal</h1>
@@ -107,7 +107,7 @@ export default function AdminLogin() {
                   disabled={isLoading}
                 />
                 {errors.username && (
-                  <p className="text-sm #3367D6">{errors.username.message}</p>
+                  <p className="text-sm #1845B3">{errors.username.message}</p>
                 )}
               </div>
 
@@ -125,13 +125,13 @@ export default function AdminLogin() {
                   disabled={isLoading}
                 />
                 {errors.password && (
-                  <p className="text-sm #3367D6">{errors.password.message}</p>
+                  <p className="text-sm #1845B3">{errors.password.message}</p>
                 )}
               </div>
 
               <Button
                 type="submit"
-                className="w-full h-11 bg-gradient-to-r from-[#4285F4] to-indigo-600 hover:from-#1a73e8 hover:to-indigo-700"
+                className="w-full h-11 bg-gradient-to-r from-[#1D50C9] to-indigo-600 hover:from-#1a73e8 hover:to-indigo-700"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -147,7 +147,7 @@ export default function AdminLogin() {
 
             <div className="mt-6 pt-6 border-t border-gray-200">
               <div className="text-center">
-                <Link href="/" className="text-sm #3367D6 hover:text-#1a73e8">
+                <Link href="/" className="text-sm #1845B3 hover:text-#1a73e8">
                   ← Back to Website
                 </Link>
               </div>

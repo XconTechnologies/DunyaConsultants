@@ -10,11 +10,11 @@ export default function CyprusVisaPakistan() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Visa Guides
               </span>
             </div>
@@ -52,24 +52,24 @@ export default function CyprusVisaPakistan() {
               <section className="mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <Plane className="w-6 h-6 #4285F4 mr-2" />
+                    <Plane className="w-6 h-6 #1D50C9 mr-2" />
                     Cyprus Visa Overview
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex items-center">
-                      <Clock className="w-5 h-5 #4285F4 mr-2" />
+                      <Clock className="w-5 h-5 #1D50C9 mr-2" />
                       <span className="text-gray-700">Duration: Up to 3 months (extendable)</span>
                     </div>
                     <div className="flex items-center">
-                      <DollarSign className="w-5 h-5 #4285F4 mr-2" />
+                      <DollarSign className="w-5 h-5 #1D50C9 mr-2" />
                       <span className="text-gray-700">Visa Fee: €60-€90</span>
                     </div>
                     <div className="flex items-center">
-                      <FileText className="w-5 h-5 #4285F4 mr-2" />
+                      <FileText className="w-5 h-5 #1D50C9 mr-2" />
                       <span className="text-gray-700">Processing Time: 1 month</span>
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="w-5 h-5 #4285F4 mr-2" />
+                      <MapPin className="w-5 h-5 #1D50C9 mr-2" />
                       <span className="text-gray-700">Residence Permit: €70</span>
                     </div>
                   </div>
@@ -91,7 +91,7 @@ export default function CyprusVisaPakistan() {
 
               {/* What is Cyprus Study Visa */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   What is a Cyprus Study Visa?
                 </h2>
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg">
@@ -106,7 +106,7 @@ export default function CyprusVisaPakistan() {
 
               {/* Documents Required */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Documents Required for Cyprus Visa from Pakistan
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
@@ -124,7 +124,7 @@ export default function CyprusVisaPakistan() {
                     "A portfolio or writing samples (if required for your course)"
                   ].map((doc, index) => (
                     <div key={index} className="flex items-start p-4 bg-gray-50 rounded-lg">
-                      <CheckCircle className="w-5 h-5 #4285F4 mr-3 mt-0.5 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 #1D50C9 mr-3 mt-0.5 flex-shrink-0" />
                       <p className="text-gray-700">{doc}</p>
                     </div>
                   ))}
@@ -133,7 +133,7 @@ export default function CyprusVisaPakistan() {
 
               {/* Application Process */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   How to Apply for a Cyprus Student Visa from Pakistan?
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
@@ -168,7 +168,7 @@ export default function CyprusVisaPakistan() {
                     }
                   ].map((step, index) => (
                     <div key={index} className="flex items-start p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
-                      <div className="w-10 h-10 #4285F4 text-white rounded-full flex items-center justify-center mr-4 text-lg font-bold flex-shrink-0">
+                      <div className="w-10 h-10 #1D50C9 text-white rounded-full flex items-center justify-center mr-4 text-lg font-bold flex-shrink-0">
                         {step.step}
                       </div>
                       <div>
@@ -182,7 +182,7 @@ export default function CyprusVisaPakistan() {
 
               {/* Visa Fees */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Cyprus Visa Fees for Pakistani Students
                 </h2>
                 <div className="bg-gradient-to-br from-blue-50 to-green-100 p-6 rounded-lg">
@@ -197,21 +197,21 @@ export default function CyprusVisaPakistan() {
                 {/* Fee Breakdown */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <DollarSign className="w-8 h-8 #4285F4 mx-auto mb-2" />
+                    <DollarSign className="w-8 h-8 #1D50C9 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Short-Stay Visa</h4>
-                    <p className="text-2xl font-bold #3367D6">€90</p>
+                    <p className="text-2xl font-bold #1845B3">€90</p>
                     <p className="text-sm text-gray-600">Category C</p>
                   </div>
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <DollarSign className="w-8 h-8 #4285F4 mx-auto mb-2" />
+                    <DollarSign className="w-8 h-8 #1D50C9 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Long-Stay Visa</h4>
-                    <p className="text-2xl font-bold #3367D6">€60</p>
+                    <p className="text-2xl font-bold #1845B3">€60</p>
                     <p className="text-sm text-gray-600">Category D</p>
                   </div>
                   <div className="text-center p-4 bg-white border border-gray-200 rounded-lg">
-                    <FileText className="w-8 h-8 #4285F4 mx-auto mb-2" />
+                    <FileText className="w-8 h-8 #1D50C9 mx-auto mb-2" />
                     <h4 className="font-semibold text-gray-900 mb-2">Residence Permit</h4>
-                    <p className="text-2xl font-bold #3367D6">€70</p>
+                    <p className="text-2xl font-bold #1845B3">€70</p>
                     <p className="text-sm text-gray-600">Required in Cyprus</p>
                   </div>
                 </div>
@@ -219,7 +219,7 @@ export default function CyprusVisaPakistan() {
 
               {/* Scholarships */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Scholarships Available in Cyprus for Pakistani Students
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
@@ -228,14 +228,14 @@ export default function CyprusVisaPakistan() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="p-4 bg-blue-50 rounded-lg">
                     <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                      <Award className="w-5 h-5 #4285F4 mr-2" />
+                      <Award className="w-5 h-5 #1D50C9 mr-2" />
                       Cyprus State Scholarship Foundation
                     </h4>
                     <p className="text-sm text-gray-600">Government-funded scholarships for international students</p>
                   </div>
                   <div className="p-4 bg-blue-50 rounded-lg">
                     <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                      <Award className="w-5 h-5 #4285F4 mr-2" />
+                      <Award className="w-5 h-5 #1D50C9 mr-2" />
                       Erasmus Mundus Joint Master Degrees
                     </h4>
                     <p className="text-sm text-gray-600">EU-funded prestigious master's programs</p>
@@ -245,7 +245,7 @@ export default function CyprusVisaPakistan() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Conclusion
                 </h2>
                 <p className="text-gray-700 leading-relaxed">
@@ -255,7 +255,7 @@ export default function CyprusVisaPakistan() {
 
               {/* FAQs */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   FAQs
                 </h2>
                 <div className="space-y-6">
@@ -306,7 +306,7 @@ export default function CyprusVisaPakistan() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="tel:+923041110947"
-                    className="inline-flex items-center justify-center px-6 py-3 #3367D6 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
+                    className="inline-flex items-center justify-center px-6 py-3 #1845B3 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-2" />
                     Call Now: (+92) 304 1110947
@@ -331,7 +331,7 @@ export default function CyprusVisaPakistan() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Target className="w-5 h-5 mr-2 #4285F4" />
+                  <Target className="w-5 h-5 mr-2 #1D50C9" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -361,28 +361,28 @@ export default function CyprusVisaPakistan() {
               {/* Popular Universities */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <BookOpen className="w-5 h-5 mr-2 #4285F4" />
+                  <BookOpen className="w-5 h-5 mr-2 #1D50C9" />
                   Popular Universities
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Cyprus International University</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">University of Nicosia</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Cyprus West University</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">European University Cyprus</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Frederick University</span>
                   </li>
                 </ul>

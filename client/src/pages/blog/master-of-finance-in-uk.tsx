@@ -10,7 +10,7 @@ export default function MasterOfFinanceInUK() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#4285F4] via-blue-600 to-cyan-600 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#1D50C9] via-blue-600 to-cyan-600 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -40,7 +40,7 @@ export default function MasterOfFinanceInUK() {
 
               {/* What is MSc Finance in UK Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">What is MSc finance in UK?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">What is MSc finance in UK?</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   An MSc in Finance in UK (also known as an MFin degree) is one of the most popular programs for international students. It is highly regarded because it teaches all the required skills to understand and manage money effectively.
                 </p>
@@ -54,15 +54,15 @@ export default function MasterOfFinanceInUK() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">1 Year</h4>
-                      <p className="#3367D6">Program Duration</p>
+                      <p className="#1845B3">Program Duration</p>
                     </div>
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">174</h4>
-                      <p className="#3367D6">Universities Offering</p>
+                      <p className="#1845B3">Universities Offering</p>
                     </div>
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">High</h4>
-                      <p className="#3367D6">Earning Potential</p>
+                      <p className="#1845B3">Earning Potential</p>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@ export default function MasterOfFinanceInUK() {
 
               {/* Top Universities Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Universities in UK for Masters in Finance</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Universities in UK for Masters in Finance</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Are you looking for the best universities in UK for Finance? Then, you are at the right place. Numerous international students choose to study Finance for a master's degree in the UK because it provides many job opportunities after graduation.
                 </p>
@@ -134,7 +134,7 @@ export default function MasterOfFinanceInUK() {
 
               {/* Eligibility Criteria Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Eligibility Criteria for MSc Finance in UK Universities</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Eligibility Criteria for MSc Finance in UK Universities</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Remember that the eligibility requirements can vary from one university to the other. If you want to apply to the best university for Finance in UK, here are the eligibility criteria for you to check beforehand:
                 </p>
@@ -143,31 +143,31 @@ export default function MasterOfFinanceInUK() {
                   <h3 className="text-xl font-semibold mb-4 text-#1565c0">Key Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>A valid passport</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>A UK student visa</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>A graduation degree in Economics, Mathematics, Finance, Science, or Engineering with over sixty-percent marks</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>Good GRE or GMAT test scores (if needed)</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>Proof of English language skills, such as IELTS scores</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>A-grade or equivalent in Mathematics</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>Work experience (if required)</span>
                     </li>
                   </ul>
@@ -176,7 +176,7 @@ export default function MasterOfFinanceInUK() {
 
               {/* Documents Required Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Documents Required for UK Best Colleges for Masters in Finance</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Documents Required for UK Best Colleges for Masters in Finance</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   All documents that you will need to gather before applying for MSc in Finance UK are mentioned below:
                 </p>
@@ -185,31 +185,31 @@ export default function MasterOfFinanceInUK() {
                   <h3 className="text-xl font-semibold mb-4 text-#1565c0">Required Documents</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>Bachelor's degree</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>All educational transcripts & grade cards</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>A Statement of Purpose (SOP)</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>An updated resume or CV showing your experience and skills</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>Letters of Recommendation</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>Any certifications or awards</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="#3367D6 mr-2">•</span>
+                      <span className="#1845B3 mr-2">•</span>
                       <span>Work experience letters (if required)</span>
                     </li>
                   </ul>
@@ -218,7 +218,7 @@ export default function MasterOfFinanceInUK() {
 
               {/* Admission Process Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Admission Process of Master in Finance UK</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Admission Process of Master in Finance UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Here is a simple step-by-step guide for you to apply for a master of Finance at a UK university:
                 </p>
@@ -256,7 +256,7 @@ export default function MasterOfFinanceInUK() {
 
               {/* Cost of Studying Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Average Fee to Study MSc Finance in UK</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Average Fee to Study MSc Finance in UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The average fee to study for an MSc in Finance in UK is around GBP 32,000. However, the cost can be different based on the university as well as the specific program you choose.
                 </p>
@@ -289,7 +289,7 @@ export default function MasterOfFinanceInUK() {
 
               {/* Scholarships Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Scholarships Available for UK Masters in Finance</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Scholarships Available for UK Masters in Finance</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   International students who are searching for the best finance masters programs in UK can also apply for different scholarship programs. These scholarships will help them with their tuition fees and reduce their living costs.
                 </p>
@@ -333,35 +333,35 @@ export default function MasterOfFinanceInUK() {
 
               {/* FAQs */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Is doing a master's in Finance in the UK worth it?</h3>
                     <p className="text-gray-700">Yes, pursuing a Master's in Finance in the UK is definitely worth it. The UK offers world-class universities, one-year programs that save time and money, excellent career prospects, and high earning potential. The skills and knowledge gained prepare you for global finance careers.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What is the starting salary for MSc finance jobs?</h3>
                     <p className="text-gray-700">The starting salary for MSc Finance graduates in the UK typically ranges from £35,000 to £55,000 annually, depending on the employer, location, and your previous experience. Top financial institutions and investment banks may offer higher starting salaries of £60,000 to £80,000.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Which university is best for masters of Finance in the UK?</h3>
                     <p className="text-gray-700">The best universities for Master's in Finance in the UK include London Business School, University of Oxford, University of Cambridge, London School of Economics, and University of Warwick. Each offers excellent programs with strong industry connections and career support.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What are the career opportunities after MSc Finance in UK?</h3>
                     <p className="text-gray-700">Career opportunities include Investment Banking, Financial Analysis, Risk Management, Corporate Finance, Asset Management, Financial Consulting, Portfolio Management, and Treasury Management roles in banks, investment firms, corporations, and government organizations.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">How long does it take to complete MSc Finance in UK?</h3>
                     <p className="text-gray-700">Most MSc Finance programs in the UK are designed to be completed in one year (12 months) for full-time students. This makes it an efficient option compared to other countries where similar programs may take 18-24 months to complete.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What are the English language requirements for MSc Finance?</h3>
                     <p className="text-gray-700">Most universities require IELTS scores of 6.5-7.0 overall with minimum 6.0 in each band, or equivalent TOEFL/PTE scores. Some top universities may require higher scores. Check specific university requirements as they can vary.</p>
                   </div>
@@ -369,14 +369,14 @@ export default function MasterOfFinanceInUK() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-[#4285F4] to-teal-600 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-[#1D50C9] to-teal-600 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Start Your Journey to Master of Finance in UK</h3>
                 <p className="text-lg mb-4">Let our expert counselors guide you through the entire application process for top UK universities. We'll help you choose the right program, prepare strong application materials, and secure your student visa for a successful finance career.</p>
                 <div className="flex gap-4">
-                  <a href="tel:+923041110947" className="bg-white #3367D6 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#3367D6 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -443,13 +443,13 @@ export default function MasterOfFinanceInUK() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #3367D6 hover:text-#1565c0 text-sm">
+                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #1845B3 hover:text-#1565c0 text-sm">
                   MS in Business Analytics Course in USA
                 </a>
-                <a href="/blog/uk-student-visa-ratio-from-pakistan" className="block #3367D6 hover:text-#1565c0 text-sm">
+                <a href="/blog/uk-student-visa-ratio-from-pakistan" className="block #1845B3 hover:text-#1565c0 text-sm">
                   UK Student Visa Ratio from Pakistan
                 </a>
-                <a href="/blog/low-cost-universities-in-uk-for-international-students" className="block #3367D6 hover:text-#1565c0 text-sm">
+                <a href="/blog/low-cost-universities-in-uk-for-international-students" className="block #1845B3 hover:text-#1565c0 text-sm">
                   Low-Cost Universities in UK for International Students
                 </a>
               </div>

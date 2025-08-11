@@ -42,8 +42,8 @@ const audienceData: AudienceData[] = [
     subtitle: "Your Dream University Awaits",
     description: "With a keen ear for your choices and preferences, our counselling experience is so seamless that you will land in your dream university!",
     icon: GraduationCap,
-    color: "#3367D6",
-    bgGradient: "from-[#4285F4] to-[#3367D6]",
+    color: "#1845B3",
+    bgGradient: "from-[#1D50C9] to-[#1845B3]",
     offerings: [
       {
         icon: Video,
@@ -68,8 +68,8 @@ const audienceData: AudienceData[] = [
     subtitle: "Technology-Driven Success",
     description: "Work with our team and state-of-the-art technology and experience how they can be a game changer for your business",
     icon: Users,
-    color: "#3367D6",
-    bgGradient: "from-[#4285F4] to-[#3367D6]",
+    color: "#1845B3",
+    bgGradient: "from-[#1D50C9] to-[#1845B3]",
     offerings: [
       {
         icon: Laptop,
@@ -94,8 +94,8 @@ const audienceData: AudienceData[] = [
     subtitle: "Maximize Global Reach",
     description: "Maximize your reach across geographies and exceed your student recruitment goals without compromising on quality.",
     icon: Building,
-    color: "#3367D6",
-    bgGradient: "from-[#4285F4] to-[#3367D6]",
+    color: "#1845B3",
+    bgGradient: "from-[#1D50C9] to-[#1845B3]",
     offerings: [
       {
         icon: Target,

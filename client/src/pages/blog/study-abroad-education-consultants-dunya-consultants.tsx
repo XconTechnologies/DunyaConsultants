@@ -10,7 +10,7 @@ const StudyAbroadEducationConsultants = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative w-full h-80 bg-gradient-to-br from-[#4285F4] via-[#4285F4] to-[#3367D6] overflow-hidden">
+      <div className="relative w-full h-80 bg-gradient-to-br from-[#1D50C9] via-[#1D50C9] to-[#1845B3] overflow-hidden">
         <div 
           className="absolute inset-0 opacity-20"
           style={{
@@ -19,7 +19,7 @@ const StudyAbroadEducationConsultants = () => {
             backgroundPosition: 'center'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4]/80 via-[#4285F4]/70 to-[#3367D6]/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1D50C9]/80 via-[#1D50C9]/70 to-[#1845B3]/80" />
         
         <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center justify-center text-center">
           <div className="space-y-4">
@@ -65,7 +65,7 @@ const StudyAbroadEducationConsultants = () => {
             {/* Benefits of Studying Abroad */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <Globe className="h-6 w-6 #3367D6 mr-3" />
+                <Globe className="h-6 w-6 #1845B3 mr-3" />
                 Benefits of Studying Abroad
               </h3>
               <p className="text-gray-700 leading-relaxed">
@@ -74,7 +74,7 @@ const StudyAbroadEducationConsultants = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
-                  <Globe className="h-10 w-10 #3367D6 mb-4" />
+                  <Globe className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Global Exposure</h4>
                   <p className="text-#1565c0 text-sm">
                     Studying abroad exposes Pakistani students to different cultures, languages, and teaching methodologies. This exposure helps them develop a broader perspective on life and adapt to various situations in their personal and professional lives.
@@ -82,7 +82,7 @@ const StudyAbroadEducationConsultants = () => {
                 </div>
                 
                 <div className="bg-gradient-to-br from-blue-50 to-green-100 rounded-lg p-6">
-                  <Users className="h-10 w-10 #3367D6 mb-4" />
+                  <Users className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Personal Growth</h4>
                   <p className="text-#1565c0 text-sm">
                     Living and studying in a foreign country can be challenging but often leads to significant personal growth. Students become more independent, learn to navigate new environments, and develop essential problem-solving skills.
@@ -90,7 +90,7 @@ const StudyAbroadEducationConsultants = () => {
                 </div>
                 
                 <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-lg p-6">
-                  <TrendingUp className="h-10 w-10 #3367D6 mb-4" />
+                  <TrendingUp className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Enhanced Career Prospects</h4>
                   <p className="text-#1565c0 text-sm">
                     International education credentials are highly valued by employers worldwide. Graduates with foreign degrees often have better job prospects and higher earning potential in the global job market.
@@ -102,7 +102,7 @@ const StudyAbroadEducationConsultants = () => {
             {/* The Need for Education Consultants */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <BookOpen className="h-6 w-6 #3367D6 mr-3" />
+                <BookOpen className="h-6 w-6 #1845B3 mr-3" />
                 The Need for Education Consultants
               </h3>
               <p className="text-gray-700 leading-relaxed">
@@ -114,29 +114,29 @@ const StudyAbroadEducationConsultants = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-3">
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
                       <span className="text-#1565c0 text-sm">Complex application processes</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
                       <span className="text-#1565c0 text-sm">Visa documentation requirements</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
                       <span className="text-#1565c0 text-sm">University selection criteria</span>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
                       <span className="text-#1565c0 text-sm">Financial planning and scholarships</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
                       <span className="text-#1565c0 text-sm">Cultural adaptation guidance</span>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-0.5" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
                       <span className="text-#1565c0 text-sm">Pre-departure preparation</span>
                     </div>
                   </div>
@@ -147,7 +147,7 @@ const StudyAbroadEducationConsultants = () => {
             {/* Role of Abroad Education Consultants */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <Target className="h-6 w-6 #3367D6 mr-3" />
+                <Target className="h-6 w-6 #1845B3 mr-3" />
                 Role of Abroad Education Consultants
               </h3>
               <p className="text-gray-700 leading-relaxed">
@@ -157,7 +157,7 @@ const StudyAbroadEducationConsultants = () => {
               <div className="space-y-4">
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                    <Award className="h-5 w-5 #3367D6 mr-2" />
+                    <Award className="h-5 w-5 #1845B3 mr-2" />
                     Choosing the Right Program
                   </h4>
                   <p className="text-gray-700 text-sm mb-3">
@@ -173,7 +173,7 @@ const StudyAbroadEducationConsultants = () => {
                 
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                    <CheckCircle className="h-5 w-5 #3367D6 mr-2" />
+                    <CheckCircle className="h-5 w-5 #1845B3 mr-2" />
                     Assistance with Documentation and Visa Processing
                   </h4>
                   <p className="text-gray-700 text-sm mb-3">
@@ -189,7 +189,7 @@ const StudyAbroadEducationConsultants = () => {
                 
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
                   <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                    <Globe className="h-5 w-5 #3367D6 mr-2" />
+                    <Globe className="h-5 w-5 #1845B3 mr-2" />
                     Pre-departure Guidance
                   </h4>
                   <p className="text-gray-700 text-sm mb-3">
@@ -208,7 +208,7 @@ const StudyAbroadEducationConsultants = () => {
             {/* Dunya Consultants: The Best Choice */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <Star className="h-6 w-6 #3367D6 mr-3" />
+                <Star className="h-6 w-6 #1845B3 mr-3" />
                 Dunya Consultants: The Best Choice for Pakistani Students
               </h3>
               <p className="text-gray-700 leading-relaxed">
@@ -217,7 +217,7 @@ const StudyAbroadEducationConsultants = () => {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gradient-to-br from-blue-50 to-orange-50 rounded-lg p-6">
-                  <Award className="h-10 w-10 #3367D6 mb-4" />
+                  <Award className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Expertise and Experience</h4>
                   <p className="text-#1565c0 text-sm">
                     With years of experience in international education, our team of experts understands the unique challenges faced by Pakistani students and provides tailored solutions to overcome them.
@@ -225,7 +225,7 @@ const StudyAbroadEducationConsultants = () => {
                 </div>
                 
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6">
-                  <Users className="h-10 w-10 #3367D6 mb-4" />
+                  <Users className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Customized Counseling</h4>
                   <p className="text-#1565c0 text-sm">
                     We believe that every student is unique, which is why we provide personalized counseling sessions to understand individual needs and create customized study plans.
@@ -233,7 +233,7 @@ const StudyAbroadEducationConsultants = () => {
                 </div>
                 
                 <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-lg p-6">
-                  <Globe className="h-10 w-10 #3367D6 mb-4" />
+                  <Globe className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Strong International Network</h4>
                   <p className="text-#1565c0 text-sm">
                     Our extensive network of partner universities and institutions worldwide ensures that our students have access to the best educational opportunities available.
@@ -241,7 +241,7 @@ const StudyAbroadEducationConsultants = () => {
                 </div>
                 
                 <div className="bg-gradient-to-br from-blue-50 to-pink-50 rounded-lg p-6">
-                  <Heart className="h-10 w-10 #3367D6 mb-4" />
+                  <Heart className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Continuous Support</h4>
                   <p className="text-#1565c0 text-sm">
                     Our commitment to students doesn't end with admission. We provide ongoing support throughout their academic journey and beyond.
@@ -259,19 +259,19 @@ const StudyAbroadEducationConsultants = () => {
                     <h4 className="font-semibold text-gray-900">Academic Services</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #3367D6" />
+                        <ArrowRight className="h-4 w-4 #1845B3" />
                         <span>University selection and application</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #3367D6" />
+                        <ArrowRight className="h-4 w-4 #1845B3" />
                         <span>Course and program counseling</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #3367D6" />
+                        <ArrowRight className="h-4 w-4 #1845B3" />
                         <span>Scholarship guidance and applications</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #3367D6" />
+                        <ArrowRight className="h-4 w-4 #1845B3" />
                         <span>Academic document preparation</span>
                       </li>
                     </ul>
@@ -281,19 +281,19 @@ const StudyAbroadEducationConsultants = () => {
                     <h4 className="font-semibold text-gray-900">Support Services</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #3367D6" />
+                        <ArrowRight className="h-4 w-4 #1845B3" />
                         <span>Visa application and processing</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #3367D6" />
+                        <ArrowRight className="h-4 w-4 #1845B3" />
                         <span>Interview preparation and coaching</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #3367D6" />
+                        <ArrowRight className="h-4 w-4 #1845B3" />
                         <span>Pre-departure orientation</span>
                       </li>
                       <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #3367D6" />
+                        <ArrowRight className="h-4 w-4 #1845B3" />
                         <span>Post-arrival assistance</span>
                       </li>
                     </ul>
@@ -350,23 +350,23 @@ const StudyAbroadEducationConsultants = () => {
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Why Choose Dunya Consultants?</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-4 w-4 #3367D6 mt-0.5" />
+                  <CheckCircle className="h-4 w-4 #1845B3 mt-0.5" />
                   <span className="text-gray-700">15+ years of experience</span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-4 w-4 #3367D6 mt-0.5" />
+                  <CheckCircle className="h-4 w-4 #1845B3 mt-0.5" />
                   <span className="text-gray-700">5000+ successful placements</span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-4 w-4 #3367D6 mt-0.5" />
+                  <CheckCircle className="h-4 w-4 #1845B3 mt-0.5" />
                   <span className="text-gray-700">98% visa success rate</span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-4 w-4 #3367D6 mt-0.5" />
+                  <CheckCircle className="h-4 w-4 #1845B3 mt-0.5" />
                   <span className="text-gray-700">17+ office locations</span>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-4 w-4 #3367D6 mt-0.5" />
+                  <CheckCircle className="h-4 w-4 #1845B3 mt-0.5" />
                   <span className="text-gray-700">400+ university partnerships</span>
                 </div>
               </div>
@@ -377,23 +377,23 @@ const StudyAbroadEducationConsultants = () => {
               <div className="space-y-2 text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-#1565c0">United Kingdom</span>
-                  <span className="#3367D6 font-medium">Most Popular</span>
+                  <span className="#1845B3 font-medium">Most Popular</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-#1565c0">Canada</span>
-                  <span className="#3367D6 font-medium">High Demand</span>
+                  <span className="#1845B3 font-medium">High Demand</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-#1565c0">Australia</span>
-                  <span className="#3367D6 font-medium">Growing</span>
+                  <span className="#1845B3 font-medium">Growing</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-#1565c0">USA</span>
-                  <span className="#3367D6 font-medium">Premium</span>
+                  <span className="#1845B3 font-medium">Premium</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-#1565c0">Germany</span>
-                  <span className="#3367D6 font-medium">Affordable</span>
+                  <span className="#1845B3 font-medium">Affordable</span>
                 </div>
               </div>
             </div>

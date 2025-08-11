@@ -10,7 +10,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
       
       {/* Hero Section */}
       <section 
-        className="relative bg-[#4285F4] text-white py-16 lg:py-24"
+        className="relative bg-[#1D50C9] text-white py-16 lg:py-24"
         style={{
           backgroundImage: `linear-gradient(rgba(18, 79, 211, 0.9), rgba(18, 79, 211, 0.9)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
           backgroundSize: 'cover',
@@ -53,7 +53,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
 
               {/* UK University Fees Section */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-[#4285F4] pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-[#1D50C9] pl-4">
                   UK University Fees for International Students
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -69,7 +69,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                 <div className="overflow-x-auto mb-8">
                   <table className="w-full border-collapse border border-gray-300">
                     <thead>
-                      <tr className="bg-[#4285F4] text-white">
+                      <tr className="bg-[#1D50C9] text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left">Study Level</th>
                         <th className="border border-gray-300 px-4 py-3 text-left">Average Tuition Fee</th>
                       </tr>
@@ -94,7 +94,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
 
               {/* Low-cost Universities Section */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-[#4285F4] pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-[#1D50C9] pl-4">
                   Low-cost Universities in UK for International Students
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -113,7 +113,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                     "University of Buckingham"
                   ].map((university, index) => (
                     <div key={index} className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
-                      <CheckCircle className="h-5 w-5 #3367D6 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #1845B3 flex-shrink-0" />
                       <span className="text-gray-800 font-medium">{university}</span>
                     </div>
                   ))}
@@ -122,7 +122,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
 
               {/* Living Cost Section */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-[#4285F4] pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-[#1D50C9] pl-4">
                   Living Cost in UK for International Students
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -135,7 +135,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                 {/* Accommodation Section */}
                 <div className="mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                    <Home className="h-6 w-6 text-[#4285F4] mr-2" />
+                    <Home className="h-6 w-6 text-[#1D50C9] mr-2" />
                     Accommodation
                   </h3>
                   <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -145,7 +145,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                   <div className="overflow-x-auto mb-6">
                     <table className="w-full border-collapse border border-gray-300">
                       <thead>
-                        <tr className="bg-[#4285F4] text-white">
+                        <tr className="bg-[#1D50C9] text-white">
                           <th className="border border-gray-300 px-4 py-3 text-left">Accommodation Type</th>
                           <th className="border border-gray-300 px-4 py-3 text-left">Average Cost</th>
                         </tr>
@@ -167,7 +167,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                 {/* Food Costs Section */}
                 <div className="mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                    <BookOpen className="h-6 w-6 text-[#4285F4] mr-2" />
+                    <BookOpen className="h-6 w-6 text-[#1D50C9] mr-2" />
                     Food Costs
                   </h3>
                   <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -181,7 +181,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                 {/* Transportation Section */}
                 <div className="mb-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-                    <Bus className="h-6 w-6 text-[#4285F4] mr-2" />
+                    <Bus className="h-6 w-6 text-[#1D50C9] mr-2" />
                     Transportation Expenses
                   </h3>
                   <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -192,7 +192,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
 
               {/* Conclusion Section */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-[#4285F4] pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 border-[#1D50C9] pl-4">
                   Conclusion
                 </h2>
                 <p className="text-lg text-gray-700 leading-relaxed mb-6">
@@ -205,7 +205,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
 
               {/* FAQs Section */}
               <section className="mb-12">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-[#4285F4] pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-8 border-l-4 border-[#1D50C9] pl-4">
                   Frequently Asked Questions
                 </h2>
                 
@@ -251,28 +251,28 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Quick Facts</h3>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
-                    <DollarSign className="h-5 w-5 text-[#4285F4] flex-shrink-0 mt-1" />
+                    <DollarSign className="h-5 w-5 text-[#1D50C9] flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-medium text-gray-900">Tuition Fees</p>
                       <p className="text-sm text-gray-600">£10,000 - £24,000/year</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <Home className="h-5 w-5 text-[#4285F4] flex-shrink-0 mt-1" />
+                    <Home className="h-5 w-5 text-[#1D50C9] flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-medium text-gray-900">Living Costs</p>
                       <p className="text-sm text-gray-600">£1,100 - £1,300/month</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <Users className="h-5 w-5 text-[#4285F4] flex-shrink-0 mt-1" />
+                    <Users className="h-5 w-5 text-[#1D50C9] flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-medium text-gray-900">Work Rights</p>
                       <p className="text-sm text-gray-600">20 hours/week during studies</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <MapPin className="h-5 w-5 text-[#4285F4] flex-shrink-0 mt-1" />
+                    <MapPin className="h-5 w-5 text-[#1D50C9] flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-medium text-gray-900">Popular Cities</p>
                       <p className="text-sm text-gray-600">London, Manchester, Edinburgh</p>
@@ -292,7 +292,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
                     { name: "Ulster University", location: "Northern Ireland" }
                   ].map((uni, index) => (
                     <div key={index} className="flex items-center space-x-3 p-3 bg-white rounded border">
-                      <Star className="h-4 w-4 #4285F4 flex-shrink-0" />
+                      <Star className="h-4 w-4 #1D50C9 flex-shrink-0" />
                       <div>
                         <p className="font-medium text-gray-900 text-sm">{uni.name}</p>
                         <p className="text-xs text-gray-600">{uni.location}</p>

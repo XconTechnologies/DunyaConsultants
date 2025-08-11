@@ -70,9 +70,9 @@ export default function ReasonsSection() {
     <section ref={ref} className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 #4285F4 rounded-full -translate-x-48 -translate-y-48" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 #4285F4 rounded-full translate-x-48 translate-y-48" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 #3367D6 rounded-full" />
+        <div className="absolute top-0 left-0 w-96 h-96 #1D50C9 rounded-full -translate-x-48 -translate-y-48" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 #1D50C9 rounded-full translate-x-48 translate-y-48" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 #1845B3 rounded-full" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -87,9 +87,9 @@ export default function ReasonsSection() {
             className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
             whileHover={{ scale: 1.02 }}
           >
-            <span style={{ color: '#4285F4' }}>8 Reasons that Sets us apart from</span>
+            <span style={{ color: '#1D50C9' }}>8 Reasons that Sets us apart from</span>
             <br />
-            <span style={{ color: '#4285F4' }}>
+            <span style={{ color: '#1D50C9' }}>
               Other Educational Consultants in Pakistan
             </span>
           </motion.h2>
@@ -178,7 +178,7 @@ export default function ReasonsSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <motion.button
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#4285F4] via-blue-600 to-[#3367D6] text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-[#1D50C9] via-blue-600 to-[#1845B3] text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

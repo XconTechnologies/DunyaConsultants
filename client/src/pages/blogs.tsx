@@ -545,7 +545,7 @@ export default function Blogs() {
       <div className="min-h-screen bg-white">
         <Navigation />
         {/* Article Header */}
-        <section className="pt-32 pb-20 bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white">
+        <section className="pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <Button 
               onClick={() => setSelectedPost(null)}
@@ -637,7 +637,7 @@ export default function Blogs() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse", repeatDelay: 3 }}
-                            className="my-12 p-6 bg-gradient-to-r from-[#4285F4] to-blue-500 rounded-xl text-white relative overflow-hidden"
+                            className="my-12 p-6 bg-gradient-to-r from-[#1D50C9] to-blue-500 rounded-xl text-white relative overflow-hidden"
                           >
                             <div className="absolute inset-0 bg-black/10"></div>
                             <div className="relative z-10 text-center">
@@ -650,7 +650,7 @@ export default function Blogs() {
                               </motion.div>
                               <h3 className="text-2xl font-bold mb-2">🎓 Study Visa Success Rate: 95%</h3>
                               <p className="mb-4">Join thousands of successful students who got their visas with our expert guidance</p>
-                              <Button className="bg-white #3367D6 hover:bg-blue-50">
+                              <Button className="bg-white #1845B3 hover:bg-blue-50">
                                 Start Your Visa Journey
                               </Button>
                             </div>
@@ -801,7 +801,7 @@ export default function Blogs() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="my-12 p-8 bg-gradient-to-r from-[#4285F4] via-#1a73e8 to-#1565c0 rounded-xl text-white relative overflow-hidden"
+              className="my-12 p-8 bg-gradient-to-r from-[#1D50C9] via-#1a73e8 to-#1565c0 rounded-xl text-white relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-black/10"></div>
               <div className="relative z-10 text-center">
@@ -813,7 +813,7 @@ export default function Blogs() {
                 </motion.div>
                 <p className="text-xl mb-6">Don't let your dreams wait! Get personalized guidance from our experts today.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                  <Button className="bg-white #3367D6 hover:bg-blue-50 flex-1">
+                  <Button className="bg-white #1845B3 hover:bg-blue-50 flex-1">
                     Book Free Consultation
                   </Button>
                   <Button variant="outline" className="border-white text-white hover:bg-white/10 flex-1">
@@ -858,10 +858,10 @@ export default function Blogs() {
       <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50" ref={ref}>
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white relative overflow-hidden">
+      <section className="pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white relative overflow-hidden">
         {/* Enhanced Background with Animated Elements */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4]/20 to-blue-500/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1D50C9]/20 to-blue-500/20"></div>
           <motion.div
             animate={{ 
               scale: [1, 1.1, 1],
@@ -979,7 +979,7 @@ export default function Blogs() {
               <div className="flex flex-col lg:flex-row gap-6 items-center">
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 #4285F4 w-5 h-5" />
+                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 #1D50C9 w-5 h-5" />
                     <Input
                       placeholder="Search articles, topics, or destinations..."
                       value={searchQuery}
@@ -992,7 +992,7 @@ export default function Blogs() {
                 <div className="flex gap-4">
                   <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                     <SelectTrigger className="w-52 h-12 border-blue-200 focus:border-blue-400 focus:ring-blue-400 bg-white/80 backdrop-blur-sm">
-                      <Filter className="w-4 h-4 mr-2 #4285F4" />
+                      <Filter className="w-4 h-4 mr-2 #1D50C9" />
                       <SelectValue placeholder="Select Category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -1032,7 +1032,7 @@ export default function Blogs() {
 
                         <Button 
                           onClick={() => setSelectedPost(post)}
-                          className="#3367D6 hover:bg-#1a73e8 text-white"
+                          className="#1845B3 hover:bg-#1a73e8 text-white"
                         >
                           Read More
                           <ChevronRight className="w-4 h-4 ml-2" />
@@ -1085,7 +1085,7 @@ export default function Blogs() {
                         <Button 
                           size="sm" 
                           onClick={() => setSelectedPost(post)}
-                          className="#3367D6 hover:bg-#1a73e8 text-white"
+                          className="#1845B3 hover:bg-#1a73e8 text-white"
                         >
                           Read More
                           <ChevronRight className="w-4 h-4 ml-2" />
@@ -1109,7 +1109,7 @@ export default function Blogs() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-20 bg-gradient-to-br from-#1565c0 via-#1a73e8 to-[#3367D6] text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-#1565c0 via-#1a73e8 to-[#1845B3] text-white relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <motion.div
@@ -1122,7 +1122,7 @@ export default function Blogs() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="absolute -top-20 -right-20 w-96 h-96 rounded-full #4285F4/10 blur-3xl"
+            className="absolute -top-20 -right-20 w-96 h-96 rounded-full #1D50C9/10 blur-3xl"
           />
           <motion.div
             animate={{ 

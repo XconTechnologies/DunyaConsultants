@@ -267,7 +267,7 @@ export default function StatsBanner() {
                 <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
                   {/* Icon Container */}
                   <div className="relative mb-4 flex justify-center">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#4285F4' }}>
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
                       <IconComponent className="w-5 h-5 text-white" />
                     </div>
                     
@@ -315,9 +315,9 @@ export default function StatsBanner() {
         {/* Bottom Element */}
         <div className="flex justify-center mt-16 mb-24">
           <div className="flex items-center gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10">
-            <Shield className="w-5 h-5" style={{ color: '#4285F4' }} />
+            <Shield className="w-5 h-5" style={{ color: '#1D50C9' }} />
             <span className="text-white/80 font-medium">Trusted Excellence Since 2021</span>
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#4285F4' }} />
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#1D50C9' }} />
           </div>
         </div>
       </div>

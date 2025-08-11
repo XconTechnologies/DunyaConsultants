@@ -252,7 +252,7 @@ export default function CountryGuide() {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-#1e3a8a via-#1a73e8 to-#1565c0 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-[#4285F4]/30 to-#1565c0/30"></div>
+          <div className="w-full h-full bg-gradient-to-r from-[#1D50C9]/30 to-#1565c0/30"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -392,14 +392,14 @@ export default function CountryGuide() {
                           <p className="text-primary font-semibold">{currentCountry.averageCost}</p>
                         </div>
                         <div className="text-center p-4 bg-blue-50 rounded-lg">
-                          <Clock className="w-8 h-8 #3367D6 mx-auto mb-2" />
+                          <Clock className="w-8 h-8 #1845B3 mx-auto mb-2" />
                           <h4 className="font-bold text-neutral-800">Work Rights</h4>
-                          <p className="#3367D6 font-semibold">{currentCountry.workRights}</p>
+                          <p className="#1845B3 font-semibold">{currentCountry.workRights}</p>
                         </div>
                         <div className="text-center p-4 bg-blue-50 rounded-lg">
-                          <CheckCircle className="w-8 h-8 #3367D6 mx-auto mb-2" />
+                          <CheckCircle className="w-8 h-8 #1845B3 mx-auto mb-2" />
                           <h4 className="font-bold text-neutral-800">Visa Success</h4>
-                          <p className="#3367D6 font-semibold">{currentCountry.visaSuccess}</p>
+                          <p className="#1845B3 font-semibold">{currentCountry.visaSuccess}</p>
                         </div>
                       </div>
 
@@ -408,7 +408,7 @@ export default function CountryGuide() {
                         <div className="grid md:grid-cols-2 gap-4">
                           {currentCountry.highlights.map((highlight, index) => (
                             <div key={index} className="flex items-center space-x-3">
-                              <CheckCircle className="w-5 h-5 #4285F4 flex-shrink-0" />
+                              <CheckCircle className="w-5 h-5 #1D50C9 flex-shrink-0" />
                               <span className="text-neutral-700">{highlight}</span>
                             </div>
                           ))}
@@ -447,7 +447,7 @@ export default function CountryGuide() {
                                     </div>
                                   </div>
                                 </div>
-                                <Badge className={university.type === "Private" ? "#4285F4" : "#4285F4"}>
+                                <Badge className={university.type === "Private" ? "#1D50C9" : "#1D50C9"}>
                                   {university.type}
                                 </Badge>
                               </div>
@@ -459,14 +459,14 @@ export default function CountryGuide() {
                                   <div className="font-bold text-primary">{university.tuition}</div>
                                 </div>
                                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                                  <Users className="w-5 h-5 #4285F4 mx-auto mb-1" />
+                                  <Users className="w-5 h-5 #1D50C9 mx-auto mb-1" />
                                   <div className="text-sm text-neutral-600">Acceptance Rate</div>
-                                  <div className="font-bold #4285F4">{university.acceptance}</div>
+                                  <div className="font-bold #1D50C9">{university.acceptance}</div>
                                 </div>
                                 <div className="text-center p-3 bg-gray-50 rounded-lg">
-                                  <Star className="w-5 h-5 #4285F4 mx-auto mb-1" />
+                                  <Star className="w-5 h-5 #1D50C9 mx-auto mb-1" />
                                   <div className="text-sm text-neutral-600">World Rank</div>
-                                  <div className="font-bold #4285F4">#{university.rank}</div>
+                                  <div className="font-bold #1D50C9">#{university.rank}</div>
                                 </div>
                               </div>
 
@@ -484,7 +484,7 @@ export default function CountryGuide() {
                                 <div className="space-y-2">
                                   {university.highlights.map((highlight, idx) => (
                                     <div key={idx} className="flex items-center space-x-2">
-                                      <CheckCircle className="w-4 h-4 #4285F4 flex-shrink-0" />
+                                      <CheckCircle className="w-4 h-4 #1D50C9 flex-shrink-0" />
                                       <span className="text-sm text-neutral-600">{highlight}</span>
                                     </div>
                                   ))}

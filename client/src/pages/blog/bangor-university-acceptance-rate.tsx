@@ -10,11 +10,11 @@ export default function BangorUniversityAcceptanceRate() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 University Guide
               </span>
             </div>
@@ -64,17 +64,17 @@ export default function BangorUniversityAcceptanceRate() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#entry-requirements" className="hover:#3367D6">Entry Requirements for International Students</a></li>
-                  <li><a href="#english-requirements" className="hover:#3367D6">English Language Requirements</a></li>
-                  <li><a href="#admission-process" className="hover:#3367D6">Step-by-Step Admission Process</a></li>
-                  <li><a href="#admission-deadlines" className="hover:#3367D6">Admission Deadlines 2024-2025</a></li>
-                  <li><a href="#dunya-representative" className="hover:#3367D6">Dunya Consultants - Official Representative</a></li>
-                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
+                  <li><a href="#entry-requirements" className="hover:#1845B3">Entry Requirements for International Students</a></li>
+                  <li><a href="#english-requirements" className="hover:#1845B3">English Language Requirements</a></li>
+                  <li><a href="#admission-process" className="hover:#1845B3">Step-by-Step Admission Process</a></li>
+                  <li><a href="#admission-deadlines" className="hover:#1845B3">Admission Deadlines 2024-2025</a></li>
+                  <li><a href="#dunya-representative" className="hover:#1845B3">Dunya Consultants - Official Representative</a></li>
+                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* University Overview */}
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold text-#1565c0 mb-4">Bangor University at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -92,7 +92,7 @@ export default function BangorUniversityAcceptanceRate() {
 
               {/* Entry Requirements Section */}
               <section id="entry-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Entry Requirements for International Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Entry Requirements for International Students</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   International students who are waiting for Bangor University admissions to study undergraduate or graduate courses should meet specific Bangor University entry requirements as given below:
@@ -143,7 +143,7 @@ export default function BangorUniversityAcceptanceRate() {
 
               {/* English Requirements Section */}
               <section id="english-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">English Language Requirements for Bangor University Pakistan</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">English Language Requirements for Bangor University Pakistan</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   International students applying to Bangor University should check English requirements from Bangor university application portal. You will need an IELTS score of 5.5 for undergraduate courses and 6.0 for bachelor's programs.
@@ -189,7 +189,7 @@ export default function BangorUniversityAcceptanceRate() {
 
               {/* Admission Process Section */}
               <section id="admission-process" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Step-by-Step Bangor University Admissions Process</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Step-by-Step Bangor University Admissions Process</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   International students can do Bangor University online registration through its official website or UCAS. Here is the step-by-step guide for you to apply:
@@ -198,7 +198,7 @@ export default function BangorUniversityAcceptanceRate() {
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 #3367D6 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">1</div>
+                      <div className="w-8 h-8 #1845B3 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">1</div>
                       <h3 className="text-lg font-semibold text-gray-800">Create a UCAS Account</h3>
                     </div>
                     <p className="text-gray-700">Sign up on the official UCAS website and check Bangor Uni term dates.</p>
@@ -206,7 +206,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 #3367D6 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
+                      <div className="w-8 h-8 #1845B3 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">2</div>
                       <h3 className="text-lg font-semibold text-gray-800">Choose a Course</h3>
                     </div>
                     <p className="text-gray-700">After checking Bangor University term dates 2025, Select your desired program from Bangor University's courses.</p>
@@ -214,7 +214,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 #3367D6 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
+                      <div className="w-8 h-8 #1845B3 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">3</div>
                       <h3 className="text-lg font-semibold text-gray-800">Upload Documents</h3>
                     </div>
                     <p className="text-gray-700">Submit all the required documents to complete your profile.</p>
@@ -222,7 +222,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 #3367D6 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
+                      <div className="w-8 h-8 #1845B3 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">4</div>
                       <h3 className="text-lg font-semibold text-gray-800">Write a Personal Statement</h3>
                     </div>
                     <p className="text-gray-700">Provide a SOP about yourself as well as your goals.</p>
@@ -230,7 +230,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 #3367D6 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
+                      <div className="w-8 h-8 #1845B3 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">5</div>
                       <h3 className="text-lg font-semibold text-gray-800">Review Your Application</h3>
                     </div>
                     <p className="text-gray-700">Double-check all details for accuracy.</p>
@@ -238,7 +238,7 @@ export default function BangorUniversityAcceptanceRate() {
                   
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-3">
-                      <div className="w-8 h-8 #3367D6 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">6</div>
+                      <div className="w-8 h-8 #1845B3 text-white rounded-full flex items-center justify-center font-bold text-sm mr-3">6</div>
                       <h3 className="text-lg font-semibold text-gray-800">Pay the Application Fee</h3>
                     </div>
                     <p className="text-gray-700">Submit the non-refundable fee to finalize your application.</p>
@@ -248,7 +248,7 @@ export default function BangorUniversityAcceptanceRate() {
 
               {/* Admission Deadlines Section */}
               <section id="admission-deadlines" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Bangor University Admissions Deadlines 2024-2025</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Bangor University Admissions Deadlines 2024-2025</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Bangor University has different application deadlines depending on the course. For undergraduate admissions through UCAS, the early application deadline is January 31, 2025. Late applications can be submitted until June 30, 2025, if there are still places available.
@@ -287,7 +287,7 @@ export default function BangorUniversityAcceptanceRate() {
 
               {/* Dunya Representative Section */}
               <section id="dunya-representative" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Dunya Consultants – Official Bangor University Representative in Pakistan</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Dunya Consultants – Official Bangor University Representative in Pakistan</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Proudly, Dunya Consultants is the official representative of Bangor University UK in Pakistan. Our experts are here to provide advice to students who are thinking of studying at this popular university. We help you throughout the process, from selecting the right program to submitting your application.
@@ -322,7 +322,7 @@ export default function BangorUniversityAcceptanceRate() {
 
               {/* FAQs Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -359,7 +359,7 @@ export default function BangorUniversityAcceptanceRate() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Conclusion</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Bangor University is ranked among the top ten universities in the United Kingdom. It is a welcoming, friendly, and student-focused university that provides excellent education opportunities for international students from Pakistan.
@@ -379,7 +379,7 @@ export default function BangorUniversityAcceptanceRate() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="tel:+923041110947" 
-                    className="#3367D6 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
+                    className="#1845B3 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Call Now: +92 304 1110947
                   </a>
@@ -400,7 +400,7 @@ export default function BangorUniversityAcceptanceRate() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <FileText className="w-5 h-5 mr-2 #4285F4" />
+                  <FileText className="w-5 h-5 mr-2 #1D50C9" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -418,7 +418,7 @@ export default function BangorUniversityAcceptanceRate() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Acceptance Rate:</span>
-                    <span className="font-medium #3367D6">70-80%</span>
+                    <span className="font-medium #1845B3">70-80%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">UK Ranking:</span>
@@ -430,7 +430,7 @@ export default function BangorUniversityAcceptanceRate() {
               {/* Entry Requirements */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <GraduationCap className="w-5 h-5 mr-2 #4285F4" />
+                  <GraduationCap className="w-5 h-5 mr-2 #1D50C9" />
                   Entry Requirements
                 </h3>
                 <div className="space-y-3 text-sm">

@@ -116,10 +116,10 @@ export default function TestimonialsSection() {
             animate={isInView ? { scale: 1 } : { scale: 0.8 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <span className="#3367D6 text-2xl font-bold italic transform -rotate-2 inline-block">
+            <span className="#1845B3 text-2xl font-bold italic transform -rotate-2 inline-block">
               Testimonial
             </span>
-            <div className="w-16 h-1 #4285F4 mx-auto mt-1"></div>
+            <div className="w-16 h-1 #1D50C9 mx-auto mt-1"></div>
           </motion.div>
           
           <motion.h2 
@@ -128,7 +128,7 @@ export default function TestimonialsSection() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4285F4] to-[#3367D6]">Students Say</span>
+            What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#1D50C9] to-[#1845B3]">Students Say</span>
           </motion.h2>
           
           <motion.p 
@@ -169,7 +169,7 @@ export default function TestimonialsSection() {
                   </div>
                   
                   {/* Achievement Badge */}
-                  <div className="absolute top-4 left-4 bg-gradient-to-r from-[#4285F4] to-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
+                  <div className="absolute top-4 left-4 bg-gradient-to-r from-[#1D50C9] to-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center">
                     <Award className="w-3 h-3 mr-1" />
                     {testimonial.achievement}
                   </div>
@@ -195,14 +195,14 @@ export default function TestimonialsSection() {
                           alt={testimonial.name}
                           className="w-12 h-12 rounded-full object-cover border-2 border-blue-200"
                         />
-                        <div className="absolute -bottom-1 -right-1 w-5 h-5 #4285F4 rounded-full flex items-center justify-center">
+                        <div className="absolute -bottom-1 -right-1 w-5 h-5 #1D50C9 rounded-full flex items-center justify-center">
                           <GraduationCap className="w-3 h-3 text-white" />
                         </div>
                       </div>
                       <div className="ml-4">
                         <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
                         <p className="text-sm text-gray-600">{testimonial.course}</p>
-                        <p className="text-xs #3367D6 font-medium">{testimonial.university}, {testimonial.country}</p>
+                        <p className="text-xs #1845B3 font-medium">{testimonial.university}, {testimonial.country}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -217,7 +217,7 @@ export default function TestimonialsSection() {
               onClick={prevSlide}
               variant="outline"
               size="icon"
-              className="rounded-full bg-white hover:bg-blue-50 border-2 border-blue-200 #3367D6 shadow-md"
+              className="rounded-full bg-white hover:bg-blue-50 border-2 border-blue-200 #1845B3 shadow-md"
             >
               <ChevronLeft className="w-5 h-5" />
             </Button>
@@ -230,7 +230,7 @@ export default function TestimonialsSection() {
                   onClick={() => setCurrentSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
-                      ? '#3367D6 scale-125' 
+                      ? '#1845B3 scale-125' 
                       : 'bg-blue-200 hover:bg-blue-400'
                   }`}
                 />
@@ -241,7 +241,7 @@ export default function TestimonialsSection() {
               onClick={nextSlide}
               variant="outline"
               size="icon"
-              className="rounded-full bg-white hover:bg-blue-50 border-2 border-blue-200 #3367D6 shadow-md"
+              className="rounded-full bg-white hover:bg-blue-50 border-2 border-blue-200 #1845B3 shadow-md"
             >
               <ChevronRight className="w-5 h-5" />
             </Button>
@@ -255,12 +255,12 @@ export default function TestimonialsSection() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 1.2 }}
         >
-          <div className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-2xl p-8 text-white">
+          <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">Ready to Write Your Success Story?</h3>
             <p className="text-blue-100 mb-6">Join thousands of Pakistani students who've achieved their international education dreams</p>
             <Button 
               size="lg"
-              className="bg-white #3367D6 hover:bg-blue-50 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              className="bg-white #1845B3 hover:bg-blue-50 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
             >
               <MessageCircle className="mr-2" size={20} />
               Start Your Journey Today

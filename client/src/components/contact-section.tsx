@@ -30,28 +30,28 @@ const contactInfo = [
     title: "Phone",
     details: "+92 304 1110947",
     description: "Call us for immediate assistance",
-    color: "from-[#4285F4] to-[#3367D6]"
+    color: "from-[#1D50C9] to-[#1845B3]"
   },
   {
     icon: Mail,
     title: "Email",
     details: "info@dunyaconsultants.com",
     description: "Send us your queries anytime",
-    color: "from-[#4285F4] to-[#3367D6]"
+    color: "from-[#1D50C9] to-[#1845B3]"
   },
   {
     icon: MapPin,
     title: "Head Office",
     details: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
     description: "Visit us for personal consultation",
-    color: "from-[#4285F4] to-[#3367D6]"
+    color: "from-[#1D50C9] to-[#1845B3]"
   },
   {
     icon: Clock,
     title: "Working Hours",
     details: "Mon - Sat: 9:00 AM - 6:00 PM",
     description: "Sunday: Closed",
-    color: "from-[#4285F4] to-[#3367D6]"
+    color: "from-[#1D50C9] to-[#1845B3]"
   }
 ];
 
@@ -109,7 +109,7 @@ export default function ContactSection() {
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Get In{" "}
-            <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
               Touch
             </span>
           </h2>
@@ -170,7 +170,7 @@ export default function ContactSection() {
               <Card className="bg-white border-0 shadow-lg overflow-hidden">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 #3367D6" />
+                    <MapPin className="w-5 h-5 #1845B3" />
                     Our Location
                   </CardTitle>
                 </CardHeader>
@@ -199,7 +199,7 @@ export default function ContactSection() {
             <Card className="bg-white border-0 shadow-2xl">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-gray-900 flex items-center gap-2">
-                  <MessageCircle className="w-6 h-6 #3367D6" />
+                  <MessageCircle className="w-6 h-6 #1845B3" />
                   Send us a Message
                 </CardTitle>
                 <p className="text-gray-600">
@@ -302,7 +302,7 @@ export default function ContactSection() {
                     <Button
                       type="submit"
                       disabled={submitMutation.isPending}
-                      className="w-full bg-gradient-to-r from-[#4285F4] to-[#3367D6] hover:from-#1a73e8 hover:to-[#1a73e8] py-6 text-lg font-semibold"
+                      className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-#1a73e8 hover:to-[#1a73e8] py-6 text-lg font-semibold"
                     >
                       {submitMutation.isPending ? (
                         "Sending..."
@@ -328,7 +328,7 @@ export default function ContactSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-16"
         >
-          <div className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-3xl p-8 lg:p-12 text-white">
+          <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-3xl p-8 lg:p-12 text-white">
             <h3 className="text-3xl font-bold mb-4">Need Immediate Assistance?</h3>
             <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
               Call our expert counselors directly for immediate support and guidance.
@@ -336,7 +336,7 @@ export default function ContactSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
-                className="bg-white #3367D6 hover:bg-blue-50 px-8 py-3 rounded-full font-semibold"
+                className="bg-white #1845B3 hover:bg-blue-50 px-8 py-3 rounded-full font-semibold"
                 onClick={() => window.open("tel:+923041110947")}
               >
                 <Phone className="w-5 h-5 mr-2" />
@@ -345,7 +345,7 @@ export default function ContactSection() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:#3367D6 px-8 py-3 rounded-full font-semibold"
+                className="border-white text-white hover:bg-white hover:#1845B3 px-8 py-3 rounded-full font-semibold"
                 onClick={() => window.open("https://wa.me/923041110947", "_blank")}
               >
                 <MessageCircle className="w-5 h-5 mr-2" />

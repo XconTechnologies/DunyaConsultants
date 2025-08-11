@@ -17,7 +17,7 @@ export default function MasterOfLawsLLMAustralia() {
         <Navigation />
         <div className="flex items-center justify-center h-screen">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 #3367D6"></div>
+            <div className="animate-spin rounded-full h-32 w-32 border-b-2 #1845B3"></div>
             <p className="mt-4 text-gray-600">Loading...</p>
           </div>
         </div>
@@ -30,11 +30,11 @@ export default function MasterOfLawsLLMAustralia() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study in Australia
               </span>
             </div>
@@ -89,7 +89,7 @@ export default function MasterOfLawsLLMAustralia() {
             {/* Quick Facts */}
             <div className="bg-white rounded-lg shadow-sm border p-6">
               <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                <BookOpen className="w-5 h-5 mr-2 #4285F4" />
+                <BookOpen className="w-5 h-5 mr-2 #1D50C9" />
                 Quick Facts
               </h3>
               <div className="space-y-3 text-sm">
@@ -119,25 +119,25 @@ export default function MasterOfLawsLLMAustralia() {
             {/* Top Universities */}
             <div className="bg-white rounded-lg shadow-sm border p-6">
               <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                <BookOpen className="w-5 h-5 mr-2 #4285F4" />
+                <BookOpen className="w-5 h-5 mr-2 #1D50C9" />
                 Top Law Schools
               </h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>University of Melbourne</span>
-                  <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">#1 Ranked</span>
+                  <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">#1 Ranked</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>University of Sydney</span>
-                  <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Top Choice</span>
+                  <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Top Choice</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>Australian National University</span>
-                  <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Prestigious</span>
+                  <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Prestigious</span>
                 </div>
                 <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                   <span>UNSW Sydney</span>
-                  <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Research</span>
+                  <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Research</span>
                 </div>
               </div>
             </div>

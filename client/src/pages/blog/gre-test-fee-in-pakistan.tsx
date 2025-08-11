@@ -103,11 +103,11 @@ export default function GRETestFeeInPakistan() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Test Preparation
               </span>
             </div>
@@ -157,7 +157,7 @@ export default function GRETestFeeInPakistan() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
                   <DollarSign className="mr-3 h-6 w-6" />
@@ -175,7 +175,7 @@ export default function GRETestFeeInPakistan() {
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-[#4285F4] to-teal-600 text-white">
+                      <tr className="bg-gradient-to-r from-[#1D50C9] to-teal-600 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Service</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">USD Fee</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">PKR Equivalent</th>
@@ -273,7 +273,7 @@ export default function GRETestFeeInPakistan() {
                           <div className="space-y-2">
                             {center.locations.map((location, idx) => (
                               <div key={idx} className="flex items-center space-x-2">
-                                <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                                <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                                 <span className="text-gray-700 text-sm">{location}</span>
                               </div>
                             ))}
@@ -302,7 +302,7 @@ export default function GRETestFeeInPakistan() {
                       className="relative"
                     >
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#4285F4] to-teal-600 rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#1D50C9] to-teal-600 rounded-full flex items-center justify-center text-white font-bold">
                           {index + 1}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -333,9 +333,9 @@ export default function GRETestFeeInPakistan() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 #4285F4"
+                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 #1D50C9"
                     >
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{tip}</span>
                     </motion.div>
                   ))}
@@ -347,7 +347,7 @@ export default function GRETestFeeInPakistan() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0">Payment Methods in Pakistan</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -355,22 +355,22 @@ export default function GRETestFeeInPakistan() {
                 </p>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>International Credit Cards:</strong> Visa, MasterCard, or American Express</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>International Debit Cards:</strong> With international transaction capability</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>Bank Transfer:</strong> Contact ETS for alternative payment arrangements</span>
                   </div>
                 </div>
               </motion.div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg">
+              <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The GRE test fee of $220 USD (approximately PKR 61,600) is a significant investment in your academic future. With proper planning and preparation, Pakistani students can successfully register for and take the GRE at authorized test centers across the country.
@@ -463,15 +463,15 @@ export default function GRETestFeeInPakistan() {
                   <div className="space-y-3">
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">Karachi</div>
-                      <div className="#3367D6 text-xs">3 Centers • British Council</div>
+                      <div className="#1845B3 text-xs">3 Centers • British Council</div>
                     </div>
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">Lahore</div>
-                      <div className="#3367D6 text-xs">2 Centers • UMT, LUMS</div>
+                      <div className="#1845B3 text-xs">2 Centers • UMT, LUMS</div>
                     </div>
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">Islamabad</div>
-                      <div className="#3367D6 text-xs">2 Centers • COMSATS</div>
+                      <div className="#1845B3 text-xs">2 Centers • COMSATS</div>
                     </div>
                   </div>
                 </CardContent>
@@ -504,7 +504,7 @@ export default function GRETestFeeInPakistan() {
                       <option>320-330</option>
                       <option>330+</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-[#4285F4] to-teal-600 hover:from-green-700 hover:to-teal-700">
+                    <Button className="w-full bg-gradient-to-r from-[#1D50C9] to-teal-600 hover:from-green-700 hover:to-teal-700">
                       Get GRE Prep Info
                     </Button>
                   </form>

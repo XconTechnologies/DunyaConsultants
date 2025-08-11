@@ -9,7 +9,7 @@ export default function StudyGapAcceptableUKMasters() {
       <Navigation />
       
       {/* Full-width Hero Section */}
-      <div className="relative h-96 bg-gradient-to-br from-[#4285F4] via-[#4285F4] to-[#3367D6] flex items-center justify-center text-white">
+      <div className="relative h-96 bg-gradient-to-br from-[#1D50C9] via-[#1D50C9] to-[#1845B3] flex items-center justify-center text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 text-center px-4">
           <h1 className="text-5xl font-bold mb-4">How Much Study Gap is Acceptable in UK for Masters?</h1>
@@ -29,7 +29,7 @@ export default function StudyGapAcceptableUKMasters() {
                 </p>
               </div>
 
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">Key Takeaway</h3>
                 <p className="text-gray-700">
                   UK universities generally accept study gaps of up to 2-3 years for Master's programs, provided you can justify the gap with valid reasons and demonstrate continued academic or professional development during that period.
@@ -41,7 +41,7 @@ export default function StudyGapAcceptableUKMasters() {
                 A study gap refers to the period between completing your undergraduate degree and starting your Master's program. This gap can occur due to various reasons including work experience, personal circumstances, financial constraints, or simply taking time to decide on your career path.
               </p>
 
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">Generally Acceptable Gap Duration</h3>
                 <ul className="text-gray-700 space-y-2">
                   <li>• <strong>0-2 years:</strong> Highly acceptable with minimal explanation required</li>
@@ -129,7 +129,7 @@ export default function StudyGapAcceptableUKMasters() {
               </div>
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">How to Justify Your Study Gap</h2>
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">Statement of Purpose Strategy</h3>
                 <div className="space-y-4">
                   <div>
@@ -149,7 +149,7 @@ export default function StudyGapAcceptableUKMasters() {
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">Required Documentation</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-blue-50 border-l-4 #4285F4 p-6">
+                <div className="bg-blue-50 border-l-4 #1D50C9 p-6">
                   <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">For Work Experience</h3>
                   <ul className="text-gray-700 space-y-2">
                     <li>• Employment letters and contracts</li>
@@ -159,7 +159,7 @@ export default function StudyGapAcceptableUKMasters() {
                     <li>• Letters of recommendation from employers</li>
                   </ul>
                 </div>
-                <div className="bg-blue-50 border-l-4 #4285F4 p-6">
+                <div className="bg-blue-50 border-l-4 #1D50C9 p-6">
                   <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">For Other Activities</h3>
                   <ul className="text-gray-700 space-y-2">
                     <li>• Certificates from courses or training</li>
@@ -194,7 +194,7 @@ export default function StudyGapAcceptableUKMasters() {
               </div>
 
               <h2 className="text-3xl font-bold mb-6 text-gray-900">Common Mistakes to Avoid</h2>
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">What NOT to Do</h3>
                 <ul className="text-gray-700 space-y-2">
                   <li>• Don't try to hide or misrepresent your gap</li>
@@ -226,19 +226,19 @@ export default function StudyGapAcceptableUKMasters() {
                 <h3 className="text-xl font-semibold mb-3 text-gray-900">Recommended Timeline</h3>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <span className="#3367D6 font-bold">12-18 months before:</span>
+                    <span className="#1845B3 font-bold">12-18 months before:</span>
                     <span className="text-gray-700">Begin researching universities and programs</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="#3367D6 font-bold">9-12 months before:</span>
+                    <span className="#1845B3 font-bold">9-12 months before:</span>
                     <span className="text-gray-700">Prepare for and take English proficiency tests</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="#3367D6 font-bold">6-9 months before:</span>
+                    <span className="#1845B3 font-bold">6-9 months before:</span>
                     <span className="text-gray-700">Gather documentation and begin application preparation</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <span className="#3367D6 font-bold">3-6 months before:</span>
+                    <span className="#1845B3 font-bold">3-6 months before:</span>
                     <span className="text-gray-700">Submit applications and prepare for interviews</span>
                   </div>
                 </div>
@@ -299,14 +299,14 @@ export default function StudyGapAcceptableUKMasters() {
               <div className="bg-white p-6 rounded-lg">
                 <h3 className="text-lg font-semibold mb-4 text-gray-900">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#understanding-gap" className="#3367D6 hover:underline">Understanding Study Gap</a></li>
-                  <li><a href="#valid-reasons" className="#3367D6 hover:underline">Valid Reasons</a></li>
-                  <li><a href="#university-views" className="#3367D6 hover:underline">University Perspectives</a></li>
-                  <li><a href="#justification" className="#3367D6 hover:underline">How to Justify</a></li>
-                  <li><a href="#documentation" className="#3367D6 hover:underline">Required Documents</a></li>
-                  <li><a href="#strengthening-tips" className="#3367D6 hover:underline">Strengthening Tips</a></li>
-                  <li><a href="#common-mistakes" className="#3367D6 hover:underline">Common Mistakes</a></li>
-                  <li><a href="#faqs" className="#3367D6 hover:underline">FAQs</a></li>
+                  <li><a href="#understanding-gap" className="#1845B3 hover:underline">Understanding Study Gap</a></li>
+                  <li><a href="#valid-reasons" className="#1845B3 hover:underline">Valid Reasons</a></li>
+                  <li><a href="#university-views" className="#1845B3 hover:underline">University Perspectives</a></li>
+                  <li><a href="#justification" className="#1845B3 hover:underline">How to Justify</a></li>
+                  <li><a href="#documentation" className="#1845B3 hover:underline">Required Documents</a></li>
+                  <li><a href="#strengthening-tips" className="#1845B3 hover:underline">Strengthening Tips</a></li>
+                  <li><a href="#common-mistakes" className="#1845B3 hover:underline">Common Mistakes</a></li>
+                  <li><a href="#faqs" className="#1845B3 hover:underline">FAQs</a></li>
                 </ul>
               </div>
 

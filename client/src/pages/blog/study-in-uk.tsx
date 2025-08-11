@@ -10,7 +10,7 @@ const StudyInUK = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative w-full h-80 bg-gradient-to-br from-[#4285F4] via-[#4285F4] to-[#3367D6] overflow-hidden">
+      <div className="relative w-full h-80 bg-gradient-to-br from-[#1D50C9] via-[#1D50C9] to-[#1845B3] overflow-hidden">
         <div 
           className="absolute inset-0 opacity-20"
           style={{
@@ -19,7 +19,7 @@ const StudyInUK = () => {
             backgroundPosition: 'center'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4]/80 via-[#4285F4]/70 to-[#3367D6]/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1D50C9]/80 via-[#1D50C9]/70 to-[#1845B3]/80" />
         
         <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center justify-center text-center">
           <div className="space-y-4">
@@ -65,51 +65,51 @@ const StudyInUK = () => {
             {/* Key Benefits */}
             <div className="bg-white rounded-lg p-6">
               <h3 className="text-2xl font-semibold text-gray-900 mb-4 flex items-center">
-                <CheckCircle className="h-6 w-6 #3367D6 mr-3" />
+                <CheckCircle className="h-6 w-6 #1845B3 mr-3" />
                 Key Benefits of Studying in the UK
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">Cost-effective education</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">Shorter and intensive programs</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">Work-study opportunities</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">No language barrier</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">Moderate weather conditions</span>
                   </div>
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">Highest visa success rate for Pakistani students</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">Rich cultural diversity</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">Affordable accommodation options</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">Simple visa process</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 #3367D6 rounded-full mt-2"></div>
+                    <div className="w-2 h-2 #1845B3 rounded-full mt-2"></div>
                     <span className="text-gray-700">Safe and supportive environment</span>
                   </div>
                 </div>
@@ -119,7 +119,7 @@ const StudyInUK = () => {
             {/* Visa Requirements */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <FileText className="h-6 w-6 #3367D6 mr-3" />
+                <FileText className="h-6 w-6 #1845B3 mr-3" />
                 UK Study Visa Requirements
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -127,23 +127,23 @@ const StudyInUK = () => {
                   <h4 className="font-semibold text-gray-900 mb-3">Essential Documents</h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 #3367D6" />
+                      <CheckCircle className="h-4 w-4 #1845B3" />
                       <span>Original Passport</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 #3367D6" />
+                      <CheckCircle className="h-4 w-4 #1845B3" />
                       <span>Confirmation of Acceptance for Study (CAS)</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 #3367D6" />
+                      <CheckCircle className="h-4 w-4 #1845B3" />
                       <span>Tuberculosis (TB) Test Results</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 #3367D6" />
+                      <CheckCircle className="h-4 w-4 #1845B3" />
                       <span>Birth Certificate</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <CheckCircle className="h-4 w-4 #3367D6" />
+                      <CheckCircle className="h-4 w-4 #1845B3" />
                       <span>Proof of Financial Support</span>
                     </li>
                   </ul>
@@ -152,15 +152,15 @@ const StudyInUK = () => {
                   <h4 className="font-semibold text-gray-900 mb-3">TB Test Centers in Pakistan</h4>
                   <ul className="space-y-2 text-sm">
                     <li className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 #3367D6" />
+                      <MapPin className="h-4 w-4 #1845B3" />
                       <span>AMC (Approved Medical Center)</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 #3367D6" />
+                      <MapPin className="h-4 w-4 #1845B3" />
                       <span>Dr. Arshad Health Associates</span>
                     </li>
                     <li className="flex items-center space-x-2">
-                      <MapPin className="h-4 w-4 #3367D6" />
+                      <MapPin className="h-4 w-4 #1845B3" />
                       <span>IOM (International Organization for Migration)</span>
                     </li>
                   </ul>
@@ -171,7 +171,7 @@ const StudyInUK = () => {
             {/* Language Requirements */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <GraduationCap className="h-6 w-6 #3367D6 mr-3" />
+                <GraduationCap className="h-6 w-6 #1845B3 mr-3" />
                 English Language Requirements
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -207,18 +207,18 @@ const StudyInUK = () => {
             {/* Tuition Fees */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <DollarSign className="h-6 w-6 #3367D6 mr-3" />
+                <DollarSign className="h-6 w-6 #1845B3 mr-3" />
                 Tuition Fees Structure
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gradient-to-br from-blue-50 to-green-100 rounded-lg p-6 text-center">
-                  <GraduationCap className="h-12 w-12 #3367D6 mx-auto mb-4" />
+                  <GraduationCap className="h-12 w-12 #1845B3 mx-auto mb-4" />
                   <h4 className="font-semibold text-#1e3a8a mb-2">Undergraduate Programs</h4>
                   <p className="text-2xl font-bold text-#1565c0">£11,000 - £17,000</p>
                   <p className="text-sm text-#1a73e8 mt-2">Per Academic Year</p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 text-center">
-                  <GraduationCap className="h-12 w-12 #3367D6 mx-auto mb-4" />
+                  <GraduationCap className="h-12 w-12 #1845B3 mx-auto mb-4" />
                   <h4 className="font-semibold text-#1e3a8a mb-2">Postgraduate Programs</h4>
                   <p className="text-2xl font-bold text-#1565c0">£11,000 - £17,000</p>
                   <p className="text-sm text-#1a73e8 mt-2">Per Academic Year</p>
@@ -229,34 +229,34 @@ const StudyInUK = () => {
             {/* Application Documents */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <CreditCard className="h-6 w-6 #3367D6 mr-3" />
+                <CreditCard className="h-6 w-6 #1845B3 mr-3" />
                 Required Application Documents
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
-                    <FileText className="h-5 w-5 #3367D6 mt-0.5" />
+                    <FileText className="h-5 w-5 #1845B3 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Original Passport</h4>
                       <p className="text-sm text-gray-600">Valid for duration of intended stay</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
-                    <FileText className="h-5 w-5 #3367D6 mt-0.5" />
+                    <FileText className="h-5 w-5 #1845B3 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Educational Certificates</h4>
                       <p className="text-sm text-gray-600">Matric, Intermediate, Bachelor's degrees</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
-                    <FileText className="h-5 w-5 #3367D6 mt-0.5" />
+                    <FileText className="h-5 w-5 #1845B3 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">IELTS/PTE Score Card</h4>
                       <p className="text-sm text-gray-600">English proficiency proof</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
-                    <FileText className="h-5 w-5 #3367D6 mt-0.5" />
+                    <FileText className="h-5 w-5 #1845B3 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Experience Certificate</h4>
                       <p className="text-sm text-gray-600">Work experience validation</p>
@@ -265,28 +265,28 @@ const StudyInUK = () => {
                 </div>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
-                    <FileText className="h-5 w-5 #3367D6 mt-0.5" />
+                    <FileText className="h-5 w-5 #1845B3 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Recommendation Letters</h4>
                       <p className="text-sm text-gray-600">From teachers or employers</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
-                    <FileText className="h-5 w-5 #3367D6 mt-0.5" />
+                    <FileText className="h-5 w-5 #1845B3 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Statement of Purpose</h4>
                       <p className="text-sm text-gray-600">Academic and career goals</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
-                    <FileText className="h-5 w-5 #3367D6 mt-0.5" />
+                    <FileText className="h-5 w-5 #1845B3 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">GRE/GMAT Scores</h4>
                       <p className="text-sm text-gray-600">If required by university</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3 p-3 bg-white rounded-lg">
-                    <FileText className="h-5 w-5 #3367D6 mt-0.5" />
+                    <FileText className="h-5 w-5 #1845B3 mt-0.5" />
                     <div>
                       <h4 className="font-medium text-gray-900">Europass CV</h4>
                       <p className="text-sm text-gray-600">European format curriculum vitae</p>
@@ -299,7 +299,7 @@ const StudyInUK = () => {
             {/* Study Programs */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <Globe className="h-6 w-6 #3367D6 mr-3" />
+                <Globe className="h-6 w-6 #1845B3 mr-3" />
                 Study Programs Available
               </h3>
               <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-6">
@@ -376,19 +376,19 @@ const StudyInUK = () => {
               </p>
               <div className="space-y-2 text-sm">
                 <p className="flex items-center text-#1565c0">
-                  <span className="w-2 h-2 #3367D6 rounded-full mr-2"></span>
+                  <span className="w-2 h-2 #1845B3 rounded-full mr-2"></span>
                   University selection assistance
                 </p>
                 <p className="flex items-center text-#1565c0">
-                  <span className="w-2 h-2 #3367D6 rounded-full mr-2"></span>
+                  <span className="w-2 h-2 #1845B3 rounded-full mr-2"></span>
                   Visa application support
                 </p>
                 <p className="flex items-center text-#1565c0">
-                  <span className="w-2 h-2 #3367D6 rounded-full mr-2"></span>
+                  <span className="w-2 h-2 #1845B3 rounded-full mr-2"></span>
                   Documentation guidance
                 </p>
                 <p className="flex items-center text-#1565c0">
-                  <span className="w-2 h-2 #3367D6 rounded-full mr-2"></span>
+                  <span className="w-2 h-2 #1845B3 rounded-full mr-2"></span>
                   Pre-departure briefing
                 </p>
               </div>

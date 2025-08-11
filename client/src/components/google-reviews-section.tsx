@@ -143,7 +143,7 @@ export default function GoogleReviewsSection() {
               />
               <div>
                 <h3 className="text-xl font-bold text-gray-900">{currentReview.name}</h3>
-                <p className="#3367D6 font-medium">{currentReview.course}</p>
+                <p className="#1845B3 font-medium">{currentReview.course}</p>
               </div>
             </div>
             
@@ -176,7 +176,7 @@ export default function GoogleReviewsSection() {
             </div>
             <div className="text-center">
               <p className="text-sm text-gray-600">Scholarship</p>
-              <p className="text-lg font-bold #3367D6">{currentReview.scholarship}</p>
+              <p className="text-lg font-bold #1845B3">{currentReview.scholarship}</p>
             </div>
           </div>
 
@@ -219,7 +219,7 @@ export default function GoogleReviewsSection() {
                     />
                   </div>
                   {index === currentIndex && (
-                    <div className="absolute -top-2 -right-2 w-6 h-6 #4285F4 rounded-full flex items-center justify-center">
+                    <div className="absolute -top-2 -right-2 w-6 h-6 #1D50C9 rounded-full flex items-center justify-center">
                       <div className="w-2 h-2 bg-white rounded-full"></div>
                     </div>
                   )}
@@ -227,7 +227,7 @@ export default function GoogleReviewsSection() {
                 
                 <div className="mt-3 text-center">
                   <p className={`text-sm font-bold ${
-                    index === currentIndex ? '#3367D6' : 'text-gray-800'
+                    index === currentIndex ? '#1845B3' : 'text-gray-800'
                   }`}>
                     {review.name.split(' ')[0]}
                   </p>
@@ -247,7 +247,7 @@ export default function GoogleReviewsSection() {
                 onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex 
-                    ? '#4285F4 scale-125' 
+                    ? '#1D50C9 scale-125' 
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
               />
@@ -263,7 +263,7 @@ export default function GoogleReviewsSection() {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <motion.button
-            className="inline-flex items-center gap-3 #3367D6 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-#1a73e8 transition-all duration-300"
+            className="inline-flex items-center gap-3 #1845B3 text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-#1a73e8 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

@@ -10,11 +10,11 @@ export default function EngineeringLawProgramsCanada() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study in Canada
               </span>
             </div>
@@ -52,24 +52,24 @@ export default function EngineeringLawProgramsCanada() {
               <section className="mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <Building2 className="w-6 h-6 #4285F4 mr-2" />
+                    <Building2 className="w-6 h-6 #1D50C9 mr-2" />
                     Canada Study Overview
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex items-center">
-                      <GraduationCap className="w-5 h-5 #4285F4 mr-2" />
+                      <GraduationCap className="w-5 h-5 #1D50C9 mr-2" />
                       <span className="text-gray-700">Top Global Education Quality</span>
                     </div>
                     <div className="flex items-center">
-                      <Briefcase className="w-5 h-5 #4285F4 mr-2" />
+                      <Briefcase className="w-5 h-5 #1D50C9 mr-2" />
                       <span className="text-gray-700">Work While Studying</span>
                     </div>
                     <div className="flex items-center">
-                      <Users className="w-5 h-5 #4285F4 mr-2" />
+                      <Users className="w-5 h-5 #1D50C9 mr-2" />
                       <span className="text-gray-700">Multicultural Environment</span>
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="w-5 h-5 #4285F4 mr-2" />
+                      <MapPin className="w-5 h-5 #1D50C9 mr-2" />
                       <span className="text-gray-700">Post-Graduation Work Permit</span>
                     </div>
                   </div>
@@ -91,7 +91,7 @@ export default function EngineeringLawProgramsCanada() {
 
               {/* Universities Section */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Engineering and Law Universities in Canada for Pakistani Students
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
@@ -109,7 +109,7 @@ export default function EngineeringLawProgramsCanada() {
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">University of Toronto</h3>
-                        <div className="flex items-center #3367D6 mb-2">
+                        <div className="flex items-center #1845B3 mb-2">
                           <Star className="w-4 h-4 mr-1 fill-current" />
                           <span className="text-sm font-medium">Ranked #1 in Canada by Times Higher Education 2024</span>
                         </div>
@@ -153,7 +153,7 @@ export default function EngineeringLawProgramsCanada() {
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">McGill University</h3>
-                        <div className="flex items-center #3367D6 mb-2">
+                        <div className="flex items-center #1845B3 mb-2">
                           <MapPin className="w-4 h-4 mr-1" />
                           <span className="text-sm font-medium">Quebec - One of three English-language universities</span>
                         </div>
@@ -197,7 +197,7 @@ export default function EngineeringLawProgramsCanada() {
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">University of Alberta</h3>
-                        <div className="flex items-center #3367D6 mb-2">
+                        <div className="flex items-center #1845B3 mb-2">
                           <Briefcase className="w-4 h-4 mr-1" />
                           <span className="text-sm font-medium">Co-op Programs Available</span>
                         </div>
@@ -241,7 +241,7 @@ export default function EngineeringLawProgramsCanada() {
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">University of Waterloo</h3>
-                        <div className="flex items-center #3367D6 mb-2">
+                        <div className="flex items-center #1845B3 mb-2">
                           <Building2 className="w-4 h-4 mr-1" />
                           <span className="text-sm font-medium">Founded 1957 - Largest Engineering Faculty</span>
                         </div>
@@ -285,7 +285,7 @@ export default function EngineeringLawProgramsCanada() {
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-2xl font-bold text-gray-900 mb-2">University of British Columbia (UBC)</h3>
-                        <div className="flex items-center #3367D6 mb-2">
+                        <div className="flex items-center #1845B3 mb-2">
                           <Star className="w-4 h-4 mr-1 fill-current" />
                           <span className="text-sm font-medium">High Global Rankings - Beautiful Campus</span>
                         </div>
@@ -329,7 +329,7 @@ export default function EngineeringLawProgramsCanada() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Conclusion
                 </h2>
                 <p className="text-gray-700 leading-relaxed">
@@ -339,7 +339,7 @@ export default function EngineeringLawProgramsCanada() {
 
               {/* FAQs */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   FAQs
                 </h2>
                 <div className="space-y-6">
@@ -399,7 +399,7 @@ export default function EngineeringLawProgramsCanada() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="tel:+923041110947"
-                    className="inline-flex items-center justify-center px-6 py-3 #3367D6 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
+                    className="inline-flex items-center justify-center px-6 py-3 #1845B3 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-2" />
                     Call Now: (+92) 304 1110947
@@ -424,7 +424,7 @@ export default function EngineeringLawProgramsCanada() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Target className="w-5 h-5 mr-2 #4285F4" />
+                  <Target className="w-5 h-5 mr-2 #1D50C9" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -454,28 +454,28 @@ export default function EngineeringLawProgramsCanada() {
               {/* Top Universities */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <BookOpen className="w-5 h-5 mr-2 #4285F4" />
+                  <BookOpen className="w-5 h-5 mr-2 #1D50C9" />
                   Top Universities
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">University of Toronto</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">McGill University</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">University of Alberta</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">University of Waterloo</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">University of British Columbia</span>
                   </li>
                 </ul>

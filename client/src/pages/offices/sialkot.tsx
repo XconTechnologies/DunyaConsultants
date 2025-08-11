@@ -49,7 +49,7 @@ export default function SialkotOffice() {
       <Navigation />
       
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white pt-32 pb-16">
+      <div className="bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white pt-32 pb-16">
         <div className="container mx-auto px-4">
           <div className="flex items-center mb-6">
             <Link href="/offices">
@@ -87,7 +87,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <Building2 className="w-5 h-5 mr-2 #3367D6" />
+                  <Building2 className="w-5 h-5 mr-2 #1845B3" />
                   Office Information
                 </CardTitle>
               </CardHeader>
@@ -104,7 +104,7 @@ export default function SialkotOffice() {
                   <Phone className="w-5 h-5 text-gray-500 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-gray-800">Phone</p>
-                    <a href={`tel:${office.phone}`} className="#3367D6 hover:text-#1a73e8 text-sm">
+                    <a href={`tel:${office.phone}`} className="#1845B3 hover:text-#1a73e8 text-sm">
                       {office.phone}
                     </a>
                   </div>
@@ -114,7 +114,7 @@ export default function SialkotOffice() {
                   <Mail className="w-5 h-5 text-gray-500 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-gray-800">Email</p>
-                    <a href={`mailto:${office.email}`} className="#3367D6 hover:text-#1a73e8 text-sm">
+                    <a href={`mailto:${office.email}`} className="#1845B3 hover:text-#1a73e8 text-sm">
                       {office.email}
                     </a>
                   </div>
@@ -133,7 +133,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <Award className="w-5 h-5 mr-2 #3367D6" />
+                  <Award className="w-5 h-5 mr-2 #1845B3" />
                   Office Details
                 </CardTitle>
               </CardHeader>
@@ -160,7 +160,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <CheckCircle className="w-5 h-5 mr-2 #3367D6" />
+                  <CheckCircle className="w-5 h-5 mr-2 #1845B3" />
                   Our Services
                 </CardTitle>
               </CardHeader>
@@ -174,7 +174,7 @@ export default function SialkotOffice() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-center space-x-3 p-3 rounded-lg bg-gray-50 hover:bg-blue-50 transition-colors"
                     >
-                      <CheckCircle className="w-4 h-4 #4285F4 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 #1D50C9 flex-shrink-0" />
                       <span className="text-gray-700">{service}</span>
                     </motion.div>
                   ))}
@@ -185,7 +185,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <Star className="w-5 h-5 mr-2 #3367D6" />
+                  <Star className="w-5 h-5 mr-2 #1845B3" />
                   Specializations
                 </CardTitle>
               </CardHeader>
@@ -207,7 +207,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <Building2 className="w-5 h-5 mr-2 #3367D6" />
+                  <Building2 className="w-5 h-5 mr-2 #1845B3" />
                   Office Facilities
                 </CardTitle>
               </CardHeader>
@@ -215,7 +215,7 @@ export default function SialkotOffice() {
                 <div className="grid grid-cols-2 gap-2">
                   {office.facilities.map((facility, index) => (
                     <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                      <CheckCircle className="w-3 h-3 #4285F4" />
+                      <CheckCircle className="w-3 h-3 #1D50C9" />
                       <span>{facility}</span>
                     </div>
                   ))}
@@ -231,7 +231,7 @@ export default function SialkotOffice() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="space-y-6"
           >
-            <Card className="shadow-lg border-0 bg-gradient-to-br from-[#4285F4] to-purple-600 text-white">
+            <Card className="shadow-lg border-0 bg-gradient-to-br from-[#1D50C9] to-purple-600 text-white">
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-4">Ready to Start Your Journey?</h3>
                 <p className="text-blue-100 mb-6 text-sm">
@@ -239,7 +239,7 @@ export default function SialkotOffice() {
                 </p>
                 <div className="space-y-3">
                   <Button 
-                    className="w-full bg-white #3367D6 hover:bg-blue-50"
+                    className="w-full bg-white #1845B3 hover:bg-blue-50"
                     size="lg"
                   >
                     <Calendar className="w-4 h-4 mr-2" />
@@ -260,7 +260,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <MessageCircle className="w-5 h-5 mr-2 #3367D6" />
+                  <MessageCircle className="w-5 h-5 mr-2 #1845B3" />
                   Student Testimonials
                 </CardTitle>
               </CardHeader>
@@ -271,12 +271,12 @@ export default function SialkotOffice() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="border-l-4 #4285F4 pl-4 py-2"
+                    className="border-l-4 #1D50C9 pl-4 py-2"
                   >
                     <p className="text-gray-600 text-sm italic mb-2">"{testimonial.message}"</p>
                     <div>
                       <p className="font-semibold text-gray-800 text-sm">{testimonial.name}</p>
-                      <p className="#3367D6 text-xs">{testimonial.university}</p>
+                      <p className="#1845B3 text-xs">{testimonial.university}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -286,7 +286,7 @@ export default function SialkotOffice() {
             <Card className="shadow-lg border-0">
               <CardHeader>
                 <CardTitle className="flex items-center text-gray-800">
-                  <MapPin className="w-5 h-5 mr-2 #3367D6" />
+                  <MapPin className="w-5 h-5 mr-2 #1845B3" />
                   Nearby Landmarks
                 </CardTitle>
               </CardHeader>
@@ -294,7 +294,7 @@ export default function SialkotOffice() {
                 <div className="space-y-2">
                   {office.nearbyLandmarks.map((landmark, index) => (
                     <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                      <MapPin className="w-3 h-3 #4285F4" />
+                      <MapPin className="w-3 h-3 #1D50C9" />
                       <span>{landmark}</span>
                     </div>
                   ))}

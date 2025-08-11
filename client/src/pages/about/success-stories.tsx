@@ -191,7 +191,7 @@ export default function SuccessStories() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -232,7 +232,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Featured{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Success Stories
                 </span>
               </h2>
@@ -252,7 +252,7 @@ export default function SuccessStories() {
               >
                 <Card className="h-full border-blue-100 hover:border-blue-300 transition-all duration-300 hover:shadow-xl">
                   <CardHeader className="text-center">
-                    <div className="w-24 h-24 mx-auto bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-full flex items-center justify-center mb-4">
+                    <div className="w-24 h-24 mx-auto bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mb-4">
                       <GraduationCap className="w-12 h-12 text-white" />
                     </div>
                     <CardTitle className="text-xl text-gray-900">{story.name}</CardTitle>
@@ -272,11 +272,11 @@ export default function SuccessStories() {
                     <p className="text-gray-600 italic">{story.story}</p>
                     <div className="space-y-2 pt-4 border-t">
                       <div className="flex items-center text-sm">
-                        <Award className="w-4 h-4 #4285F4 mr-2" />
+                        <Award className="w-4 h-4 #1D50C9 mr-2" />
                         <span className="font-medium">{story.scholarship}</span>
                       </div>
                       <div className="flex items-center text-sm">
-                        <Star className="w-4 h-4 #4285F4 mr-2" />
+                        <Star className="w-4 h-4 #1D50C9 mr-2" />
                         <span className="text-gray-600">{story.achievement}</span>
                       </div>
                     </div>
@@ -342,7 +342,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Recent{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Successes
                 </span>
               </h2>
@@ -367,7 +367,7 @@ export default function SuccessStories() {
                     {success.date}
                   </Badge>
                 </div>
-                <p className="text-sm #3367D6 font-medium mb-1">
+                <p className="text-sm #1845B3 font-medium mb-1">
                   {success.university}
                 </p>
                 <p className="text-sm text-gray-600 mb-2">{success.program}</p>
@@ -376,7 +376,7 @@ export default function SuccessStories() {
                     <MapPin className="w-4 h-4 mr-1" />
                     {success.country}
                   </div>
-                  <div className="flex items-center text-sm font-medium #3367D6">
+                  <div className="flex items-center text-sm font-medium #1845B3">
                     <Award className="w-4 h-4 mr-1" />
                     {success.scholarship}
                   </div>
@@ -398,7 +398,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Student{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Testimonials
                 </span>
               </h2>
@@ -428,7 +428,7 @@ export default function SuccessStories() {
                     <div className="border-t pt-4">
                       <p className="font-semibold text-gray-900">{testimonial.author}</p>
                       <p className="text-sm text-gray-600">{testimonial.position}</p>
-                      <p className="text-sm #3367D6 font-medium">{testimonial.country}</p>
+                      <p className="text-sm #1845B3 font-medium">{testimonial.country}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -449,7 +449,7 @@ export default function SuccessStories() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Our{" "}
-                <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Journey
                 </span>
               </h2>
@@ -460,7 +460,7 @@ export default function SuccessStories() {
           </div>
 
           <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#4285F4] to-[#3367D6]"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#1D50C9] to-[#1845B3]"></div>
             
             {companyMilestones.map((milestone, index) => (
               <motion.div
@@ -476,10 +476,10 @@ export default function SuccessStories() {
                   <Card>
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
-                        <div className="w-12 h-12 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center text-white font-bold">
                           {milestone.year}
                         </div>
-                        <Calendar className="w-5 h-5 #4285F4 ml-3" />
+                        <Calendar className="w-5 h-5 #1D50C9 ml-3" />
                       </div>
                       <h3 className="font-semibold text-gray-900 mb-2">
                         {milestone.milestone}
@@ -489,7 +489,7 @@ export default function SuccessStories() {
                   </Card>
                 </div>
                 
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-[#4285F4] to-[#3367D6] rounded-full border-4 border-white"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full border-4 border-white"></div>
               </motion.div>
             ))}
           </div>
@@ -497,7 +497,7 @@ export default function SuccessStories() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -511,7 +511,7 @@ export default function SuccessStories() {
               Join thousands of successful students who chose Dunya Consultants for their international education journey
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white #3367D6 hover:bg-blue-50">
+              <Button size="lg" className="bg-white #1845B3 hover:bg-blue-50">
                 Start Your Journey
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">

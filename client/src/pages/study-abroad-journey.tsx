@@ -36,8 +36,8 @@ const journeySteps = [
     description: "Free comprehensive assessment of your academic background, career goals, and preferred study destinations",
     duration: "1-2 weeks",
     icon: UserCheck,
-    color: "#4285F4",
-    bgGradient: "from-[#4285F4] to-[#3367D6]",
+    color: "#1D50C9",
+    bgGradient: "from-[#1D50C9] to-[#1845B3]",
     deliverables: [
       "Complete profile assessment and academic evaluation",
       "Career counseling and goal alignment session",
@@ -65,7 +65,7 @@ const journeySteps = [
     description: "Personalized university recommendations based on your profile, preferences, and career aspirations",
     duration: "2-3 weeks",
     icon: GraduationCap,
-    color: "#4285F4",
+    color: "#1D50C9",
     bgGradient: "from-green-500 to-green-600",
     deliverables: [
       "Detailed university research and ranking analysis",
@@ -94,7 +94,7 @@ const journeySteps = [
     description: "Comprehensive preparation for required tests and systematic collection of all necessary documents",
     duration: "4-8 weeks",
     icon: FileText,
-    color: "#4285F4",
+    color: "#1D50C9",
     bgGradient: "from-purple-500 to-purple-600",
     deliverables: [
       "IELTS/PTE/TOEFL/Duolingo preparation and scheduling",
@@ -123,7 +123,7 @@ const journeySteps = [
     description: "Strategic application submission to selected universities with optimized materials and timing",
     duration: "3-4 weeks",
     icon: Send,
-    color: "#4285F4",
+    color: "#1D50C9",
     bgGradient: "from-orange-500 to-orange-600",
     deliverables: [
       "Complete application form completion and review",
@@ -152,7 +152,7 @@ const journeySteps = [
     description: "Active monitoring of application status and strategic communication with admission offices",
     duration: "2-6 weeks",
     icon: CheckCircle,
-    color: "#4285F4",
+    color: "#1D50C9",
     bgGradient: "from-teal-500 to-teal-600",
     deliverables: [
       "Application status tracking and updates",
@@ -181,7 +181,7 @@ const journeySteps = [
     description: "Complete visa application process with document preparation and interview scheduling",
     duration: "4-8 weeks",
     icon: Globe,
-    color: "#4285F4",
+    color: "#1D50C9",
     bgGradient: "from-red-500 to-red-600",
     deliverables: [
       "Visa application form completion",
@@ -210,7 +210,7 @@ const journeySteps = [
     description: "Comprehensive preparation for your journey including accommodation, travel, and orientation",
     duration: "2-4 weeks",
     icon: Plane,
-    color: "#4285F4",
+    color: "#1D50C9",
     bgGradient: "from-indigo-500 to-indigo-600",
     deliverables: [
       "Accommodation booking and confirmation",
@@ -239,7 +239,7 @@ const journeySteps = [
     description: "Smooth transition to your new country with settlement support and ongoing guidance",
     duration: "2-4 weeks",
     icon: MapPin,
-    color: "#4285F4",
+    color: "#1D50C9",
     bgGradient: "from-pink-500 to-pink-600",
     deliverables: [
       "Airport pickup and initial orientation",
@@ -340,7 +340,7 @@ export default function StudyAbroadJourney() {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center space-x-2 bg-blue-100 rounded-full px-6 py-3 mb-6">
-              <Globe className="w-5 h-5 #3367D6" />
+              <Globe className="w-5 h-5 #1845B3" />
               <span className="text-sm font-medium text-#1565c0">Complete Study Abroad Guide</span>
             </div>
             
@@ -357,7 +357,7 @@ export default function StudyAbroadJourney() {
               <Button 
                 size="lg"
                 onClick={() => scrollToSection("journey-steps")}
-                className="#3367D6 hover:bg-#1a73e8 text-white px-8 py-4"
+                className="#1845B3 hover:bg-#1a73e8 text-white px-8 py-4"
               >
                 <Target className="mr-2 h-5 w-5" />
                 Start Your Journey
@@ -366,7 +366,7 @@ export default function StudyAbroadJourney() {
                 variant="outline"
                 size="lg"
                 onClick={() => scrollToSection("success-stories")}
-                className="#3367D6 #3367D6 hover:bg-blue-50 px-8 py-4"
+                className="#1845B3 #1845B3 hover:bg-blue-50 px-8 py-4"
               >
                 <Star className="mr-2 h-5 w-5" />
                 Success Stories
@@ -377,19 +377,19 @@ export default function StudyAbroadJourney() {
           {/* Quick Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="text-3xl font-bold #3367D6">8</div>
+              <div className="text-3xl font-bold #1845B3">8</div>
               <div className="text-sm text-gray-600">Complete Phases</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold #3367D6">12-18</div>
+              <div className="text-3xl font-bold #1845B3">12-18</div>
               <div className="text-sm text-gray-600">Months Duration</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold #3367D6">95%</div>
+              <div className="text-3xl font-bold #1845B3">95%</div>
               <div className="text-sm text-gray-600">Success Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold #3367D6">5000+</div>
+              <div className="text-3xl font-bold #1845B3">5000+</div>
               <div className="text-sm text-gray-600">Students Helped</div>
             </div>
           </div>
@@ -450,13 +450,13 @@ export default function StudyAbroadJourney() {
                       {/* Deliverables */}
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                          <CheckSquare className="w-5 h-5 mr-2 #3367D6" />
+                          <CheckSquare className="w-5 h-5 mr-2 #1845B3" />
                           Key Deliverables
                         </h4>
                         <ul className="space-y-2">
                           {step.deliverables.map((item, idx) => (
                             <li key={idx} className="flex items-start text-gray-600">
-                              <CheckCircle className="w-4 h-4 mr-2 mt-1 #4285F4 flex-shrink-0" />
+                              <CheckCircle className="w-4 h-4 mr-2 mt-1 #1D50C9 flex-shrink-0" />
                               {item}
                             </li>
                           ))}
@@ -466,13 +466,13 @@ export default function StudyAbroadJourney() {
                       {/* Pro Tips */}
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                          <Star className="w-5 h-5 mr-2 #3367D6" />
+                          <Star className="w-5 h-5 mr-2 #1845B3" />
                           Pro Tips
                         </h4>
                         <ul className="space-y-2">
                           {step.tips.map((tip, idx) => (
                             <li key={idx} className="flex items-start text-gray-600">
-                              <ArrowRight className="w-4 h-4 mr-2 mt-1 #4285F4 flex-shrink-0" />
+                              <ArrowRight className="w-4 h-4 mr-2 mt-1 #1D50C9 flex-shrink-0" />
                               {tip}
                             </li>
                           ))}
@@ -482,7 +482,7 @@ export default function StudyAbroadJourney() {
                       {/* Common Challenges */}
                       <div>
                         <h4 className="font-semibold text-gray-900 mb-3 flex items-center">
-                          <Target className="w-5 h-5 mr-2 #3367D6" />
+                          <Target className="w-5 h-5 mr-2 #1845B3" />
                           Common Challenges
                         </h4>
                         <ul className="space-y-2">
@@ -541,7 +541,7 @@ export default function StudyAbroadJourney() {
                 <Card className="h-full hover:shadow-lg transition-all duration-300">
                   <CardContent className="p-6">
                     <div className="flex items-center mb-4">
-                      <div className="w-16 h-16 bg-gradient-to-r from-[#4285F4] to-[#1a73e8] rounded-full flex items-center justify-center text-white font-bold text-xl">
+                      <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1a73e8] rounded-full flex items-center justify-center text-white font-bold text-xl">
                         {story.name.split(' ').map(n => n[0]).join('')}
                       </div>
                       <div className="ml-4">
@@ -617,7 +617,7 @@ export default function StudyAbroadJourney() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#4285F4] to-purple-700">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-purple-700">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -634,7 +634,7 @@ export default function StudyAbroadJourney() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg"
-                className="bg-white #3367D6 hover:bg-blue-50 px-8 py-4"
+                className="bg-white #1845B3 hover:bg-blue-50 px-8 py-4"
               >
                 <Calendar className="mr-2 h-5 w-5" />
                 Book Free Consultation

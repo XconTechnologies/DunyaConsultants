@@ -25,7 +25,7 @@ const offices: Office[] = [
     address: "Alif Tower, Bahadur Shah Zafar Road, Sargodha",
     phone: "+92 323‑251‑6319",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     isHeadOffice: true,
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"]
@@ -37,7 +37,7 @@ const offices: Office[] = [
     address: "1st Floor, 174 6th Street 123, Sector H, DHA Phase 1, Lahore",
     phone: "+92 300‑167‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "Document Verification"]
   },
@@ -48,7 +48,7 @@ const offices: Office[] = [
     address: "1st Floor, 85 /R‑1, Phase 2, Johar Town, Lahore",
     phone: "+92 300‑827‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Punjab",
     services: ["Student Counseling", "Test Preparation", "Career Guidance"]
   },
@@ -59,7 +59,7 @@ const offices: Office[] = [
     address: "Mezzanine‑3, ATS Centre, Fazal‑e‑Haq Road, Blue Area, Islamabad",
     phone: "+92 333‑777‑5458",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Federal",
     services: ["Visa Processing", "Embassy Relations", "Document Attestation"]
   },
@@ -70,7 +70,7 @@ const offices: Office[] = [
     address: "05‑C Prime Point Building, Main 2, Khayaban‑e‑Ittehad Road, DHA, Karachi",
     phone: "+92 332‑364‑3373",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Sindh",
     services: ["Visa Processing", "University Applications", "Financial Guidance"]
   },
@@ -81,7 +81,7 @@ const offices: Office[] = [
     address: "Mezzanine Floor, Centre Point Plaza, Koh‑i‑Noor City, Jaranwala Road, Faisalabad",
     phone: "+92 332‑662‑8487",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Punjab",
     services: ["Student Counseling", "Test Preparation", "Scholarship Guidance"]
   },
@@ -92,7 +92,7 @@ const offices: Office[] = [
     address: "Dunya Consultants, Peoples Colony Underpass, Gujranwala",
     phone: "+92 332‑999‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Punjab",
     services: ["Student Counseling", "Visa Processing", "Test Preparation"]
   },
@@ -103,7 +103,7 @@ const offices: Office[] = [
     address: "2nd Floor, Bank Islami, Cantt Plaza, Sialkot Cantonment",
     phone: "+92 323‑002‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Punjab",
     services: ["Student Counseling", "Visa Processing", "Document Verification"]
   },
@@ -114,7 +114,7 @@ const offices: Office[] = [
     address: "Beside KFC, Service Morh Road, GT Road, Gujrat",
     phone: "+92 300‑105‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Punjab",
     services: ["University Applications", "IELTS Training", "Career Counseling"]
   },
@@ -125,7 +125,7 @@ const offices: Office[] = [
     address: "Rafi Qamar Road, near Muslim Town, Goth Muslim Town, Bahawalpur",
     phone: "+92 300‑173‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Punjab",
     services: ["Visa Processing", "Test Preparation", "Document Preparation"]
   },
@@ -136,7 +136,7 @@ const offices: Office[] = [
     address: "1st Floor, Moti Plaza, Allama Iqbal Road, Mian Channu",
     phone: "+92 300‑984‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Punjab",
     services: ["Student Counseling", "University Applications", "Career Guidance"]
   },
@@ -147,7 +147,7 @@ const offices: Office[] = [
     address: "Punjab Center, Mandi Bahauddin",
     phone: "+92 321‑300‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-amber-600 to-[#3367D6]",
+    gradient: "from-amber-600 to-[#1845B3]",
     region: "Punjab",
     services: ["Visa Processing", "Document Preparation", "Test Preparation"]
   },
@@ -158,7 +158,7 @@ const offices: Office[] = [
     address: "Beside Darul Barkat Medicare Hospital, Stadium Road, Sheikhupura",
     phone: "+92 300‑507‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-lime-600 to-[#3367D6]",
+    gradient: "from-lime-600 to-[#1845B3]",
     region: "Punjab",
     services: ["University Applications", "Career Counseling", "IELTS Training"]
   },
@@ -169,7 +169,7 @@ const offices: Office[] = [
     address: "Shalimar Metro Station, Bosan Road, New Sabzazar Colony, Multan",
     phone: "+92 305‑444‑1947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "Document Verification"]
   },
@@ -180,7 +180,7 @@ const offices: Office[] = [
     address: "Office 27, 4th Floor, Alhaj Tower 2, near Phase 3 Chowk, Peshawar",
     phone: "+92 317‑111‑4726",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-sky-600 to-[#3367D6]",
+    gradient: "from-sky-600 to-[#1845B3]",
     region: "KPK",
     services: ["Student Counseling", "Visa Processing", "University Applications"]
   },
@@ -224,7 +224,7 @@ const offices: Office[] = [
     address: "Ataköy Towers, Ataköy 7‑8‑9‑10 Kısım Mah., Çobançeşme E‑5 Yan Yol Cad., A Blok Apt. No: 20/1, Bakırköy, Istanbul",
     phone: "+90 505‑305‑8047",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-[#3367D6]",
+    gradient: "from-[#1D50C9] to-[#1845B3]",
     region: "International",
     services: ["Student Counseling", "University Applications", "Student Support"]
   },
@@ -345,8 +345,8 @@ export default function OfficeLocationsSection() {
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-[#e8f0ff] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ backgroundColor: '#4285F4' }}></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000" style={{ backgroundColor: '#4285F4' }}></div>
+        <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ backgroundColor: '#1D50C9' }}></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000" style={{ backgroundColor: '#1D50C9' }}></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -356,10 +356,10 @@ export default function OfficeLocationsSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="font-bold text-center mb-8 cursor-default"
-          style={{ fontSize: '32px', color: '#4285F4' }}
+          style={{ fontSize: '32px', color: '#1D50C9' }}
           whileHover={{ 
             scale: 1.05,
-            color: '#4285F4',
+            color: '#1D50C9',
             transition: { duration: 0.3 }
           }}
         >
@@ -417,7 +417,7 @@ export default function OfficeLocationsSection() {
                   transition={{ duration: 0.6, delay: (index % cardsPerView) * 0.1 }}
                 >
                   <Card className="h-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-0 bg-white group hover:scale-105">
-                    <div className="h-1.5" style={{ backgroundColor: office.gradient === "custom-blue" ? '#4285F4' : '#4285F4' }}></div>
+                    <div className="h-1.5" style={{ backgroundColor: office.gradient === "custom-blue" ? '#1D50C9' : '#1D50C9' }}></div>
                     <CardContent className="p-4">
                       {/* Header - Compact */}
                       <div className="flex items-start justify-between mb-4">
@@ -425,19 +425,19 @@ export default function OfficeLocationsSection() {
                           <div className="flex items-center space-x-1 mb-1">
                             <h3 className="text-lg font-bold text-gray-800 truncate">{office.city}</h3>
                             {office.isHeadOffice && (
-                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#4285F4' }}>
+                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#1D50C9' }}>
                                 HQ
                               </span>
                             )}
                             {office.region === "International" && (
-                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#4285F4' }}>
+                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#1D50C9' }}>
                                 🌍 INT
                               </span>
                             )}
                           </div>
                           <p className="text-sm font-medium text-gray-600 truncate">{office.name}</p>
                         </div>
-                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2" style={{ backgroundColor: '#4285F4' }}>
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2" style={{ backgroundColor: '#1D50C9' }}>
                           <Building2 className="w-6 h-6 text-white" />
                         </div>
                       </div>
@@ -445,23 +445,23 @@ export default function OfficeLocationsSection() {
                       {/* Office Details - Compact */}
                       <div className="space-y-2 mb-4">
                         <div className="flex items-start space-x-2">
-                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#4285F4' }} />
+                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#1D50C9' }} />
                           <p className="text-xs text-gray-600 leading-relaxed line-clamp-2">{office.address}</p>
                         </div>
                         
                         <div className="flex items-center space-x-2">
-                          <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#4285F4' }} />
+                          <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#1D50C9' }} />
                           <a 
                             href={`tel:${office.phone}`}
                             className="font-medium transition-colors duration-200 text-xs truncate hover:opacity-80"
-                            style={{ color: '#4285F4' }}
+                            style={{ color: '#1D50C9' }}
                           >
                             {office.phone}
                           </a>
                         </div>
                         
                         <div className="flex items-center space-x-2">
-                          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: '#4285F4' }} />
+                          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: '#1D50C9' }} />
                           <p className="text-xs text-gray-600 truncate">{office.hours}</p>
                         </div>
                       </div>
@@ -471,7 +471,7 @@ export default function OfficeLocationsSection() {
                         <Button 
                           size="sm"
                           className="flex-1 text-white font-medium shadow-md text-xs hover:opacity-90"
-                          style={{ backgroundColor: '#4285F4' }}
+                          style={{ backgroundColor: '#1D50C9' }}
                         >
                           <Phone className="w-3 h-3 mr-1" />
                           Call
@@ -479,7 +479,7 @@ export default function OfficeLocationsSection() {
                         <Button 
                           variant="outline" 
                           size="sm"
-                          className="flex-1 #3367D6 #3367D6 hover:bg-blue-50 font-medium text-xs"
+                          className="flex-1 #1845B3 #1845B3 hover:bg-blue-50 font-medium text-xs"
                         >
                           Directions
                         </Button>
@@ -499,7 +499,7 @@ export default function OfficeLocationsSection() {
                 onClick={() => setCurrentIndex(index * cardsPerView)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   Math.floor(currentIndex / cardsPerView) === index
-                    ? '#3367D6 w-8'
+                    ? '#1845B3 w-8'
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
               />

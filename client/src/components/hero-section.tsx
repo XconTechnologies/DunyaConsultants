@@ -120,7 +120,7 @@ export default function HeroSection() {
             <Button 
               size="default"
               onClick={() => scrollToSection("contact")}
-              className="bg-accent hover:bg-[#4285F4] text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
+              className="bg-accent hover:bg-[#1D50C9] text-white px-6 py-3 text-sm font-semibold transition-all duration-300 hover:scale-105 shadow-xl"
             >
               <Rocket className="mr-2" size={16} />
               Start Your Journey

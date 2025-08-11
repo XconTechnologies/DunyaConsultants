@@ -20,42 +20,42 @@ const processSteps = [
     icon: UserCheck,
     title: "Get Details",
     description: "Initial consultation to understand your academic background, career goals, and preferences",
-    color: "#4285F4",
+    color: "#1D50C9",
     step: "01"
   },
   {
     icon: GraduationCap,
     title: "University Selection",
     description: "Expert guidance to choose the best universities and programs matching your profile",
-    color: "#4285F4",
+    color: "#1D50C9",
     step: "02"
   },
   {
     icon: CheckSquare,
     title: "Meet Requirements",
     description: "Assistance in fulfilling all admission requirements including tests and documentation",
-    color: "#4285F4",
+    color: "#1D50C9",
     step: "03"
   },
   {
     icon: Send,
     title: "Apply",
     description: "Professional application submission with careful review and optimization",
-    color: "#4285F4",
+    color: "#1D50C9",
     step: "04"
   },
   {
     icon: MessageCircle,
     title: "Interview",
     description: "Comprehensive preparation for university admission and visa interviews",
-    color: "#4285F4",
+    color: "#1D50C9",
     step: "05"
   },
   {
     icon: FileCheck,
     title: "Visa",
     description: "Complete visa processing support from documentation to final approval",
-    color: "#4285F4",
+    color: "#1D50C9",
     step: "06"
   }
 ];

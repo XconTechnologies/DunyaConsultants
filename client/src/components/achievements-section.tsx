@@ -20,7 +20,7 @@ export default function AchievementsSection() {
       title: "Growing Fast",
       description: "500+ new students monthly",
       subtitle: "Expanding Rapidly",
-      color: "from-[#4285F4] to-[#3367D6]",
+      color: "from-[#1D50C9] to-[#1845B3]",
       bgColor: "from-blue-100 to-blue-200"
     },
     {
@@ -28,7 +28,7 @@ export default function AchievementsSection() {
       title: "Global Reach",
       description: "Offices across Pakistan",
       subtitle: "Nationwide Network",
-      color: "from-[#4285F4] to-[#1a73e8]",
+      color: "from-[#1D50C9] to-[#1a73e8]",
       bgColor: "from-blue-50 to-blue-100"
     }
   ];
@@ -47,8 +47,8 @@ export default function AchievementsSection() {
             <span className="text-sm font-medium text-neutral-700">Our Achievements</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#4285F4' }}>
-            Recognized <span style={{ color: '#4285F4' }}>Excellence</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#1D50C9' }}>
+            Recognized <span style={{ color: '#1D50C9' }}>Excellence</span>
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">

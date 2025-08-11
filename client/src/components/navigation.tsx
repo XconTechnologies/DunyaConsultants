@@ -243,8 +243,14 @@ export default function Navigation() {
               className={`${
                 !isScrolled
                   ? 'bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 hover:border-white/60 shadow-lg'
-                  : '#3367D6 hover:bg-#1a73e8 text-white shadow-md border #3367D6'
-              } transition-all duration-300 font-semibold px-6 py-2`}
+                  : 'text-white shadow-md transition-all duration-300'
+              } font-semibold px-6 py-2`}
+              style={isScrolled ? { 
+                backgroundColor: '#1D50C9', 
+                borderColor: '#1D50C9'
+              } : {}}
+              onMouseEnter={isScrolled ? (e) => e.currentTarget.style.backgroundColor = '#1845B3' : undefined}
+              onMouseLeave={isScrolled ? (e) => e.currentTarget.style.backgroundColor = '#1D50C9' : undefined}
             >
               Free Consultation
             </Button>
@@ -288,7 +294,7 @@ export default function Navigation() {
                     // Special layout for Study Abroad with 2-column countries
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-[#4285F4] to-[#3367D6] rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                           {React.createElement(Globe, { 
                             className: "w-4 h-4 text-white" 
                           })}
@@ -317,7 +323,7 @@ export default function Navigation() {
                     // Special layout for Test Prep with 2-column tests
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-[#4285F4] to-[#3367D6] rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                           {React.createElement(Award, { 
                             className: "w-4 h-4 text-white" 
                           })}
@@ -346,7 +352,7 @@ export default function Navigation() {
                     // Special layout for Offices with 2-column offices
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-[#4285F4] to-[#3367D6] rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                           {React.createElement(MapPin, { 
                             className: "w-4 h-4 text-white" 
                           })}
@@ -375,7 +381,7 @@ export default function Navigation() {
                     // Special layout for Blog with 2-column items (flattened from all sections)
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-[#4285F4] to-[#3367D6] rounded-lg flex items-center justify-center">
+                        <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                           {React.createElement(Newspaper, { 
                             className: "w-4 h-4 text-white" 
                           })}
@@ -407,7 +413,7 @@ export default function Navigation() {
                       {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].sections.map((section: any, idx: number) => (
                         <div key={idx} className="space-y-3">
                           <div className="flex items-center space-x-2 mb-3">
-                            <div className="w-8 h-8 bg-gradient-to-br from-[#4285F4] to-[#3367D6] rounded-lg flex items-center justify-center">
+                            <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                               {React.createElement(section.icon, { 
                                 className: "w-4 h-4 text-white" 
                               })}
@@ -439,8 +445,8 @@ export default function Navigation() {
 
                 {/* Featured Section */}
                 <div className="lg:col-span-1">
-                  <div className="bg-gradient-to-br from-[#4285F4] via-#1a73e8 to-[#1a73e8] rounded-xl p-5 text-white relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#4285F4]/30 to-[#3367D6]/30"></div>
+                  <div className="bg-gradient-to-br from-[#1D50C9] via-#1a73e8 to-[#1a73e8] rounded-xl p-5 text-white relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9]/30 to-[#1845B3]/30"></div>
                     <div className="relative z-10">
                       <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">
                         {React.createElement(megaMenuData[activeMegaMenu as keyof typeof megaMenuData].icon, { 
@@ -534,7 +540,7 @@ export default function Navigation() {
                     setShowConsultationPopup(true);
                     setIsOpen(false);
                   }}
-                  className="w-full #3367D6 hover:bg-#1a73e8 text-white font-semibold"
+                  className="w-full #1845B3 hover:bg-#1a73e8 text-white font-semibold"
                 >
                   Free Consultation
                 </Button>

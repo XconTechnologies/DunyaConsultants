@@ -12,7 +12,7 @@ export default function FAQsSection() {
       id: "admission",
       title: "Admission Process",
       icon: GraduationCap,
-      color: "from-[#4285F4] to-[#3367D6]",
+      color: "from-[#1D50C9] to-[#1845B3]",
       faqs: [
         {
           question: "What documents do I need for university applications?",
@@ -44,7 +44,7 @@ export default function FAQsSection() {
       id: "visa",
       title: "Visa Process",
       icon: Plane,
-      color: "from-[#4285F4] to-[#3367D6]",
+      color: "from-[#1D50C9] to-[#1845B3]",
       faqs: [
         {
           question: "How long does the visa process take?",
@@ -76,7 +76,7 @@ export default function FAQsSection() {
       id: "finances",
       title: "Finances & Scholarships",
       icon: DollarSign,
-      color: "from-[#4285F4] to-[#3367D6]",
+      color: "from-[#1D50C9] to-[#1845B3]",
       faqs: [
         {
           question: "How much does it cost to study abroad?",
@@ -108,7 +108,7 @@ export default function FAQsSection() {
       id: "general",
       title: "General Questions",
       icon: HelpCircle,
-      color: "from-[#4285F4] to-[#3367D6]",
+      color: "from-[#1D50C9] to-[#1845B3]",
       faqs: [
         {
           question: "Why should I choose Dunya Consultants?",
@@ -151,7 +151,7 @@ export default function FAQsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#4285F4]">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#1D50C9]">
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -166,30 +166,30 @@ export default function FAQsSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid md:grid-cols-4 gap-6 mb-12"
         >
-          <Card className="text-center shadow-lg border-l-4 #4285F4">
+          <Card className="text-center shadow-lg border-l-4 #1D50C9">
             <CardContent className="p-6">
-              <Users className="h-10 w-10 #3367D6 mx-auto mb-3" />
+              <Users className="h-10 w-10 #1845B3 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">50+</h3>
               <p className="text-gray-600">Questions Answered</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 #4285F4">
+          <Card className="text-center shadow-lg border-l-4 #1D50C9">
             <CardContent className="p-6">
-              <Clock className="h-10 w-10 #3367D6 mx-auto mb-3" />
+              <Clock className="h-10 w-10 #1845B3 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">24/7</h3>
               <p className="text-gray-600">Support Available</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 #4285F4">
+          <Card className="text-center shadow-lg border-l-4 #1D50C9">
             <CardContent className="p-6">
-              <GraduationCap className="h-10 w-10 #3367D6 mx-auto mb-3" />
+              <GraduationCap className="h-10 w-10 #1845B3 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">98%</h3>
               <p className="text-gray-600">Success Rate</p>
             </CardContent>
           </Card>
-          <Card className="text-center shadow-lg border-l-4 #4285F4">
+          <Card className="text-center shadow-lg border-l-4 #1D50C9">
             <CardContent className="p-6">
-              <HelpCircle className="h-10 w-10 #3367D6 mx-auto mb-3" />
+              <HelpCircle className="h-10 w-10 #1845B3 mx-auto mb-3" />
               <h3 className="text-2xl font-bold text-gray-900">15+</h3>
               <p className="text-gray-600">Years Experience</p>
             </CardContent>
@@ -280,7 +280,7 @@ export default function FAQsSection() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
                   href="tel:+923041110947"
-                  className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all"
+                  className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all"
                 >
                   Call Us: +92 304 1110947
                 </a>

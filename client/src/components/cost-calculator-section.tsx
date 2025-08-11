@@ -365,7 +365,7 @@ export default function CostCalculatorSection() {
 
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
                 <div className="flex items-start">
-                  <div className="#3367D6 mr-3 mt-1">💡</div>
+                  <div className="#1845B3 mr-3 mt-1">💡</div>
                   <div>
                     <div className="font-medium text-#1565c0 mb-1">Pro Tip</div>
                     <div className="text-sm text-#1a73e8">

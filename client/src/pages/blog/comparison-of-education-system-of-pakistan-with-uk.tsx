@@ -9,14 +9,14 @@ export default function ComparisonEducationSystemPakistanUK() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative w-full h-96 bg-gradient-to-r from-[#4285F4] to-[#3367D6]">
+      <div className="relative w-full h-96 bg-gradient-to-r from-[#1D50C9] to-[#1845B3]">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: 'url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80")'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4285F4]/80 to-[#3367D6]/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1D50C9]/80 to-[#1845B3]/80" />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
           <div>
             <h1 className="text-5xl font-bold mb-4">Differences Between UK and Pakistan Education Systems</h1>
@@ -48,7 +48,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </div>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Education System Comparison of Pakistan & UK
                   </h2>
                   <div className="bg-blue-50 p-6 rounded-lg mb-6">
@@ -65,7 +65,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Primary and Elementary Education
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -100,7 +100,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Secondary Education
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -134,7 +134,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Higher Education
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -167,7 +167,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Key Differences Overview
                   </h2>
                   <div className="overflow-x-auto">
@@ -211,7 +211,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Academic Calendar Comparison
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -237,7 +237,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Challenges in Pakistan Education System
                   </h2>
                   <div className="bg-blue-50 p-6 rounded-lg">
@@ -265,7 +265,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     FAQs
                   </h2>
                   <div className="space-y-6">
@@ -310,7 +310,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Conclusion
                   </h2>
                   <p className="text-lg text-gray-700">

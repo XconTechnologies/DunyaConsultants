@@ -47,7 +47,7 @@ const BachelorsIndustrialEngineeringAndManagement: React.FC = () => {
         <Navigation />
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 #4285F4 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 #1D50C9 mx-auto mb-4"></div>
             <p className="text-gray-600">Loading article...</p>
           </div>
         </div>
@@ -62,8 +62,8 @@ const BachelorsIndustrialEngineeringAndManagement: React.FC = () => {
         <Navigation />
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <p className="#3367D6 mb-4">Failed to load the article</p>
-            <Link href="/blog" className="#3367D6 hover:text-#1565c0">
+            <p className="#1845B3 mb-4">Failed to load the article</p>
+            <Link href="/blog" className="#1845B3 hover:text-#1565c0">
               ← Back to Blog
             </Link>
           </div>
@@ -77,7 +77,7 @@ const BachelorsIndustrialEngineeringAndManagement: React.FC = () => {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">

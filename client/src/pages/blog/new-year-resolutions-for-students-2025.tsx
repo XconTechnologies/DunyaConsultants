@@ -9,7 +9,7 @@ export default function NewYearResolutionsForStudents2025() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="relative w-full h-96 bg-gradient-to-r from-[#4285F4] to-#1565c0">
+      <div className="relative w-full h-96 bg-gradient-to-r from-[#1D50C9] to-#1565c0">
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -48,7 +48,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </div>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     What Should be a New Year's Resolution for Students to Study Abroad?
                   </h2>
                   <p className="text-lg text-gray-700 mb-6">
@@ -60,7 +60,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Follow Proper Deadlines
                   </h3>
                   <div className="bg-blue-50 p-6 rounded-lg mb-6">
@@ -77,7 +77,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Master the Art of Research
                   </h3>
                   <div className="bg-blue-50 p-6 rounded-lg mb-6">
@@ -94,7 +94,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Learn to Manage Money
                   </h3>
                   <div className="bg-blue-50 p-6 rounded-lg mb-6">
@@ -112,7 +112,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Focus on Mental Health
                   </h3>
                   <div className="bg-blue-50 p-6 rounded-lg mb-6">
@@ -130,7 +130,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Learn the Local Language
                   </h3>
                   <div className="bg-blue-50 p-6 rounded-lg mb-6">
@@ -147,7 +147,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Aim for Top Test Scores
                   </h3>
                   <div className="bg-blue-50 p-6 rounded-lg mb-6">
@@ -165,7 +165,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h3 className="text-2xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Plan Your Travel Goals
                   </h3>
                   <div className="bg-blue-50 p-6 rounded-lg mb-6">
@@ -182,7 +182,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Study Abroad Success Tips
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -204,7 +204,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     FAQs
                   </h2>
                   <div className="space-y-6">
@@ -232,7 +232,7 @@ export default function NewYearResolutionsForStudents2025() {
                 </section>
 
                 <section className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #3367D6 pl-4">
+                  <h2 className="text-3xl font-bold mb-6 text-gray-900 border-l-4 #1845B3 pl-4">
                     Conclusion
                   </h2>
                   <p className="text-lg text-gray-700">
@@ -255,19 +255,19 @@ export default function NewYearResolutionsForStudents2025() {
                   <h3 className="text-xl font-bold text-gray-900 mb-4">Resolution Categories</h3>
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 #3367D6 rounded-full"></div>
+                      <div className="w-3 h-3 #1845B3 rounded-full"></div>
                       <span className="text-gray-700">Academic Excellence</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 #3367D6 rounded-full"></div>
+                      <div className="w-3 h-3 #1845B3 rounded-full"></div>
                       <span className="text-gray-700">Financial Planning</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 #3367D6 rounded-full"></div>
+                      <div className="w-3 h-3 #1845B3 rounded-full"></div>
                       <span className="text-gray-700">Personal Growth</span>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 #3367D6 rounded-full"></div>
+                      <div className="w-3 h-3 #1845B3 rounded-full"></div>
                       <span className="text-gray-700">Language Skills</span>
                     </div>
                   </div>

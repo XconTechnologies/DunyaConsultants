@@ -21,10 +21,10 @@ interface BusinessCardData {
 }
 
 const themes = [
-  { id: 'blue', name: 'Ocean Blue', primary: 'from-blue-400 to-[#3367D6]', secondary: 'bg-blue-50', accent: '#3367D6' },
-  { id: 'purple', name: 'Royal Purple', primary: 'from-blue-400 to-[#3367D6]', secondary: 'bg-blue-50', accent: '#3367D6' },
-  { id: 'green', name: 'Forest Green', primary: 'from-blue-400 to-[#3367D6]', secondary: 'bg-blue-50', accent: '#3367D6' },
-  { id: 'rose', name: 'Elegant Rose', primary: 'from-blue-400 to-[#3367D6]', secondary: 'bg-blue-50', accent: '#3367D6' },
+  { id: 'blue', name: 'Ocean Blue', primary: 'from-blue-400 to-[#1845B3]', secondary: 'bg-blue-50', accent: '#1845B3' },
+  { id: 'purple', name: 'Royal Purple', primary: 'from-blue-400 to-[#1845B3]', secondary: 'bg-blue-50', accent: '#1845B3' },
+  { id: 'green', name: 'Forest Green', primary: 'from-blue-400 to-[#1845B3]', secondary: 'bg-blue-50', accent: '#1845B3' },
+  { id: 'rose', name: 'Elegant Rose', primary: 'from-blue-400 to-[#1845B3]', secondary: 'bg-blue-50', accent: '#1845B3' },
   { id: 'amber', name: 'Golden Amber', primary: 'from-amber-400 to-amber-600', secondary: 'bg-amber-50', accent: 'text-amber-600' },
   { id: 'slate', name: 'Modern Slate', primary: 'from-slate-400 to-slate-600', secondary: 'bg-slate-50', accent: 'text-slate-600' }
 ];
@@ -90,7 +90,7 @@ export default function BusinessCardGenerator() {
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="inline-block bg-blue-50 #3367D6 px-4 py-2 rounded-full text-sm font-medium mb-4"
+            className="inline-block bg-blue-50 #1845B3 px-4 py-2 rounded-full text-sm font-medium mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
@@ -117,7 +117,7 @@ export default function BusinessCardGenerator() {
           >
             <div className="bg-white rounded-2xl p-8 shadow-xl">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <User className="w-6 h-6 mr-3 #3367D6" />
+                <User className="w-6 h-6 mr-3 #1845B3" />
                 Personal Information
               </h2>
               
@@ -209,7 +209,7 @@ export default function BusinessCardGenerator() {
             {/* Design Customization */}
             <div className="bg-white rounded-2xl p-8 shadow-xl">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                <Palette className="w-6 h-6 mr-3 #3367D6" />
+                <Palette className="w-6 h-6 mr-3 #1845B3" />
                 Design Customization
               </h2>
               
@@ -314,7 +314,7 @@ export default function BusinessCardGenerator() {
                 <Button
                   onClick={handleDownload}
                   disabled={isGenerating}
-                  className="flex-1 bg-gradient-to-r from-[#4285F4] to-[#1a73e8] hover:from-#1a73e8 hover:to-#1565c0"
+                  className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#1a73e8] hover:from-#1a73e8 hover:to-#1565c0"
                 >
                   <AnimatePresence mode="wait">
                     {isGenerating ? (
@@ -350,7 +350,7 @@ export default function BusinessCardGenerator() {
                 >
                   {copied ? (
                     <>
-                      <Check className="w-4 h-4 mr-2 #3367D6" />
+                      <Check className="w-4 h-4 mr-2 #1845B3" />
                       Copied!
                     </>
                   ) : (

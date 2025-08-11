@@ -10,7 +10,7 @@ export default function TOEFLTestFeeInPakistan() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#4285F4] to-#1565c0 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#1D50C9] to-#1565c0 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -46,15 +46,15 @@ export default function TOEFLTestFeeInPakistan() {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">$200-$250</h4>
-                      <p className="#3367D6">Test Fee in Pakistan</p>
+                      <p className="#1845B3">Test Fee in Pakistan</p>
                     </div>
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">2 Years</h4>
-                      <p className="#3367D6">Score Validity</p>
+                      <p className="#1845B3">Score Validity</p>
                     </div>
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">4 Skills</h4>
-                      <p className="#3367D6">Reading, Writing, Listening, Speaking</p>
+                      <p className="#1845B3">Reading, Writing, Listening, Speaking</p>
                     </div>
                   </div>
                 </div>
@@ -62,7 +62,7 @@ export default function TOEFLTestFeeInPakistan() {
 
               {/* What is TOEFL Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">What is the TOEFL Exam?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">What is the TOEFL Exam?</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The TOEFL complete form is the <strong>Test of English as a Foreign Language</strong>. This test examines how much students (non-native speakers) understand and speak English and focuses on several skills, such as reading, speaking, listening, and writing. It is accepted in different countries like Canada, US, New Zealand, and Australia, as it is a trusted test for studying abroad.
                 </p>
@@ -95,7 +95,7 @@ export default function TOEFLTestFeeInPakistan() {
 
               {/* Eligibility Criteria Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Eligibility Criteria for TOEFL</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Eligibility Criteria for TOEFL</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The TOEFL exam is for everyone who wants to study abroad. The great thing about this test is that there are no strict rules about who can take it, and there is <strong>no age restriction</strong>, so anyone can give it a try.
                 </p>
@@ -132,7 +132,7 @@ export default function TOEFLTestFeeInPakistan() {
 
               {/* Registration Process Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Process of Registration for the TOEFL Test</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Process of Registration for the TOEFL Test</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Registering for the TOEFL exam is the first and most crucial step. Remember that registration closes <strong>seven days before the test date</strong>, but if you miss this deadline, you can still register up to four days before the exam by paying a late TOEFL test price of around <strong>forty dollars</strong>.
                 </p>
@@ -184,7 +184,7 @@ export default function TOEFLTestFeeInPakistan() {
 
               {/* TOEFL Test Price Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">TOEFL Test Price in Pakistan</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">TOEFL Test Price in Pakistan</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   One of the most asked queries is how much is TOEFL exam? The <strong>TOEFL test fee in Pakistan is typically between 200 to 250 dollars</strong>. This TOEFL test fee includes sending your scores to around four institutions.
                 </p>
@@ -240,7 +240,7 @@ export default function TOEFLTestFeeInPakistan() {
 
               {/* Validity Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Validity of TOEFL Exam</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Validity of TOEFL Exam</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The <strong>TOEFL validity period is around two years</strong> from the date you take the exam. This rule is the same for every country, including Pakistan.
                 </p>
@@ -299,35 +299,35 @@ export default function TOEFLTestFeeInPakistan() {
 
               {/* FAQs */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">How many times can you take the TOEFL exam?</h3>
                     <p className="text-gray-700">You can take the TOEFL exam as many times as you want, but you must wait at least 3 days between test dates. There's no limit to the number of times you can retake the test to improve your scores.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Which one is easier – IELTS or TOEFL?</h3>
                     <p className="text-gray-700">Both tests have their challenges. IELTS has a face-to-face speaking section and British English focus, while TOEFL is entirely computer-based with American English. Choose based on your strengths, destination country preferences, and university requirements.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Can I Take the TOEFL Test in Pakistan?</h3>
                     <p className="text-gray-700">Yes, you can take the TOEFL test in Pakistan at authorized test centers or from home with TOEFL iBT Home Edition. Major cities like Karachi, Lahore, and Islamabad have test centers available.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">What is the minimum TOEFL score required for universities?</h3>
                     <p className="text-gray-700">Minimum TOEFL scores vary by university and program. Generally, undergraduate programs require 61-80, while graduate programs need 80-100. Top universities often require 100+ scores.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">How long does it take to prepare for TOEFL?</h3>
                     <p className="text-gray-700">Preparation time varies based on your current English level. Generally, 2-3 months of dedicated preparation is recommended. Students with stronger English backgrounds may need 4-6 weeks, while others might need 4-6 months.</p>
                   </div>
 
-                  <div className="bg-white border-l-4 #4285F4 p-6 shadow-sm">
+                  <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
                     <h3 className="text-xl font-semibold mb-3 text-gray-800">Can I cancel my TOEFL registration and get a refund?</h3>
                     <p className="text-gray-700">Yes, you can cancel your TOEFL registration up to 4 days before your test date and receive a partial refund (minus a cancellation fee). Late cancellations may not be eligible for refunds.</p>
                   </div>
@@ -335,14 +335,14 @@ export default function TOEFLTestFeeInPakistan() {
               </div>
 
               {/* Call to Action */}
-              <div className="bg-gradient-to-r from-[#4285F4] to-purple-700 text-white p-8 rounded-lg mb-8">
+              <div className="bg-gradient-to-r from-[#1D50C9] to-purple-700 text-white p-8 rounded-lg mb-8">
                 <h3 className="text-2xl font-bold mb-4">Ready to Take Your TOEFL Exam?</h3>
                 <p className="text-lg mb-4">Get expert guidance for TOEFL preparation and registration. Our experienced instructors will help you achieve your target scores and secure admission to your dream university abroad.</p>
                 <div className="flex gap-4">
-                  <a href="tel:+923041110947" className="bg-white #3367D6 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                  <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#3367D6 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -408,13 +408,13 @@ export default function TOEFLTestFeeInPakistan() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block #3367D6 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
                   Study in UK: Complete Guide for Pakistani Students
                 </a>
-                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #3367D6 hover:text-#1565c0 text-sm">
+                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #1845B3 hover:text-#1565c0 text-sm">
                   MS in Business Analytics Course in USA
                 </a>
-                <a href="/blog/germany-blocked-account" className="block #3367D6 hover:text-#1565c0 text-sm">
+                <a href="/blog/germany-blocked-account" className="block #1845B3 hover:text-#1565c0 text-sm">
                   A Complete Guide to Blocked Account Germany
                 </a>
               </div>

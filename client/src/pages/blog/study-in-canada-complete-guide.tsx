@@ -10,11 +10,11 @@ export default function StudyInCanadaCompleteGuide() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Destination
               </span>
             </div>
@@ -64,19 +64,19 @@ export default function StudyInCanadaCompleteGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-canada" className="hover:#3367D6">Why Choose to Study in Canada?</a></li>
-                  <li><a href="#education-system" className="hover:#3367D6">Canadian Education System</a></li>
-                  <li><a href="#visa-requirements" className="hover:#3367D6">Study Visa Requirements</a></li>
-                  <li><a href="#english-requirements" className="hover:#3367D6">English Language Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:#3367D6">Tuition Fees and GIC</a></li>
-                  <li><a href="#documents-checklist" className="hover:#3367D6">Required Documents</a></li>
-                  <li><a href="#application-process" className="hover:#3367D6">Application Process</a></li>
-                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-canada" className="hover:#1845B3">Why Choose to Study in Canada?</a></li>
+                  <li><a href="#education-system" className="hover:#1845B3">Canadian Education System</a></li>
+                  <li><a href="#visa-requirements" className="hover:#1845B3">Study Visa Requirements</a></li>
+                  <li><a href="#english-requirements" className="hover:#1845B3">English Language Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:#1845B3">Tuition Fees and GIC</a></li>
+                  <li><a href="#documents-checklist" className="hover:#1845B3">Required Documents</a></li>
+                  <li><a href="#application-process" className="hover:#1845B3">Application Process</a></li>
+                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Canada Overview */}
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold text-#1565c0 mb-4">Study in Canada at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -94,7 +94,7 @@ export default function StudyInCanadaCompleteGuide() {
 
               {/* Why Study in Canada Section */}
               <section id="why-study-canada" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Why Choose to Study in Canada?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Why Choose to Study in Canada?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Canada offers unique advantages that make it an ideal destination for Pakistani students seeking quality education and future opportunities.
@@ -189,7 +189,7 @@ export default function StudyInCanadaCompleteGuide() {
 
               {/* Visa Requirements Section */}
               <section id="visa-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Study Visa Requirements for Pakistani Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Study Visa Requirements for Pakistani Students</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Pakistani students need a study permit to study in Canada. Total visa costs are approximately 80-90 lacs PKR.
@@ -238,7 +238,7 @@ export default function StudyInCanadaCompleteGuide() {
 
               {/* English Requirements Section */}
               <section id="english-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">English Language Requirements</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">English Language Requirements</h2>
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
@@ -273,13 +273,13 @@ export default function StudyInCanadaCompleteGuide() {
 
               {/* Tuition Costs Section */}
               <section id="tuition-costs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Tuition Fees</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Tuition Fees</h2>
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
                     <h3 className="text-xl font-semibold mb-4 text-#1565c0">Undergraduate Programs</h3>
                     <div className="text-center">
-                      <div className="text-3xl font-bold #3367D6 mb-2">CAD $36,100</div>
+                      <div className="text-3xl font-bold #1845B3 mb-2">CAD $36,100</div>
                       <p className="text-gray-700 text-sm">per year (average)</p>
                     </div>
                   </div>
@@ -287,7 +287,7 @@ export default function StudyInCanadaCompleteGuide() {
                   <div className="bg-blue-50 p-6 rounded-lg">
                     <h3 className="text-xl font-semibold mb-4 text-#1565c0">Graduate Programs</h3>
                     <div className="text-center">
-                      <div className="text-3xl font-bold #3367D6 mb-2">CAD $21,100</div>
+                      <div className="text-3xl font-bold #1845B3 mb-2">CAD $21,100</div>
                       <p className="text-gray-700 text-sm">per year (average)</p>
                     </div>
                   </div>
@@ -296,7 +296,7 @@ export default function StudyInCanadaCompleteGuide() {
 
               {/* Documents Checklist Section */}
               <section id="documents-checklist" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Required Documents Checklist</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Required Documents Checklist</h2>
                 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -347,7 +347,7 @@ export default function StudyInCanadaCompleteGuide() {
 
               {/* FAQ Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -377,10 +377,10 @@ export default function StudyInCanadaCompleteGuide() {
                 <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Start Your Canada Study Journey?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants provides comprehensive guidance for Canadian university applications, visa processes, and GIC arrangements. Contact us for expert assistance.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/contact" className="#3367D6 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
+                  <a href="/contact" className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
                     Get Free Consultation
                   </a>
-                  <a href="tel:+923041110947" className="border #3367D6 #3367D6 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  <a href="tel:+923041110947" className="border #1845B3 #1845B3 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                     Call Now: +92 304 111 0947
                   </a>
                 </div>
@@ -421,10 +421,10 @@ export default function StudyInCanadaCompleteGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/study-engineering-in-canada-2025" className="block #3367D6 hover:text-#1565c0 text-sm">Study Engineering in Canada</a>
-                  <a href="/blog/study-in-usa-guide" className="block #3367D6 hover:text-#1565c0 text-sm">Study in USA Guide</a>
-                  <a href="/blog/study-in-uk-complete-guide" className="block #3367D6 hover:text-#1565c0 text-sm">Study in UK Guide</a>
-                  <a href="/blog/engineering-and-law-programs-canada" className="block #3367D6 hover:text-#1565c0 text-sm">Engineering Programs Canada</a>
+                  <a href="/blog/study-engineering-in-canada-2025" className="block #1845B3 hover:text-#1565c0 text-sm">Study Engineering in Canada</a>
+                  <a href="/blog/study-in-usa-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in USA Guide</a>
+                  <a href="/blog/study-in-uk-complete-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in UK Guide</a>
+                  <a href="/blog/engineering-and-law-programs-canada" className="block #1845B3 hover:text-#1565c0 text-sm">Engineering Programs Canada</a>
                 </div>
               </div>
 

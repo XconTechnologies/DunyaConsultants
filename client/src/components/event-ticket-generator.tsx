@@ -137,7 +137,7 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
         </div>
 
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white p-6">
+        <div className="relative bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-6">
           <div className="flex justify-between items-start">
             <div className="flex items-center">
               <img 
@@ -184,7 +184,7 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
             {/* Student Name Only */}
             <div className="space-y-3">
               <div className="flex items-center">
-                <User className="w-5 h-5 #3367D6 mr-3" />
+                <User className="w-5 h-5 #1845B3 mr-3" />
                 <div>
                   <p className="text-xs text-gray-500">Full Name</p>
                   <p className="font-semibold text-gray-800">{ticketData.name}</p>
@@ -233,7 +233,7 @@ export default function EventTicketGenerator({ ticketData, onDownload }: EventTi
       {/* Download Button */}
       <motion.button
         onClick={downloadTicket}
-        className="download-btn bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white px-6 py-3 rounded-lg font-medium hover:from-#1a73e8 hover:to-[#1a73e8] transition-all duration-300 flex items-center space-x-2 shadow-lg"
+        className="download-btn bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white px-6 py-3 rounded-lg font-medium hover:from-#1a73e8 hover:to-[#1a73e8] transition-all duration-300 flex items-center space-x-2 shadow-lg"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >

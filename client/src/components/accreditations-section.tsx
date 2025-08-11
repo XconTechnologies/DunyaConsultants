@@ -13,9 +13,9 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="font-bold text-xs leading-tight" style={{ color: '#4285F4' }}>ICEF</div>
-            <div className="font-bold text-sm" style={{ color: '#4285F4' }}>AGENCY</div>
-            <div className="text-xs" style={{ color: '#4285F4' }}>STATUS</div>
+            <div className="font-bold text-xs leading-tight" style={{ color: '#1D50C9' }}>ICEF</div>
+            <div className="font-bold text-sm" style={{ color: '#1D50C9' }}>AGENCY</div>
+            <div className="text-xs" style={{ color: '#1D50C9' }}>STATUS</div>
           </div>
         </div>
       ),
@@ -27,10 +27,10 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="w-16 h-6 rounded flex items-center justify-center mb-1" style={{ backgroundColor: '#4285F4' }}>
+            <div className="w-16 h-6 rounded flex items-center justify-center mb-1" style={{ backgroundColor: '#1D50C9' }}>
               <span className="text-white font-bold text-xs">BC</span>
             </div>
-            <div className="text-xs" style={{ color: '#4285F4' }}>British Council</div>
+            <div className="text-xs" style={{ color: '#1D50C9' }}>British Council</div>
           </div>
         </div>
       ),
@@ -42,10 +42,10 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="font-bold text-xs" style={{ color: '#4285F4' }}>Language</div>
-            <div className="font-bold text-xs" style={{ color: '#4285F4' }}>Cert</div>
-            <div className="w-12 h-0.5 rounded mx-auto mt-1" style={{ backgroundColor: '#4285F4' }}></div>
-            <div className="text-xs mt-1" style={{ color: '#4285F4' }}>INTERNATIONAL</div>
+            <div className="font-bold text-xs" style={{ color: '#1D50C9' }}>Language</div>
+            <div className="font-bold text-xs" style={{ color: '#1D50C9' }}>Cert</div>
+            <div className="w-12 h-0.5 rounded mx-auto mt-1" style={{ backgroundColor: '#1D50C9' }}></div>
+            <div className="text-xs mt-1" style={{ color: '#1D50C9' }}>INTERNATIONAL</div>
           </div>
         </div>
       ),
@@ -57,11 +57,11 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="w-8 h-6 #4285F4 rounded-full flex items-center justify-center mb-1 mx-auto">
+            <div className="w-8 h-6 #1D50C9 rounded-full flex items-center justify-center mb-1 mx-auto">
               <div className="w-2 h-2 bg-white rounded-full"></div>
             </div>
-            <div className="#3367D6 font-bold text-xs">Duolingo</div>
-            <div className="text-xs #4285F4">English Test</div>
+            <div className="#1845B3 font-bold text-xs">Duolingo</div>
+            <div className="text-xs #1D50C9">English Test</div>
           </div>
         </div>
       ),
@@ -73,9 +73,9 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="font-bold text-lg" style={{ color: '#4285F4' }}>PTE</div>
-            <div className="font-medium text-xs" style={{ color: '#4285F4' }}>Academic</div>
-            <div className="text-xs" style={{ color: '#4285F4' }}>Pearson</div>
+            <div className="font-bold text-lg" style={{ color: '#1D50C9' }}>PTE</div>
+            <div className="font-medium text-xs" style={{ color: '#1D50C9' }}>Academic</div>
+            <div className="text-xs" style={{ color: '#1D50C9' }}>Pearson</div>
           </div>
         </div>
       ),
@@ -97,8 +97,8 @@ export default function AccreditationsSection() {
             <span className="text-sm font-medium text-neutral-700">Trusted & Certified</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#4285F4' }}>
-            Our <span style={{ color: '#4285F4' }}>Accreditations</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#1D50C9' }}>
+            Our <span style={{ color: '#1D50C9' }}>Accreditations</span>
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
@@ -122,7 +122,7 @@ export default function AccreditationsSection() {
               <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-neutral-100">
                 {/* Status Badge */}
                 <div className="absolute top-3 right-3">
-                  <div className="text-xs font-semibold px-2 py-1 rounded-full flex items-center space-x-1" style={{ backgroundColor: '#e8f0ff', color: '#4285F4' }}>
+                  <div className="text-xs font-semibold px-2 py-1 rounded-full flex items-center space-x-1" style={{ backgroundColor: '#e8f0ff', color: '#1D50C9' }}>
                     <CheckCircle className="w-3 h-3" />
                     <span className="hidden sm:inline">Verified</span>
                   </div>
@@ -178,7 +178,7 @@ export default function AccreditationsSection() {
                 <div className="text-sm text-neutral-600">Compliance Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold #3367D6 mb-2">24/7</div>
+                <div className="text-3xl font-bold #1845B3 mb-2">24/7</div>
                 <div className="text-sm text-neutral-600">Quality Assurance</div>
               </div>
             </div>

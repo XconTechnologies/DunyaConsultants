@@ -299,7 +299,7 @@ export default function EventsSection() {
         >
           <motion.h2 
             className="text-3xl lg:text-4xl font-bold mb-4"
-            style={{ color: '#4285F4' }}
+            style={{ color: '#1D50C9' }}
             whileHover={{ scale: 1.02 }}
           >
             Events & Workshops
@@ -322,7 +322,7 @@ export default function EventsSection() {
                   ? 'text-white shadow-lg'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
-              style={activeFilter === filter.id ? { backgroundColor: '#4285F4' } : {}}
+              style={activeFilter === filter.id ? { backgroundColor: '#1D50C9' } : {}}
             >
               {filter.label}
             </button>
@@ -357,9 +357,9 @@ export default function EventsSection() {
                             alt={event.title}
                             className="w-full h-full object-cover"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-br from-[#4285F4]/80 to-[#3367D6]/80" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9]/80 to-[#1845B3]/80" />
                           <div className="absolute top-3 left-3">
-                            <span className="px-2 py-1 bg-white/90 #3367D6 rounded-full text-xs font-medium">
+                            <span className="px-2 py-1 bg-white/90 #1845B3 rounded-full text-xs font-medium">
                               {event.type}
                             </span>
                           </div>
@@ -396,7 +396,7 @@ export default function EventsSection() {
                           {/* Register Button */}
                           <motion.button
                             onClick={() => handleRegistration(event)}
-                            className="w-full #3367D6 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-#1a73e8 transition-all duration-300 cursor-pointer active:bg-#1565c0"
+                            className="w-full #1845B3 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-#1a73e8 transition-all duration-300 cursor-pointer active:bg-#1565c0"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
                           >
@@ -439,7 +439,7 @@ export default function EventsSection() {
               onClick={() => setCurrentSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 currentSlide === index
-                  ? '#3367D6 w-8'
+                  ? '#1845B3 w-8'
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}
             />
@@ -475,7 +475,7 @@ export default function EventsSection() {
             {showSuccess && !showTicket && (
               <div className="p-6 text-center">
                 <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 #3367D6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8 #1845B3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
@@ -492,7 +492,7 @@ export default function EventsSection() {
                 )}
                 <button
                   onClick={() => setShowTicket(true)}
-                  className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white px-6 py-2 rounded-lg font-medium hover:from-[#1a73e8] hover:to-[#1a73e8] transition-all duration-300 flex items-center space-x-2 mx-auto"
+                  className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white px-6 py-2 rounded-lg font-medium hover:from-[#1a73e8] hover:to-[#1a73e8] transition-all duration-300 flex items-center space-x-2 mx-auto"
                 >
                   <Ticket className="w-4 h-4" />
                   <span>View & Download Ticket</span>
@@ -617,7 +617,7 @@ export default function EventsSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full #3367D6 text-white py-3 px-6 rounded-lg font-medium hover:bg-#1a73e8 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full #1845B3 text-white py-3 px-6 rounded-lg font-medium hover:bg-#1a73e8 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <div className="flex items-center justify-center gap-2">

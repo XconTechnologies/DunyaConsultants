@@ -10,11 +10,11 @@ export default function GlobalTalentVisaAustraliaGuide() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Visa Guides
               </span>
             </div>
@@ -60,7 +60,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
               {/* What is Global Talent Visa */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   What is Global Talent Visa Australia?
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -73,7 +73,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
               {/* Eligibility Criteria */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Eligibility Criteria for Global Talent Visa Australia
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -81,19 +81,19 @@ export default function GlobalTalentVisaAustraliaGuide() {
                 </p>
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 #4285F4 mt-1 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">A recognized Australian individual or organization must nominate you as a top talent in your field.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 #4285F4 mt-1 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">You must have international recognition for exceptional skills in a profession, sport, arts, or academic research.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 #4285F4 mt-1 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">You must show that you can earn a salary of AUD 162,000 or more per year in Australia.</span>
                   </li>
                   <li className="flex items-start">
-                    <CheckCircle className="w-5 h-5 #4285F4 mt-1 mr-3 flex-shrink-0" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mt-1 mr-3 flex-shrink-0" />
                     <span className="text-gray-700">Your expertise should benefit Australia's economy as well as society in the long run.</span>
                   </li>
                 </ul>
@@ -101,7 +101,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
               {/* Required Documents */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Documents Required to Apply for Australia Global Talent Visa
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -121,7 +121,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
                     "Proof of Skills & Experience"
                   ].map((doc, index) => (
                     <div key={index} className="flex items-center p-3 bg-blue-50 rounded-lg">
-                      <FileText className="w-5 h-5 #4285F4 mr-3" />
+                      <FileText className="w-5 h-5 #1D50C9 mr-3" />
                       <span className="text-gray-700 font-medium">{doc}</span>
                     </div>
                   ))}
@@ -130,7 +130,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
               {/* Application Steps */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Steps to Apply for Australian Global Talent Visa
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
@@ -140,7 +140,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
                     <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                      <div className="w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">1</div>
+                      <div className="w-8 h-8 #1D50C9 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">1</div>
                       Get a Nomination
                     </h3>
                     <ul className="space-y-2 ml-11">
@@ -151,7 +151,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
                   <div className="bg-gray-50 p-6 rounded-lg">
                     <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                      <div className="w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">2</div>
+                      <div className="w-8 h-8 #1D50C9 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">2</div>
                       Gather Supporting Documents
                     </h3>
                     <ul className="space-y-2 ml-11">
@@ -161,7 +161,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
                   <div className="bg-gray-50 p-6 rounded-lg">
                     <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                      <div className="w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">3</div>
+                      <div className="w-8 h-8 #1D50C9 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">3</div>
                       Submit an Expression of Interest (EOI)
                     </h3>
                     <ul className="space-y-2 ml-11">
@@ -172,7 +172,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
                   <div className="bg-gray-50 p-6 rounded-lg">
                     <h3 className="text-xl font-semibold text-gray-900 mb-3 flex items-center">
-                      <div className="w-8 h-8 #4285F4 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">4</div>
+                      <div className="w-8 h-8 #1D50C9 text-white rounded-full flex items-center justify-center mr-3 text-sm font-bold">4</div>
                       Apply Through ImmiAccount
                     </h3>
                     <ul className="space-y-2 ml-11">
@@ -186,7 +186,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
               {/* Cost Information */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Cost of a GTI Visa Australia (Global Talent Visa)
                 </h2>
                 <div className="bg-blue-50 p-6 rounded-lg">
@@ -201,7 +201,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   Conclusion
                 </h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
@@ -214,7 +214,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
 
               {/* FAQs */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #4285F4 pl-4">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6 border-l-4 #1D50C9 pl-4">
                   FAQs
                 </h2>
                 <div className="space-y-6">
@@ -256,7 +256,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
                     href="tel:+923041110947"
-                    className="inline-flex items-center justify-center px-6 py-3 #3367D6 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
+                    className="inline-flex items-center justify-center px-6 py-3 #1845B3 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
                   >
                     <Phone className="w-5 h-5 mr-2" />
                     Call Now: (+92) 304 1110947
@@ -281,7 +281,7 @@ export default function GlobalTalentVisaAustraliaGuide() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <Target className="w-5 h-5 mr-2 #4285F4" />
+                  <Target className="w-5 h-5 mr-2 #1D50C9" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -311,24 +311,24 @@ export default function GlobalTalentVisaAustraliaGuide() {
               {/* Application Requirements */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-2 #4285F4" />
+                  <CheckCircle className="w-5 h-5 mr-2 #1D50C9" />
                   Key Requirements
                 </h3>
                 <ul className="space-y-2 text-sm">
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Australian nomination required</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">International recognition</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">High earning potential</span>
                   </li>
                   <li className="flex items-start">
-                    <div className="w-2 h-2 #4285F4 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <div className="w-2 h-2 #1D50C9 rounded-full mt-2 mr-2 flex-shrink-0"></div>
                     <span className="text-gray-700">Benefit to Australia</span>
                   </li>
                 </ul>

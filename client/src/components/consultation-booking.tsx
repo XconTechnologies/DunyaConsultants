@@ -132,7 +132,7 @@ export default function ConsultationBooking() {
             <Card className="bg-white shadow-2xl border-0 text-center">
               <CardContent className="p-12">
                 <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-12 h-12 #3367D6" />
+                  <CheckCircle className="w-12 h-12 #1845B3" />
                 </div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
                   Consultation Booked Successfully!
@@ -145,19 +145,19 @@ export default function ConsultationBooking() {
                   <h3 className="font-semibold text-gray-900 mb-4">What happens next?</h3>
                   <div className="space-y-3 text-left">
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 #3367D6 rounded-full flex items-center justify-center text-sm font-medium mt-0.5">
+                      <div className="w-6 h-6 bg-blue-100 #1845B3 rounded-full flex items-center justify-center text-sm font-medium mt-0.5">
                         1
                       </div>
                       <p className="text-gray-700">We'll call you to confirm your appointment time</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 #3367D6 rounded-full flex items-center justify-center text-sm font-medium mt-0.5">
+                      <div className="w-6 h-6 bg-blue-100 #1845B3 rounded-full flex items-center justify-center text-sm font-medium mt-0.5">
                         2
                       </div>
                       <p className="text-gray-700">Prepare your academic documents and questions</p>
                     </div>
                     <div className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-blue-100 #3367D6 rounded-full flex items-center justify-center text-sm font-medium mt-0.5">
+                      <div className="w-6 h-6 bg-blue-100 #1845B3 rounded-full flex items-center justify-center text-sm font-medium mt-0.5">
                         3
                       </div>
                       <p className="text-gray-700">Attend your personalized consultation session</p>
@@ -168,7 +168,7 @@ export default function ConsultationBooking() {
                   <Button onClick={resetForm} variant="outline" className="flex-1">
                     Book Another Consultation
                   </Button>
-                  <Button className="flex-1 bg-gradient-to-r from-[#4285F4] to-[#3367D6]">
+                  <Button className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#1845B3]">
                     Contact Us
                   </Button>
                 </div>
@@ -191,7 +191,7 @@ export default function ConsultationBooking() {
         >
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Book Your Free{" "}
-            <span className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
               Consultation
             </span>
           </h1>
@@ -210,20 +210,20 @@ export default function ConsultationBooking() {
                 }`}>
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center border-2 transition-all duration-300 ${
                     currentStep >= step.id
-                      ? "#3367D6 #3367D6 text-white"
+                      ? "#1845B3 #1845B3 text-white"
                       : "bg-white border-gray-300 text-gray-500"
                   }`}>
                     <step.icon className="w-5 h-5" />
                   </div>
                   <span className={`text-sm font-medium mt-2 text-center ${
-                    currentStep >= step.id ? "#3367D6" : "text-gray-500"
+                    currentStep >= step.id ? "#1845B3" : "text-gray-500"
                   }`}>
                     {step.title}
                   </span>
                 </div>
                 {index < steps.length - 1 && (
                   <div className={`flex-1 h-0.5 mx-4 transition-all duration-300 ${
-                    currentStep > step.id ? "#3367D6" : "bg-gray-300"
+                    currentStep > step.id ? "#1845B3" : "bg-gray-300"
                   }`} />
                 )}
               </div>
@@ -512,17 +512,17 @@ export default function ConsultationBooking() {
                         <h3 className="font-semibold text-gray-900 mb-4">Consultation Options</h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div className="bg-white rounded-lg p-4 border border-blue-200">
-                            <Phone className="w-8 h-8 #3367D6 mb-2" />
+                            <Phone className="w-8 h-8 #1845B3 mb-2" />
                             <h4 className="font-medium text-gray-900">Phone Call</h4>
                             <p className="text-sm text-gray-600">30-45 minutes</p>
                           </div>
                           <div className="bg-white rounded-lg p-4 border border-blue-200">
-                            <MessageCircle className="w-8 h-8 #3367D6 mb-2" />
+                            <MessageCircle className="w-8 h-8 #1845B3 mb-2" />
                             <h4 className="font-medium text-gray-900">Video Call</h4>
                             <p className="text-sm text-gray-600">45-60 minutes</p>
                           </div>
                           <div className="bg-white rounded-lg p-4 border border-blue-200">
-                            <MapPin className="w-8 h-8 #3367D6 mb-2" />
+                            <MapPin className="w-8 h-8 #1845B3 mb-2" />
                             <h4 className="font-medium text-gray-900">In-Person</h4>
                             <p className="text-sm text-gray-600">60 minutes</p>
                           </div>
@@ -559,7 +559,7 @@ export default function ConsultationBooking() {
                     >
                       <div className="bg-gray-50 rounded-xl p-6">
                         <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                          <FileUp className="w-5 h-5 #3367D6" />
+                          <FileUp className="w-5 h-5 #1845B3" />
                           Document Upload (Optional)
                         </h3>
                         <p className="text-gray-600 mb-4">
@@ -633,7 +633,7 @@ export default function ConsultationBooking() {
                     <Button
                       type="submit"
                       disabled={submitMutation.isPending}
-                      className="bg-gradient-to-r from-[#4285F4] to-[#3367D6] hover:from-#1a73e8 hover:to-[#1a73e8] flex items-center gap-2"
+                      className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-#1a73e8 hover:to-[#1a73e8] flex items-center gap-2"
                     >
                       {submitMutation.isPending ? "Booking..." : "Book Consultation"}
                       <CheckCircle className="w-4 h-4" />

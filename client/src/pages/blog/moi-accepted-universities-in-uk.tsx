@@ -64,7 +64,7 @@ export default function MOIAcceptedUniversitiesInUK() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#4285F4] via-#1a73e8 to-cyan-800 flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#1D50C9] via-#1a73e8 to-cyan-800 flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -97,7 +97,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
                   <BookOpen className="mr-3 h-6 w-6" />
@@ -121,7 +121,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                 <div className="overflow-x-auto mb-6">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-[#4285F4] to-teal-600 text-white">
+                      <tr className="bg-gradient-to-r from-[#1D50C9] to-teal-600 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Sr. No</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">UK Universities</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Location</th>
@@ -161,9 +161,9 @@ export default function MOIAcceptedUniversitiesInUK() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 #4285F4"
+                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 #1D50C9"
                     >
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{criteria}</span>
                     </motion.div>
                   ))}
@@ -186,7 +186,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-start space-x-4 p-6 bg-white rounded-lg border border-gray-200 shadow-md hover:shadow-lg transition-shadow"
                     >
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#4285F4] to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                         {step.step}
                       </div>
                       <div className="lg:col-span-3">
@@ -203,7 +203,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-gradient-to-br from-blue-50 to-teal-100 border-l-4 #4285F4 rounded-r-lg"
+                className="mb-8 p-6 bg-gradient-to-br from-blue-50 to-teal-100 border-l-4 #1D50C9 rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
                   <Award className="mr-3 h-6 w-6" />
@@ -212,14 +212,14 @@ export default function MOIAcceptedUniversitiesInUK() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <div>
                         <h3 className="font-semibold text-#1565c0">No IELTS/PTE Required</h3>
                         <p className="text-#1a73e8 text-sm">Save time and money on English proficiency tests</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <div>
                         <h3 className="font-semibold text-#1565c0">Faster Application Process</h3>
                         <p className="text-#1a73e8 text-sm">Streamlined admission without waiting for test results</p>
@@ -228,14 +228,14 @@ export default function MOIAcceptedUniversitiesInUK() {
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <div>
                         <h3 className="font-semibold text-#1565c0">Cost-Effective Option</h3>
                         <p className="text-#1a73e8 text-sm">Avoid expensive test fees and preparation costs</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <div>
                         <h3 className="font-semibold text-#1565c0">Valid for Visa Application</h3>
                         <p className="text-#1a73e8 text-sm">Accepted by UKVI for student visa applications</p>
@@ -246,7 +246,7 @@ export default function MOIAcceptedUniversitiesInUK() {
               </motion.div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg">
+              <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Students who are interested to study in the UK without taking the IELTS or PTE can apply for <strong>MOI accepted universities in UK</strong>. There are various universities in UK for international students that accept Medium of Instruction as evidence of English proficiency. These universities make the application process much smoother for all students who have studied before in English.
@@ -326,21 +326,21 @@ export default function MOIAcceptedUniversitiesInUK() {
                   <h3 className="font-bold text-gray-800 mb-4">Top MOI Universities</h3>
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                      <div className="w-8 h-8 #3367D6 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
+                      <div className="w-8 h-8 #1845B3 rounded-full flex items-center justify-center text-white text-sm font-bold">1</div>
                       <div>
                         <p className="font-semibold text-gray-800">University of Law</p>
                         <p className="text-xs text-gray-600">Top Law School</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                      <div className="w-8 h-8 #3367D6 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
+                      <div className="w-8 h-8 #1845B3 rounded-full flex items-center justify-center text-white text-sm font-bold">2</div>
                       <div>
                         <p className="font-semibold text-gray-800">University of Hertfordshire</p>
                         <p className="text-xs text-gray-600">Modern University</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
-                      <div className="w-8 h-8 #3367D6 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
+                      <div className="w-8 h-8 #1845B3 rounded-full flex items-center justify-center text-white text-sm font-bold">3</div>
                       <div>
                         <p className="font-semibold text-gray-800">University of South Wales</p>
                         <p className="text-xs text-gray-600">Innovation University</p>
@@ -376,7 +376,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                       <option>Mixed Medium</option>
                       <option>Other</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-[#4285F4] to-teal-600 hover:from-emerald-700 hover:to-teal-700">
+                    <Button className="w-full bg-gradient-to-r from-[#1D50C9] to-teal-600 hover:from-emerald-700 hover:to-teal-700">
                       Get MOI Assessment
                     </Button>
                   </form>

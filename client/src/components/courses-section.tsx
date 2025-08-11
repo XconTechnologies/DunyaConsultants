@@ -144,8 +144,8 @@ export default function CoursesSection() {
             className="text-4xl lg:text-5xl font-bold mb-4"
             whileHover={{ scale: 1.02 }}
           >
-            <span style={{ color: '#4285F4' }}>Courses & </span>
-            <span style={{ color: '#4285F4' }}>
+            <span style={{ color: '#1D50C9' }}>Courses & </span>
+            <span style={{ color: '#1D50C9' }}>
               Programs
             </span>
           </motion.h2>
@@ -168,7 +168,7 @@ export default function CoursesSection() {
                 placeholder="Search courses, universities..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:#4285F4 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
+                className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:#1D50C9 focus:ring-2 focus:ring-blue-200 transition-all duration-300"
               />
             </div>
 
@@ -178,7 +178,7 @@ export default function CoursesSection() {
               <select
                 value={activeLevel}
                 onChange={(e) => setActiveLevel(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:#4285F4 focus:ring-2 focus:ring-blue-200 transition-all duration-300 bg-white"
+                className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:#1D50C9 focus:ring-2 focus:ring-blue-200 transition-all duration-300 bg-white"
               >
                 {levels.map(level => (
                   <option key={level} value={level}>{level}</option>
@@ -217,7 +217,7 @@ export default function CoursesSection() {
                 onClick={() => setActiveCategory(category.id)}
                 className={`flex items-center gap-3 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                   activeCategory === category.id
-                    ? '#3367D6 text-white shadow-lg'
+                    ? '#1845B3 text-white shadow-lg'
                     : 'bg-white text-gray-700 hover:bg-gray-50 shadow-md'
                 }`}
                 whileHover={{ scale: 1.05 }}
@@ -239,7 +239,7 @@ export default function CoursesSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <p className="text-gray-600">
-            Showing <span className="font-semibold #3367D6">{filteredCourses.length}</span> programs
+            Showing <span className="font-semibold #1845B3">{filteredCourses.length}</span> programs
             {searchTerm && ` for "${searchTerm}"`}
             {activeLevel !== 'All Levels' && ` in ${activeLevel} level`}
             {activeCategory !== 'all' && ` in ${activeCategory}`}
@@ -271,12 +271,12 @@ export default function CoursesSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                 <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-white/90 #3367D6 rounded-full text-sm font-medium">
+                  <span className="px-3 py-1 bg-white/90 #1845B3 rounded-full text-sm font-medium">
                     {course.level}
                   </span>
                 </div>
                 <div className="absolute top-4 right-4">
-                  <span className="px-3 py-1 #3367D6 text-white rounded-full text-sm font-medium">
+                  <span className="px-3 py-1 #1845B3 text-white rounded-full text-sm font-medium">
                     {course.country}
                   </span>
                 </div>
@@ -301,7 +301,7 @@ export default function CoursesSection() {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:#3367D6 transition-colors line-clamp-2">
+                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:#1845B3 transition-colors line-clamp-2">
                   {course.title}
                 </h3>
                 
@@ -316,13 +316,13 @@ export default function CoursesSection() {
                   </div>
                   <div className="flex items-center justify-between">
                     <span className="text-gray-500 text-sm">Tuition Fee:</span>
-                    <span className="#3367D6 text-sm font-bold">{course.tuitionFee}</span>
+                    <span className="#1845B3 text-sm font-bold">{course.tuitionFee}</span>
                   </div>
                 </div>
 
                 {/* Apply Button */}
                 <motion.button
-                  className="w-full bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white py-3 px-6 rounded-lg font-medium hover:from-#1a73e8 hover:to-[#1a73e8] transition-all duration-300 flex items-center justify-center gap-2 group"
+                  className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white py-3 px-6 rounded-lg font-medium hover:from-#1a73e8 hover:to-[#1a73e8] transition-all duration-300 flex items-center justify-center gap-2 group"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -353,7 +353,7 @@ export default function CoursesSection() {
                 setActiveLevel('All Levels');
                 setSearchTerm('');
               }}
-              className="#3367D6 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors"
+              className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

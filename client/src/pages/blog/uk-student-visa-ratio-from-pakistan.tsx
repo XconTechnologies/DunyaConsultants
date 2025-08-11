@@ -10,11 +10,11 @@ export default function UKStudentVisaRatioFromPakistan() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Visa Guides
               </span>
             </div>
@@ -64,17 +64,17 @@ export default function UKStudentVisaRatioFromPakistan() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#visa-ratio" className="hover:#3367D6">UK Study Visa Ratio for Pakistan</a></li>
-                  <li><a href="#statistics" className="hover:#3367D6">Visa Success Statistics</a></li>
-                  <li><a href="#improvement-strategies" className="hover:#3367D6">How to Improve Your Chances</a></li>
-                  <li><a href="#rejection-handling" className="hover:#3367D6">Handling Visa Rejection</a></li>
-                  <li><a href="#success-tips" className="hover:#3367D6">Additional Success Tips</a></li>
-                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
+                  <li><a href="#visa-ratio" className="hover:#1845B3">UK Study Visa Ratio for Pakistan</a></li>
+                  <li><a href="#statistics" className="hover:#1845B3">Visa Success Statistics</a></li>
+                  <li><a href="#improvement-strategies" className="hover:#1845B3">How to Improve Your Chances</a></li>
+                  <li><a href="#rejection-handling" className="hover:#1845B3">Handling Visa Rejection</a></li>
+                  <li><a href="#success-tips" className="hover:#1845B3">Additional Success Tips</a></li>
+                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Success Rate Highlight */}
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold text-#1565c0 mb-4 flex items-center">
                   <TrendingUp className="w-6 h-6 mr-2" />
                   UK Visa Success Rates 2024
@@ -93,7 +93,7 @@ export default function UKStudentVisaRatioFromPakistan() {
 
               {/* UK Study Visa Ratio Section */}
               <section id="visa-ratio" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">What is the UK study visa ratio for Pakistan?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">What is the UK study visa ratio for Pakistan?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   In 2023, the United Kingdom received approximately 3,596,156 visa applications. Out of these, the UK student visa success rate in 2023 was around eighty-three percent. This means that the majority of people who applied for a UK study visa were successful.
@@ -110,11 +110,11 @@ export default function UKStudentVisaRatioFromPakistan() {
 
               {/* Statistics Section */}
               <section id="statistics" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 #4285F4 pl-4">Visa Success Statistics by Category</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Visa Success Statistics by Category</h3>
 
                 <div className="bg-white border border-gray-200 rounded-lg p-6 mb-6">
                   <h4 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                    <BarChart3 className="w-5 h-5 mr-2 #4285F4" />
+                    <BarChart3 className="w-5 h-5 mr-2 #1D50C9" />
                     UK Visa Success Rates by Category
                   </h4>
                   <div className="overflow-x-auto">
@@ -137,21 +137,21 @@ export default function UKStudentVisaRatioFromPakistan() {
                         <tr className="bg-gray-50">
                           <td className="border border-gray-300 px-4 py-3 font-medium">Family Visa</td>
                           <td className="border border-gray-300 px-4 py-3">
-                            <span className="#3367D6 font-bold">86%</span>
+                            <span className="#1845B3 font-bold">86%</span>
                           </td>
                           <td className="border border-gray-300 px-4 py-3">Medium Volume</td>
                         </tr>
                         <tr className="bg-white">
                           <td className="border border-gray-300 px-4 py-3 font-medium">Work Visas</td>
                           <td className="border border-gray-300 px-4 py-3">
-                            <span className="#3367D6 font-bold">95%</span>
+                            <span className="#1845B3 font-bold">95%</span>
                           </td>
                           <td className="border border-gray-300 px-4 py-3">Medium Volume</td>
                         </tr>
                         <tr className="bg-gray-50">
                           <td className="border border-gray-300 px-4 py-3 font-medium">Visitor Visa</td>
                           <td className="border border-gray-300 px-4 py-3">
-                            <span className="#3367D6 font-bold">77%</span>
+                            <span className="#1845B3 font-bold">77%</span>
                           </td>
                           <td className="border border-gray-300 px-4 py-3">Highest Volume</td>
                         </tr>
@@ -164,15 +164,15 @@ export default function UKStudentVisaRatioFromPakistan() {
                   <h4 className="text-lg font-semibold mb-4 text-#1565c0">Key Statistics for Pakistani Students:</h4>
                   <div className="grid md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <p className="text-3xl font-bold #3367D6 mb-1">99%</p>
+                      <p className="text-3xl font-bold #1845B3 mb-1">99%</p>
                       <p className="text-gray-700 text-sm">Success Rate for Pakistani Students</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-bold #3367D6 mb-1">15-25</p>
+                      <p className="text-3xl font-bold #1845B3 mb-1">15-25</p>
                       <p className="text-gray-700 text-sm">Working Days Processing</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-3xl font-bold #3367D6 mb-1">1%</p>
+                      <p className="text-3xl font-bold #1845B3 mb-1">1%</p>
                       <p className="text-gray-700 text-sm">Rejection Rate</p>
                     </div>
                   </div>
@@ -181,7 +181,7 @@ export default function UKStudentVisaRatioFromPakistan() {
 
               {/* Improvement Strategies */}
               <section id="improvement-strategies" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">How to Improve Your UK Visa Ratio?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">How to Improve Your UK Visa Ratio?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   While the UK student visa success rate for Pakistani students is already high at 99%, you can take specific steps to ensure your application is successful and avoid becoming part of the 1% rejection rate.
@@ -250,7 +250,7 @@ export default function UKStudentVisaRatioFromPakistan() {
 
               {/* Rejection Handling */}
               <section id="rejection-handling" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 #4285F4 pl-4">What to Do if Your Visa is Rejected?</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 #1D50C9 pl-4">What to Do if Your Visa is Rejected?</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   If your UK student visa application is rejected, don't panic. With a 99% success rate for Pakistani students, rejections are rare, but they can happen. Here's what you can do:
@@ -288,7 +288,7 @@ export default function UKStudentVisaRatioFromPakistan() {
 
               {/* Success Tips */}
               <section id="success-tips" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Additional Success Tips</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Additional Success Tips</h2>
 
                 <div className="space-y-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
@@ -327,7 +327,7 @@ export default function UKStudentVisaRatioFromPakistan() {
 
               {/* FAQs */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -364,7 +364,7 @@ export default function UKStudentVisaRatioFromPakistan() {
 
               {/* Conclusion */}
               <section className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Conclusion</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The UK student visa success rate for Pakistani students is exceptionally high at 99%, making it one of the most student-friendly destinations for higher education. This high success rate reflects the UK's commitment to international education and the strong educational ties between Pakistan and the United Kingdom.
@@ -388,7 +388,7 @@ export default function UKStudentVisaRatioFromPakistan() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="tel:+923041110947" 
-                    className="#3367D6 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
+                    className="#1845B3 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Call Now: +92 304 1110947
                   </a>
@@ -409,17 +409,17 @@ export default function UKStudentVisaRatioFromPakistan() {
               {/* Success Rate Stats */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <TrendingUp className="w-5 h-5 mr-2 #4285F4" />
+                  <TrendingUp className="w-5 h-5 mr-2 #1D50C9" />
                   Success Rate Overview
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Pakistani Students:</span>
-                    <span className="font-bold #3367D6">99%</span>
+                    <span className="font-bold #1845B3">99%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Overall UK Rate:</span>
-                    <span className="font-medium #3367D6">98%</span>
+                    <span className="font-medium #1845B3">98%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Processing Time:</span>
@@ -427,11 +427,11 @@ export default function UKStudentVisaRatioFromPakistan() {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Rejection Rate:</span>
-                    <span className="font-medium #3367D6">1%</span>
+                    <span className="font-medium #1845B3">1%</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Reapply Success:</span>
-                    <span className="font-medium #3367D6">95%</span>
+                    <span className="font-medium #1845B3">95%</span>
                   </div>
                 </div>
               </div>
@@ -439,7 +439,7 @@ export default function UKStudentVisaRatioFromPakistan() {
               {/* Application Timeline */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <Clock className="w-5 h-5 mr-2 #4285F4" />
+                  <Clock className="w-5 h-5 mr-2 #1D50C9" />
                   Application Timeline
                 </h3>
                 <div className="space-y-3 text-sm">

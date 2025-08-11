@@ -9,7 +9,7 @@ export default function LanguageCert2025Guide() {
       <Navigation />
       
       {/* Full-width Hero Section */}
-      <div className="relative h-96 bg-gradient-to-br from-[#4285F4] via-[#4285F4] to-[#3367D6] flex items-center justify-center text-white">
+      <div className="relative h-96 bg-gradient-to-br from-[#1D50C9] via-[#1D50C9] to-[#1845B3] flex items-center justify-center text-white">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 text-center px-4">
           <h1 className="text-5xl font-bold mb-4">LanguageCert 2025: Complete Test Guide</h1>
@@ -29,7 +29,7 @@ export default function LanguageCert2025Guide() {
                 </p>
               </div>
 
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">Why Choose LanguageCert?</h3>
                 <p className="text-gray-700">
                   For Pakistani students, Language Cert is a good option if they want to apply to universities in English-speaking countries. The language cert test is officially accepted by many universities, organizations, as well as government institutions in the United Kingdom and other countries.
@@ -42,7 +42,7 @@ export default function LanguageCert2025Guide() {
                   Use our exclusive promo code to save 10% on your LanguageCert test booking:
                 </p>
                 <div className="bg-white border-2 border-blue-300 rounded-lg p-3 text-center">
-                  <span className="text-2xl font-bold #3367D6">2188CF</span>
+                  <span className="text-2xl font-bold #1845B3">2188CF</span>
                 </div>
               </div>
 
@@ -126,7 +126,7 @@ export default function LanguageCert2025Guide() {
                 <li>Those who need an official certificate to show their English ability</li>
               </ul>
 
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">Important Note</h3>
                 <p className="text-gray-700">
                   Whether you need to meet language requirements for studying abroad or simply want to enhance your communication skills, this test is a popular choice. Just check language cert validity before applying!
@@ -168,13 +168,13 @@ export default function LanguageCert2025Guide() {
               </ul>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-blue-50 border-l-4 #4285F4 p-6">
+                <div className="bg-blue-50 border-l-4 #1D50C9 p-6">
                   <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">Online Test</h3>
                   <p className="text-gray-700">
                     Students can take the Language Cert test from home with live monitoring. Edify Group of Companies helps students with registration and preparation for the online test.
                   </p>
                 </div>
-                <div className="bg-blue-50 border-l-4 #4285F4 p-6">
+                <div className="bg-blue-50 border-l-4 #1D50C9 p-6">
                   <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">Test at a Center</h3>
                   <p className="text-gray-700">
                     Students can also choose to take the test at an official test center. Edify Group assists students in booking and preparing for center-based exams.
@@ -190,7 +190,7 @@ export default function LanguageCert2025Guide() {
                 These sections can be taken together or separately, depending on the exam type. The Language Cert exam in Pakistan is easier and shorter than IELTS or TOEFL.
               </p>
 
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold mb-3 text-#1e3a8a">Test Duration</h3>
                 <ul className="text-gray-700 space-y-2">
                   <li>• Written test: Maximum 2.5 hours</li>
@@ -263,12 +263,12 @@ export default function LanguageCert2025Guide() {
               <div className="bg-white p-6 rounded-lg">
                 <h3 className="text-lg font-semibold mb-4 text-gray-900">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#what-is-languagecert" className="#3367D6 hover:underline">What is LanguageCert?</a></li>
-                  <li><a href="#accepted-universities" className="#3367D6 hover:underline">Accepted Universities</a></li>
-                  <li><a href="#exam-pattern" className="#3367D6 hover:underline">Exam Pattern</a></li>
-                  <li><a href="#test-centers" className="#3367D6 hover:underline">Test Centers</a></li>
-                  <li><a href="#fees" className="#3367D6 hover:underline">Fees</a></li>
-                  <li><a href="#faqs" className="#3367D6 hover:underline">FAQs</a></li>
+                  <li><a href="#what-is-languagecert" className="#1845B3 hover:underline">What is LanguageCert?</a></li>
+                  <li><a href="#accepted-universities" className="#1845B3 hover:underline">Accepted Universities</a></li>
+                  <li><a href="#exam-pattern" className="#1845B3 hover:underline">Exam Pattern</a></li>
+                  <li><a href="#test-centers" className="#1845B3 hover:underline">Test Centers</a></li>
+                  <li><a href="#fees" className="#1845B3 hover:underline">Fees</a></li>
+                  <li><a href="#faqs" className="#1845B3 hover:underline">FAQs</a></li>
                 </ul>
               </div>
 

@@ -18,7 +18,7 @@ const offices = [
     address: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
     phone: "+92 304 1110947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-[#4285F4] to-purple-600",
+    gradient: "from-[#1D50C9] to-purple-600",
     isHeadOffice: true,
     region: "Punjab",
     services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling"]
@@ -52,7 +52,7 @@ const offices = [
     address: "Mezzanine‑3, ATS Centre, Fazal‑e‑Haq Road, Blue Area, Islamabad",
     phone: "+92 333‑777‑5458",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-indigo-600 to-[#3367D6]",
+    gradient: "from-indigo-600 to-[#1845B3]",
     region: "Federal",
     services: ["Visa Processing", "Embassy Relations", "Document Attestation"]
   },
@@ -85,7 +85,7 @@ const offices = [
     address: "1st Floor, Plaza 83, Peoples Colony No. 1, Gujranwala",
     phone: "+92 300‑167‑1955",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-cyan-600 to-[#3367D6]",
+    gradient: "from-cyan-600 to-[#1845B3]",
     region: "Punjab",
     services: ["Student Counseling", "University Applications", "Test Preparation"]
   },
@@ -173,7 +173,7 @@ const offices = [
     address: "Ground Floor, Malik Center, Phase 3, Hayatabad, Peshawar",
     phone: "+92 300‑167‑1963",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-sky-600 to-[#3367D6]",
+    gradient: "from-sky-600 to-[#1845B3]",
     region: "KPK",
     services: ["Student Counseling", "Visa Processing", "Test Preparation"]
   },
@@ -274,7 +274,7 @@ export default function OfficesList() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <Navigation />
       {/* Header */}
-      <div className="text-white pt-32 pb-16" style={{ background: `linear-gradient(to right, #4285F4, #1e50c7)` }}>
+      <div className="text-white pt-32 pb-16" style={{ background: `linear-gradient(to right, #1D50C9, #1e50c7)` }}>
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -341,7 +341,7 @@ export default function OfficesList() {
             <div className="flex items-center mb-8">
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
               <div className="px-6">
-                <h2 className="text-3xl font-bold text-gray-800 text-center" style={{ color: '#4285F4' }}>
+                <h2 className="text-3xl font-bold text-gray-800 text-center" style={{ color: '#1D50C9' }}>
                   Pakistan Offices
                 </h2>
                 <p className="text-gray-600 text-center mt-2">Our nationwide network across Pakistan</p>
@@ -366,7 +366,7 @@ export default function OfficesList() {
                           <div className="flex items-center space-x-2 mb-2">
                             <h3 className="text-xl font-bold text-gray-800">{office.city}</h3>
                             {office.isHeadOffice && (
-                              <Badge className="bg-gradient-to-r from-[#4285F4] to-purple-500 text-white text-xs">
+                              <Badge className="bg-gradient-to-r from-[#1D50C9] to-purple-500 text-white text-xs">
                                 Head Office
                               </Badge>
                             )}
@@ -376,7 +376,7 @@ export default function OfficesList() {
                             {office.region}
                           </Badge>
                         </div>
-                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4285F4] to-[#1a73e8] flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#1D50C9] to-[#1a73e8] flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
                           <Building2 className="w-6 h-6 text-white" />
                         </div>
                       </div>
@@ -384,17 +384,17 @@ export default function OfficesList() {
                       {/* Contact Info */}
                       <div className="space-y-3 mb-4">
                         <div className="flex items-start space-x-3">
-                          <MapPin className="w-4 h-4 #3367D6 mt-0.5 flex-shrink-0" />
+                          <MapPin className="w-4 h-4 #1845B3 mt-0.5 flex-shrink-0" />
                           <p className="text-sm text-gray-600 leading-relaxed">{office.address}</p>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <Phone className="w-4 h-4 #3367D6 flex-shrink-0" />
-                          <a href={`tel:${office.phone}`} className="text-sm #3367D6 hover:underline">
+                          <Phone className="w-4 h-4 #1845B3 flex-shrink-0" />
+                          <a href={`tel:${office.phone}`} className="text-sm #1845B3 hover:underline">
                             {office.phone}
                           </a>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <Clock className="w-4 h-4 #3367D6 flex-shrink-0" />
+                          <Clock className="w-4 h-4 #1845B3 flex-shrink-0" />
                           <p className="text-sm text-gray-600">{office.hours}</p>
                         </div>
                       </div>
@@ -403,7 +403,7 @@ export default function OfficesList() {
                       <div className="flex space-x-2">
                         <Button 
                           onClick={() => handleGetDirections(office.address)}
-                          className="flex-1 bg-gradient-to-r from-[#4285F4] to-[#1a73e8] hover:from-#1a73e8 hover:to-#1565c0 text-white font-medium shadow-md text-sm"
+                          className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#1a73e8] hover:from-#1a73e8 hover:to-#1565c0 text-white font-medium shadow-md text-sm"
                         >
                           <NavigationIcon className="w-3 h-3 mr-1" />
                           Get Directions
@@ -412,7 +412,7 @@ export default function OfficesList() {
                           variant="outline" 
                           size="sm"
                           onClick={() => window.open(`tel:${office.phone}`, '_self')}
-                          className="flex-1 #3367D6 #3367D6 hover:bg-blue-50 font-medium text-sm"
+                          className="flex-1 #1845B3 #1845B3 hover:bg-blue-50 font-medium text-sm"
                         >
                           <Phone className="w-3 h-3 mr-1" />
                           Call
@@ -437,7 +437,7 @@ export default function OfficesList() {
             <div className="flex items-center mb-8">
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
               <div className="px-6">
-                <h2 className="text-3xl font-bold text-gray-800 text-center" style={{ color: '#4285F4' }}>
+                <h2 className="text-3xl font-bold text-gray-800 text-center" style={{ color: '#1D50C9' }}>
                   International Offices
                 </h2>
                 <p className="text-gray-600 text-center mt-2">Our global presence to serve you worldwide</p>
@@ -453,7 +453,7 @@ export default function OfficesList() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer" style={{ borderColor: '#4285F4' }}>
+                  <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer" style={{ borderColor: '#1D50C9' }}>
                     <div className={`h-2 bg-gradient-to-r ${office.gradient}`}></div>
                     <CardContent className="p-6">
                       {/* Header */}
@@ -461,16 +461,16 @@ export default function OfficesList() {
                         <div className="flex-1">
                           <div className="flex items-center space-x-2 mb-2">
                             <h3 className="text-xl font-bold text-gray-800">{office.city}</h3>
-                            <Badge className="text-white text-xs" style={{ backgroundColor: '#4285F4' }}>
+                            <Badge className="text-white text-xs" style={{ backgroundColor: '#1D50C9' }}>
                               International
                             </Badge>
                           </div>
                           <p className="text-gray-600 font-medium">{office.name}</p>
-                          <Badge variant="outline" className="text-xs mt-1" style={{ borderColor: '#4285F4', color: '#4285F4' }}>
+                          <Badge variant="outline" className="text-xs mt-1" style={{ borderColor: '#1D50C9', color: '#1D50C9' }}>
                             {office.region}
                           </Badge>
                         </div>
-                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#4285F4' }}>
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#1D50C9' }}>
                           <Building2 className="w-6 h-6 text-white" />
                         </div>
                       </div>
@@ -478,17 +478,17 @@ export default function OfficesList() {
                       {/* Contact Info */}
                       <div className="space-y-3 mb-4">
                         <div className="flex items-start space-x-3">
-                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#4285F4' }} />
+                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#1D50C9' }} />
                           <p className="text-sm text-gray-600 leading-relaxed">{office.address}</p>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#4285F4' }} />
-                          <a href={`tel:${office.phone}`} className="text-sm hover:underline" style={{ color: '#4285F4' }}>
+                          <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#1D50C9' }} />
+                          <a href={`tel:${office.phone}`} className="text-sm hover:underline" style={{ color: '#1D50C9' }}>
                             {office.phone}
                           </a>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: '#4285F4' }} />
+                          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: '#1D50C9' }} />
                           <p className="text-sm text-gray-600">{office.hours}</p>
                         </div>
                       </div>
@@ -498,7 +498,7 @@ export default function OfficesList() {
                         <Button 
                           onClick={() => handleGetDirections(office.address)}
                           className="flex-1 text-white font-medium shadow-md text-sm hover:opacity-90"
-                          style={{ backgroundColor: '#4285F4' }}
+                          style={{ backgroundColor: '#1D50C9' }}
                         >
                           <NavigationIcon className="w-3 h-3 mr-1" />
                           Get Directions
@@ -508,7 +508,7 @@ export default function OfficesList() {
                           size="sm"
                           onClick={() => window.open(`tel:${office.phone}`, '_self')}
                           className="flex-1 font-medium text-sm hover:bg-blue-50"
-                          style={{ borderColor: '#4285F4', color: '#4285F4' }}
+                          style={{ borderColor: '#1D50C9', color: '#1D50C9' }}
                         >
                           <Phone className="w-3 h-3 mr-1" />
                           Call
@@ -534,7 +534,7 @@ export default function OfficesList() {
         {/* Contact Banner */}
         <motion.div
           className="mt-8 rounded-2xl p-8 text-white text-center"
-          style={{ background: `linear-gradient(to right, #4285F4, #1e50c7)` }}
+          style={{ background: `linear-gradient(to right, #1D50C9, #1e50c7)` }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -547,7 +547,7 @@ export default function OfficesList() {
             <Button variant="secondary" size="lg">
               Schedule Online Meeting
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:#3367D6">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:#1845B3">
               Contact Head Office
             </Button>
           </div>

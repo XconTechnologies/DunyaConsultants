@@ -11,11 +11,11 @@ export default function StudyGapAcceptableUKMasters() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Abroad Guide
               </span>
             </div>
@@ -65,18 +65,18 @@ export default function StudyGapAcceptableUKMasters() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#acceptable-gap" className="hover:#3367D6">What is an Acceptable Study Gap?</a></li>
-                  <li><a href="#university-policies" className="hover:#3367D6">University-Specific Policies</a></li>
-                  <li><a href="#documentation" className="hover:#3367D6">Required Documentation</a></li>
-                  <li><a href="#tips" className="hover:#3367D6">Tips for Strengthening Your Application</a></li>
-                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
-                  <li><a href="#conclusion" className="hover:#3367D6">Conclusion</a></li>
+                  <li><a href="#acceptable-gap" className="hover:#1845B3">What is an Acceptable Study Gap?</a></li>
+                  <li><a href="#university-policies" className="hover:#1845B3">University-Specific Policies</a></li>
+                  <li><a href="#documentation" className="hover:#1845B3">Required Documentation</a></li>
+                  <li><a href="#tips" className="hover:#1845B3">Tips for Strengthening Your Application</a></li>
+                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#conclusion" className="hover:#1845B3">Conclusion</a></li>
                 </ul>
               </div>
 
               {/* Acceptable Gap Section */}
               <section id="acceptable-gap" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">What is an Acceptable Study Gap?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">What is an Acceptable Study Gap?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Generally, UK universities accept study gaps of <strong>1-5 years</strong> for Master's programs. However, the acceptability largely depends on how you utilize this time and how well you can justify it in your application.
@@ -107,7 +107,7 @@ export default function StudyGapAcceptableUKMasters() {
 
               {/* University Policies Section */}
               <section id="university-policies" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">University-Specific Policies</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">University-Specific Policies</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Different UK universities have varying policies regarding study gaps. Here's what you need to know about different university tiers:
@@ -145,7 +145,7 @@ export default function StudyGapAcceptableUKMasters() {
 
               {/* Documentation Section */}
               <section id="documentation" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Required Documentation</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Required Documentation</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Proper documentation is crucial for justifying your study gap. Here are the essential documents you'll need:
@@ -154,7 +154,7 @@ export default function StudyGapAcceptableUKMasters() {
                 <div className="space-y-4 mb-6">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                      <CheckCircle className="w-5 h-5 #4285F4 mr-2" />
+                      <CheckCircle className="w-5 h-5 #1D50C9 mr-2" />
                       Work Experience Certificate
                     </h3>
                     <p className="text-gray-700">If you worked during your gap, provide employment certificates, salary slips, and reference letters from employers.</p>
@@ -162,7 +162,7 @@ export default function StudyGapAcceptableUKMasters() {
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                      <CheckCircle className="w-5 h-5 #4285F4 mr-2" />
+                      <CheckCircle className="w-5 h-5 #1D50C9 mr-2" />
                       Gap Justification Letter
                     </h3>
                     <p className="text-gray-700">A detailed explanation of how you spent your gap year and what you learned from the experience.</p>
@@ -170,7 +170,7 @@ export default function StudyGapAcceptableUKMasters() {
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-                      <CheckCircle className="w-5 h-5 #4285F4 mr-2" />
+                      <CheckCircle className="w-5 h-5 #1D50C9 mr-2" />
                       Professional Development Certificates
                     </h3>
                     <p className="text-gray-700">Certificates from courses, training programs, or professional development activities undertaken during the gap.</p>
@@ -180,7 +180,7 @@ export default function StudyGapAcceptableUKMasters() {
 
               {/* Tips Section */}
               <section id="tips" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Tips for Strengthening Your Application</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Tips for Strengthening Your Application</h2>
                 
                 <div className="space-y-4">
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
@@ -207,7 +207,7 @@ export default function StudyGapAcceptableUKMasters() {
 
               {/* FAQs */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -234,7 +234,7 @@ export default function StudyGapAcceptableUKMasters() {
 
               {/* Conclusion */}
               <section id="conclusion" className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Conclusion</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Study gaps are not necessarily barriers to UK Masters admission. What matters most is how you present and justify your gap period. With proper documentation, a strong statement of purpose, and evidence of productive use of time, you can successfully apply to UK universities regardless of your study gap.
@@ -254,7 +254,7 @@ export default function StudyGapAcceptableUKMasters() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="tel:+923041110947" 
-                    className="#3367D6 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
+                    className="#1845B3 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Call Now: +92 304 1110947
                   </a>
@@ -275,7 +275,7 @@ export default function StudyGapAcceptableUKMasters() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <Target className="w-5 h-5 mr-2 #4285F4" />
+                  <Target className="w-5 h-5 mr-2 #1D50C9" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -305,25 +305,25 @@ export default function StudyGapAcceptableUKMasters() {
               {/* Gap Guidelines */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <GraduationCap className="w-5 h-5 mr-2 #4285F4" />
+                  <GraduationCap className="w-5 h-5 mr-2 #1D50C9" />
                   Gap Guidelines
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>0-2 Years</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Excellent</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Excellent</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>2-3 Years</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Good</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Good</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>3-5 Years</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Acceptable</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Acceptable</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>5+ Years</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Challenging</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Challenging</span>
                   </div>
                 </div>
               </div>

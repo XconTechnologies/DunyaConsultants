@@ -10,7 +10,7 @@ export default function UKLLMToPakistaniBar() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Header */}
-      <div className="bg-gradient-to-r from-[#4285F4] to-#1565c0 text-white">
+      <div className="bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <Link 
             href="/blog" 
@@ -26,7 +26,7 @@ export default function UKLLMToPakistaniBar() {
             transition={{ duration: 0.6 }}
           >
             <div className="mb-4">
-              <span className="#3367D6 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <span className="#1845B3 text-white px-3 py-1 rounded-full text-sm font-medium">
                 Legal Education
               </span>
             </div>
@@ -74,9 +74,9 @@ export default function UKLLMToPakistaniBar() {
                 className="w-full h-64 object-cover rounded-lg mb-8"
               />
 
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <div className="flex items-center mb-2">
-                  <Scale className="h-5 w-5 #4285F4 mr-2" />
+                  <Scale className="h-5 w-5 #1D50C9 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-900">Understanding the Conversion Process</h3>
                 </div>
                 <p className="text-gray-700">
@@ -90,35 +90,35 @@ export default function UKLLMToPakistaniBar() {
                 <h3 className="text-lg font-semibold mb-4">Complete Conversion Timeline</h3>
                 <div className="space-y-4">
                   <div className="flex items-start">
-                    <span className="bg-blue-100 #3367D6 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">1</span>
+                    <span className="bg-blue-100 #1845B3 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">1</span>
                     <div>
                       <strong>HEC Equivalence Certificate</strong>
                       <p className="text-sm text-gray-600 mt-1">Apply for degree equivalence from Higher Education Commission (HEC) Pakistan</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <span className="bg-blue-100 #3367D6 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">2</span>
+                    <span className="bg-blue-100 #1845B3 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">2</span>
                     <div>
                       <strong>Document Verification</strong>
                       <p className="text-sm text-gray-600 mt-1">Verify all UK academic documents through Pakistani Embassy/High Commission</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <span className="bg-blue-100 #3367D6 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">3</span>
+                    <span className="bg-blue-100 #1845B3 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">3</span>
                     <div>
                       <strong>Bar Council Registration</strong>
                       <p className="text-sm text-gray-600 mt-1">Apply for enrollment with Provincial Bar Council</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <span className="bg-blue-100 #3367D6 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">4</span>
+                    <span className="bg-blue-100 #1845B3 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">4</span>
                     <div>
                       <strong>Legal Practice Certificate</strong>
                       <p className="text-sm text-gray-600 mt-1">Obtain license to practice law in Pakistan</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <span className="bg-blue-100 #3367D6 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">5</span>
+                    <span className="bg-blue-100 #1845B3 rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 mt-0.5">5</span>
                     <div>
                       <strong>Continuous Professional Development</strong>
                       <p className="text-sm text-gray-600 mt-1">Complete mandatory CPD requirements</p>
@@ -133,31 +133,31 @@ export default function UKLLMToPakistaniBar() {
                 <h3 className="text-lg font-semibold mb-4">Required Documents for HEC</h3>
                 <div className="space-y-3">
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Original UK LLM degree:</strong> Issued by recognized UK university
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Academic transcripts:</strong> Complete record of courses and grades
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Undergraduate law degree:</strong> LLB or equivalent from Pakistan/recognized institution
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Passport copies:</strong> All relevant pages showing UK residence
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <CheckCircle className="h-5 w-5 #4285F4 mr-3 mt-0.5" />
+                    <CheckCircle className="h-5 w-5 #1D50C9 mr-3 mt-0.5" />
                     <div>
                       <strong>Verification documents:</strong> Attested by Pakistani Embassy/High Commission
                     </div>
@@ -167,9 +167,9 @@ export default function UKLLMToPakistaniBar() {
 
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Bar Council Enrollment Process</h2>
               
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <div className="flex items-center mb-2">
-                  <AlertCircle className="h-5 w-5 #4285F4 mr-2" />
+                  <AlertCircle className="h-5 w-5 #1D50C9 mr-2" />
                   <h3 className="text-lg font-semibold text-gray-900">Provincial Bar Council Requirements</h3>
                 </div>
                 <div className="space-y-3 text-gray-700">
@@ -233,22 +233,22 @@ export default function UKLLMToPakistaniBar() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <FileText className="h-8 w-8 #3367D6 mb-3" />
+                  <FileText className="h-8 w-8 #1845B3 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Corporate Law</h3>
                   <p className="text-gray-600">Join multinational corporations as legal counsel with expertise in international law.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Users className="h-8 w-8 #3367D6 mb-3" />
+                  <Users className="h-8 w-8 #1845B3 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Law Firms</h3>
                   <p className="text-gray-600">Work with top-tier law firms handling international transactions and disputes.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <BookOpen className="h-8 w-8 #3367D6 mb-3" />
+                  <BookOpen className="h-8 w-8 #1845B3 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Academia</h3>
                   <p className="text-gray-600">Teach law at universities and contribute to legal research and scholarship.</p>
                 </div>
                 <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <Award className="h-8 w-8 #3367D6 mb-3" />
+                  <Award className="h-8 w-8 #1845B3 mb-3" />
                   <h3 className="text-lg font-semibold mb-2">Government Services</h3>
                   <p className="text-gray-600">Join civil service as legal advisor or pursue judicial service.</p>
                 </div>
@@ -261,37 +261,37 @@ export default function UKLLMToPakistaniBar() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-3">
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 #4285F4 mr-2" />
+                      <CheckCircle className="h-4 w-4 #1D50C9 mr-2" />
                       <span>International Trade Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 #4285F4 mr-2" />
+                      <CheckCircle className="h-4 w-4 #1D50C9 mr-2" />
                       <span>Banking and Finance Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 #4285F4 mr-2" />
+                      <CheckCircle className="h-4 w-4 #1D50C9 mr-2" />
                       <span>Intellectual Property Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 #4285F4 mr-2" />
+                      <CheckCircle className="h-4 w-4 #1D50C9 mr-2" />
                       <span>Corporate and Commercial Law</span>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 #4285F4 mr-2" />
+                      <CheckCircle className="h-4 w-4 #1D50C9 mr-2" />
                       <span>Human Rights Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 #4285F4 mr-2" />
+                      <CheckCircle className="h-4 w-4 #1D50C9 mr-2" />
                       <span>Environmental Law</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 #4285F4 mr-2" />
+                      <CheckCircle className="h-4 w-4 #1D50C9 mr-2" />
                       <span>Energy and Natural Resources</span>
                     </div>
                     <div className="flex items-center">
-                      <CheckCircle className="h-4 w-4 #4285F4 mr-2" />
+                      <CheckCircle className="h-4 w-4 #1D50C9 mr-2" />
                       <span>International Arbitration</span>
                     </div>
                   </div>
@@ -321,32 +321,32 @@ export default function UKLLMToPakistaniBar() {
                 <h3 className="text-lg font-semibold mb-4">Continuing Legal Education</h3>
                 <ul className="space-y-2 text-gray-700">
                   <li className="flex items-start">
-                    <span className="#3367D6 mr-2">•</span>
+                    <span className="#1845B3 mr-2">•</span>
                     <span><strong>Mandatory CPD:</strong> Complete required continuing professional development hours</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="#3367D6 mr-2">•</span>
+                    <span className="#1845B3 mr-2">•</span>
                     <span><strong>Professional Networks:</strong> Join legal associations and professional bodies</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="#3367D6 mr-2">•</span>
+                    <span className="#1845B3 mr-2">•</span>
                     <span><strong>Specialized Training:</strong> Attend workshops and seminars in your area of practice</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="#3367D6 mr-2">•</span>
+                    <span className="#1845B3 mr-2">•</span>
                     <span><strong>International Connections:</strong> Maintain links with UK legal community</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="#3367D6 text-white rounded-lg p-6">
+              <div className="#1845B3 text-white rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-2">Ready to Convert Your UK LLM?</h3>
                 <p className="mb-4">
                   Dunya Consultants provides expert guidance on converting your UK law degree for practice in Pakistan. Our team will help you navigate the entire process smoothly.
                 </p>
                 <Link 
                   href="/contact" 
-                  className="inline-block bg-white #3367D6 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+                  className="inline-block bg-white #1845B3 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                 >
                   Get Expert Help
                 </Link>
@@ -361,13 +361,13 @@ export default function UKLLMToPakistaniBar() {
               <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#process" className="#3367D6 hover:text-#1565c0">Conversion Process</a></li>
-                  <li><a href="#hec" className="#3367D6 hover:text-#1565c0">HEC Requirements</a></li>
-                  <li><a href="#bar-council" className="#3367D6 hover:text-#1565c0">Bar Council Enrollment</a></li>
-                  <li><a href="#timeline" className="#3367D6 hover:text-#1565c0">Timeline & Costs</a></li>
-                  <li><a href="#career" className="#3367D6 hover:text-#1565c0">Career Opportunities</a></li>
-                  <li><a href="#specialization" className="#3367D6 hover:text-#1565c0">Specialization Areas</a></li>
-                  <li><a href="#challenges" className="#3367D6 hover:text-#1565c0">Common Challenges</a></li>
+                  <li><a href="#process" className="#1845B3 hover:text-#1565c0">Conversion Process</a></li>
+                  <li><a href="#hec" className="#1845B3 hover:text-#1565c0">HEC Requirements</a></li>
+                  <li><a href="#bar-council" className="#1845B3 hover:text-#1565c0">Bar Council Enrollment</a></li>
+                  <li><a href="#timeline" className="#1845B3 hover:text-#1565c0">Timeline & Costs</a></li>
+                  <li><a href="#career" className="#1845B3 hover:text-#1565c0">Career Opportunities</a></li>
+                  <li><a href="#specialization" className="#1845B3 hover:text-#1565c0">Specialization Areas</a></li>
+                  <li><a href="#challenges" className="#1845B3 hover:text-#1565c0">Common Challenges</a></li>
                 </ul>
               </div>
 
@@ -402,18 +402,18 @@ export default function UKLLMToPakistaniBar() {
                     <input
                       type="text"
                       placeholder="Your Name"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#4285F4"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#1D50C9"
                     />
                   </div>
                   <div>
                     <input
                       type="email"
                       placeholder="Your Email"
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#4285F4"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#1D50C9"
                     />
                   </div>
                   <div>
-                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#4285F4">
+                    <select className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:#1D50C9">
                       <option>Select UK University</option>
                       <option>Oxford University</option>
                       <option>Cambridge University</option>
@@ -424,7 +424,7 @@ export default function UKLLMToPakistaniBar() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full #3367D6 text-white py-3 px-4 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
+                    className="w-full #1845B3 text-white py-3 px-4 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Get Consultation
                   </button>

@@ -10,11 +10,11 @@ export default function StudyInFinlandGuide() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Study Destination
               </span>
             </div>
@@ -64,19 +64,19 @@ export default function StudyInFinlandGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-finland" className="hover:#3367D6">Why Choose to Study in Finland?</a></li>
-                  <li><a href="#education-system" className="hover:#3367D6">Finland's Education System</a></li>
-                  <li><a href="#english-requirements" className="hover:#3367D6">English Language Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:#3367D6">Tuition Fees and Living Costs</a></li>
-                  <li><a href="#visa-requirements" className="hover:#3367D6">Visa Requirements</a></li>
-                  <li><a href="#documents-checklist" className="hover:#3367D6">Required Documents</a></li>
-                  <li><a href="#application-process" className="hover:#3367D6">Application Process</a></li>
-                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-finland" className="hover:#1845B3">Why Choose to Study in Finland?</a></li>
+                  <li><a href="#education-system" className="hover:#1845B3">Finland's Education System</a></li>
+                  <li><a href="#english-requirements" className="hover:#1845B3">English Language Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:#1845B3">Tuition Fees and Living Costs</a></li>
+                  <li><a href="#visa-requirements" className="hover:#1845B3">Visa Requirements</a></li>
+                  <li><a href="#documents-checklist" className="hover:#1845B3">Required Documents</a></li>
+                  <li><a href="#application-process" className="hover:#1845B3">Application Process</a></li>
+                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Finland Overview */}
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold text-#1565c0 mb-4">Study in Finland at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
@@ -94,7 +94,7 @@ export default function StudyInFinlandGuide() {
 
               {/* Why Study in Finland Section */}
               <section id="why-study-finland" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Why Choose to Study in Finland?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Why Choose to Study in Finland?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Finland offers numerous unique advantages that make it an ideal destination for Pakistani students seeking quality education and exceptional quality of life.
@@ -173,7 +173,7 @@ export default function StudyInFinlandGuide() {
 
               {/* English Requirements Section */}
               <section id="english-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">English Language Requirements</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">English Language Requirements</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Finnish universities require proof of English proficiency for international programs taught in English.
@@ -220,7 +220,7 @@ export default function StudyInFinlandGuide() {
 
               {/* Tuition Costs Section */}
               <section id="tuition-costs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Tuition Fees and Living Costs</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Tuition Fees and Living Costs</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Finland offers very competitive tuition fees and one of the lowest living costs among European countries.
@@ -231,7 +231,7 @@ export default function StudyInFinlandGuide() {
                     <h3 className="text-xl font-semibold mb-4 text-#1565c0">Tuition Fees</h3>
                     <div className="space-y-3">
                       <div className="text-center">
-                        <div className="text-3xl font-bold #3367D6 mb-2">€7,500</div>
+                        <div className="text-3xl font-bold #1845B3 mb-2">€7,500</div>
                         <p className="text-gray-700 text-sm">per year (both undergraduate & graduate)</p>
                       </div>
                     </div>
@@ -241,7 +241,7 @@ export default function StudyInFinlandGuide() {
                     <h3 className="text-xl font-semibold mb-4 text-#1565c0">Living Costs</h3>
                     <div className="space-y-3">
                       <div className="text-center">
-                        <div className="text-3xl font-bold #3367D6 mb-2">€500</div>
+                        <div className="text-3xl font-bold #1845B3 mb-2">€500</div>
                         <p className="text-gray-700 text-sm">per month (all expenses)</p>
                       </div>
                       <div className="text-center mt-4">
@@ -254,7 +254,7 @@ export default function StudyInFinlandGuide() {
 
               {/* Documents Checklist Section */}
               <section id="documents-checklist" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Required Documents Checklist</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Required Documents Checklist</h2>
                 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -306,7 +306,7 @@ export default function StudyInFinlandGuide() {
 
               {/* FAQ Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -341,10 +341,10 @@ export default function StudyInFinlandGuide() {
                 <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Experience World's Best Education in Finland?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants provides expert guidance for Finnish university applications and visa processes. Join thousands of successful Pakistani students studying in Finland.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/contact" className="#3367D6 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
+                  <a href="/contact" className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
                     Get Free Consultation
                   </a>
-                  <a href="tel:+923041110947" className="border #3367D6 #3367D6 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  <a href="tel:+923041110947" className="border #1845B3 #1845B3 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                     Call Now: +92 304 111 0947
                   </a>
                 </div>
@@ -385,10 +385,10 @@ export default function StudyInFinlandGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/finland-visa-requirements-pakistani-students" className="block #3367D6 hover:text-#1565c0 text-sm">Finland Visa Requirements</a>
-                  <a href="/blog/study-in-uk-complete-guide" className="block #3367D6 hover:text-#1565c0 text-sm">Study in UK Guide</a>
-                  <a href="/blog/study-in-canada-complete-guide" className="block #3367D6 hover:text-#1565c0 text-sm">Study in Canada Guide</a>
-                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #3367D6 hover:text-#1565c0 text-sm">IELTS Preparation Tips</a>
+                  <a href="/blog/finland-visa-requirements-pakistani-students" className="block #1845B3 hover:text-#1565c0 text-sm">Finland Visa Requirements</a>
+                  <a href="/blog/study-in-uk-complete-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in UK Guide</a>
+                  <a href="/blog/study-in-canada-complete-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in Canada Guide</a>
+                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #1845B3 hover:text-#1565c0 text-sm">IELTS Preparation Tips</a>
                 </div>
               </div>
 

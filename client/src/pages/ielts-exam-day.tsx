@@ -119,7 +119,7 @@ export default function IELTSExamDay() {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-#1e3a8a via-#1a73e8 to-#1565c0 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-[#4285F4]/30 to-#1565c0/30"></div>
+          <div className="w-full h-full bg-gradient-to-r from-[#1D50C9]/30 to-#1565c0/30"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -167,21 +167,21 @@ export default function IELTSExamDay() {
           >
             <div className="grid md:grid-cols-3 gap-6">
               <Alert className="border-blue-200 bg-blue-50">
-                <AlertCircle className="h-4 w-4 #3367D6" />
+                <AlertCircle className="h-4 w-4 #1845B3" />
                 <AlertDescription className="text-#1565c0">
                   <strong>Arrive 30 minutes early</strong> - Late arrivals will not be admitted to the test
                 </AlertDescription>
               </Alert>
               
               <Alert className="border-blue-200 bg-blue-50">
-                <Shield className="h-4 w-4 #3367D6" />
+                <Shield className="h-4 w-4 #1845B3" />
                 <AlertDescription className="text-#1565c0">
                   <strong>Bring valid passport</strong> - No other ID documents are accepted
                 </AlertDescription>
               </Alert>
               
               <Alert className="border-blue-200 bg-blue-50">
-                <CheckCircle className="h-4 w-4 #3367D6" />
+                <CheckCircle className="h-4 w-4 #1845B3" />
                 <AlertDescription className="text-#1565c0">
                   <strong>Follow dress code</strong> - Smart casual attire, avoid metal accessories
                 </AlertDescription>
@@ -229,7 +229,7 @@ export default function IELTSExamDay() {
               <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl">
-                    <CheckCircle className="w-6 h-6 mr-3 #4285F4" />
+                    <CheckCircle className="w-6 h-6 mr-3 #1D50C9" />
                     What to Bring
                   </CardTitle>
                 </CardHeader>
@@ -238,7 +238,7 @@ export default function IELTSExamDay() {
                     <div key={index} className="flex items-start space-x-3 p-4 rounded-lg bg-blue-50">
                       <div className="flex-shrink-0 mt-1">
                         {item.essential ? (
-                          <Badge className="#4285F4 hover:#3367D6">Essential</Badge>
+                          <Badge className="#1D50C9 hover:#1845B3">Essential</Badge>
                         ) : (
                           <Badge variant="outline">Optional</Badge>
                         )}
@@ -255,7 +255,7 @@ export default function IELTSExamDay() {
               <Card className="shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center text-2xl">
-                    <AlertCircle className="w-6 h-6 mr-3 #4285F4" />
+                    <AlertCircle className="w-6 h-6 mr-3 #1D50C9" />
                     What NOT to Bring
                   </CardTitle>
                 </CardHeader>
@@ -263,7 +263,7 @@ export default function IELTSExamDay() {
                   <div className="space-y-3">
                     {whatNotToBring.map((item, index) => (
                       <div key={index} className="flex items-center space-x-3 p-3 rounded-lg bg-blue-50">
-                        <div className="w-2 h-2 #4285F4 rounded-full flex-shrink-0"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full flex-shrink-0"></div>
                         <span className="text-neutral-700">{item}</span>
                       </div>
                     ))}
@@ -291,7 +291,7 @@ export default function IELTSExamDay() {
               {securityMeasures.map((measure, index) => (
                 <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow">
                   <CardContent className="p-6 text-center">
-                    <div className="w-16 h-16 bg-gradient-to-br from-[#4285F4] to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Shield className="w-8 h-8 text-white" />
                     </div>
                     <h3 className="text-lg font-bold text-neutral-800 mb-3">{measure.title}</h3>
@@ -317,24 +317,24 @@ export default function IELTSExamDay() {
                 <div className="grid md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-xl font-bold text-neutral-800 mb-4 flex items-center">
-                      <CheckCircle className="w-5 h-5 mr-2 #4285F4" />
+                      <CheckCircle className="w-5 h-5 mr-2 #1D50C9" />
                       Allowed During Test
                     </h3>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span>Raise hand to ask questions</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span>Use provided tissues if needed</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span>Drink water during breaks</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span>Use bathroom with escort</span>
                       </div>
                     </div>
@@ -342,24 +342,24 @@ export default function IELTSExamDay() {
                   
                   <div>
                     <h3 className="text-xl font-bold text-neutral-800 mb-4 flex items-center">
-                      <AlertCircle className="w-5 h-5 mr-2 #4285F4" />
+                      <AlertCircle className="w-5 h-5 mr-2 #1D50C9" />
                       Strictly Prohibited
                     </h3>
                     <div className="space-y-3">
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span>Talking to other candidates</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span>Looking at other papers</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span>Eating or smoking</span>
                       </div>
                       <div className="flex items-center space-x-3">
-                        <div className="w-2 h-2 #4285F4 rounded-full"></div>
+                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
                         <span>Leaving without permission</span>
                       </div>
                     </div>
@@ -383,7 +383,7 @@ export default function IELTSExamDay() {
               <CardContent className="p-8">
                 <div className="grid md:grid-cols-2 gap-8">
                   <div className="text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-[#4285F4] to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#1D50C9] to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Users className="w-10 h-10 text-white" />
                     </div>
                     <h3 className="text-xl font-bold text-neutral-800 mb-4">Same Day Speaking</h3>
@@ -391,11 +391,11 @@ export default function IELTSExamDay() {
                       Speaking test may be conducted on the same day as your written test, 
                       typically after the Writing module with a short break.
                     </p>
-                    <Badge className="#4285F4 hover:#3367D6">Most Common</Badge>
+                    <Badge className="#1D50C9 hover:#1845B3">Most Common</Badge>
                   </div>
                   
                   <div className="text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-[#4285F4] to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#1D50C9] to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Calendar className="w-10 h-10 text-white" />
                     </div>
                     <h3 className="text-xl font-bold text-neutral-800 mb-4">Separate Day Speaking</h3>

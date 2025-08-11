@@ -27,7 +27,7 @@ export default function StudentJourneyVisualization() {
       title: "Initial Consultation",
       description: "Free assessment of your profile and career goals",
       icon: UserCheck,
-      color: "from-[#4285F4] to-blue-500",
+      color: "from-[#1D50C9] to-blue-500",
       duration: "30 mins",
       completion: "Day 1",
       details: [
@@ -42,7 +42,7 @@ export default function StudentJourneyVisualization() {
       title: "University Selection",
       description: "Choose the best universities matching your profile",
       icon: GraduationCap,
-      color: "from-[#4285F4] to-blue-500",
+      color: "from-[#1D50C9] to-blue-500",
       duration: "1-2 weeks",
       completion: "Week 1-2",
       details: [
@@ -57,7 +57,7 @@ export default function StudentJourneyVisualization() {
       title: "Application Process",
       description: "Complete applications with required documents",
       icon: FileText,
-      color: "from-[#4285F4] to-blue-500",
+      color: "from-[#1D50C9] to-blue-500",
       duration: "4-6 weeks",
       completion: "Month 1-2",
       details: [
@@ -72,7 +72,7 @@ export default function StudentJourneyVisualization() {
       title: "Test Preparation",
       description: "IELTS, TOEFL, GRE, GMAT coaching and practice",
       icon: BookOpen,
-      color: "from-[#4285F4] to-blue-500",
+      color: "from-[#1D50C9] to-blue-500",
       duration: "2-4 months",
       completion: "Month 2-4",
       details: [
@@ -87,7 +87,7 @@ export default function StudentJourneyVisualization() {
       title: "Admission Success",
       description: "Receive acceptance letters from universities",
       icon: Award,
-      color: "from-[#4285F4] to-blue-500",
+      color: "from-[#1D50C9] to-blue-500",
       duration: "2-4 months",
       completion: "Month 3-6",
       details: [
@@ -102,7 +102,7 @@ export default function StudentJourneyVisualization() {
       title: "Visa Processing",
       description: "Student visa application and approval",
       icon: MapPin,
-      color: "from-[#4285F4] to-blue-500",
+      color: "from-[#1D50C9] to-blue-500",
       duration: "4-8 weeks",
       completion: "Month 4-7",
       details: [
@@ -117,7 +117,7 @@ export default function StudentJourneyVisualization() {
       title: "Pre-Departure",
       description: "Final preparations for your journey",
       icon: Plane,
-      color: "from-[#4285F4] to-blue-500",
+      color: "from-[#1D50C9] to-blue-500",
       duration: "2-4 weeks",
       completion: "Month 6-8",
       details: [
@@ -132,7 +132,7 @@ export default function StudentJourneyVisualization() {
       title: "Study Success",
       description: "Begin your international education journey",
       icon: Trophy,
-      color: "from-[#4285F4] to-blue-500",
+      color: "from-[#1D50C9] to-blue-500",
       duration: "Ongoing",
       completion: "Achievement",
       details: [
@@ -177,8 +177,8 @@ export default function StudentJourneyVisualization() {
             <span className="text-sm font-medium text-neutral-700">Student Journey</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#4285F4' }}>
-            Your Path to <span style={{ color: '#4285F4' }}>Global Education</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#1D50C9' }}>
+            Your Path to <span style={{ color: '#1D50C9' }}>Global Education</span>
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">

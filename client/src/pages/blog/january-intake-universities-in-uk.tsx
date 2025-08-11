@@ -139,7 +139,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
       <Navigation />
       <div className="max-w-[1440px] mx-auto px-4 py-8">
         {/* Hero Section */}
-        <div className="bg-gradient-to-r from-[#4285F4] via-[#4285F4] to-[#3367D6] flex items-center justify-center text-white">
+        <div className="bg-gradient-to-r from-[#1D50C9] via-[#1D50C9] to-[#1845B3] flex items-center justify-center text-white">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
             style={{
@@ -172,7 +172,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
                   <Star className="mr-3 h-6 w-6" />
@@ -199,7 +199,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                         <CardContent className="p-6">
                           <div className="flex items-start space-x-4">
                             <div className="flex-shrink-0">
-                              <advantage.icon className="h-8 w-8 #3367D6" />
+                              <advantage.icon className="h-8 w-8 #1845B3" />
                             </div>
                             <div>
                               <h3 className="text-lg font-bold text-#1565c0 mb-2">{advantage.advantage}</h3>
@@ -223,7 +223,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 <div className="overflow-x-auto">
                   <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg overflow-hidden shadow-lg">
                     <thead>
-                      <tr className="bg-gradient-to-r from-[#4285F4] to-red-600 text-white">
+                      <tr className="bg-gradient-to-r from-[#1D50C9] to-red-600 text-white">
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">University</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Popular Programs</th>
                         <th className="border border-gray-300 px-4 py-3 text-left font-semibold">English Requirement</th>
@@ -300,9 +300,9 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 #4285F4"
+                      className="flex items-start space-x-3 p-4 bg-blue-50 rounded-lg border-l-4 #1D50C9"
                     >
-                      <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <span className="text-gray-700 font-medium">{requirement}</span>
                     </motion.div>
                   ))}
@@ -326,7 +326,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       className="relative"
                     >
                       <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#4285F4] to-red-600 rounded-full flex items-center justify-center text-white font-bold">
+                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#1D50C9] to-red-600 rounded-full flex items-center justify-center text-white font-bold">
                           {index + 1}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -380,31 +380,31 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0">Important Considerations</h2>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>Limited Program Availability:</strong> Not all programs offer January intake - verify availability with universities</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>Accommodation:</strong> Book university accommodation early as January intake students have fewer options</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>Scholarships:</strong> Some scholarships may not be available for January intake - research funding options carefully</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 #3367D6 mt-1 flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                     <span className="text-gray-700"><strong>Visa Processing:</strong> Plan visa application timing carefully to ensure arrival before program commencement</span>
                   </div>
                 </div>
               </motion.div>
 
               {/* Conclusion */}
-              <div className="mb-8 p-6 bg-blue-50 border-l-4 #4285F4 rounded-r-lg">
+              <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
                 <h2 className="text-2xl font-bold mb-4 text-#1565c0">Start Your UK Journey in January</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   January intake provides an excellent opportunity for international students to begin their UK education with reduced competition and additional preparation time. With proper planning and early application submission, you can secure admission to top UK universities for the spring semester.
@@ -497,15 +497,15 @@ export default function JanuaryIntakeUniversitiesInUK() {
                   <div className="space-y-3">
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">University of Greenwich</div>
-                      <div className="#3367D6 text-xs">Business, Engineering</div>
+                      <div className="#1845B3 text-xs">Business, Engineering</div>
                     </div>
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">Middlesex University</div>
-                      <div className="#3367D6 text-xs">MBA, Data Science</div>
+                      <div className="#1845B3 text-xs">MBA, Data Science</div>
                     </div>
                     <div className="p-2 bg-blue-50 rounded text-sm">
                       <div className="font-medium">University of Hertfordshire</div>
-                      <div className="#3367D6 text-xs">Aerospace, Finance</div>
+                      <div className="#1845B3 text-xs">Aerospace, Finance</div>
                     </div>
                   </div>
                 </CardContent>
@@ -539,7 +539,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       <option>Health Sciences</option>
                       <option>Other</option>
                     </select>
-                    <Button className="w-full bg-gradient-to-r from-[#4285F4] to-red-600 hover:from-orange-700 hover:to-red-700">
+                    <Button className="w-full bg-gradient-to-r from-[#1D50C9] to-red-600 hover:from-orange-700 hover:to-red-700">
                       Get Application Help
                     </Button>
                   </form>

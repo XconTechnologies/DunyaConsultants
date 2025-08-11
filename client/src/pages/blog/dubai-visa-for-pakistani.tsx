@@ -10,11 +10,11 @@ export default function DubaiVisaForPakistani() {
       <Navigation />
       
       {/* Hero Section */}
-      <div className="bg-[#4285F4] text-white py-20">
+      <div className="bg-[#1D50C9] text-white py-20">
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#4285F4 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
                 Visa Guide
               </span>
             </div>
@@ -61,38 +61,38 @@ export default function DubaiVisaForPakistani() {
               <div className="mb-8 bg-blue-50 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#what-is-dubai-visa" className="hover:#3367D6">What is a Dubai Student Visa?</a></li>
-                  <li><a href="#eligibility-criteria" className="hover:#3367D6">Eligibility Criteria for Dubai Student Visa from Pakistan</a></li>
-                  <li><a href="#entry-requirements" className="hover:#3367D6">Dubai Entry Requirements from Pakistan Students</a></li>
-                  <li><a href="#application-process" className="hover:#3367D6">How to Apply Dubai Visa from Pakistan?</a></li>
-                  <li><a href="#visa-price" className="hover:#3367D6">Dubai Student Visa Price in Pakistan</a></li>
-                  <li><a href="#conclusion" className="hover:#3367D6">Conclusion</a></li>
-                  <li><a href="#faqs" className="hover:#3367D6">Frequently Asked Questions</a></li>
+                  <li><a href="#what-is-dubai-visa" className="hover:#1845B3">What is a Dubai Student Visa?</a></li>
+                  <li><a href="#eligibility-criteria" className="hover:#1845B3">Eligibility Criteria for Dubai Student Visa from Pakistan</a></li>
+                  <li><a href="#entry-requirements" className="hover:#1845B3">Dubai Entry Requirements from Pakistan Students</a></li>
+                  <li><a href="#application-process" className="hover:#1845B3">How to Apply Dubai Visa from Pakistan?</a></li>
+                  <li><a href="#visa-price" className="hover:#1845B3">Dubai Student Visa Price in Pakistan</a></li>
+                  <li><a href="#conclusion" className="hover:#1845B3">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Key Benefits */}
-              <div className="bg-blue-50 border-l-4 #4285F4 p-6 mb-8">
+              <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
                 <h3 className="text-xl font-semibold text-#1565c0 mb-4">Benefits of Dubai Student Visa</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Stay in Dubai for entire study duration
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Work part-time while studying (with restrictions)
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Access to world-class education facilities
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Renewable based on program duration
                   </li>
                   <li className="flex items-center">
-                    <CheckCircle className="w-5 h-5 #4285F4 mr-3" />
+                    <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
                     Opportunity for post-graduation employment
                   </li>
                 </ul>
@@ -100,7 +100,7 @@ export default function DubaiVisaForPakistani() {
 
               {/* What is Dubai Visa Section */}
               <section id="what-is-dubai-visa" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">What is a Dubai Student Visa?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">What is a Dubai Student Visa?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   A Dubai visa for Pakistani students' visa is a special visa for those who are planning to study in Dubai. This visa lets you enter and stay in the city for the entire time you are studying.
@@ -127,7 +127,7 @@ export default function DubaiVisaForPakistani() {
 
               {/* Eligibility Criteria Section */}
               <section id="eligibility-criteria" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Eligibility Criteria for Dubai Student Visa from Pakistan</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Eligibility Criteria for Dubai Student Visa from Pakistan</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   To apply Dubai visa from Pakistan, students need to fulfill the following requirements as given below:
@@ -173,7 +173,7 @@ export default function DubaiVisaForPakistani() {
 
               {/* Entry Requirements Section */}
               <section id="entry-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Dubai Entry Requirements from Pakistan Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Dubai Entry Requirements from Pakistan Students</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   While applying for a study visa for the UAE, you have to provide all documents and meet entry requirements as mentioned below:
@@ -234,7 +234,7 @@ export default function DubaiVisaForPakistani() {
 
               {/* Application Process Section */}
               <section id="application-process" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">How to Apply Dubai Visa from Pakistan?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">How to Apply Dubai Visa from Pakistan?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The step-by-step guide to applying for a UAE visa for Pakistani students is as follows:
@@ -243,7 +243,7 @@ export default function DubaiVisaForPakistani() {
                 <div className="space-y-6">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-4">
-                      <div className="#4285F4 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">1</div>
+                      <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">1</div>
                       <h3 className="text-xl font-semibold text-gray-800">Planning and Preparation</h3>
                     </div>
                     <p className="text-gray-700">Before choosing a university or college in Dubai, you need to decide what you want to study, where you will live, and your overall expenses.</p>
@@ -251,7 +251,7 @@ export default function DubaiVisaForPakistani() {
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-4">
-                      <div className="#4285F4 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">2</div>
+                      <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">2</div>
                       <h3 className="text-xl font-semibold text-gray-800">Test Preparation</h3>
                     </div>
                     <p className="text-gray-700">Get ready for any entrance exams required by the university, and take tests such as IELTS or TOEFL if mandatory.</p>
@@ -259,7 +259,7 @@ export default function DubaiVisaForPakistani() {
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-4">
-                      <div className="#4285F4 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">3</div>
+                      <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">3</div>
                       <h3 className="text-xl font-semibold text-gray-800">Financial Preparation</h3>
                     </div>
                     <p className="text-gray-700">Make sure you have sufficient money to cover your tuition fees, travel, food, living expenses, and other costs while studying in Dubai.</p>
@@ -267,7 +267,7 @@ export default function DubaiVisaForPakistani() {
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-4">
-                      <div className="#4285F4 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">4</div>
+                      <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">4</div>
                       <h3 className="text-xl font-semibold text-gray-800">University Application</h3>
                     </div>
                     <p className="text-gray-700">Each university will have its own requirements. Make sure to fulfill those and complete the application process.</p>
@@ -275,7 +275,7 @@ export default function DubaiVisaForPakistani() {
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-4">
-                      <div className="#4285F4 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">5</div>
+                      <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">5</div>
                       <h3 className="text-xl font-semibold text-gray-800">Confirmation and Payment</h3>
                     </div>
                     <p className="text-gray-700">Once you meet all requirements, you will receive a confirmation letter. After that, you must pay the required Dubai visa price.</p>
@@ -283,7 +283,7 @@ export default function DubaiVisaForPakistani() {
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
                     <div className="flex items-center mb-4">
-                      <div className="#4285F4 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">6</div>
+                      <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4">6</div>
                       <h3 className="text-xl font-semibold text-gray-800">Visa Application</h3>
                     </div>
                     <p className="text-gray-700">Once you receive your confirmation letter, you can apply for a Dubai Study Visa. The Dubai visa processing time in Pakistan is typically about ten to fifteen working days.</p>
@@ -293,7 +293,7 @@ export default function DubaiVisaForPakistani() {
 
               {/* Visa Price Section */}
               <section id="visa-price" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Dubai Student Visa Price in Pakistan</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Dubai Student Visa Price in Pakistan</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Students applying for a Dubai Study Visa need to pay a certain study visa price, which may vary based on the course, selected university, and type of application. However, there are some mandatory costs.
@@ -302,10 +302,10 @@ export default function DubaiVisaForPakistani() {
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                     <div className="flex items-center mb-4">
-                      <DollarSign className="w-8 h-8 #3367D6 mr-3" />
+                      <DollarSign className="w-8 h-8 #1845B3 mr-3" />
                       <h3 className="text-lg font-semibold text-#1565c0">Visa Processing Fee</h3>
                     </div>
-                    <p className="text-3xl font-bold #3367D6 mb-2">2,300 - 2,700 AED</p>
+                    <p className="text-3xl font-bold #1845B3 mb-2">2,300 - 2,700 AED</p>
                     <p className="text-gray-600">Mandatory processing charges</p>
                   </div>
 
@@ -331,7 +331,7 @@ export default function DubaiVisaForPakistani() {
 
               {/* Conclusion Section */}
               <section id="conclusion" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Conclusion</h2>
                 
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <p className="text-gray-700 leading-relaxed mb-4">
@@ -350,7 +350,7 @@ export default function DubaiVisaForPakistani() {
 
               {/* FAQs Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #4285F4 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -386,7 +386,7 @@ export default function DubaiVisaForPakistani() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a 
                     href="tel:+923041110947" 
-                    className="#3367D6 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
+                    className="#1845B3 text-white px-6 py-3 rounded-lg font-semibold hover:bg-#1a73e8 transition-colors"
                   >
                     Call Now: +92 304 1110947
                   </a>
@@ -407,7 +407,7 @@ export default function DubaiVisaForPakistani() {
               {/* Quick Facts */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <MapPin className="w-5 h-5 mr-2 #4285F4" />
+                  <MapPin className="w-5 h-5 mr-2 #1D50C9" />
                   Quick Facts
                 </h3>
                 <div className="space-y-3 text-sm">
@@ -437,25 +437,25 @@ export default function DubaiVisaForPakistani() {
               {/* Visa Requirements */}
               <div className="bg-white rounded-lg shadow-sm border p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800 flex items-center">
-                  <FileText className="w-5 h-5 mr-2 #4285F4" />
+                  <FileText className="w-5 h-5 mr-2 #1D50C9" />
                   Key Requirements
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>University Admission</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Required</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Required</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Financial Proof</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Essential</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Essential</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>Medical Checkup</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Mandatory</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Mandatory</span>
                   </div>
                   <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                     <span>GDRFA Approval</span>
-                    <span className="text-xs bg-blue-100 #3367D6 px-2 py-1 rounded">Critical</span>
+                    <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Critical</span>
                   </div>
                 </div>
               </div>

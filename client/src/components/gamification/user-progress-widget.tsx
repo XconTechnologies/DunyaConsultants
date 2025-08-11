@@ -45,7 +45,7 @@ export default function UserProgressWidget() {
       <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
         {/* Collapsed View */}
         <motion.div
-          className="p-4 cursor-pointer bg-gradient-to-r from-[#4285F4] to-[#3367D6] text-white"
+          className="p-4 cursor-pointer bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white"
           onClick={() => setIsExpanded(!isExpanded)}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -103,26 +103,26 @@ export default function UserProgressWidget() {
                 {/* Stats Grid */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="text-center p-3 bg-blue-50 rounded-lg">
-                    <Target className="w-6 h-6 #3367D6 mx-auto mb-1" />
-                    <div className="font-bold text-lg #3367D6">{userStats.pagesVisited}</div>
+                    <Target className="w-6 h-6 #1845B3 mx-auto mb-1" />
+                    <div className="font-bold text-lg #1845B3">{userStats.pagesVisited}</div>
                     <div className="text-xs text-gray-600">Pages Visited</div>
                   </div>
                   
                   <div className="text-center p-3 bg-blue-50 rounded-lg">
-                    <Star className="w-6 h-6 #3367D6 mx-auto mb-1" />
-                    <div className="font-bold text-lg #3367D6">{userStats.toolsUsed}</div>
+                    <Star className="w-6 h-6 #1845B3 mx-auto mb-1" />
+                    <div className="font-bold text-lg #1845B3">{userStats.toolsUsed}</div>
                     <div className="text-xs text-gray-600">Tools Used</div>
                   </div>
                   
                   <div className="text-center p-3 bg-blue-50 rounded-lg">
-                    <Trophy className="w-6 h-6 #3367D6 mx-auto mb-1" />
-                    <div className="font-bold text-lg #3367D6">{userStats.badgesEarned}</div>
+                    <Trophy className="w-6 h-6 #1845B3 mx-auto mb-1" />
+                    <div className="font-bold text-lg #1845B3">{userStats.badgesEarned}</div>
                     <div className="text-xs text-gray-600">Badges Earned</div>
                   </div>
                   
                   <div className="text-center p-3 bg-blue-50 rounded-lg">
-                    <Zap className="w-6 h-6 #3367D6 mx-auto mb-1" />
-                    <div className="font-bold text-lg #3367D6">{userStats.formsCompleted}</div>
+                    <Zap className="w-6 h-6 #1845B3 mx-auto mb-1" />
+                    <div className="font-bold text-lg #1845B3">{userStats.formsCompleted}</div>
                     <div className="text-xs text-gray-600">Forms Completed</div>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export default function UserProgressWidget() {
                   </div>
                   <div className="bg-gray-200 rounded-full h-3 overflow-hidden">
                     <motion.div
-                      className="bg-gradient-to-r from-[#4285F4] to-blue-500 h-full rounded-full"
+                      className="bg-gradient-to-r from-[#1D50C9] to-blue-500 h-full rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${progressToNextLevel}%` }}
                       transition={{ duration: 1, ease: "easeOut" }}
@@ -162,7 +162,7 @@ export default function UserProgressWidget() {
                 {/* View All Achievements Button */}
                 <button
                   onClick={() => setShowGallery(true)}
-                  className="w-full bg-gradient-to-r from-[#4285F4] to-[#3367D6] hover:from-#1a73e8 hover:to-[#1a73e8] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
+                  className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-#1a73e8 hover:to-[#1a73e8] text-white py-3 px-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <Trophy className="w-5 h-5" />
                   <span>View All Achievements</span>
