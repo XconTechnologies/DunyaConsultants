@@ -87,7 +87,7 @@ export default function StatsBanner() {
       description: 'Success Stories',
       gradient: 'custom-blue-gradient',
       glowColor: 'shadow-blue-500/25',
-      bgPattern: `radial-gradient(circle at 20% 50%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
+      bgPattern: `radial-gradient(circle at 20% 50%, rgba(29, 45, 78, 0.3) 0%, transparent 50%)`
     },
     {
       icon: Building,
@@ -96,8 +96,8 @@ export default function StatsBanner() {
       label: 'Office Branches',
       description: 'Nationwide Coverage',
       gradient: 'custom-blue-gradient',
-      glowColor: 'shadow-blue-500/25',
-      bgPattern: `radial-gradient(circle at 80% 20%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
+      glowColor: 'shadow-slate-500/25',
+      bgPattern: `radial-gradient(circle at 80% 20%, rgba(29, 45, 78, 0.3) 0%, transparent 50%)`
     },
     {
       icon: Award,
@@ -106,8 +106,8 @@ export default function StatsBanner() {
       label: 'University Partners',
       description: 'Global Network',
       gradient: 'custom-blue-gradient',
-      glowColor: 'shadow-blue-500/25',
-      bgPattern: `radial-gradient(circle at 50% 80%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
+      glowColor: 'shadow-slate-500/25',
+      bgPattern: `radial-gradient(circle at 50% 80%, rgba(29, 45, 78, 0.3) 0%, transparent 50%)`
     },
     {
       icon: MapPin,
@@ -116,8 +116,8 @@ export default function StatsBanner() {
       label: 'Countries Covered',
       description: 'Global Reach',
       gradient: 'custom-blue-gradient',
-      glowColor: 'shadow-blue-500/25',
-      bgPattern: `radial-gradient(circle at 30% 30%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
+      glowColor: 'shadow-slate-500/25',
+      bgPattern: `radial-gradient(circle at 30% 30%, rgba(29, 45, 78, 0.3) 0%, transparent 50%)`
     },
     {
       icon: Star,
@@ -126,20 +126,20 @@ export default function StatsBanner() {
       label: 'Expert Counselors',
       description: 'Professional Team',
       gradient: 'custom-blue-gradient',
-      glowColor: 'shadow-blue-500/25',
-      bgPattern: `radial-gradient(circle at 40% 60%, rgba(39, 100, 232, 0.3) 0%, transparent 50%)`
+      glowColor: 'shadow-slate-500/25',
+      bgPattern: `radial-gradient(circle at 40% 60%, rgba(29, 45, 78, 0.3) 0%, transparent 50%)`
     }
   ];
 
   return (
-    <div className="relative min-h-[400px] overflow-hidden" style={{ background: `linear-gradient(135deg, #1e293b 0%, #2764E8 50%, #1e50c7 100%)` }}>
+    <div className="relative min-h-[400px] overflow-hidden" style={{ background: `linear-gradient(135deg, #1e293b 0%, #1D2D4E 50%, #162038 100%)` }}>
       {/* Animated Background */}
       <div className="absolute inset-0">
         {/* Gradient Orbs */}
-        <div className="absolute top-10 -left-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" style={{ backgroundColor: '#2764E8' }}></div>
-        <div className="absolute top-0 -right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" style={{ backgroundColor: '#2764E8' }}></div>
-        <div className="absolute -bottom-10 left-20 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" style={{ backgroundColor: '#2764E8' }}></div>
-        <div className="absolute bottom-0 right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-6000" style={{ backgroundColor: '#2764E8' }}></div>
+        <div className="absolute top-10 -left-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" style={{ backgroundColor: '#1D2D4E' }}></div>
+        <div className="absolute top-0 -right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" style={{ backgroundColor: '#1D2D4E' }}></div>
+        <div className="absolute -bottom-10 left-20 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000" style={{ backgroundColor: '#1D2D4E' }}></div>
+        <div className="absolute bottom-0 right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-blob animation-delay-6000" style={{ backgroundColor: '#1D2D4E' }}></div>
         
         {/* Dynamic Grid */}
         <div className="absolute inset-0 opacity-[0.07]">
@@ -187,87 +187,107 @@ export default function StatsBanner() {
         ))}
       </div>
       <div className="container mx-auto px-4 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
-        {/* Header */}
-        <motion.div
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: -50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-
-
-          <motion.div
-            className="inline-flex items-center gap-4 bg-white rounded-full px-8 py-4 mb-6 shadow-lg border border-gray-200"
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.a
+        {/* Header with Social Icons on Left */}
+        <div className="relative">
+          {/* Left Side - Vertical Social Icons - Hidden on small screens */}
+          <div className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 flex-col gap-3 bg-white/10 backdrop-blur-sm rounded-2xl p-3">
+            <a
               href="https://www.facebook.com/DunyaConsultant/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
             >
-              <FaFacebook className="w-4 h-4 text-white" />
-            </motion.a>
-            <motion.a
+              <FaFacebook className="w-5 h-5 text-white" />
+            </a>
+            <a
               href="https://www.instagram.com/dunya.consultants/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
             >
-              <FaInstagram className="w-4 h-4 text-white" />
-            </motion.a>
-            <motion.a
+              <FaInstagram className="w-5 h-5 text-white" />
+            </a>
+            <a
               href="https://www.tiktok.com/@dunya.consultants"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
             >
-              <FaTiktok className="w-4 h-4 text-white" />
-            </motion.a>
-            <motion.a
+              <FaTiktok className="w-5 h-5 text-white" />
+            </a>
+            <a
               href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
             >
-              <FaYoutube className="w-4 h-4 text-white" />
-            </motion.a>
-            <motion.a
+              <FaYoutube className="w-5 h-5 text-white" />
+            </a>
+            <a
               href="https://pk.linkedin.com/company/dunyaconsultant"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
             >
-              <FaLinkedin className="w-4 h-4 text-white" />
-            </motion.a>
-          </motion.div>
-          
-          <motion.h2
-            className="text-3xl lg:text-4xl mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-white font-normal"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            whileHover={{ scale: 1.05 }}
-          >Turning <span className="font-bold italic">Ambition</span> to <span className="font-bold italic">Admission</span></motion.h2>
-          
-          <motion.p
-            className="text-white/80 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.</motion.p>
-        </motion.div>
+              <FaLinkedin className="w-5 h-5 text-white" />
+            </a>
+          </div>
+
+          {/* Center Content */}
+          <div className="text-center mb-10 lg:ml-20">
+            {/* Mobile Social Icons - Horizontal layout */}
+            <div className="flex lg:hidden justify-center gap-3 mb-6">
+              <a
+                href="https://www.facebook.com/DunyaConsultant/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
+              >
+                <FaFacebook className="w-4 h-4 text-white" />
+              </a>
+              <a
+                href="https://www.instagram.com/dunya.consultants/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
+              >
+                <FaInstagram className="w-4 h-4 text-white" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@dunya.consultants"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
+              >
+                <FaTiktok className="w-4 h-4 text-white" />
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
+              >
+                <FaYoutube className="w-4 h-4 text-white" />
+              </a>
+              <a
+                href="https://pk.linkedin.com/company/dunyaconsultant"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#1D2D4E] hover:bg-[#2a3f5f] transition-all duration-300"
+              >
+                <FaLinkedin className="w-4 h-4 text-white" />
+              </a>
+            </div>
+
+            <h2 className="text-3xl lg:text-4xl mb-4 text-white font-normal">
+              Turning <span className="font-bold italic">Ambition</span> to <span className="font-bold italic">Admission</span>
+            </h2>
+            
+            <p className="text-white/80 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
+              Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.
+            </p>
+          </div>
+        </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
@@ -292,7 +312,7 @@ export default function StatsBanner() {
                 <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
                   {/* Icon Container */}
                   <div className="relative mb-4 flex justify-center">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#2764E8' }}>
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D2D4E' }}>
                       <IconComponent className="w-5 h-5 text-white" />
                     </div>
                     
@@ -309,7 +329,7 @@ export default function StatsBanner() {
                         ease: "easeInOut"
                       }}
                     >
-                      <Sparkles className="w-6 h-6 opacity-70" style={{ color: '#2764E8' }} />
+                      <Sparkles className="w-6 h-6 opacity-70" style={{ color: '#1D2D4E' }} />
                     </motion.div>
                   </div>
 
@@ -338,38 +358,13 @@ export default function StatsBanner() {
         </div>
 
         {/* Bottom Element */}
-        <motion.div
-          className="flex justify-center mt-16 mb-24"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-        >
-          <motion.div
-            className="flex items-center gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10"
-            whileHover={{ 
-              scale: 1.05,
-              backgroundColor: "rgba(255,255,255,0.15)",
-              borderColor: "rgba(255,255,255,0.2)"
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            <Shield className="w-5 h-5" style={{ color: '#2764E8' }} />
+        <div className="flex justify-center mt-16 mb-24">
+          <div className="flex items-center gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10">
+            <Shield className="w-5 h-5" style={{ color: '#1D2D4E' }} />
             <span className="text-white/80 font-medium">Trusted Excellence Since 2021</span>
-            <motion.div
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.5, 1, 0.5]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#2764E8' }} />
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#1D2D4E' }} />
+          </div>
+        </div>
       </div>
       <style>{`
         @keyframes blob {

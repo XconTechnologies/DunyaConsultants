@@ -43,7 +43,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Program Duration Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>What is the Duration for MSc in Business Analytics in UK?</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D2D4E', color: '#1D2D4E' }}>What is the Duration for MSc in Business Analytics in UK?</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   A business analytics masters in the UK typically takes around one to two years to complete. The program is created to be intensive, giving students the skills and knowledge to solve real-world business problems using data.
                 </p>
@@ -53,19 +53,19 @@ export default function MSCBusinessAnalyticsInUK() {
 
                 {/* Program Overview */}
                 <div className="p-6 rounded-lg mb-6" style={{ backgroundColor: '#e8f0ff' }}>
-                  <h3 className="text-xl font-semibold mb-4" style={{ color: '#2764E8' }}>Program Overview</h3>
+                  <h3 className="text-xl font-semibold mb-4" style={{ color: '#1D2D4E' }}>Program Overview</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold mb-2" style={{ color: '#2764E8' }}>1-2 Years</h4>
-                      <p style={{ color: '#2764E8' }}>Program Duration</p>
+                      <h4 className="text-2xl font-bold mb-2" style={{ color: '#1D2D4E' }}>1-2 Years</h4>
+                      <p style={{ color: '#1D2D4E' }}>Program Duration</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold mb-2" style={{ color: '#2764E8' }}>Intensive</h4>
-                      <p style={{ color: '#2764E8' }}>Learning Format</p>
+                      <h4 className="text-2xl font-bold mb-2" style={{ color: '#1D2D4E' }}>Intensive</h4>
+                      <p style={{ color: '#1D2D4E' }}>Learning Format</p>
                     </div>
                     <div className="text-center">
-                      <h4 className="text-2xl font-bold mb-2" style={{ color: '#2764E8' }}>High</h4>
-                      <p style={{ color: '#2764E8' }}>Career Prospects</p>
+                      <h4 className="text-2xl font-bold mb-2" style={{ color: '#1D2D4E' }}>High</h4>
+                      <p style={{ color: '#1D2D4E' }}>Career Prospects</p>
                     </div>
                   </div>
                 </div>
@@ -73,7 +73,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Top Universities Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Top 10 Universities for Masters in Business Analytics in UK</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D2D4E', color: '#1D2D4E' }}>Top 10 Universities for Masters in Business Analytics in UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The education system of the United Kingdom helps students discover their skills as well as abilities. This focus on personal growth makes the country one of the most popular choices for students. The majority of the students prefer studying here over other countries due to its strong support for students.
                 </p>
@@ -141,7 +141,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Eligibility Criteria Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Eligibility Criteria for MS in Business Analytics in UK</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D2D4E', color: '#1D2D4E' }}>Eligibility Criteria for MS in Business Analytics in UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   To get admission to a UK university for a business analytics course in UK, students need to meet all eligibility requirements as discussed below. These requirements make sure that students have the required academic background and skills to succeed in the course.
                 </p>
@@ -175,7 +175,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Documents Required Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Documents Required for MSc in Business Analytics in UK Universities</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D2D4E', color: '#1D2D4E' }}>Documents Required for MSc in Business Analytics in UK Universities</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   The list of documents you will have to submit may be different for every university. Some universities might ask for some additional documents. Let's discuss below all the required documents to get admission to the business analyst course in the UK:
                 </p>
@@ -213,7 +213,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Cost of Studying Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Cost of Studying MSc in Business Analytics UK</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D2D4E', color: '#1D2D4E' }}>Cost of Studying MSc in Business Analytics UK</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   If you plan to apply to top universities in UK for masters in business analytics, the average tuition charges usually range from 25,750 euros to 35,900 euros every year. The cost of living is based on the city or area you select to live in as well as your personal lifestyle. Living in more expensive cities like Winchester or London will raise your living costs.
                 </p>
@@ -246,7 +246,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Scholarships Section */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Scholarships Programs for Best Universities in UK for Business Analytics</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D2D4E', color: '#1D2D4E' }}>Scholarships Programs for Best Universities in UK for Business Analytics</h2>
                 <p className="text-gray-700 leading-relaxed mb-6">
                   UK universities make it easier for international students to apply for and study MS graduate programs. It provides a variety of scholarship programs funded by the government. Here are some popular scholarships available for students applying for the Masters in Business Analytics in UK:
                 </p>
@@ -272,7 +272,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* Conclusion */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-4 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Conclusion</h2>
+                <h2 className="text-3xl font-bold mb-4 pl-4" style={{ borderLeft: '4px solid #1D2D4E', color: '#1D2D4E' }}>Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The UK is the best place to study business, and students will have a great experience while you are there. An MSc in Business Analytics in UK is a master's degree that focuses on developing the skills and knowledge needed to excel in data-driven business environments.
                 </p>
@@ -286,7 +286,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
               {/* FAQs */}
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #2764E8', color: '#2764E8' }}>Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 pl-4" style={{ borderLeft: '4px solid #1D2D4E', color: '#1D2D4E' }}>Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm">
@@ -382,7 +382,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
             {/* Scholarship Opportunities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4" style={{ color: '#2764E8' }}>Scholarship Opportunities</h3>
+              <h3 className="text-xl font-bold mb-4" style={{ color: '#1D2D4E' }}>Scholarship Opportunities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• British Council Scholarships</li>
                 <li>• Imperial Business Analytics</li>
@@ -395,13 +395,13 @@ export default function MSCBusinessAnalyticsInUK() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/master-of-finance-in-uk" className="block text-sm hover:underline" style={{ color: '#2764E8' }}>
+                <a href="/blog/master-of-finance-in-uk" className="block text-sm hover:underline" style={{ color: '#1D2D4E' }}>
                   A Beginner's Guide to Master of Finance in UK
                 </a>
-                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block text-sm hover:underline" style={{ color: '#2764E8' }}>
+                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block text-sm hover:underline" style={{ color: '#1D2D4E' }}>
                   MS in Business Analytics Course in USA
                 </a>
-                <a href="/blog/low-cost-universities-in-uk-for-international-students" className="block text-sm hover:underline" style={{ color: '#2764E8' }}>
+                <a href="/blog/low-cost-universities-in-uk-for-international-students" className="block text-sm hover:underline" style={{ color: '#1D2D4E' }}>
                   Low-Cost Universities in UK for International Students
                 </a>
               </div>

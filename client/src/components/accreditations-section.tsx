@@ -13,9 +13,9 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="font-bold text-xs leading-tight" style={{ color: '#2764E8' }}>ICEF</div>
-            <div className="font-bold text-sm" style={{ color: '#2764E8' }}>AGENCY</div>
-            <div className="text-xs" style={{ color: '#2764E8' }}>STATUS</div>
+            <div className="font-bold text-xs leading-tight" style={{ color: '#1D2D4E' }}>ICEF</div>
+            <div className="font-bold text-sm" style={{ color: '#1D2D4E' }}>AGENCY</div>
+            <div className="text-xs" style={{ color: '#1D2D4E' }}>STATUS</div>
           </div>
         </div>
       ),
@@ -27,10 +27,10 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="w-16 h-6 rounded flex items-center justify-center mb-1" style={{ backgroundColor: '#2764E8' }}>
+            <div className="w-16 h-6 rounded flex items-center justify-center mb-1" style={{ backgroundColor: '#1D2D4E' }}>
               <span className="text-white font-bold text-xs">BC</span>
             </div>
-            <div className="text-xs" style={{ color: '#2764E8' }}>British Council</div>
+            <div className="text-xs" style={{ color: '#1D2D4E' }}>British Council</div>
           </div>
         </div>
       ),
@@ -42,10 +42,10 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="font-bold text-xs" style={{ color: '#2764E8' }}>Language</div>
-            <div className="font-bold text-xs" style={{ color: '#2764E8' }}>Cert</div>
-            <div className="w-12 h-0.5 rounded mx-auto mt-1" style={{ backgroundColor: '#2764E8' }}></div>
-            <div className="text-xs mt-1" style={{ color: '#2764E8' }}>INTERNATIONAL</div>
+            <div className="font-bold text-xs" style={{ color: '#1D2D4E' }}>Language</div>
+            <div className="font-bold text-xs" style={{ color: '#1D2D4E' }}>Cert</div>
+            <div className="w-12 h-0.5 rounded mx-auto mt-1" style={{ backgroundColor: '#1D2D4E' }}></div>
+            <div className="text-xs mt-1" style={{ color: '#1D2D4E' }}>INTERNATIONAL</div>
           </div>
         </div>
       ),
@@ -73,9 +73,9 @@ export default function AccreditationsSection() {
       logo: (
         <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
           <div className="text-center">
-            <div className="font-bold text-lg" style={{ color: '#2764E8' }}>PTE</div>
-            <div className="font-medium text-xs" style={{ color: '#2764E8' }}>Academic</div>
-            <div className="text-xs" style={{ color: '#2764E8' }}>Pearson</div>
+            <div className="font-bold text-lg" style={{ color: '#1D2D4E' }}>PTE</div>
+            <div className="font-medium text-xs" style={{ color: '#1D2D4E' }}>Academic</div>
+            <div className="text-xs" style={{ color: '#1D2D4E' }}>Pearson</div>
           </div>
         </div>
       ),
@@ -97,8 +97,8 @@ export default function AccreditationsSection() {
             <span className="text-sm font-medium text-neutral-700">Trusted & Certified</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#2764E8' }}>
-            Our <span style={{ color: '#2764E8' }}>Accreditations</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#1D2D4E' }}>
+            Our <span style={{ color: '#1D2D4E' }}>Accreditations</span>
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">
@@ -122,7 +122,7 @@ export default function AccreditationsSection() {
               <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-neutral-100">
                 {/* Status Badge */}
                 <div className="absolute top-3 right-3">
-                  <div className="text-xs font-semibold px-2 py-1 rounded-full flex items-center space-x-1" style={{ backgroundColor: '#e8f0ff', color: '#2764E8' }}>
+                  <div className="text-xs font-semibold px-2 py-1 rounded-full flex items-center space-x-1" style={{ backgroundColor: '#e8f0ff', color: '#1D2D4E' }}>
                     <CheckCircle className="w-3 h-3" />
                     <span className="hidden sm:inline">Verified</span>
                   </div>

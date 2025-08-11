@@ -274,7 +274,7 @@ export default function OfficesList() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <Navigation />
       {/* Header */}
-      <div className="text-white pt-32 pb-16" style={{ background: `linear-gradient(to right, #2764E8, #1e50c7)` }}>
+      <div className="text-white pt-32 pb-16" style={{ background: `linear-gradient(to right, #1D2D4E, #1e50c7)` }}>
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -341,7 +341,7 @@ export default function OfficesList() {
             <div className="flex items-center mb-8">
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
               <div className="px-6">
-                <h2 className="text-3xl font-bold text-gray-800 text-center" style={{ color: '#2764E8' }}>
+                <h2 className="text-3xl font-bold text-gray-800 text-center" style={{ color: '#1D2D4E' }}>
                   Pakistan Offices
                 </h2>
                 <p className="text-gray-600 text-center mt-2">Our nationwide network across Pakistan</p>
@@ -437,7 +437,7 @@ export default function OfficesList() {
             <div className="flex items-center mb-8">
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
               <div className="px-6">
-                <h2 className="text-3xl font-bold text-gray-800 text-center" style={{ color: '#2764E8' }}>
+                <h2 className="text-3xl font-bold text-gray-800 text-center" style={{ color: '#1D2D4E' }}>
                   International Offices
                 </h2>
                 <p className="text-gray-600 text-center mt-2">Our global presence to serve you worldwide</p>
@@ -453,7 +453,7 @@ export default function OfficesList() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer" style={{ borderColor: '#2764E8' }}>
+                  <Card className="h-full hover:shadow-xl transition-all duration-300 group cursor-pointer" style={{ borderColor: '#1D2D4E' }}>
                     <div className={`h-2 bg-gradient-to-r ${office.gradient}`}></div>
                     <CardContent className="p-6">
                       {/* Header */}
@@ -461,16 +461,16 @@ export default function OfficesList() {
                         <div className="flex-1">
                           <div className="flex items-center space-x-2 mb-2">
                             <h3 className="text-xl font-bold text-gray-800">{office.city}</h3>
-                            <Badge className="text-white text-xs" style={{ backgroundColor: '#2764E8' }}>
+                            <Badge className="text-white text-xs" style={{ backgroundColor: '#1D2D4E' }}>
                               International
                             </Badge>
                           </div>
                           <p className="text-gray-600 font-medium">{office.name}</p>
-                          <Badge variant="outline" className="text-xs mt-1" style={{ borderColor: '#2764E8', color: '#2764E8' }}>
+                          <Badge variant="outline" className="text-xs mt-1" style={{ borderColor: '#1D2D4E', color: '#1D2D4E' }}>
                             {office.region}
                           </Badge>
                         </div>
-                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#2764E8' }}>
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#1D2D4E' }}>
                           <Building2 className="w-6 h-6 text-white" />
                         </div>
                       </div>
@@ -478,17 +478,17 @@ export default function OfficesList() {
                       {/* Contact Info */}
                       <div className="space-y-3 mb-4">
                         <div className="flex items-start space-x-3">
-                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#2764E8' }} />
+                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#1D2D4E' }} />
                           <p className="text-sm text-gray-600 leading-relaxed">{office.address}</p>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#2764E8' }} />
-                          <a href={`tel:${office.phone}`} className="text-sm hover:underline" style={{ color: '#2764E8' }}>
+                          <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#1D2D4E' }} />
+                          <a href={`tel:${office.phone}`} className="text-sm hover:underline" style={{ color: '#1D2D4E' }}>
                             {office.phone}
                           </a>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: '#2764E8' }} />
+                          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: '#1D2D4E' }} />
                           <p className="text-sm text-gray-600">{office.hours}</p>
                         </div>
                       </div>
@@ -498,7 +498,7 @@ export default function OfficesList() {
                         <Button 
                           onClick={() => handleGetDirections(office.address)}
                           className="flex-1 text-white font-medium shadow-md text-sm hover:opacity-90"
-                          style={{ backgroundColor: '#2764E8' }}
+                          style={{ backgroundColor: '#1D2D4E' }}
                         >
                           <NavigationIcon className="w-3 h-3 mr-1" />
                           Get Directions
@@ -508,7 +508,7 @@ export default function OfficesList() {
                           size="sm"
                           onClick={() => window.open(`tel:${office.phone}`, '_self')}
                           className="flex-1 font-medium text-sm hover:bg-blue-50"
-                          style={{ borderColor: '#2764E8', color: '#2764E8' }}
+                          style={{ borderColor: '#1D2D4E', color: '#1D2D4E' }}
                         >
                           <Phone className="w-3 h-3 mr-1" />
                           Call
@@ -534,7 +534,7 @@ export default function OfficesList() {
         {/* Contact Banner */}
         <motion.div
           className="mt-8 rounded-2xl p-8 text-white text-center"
-          style={{ background: `linear-gradient(to right, #2764E8, #1e50c7)` }}
+          style={{ background: `linear-gradient(to right, #1D2D4E, #1e50c7)` }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}

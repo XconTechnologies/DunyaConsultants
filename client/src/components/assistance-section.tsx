@@ -44,11 +44,11 @@ export default function AssistanceSection() {
               className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
               whileHover={{ scale: 1.02 }}
             >
-              <span style={{ color: '#2764E8' }}>Worried about Admission?</span>
+              <span style={{ color: '#1D2D4E' }}>Worried about Admission?</span>
               <br />
-              <span style={{ color: '#2764E8' }}>Get Assistance for</span>
+              <span style={{ color: '#1D2D4E' }}>Get Assistance for</span>
               <br />
-              <span style={{ color: '#2764E8' }}>
+              <span style={{ color: '#1D2D4E' }}>
                 Free
               </span>
             </motion.h2>
