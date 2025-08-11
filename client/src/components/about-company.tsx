@@ -90,7 +90,7 @@ export default function AboutCompany() {
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
             {/* Single Unified Content Container */}
-            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-between overflow-hidden">
+            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-start overflow-hidden">
               {/* About Company Button */}
               <motion.div
                 className="mb-4"
@@ -98,9 +98,9 @@ export default function AboutCompany() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <div className="inline-flex items-center px-4 py-2 rounded-full mb-3 border-2 shadow-md" style={{ backgroundColor: '#1D50C9', borderColor: '#1D50C9' }}>
-                  <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
-                  <span className="text-xs font-bold text-white tracking-wider uppercase">
+                <div className="inline-flex items-center px-5 py-2.5 rounded-full mb-4 border-2 shadow-md" style={{ backgroundColor: '#1D50C9', borderColor: '#1D50C9' }}>
+                  <div className="w-2.5 h-2.5 bg-white rounded-full mr-2.5 animate-pulse"></div>
+                  <span className="text-sm font-bold text-white tracking-wider uppercase">
                     About Company
                   </span>
                 </div>
@@ -108,33 +108,33 @@ export default function AboutCompany() {
 
               {/* Why Choose Heading */}
               <motion.div
-                className="mb-4"
+                className="mb-5"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <h2 className="text-xl font-bold mb-2 text-[#1D50C9]">Why Choose Dunya Consultants?</h2>
-                <div className="w-12 h-0.5 bg-gradient-to-r from-[#1D50C9] to-blue-500 rounded-full"></div>
+                <h2 className="text-xl font-bold mb-3 text-[#1D50C9]">Why Choose Dunya Consultants?</h2>
+                <div className="w-14 h-1 bg-gradient-to-r from-[#1D50C9] to-blue-500 rounded-full"></div>
               </motion.div>
 
-              <div className="space-y-3">
+              <div className="space-y-4 flex-1">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="border-b border-gray-200 pb-3 last:border-b-0 last:pb-0"
+                    className="border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   >
-                    <div className="flex items-start gap-2">
-                      <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <item.icon className="w-4 h-4" style={{ color: '#1D50C9' }} />
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-9 h-9 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <item.icon className="w-5 h-5" style={{ color: '#1D50C9' }} />
                       </div>
-                      <div>
-                        <h3 className="text-xs font-semibold text-gray-900 mb-1 leading-tight">
+                      <div className="flex-1">
+                        <h3 className="text-sm font-semibold text-gray-900 mb-2 leading-tight">
                           {item.title}
                         </h3>
-                        <p className="text-xs text-gray-700 leading-relaxed">
+                        <p className="text-sm text-gray-700 leading-relaxed">
                           {item.content}
                         </p>
                       </div>
