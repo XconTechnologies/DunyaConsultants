@@ -51,7 +51,7 @@ export default function AboutCompany() {
           >
             <div className="relative">
               {/* Main Container with Modern Design */}
-              <div className="relative h-[450px] lg:h-[500px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
+              <div className="relative h-[500px] lg:h-[550px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
                 
 
 
