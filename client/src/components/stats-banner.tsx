@@ -186,7 +186,7 @@ export default function StatsBanner() {
           </motion.div>
         ))}
       </div>
-      <div className="container mx-auto px-4 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
+      <div className="container mx-auto px-16 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
         {/* Social Icons - Left Side Vertical */}
         <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 bg-white rounded-full px-3 py-4 shadow-lg border border-gray-200">
           <div className="flex flex-col gap-3">
@@ -245,7 +245,7 @@ export default function StatsBanner() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 max-w-5xl mx-auto">
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
