@@ -188,47 +188,49 @@ export default function StatsBanner() {
       </div>
       <div className="container mx-auto px-4 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
         {/* Social Icons - Left Side Vertical */}
-        <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-3">
-          <a
-            href="https://www.facebook.com/DunyaConsultant/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
-          >
-            <FaFacebook className="w-5 h-5 text-white" />
-          </a>
-          <a
-            href="https://www.instagram.com/dunya.consultants/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
-          >
-            <FaInstagram className="w-5 h-5 text-white" />
-          </a>
-          <a
-            href="https://www.tiktok.com/@dunya.consultants"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
-          >
-            <FaTiktok className="w-5 h-5 text-white" />
-          </a>
-          <a
-            href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
-          >
-            <FaYoutube className="w-5 h-5 text-white" />
-          </a>
-          <a
-            href="https://pk.linkedin.com/company/dunyaconsultant"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
-          >
-            <FaLinkedin className="w-5 h-5 text-white" />
-          </a>
+        <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white rounded-full px-3 py-4 shadow-lg border border-gray-200">
+          <div className="flex flex-col gap-3">
+            <a
+              href="https://www.facebook.com/DunyaConsultant/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+            >
+              <FaFacebook className="w-4 h-4 text-white" />
+            </a>
+            <a
+              href="https://www.instagram.com/dunya.consultants/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+            >
+              <FaInstagram className="w-4 h-4 text-white" />
+            </a>
+            <a
+              href="https://www.tiktok.com/@dunya.consultants"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+            >
+              <FaTiktok className="w-4 h-4 text-white" />
+            </a>
+            <a
+              href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+            >
+              <FaYoutube className="w-4 h-4 text-white" />
+            </a>
+            <a
+              href="https://pk.linkedin.com/company/dunyaconsultant"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+            >
+              <FaLinkedin className="w-4 h-4 text-white" />
+            </a>
+          </div>
         </div>
 
         {/* Header */}
