@@ -177,8 +177,8 @@ export default function StudentJourneyVisualization() {
             <span className="text-sm font-medium text-neutral-700">Student Journey</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#1E50CA' }}>
-            Your Path to <span style={{ color: '#1E50CA' }}>Global Education</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#4285F4' }}>
+            Your Path to <span style={{ color: '#4285F4' }}>Global Education</span>
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">

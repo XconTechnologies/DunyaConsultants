@@ -4,7 +4,7 @@ import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, 
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/DC White Logo_1751441165041.png";
-import logoImageBlue from "@assets/DC Blue Logo_1751440868138.png";
+import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
 import SimpleConsultationPopup from "@/components/simple-consultation-popup";
 
 export default function Navigation() {
@@ -133,7 +133,26 @@ export default function Navigation() {
         href: "/offices"
       }
     },
-
+    "Blog": {
+      icon: Newspaper,
+      sections: [
+        {
+          title: "Latest Articles",
+          icon: Newspaper,
+          items: [
+            { name: "All Blog Posts", href: "/blog", description: "Latest updates and guides" },
+            { name: "Study Abroad Tips", href: "/blog", description: "Expert guidance for studying abroad" },
+            { name: "Visa Guides", href: "/blog", description: "Step-by-step visa application help" }
+          ]
+        }
+      ],
+      featured: {
+        title: "Latest Insights",
+        description: "Expert guidance and tips",
+        cta: "Read More",
+        href: "/blog"
+      }
+    }
   };
 
   const navItems = [
@@ -142,6 +161,7 @@ export default function Navigation() {
     { name: "Study Abroad", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },
+    { name: "Blog", megaMenu: true },
   ];
 
   return (

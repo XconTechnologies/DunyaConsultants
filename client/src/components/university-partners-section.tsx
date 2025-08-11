@@ -183,7 +183,7 @@ export default function UniversityPartnersSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105" style={{ color: '#1E50CA' }}
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105" style={{ color: '#4285F4' }}
             whileHover={{ scale: 1.05 }}
           >
             Our Global University Partners

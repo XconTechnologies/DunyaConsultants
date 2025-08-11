@@ -194,7 +194,7 @@ export default function StatsBanner() {
               href="https://www.facebook.com/DunyaConsultant/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
             >
               <FaFacebook className="w-4 h-4 text-white" />
             </a>
@@ -202,7 +202,7 @@ export default function StatsBanner() {
               href="https://www.instagram.com/dunya.consultants/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
             >
               <FaInstagram className="w-4 h-4 text-white" />
             </a>
@@ -210,7 +210,7 @@ export default function StatsBanner() {
               href="https://www.tiktok.com/@dunya.consultants"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
             >
               <FaTiktok className="w-4 h-4 text-white" />
             </a>
@@ -218,7 +218,7 @@ export default function StatsBanner() {
               href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
             >
               <FaYoutube className="w-4 h-4 text-white" />
             </a>
@@ -226,7 +226,7 @@ export default function StatsBanner() {
               href="https://pk.linkedin.com/company/dunyaconsultant"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
             >
               <FaLinkedin className="w-4 h-4 text-white" />
             </a>
@@ -267,7 +267,7 @@ export default function StatsBanner() {
                 <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
                   {/* Icon Container */}
                   <div className="relative mb-4 flex justify-center">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1E50CA' }}>
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#4285F4' }}>
                       <IconComponent className="w-5 h-5 text-white" />
                     </div>
                     
@@ -315,9 +315,9 @@ export default function StatsBanner() {
         {/* Bottom Element */}
         <div className="flex justify-center mt-16 mb-24">
           <div className="flex items-center gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10">
-            <Shield className="w-5 h-5" style={{ color: '#1E50CA' }} />
+            <Shield className="w-5 h-5" style={{ color: '#4285F4' }} />
             <span className="text-white/80 font-medium">Trusted Excellence Since 2021</span>
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#1E50CA' }} />
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#4285F4' }} />
           </div>
         </div>
       </div>
