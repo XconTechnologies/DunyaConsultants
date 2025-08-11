@@ -84,7 +84,7 @@ export default function AboutCompany() {
 
           {/* Right Side - Single Unified Content Box */}
           <motion.div
-            className="h-[450px] lg:h-[500px]"
+            className="h-[500px] lg:h-[550px]"
             initial={{ opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
