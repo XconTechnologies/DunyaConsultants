@@ -53,11 +53,7 @@ export default function AboutCompany() {
               {/* Main Container with Modern Design */}
               <div className="relative h-[450px] lg:h-[500px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
                 
-                {/* Floating Decorative Elements */}
-                <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-amber-400 to-blue-500 rounded-3xl rotate-12 shadow-xl opacity-90"></div>
-                <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-3xl -rotate-12 shadow-xl opacity-90"></div>
-                <div className="absolute top-1/3 -right-3 w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-500 rounded-2xl rotate-45 shadow-lg opacity-80"></div>
-                <div className="absolute bottom-1/3 -left-3 w-8 h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-xl -rotate-45 shadow-lg opacity-80"></div>
+
 
                 {/* Single Company Collage Image */}
                 <div className="relative h-full rounded-[1.5rem] p-4">
@@ -102,9 +98,9 @@ export default function AboutCompany() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-100 to-blue-100 rounded-full mb-4 border border-blue-200">
-                  <div className="w-3 h-3 bg-gradient-to-r from-[#1D50C9] to-blue-500 rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-sm font-bold text-#1565c0 tracking-wider uppercase">
+                <div className="inline-flex items-center px-6 py-3 rounded-full mb-4 border-2 shadow-md" style={{ backgroundColor: '#1D50C9', borderColor: '#1D50C9' }}>
+                  <div className="w-3 h-3 bg-white rounded-full mr-3 animate-pulse"></div>
+                  <span className="text-sm font-bold text-white tracking-wider uppercase">
                     About Company
                   </span>
                 </div>
@@ -132,7 +128,7 @@ export default function AboutCompany() {
                   >
                     <div className="flex items-start gap-3 mb-2">
                       <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <item.icon className="w-5 h-5 #1845B3" />
+                        <item.icon className="w-5 h-5" style={{ color: '#1D50C9' }} />
                       </div>
                       <div>
                         <h3 className="text-sm font-semibold text-gray-900 mb-1 leading-tight">
