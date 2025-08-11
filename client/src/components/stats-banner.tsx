@@ -187,87 +187,60 @@ export default function StatsBanner() {
         ))}
       </div>
       <div className="container mx-auto px-4 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
-        {/* Header */}
-        <motion.div
-          className="text-center mb-10"
-          initial={{ opacity: 0, y: -50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-
-
-          <motion.div
-            className="inline-flex items-center gap-4 bg-white rounded-full px-8 py-4 mb-6 shadow-lg border border-gray-200"
-            whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
-            transition={{ duration: 0.3 }}
+        {/* Social Icons - Left Side Vertical */}
+        <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-20 flex flex-col gap-3">
+          <a
+            href="https://www.facebook.com/DunyaConsultant/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
           >
-            <motion.a
-              href="https://www.facebook.com/DunyaConsultant/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaFacebook className="w-4 h-4 text-white" />
-            </motion.a>
-            <motion.a
-              href="https://www.instagram.com/dunya.consultants/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaInstagram className="w-4 h-4 text-white" />
-            </motion.a>
-            <motion.a
-              href="https://www.tiktok.com/@dunya.consultants"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaTiktok className="w-4 h-4 text-white" />
-            </motion.a>
-            <motion.a
-              href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaYoutube className="w-4 h-4 text-white" />
-            </motion.a>
-            <motion.a
-              href="https://pk.linkedin.com/company/dunyaconsultant"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <FaLinkedin className="w-4 h-4 text-white" />
-            </motion.a>
-          </motion.div>
+            <FaFacebook className="w-5 h-5 text-white" />
+          </a>
+          <a
+            href="https://www.instagram.com/dunya.consultants/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
+          >
+            <FaInstagram className="w-5 h-5 text-white" />
+          </a>
+          <a
+            href="https://www.tiktok.com/@dunya.consultants"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
+          >
+            <FaTiktok className="w-5 h-5 text-white" />
+          </a>
+          <a
+            href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
+          >
+            <FaYoutube className="w-5 h-5 text-white" />
+          </a>
+          <a
+            href="https://pk.linkedin.com/company/dunyaconsultant"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition-all duration-300 shadow-lg"
+          >
+            <FaLinkedin className="w-5 h-5 text-white" />
+          </a>
+        </div>
+
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-3xl lg:text-4xl mb-4 text-white font-normal">
+            Turning <span className="font-bold italic">Ambition</span> to <span className="font-bold italic">Admission</span>
+          </h2>
           
-          <motion.h2
-            className="text-3xl lg:text-4xl mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-white font-normal"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            whileHover={{ scale: 1.05 }}
-          >Turning <span className="font-bold italic">Ambition</span> to <span className="font-bold italic">Admission</span></motion.h2>
-          
-          <motion.p
-            className="text-white/80 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.</motion.p>
-        </motion.div>
+          <p className="text-white/80 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
+            Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.
+          </p>
+        </div>
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
@@ -338,38 +311,13 @@ export default function StatsBanner() {
         </div>
 
         {/* Bottom Element */}
-        <motion.div
-          className="flex justify-center mt-16 mb-24"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
-        >
-          <motion.div
-            className="flex items-center gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10"
-            whileHover={{ 
-              scale: 1.05,
-              backgroundColor: "rgba(255,255,255,0.15)",
-              borderColor: "rgba(255,255,255,0.2)"
-            }}
-            transition={{ duration: 0.3 }}
-          >
+        <div className="flex justify-center mt-16 mb-24">
+          <div className="flex items-center gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10">
             <Shield className="w-5 h-5" style={{ color: '#2764E8' }} />
             <span className="text-white/80 font-medium">Trusted Excellence Since 2021</span>
-            <motion.div
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.5, 1, 0.5]
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#2764E8' }} />
-            </motion.div>
-          </motion.div>
-        </motion.div>
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#2764E8' }} />
+          </div>
+        </div>
       </div>
       <style>{`
         @keyframes blob {
