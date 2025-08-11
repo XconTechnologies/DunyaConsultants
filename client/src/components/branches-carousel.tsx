@@ -61,7 +61,7 @@ export default function BranchesCarousel() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-3xl lg:text-4xl font-bold mb-4" style={{ color: '#1D50C9' }}
+            className="text-3xl lg:text-4xl font-bold mb-4 text-[#1D50C9]" style={{ color: '#1D50C9' }}
           >Our Branches</motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
