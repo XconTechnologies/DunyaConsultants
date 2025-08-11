@@ -187,15 +187,7 @@ export default function EventsSection() {
     { id: 'workshop', label: 'Workshops' }
   ];
 
-  // Auto-slide carousel
-  useEffect(() => {
-    if (filteredEvents.length > 4) {
-      const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 4));
-      }, 4000);
-      return () => clearInterval(interval);
-    }
-  }, [filteredEvents.length]);
+  // Auto-scroll removed as requested
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 4));
@@ -354,35 +346,32 @@ export default function EventsSection() {
             >
               {filteredEvents.slice(currentSlide * 4, currentSlide * 4 + 4).map((event, index) => (
                       <motion.div
-                        key={event.id}
-                        className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
-                        whileHover={{ scale: 1.02 }}
+                        key={`slide-${currentSlide}-${event.id}`}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
                       >
-                        {/* Event Image */}
-                        <div className="h-32 relative overflow-hidden">
-                          <img 
-                            src={getEventImage(event.type, index)}
-                            alt={event.title}
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9]/80 to-[#1845B3]/80" />
-                          <div className="absolute top-3 left-3">
-                            <span className="px-2 py-1 bg-white/90 rounded-full text-xs font-medium" style={{ color: '#1D50C9' }}>
+                        {/* Event Header */}
+                        <div className="h-48 relative overflow-hidden">
+                          <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
+                          <div className="absolute top-4 left-4">
+                            <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-medium">
                               {event.type}
                             </span>
                           </div>
-                          <div className="absolute bottom-3 left-3 text-white">
+                          <div className="absolute bottom-4 left-4 text-white">
                             <div className="text-xl font-bold">{event.date.split(' ')[1]}</div>
                             <div className="text-xs opacity-90">{event.date.split(' ')[0]} {event.date.split(' ')[2]}</div>
                           </div>
                         </div>
 
                         {/* Event Content */}
-                        <div className="p-4">
+                        <div className="p-6">
                           <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
                             {event.title}
                           </h3>
-                          <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
+                          <p className="text-gray-600 text-sm mb-4 line-clamp-2">
                             {event.description}
                           </p>
 
