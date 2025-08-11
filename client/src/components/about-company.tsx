@@ -90,7 +90,7 @@ export default function AboutCompany() {
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
             {/* Single Unified Content Container */}
-            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-center">
+            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-8 flex flex-col justify-start pt-12">
               {/* About Company Button */}
               <motion.div
                 className="mb-6"
