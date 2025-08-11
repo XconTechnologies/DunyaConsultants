@@ -98,9 +98,9 @@ export default function AboutCompany() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <div className="inline-flex items-center px-5 py-2.5 rounded-full mb-4 border-2 shadow-md" style={{ backgroundColor: '#1D50C9', borderColor: '#1D50C9' }}>
-                  <div className="w-2.5 h-2.5 bg-white rounded-full mr-2.5 animate-pulse"></div>
-                  <span className="text-sm font-bold text-white tracking-wider uppercase">
+                <div className="inline-flex items-center px-3 py-1.5 rounded-full mb-4 border-2 shadow-md" style={{ backgroundColor: '#1D50C9', borderColor: '#1D50C9' }}>
+                  <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
+                  <span className="text-xs font-medium text-white tracking-wide uppercase">
                     About Company
                   </span>
                 </div>
