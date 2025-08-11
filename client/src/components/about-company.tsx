@@ -90,17 +90,17 @@ export default function AboutCompany() {
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
           >
             {/* Single Unified Content Container */}
-            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-8 flex flex-col justify-start pt-12">
+            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-start overflow-hidden">
               {/* About Company Button */}
               <motion.div
-                className="mb-6"
+                className="mb-4"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <div className="inline-flex items-center px-6 py-3 rounded-full mb-4 border-2 shadow-md" style={{ backgroundColor: '#1D50C9', borderColor: '#1D50C9' }}>
-                  <div className="w-3 h-3 bg-white rounded-full mr-3 animate-pulse"></div>
-                  <span className="text-sm font-bold text-white tracking-wider uppercase">
+                <div className="inline-flex items-center px-4 py-2 rounded-full mb-3 border-2 shadow-md" style={{ backgroundColor: '#1D50C9', borderColor: '#1D50C9' }}>
+                  <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
+                  <span className="text-xs font-bold text-white tracking-wider uppercase">
                     About Company
                   </span>
                 </div>
@@ -108,30 +108,30 @@ export default function AboutCompany() {
 
               {/* Why Choose Heading */}
               <motion.div
-                className="mb-6"
+                className="mb-4"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
-                <h2 className="text-2xl font-bold mb-2 text-[#1D50C9]">Why Choose Dunya Consultants?</h2>
-                <div className="w-16 h-1 bg-gradient-to-r from-[#1D50C9] to-blue-500 rounded-full"></div>
+                <h2 className="text-xl font-bold mb-2 text-[#1D50C9]">Why Choose Dunya Consultants?</h2>
+                <div className="w-12 h-0.5 bg-gradient-to-r from-[#1D50C9] to-blue-500 rounded-full"></div>
               </motion.div>
 
-              <div className="space-y-5">
+              <div className="space-y-3 flex-1 overflow-y-auto">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="border-b border-gray-200 pb-4 last:border-b-0"
+                    className="border-b border-gray-200 pb-3 last:border-b-0"
                     initial={{ opacity: 0, y: 30 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                   >
-                    <div className="flex items-start gap-3 mb-2">
-                      <div className="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <item.icon className="w-5 h-5" style={{ color: '#1D50C9' }} />
+                    <div className="flex items-start gap-2 mb-1">
+                      <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <item.icon className="w-4 h-4" style={{ color: '#1D50C9' }} />
                       </div>
                       <div>
-                        <h3 className="text-sm font-semibold text-gray-900 mb-1 leading-tight">
+                        <h3 className="text-xs font-semibold text-gray-900 mb-1 leading-tight">
                           {item.title}
                         </h3>
                         <p className="text-xs text-gray-700 leading-relaxed">
