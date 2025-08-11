@@ -288,63 +288,71 @@ export default function EventsSection() {
   };
 
   return (
-    <section ref={ref} className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={ref} className="relative py-16 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div
-          className="text-center mb-12"
+        <motion.div 
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
+          className="text-center mb-16"
         >
-          <motion.h2 
-            className="text-3xl lg:text-4xl font-bold mb-4"
-            style={{ color: '#1D50C9' }}
-            whileHover={{ scale: 1.02 }}
-          >
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D50C9' }}>
             Events & Workshops
-          </motion.h2>
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Join our exclusive events and workshops to enhance your study abroad journey with expert guidance and networking opportunities.
+          </p>
+
+          <div className="flex justify-center gap-1 mt-8 bg-gray-100 p-1 rounded-lg w-fit mx-auto">
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                onClick={() => setActiveFilter(filter.id)}
+                className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
+                  activeFilter === filter.id
+                    ? 'text-white shadow-sm' 
+                    : 'bg-transparent text-gray-600 hover:text-gray-800'
+                }`}
+                style={activeFilter === filter.id ? { backgroundColor: '#1D50C9' } : {}}
+              >
+                {filter.label}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Filter Tabs - Smaller buttons */}
-        <motion.div
-          className="flex flex-wrap justify-center gap-2 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-        >
-          {filters.map((filter) => (
-            <button
-              key={filter.id}
-              onClick={() => setActiveFilter(filter.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                activeFilter === filter.id
-                  ? 'text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-              style={activeFilter === filter.id ? { backgroundColor: '#1D50C9' } : {}}
-            >
-              {filter.label}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Carousel Container */}
+        {/* Horizontal Scrolling Carousel */}
         <div className="relative">
-          <motion.div
-            className="overflow-hidden"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200 flex items-center justify-center"
+            style={{ color: "#1D50C9" }}
           >
-            <div 
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200 flex items-center justify-center"
+            style={{ color: "#1D50C9" }}
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Cards Container */}
+          <div className="overflow-hidden px-16">
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+              key={currentSlide}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              {Array.from({ length: Math.ceil(filteredEvents.length / 4) }).map((_, slideIndex) => (
-                <div key={slideIndex} className="w-full flex-shrink-0">
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {filteredEvents.slice(slideIndex * 4, slideIndex * 4 + 4).map((event, index) => (
+              {filteredEvents.slice(currentSlide * 4, currentSlide * 4 + 4).map((event, index) => (
                       <motion.div
                         key={event.id}
                         className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
@@ -359,7 +367,7 @@ export default function EventsSection() {
                           />
                           <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9]/80 to-[#1845B3]/80" />
                           <div className="absolute top-3 left-3">
-                            <span className="px-2 py-1 bg-white/90 #1845B3 rounded-full text-xs font-medium">
+                            <span className="px-2 py-1 bg-white/90 rounded-full text-xs font-medium" style={{ color: '#1D50C9' }}>
                               {event.type}
                             </span>
                           </div>
@@ -380,71 +388,51 @@ export default function EventsSection() {
 
                           <div className="space-y-2 text-gray-600 mb-4">
                             <div className="flex items-center gap-2">
-                              <Clock className="w-4 h-4" style={{ color: "#ffffff" }} />
+                              <Clock className="w-4 h-4" style={{ color: "#1D50C9" }} />
                               <span className="text-xs">{event.time}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <MapPin className="w-4 h-4" style={{ color: "#ffffff" }} />
+                              <MapPin className="w-4 h-4" style={{ color: "#1D50C9" }} />
                               <span className="text-xs line-clamp-1">{event.location}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Users className="w-4 h-4" style={{ color: "#ffffff" }} />
+                              <Users className="w-4 h-4" style={{ color: "#1D50C9" }} />
                               <span className="text-xs">{event.attendees} attending</span>
                             </div>
                           </div>
 
                           {/* Register Button */}
-                          <motion.button
+                          <button
                             onClick={() => handleRegistration(event)}
-                            className="w-full #1845B3 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-#1a73e8 transition-all duration-300 cursor-pointer active:bg-#1565c0"
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
+                            className="w-full text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105"
+                            style={{ backgroundColor: '#1D50C9' }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1845B3'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
                           >
                             Register Now
-                          </motion.button>
+                          </button>
                         </div>
                       </motion.div>
                     ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
 
-          {/* Navigation Buttons */}
-          <button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-all"
-          >
-            <ChevronLeft className="w-5 h-5 text-gray-600" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-all"
-          >
-            <ChevronRight className="w-5 h-5 text-gray-600" />
-          </button>
+          {/* Slide Indicators */}
+          <div className="flex justify-center mt-8 gap-2">
+            {Array.from({ length: Math.ceil(filteredEvents.length / 4) }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  currentSlide === index
+                    ? 'w-8'
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                style={currentSlide === index ? { backgroundColor: '#1D50C9' } : {}}
+              />
+            ))}
+          </div>
         </div>
-
-        {/* Pagination Dots */}
-        <motion.div
-          className="flex justify-center items-center gap-2 mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          {Array.from({ length: Math.ceil(filteredEvents.length / 2) }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentSlide === index
-                  ? '#1845B3 w-8'
-                  : 'bg-gray-300 hover:bg-gray-400'
-              }`}
-            />
-          ))}
-        </motion.div>
       </div>
 
       {/* Registration Form Modal */}
