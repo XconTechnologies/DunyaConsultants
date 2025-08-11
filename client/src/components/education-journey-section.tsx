@@ -140,8 +140,8 @@ export default function EducationJourneySection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#2764E8' }}>
-            <span style={{ color: '#2764E8' }}>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#1E50CA' }}>
+            <span style={{ color: '#1E50CA' }}>
               Your Journey to International Education
             </span>
           </h2>
@@ -205,7 +205,7 @@ export default function EducationJourneySection() {
                         <div className="text-sm font-medium text-neutral-500 uppercase tracking-wide">
                           Step {step.id} • {step.duration}
                         </div>
-                        <h3 className="text-2xl font-bold mt-1" style={{ color: '#2764E8' }}>
+                        <h3 className="text-2xl font-bold mt-1" style={{ color: '#1E50CA' }}>
                           {step.title}
                         </h3>
                       </div>

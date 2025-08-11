@@ -7,7 +7,7 @@ import New_Logo_White from "@assets/New Logo White.png";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #2764E8 0%, #1E4BA8 50%, #163C8C 100%)' }}>
+    <footer className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1E50CA 0%, #1E4BA8 50%, #163C8C 100%)' }}>
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>

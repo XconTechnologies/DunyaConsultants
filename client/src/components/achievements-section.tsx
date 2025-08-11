@@ -47,8 +47,8 @@ export default function AchievementsSection() {
             <span className="text-sm font-medium text-neutral-700">Our Achievements</span>
           </div>
           
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#2764E8' }}>
-            Recognized <span style={{ color: '#2764E8' }}>Excellence</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6" style={{ color: '#1E50CA' }}>
+            Recognized <span style={{ color: '#1E50CA' }}>Excellence</span>
           </h2>
           
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto leading-relaxed">

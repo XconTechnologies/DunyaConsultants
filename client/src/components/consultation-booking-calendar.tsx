@@ -212,7 +212,7 @@ export default function ConsultationBookingCalendar() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-[#2764E8]"
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105 text-[#1E50CA]"
             whileHover={{ scale: 1.05 }}
           >
             Book Your Free Consultation

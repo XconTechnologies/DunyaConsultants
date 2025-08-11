@@ -144,8 +144,8 @@ export default function CoursesSection() {
             className="text-4xl lg:text-5xl font-bold mb-4"
             whileHover={{ scale: 1.02 }}
           >
-            <span style={{ color: '#2764E8' }}>Courses & </span>
-            <span style={{ color: '#2764E8' }}>
+            <span style={{ color: '#1E50CA' }}>Courses & </span>
+            <span style={{ color: '#1E50CA' }}>
               Programs
             </span>
           </motion.h2>

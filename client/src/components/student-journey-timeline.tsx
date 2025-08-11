@@ -102,7 +102,7 @@ export default function StudentJourneyTimeline() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#2764E8' }}
+            className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#1E50CA' }}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.1 }}

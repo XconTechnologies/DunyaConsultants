@@ -199,3 +199,25 @@ img {
 .perf-stats.show {
   display: block;
 }
+
+/* Custom Brand Colors */
+:root {
+  --brand-primary: #1E50CA; /* New primary blue */
+  --brand-hero: #2764E8; /* Original hero section blue */
+}
+
+.bg-brand-primary {
+  background-color: var(--brand-primary);
+}
+
+.text-brand-primary {
+  color: var(--brand-primary);
+}
+
+.bg-brand-hero {
+  background-color: var(--brand-hero);
+}
+
+.text-brand-hero {
+  color: var(--brand-hero);
+}
