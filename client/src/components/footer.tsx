@@ -14,7 +14,6 @@ export default function Footer() {
         <div className="absolute bottom-1/4 right-1/3 w-24 h-24 bg-white/5 rounded-full blur-lg"></div>
         <div className="absolute top-1/2 left-1/2 w-40 h-40 bg-white/3 rounded-full blur-2xl"></div>
       </div>
-      
       <div className="relative z-10 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -174,7 +173,7 @@ export default function Footer() {
                     whileTap={{ scale: 0.95 }}
                   >
                     <Mail className="w-3 h-3" />
-                    <span>Send Proposal</span>
+                    <span className="text-[#1D50C9]">Send Proposal</span>
                   </motion.a>
                 </div>
               </motion.div>
