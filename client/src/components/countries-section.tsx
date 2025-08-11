@@ -509,9 +509,10 @@ export default function CountriesSection() {
               onClick={() => setActiveTab('popular')}
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'popular' 
-                  ? 'bg-white text-gray-700 shadow-sm' 
+                  ? 'text-white shadow-sm' 
                   : 'bg-transparent text-gray-600 hover:text-gray-800'
               }`}
+              style={activeTab === 'popular' ? { backgroundColor: '#1D50C9' } : {}}
               variant="ghost"
             >
               Popular Countries
@@ -520,9 +521,10 @@ export default function CountriesSection() {
               onClick={() => setActiveTab('all')}
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'all' 
-                  ? '#1845B3 text-white shadow-sm' 
+                  ? 'text-white shadow-sm' 
                   : 'bg-transparent text-gray-600 hover:text-gray-800'
               }`}
+              style={activeTab === 'all' ? { backgroundColor: '#1D50C9' } : {}}
               variant="ghost"
             >
               All Destinations
@@ -548,7 +550,6 @@ export default function CountriesSection() {
                   </div>
                   <div className="absolute bottom-4 left-4 text-white">
                     <h3 className="text-xl font-bold">{country.name}</h3>
-                    <p className="text-sm opacity-90">{country.studentCount}+ students</p>
                   </div>
                 </div>
                 
@@ -624,13 +625,10 @@ export default function CountriesSection() {
                     <div className="relative h-48 overflow-hidden">
                       <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
                       <div className="absolute top-4 left-4">
-                        <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm font-medium">
-                          {country.code}
-                        </div>
+                        <span className="text-3xl">{country.flag}</span>
                       </div>
                       <div className="absolute bottom-4 left-4 text-white">
                         <h3 className="text-xl font-bold">{country.name}</h3>
-                        <p className="text-sm opacity-90">{country.studentCount}+ students</p>
                       </div>
                     </div>
                     
@@ -722,7 +720,7 @@ export default function CountriesSection() {
                       <span className="text-sm">Language: {selectedCountry.language}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <DollarSign className="w-4 h-4 #1845B3" />
+                      <div className="w-4 h-4 flex items-center justify-center text-sm font-bold" style={{ color: '#1D50C9' }}>$</div>
                       <span className="text-sm">Currency: {selectedCountry.currency}</span>
                     </div>
                   </div>
