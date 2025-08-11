@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { Globe, MapPin, Users, GraduationCap, ChevronLeft, ChevronRight, Star, Award, BookOpen, Send, DollarSign, Clock, X, CheckCircle, ArrowRight, Plane, Calendar, Phone, FileText } from "lucide-react";
+import { Globe, MapPin, Users, GraduationCap, ChevronLeft, ChevronRight, Star, Award, BookOpen, Send, Clock, X, ArrowRight, Plane, Calendar, Phone, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -557,16 +557,7 @@ export default function CountriesSection() {
                     {country.description}
                   </p>
                   
-                  <div className="space-y-2 mb-4">
-                    <div className="flex items-center gap-2">
-                      <DollarSign className="w-4 h-4" style={{ color: '#1D50C9' }} />
-                      <span className="text-sm text-gray-600">{country.averageCost}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4" style={{ color: '#1D50C9' }} />
-                      <span className="text-sm text-gray-600">{country.visaSuccessRate}% visa success</span>
-                    </div>
-                  </div>
+
                   
                   <div className="flex gap-2 mb-4">
                     <Button
@@ -648,16 +639,7 @@ export default function CountriesSection() {
                         {country.description}
                       </p>
                       
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-center gap-2">
-                          <DollarSign className="w-4 h-4" style={{ color: '#1D50C9' }} />
-                          <span className="text-sm text-gray-600">{country.averageCost}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle className="w-4 h-4 text-green-600" />
-                          <span className="text-sm text-gray-600">{country.visaSuccessRate}% visa success</span>
-                        </div>
-                      </div>
+
                       
                       <div className="flex gap-2">
                         <Button
