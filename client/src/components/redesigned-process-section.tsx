@@ -182,8 +182,8 @@ export default function RedesignedProcessSection() {
             <Star className="w-5 h-5 text-blue-500" />
             <span className="text-sm font-medium text-neutral-600">Step-by-Step Process</span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: '#1D2D4E' }}>
-            <span style={{ color: '#1D2D4E' }}>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6" style={{ color: '#2764E8' }}>
+            <span style={{ color: '#2764E8' }}>
               Your Journey to International Education
             </span>
           </h2>

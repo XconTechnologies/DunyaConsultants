@@ -497,7 +497,7 @@ export default function CountriesSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D2D4E' }}>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#2764E8' }}>
             Study Abroad Destinations
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -542,7 +542,7 @@ export default function CountriesSection() {
                 className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
               >
                 <div className="relative h-48 overflow-hidden">
-                  <div className="w-full h-full bg-[#1D2D4E] transition-all duration-300 group-hover:bg-[#2a3f5f]" />
+                  <div className="w-full h-full bg-[#2764E8] transition-all duration-300 group-hover:bg-[#1e4db5]" />
                   <div className="absolute top-4 left-4">
                     <span className="text-3xl">{country.flag}</span>
                   </div>
@@ -626,7 +626,7 @@ export default function CountriesSection() {
                     className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
                   >
                     <div className="relative h-48 overflow-hidden">
-                      <div className="w-full h-full bg-[#1D2D4E] transition-all duration-300 group-hover:bg-[#2a3f5f]" />
+                      <div className="w-full h-full bg-[#2764E8] transition-all duration-300 group-hover:bg-[#1e4db5]" />
                       <div className="absolute top-4 left-4">
                         <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 text-white text-sm font-medium">
                           {country.code}

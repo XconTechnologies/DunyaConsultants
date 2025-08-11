@@ -345,8 +345,8 @@ export default function OfficeLocationsSection() {
     <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-[#e8f0ff] relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ backgroundColor: '#1D2D4E' }}></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000" style={{ backgroundColor: '#1D2D4E' }}></div>
+        <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ backgroundColor: '#2764E8' }}></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-pulse delay-1000" style={{ backgroundColor: '#2764E8' }}></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -356,10 +356,10 @@ export default function OfficeLocationsSection() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
           className="font-bold text-center mb-8 cursor-default"
-          style={{ fontSize: '32px', color: '#1D2D4E' }}
+          style={{ fontSize: '32px', color: '#2764E8' }}
           whileHover={{ 
             scale: 1.05,
-            color: '#1D2D4E',
+            color: '#2764E8',
             transition: { duration: 0.3 }
           }}
         >
@@ -417,7 +417,7 @@ export default function OfficeLocationsSection() {
                   transition={{ duration: 0.6, delay: (index % cardsPerView) * 0.1 }}
                 >
                   <Card className="h-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border-0 bg-white group hover:scale-105">
-                    <div className="h-1.5" style={{ backgroundColor: office.gradient === "custom-blue" ? '#1D2D4E' : '#1D2D4E' }}></div>
+                    <div className="h-1.5" style={{ backgroundColor: office.gradient === "custom-blue" ? '#2764E8' : '#2764E8' }}></div>
                     <CardContent className="p-4">
                       {/* Header - Compact */}
                       <div className="flex items-start justify-between mb-4">
@@ -425,19 +425,19 @@ export default function OfficeLocationsSection() {
                           <div className="flex items-center space-x-1 mb-1">
                             <h3 className="text-lg font-bold text-gray-800 truncate">{office.city}</h3>
                             {office.isHeadOffice && (
-                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#1D2D4E' }}>
+                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#2764E8' }}>
                                 HQ
                               </span>
                             )}
                             {office.region === "International" && (
-                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#1D2D4E' }}>
+                              <span className="text-white text-xs px-2 py-0.5 rounded-full font-semibold flex-shrink-0" style={{ backgroundColor: '#2764E8' }}>
                                 🌍 INT
                               </span>
                             )}
                           </div>
                           <p className="text-sm font-medium text-gray-600 truncate">{office.name}</p>
                         </div>
-                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2" style={{ backgroundColor: '#1D2D4E' }}>
+                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2" style={{ backgroundColor: '#2764E8' }}>
                           <Building2 className="w-6 h-6 text-white" />
                         </div>
                       </div>
@@ -445,23 +445,23 @@ export default function OfficeLocationsSection() {
                       {/* Office Details - Compact */}
                       <div className="space-y-2 mb-4">
                         <div className="flex items-start space-x-2">
-                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#1D2D4E' }} />
+                          <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: '#2764E8' }} />
                           <p className="text-xs text-gray-600 leading-relaxed line-clamp-2">{office.address}</p>
                         </div>
                         
                         <div className="flex items-center space-x-2">
-                          <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#1D2D4E' }} />
+                          <Phone className="w-4 h-4 flex-shrink-0" style={{ color: '#2764E8' }} />
                           <a 
                             href={`tel:${office.phone}`}
                             className="font-medium transition-colors duration-200 text-xs truncate hover:opacity-80"
-                            style={{ color: '#1D2D4E' }}
+                            style={{ color: '#2764E8' }}
                           >
                             {office.phone}
                           </a>
                         </div>
                         
                         <div className="flex items-center space-x-2">
-                          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: '#1D2D4E' }} />
+                          <Clock className="w-4 h-4 flex-shrink-0" style={{ color: '#2764E8' }} />
                           <p className="text-xs text-gray-600 truncate">{office.hours}</p>
                         </div>
                       </div>
@@ -471,7 +471,7 @@ export default function OfficeLocationsSection() {
                         <Button 
                           size="sm"
                           className="flex-1 text-white font-medium shadow-md text-xs hover:opacity-90"
-                          style={{ backgroundColor: '#1D2D4E' }}
+                          style={{ backgroundColor: '#2764E8' }}
                         >
                           <Phone className="w-3 h-3 mr-1" />
                           Call

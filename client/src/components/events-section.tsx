@@ -299,7 +299,7 @@ export default function EventsSection() {
         >
           <motion.h2 
             className="text-3xl lg:text-4xl font-bold mb-4"
-            style={{ color: '#1D2D4E' }}
+            style={{ color: '#2764E8' }}
             whileHover={{ scale: 1.02 }}
           >
             Events & Workshops

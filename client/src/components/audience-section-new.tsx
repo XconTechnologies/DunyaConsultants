@@ -138,9 +138,9 @@ export default function AudienceSectionNew() {
             <span className="text-sm font-medium text-neutral-700">Personalized Approach</span>
           </div>
           
-          <h2 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: '#1D2D4E' }}>
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6" style={{ color: '#2764E8' }}>
             Tailored Solutions for{" "}
-            <span style={{ color: '#1D2D4E' }}>
+            <span style={{ color: '#2764E8' }}>
               Everyone
             </span>
           </h2>
@@ -169,7 +169,7 @@ export default function AudienceSectionNew() {
               
               {/* Icon */}
               <div className="relative z-10 mb-6">
-                <div className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500" style={{ backgroundColor: item.color === "custom-blue" ? '#1D2D4E' : '#1D2D4E' }}>
+                <div className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500" style={{ backgroundColor: item.color === "custom-blue" ? '#2764E8' : '#2764E8' }}>
                   <item.icon className="w-10 h-10 text-white" />
                 </div>
               </div>
@@ -194,7 +194,7 @@ export default function AudienceSectionNew() {
                   <div className="grid gap-3">
                     {item.offerings.map((offering, idx) => (
                       <div key={idx} className="flex items-start space-x-3 p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-200">
-                        <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: item.color === "custom-blue" ? '#1D2D4E' : '#1D2D4E' }}>
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: item.color === "custom-blue" ? '#2764E8' : '#2764E8' }}>
                           <offering.icon className="w-4 h-4 text-white" />
                         </div>
                         <div>
@@ -208,7 +208,7 @@ export default function AudienceSectionNew() {
 
                 {/* Action Button */}
                 <div className="mt-8">
-                  <button className="w-full text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300" style={{ backgroundColor: item.color === "custom-blue" ? '#1D2D4E' : '#1D2D4E' }}>
+                  <button className="w-full text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg transform hover:scale-105 transition-all duration-300" style={{ backgroundColor: item.color === "custom-blue" ? '#2764E8' : '#2764E8' }}>
                     Get Started with {item.title} Solutions
                   </button>
                 </div>

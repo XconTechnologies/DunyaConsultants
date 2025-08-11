@@ -71,7 +71,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{ fontSize: '64px' }}
           >
-            <span style={{ color: '#1D2D4E' }}>
+            <span style={{ color: '#2764E8' }}>
               Dedication To Education
             </span>
           </motion.h1>

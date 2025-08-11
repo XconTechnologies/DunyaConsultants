@@ -55,7 +55,7 @@ export default function ContactInfoSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl font-bold mb-6" style={{ color: '#1D2D4E' }}>
+          <h2 className="text-5xl font-bold mb-6" style={{ color: '#2764E8' }}>
             Let's Connect
           </h2>
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">

@@ -174,9 +174,9 @@ export default function EligibilityChecker() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#1D2D4E' }}>
+          <h1 className="text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#2764E8' }}>
             Study Abroad{" "}
-            <span style={{ color: '#1D2D4E' }}>
+            <span style={{ color: '#2764E8' }}>
               Eligibility Checker
             </span>
           </h1>
