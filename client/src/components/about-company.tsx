@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Check, Shield, Award, Globe, Users } from "lucide-react";
 
 // Import the company collage image
-import companyCollage from "@assets/Frame 1000007739_1754999995915.png";
+import companyCollage from "@assets/image_1755000279427.png";
 
 const expandableContent = [
   {
@@ -56,7 +56,7 @@ export default function AboutCompany() {
 
 
                 {/* Single Company Collage Image - No White Background */}
-                <div className="relative h-full rounded-[1.5rem] p-4">
+                <div className="relative h-full rounded-[1.5rem] p-2">
                   <motion.div
                     className="relative w-full h-full"
                     initial={{ opacity: 0, scale: 0.9 }}
@@ -67,10 +67,10 @@ export default function AboutCompany() {
                       <img
                         src={companyCollage}
                         alt="Company collage showcasing achievements and team"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-2xl"
                         loading="eager"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                     </div>
                   </motion.div>
                 </div>
