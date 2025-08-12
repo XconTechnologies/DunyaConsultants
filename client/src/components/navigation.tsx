@@ -273,7 +273,6 @@ export default function Navigation() {
           </div>
         </div>
       </div>
-
       {/* Mega Menu */}
       <AnimatePresence>
         {activeMegaMenu && megaMenuData[activeMegaMenu as keyof typeof megaMenuData] && (
@@ -292,7 +291,7 @@ export default function Navigation() {
                 <div className="lg:col-span-3">
                   {activeMegaMenu === "Study Abroad" ? (
                     // Special layout for Study Abroad with 2-column countries
-                    <div className="space-y-3">
+                    (<div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
                         <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                           {React.createElement(Globe, { 
@@ -318,10 +317,10 @@ export default function Navigation() {
                           </Link>
                         ))}
                       </div>
-                    </div>
+                    </div>)
                   ) : activeMegaMenu === "Test Prep" ? (
                     // Special layout for Test Prep with 2-column tests
-                    <div className="space-y-3">
+                    (<div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
                         <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                           {React.createElement(Award, { 
@@ -347,10 +346,10 @@ export default function Navigation() {
                           </Link>
                         ))}
                       </div>
-                    </div>
+                    </div>)
                   ) : activeMegaMenu === "Offices" ? (
                     // Special layout for Offices with 2-column offices
-                    <div className="space-y-3">
+                    (<div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
                         <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                           {React.createElement(MapPin, { 
@@ -376,10 +375,10 @@ export default function Navigation() {
                           </Link>
                         ))}
                       </div>
-                    </div>
+                    </div>)
                   ) : activeMegaMenu === "Blog" ? (
                     // Special layout for Blog with 2-column items (flattened from all sections)
-                    <div className="space-y-3">
+                    (<div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
                         <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                           {React.createElement(Newspaper, { 
@@ -406,10 +405,10 @@ export default function Navigation() {
                           </Link>
                         ))}
                       </div>
-                    </div>
+                    </div>)
                   ) : (
                     // Default layout for other menus
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    (<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].sections.map((section: any, idx: number) => (
                         <div key={idx} className="space-y-3">
                           <div className="flex items-center space-x-2 mb-3">
@@ -439,7 +438,7 @@ export default function Navigation() {
                           </div>
                         </div>
                       ))}
-                    </div>
+                    </div>)
                   )}
                 </div>
 
@@ -453,7 +452,7 @@ export default function Navigation() {
                           className: "w-6 h-6 text-white" 
                         })}
                       </div>
-                      <h3 className="text-lg font-bold mb-2">
+                      <h3 className="text-lg font-bold mb-2 text-[#ffffff]">
                         {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.title}
                       </h3>
                       <p className="text-white/90 mb-3 text-sm">
@@ -490,7 +489,6 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -549,7 +547,6 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
-
       {/* Consultation Popup */}
       <SimpleConsultationPopup 
         isOpen={showConsultationPopup} 
