@@ -33,98 +33,91 @@ export default function AboutCompany() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="relative py-24 lg:py-32 overflow-hidden">
-      {/* Simplified Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-blue-100"></div>
-      <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={ref} className="relative py-16 lg:py-24 overflow-hidden">
+      {/* Clean Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50"></div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-
-
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           
-          {/* Left Side - Modern Scrollable Image Gallery */}
+          {/* Left Side - Image */}
           <motion.div
             className="relative"
-            initial={{ opacity: 0, x: -60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
-            transition={{ duration: 1, ease: "easeOut" }}
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="relative">
-              {/* Single Container Box with Image Inside */}
-              <div className="relative h-[520px] lg:h-[570px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
-                <motion.div
-                  className="relative w-full h-full"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  <img
-                    src={companyCollage}
-                    alt="Company collage showcasing achievements and team"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-xl shadow-lg"
-                    loading="eager"
-                  />
-                </motion.div>
-              </div>
+            <div className="relative bg-white rounded-3xl p-6 shadow-xl">
+              <motion.div
+                className="relative"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <img
+                  src={companyCollage}
+                  alt="Company collage showcasing achievements and team"
+                  className="w-full h-auto object-cover rounded-2xl shadow-lg"
+                  loading="eager"
+                />
+              </motion.div>
             </div>
           </motion.div>
 
-          {/* Right Side - Single Unified Content Box */}
+          {/* Right Side - Content */}
           <motion.div
-            className="h-[500px] lg:h-[550px]"
-            initial={{ opacity: 0, x: 60 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
+            className="relative"
+            initial={{ opacity: 0, x: 40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
-            {/* Single Unified Content Container */}
-            <div className="h-full bg-white/70 backdrop-blur-sm border border-white/40 rounded-2xl shadow-xl p-6 flex flex-col justify-start overflow-hidden">
-              {/* About Company Button */}
+            <div className="bg-white rounded-3xl p-8 shadow-xl h-full">
+              {/* About Company Badge */}
               <motion.div
-                className="mb-4"
+                className="mb-6"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <div className="inline-flex items-center px-3 py-1.5 rounded-full mb-4 border-2 shadow-md" style={{ backgroundColor: '#1D50C9', borderColor: '#1D50C9' }}>
-                  <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
-                  <span className="text-xs font-medium text-white tracking-wide uppercase">
-                    About Company
+                <div className="inline-flex items-center px-4 py-2 rounded-full shadow-sm" style={{ backgroundColor: '#1D50C9' }}>
+                  <span className="text-xs font-semibold text-white tracking-wide uppercase">
+                    ✦ About Company
                   </span>
                 </div>
               </motion.div>
 
-              {/* Why Choose Heading */}
+              {/* Main Heading */}
               <motion.div
-                className="mb-5"
+                className="mb-8"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <h2 className="text-xl font-bold mb-3 text-[#1D50C9]">Why Choose Dunya Consultants?</h2>
-                <div className="w-14 h-1 bg-gradient-to-r from-[#1D50C9] to-blue-500 rounded-full"></div>
+                <h2 className="text-2xl lg:text-3xl font-bold text-[#1D50C9] mb-2">
+                  Why Choose Dunya Consultants?
+                </h2>
               </motion.div>
 
-              <div className="space-y-4 flex-1">
+              {/* Content Items */}
+              <div className="space-y-6">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="border-b border-gray-200 pb-4 last:border-b-0 last:pb-0"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
+                    className="flex items-start gap-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                   >
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-9 h-9 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <item.icon className="w-5 h-5" style={{ color: '#1D50C9' }} />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="text-sm font-semibold text-gray-900 mb-2 leading-tight">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm text-gray-700 leading-relaxed">
-                          {item.content}
-                        </p>
-                      </div>
+                    <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center border border-blue-100">
+                      <item.icon className="w-6 h-6" style={{ color: '#1D50C9' }} />
+                    </div>
+                    <div className="flex-1 pt-1">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {item.content}
+                      </p>
                     </div>
                   </motion.div>
                 ))}
