@@ -105,7 +105,7 @@ export default function TOEFL() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -124,7 +124,7 @@ export default function TOEFL() {
               Academic English assessment accepted by 11,500+ universities in over 160 countries
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#1e3a8a] hover:bg-blue-50">
                 Register for Test
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
@@ -358,7 +358,7 @@ export default function TOEFL() {
               Join our comprehensive TOEFL preparation program and secure admission to your dream university
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#1e3a8a] hover:bg-blue-50">
                 Contact Our Experts
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">

@@ -285,7 +285,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
         <Navigation />
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 #1D50C9 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
             <p className="text-gray-600">Loading article...</p>
           </div>
         </div>
@@ -302,7 +302,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
             <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
-            <Link href="/blog" className="#1845B3 hover:text-[#1565c0]">
+            <Link href="/blog" className="text-[#1845B3] hover:text-[#1565c0]">
               ← Back to Blog
             </Link>
           </div>
@@ -324,7 +324,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="bg-[#1D50C9] text-white px-4 py-2 rounded-full text-sm font-medium">
                 {blogPost.category || 'Study Destinations'}
               </span>
             </div>
@@ -376,7 +376,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <ul className="space-y-2 text-gray-600">
                     {contentSections.map((section, index) => (
                       <li key={index}>
-                        <a href={`#${section.id}`} className="hover:bg-[#1845B3]">
+                        <a href={`#${section.id}`} className="hover:text-[#1845B3]">
                           {section.title}
                         </a>
                       </li>
@@ -390,7 +390,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                 {contentSections.length > 0 ? (
                   contentSections.map((section, index) => (
                     <div key={index} className="mb-8" id={section.id}>
-                      <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">
+                      <h2 className="text-3xl font-bold mb-6 border-l-4 border-l-[#1D50C9] pl-4">
                         {section.title}
                       </h2>
                       <div 
@@ -1143,7 +1143,7 @@ export default function Blog() {
                       
                       {/* Title */}
                       <h3 className={`
-                        font-bold text-gray-900 mb-4 group-hover:bg-[#1845B3] transition-colors duration-300 line-clamp-2
+                        font-bold text-gray-900 mb-4 group-hover:text-[#1845B3] transition-colors duration-300 line-clamp-2
                         ${viewMode === "list" ? "text-2xl" : "text-xl"}
                       `}>
                         {post.title}
@@ -1215,14 +1215,14 @@ export default function Blog() {
                         />
                         {post.featured && (
                           <div className="absolute top-3 left-3">
-                            <span className="#1D50C9 text-white px-2 py-1 rounded-full text-xs font-semibold">
+                            <span className="bg-[#1D50C9] text-white px-2 py-1 rounded-full text-xs font-semibold">
                               Featured
                             </span>
                           </div>
                         )}
                         {post.trending && (
                           <div className="absolute top-3 right-3">
-                            <span className="#1D50C9 text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
+                            <span className="bg-[#1D50C9] text-white px-2 py-1 rounded-full text-xs font-semibold flex items-center">
                               <TrendingUp className="h-3 w-3 mr-1" />
                               Trending
                             </span>
@@ -1267,7 +1267,7 @@ export default function Blog() {
                         </div>
                         <Link
                           href={post.href}
-                          className="#1845B3 hover:text-#1a73e8 text-sm font-medium flex items-center"
+                          className="text-[#1845B3] hover:text-#1a73e8 text-sm font-medium flex items-center"
                         >
                           Read More
                           <ArrowRight className="h-3 w-3 ml-1" />

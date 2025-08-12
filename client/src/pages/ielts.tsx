@@ -105,7 +105,7 @@ export default function IELTS() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -124,7 +124,7 @@ export default function IELTS() {
               World's most popular English language proficiency test for higher education and global migration
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#1e3a8a] hover:bg-blue-50">
                 Book Your Test
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
@@ -146,7 +146,7 @@ export default function IELTS() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 IELTS Test{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-#1565c0 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1565c0] bg-clip-text text-transparent">
                   Format
                 </span>
               </h2>
@@ -210,7 +210,7 @@ export default function IELTS() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 IELTS Preparation{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-#1565c0 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1565c0] bg-clip-text text-transparent">
                   Courses
                 </span>
               </h2>
@@ -249,7 +249,7 @@ export default function IELTS() {
                         </li>
                       ))}
                     </ul>
-                    <Button className="w-full mt-6 bg-gradient-to-r from-[#1D50C9] to-#1565c0 hover:from-#1a73e8 hover:to-purple-700 text-white">
+                    <Button className="w-full mt-6 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] hover:from-#1a73e8 hover:to-purple-700 text-white">
                       Enroll Now
                     </Button>
                   </CardContent>
@@ -271,7 +271,7 @@ export default function IELTS() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Band{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-#1565c0 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1565c0] bg-clip-text text-transparent">
                   Requirements
                 </span>
               </h2>
@@ -315,7 +315,7 @@ export default function IELTS() {
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Expert{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-#1565c0 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1565c0] bg-clip-text text-transparent">
                   Tips
                 </span>
               </h2>
@@ -358,7 +358,7 @@ export default function IELTS() {
               Join thousands of successful students who achieved their target band scores with our expert guidance
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#1e3a8a] hover:bg-blue-50">
                 Contact Our Experts
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
