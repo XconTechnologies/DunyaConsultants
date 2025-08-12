@@ -117,9 +117,9 @@ export default function IELTSExamDay() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-#1e3a8a via-#1a73e8 to-#1565c0 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-[#1D50C9] to-[#1565c0] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-[#1D50C9]/30 to-#1565c0/30"></div>
+          <div className="w-full h-full bg-gradient-to-r from-[#1D50C9]/30 to-[#1565c0]/30"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -167,22 +167,22 @@ export default function IELTSExamDay() {
           >
             <div className="grid md:grid-cols-3 gap-6">
               <Alert className="border-blue-200 bg-blue-50">
-                <AlertCircle className="h-4 w-4 #1845B3" />
-                <AlertDescription className="text-#1565c0">
+                <AlertCircle className="h-4 w-4 text-[#1845B3]" />
+                <AlertDescription className="text-[#1565c0]">
                   <strong>Arrive 30 minutes early</strong> - Late arrivals will not be admitted to the test
                 </AlertDescription>
               </Alert>
               
               <Alert className="border-blue-200 bg-blue-50">
-                <Shield className="h-4 w-4 #1845B3" />
-                <AlertDescription className="text-#1565c0">
+                <Shield className="h-4 w-4 text-[#1845B3]" />
+                <AlertDescription className="text-[#1565c0]">
                   <strong>Bring valid passport</strong> - No other ID documents are accepted
                 </AlertDescription>
               </Alert>
               
               <Alert className="border-blue-200 bg-blue-50">
-                <CheckCircle className="h-4 w-4 #1845B3" />
-                <AlertDescription className="text-#1565c0">
+                <CheckCircle className="h-4 w-4 text-[#1845B3]" />
+                <AlertDescription className="text-[#1565c0]">
                   <strong>Follow dress code</strong> - Smart casual attire, avoid metal accessories
                 </AlertDescription>
               </Alert>

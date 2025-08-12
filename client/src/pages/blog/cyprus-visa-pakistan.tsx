@@ -52,24 +52,24 @@ export default function CyprusVisaPakistan() {
               <section className="mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg">
                   <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                    <Plane className="w-6 h-6 #1D50C9 mr-2" />
+                    <Plane className="w-6 h-6 text-[#1D50C9] mr-2" />
                     Cyprus Visa Overview
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex items-center">
-                      <Clock className="w-5 h-5 #1D50C9 mr-2" />
+                      <Clock className="w-5 h-5 text-[#1D50C9] mr-2" />
                       <span className="text-gray-700">Duration: Up to 3 months (extendable)</span>
                     </div>
                     <div className="flex items-center">
-                      <DollarSign className="w-5 h-5 #1D50C9 mr-2" />
+                      <DollarSign className="w-5 h-5 text-[#1D50C9] mr-2" />
                       <span className="text-gray-700">Visa Fee: €60-€90</span>
                     </div>
                     <div className="flex items-center">
-                      <FileText className="w-5 h-5 #1D50C9 mr-2" />
+                      <FileText className="w-5 h-5 text-[#1D50C9] mr-2" />
                       <span className="text-gray-700">Processing Time: 1 month</span>
                     </div>
                     <div className="flex items-center">
-                      <MapPin className="w-5 h-5 #1D50C9 mr-2" />
+                      <MapPin className="w-5 h-5 text-[#1D50C9] mr-2" />
                       <span className="text-gray-700">Residence Permit: €70</span>
                     </div>
                   </div>

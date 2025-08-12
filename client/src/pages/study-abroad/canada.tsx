@@ -86,7 +86,7 @@ Address: Alif Tower, Sargodha
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6">
-              Study in <span className="#1D50C9">Canada</span>
+              Study in <span className="text-blue-300">Canada</span>
             </h1>
             <p className="text-xl lg:text-2xl max-w-4xl mx-auto text-gray-100 mb-8">
               Experience high-quality education with 223 universities and 213 colleges offering 8,000+ programs
