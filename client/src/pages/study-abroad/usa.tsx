@@ -125,7 +125,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-blue-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <DollarSign className="w-8 h-8 bg-[#1D50C9] mr-3" />
+                    <DollarSign className="w-8 h-8 text-[#1D50C9] mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">$27,940 - $65,000</p>
                       <p className="text-gray-600">Annual Tuition Range</p>
@@ -137,7 +137,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-green-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <FileText className="w-8 h-8 bg-[#1D50C9] mr-3" />
+                    <FileText className="w-8 h-8 text-[#1D50C9] mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">SEVIS $350</p>
                       <p className="text-gray-600">+ DS-160 $185</p>
@@ -149,7 +149,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-purple-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <GraduationCap className="w-8 h-8 bg-[#1D50C9] mr-3" />
+                    <GraduationCap className="w-8 h-8 text-[#1D50C9] mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">5,000+</p>
                       <p className="text-gray-600">Higher Education Institutes</p>
@@ -175,22 +175,22 @@ Address: Alif Tower, Sargodha
                     <div className="grid md:grid-cols-3 gap-4">
                       <Card className="bg-blue-50 border-blue-200">
                         <CardContent className="p-4 text-center">
-                          <h4 className="font-semibold text-#1e3a8a">Public In-State</h4>
-                          <p className="text-2xl font-bold bg-[#1D50C9]">$27,940</p>
+                          <h4 className="font-semibold text-blue-900">Public In-State</h4>
+                          <p className="text-2xl font-bold text-[#1D50C9]">$27,940</p>
                           <p className="text-sm text-#1a73e8">per year</p>
                         </CardContent>
                       </Card>
                       <Card className="bg-blue-50 border-blue-200">
                         <CardContent className="p-4 text-center">
-                          <h4 className="font-semibold text-#1e3a8a">Public Out-of-State</h4>
-                          <p className="text-2xl font-bold bg-[#1D50C9]">$45,240</p>
+                          <h4 className="font-semibold text-blue-900">Public Out-of-State</h4>
+                          <p className="text-2xl font-bold text-[#1D50C9]">$45,240</p>
                           <p className="text-sm text-#1a73e8">per year</p>
                         </CardContent>
                       </Card>
                       <Card className="bg-blue-50 border-blue-200">
                         <CardContent className="p-4 text-center">
-                          <h4 className="font-semibold text-#1e3a8a">Private Nonprofit</h4>
-                          <p className="text-2xl font-bold bg-[#1D50C9]">$57,570</p>
+                          <h4 className="font-semibold text-blue-900">Private Nonprofit</h4>
+                          <p className="text-2xl font-bold text-[#1D50C9]">$57,570</p>
                           <p className="text-sm text-#1a73e8">per year</p>
                         </CardContent>
                       </Card>
@@ -202,8 +202,8 @@ Address: Alif Tower, Sargodha
                     <h3 className="text-lg font-semibold text-gray-800 mb-4">Graduate Programs</h3>
                     <Card className="bg-blue-50 border-blue-200">
                       <CardContent className="p-6 text-center">
-                        <h4 className="font-semibold text-#1e3a8a mb-2">Graduate Programs</h4>
-                        <p className="text-3xl font-bold bg-[#1D50C9]">$18,000 - $65,000</p>
+                        <h4 className="font-semibold text-blue-900 mb-2">Graduate Programs</h4>
+                        <p className="text-3xl font-bold text-[#1D50C9]">$18,000 - $65,000</p>
                         <p className="text-#1a73e8">per annum</p>
                       </CardContent>
                     </Card>
@@ -285,7 +285,7 @@ Address: Alif Tower, Sargodha
                 <ul className="space-y-3">
                   {documentChecklist.map((doc, index) => (
                     <li key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-4 h-4 #1D50C9 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span className="text-sm text-gray-700">{doc}</span>
                     </li>
                   ))}
@@ -310,8 +310,8 @@ Address: Alif Tower, Sargodha
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
-                  <p className="font-semibold text-#1e3a8a">UAN Number</p>
-                  <p className="text-xl font-bold bg-[#1D50C9]">(+92) 304 1110947</p>
+                  <p className="font-semibold text-blue-900">UAN Number</p>
+                  <p className="text-xl font-bold text-[#1D50C9]">(+92) 304 1110947</p>
                 </div>
                 
                 <ApplicationForm country="USA">

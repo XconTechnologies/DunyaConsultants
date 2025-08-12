@@ -84,7 +84,7 @@ Address: Alif Tower, Sargodha
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white pt-32 pb-20">
+      <section className="relative bg-gradient-to-r from-[text-[#1D50C9]] to-[#1565c0] text-white pt-32 pb-20">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
@@ -123,7 +123,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-red-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <DollarSign className="w-8 h-8 bg-[#1D50C9] mr-3" />
+                    <DollarSign className="w-8 h-8 text-[text-[#1D50C9]] mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">£11,000 - £17,000</p>
                       <p className="text-gray-600">Annual Tuition Fee</p>
@@ -135,7 +135,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-blue-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <FileText className="w-8 h-8 bg-[#1D50C9] mr-3" />
+                    <FileText className="w-8 h-8 text-[text-[#1D50C9]] mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">IELTS 6.0+</p>
                       <p className="text-gray-600">English Requirement</p>
@@ -147,7 +147,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-green-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <GraduationCap className="w-8 h-8 bg-[#1D50C9] mr-3" />
+                    <GraduationCap className="w-8 h-8 text-[text-[#1D50C9]] mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">166</p>
                       <p className="text-gray-600">Universities Available</p>
@@ -160,7 +160,7 @@ Address: Alif Tower, Sargodha
             {/* English Requirements */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center">
+                <CardTitle className="text-2xl text-[text-[#1D50C9]] flex items-center">
                   <FileText className="w-6 h-6 mr-2" />
                   English Language Requirements
                 </CardTitle>
@@ -176,11 +176,11 @@ Address: Alif Tower, Sargodha
                         <div className="space-y-3">
                           <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
                             <span className="font-medium">Undergraduate:</span>
-                            <span className="bg-[#1D50C9] font-semibold">{req.ug}</span>
+                            <span className="text-[text-[#1D50C9]] font-semibold">{req.ug}</span>
                           </div>
                           <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
                             <span className="font-medium">Postgraduate:</span>
-                            <span className="bg-[#1D50C9] font-semibold">{req.pg}</span>
+                            <span className="text-[text-[#1D50C9]] font-semibold">{req.pg}</span>
                           </div>
                         </div>
                       </CardContent>
@@ -193,7 +193,7 @@ Address: Alif Tower, Sargodha
             {/* Tuition Fee Details */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center">
+                <CardTitle className="text-2xl text-[text-[#1D50C9]] flex items-center">
                   <DollarSign className="w-6 h-6 mr-2" />
                   Tuition Fee Structure
                 </CardTitle>
@@ -202,15 +202,15 @@ Address: Alif Tower, Sargodha
                 <div className="grid md:grid-cols-2 gap-6">
                   <Card className="bg-blue-50 border-blue-200">
                     <CardContent className="p-6 text-center">
-                      <h4 className="font-semibold text-#1e3a8a mb-2">Undergraduate Programs</h4>
-                      <p className="text-3xl font-bold bg-[#1D50C9]">£11,000 - £17,000</p>
+                      <h4 className="font-semibold text-blue-900 mb-2">Undergraduate Programs</h4>
+                      <p className="text-3xl font-bold text-[text-[#1D50C9]]">£11,000 - £17,000</p>
                       <p className="text-#1a73e8">per year</p>
                     </CardContent>
                   </Card>
                   <Card className="bg-blue-50 border-blue-200">
                     <CardContent className="p-6 text-center">
-                      <h4 className="font-semibold text-#1e3a8a mb-2">Graduate Programs</h4>
-                      <p className="text-3xl font-bold bg-[#1D50C9]">£11,000 - £17,000</p>
+                      <h4 className="font-semibold text-blue-900 mb-2">Graduate Programs</h4>
+                      <p className="text-3xl font-bold text-[text-[#1D50C9]]">£11,000 - £17,000</p>
                       <p className="text-#1a73e8">per year</p>
                     </CardContent>
                   </Card>
@@ -221,7 +221,7 @@ Address: Alif Tower, Sargodha
             {/* Why Choose UK */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center">
+                <CardTitle className="text-2xl text-[text-[#1D50C9]] flex items-center">
                   <Zap className="w-6 h-6 mr-2" />
                   Why Choose To Study In UK?
                 </CardTitle>
@@ -230,7 +230,7 @@ Address: Alif Tower, Sargodha
                 <div className="grid md:grid-cols-2 gap-4">
                   {whyChooseUK.map((benefit, index) => (
                     <div key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-5 h-5 #1D50C9 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span className="text-gray-700">{benefit}</span>
                     </div>
                   ))}
@@ -241,7 +241,7 @@ Address: Alif Tower, Sargodha
             {/* Visa Requirements */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center">
+                <CardTitle className="text-2xl text-[text-[#1D50C9]] flex items-center">
                   <FileText className="w-6 h-6 mr-2" />
                   Study Visa Requirements
                 </CardTitle>
@@ -276,7 +276,7 @@ Address: Alif Tower, Sargodha
             {/* Smart Tools */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-xl text-[#1D50C9] flex items-center">
+                <CardTitle className="text-xl text-[text-[#1D50C9]] flex items-center">
                   <Calculator className="w-5 h-5 mr-2" />
                   Smart Tools for UK
                 </CardTitle>
@@ -291,7 +291,7 @@ Address: Alif Tower, Sargodha
             {/* Documents Checklist */}
             <Card className="mb-8">
               <CardHeader>
-                <CardTitle className="text-xl text-[#1D50C9] flex items-center">
+                <CardTitle className="text-xl text-[text-[#1D50C9]] flex items-center">
                   <FileCheck className="w-5 h-5 mr-2" />
                   Documents Checklist
                 </CardTitle>
@@ -300,14 +300,14 @@ Address: Alif Tower, Sargodha
                 <ul className="space-y-3">
                   {documentChecklist.map((doc, index) => (
                     <li key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-4 h-4 #1D50C9 mt-1 flex-shrink-0" />
+                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
                       <span className="text-sm text-gray-700">{doc}</span>
                     </li>
                   ))}
                 </ul>
                 <Button 
                   onClick={downloadChecklist}
-                  className="w-full mt-6 bg-[#1D50C9] hover:bg-[#0f3ba8] text-white">
+                  className="w-full mt-6 text-[text-[#1D50C9]] hover:bg-[#0f3ba8] text-white">
                   <Download className="w-4 h-4 mr-2" />
                   Download Full Checklist
                 </Button>
@@ -317,19 +317,19 @@ Address: Alif Tower, Sargodha
             {/* Quick Contact */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-xl text-[#1D50C9] flex items-center">
+                <CardTitle className="text-xl text-[text-[#1D50C9]] flex items-center">
                   <MapPin className="w-5 h-5 mr-2" />
                   Get Expert Guidance
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
-                  <p className="font-semibold text-#1e3a8a">UAN Number</p>
-                  <p className="text-xl font-bold bg-[#1D50C9]">(+92) 304 1110947</p>
+                  <p className="font-semibold text-blue-900">UAN Number</p>
+                  <p className="text-xl font-bold text-[text-[#1D50C9]]">(+92) 304 1110947</p>
                 </div>
                 
                 <ApplicationForm country="UK">
-                  <Button className="w-full bg-[#1D50C9] hover:bg-[#1845B3] text-white">
+                  <Button className="w-full text-[text-[#1D50C9]] hover:bg-[#1845B3] text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     Apply Now
                   </Button>
