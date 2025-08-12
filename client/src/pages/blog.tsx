@@ -730,7 +730,8 @@ export default function Blog() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       {/* Hero Section with Blue Gradient */}
-      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white pt-32 pb-20">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/20"></div>
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -1071,9 +1072,9 @@ export default function Blog() {
                   viewMode === "list" ? "flex flex-col md:flex-row" : ""
                 }`}
               >
-                <Link href={post.href} className={`block ${
+                <Link href={post.href} className={`block no-hover ${
                   viewMode === "list" ? "flex flex-col md:flex-row w-full" : ""
-                }`}>
+                }`} style={{ textDecoration: 'none' }}>
                   <div className={`
                     bg-white rounded-2xl shadow-lg overflow-hidden 
                     ${viewMode === "list" ? "flex flex-col md:flex-row" : ""}
