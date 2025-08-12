@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Check, Shield, Award, Globe, Users } from "lucide-react";
 
 // Import the company collage image
-import companyCollage from "@assets/Group 1000008593_1754914211912.png";
+import companyCollage from "@assets/Frame 1000007739_1754999995915.png";
 
 const expandableContent = [
   {
