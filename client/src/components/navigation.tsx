@@ -444,22 +444,22 @@ export default function Navigation() {
 
                 {/* Featured Section */}
                 <div className="lg:col-span-1">
-                  <div className="bg-gradient-to-br from-[#1D50C9] via-[#1a73e8] to-[#1a73e8] rounded-xl p-5 text-white relative overflow-hidden">
+                  <div className="bg-gradient-to-br from-[#1D50C9] via-[#1a73e8] to-[#1a73e8] rounded-xl p-5 text-white relative overflow-hidden" style={{ color: '#ffffff' }}>
                     <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9]/30 to-[#1845B3]/30"></div>
-                    <div className="relative z-10">
+                    <div className="relative z-10" style={{ color: '#ffffff' }}>
                       <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">
                         {React.createElement(megaMenuData[activeMegaMenu as keyof typeof megaMenuData].icon, { 
                           className: "w-6 h-6 text-white" 
                         })}
                       </div>
-                      <h3 className="text-lg font-bold mb-2 mega-menu-title" style={{ color: '#ffffff' }}>
+                      <h3 className="text-lg font-bold mb-2 mega-menu-title" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>
                         {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.title}
                       </h3>
-                      <p className="mb-3 text-sm mega-menu-description" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+                      <p className="mb-3 text-sm mega-menu-description" style={{ color: 'rgba(255, 255, 255, 0.9)', WebkitTextFillColor: 'rgba(255, 255, 255, 0.9)' }}>
                         {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.description}
                       </p>
                       <Link href={megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.href}>
-                        <button className="bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 text-sm font-medium mega-menu-button" style={{ color: '#ffffff' }}>
+                        <button className="bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 text-sm font-medium mega-menu-button" style={{ color: '#ffffff', WebkitTextFillColor: '#ffffff' }}>
                           {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.cta} →
                         </button>
                       </Link>

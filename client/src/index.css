@@ -269,14 +269,38 @@ img {
 }
 
 /* Navigation mega menu featured section white text override */
-.mega-menu-title {
+.mega-menu-title,
+.mega-menu-title * {
   color: #ffffff !important;
 }
 
-.mega-menu-description {
+.mega-menu-description,
+.mega-menu-description * {
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
-.mega-menu-button {
+.mega-menu-button,
+.mega-menu-button * {
   color: #ffffff !important;
+}
+
+/* More specific overrides for navigation mega menu */
+div[class*="bg-gradient-to-br"] h3,
+div[class*="bg-gradient-to-br"] p,
+div[class*="bg-gradient-to-br"] button {
+  color: #ffffff !important;
+}
+
+/* Override any text color inheritance in mega menu featured sections */
+[class*="from-[#1D50C9]"] * {
+  color: #ffffff !important;
+}
+
+/* Extremely specific override for navigation featured section text */
+.bg-gradient-to-br.from-\[#1D50C9\] h3,
+.bg-gradient-to-br.from-\[#1D50C9\] p,
+.bg-gradient-to-br.from-\[#1D50C9\] button,
+.bg-gradient-to-br.from-\[#1D50C9\] * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
