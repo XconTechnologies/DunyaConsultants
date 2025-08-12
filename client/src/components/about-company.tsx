@@ -38,7 +38,7 @@ export default function AboutCompany() {
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           
           {/* Left Side - Image */}
           <motion.div
@@ -47,9 +47,9 @@ export default function AboutCompany() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="relative bg-white rounded-3xl p-6 shadow-xl">
+            <div className="relative bg-white rounded-3xl p-6 shadow-xl h-full min-h-[600px] flex items-center">
               <motion.div
-                className="relative"
+                className="relative w-full"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -57,7 +57,7 @@ export default function AboutCompany() {
                 <img
                   src={companyCollage}
                   alt="Company collage showcasing achievements and team"
-                  className="w-full h-auto object-cover rounded-2xl shadow-lg"
+                  className="w-full h-auto object-contain rounded-2xl shadow-lg"
                   loading="eager"
                 />
               </motion.div>
@@ -71,7 +71,7 @@ export default function AboutCompany() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
-            <div className="bg-white rounded-3xl p-8 shadow-xl h-full">
+            <div className="bg-white rounded-3xl p-8 shadow-xl h-full min-h-[600px] flex flex-col">
               {/* About Company Badge */}
               <motion.div
                 className="mb-6"
@@ -99,7 +99,7 @@ export default function AboutCompany() {
               </motion.div>
 
               {/* Content Items */}
-              <div className="space-y-6">
+              <div className="space-y-6 flex-1">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
