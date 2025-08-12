@@ -153,24 +153,22 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
                   className="border-gray-300 focus:border-[#1D50C9]"
                 />
                 
-                <div></div> {/* Empty placeholder to maintain 2-column layout */}
+                <Select value={formData.educationLevel} onValueChange={(value) => handleInputChange("educationLevel", value)}>
+                  <SelectTrigger className="w-full border-gray-300 focus:border-[#1D50C9]">
+                    <SelectValue placeholder="Education Level *" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white">
+                    <SelectItem value="high-school">High School</SelectItem>
+                    <SelectItem value="bachelors">Bachelor's Degree</SelectItem>
+                    <SelectItem value="masters">Master's Degree</SelectItem>
+                    <SelectItem value="phd">PhD</SelectItem>
+                    <SelectItem value="diploma">Diploma</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Select value={formData.educationLevel} onValueChange={(value) => handleInputChange("educationLevel", value)}>
-                <SelectTrigger className="w-full border-gray-300 focus:border-[#1D50C9]">
-                  <SelectValue placeholder="Education Level *" />
-                </SelectTrigger>
-                <SelectContent className="bg-white">
-                  <SelectItem value="high-school">High School</SelectItem>
-                  <SelectItem value="bachelors">Bachelor's Degree</SelectItem>
-                  <SelectItem value="masters">Master's Degree</SelectItem>
-                  <SelectItem value="phd">PhD</SelectItem>
-                  <SelectItem value="diploma">Diploma</SelectItem>
-                </SelectContent>
-              </Select>
-
               <Input
                 id="fieldOfStudy"
                 type="text"
@@ -180,9 +178,7 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
                 required
                 className="border-gray-300 focus:border-[#1D50C9]"
               />
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Select value={formData.preferredIntake} onValueChange={(value) => handleInputChange("preferredIntake", value)}>
                 <SelectTrigger className="w-full border-gray-300 focus:border-[#1D50C9]">
                   <SelectValue placeholder="Preferred Intake Year *" />
@@ -194,8 +190,6 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
                   <SelectItem value="fall-2026">Fall 2026</SelectItem>
                 </SelectContent>
               </Select>
-              
-              <div></div> {/* Empty placeholder to maintain 2-column layout */}
             </div>
 
             {/* Additional Information Section */}
