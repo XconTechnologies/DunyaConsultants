@@ -55,7 +55,7 @@ export default function AboutCompany() {
                 
 
 
-                {/* Single Company Collage Image */}
+                {/* Single Company Collage Image - No White Background */}
                 <div className="relative h-full rounded-[1.5rem] p-4">
                   <motion.div
                     className="relative w-full h-full"
@@ -63,7 +63,7 @@ export default function AboutCompany() {
                     animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                   >
-                    <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white ring-4 ring-white group hover:shadow-3xl transition-all duration-300 h-full">
+                    <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:shadow-3xl transition-all duration-300 h-full">
                       <img
                         src={companyCollage}
                         alt="Company collage showcasing achievements and team"
