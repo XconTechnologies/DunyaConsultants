@@ -730,7 +730,7 @@ export default function Blog() {
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       {/* Enhanced Hero Section with Blue Theme */}
-      <div className="relative overflow-hidden" style={{ backgroundColor: '#1D50C9' }}>
+      <div className="relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1565c0]">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -944,12 +944,12 @@ export default function Blog() {
                   className="group cursor-pointer"
                 >
                   <Link href={post.href} className="block">
-                    <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:rotate-1">
+                    <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl">
                       <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
                         <img
                           src={post.image}
                           alt={post.title}
-                          className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="w-full h-72 object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                         
@@ -1010,7 +1010,7 @@ export default function Blog() {
                           
                           <div className="flex items-center #1845B3 font-semibold group-hover:text-#1a73e8 transition-colors">
                             <span className="text-sm">Read Article</span>
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform duration-300" />
+                            <ArrowRight className="w-4 h-4 ml-2 " />
                           </div>
                         </div>
                       </div>
@@ -1200,7 +1200,7 @@ export default function Blog() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className={`bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden ${
+                    className={`bg-white rounded-lg shadow-sm  overflow-hidden ${
                       viewMode === "list" ? "flex" : ""
                     }`}
                   >
