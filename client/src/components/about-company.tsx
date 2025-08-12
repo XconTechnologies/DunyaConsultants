@@ -50,23 +50,25 @@ export default function AboutCompany() {
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <div className="relative">
-              {/* Image Container - No Background Box */}
-              <motion.div
-                className="relative w-full h-[500px] lg:h-[550px]"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <div className="relative overflow-hidden rounded-2xl shadow-2xl group hover:shadow-3xl transition-all duration-300 h-full w-full">
-                  <img
-                    src={companyCollage}
-                    alt="Company collage showcasing achievements and team"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-2xl"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                </div>
-              </motion.div>
+              {/* Single Background Box with Full Image */}
+              <div className="relative h-[500px] lg:h-[550px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-4 shadow-2xl">
+                <motion.div
+                  className="relative w-full h-full"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  <div className="relative overflow-hidden rounded-2xl shadow-lg group hover:shadow-xl transition-all duration-300 h-full w-full">
+                    <img
+                      src={companyCollage}
+                      alt="Company collage showcasing achievements and team"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-2xl"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
 
