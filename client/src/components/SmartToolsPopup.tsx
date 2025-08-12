@@ -169,7 +169,7 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
         </DialogTrigger>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="cost-calculator-description">
           <DialogHeader>
-            <DialogTitle className="text-2xl #1845B3">{country} Study Cost Calculator</DialogTitle>
+            <DialogTitle className="text-2xl text-[#1D50C9]">{country} Study Cost Calculator</DialogTitle>
           </DialogHeader>
           <div id="cost-calculator-description" className="sr-only">Interactive cost calculator for studying in {country}</div>
           <div className="space-y-6">
@@ -180,7 +180,7 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
             {/* Interactive Cost Calculator */}
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg #1845B3">Select Your Preferences</h3>
+                <h3 className="font-semibold text-lg text-[#1D50C9]">Select Your Preferences</h3>
                 
                 <div className="space-y-3">
                   <div>
@@ -232,7 +232,7 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
                   
                   <Button 
                     onClick={calculateTotalCost}
-                    className="w-full #1845B3 hover:bg-#1a73e8 text-white"
+                    className="w-full bg-[#1D50C9] hover:bg-[#1565c0] text-white"
                     disabled={!selectedUniversity || !selectedAccommodation}
                   >
                     Calculate Total Cost
@@ -241,16 +241,16 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
               </div>
               
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg #1845B3">Cost Breakdown</h3>
+                <h3 className="font-semibold text-lg text-[#1D50C9]">Cost Breakdown</h3>
                 
                 {calculatedCost ? (
                   <div className="space-y-3">
-                    <div className="p-4 bg-blue-50 rounded-lg border-l-4 #1D50C9">
+                    <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-l-[#1D50C9]">
                       <h4 className="font-semibold text-[#1565c0]">Your Personalized Cost</h4>
-                      <p className="text-2xl font-bold #1845B3">
+                      <p className="text-2xl font-bold text-[#1D50C9]">
                         {country === 'UK' ? '£' : country === 'Canada' ? 'CAD $' : '$'}{calculatedCost.toLocaleString()}
                       </p>
-                      <p className="text-sm text-#1a73e8">
+                      <p className="text-sm text-[#1565c0]">
                         For {selectedDuration} year(s) of study
                       </p>
                     </div>
@@ -280,7 +280,7 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
                       </div>
                     ))}
                     <div className="text-center p-4 bg-blue-50 rounded-lg mt-4">
-                      <p className="text-lg font-semibold text-#1e3a8a">Average Total: {costData.total}</p>
+                      <p className="text-lg font-semibold text-[#1D50C9]">Average Total: {costData.total}</p>
                     </div>
                   </div>
                 )}
@@ -293,14 +293,14 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
       {/* Course Match Dialog */}
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="w-full #1845B3 hover:bg-#1a73e8 text-white">
+          <Button className="w-full bg-[#1D50C9] hover:bg-[#1565c0] text-white">
             <GraduationCap className="w-4 h-4 mr-2" />
             Course Match
           </Button>
         </DialogTrigger>
         <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white" aria-describedby="course-match-description">
           <DialogHeader>
-            <DialogTitle className="text-2xl #1845B3">Find Your Perfect Course in {country}</DialogTitle>
+            <DialogTitle className="text-2xl text-[#1D50C9]">Find Your Perfect Course in {country}</DialogTitle>
           </DialogHeader>
           <div id="course-match-description" className="sr-only">Course matching tool for programs in {country}</div>
           <div className="space-y-6">
@@ -311,7 +311,7 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
             {/* Interactive Course Matching Form */}
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg #1845B3">Tell Us About Yourself</h3>
+                <h3 className="font-semibold text-lg text-[#1D50C9]">Tell Us About Yourself</h3>
                 
                 <div className="space-y-3">
                   <div>
@@ -362,7 +362,7 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
                   
                   <Button 
                     onClick={findMatchingCourses}
-                    className="w-full #1845B3 hover:bg-#1a73e8 text-white"
+                    className="w-full bg-[#1D50C9] hover:bg-[#1565c0] text-white"
                     disabled={!educationLevel || !fieldOfInterest}
                   >
                     Find Matching Courses
@@ -371,28 +371,28 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
               </div>
               
               <div className="space-y-4">
-                <h3 className="font-semibold text-lg #1845B3">Course Recommendations</h3>
+                <h3 className="font-semibold text-lg text-[#1D50C9]">Course Recommendations</h3>
                 
                 {matchedCourses.length > 0 ? (
                   <div className="space-y-3">
                     {matchedCourses.map((course, index) => (
                       <div key={index} className="p-4 border border-blue-200 rounded-lg bg-blue-50">
                         <h4 className="font-semibold text-[#1565c0]">{course.name}</h4>
-                        <div className="text-sm text-#1a73e8 space-y-1 mt-2">
+                        <div className="text-sm text-[#1565c0] space-y-1 mt-2">
                           <p><strong>Level:</strong> {course.level}</p>
                           <p><strong>Duration:</strong> {course.duration}</p>
                           <p><strong>Annual Cost:</strong> {course.cost}</p>
                           <p><strong>Field:</strong> {course.field}</p>
                         </div>
-                        <Button size="sm" className="mt-3 #1845B3 hover:bg-#1a73e8 text-white">
+                        <Button size="sm" className="mt-3 bg-[#1D50C9] hover:bg-[#1565c0] text-white">
                           View Details
                         </Button>
                       </div>
                     ))}
                     
-                    <div className="p-4 bg-blue-50 rounded-lg border-l-4 #1D50C9">
+                    <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-l-[#1D50C9]">
                       <h4 className="font-semibold text-[#1565c0]">Perfect Match!</h4>
-                      <p className="text-sm text-#1a73e8 mt-1">
+                      <p className="text-sm text-[#1565c0] mt-1">
                         Found {matchedCourses.length} courses that match your criteria in {country}
                       </p>
                     </div>
@@ -406,16 +406,16 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
                     
                     <div className="grid grid-cols-1 gap-3">
                       <div className="p-3 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 className="font-semibold #1845B3 text-sm">Engineering & Technology</h4>
-                        <ul className="text-xs text-#1a73e8 mt-1 space-y-1">
+                        <h4 className="font-semibold text-[#1D50C9] text-sm">Engineering & Technology</h4>
+                        <ul className="text-xs text-[#1565c0] mt-1 space-y-1">
                           <li>• Computer Science</li>
                           <li>• Data Science</li>
                           <li>• Electrical Engineering</li>
                         </ul>
                       </div>
                       <div className="p-3 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 className="font-semibold #1845B3 text-sm">Business & Management</h4>
-                        <ul className="text-xs text-#1a73e8 mt-1 space-y-1">
+                        <h4 className="font-semibold text-[#1D50C9] text-sm">Business & Management</h4>
+                        <ul className="text-xs text-[#1565c0] mt-1 space-y-1">
                           <li>• MBA</li>
                           <li>• Marketing</li>
                           <li>• Finance</li>
