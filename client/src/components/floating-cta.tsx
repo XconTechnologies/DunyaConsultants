@@ -46,18 +46,33 @@ const countryCounselors = [
 ];
 
 export default function FloatingCTA() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showFull, setShowFull] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Always visible
+  const [showFull, setShowFull] = useState(true); // Auto-open in compact view
   const [selectedCountry, setSelectedCountry] = useState("General");
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
     const handleScroll = () => {
-      const scrolled = window.scrollY;
-      setIsVisible(scrolled > 100);
+      setIsScrolling(true);
+      setShowFull(false); // Close when scrolling
+      
+      // Clear existing timeout
+      clearTimeout(scrollTimeout);
+      
+      // Set timeout to show again after scrolling stops
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+        setShowFull(true); // Reopen after scrolling stops
+      }, 1000);
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
   }, []);
 
   const toggleExpanded = () => {
@@ -80,115 +95,103 @@ export default function FloatingCTA() {
           className="fixed bottom-6 right-6 z-[9999]"
         >
           {!showFull ? (
-            /* Floating Action Button */
+            // Compact Action Button - Smaller
             <motion.div
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative"
             >
               <button
                 onClick={toggleExpanded}
-                className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full shadow-2xl flex items-center justify-center text-white relative overflow-hidden group z-[10001]"
+                className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full shadow-lg flex items-center justify-center text-white relative overflow-hidden group z-[10001]"
               >
-                {/* Pulse Animation */}
-                <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-20"></div>
-                
                 {/* Icon */}
                 <div className="relative z-10">
-                  <Phone className="w-6 h-6" />
+                  <Phone className="w-4 h-4" />
                 </div>
                 
                 {/* Notification Badge */}
-                <div className="absolute -top-1 -right-1 w-5 h-5 #1D50C9 rounded-full flex items-center justify-center">
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full flex items-center justify-center">
                   <span className="text-xs text-white font-bold">!</span>
                 </div>
               </button>
-
-              {/* Tooltip */}
-              <div className="absolute bottom-full right-0 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-[10000]">
-                <div className="bg-gray-800 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap">
-                  Get Free Consultation
-                  <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-800"></div>
-                </div>
-              </div>
             </motion.div>
           ) : (
-            /* Expanded CTA Card */
+            // Compact CTA Card - Smaller
             <motion.div
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 20 }}
-              className="w-80"
+              className="w-64"
             >
-              <Card className="shadow-2xl border-0 bg-white z-[10000] relative">
+              <Card className="shadow-lg border border-gray-200 bg-white z-[10000] relative">
                 <CardContent className="p-0">
-                  {/* Header */}
-                  <div className="bg-gradient-to-r from-primary to-secondary p-4 text-white relative">
+                  {/* Compact Header */}
+                  <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-3 text-white relative">
                     <button
                       onClick={toggleExpanded}
-                      className="absolute top-2 right-2 w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                      className="absolute top-1 right-1 w-6 h-6 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                     >
-                      <X className="w-4 h-4" />
+                      <X className="w-3 h-3" />
                     </button>
                     
-                    <div className="flex items-center space-x-3 mb-3">
-                      <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                        <Users className="w-6 h-6" />
+                    <div className="flex items-center space-x-2 mb-2">
+                      <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                        <Users className="w-4 h-4" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-lg">Free Consultation</h3>
-                        <p className="text-blue-100 text-sm">Available Now</p>
+                        <h3 className="font-semibold text-sm">Free Consultation</h3>
+                        <p className="text-blue-100 text-xs">Available Now</p>
                       </div>
                     </div>
                     
                     {/* Live Indicators */}
-                    <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center justify-between text-xs">
                       <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-                        <span>15 counselors online</span>
+                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
+                        <span>15 online</span>
                       </div>
                       <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-blue-300 fill-current" />
-                        <span>4.8/5 rating</span>
+                        <Star className="w-3 h-3 text-blue-300 fill-current" />
+                        <span>4.8/5</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="p-4 space-y-4">
+                  {/* Compact Content */}
+                  <div className="p-3 space-y-3">
                     <div className="text-center">
-                      <p className="text-gray-600 text-sm mb-2">
-                        Get expert guidance for your study abroad journey
+                      <p className="text-gray-600 text-xs mb-1">
+                        Get expert guidance for study abroad
                       </p>
-                      <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
+                      <div className="flex items-center justify-center space-x-3 text-xs text-gray-500">
                         <div className="flex items-center space-x-1">
-                          <Calendar className="w-3 h-3" />
-                          <span>30 min session</span>
+                          <Calendar className="w-2.5 h-2.5" />
+                          <span>30 min</span>
                         </div>
                         <div className="flex items-center space-x-1">
-                          <Star className="w-3 h-3" />
-                          <span>100% Free</span>
+                          <Star className="w-2.5 h-2.5" />
+                          <span>Free</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Country Counselor Selection */}
+                    {/* Compact Country Selection */}
                     <div className="space-y-2">
-                      <label className="text-sm font-medium text-gray-700">
-                        Select Country Counselor:
+                      <label className="text-xs font-medium text-gray-700">
+                        Country Counselor:
                       </label>
                       <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-                        <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Choose counselor" />
+                        <SelectTrigger className="w-full h-8 text-xs">
+                          <SelectValue placeholder="Choose" />
                         </SelectTrigger>
                         <SelectContent>
                           {countryCounselors.map((counselor) => (
                             <SelectItem key={counselor.country} value={counselor.country}>
                               <div className="flex items-center space-x-2">
-                                <span className="text-lg">{counselor.flag}</span>
+                                <span className="text-sm">{counselor.flag}</span>
                                 <div>
-                                  <div className="font-medium">{counselor.country}</div>
-                                  <div className="text-xs text-gray-500">{counselor.name}</div>
+                                  <div className="font-medium text-xs">{counselor.country}</div>
                                 </div>
                               </div>
                             </SelectItem>
@@ -196,62 +199,62 @@ export default function FloatingCTA() {
                         </SelectContent>
                       </Select>
                       
-                      {/* Selected Counselor Info */}
-                      <div className="bg-blue-50 p-3 rounded-lg">
-                        <div className="flex items-center space-x-2 text-sm">
-                          <span className="text-lg">{selectedCounselor.flag}</span>
+                      {/* Compact Selected Counselor Info */}
+                      <div className="bg-blue-50 p-2 rounded-md">
+                        <div className="flex items-center space-x-2 text-xs">
+                          <span className="text-sm">{selectedCounselor.flag}</span>
                           <div>
                             <div className="font-medium text-gray-900">
                               {selectedCounselor.name}
                             </div>
-                            <div className="text-gray-600">
-                              {selectedCounselor.country} Counselor
+                            <div className="text-gray-600 text-xs">
+                              {selectedCounselor.country}
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="space-y-2">
+                    {/* Compact Action Buttons */}
+                    <div className="space-y-1.5">
                       <Button 
                         asChild
-                        className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-semibold"
-                        size="lg"
+                        className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white font-medium text-xs h-8"
+                        size="sm"
                       >
                         <a href={`tel:${selectedCounselor.phone.replace(/\s+/g, '')}`}>
-                          <Phone className="w-5 h-5 mr-2" />
-                          Call {selectedCounselor.name}: {selectedCounselor.phone}
+                          <Phone className="w-3 h-3 mr-1" />
+                          Call {selectedCounselor.name}
                         </a>
                       </Button>
                       
                       <Button 
                         asChild
                         variant="outline" 
-                        className="w-full border-primary text-primary hover:bg-primary/5 hover:text-primary"
-                        size="lg"
+                        className="w-full border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9]/5 hover:text-[#1D50C9] text-xs h-8"
+                        size="sm"
                       >
                         <a href={`https://wa.me/${selectedCounselor.phone.replace(/[\s+-]/g, '')}?text=Hello! I would like to get a free consultation for ${selectedCounselor.country} from ${selectedCounselor.name}.`} target="_blank" rel="noopener noreferrer">
-                          <MessageCircle className="w-5 h-5 mr-2" />
-                          WhatsApp {selectedCounselor.name}
+                          <MessageCircle className="w-3 h-3 mr-1" />
+                          WhatsApp
                         </a>
                       </Button>
                     </div>
 
-                    {/* Trust Indicators */}
-                    <div className="flex items-center justify-center space-x-4 pt-2 border-t border-gray-100">
+                    {/* Compact Trust Indicators */}
+                    <div className="flex items-center justify-center space-x-3 pt-2 border-t border-gray-100">
                       <div className="text-center">
-                        <div className="text-lg font-bold text-primary">15K+</div>
+                        <div className="text-sm font-bold text-[#1D50C9]">15K+</div>
                         <div className="text-xs text-gray-500">Students</div>
                       </div>
-                      <div className="w-px h-8 bg-gray-200"></div>
+                      <div className="w-px h-6 bg-gray-200"></div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-secondary">98%</div>
+                        <div className="text-sm font-bold text-[#1845B3]">98%</div>
                         <div className="text-xs text-gray-500">Success</div>
                       </div>
-                      <div className="w-px h-8 bg-gray-200"></div>
+                      <div className="w-px h-6 bg-gray-200"></div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-accent">15+</div>
+                        <div className="text-sm font-bold text-[#1D50C9]">15+</div>
                         <div className="text-xs text-gray-500">Years</div>
                       </div>
                     </div>
