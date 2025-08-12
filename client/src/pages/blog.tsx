@@ -376,7 +376,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <ul className="space-y-2 text-gray-600">
                     {contentSections.map((section, index) => (
                       <li key={index}>
-                        <a href={`#${section.id}`} className="hover:text-[#1845B3]">
+                        <a href={`#${section.id}`} className="">
                           {section.title}
                         </a>
                       </li>
@@ -433,14 +433,14 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link 
                       href="/contact" 
-                      className="inline-flex items-center px-6 py-3 #1845B3 text-white font-semibold rounded-lg hover:bg-#1a73e8 transition-colors"
+                      className="inline-flex items-center px-6 py-3 #1845B3 text-white font-semibold rounded-lg  "
                     >
                       <Phone className="w-5 h-5 mr-2" />
                       Book Free Consultation
                     </Link>
                     <Link 
                       href="/contact" 
-                      className="inline-flex items-center px-6 py-3 border-2 #1845B3 #1845B3 font-semibold rounded-lg  transition-colors"
+                      className="inline-flex items-center px-6 py-3 border-2 #1845B3 #1845B3 font-semibold rounded-lg  "
                     >
                       <Mail className="w-5 h-5 mr-2" />
                       Email Us
@@ -729,8 +729,8 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      {/* Enhanced Hero Section with Blue Theme */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-[#1D50C9] to-[#1565c0]">
+      {/* Hero Section with Blue Gradient */}
+      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white pt-32 pb-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -855,7 +855,7 @@ export default function Blog() {
             </motion.div>
           </motion.div>
         </div>
-      </div>
+      </section>
 
       {/* Enhanced Navigation Bar */}
       <div className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-40 backdrop-blur-sm bg-white/95">
@@ -1008,7 +1008,7 @@ export default function Blog() {
                             ))}
                           </div>
                           
-                          <div className="flex items-center #1845B3 font-semibold group-hover:text-#1a73e8 transition-colors">
+                          <div className="flex items-center #1845B3 font-semibold group- ">
                             <span className="text-sm">Read Article</span>
                             <ArrowRight className="w-4 h-4 ml-2 " />
                           </div>
@@ -1158,14 +1158,14 @@ export default function Blog() {
                       <div className="flex items-center justify-between">
                         <div className="flex flex-wrap gap-2">
                           {post.tags.slice(0, 3).map((tag) => (
-                            <span key={tag} className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-50 text-#1a73e8  transition-colors">
+                            <span key={tag} className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-50 text-#1a73e8  ">
                               <Tag className="w-3 h-3 mr-1" />
                               {tag}
                             </span>
                           ))}
                         </div>
                         
-                        <div className="flex items-center #1845B3 font-semibold group-hover:text-#1a73e8 ">
+                        <div className="flex items-center #1845B3 font-semibold group- ">
                           <span className="text-sm">Read Article</span>
                           <ArrowRight className="w-4 h-4 ml-2 group- " />
                         </div>
@@ -1267,7 +1267,7 @@ export default function Blog() {
                         </div>
                         <Link
                           href={post.href}
-                          className="text-[#1845B3] hover:text-#1a73e8 text-sm font-medium flex items-center"
+                          className="text-[#1845B3]  text-sm font-medium flex items-center"
                         >
                           Read More
                           <ArrowRight className="h-3 w-3 ml-1" />
@@ -1325,7 +1325,7 @@ export default function Blog() {
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-xl text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/20"
               />
-              <button className="px-6 py-3 bg-white #1845B3 font-semibold rounded-xl  transition-colors">
+              <button className="px-6 py-3 bg-white #1845B3 font-semibold rounded-xl  ">
                 Subscribe
               </button>
             </div>
@@ -1361,13 +1361,13 @@ export default function Blog() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <a 
                 href="tel:+923041110947" 
-                className="flex-1 #1845B3 text-white px-8 py-4 rounded-xl font-semibold hover:bg-#1a73e8 transition-colors flex items-center justify-center"
+                className="flex-1 #1845B3 text-white px-8 py-4 rounded-xl font-semibold   flex items-center justify-center"
               >
                 📞 Call Now
               </a>
               <a 
                 href="mailto:query@teamdunya.com" 
-                className="flex-1 bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold  transition-colors flex items-center justify-center"
+                className="flex-1 bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold   flex items-center justify-center"
               >
                 ✉️ Email Us
               </a>
