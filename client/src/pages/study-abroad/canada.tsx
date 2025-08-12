@@ -81,14 +81,14 @@ Address: Alif Tower, Sargodha
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[text-[#1D50C9]] to-[#1565c0] text-white pt-32 pb-20">
-        <div className="absolute inset-0 bg-black/40"></div>
+      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white pt-32 pb-20">
+        <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6">
-              Study in <span className="text-blue-300">Canada</span>
+            <h1 className="text-5xl lg:text-7xl font-bold mb-6">
+              Study in <span className="text-blue-400">Canada</span>
             </h1>
-            <p className="text-xl lg:text-2xl max-w-4xl mx-auto text-gray-100 mb-8">
+            <p className="text-xl lg:text-2xl max-w-4xl mx-auto text-blue-100 mb-8">
               Experience high-quality education with 223 universities and 213 colleges offering 8,000+ programs
             </p>
             <div className="flex flex-wrap justify-center gap-4">
@@ -322,7 +322,7 @@ Address: Alif Tower, Sargodha
                 </div>
                 
                 <ApplicationForm country="Canada">
-                  <Button className="w-full text-[text-[#1D50C9]] hover:bg-[#1845B3] text-white">
+                  <Button className="w-full text-[text-[#1D50C9]] hover:bg-[#1D50C9] text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     Apply Now
                   </Button>

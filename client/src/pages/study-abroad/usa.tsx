@@ -315,7 +315,7 @@ Address: Alif Tower, Sargodha
                 </div>
                 
                 <ApplicationForm country="USA">
-                  <Button className="w-full bg-[#1D50C9] hover:bg-[#1845B3] text-white">
+                  <Button className="w-full bg-[#1D50C9] hover:bg-[#1D50C9] text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     Apply Now
                   </Button>

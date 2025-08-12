@@ -117,53 +117,40 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
         <div className="p-6">
           {!isSubmitted ? (
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Personal Information */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                  <User className="w-5 h-5 mr-2 #1845B3" />
-                  Personal Information
-                </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input
+                  placeholder="Full Name *"
+                  value={formData.name}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  required
+                  className="border-gray-300 focus:border-[#1D50C9]"
+                />
                 
-                <div className="grid grid-cols-1 gap-4">
-                  <Input
-                    placeholder="Full Name *"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
-                    required
-                    className="border-gray-300 focus:#1D50C9"
-                  />
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input
-                      type="email"
-                      placeholder="Email Address *"
-                      value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                      required
-                      className="border-gray-300 focus:#1D50C9"
-                    />
-                    
-                    <Input
-                      type="tel"
-                      placeholder="Phone Number *"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
-                      required
-                      className="border-gray-300 focus:#1D50C9"
-                    />
-                  </div>
-                </div>
+                <Input
+                  type="email"
+                  placeholder="Email Address *"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  required
+                  className="border-gray-300 focus:border-[#1D50C9]"
+                />
               </div>
-
-              {/* Consultation Details */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-800">Consultation Details</h3>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input
+                  type="tel"
+                  placeholder="Phone Number *"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  required
+                  className="border-gray-300 focus:border-[#1D50C9]"
+                />
                 
                 <Select value={formData.consultationType} onValueChange={(value) => handleInputChange("consultationType", value)}>
-                  <SelectTrigger className="border-gray-300 focus:#1D50C9">
+                  <SelectTrigger className="border-gray-300 focus:border-[#1D50C9]">
                     <SelectValue placeholder="Select Consultation Type *" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-white">
                     {consultationTypes.map((type) => (
                       <SelectItem key={type} value={type}>
                         {type}
@@ -171,20 +158,20 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
                     ))}
                   </SelectContent>
                 </Select>
-
-                <Textarea
-                  placeholder="Tell us about your study abroad goals and any specific questions..."
-                  value={formData.message}
-                  onChange={(e) => handleInputChange("message", e.target.value)}
-                  className="border-gray-300 focus:#1D50C9 min-h-[100px]"
-                />
               </div>
+
+              <Textarea
+                placeholder="Tell us about your study abroad goals and any specific questions..."
+                value={formData.message}
+                onChange={(e) => handleInputChange("message", e.target.value)}
+                className="border-gray-300 focus:border-[#1D50C9] min-h-[100px]"
+              />
 
               {/* Submit Button */}
               <Button
                 type="submit"
                 disabled={isSubmitting || !formData.name || !formData.email || !formData.phone}
-                className="w-full #1845B3 hover:bg-#1a73e8 text-white font-semibold py-3 text-lg transition-colors"
+                className="w-full bg-[#1D50C9] hover:bg-[#1565c0] text-white font-semibold py-3 text-lg transition-colors"
               >
                 {isSubmitting ? "Booking Consultation..." : "Book Free Consultation"}
               </Button>
