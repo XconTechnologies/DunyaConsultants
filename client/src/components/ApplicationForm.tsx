@@ -157,53 +157,45 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
               </div>
             </div>
 
-            {/* Academic Information Section */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-800 flex items-center">
-                <GraduationCap className="w-5 h-5 mr-2 text-[#1D50C9]" />
-                Academic Information
-              </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Select value={formData.educationLevel} onValueChange={(value) => handleInputChange("educationLevel", value)}>
+                <SelectTrigger className="w-full border-gray-300 focus:border-[#1D50C9]">
+                  <SelectValue placeholder="Education Level *" />
+                </SelectTrigger>
+                <SelectContent className="bg-white">
+                  <SelectItem value="high-school">High School</SelectItem>
+                  <SelectItem value="bachelors">Bachelor's Degree</SelectItem>
+                  <SelectItem value="masters">Master's Degree</SelectItem>
+                  <SelectItem value="phd">PhD</SelectItem>
+                  <SelectItem value="diploma">Diploma</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Input
+                id="fieldOfStudy"
+                type="text"
+                placeholder="Field of Study *"
+                value={formData.fieldOfStudy}
+                onChange={(e) => handleInputChange("fieldOfStudy", e.target.value)}
+                required
+                className="border-gray-300 focus:border-[#1D50C9]"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Select value={formData.preferredIntake} onValueChange={(value) => handleInputChange("preferredIntake", value)}>
+                <SelectTrigger className="w-full border-gray-300 focus:border-[#1D50C9]">
+                  <SelectValue placeholder="Preferred Intake Year *" />
+                </SelectTrigger>
+                <SelectContent className="bg-white">
+                  <SelectItem value="fall-2025">Fall 2025</SelectItem>
+                  <SelectItem value="spring-2026">Spring 2026</SelectItem>
+                  <SelectItem value="summer-2026">Summer 2026</SelectItem>
+                  <SelectItem value="fall-2026">Fall 2026</SelectItem>
+                </SelectContent>
+              </Select>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Select value={formData.educationLevel} onValueChange={(value) => handleInputChange("educationLevel", value)}>
-                  <SelectTrigger className="w-full border-gray-300 focus:border-[#1D50C9]">
-                    <SelectValue placeholder="Education Level *" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    <SelectItem value="high-school">High School</SelectItem>
-                    <SelectItem value="bachelors">Bachelor's Degree</SelectItem>
-                    <SelectItem value="masters">Master's Degree</SelectItem>
-                    <SelectItem value="phd">PhD</SelectItem>
-                    <SelectItem value="diploma">Diploma</SelectItem>
-                  </SelectContent>
-                </Select>
-
-                <Input
-                  id="fieldOfStudy"
-                  type="text"
-                  placeholder="Field of Study *"
-                  value={formData.fieldOfStudy}
-                  onChange={(e) => handleInputChange("fieldOfStudy", e.target.value)}
-                  required
-                  className="border-gray-300 focus:border-[#1D50C9]"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Select value={formData.preferredIntake} onValueChange={(value) => handleInputChange("preferredIntake", value)}>
-                  <SelectTrigger className="w-full border-gray-300 focus:border-[#1D50C9]">
-                    <SelectValue placeholder="Preferred Intake Year *" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    <SelectItem value="fall-2025">Fall 2025</SelectItem>
-                    <SelectItem value="spring-2026">Spring 2026</SelectItem>
-                    <SelectItem value="summer-2026">Summer 2026</SelectItem>
-                    <SelectItem value="fall-2026">Fall 2026</SelectItem>
-                  </SelectContent>
-                </Select>
-                
-                <div></div> {/* Empty placeholder to maintain 2-column layout */}
-              </div>
+              <div></div> {/* Empty placeholder to maintain 2-column layout */}
             </div>
 
             {/* Additional Information Section */}
