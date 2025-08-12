@@ -58,15 +58,12 @@ export default function AboutCompany() {
                   animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  <div className="relative overflow-hidden rounded-2xl shadow-lg group hover:shadow-xl transition-all duration-300 h-full w-full">
-                    <img
-                      src={companyCollage}
-                      alt="Company collage showcasing achievements and team"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-2xl"
-                      loading="eager"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                  </div>
+                  <img
+                    src={companyCollage}
+                    alt="Company collage showcasing achievements and team"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-2xl shadow-lg"
+                    loading="eager"
+                  />
                 </motion.div>
               </div>
             </div>
