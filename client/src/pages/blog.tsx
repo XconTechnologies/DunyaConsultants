@@ -185,7 +185,7 @@ function getCategoryGradient(category: string): string {
     "Study Abroad": "from-purple-600 to-violet-600",
     "Legal Education": "from-orange-600 to-red-600",
     "Healthcare Studies": "from-pink-600 to-rose-600",
-    "University Partnership": "from-cyan-600 to-[#1845B3]",
+    "University Partnership": "from-cyan-600 to-[text-[#1D50C9]]",
     "Study Destinations": "from-green-600 to-emerald-600",
     "UK Immigration": "from-indigo-600 to-purple-600",
     "Study in Canada": "from-red-600 to-pink-600",
@@ -302,7 +302,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
             <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
-            <Link href="/blog" className="text-[#1845B3] ">
+            <Link href="/blog" className="text-[text-[#1D50C9]] ">
               ← Back to Blog
             </Link>
           </div>
@@ -433,14 +433,14 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link 
                       href="/contact" 
-                      className="inline-flex items-center px-6 py-3 #1845B3 text-white font-semibold rounded-lg  "
+                      className="inline-flex items-center px-6 py-3 text-[#1D50C9] text-white font-semibold rounded-lg  "
                     >
                       <Phone className="w-5 h-5 mr-2" />
                       Book Free Consultation
                     </Link>
                     <Link 
                       href="/contact" 
-                      className="inline-flex items-center px-6 py-3 border-2 #1845B3 #1845B3 font-semibold rounded-lg  "
+                      className="inline-flex items-center px-6 py-3 border-2 text-[#1D50C9] text-[#1D50C9] font-semibold rounded-lg  "
                     >
                       <Mail className="w-5 h-5 mr-2" />
                       Email Us
@@ -560,19 +560,19 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Pakistani LLB degree</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Required</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Required</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Bar Council registration</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Mandatory</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Mandatory</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Local law understanding</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Essential</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Essential</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Professional networking</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Helpful</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Helpful</span>
                     </div>
                   </div>
                 </div>
@@ -585,19 +585,19 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>University of Dundee</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">#1 Ranked</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">#1 Ranked</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>University of Glasgow</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Top Choice</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Top Choice</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>University of Edinburgh</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Prestigious</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Prestigious</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Kingston University London</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">London Based</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">London Based</span>
                     </div>
                   </div>
                 </div>
@@ -610,19 +610,19 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Digital Technology</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Tech Leader</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Tech Leader</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Academia & Research</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Researcher</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Researcher</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Arts & Culture</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Creative</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Creative</span>
                     </div>
                     <div className="flex items-center justify-between p-2 bg-gray-50 rounded">
                       <span>Science & Innovation</span>
-                      <span className="text-xs bg-blue-100 #1845B3 px-2 py-1 rounded">Innovator</span>
+                      <span className="text-xs bg-blue-100 text-[#1D50C9] px-2 py-1 rounded">Innovator</span>
                     </div>
                   </div>
                 </div>
@@ -633,13 +633,13 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                     Related Topics
                   </h3>
                   <div className="space-y-3">
-                    <Link href="/blog" className="block text-sm #1845B3  ">
+                    <Link href="/blog" className="block text-sm text-[#1D50C9]  ">
                       Study Abroad Guide 2025
                     </Link>
-                    <Link href="/blog" className="block text-sm #1845B3  ">
+                    <Link href="/blog" className="block text-sm text-[#1D50C9]  ">
                       University Selection Tips
                     </Link>
-                    <Link href="/blog" className="block text-sm #1845B3  ">
+                    <Link href="/blog" className="block text-sm text-[#1D50C9]  ">
                       Visa Application Process
                     </Link>
                   </div>
@@ -813,7 +813,7 @@ export default function Blog() {
               className="max-w-2xl mx-auto relative"
             >
               <div className="relative">
-                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-6 w-6" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 h-6 w-6" />
                 <input
                   type="text"
                   placeholder="Search for study abroad tips, visa guides, university insights..."
@@ -872,7 +872,7 @@ export default function Blog() {
                     onClick={() => setSelectedCategory(category)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                       selectedCategory === category
-                        ? '#1845B3 text-white shadow-lg'
+                        ? 'text-[#1D50C9] text-white shadow-lg'
                         : 'bg-gray-100 text-gray-600 '
                     }`}
                   >
@@ -892,7 +892,7 @@ export default function Blog() {
               <button
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded-lg transition-all duration-200 ${
-                  viewMode === "grid" ? 'bg-white shadow-sm #1845B3' : 'text-gray-500 '
+                  viewMode === "grid" ? 'bg-white shadow-sm text-[#1D50C9]' : 'text-gray-500 '
                 }`}
               >
                 <Grid className="w-5 h-5" />
@@ -900,7 +900,7 @@ export default function Blog() {
               <button
                 onClick={() => setViewMode("list")}
                 className={`p-2 rounded-lg transition-all duration-200 ${
-                  viewMode === "list" ? 'bg-white shadow-sm #1845B3' : 'text-gray-500 '
+                  viewMode === "list" ? 'bg-white shadow-sm text-[#1D50C9]' : 'text-gray-500 '
                 }`}
               >
                 <List className="w-5 h-5" />
@@ -921,7 +921,7 @@ export default function Blog() {
           >
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-400 to-orange-500 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-[#1D50C9] rounded-full flex items-center justify-center">
                   <Star className="w-5 h-5 text-white" />
                 </div>
                 <div>
@@ -941,7 +941,7 @@ export default function Blog() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.6 }}
-                  className="group cursor-pointer"
+                  className="cursor-pointer"
                 >
                   <Link href={post.href} className="block">
                     <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl">
@@ -955,7 +955,7 @@ export default function Blog() {
                         
                         {/* Enhanced badges */}
                         <div className="absolute top-6 left-6">
-                          <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-blue-400 to-orange-500 text-white shadow-lg">
+                          <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-[#1D50C9] text-white shadow-lg">
                             <Star className="w-4 h-4 mr-2" />
                             Featured
                           </span>
@@ -979,7 +979,7 @@ export default function Blog() {
                               <span>{post.readTime}</span>
                             </div>
                           </div>
-                          <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
+                          <h3 className="text-2xl font-bold text-white mb-2 leading-tight" style={{ color: 'white' }}>
                             {post.title}
                           </h3>
                         </div>
@@ -1008,7 +1008,7 @@ export default function Blog() {
                             ))}
                           </div>
                           
-                          <div className="flex items-center #1845B3 font-semibold group- ">
+                          <div className="flex items-center text-[#1D50C9] font-semibold  ">
                             <span className="text-sm">Read Article</span>
                             <ArrowRight className="w-4 h-4 ml-2 " />
                           </div>
@@ -1045,7 +1045,7 @@ export default function Blog() {
         >
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-3">
-              <Globe className="w-6 h-6 #1845B3" />
+              <Globe className="w-6 h-6 text-[#1D50C9]" />
               <h2 className="text-3xl font-bold text-gray-900">
                 {selectedCategory === "All" ? "All Articles" : selectedCategory}
               </h2>
@@ -1067,7 +1067,7 @@ export default function Blog() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05, duration: 0.6 }}
-                className={`group cursor-pointer ${
+                className={`cursor-pointer ${
                   viewMode === "list" ? "flex flex-col md:flex-row" : ""
                 }`}
               >
@@ -1075,7 +1075,7 @@ export default function Blog() {
                   viewMode === "list" ? "flex flex-col md:flex-row w-full" : ""
                 }`}>
                   <div className={`
-                    bg-white rounded-2xl shadow-lg   overflow-hidden transform 
+                    bg-white rounded-2xl shadow-lg overflow-hidden 
                     ${viewMode === "list" ? "flex flex-col md:flex-row" : ""}
                   `}>
                     <div className={`relative overflow-hidden ${
@@ -1085,13 +1085,13 @@ export default function Blog() {
                         src={post.image}
                         alt={post.title}
                         className={`
-                          object-cover group- 
+                          object-cover  
                           ${viewMode === "list" ? "w-full h-64 md:h-full" : "w-full h-56"}
                         `}
                       />
                       
                       {/* Enhanced Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group- " />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0  " />
                       
                       {/* Category and Status Badges */}
                       <div className="absolute top-4 left-4 flex items-center space-x-2">
@@ -1143,9 +1143,9 @@ export default function Blog() {
                       
                       {/* Title */}
                       <h3 className={`
-                        font-bold text-gray-900 mb-4   line-clamp-2
+                        font-bold text-gray-900 mb-4 line-clamp-2
                         ${viewMode === "list" ? "text-2xl" : "text-xl"}
-                      `}>
+                      `} style={{ color: '#111827' }}>
                         {post.title}
                       </h3>
                       
@@ -1158,16 +1158,16 @@ export default function Blog() {
                       <div className="flex items-center justify-between">
                         <div className="flex flex-wrap gap-2">
                           {post.tags.slice(0, 3).map((tag) => (
-                            <span key={tag} className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-50 text-#1a73e8  ">
+                            <span key={tag} className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-50 text-gray-700  ">
                               <Tag className="w-3 h-3 mr-1" />
                               {tag}
                             </span>
                           ))}
                         </div>
                         
-                        <div className="flex items-center #1845B3 font-semibold group- ">
+                        <div className="flex items-center text-[#1D50C9] font-semibold  ">
                           <span className="text-sm">Read Article</span>
-                          <ArrowRight className="w-4 h-4 ml-2 group- " />
+                          <ArrowRight className="w-4 h-4 ml-2  " />
                         </div>
                       </div>
                     </div>
@@ -1242,7 +1242,7 @@ export default function Blog() {
                         </div>
                       </div>
                       
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2" style={{ color: '#111827' }}>
                         {post.title}
                       </h3>
                       
@@ -1267,7 +1267,7 @@ export default function Blog() {
                         </div>
                         <Link
                           href={post.href}
-                          className="text-[#1845B3]  text-sm font-medium flex items-center"
+                          className="text-[text-[#1D50C9]]  text-sm font-medium flex items-center"
                         >
                           Read More
                           <ArrowRight className="h-3 w-3 ml-1" />
@@ -1325,7 +1325,7 @@ export default function Blog() {
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-xl text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/20"
               />
-              <button className="px-6 py-3 bg-white #1845B3 font-semibold rounded-xl  ">
+              <button className="px-6 py-3 bg-white text-[#1D50C9] font-semibold rounded-xl  ">
                 Subscribe
               </button>
             </div>
@@ -1346,7 +1346,7 @@ export default function Blog() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-#1a73e8 mb-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-gray-700 mb-6">
               <Target className="w-4 h-4 mr-2" />
               <span className="text-sm font-medium">Ready to Start?</span>
             </div>
@@ -1361,7 +1361,7 @@ export default function Blog() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <a 
                 href="tel:+923041110947" 
-                className="flex-1 #1845B3 text-white px-8 py-4 rounded-xl font-semibold   flex items-center justify-center"
+                className="flex-1 text-[#1D50C9] text-white px-8 py-4 rounded-xl font-semibold   flex items-center justify-center"
               >
                 📞 Call Now
               </a>
@@ -1375,15 +1375,15 @@ export default function Blog() {
             
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold #1845B3 mb-2">5,000+</div>
+                <div className="text-3xl font-bold text-[#1D50C9] mb-2">5,000+</div>
                 <div className="text-gray-600">Students Placed</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold #1845B3 mb-2">98%</div>
+                <div className="text-3xl font-bold text-[#1D50C9] mb-2">98%</div>
                 <div className="text-gray-600">Visa Success Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold #1845B3 mb-2">17+</div>
+                <div className="text-3xl font-bold text-[#1D50C9] mb-2">17+</div>
                 <div className="text-gray-600">Office Locations</div>
               </div>
             </div>
