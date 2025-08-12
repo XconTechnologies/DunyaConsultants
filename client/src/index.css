@@ -267,3 +267,16 @@ img {
 .social-icon-background:hover {
   background-color: #1845B3 !important;
 }
+
+/* Navigation mega menu featured section white text override */
+.mega-menu-title {
+  color: #ffffff !important;
+}
+
+.mega-menu-description {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.mega-menu-button {
+  color: #ffffff !important;
+}

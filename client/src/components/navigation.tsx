@@ -452,14 +452,14 @@ export default function Navigation() {
                           className: "w-6 h-6 text-white" 
                         })}
                       </div>
-                      <h3 className="text-lg font-bold mb-2 text-white !text-white">
+                      <h3 className="text-lg font-bold mb-2 mega-menu-title" style={{ color: '#ffffff' }}>
                         {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.title}
                       </h3>
-                      <p className="text-white/90 mb-3 text-sm !text-white/90">
+                      <p className="mb-3 text-sm mega-menu-description" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
                         {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.description}
                       </p>
                       <Link href={megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.href}>
-                        <button className="bg-white/20 backdrop-blur-sm border border-white/30 text-white !text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 text-sm font-medium">
+                        <button className="bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-lg hover:bg-white/30 transition-all duration-200 text-sm font-medium mega-menu-button" style={{ color: '#ffffff' }}>
                           {megaMenuData[activeMegaMenu as keyof typeof megaMenuData].featured.cta} →
                         </button>
                       </Link>
