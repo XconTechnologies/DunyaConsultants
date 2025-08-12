@@ -3,7 +3,6 @@ import Navigation from "@/components/navigation";
 import StatsBanner from "@/components/stats-banner";
 import ScrollProgress from "@/components/scroll-progress";
 import FloatingCTA from "@/components/floating-cta";
-import FloatingSocialMedia from "@/components/FloatingSocialMedia";
 import Footer from "@/components/footer";
 
 // Lazy load ALL heavy components for better performance
@@ -37,7 +36,6 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <ScrollProgress />
-      <FloatingSocialMedia />
       <Navigation />
       <StatsBanner />
       

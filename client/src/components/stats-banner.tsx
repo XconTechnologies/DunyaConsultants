@@ -187,14 +187,14 @@ export default function StatsBanner() {
         ))}
       </div>
       <div className="container mx-auto px-8 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
-        {/* Social Icons - Left Side Vertical */}
-        <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 bg-white rounded-full px-3 py-4 shadow-lg border border-gray-200">
+        {/* Social Icons - Fixed Position Throughout Page */}
+        <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-50 bg-white rounded-full px-3 py-4 shadow-lg border border-gray-200 hidden lg:block">
           <div className="flex flex-col gap-3">
             <a
               href="https://www.facebook.com/DunyaConsultant/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaFacebook className="w-4 h-4 text-white" />
             </a>
@@ -202,7 +202,7 @@ export default function StatsBanner() {
               href="https://www.instagram.com/dunya.consultants/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaInstagram className="w-4 h-4 text-white" />
             </a>
@@ -210,7 +210,7 @@ export default function StatsBanner() {
               href="https://www.tiktok.com/@dunya.consultants"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaTiktok className="w-4 h-4 text-white" />
             </a>
@@ -218,7 +218,7 @@ export default function StatsBanner() {
               href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaYoutube className="w-4 h-4 text-white" />
             </a>
@@ -226,7 +226,7 @@ export default function StatsBanner() {
               href="https://pk.linkedin.com/company/dunyaconsultant"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300"
+              className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaLinkedin className="w-4 h-4 text-white" />
             </a>
