@@ -129,27 +129,39 @@
 }
 
 /* Disable hover effects on blog cards */
-.no-hover * {
-  pointer-events: none !important;
-}
-
-.no-hover h3 {
+.no-hover h3,
+.no-hover h3:hover,
+a.no-hover h3,
+a.no-hover h3:hover,
+a.no-hover:hover h3,
+a:hover .no-hover h3 {
   color: #111827 !important;
 }
 
-.no-hover:hover h3 {
+/* Disable all Link hover effects globally for blog cards */
+a[href*="/blog/"]:hover h3,
+a[href*="/blog/"]:hover h2,
+a[href*="/blog/"]:hover .text-xl,
+a[href*="/blog/"]:hover .text-lg,
+a[href*="/blog/"]:hover .text-2xl {
   color: #111827 !important;
 }
 
-a.no-hover {
-  pointer-events: auto !important;
+/* Force all heading colors in blog cards */
+.bg-white h3,
+.bg-white h3:hover,
+.no-hover-link h3,
+.no-hover-link h3:hover,
+.no-hover-link:hover h3 {
+  color: #111827 !important;
 }
 
-a.no-hover:hover * {
-  color: inherit !important;
-}
-
-a.no-hover:hover h3 {
+/* Global override for any blue text on hover in blog cards */
+a:hover h3,
+a:hover .text-xl,
+a:hover .text-lg,
+a:hover .text-2xl,
+a:hover .font-bold {
   color: #111827 !important;
 }
 

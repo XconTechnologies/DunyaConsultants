@@ -944,7 +944,7 @@ export default function Blog() {
                   transition={{ delay: index * 0.1, duration: 0.6 }}
                   className="cursor-pointer"
                 >
-                  <Link href={post.href} className="block">
+                  <Link href={post.href} className="block no-hover-link" style={{ textDecoration: 'none' }}>
                     <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl">
                       <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
                         <img
@@ -1072,7 +1072,7 @@ export default function Blog() {
                   viewMode === "list" ? "flex flex-col md:flex-row" : ""
                 }`}
               >
-                <Link href={post.href} className={`block no-hover ${
+                <Link href={post.href} className={`block no-hover-link ${
                   viewMode === "list" ? "flex flex-col md:flex-row w-full" : ""
                 }`} style={{ textDecoration: 'none' }}>
                   <div className={`
