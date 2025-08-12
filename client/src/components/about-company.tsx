@@ -50,8 +50,8 @@ export default function AboutCompany() {
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <div className="relative">
-              {/* Single Background Box with Full Image */}
-              <div className="relative h-[500px] lg:h-[550px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-4 shadow-2xl">
+              {/* Single Container Box with Image Inside */}
+              <div className="relative h-[520px] lg:h-[570px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
                 <motion.div
                   className="relative w-full h-full"
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -61,7 +61,7 @@ export default function AboutCompany() {
                   <img
                     src={companyCollage}
                     alt="Company collage showcasing achievements and team"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-2xl shadow-lg"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 rounded-xl shadow-lg"
                     loading="eager"
                   />
                 </motion.div>
