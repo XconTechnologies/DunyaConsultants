@@ -81,7 +81,7 @@ Address: Alif Tower, Sargodha
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white pt-32 pb-20">
+      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white pt-32 pb-20">
         <div className="absolute inset-0 bg-black/30"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
