@@ -60,7 +60,7 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
         <DialogTrigger asChild>
           {children}
         </DialogTrigger>
-        <DialogContent className="max-w-2xl bg-white max-h-[85vh] overflow-y-auto p-0">
+        <DialogContent className="max-w-2xl bg-white max-h-[85vh] overflow-y-auto p-0" aria-describedby="success-description">
           {/* Success Header */}
           <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 text-white relative">
             <div className="flex items-center space-x-3">
@@ -75,7 +75,7 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
           </div>
           
           <div className="p-6 text-center space-y-4">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+            <div id="success-description" className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
               <Check className="w-8 h-8 text-green-600" />
             </div>
             <p className="text-gray-600">Our team will contact you within 24 hours to discuss your application and next steps.</p>
@@ -187,17 +187,21 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
                 />
               </div>
 
-              <Select value={formData.preferredIntake} onValueChange={(value) => handleInputChange("preferredIntake", value)}>
-                <SelectTrigger className="w-full border-gray-300 focus:border-[#1D50C9]">
-                  <SelectValue placeholder="Preferred Intake Year *" />
-                </SelectTrigger>
-                <SelectContent className="bg-white">
-                  <SelectItem value="fall-2025">Fall 2025</SelectItem>
-                  <SelectItem value="spring-2026">Spring 2026</SelectItem>
-                  <SelectItem value="summer-2026">Summer 2026</SelectItem>
-                  <SelectItem value="fall-2026">Fall 2026</SelectItem>
-                </SelectContent>
-              </Select>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Select value={formData.preferredIntake} onValueChange={(value) => handleInputChange("preferredIntake", value)}>
+                  <SelectTrigger className="w-full border-gray-300 focus:border-[#1D50C9]">
+                    <SelectValue placeholder="Preferred Intake Year *" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white">
+                    <SelectItem value="fall-2025">Fall 2025</SelectItem>
+                    <SelectItem value="spring-2026">Spring 2026</SelectItem>
+                    <SelectItem value="summer-2026">Summer 2026</SelectItem>
+                    <SelectItem value="fall-2026">Fall 2026</SelectItem>
+                  </SelectContent>
+                </Select>
+                
+                <div></div> {/* Empty placeholder to maintain 2-column layout */}
+              </div>
             </div>
 
             {/* Additional Information Section */}
