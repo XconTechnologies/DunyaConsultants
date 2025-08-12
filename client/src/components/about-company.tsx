@@ -42,7 +42,7 @@ export default function AboutCompany() {
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           
-          {/* Left Side - Modern Scrollable Image Gallery */}
+          {/* Left Side - Large Image Display */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, x: -60 }}
@@ -50,8 +50,8 @@ export default function AboutCompany() {
             transition={{ duration: 1, ease: "easeOut" }}
           >
             <div className="relative">
-              {/* Main Container with Modern Design */}
-              <div className="relative h-[500px] lg:h-[550px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
+              {/* Large Container for Clear Image Display */}
+              <div className="relative w-full max-w-[800px] h-[700px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl mx-auto">
                 
 
 
@@ -84,7 +84,7 @@ export default function AboutCompany() {
 
           {/* Right Side - Single Unified Content Box */}
           <motion.div
-            className="h-[500px] lg:h-[550px]"
+            className="h-[700px]"
             initial={{ opacity: 0, x: 60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
