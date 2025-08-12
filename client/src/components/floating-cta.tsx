@@ -61,10 +61,10 @@ export default function FloatingCTA() {
       // Clear existing timeout
       clearTimeout(scrollTimeout);
       
-      // Set timeout to show again after scrolling stops
+      // Set timeout to stop showing scrolling state (but don't reopen)
       scrollTimeout = setTimeout(() => {
         setIsScrolling(false);
-        setShowFull(true); // Reopen after scrolling stops
+        // Removed auto-reopen - user must manually click to reopen
       }, 1000);
     };
 
