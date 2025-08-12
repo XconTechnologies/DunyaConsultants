@@ -269,27 +269,42 @@ img {
 }
 
 /* Navigation mega menu featured section white text override */
-.mega-menu-title {
+.mega-menu-title,
+.mega-menu-title *,
+h3.mega-menu-title {
   color: #ffffff !important;
 }
 
-.mega-menu-description {
+.mega-menu-description,
+.mega-menu-description *,
+p.mega-menu-description {
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
-.mega-menu-button {
+.mega-menu-button,
+.mega-menu-button *,
+button.mega-menu-button {
   color: #ffffff !important;
 }
 
-/* Navigation mega menu featured section white text override */
-.mega-menu-title {
+/* Additional specificity for navigation dropdowns */
+[class*="bg-gradient-to-br"] .mega-menu-title,
+[class*="bg-gradient-to-br"] h3.mega-menu-title,
+div[class*="from-[#1D50C9]"] .mega-menu-title,
+div[class*="from-[#1D50C9]"] h3.mega-menu-title {
   color: #ffffff !important;
 }
 
-.mega-menu-description {
+[class*="bg-gradient-to-br"] .mega-menu-description,
+[class*="bg-gradient-to-br"] p.mega-menu-description,
+div[class*="from-[#1D50C9]"] .mega-menu-description,
+div[class*="from-[#1D50C9]"] p.mega-menu-description {
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
-.mega-menu-button {
+[class*="bg-gradient-to-br"] .mega-menu-button,
+[class*="bg-gradient-to-br"] button.mega-menu-button,
+div[class*="from-[#1D50C9]"] .mega-menu-button,
+div[class*="from-[#1D50C9]"] button.mega-menu-button {
   color: #ffffff !important;
 }
