@@ -122,7 +122,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-yellow-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <DollarSign className="w-8 h-8 #1845B3 mr-3" />
+                    <DollarSign className="w-8 h-8 bg-[#1D50C9] mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">€906 - €4,175</p>
                       <p className="text-gray-600">Annual Tuition Fee</p>
@@ -134,7 +134,7 @@ Address: Alif Tower, Sargodha
               <Card className="border-l-4 border-l-red-600">
                 <CardContent className="p-6">
                   <div className="flex items-center">
-                    <FileText className="w-8 h-8 #1845B3 mr-3" />
+                    <FileText className="w-8 h-8 bg-[#1D50C9] mr-3" />
                     <div>
                       <p className="text-2xl font-bold text-gray-900">€670/month</p>
                       <p className="text-gray-600">Living Cost Requirement</p>
@@ -175,11 +175,11 @@ Address: Alif Tower, Sargodha
                         <div className="space-y-3">
                           <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
                             <span className="font-medium">Undergraduate:</span>
-                            <span className="#1845B3 font-semibold">{req.ug}</span>
+                            <span className="bg-[#1D50C9] font-semibold">{req.ug}</span>
                           </div>
                           <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
                             <span className="font-medium">Postgraduate:</span>
-                            <span className="#1845B3 font-semibold">{req.pg}</span>
+                            <span className="bg-[#1D50C9] font-semibold">{req.pg}</span>
                           </div>
                         </div>
                       </CardContent>
@@ -202,14 +202,14 @@ Address: Alif Tower, Sargodha
                   <Card className="bg-blue-50 border-blue-200">
                     <CardContent className="p-6 text-center">
                       <h4 className="font-semibold text-#1e3a8a mb-2">EU Students</h4>
-                      <p className="text-3xl font-bold #1845B3">€906</p>
+                      <p className="text-3xl font-bold bg-[#1D50C9]">€906</p>
                       <p className="text-#1a73e8">per year</p>
                     </CardContent>
                   </Card>
                   <Card className="bg-blue-50 border-blue-200">
                     <CardContent className="p-6 text-center">
                       <h4 className="font-semibold text-#1e3a8a mb-2">Non-EU Students</h4>
-                      <p className="text-3xl font-bold #1845B3">€4,175</p>
+                      <p className="text-3xl font-bold bg-[#1D50C9]">€4,175</p>
                       <p className="text-#1a73e8">per year</p>
                     </CardContent>
                   </Card>
@@ -320,11 +320,11 @@ Address: Alif Tower, Sargodha
               <CardContent className="space-y-4">
                 <div className="text-center p-4 bg-blue-50 rounded-lg">
                   <p className="font-semibold text-#1e3a8a">UAN Number</p>
-                  <p className="text-xl font-bold #1845B3">(+92) 304 1110947</p>
+                  <p className="text-xl font-bold bg-[#1D50C9]">(+92) 304 1110947</p>
                 </div>
                 
                 <ApplicationForm country="Belgium">
-                  <Button className="w-full #1845B3 hover:bg-#1a73e8 text-white">
+                  <Button className="w-full bg-[#1D50C9] hover:bg-[#1845B3] text-white">
                     <Calendar className="w-4 h-4 mr-2" />
                     Apply Now
                   </Button>
