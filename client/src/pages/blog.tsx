@@ -302,7 +302,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
             <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
-            <Link href="/blog" className="text-[#1845B3] hover:text-[#1565c0]">
+            <Link href="/blog" className="text-[#1845B3] ">
               ← Back to Blog
             </Link>
           </div>
@@ -440,7 +440,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                     </Link>
                     <Link 
                       href="/contact" 
-                      className="inline-flex items-center px-6 py-3 border-2 #1845B3 #1845B3 font-semibold rounded-lg hover:bg-blue-50 transition-colors"
+                      className="inline-flex items-center px-6 py-3 border-2 #1845B3 #1845B3 font-semibold rounded-lg  transition-colors"
                     >
                       <Mail className="w-5 h-5 mr-2" />
                       Email Us
@@ -633,13 +633,13 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                     Related Topics
                   </h3>
                   <div className="space-y-3">
-                    <Link href="/blog" className="block text-sm #1845B3 hover:text-[#1565c0] hover:underline">
+                    <Link href="/blog" className="block text-sm #1845B3  ">
                       Study Abroad Guide 2025
                     </Link>
-                    <Link href="/blog" className="block text-sm #1845B3 hover:text-[#1565c0] hover:underline">
+                    <Link href="/blog" className="block text-sm #1845B3  ">
                       University Selection Tips
                     </Link>
-                    <Link href="/blog" className="block text-sm #1845B3 hover:text-[#1565c0] hover:underline">
+                    <Link href="/blog" className="block text-sm #1845B3  ">
                       Visa Application Process
                     </Link>
                   </div>
@@ -873,7 +873,7 @@ export default function Blog() {
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
                       selectedCategory === category
                         ? '#1845B3 text-white shadow-lg'
-                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                        : 'bg-gray-100 text-gray-600 '
                     }`}
                   >
                     {category}
@@ -892,7 +892,7 @@ export default function Blog() {
               <button
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded-lg transition-all duration-200 ${
-                  viewMode === "grid" ? 'bg-white shadow-sm #1845B3' : 'text-gray-500 hover:text-gray-700'
+                  viewMode === "grid" ? 'bg-white shadow-sm #1845B3' : 'text-gray-500 '
                 }`}
               >
                 <Grid className="w-5 h-5" />
@@ -900,7 +900,7 @@ export default function Blog() {
               <button
                 onClick={() => setViewMode("list")}
                 className={`p-2 rounded-lg transition-all duration-200 ${
-                  viewMode === "list" ? 'bg-white shadow-sm #1845B3' : 'text-gray-500 hover:text-gray-700'
+                  viewMode === "list" ? 'bg-white shadow-sm #1845B3' : 'text-gray-500 '
                 }`}
               >
                 <List className="w-5 h-5" />
@@ -1075,7 +1075,7 @@ export default function Blog() {
                   viewMode === "list" ? "flex flex-col md:flex-row w-full" : ""
                 }`}>
                   <div className={`
-                    bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-1
+                    bg-white rounded-2xl shadow-lg   overflow-hidden transform 
                     ${viewMode === "list" ? "flex flex-col md:flex-row" : ""}
                   `}>
                     <div className={`relative overflow-hidden ${
@@ -1085,13 +1085,13 @@ export default function Blog() {
                         src={post.image}
                         alt={post.title}
                         className={`
-                          object-cover group-hover:scale-110 transition-transform duration-500
+                          object-cover group- 
                           ${viewMode === "list" ? "w-full h-64 md:h-full" : "w-full h-56"}
                         `}
                       />
                       
                       {/* Enhanced Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group- " />
                       
                       {/* Category and Status Badges */}
                       <div className="absolute top-4 left-4 flex items-center space-x-2">
@@ -1143,7 +1143,7 @@ export default function Blog() {
                       
                       {/* Title */}
                       <h3 className={`
-                        font-bold text-gray-900 mb-4 group-hover:text-[#1845B3] transition-colors duration-300 line-clamp-2
+                        font-bold text-gray-900 mb-4   line-clamp-2
                         ${viewMode === "list" ? "text-2xl" : "text-xl"}
                       `}>
                         {post.title}
@@ -1158,16 +1158,16 @@ export default function Blog() {
                       <div className="flex items-center justify-between">
                         <div className="flex flex-wrap gap-2">
                           {post.tags.slice(0, 3).map((tag) => (
-                            <span key={tag} className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-50 text-#1a73e8 hover:bg-blue-100 transition-colors">
+                            <span key={tag} className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-50 text-#1a73e8  transition-colors">
                               <Tag className="w-3 h-3 mr-1" />
                               {tag}
                             </span>
                           ))}
                         </div>
                         
-                        <div className="flex items-center #1845B3 font-semibold group-hover:text-#1a73e8 transition-colors duration-300">
+                        <div className="flex items-center #1845B3 font-semibold group-hover:text-#1a73e8 ">
                           <span className="text-sm">Read Article</span>
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                          <ArrowRight className="w-4 h-4 ml-2 group- " />
                         </div>
                       </div>
                     </div>
@@ -1325,7 +1325,7 @@ export default function Blog() {
                 placeholder="Enter your email address"
                 className="flex-1 px-4 py-3 rounded-xl text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/20"
               />
-              <button className="px-6 py-3 bg-white #1845B3 font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+              <button className="px-6 py-3 bg-white #1845B3 font-semibold rounded-xl  transition-colors">
                 Subscribe
               </button>
             </div>
@@ -1367,7 +1367,7 @@ export default function Blog() {
               </a>
               <a 
                 href="mailto:query@teamdunya.com" 
-                className="flex-1 bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-900 transition-colors flex items-center justify-center"
+                className="flex-1 bg-gray-800 text-white px-8 py-4 rounded-xl font-semibold  transition-colors flex items-center justify-center"
               >
                 ✉️ Email Us
               </a>
