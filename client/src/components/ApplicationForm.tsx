@@ -120,7 +120,7 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
                 Personal Information
               </h3>
               
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input
                   id="fullName"
                   type="text"
@@ -131,27 +131,29 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
                   className="border-gray-300 focus:border-[#1D50C9]"
                 />
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Email Address *"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    required
-                    className="border-gray-300 focus:border-[#1D50C9]"
-                  />
-                  
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="Phone Number *"
-                    value={formData.phone}
-                    onChange={(e) => handleInputChange("phone", e.target.value)}
-                    required
-                    className="border-gray-300 focus:border-[#1D50C9]"
-                  />
-                </div>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Email Address *"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  required
+                  className="border-gray-300 focus:border-[#1D50C9]"
+                />
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Input
+                  id="phone"
+                  type="tel"
+                  placeholder="Phone Number *"
+                  value={formData.phone}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  required
+                  className="border-gray-300 focus:border-[#1D50C9]"
+                />
+                
+                <div></div> {/* Empty placeholder to maintain 2-column layout */}
               </div>
             </div>
 
