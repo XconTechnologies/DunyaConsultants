@@ -42,43 +42,23 @@ export default function AboutCompany() {
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
           
-          {/* Left Side - Modern Scrollable Image Gallery */}
+          {/* Left Side - Full Background Image */}
           <motion.div
-            className="relative"
+            className="relative h-[500px] lg:h-[550px] rounded-2xl overflow-hidden shadow-2xl"
             initial={{ opacity: 0, x: -60 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 }}
             transition={{ duration: 1, ease: "easeOut" }}
           >
-            <div className="relative">
-              {/* Main Container with Modern Design */}
-              <div className="relative h-[500px] lg:h-[550px] bg-gradient-to-br from-white/40 via-blue-50/50 to-blue-100/40 backdrop-blur-xl border border-white/50 rounded-[2rem] p-6 shadow-2xl">
-                
-
-
-                {/* Single Company Collage Image */}
-                <div className="relative h-full rounded-[1.5rem] p-4">
-                  <motion.div
-                    className="relative w-full h-full"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                  >
-                    <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white ring-4 ring-white group hover:shadow-3xl transition-all duration-300 h-full">
-                      <img
-                        src={companyCollage}
-                        alt="Company collage showcasing achievements and team"
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
-                        loading="eager"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-
-
-
-
+            {/* Background Image */}
+            <div className="absolute inset-0">
+              <img
+                src={companyCollage}
+                alt="Company collage showcasing achievements and team"
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
+              {/* Optional overlay for better text readability if needed */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
             </div>
           </motion.div>
 
