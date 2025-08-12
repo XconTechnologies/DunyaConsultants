@@ -83,7 +83,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
                 {/* Universities Table */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Top Universities for MSc Business Analytics</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Top Universities for MSc Business Analytics</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse border border-gray-300">
                       <thead>
@@ -147,7 +147,7 @@ export default function MSCBusinessAnalyticsInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Key Requirements</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Key Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
                       <span className="#1845B3 mr-2">•</span>
@@ -181,30 +181,30 @@ export default function MSCBusinessAnalyticsInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Required Documents</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Required Documents</h3>
                   <ol className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
                       <span>A SOP (Statement of Purpose) explaining why you are willing to study the course.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
                       <span>Copies of your educational transcripts.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
                       <span>English language proficiency test scores, such as TOEFL, IELTS, or PTE.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
                       <span>An updated CV or resume.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
                       <span>A recommendation letter from your past school or employer (if required).</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">6</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">6</span>
                       <span>Test scores from eligibility tests such as GRE or GMAT (if needed).</span>
                     </li>
                   </ol>
@@ -222,7 +222,7 @@ export default function MSCBusinessAnalyticsInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Cost Breakdown</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Cost Breakdown</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="font-semibold text-#1a73e8 mb-2">Tuition Fees</h4>
@@ -252,7 +252,7 @@ export default function MSCBusinessAnalyticsInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Available Scholarships</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Available Scholarships</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <ul className="space-y-2 text-gray-700">
@@ -329,7 +329,7 @@ export default function MSCBusinessAnalyticsInUK() {
                   <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-[#1845B3] transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -343,7 +343,7 @@ export default function MSCBusinessAnalyticsInUK() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Program Duration</span>
@@ -370,7 +370,7 @@ export default function MSCBusinessAnalyticsInUK() {
 
             {/* Top Universities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Top 5 Universities</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Top 5 Universities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>1. University of Edinburgh Business School</li>
                 <li>2. Lancaster University Management School</li>

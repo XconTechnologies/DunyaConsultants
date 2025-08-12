@@ -384,7 +384,7 @@ export default function USAGuide() {
                             <h5 className="font-bold text-neutral-800 mb-3">Specialized Schools</h5>
                             <div className="flex flex-wrap gap-2">
                               {university.specialties.map((specialty, idx) => (
-                                <Badge key={idx} className="#1D50C9 hover:#1845B3 text-xs">{specialty}</Badge>
+                                <Badge key={idx} className="#1D50C9 hover:bg-[#1845B3] text-xs">{specialty}</Badge>
                               ))}
                             </div>
                           </div>

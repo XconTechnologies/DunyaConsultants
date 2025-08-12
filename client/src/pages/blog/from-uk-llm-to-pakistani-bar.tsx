@@ -58,19 +58,19 @@ export default function FromUKLLMToPakistaniBar() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center">
                       <div className="text-2xl font-bold #1845B3">5 Years</div>
-                      <div className="text-sm text-#1565c0">LLB Duration</div>
+                      <div className="text-sm text-[#1565c0]">LLB Duration</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold #1845B3">1 Year</div>
-                      <div className="text-sm text-#1565c0">Conversion Course</div>
+                      <div className="text-sm text-[#1565c0]">Conversion Course</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold #1845B3">Required</div>
-                      <div className="text-sm text-#1565c0">Bar Registration</div>
+                      <div className="text-sm text-[#1565c0]">Bar Registration</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold #1845B3">Mixed</div>
-                      <div className="text-sm text-#1565c0">Legal System</div>
+                      <div className="text-sm text-[#1565c0]">Legal System</div>
                     </div>
                   </div>
                 </div>

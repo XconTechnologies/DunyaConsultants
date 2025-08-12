@@ -42,7 +42,7 @@ export default function Top10ReasonsToStudyInUK() {
 
                 {/* Quick Overview */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">UK Education Overview</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">UK Education Overview</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">130+</h4>
@@ -78,7 +78,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">1</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">High-Quality Education System</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">High-Quality Education System</h3>
                       <p className="text-gray-700 leading-relaxed">
                         Undoubtedly, universities in the UK have the best education system and rank among the top ones in the world. By studying there, students will engage themselves in several academic as well as extra-curricular activities. Such activities will allow you to do critical thinking and develop analytical abilities in your selected program.
                       </p>
@@ -91,7 +91,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">2</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">Shorter Duration of Courses</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Shorter Duration of Courses</h3>
                       <p className="text-gray-700 leading-relaxed">
                         One of the best things about choosing to study in UK is that you can complete a degree in a short period as compared to the US or Canada. For an undergraduate degree, it takes around <strong>three years</strong>, and <strong>one year</strong> is required for a master's program. This is why to choose UK for masters. Also, completing your study in a shorter duration is beneficial in terms of finances.
                       </p>
@@ -104,7 +104,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">3</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">Scholarship Programs</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Scholarship Programs</h3>
                       <p className="text-gray-700 leading-relaxed">
                         There are many UK universities that offer scholarships to Pakistani students. These scholarships are provided to support them. Whether you need financial help or have excellent academic grades, Scholarships can help cover your living expenses, tuition fees, or other study-related expenses, making it easier for you.
                       </p>
@@ -117,7 +117,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">4</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">Multicultural Environment</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Multicultural Environment</h3>
                       <p className="text-gray-700 leading-relaxed">
                         The universities in the United Kingdom are filled with students from different cultures. This makes the learning environment wide and welcoming, where students can share their thoughts and learn about different perspectives. It is a great chance to make friends from different cultures and learn about them.
                       </p>
@@ -130,7 +130,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">5</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">Work Opportunities</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Work Opportunities</h3>
                       <p className="text-gray-700 leading-relaxed">
                         Work is a crucial part of life, without any doubt, particularly for students. One of the reasons why you study in the UK is that you can work <strong>full-time during your semester breaks</strong> and around <strong>twenty hours per week</strong> during study time. This provides you with a great opportunity to earn to help with your living expenses.
                       </p>
@@ -143,7 +143,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">6</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">Variety of Programs</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Variety of Programs</h3>
                       <p className="text-gray-700 leading-relaxed">
                         The UK has a wide range of academic courses, from bachelor's and master's degrees to PhDs. There are even <strong>UK universities without IELTS</strong> for your ease. It means you can easily find a program according to your interests and career goals. Whether you are interested in arts, technology, science, etc., there is something for everyone.
                       </p>
@@ -156,7 +156,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">7</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">Healthcare Benefits</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Healthcare Benefits</h3>
                       <p className="text-gray-700 leading-relaxed">
                         Those who are studying in the country for over <strong>six months</strong> can get complete <strong>NHS healthcare coverage</strong>. It means you can get healthcare services if required without worrying about additional costs. To do this, you will have to register with a GP (doctor) after your arrival. You can do this either at the health center of your university or close to your residence.
                       </p>
@@ -169,7 +169,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">8</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">Career Opportunities</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Career Opportunities</h3>
                       <p className="text-gray-700 leading-relaxed">
                         Graduates from universities in the UK are highly respected by employers in the world. These universities are famous for their high-quality education and have powerful links with industries. These connections provide students with the best opportunities to do internships and find jobs after finishing their studies. The knowledge and skills you get from a UK degree can help you develop a successful career.
                       </p>
@@ -182,7 +182,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">9</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">Develop English Language Skills</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Develop English Language Skills</h3>
                       <p className="text-gray-700 leading-relaxed">
                         The English language is highly vital in today's competitive job market. Studying in the UK provides you the opportunity to learn and master this language. You will master working, living, and thinking in English daily, which will lead to the improvement in your communication skills and confidence in using the language professionally.
                       </p>
@@ -195,7 +195,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <div className="flex items-start">
                     <div className="#1D50C9 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold text-xl mr-4 flex-shrink-0">10</div>
                     <div>
-                      <h3 className="text-2xl font-bold mb-3 text-#1565c0">Access to Advanced Research</h3>
+                      <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Access to Advanced Research</h3>
                       <p className="text-gray-700 leading-relaxed">
                         UK universities are at the forefront of research and innovation. Students have access to state-of-the-art facilities, renowned professors, and cutting-edge research opportunities. This exposure to advanced research methodologies and technologies provides students with valuable skills and knowledge that are highly sought after in the global job market.
                       </p>
@@ -290,7 +290,7 @@ export default function Top10ReasonsToStudyInUK() {
                   <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-[#1845B3] transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -304,7 +304,7 @@ export default function Top10ReasonsToStudyInUK() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">UK Study Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">UK Study Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Universities</span>
@@ -331,7 +331,7 @@ export default function Top10ReasonsToStudyInUK() {
 
             {/* Top Benefits */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Top Benefits</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Top Benefits</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• World-class education system</li>
                 <li>• Shorter course duration</li>
@@ -344,7 +344,7 @@ export default function Top10ReasonsToStudyInUK() {
 
             {/* Popular Programs */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Popular Programs</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Popular Programs</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Business & Management</li>
                 <li>• Engineering & Technology</li>
@@ -359,13 +359,13 @@ export default function Top10ReasonsToStudyInUK() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Study in UK: Complete Guide for Pakistani Students
                 </a>
-                <a href="/blog/msc-business-analytics-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/msc-business-analytics-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   MSc Business Analytics in UK
                 </a>
-                <a href="/blog/master-of-finance-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/master-of-finance-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   A Beginner's Guide to Master of Finance in UK
                 </a>
               </div>

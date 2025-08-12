@@ -64,19 +64,19 @@ export default function BenefitsOfStudyingInLondon() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-london" className="hover:#1845B3">Why Study in London?</a></li>
-                  <li><a href="#top-universities" className="hover:#1845B3">Top-Rated Universities</a></li>
-                  <li><a href="#international-community" className="hover:#1845B3">International Student Community</a></li>
-                  <li><a href="#career-opportunities" className="hover:#1845B3">Career Opportunities</a></li>
-                  <li><a href="#nightlife-culture" className="hover:#1845B3">Culture & Nightlife</a></li>
-                  <li><a href="#student-accommodation" className="hover:#1845B3">Student Accommodation</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-london" className="hover:bg-[#1845B3]">Why Study in London?</a></li>
+                  <li><a href="#top-universities" className="hover:bg-[#1845B3]">Top-Rated Universities</a></li>
+                  <li><a href="#international-community" className="hover:bg-[#1845B3]">International Student Community</a></li>
+                  <li><a href="#career-opportunities" className="hover:bg-[#1845B3]">Career Opportunities</a></li>
+                  <li><a href="#nightlife-culture" className="hover:bg-[#1845B3]">Culture & Nightlife</a></li>
+                  <li><a href="#student-accommodation" className="hover:bg-[#1845B3]">Student Accommodation</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* London Facts */}
               <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-#1565c0 mb-4">London at a Glance</h3>
+                <h3 className="text-xl font-semibold text-[#1565c0] mb-4">London at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-700 mb-2"><strong>Population:</strong> 8+ million people</p>
@@ -100,7 +100,7 @@ export default function BenefitsOfStudyingInLondon() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Key Advantages of Studying in London</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Key Advantages of Studying in London</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-700 mb-2"><strong>Academic Excellence:</strong> World-renowned universities</p>
@@ -130,7 +130,7 @@ export default function BenefitsOfStudyingInLondon() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <GraduationCap className="w-5 h-5 mr-2" />
                       World-Class Institutions
                     </h3>
@@ -144,7 +144,7 @@ export default function BenefitsOfStudyingInLondon() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <Building className="w-5 h-5 mr-2" />
                       Specialized Colleges
                     </h3>
@@ -171,7 +171,7 @@ export default function BenefitsOfStudyingInLondon() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0 flex items-center">
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0] flex items-center">
                     <Users className="w-5 h-5 mr-2" />
                     Diverse Student Community
                   </h3>
@@ -206,7 +206,7 @@ export default function BenefitsOfStudyingInLondon() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <Briefcase className="w-5 h-5 mr-2" />
                       Major Industries & Sectors
                     </h3>
@@ -231,7 +231,7 @@ export default function BenefitsOfStudyingInLondon() {
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Graduate Employment Statistics</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Graduate Employment Statistics</h3>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div>
                         <p className="text-2xl font-bold #1845B3">95%</p>
@@ -263,7 +263,7 @@ export default function BenefitsOfStudyingInLondon() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Entertainment & Culture Hub</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Entertainment & Culture Hub</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Venues & Entertainment:</h4>
@@ -303,7 +303,7 @@ export default function BenefitsOfStudyingInLondon() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <Home className="w-5 h-5 mr-2" />
                       Accommodation Options
                     </h3>
@@ -330,7 +330,7 @@ export default function BenefitsOfStudyingInLondon() {
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Cost of Living Breakdown</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Cost of Living Breakdown</h3>
                     <div className="grid md:grid-cols-3 gap-4">
                       <div>
                         <p className="text-gray-700 mb-1"><strong>Accommodation:</strong></p>
@@ -396,7 +396,7 @@ export default function BenefitsOfStudyingInLondon() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Ready to Study in London?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#1565c0]">Ready to Study in London?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants for your London university applications and visa process.
                 </p>

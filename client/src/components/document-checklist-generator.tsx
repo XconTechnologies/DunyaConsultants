@@ -302,7 +302,7 @@ export default function DocumentChecklistGenerator() {
         >
           <div className="inline-flex items-center space-x-2 bg-blue-100 rounded-full px-6 py-3 mb-6">
             <FileText className="w-5 h-5 #1845B3" />
-            <span className="text-sm font-medium text-#1565c0">Smart Document Planning</span>
+            <span className="text-sm font-medium text-[#1565c0]">Smart Document Planning</span>
           </div>
           
           <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
@@ -480,7 +480,7 @@ export default function DocumentChecklistGenerator() {
                                 <div className="flex items-center space-x-2 mb-2">
                                   <h4 className="font-bold text-gray-800">{document.name}</h4>
                                   {document.required ? (
-                                    <span className="bg-blue-100 text-#1565c0 text-xs px-2 py-1 rounded-full">
+                                    <span className="bg-blue-100 text-[#1565c0] text-xs px-2 py-1 rounded-full">
                                       Required
                                     </span>
                                   ) : (

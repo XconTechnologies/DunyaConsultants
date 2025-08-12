@@ -256,7 +256,7 @@ Address: Alif Tower, Sargodha
                 </div>
                 
                 <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-semibold text-#1565c0 mb-2">💡 Important Note:</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">💡 Important Note:</h4>
                   <p className="text-#1a73e8 text-sm">Turkey offers extensive scholarship programs including Türkiye Scholarships covering full tuition, accommodation, and monthly stipends. Students can work part-time with proper permits.</p>
                 </div>
               </CardContent>

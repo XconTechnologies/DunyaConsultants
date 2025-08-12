@@ -64,20 +64,20 @@ export default function StudyInBelgiumGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-belgium" className="hover:#1845B3">Why Choose to Study in Belgium?</a></li>
-                  <li><a href="#education-system" className="hover:#1845B3">Belgian Education System</a></li>
-                  <li><a href="#english-requirements" className="hover:#1845B3">English Language Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:#1845B3">Tuition Fees and Living Costs</a></li>
-                  <li><a href="#visa-requirements" className="hover:#1845B3">Study Visa Requirements</a></li>
-                  <li><a href="#documents-checklist" className="hover:#1845B3">Required Documents</a></li>
-                  <li><a href="#application-process" className="hover:#1845B3">Application Process</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-belgium" className="hover:bg-[#1845B3]">Why Choose to Study in Belgium?</a></li>
+                  <li><a href="#education-system" className="hover:bg-[#1845B3]">Belgian Education System</a></li>
+                  <li><a href="#english-requirements" className="hover:bg-[#1845B3]">English Language Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:bg-[#1845B3]">Tuition Fees and Living Costs</a></li>
+                  <li><a href="#visa-requirements" className="hover:bg-[#1845B3]">Study Visa Requirements</a></li>
+                  <li><a href="#documents-checklist" className="hover:bg-[#1845B3]">Required Documents</a></li>
+                  <li><a href="#application-process" className="hover:bg-[#1845B3]">Application Process</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Belgium Overview */}
               <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-#1565c0 mb-4">Study in Belgium at a Glance</h3>
+                <h3 className="text-xl font-semibold text-[#1565c0] mb-4">Study in Belgium at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-700 mb-2"><strong>Languages:</strong> Trilingual (Dutch, French, German)</p>
@@ -103,7 +103,7 @@ export default function StudyInBelgiumGuide() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <DollarSign className="w-5 h-5 mr-2" />
                         Reasonable Tuition Fees
                       </h3>
@@ -111,7 +111,7 @@ export default function StudyInBelgiumGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <GraduationCap className="w-5 h-5 mr-2" />
                         Highest Ranking Universities
                       </h3>
@@ -119,7 +119,7 @@ export default function StudyInBelgiumGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         Easy Access to Europe
                       </h3>
@@ -127,7 +127,7 @@ export default function StudyInBelgiumGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <Globe className="w-5 h-5 mr-2" />
                         Multilingual Environment
                       </h3>
@@ -135,7 +135,7 @@ export default function StudyInBelgiumGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <CheckCircle className="w-5 h-5 mr-2" />
                         Top Ranked for Medicine
                       </h3>
@@ -145,7 +145,7 @@ export default function StudyInBelgiumGuide() {
 
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <AlertCircle className="w-5 h-5 mr-2" />
                         Hotspot for Innovation
                       </h3>
@@ -153,7 +153,7 @@ export default function StudyInBelgiumGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <BookOpen className="w-5 h-5 mr-2" />
                         Diversity in Research Programs
                       </h3>
@@ -161,7 +161,7 @@ export default function StudyInBelgiumGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <Users className="w-5 h-5 mr-2" />
                         Trilingual Education Systems
                       </h3>
@@ -169,7 +169,7 @@ export default function StudyInBelgiumGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <Clock className="w-5 h-5 mr-2" />
                         Work Along with Studying
                       </h3>
@@ -188,7 +188,7 @@ export default function StudyInBelgiumGuide() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">IELTS Score Requirements</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">IELTS Score Requirements</h3>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold text-gray-800 mb-2">Undergraduate Programs:</h4>
@@ -215,7 +215,7 @@ export default function StudyInBelgiumGuide() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Undergraduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Undergraduate Programs</h3>
                     <div className="text-center">
                       <div className="text-3xl font-bold #1845B3 mb-2">€950 - €7,000</div>
                       <p className="text-gray-700 text-sm">per year (depending on program selected)</p>
@@ -223,7 +223,7 @@ export default function StudyInBelgiumGuide() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Graduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Graduate Programs</h3>
                     <div className="text-center">
                       <div className="text-3xl font-bold #1845B3 mb-2">€1,000 - €4,000</div>
                       <p className="text-gray-700 text-sm">per year</p>
@@ -242,12 +242,12 @@ export default function StudyInBelgiumGuide() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Original Passport</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Original Passport</h3>
                     <p className="text-gray-700">It should be valid for 3 months longer than the visa duration.</p>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Educational Documents</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Educational Documents</h3>
                     <ul className="text-gray-700 space-y-1">
                       <li>• Intermediate degree and result documents (attested)</li>
                       <li>• Matric degree and result documents (attested)</li>
@@ -255,7 +255,7 @@ export default function StudyInBelgiumGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">English Proficiency and Additional Documents</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">English Proficiency and Additional Documents</h3>
                     <ul className="text-gray-700 space-y-1">
                       <li>• IELTS/PTE scorecard with required grades</li>
                       <li>• Experience certificate (if applicable)</li>
@@ -264,7 +264,7 @@ export default function StudyInBelgiumGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Financial and Medical Requirements</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Financial and Medical Requirements</h3>
                     <ul className="text-gray-700 space-y-1">
                       <li>• Financial proof of ability to cover tuition and living expenses</li>
                       <li>• Medical certificate confirming good health</li>
@@ -279,7 +279,7 @@ export default function StudyInBelgiumGuide() {
                 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Original Passport
                     </h3>
@@ -287,7 +287,7 @@ export default function StudyInBelgiumGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <FileText className="w-5 h-5 mr-2" />
                       All Attested Educational Documents
                     </h3>
@@ -295,7 +295,7 @@ export default function StudyInBelgiumGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <GraduationCap className="w-5 h-5 mr-2" />
                       Degree & Transcript Attested Copies
                     </h3>
@@ -303,7 +303,7 @@ export default function StudyInBelgiumGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <BookOpen className="w-5 h-5 mr-2" />
                       IELTS / PTE / TOEFL Score Card
                     </h3>
@@ -311,7 +311,7 @@ export default function StudyInBelgiumGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Supporting Documents
                     </h3>
@@ -358,7 +358,7 @@ export default function StudyInBelgiumGuide() {
 
               {/* CTA Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Explore Belgium's Educational Excellence?</h3>
+                <h3 className="text-2xl font-bold text-[#1565c0] mb-4">Ready to Explore Belgium's Educational Excellence?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants provides comprehensive guidance for Belgian university applications, visa processes, and program selection. Contact us for expert assistance in planning your European education journey.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a href="/contact" className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
@@ -380,7 +380,7 @@ export default function StudyInBelgiumGuide() {
               
               {/* Quick Info */}
               <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-#1565c0">Quick Study Info</h3>
+                <h3 className="text-lg font-semibold mb-4 text-[#1565c0]">Quick Study Info</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Languages:</span>
@@ -405,10 +405,10 @@ export default function StudyInBelgiumGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/belgium-study-visa-guide-2025" className="block #1845B3 hover:text-#1565c0 text-sm">Belgium Study Visa Guide</a>
-                  <a href="/blog/study-in-belgium-for-pakistani-students" className="block #1845B3 hover:text-#1565c0 text-sm">Study in Belgium 2025</a>
-                  <a href="/blog/study-in-finland-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in Finland Guide</a>
-                  <a href="/blog/study-in-uk-complete-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in UK Guide</a>
+                  <a href="/blog/belgium-study-visa-guide-2025" className="block #1845B3 hover:text-[#1565c0] text-sm">Belgium Study Visa Guide</a>
+                  <a href="/blog/study-in-belgium-for-pakistani-students" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in Belgium 2025</a>
+                  <a href="/blog/study-in-finland-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in Finland Guide</a>
+                  <a href="/blog/study-in-uk-complete-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in UK Guide</a>
                 </div>
               </div>
 

@@ -64,14 +64,14 @@ export default function StudyInTurkeyGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-turkey" className="hover:#1845B3">Why Choose to Study in Turkey?</a></li>
-                  <li><a href="#education-system" className="hover:#1845B3">Turkish Education System</a></li>
-                  <li><a href="#visa-requirements" className="hover:#1845B3">Study Visa Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:#1845B3">Tuition Fees and Living Costs</a></li>
-                  <li><a href="#accommodation" className="hover:#1845B3">Student Accommodation</a></li>
-                  <li><a href="#documents-checklist" className="hover:#1845B3">Required Documents</a></li>
-                  <li><a href="#application-process" className="hover:#1845B3">Application Process</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-turkey" className="hover:bg-[#1845B3]">Why Choose to Study in Turkey?</a></li>
+                  <li><a href="#education-system" className="hover:bg-[#1845B3]">Turkish Education System</a></li>
+                  <li><a href="#visa-requirements" className="hover:bg-[#1845B3]">Study Visa Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:bg-[#1845B3]">Tuition Fees and Living Costs</a></li>
+                  <li><a href="#accommodation" className="hover:bg-[#1845B3]">Student Accommodation</a></li>
+                  <li><a href="#documents-checklist" className="hover:bg-[#1845B3]">Required Documents</a></li>
+                  <li><a href="#application-process" className="hover:bg-[#1845B3]">Application Process</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
@@ -94,7 +94,7 @@ export default function StudyInTurkeyGuide() {
 
               {/* Why Study in Turkey Section */}
               <section id="why-study-turkey" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Why Choose to Study in Turkey?</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-l-[#1D50C9] pl-4">Why Choose to Study in Turkey?</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Turkey offers unique advantages that make it an excellent choice for Pakistani students seeking affordable, quality education in a culturally rich environment.
@@ -103,7 +103,7 @@ export default function StudyInTurkeyGuide() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <GraduationCap className="w-5 h-5 mr-2" />
                         European Standard of Education
                       </h3>
@@ -111,7 +111,7 @@ export default function StudyInTurkeyGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <DollarSign className="w-5 h-5 mr-2" />
                         Low Cost of Living
                       </h3>
@@ -119,7 +119,7 @@ export default function StudyInTurkeyGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         Explore Ancient History
                       </h3>
@@ -129,7 +129,7 @@ export default function StudyInTurkeyGuide() {
 
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <CheckCircle className="w-5 h-5 mr-2" />
                         Numerous Scholarships Available
                       </h3>
@@ -137,7 +137,7 @@ export default function StudyInTurkeyGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <BookOpen className="w-5 h-5 mr-2" />
                         Affordable Tuition Fees
                       </h3>
@@ -145,7 +145,7 @@ export default function StudyInTurkeyGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <Globe className="w-5 h-5 mr-2" />
                         East Meets West Culture
                       </h3>
@@ -157,7 +157,7 @@ export default function StudyInTurkeyGuide() {
 
               {/* Tuition Costs Section */}
               <section id="tuition-costs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Tuition Fees and Living Costs</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-l-[#1D50C9] pl-4">Tuition Fees and Living Costs</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Turkey offers some of the most affordable education costs globally, making it highly accessible for Pakistani students.
@@ -165,7 +165,7 @@ export default function StudyInTurkeyGuide() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Bachelor Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Bachelor Programs</h3>
                     <div className="text-center">
                       <div className="text-3xl font-bold #1845B3 mb-2">$3,000 - $6,000</div>
                       <p className="text-gray-700 text-sm">with initial deposit of $1,000</p>
@@ -173,7 +173,7 @@ export default function StudyInTurkeyGuide() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Master's Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Master's Programs</h3>
                     <div className="text-center">
                       <div className="text-3xl font-bold #1845B3 mb-2">$4,000 - $6,000</div>
                       <p className="text-gray-700 text-sm">whole program fee with initial deposit of $1,000</p>
@@ -189,7 +189,7 @@ export default function StudyInTurkeyGuide() {
 
               {/* Accommodation Section */}
               <section id="accommodation" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Student Accommodation Options</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-l-[#1D50C9] pl-4">Student Accommodation Options</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Turkey offers various accommodation options to suit different budgets and preferences.
@@ -197,7 +197,7 @@ export default function StudyInTurkeyGuide() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <Home className="w-5 h-5 mr-2" />
                       University Dormitories
                     </h3>
@@ -205,7 +205,7 @@ export default function StudyInTurkeyGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       State Dormitories
                     </h3>
@@ -213,7 +213,7 @@ export default function StudyInTurkeyGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Private Dormitories
                     </h3>
@@ -221,7 +221,7 @@ export default function StudyInTurkeyGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <MapPin className="w-5 h-5 mr-2" />
                       Renting a Flat
                     </h3>
@@ -232,7 +232,7 @@ export default function StudyInTurkeyGuide() {
 
               {/* Visa Requirements Section */}
               <section id="visa-requirements" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Study Visa Requirements for Pakistani Students</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-l-[#1D50C9] pl-4">Study Visa Requirements for Pakistani Students</h2>
                 
                 <p className="text-gray-700 leading-relaxed mb-6">
                   Pakistani students must obtain a student visa to study in Turkey. Here are the essential requirements:
@@ -240,17 +240,17 @@ export default function StudyInTurkeyGuide() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Passport Validity</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Passport Validity</h3>
                     <p className="text-gray-700">Your passport must be valid for at least 90 days.</p>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Study Visa Form</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Study Visa Form</h3>
                     <p className="text-gray-700">A completed and signed Turkish student visa application form.</p>
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Required Documentation</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Required Documentation</h3>
                     <ul className="text-gray-700 space-y-1">
                       <li>• 2 passport-size photos</li>
                       <li>• Letter of acceptance from your university (including duration of stay)</li>
@@ -260,7 +260,7 @@ export default function StudyInTurkeyGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Additional Requirements</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Additional Requirements</h3>
                     <ul className="text-gray-700 space-y-1">
                       <li>• Proof of booked flight tickets to Turkey</li>
                       <li>• Evidence of sufficient financial resources to support study and living in Turkey</li>
@@ -273,11 +273,11 @@ export default function StudyInTurkeyGuide() {
 
               {/* Documents Checklist Section */}
               <section id="documents-checklist" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Required Documents Checklist</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-l-[#1D50C9] pl-4">Required Documents Checklist</h2>
                 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Original Passport
                     </h3>
@@ -285,7 +285,7 @@ export default function StudyInTurkeyGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <FileText className="w-5 h-5 mr-2" />
                       Educational Documents
                     </h3>
@@ -297,7 +297,7 @@ export default function StudyInTurkeyGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <BookOpen className="w-5 h-5 mr-2" />
                       Test Scores and Certificates
                     </h3>
@@ -308,7 +308,7 @@ export default function StudyInTurkeyGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Supporting Documents
                     </h3>
@@ -322,7 +322,7 @@ export default function StudyInTurkeyGuide() {
 
               {/* FAQ Section */}
               <section id="faqs" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-l-[#1D50C9] pl-4">Frequently Asked Questions</h2>
                 
                 <div className="space-y-6">
                   <div className="bg-gray-50 p-6 rounded-lg">
@@ -354,7 +354,7 @@ export default function StudyInTurkeyGuide() {
 
               {/* CTA Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Experience Where East Meets West?</h3>
+                <h3 className="text-2xl font-bold text-[#1565c0] mb-4">Ready to Experience Where East Meets West?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants provides comprehensive guidance for Turkish university applications, visa processes, and scholarship opportunities. Start your affordable European-standard education journey today.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a href="/contact" className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
@@ -376,7 +376,7 @@ export default function StudyInTurkeyGuide() {
               
               {/* Quick Info */}
               <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-#1565c0">Quick Study Info</h3>
+                <h3 className="text-lg font-semibold mb-4 text-[#1565c0]">Quick Study Info</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Bachelor Fees:</span>
@@ -401,10 +401,10 @@ export default function StudyInTurkeyGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/study-in-turkey-2024" className="block #1845B3 hover:text-#1565c0 text-sm">Study in Turkey 2024</a>
-                  <a href="/blog/study-in-belgium-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in Belgium Guide</a>
-                  <a href="/blog/study-in-finland-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in Finland Guide</a>
-                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #1845B3 hover:text-#1565c0 text-sm">IELTS Preparation Tips</a>
+                  <a href="/blog/study-in-turkey-2024" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in Turkey 2024</a>
+                  <a href="/blog/study-in-belgium-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in Belgium Guide</a>
+                  <a href="/blog/study-in-finland-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in Finland Guide</a>
+                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #1845B3 hover:text-[#1565c0] text-sm">IELTS Preparation Tips</a>
                 </div>
               </div>
 

@@ -50,7 +50,7 @@ export default function MasterOfFinanceInUK() {
 
                 {/* Program Overview */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Program Overview</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Program Overview</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">1 Year</h4>
@@ -80,7 +80,7 @@ export default function MasterOfFinanceInUK() {
 
                 {/* Universities Table */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Top Universities for Masters in Finance</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Top Universities for Masters in Finance</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse border border-gray-300">
                       <thead>
@@ -140,7 +140,7 @@ export default function MasterOfFinanceInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Key Requirements</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Key Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
                       <span className="#1845B3 mr-2">•</span>
@@ -182,7 +182,7 @@ export default function MasterOfFinanceInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Required Documents</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Required Documents</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
                       <span className="#1845B3 mr-2">•</span>
@@ -224,30 +224,30 @@ export default function MasterOfFinanceInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Application Steps</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Application Steps</h3>
                   <ol className="space-y-4 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
                       <span>First, go to the official website of the university and search for the MSc Finance program.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
                       <span>Press "Apply Now" and start filling out an online application form.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
                       <span>Provide all details correctly and then upload mandatory documents. These include academic transcripts, English proficiency scores, Letters of Recommendation, work experience, and SOP (Statement of Purpose).</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
                       <span>Next, pay the charges for the application to complete the application process.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
                       <span>Once you have applied, you will get an email about the status of your application.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">6</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">6</span>
                       <span>If accepted, you can start your UK student visa application process to travel to study abroad.</span>
                     </li>
                   </ol>
@@ -265,7 +265,7 @@ export default function MasterOfFinanceInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Cost Breakdown</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Cost Breakdown</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="font-semibold text-#1a73e8 mb-2">Tuition Fees</h4>
@@ -298,7 +298,7 @@ export default function MasterOfFinanceInUK() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Available Scholarships</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Available Scholarships</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <ul className="space-y-2 text-gray-700">
@@ -376,7 +376,7 @@ export default function MasterOfFinanceInUK() {
                   <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-[#1845B3] transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -390,7 +390,7 @@ export default function MasterOfFinanceInUK() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Program Duration</span>
@@ -417,7 +417,7 @@ export default function MasterOfFinanceInUK() {
 
             {/* Top Universities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Top 5 Universities</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Top 5 Universities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>1. London Business School</li>
                 <li>2. University of Oxford</li>
@@ -429,7 +429,7 @@ export default function MasterOfFinanceInUK() {
 
             {/* Scholarship Opportunities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Scholarship Opportunities</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Scholarship Opportunities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Clarendon Fund</li>
                 <li>• WMG Excellence Scholarships</li>
@@ -443,13 +443,13 @@ export default function MasterOfFinanceInUK() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   MS in Business Analytics Course in USA
                 </a>
-                <a href="/blog/uk-student-visa-ratio-from-pakistan" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/uk-student-visa-ratio-from-pakistan" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   UK Student Visa Ratio from Pakistan
                 </a>
-                <a href="/blog/low-cost-universities-in-uk-for-international-students" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/low-cost-universities-in-uk-for-international-students" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Low-Cost Universities in UK for International Students
                 </a>
               </div>

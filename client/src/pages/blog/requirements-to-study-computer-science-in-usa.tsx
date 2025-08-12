@@ -65,13 +65,13 @@ export default function RequirementsComputerScienceUSA() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#what-field" className="hover:#1845B3">What Field of Study is Computer Science?</a></li>
-                  <li><a href="#eligibility" className="hover:#1845B3">Eligibility Criteria to Study Computer Science in USA</a></li>
-                  <li><a href="#documents" className="hover:#1845B3">Documents Required for Fields of Computer Science</a></li>
-                  <li><a href="#admission-process" className="hover:#1845B3">Admission Process for Computer Science Study in USA</a></li>
-                  <li><a href="#cost" className="hover:#1845B3">Cost to study Computer Science Abroad in the USA</a></li>
-                  <li><a href="#universities" className="hover:#1845B3">List of the Best Universities to Study Computer Science in USA</a></li>
-                  <li><a href="#scholarships" className="hover:#1845B3">Scholarships for Education for Computer Science in the USA</a></li>
+                  <li><a href="#what-field" className="hover:bg-[#1845B3]">What Field of Study is Computer Science?</a></li>
+                  <li><a href="#eligibility" className="hover:bg-[#1845B3]">Eligibility Criteria to Study Computer Science in USA</a></li>
+                  <li><a href="#documents" className="hover:bg-[#1845B3]">Documents Required for Fields of Computer Science</a></li>
+                  <li><a href="#admission-process" className="hover:bg-[#1845B3]">Admission Process for Computer Science Study in USA</a></li>
+                  <li><a href="#cost" className="hover:bg-[#1845B3]">Cost to study Computer Science Abroad in the USA</a></li>
+                  <li><a href="#universities" className="hover:bg-[#1845B3]">List of the Best Universities to Study Computer Science in USA</a></li>
+                  <li><a href="#scholarships" className="hover:bg-[#1845B3]">Scholarships for Education for Computer Science in the USA</a></li>
                 </ul>
               </div>
 
@@ -132,13 +132,13 @@ export default function RequirementsComputerScienceUSA() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-blue-50 p-4 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-3 text-#1565c0">Financial Documents</h3>
+                      <h3 className="font-semibold text-lg mb-3 text-[#1565c0]">Financial Documents</h3>
                       <ul className="space-y-2 text-sm">
                         <li>• <strong>Proof of financial support</strong> – Evidence showing you can afford tuition fees, living costs, and health insurance</li>
                       </ul>
                     </div>
                     <div className="bg-blue-50 p-4 rounded-lg">
-                      <h3 className="font-semibold text-lg mb-3 text-#1565c0">Recommendation</h3>
+                      <h3 className="font-semibold text-lg mb-3 text-[#1565c0]">Recommendation</h3>
                       <ul className="space-y-2 text-sm">
                         <li>• <strong>Letters of recommendation</strong> – Letters from teachers or people who can vouch for your skills and qualities</li>
                       </ul>
@@ -209,7 +209,7 @@ export default function RequirementsComputerScienceUSA() {
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <h4 className="font-semibold text-lg mb-3 text-#1565c0">Public Universities</h4>
+                      <h4 className="font-semibold text-lg mb-3 text-[#1565c0]">Public Universities</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Tuition: $25,000-$40,000 per year</li>
                         <li>• Living expenses: $15,000-$20,000 per year</li>
@@ -218,7 +218,7 @@ export default function RequirementsComputerScienceUSA() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-lg mb-3 text-#1565c0">Private Universities</h4>
+                      <h4 className="font-semibold text-lg mb-3 text-[#1565c0]">Private Universities</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Tuition: $40,000-$60,000 per year</li>
                         <li>• Living expenses: $15,000-$20,000 per year</li>
@@ -279,7 +279,7 @@ export default function RequirementsComputerScienceUSA() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <h3 className="font-semibold text-lg text-#1565c0 mb-3">Merit-Based Scholarships</h3>
+                      <h3 className="font-semibold text-lg text-[#1565c0] mb-3">Merit-Based Scholarships</h3>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Presidential Scholarships</li>
                         <li>• Dean's Excellence Awards</li>
@@ -288,7 +288,7 @@ export default function RequirementsComputerScienceUSA() {
                       </ul>
                     </div>
                     <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <h3 className="font-semibold text-lg text-#1565c0 mb-3">Government Scholarships</h3>
+                      <h3 className="font-semibold text-lg text-[#1565c0] mb-3">Government Scholarships</h3>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Fulbright Scholarship Program</li>
                         <li>• Government-sponsored programs</li>
@@ -378,19 +378,19 @@ export default function RequirementsComputerScienceUSA() {
                 <h3 className="font-bold text-lg text-#1e3a8a mb-4">Application Timeline</h3>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <div className="font-medium text-#1565c0">12-18 months before</div>
+                    <div className="font-medium text-[#1565c0]">12-18 months before</div>
                     <div className="text-gray-600">Research & Planning</div>
                   </div>
                   <div>
-                    <div className="font-medium text-#1565c0">8-12 months before</div>
+                    <div className="font-medium text-[#1565c0]">8-12 months before</div>
                     <div className="text-gray-600">Test Preparation</div>
                   </div>
                   <div>
-                    <div className="font-medium text-#1565c0">6-8 months before</div>
+                    <div className="font-medium text-[#1565c0]">6-8 months before</div>
                     <div className="text-gray-600">Application Submission</div>
                   </div>
                   <div>
-                    <div className="font-medium text-#1565c0">3-6 months before</div>
+                    <div className="font-medium text-[#1565c0]">3-6 months before</div>
                     <div className="text-gray-600">Financial Planning</div>
                   </div>
                 </div>

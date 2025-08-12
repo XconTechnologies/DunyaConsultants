@@ -17,7 +17,7 @@ export default function StudyNursingUK() {
               <p className="mt-2 text-gray-600">Complete Guide for International Students</p>
             </div>
             <div className="text-right">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-#1565c0">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-[#1565c0]">
                 <Heart className="w-4 h-4 mr-1" />
                 Healthcare Education
               </span>
@@ -283,7 +283,7 @@ export default function StudyNursingUK() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-blue-50 rounded-lg p-4">
                     <h3 className="font-semibold text-#1e3a8a mb-2">Work Settings</h3>
-                    <ul className="text-sm text-#1565c0 space-y-1">
+                    <ul className="text-sm text-[#1565c0] space-y-1">
                       <li>• NHS hospitals and clinics</li>
                       <li>• Private healthcare facilities</li>
                       <li>• Community health centers</li>
@@ -293,7 +293,7 @@ export default function StudyNursingUK() {
                   </div>
                   <div className="bg-blue-50 rounded-lg p-4">
                     <h3 className="font-semibold text-#1e3a8a mb-2">Specializations</h3>
-                    <ul className="text-sm text-#1565c0 space-y-1">
+                    <ul className="text-sm text-[#1565c0] space-y-1">
                       <li>• Adult nursing</li>
                       <li>• Mental health nursing</li>
                       <li>• Children's nursing</li>
@@ -365,12 +365,12 @@ export default function StudyNursingUK() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Links</h3>
                 <div className="space-y-2">
-                  <a href="#universities" className="block text-sm text-gray-600 hover:#1845B3">Top Universities</a>
-                  <a href="#eligibility" className="block text-sm text-gray-600 hover:#1845B3">Eligibility</a>
-                  <a href="#documents" className="block text-sm text-gray-600 hover:#1845B3">Documents</a>
-                  <a href="#application" className="block text-sm text-gray-600 hover:#1845B3">Application Process</a>
-                  <a href="#cost" className="block text-sm text-gray-600 hover:#1845B3">Cost Information</a>
-                  <a href="#career" className="block text-sm text-gray-600 hover:#1845B3">Career Prospects</a>
+                  <a href="#universities" className="block text-sm text-gray-600 hover:bg-[#1845B3]">Top Universities</a>
+                  <a href="#eligibility" className="block text-sm text-gray-600 hover:bg-[#1845B3]">Eligibility</a>
+                  <a href="#documents" className="block text-sm text-gray-600 hover:bg-[#1845B3]">Documents</a>
+                  <a href="#application" className="block text-sm text-gray-600 hover:bg-[#1845B3]">Application Process</a>
+                  <a href="#cost" className="block text-sm text-gray-600 hover:bg-[#1845B3]">Cost Information</a>
+                  <a href="#career" className="block text-sm text-gray-600 hover:bg-[#1845B3]">Career Prospects</a>
                 </div>
               </div>
 

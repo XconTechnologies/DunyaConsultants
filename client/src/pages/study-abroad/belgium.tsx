@@ -256,7 +256,7 @@ Address: Alif Tower, Sargodha
                 </div>
                 
                 <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-semibold text-#1565c0 mb-2">💡 Important Note:</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">💡 Important Note:</h4>
                   <p className="text-#1a73e8 text-sm">Belgium offers excellent scholarship opportunities and work permit options for international students. Students can work up to 20 hours per week during studies.</p>
                 </div>
               </CardContent>

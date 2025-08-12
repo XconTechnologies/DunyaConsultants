@@ -168,7 +168,7 @@ export default function Navigation() {
     <nav className={`fixed w-full top-0 z-40 transition-all duration-500 ${
       isScrolled 
         ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-white/20" 
-        : "bg-gradient-to-r from-#1e3a8a/20 via-#1e3a8a/20 to-#1e3a8a/20 backdrop-blur-md border-b border-white/10"
+        : "bg-gradient-to-r from-[#1D50C9]/20 via-[#1D50C9]/20 to-[#1D50C9]/20 backdrop-blur-md border-b border-white/10"
     }`}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div className="flex items-center h-16 py-2">
@@ -445,7 +445,7 @@ export default function Navigation() {
 
                 {/* Featured Section */}
                 <div className="lg:col-span-1">
-                  <div className="bg-gradient-to-br from-[#1D50C9] via-#1a73e8 to-[#1a73e8] rounded-xl p-5 text-white relative overflow-hidden">
+                  <div className="bg-gradient-to-br from-[#1D50C9] via-[#1a73e8] to-[#1a73e8] rounded-xl p-5 text-white relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9]/30 to-[#1845B3]/30"></div>
                     <div className="relative z-10">
                       <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center mb-3">

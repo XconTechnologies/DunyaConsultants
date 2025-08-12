@@ -190,7 +190,7 @@ export default function AchievementGallery({ isOpen, onClose }: AchievementGalle
                       <h4 className="font-semibold text-gray-900">{achievement.title}</h4>
                       <p className="text-sm text-gray-600 mt-1">{achievement.description}</p>
                       <div className="flex items-center justify-center mt-2 space-x-2">
-                        <span className="text-xs bg-blue-100 text-#1565c0 px-2 py-1 rounded-full">
+                        <span className="text-xs bg-blue-100 text-[#1565c0] px-2 py-1 rounded-full">
                           +{achievement.points} points
                         </span>
                         <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full capitalize">

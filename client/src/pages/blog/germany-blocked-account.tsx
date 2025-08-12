@@ -42,7 +42,7 @@ export default function GermanyBlockedAccount() {
 
                 {/* Quick Overview */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Key Requirements at a Glance</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Key Requirements at a Glance</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">€11,904</h4>
@@ -71,7 +71,7 @@ export default function GermanyBlockedAccount() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Purpose of Blocked Account</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Purpose of Blocked Account</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li>• Proves financial stability for visa application</li>
                     <li>• Demonstrates ability to cover living expenses</li>
@@ -90,7 +90,7 @@ export default function GermanyBlockedAccount() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Visa Types Requiring Blocked Account</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Visa Types Requiring Blocked Account</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <ul className="space-y-2 text-gray-700">
                       <li>• Student visa</li>
@@ -118,7 +118,7 @@ export default function GermanyBlockedAccount() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Amount Breakdown 2024-2025</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Amount Breakdown 2024-2025</h3>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center border-b pb-2">
                       <span className="text-gray-700">Total Required Amount</span>
@@ -148,7 +148,7 @@ export default function GermanyBlockedAccount() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Online Providers</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Online Providers</h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                     <div className="text-center p-3 bg-white rounded border">
                       <h4 className="font-semibold text-#1a73e8">Fintiba</h4>
@@ -172,7 +172,7 @@ export default function GermanyBlockedAccount() {
                 </div>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">German Banks</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">German Banks</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <ul className="space-y-2 text-gray-700">
                       <li>• Targobank</li>
@@ -197,26 +197,26 @@ export default function GermanyBlockedAccount() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Required Documents</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Required Documents</h3>
                   <ol className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
                       <span>A valid passport</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
                       <span>ID card</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
                       <span>Evidence of where the money comes from. Few providers might ask for bank statements to know how you got the funds.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">4</span>
                       <span>Evidence of admission to a German university (if required)</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">5</span>
                       <span>The application form</span>
                     </li>
                   </ol>
@@ -231,38 +231,38 @@ export default function GermanyBlockedAccount() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Step-by-Step Process</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Step-by-Step Process</h3>
                   <ol className="space-y-4 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">1</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">1</span>
                       <div>
                         <h4 className="font-semibold mb-1">Consult German Embassy</h4>
                         <p>First, visit your local German consulate or embassy to confirm which kind of blocked account and how much money you will have to deposit.</p>
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">2</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">2</span>
                       <div>
                         <h4 className="font-semibold mb-1">Choose Provider</h4>
                         <p>Next, choose a provider to open your Germany blocked account and begin your application process. Many providers allow you to do this online.</p>
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">3</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">3</span>
                       <div>
                         <h4 className="font-semibold mb-1">Transfer Funds</h4>
                         <p>After your application is processed and you get your BIC/IBAN, transfer the required amount of money into your account.</p>
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">4</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">4</span>
                       <div>
                         <h4 className="font-semibold mb-1">Get Confirmation</h4>
                         <p>Once you have deposited, you will get a confirmation statement. You need to show this statement to the German embassy when applying for your student visa.</p>
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">5</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">5</span>
                       <div>
                         <h4 className="font-semibold mb-1">Wait for Visa Processing</h4>
                         <p>Then, you just need to wait for the embassy to process and finalize your visa application.</p>
@@ -280,7 +280,7 @@ export default function GermanyBlockedAccount() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Provider Fees Comparison</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Provider Fees Comparison</h3>
                   <div className="space-y-4">
                     <div className="bg-white p-4 rounded border">
                       <div className="flex justify-between items-center">
@@ -359,7 +359,7 @@ export default function GermanyBlockedAccount() {
                   <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-[#1845B3] transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -373,7 +373,7 @@ export default function GermanyBlockedAccount() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Required Amount</span>
@@ -400,7 +400,7 @@ export default function GermanyBlockedAccount() {
 
             {/* Top Providers */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Top Providers</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Top Providers</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Fintiba</li>
                 <li>• Expatrio (€109)</li>
@@ -413,7 +413,7 @@ export default function GermanyBlockedAccount() {
 
             {/* Required Documents */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Required Documents</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Required Documents</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Valid passport</li>
                 <li>• ID card</li>
@@ -427,13 +427,13 @@ export default function GermanyBlockedAccount() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Study in UK: Complete Guide for Pakistani Students
                 </a>
-                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   MS in Business Analytics Course in USA
                 </a>
-                <a href="/blog/master-of-finance-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/master-of-finance-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   A Beginner's Guide to Master of Finance in UK
                 </a>
               </div>

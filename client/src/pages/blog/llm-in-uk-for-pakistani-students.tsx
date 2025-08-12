@@ -132,7 +132,7 @@ export default function LLMInUKForPakistaniStudents() {
                 </p>
 
                 <div className="bg-gradient-to-r from-blue-50 to-amber-50 p-6 rounded-lg border-l-4 #1D50C9 mb-6">
-                  <h3 className="text-xl font-bold mb-4 text-#1565c0">Key Eligibility Requirements</h3>
+                  <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Key Eligibility Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
                       <span className="#1D50C9 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
@@ -163,7 +163,7 @@ export default function LLMInUKForPakistaniStudents() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-#1565c0">Academic Documents</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-[#1565c0]">Academic Documents</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Completed application forms</li>
                       <li>• Past transcripts</li>
@@ -172,7 +172,7 @@ export default function LLMInUKForPakistaniStudents() {
                   </div>
                   
                   <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-#1565c0">Supporting Documents</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-[#1565c0]">Supporting Documents</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Statement of Purpose (SOP)</li>
                       <li>• Updated CV</li>
@@ -181,7 +181,7 @@ export default function LLMInUKForPakistaniStudents() {
                   </div>
                   
                   <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-#1565c0">Financial Documents</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-[#1565c0]">Financial Documents</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Proof of funds</li>
                       <li>• Bank statements</li>
@@ -190,7 +190,7 @@ export default function LLMInUKForPakistaniStudents() {
                   </div>
                   
                   <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-#1565c0">Experience Documents</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-[#1565c0]">Experience Documents</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Work experience certificates</li>
                       <li>• Professional references</li>
@@ -242,7 +242,7 @@ export default function LLMInUKForPakistaniStudents() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">University-Specific Scholarships</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">University-Specific Scholarships</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Bosco Tso & Emily Ng Scholarship (King's College London)</li>
                       <li>• UCL Laws Academic Excellence Scholarships (University College London)</li>
@@ -252,7 +252,7 @@ export default function LLMInUKForPakistaniStudents() {
                   </div>
                   
                   <div className="bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">National Scholarships</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">National Scholarships</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Prathiba M Singh Cambridge Scholarship (University of Cambridge)</li>
                       <li>• Gates Cambridge Scholarship (University of Cambridge)</li>
@@ -268,7 +268,7 @@ export default function LLMInUKForPakistaniStudents() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                   <div className="bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Legal Practice</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Legal Practice</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Solicitor</li>
                       <li>• Barrister</li>
@@ -278,7 +278,7 @@ export default function LLMInUKForPakistaniStudents() {
                   </div>
                   
                   <div className="bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Corporate Sector</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Corporate Sector</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Corporate Lawyer</li>
                       <li>• Compliance Officer</li>
@@ -288,7 +288,7 @@ export default function LLMInUKForPakistaniStudents() {
                   </div>
                   
                   <div className="bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Academic & Research</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Academic & Research</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Legal Researcher</li>
                       <li>• University Lecturer</li>
@@ -396,7 +396,7 @@ export default function LLMInUKForPakistaniStudents() {
 
             {/* Top Universities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Top LLM Universities</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Top LLM Universities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• London School of Economics</li>
                 <li>• University of Oxford</li>
@@ -410,7 +410,7 @@ export default function LLMInUKForPakistaniStudents() {
 
             {/* Scholarship Opportunities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Scholarship Opportunities</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Scholarship Opportunities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Gates Cambridge Scholarship</li>
                 <li>• Oxford-Finnis Scholarship</li>
@@ -424,13 +424,13 @@ export default function LLMInUKForPakistaniStudents() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Complete Guide to Study in UK
                 </a>
-                <a href="/blog/uk-student-visa" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/uk-student-visa" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   UK Student Visa for Pakistani Students
                 </a>
-                <a href="/blog/uk-scholarships" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/uk-scholarships" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Scholarships for Pakistani Students in UK
                 </a>
               </div>

@@ -61,7 +61,7 @@ export default function DifferenceBetweenIELTSGeneralAndAcademic() {
 
               {/* Quick Comparison Table */}
               <div className="mb-8 bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Quick Comparison</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Quick Comparison</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <h3 className="font-semibold text-#1a73e8 mb-2">IELTS Academic</h3>

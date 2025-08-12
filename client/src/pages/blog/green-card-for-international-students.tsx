@@ -65,18 +65,18 @@ export default function GreenCardInternationalStudents() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#who-can-apply" className="hover:#1845B3">Who can Apply for International Students Green Card in the USA?</a></li>
-                  <li><a href="#employment-based" className="hover:#1845B3">Employment-based immigration</a></li>
-                  <li><a href="#family-based" className="hover:#1845B3">Family-based immigration</a></li>
-                  <li><a href="#diversity-visa" className="hover:#1845B3">Diversity Visa Lottery</a></li>
-                  <li><a href="#refugees-asylees" className="hover:#1845B3">Refugees & asylees</a></li>
-                  <li><a href="#green-card-benefits" className="hover:#1845B3">Green Card Benefits for Students</a></li>
-                  <li><a href="#scholarships" className="hover:#1845B3">Scholarships for Green Card Holders</a></li>
-                  <li><a href="#study-opportunities" className="hover:#1845B3">Study Opportunities</a></li>
-                  <li><a href="#work-permit" className="hover:#1845B3">Work Permit</a></li>
-                  <li><a href="#lower-tuition" className="hover:#1845B3">Lower Tuition Fee</a></li>
-                  <li><a href="#travel-flexibility" className="hover:#1845B3">Travel Flexibility & Other Advantages</a></li>
-                  <li><a href="#job-opportunities" className="hover:#1845B3">Job Opportunities</a></li>
+                  <li><a href="#who-can-apply" className="hover:bg-[#1845B3]">Who can Apply for International Students Green Card in the USA?</a></li>
+                  <li><a href="#employment-based" className="hover:bg-[#1845B3]">Employment-based immigration</a></li>
+                  <li><a href="#family-based" className="hover:bg-[#1845B3]">Family-based immigration</a></li>
+                  <li><a href="#diversity-visa" className="hover:bg-[#1845B3]">Diversity Visa Lottery</a></li>
+                  <li><a href="#refugees-asylees" className="hover:bg-[#1845B3]">Refugees & asylees</a></li>
+                  <li><a href="#green-card-benefits" className="hover:bg-[#1845B3]">Green Card Benefits for Students</a></li>
+                  <li><a href="#scholarships" className="hover:bg-[#1845B3]">Scholarships for Green Card Holders</a></li>
+                  <li><a href="#study-opportunities" className="hover:bg-[#1845B3]">Study Opportunities</a></li>
+                  <li><a href="#work-permit" className="hover:bg-[#1845B3]">Work Permit</a></li>
+                  <li><a href="#lower-tuition" className="hover:bg-[#1845B3]">Lower Tuition Fee</a></li>
+                  <li><a href="#travel-flexibility" className="hover:bg-[#1845B3]">Travel Flexibility & Other Advantages</a></li>
+                  <li><a href="#job-opportunities" className="hover:bg-[#1845B3]">Job Opportunities</a></li>
                 </ul>
               </div>
 
@@ -174,11 +174,11 @@ export default function GreenCardInternationalStudents() {
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
                       <div className="bg-blue-50 p-4 rounded-lg">
-                        <h4 className="font-semibold text-#1565c0 mb-2">International Student Tuition</h4>
+                        <h4 className="font-semibold text-[#1565c0] mb-2">International Student Tuition</h4>
                         <p className="text-gray-700">$25,000 - $50,000 per year</p>
                       </div>
                       <div className="bg-blue-50 p-4 rounded-lg">
-                        <h4 className="font-semibold text-#1565c0 mb-2">Green Card Holder Tuition</h4>
+                        <h4 className="font-semibold text-[#1565c0] mb-2">Green Card Holder Tuition</h4>
                         <p className="text-gray-700">$10,000 - $15,000 per year</p>
                       </div>
                     </div>
@@ -338,19 +338,19 @@ export default function GreenCardInternationalStudents() {
                 <h3 className="font-bold text-lg text-#1e3a8a mb-4">Green Card Pathways</h3>
                 <div className="space-y-3 text-sm">
                   <div>
-                    <div className="font-medium text-#1565c0">Employment-Based</div>
+                    <div className="font-medium text-[#1565c0]">Employment-Based</div>
                     <div className="text-gray-600">EB-1, EB-2, EB-3 categories</div>
                   </div>
                   <div>
-                    <div className="font-medium text-#1565c0">Family-Based</div>
+                    <div className="font-medium text-[#1565c0]">Family-Based</div>
                     <div className="text-gray-600">Through US citizen/resident family</div>
                   </div>
                   <div>
-                    <div className="font-medium text-#1565c0">EB-5 Investment</div>
+                    <div className="font-medium text-[#1565c0]">EB-5 Investment</div>
                     <div className="text-gray-600">$800K minimum investment</div>
                   </div>
                   <div>
-                    <div className="font-medium text-#1565c0">Diversity Lottery</div>
+                    <div className="font-medium text-[#1565c0]">Diversity Lottery</div>
                     <div className="text-gray-600">Annual random selection</div>
                   </div>
                 </div>

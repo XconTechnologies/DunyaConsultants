@@ -211,7 +211,7 @@ export default function ServicesOverview() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:#1845B3 px-8 py-3 rounded-full font-semibold"
+                className="border-white text-white hover:bg-white hover:bg-[#1845B3] px-8 py-3 rounded-full font-semibold"
               >
                 Download Brochure
               </Button>

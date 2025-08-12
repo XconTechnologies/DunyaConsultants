@@ -65,12 +65,12 @@ export default function StudyGapAcceptableUKMasters() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#acceptable-gap" className="hover:#1845B3">What is an Acceptable Study Gap?</a></li>
-                  <li><a href="#university-policies" className="hover:#1845B3">University-Specific Policies</a></li>
-                  <li><a href="#documentation" className="hover:#1845B3">Required Documentation</a></li>
-                  <li><a href="#tips" className="hover:#1845B3">Tips for Strengthening Your Application</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
-                  <li><a href="#conclusion" className="hover:#1845B3">Conclusion</a></li>
+                  <li><a href="#acceptable-gap" className="hover:bg-[#1845B3]">What is an Acceptable Study Gap?</a></li>
+                  <li><a href="#university-policies" className="hover:bg-[#1845B3]">University-Specific Policies</a></li>
+                  <li><a href="#documentation" className="hover:bg-[#1845B3]">Required Documentation</a></li>
+                  <li><a href="#tips" className="hover:bg-[#1845B3]">Tips for Strengthening Your Application</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
+                  <li><a href="#conclusion" className="hover:bg-[#1845B3]">Conclusion</a></li>
                 </ul>
               </div>
 
@@ -83,7 +83,7 @@ export default function StudyGapAcceptableUKMasters() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Gap Categories</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Gap Categories</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="bg-white p-4 rounded-lg">
                       <h4 className="font-semibold text-#1a73e8 mb-2">Excellent (0-2 years)</h4>
@@ -184,22 +184,22 @@ export default function StudyGapAcceptableUKMasters() {
                 
                 <div className="space-y-4">
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">1. Be Honest and Transparent</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">1. Be Honest and Transparent</h3>
                     <p className="text-gray-700">Always be truthful about your gap period. Universities appreciate honesty and can often work with genuine circumstances.</p>
                   </div>
 
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">2. Show Continuous Learning</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">2. Show Continuous Learning</h3>
                     <p className="text-gray-700">Demonstrate that you remained intellectually engaged through courses, reading, or professional activities.</p>
                   </div>
 
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">3. Connect Gap to Career Goals</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">3. Connect Gap to Career Goals</h3>
                     <p className="text-gray-700">Explain how your gap year experience has clarified your career objectives and prepared you for graduate study.</p>
                   </div>
 
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">4. Provide Strong References</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">4. Provide Strong References</h3>
                     <p className="text-gray-700">Include references who can vouch for your activities and growth during the gap period.</p>
                   </div>
                 </div>
@@ -247,7 +247,7 @@ export default function StudyGapAcceptableUKMasters() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Need Help with Your UK Application?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#1565c0]">Need Help with Your UK Application?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants for your UK Masters application and study gap presentation.
                 </p>

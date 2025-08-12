@@ -76,7 +76,7 @@ const StudyAbroadEducationConsultants = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
                   <Globe className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Global Exposure</h4>
-                  <p className="text-#1565c0 text-sm">
+                  <p className="text-[#1565c0] text-sm">
                     Studying abroad exposes Pakistani students to different cultures, languages, and teaching methodologies. This exposure helps them develop a broader perspective on life and adapt to various situations in their personal and professional lives.
                   </p>
                 </div>
@@ -84,7 +84,7 @@ const StudyAbroadEducationConsultants = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-green-100 rounded-lg p-6">
                   <Users className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Personal Growth</h4>
-                  <p className="text-#1565c0 text-sm">
+                  <p className="text-[#1565c0] text-sm">
                     Living and studying in a foreign country can be challenging but often leads to significant personal growth. Students become more independent, learn to navigate new environments, and develop essential problem-solving skills.
                   </p>
                 </div>
@@ -92,7 +92,7 @@ const StudyAbroadEducationConsultants = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-lg p-6">
                   <TrendingUp className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Enhanced Career Prospects</h4>
-                  <p className="text-#1565c0 text-sm">
+                  <p className="text-[#1565c0] text-sm">
                     International education credentials are highly valued by employers worldwide. Graduates with foreign degrees often have better job prospects and higher earning potential in the global job market.
                   </p>
                 </div>
@@ -115,29 +115,29 @@ const StudyAbroadEducationConsultants = () => {
                   <div className="space-y-3">
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-#1565c0 text-sm">Complex application processes</span>
+                      <span className="text-[#1565c0] text-sm">Complex application processes</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-#1565c0 text-sm">Visa documentation requirements</span>
+                      <span className="text-[#1565c0] text-sm">Visa documentation requirements</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-#1565c0 text-sm">University selection criteria</span>
+                      <span className="text-[#1565c0] text-sm">University selection criteria</span>
                     </div>
                   </div>
                   <div className="space-y-3">
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-#1565c0 text-sm">Financial planning and scholarships</span>
+                      <span className="text-[#1565c0] text-sm">Financial planning and scholarships</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-#1565c0 text-sm">Cultural adaptation guidance</span>
+                      <span className="text-[#1565c0] text-sm">Cultural adaptation guidance</span>
                     </div>
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-#1565c0 text-sm">Pre-departure preparation</span>
+                      <span className="text-[#1565c0] text-sm">Pre-departure preparation</span>
                     </div>
                   </div>
                 </div>
@@ -219,7 +219,7 @@ const StudyAbroadEducationConsultants = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-orange-50 rounded-lg p-6">
                   <Award className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Expertise and Experience</h4>
-                  <p className="text-#1565c0 text-sm">
+                  <p className="text-[#1565c0] text-sm">
                     With years of experience in international education, our team of experts understands the unique challenges faced by Pakistani students and provides tailored solutions to overcome them.
                   </p>
                 </div>
@@ -227,7 +227,7 @@ const StudyAbroadEducationConsultants = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6">
                   <Users className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Customized Counseling</h4>
-                  <p className="text-#1565c0 text-sm">
+                  <p className="text-[#1565c0] text-sm">
                     We believe that every student is unique, which is why we provide personalized counseling sessions to understand individual needs and create customized study plans.
                   </p>
                 </div>
@@ -235,7 +235,7 @@ const StudyAbroadEducationConsultants = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-lg p-6">
                   <Globe className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Strong International Network</h4>
-                  <p className="text-#1565c0 text-sm">
+                  <p className="text-[#1565c0] text-sm">
                     Our extensive network of partner universities and institutions worldwide ensures that our students have access to the best educational opportunities available.
                   </p>
                 </div>
@@ -243,7 +243,7 @@ const StudyAbroadEducationConsultants = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-pink-50 rounded-lg p-6">
                   <Heart className="h-10 w-10 #1845B3 mb-4" />
                   <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Continuous Support</h4>
-                  <p className="text-#1565c0 text-sm">
+                  <p className="text-[#1565c0] text-sm">
                     Our commitment to students doesn't end with admission. We provide ongoing support throughout their academic journey and beyond.
                   </p>
                 </div>
@@ -376,23 +376,23 @@ const StudyAbroadEducationConsultants = () => {
               <h3 className="text-lg font-semibold text-#1e3a8a mb-4">Popular Destinations</h3>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center justify-between">
-                  <span className="text-#1565c0">United Kingdom</span>
+                  <span className="text-[#1565c0]">United Kingdom</span>
                   <span className="#1845B3 font-medium">Most Popular</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-#1565c0">Canada</span>
+                  <span className="text-[#1565c0]">Canada</span>
                   <span className="#1845B3 font-medium">High Demand</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-#1565c0">Australia</span>
+                  <span className="text-[#1565c0]">Australia</span>
                   <span className="#1845B3 font-medium">Growing</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-#1565c0">USA</span>
+                  <span className="text-[#1565c0]">USA</span>
                   <span className="#1845B3 font-medium">Premium</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-#1565c0">Germany</span>
+                  <span className="text-[#1565c0]">Germany</span>
                   <span className="#1845B3 font-medium">Affordable</span>
                 </div>
               </div>

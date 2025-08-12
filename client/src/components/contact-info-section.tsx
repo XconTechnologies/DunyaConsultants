@@ -224,7 +224,7 @@ export default function ContactInfoSection() {
               </a>
               <a 
                 href="https://wa.me/923041110947"
-                className="#1D50C9 text-white px-8 py-4 rounded-full font-bold hover:#1845B3 transition-all duration-300 inline-flex items-center space-x-2"
+                className="#1D50C9 text-white px-8 py-4 rounded-full font-bold hover:bg-[#1845B3] transition-all duration-300 inline-flex items-center space-x-2"
               >
                 <MessageCircle className="w-5 h-5" />
                 <span>WhatsApp</span>

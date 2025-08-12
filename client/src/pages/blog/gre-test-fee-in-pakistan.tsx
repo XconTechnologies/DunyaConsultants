@@ -159,7 +159,7 @@ export default function GRETestFeeInPakistan() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0] flex items-center">
                   <DollarSign className="mr-3 h-6 w-6" />
                   Current GRE Test Fees in Pakistan
                 </h2>
@@ -202,7 +202,7 @@ export default function GRETestFeeInPakistan() {
                 </div>
                 
                 <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-sm text-#1565c0">
+                  <p className="text-sm text-[#1565c0]">
                     <strong>Note:</strong> PKR amounts are approximate based on current exchange rates (1 USD = 280 PKR). Actual charges may vary depending on your bank's exchange rate and processing fees.
                   </p>
                 </div>
@@ -225,19 +225,19 @@ export default function GRETestFeeInPakistan() {
                     >
                       <Card className="bg-gradient-to-br from-blue-50 to-green-100 border-blue-200">
                         <CardContent className="p-6">
-                          <h3 className="text-xl font-bold text-#1565c0 mb-3">{section.section}</h3>
+                          <h3 className="text-xl font-bold text-[#1565c0] mb-3">{section.section}</h3>
                           <div className="grid md:grid-cols-3 gap-4 text-sm">
                             <div>
                               <span className="text-#1a73e8 font-medium">Duration:</span>
-                              <div className="font-semibold text-#1565c0">{section.duration}</div>
+                              <div className="font-semibold text-[#1565c0]">{section.duration}</div>
                             </div>
                             <div>
                               <span className="text-#1a73e8 font-medium">{section.questions ? "Questions:" : "Tasks:"}</span>
-                              <div className="font-semibold text-#1565c0">{section.questions || section.tasks}</div>
+                              <div className="font-semibold text-[#1565c0]">{section.questions || section.tasks}</div>
                             </div>
                             <div>
                               <span className="text-#1a73e8 font-medium">Scoring:</span>
-                              <div className="font-semibold text-#1565c0">{section.scoring}</div>
+                              <div className="font-semibold text-[#1565c0]">{section.scoring}</div>
                             </div>
                           </div>
                         </CardContent>
@@ -266,7 +266,7 @@ export default function GRETestFeeInPakistan() {
                         <CardContent className="p-6">
                           <div className="flex items-center justify-between mb-4">
                             <h3 className="text-lg font-bold text-gray-800">{center.city}</h3>
-                            <span className="bg-blue-100 text-#1565c0 text-sm font-medium px-3 py-1 rounded-full">
+                            <span className="bg-blue-100 text-[#1565c0] text-sm font-medium px-3 py-1 rounded-full">
                               {center.centers} {center.centers === 1 ? 'Center' : 'Centers'}
                             </span>
                           </div>
@@ -349,7 +349,7 @@ export default function GRETestFeeInPakistan() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Payment Methods in Pakistan</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Payment Methods in Pakistan</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Pakistani students can pay GRE test fees using the following methods:
                 </p>
@@ -371,7 +371,7 @@ export default function GRETestFeeInPakistan() {
 
               {/* Conclusion */}
               <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Conclusion</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The GRE test fee of $220 USD (approximately PKR 61,600) is a significant investment in your academic future. With proper planning and preparation, Pakistani students can successfully register for and take the GRE at authorized test centers across the country.
                 </p>
@@ -431,26 +431,26 @@ export default function GRETestFeeInPakistan() {
               {/* Quick Facts */}
               <Card className="bg-gradient-to-br from-blue-50 to-teal-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-#1565c0 mb-4 flex items-center">
+                  <h3 className="font-bold text-[#1565c0] mb-4 flex items-center">
                     <Calculator className="mr-2 h-5 w-5" />
                     GRE Cost Summary
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Test Fee:</span>
-                      <span className="font-semibold text-#1565c0">$220 USD</span>
+                      <span className="font-semibold text-[#1565c0]">$220 USD</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">PKR Equivalent:</span>
-                      <span className="font-semibold text-#1565c0">~61,600</span>
+                      <span className="font-semibold text-[#1565c0]">~61,600</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Score Reports:</span>
-                      <span className="font-semibold text-#1565c0">4 Free</span>
+                      <span className="font-semibold text-[#1565c0]">4 Free</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Score Validity:</span>
-                      <span className="font-semibold text-#1565c0">5 Years</span>
+                      <span className="font-semibold text-[#1565c0]">5 Years</span>
                     </div>
                   </div>
                 </CardContent>

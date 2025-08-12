@@ -139,9 +139,9 @@ export default function CanadaGuide() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100" ref={ref}>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-[#1D50C9]/30 to-#1565c0/30"></div>
+          <div className="w-full h-full bg-gradient-to-r from-[#1D50C9]/30 to-[#1565c0]/30"></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -168,7 +168,7 @@ export default function CanadaGuide() {
               <span className="#1845B3">Canada</span>
             </h1>
             
-            <p className="text-xl text-#1565c0 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-[#1565c0] max-w-3xl mx-auto mb-8">
               Experience world-class education in one of the world's most welcoming countries. 
               Discover affordable quality education with excellent immigration pathways and multicultural society.
             </p>
@@ -176,19 +176,19 @@ export default function CanadaGuide() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
               <div className="text-center">
                 <div className="text-3xl font-bold #1845B3">{canadaStats.universities}</div>
-                <div className="text-sm text-#1565c0">Universities</div>
+                <div className="text-sm text-[#1565c0]">Universities</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold #1845B3">{canadaStats.internationalStudents}</div>
-                <div className="text-sm text-#1565c0">International Students</div>
+                <div className="text-sm text-[#1565c0]">International Students</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold #1845B3">{canadaStats.globalRank}</div>
-                <div className="text-sm text-#1565c0">Global Education Rank</div>
+                <div className="text-sm text-[#1565c0]">Global Education Rank</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold #1845B3">{canadaStats.visaSuccess}</div>
-                <div className="text-sm text-#1565c0">Visa Success Rate</div>
+                <div className="text-sm text-[#1565c0]">Visa Success Rate</div>
               </div>
             </div>
           </motion.div>

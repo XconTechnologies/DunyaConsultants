@@ -263,19 +263,19 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Türkiye Scholarships</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Türkiye Scholarships</h4>
                   <p className="text-sm text-#1a73e8">Government scholarship covering tuition, accommodation, and monthly stipend</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">University Scholarships</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">University Scholarships</h4>
                   <p className="text-sm text-#1a73e8">Merit-based scholarships offered by individual universities</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Private Scholarships</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Private Scholarships</h4>
                   <p className="text-sm text-#1a73e8">Scholarships from private organizations and foundations</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Exchange Programs</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Exchange Programs</h4>
                   <p className="text-sm text-#1a73e8">Student exchange programs with Pakistani universities</p>
                 </div>
               </div>
@@ -334,13 +334,13 @@ export default function WhyTurkeyBestChoicePakistaniStudents() {
               <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#reasons" className="#1845B3 hover:text-#1565c0">Top Reasons</a></li>
-                  <li><a href="#education" className="#1845B3 hover:text-#1565c0">Educational Excellence</a></li>
-                  <li><a href="#costs" className="#1845B3 hover:text-#1565c0">Cost Comparison</a></li>
-                  <li><a href="#universities" className="#1845B3 hover:text-#1565c0">Top Universities</a></li>
-                  <li><a href="#culture" className="#1845B3 hover:text-#1565c0">Cultural Benefits</a></li>
-                  <li><a href="#admission" className="#1845B3 hover:text-#1565c0">Admission Requirements</a></li>
-                  <li><a href="#scholarships" className="#1845B3 hover:text-#1565c0">Scholarships</a></li>
+                  <li><a href="#reasons" className="#1845B3 hover:text-[#1565c0]">Top Reasons</a></li>
+                  <li><a href="#education" className="#1845B3 hover:text-[#1565c0]">Educational Excellence</a></li>
+                  <li><a href="#costs" className="#1845B3 hover:text-[#1565c0]">Cost Comparison</a></li>
+                  <li><a href="#universities" className="#1845B3 hover:text-[#1565c0]">Top Universities</a></li>
+                  <li><a href="#culture" className="#1845B3 hover:text-[#1565c0]">Cultural Benefits</a></li>
+                  <li><a href="#admission" className="#1845B3 hover:text-[#1565c0]">Admission Requirements</a></li>
+                  <li><a href="#scholarships" className="#1845B3 hover:text-[#1565c0]">Scholarships</a></li>
                 </ul>
               </div>
 

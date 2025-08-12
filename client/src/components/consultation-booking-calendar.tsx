@@ -252,7 +252,7 @@ export default function ConsultationBookingCalendar() {
                       <div className={`text-sm font-medium ${isActive ? '#1845B3' : 'text-gray-600'}`}>
                         Step {stepNumber}
                       </div>
-                      <div className={`text-xs ${isActive ? 'text-#1565c0' : 'text-gray-500'}`}>
+                      <div className={`text-xs ${isActive ? 'text-[#1565c0]' : 'text-gray-500'}`}>
                         {title}
                       </div>
                     </div>
@@ -479,7 +479,7 @@ export default function ConsultationBookingCalendar() {
                   {/* Booking Summary */}
                   <div className="bg-blue-50 rounded-lg p-6">
                     <h4 className="font-semibold text-#1e3a8a mb-4">Booking Summary</h4>
-                    <div className="space-y-2 text-sm text-#1565c0">
+                    <div className="space-y-2 text-sm text-[#1565c0]">
                       <div><strong>Type:</strong> {consultationTypes.find(t => t.id === selectedType)?.name}</div>
                       <div><strong>Location:</strong> {officeLocations.find(l => l.id === selectedLocation)?.name}</div>
                       <div><strong>Date:</strong> {selectedDate && new Date(selectedDate).toLocaleDateString()}</div>

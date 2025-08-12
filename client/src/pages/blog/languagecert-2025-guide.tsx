@@ -64,7 +64,7 @@ const NewYearResolutionsStudents2025: React.FC = () => {
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-800 mb-4">Failed to load the article</h1>
             <p className="text-gray-600 mb-6">{error || 'Article not found'}</p>
-            <Link href="/blog" className="#1845B3 hover:text-#1565c0">
+            <Link href="/blog" className="#1845B3 hover:text-[#1565c0]">
               ← Return to Blog
             </Link>
           </div>
@@ -129,7 +129,7 @@ const NewYearResolutionsStudents2025: React.FC = () => {
                     {blogPost.tags.map((tag) => (
                       <span 
                         key={tag}
-                        className="px-3 py-1 bg-blue-100 text-#1565c0 text-sm font-medium rounded-full"
+                        className="px-3 py-1 bg-blue-100 text-[#1565c0] text-sm font-medium rounded-full"
                       >
                         {tag}
                       </span>

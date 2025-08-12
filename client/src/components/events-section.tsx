@@ -101,10 +101,10 @@ const upcomingEvents: Event[] = [
 
 const getEventTypeColor = (type: string) => {
   const colors = {
-    'Fair': 'bg-blue-100 text-#1565c0 border-blue-200',
-    'Webinar': 'bg-blue-100 text-#1565c0 border-blue-200',
-    'Workshop': 'bg-blue-100 text-#1565c0 border-blue-200',
-    'Info Session': 'bg-blue-100 text-#1565c0 border-blue-200'
+    'Fair': 'bg-blue-100 text-[#1565c0] border-blue-200',
+    'Webinar': 'bg-blue-100 text-[#1565c0] border-blue-200',
+    'Workshop': 'bg-blue-100 text-[#1565c0] border-blue-200',
+    'Info Session': 'bg-blue-100 text-[#1565c0] border-blue-200'
   };
   return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-800 border-gray-200';
 };
@@ -462,7 +462,7 @@ export default function EventsSection() {
                 </p>
                 {emailSent && (
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-                    <p className="text-#1565c0 text-sm">
+                    <p className="text-[#1565c0] text-sm">
                       📧 Confirmation email sent to {formData.email}
                     </p>
                   </div>
@@ -644,7 +644,7 @@ export default function EventsSection() {
               
               <div className="mt-6 text-center">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">✅ Registration Complete!</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">✅ Registration Complete!</h4>
                   <div className="text-sm text-#1a73e8 space-y-1">
                     <p>• Your event ticket has been generated successfully</p>
                     <p>• Confirmation email sent to {ticketData.email}</p>

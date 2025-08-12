@@ -172,19 +172,19 @@ export default function AngliaRuskinUniversityPartner() {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                     <span className="font-medium">Times University Guide 2024</span>
-                    <span className="bg-blue-100 text-#1565c0 px-3 py-1 rounded-full text-sm font-semibold">115th UK</span>
+                    <span className="bg-blue-100 text-[#1565c0] px-3 py-1 rounded-full text-sm font-semibold">115th UK</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                     <span className="font-medium">Guardian University Guide 2024</span>
-                    <span className="bg-blue-100 text-#1565c0 px-3 py-1 rounded-full text-sm font-semibold">102nd UK</span>
+                    <span className="bg-blue-100 text-[#1565c0] px-3 py-1 rounded-full text-sm font-semibold">102nd UK</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                     <span className="font-medium">THE World University Rankings</span>
-                    <span className="bg-blue-100 text-#1565c0 px-3 py-1 rounded-full text-sm font-semibold">301-350 Global</span>
+                    <span className="bg-blue-100 text-[#1565c0] px-3 py-1 rounded-full text-sm font-semibold">301-350 Global</span>
                   </div>
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg">
                     <span className="font-medium">US News Global Universities</span>
-                    <span className="bg-blue-100 text-#1565c0 px-3 py-1 rounded-full text-sm font-semibold">814th Global</span>
+                    <span className="bg-blue-100 text-[#1565c0] px-3 py-1 rounded-full text-sm font-semibold">814th Global</span>
                   </div>
                 </div>
               </div>
@@ -258,19 +258,19 @@ export default function AngliaRuskinUniversityPartner() {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Modern Facilities</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Modern Facilities</h4>
                   <p className="text-sm text-#1a73e8">State-of-the-art laboratories, libraries, and learning spaces equipped with latest technology</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Student Accommodation</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Student Accommodation</h4>
                   <p className="text-sm text-#1a73e8">Comfortable and secure on-campus housing options with modern amenities</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Sports & Recreation</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Sports & Recreation</h4>
                   <p className="text-sm text-#1a73e8">Comprehensive sports facilities including gym, swimming pool, and sports courts</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Student Support</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Student Support</h4>
                   <p className="text-sm text-#1a73e8">Dedicated international student support services and counseling</p>
                 </div>
               </div>
@@ -338,13 +338,13 @@ export default function AngliaRuskinUniversityPartner() {
               <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#why-choose" className="#1845B3 hover:text-#1565c0">Why Choose ARU</a></li>
-                  <li><a href="#programs" className="#1845B3 hover:text-#1565c0">Academic Programs</a></li>
-                  <li><a href="#rankings" className="#1845B3 hover:text-#1565c0">University Rankings</a></li>
-                  <li><a href="#partnership" className="#1845B3 hover:text-#1565c0">Partnership Benefits</a></li>
-                  <li><a href="#admission" className="#1845B3 hover:text-#1565c0">Admission Requirements</a></li>
-                  <li><a href="#campus" className="#1845B3 hover:text-#1565c0">Campus Life</a></li>
-                  <li><a href="#careers" className="#1845B3 hover:text-#1565c0">Career Opportunities</a></li>
+                  <li><a href="#why-choose" className="#1845B3 hover:text-[#1565c0]">Why Choose ARU</a></li>
+                  <li><a href="#programs" className="#1845B3 hover:text-[#1565c0]">Academic Programs</a></li>
+                  <li><a href="#rankings" className="#1845B3 hover:text-[#1565c0]">University Rankings</a></li>
+                  <li><a href="#partnership" className="#1845B3 hover:text-[#1565c0]">Partnership Benefits</a></li>
+                  <li><a href="#admission" className="#1845B3 hover:text-[#1565c0]">Admission Requirements</a></li>
+                  <li><a href="#campus" className="#1845B3 hover:text-[#1565c0]">Campus Life</a></li>
+                  <li><a href="#careers" className="#1845B3 hover:text-[#1565c0]">Career Opportunities</a></li>
                 </ul>
               </div>
 

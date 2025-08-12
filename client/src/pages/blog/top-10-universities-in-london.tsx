@@ -64,12 +64,12 @@ export default function Top10UniversitiesLondon() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-london" className="hover:#1845B3">Why Choose London Universities?</a></li>
-                  <li><a href="#top-universities" className="hover:#1845B3">Top 10 Universities in London</a></li>
-                  <li><a href="#admission-process" className="hover:#1845B3">Admission Process</a></li>
-                  <li><a href="#cost-living" className="hover:#1845B3">Cost of Living</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
-                  <li><a href="#conclusion" className="hover:#1845B3">Conclusion</a></li>
+                  <li><a href="#why-london" className="hover:bg-[#1845B3]">Why Choose London Universities?</a></li>
+                  <li><a href="#top-universities" className="hover:bg-[#1845B3]">Top 10 Universities in London</a></li>
+                  <li><a href="#admission-process" className="hover:bg-[#1845B3]">Admission Process</a></li>
+                  <li><a href="#cost-living" className="hover:bg-[#1845B3]">Cost of Living</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
+                  <li><a href="#conclusion" className="hover:bg-[#1845B3]">Conclusion</a></li>
                 </ul>
               </div>
 
@@ -78,7 +78,7 @@ export default function Top10UniversitiesLondon() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Why Choose London Universities?</h2>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">London's Educational Advantages</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">London's Educational Advantages</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-center">
                       <Star className="w-5 h-5 #1D50C9 mr-3" />
@@ -227,22 +227,22 @@ export default function Top10UniversitiesLondon() {
                 
                 <div className="space-y-4">
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">1. Research and Choose Universities</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">1. Research and Choose Universities</h3>
                     <p className="text-gray-700">Research programs, entry requirements, and application deadlines for your chosen universities.</p>
                   </div>
                   
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">2. Prepare Required Documents</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">2. Prepare Required Documents</h3>
                     <p className="text-gray-700">Academic transcripts, English proficiency test results, personal statement, and letters of recommendation.</p>
                   </div>
                   
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">3. Submit Applications</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">3. Submit Applications</h3>
                     <p className="text-gray-700">Apply through UCAS for undergraduate programs or directly to universities for postgraduate programs.</p>
                   </div>
                   
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">4. Apply for Student Visa</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">4. Apply for Student Visa</h3>
                     <p className="text-gray-700">Once accepted, apply for your Student visa (formerly Tier 4) to study in the UK.</p>
                   </div>
                 </div>
@@ -253,7 +253,7 @@ export default function Top10UniversitiesLondon() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Cost of Living in London</h2>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Average Monthly Expenses</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Average Monthly Expenses</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-700 mb-2"><strong>Accommodation:</strong> £600-£1,200</p>
@@ -311,7 +311,7 @@ export default function Top10UniversitiesLondon() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Ready to Apply to London Universities?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#1565c0]">Ready to Apply to London Universities?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants on choosing the right London university and navigating the application process.
                 </p>

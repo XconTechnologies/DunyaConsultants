@@ -59,7 +59,7 @@ export default function JobsInCanadaForPakistaniStudents() {
 
                 {/* Quick Overview */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Canada Work Opportunities Overview</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Canada Work Opportunities Overview</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">20 hrs</h4>
@@ -85,7 +85,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                 </p>
                 
                 <div className="bg-gradient-to-r from-blue-50 to-rose-50 p-6 rounded-lg border-l-4 #1D50C9 mb-6">
-                  <h3 className="text-xl font-bold mb-4 text-#1565c0">Key Requirements</h3>
+                  <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Key Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
                       <span className="#1D50C9 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
@@ -122,7 +122,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                 <div className="space-y-6">
                   {/* On-Campus Jobs */}
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h3 className="text-2xl font-bold mb-3 text-#1565c0">On-Campus Jobs</h3>
+                    <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">On-Campus Jobs</h3>
                     <p className="text-gray-700 leading-relaxed">
                       The majority of Canadian universities and colleges provide on-campus jobs for Pakistani students. These jobs can be in <strong>administrative offices, libraries, research labs, cafeterias</strong>, etc. Furthermore, these jobs in Canada are suitable according to student schedules.
                     </p>
@@ -130,7 +130,7 @@ export default function JobsInCanadaForPakistaniStudents() {
 
                   {/* Work-Study Programs */}
                   <div className="bg-gradient-to-r from-blue-50 to-emerald-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h3 className="text-2xl font-bold mb-3 text-#1565c0">Work-Study Programs</h3>
+                    <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Work-Study Programs</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Work-study programs are created to help students cover their expenses financially. These <strong>overseas jobs for Pakistanis in Canada</strong> provide part-time work opportunities either on campus or with official off-campus employers.
                     </p>
@@ -138,7 +138,7 @@ export default function JobsInCanadaForPakistaniStudents() {
 
                   {/* Off-Campus Jobs */}
                   <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h3 className="text-2xl font-bold mb-3 text-#1565c0">Off-Campus Jobs</h3>
+                    <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Off-Campus Jobs</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Pakistani students can likewise search for off-campus work opportunities in fields like <strong>customer service, hospitality, retail, and healthcare</strong>. Furthermore, restaurant jobs in Canada allow Pakistani students to get experience in the Canadian work environment.
                     </p>
@@ -146,7 +146,7 @@ export default function JobsInCanadaForPakistaniStudents() {
 
                   {/* Co-op Programs */}
                   <div className="bg-gradient-to-r from-blue-50 to-red-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h3 className="text-2xl font-bold mb-3 text-#1565c0">Co-op Programs</h3>
+                    <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Co-op Programs</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Few Canadian universities also provide <strong>co-op programs</strong> that combine paid work placements and classroom learning related to your course of study. They provide the best employment experience along with networking opportunities.
                     </p>
@@ -154,7 +154,7 @@ export default function JobsInCanadaForPakistaniStudents() {
 
                   {/* Internships */}
                   <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h3 className="text-2xl font-bold mb-3 text-#1565c0">Internships</h3>
+                    <h3 className="text-2xl font-bold mb-3 text-[#1565c0]">Internships</h3>
                     <p className="text-gray-700 leading-relaxed">
                       Internships are one of the best options for Pakistani students to get practical job experience. These internships are typically for short periods and can be found when you search for <strong>IT jobs in Canada for Pakistani students</strong>, including finance, technology, and marketing.
                     </p>
@@ -174,7 +174,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                     <div className="flex items-start">
                       <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">1</div>
                       <div>
-                        <h4 className="text-lg font-semibold mb-2 text-#1565c0">Identify Your Interests</h4>
+                        <h4 className="text-lg font-semibold mb-2 text-[#1565c0]">Identify Your Interests</h4>
                         <p className="text-gray-700">First, you need to identify your interests and passions. This will assist you in each step of your application phase.</p>
                       </div>
                     </div>
@@ -184,7 +184,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                     <div className="flex items-start">
                       <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">2</div>
                       <div>
-                        <h4 className="text-lg font-semibold mb-2 text-#1565c0">Network and Connect</h4>
+                        <h4 className="text-lg font-semibold mb-2 text-[#1565c0]">Network and Connect</h4>
                         <p className="text-gray-700">Search for organizations and individuals with experience in your selected industry. Contact them and request a meeting so they can give you the best career advice.</p>
                       </div>
                     </div>
@@ -194,7 +194,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                     <div className="flex items-start">
                       <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">3</div>
                       <div>
-                        <h4 className="text-lg font-semibold mb-2 text-#1565c0">Research Employers</h4>
+                        <h4 className="text-lg font-semibold mb-2 text-[#1565c0]">Research Employers</h4>
                         <p className="text-gray-700">Make a list of the employers you are willing to apply for. For this, look at job listings or <strong>Canada jobs for Pakistani 2024 online apply</strong>. After that, thoroughly research these selected employers you have short-listed.</p>
                       </div>
                     </div>
@@ -204,7 +204,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                     <div className="flex items-start">
                       <div className="#1D50C9 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-lg mr-4 flex-shrink-0">4</div>
                       <div>
-                        <h4 className="text-lg font-semibold mb-2 text-#1565c0">Apply for Jobs</h4>
+                        <h4 className="text-lg font-semibold mb-2 text-[#1565c0]">Apply for Jobs</h4>
                         <p className="text-gray-700">Once you have completed your research, the last step is to apply for your favorite jobs.</p>
                       </div>
                     </div>
@@ -245,7 +245,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                 </div>
 
                 <div className="bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                  <h3 className="text-xl font-bold mb-4 text-#1565c0">High-Demand Sectors for Pakistani Students</h3>
+                  <h3 className="text-xl font-bold mb-4 text-[#1565c0]">High-Demand Sectors for Pakistani Students</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="font-semibold text-#1a73e8 mb-2">Technology & IT</h4>
@@ -270,7 +270,7 @@ export default function JobsInCanadaForPakistaniStudents() {
               {/* Salary Information */}
               <div className="mb-8">
                 <div className="bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                  <h3 className="text-xl font-bold mb-4 text-#1565c0">Expected Salary Ranges</h3>
+                  <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Expected Salary Ranges</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold text-#1a73e8 mb-3">Part-Time Jobs (Per Hour)</h4>
@@ -353,7 +353,7 @@ export default function JobsInCanadaForPakistaniStudents() {
                   <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-[#1845B3] transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -367,7 +367,7 @@ export default function JobsInCanadaForPakistaniStudents() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Canada Work Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Canada Work Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Work Hours (Studies)</span>
@@ -394,7 +394,7 @@ export default function JobsInCanadaForPakistaniStudents() {
 
             {/* Job Categories */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Popular Job Categories</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Popular Job Categories</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Technology & IT</li>
                 <li>• Healthcare & Medical</li>
@@ -407,7 +407,7 @@ export default function JobsInCanadaForPakistaniStudents() {
 
             {/* Work Types */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Work Opportunities</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Work Opportunities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• On-campus jobs</li>
                 <li>• Off-campus employment</li>
@@ -422,13 +422,13 @@ export default function JobsInCanadaForPakistaniStudents() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/study-in-canada" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-in-canada" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Complete Guide to Study in Canada
                 </a>
-                <a href="/blog/canada-student-visa" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/canada-student-visa" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Canada Student Visa Requirements
                 </a>
-                <a href="/blog/top-universities-in-canada" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/top-universities-in-canada" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Top Universities in Canada for Pakistani Students
                 </a>
               </div>

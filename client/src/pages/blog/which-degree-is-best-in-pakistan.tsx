@@ -64,14 +64,14 @@ export default function WhichDegreeIsBestInPakistan() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#top-degrees" className="hover:#1845B3">Top Degrees in Pakistan</a></li>
-                  <li><a href="#it-computer-science" className="hover:#1845B3">IT & Computer Science</a></li>
-                  <li><a href="#engineering" className="hover:#1845B3">Engineering Fields</a></li>
-                  <li><a href="#business-administration" className="hover:#1845B3">Business Administration</a></li>
-                  <li><a href="#medical-fields" className="hover:#1845B3">Medical & Healthcare</a></li>
-                  <li><a href="#emerging-fields" className="hover:#1845B3">Emerging Career Fields</a></li>
-                  <li><a href="#career-guidance" className="hover:#1845B3">Career Selection Tips</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#top-degrees" className="hover:bg-[#1845B3]">Top Degrees in Pakistan</a></li>
+                  <li><a href="#it-computer-science" className="hover:bg-[#1845B3]">IT & Computer Science</a></li>
+                  <li><a href="#engineering" className="hover:bg-[#1845B3]">Engineering Fields</a></li>
+                  <li><a href="#business-administration" className="hover:bg-[#1845B3]">Business Administration</a></li>
+                  <li><a href="#medical-fields" className="hover:bg-[#1845B3]">Medical & Healthcare</a></li>
+                  <li><a href="#emerging-fields" className="hover:bg-[#1845B3]">Emerging Career Fields</a></li>
+                  <li><a href="#career-guidance" className="hover:bg-[#1845B3]">Career Selection Tips</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
@@ -80,7 +80,7 @@ export default function WhichDegreeIsBestInPakistan() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Top Degrees in Pakistan 2025</h2>
                 
                 <div className="bg-blue-50 border-l-4 border-blue-400 p-6 mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Quick Overview</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Quick Overview</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">IT & CS</h4>
@@ -107,7 +107,7 @@ export default function WhichDegreeIsBestInPakistan() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Information Technology & Computer Science</h2>
                 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-                  <h3 className="text-xl font-semibold text-#1565c0 mb-4 flex items-center">
+                  <h3 className="text-xl font-semibold text-[#1565c0] mb-4 flex items-center">
                     <BookOpen className="w-5 h-5 mr-2" />
                     Why IT is the Top Choice
                   </h3>
@@ -135,7 +135,7 @@ export default function WhichDegreeIsBestInPakistan() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-#1565c0 mb-3">Specialization Areas</h4>
+                    <h4 className="text-lg font-semibold text-[#1565c0] mb-3">Specialization Areas</h4>
                     <div className="grid md:grid-cols-2 gap-4">
                       <ul className="space-y-2 text-gray-700">
                         <li>• Software Development & Programming</li>
@@ -162,7 +162,7 @@ export default function WhichDegreeIsBestInPakistan() {
 
                 <div className="space-y-6">
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">High-Demand Engineering Fields</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">High-Demand Engineering Fields</h3>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Electrical Engineering:</h4>
@@ -184,7 +184,7 @@ export default function WhichDegreeIsBestInPakistan() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h4 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <DollarSign className="w-5 h-5 mr-2" />
                       Engineering Salary Expectations
                     </h4>
@@ -225,7 +225,7 @@ export default function WhichDegreeIsBestInPakistan() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-#1565c0 mb-3">Specialized Business Fields</h4>
+                    <h4 className="text-lg font-semibold text-[#1565c0] mb-3">Specialized Business Fields</h4>
                     <div className="grid md:grid-cols-2 gap-6">
                       <ul className="space-y-2 text-gray-700">
                         <li>• Finance and Banking</li>
@@ -241,7 +241,7 @@ export default function WhichDegreeIsBestInPakistan() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h4 className="text-lg font-semibold text-#1565c0 mb-3">Career Progression in Business</h4>
+                    <h4 className="text-lg font-semibold text-[#1565c0] mb-3">Career Progression in Business</h4>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <span className="font-medium text-gray-800">Management Trainee</span>
@@ -270,7 +270,7 @@ export default function WhichDegreeIsBestInPakistan() {
                 
                 <div className="space-y-6">
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-#1565c0 mb-4">Medical Doctor (MBBS)</h3>
+                    <h3 className="text-xl font-semibold text-[#1565c0] mb-4">Medical Doctor (MBBS)</h3>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Key Benefits:</h4>
@@ -294,7 +294,7 @@ export default function WhichDegreeIsBestInPakistan() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-#1565c0 mb-3">Allied Health Sciences</h4>
+                    <h4 className="text-lg font-semibold text-[#1565c0] mb-3">Allied Health Sciences</h4>
                     <div className="grid md:grid-cols-2 gap-4">
                       <ul className="space-y-2 text-gray-700">
                         <li>• Pharmacy (PharmD)</li>
@@ -317,7 +317,7 @@ export default function WhichDegreeIsBestInPakistan() {
                 
                 <div className="space-y-6">
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-xl font-semibold text-#1565c0 mb-4">Data Science & Analytics</h3>
+                    <h3 className="text-xl font-semibold text-[#1565c0] mb-4">Data Science & Analytics</h3>
                     <p className="text-gray-700 mb-4">
                       Every industry needs data professionals due to government digitization initiatives, e-commerce growth, and research expansion.
                     </p>
@@ -342,7 +342,7 @@ export default function WhichDegreeIsBestInPakistan() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h4 className="text-lg font-semibold text-#1565c0 mb-3">Digital Marketing & E-commerce</h4>
+                    <h4 className="text-lg font-semibold text-[#1565c0] mb-3">Digital Marketing & E-commerce</h4>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Growth Drivers:</h4>
@@ -371,7 +371,7 @@ export default function WhichDegreeIsBestInPakistan() {
                 
                 <div className="space-y-6">
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-#1565c0 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-[#1565c0] mb-4 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Factors to Consider
                     </h3>
@@ -404,7 +404,7 @@ export default function WhichDegreeIsBestInPakistan() {
                   </div>
 
                   <div className="bg-blue-100 border border-blue-300 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Success Strategies</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Success Strategies</h3>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Academic Excellence</h4>
@@ -478,7 +478,7 @@ export default function WhichDegreeIsBestInPakistan() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Need Career Guidance?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#1565c0]">Need Career Guidance?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants on choosing the right degree and career path for your future success.
                 </p>

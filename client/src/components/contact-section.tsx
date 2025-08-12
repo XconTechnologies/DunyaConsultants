@@ -345,7 +345,7 @@ export default function ContactSection() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:#1845B3 px-8 py-3 rounded-full font-semibold"
+                className="border-white text-white hover:bg-white hover:bg-[#1845B3] px-8 py-3 rounded-full font-semibold"
                 onClick={() => window.open("https://wa.me/923041110947", "_blank")}
               >
                 <MessageCircle className="w-5 h-5 mr-2" />

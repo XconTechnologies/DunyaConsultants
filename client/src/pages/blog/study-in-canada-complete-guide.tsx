@@ -64,20 +64,20 @@ export default function StudyInCanadaCompleteGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-canada" className="hover:#1845B3">Why Choose to Study in Canada?</a></li>
-                  <li><a href="#education-system" className="hover:#1845B3">Canadian Education System</a></li>
-                  <li><a href="#visa-requirements" className="hover:#1845B3">Study Visa Requirements</a></li>
-                  <li><a href="#english-requirements" className="hover:#1845B3">English Language Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:#1845B3">Tuition Fees and GIC</a></li>
-                  <li><a href="#documents-checklist" className="hover:#1845B3">Required Documents</a></li>
-                  <li><a href="#application-process" className="hover:#1845B3">Application Process</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-canada" className="hover:bg-[#1845B3]">Why Choose to Study in Canada?</a></li>
+                  <li><a href="#education-system" className="hover:bg-[#1845B3]">Canadian Education System</a></li>
+                  <li><a href="#visa-requirements" className="hover:bg-[#1845B3]">Study Visa Requirements</a></li>
+                  <li><a href="#english-requirements" className="hover:bg-[#1845B3]">English Language Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:bg-[#1845B3]">Tuition Fees and GIC</a></li>
+                  <li><a href="#documents-checklist" className="hover:bg-[#1845B3]">Required Documents</a></li>
+                  <li><a href="#application-process" className="hover:bg-[#1845B3]">Application Process</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Canada Overview */}
               <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-#1565c0 mb-4">Study in Canada at a Glance</h3>
+                <h3 className="text-xl font-semibold text-[#1565c0] mb-4">Study in Canada at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-700 mb-2"><strong>Universities:</strong> 223 institutions</p>
@@ -103,7 +103,7 @@ export default function StudyInCanadaCompleteGuide() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <Users className="w-5 h-5 mr-2" />
                         Identical Facilities as Residents
                       </h3>
@@ -111,7 +111,7 @@ export default function StudyInCanadaCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <CheckCircle className="w-5 h-5 mr-2" />
                         3rd Rank in Life Quality Index
                       </h3>
@@ -119,7 +119,7 @@ export default function StudyInCanadaCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <GraduationCap className="w-5 h-5 mr-2" />
                         Top-Ranked Universities
                       </h3>
@@ -127,7 +127,7 @@ export default function StudyInCanadaCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <BookOpen className="w-5 h-5 mr-2" />
                         Work Permit After Graduation
                       </h3>
@@ -135,7 +135,7 @@ export default function StudyInCanadaCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         No Language Barrier
                       </h3>
@@ -145,7 +145,7 @@ export default function StudyInCanadaCompleteGuide() {
 
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <AlertCircle className="w-5 h-5 mr-2" />
                         Permanent Residence Pathway
                       </h3>
@@ -153,7 +153,7 @@ export default function StudyInCanadaCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <DollarSign className="w-5 h-5 mr-2" />
                         GIC Financial Security
                       </h3>
@@ -161,7 +161,7 @@ export default function StudyInCanadaCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <Clock className="w-5 h-5 mr-2" />
                         Lower Cost of Living
                       </h3>
@@ -169,7 +169,7 @@ export default function StudyInCanadaCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <FileText className="w-5 h-5 mr-2" />
                         Spouse Work Rights
                       </h3>
@@ -177,7 +177,7 @@ export default function StudyInCanadaCompleteGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         Gateway to USA & Europe
                       </h3>
@@ -197,7 +197,7 @@ export default function StudyInCanadaCompleteGuide() {
 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Official Transcripts</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Official Transcripts</h3>
                     <ul className="text-gray-700 space-y-1">
                       <li>• High school transcripts</li>
                       <li>• Transcripts from all post-secondary institutions</li>
@@ -205,7 +205,7 @@ export default function StudyInCanadaCompleteGuide() {
                   </div>
 
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">GIC (Guaranteed Investment Certificate)</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">GIC (Guaranteed Investment Certificate)</h3>
                     <div className="space-y-2 text-gray-700">
                       <p><strong>Amount:</strong> CAD 20,635</p>
                       <p><strong>Purpose:</strong> Proof of funds for living expenses</p>
@@ -219,7 +219,7 @@ export default function StudyInCanadaCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Photos and Documentation</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Photos and Documentation</h3>
                     <ul className="text-gray-700 space-y-1">
                       <li>• 2 recent passport-size photos (date of birth written on back)</li>
                       <li>• Marriage License (photocopy if applicable)</li>
@@ -227,7 +227,7 @@ export default function StudyInCanadaCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3">Medical & Biometric Information</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3">Medical & Biometric Information</h3>
                     <ul className="text-gray-700 space-y-1">
                       <li>• Medical Certificate</li>
                       <li>• Biometric Information</li>
@@ -242,7 +242,7 @@ export default function StudyInCanadaCompleteGuide() {
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">IELTS Requirements</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">IELTS Requirements</h3>
                     <div className="space-y-3">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Undergraduate:</h4>
@@ -256,7 +256,7 @@ export default function StudyInCanadaCompleteGuide() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">PTE Requirements</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">PTE Requirements</h3>
                     <div className="space-y-3">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">Undergraduate:</h4>
@@ -277,7 +277,7 @@ export default function StudyInCanadaCompleteGuide() {
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Undergraduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Undergraduate Programs</h3>
                     <div className="text-center">
                       <div className="text-3xl font-bold #1845B3 mb-2">CAD $36,100</div>
                       <p className="text-gray-700 text-sm">per year (average)</p>
@@ -285,7 +285,7 @@ export default function StudyInCanadaCompleteGuide() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Graduate Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Graduate Programs</h3>
                     <div className="text-center">
                       <div className="text-3xl font-bold #1845B3 mb-2">CAD $21,100</div>
                       <p className="text-gray-700 text-sm">per year (average)</p>
@@ -300,7 +300,7 @@ export default function StudyInCanadaCompleteGuide() {
                 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Original Passport
                     </h3>
@@ -308,7 +308,7 @@ export default function StudyInCanadaCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <FileText className="w-5 h-5 mr-2" />
                       All Attested Educational Documents
                     </h3>
@@ -316,7 +316,7 @@ export default function StudyInCanadaCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <GraduationCap className="w-5 h-5 mr-2" />
                       Degree & Transcript Attested Copies
                     </h3>
@@ -324,7 +324,7 @@ export default function StudyInCanadaCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <BookOpen className="w-5 h-5 mr-2" />
                       IELTS / PTE / TOEFL Score Card
                     </h3>
@@ -332,7 +332,7 @@ export default function StudyInCanadaCompleteGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Supporting Documents
                     </h3>
@@ -374,7 +374,7 @@ export default function StudyInCanadaCompleteGuide() {
 
               {/* CTA Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Start Your Canada Study Journey?</h3>
+                <h3 className="text-2xl font-bold text-[#1565c0] mb-4">Ready to Start Your Canada Study Journey?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants provides comprehensive guidance for Canadian university applications, visa processes, and GIC arrangements. Contact us for expert assistance.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a href="/contact" className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
@@ -396,7 +396,7 @@ export default function StudyInCanadaCompleteGuide() {
               
               {/* Quick Info */}
               <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-#1565c0">Quick Study Info</h3>
+                <h3 className="text-lg font-semibold mb-4 text-[#1565c0]">Quick Study Info</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">GIC Required:</span>
@@ -421,10 +421,10 @@ export default function StudyInCanadaCompleteGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/study-engineering-in-canada-2025" className="block #1845B3 hover:text-#1565c0 text-sm">Study Engineering in Canada</a>
-                  <a href="/blog/study-in-usa-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in USA Guide</a>
-                  <a href="/blog/study-in-uk-complete-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in UK Guide</a>
-                  <a href="/blog/engineering-and-law-programs-canada" className="block #1845B3 hover:text-#1565c0 text-sm">Engineering Programs Canada</a>
+                  <a href="/blog/study-engineering-in-canada-2025" className="block #1845B3 hover:text-[#1565c0] text-sm">Study Engineering in Canada</a>
+                  <a href="/blog/study-in-usa-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in USA Guide</a>
+                  <a href="/blog/study-in-uk-complete-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in UK Guide</a>
+                  <a href="/blog/engineering-and-law-programs-canada" className="block #1845B3 hover:text-[#1565c0] text-sm">Engineering Programs Canada</a>
                 </div>
               </div>
 

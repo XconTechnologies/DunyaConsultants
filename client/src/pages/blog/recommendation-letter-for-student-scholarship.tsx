@@ -64,18 +64,18 @@ export default function RecommendationLetterStudentScholarship() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#what-is-lor" className="hover:#1845B3">What is a Letter of Recommendation?</a></li>
-                  <li><a href="#format" className="hover:#1845B3">Recommendation Letter Format</a></li>
-                  <li><a href="#writing-tips" className="hover:#1845B3">Writing Tips and Guidelines</a></li>
-                  <li><a href="#sample-template" className="hover:#1845B3">Sample Template</a></li>
-                  <li><a href="#common-mistakes" className="hover:#1845B3">Common Mistakes to Avoid</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#what-is-lor" className="hover:bg-[#1845B3]">What is a Letter of Recommendation?</a></li>
+                  <li><a href="#format" className="hover:bg-[#1845B3]">Recommendation Letter Format</a></li>
+                  <li><a href="#writing-tips" className="hover:bg-[#1845B3]">Writing Tips and Guidelines</a></li>
+                  <li><a href="#sample-template" className="hover:bg-[#1845B3]">Sample Template</a></li>
+                  <li><a href="#common-mistakes" className="hover:bg-[#1845B3]">Common Mistakes to Avoid</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Why Recommendation Letters Matter */}
               <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-#1565c0 mb-4">Why Recommendation Letters Matter</h3>
+                <h3 className="text-xl font-semibold text-[#1565c0] mb-4">Why Recommendation Letters Matter</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-center">
                     <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
@@ -113,7 +113,7 @@ export default function RecommendationLetterStudentScholarship() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Key Components of a Strong LOR</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Key Components of a Strong LOR</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-700 mb-2"><strong>Academic Performance:</strong> Grades, class participation, projects</p>
@@ -137,7 +137,7 @@ export default function RecommendationLetterStudentScholarship() {
 
                 <div className="space-y-6">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-#1565c0 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-[#1565c0] mb-4 flex items-center">
                       <FileText className="w-5 h-5 mr-2" />
                       First Paragraph - Introduction
                     </h3>
@@ -150,7 +150,7 @@ export default function RecommendationLetterStudentScholarship() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-#1565c0 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-[#1565c0] mb-4 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Second Paragraph - Specific Examples
                     </h3>
@@ -163,7 +163,7 @@ export default function RecommendationLetterStudentScholarship() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-#1565c0 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-[#1565c0] mb-4 flex items-center">
                       <Target className="w-5 h-5 mr-2" />
                       Third Paragraph - Future Potential
                     </h3>
@@ -176,7 +176,7 @@ export default function RecommendationLetterStudentScholarship() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-xl font-semibold text-#1565c0 mb-4 flex items-center">
+                    <h3 className="text-xl font-semibold text-[#1565c0] mb-4 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Closing Paragraph
                     </h3>
@@ -196,22 +196,22 @@ export default function RecommendationLetterStudentScholarship() {
                 
                 <div className="space-y-4">
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">1. Be Specific and Detailed</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">1. Be Specific and Detailed</h3>
                     <p className="text-gray-700">Use concrete examples and specific achievements rather than generic praise. Quantify accomplishments whenever possible.</p>
                   </div>
                   
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">2. Maintain Professional Tone</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">2. Maintain Professional Tone</h3>
                     <p className="text-gray-700">Use formal language and professional formatting. Avoid casual expressions or overly emotional language.</p>
                   </div>
                   
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">3. Focus on Relevance</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">3. Focus on Relevance</h3>
                     <p className="text-gray-700">Highlight qualities and experiences most relevant to the program or opportunity the student is pursuing.</p>
                   </div>
                   
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-2">4. Be Honest and Authentic</h3>
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-2">4. Be Honest and Authentic</h3>
                     <p className="text-gray-700">Provide genuine assessment based on actual interactions and observations. Avoid exaggeration or false claims.</p>
                   </div>
                 </div>
@@ -263,7 +263,7 @@ export default function RecommendationLetterStudentScholarship() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Common Mistakes to Avoid</h2>
                 
                 <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Avoid These Common Errors</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Avoid These Common Errors</h3>
                   <ul className="space-y-3">
                     <li className="flex items-start">
                       <span className="w-2 h-2 #1845B3 rounded-full mt-2 mr-3"></span>
@@ -335,7 +335,7 @@ export default function RecommendationLetterStudentScholarship() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Need Help with Recommendation Letters?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#1565c0]">Need Help with Recommendation Letters?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants on obtaining strong recommendation letters for your university applications.
                 </p>

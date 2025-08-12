@@ -361,7 +361,7 @@ export default function ContactUsSection() {
                       <div className="flex justify-between items-start mb-3">
                         <h4 className="font-semibold text-gray-900 text-lg">{office.city}</h4>
                         {office.city.includes("Head Office") && (
-                          <Badge variant="secondary" className="bg-blue-100 text-#1565c0">
+                          <Badge variant="secondary" className="bg-blue-100 text-[#1565c0]">
                             Head Office
                           </Badge>
                         )}

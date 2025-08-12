@@ -302,7 +302,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
           <div className="text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
             <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
-            <Link href="/blog" className="#1845B3 hover:text-#1565c0">
+            <Link href="/blog" className="#1845B3 hover:text-[#1565c0]">
               ← Back to Blog
             </Link>
           </div>
@@ -376,7 +376,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <ul className="space-y-2 text-gray-600">
                     {contentSections.map((section, index) => (
                       <li key={index}>
-                        <a href={`#${section.id}`} className="hover:#1845B3">
+                        <a href={`#${section.id}`} className="hover:bg-[#1845B3]">
                           {section.title}
                         </a>
                       </li>
@@ -412,7 +412,7 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                   <h3 className="text-lg font-semibold text-gray-900 mb-3">Tags</h3>
                   <div className="flex flex-wrap gap-2">
                     {blogPost.tags.map((tag, index) => (
-                      <span key={index} className="bg-blue-100 text-#1565c0 px-3 py-1 rounded-full text-sm">
+                      <span key={index} className="bg-blue-100 text-[#1565c0] px-3 py-1 rounded-full text-sm">
                         {tag}
                       </span>
                     ))}
@@ -633,13 +633,13 @@ function DynamicBlogPost({ slug }: { slug: string }) {
                     Related Topics
                   </h3>
                   <div className="space-y-3">
-                    <Link href="/blog" className="block text-sm #1845B3 hover:text-#1565c0 hover:underline">
+                    <Link href="/blog" className="block text-sm #1845B3 hover:text-[#1565c0] hover:underline">
                       Study Abroad Guide 2025
                     </Link>
-                    <Link href="/blog" className="block text-sm #1845B3 hover:text-#1565c0 hover:underline">
+                    <Link href="/blog" className="block text-sm #1845B3 hover:text-[#1565c0] hover:underline">
                       University Selection Tips
                     </Link>
-                    <Link href="/blog" className="block text-sm #1845B3 hover:text-#1565c0 hover:underline">
+                    <Link href="/blog" className="block text-sm #1845B3 hover:text-[#1565c0] hover:underline">
                       Visa Application Process
                     </Link>
                   </div>
@@ -987,7 +987,7 @@ export default function Blog() {
                       
                       <div className="p-8">
                         <div className="flex items-center space-x-3 mb-4">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-#1565c0">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-[#1565c0]">
                             {post.category}
                           </span>
                           <span className="text-gray-400">•</span>
@@ -1049,7 +1049,7 @@ export default function Blog() {
               <h2 className="text-3xl font-bold text-gray-900">
                 {selectedCategory === "All" ? "All Articles" : selectedCategory}
               </h2>
-              <span className="px-3 py-1 bg-blue-100 text-#1565c0 rounded-full text-sm font-medium">
+              <span className="px-3 py-1 bg-blue-100 text-[#1565c0] rounded-full text-sm font-medium">
                 {filteredPosts.length} articles
               </span>
             </div>
@@ -1143,7 +1143,7 @@ export default function Blog() {
                       
                       {/* Title */}
                       <h3 className={`
-                        font-bold text-gray-900 mb-4 group-hover:#1845B3 transition-colors duration-300 line-clamp-2
+                        font-bold text-gray-900 mb-4 group-hover:bg-[#1845B3] transition-colors duration-300 line-clamp-2
                         ${viewMode === "list" ? "text-2xl" : "text-xl"}
                       `}>
                         {post.title}
@@ -1233,7 +1233,7 @@ export default function Blog() {
                     
                     <div className={`p-6 ${viewMode === "list" ? "flex-1" : ""}`}>
                       <div className="flex items-center space-x-2 mb-3">
-                        <span className="bg-blue-100 text-#1565c0 px-3 py-1 rounded-full text-xs font-medium">
+                        <span className="bg-blue-100 text-[#1565c0] px-3 py-1 rounded-full text-xs font-medium">
                           {post.category}
                         </span>
                         <div className="flex items-center text-gray-500 text-xs">

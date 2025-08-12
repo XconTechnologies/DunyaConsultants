@@ -372,7 +372,7 @@ export default function BlogArchive() {
                   className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300 group"
                 >
                   <div className="p-6 w-full">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:#1845B3 transition-colors duration-200 line-clamp-2">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:bg-[#1845B3] transition-colors duration-200 line-clamp-2">
                       {post.title}
                     </h3>
 

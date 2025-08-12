@@ -42,7 +42,7 @@ export default function TOEFLTestFeeInPakistan() {
 
                 {/* Quick Overview */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">TOEFL Key Facts</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">TOEFL Key Facts</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">$200-$250</h4>
@@ -71,7 +71,7 @@ export default function TOEFLTestFeeInPakistan() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">TOEFL Test Sections</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">TOEFL Test Sections</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="bg-white p-4 rounded border">
                       <h4 className="font-semibold text-#1a73e8 mb-2">Reading Section</h4>
@@ -104,26 +104,26 @@ export default function TOEFLTestFeeInPakistan() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Basic Requirements</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Basic Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
                       <span>No age restrictions - Anyone can take the test</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
                       <span>Valid passport required for identification</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
                       <span>Non-native English speakers planning to study abroad</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
                       <span>Check university-specific score requirements</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 text-sm">✓</span>
                       <span>Available worldwide at test centers and online</span>
                     </li>
                   </ul>
@@ -141,38 +141,38 @@ export default function TOEFLTestFeeInPakistan() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Step-by-Step Registration Process</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Step-by-Step Registration Process</h3>
                   <ol className="space-y-4 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">1</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">1</span>
                       <div>
                         <h4 className="font-semibold mb-1">Create an ETS Account</h4>
                         <p>First, you need to sign up for a free ETS account online. This is where you will manage everything about your TOEFL exam. Provide the required details and email ID to create the account.</p>
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">2</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">2</span>
                       <div>
                         <h4 className="font-semibold mb-1">Pick Your Test Option</h4>
                         <p>Decide whether you will take the TOEFL iBT Home Edition from your home or the TOEFL iBT at a test center. After that, check for available test dates and locations close to you.</p>
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">3</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">3</span>
                       <div>
                         <h4 className="font-semibold mb-1">Choose a Test Date</h4>
                         <p>Select a test date that works for you. Make sure it fits your schedule and gives you sufficient time to meet deadlines.</p>
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">4</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">4</span>
                       <div>
                         <h4 className="font-semibold mb-1">Register and Pay</h4>
                         <p>Register online through your ETS account. You can pay for the TOEFL test with a credit card or other accepted payment method.</p>
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">5</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">5</span>
                       <div>
                         <h4 className="font-semibold mb-1">Prepare for the Test</h4>
                         <p>Use official TOEFL practice tests, study materials, and guides to improve your English skills and pass the test confidently.</p>
@@ -193,7 +193,7 @@ export default function TOEFLTestFeeInPakistan() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Complete Fee Structure</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Complete Fee Structure</h3>
                   <div className="space-y-4">
                     <div className="bg-white p-4 rounded border">
                       <div className="flex justify-between items-center">
@@ -227,7 +227,7 @@ export default function TOEFLTestFeeInPakistan() {
                 </div>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Important Deadlines</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Important Deadlines</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li>• Regular registration closes 7 days before test date</li>
                     <li>• Late registration available up to 4 days before test (additional $40)</li>
@@ -249,7 +249,7 @@ export default function TOEFLTestFeeInPakistan() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Score Validity Details</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Score Validity Details</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-3">
                       <div className="flex justify-between items-center border-b pb-2">
@@ -342,7 +342,7 @@ export default function TOEFLTestFeeInPakistan() {
                   <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-[#1845B3] transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -356,7 +356,7 @@ export default function TOEFLTestFeeInPakistan() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">TOEFL Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">TOEFL Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Test Fee</span>
@@ -383,7 +383,7 @@ export default function TOEFLTestFeeInPakistan() {
 
             {/* Test Sections */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Test Sections</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Test Sections</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Reading (54-72 minutes)</li>
                 <li>• Listening (41-57 minutes)</li>
@@ -394,7 +394,7 @@ export default function TOEFLTestFeeInPakistan() {
 
             {/* Preparation Tips */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Preparation Tips</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Preparation Tips</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Take official practice tests</li>
                 <li>• Improve academic vocabulary</li>
@@ -408,13 +408,13 @@ export default function TOEFLTestFeeInPakistan() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Study in UK: Complete Guide for Pakistani Students
                 </a>
-                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/ms-in-business-analytics-course-in-usa" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   MS in Business Analytics Course in USA
                 </a>
-                <a href="/blog/germany-blocked-account" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/germany-blocked-account" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   A Complete Guide to Blocked Account Germany
                 </a>
               </div>

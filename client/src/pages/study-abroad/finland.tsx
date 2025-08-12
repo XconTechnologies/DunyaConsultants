@@ -254,7 +254,7 @@ Address: Alif Tower, Sargodha
                 </div>
                 
                 <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-semibold text-#1565c0 mb-2">💡 Important Note:</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">💡 Important Note:</h4>
                   <p className="text-#1a73e8 text-sm">Finland offers excellent scholarship opportunities for international students. EU students enjoy free tuition at public universities.</p>
                 </div>
               </CardContent>

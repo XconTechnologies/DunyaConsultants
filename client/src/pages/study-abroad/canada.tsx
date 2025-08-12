@@ -81,7 +81,7 @@ Address: Alif Tower, Sargodha
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white pt-32 pb-20">
+      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white pt-32 pb-20">
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
@@ -254,7 +254,7 @@ Address: Alif Tower, Sargodha
                 </div>
                 
                 <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-semibold text-#1565c0 mb-2">💡 Important Note:</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">💡 Important Note:</h4>
                   <p className="text-#1a73e8 text-sm">For Pakistani students, visa fees are approximately 80-90 lacs in total. Various scholarships are available for Pakistani students.</p>
                 </div>
               </CardContent>

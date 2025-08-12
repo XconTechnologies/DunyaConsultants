@@ -64,20 +64,20 @@ export default function StudyInFinlandGuide() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#why-study-finland" className="hover:#1845B3">Why Choose to Study in Finland?</a></li>
-                  <li><a href="#education-system" className="hover:#1845B3">Finland's Education System</a></li>
-                  <li><a href="#english-requirements" className="hover:#1845B3">English Language Requirements</a></li>
-                  <li><a href="#tuition-costs" className="hover:#1845B3">Tuition Fees and Living Costs</a></li>
-                  <li><a href="#visa-requirements" className="hover:#1845B3">Visa Requirements</a></li>
-                  <li><a href="#documents-checklist" className="hover:#1845B3">Required Documents</a></li>
-                  <li><a href="#application-process" className="hover:#1845B3">Application Process</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#why-study-finland" className="hover:bg-[#1845B3]">Why Choose to Study in Finland?</a></li>
+                  <li><a href="#education-system" className="hover:bg-[#1845B3]">Finland's Education System</a></li>
+                  <li><a href="#english-requirements" className="hover:bg-[#1845B3]">English Language Requirements</a></li>
+                  <li><a href="#tuition-costs" className="hover:bg-[#1845B3]">Tuition Fees and Living Costs</a></li>
+                  <li><a href="#visa-requirements" className="hover:bg-[#1845B3]">Visa Requirements</a></li>
+                  <li><a href="#documents-checklist" className="hover:bg-[#1845B3]">Required Documents</a></li>
+                  <li><a href="#application-process" className="hover:bg-[#1845B3]">Application Process</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Finland Overview */}
               <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-#1565c0 mb-4">Study in Finland at a Glance</h3>
+                <h3 className="text-xl font-semibold text-[#1565c0] mb-4">Study in Finland at a Glance</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <p className="text-gray-700 mb-2"><strong>Education Ranking:</strong> #1 in the World</p>
@@ -103,7 +103,7 @@ export default function StudyInFinlandGuide() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <Star className="w-5 h-5 mr-2" />
                         No. 1 Educational System in the World
                       </h3>
@@ -111,7 +111,7 @@ export default function StudyInFinlandGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <CheckCircle className="w-5 h-5 mr-2" />
                         Happiest and Safest Country
                       </h3>
@@ -119,7 +119,7 @@ export default function StudyInFinlandGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         Schengen Country & Welfare State
                       </h3>
@@ -127,7 +127,7 @@ export default function StudyInFinlandGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <Users className="w-5 h-5 mr-2" />
                         Visa Free Entry to 27 Countries
                       </h3>
@@ -137,7 +137,7 @@ export default function StudyInFinlandGuide() {
 
                   <div className="space-y-4">
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <DollarSign className="w-5 h-5 mr-2" />
                         Affordable Living Cost
                       </h3>
@@ -145,7 +145,7 @@ export default function StudyInFinlandGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <FileText className="w-5 h-5 mr-2" />
                         Low Financial Requirements
                       </h3>
@@ -153,7 +153,7 @@ export default function StudyInFinlandGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <AlertCircle className="w-5 h-5 mr-2" />
                         No Appointment Issues
                       </h3>
@@ -161,7 +161,7 @@ export default function StudyInFinlandGuide() {
                     </div>
 
                     <div className="bg-white border border-gray-200 rounded-lg p-6">
-                      <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                      <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                         <GraduationCap className="w-5 h-5 mr-2" />
                         High Visa Success Rate
                       </h3>
@@ -181,7 +181,7 @@ export default function StudyInFinlandGuide() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Bachelor's Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Bachelor's Programs</h3>
                     <div className="space-y-3">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">IELTS:</h4>
@@ -199,7 +199,7 @@ export default function StudyInFinlandGuide() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Master's Programs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Master's Programs</h3>
                     <div className="space-y-3">
                       <div>
                         <h4 className="font-semibold text-gray-800 mb-2">IELTS:</h4>
@@ -228,7 +228,7 @@ export default function StudyInFinlandGuide() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Tuition Fees</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Tuition Fees</h3>
                     <div className="space-y-3">
                       <div className="text-center">
                         <div className="text-3xl font-bold #1845B3 mb-2">€7,500</div>
@@ -238,7 +238,7 @@ export default function StudyInFinlandGuide() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Living Costs</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Living Costs</h3>
                     <div className="space-y-3">
                       <div className="text-center">
                         <div className="text-3xl font-bold #1845B3 mb-2">€500</div>
@@ -258,7 +258,7 @@ export default function StudyInFinlandGuide() {
                 
                 <div className="space-y-4">
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Original Passport
                     </h3>
@@ -266,7 +266,7 @@ export default function StudyInFinlandGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <FileText className="w-5 h-5 mr-2" />
                       All Attested Educational Documents
                     </h3>
@@ -274,7 +274,7 @@ export default function StudyInFinlandGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <GraduationCap className="w-5 h-5 mr-2" />
                       Attested Photocopies of Degree & Transcript
                     </h3>
@@ -282,7 +282,7 @@ export default function StudyInFinlandGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <BookOpen className="w-5 h-5 mr-2" />
                       IELTS / PTE / TOEFL Score Card
                     </h3>
@@ -290,7 +290,7 @@ export default function StudyInFinlandGuide() {
                   </div>
 
                   <div className="bg-white border border-gray-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-3 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-3 flex items-center">
                       <Users className="w-5 h-5 mr-2" />
                       Supporting Documents
                     </h3>
@@ -338,7 +338,7 @@ export default function StudyInFinlandGuide() {
 
               {/* CTA Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
-                <h3 className="text-2xl font-bold text-#1565c0 mb-4">Ready to Experience World's Best Education in Finland?</h3>
+                <h3 className="text-2xl font-bold text-[#1565c0] mb-4">Ready to Experience World's Best Education in Finland?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants provides expert guidance for Finnish university applications and visa processes. Join thousands of successful Pakistani students studying in Finland.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a href="/contact" className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
@@ -360,7 +360,7 @@ export default function StudyInFinlandGuide() {
               
               {/* Quick Info */}
               <div className="bg-blue-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold mb-4 text-#1565c0">Quick Study Info</h3>
+                <h3 className="text-lg font-semibold mb-4 text-[#1565c0]">Quick Study Info</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Education Rank:</span>
@@ -385,10 +385,10 @@ export default function StudyInFinlandGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/finland-visa-requirements-pakistani-students" className="block #1845B3 hover:text-#1565c0 text-sm">Finland Visa Requirements</a>
-                  <a href="/blog/study-in-uk-complete-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in UK Guide</a>
-                  <a href="/blog/study-in-canada-complete-guide" className="block #1845B3 hover:text-#1565c0 text-sm">Study in Canada Guide</a>
-                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #1845B3 hover:text-#1565c0 text-sm">IELTS Preparation Tips</a>
+                  <a href="/blog/finland-visa-requirements-pakistani-students" className="block #1845B3 hover:text-[#1565c0] text-sm">Finland Visa Requirements</a>
+                  <a href="/blog/study-in-uk-complete-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in UK Guide</a>
+                  <a href="/blog/study-in-canada-complete-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in Canada Guide</a>
+                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #1845B3 hover:text-[#1565c0] text-sm">IELTS Preparation Tips</a>
                 </div>
               </div>
 

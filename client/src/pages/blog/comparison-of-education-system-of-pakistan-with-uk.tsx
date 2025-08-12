@@ -70,7 +70,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-blue-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-#1565c0 mb-3">🇵🇰 Pakistan</h4>
+                      <h4 className="text-xl font-bold text-[#1565c0] mb-3">🇵🇰 Pakistan</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Children start at age 5-6 years</li>
                         <li>• Later start in rural areas</li>
@@ -80,7 +80,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                       </ul>
                     </div>
                     <div className="bg-blue-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-#1565c0 mb-3">🇬🇧 United Kingdom</h4>
+                      <h4 className="text-xl font-bold text-[#1565c0] mb-3">🇬🇧 United Kingdom</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Children start at age 4 years</li>
                         <li>• Reception class (age 4-5)</li>
@@ -105,7 +105,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-blue-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-#1565c0 mb-3">🇵🇰 Pakistan</h4>
+                      <h4 className="text-xl font-bold text-[#1565c0] mb-3">🇵🇰 Pakistan</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Duration: 4 years (grades 9-12)</li>
                         <li>• Government schools and colleges</li>
@@ -115,7 +115,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                       </ul>
                     </div>
                     <div className="bg-blue-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-#1565c0 mb-3">🇬🇧 United Kingdom</h4>
+                      <h4 className="text-xl font-bold text-[#1565c0] mb-3">🇬🇧 United Kingdom</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Ages 12-16 or 12-17</li>
                         <li>• A-levels completed by age 18</li>
@@ -139,7 +139,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-blue-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-#1565c0 mb-3">🇵🇰 Pakistan</h4>
+                      <h4 className="text-xl font-bold text-[#1565c0] mb-3">🇵🇰 Pakistan</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• Begins after grade 12</li>
                         <li>• Colleges and universities</li>
@@ -149,7 +149,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                       </ul>
                     </div>
                     <div className="bg-blue-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-#1565c0 mb-3">🇬🇧 United Kingdom</h4>
+                      <h4 className="text-xl font-bold text-[#1565c0] mb-3">🇬🇧 United Kingdom</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• After secondary education</li>
                         <li>• Universities and professional colleges</li>
@@ -216,7 +216,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="bg-blue-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-#1565c0 mb-3">Pakistan Academic Year</h4>
+                      <h4 className="text-xl font-bold text-[#1565c0] mb-3">Pakistan Academic Year</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• <strong>Duration:</strong> April to March</li>
                         <li>• <strong>Exception:</strong> Grades 11-12 (September to June)</li>
@@ -225,7 +225,7 @@ export default function ComparisonEducationSystemPakistanUK() {
                       </ul>
                     </div>
                     <div className="bg-blue-50 p-6 rounded-lg">
-                      <h4 className="text-xl font-bold text-#1565c0 mb-3">UK Academic Year</h4>
+                      <h4 className="text-xl font-bold text-[#1565c0] mb-3">UK Academic Year</h4>
                       <ul className="space-y-2 text-gray-700">
                         <li>• <strong>Duration:</strong> September to August</li>
                         <li>• <strong>Terms:</strong> Autumn, Spring, Summer</li>

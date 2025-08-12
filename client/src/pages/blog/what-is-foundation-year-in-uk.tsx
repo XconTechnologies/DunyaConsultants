@@ -42,7 +42,7 @@ export default function WhatIsFoundationYearInUK() {
 
                 {/* Quick Overview */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Foundation Year Quick Facts</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Foundation Year Quick Facts</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">1 Year</h4>
@@ -71,7 +71,7 @@ export default function WhatIsFoundationYearInUK() {
                 </p>
 
                 <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-lg border-l-4 #1D50C9 mb-6">
-                  <h3 className="text-xl font-bold mb-4 text-#1565c0">Key Benefits of Foundation Year</h3>
+                  <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Key Benefits of Foundation Year</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start">
                       <span className="#1D50C9 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">✓</span>
@@ -149,7 +149,7 @@ export default function WhatIsFoundationYearInUK() {
                 </p>
 
                 <div className="bg-gradient-to-r from-blue-50 to-blue-50 p-6 rounded-lg border-l-4 #1D50C9 mb-6">
-                  <h3 className="text-xl font-bold mb-4 text-#1565c0">Basic Eligibility Requirements</h3>
+                  <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Basic Eligibility Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
                       <span className="#1D50C9 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
@@ -176,7 +176,7 @@ export default function WhatIsFoundationYearInUK() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-#1565c0">Academic Documents</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-[#1565c0]">Academic Documents</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Academic transcripts</li>
                       <li>• Higher Secondary School Diploma</li>
@@ -185,7 +185,7 @@ export default function WhatIsFoundationYearInUK() {
                   </div>
                   
                   <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-#1565c0">Supporting Documents</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-[#1565c0]">Supporting Documents</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Statement of Purpose</li>
                       <li>• Letter of Recommendation</li>
@@ -237,7 +237,7 @@ export default function WhatIsFoundationYearInUK() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
                   <div className="bg-blue-50 p-4 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Creative Fields</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Creative Fields</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Art and Design</li>
                       <li>• Media</li>
@@ -245,7 +245,7 @@ export default function WhatIsFoundationYearInUK() {
                   </div>
                   
                   <div className="bg-blue-50 p-4 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Technology</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Technology</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Computing</li>
                       <li>• Engineering</li>
@@ -254,7 +254,7 @@ export default function WhatIsFoundationYearInUK() {
                   </div>
                   
                   <div className="bg-blue-50 p-4 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Business</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Business</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Business, Finance, and Management</li>
                       <li>• Marketing</li>
@@ -262,7 +262,7 @@ export default function WhatIsFoundationYearInUK() {
                   </div>
                   
                   <div className="bg-blue-50 p-4 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Social Sciences</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Social Sciences</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Social Sciences</li>
                       <li>• International Relations and Politics</li>
@@ -271,7 +271,7 @@ export default function WhatIsFoundationYearInUK() {
                   </div>
                   
                   <div className="bg-blue-50 p-4 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Sciences</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Sciences</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Science and Pharmacy</li>
                     </ul>
@@ -338,7 +338,7 @@ export default function WhatIsFoundationYearInUK() {
                   <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-[#1845B3] transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -352,7 +352,7 @@ export default function WhatIsFoundationYearInUK() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Foundation Year Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Foundation Year Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Duration</span>
@@ -379,7 +379,7 @@ export default function WhatIsFoundationYearInUK() {
 
             {/* Top Universities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Top Universities Offering Foundation Year</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Top Universities Offering Foundation Year</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Coventry University</li>
                 <li>• King's College London</li>
@@ -392,7 +392,7 @@ export default function WhatIsFoundationYearInUK() {
 
             {/* Popular Subjects */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Popular Foundation Subjects</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Popular Foundation Subjects</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Business & Management</li>
                 <li>• Engineering</li>
@@ -408,13 +408,13 @@ export default function WhatIsFoundationYearInUK() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Complete Guide to Study in UK
                 </a>
-                <a href="/blog/uk-student-visa" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/uk-student-visa" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   UK Student Visa Requirements
                 </a>
-                <a href="/blog/top-universities-in-uk" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/top-universities-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Top Universities in UK for International Students
                 </a>
               </div>

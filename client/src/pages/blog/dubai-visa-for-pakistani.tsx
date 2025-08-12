@@ -61,19 +61,19 @@ export default function DubaiVisaForPakistani() {
               <div className="mb-8 bg-blue-50 p-6 rounded-lg">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#what-is-dubai-visa" className="hover:#1845B3">What is a Dubai Student Visa?</a></li>
-                  <li><a href="#eligibility-criteria" className="hover:#1845B3">Eligibility Criteria for Dubai Student Visa from Pakistan</a></li>
-                  <li><a href="#entry-requirements" className="hover:#1845B3">Dubai Entry Requirements from Pakistan Students</a></li>
-                  <li><a href="#application-process" className="hover:#1845B3">How to Apply Dubai Visa from Pakistan?</a></li>
-                  <li><a href="#visa-price" className="hover:#1845B3">Dubai Student Visa Price in Pakistan</a></li>
-                  <li><a href="#conclusion" className="hover:#1845B3">Conclusion</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#what-is-dubai-visa" className="hover:bg-[#1845B3]">What is a Dubai Student Visa?</a></li>
+                  <li><a href="#eligibility-criteria" className="hover:bg-[#1845B3]">Eligibility Criteria for Dubai Student Visa from Pakistan</a></li>
+                  <li><a href="#entry-requirements" className="hover:bg-[#1845B3]">Dubai Entry Requirements from Pakistan Students</a></li>
+                  <li><a href="#application-process" className="hover:bg-[#1845B3]">How to Apply Dubai Visa from Pakistan?</a></li>
+                  <li><a href="#visa-price" className="hover:bg-[#1845B3]">Dubai Student Visa Price in Pakistan</a></li>
+                  <li><a href="#conclusion" className="hover:bg-[#1845B3]">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
               {/* Key Benefits */}
               <div className="bg-blue-50 border-l-4 #1D50C9 p-6 mb-8">
-                <h3 className="text-xl font-semibold text-#1565c0 mb-4">Benefits of Dubai Student Visa</h3>
+                <h3 className="text-xl font-semibold text-[#1565c0] mb-4">Benefits of Dubai Student Visa</h3>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-center">
                     <CheckCircle className="w-5 h-5 #1D50C9 mr-3" />
@@ -111,7 +111,7 @@ export default function DubaiVisaForPakistani() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Types of Dubai Student Visas</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Types of Dubai Student Visas</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
                       <p className="text-gray-700 mb-2"><strong>Short-term Visa:</strong> Up to 6 months for language courses</p>
@@ -181,7 +181,7 @@ export default function DubaiVisaForPakistani() {
 
                 <div className="space-y-6">
                   <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
-                    <h3 className="text-lg font-semibold text-#1565c0 mb-4 flex items-center">
+                    <h3 className="text-lg font-semibold text-[#1565c0] mb-4 flex items-center">
                       <FileText className="w-5 h-5 mr-2" />
                       Essential Documents
                     </h3>
@@ -303,7 +303,7 @@ export default function DubaiVisaForPakistani() {
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                     <div className="flex items-center mb-4">
                       <DollarSign className="w-8 h-8 #1845B3 mr-3" />
-                      <h3 className="text-lg font-semibold text-#1565c0">Visa Processing Fee</h3>
+                      <h3 className="text-lg font-semibold text-[#1565c0]">Visa Processing Fee</h3>
                     </div>
                     <p className="text-3xl font-bold #1845B3 mb-2">2,300 - 2,700 AED</p>
                     <p className="text-gray-600">Mandatory processing charges</p>
@@ -379,7 +379,7 @@ export default function DubaiVisaForPakistani() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Need Help with Dubai Student Visa?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#1565c0]">Need Help with Dubai Student Visa?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert assistance from Dunya Consultants for your Dubai student visa application and ensure a smooth process.
                 </p>

@@ -68,7 +68,7 @@ export default function TBTestForUKVisaInPakistan() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0] flex items-center">
                   <AlertCircle className="mr-3 h-6 w-6" />
                   When Do You Need to Do a TB test for UK visa?
                 </h2>
@@ -103,7 +103,7 @@ export default function TBTestForUKVisaInPakistan() {
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
                         <CheckCircle className="h-6 w-6 #1845B3 mr-2" />
-                        <h3 className="font-semibold text-#1565c0">Fulfill immigration requirements</h3>
+                        <h3 className="font-semibold text-[#1565c0]">Fulfill immigration requirements</h3>
                       </div>
                       <p className="text-#1a73e8 text-sm">Essential requirement for UK visa compliance</p>
                     </CardContent>
@@ -112,7 +112,7 @@ export default function TBTestForUKVisaInPakistan() {
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
                         <CheckCircle className="h-6 w-6 #1845B3 mr-2" />
-                        <h3 className="font-semibold text-#1565c0">Ensures protection and safety</h3>
+                        <h3 className="font-semibold text-[#1565c0]">Ensures protection and safety</h3>
                       </div>
                       <p className="text-#1a73e8 text-sm">Protects both individual and public health</p>
                     </CardContent>
@@ -121,7 +121,7 @@ export default function TBTestForUKVisaInPakistan() {
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
                         <CheckCircle className="h-6 w-6 #1845B3 mr-2" />
-                        <h3 className="font-semibold text-#1565c0">Guarantees public health protection</h3>
+                        <h3 className="font-semibold text-[#1565c0]">Guarantees public health protection</h3>
                       </div>
                       <p className="text-#1a73e8 text-sm">Maintains UK's public health standards</p>
                     </CardContent>
@@ -130,7 +130,7 @@ export default function TBTestForUKVisaInPakistan() {
                     <CardContent className="p-6">
                       <div className="flex items-center mb-3">
                         <CheckCircle className="h-6 w-6 #1845B3 mr-2" />
-                        <h3 className="font-semibold text-#1565c0">Prevents the spread of TB</h3>
+                        <h3 className="font-semibold text-[#1565c0]">Prevents the spread of TB</h3>
                       </div>
                       <p className="text-#1a73e8 text-sm">Controls infectious disease transmission</p>
                     </CardContent>
@@ -167,7 +167,7 @@ export default function TBTestForUKVisaInPakistan() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0] flex items-center">
                   <DollarSign className="mr-3 h-6 w-6" />
                   TB Test for UK Visa Fees
                 </h2>
@@ -239,7 +239,7 @@ export default function TBTestForUKVisaInPakistan() {
 
               {/* Conclusion */}
               <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Conclusion</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Being a citizen of Pakistan, one of the most essential United Kingdom student visa requirements is to get your TB screening done. Without a TB test for UK visa, you are not allowed to stay in the UK for a period of more than six months. After getting your screening done, you will receive a TB clearance certificate for UK visa which needs to be submitted while applying.
                 </p>
@@ -281,26 +281,26 @@ export default function TBTestForUKVisaInPakistan() {
               {/* Quick Facts */}
               <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-#1565c0 mb-4 flex items-center">
+                  <h3 className="font-bold text-[#1565c0] mb-4 flex items-center">
                     <FileText className="mr-2 h-5 w-5" />
                     Quick Facts
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Test Fee:</span>
-                      <span className="font-semibold text-#1565c0">$78 USD</span>
+                      <span className="font-semibold text-[#1565c0]">$78 USD</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Validity:</span>
-                      <span className="font-semibold text-#1565c0">6 months</span>
+                      <span className="font-semibold text-[#1565c0]">6 months</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Required for:</span>
-                      <span className="font-semibold text-#1565c0">6+ months stay</span>
+                      <span className="font-semibold text-[#1565c0]">6+ months stay</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Age Limit:</span>
-                      <span className="font-semibold text-#1565c0">16+ years</span>
+                      <span className="font-semibold text-[#1565c0]">16+ years</span>
                     </div>
                   </div>
                 </CardContent>

@@ -246,7 +246,7 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
                 {calculatedCost ? (
                   <div className="space-y-3">
                     <div className="p-4 bg-blue-50 rounded-lg border-l-4 #1D50C9">
-                      <h4 className="font-semibold text-#1565c0">Your Personalized Cost</h4>
+                      <h4 className="font-semibold text-[#1565c0]">Your Personalized Cost</h4>
                       <p className="text-2xl font-bold #1845B3">
                         {country === 'UK' ? '£' : country === 'Canada' ? 'CAD $' : '$'}{calculatedCost.toLocaleString()}
                       </p>
@@ -377,7 +377,7 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
                   <div className="space-y-3">
                     {matchedCourses.map((course, index) => (
                       <div key={index} className="p-4 border border-blue-200 rounded-lg bg-blue-50">
-                        <h4 className="font-semibold text-#1565c0">{course.name}</h4>
+                        <h4 className="font-semibold text-[#1565c0]">{course.name}</h4>
                         <div className="text-sm text-#1a73e8 space-y-1 mt-2">
                           <p><strong>Level:</strong> {course.level}</p>
                           <p><strong>Duration:</strong> {course.duration}</p>
@@ -391,7 +391,7 @@ export default function SmartToolsPopup({ country }: SmartToolsPopupProps) {
                     ))}
                     
                     <div className="p-4 bg-blue-50 rounded-lg border-l-4 #1D50C9">
-                      <h4 className="font-semibold text-#1565c0">Perfect Match!</h4>
+                      <h4 className="font-semibold text-[#1565c0]">Perfect Match!</h4>
                       <p className="text-sm text-#1a73e8 mt-1">
                         Found {matchedCourses.length} courses that match your criteria in {country}
                       </p>

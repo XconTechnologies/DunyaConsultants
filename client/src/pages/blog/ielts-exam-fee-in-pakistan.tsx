@@ -118,7 +118,7 @@ export default function IELTSExamFeeInPakistan() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0] flex items-center">
                   <BookOpen className="mr-3 h-6 w-6" />
                   What is the IELTS Full Form?
                 </h2>
@@ -141,7 +141,7 @@ export default function IELTSExamFeeInPakistan() {
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
                   <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 border-blue-200">
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-bold text-#1565c0 mb-3">IELTS General Training</h3>
+                      <h3 className="text-xl font-bold text-[#1565c0] mb-3">IELTS General Training</h3>
                       <p className="text-#1a73e8 text-sm leading-relaxed">
                         IELTS for General training is basically for non-academic purposes. It is taken for high school admissions, work experience programs, and also immigration applications. This format assesses English skills for relevant students and people.
                       </p>
@@ -149,7 +149,7 @@ export default function IELTSExamFeeInPakistan() {
                   </Card>
                   <Card className="bg-gradient-to-br from-blue-50 to-violet-100 border-blue-200">
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-bold text-#1565c0 mb-3">IELTS Academic</h3>
+                      <h3 className="text-xl font-bold text-[#1565c0] mb-3">IELTS Academic</h3>
                       <p className="text-#1a73e8 text-sm leading-relaxed">
                         IELTS Academic is specifically made for students. It is used to apply for undergraduate as well as postgraduate programs. All questions in this test are framed designed for students willing to pursue higher education from an international country.
                       </p>
@@ -285,7 +285,7 @@ export default function IELTSExamFeeInPakistan() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">IELTS Band Score Requirements</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">IELTS Band Score Requirements</h2>
                 <div className="grid md:grid-cols-3 gap-4">
                   <div className="text-center p-4 bg-white rounded-lg border border-blue-200">
                     <div className="text-2xl font-bold #1845B3 mb-2">5.5 - 6.0</div>
@@ -304,7 +304,7 @@ export default function IELTSExamFeeInPakistan() {
 
               {/* Conclusion */}
               <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Conclusion</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   To get admission in any international country, every Pakistani student needs to prove their English language proficiency. The standardized international English language testing system exam used to assess English proficiency is IELTS. Students will have to obtain a required band in their IELTS examination in order to get admission in any certified institution.
                 </p>
@@ -352,26 +352,26 @@ export default function IELTSExamFeeInPakistan() {
               {/* Quick Facts */}
               <Card className="bg-gradient-to-br from-blue-50 to-purple-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-#1565c0 mb-4 flex items-center">
+                  <h3 className="font-bold text-[#1565c0] mb-4 flex items-center">
                     <DollarSign className="mr-2 h-5 w-5" />
                     IELTS Quick Facts
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Computer-Based:</span>
-                      <span className="font-semibold text-#1565c0">$205</span>
+                      <span className="font-semibold text-[#1565c0]">$205</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Paper-Based:</span>
-                      <span className="font-semibold text-#1565c0">$229</span>
+                      <span className="font-semibold text-[#1565c0]">$229</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Total Duration:</span>
-                      <span className="font-semibold text-#1565c0">2h 45m</span>
+                      <span className="font-semibold text-[#1565c0]">2h 45m</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Validity:</span>
-                      <span className="font-semibold text-#1565c0">2 years</span>
+                      <span className="font-semibold text-[#1565c0]">2 years</span>
                     </div>
                   </div>
                 </CardContent>

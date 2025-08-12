@@ -257,7 +257,7 @@ Address: Alif Tower, Sargodha
                 </div>
                 
                 <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-semibold text-#1565c0 mb-2">TB Test Centers in Pakistan:</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">TB Test Centers in Pakistan:</h4>
                   <ul className="list-disc list-inside text-#1a73e8 space-y-1">
                     <li>AMC (Approved Medical Centre)</li>
                     <li>Dr. Arshad Health Associates</li>

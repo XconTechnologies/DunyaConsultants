@@ -367,7 +367,7 @@ export default function CostCalculatorSection() {
                 <div className="flex items-start">
                   <div className="#1845B3 mr-3 mt-1">💡</div>
                   <div>
-                    <div className="font-medium text-#1565c0 mb-1">Pro Tip</div>
+                    <div className="font-medium text-[#1565c0] mb-1">Pro Tip</div>
                     <div className="text-sm text-#1a73e8">
                       Start your planning 12-18 months in advance to secure the best scholarships and ensure smooth visa processing.
                     </div>

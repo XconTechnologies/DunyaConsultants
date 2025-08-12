@@ -179,11 +179,11 @@ const StudyInUK = () => {
                   <h4 className="font-semibold text-#1e3a8a mb-3">IELTS Requirements</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-#1565c0">Undergraduate:</span>
+                      <span className="text-[#1565c0]">Undergraduate:</span>
                       <span className="font-medium text-#1e3a8a">6.0 (no less than 5.5)</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-#1565c0">Postgraduate:</span>
+                      <span className="text-[#1565c0]">Postgraduate:</span>
                       <span className="font-medium text-#1e3a8a">6.5 (no less than 6.0)</span>
                     </div>
                   </div>
@@ -192,11 +192,11 @@ const StudyInUK = () => {
                   <h4 className="font-semibold text-#1e3a8a mb-3">PTE Requirements</h4>
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="text-#1565c0">Undergraduate:</span>
+                      <span className="text-[#1565c0]">Undergraduate:</span>
                       <span className="font-medium text-#1e3a8a">59 minimum each</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-#1565c0">Postgraduate:</span>
+                      <span className="text-[#1565c0]">Postgraduate:</span>
                       <span className="font-medium text-#1e3a8a">59 minimum each</span>
                     </div>
                   </div>
@@ -214,13 +214,13 @@ const StudyInUK = () => {
                 <div className="bg-gradient-to-br from-blue-50 to-green-100 rounded-lg p-6 text-center">
                   <GraduationCap className="h-12 w-12 #1845B3 mx-auto mb-4" />
                   <h4 className="font-semibold text-#1e3a8a mb-2">Undergraduate Programs</h4>
-                  <p className="text-2xl font-bold text-#1565c0">£11,000 - £17,000</p>
+                  <p className="text-2xl font-bold text-[#1565c0]">£11,000 - £17,000</p>
                   <p className="text-sm text-#1a73e8 mt-2">Per Academic Year</p>
                 </div>
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 text-center">
                   <GraduationCap className="h-12 w-12 #1845B3 mx-auto mb-4" />
                   <h4 className="font-semibold text-#1e3a8a mb-2">Postgraduate Programs</h4>
-                  <p className="text-2xl font-bold text-#1565c0">£11,000 - £17,000</p>
+                  <p className="text-2xl font-bold text-[#1565c0]">£11,000 - £17,000</p>
                   <p className="text-sm text-#1a73e8 mt-2">Per Academic Year</p>
                 </div>
               </div>
@@ -371,23 +371,23 @@ const StudyInUK = () => {
 
             <div className="bg-blue-50 rounded-lg p-6">
               <h3 className="text-lg font-semibold text-#1e3a8a mb-4">Need Help?</h3>
-              <p className="text-#1565c0 text-sm mb-4">
+              <p className="text-[#1565c0] text-sm mb-4">
                 Get expert guidance for your UK study journey from our experienced consultants.
               </p>
               <div className="space-y-2 text-sm">
-                <p className="flex items-center text-#1565c0">
+                <p className="flex items-center text-[#1565c0]">
                   <span className="w-2 h-2 #1845B3 rounded-full mr-2"></span>
                   University selection assistance
                 </p>
-                <p className="flex items-center text-#1565c0">
+                <p className="flex items-center text-[#1565c0]">
                   <span className="w-2 h-2 #1845B3 rounded-full mr-2"></span>
                   Visa application support
                 </p>
-                <p className="flex items-center text-#1565c0">
+                <p className="flex items-center text-[#1565c0]">
                   <span className="w-2 h-2 #1845B3 rounded-full mr-2"></span>
                   Documentation guidance
                 </p>
-                <p className="flex items-center text-#1565c0">
+                <p className="flex items-center text-[#1565c0]">
                   <span className="w-2 h-2 #1845B3 rounded-full mr-2"></span>
                   Pre-departure briefing
                 </p>

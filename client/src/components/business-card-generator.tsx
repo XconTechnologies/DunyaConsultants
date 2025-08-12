@@ -370,7 +370,7 @@ export default function BusinessCardGenerator() {
                 Design Tips
               </h3>
               
-              <ul className="space-y-2 text-sm text-#1565c0">
+              <ul className="space-y-2 text-sm text-[#1565c0]">
                 <li>• Keep text concise and easy to read</li>
                 <li>• Choose colors that represent your brand</li>
                 <li>• Ensure contact information is accurate</li>

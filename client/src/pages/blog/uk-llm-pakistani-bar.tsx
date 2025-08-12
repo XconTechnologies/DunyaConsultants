@@ -13,7 +13,7 @@ export default function UKLLMPakistaniBar() {
               <p className="mt-2 text-gray-600">Complete Guide for Legal Practice Conversion</p>
             </div>
             <div className="text-right">
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-#1565c0">
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-[#1565c0]">
                 <Scale className="w-4 h-4 mr-1" />
                 Legal Education
               </span>
@@ -154,7 +154,7 @@ export default function UKLLMPakistaniBar() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h3 className="font-semibold text-#1e3a8a mb-3">Advantages</h3>
-                      <ul className="space-y-2 text-sm text-#1565c0">
+                      <ul className="space-y-2 text-sm text-[#1565c0]">
                         <li>• Specialized expertise in specific law areas</li>
                         <li>• Enhanced international law knowledge</li>
                         <li>• Stronger academic credentials</li>
@@ -164,7 +164,7 @@ export default function UKLLMPakistaniBar() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-#1e3a8a mb-3">Limitations</h3>
-                      <ul className="space-y-2 text-sm text-#1565c0">
+                      <ul className="space-y-2 text-sm text-[#1565c0]">
                         <li>• Does not automatically qualify for practice</li>
                         <li>• Additional Pakistani qualifications needed</li>
                         <li>• Local law study required</li>
@@ -231,25 +231,25 @@ export default function UKLLMPakistaniBar() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="bg-blue-50 rounded-lg p-4">
                     <h3 className="font-semibold text-#1e3a8a mb-2">Legal System Differences</h3>
-                    <p className="text-sm text-#1565c0">
+                    <p className="text-sm text-[#1565c0]">
                       Pakistani law differs from UK law, requiring study of local legal procedures and practices
                     </p>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-4">
                     <h3 className="font-semibold text-#1e3a8a mb-2">Language Advantage</h3>
-                    <p className="text-sm text-#1565c0">
+                    <p className="text-sm text-[#1565c0]">
                       Many legal documents are in English, making good language skills beneficial
                     </p>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-4">
                     <h3 className="font-semibold text-#1e3a8a mb-2">Professional Networking</h3>
-                    <p className="text-sm text-#1565c0">
+                    <p className="text-sm text-[#1565c0]">
                       Building connections in the legal community opens better career opportunities
                     </p>
                   </div>
                   <div className="bg-blue-50 rounded-lg p-4">
                     <h3 className="font-semibold text-#1e3a8a mb-2">Continuous Learning</h3>
-                    <p className="text-sm text-#1565c0">
+                    <p className="text-sm text-[#1565c0]">
                       Stay updated with Pakistani legal developments and procedural changes
                     </p>
                   </div>
@@ -347,13 +347,13 @@ export default function UKLLMPakistaniBar() {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Contents</h3>
                 <nav className="space-y-2 text-sm">
-                  <a href="#eligibility" className="block text-gray-600 hover:#1845B3">Eligibility Requirements</a>
-                  <a href="#legal-system" className="block text-gray-600 hover:#1845B3">Pakistani Legal System</a>
-                  <a href="#uk-llm-role" className="block text-gray-600 hover:#1845B3">Role of UK LLM</a>
-                  <a href="#steps" className="block text-gray-600 hover:#1845B3">Steps to Practice</a>
-                  <a href="#considerations" className="block text-gray-600 hover:#1845B3">Important Considerations</a>
-                  <a href="#career" className="block text-gray-600 hover:#1845B3">Career Options</a>
-                  <a href="#faqs" className="block text-gray-600 hover:#1845B3">FAQs</a>
+                  <a href="#eligibility" className="block text-gray-600 hover:bg-[#1845B3]">Eligibility Requirements</a>
+                  <a href="#legal-system" className="block text-gray-600 hover:bg-[#1845B3]">Pakistani Legal System</a>
+                  <a href="#uk-llm-role" className="block text-gray-600 hover:bg-[#1845B3]">Role of UK LLM</a>
+                  <a href="#steps" className="block text-gray-600 hover:bg-[#1845B3]">Steps to Practice</a>
+                  <a href="#considerations" className="block text-gray-600 hover:bg-[#1845B3]">Important Considerations</a>
+                  <a href="#career" className="block text-gray-600 hover:bg-[#1845B3]">Career Options</a>
+                  <a href="#faqs" className="block text-gray-600 hover:bg-[#1845B3]">FAQs</a>
                 </nav>
               </div>
 

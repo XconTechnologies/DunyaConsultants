@@ -63,7 +63,7 @@ const BachelorsIndustrialEngineeringAndManagement: React.FC = () => {
         <div className="flex items-center justify-center h-64">
           <div className="text-center">
             <p className="#1845B3 mb-4">Failed to load the article</p>
-            <Link href="/blog" className="#1845B3 hover:text-#1565c0">
+            <Link href="/blog" className="#1845B3 hover:text-[#1565c0]">
               ← Back to Blog
             </Link>
           </div>
@@ -127,7 +127,7 @@ const BachelorsIndustrialEngineeringAndManagement: React.FC = () => {
             <div className="sticky top-8 space-y-6">
               {/* Quick Facts */}
               <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-semibold text-#1565c0 mb-4">Quick Facts</h3>
+                <h3 className="text-lg font-semibold text-[#1565c0] mb-4">Quick Facts</h3>
                 <div className="space-y-3 text-sm text-#1a73e8">
                   <div className="flex justify-between">
                     <span>Duration:</span>
@@ -150,7 +150,7 @@ const BachelorsIndustrialEngineeringAndManagement: React.FC = () => {
 
               {/* Core Subjects */}
               <div className="bg-blue-50 p-6 rounded-lg border border-blue-200">
-                <h3 className="text-lg font-semibold text-#1565c0 mb-4">Core Subjects</h3>
+                <h3 className="text-lg font-semibold text-[#1565c0] mb-4">Core Subjects</h3>
                 <div className="space-y-2 text-sm text-#1a73e8">
                   <div>• Operations Research</div>
                   <div>• Quality Management</div>

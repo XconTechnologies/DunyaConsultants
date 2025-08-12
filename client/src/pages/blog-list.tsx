@@ -383,7 +383,7 @@ export default function BlogList() {
             >
               <Card className="hover:shadow-xl transition-all duration-300 border shadow-md">
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:#1845B3 transition-colors line-clamp-2">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:bg-[#1845B3] transition-colors line-clamp-2">
                     {post.title}
                   </h3>
                   
@@ -400,7 +400,7 @@ export default function BlogList() {
                     <Link href={post.slug}>
                       <Button 
                         size="sm" 
-                        className="#1D50C9 hover:#1845B3 text-white"
+                        className="#1D50C9 hover:bg-[#1845B3] text-white"
                       >
                         Read More
                         <ArrowRight className="w-4 h-4 ml-2" />

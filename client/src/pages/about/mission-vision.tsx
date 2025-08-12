@@ -41,7 +41,7 @@ export default function MissionVision() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -79,7 +79,7 @@ export default function MissionVision() {
                 <h2 className="text-4xl font-bold text-gray-900">Our Mission</h2>
               </div>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p className="text-2xl font-semibold #1845B3 mb-4">
+                <p className="text-2xl font-semibold text-[#1845B3] mb-4">
                   "To help international students achieve their academic goals and become leaders in their respective fields."
                 </p>
                 <p>
@@ -133,7 +133,7 @@ export default function MissionVision() {
                 <h2 className="text-4xl font-bold text-gray-900">Our Vision</h2>
               </div>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p className="text-2xl font-semibold #1845B3 mb-4">
+                <p className="text-2xl font-semibold text-[#1845B3] mb-4">
                   "To unlock the transformative power of education for our clients with our dedication to provide excellent service and personalized support to each of them."
                 </p>
                 <p>

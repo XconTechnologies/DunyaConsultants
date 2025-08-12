@@ -150,7 +150,7 @@ export default function ErasmusMundusScholarship() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0] flex items-center">
                   <DollarSign className="mr-3 h-6 w-6" />
                   Complete Financial Coverage
                 </h2>
@@ -191,7 +191,7 @@ export default function ErasmusMundusScholarship() {
                 </div>
                 
                 <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <p className="text-sm text-#1565c0">
+                  <p className="text-sm text-[#1565c0]">
                     <strong>Total Value:</strong> €30,000+ per student for Master's programs | €40,000+ for Doctoral programs
                   </p>
                 </div>
@@ -214,19 +214,19 @@ export default function ErasmusMundusScholarship() {
                     >
                       <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200">
                         <CardContent className="p-6">
-                          <h3 className="text-xl font-bold text-#1565c0 mb-3">{program.type}</h3>
+                          <h3 className="text-xl font-bold text-[#1565c0] mb-3">{program.type}</h3>
                           <div className="grid md:grid-cols-3 gap-4 text-sm">
                             <div>
                               <span className="text-#1a73e8 font-medium">Duration:</span>
-                              <div className="font-semibold text-#1565c0">{program.duration}</div>
+                              <div className="font-semibold text-[#1565c0]">{program.duration}</div>
                             </div>
                             <div>
                               <span className="text-#1a73e8 font-medium">Subjects:</span>
-                              <div className="font-semibold text-#1565c0">{program.subjects.join(", ")}</div>
+                              <div className="font-semibold text-[#1565c0]">{program.subjects.join(", ")}</div>
                             </div>
                             <div>
                               <span className="text-#1a73e8 font-medium">Mobility:</span>
-                              <div className="font-semibold text-#1565c0">{program.universities}</div>
+                              <div className="font-semibold text-[#1565c0]">{program.universities}</div>
                             </div>
                           </div>
                         </CardContent>
@@ -361,7 +361,7 @@ export default function ErasmusMundusScholarship() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Application Deadlines</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Application Deadlines</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Erasmus Mundus applications typically follow these timeline patterns:
                 </p>
@@ -387,7 +387,7 @@ export default function ErasmusMundusScholarship() {
 
               {/* Conclusion */}
               <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Start Your European Journey</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Start Your European Journey</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   The Erasmus Mundus Scholarship represents an extraordinary opportunity to pursue world-class education across multiple European countries with full financial support. This prestigious program not only covers all expenses but also provides invaluable international experience and networking opportunities.
                 </p>
@@ -447,26 +447,26 @@ export default function ErasmusMundusScholarship() {
               {/* Quick Facts */}
               <Card className="bg-gradient-to-br from-blue-50 to-purple-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-#1565c0 mb-4 flex items-center">
+                  <h3 className="font-bold text-[#1565c0] mb-4 flex items-center">
                     <Award className="mr-2 h-5 w-5" />
                     Scholarship Overview
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Coverage:</span>
-                      <span className="font-semibold text-#1565c0">100% Funded</span>
+                      <span className="font-semibold text-[#1565c0]">100% Funded</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Duration:</span>
-                      <span className="font-semibold text-#1565c0">1-4 Years</span>
+                      <span className="font-semibold text-[#1565c0]">1-4 Years</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Countries:</span>
-                      <span className="font-semibold text-#1565c0">27+ EU Nations</span>
+                      <span className="font-semibold text-[#1565c0]">27+ EU Nations</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Programs:</span>
-                      <span className="font-semibold text-#1565c0">200+ Available</span>
+                      <span className="font-semibold text-[#1565c0]">200+ Available</span>
                     </div>
                   </div>
                 </CardContent>

@@ -547,7 +547,7 @@ export default function OfficesList() {
             <Button variant="secondary" size="lg">
               Schedule Online Meeting
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:#1845B3">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:bg-[#1845B3]">
               Contact Head Office
             </Button>
           </div>

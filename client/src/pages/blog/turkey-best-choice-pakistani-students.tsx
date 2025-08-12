@@ -65,19 +65,19 @@ export default function TurkeyBestChoicePakistaniStudents() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center">
                       <div className="text-2xl font-bold #1845B3">200+</div>
-                      <div className="text-sm text-#1565c0">Universities</div>
+                      <div className="text-sm text-[#1565c0]">Universities</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold #1845B3">94.2%</div>
-                      <div className="text-sm text-#1565c0">Enrollment Rate</div>
+                      <div className="text-sm text-[#1565c0]">Enrollment Rate</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold #1845B3">129</div>
-                      <div className="text-sm text-#1565c0">Public Universities</div>
+                      <div className="text-sm text-[#1565c0]">Public Universities</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold #1845B3">5/5</div>
-                      <div className="text-sm text-#1565c0">Bologna Score</div>
+                      <div className="text-sm text-[#1565c0]">Bologna Score</div>
                     </div>
                   </div>
                 </div>

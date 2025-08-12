@@ -60,15 +60,15 @@ export default function TopStudyAbroadCountries() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#best-countries" className="hover:#1845B3">List of the Best Countries to Study Abroad</a></li>
-                  <li><a href="#united-kingdom" className="hover:#1845B3">United Kingdom</a></li>
-                  <li><a href="#united-states" className="hover:#1845B3">United States</a></li>
-                  <li><a href="#canada" className="hover:#1845B3">Canada</a></li>
-                  <li><a href="#australia" className="hover:#1845B3">Australia</a></li>
-                  <li><a href="#germany" className="hover:#1845B3">Germany</a></li>
-                  <li><a href="#europe" className="hover:#1845B3">Europe</a></li>
-                  <li><a href="#conclusion" className="hover:#1845B3">Conclusion</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">FAQs</a></li>
+                  <li><a href="#best-countries" className="hover:bg-[#1845B3]">List of the Best Countries to Study Abroad</a></li>
+                  <li><a href="#united-kingdom" className="hover:bg-[#1845B3]">United Kingdom</a></li>
+                  <li><a href="#united-states" className="hover:bg-[#1845B3]">United States</a></li>
+                  <li><a href="#canada" className="hover:bg-[#1845B3]">Canada</a></li>
+                  <li><a href="#australia" className="hover:bg-[#1845B3]">Australia</a></li>
+                  <li><a href="#germany" className="hover:bg-[#1845B3]">Germany</a></li>
+                  <li><a href="#europe" className="hover:bg-[#1845B3]">Europe</a></li>
+                  <li><a href="#conclusion" className="hover:bg-[#1845B3]">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">FAQs</a></li>
                 </ul>
               </div>
 
@@ -91,7 +91,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-#1565c0 mb-3">UK Study Benefits</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-3">UK Study Benefits</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>World-renowned universities like Oxford and Cambridge</li>
                     <li>High-quality education with flexible course structures</li>
@@ -113,7 +113,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-#1565c0 mb-3">USA Study Advantages</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-3">USA Study Advantages</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Ivy League schools and globally recognized institutions</li>
                     <li>Largest number of international students worldwide</li>
@@ -135,7 +135,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-#1565c0 mb-3">Canada Study Benefits</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-3">Canada Study Benefits</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>26+ institutions ranked in global university rankings</li>
                     <li>Nearly 500,000 international students annually</li>
@@ -157,7 +157,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-#1565c0 mb-3">Australia Study Features</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-3">Australia Study Features</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>43 universities with many ranking among world's best</li>
                     <li>Wide variety of courses in business, medicine, engineering</li>
@@ -179,7 +179,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-#1565c0 mb-3">Germany Study Highlights</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-3">Germany Study Highlights</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Free or low-cost education at public universities</li>
                     <li>Leading institutions like TUM, University of Bonn, Hamburg</li>
@@ -201,7 +201,7 @@ export default function TopStudyAbroadCountries() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-#1565c0 mb-3">European Study Experience</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-3">European Study Experience</h4>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Unique and interactive learning approaches</li>
                     <li>Direct engagement with instructors and classmates</li>

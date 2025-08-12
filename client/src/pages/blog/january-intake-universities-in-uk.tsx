@@ -174,7 +174,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0] flex items-center">
                   <Star className="mr-3 h-6 w-6" />
                   Why Choose January Intake?
                 </h2>
@@ -202,7 +202,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                               <advantage.icon className="h-8 w-8 #1845B3" />
                             </div>
                             <div>
-                              <h3 className="text-lg font-bold text-#1565c0 mb-2">{advantage.advantage}</h3>
+                              <h3 className="text-lg font-bold text-[#1565c0] mb-2">{advantage.advantage}</h3>
                               <p className="text-gray-700 text-sm">{advantage.description}</p>
                             </div>
                           </div>
@@ -268,8 +268,8 @@ export default function JanuaryIntakeUniversitiesInUK() {
                       <Card className="bg-gradient-to-br from-blue-50 to-orange-100 border-blue-200">
                         <CardContent className="p-6">
                           <div className="flex items-center justify-between mb-3">
-                            <h3 className="text-xl font-bold text-#1565c0">{program.field}</h3>
-                            <span className="bg-blue-100 text-#1565c0 text-sm font-medium px-3 py-1 rounded-full">
+                            <h3 className="text-xl font-bold text-[#1565c0]">{program.field}</h3>
+                            <span className="bg-blue-100 text-[#1565c0] text-sm font-medium px-3 py-1 rounded-full">
                               {program.universities}
                             </span>
                           </div>
@@ -362,7 +362,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                         className="flex items-center space-x-4 p-4 bg-white rounded-lg shadow-sm"
                       >
                         <div className="flex-shrink-0 w-24 text-center">
-                          <span className="bg-blue-100 text-#1565c0 text-sm font-semibold px-3 py-1 rounded-full">
+                          <span className="bg-blue-100 text-[#1565c0] text-sm font-semibold px-3 py-1 rounded-full">
                             {event.month}
                           </span>
                         </div>
@@ -382,7 +382,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Important Considerations</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Important Considerations</h2>
                 <div className="space-y-3">
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
@@ -405,7 +405,7 @@ export default function JanuaryIntakeUniversitiesInUK() {
 
               {/* Conclusion */}
               <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Start Your UK Journey in January</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Start Your UK Journey in January</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   January intake provides an excellent opportunity for international students to begin their UK education with reduced competition and additional preparation time. With proper planning and early application submission, you can secure admission to top UK universities for the spring semester.
                 </p>
@@ -465,26 +465,26 @@ export default function JanuaryIntakeUniversitiesInUK() {
               {/* Quick Facts */}
               <Card className="bg-gradient-to-br from-blue-50 to-red-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-#1565c0 mb-4 flex items-center">
+                  <h3 className="font-bold text-[#1565c0] mb-4 flex items-center">
                     <Calendar className="mr-2 h-5 w-5" />
                     January Intake Facts
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Start Date:</span>
-                      <span className="font-semibold text-#1565c0">Jan-Feb</span>
+                      <span className="font-semibold text-[#1565c0]">Jan-Feb</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Application Deadline:</span>
-                      <span className="font-semibold text-#1565c0">Oct-Dec</span>
+                      <span className="font-semibold text-[#1565c0]">Oct-Dec</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Graduation:</span>
-                      <span className="font-semibold text-#1565c0">Summer</span>
+                      <span className="font-semibold text-[#1565c0]">Summer</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Competition:</span>
-                      <span className="font-semibold text-#1565c0">Lower</span>
+                      <span className="font-semibold text-[#1565c0]">Lower</span>
                     </div>
                   </div>
                 </CardContent>

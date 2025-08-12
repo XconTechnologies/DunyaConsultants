@@ -93,7 +93,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-[1440px] mx-auto px-4 py-4">
-          <Link href="/blog" className="inline-flex items-center #1845B3 hover:text-#1565c0 mb-4">
+          <Link href="/blog" className="inline-flex items-center #1845B3 hover:text-[#1565c0] mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Blog
           </Link>
@@ -115,10 +115,10 @@ const UKInternshipInternationalStudents: React.FC = () => {
             </div>
             
             <div className="flex items-center space-x-2">
-              <button className="p-2 text-gray-600 hover:#1845B3 rounded-full hover:bg-blue-50">
+              <button className="p-2 text-gray-600 hover:bg-[#1845B3] rounded-full hover:bg-blue-50">
                 <Share2 className="w-4 h-4" />
               </button>
-              <button className="p-2 text-gray-600 hover:#1845B3 rounded-full hover:bg-blue-50">
+              <button className="p-2 text-gray-600 hover:bg-[#1845B3] rounded-full hover:bg-blue-50">
                 <Download className="w-4 h-4" />
               </button>
             </div>
@@ -160,7 +160,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
 
                   <div className="bg-blue-50 border-l-4 #1D50C9 p-6 my-8">
                     <h3 className="text-lg font-semibold text-#1e3a8a mb-2">Key Statistics</h3>
-                    <ul className="text-#1565c0 space-y-1">
+                    <ul className="text-[#1565c0] space-y-1">
                       <li>• 50% of UK interns receive full-time job offers from the same company</li>
                       <li>• Teesside University offers 100% internship opportunities after 1-year master's</li>
                       <li>• UK provides diverse and welcoming environment for international students</li>
@@ -236,7 +236,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
 
                   <div className="bg-blue-50 border-l-4 #1D50C9 p-6 my-8">
                     <h3 className="text-lg font-semibold text-#1e3a8a mb-2">Important Considerations</h3>
-                    <ul className="text-#1565c0 space-y-2">
+                    <ul className="text-[#1565c0] space-y-2">
                       <li>• Internships should not take up more than one-third of your course time</li>
                       <li>• Many universities allow students to work part-time alongside studies</li>
                       <li>• Some internships are paid while others are unpaid</li>
@@ -264,7 +264,7 @@ const UKInternshipInternationalStudents: React.FC = () => {
                   </h2>
                   <div className="bg-blue-50 border-l-4 #1D50C9 p-6 my-8">
                     <h3 className="text-lg font-semibold text-#1e3a8a mb-2">Career Advantages</h3>
-                    <ul className="text-#1565c0 space-y-2">
+                    <ul className="text-[#1565c0] space-y-2">
                       <li>✓ Practical work experience in your field of study</li>
                       <li>✓ Networking opportunities with industry professionals</li>
                       <li>✓ Potential full-time job offers (50% success rate)</li>
@@ -363,12 +363,12 @@ const UKInternshipInternationalStudents: React.FC = () => {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <nav className="space-y-2">
-                  <a href="#types" className="block text-sm #1845B3 hover:text-#1565c0">Types of Internships</a>
-                  <a href="#programs" className="block text-sm #1845B3 hover:text-#1565c0">Best Programs</a>
-                  <a href="#benefits" className="block text-sm #1845B3 hover:text-#1565c0">Benefits</a>
-                  <a href="#application" className="block text-sm #1845B3 hover:text-#1565c0">Application Tips</a>
-                  <a href="#conclusion" className="block text-sm #1845B3 hover:text-#1565c0">Conclusion</a>
-                  <a href="#faq" className="block text-sm #1845B3 hover:text-#1565c0">FAQ</a>
+                  <a href="#types" className="block text-sm #1845B3 hover:text-[#1565c0]">Types of Internships</a>
+                  <a href="#programs" className="block text-sm #1845B3 hover:text-[#1565c0]">Best Programs</a>
+                  <a href="#benefits" className="block text-sm #1845B3 hover:text-[#1565c0]">Benefits</a>
+                  <a href="#application" className="block text-sm #1845B3 hover:text-[#1565c0]">Application Tips</a>
+                  <a href="#conclusion" className="block text-sm #1845B3 hover:text-[#1565c0]">Conclusion</a>
+                  <a href="#faq" className="block text-sm #1845B3 hover:text-[#1565c0]">FAQ</a>
                 </nav>
               </div>
 
@@ -401,15 +401,15 @@ const UKInternshipInternationalStudents: React.FC = () => {
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h3>
                 <div className="space-y-4">
-                  <Link href="/blog/top-study-abroad-countries" className="block hover:#1845B3">
+                  <Link href="/blog/top-study-abroad-countries" className="block hover:bg-[#1845B3]">
                     <div className="text-sm font-medium">Top Study Abroad Countries</div>
                     <div className="text-xs text-gray-500">Best destinations for studies</div>
                   </Link>
-                  <Link href="/blog/oxford-test-accepted-universities-uk" className="block hover:#1845B3">
+                  <Link href="/blog/oxford-test-accepted-universities-uk" className="block hover:bg-[#1845B3]">
                     <div className="text-sm font-medium">Oxford Test Accepted Universities UK</div>
                     <div className="text-xs text-gray-500">OIETC university guide</div>
                   </Link>
-                  <Link href="/blog/ielts-listening-skills" className="block hover:#1845B3">
+                  <Link href="/blog/ielts-listening-skills" className="block hover:bg-[#1845B3]">
                     <div className="text-sm font-medium">IELTS Listening Skills</div>
                     <div className="text-xs text-gray-500">Test preparation tips</div>
                   </Link>

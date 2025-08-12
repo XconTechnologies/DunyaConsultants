@@ -248,7 +248,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 </p>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold mb-4 text-#1565c0 flex items-center">
+                  <h4 className="text-lg font-semibold mb-4 text-[#1565c0] flex items-center">
                     <Shield className="w-5 h-5 mr-2" />
                     CAS Verification Checklist
                   </h4>
@@ -288,7 +288,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 </p>
 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold mb-3 text-#1565c0 flex items-center">
+                  <h4 className="text-lg font-semibold mb-3 text-[#1565c0] flex items-center">
                     <AlertCircle className="w-5 h-5 mr-2" />
                     Always Disclose:
                   </h4>
@@ -308,7 +308,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
                 <div className="space-y-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">Pro Tips for Visa Success:</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Pro Tips for Visa Success:</h3>
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <ul className="space-y-2 text-gray-700">
@@ -330,7 +330,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                   </div>
 
                   <div className="bg-blue-50 p-6 rounded-lg">
-                    <h3 className="text-xl font-semibold mb-4 text-#1565c0">What to Do If Your Visa Is Rejected:</h3>
+                    <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">What to Do If Your Visa Is Rejected:</h3>
                     <div className="space-y-2 text-gray-700">
                       <p><strong>Option 1: Reapply</strong> - Address the rejection reasons and submit a new application</p>
                       <p><strong>Option 2: Appeal</strong> - Challenge the decision if you believe it was incorrect (limited grounds)</p>
@@ -396,7 +396,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Need Help with Your UK Student Visa?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#1565c0]">Need Help with Your UK Student Visa?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants to avoid common mistakes and ensure your visa success.
                 </p>
@@ -459,23 +459,23 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 </h3>
                 <div className="space-y-3 text-sm">
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-#1565c0">Insufficient Funds</p>
+                    <p className="font-medium text-[#1565c0]">Insufficient Funds</p>
                     <p className="text-gray-600">Not maintaining 28-day balance</p>
                   </div>
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-#1565c0">Wrong Documents</p>
+                    <p className="font-medium text-[#1565c0]">Wrong Documents</p>
                     <p className="text-gray-600">Missing or incorrect papers</p>
                   </div>
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-#1565c0">English Test Issues</p>
+                    <p className="font-medium text-[#1565c0]">English Test Issues</p>
                     <p className="text-gray-600">Invalid test or low scores</p>
                   </div>
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-#1565c0">CAS Errors</p>
+                    <p className="font-medium text-[#1565c0]">CAS Errors</p>
                     <p className="text-gray-600">Not verifying CAS details</p>
                   </div>
                   <div className="p-2 bg-blue-50 rounded">
-                    <p className="font-medium text-#1565c0">Hidden History</p>
+                    <p className="font-medium text-[#1565c0]">Hidden History</p>
                     <p className="text-gray-600">Not disclosing past records</p>
                   </div>
                 </div>

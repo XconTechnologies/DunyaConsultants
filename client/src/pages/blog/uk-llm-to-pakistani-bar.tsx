@@ -302,15 +302,15 @@ export default function UKLLMToPakistaniBar() {
               
               <div className="space-y-4 mb-8">
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Challenge: Lengthy HEC Process</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Challenge: Lengthy HEC Process</h4>
                   <p className="text-sm text-#1a73e8"><strong>Solution:</strong> Apply early, ensure all documents are properly attested, and follow up regularly with HEC.</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Challenge: Document Verification Issues</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Challenge: Document Verification Issues</h4>
                   <p className="text-sm text-#1a73e8"><strong>Solution:</strong> Use authorized agents or visit Pakistani Embassy/High Commission personally.</p>
                 </div>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <h4 className="font-semibold text-#1565c0 mb-2">Challenge: Bar Council Requirements</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-2">Challenge: Bar Council Requirements</h4>
                   <p className="text-sm text-#1a73e8"><strong>Solution:</strong> Consult with local lawyers and ensure all provincial requirements are met.</p>
                 </div>
               </div>
@@ -361,13 +361,13 @@ export default function UKLLMToPakistaniBar() {
               <div className="bg-white border border-gray-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Table of Contents</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><a href="#process" className="#1845B3 hover:text-#1565c0">Conversion Process</a></li>
-                  <li><a href="#hec" className="#1845B3 hover:text-#1565c0">HEC Requirements</a></li>
-                  <li><a href="#bar-council" className="#1845B3 hover:text-#1565c0">Bar Council Enrollment</a></li>
-                  <li><a href="#timeline" className="#1845B3 hover:text-#1565c0">Timeline & Costs</a></li>
-                  <li><a href="#career" className="#1845B3 hover:text-#1565c0">Career Opportunities</a></li>
-                  <li><a href="#specialization" className="#1845B3 hover:text-#1565c0">Specialization Areas</a></li>
-                  <li><a href="#challenges" className="#1845B3 hover:text-#1565c0">Common Challenges</a></li>
+                  <li><a href="#process" className="#1845B3 hover:text-[#1565c0]">Conversion Process</a></li>
+                  <li><a href="#hec" className="#1845B3 hover:text-[#1565c0]">HEC Requirements</a></li>
+                  <li><a href="#bar-council" className="#1845B3 hover:text-[#1565c0]">Bar Council Enrollment</a></li>
+                  <li><a href="#timeline" className="#1845B3 hover:text-[#1565c0]">Timeline & Costs</a></li>
+                  <li><a href="#career" className="#1845B3 hover:text-[#1565c0]">Career Opportunities</a></li>
+                  <li><a href="#specialization" className="#1845B3 hover:text-[#1565c0]">Specialization Areas</a></li>
+                  <li><a href="#challenges" className="#1845B3 hover:text-[#1565c0]">Common Challenges</a></li>
                 </ul>
               </div>
 

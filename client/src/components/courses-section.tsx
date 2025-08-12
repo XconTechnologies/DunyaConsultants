@@ -301,7 +301,7 @@ export default function CoursesSection() {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:#1845B3 transition-colors line-clamp-2">
+                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:bg-[#1845B3] transition-colors line-clamp-2">
                   {course.title}
                 </h3>
                 

@@ -63,13 +63,13 @@ export function FinlandVisaApplicationFromPakistan() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#universities" className="hover:#1845B3">Best Finnish Universities for International Students</a></li>
-                  <li><a href="#eligibility" className="hover:#1845B3">Eligibility Criteria for Finland Study Visa</a></li>
-                  <li><a href="#requirements" className="hover:#1845B3">Document Requirements</a></li>
-                  <li><a href="#application-process" className="hover:#1845B3">Application Process</a></li>
-                  <li><a href="#fees" className="hover:#1845B3">Application Fees & Deadlines</a></li>
-                  <li><a href="#conclusion" className="hover:#1845B3">Conclusion</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">FAQs</a></li>
+                  <li><a href="#universities" className="hover:bg-[#1845B3]">Best Finnish Universities for International Students</a></li>
+                  <li><a href="#eligibility" className="hover:bg-[#1845B3]">Eligibility Criteria for Finland Study Visa</a></li>
+                  <li><a href="#requirements" className="hover:bg-[#1845B3]">Document Requirements</a></li>
+                  <li><a href="#application-process" className="hover:bg-[#1845B3]">Application Process</a></li>
+                  <li><a href="#fees" className="hover:bg-[#1845B3]">Application Fees & Deadlines</a></li>
+                  <li><a href="#conclusion" className="hover:bg-[#1845B3]">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">FAQs</a></li>
                 </ul>
               </div>
 
@@ -104,7 +104,7 @@ export function FinlandVisaApplicationFromPakistan() {
                 
                 {/* Bachelor's Requirements */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-#1565c0 flex items-center">
+                  <h3 className="text-xl font-semibold mb-3 text-[#1565c0] flex items-center">
                     <BookOpen className="w-5 h-5 mr-2" />
                     Bachelor's Programs
                   </h3>
@@ -126,7 +126,7 @@ export function FinlandVisaApplicationFromPakistan() {
 
                 {/* Master's Requirements */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-#1565c0 flex items-center">
+                  <h3 className="text-xl font-semibold mb-3 text-[#1565c0] flex items-center">
                     <Award className="w-5 h-5 mr-2" />
                     Master's Programs
                   </h3>
@@ -229,7 +229,7 @@ export function FinlandVisaApplicationFromPakistan() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Application Fees & Deadlines 2025</h2>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6 border border-blue-200">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0 flex items-center">
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0] flex items-center">
                     <DollarSign className="w-5 h-5 mr-2" />
                     Application Fees
                   </h3>
@@ -248,7 +248,7 @@ export function FinlandVisaApplicationFromPakistan() {
                 </div>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6 border border-blue-200">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0 flex items-center">
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0] flex items-center">
                     <Clock className="w-5 h-5 mr-2" />
                     Important Deadlines 2025
                   </h3>
@@ -307,7 +307,7 @@ export function FinlandVisaApplicationFromPakistan() {
                     }
                   ].map((faq, index) => (
                     <details key={index} className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                      <summary className="font-semibold text-gray-900 cursor-pointer hover:#1845B3">
+                      <summary className="font-semibold text-gray-900 cursor-pointer hover:bg-[#1845B3]">
                         {faq.question}
                       </summary>
                       <p className="text-gray-700 mt-3 leading-relaxed">{faq.answer}</p>
@@ -318,7 +318,7 @@ export function FinlandVisaApplicationFromPakistan() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Need Help with Finland Student Visa Application?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#1565c0]">Need Help with Finland Student Visa Application?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants for your Finland student visa application and study abroad journey.
                 </p>

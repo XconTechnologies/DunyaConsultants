@@ -427,7 +427,7 @@ export default function CostCalculator() {
                           <div className="flex items-start space-x-2">
                             <Info className="w-5 h-5 #1845B3 flex-shrink-0 mt-0.5" />
                             <div>
-                              <p className="font-medium text-#1565c0">Work Rights</p>
+                              <p className="font-medium text-[#1565c0]">Work Rights</p>
                               <p className="text-sm text-#1a73e8">{results.workRights}</p>
                             </div>
                           </div>
@@ -437,7 +437,7 @@ export default function CostCalculator() {
                             <div className="flex items-start space-x-2">
                               <Heart className="w-5 h-5 #1845B3 flex-shrink-0 mt-0.5" />
                               <div>
-                                <p className="font-medium text-#1565c0">PR Pathway Available</p>
+                                <p className="font-medium text-[#1565c0]">PR Pathway Available</p>
                                 <p className="text-sm text-#1a73e8">This country offers pathways to permanent residency for international students.</p>
                               </div>
                             </div>

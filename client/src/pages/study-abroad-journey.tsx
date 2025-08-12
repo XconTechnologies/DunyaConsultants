@@ -341,7 +341,7 @@ export default function StudyAbroadJourney() {
           >
             <div className="inline-flex items-center space-x-2 bg-blue-100 rounded-full px-6 py-3 mb-6">
               <Globe className="w-5 h-5 #1845B3" />
-              <span className="text-sm font-medium text-#1565c0">Complete Study Abroad Guide</span>
+              <span className="text-sm font-medium text-[#1565c0]">Complete Study Abroad Guide</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
@@ -551,7 +551,7 @@ export default function StudyAbroadJourney() {
                     </div>
                     
                     <div className="mb-4">
-                      <Badge className="bg-blue-100 text-#1565c0 mb-2">
+                      <Badge className="bg-blue-100 text-[#1565c0] mb-2">
                         {story.achievement}
                       </Badge>
                       <p className="font-medium text-gray-900">{story.destination}</p>

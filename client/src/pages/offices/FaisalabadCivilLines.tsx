@@ -333,7 +333,7 @@ export default function FaisalabadCivilLines() {
               <Calendar className="w-4 h-4 mr-2" />
               Book Counseling Session
             </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:#1845B3">
+            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:bg-[#1845B3]">
               <Phone className="w-4 h-4 mr-2" />
               Call Faisalabad Office
             </Button>

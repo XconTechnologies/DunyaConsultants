@@ -238,7 +238,7 @@ export default function IELTSExamDay() {
                     <div key={index} className="flex items-start space-x-3 p-4 rounded-lg bg-blue-50">
                       <div className="flex-shrink-0 mt-1">
                         {item.essential ? (
-                          <Badge className="#1D50C9 hover:#1845B3">Essential</Badge>
+                          <Badge className="bg-[#1D50C9] hover:bg-[#1845B3] text-white">Essential</Badge>
                         ) : (
                           <Badge variant="outline">Optional</Badge>
                         )}
@@ -269,7 +269,7 @@ export default function IELTSExamDay() {
                     ))}
                   </div>
                   <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                    <p className="text-sm text-#1565c0">
+                    <p className="text-sm text-[#1565c0]">
                       <strong>Note:</strong> Personal belongings will be stored in secure lockers. 
                       The test center is not responsible for lost or damaged items.
                     </p>
@@ -391,7 +391,7 @@ export default function IELTSExamDay() {
                       Speaking test may be conducted on the same day as your written test, 
                       typically after the Writing module with a short break.
                     </p>
-                    <Badge className="#1D50C9 hover:#1845B3">Most Common</Badge>
+                    <Badge className="#1D50C9 hover:bg-[#1845B3]">Most Common</Badge>
                   </div>
                   
                   <div className="text-center">
@@ -408,7 +408,7 @@ export default function IELTSExamDay() {
                 </div>
                 
                 <div className="mt-8 p-4 bg-blue-50 rounded-lg text-center">
-                  <p className="text-#1565c0">
+                  <p className="text-[#1565c0]">
                     <strong>Important:</strong> You will receive confirmation of your exact speaking test 
                     time and date via email and SMS 48 hours before your test.
                   </p>

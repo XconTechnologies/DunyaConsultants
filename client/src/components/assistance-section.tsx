@@ -96,7 +96,7 @@ export default function AssistanceSection() {
               </motion.button>
               
               <motion.button
-                className="flex-1 bg-white #1845B3 px-8 py-4 rounded-lg font-semibold text-lg border-2 #1845B3 hover:#1845B3 hover:text-white transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+                className="flex-1 bg-white #1845B3 px-8 py-4 rounded-lg font-semibold text-lg border-2 #1845B3 hover:bg-[#1845B3] hover:text-white transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

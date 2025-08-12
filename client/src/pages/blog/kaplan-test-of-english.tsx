@@ -64,12 +64,12 @@ export default function KaplanTestOfEnglish() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#what-is-kaplan" className="hover:#1845B3">What is Kaplan Test?</a></li>
-                  <li><a href="#test-sections" className="hover:#1845B3">Sections of Kaplan English Test</a></li>
-                  <li><a href="#preparation" className="hover:#1845B3">How to Prepare for KTE?</a></li>
-                  <li><a href="#cost" className="hover:#1845B3">Cost for Kaplan Assessment Exam</a></li>
-                  <li><a href="#conclusion" className="hover:#1845B3">Conclusion</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">FAQs</a></li>
+                  <li><a href="#what-is-kaplan" className="hover:bg-[#1845B3]">What is Kaplan Test?</a></li>
+                  <li><a href="#test-sections" className="hover:bg-[#1845B3]">Sections of Kaplan English Test</a></li>
+                  <li><a href="#preparation" className="hover:bg-[#1845B3]">How to Prepare for KTE?</a></li>
+                  <li><a href="#cost" className="hover:bg-[#1845B3]">Cost for Kaplan Assessment Exam</a></li>
+                  <li><a href="#conclusion" className="hover:bg-[#1845B3]">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">FAQs</a></li>
                 </ul>
               </div>
 
@@ -93,7 +93,7 @@ export default function KaplanTestOfEnglish() {
 
                 {/* Writing Section */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-#1565c0 flex items-center">
+                  <h3 className="text-xl font-semibold mb-3 text-[#1565c0] flex items-center">
                     <FileText className="w-5 h-5 mr-2" />
                     Writing – Timed Section (25-40 Minutes)
                   </h3>
@@ -104,7 +104,7 @@ export default function KaplanTestOfEnglish() {
 
                 {/* Listening, Reading & Grammar Section */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-#1565c0 flex items-center">
+                  <h3 className="text-xl font-semibold mb-3 text-[#1565c0] flex items-center">
                     <BookOpen className="w-5 h-5 mr-2" />
                     Listening, Reading & Grammar – No Time Limit
                   </h3>
@@ -115,7 +115,7 @@ export default function KaplanTestOfEnglish() {
 
                 {/* Speaking Section */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-#1565c0 flex items-center">
+                  <h3 className="text-xl font-semibold mb-3 text-[#1565c0] flex items-center">
                     <MessageCircle className="w-5 h-5 mr-2" />
                     Speaking – Timed Section (10 Minutes)
                   </h3>
@@ -173,7 +173,7 @@ export default function KaplanTestOfEnglish() {
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
                   <div className="flex items-center mb-4">
                     <DollarSign className="w-6 h-6 #1845B3 mr-3" />
-                    <h3 className="text-xl font-semibold text-#1565c0">Pricing Information</h3>
+                    <h3 className="text-xl font-semibold text-[#1565c0]">Pricing Information</h3>
                   </div>
                   <p className="text-gray-700 leading-relaxed mb-4">
                     The KTE costs around <strong>£118 (€140)</strong>, which is not the cheapest option. However, you may get a <strong>25% discount</strong> if the university you're applying to is a Kaplan partner. Check with the university to see if you qualify.
@@ -224,7 +224,7 @@ export default function KaplanTestOfEnglish() {
 
               {/* Call to Action */}
               <div className="bg-blue-50 p-8 rounded-lg text-center">
-                <h3 className="text-2xl font-bold mb-4 text-#1565c0">Need Help with KTE Preparation?</h3>
+                <h3 className="text-2xl font-bold mb-4 text-[#1565c0]">Need Help with KTE Preparation?</h3>
                 <p className="text-gray-700 mb-6">
                   Get expert guidance from Dunya Consultants for your Kaplan Test of English preparation and study abroad journey.
                 </p>

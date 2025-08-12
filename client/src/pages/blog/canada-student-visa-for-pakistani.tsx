@@ -59,7 +59,7 @@ export default function CanadaStudentVisaForPakistani() {
 
                 {/* Quick Overview */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Canada Student Visa Quick Facts</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Canada Student Visa Quick Facts</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">150 CAD</h4>
@@ -88,7 +88,7 @@ export default function CanadaStudentVisaForPakistani() {
                 </p>
 
                 <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg border-l-4 #1D50C9 mb-6">
-                  <h3 className="text-xl font-bold mb-4 text-#1565c0">Visa Requirements</h3>
+                  <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Visa Requirements</h3>
                   <ul className="space-y-2 text-gray-700">
                     <li className="flex items-start">
                       <span className="#1D50C9 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 mt-0.5">•</span>
@@ -119,7 +119,7 @@ export default function CanadaStudentVisaForPakistani() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-#1565c0">Academic Requirements</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-[#1565c0]">Academic Requirements</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• Acceptance letter from DLI (Designated Learning Institution)</li>
                       <li>• DLI schools are approved by territorial/provincial government</li>
@@ -128,7 +128,7 @@ export default function CanadaStudentVisaForPakistani() {
                   </div>
                   
                   <div className="bg-white border-l-4 #1D50C9 p-6 shadow-sm">
-                    <h4 className="text-lg font-semibold mb-3 text-#1565c0">Background Requirements</h4>
+                    <h4 className="text-lg font-semibold mb-3 text-[#1565c0]">Background Requirements</h4>
                     <ul className="space-y-2 text-sm text-gray-700">
                       <li>• No previous criminal record</li>
                       <li>• Clear background verification</li>
@@ -192,32 +192,32 @@ export default function CanadaStudentVisaForPakistani() {
 
                 <div className="space-y-4 mb-6">
                   <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="text-lg font-bold mb-2 text-#1565c0">Step 1: Create IRCC Account</h4>
+                    <h4 className="text-lg font-bold mb-2 text-[#1565c0]">Step 1: Create IRCC Account</h4>
                     <p className="text-gray-700">First, you need to create an account on the official IRCC site.</p>
                   </div>
                   
                   <div className="bg-gradient-to-r from-blue-50 to-emerald-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="text-lg font-bold mb-2 text-#1565c0">Step 2: Sign In</h4>
+                    <h4 className="text-lg font-bold mb-2 text-[#1565c0]">Step 2: Sign In</h4>
                     <p className="text-gray-700">Once created, the next step is to sign in to your IRCC account.</p>
                   </div>
                   
                   <div className="bg-gradient-to-r from-blue-50 to-violet-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="text-lg font-bold mb-2 text-#1565c0">Step 3: Complete Application</h4>
+                    <h4 className="text-lg font-bold mb-2 text-[#1565c0]">Step 3: Complete Application</h4>
                     <p className="text-gray-700">Complete the online visa application form for Canada to Pakistan and provide your details.</p>
                   </div>
                   
                   <div className="bg-gradient-to-r from-blue-50 to-amber-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="text-lg font-bold mb-2 text-#1565c0">Step 4: Upload Documents</h4>
+                    <h4 className="text-lg font-bold mb-2 text-[#1565c0]">Step 4: Upload Documents</h4>
                     <p className="text-gray-700">Upload all required documents asked by them.</p>
                   </div>
                   
                   <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="text-lg font-bold mb-2 text-#1565c0">Step 5: Pay Fees</h4>
+                    <h4 className="text-lg font-bold mb-2 text-[#1565c0]">Step 5: Pay Fees</h4>
                     <p className="text-gray-700">After that, you will need to pay the student visa application fee of around 150 CAD.</p>
                   </div>
                   
                   <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="text-lg font-bold mb-2 text-#1565c0">Step 6: Track Application</h4>
+                    <h4 className="text-lg font-bold mb-2 text-[#1565c0]">Step 6: Track Application</h4>
                     <p className="text-gray-700">Once all these steps are completed, check the status of your application daily.</p>
                   </div>
                 </div>
@@ -262,7 +262,7 @@ export default function CanadaStudentVisaForPakistani() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div className="bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Processing Time</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Processing Time</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Standard Processing: 4-6 weeks</li>
                       <li>• Peak Season: 8-12 weeks</li>
@@ -271,7 +271,7 @@ export default function CanadaStudentVisaForPakistani() {
                   </div>
                   
                   <div className="bg-blue-50 p-6 rounded-lg border-l-4 #1D50C9">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Success Tips</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Success Tips</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
                       <li>• Apply early before intake deadlines</li>
                       <li>• Ensure all documents are complete</li>
@@ -340,7 +340,7 @@ export default function CanadaStudentVisaForPakistani() {
                   <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-[#1845B3] transition-colors">
                     Start Your Application
                   </a>
                 </div>
@@ -354,7 +354,7 @@ export default function CanadaStudentVisaForPakistani() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Visa Application Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Visa Application Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Application Fee</span>
@@ -381,7 +381,7 @@ export default function CanadaStudentVisaForPakistani() {
 
             {/* Required Documents */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Required Documents</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Required Documents</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Valid Passport</li>
                 <li>• Acceptance Letter (DLI)</li>
@@ -394,7 +394,7 @@ export default function CanadaStudentVisaForPakistani() {
 
             {/* Application Steps */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Application Steps</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Application Steps</h3>
               <ol className="space-y-2 text-sm text-gray-700">
                 <li>1. Create IRCC Account</li>
                 <li>2. Complete Application Form</li>
@@ -409,13 +409,13 @@ export default function CanadaStudentVisaForPakistani() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/study-in-canada" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-in-canada" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Complete Guide to Study in Canada
                 </a>
-                <a href="/blog/canada-universities" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/canada-universities" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Top Universities in Canada for Pakistani Students
                 </a>
-                <a href="/blog/canada-scholarships" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/canada-scholarships" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Scholarships for Pakistani Students in Canada
                 </a>
               </div>

@@ -99,7 +99,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0] flex items-center">
                   <BookOpen className="mr-3 h-6 w-6" />
                   What is MOI for UK?
                 </h2>
@@ -205,7 +205,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                 transition={{ duration: 0.6 }}
                 className="mb-8 p-6 bg-gradient-to-br from-blue-50 to-teal-100 border-l-4 #1D50C9 rounded-r-lg"
               >
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0 flex items-center">
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0] flex items-center">
                   <Award className="mr-3 h-6 w-6" />
                   Benefits of MOI Universities
                 </h2>
@@ -214,14 +214,14 @@ export default function MOIAcceptedUniversitiesInUK() {
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-#1565c0">No IELTS/PTE Required</h3>
+                        <h3 className="font-semibold text-[#1565c0]">No IELTS/PTE Required</h3>
                         <p className="text-#1a73e8 text-sm">Save time and money on English proficiency tests</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-#1565c0">Faster Application Process</h3>
+                        <h3 className="font-semibold text-[#1565c0]">Faster Application Process</h3>
                         <p className="text-#1a73e8 text-sm">Streamlined admission without waiting for test results</p>
                       </div>
                     </div>
@@ -230,14 +230,14 @@ export default function MOIAcceptedUniversitiesInUK() {
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-#1565c0">Cost-Effective Option</h3>
+                        <h3 className="font-semibold text-[#1565c0]">Cost-Effective Option</h3>
                         <p className="text-#1a73e8 text-sm">Avoid expensive test fees and preparation costs</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
                       <CheckCircle className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                       <div>
-                        <h3 className="font-semibold text-#1565c0">Valid for Visa Application</h3>
+                        <h3 className="font-semibold text-[#1565c0]">Valid for Visa Application</h3>
                         <p className="text-#1a73e8 text-sm">Accepted by UKVI for student visa applications</p>
                       </div>
                     </div>
@@ -247,7 +247,7 @@ export default function MOIAcceptedUniversitiesInUK() {
 
               {/* Conclusion */}
               <div className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg">
-                <h2 className="text-2xl font-bold mb-4 text-#1565c0">Conclusion</h2>
+                <h2 className="text-2xl font-bold mb-4 text-[#1565c0]">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Students who are interested to study in the UK without taking the IELTS or PTE can apply for <strong>MOI accepted universities in UK</strong>. There are various universities in UK for international students that accept Medium of Instruction as evidence of English proficiency. These universities make the application process much smoother for all students who have studied before in English.
                 </p>
@@ -295,26 +295,26 @@ export default function MOIAcceptedUniversitiesInUK() {
               {/* Quick Facts */}
               <Card className="bg-gradient-to-br from-blue-50 to-teal-100 border-blue-200">
                 <CardContent className="p-6">
-                  <h3 className="font-bold text-#1565c0 mb-4 flex items-center">
+                  <h3 className="font-bold text-[#1565c0] mb-4 flex items-center">
                     <GraduationCap className="mr-2 h-5 w-5" />
                     MOI Quick Facts
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Total Universities:</span>
-                      <span className="font-semibold text-#1565c0">17+</span>
+                      <span className="font-semibold text-[#1565c0]">17+</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Cost Savings:</span>
-                      <span className="font-semibold text-#1565c0">$200-400</span>
+                      <span className="font-semibold text-[#1565c0]">$200-400</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Processing Time:</span>
-                      <span className="font-semibold text-#1565c0">1-2 weeks</span>
+                      <span className="font-semibold text-[#1565c0]">1-2 weeks</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-#1a73e8">Visa Validity:</span>
-                      <span className="font-semibold text-#1565c0">Accepted</span>
+                      <span className="font-semibold text-[#1565c0]">Accepted</span>
                     </div>
                   </div>
                 </CardContent>

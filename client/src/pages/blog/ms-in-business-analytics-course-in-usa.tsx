@@ -50,7 +50,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
                 {/* Program Overview */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Program Overview</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Program Overview</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <h4 className="text-2xl font-bold text-#1a73e8 mb-2">8-12 Months</h4>
@@ -80,7 +80,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
                 {/* Universities Table */}
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Top Universities for MS in Business Analytics</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Top Universities for MS in Business Analytics</h3>
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse border border-gray-300">
                       <thead>
@@ -147,7 +147,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Key Requirements</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Key Requirements</h3>
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start">
                       <span className="#1845B3 mr-2">•</span>
@@ -181,14 +181,14 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Application Steps</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Application Steps</h3>
                   <ol className="space-y-4 text-gray-700">
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">1</span>
                       <span>Every university might have slightly different rules, so it is crucial to understand them clearly.</span>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">2</span>
                       <div>
                         <span>Next, you will have to pay an application fee and submit all required documents. These include:</span>
                         <ul className="mt-2 ml-4 space-y-1">
@@ -201,7 +201,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                       </div>
                     </li>
                     <li className="flex items-start">
-                      <span className="bg-blue-200 text-#1565c0 font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
+                      <span className="bg-blue-200 text-[#1565c0] font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3 mt-1">3</span>
                       <span>Once your admission application is accepted, you will get an offer letter from the university. After this, you can apply for your US student visa to start your studies.</span>
                     </li>
                   </ol>
@@ -216,7 +216,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Cost Breakdown</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Cost Breakdown</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="font-semibold text-#1a73e8 mb-2">Tuition Fees</h4>
@@ -246,7 +246,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                 </p>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Top Career Opportunities</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Top Career Opportunities</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h4 className="font-semibold text-#1a73e8 mb-3">High-Demand Roles</h4>
@@ -272,7 +272,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                 </div>
 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4 text-#1565c0">Top Employers</h3>
+                  <h3 className="text-xl font-semibold mb-4 text-[#1565c0]">Top Employers</h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center">
                       <h4 className="font-semibold text-#1a73e8">Financial Services</h4>
@@ -353,7 +353,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
                   <a href="tel:+923041110947" className="bg-white #1845B3 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
                     Call Now: (+92) 304 1110947
                   </a>
-                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:#1845B3 transition-colors">
+                  <a href="mailto:query@teamdunya.com" className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:bg-[#1845B3] transition-colors">
                     Get Free Consultation
                   </a>
                 </div>
@@ -367,7 +367,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
             
             {/* Quick Facts */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Quick Facts</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Quick Facts</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-gray-700">Program Duration</span>
@@ -394,7 +394,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
             {/* Top Universities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Top 5 Universities</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Top 5 Universities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>1. Massachusetts Institute of Technology (MIT)</li>
                 <li>2. University of California, Los Angeles (UCLA)</li>
@@ -406,7 +406,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
 
             {/* Career Opportunities */}
             <div className="bg-blue-50 p-6 rounded-lg mb-6">
-              <h3 className="text-xl font-bold mb-4 text-#1565c0">Career Opportunities</h3>
+              <h3 className="text-xl font-bold mb-4 text-[#1565c0]">Career Opportunities</h3>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Data Analyst</li>
                 <li>• Business Intelligence Analyst</li>
@@ -421,13 +421,13 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/requirements-to-study-computer-science-in-usa" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/requirements-to-study-computer-science-in-usa" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Requirements to Study Computer Science in USA
                 </a>
-                <a href="/blog/green-card-for-international-students" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/green-card-for-international-students" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Green Card for International Students
                 </a>
-                <a href="/blog/study-abroad-education-consultants-dunya-consultants" className="block #1845B3 hover:text-#1565c0 text-sm">
+                <a href="/blog/study-abroad-education-consultants-dunya-consultants" className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Study Abroad Education Consultants
                 </a>
               </div>

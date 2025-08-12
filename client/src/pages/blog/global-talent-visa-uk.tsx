@@ -63,13 +63,13 @@ export default function GlobalTalentVisaUK() {
               <div className="bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
-                  <li><a href="#eligibility" className="hover:#1845B3">Eligibility Criteria for Global UK Talent Visa</a></li>
-                  <li><a href="#documents" className="hover:#1845B3">Documents Required for Global Talent UK Visa</a></li>
-                  <li><a href="#application-process" className="hover:#1845B3">How to Apply for a Global Talent Visa for UK?</a></li>
-                  <li><a href="#costs" className="hover:#1845B3">Cost to apply for Global Talent UK Visa</a></li>
-                  <li><a href="#timeline" className="hover:#1845B3">When will you receive your Global Talent Visa UK?</a></li>
-                  <li><a href="#conclusion" className="hover:#1845B3">Conclusion</a></li>
-                  <li><a href="#faqs" className="hover:#1845B3">Frequently Asked Questions</a></li>
+                  <li><a href="#eligibility" className="hover:bg-[#1845B3]">Eligibility Criteria for Global UK Talent Visa</a></li>
+                  <li><a href="#documents" className="hover:bg-[#1845B3]">Documents Required for Global Talent UK Visa</a></li>
+                  <li><a href="#application-process" className="hover:bg-[#1845B3]">How to Apply for a Global Talent Visa for UK?</a></li>
+                  <li><a href="#costs" className="hover:bg-[#1845B3]">Cost to apply for Global Talent UK Visa</a></li>
+                  <li><a href="#timeline" className="hover:bg-[#1845B3]">When will you receive your Global Talent Visa UK?</a></li>
+                  <li><a href="#conclusion" className="hover:bg-[#1845B3]">Conclusion</a></li>
+                  <li><a href="#faqs" className="hover:bg-[#1845B3]">Frequently Asked Questions</a></li>
                 </ul>
               </div>
 
@@ -81,7 +81,7 @@ export default function GlobalTalentVisaUK() {
                 </p>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-3 text-#1565c0">Key Requirements</h3>
+                  <h3 className="text-xl font-semibold mb-3 text-[#1565c0]">Key Requirements</h3>
                   <ul className="list-disc list-inside text-gray-700 space-y-2">
                     <li>Have a strong record of achievements in your industry</li>
                     <li>Be at least 18 years old</li>
@@ -167,7 +167,7 @@ export default function GlobalTalentVisaUK() {
                 <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Cost to apply for Global Talent UK Visa</h2>
                 
                 <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg mb-6">
-                  <h4 className="font-semibold text-#1565c0 mb-3">Total Cost Breakdown</h4>
+                  <h4 className="font-semibold text-[#1565c0] mb-3">Total Cost Breakdown</h4>
                   <div className="space-y-3 text-#1a73e8">
                     <p className="font-medium">The total cost to apply for a UK Global Talent Visa is <strong>£716</strong>.</p>
                     <div className="space-y-2">
@@ -198,17 +198,17 @@ export default function GlobalTalentVisaUK() {
 
                 <div className="space-y-4">
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Standard Processing</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Standard Processing</h4>
                     <p className="text-#1a73e8">3 weeks for standard applications</p>
                   </div>
                   
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Priority Service</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Priority Service</h4>
                     <p className="text-#1a73e8">You may have the option to pay extra for a faster decision</p>
                   </div>
                   
                   <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                    <h4 className="font-semibold text-#1565c0 mb-2">Longer Processing Cases</h4>
+                    <h4 className="font-semibold text-[#1565c0] mb-2">Longer Processing Cases</h4>
                     <p className="text-#1a73e8">Your application might take longer if you are applying with a family member who needs an appointment while you do not, if your documents need verification, if you are required to attend an interview, or if there are concerns due to your personal history.</p>
                   </div>
                 </div>
