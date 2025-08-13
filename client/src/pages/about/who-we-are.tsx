@@ -224,7 +224,7 @@ export default function WhoWeAre() {
                   />
                 </div>
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Umer Farooq</h3>
-                <p className="text-xl #1845B3 font-semibold mb-6">Chief Executive Officer</p>
+                <p className="text-xl text-[#1845B3] font-semibold mb-6">Chief Executive Officer</p>
                 <div className="text-lg text-gray-700 leading-relaxed space-y-4">
                   <p>
                     CEO of Dunya Consultants, an Educational Consultancy Company located in Pakistan. Also the founder of XCON Technologies and a member of the Board of Directors of Dunya Group of Companies.
@@ -234,7 +234,7 @@ export default function WhoWeAre() {
                   </p>
                 </div>
                 <div className="mt-8">
-                  <Button variant="outline" className="border-blue-200 #1845B3 hover:bg-blue-50">
+                  <Button variant="outline" className="border-blue-200 text-[#1845B3] hover:bg-blue-50">
                     <a href="https://meetumerfarooq.com/" target="_blank" rel="noopener noreferrer">
                       Meet Umer Farooq
                     </a>
@@ -247,7 +247,7 @@ export default function WhoWeAre() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-#1e3a8a via-#1e3a8a to-#1e3a8a text-white">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -260,7 +260,7 @@ export default function WhoWeAre() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
+                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50">
                   Book Consultation
                 </Button>
               </Link>
