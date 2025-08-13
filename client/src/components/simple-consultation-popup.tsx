@@ -179,14 +179,14 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
           ) : (
             <div className="text-center py-8">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 #1845B3" />
+                <Calendar className="w-8 h-8 text-[#1845B3]" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">Consultation Booked Successfully!</h3>
               <p className="text-gray-600 mb-4">
                 Thank you for booking your free consultation. Our expert counselor will contact you within 24 hours.
               </p>
               <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="text-sm text-#1a73e8">
+                <p className="text-sm text-[#1D50C9]">
                   <strong>Next Steps:</strong> Prepare your academic documents and think about your preferred study destinations.
                 </p>
               </div>
@@ -199,15 +199,15 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
           <h4 className="font-semibold text-gray-800 mb-3">Contact Information</h4>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div className="flex items-center space-x-2">
-              <Phone className="w-4 h-4 #1845B3" />
+              <Phone className="w-4 h-4 text-[#1845B3]" />
               <span>+92 304 1110947</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Mail className="w-4 h-4 #1845B3" />
+              <Mail className="w-4 h-4 text-[#1845B3]" />
               <span>info@dunyaconsultants.com</span>
             </div>
             <div className="flex items-center space-x-2">
-              <MapPin className="w-4 h-4 #1845B3" />
+              <MapPin className="w-4 h-4 text-[#1845B3]" />
               <span>Alif Tower, Sargodha</span>
             </div>
           </div>

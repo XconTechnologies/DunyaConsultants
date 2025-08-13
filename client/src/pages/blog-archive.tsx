@@ -386,7 +386,7 @@ export default function BlogArchive() {
                         <span>{post.date}</span>
                       </div>
                       <Link href={post.href}>
-                        <span className="#1845B3 hover:text-#1a73e8 font-medium transition-colors duration-200 flex items-center gap-1">
+                        <span className="text-[#1845B3] hover:text-[#1D50C9] font-medium transition-colors duration-200 flex items-center gap-1">
                           Read More
                           <ArrowRight className="w-4 h-4" />
                         </span>

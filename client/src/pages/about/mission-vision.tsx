@@ -273,7 +273,7 @@ export default function MissionVision() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-#1e3a8a via-#1e3a8a to-#1e3a8a text-white">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -286,7 +286,7 @@ export default function MissionVision() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
+                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50">
                   Start Your Journey
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>

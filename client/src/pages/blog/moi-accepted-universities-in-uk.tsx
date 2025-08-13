@@ -97,7 +97,7 @@ export default function MOIAcceptedUniversitiesInUK() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-8 p-6 bg-blue-50 border-l-4 #1D50C9 rounded-r-lg"
+                className="mb-8 p-6 bg-blue-50 border-l-4 border-[#1D50C9] rounded-r-lg"
               >
                 <h2 className="text-2xl font-bold mb-4 text-[#1565c0] flex items-center">
                   <BookOpen className="mr-3 h-6 w-6" />

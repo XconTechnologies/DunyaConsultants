@@ -1155,7 +1155,7 @@ export default function Blogs() {
                 placeholder="Enter your email address" 
                 className="bg-white/15 border-white/30 text-white placeholder:text-white/70 backdrop-blur-md h-12 focus:border-white focus:ring-white"
               />
-              <Button className="bg-white text-#1a73e8 hover:bg-blue-50 whitespace-nowrap h-12 px-8 font-semibold transition-all duration-300 transform hover:scale-105">
+              <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 whitespace-nowrap h-12 px-8 font-semibold transition-all duration-300 transform hover:scale-105">
                 Subscribe Free
               </Button>
             </div>

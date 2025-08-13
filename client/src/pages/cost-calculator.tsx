@@ -399,13 +399,13 @@ export default function CostCalculator() {
                         </div>
                         <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                           <span className="font-medium">Health Insurance</span>
-                          <span className="font-bold #1845B3">
+                          <span className="font-bold text-[#1845B3]">
                             {formatCurrency(results.insurance, results.currency)}
                           </span>
                         </div>
                         <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
                           <span className="font-medium">Flight Cost</span>
-                          <span className="font-bold #1845B3">
+                          <span className="font-bold text-[#1845B3]">
                             {formatCurrency(results.flight, results.currency)}
                           </span>
                         </div>
@@ -425,20 +425,20 @@ export default function CostCalculator() {
                       <div className="space-y-3 pt-4">
                         <div className="p-3 bg-blue-50 rounded-lg">
                           <div className="flex items-start space-x-2">
-                            <Info className="w-5 h-5 #1845B3 flex-shrink-0 mt-0.5" />
+                            <Info className="w-5 h-5 text-[#1845B3] flex-shrink-0 mt-0.5" />
                             <div>
                               <p className="font-medium text-[#1565c0]">Work Rights</p>
-                              <p className="text-sm text-#1a73e8">{results.workRights}</p>
+                              <p className="text-sm text-[#1D50C9]">{results.workRights}</p>
                             </div>
                           </div>
                         </div>
                         {results.prPathway && (
                           <div className="p-3 bg-blue-50 rounded-lg">
                             <div className="flex items-start space-x-2">
-                              <Heart className="w-5 h-5 #1845B3 flex-shrink-0 mt-0.5" />
+                              <Heart className="w-5 h-5 text-[#1845B3] flex-shrink-0 mt-0.5" />
                               <div>
                                 <p className="font-medium text-[#1565c0]">PR Pathway Available</p>
-                                <p className="text-sm text-#1a73e8">This country offers pathways to permanent residency for international students.</p>
+                                <p className="text-sm text-[#1D50C9]">This country offers pathways to permanent residency for international students.</p>
                               </div>
                             </div>
                           </div>

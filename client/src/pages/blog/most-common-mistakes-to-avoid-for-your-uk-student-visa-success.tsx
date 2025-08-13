@@ -237,7 +237,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 4: CAS Details */}
               <section id="cas-details" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 #1D50C9 pl-4">4. Not Checking CAS Details</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4">4. Not Checking CAS Details</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Your Confirmation of Acceptance for Studies (CAS) is a crucial document that contains important information about your course and personal details. Many students make the mistake of not carefully reviewing their CAS before submitting their visa application.
@@ -277,7 +277,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Mistake 5: Past Records */}
               <section id="past-records" className="mb-10">
-                <h3 className="text-2xl font-bold mb-6 border-l-4 #1D50C9 pl-4">5. Not Disclosing Past Records</h3>
+                <h3 className="text-2xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4">5. Not Disclosing Past Records</h3>
                 
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Honesty is crucial in your visa application. Some students make the mistake of not disclosing previous visa refusals, immigration violations, or criminal records, thinking it might harm their chances.
@@ -304,7 +304,7 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
 
               {/* Success Tips */}
               <section id="success-tips" className="mb-10">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Additional Success Tips</h2>
+                <h2 className="text-3xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4">Additional Success Tips</h2>
 
                 <div className="space-y-6">
                   <div className="bg-blue-50 p-6 rounded-lg">
