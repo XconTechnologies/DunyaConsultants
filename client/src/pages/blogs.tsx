@@ -856,64 +856,45 @@ export default function Blogs() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50" ref={ref}>
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white relative overflow-hidden">
-        {/* Enhanced Background with Animated Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1D50C9]/20 to-[#1845B3]/20"></div>
-          <motion.div
-            animate={{ 
-              scale: [1, 1.1, 1],
-              rotate: [0, 5, 0],
-            }}
-            transition={{ 
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#1845B3]/10 blur-3xl"
-          />
-          <motion.div
-            animate={{ 
-              scale: [1.1, 1, 1.1],
-              rotate: [0, -5, 0],
-            }}
-            transition={{ 
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-            className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-[#1D50C9]/10 blur-3xl"
-          />
+      <div className="min-h-screen bg-gray-50" ref={ref}>
+      {/* Modern Hero Section */}
+      <section className="pt-24 pb-16 bg-white relative overflow-hidden">
+        {/* Geometric Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-full h-full" 
+               style={{
+                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231D50C9' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+               }}
+          ></div>
         </div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Content */}
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8 }}
-            className="text-center"
+            className="text-center max-w-4xl mx-auto"
           >
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-white/15 backdrop-blur-md rounded-full px-8 py-4 mb-8 border border-white/20"
+              className="inline-flex items-center space-x-2 bg-blue-50 text-[#1D50C9] rounded-full px-6 py-3 mb-8 border border-blue-100"
             >
-              <BookOpen className="w-5 h-5 text-blue-200" />
-              <span className="text-sm font-medium text-blue-100">Education Insights & Expert Guidance</span>
+              <BookOpen className="w-5 h-5" />
+              <span className="text-sm font-medium">Expert Education Insights</span>
             </motion.div>
             
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+              className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight"
             >
-              Study Abroad<br />
-              <span className="bg-gradient-to-r from-blue-200 via-blue-100 to-blue-200 bg-clip-text text-transparent">
-                Blog & Insights
+              Study Abroad
+              <span className="block mt-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Knowledge Hub
               </span>
             </motion.h1>
             
@@ -921,53 +902,70 @@ export default function Blogs() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed"
+              className="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
             >
-              Expert guidance, insider tips, and comprehensive guides to help you navigate your international education journey successfully. Your trusted source for study abroad success.
+              Discover comprehensive guides, expert insights, and success stories to navigate your international education journey with confidence.
             </motion.p>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             >
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+              <Button
+                onClick={() => {
+                  const blogSection = document.getElementById('blog-content');
+                  blogSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                size="lg"
+                className="bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <div className="text-4xl font-bold text-white mb-2">100+</div>
-                <div className="text-sm text-blue-200">Expert Articles</div>
-              </motion.div>
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+                <BookOpen className="w-5 h-5 mr-2" />
+                Browse Articles
+              </Button>
+              <Button
+                onClick={() => window.open('/blog-archive', '_blank')}
+                variant="outline"
+                size="lg"
+                className="border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white font-semibold px-8 py-4 rounded-lg transition-all duration-300"
               >
-                <div className="text-4xl font-bold text-white mb-2">25+</div>
-                <div className="text-sm text-blue-200">Countries Covered</div>
-              </motion.div>
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
-              >
-                <div className="text-4xl font-bold text-white mb-2">50K+</div>
-                <div className="text-sm text-blue-200">Monthly Readers</div>
-              </motion.div>
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
-              >
-                <div className="text-4xl font-bold text-white mb-2">Daily</div>
-                <div className="text-sm text-blue-200">Fresh Content</div>
-              </motion.div>
+                <FileText className="w-5 h-5 mr-2" />
+                View All Posts
+              </Button>
+            </motion.div>
+            
+            {/* Statistics */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-gray-200"
+            >
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-[#1D50C9] mb-1">150+</div>
+                <div className="text-sm text-gray-600">Articles Published</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-[#1D50C9] mb-1">50K+</div>
+                <div className="text-sm text-gray-600">Monthly Readers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-[#1D50C9] mb-1">25+</div>
+                <div className="text-sm text-gray-600">Countries Covered</div>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl md:text-3xl font-bold text-[#1D50C9] mb-1">1000+</div>
+                <div className="text-sm text-gray-600">Success Stories</div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Blog Content */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="blog-content" className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
           {/* Search and Filters */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -975,24 +973,24 @@ export default function Blogs() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-12"
           >
-            <Card className="p-8 shadow-xl border-0 bg-gradient-to-r from-blue-50 to-blue-100/50 backdrop-blur-sm">
+            <Card className="p-6 shadow-lg border border-gray-200 bg-white rounded-xl">
               <div className="flex flex-col lg:flex-row gap-6 items-center">
                 <div className="flex-1">
                   <div className="relative">
-                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 #1D50C9 w-5 h-5" />
+                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#1D50C9] w-5 h-5" />
                     <Input
                       placeholder="Search articles, topics, or destinations..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-12 h-12 border-blue-200 focus:border-blue-400 focus:ring-blue-400 text-base bg-white/80 backdrop-blur-sm"
+                      className="pl-12 h-12 border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9] text-base bg-white"
                     />
                   </div>
                 </div>
                 
                 <div className="flex gap-4">
                   <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                    <SelectTrigger className="w-52 h-12 border-blue-200 focus:border-blue-400 focus:ring-blue-400 bg-white/80 backdrop-blur-sm">
-                      <Filter className="w-4 h-4 mr-2 #1D50C9" />
+                    <SelectTrigger className="w-52 h-12 border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9] bg-white">
+                      <Filter className="w-4 h-4 mr-2 text-[#1D50C9]" />
                       <SelectValue placeholder="Select Category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -1016,23 +1014,25 @@ export default function Blogs() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="mb-16"
             >
-              <h2 className="text-3xl font-bold text-neutral-800 mb-8">Featured Articles</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-gray-900">
+                Featured <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">Articles</span>
+              </h2>
               <div className="grid md:grid-cols-2 gap-8">
                 {featuredPosts.slice(0, 2).map((post, index) => (
-                  <Card key={post.id} className="hover:shadow-xl transition-all duration-300 border shadow-md">
+                  <Card key={post.id} className="group hover:shadow-xl transition-all duration-300 border border-gray-200 bg-white rounded-xl overflow-hidden">
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-bold text-neutral-800 mb-3 line-clamp-2">{post.title}</h3>
-                      <p className="text-neutral-600 mb-4 line-clamp-3">{post.excerpt}</p>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#1D50C9] transition-colors">{post.title}</h3>
+                      <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
                       
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1 text-sm text-neutral-500">
+                        <div className="flex items-center gap-1 text-sm text-gray-500">
                           <Calendar className="w-4 h-4" />
                           <span>{formatDate(post.publishedDate)}</span>
                         </div>
 
                         <Button 
                           onClick={() => setSelectedPost(post)}
-                          className="#1845B3 hover:bg-#1a73e8 text-white"
+                          className="bg-[#1D50C9] hover:bg-[#1845B3] text-white"
                         >
                           Read More
                           <ChevronRight className="w-4 h-4 ml-2" />
@@ -1052,8 +1052,8 @@ export default function Blogs() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="flex items-center justify-between mb-8">
-              <h2 className="text-3xl font-bold text-neutral-800">Latest Articles</h2>
-              <div className="flex items-center space-x-2 text-neutral-600">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Latest Articles</h2>
+              <div className="flex items-center space-x-2 text-gray-600">
                 <TrendingUp className="w-4 h-4" />
                 <span className="text-sm">{filteredPosts.length} articles found</span>
               </div>
@@ -1067,25 +1067,25 @@ export default function Blogs() {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  <Card className="hover:shadow-xl transition-all duration-300 border shadow-md">
+                  <Card className="group hover:shadow-xl transition-all duration-300 border border-gray-200 bg-white rounded-xl overflow-hidden">
                     <CardContent className="p-6">
-                      <h3 className="text-xl font-bold text-neutral-800 mb-3 line-clamp-2">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-[#1D50C9] transition-colors">
                         {post.title}
                       </h3>
                       
-                      <p className="text-neutral-600 mb-4 line-clamp-3">
+                      <p className="text-gray-600 mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
 
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1 text-sm text-neutral-500">
+                        <div className="flex items-center gap-1 text-sm text-gray-500">
                           <Calendar className="w-4 h-4" />
                           <span>{formatDate(post.publishedDate)}</span>
                         </div>
                         <Button 
                           size="sm" 
                           onClick={() => setSelectedPost(post)}
-                          className="#1845B3 hover:bg-#1a73e8 text-white"
+                          className="bg-[#1D50C9] hover:bg-[#1845B3] text-white"
                         >
                           Read More
                           <ChevronRight className="w-4 h-4 ml-2" />
@@ -1099,9 +1099,9 @@ export default function Blogs() {
 
             {filteredPosts.length === 0 && (
               <div className="text-center py-12">
-                <BookOpen className="w-16 h-16 mx-auto text-neutral-300 mb-4" />
-                <h3 className="text-xl font-semibold text-neutral-600 mb-2">No articles found</h3>
-                <p className="text-neutral-500">Try adjusting your search or filters</p>
+                <BookOpen className="w-16 h-16 mx-auto text-gray-300 mb-4" />
+                <h3 className="text-xl font-semibold text-gray-600 mb-2">No articles found</h3>
+                <p className="text-gray-500">Try adjusting your search or filters</p>
               </div>
             )}
           </motion.div>
@@ -1109,7 +1109,7 @@ export default function Blogs() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-20 bg-gradient-to-br from-#1565c0 via-#1a73e8 to-[#1845B3] text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white relative overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <motion.div
@@ -1122,7 +1122,7 @@ export default function Blogs() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="absolute -top-20 -right-20 w-96 h-96 rounded-full #1D50C9/10 blur-3xl"
+            className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#1D50C9]/10 blur-3xl"
           />
           <motion.div
             animate={{ 
