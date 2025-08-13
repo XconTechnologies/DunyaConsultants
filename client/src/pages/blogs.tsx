@@ -545,7 +545,7 @@ export default function Blogs() {
       <div className="min-h-screen bg-white">
         <Navigation />
         {/* Article Header */}
-        <section className="pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white">
+        <section className="pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <Button 
               onClick={() => setSelectedPost(null)}
@@ -637,7 +637,7 @@ export default function Blogs() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse", repeatDelay: 3 }}
-                            className="my-12 p-6 bg-gradient-to-r from-[#1D50C9] to-blue-500 rounded-xl text-white relative overflow-hidden"
+                            className="my-12 p-6 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-xl text-white relative overflow-hidden"
                           >
                             <div className="absolute inset-0 bg-black/10"></div>
                             <div className="relative z-10 text-center">
@@ -801,7 +801,7 @@ export default function Blogs() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="my-12 p-8 bg-gradient-to-r from-[#1D50C9] via-#1a73e8 to-#1565c0 rounded-xl text-white relative overflow-hidden"
+              className="my-12 p-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-xl text-white relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-black/10"></div>
               <div className="relative z-10 text-center">
