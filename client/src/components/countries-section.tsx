@@ -4,6 +4,7 @@ import { Globe, MapPin, Users, GraduationCap, ChevronLeft, ChevronRight, Star, A
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { useLocation } from "wouter";
 
 interface Country {
   id: string;
@@ -439,9 +440,32 @@ export default function CountriesSection() {
 
   const isGridView = activeTab === 'all';
 
+  const [, setLocation] = useLocation();
+
   const handleApplyNow = (country: Country) => {
     setApplicationCountry(country);
     setShowApplicationForm(true);
+  };
+
+  const handleViewDetails = (country: Country) => {
+    // Navigate to the specific study abroad page based on country
+    const countryRoutes: { [key: string]: string } = {
+      'United States': '/study-abroad/usa',
+      'United Kingdom': '/study-abroad/uk', 
+      'Canada': '/study-abroad/canada',
+      'Australia': '/study-abroad/australia',
+      'Turkey': '/study-abroad/turkey',
+      'Finland': '/study-abroad/finland',
+      'Belgium': '/study-abroad/belgium'
+    };
+    
+    const route = countryRoutes[country.name];
+    if (route) {
+      setLocation(route);
+    } else {
+      // Fallback to modal for countries without dedicated pages
+      setSelectedCountry(country);
+    }
   };
 
   // Auto-scrolling disabled - users must use manual arrow navigation
@@ -549,7 +573,7 @@ export default function CountriesSection() {
                     <span className="text-3xl">{country.flag}</span>
                   </div>
                   <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-bold">{country.name}</h3>
+                    <h3 className="text-xl font-bold text-white">{country.name}</h3>
                   </div>
                 </div>
                 
@@ -562,10 +586,11 @@ export default function CountriesSection() {
                   
                   <div className="flex gap-2 mb-4">
                     <Button
-                      onClick={() => setSelectedCountry(country)}
+                      onClick={() => handleViewDetails(country)}
                       variant="outline"
                       size="sm"
-                      className="flex-1"
+                      className="flex-1 hover:bg-blue-50"
+                      style={{ color: '#1D50C9', borderColor: '#1D50C9' }}
                     >
                       View Details
                     </Button>
@@ -628,7 +653,7 @@ export default function CountriesSection() {
                         <span className="text-3xl">{country.flag}</span>
                       </div>
                       <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="text-xl font-bold">{country.name}</h3>
+                        <h3 className="text-xl font-bold text-white">{country.name}</h3>
                       </div>
                     </div>
                     
@@ -641,7 +666,7 @@ export default function CountriesSection() {
                       
                       <div className="flex gap-2">
                         <Button
-                          onClick={() => setSelectedCountry(country)}
+                          onClick={() => handleViewDetails(country)}
                           variant="outline"
                           size="sm"
                           className="flex-1 hover:bg-blue-50"
