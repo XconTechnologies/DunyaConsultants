@@ -861,7 +861,7 @@ export default function Blogs() {
       <section className="pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white relative overflow-hidden">
         {/* Enhanced Background with Animated Elements */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1D50C9]/20 to-blue-500/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1D50C9]/20 to-[#1845B3]/20"></div>
           <motion.div
             animate={{ 
               scale: [1, 1.1, 1],
@@ -872,7 +872,7 @@ export default function Blogs() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-blue-400/10 blur-3xl"
+            className="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#1845B3]/10 blur-3xl"
           />
           <motion.div
             animate={{ 
@@ -884,7 +884,7 @@ export default function Blogs() {
               repeat: Infinity,
               ease: "linear"
             }}
-            className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-blue-300/10 blur-3xl"
+            className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-[#1D50C9]/10 blur-3xl"
           />
         </div>
         
