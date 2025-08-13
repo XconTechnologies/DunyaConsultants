@@ -153,7 +153,7 @@ export default function WhyChooseUs() {
               Discover why thousands of students trust Dunya Consultants for their international education journey
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50">
                 Free Consultation
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">

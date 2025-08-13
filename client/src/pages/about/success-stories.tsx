@@ -191,7 +191,7 @@ export default function SuccessStories() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -210,7 +210,7 @@ export default function SuccessStories() {
               Celebrating our students' achievements and the journey that brought us here
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50">
                 Share Your Story
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
@@ -257,7 +257,7 @@ export default function SuccessStories() {
                     </div>
                     <CardTitle className="text-xl text-gray-900">{story.name}</CardTitle>
                     <div className="space-y-2">
-                      <Badge variant="secondary" className="bg-blue-50 text-#1a73e8">
+                      <Badge variant="secondary" className="bg-blue-50 text-[#1D50C9]">
                         {story.university}
                       </Badge>
                       <p className="text-sm text-gray-600">{story.program}</p>
@@ -272,11 +272,11 @@ export default function SuccessStories() {
                     <p className="text-gray-600 italic">{story.story}</p>
                     <div className="space-y-2 pt-4 border-t">
                       <div className="flex items-center text-sm">
-                        <Award className="w-4 h-4 #1D50C9 mr-2" />
+                        <Award className="w-4 h-4 text-[#1D50C9] mr-2" />
                         <span className="font-medium">{story.scholarship}</span>
                       </div>
                       <div className="flex items-center text-sm">
-                        <Star className="w-4 h-4 #1D50C9 mr-2" />
+                        <Star className="w-4 h-4 text-[#1D50C9] mr-2" />
                         <span className="text-gray-600">{story.achievement}</span>
                       </div>
                     </div>
