@@ -116,7 +116,7 @@ export default function OurSuccessStories() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-#1565c0 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -154,7 +154,7 @@ export default function OurSuccessStories() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-#1e3a8a hover:bg-blue-50">
+              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50">
                 Share Your Story
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
@@ -176,8 +176,8 @@ export default function OurSuccessStories() {
             className="text-center mb-16"
           >
             <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full mb-6">
-              <Globe className="w-5 h-5 mr-2 #1845B3" />
-              <span className="text-sm font-medium #1845B3">Visa Success Stories</span>
+              <Globe className="w-5 h-5 mr-2 text-[#1845B3]" />
+              <span className="text-sm font-medium text-[#1845B3]">Visa Success Stories</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Success Stories{" "}
