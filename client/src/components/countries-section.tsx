@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLocation } from "wouter";
+import ApplicationForm from "@/components/ApplicationForm";
 
 interface Country {
   id: string;
@@ -442,11 +443,6 @@ export default function CountriesSection() {
 
   const [, setLocation] = useLocation();
 
-  const handleApplyNow = (country: Country) => {
-    setApplicationCountry(country);
-    setShowApplicationForm(true);
-  };
-
   const handleViewDetails = (country: Country) => {
     // Navigate to the specific study abroad page based on country
     const countryRoutes: { [key: string]: string } = {
@@ -572,8 +568,8 @@ export default function CountriesSection() {
                   <div className="absolute top-4 left-4">
                     <span className="text-3xl">{country.flag}</span>
                   </div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <h3 className="text-xl font-bold text-white">{country.name}</h3>
+                  <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
+                    <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
                   </div>
                 </div>
                 
@@ -594,16 +590,17 @@ export default function CountriesSection() {
                     >
                       View Details
                     </Button>
-                    <Button
-                      onClick={() => handleApplyNow(country)}
-                      size="sm"
-                      className="flex-1 text-white hover:scale-105 transition-transform"
-                      style={{ backgroundColor: '#1D50C9' }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1845B3'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
-                    >
-                      Apply Now
-                    </Button>
+                    <ApplicationForm country={country.name}>
+                      <Button
+                        size="sm"
+                        className="flex-1 text-white hover:scale-105 transition-transform"
+                        style={{ backgroundColor: '#1D50C9' }}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1845B3'}
+                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
+                      >
+                        Apply Now
+                      </Button>
+                    </ApplicationForm>
                   </div>
                 </div>
               </motion.div>
@@ -652,8 +649,8 @@ export default function CountriesSection() {
                       <div className="absolute top-4 left-4">
                         <span className="text-3xl">{country.flag}</span>
                       </div>
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="text-xl font-bold text-white">{country.name}</h3>
+                      <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
+                        <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
                       </div>
                     </div>
                     
@@ -674,16 +671,17 @@ export default function CountriesSection() {
                         >
                           View Details
                         </Button>
-                        <Button
-                          onClick={() => handleApplyNow(country)}
-                          size="sm"
-                          className="flex-1 text-white hover:scale-105 transition-transform"
-                      style={{ backgroundColor: '#1D50C9' }}
-                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1845B3'}
-                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
-                        >
-                          Apply Now
-                        </Button>
+                        <ApplicationForm country={country.name}>
+                          <Button
+                            size="sm"
+                            className="flex-1 text-white hover:scale-105 transition-transform"
+                            style={{ backgroundColor: '#1D50C9' }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1845B3'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
+                          >
+                            Apply Now
+                          </Button>
+                        </ApplicationForm>
                       </div>
                     </div>
                   </motion.div>
