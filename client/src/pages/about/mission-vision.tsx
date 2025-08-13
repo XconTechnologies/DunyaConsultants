@@ -273,7 +273,7 @@ export default function MissionVision() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

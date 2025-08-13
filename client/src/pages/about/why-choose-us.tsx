@@ -134,7 +134,7 @@ export default function WhyChooseUs() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-w-7xl mx-auto px-6 text-center">
           <motion.div
@@ -220,7 +220,7 @@ export default function WhyChooseUs() {
       </section>
 
       {/* Achievements Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-#1e3a8a to-#1e3a8a text-white">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <motion.div
