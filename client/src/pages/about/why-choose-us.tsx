@@ -338,7 +338,7 @@ export default function WhyChooseUs() {
                     <div className="border-t pt-4">
                       <p className="font-semibold text-gray-900">{testimonial.author}</p>
                       <p className="text-sm text-gray-600">{testimonial.university}</p>
-                      <p className="text-sm #1845B3 font-medium">{testimonial.country}</p>
+                      <p className="text-sm text-[#1845B3] font-medium">{testimonial.country}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -363,7 +363,7 @@ export default function WhyChooseUs() {
               Join thousands of successful students who chose Dunya Consultants for their international education
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-[#1845B3] hover:bg-blue-50 text-[#1D4FC8]">
+              <Button size="lg" className="bg-white hover:bg-blue-50 text-[#1D50C9]">
                 Book Free Consultation
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
