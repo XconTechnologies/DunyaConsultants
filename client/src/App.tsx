@@ -9,7 +9,7 @@ import CostCalculator from "@/pages/cost-calculator";
 import CourseMatchTool from "@/pages/course-match-tool";
 import DocumentChecklist from "@/pages/document-checklist";
 import Events from "@/pages/events";
-import Blogs from "@/pages/blogs";
+
 import IELTS from "@/pages/ielts";
 import IELTSExamDay from "@/pages/ielts-exam-day";
 import PTE from "@/pages/test-prep/pte";
@@ -155,7 +155,7 @@ function Router() {
       <Route path="/course-match-tool" component={CourseMatchTool} />
       <Route path="/document-checklist" component={DocumentChecklist} />
       <Route path="/events" component={Events} />
-      <Route path="/blogs" component={Blogs} />
+
       <Route path="/blog" component={BlogArchive} />
       <Route path="/blog/list" component={BlogList} />
       <Route path="/blog/kaplan-test-of-english" component={KaplanTestOfEnglish} />
