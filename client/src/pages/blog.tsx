@@ -431,9 +431,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               );
                             }
                             
-                            // Check if this section contains the visa ratio table content
-                            if (section.content.includes('The UK student visa success rate 2024 for different types is as follows:') && 
-                                section.content.includes('Visa Category | UK Visa Ratio')) {
+                            // Check if this specific paragraph contains the visa ratio table intro
+                            if (paragraph.includes('The UK student visa success rate 2024 for different types is as follows:')) {
+                              // Render the complete table section in one go
                               return (
                                 <div key={pIndex} className="my-6">
                                   <p className="text-gray-700 leading-relaxed text-base mb-4">
