@@ -472,6 +472,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               }
                             }
                             
+                            // Skip rendering raw table data since we have custom table above
+                            if (paragraph.includes('Visa Category | UK Visa Ratio') || 
+                                paragraph.includes('Student Visa | 98%') ||
+                                paragraph.includes('Family Visa | 86%') ||
+                                paragraph.includes('Work Visas | 95%') ||
+                                paragraph.includes('Visitor Visas | 77%')) {
+                              return null;
+                            }
+                            
                             if (paragraph.trim()) {
                               return (
                                 <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
