@@ -10,14 +10,14 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-// Blog data fetched from dunyaconsultants.com
-const blogPosts = [
+// Static blog posts data structure for fallback
+const staticBlogPosts = [
   {
     id: "gre-test-fee-pakistan",
     title: "GRE Test Fee in Pakistan",
     excerpt: "Complete guide to GRE test fees, registration process, and format options for Pakistani students planning to study abroad.",
     category: "Test Preparation", 
-    author: "Dunya Consultants",
+    author: "Path Visa Consultants",
     date: "October 15, 2024",
     readTime: "8 min",
     views: 2450,
@@ -80,10 +80,7 @@ For Pakistani students who are willing to be admitted to universities to study c
   }
 ];
 
-const categories = [
-  { name: "All", count: blogPosts.length },
-  { name: "Test Preparation", count: blogPosts.filter(p => p.category === "Test Preparation").length },
-];
+// This will be defined inside the component where blogPosts is available
 
 // Helper function to parse content into sections
 function parseContentToSections(content: string) {
@@ -413,17 +410,67 @@ export default function Blog() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
+  // Fetch blog posts from API
+  const { data: blogPostsData, isLoading } = useQuery({
+    queryKey: ['/api/blog-posts'],
+    queryFn: async () => {
+      const response = await fetch('/api/blog-posts');
+      if (!response.ok) throw new Error('Failed to fetch blog posts');
+      return response.json();
+    }
+  });
+
+  // Transform API data to component format
+  const blogPosts = blogPostsData ? blogPostsData.map((post: any) => ({
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category || "Study Guides",
+    author: "Path Visa Consultants",
+    date: new Date(post.publishedAt || post.createdAt).toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    }),
+    readTime: "5 min",
+    views: post.viewCount || 0,
+    tags: post.tags || [],
+    image: post.featuredImage,
+    featured: post.id === blogPostsData[0]?.id,
+    slug: post.slug
+  })) : staticBlogPosts;
+
+  // Categories for filtering
+  const categories = [
+    { name: "All", count: blogPosts.length },
+    { name: "Test Preparation", count: blogPosts.filter((p: any) => p.category === "Test Preparation").length },
+    { name: "Study Guides", count: blogPosts.filter((p: any) => p.category === "Study Guides").length },
+  ];
+
   // If we're viewing a specific blog post
   if (match && params) {
     const slug = `${params.year}/${params.month}/${params.day}/${params.slug}`;
     return <BlogPostDetail slug={slug} />;
   }
 
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">Loading blog posts...</div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   // Filter posts based on search and category
-  const filteredPosts = blogPosts.filter(post => {
+  const filteredPosts = blogPosts.filter((post: any) => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+                         post.tags.some((tag: any) => tag.toLowerCase().includes(searchTerm.toLowerCase()));
     const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -493,7 +540,7 @@ export default function Blog() {
 
         {/* Blog Posts Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPosts.map((post) => (
+          {filteredPosts.map((post: any) => (
             <motion.div
               key={post.id}
               initial={{ opacity: 0, y: 20 }}
