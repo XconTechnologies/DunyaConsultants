@@ -156,7 +156,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     views: post.view_count || 0,
     tags: post.tags || [],
     image: post.featured_image || post.featuredImage,
-    featured: post.id === blogPostsData[0]?.id,
+    featured: false,
     slug: post.slug,
     content: post.content,
     rawContent: post.content
@@ -491,7 +491,7 @@ export default function Blog() {
     views: post.view_count || 0,
     tags: post.tags || [],
     image: post.featured_image || post.featuredImage,
-    featured: post.id === blogPostsData[0]?.id,
+    featured: false,
     slug: post.slug
   })) : staticBlogPosts;
 
@@ -617,12 +617,9 @@ export default function Blog() {
                       <img 
                         src={post.image} 
                         alt={post.title}
-                        className="w-full h-48 object-cover transition-transform hover:scale-105"
+                        className="w-full h-56 object-cover transition-transform hover:scale-105"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                       />
-                      <Badge className="absolute top-4 left-4 bg-[#1D50C9]">
-                        Featured
-                      </Badge>
                     </div>
                   )}
 
