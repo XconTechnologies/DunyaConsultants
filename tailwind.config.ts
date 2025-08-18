@@ -5,10 +5,6 @@ export default {
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      fontFamily: {
-        inter: ["Inter", "ui-sans-serif", "system-ui"],
-        "open-sans": ["Open Sans", "ui-sans-serif", "system-ui"],
-      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
