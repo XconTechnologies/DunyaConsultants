@@ -218,66 +218,139 @@ function BlogPostDetail({ slug }: { slug: string }) {
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
-            <Card className="bg-white border border-gray-200 shadow-sm">
-              <CardContent className="p-8">
+            <article className="bg-white rounded-xl shadow-lg overflow-hidden">
+              
+              {/* Featured Image */}
+              {blogPost.image && (
+                <div className="relative">
+                  <img 
+                    src={blogPost.image} 
+                    alt={blogPost.title}
+                    className="w-full h-auto"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                </div>
+              )}
+
+              {/* Content Container */}
+              <div className="p-8 lg:p-12">
                 
-                {/* Featured Image */}
-                {blogPost.image && (
-                  <div className="mb-8">
-                    <img 
-                      src={blogPost.image} 
-                      alt={blogPost.title}
-                      className="w-full h-auto rounded-lg"
-                    />
-                  </div>
-                )}
-
-                {/* Content Sections */}
-                {contentSections.map((section, index) => (
-                  <div key={index} id={section.id} className="mb-8">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-4">{section.title}</h2>
-                    <div className="prose prose-lg max-w-none">
-                      {section.content.split('\n').map((paragraph, pIndex) => {
-                        if (paragraph.trim().startsWith('###')) {
-                          return (
-                            <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-6 mb-3">
-                              {paragraph.replace(/^###\s*/, '')}
-                            </h3>
-                          );
-                        }
-                        if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
-                          return (
-                            <li key={pIndex} className="text-gray-700 mb-2 ml-4">
-                              {paragraph.replace(/^[-•]\s*/, '')}
-                            </li>
-                          );
-                        }
-                        if (paragraph.trim()) {
-                          return (
-                            <p key={pIndex} className="text-gray-700 leading-relaxed mb-4">
-                              {paragraph}
-                            </p>
-                          );
-                        }
-                        return null;
-                      })}
-                    </div>
-                  </div>
-                ))}
-
-                {/* Tags */}
-                <div className="mt-8 pt-8 border-t border-gray-200">
-                  <div className="flex flex-wrap gap-2">
-                    {blogPost.tags.map((tag, index) => (
-                      <Badge key={index} variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
+                {/* Article Header */}
+                <header className="mb-10">
+                  <div className="flex items-center gap-2 mb-6">
+                    {blogPost.tags.slice(0, 2).map((tag, index) => (
+                      <Badge key={index} className="bg-[#1D50C9] text-white px-3 py-1.5 text-sm font-medium">
                         {tag}
                       </Badge>
                     ))}
                   </div>
+                  
+                  <div className="bg-gradient-to-r from-[#1D50C9]/5 via-blue-50/50 to-transparent rounded-xl p-8 border-l-4 border-[#1D50C9]">
+                    <p className="text-xl text-gray-700 leading-relaxed font-light italic">
+                      {blogPost.excerpt}
+                    </p>
+                  </div>
+                </header>
+
+                {/* Blog Content */}
+                <div className="prose prose-xl max-w-none">
+                  {contentSections.map((section, index) => (
+                    <section key={index} id={section.id} className="mb-12">
+                      {section.title && (
+                        <div className="flex items-center mb-8">
+                          <div className="w-1.5 h-10 bg-gradient-to-b from-[#1D50C9] to-blue-600 rounded-full mr-5"></div>
+                          <h2 className="text-3xl font-bold text-gray-900 leading-tight">
+                            {section.title}
+                          </h2>
+                        </div>
+                      )}
+                      
+                      <div className="space-y-6">
+                        {section.content.split('\n').map((paragraph, pIndex) => {
+                          if (paragraph.trim().startsWith('###')) {
+                            return (
+                              <h3 key={pIndex} className="text-2xl font-semibold text-gray-800 mt-8 mb-4 flex items-center">
+                                <span className="w-8 h-8 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
+                                  <span className="w-2 h-2 bg-[#1D50C9] rounded-full"></span>
+                                </span>
+                                {paragraph.replace(/^###\s*/, '')}
+                              </h3>
+                            );
+                          }
+                          
+                          if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
+                            return (
+                              <div key={pIndex} className="flex items-start mb-4">
+                                <div className="w-2.5 h-2.5 bg-[#1D50C9] rounded-full mt-3 mr-4 flex-shrink-0"></div>
+                                <p className="text-gray-700 leading-relaxed text-lg">
+                                  {paragraph.replace(/^[-•]\s*/, '')}
+                                </p>
+                              </div>
+                            );
+                          }
+                          
+                          if (paragraph.trim()) {
+                            return (
+                              <p key={pIndex} className="text-gray-700 leading-relaxed text-lg mb-6">
+                                {paragraph}
+                              </p>
+                            );
+                          }
+                          return null;
+                        })}
+                      </div>
+                    </section>
+                  ))}
                 </div>
 
-              </CardContent>
-            </Card>
+                {/* Call to Action */}
+                <div className="mt-16 mb-12">
+                  <div className="bg-gradient-to-r from-[#1D50C9] to-blue-600 rounded-2xl p-8 text-white relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full -ml-12 -mb-12"></div>
+                    <div className="relative">
+                      <div className="flex items-center justify-between">
+                        <div className="flex-1">
+                          <h3 className="text-2xl font-bold mb-3">Ready to Start Your Study Abroad Journey?</h3>
+                          <p className="text-blue-100 text-lg leading-relaxed">
+                            Get personalized guidance from our expert consultants and turn your dreams into reality
+                          </p>
+                        </div>
+                        <div className="ml-8">
+                          <Link href="/contact">
+                            <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all">
+                              Get Free Consultation
+                            </Button>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tags Section */}
+                <footer className="pt-8 border-t border-gray-200">
+                  <div className="flex items-center justify-between mb-6">
+                    <h4 className="text-xl font-bold text-gray-900">Related Topics</h4>
+                    <Link href="/blog" className="text-[#1D50C9] hover:underline font-medium">
+                      View All Articles →
+                    </Link>
+                  </div>
+                  <div className="flex flex-wrap gap-3">
+                    {blogPost.tags.map((tag, index) => (
+                      <Badge 
+                        key={index} 
+                        variant="outline" 
+                        className="border-2 border-[#1D50C9]/20 text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9] transition-all duration-300 px-4 py-2 text-sm font-medium cursor-pointer"
+                      >
+                        #{tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </footer>
+
+              </div>
+            </article>
           </div>
 
           {/* Sidebar */}
