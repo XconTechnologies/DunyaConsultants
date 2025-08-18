@@ -257,12 +257,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   {contentSections.map((section, index) => (
                     <section key={index} id={section.id} className="mb-8">
                       {section.title && (
-                        <div className="flex mb-3">
-                          <div className="w-1.5 h-6 bg-gradient-to-b from-[#1D50C9] to-blue-600 rounded-full mr-4 mt-1"></div>
-                          <h2 className="text-2xl font-bold text-gray-900 leading-6">
-                            {section.title.replace(/^#+\s*/, '')}
-                          </h2>
-                        </div>
+                        <h2 className="text-2xl font-bold text-gray-900 mb-3">
+                          {section.title.replace(/^#+\s*/, '')}
+                        </h2>
                       )}
                       
                       <div className="space-y-3">
