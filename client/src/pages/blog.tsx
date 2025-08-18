@@ -262,11 +262,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         </h2>
                       )}
                       
-                      <div className="space-y-1">
+                      <div>
                         {section.content.split('\n').map((paragraph, pIndex) => {
                           if (paragraph.trim().startsWith('###')) {
                             return (
-                              <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-3 mb-1 flex items-center">
+                              <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
                                 <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
                                   <span className="w-1.5 h-1.5 bg-[#1D50C9] rounded-full"></span>
                                 </span>
@@ -277,18 +277,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           
                           if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
                             return (
-                              <div key={pIndex} className="flex items-start">
-                                <span className="text-gray-700 mr-2 mt-1">•</span>
-                                <p className="text-gray-700 leading-relaxed text-base">
+                              <div key={pIndex} className="flex items-start leading-tight mb-0">
+                                <span className="text-black mr-2 text-sm leading-none">•</span>
+                                <span className="text-gray-700 text-base leading-tight">
                                   {paragraph.replace(/^[-•]\s*/, '')}
-                                </p>
+                                </span>
                               </div>
                             );
                           }
                           
                           if (paragraph.trim()) {
                             return (
-                              <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-1">
+                              <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
                                 {paragraph}
                               </p>
                             );
