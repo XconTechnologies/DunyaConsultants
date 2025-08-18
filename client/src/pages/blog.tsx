@@ -131,6 +131,7 @@ function parseContentToSections(content: string) {
 
 // Blog Post Detail Component
 function BlogPostDetail({ slug }: { slug: string }) {
+  const [sidebarSearch, setSidebarSearch] = useState("");
   const blogPost = blogPosts.find(post => post.slug === slug);
 
   if (!blogPost) {
@@ -207,10 +208,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 <Clock className="w-5 h-5 mr-2" />
                 <span>{blogPost.readTime}</span>
               </div>
-              <div className="flex items-center">
-                <Eye className="w-5 h-5 mr-2" />
-                <span>{blogPost.views.toLocaleString()}</span>
-              </div>
+
             </motion.div>
           </div>
         </div>
@@ -232,29 +230,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       className="w-full h-96 object-cover rounded-lg"
                     />
                   </div>
-                )}
-
-                {/* Table of Contents */}
-                {contentSections.length > 0 && (
-                  <Card className="mb-8 bg-gray-50 border-0">
-                    <CardHeader className="pb-4">
-                      <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-2">
-                        {contentSections.map((section, index) => (
-                          <li key={index}>
-                            <a 
-                              href={`#${section.id}`}
-                              className="text-[#1D50C9] hover:underline block py-1"
-                            >
-                              {index + 1}. {section.title}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
                 )}
 
                 {/* Content Sections */}
@@ -306,15 +281,74 @@ function BlogPostDetail({ slug }: { slug: string }) {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <Card className="bg-gray-50 border-0 sticky top-24">
-              <CardHeader>
-                <CardTitle className="text-xl text-[#1D50C9]">More Articles</CardTitle>
+          <div className="lg:col-span-1 space-y-6">
+            
+            {/* Table of Contents - Sticky */}
+            {contentSections.length > 0 && (
+              <Card className="bg-white border border-gray-200 shadow-sm sticky top-24">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {contentSections.map((section, index) => (
+                      <li key={index}>
+                        <a 
+                          href={`#${section.id}`}
+                          className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                        >
+                          {index + 1}. {section.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )}
+
+            {/* Search Bar - Sticky */}
+            <Card className="bg-white border border-gray-200 shadow-sm sticky top-80">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-xl text-[#1D50C9]">Search Articles</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 text-sm">More blog posts coming soon...</p>
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Input
+                    type="text"
+                    placeholder="Search blog posts..."
+                    value={sidebarSearch}
+                    onChange={(e) => setSidebarSearch(e.target.value)}
+                    className="pl-10"
+                  />
+                  {sidebarSearch && (
+                    <div className="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">
+                      <Link href={`/blog?search=${encodeURIComponent(sidebarSearch)}`} className="text-[#1D50C9] hover:underline">
+                        Search for "{sidebarSearch}" →
+                      </Link>
+                    </div>
+                  )}
+                </div>
               </CardContent>
             </Card>
+
+            {/* Contact Box - Sticky */}
+            <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 sticky top-96">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-xl">Need Help?</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-blue-100 text-sm mb-4">
+                  Get personalized guidance for your study abroad journey
+                </p>
+                <Link href="/contact">
+                  <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
+                    Contact Us
+                  </Button>
+                </Link>
+              </CardContent>
+            </Card>
+
           </div>
         </div>
       </div>
@@ -456,20 +490,14 @@ export default function Blog() {
                     </p>
 
                     {/* Meta Information */}
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center">
-                          <Calendar className="w-4 h-4 mr-1" />
-                          <span>{post.date}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="w-4 h-4 mr-1" />
-                          <span>{post.readTime}</span>
-                        </div>
+                    <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
+                      <div className="flex items-center">
+                        <Calendar className="w-4 h-4 mr-1" />
+                        <span>{post.date}</span>
                       </div>
                       <div className="flex items-center">
-                        <Eye className="w-4 h-4 mr-1" />
-                        <span>{post.views.toLocaleString()}</span>
+                        <Clock className="w-4 h-4 mr-1" />
+                        <span>{post.readTime}</span>
                       </div>
                     </div>
 
