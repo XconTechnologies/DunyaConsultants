@@ -338,11 +338,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
-                  {/* Show Intro with Special Blue Box */}
-                  {contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
-                    <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
+                  {/* Show All Intro Sections with Special Blue Box */}
+                  {contentSections.filter((section: any) => !section.title).map((section: any, sIndex: number) => (
+                    <div key={sIndex} className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
                       <div className="text-gray-700 leading-relaxed">
-                        {contentSections[0].content.split('\n').map((paragraph: string, pIndex: number) => {
+                        {section.content.split('\n').map((paragraph: string, pIndex: number) => {
                           if (paragraph.trim()) {
                             return (
                               <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 last:mb-0">
@@ -354,12 +354,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         })}
                       </div>
                     </div>
-                  )}
+                  ))}
 
                   {/* Regular Content Sections */}
-                  {contentSections.filter((section: any, index: number) => {
-                    // Skip first section if it's the intro (no title)
-                    if (index === 0 && !section.title) return false;
+                  {contentSections.filter((section: any) => {
+                    // Skip intro sections (no title)
                     return section.title && section.title.trim() !== '';
                   }).map((section: any, index: number) => {
                     // Check if this is an FAQ section
