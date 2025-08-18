@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag } from "lucide-react";
+import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from '@/components/navigation';
@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 // Static blog posts data structure for fallback
 const staticBlogPosts = [
@@ -79,6 +80,38 @@ The entire GRE registration process is quite simple and can be done online throu
 For Pakistani students who are willing to be admitted to universities to study courses like law, finance, medicine, or engineering, the GRE (graduate record examination) test is highly recommended. There are so many benefits of GRE test for Pakistani students that they cannot ignore. Your chances of getting admission can automatically be improved if you get high scores on the GRE test. Furthermore, the fee for taking the GRE test is somewhat high in Pakistan. But it is a good option for you since it will open new opportunities for your future.`
   }
 ];
+
+// FAQ Component for collapsible questions
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <CollapsibleTrigger className="flex items-center justify-between w-full p-4 text-left bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+        <span className="font-medium text-gray-900">{question}</span>
+        {isOpen ? (
+          <ChevronUp className="w-5 h-5 text-[#1D50C9]" />
+        ) : (
+          <ChevronDown className="w-5 h-5 text-[#1D50C9]" />
+        )}
+      </CollapsibleTrigger>
+      <CollapsibleContent className="px-4 pb-4 text-gray-700 bg-gray-50 border-l border-r border-b border-gray-200 rounded-b-lg">
+        <div className="pt-2">
+          {answer.split('\n').map((paragraph: string, index: number) => {
+            if (paragraph.trim()) {
+              return (
+                <p key={index} className="text-gray-700 leading-relaxed text-base mb-2 last:mb-0">
+                  {paragraph}
+                </p>
+              );
+            }
+            return null;
+          })}
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
 
 // This will be defined inside the component where blogPosts is available
 
@@ -305,41 +338,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
-                  {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
-                    <section key={index} id={section.id} className="mb-8">
-                      {section.title && (
-                        <h2 className="text-2xl font-bold text-gray-900 mb-3">
-                          {section.title.replace(/^#+\s*/, '')}
-                        </h2>
-                      )}
-                      
-                      <div>
-                        {section.content.split('\n').map((paragraph: string, pIndex: number) => {
-                          if (paragraph.trim().startsWith('###')) {
-                            return (
-                              <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
-                                <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
-                                  <span className="w-1.5 h-1.5 bg-[#1D50C9] rounded-full"></span>
-                                </span>
-                                <span>{paragraph.replace(/^#+\s*/, '')}</span>
-                              </h3>
-                            );
-                          }
-                          
-                          if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
-                            return (
-                              <div key={pIndex} className="flex items-start leading-tight mb-0">
-                                <span className="text-black mr-2 text-sm leading-none">•</span>
-                                <span className="text-gray-700 text-base leading-tight">
-                                  {paragraph.replace(/^[-•]\s*/, '')}
-                                </span>
-                              </div>
-                            );
-                          }
-                          
+                  {/* Show Intro with Special Blue Box */}
+                  {contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
+                    <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
+                      <div className="text-gray-700 leading-relaxed">
+                        {contentSections[0].content.split('\n').map((paragraph: string, pIndex: number) => {
                           if (paragraph.trim()) {
                             return (
-                              <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
+                              <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 last:mb-0">
                                 {paragraph}
                               </p>
                             );
@@ -347,8 +353,130 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           return null;
                         })}
                       </div>
-                    </section>
-                  ))}
+                    </div>
+                  )}
+
+                  {/* Regular Content Sections */}
+                  {contentSections.filter((section: any, index: number) => {
+                    // Skip first section if it's the intro (no title)
+                    if (index === 0 && !section.title) return false;
+                    return section.title && section.title.trim() !== '';
+                  }).map((section: any, index: number) => {
+                    // Check if this is an FAQ section
+                    const isFAQSection = section.title.toLowerCase().includes('faq');
+                    const nextSections = contentSections.slice(contentSections.indexOf(section) + 1);
+                    
+                    if (isFAQSection && section.content.trim() === '') {
+                      // This is an FAQ header, render FAQs from following sections
+                      const faqSections = nextSections.filter((nextSection: any) => 
+                        nextSection.title && nextSection.content.trim() !== ''
+                      );
+                      
+                      return (
+                        <section key={index} id={section.id} className="mb-8">
+                          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                            {section.title.replace(/^#+\s*/, '')}
+                          </h2>
+                          
+                          <div className="space-y-4">
+                            {faqSections.map((faqSection: any, faqIndex: number) => (
+                              <FAQItem 
+                                key={faqIndex}
+                                question={faqSection.title}
+                                answer={faqSection.content}
+                              />
+                            ))}
+                          </div>
+                        </section>
+                      );
+                    }
+                    
+                    // Skip FAQ answer sections as they're handled above
+                    if (index > 0) {
+                      const prevSection = contentSections[contentSections.indexOf(section) - 1];
+                      if (prevSection && prevSection.title.toLowerCase().includes('faq') && prevSection.content.trim() === '') {
+                        return null;
+                      }
+                    }
+                    
+                    return (
+                      <section key={index} id={section.id} className="mb-8">
+                        {section.title && (
+                          <h2 className="text-2xl font-bold text-gray-900 mb-3">
+                            {section.title.replace(/^#+\s*/, '')}
+                          </h2>
+                        )}
+                        
+                        <div>
+                          {section.content.split('\n').map((paragraph: string, pIndex: number) => {
+                            if (paragraph.trim().startsWith('###')) {
+                              return (
+                                <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
+                                  <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
+                                    <span className="w-1.5 h-1.5 bg-[#1D50C9] rounded-full"></span>
+                                  </span>
+                                  <span>{paragraph.replace(/^#+\s*/, '')}</span>
+                                </h3>
+                              );
+                            }
+                            
+                            if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
+                              return (
+                                <div key={pIndex} className="flex items-start leading-tight mb-2">
+                                  <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
+                                  <span className="text-gray-700 text-base leading-tight">
+                                    {paragraph.replace(/^[-•]\s*/, '')}
+                                  </span>
+                                </div>
+                              );
+                            }
+                            
+                            if (paragraph.includes('|') && paragraph.includes('-')) {
+                              // Table formatting
+                              const rows = section.content.split('\n').filter((line: string) => line.includes('|'));
+                              if (rows.length > 0) {
+                                return (
+                                  <div key={pIndex} className="overflow-x-auto my-4">
+                                    <table className="min-w-full border-collapse border border-gray-300">
+                                      {rows.map((row: string, rowIndex: number) => {
+                                        const cells = row.split('|').map(cell => cell.trim()).filter(cell => cell);
+                                        const isHeader = rowIndex === 0;
+                                        const isDelimiter = row.includes('-');
+                                        
+                                        if (isDelimiter) return null;
+                                        
+                                        return (
+                                          <tr key={rowIndex} className={isHeader ? "bg-[#1D50C9]/10" : "bg-white"}>
+                                            {cells.map((cell: string, cellIndex: number) => {
+                                              const Tag = isHeader ? 'th' : 'td';
+                                              return (
+                                                <Tag key={cellIndex} className="border border-gray-300 px-4 py-2 text-left">
+                                                  {cell}
+                                                </Tag>
+                                              );
+                                            })}
+                                          </tr>
+                                        );
+                                      })}
+                                    </table>
+                                  </div>
+                                );
+                              }
+                            }
+                            
+                            if (paragraph.trim()) {
+                              return (
+                                <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
+                                  {paragraph}
+                                </p>
+                              );
+                            }
+                            return null;
+                          })}
+                        </div>
+                      </section>
+                    );
+                  })}
                 </div>
 
 
