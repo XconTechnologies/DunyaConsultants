@@ -234,42 +234,46 @@ function BlogPostDetail({ slug }: { slug: string }) {
               <div className="p-8 lg:p-12">
                 
                 {/* Article Header */}
-                <header className="mb-10">
-                  <div className="flex items-center gap-2 mb-6">
+                <header className="mb-16">
+                  <div className="flex items-center gap-3 mb-8">
                     {blogPost.tags.slice(0, 2).map((tag, index) => (
-                      <Badge key={index} className="bg-[#1D50C9] text-white px-3 py-1.5 text-sm font-medium">
+                      <Badge key={index} className="bg-[#1D50C9] text-white px-4 py-2 text-sm font-medium rounded-full shadow-sm">
                         {tag}
                       </Badge>
                     ))}
                   </div>
                   
-                  <div className="bg-gradient-to-r from-[#1D50C9]/5 via-blue-50/50 to-transparent rounded-xl p-8 border-l-4 border-[#1D50C9]">
-                    <p className="text-xl text-gray-700 leading-relaxed font-light italic">
+                  <h1 className="font-inter text-[55px] leading-[62px] font-bold text-gray-900 mb-8 tracking-tight">
+                    {blogPost.title}
+                  </h1>
+                  
+                  <div className="bg-gradient-to-r from-[#1D50C9]/8 via-blue-50/60 to-transparent rounded-2xl p-10 border-l-6 border-[#1D50C9] shadow-sm">
+                    <p className="font-inter text-[18px] leading-[28px] font-normal text-gray-700 italic">
                       {blogPost.excerpt}
                     </p>
                   </div>
                 </header>
 
                 {/* Blog Content */}
-                <div className="prose prose-xl max-w-none">
+                <div className="max-w-none">
                   {contentSections.map((section, index) => (
-                    <section key={index} id={section.id} className="mb-12">
+                    <section key={index} id={section.id} className="mb-16">
                       {section.title && (
-                        <div className="flex items-center mb-8">
-                          <div className="w-1.5 h-10 bg-gradient-to-b from-[#1D50C9] to-blue-600 rounded-full mr-5"></div>
-                          <h2 className="text-3xl font-bold text-gray-900 leading-tight">
+                        <div className="flex items-start mb-10">
+                          <div className="w-2 h-14 bg-gradient-to-b from-[#1D50C9] to-blue-600 rounded-full mr-6 mt-1 flex-shrink-0"></div>
+                          <h2 className="font-inter text-[36px] leading-[40px] font-semibold text-gray-900 tracking-tight">
                             {section.title}
                           </h2>
                         </div>
                       )}
                       
-                      <div className="space-y-6">
+                      <div className="ml-8 space-y-8">
                         {section.content.split('\n').map((paragraph, pIndex) => {
                           if (paragraph.trim().startsWith('###')) {
                             return (
-                              <h3 key={pIndex} className="text-2xl font-semibold text-gray-800 mt-8 mb-4 flex items-center">
-                                <span className="w-8 h-8 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
-                                  <span className="w-2 h-2 bg-[#1D50C9] rounded-full"></span>
+                              <h3 key={pIndex} className="font-inter text-[28px] leading-[34px] font-semibold text-gray-800 mt-12 mb-6 flex items-center">
+                                <span className="w-10 h-10 bg-[#1D50C9]/15 rounded-xl flex items-center justify-center mr-4">
+                                  <span className="w-3 h-3 bg-[#1D50C9] rounded-full"></span>
                                 </span>
                                 {paragraph.replace(/^###\s*/, '')}
                               </h3>
@@ -278,9 +282,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           
                           if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
                             return (
-                              <div key={pIndex} className="flex items-start mb-4">
-                                <div className="w-2.5 h-2.5 bg-[#1D50C9] rounded-full mt-3 mr-4 flex-shrink-0"></div>
-                                <p className="text-gray-700 leading-relaxed text-lg">
+                              <div key={pIndex} className="flex items-start mb-6 pl-4">
+                                <div className="w-3 h-3 bg-[#1D50C9] rounded-full mt-2.5 mr-5 flex-shrink-0"></div>
+                                <p className="font-inter text-[18px] leading-[28px] font-normal text-gray-700">
                                   {paragraph.replace(/^[-•]\s*/, '')}
                                 </p>
                               </div>
@@ -289,7 +293,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           
                           if (paragraph.trim()) {
                             return (
-                              <p key={pIndex} className="text-gray-700 leading-relaxed text-lg mb-6">
+                              <p key={pIndex} className="font-inter text-[18px] leading-[28px] font-normal text-gray-700 mb-8">
                                 {paragraph}
                               </p>
                             );
@@ -309,14 +313,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     <div className="relative">
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <h3 className="text-2xl font-bold mb-3 text-[#ffffff]">Ready to Start Your Study Abroad Journey?</h3>
-                          <p className="text-blue-100 text-lg leading-relaxed">
-                            Get personalized guidance from our expert consultants and turn your dreams into reality
+                          <h3 className="font-inter text-[32px] leading-[38px] font-bold mb-4">Ready to Start Your Study Abroad Journey?</h3>
+                          <p className="font-inter text-[18px] leading-[28px] font-normal text-blue-100">
+                            Get personalized guidance from our expert consultants and turn your dreams into reality. Book your free consultation today.
                           </p>
                         </div>
                         <div className="ml-8">
                           <Link href="/contact">
-                            <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold px-8 py-3 text-lg shadow-lg hover:shadow-xl transition-all">
+                            <Button className="font-open-sans bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold px-10 py-4 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
                               Get Free Consultation
                             </Button>
                           </Link>
@@ -329,8 +333,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 {/* Tags Section */}
                 <footer className="pt-8 border-t border-gray-200">
                   <div className="flex items-center justify-between mb-6">
-                    <h4 className="text-xl font-bold text-gray-900">Related Topics</h4>
-                    <Link href="/blog" className="text-[#1D50C9] hover:underline font-medium">
+                    <h4 className="font-inter text-[24px] leading-[30px] font-bold text-gray-900">Related Topics</h4>
+                    <Link href="/blog" className="font-open-sans text-[#1D50C9] hover:underline font-medium text-[16px] transition-colors">
                       View All Articles →
                     </Link>
                   </div>
@@ -339,7 +343,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       <Badge 
                         key={index} 
                         variant="outline" 
-                        className="border-2 border-[#1D50C9]/20 text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9] transition-all duration-300 px-4 py-2 text-sm font-medium cursor-pointer"
+                        className="font-open-sans border-2 border-[#1D50C9]/30 text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9] transition-all duration-300 px-5 py-2.5 text-[14px] font-medium cursor-pointer rounded-full"
                       >
                         #{tag}
                       </Badge>
@@ -358,7 +362,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               {/* Search Bar */}
               <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-xl text-[#1D50C9]">Search Articles</CardTitle>
+                  <CardTitle className="font-inter text-[20px] leading-[26px] font-semibold text-[#1D50C9]">Search Articles</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="relative">
@@ -372,7 +376,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     />
                     {sidebarSearch && (
                       <div className="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">
-                        <Link href={`/blog?search=${encodeURIComponent(sidebarSearch)}`} className="text-[#1D50C9] hover:underline">
+                        <Link href={`/blog?search=${encodeURIComponent(sidebarSearch)}`} className="font-open-sans text-[#1D50C9] hover:underline text-[14px] font-medium">
                           Search for "{sidebarSearch}" →
                         </Link>
                       </div>
@@ -385,7 +389,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               {contentSections.length > 0 && (
                 <Card className="bg-white border border-gray-200 shadow-sm">
                   <CardHeader className="pb-4">
-                    <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                    <CardTitle className="font-inter text-[20px] leading-[26px] font-semibold text-[#1D50C9]">Table of Contents</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
@@ -393,7 +397,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         <li key={index}>
                           <a 
                             href={`#${section.id}`}
-                            className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                            className="font-open-sans text-[#1D50C9] hover:underline block py-1 text-[14px] font-medium transition-colors"
                           >
                             {index + 1}. {section.title}
                           </a>
@@ -407,14 +411,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
               {/* Contact Box */}
               <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-xl">Need Help?</CardTitle>
+                  <CardTitle className="font-inter text-[20px] leading-[26px] font-semibold">Need Help?</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-blue-100 text-sm mb-4">
+                  <p className="font-inter text-blue-100 text-[14px] leading-[20px] font-normal mb-4">
                     Get personalized guidance for your study abroad journey
                   </p>
                   <Link href="/contact">
-                    <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
+                    <Button className="font-open-sans w-full bg-white text-[#1D50C9] hover:bg-blue-50 font-medium">
                       Contact Us
                     </Button>
                   </Link>
