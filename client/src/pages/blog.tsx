@@ -255,32 +255,32 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
                   {contentSections.map((section, index) => (
-                    <section key={index} id={section.id} className="mb-12">
+                    <section key={index} id={section.id} className="mb-8">
                       {section.title && (
-                        <div className="flex items-center mb-4">
-                          <div className="w-1.5 h-8 bg-gradient-to-b from-[#1D50C9] to-blue-600 rounded-full mr-4"></div>
-                          <h2 className="text-2xl font-bold text-gray-900 leading-tight">
+                        <div className="flex items-start mb-3">
+                          <div className="w-1.5 h-6 bg-gradient-to-b from-[#1D50C9] to-blue-600 rounded-full mr-4 mt-1"></div>
+                          <h2 className="text-2xl font-bold text-gray-900 leading-6">
                             {section.title}
                           </h2>
                         </div>
                       )}
                       
-                      <div className="space-y-4">
+                      <div className="space-y-3">
                         {section.content.split('\n').map((paragraph, pIndex) => {
                           if (paragraph.trim().startsWith('###')) {
                             return (
-                              <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-6 mb-2 flex items-center">
-                                <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
+                              <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-start">
+                                <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3 mt-0.5">
                                   <span className="w-1.5 h-1.5 bg-[#1D50C9] rounded-full"></span>
                                 </span>
-                                {paragraph.replace(/^###\s*/, '')}
+                                <span className="leading-6">{paragraph.replace(/^###\s*/, '')}</span>
                               </h3>
                             );
                           }
                           
                           if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
                             return (
-                              <div key={pIndex} className="flex items-start mb-3">
+                              <div key={pIndex} className="flex items-start mb-2">
                                 <div className="w-2 h-2 bg-[#1D50C9] rounded-full mt-2.5 mr-3 flex-shrink-0"></div>
                                 <p className="text-gray-700 leading-relaxed text-base">
                                   {paragraph.replace(/^[-•]\s*/, '')}
@@ -291,7 +291,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           
                           if (paragraph.trim()) {
                             return (
-                              <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
+                              <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-2">
                                 {paragraph}
                               </p>
                             );
