@@ -399,6 +399,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       }
                     }
                     
+                    // Skip individual FAQ sections that should be part of collapsible FAQs
+                    if (section.title && (
+                        section.title.includes('What is the issue rate of UK student visas?') ||
+                        section.title.includes('Is it difficult to get a UK student visa from Pakistan?') ||
+                        section.title.includes('What is the UK student visa ratio from Pakistan?')
+                    )) {
+                      return null;
+                    }
+                    
                     return (
                       <section key={index} id={section.id} className="mb-8">
                         {section.title && (
