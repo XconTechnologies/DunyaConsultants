@@ -281,74 +281,76 @@ function BlogPostDetail({ slug }: { slug: string }) {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1 space-y-6">
-            
-            {/* Search Bar - Sticky */}
-            <Card className="bg-white border border-gray-200 shadow-sm sticky top-24">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl text-[#1D50C9]">Search Articles</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <Input
-                    type="text"
-                    placeholder="Search blog posts..."
-                    value={sidebarSearch}
-                    onChange={(e) => setSidebarSearch(e.target.value)}
-                    className="pl-10"
-                  />
-                  {sidebarSearch && (
-                    <div className="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">
-                      <Link href={`/blog?search=${encodeURIComponent(sidebarSearch)}`} className="text-[#1D50C9] hover:underline">
-                        Search for "{sidebarSearch}" →
-                      </Link>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Table of Contents - Sticky */}
-            {contentSections.length > 0 && (
-              <Card className="bg-white border border-gray-200 shadow-sm sticky top-52">
+          <div className="lg:col-span-1">
+            <div className="sticky top-24 space-y-6">
+              
+              {/* Search Bar */}
+              <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                  <CardTitle className="text-xl text-[#1D50C9]">Search Articles</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-2">
-                    {contentSections.map((section, index) => (
-                      <li key={index}>
-                        <a 
-                          href={`#${section.id}`}
-                          className="text-[#1D50C9] hover:underline block py-1 text-sm"
-                        >
-                          {index + 1}. {section.title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Input
+                      type="text"
+                      placeholder="Search blog posts..."
+                      value={sidebarSearch}
+                      onChange={(e) => setSidebarSearch(e.target.value)}
+                      className="pl-10"
+                    />
+                    {sidebarSearch && (
+                      <div className="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">
+                        <Link href={`/blog?search=${encodeURIComponent(sidebarSearch)}`} className="text-[#1D50C9] hover:underline">
+                          Search for "{sidebarSearch}" →
+                        </Link>
+                      </div>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
-            )}
 
-            {/* Contact Box - Sticky */}
-            <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 sticky top-96">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl">Need Help?</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-blue-100 text-sm mb-4">
-                  Get personalized guidance for your study abroad journey
-                </p>
-                <Link href="/contact">
-                  <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
-                    Contact Us
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+              {/* Table of Contents */}
+              {contentSections.length > 0 && (
+                <Card className="bg-white border border-gray-200 shadow-sm">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {contentSections.map((section, index) => (
+                        <li key={index}>
+                          <a 
+                            href={`#${section.id}`}
+                            className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                          >
+                            {index + 1}. {section.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              )}
 
+              {/* Contact Box */}
+              <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl">Need Help?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-blue-100 text-sm mb-4">
+                    Get personalized guidance for your study abroad journey
+                  </p>
+                  <Link href="/contact">
+                    <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
+                      Contact Us
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+
+            </div>
           </div>
         </div>
       </div>
