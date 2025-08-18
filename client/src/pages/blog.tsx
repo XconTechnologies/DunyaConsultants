@@ -262,7 +262,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         </h2>
                       )}
                       
-                      <div className="space-y-2">
+                      <div className="space-y-1">
                         {section.content.split('\n').map((paragraph, pIndex) => {
                           if (paragraph.trim().startsWith('###')) {
                             return (
@@ -277,8 +277,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           
                           if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
                             return (
-                              <div key={pIndex} className="flex items-start py-0.5">
-                                <div className="w-2 h-2 bg-[#1D50C9] rounded-full mr-3 flex-shrink-0 mt-2"></div>
+                              <div key={pIndex} className="flex items-start">
+                                <span className="text-gray-700 mr-2 mt-1">•</span>
                                 <p className="text-gray-700 leading-relaxed text-base">
                                   {paragraph.replace(/^[-•]\s*/, '')}
                                 </p>
