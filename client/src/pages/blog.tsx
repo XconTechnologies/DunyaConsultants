@@ -155,7 +155,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
-    image: post.featured_image,
+    image: post.featured_image || post.featuredImage,
     featured: post.id === blogPostsData[0]?.id,
     slug: post.slug,
     content: post.content,
@@ -490,7 +490,7 @@ export default function Blog() {
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
-    image: post.featured_image,
+    image: post.featured_image || post.featuredImage,
     featured: post.id === blogPostsData[0]?.id,
     slug: post.slug
   })) : staticBlogPosts;
