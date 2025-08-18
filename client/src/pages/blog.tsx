@@ -81,38 +81,6 @@ For Pakistani students who are willing to be admitted to universities to study c
   }
 ];
 
-// FAQ Component for collapsible questions
-function FAQItem({ question, answer }: { question: string; answer: string }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <CollapsibleTrigger className="flex items-center justify-between w-full p-4 text-left bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-        <span className="font-medium text-gray-900">{question}</span>
-        {isOpen ? (
-          <ChevronUp className="w-5 h-5 text-[#1D50C9]" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-[#1D50C9]" />
-        )}
-      </CollapsibleTrigger>
-      <CollapsibleContent className="px-4 pb-4 text-gray-700 bg-gray-50 border-l border-r border-b border-gray-200 rounded-b-lg">
-        <div className="pt-2">
-          {answer.split('\n').map((paragraph: string, index: number) => {
-            if (paragraph.trim()) {
-              return (
-                <p key={index} className="text-gray-700 leading-relaxed text-base mb-2 last:mb-0">
-                  {paragraph}
-                </p>
-              );
-            }
-            return null;
-          })}
-        </div>
-      </CollapsibleContent>
-    </Collapsible>
-  );
-}
-
 // This will be defined inside the component where blogPosts is available
 
 // Helper function to parse content into sections
@@ -157,6 +125,38 @@ function parseContentToSections(content: string) {
   }
   
   return sections.filter(section => section.content.trim().length > 0);
+}
+
+// FAQ Component for collapsible questions
+function FAQItem({ question, answer }: { question: string; answer: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <CollapsibleTrigger className="flex items-center justify-between w-full p-4 text-left bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+        <span className="font-medium text-gray-900">{question}</span>
+        {isOpen ? (
+          <ChevronUp className="w-5 h-5 text-[#1D50C9]" />
+        ) : (
+          <ChevronDown className="w-5 h-5 text-[#1D50C9]" />
+        )}
+      </CollapsibleTrigger>
+      <CollapsibleContent className="px-4 pb-4 text-gray-700 bg-gray-50 border-l border-r border-b border-gray-200 rounded-b-lg">
+        <div className="pt-2">
+          {answer.split('\n').map((paragraph: string, index: number) => {
+            if (paragraph.trim()) {
+              return (
+                <p key={index} className="text-gray-700 leading-relaxed text-base mb-2 last:mb-0">
+                  {paragraph}
+                </p>
+              );
+            }
+            return null;
+          })}
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
 }
 
 // Blog Post Detail Component
