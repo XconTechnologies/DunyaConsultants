@@ -277,7 +277,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           
                           if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
                             return (
-                              <div key={pIndex} className="flex items-center mb-2">
+                              <div key={pIndex} className="flex items-center mb-1">
                                 <div className="w-2 h-2 bg-[#1D50C9] rounded-full mr-3 flex-shrink-0"></div>
                                 <p className="text-gray-700 leading-relaxed text-base">
                                   {paragraph.replace(/^[-•]\s*/, '')}
