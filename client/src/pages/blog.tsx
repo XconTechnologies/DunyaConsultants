@@ -188,11 +188,13 @@ function BlogPostDetail({ slug }: { slug: string }) {
     try {
       const parsedContent = JSON.parse(blogPost.rawContent);
       if (parsedContent.sections) {
-        contentSections = parsedContent.sections.map((section: any, index: number) => ({
-          id: `section-${index}`,
-          title: section.title.replace(/^##\s*/, ''),
-          content: section.content
-        }));
+        contentSections = parsedContent.sections
+          .filter((section: any) => section.title.trim() !== '') // Filter out empty titles
+          .map((section: any, index: number) => ({
+            id: `section-${index}`,
+            title: section.title.replace(/^##\s*/, ''),
+            content: section.content
+          }));
       } else {
         contentSections = parseContentToSections(blogPost.content);
       }
@@ -303,7 +305,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
-                  {contentSections.map((section, index) => (
+                  {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
                     <section key={index} id={section.id} className="mb-8">
                       {section.title && (
                         <h2 className="text-2xl font-bold text-gray-900 mb-3">
@@ -414,7 +416,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </CardHeader>
                   <CardContent>
                     <ul className="space-y-2">
-                      {contentSections.map((section, index) => (
+                      {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
                         <li key={index}>
                           <a 
                             href={`#${section.id}`}
