@@ -158,9 +158,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
     image: post.featuredImage,
     featured: post.id === blogPostsData[0]?.id,
     slug: post.slug,
-    content: typeof post.content === 'object' && post.content.sections ? 
-      post.content.sections.map((s: any) => `${s.title}\n\n${s.content}`).join('\n\n') : 
-      (typeof post.content === 'string' ? post.content : JSON.stringify(post.content))
+    content: post.content,
+    rawContent: post.content
   })) : staticBlogPosts;
 
   const blogPost = blogPosts.find(post => post.slug === slug);
@@ -183,7 +182,26 @@ function BlogPostDetail({ slug }: { slug: string }) {
     );
   }
 
-  const contentSections = parseContentToSections(blogPost.content);
+  // Parse content based on format
+  let contentSections;
+  if (typeof blogPost.rawContent === 'string' && blogPost.rawContent.startsWith('{')) {
+    try {
+      const parsedContent = JSON.parse(blogPost.rawContent);
+      if (parsedContent.sections) {
+        contentSections = parsedContent.sections.map((section: any, index: number) => ({
+          id: `section-${index}`,
+          title: section.title.replace(/^##\s*/, ''),
+          content: section.content
+        }));
+      } else {
+        contentSections = parseContentToSections(blogPost.content);
+      }
+    } catch {
+      contentSections = parseContentToSections(blogPost.content);
+    }
+  } else {
+    contentSections = parseContentToSections(blogPost.content);
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -294,7 +312,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       )}
                       
                       <div>
-                        {section.content.split('\n').map((paragraph, pIndex) => {
+                        {section.content.split('\n').map((paragraph: string, pIndex: number) => {
                           if (paragraph.trim().startsWith('###')) {
                             return (
                               <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
