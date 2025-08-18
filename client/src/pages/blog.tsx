@@ -459,6 +459,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 // Main Blog Component
 export default function Blog() {
   const [match, params] = useRoute("/blog/:year/:month/:day/:slug");
+  const [simpleMatch, simpleParams] = useRoute("/blog/:slug");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -504,6 +505,11 @@ export default function Blog() {
   if (match && params) {
     const slug = `${params.year}/${params.month}/${params.day}/${params.slug}`;
     return <BlogPostDetail slug={slug} />;
+  }
+  
+  // Handle simple slug format (for older posts)
+  if (simpleMatch && simpleParams) {
+    return <BlogPostDetail slug={simpleParams.slug} />;
   }
 
   // Show loading state
@@ -600,7 +606,7 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Link href={`/blog/${post.slug}`}>
+              <Link href={post.slug.includes('/') ? `/blog/${post.slug}` : `/blog/${post.slug}`}>
                 <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                   
                   {/* Featured Image */}
