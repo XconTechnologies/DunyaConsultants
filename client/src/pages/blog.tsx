@@ -495,9 +495,10 @@ export default function Blog() {
   // Categories for filtering
   const categories = [
     { name: "All", count: blogPosts.length },
-    { name: "Test Preparation", count: blogPosts.filter((p: any) => p.category === "Test Preparation").length },
+    { name: "General", count: blogPosts.filter((p: any) => p.category === "General").length },
     { name: "Study Guides", count: blogPosts.filter((p: any) => p.category === "Study Guides").length },
-  ];
+    { name: "Test Preparation", count: blogPosts.filter((p: any) => p.category === "Test Preparation").length },
+  ].filter(cat => cat.count > 0);
 
   // If we're viewing a specific blog post
   if (match && params) {
