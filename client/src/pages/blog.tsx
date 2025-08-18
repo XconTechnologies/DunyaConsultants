@@ -431,55 +431,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               );
                             }
                             
-                            if (paragraph.includes('|') && section.content.includes('Visa Category')) {
-                              // Table formatting for visa ratios
-                              const tableLines = section.content.split('\n').filter((line: string) => line.includes('|') && !line.includes('-'));
-                              if (tableLines.length > 0) {
-                                return (
-                                  <div key={pIndex} className="overflow-x-auto my-6">
-                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
-                                      <thead className="bg-[#1D50C9]/10">
-                                        <tr>
-                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                                            Visa Category
-                                          </th>
-                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
-                                            UK Visa Ratio
-                                          </th>
-                                        </tr>
-                                      </thead>
-                                      <tbody>
-                                        <tr className="hover:bg-gray-50">
-                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Student Visa</td>
-                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">98%</td>
-                                        </tr>
-                                        <tr className="hover:bg-gray-50">
-                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Family Visa</td>
-                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">86%</td>
-                                        </tr>
-                                        <tr className="hover:bg-gray-50">
-                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Work Visas</td>
-                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">95%</td>
-                                        </tr>
-                                        <tr className="hover:bg-gray-50">
-                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Visitor Visas</td>
-                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">77%</td>
-                                        </tr>
-                                      </tbody>
-                                    </table>
-                                  </div>
-                                );
-                              }
-                            }
                             
-                            // Skip rendering raw table data since we have custom table above
-                            if (paragraph.includes('Visa Category | UK Visa Ratio') || 
-                                paragraph.includes('Student Visa | 98%') ||
-                                paragraph.includes('Family Visa | 86%') ||
-                                paragraph.includes('Work Visas | 95%') ||
-                                paragraph.includes('Visitor Visas | 77%')) {
-                              return null;
-                            }
+                            
+                            
                             
                             if (paragraph.trim()) {
                               return (
