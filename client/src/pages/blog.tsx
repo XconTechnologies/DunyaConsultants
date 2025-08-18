@@ -157,7 +157,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
       {/* Hero Section - Same style as other pages */}
       <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] py-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
@@ -213,7 +212,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
-
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-4 gap-8">
           {/* Main Content */}
@@ -311,7 +309,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     <div className="relative">
                       <div className="flex items-center justify-between">
                         <div className="flex-1">
-                          <h3 className="text-2xl font-bold mb-3">Ready to Start Your Study Abroad Journey?</h3>
+                          <h3 className="text-2xl font-bold mb-3 text-[#ffffff]">Ready to Start Your Study Abroad Journey?</h3>
                           <p className="text-blue-100 text-lg leading-relaxed">
                             Get personalized guidance from our expert consultants and turn your dreams into reality
                           </p>
@@ -427,7 +425,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
