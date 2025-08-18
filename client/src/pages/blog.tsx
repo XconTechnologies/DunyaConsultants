@@ -227,7 +227,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     <img 
                       src={blogPost.image} 
                       alt={blogPost.title}
-                      className="w-full h-96 object-cover rounded-lg"
+                      className="w-full h-auto rounded-lg"
                     />
                   </div>
                 )}
@@ -283,31 +283,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-6">
             
-            {/* Table of Contents - Sticky */}
-            {contentSections.length > 0 && (
-              <Card className="bg-white border border-gray-200 shadow-sm sticky top-24">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {contentSections.map((section, index) => (
-                      <li key={index}>
-                        <a 
-                          href={`#${section.id}`}
-                          className="text-[#1D50C9] hover:underline block py-1 text-sm"
-                        >
-                          {index + 1}. {section.title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            )}
-
             {/* Search Bar - Sticky */}
-            <Card className="bg-white border border-gray-200 shadow-sm sticky top-80">
+            <Card className="bg-white border border-gray-200 shadow-sm sticky top-24">
               <CardHeader className="pb-4">
                 <CardTitle className="text-xl text-[#1D50C9]">Search Articles</CardTitle>
               </CardHeader>
@@ -331,6 +308,29 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Table of Contents - Sticky */}
+            {contentSections.length > 0 && (
+              <Card className="bg-white border border-gray-200 shadow-sm sticky top-52">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-2">
+                    {contentSections.map((section, index) => (
+                      <li key={index}>
+                        <a 
+                          href={`#${section.id}`}
+                          className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                        >
+                          {index + 1}. {section.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Contact Box - Sticky */}
             <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 sticky top-96">
