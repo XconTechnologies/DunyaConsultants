@@ -647,22 +647,24 @@ export default function Blog() {
                       {post.excerpt}
                     </p>
 
-                    {/* Meta Information */}
-                    <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
-                      <div className="flex items-center">
-                        <Calendar className="w-4 h-4 mr-1" />
-                        <span>{post.date}</span>
+                    {/* Meta Information and Read More - Same Line */}
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center space-x-4 text-gray-500">
+                        <div className="flex items-center">
+                          <Calendar className="w-4 h-4 mr-1" />
+                          <span>{post.date}</span>
+                        </div>
+                        <div className="flex items-center">
+                          <Clock className="w-4 h-4 mr-1" />
+                          <span>{post.readTime}</span>
+                        </div>
                       </div>
-                      <div className="flex items-center">
-                        <Clock className="w-4 h-4 mr-1" />
-                        <span>{post.readTime}</span>
+                      
+                      {/* Read More Link */}
+                      <div className="flex items-center text-[#1D50C9] font-medium">
+                        <span>Read More</span>
+                        <ArrowRight className="w-4 h-4 ml-1" />
                       </div>
-                    </div>
-
-                    {/* Read More Link */}
-                    <div className="flex items-center text-[#1D50C9] font-medium">
-                      <span>Read More</span>
-                      <ArrowRight className="w-4 h-4 ml-1" />
                     </div>
 
                   </CardContent>
