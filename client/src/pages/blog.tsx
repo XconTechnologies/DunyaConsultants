@@ -365,12 +365,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     // Special handling for intro-before-main section
                     if (section.title === 'intro-before-main') {
                       return (
-                        <div key={index} className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
+                        <div key={index} className="mb-8">
                           <div className="text-gray-700 leading-relaxed">
                             {section.content.split('\n').map((paragraph: string, pIndex: number) => {
                               if (paragraph.trim()) {
                                 return (
-                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 last:mb-0">
+                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-4 last:mb-0">
                                     {paragraph}
                                   </p>
                                 );
