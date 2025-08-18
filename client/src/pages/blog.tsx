@@ -129,6 +129,40 @@ function parseContentToSections(content: string) {
 // Blog Post Detail Component
 function BlogPostDetail({ slug }: { slug: string }) {
   const [sidebarSearch, setSidebarSearch] = useState("");
+  
+  // Fetch blog posts for detail view
+  const { data: blogPostsData, isLoading } = useQuery({
+    queryKey: ['/api/blog-posts'],
+    queryFn: async () => {
+      const response = await fetch('/api/blog-posts');
+      if (!response.ok) throw new Error('Failed to fetch blog posts');
+      return response.json();
+    }
+  });
+
+  // Transform API data to component format
+  const blogPosts = blogPostsData ? blogPostsData.map((post: any) => ({
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category || "Study Guides",
+    author: "Path Visa Consultants",
+    date: new Date(post.publishedAt || post.createdAt).toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    }),
+    readTime: "5 min",
+    views: post.viewCount || 0,
+    tags: post.tags || [],
+    image: post.featuredImage,
+    featured: post.id === blogPostsData[0]?.id,
+    slug: post.slug,
+    content: typeof post.content === 'object' && post.content.sections ? 
+      post.content.sections.map((s: any) => `${s.title}\n\n${s.content}`).join('\n\n') : 
+      (typeof post.content === 'string' ? post.content : JSON.stringify(post.content))
+  })) : staticBlogPosts;
+
   const blogPost = blogPosts.find(post => post.slug === slug);
 
   if (!blogPost) {
@@ -557,6 +591,7 @@ export default function Blog() {
                         src={post.image} 
                         alt={post.title}
                         className="w-full h-48 object-cover transition-transform hover:scale-105"
+                        style={{ objectFit: 'cover' }}
                       />
                       {post.featured && (
                         <Badge className="absolute top-4 left-4 bg-[#1D50C9]">
