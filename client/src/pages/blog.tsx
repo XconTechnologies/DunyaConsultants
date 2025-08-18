@@ -147,22 +147,22 @@ function BlogPostDetail({ slug }: { slug: string }) {
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
     author: "Path Visa Consultants",
-    date: new Date(post.publishedAt || post.createdAt).toLocaleDateString('en-US', { 
+    date: new Date(post.published_at || post.created_at).toLocaleDateString('en-US', { 
       year: 'numeric', 
       month: 'long', 
       day: 'numeric' 
     }),
     readTime: "5 min",
-    views: post.viewCount || 0,
+    views: post.view_count || 0,
     tags: post.tags || [],
-    image: post.featuredImage,
+    image: post.featured_image,
     featured: post.id === blogPostsData[0]?.id,
     slug: post.slug,
     content: post.content,
     rawContent: post.content
   })) : staticBlogPosts;
 
-  const blogPost = blogPosts.find(post => post.slug === slug);
+  const blogPost = blogPosts.find((post: any) => post.slug === slug);
 
   if (!blogPost) {
     return (
@@ -289,7 +289,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 {/* Article Header */}
                 <header className="mb-10">
                   <div className="flex items-center gap-2 mb-6">
-                    {blogPost.tags.slice(0, 2).map((tag, index) => (
+                    {blogPost.tags.slice(0, 2).map((tag: string, index: number) => (
                       <Badge key={index} className="bg-[#1D50C9] text-white px-3 py-1.5 text-sm font-medium">
                         {tag}
                       </Badge>
@@ -362,7 +362,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     </Link>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {blogPost.tags.map((tag, index) => (
+                    {blogPost.tags.map((tag: string, index: number) => (
                       <Badge 
                         key={index} 
                         variant="outline" 
@@ -482,15 +482,15 @@ export default function Blog() {
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
     author: "Path Visa Consultants",
-    date: new Date(post.publishedAt || post.createdAt).toLocaleDateString('en-US', { 
+    date: new Date(post.published_at || post.created_at).toLocaleDateString('en-US', { 
       year: 'numeric', 
       month: 'long', 
       day: 'numeric' 
     }),
     readTime: "5 min",
-    views: post.viewCount || 0,
+    views: post.view_count || 0,
     tags: post.tags || [],
-    image: post.featuredImage,
+    image: post.featured_image,
     featured: post.id === blogPostsData[0]?.id,
     slug: post.slug
   })) : staticBlogPosts;
@@ -618,13 +618,11 @@ export default function Blog() {
                         src={post.image} 
                         alt={post.title}
                         className="w-full h-48 object-cover transition-transform hover:scale-105"
-                        style={{ objectFit: 'cover' }}
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
                       />
-                      {post.featured && (
-                        <Badge className="absolute top-4 left-4 bg-[#1D50C9]">
-                          Featured
-                        </Badge>
-                      )}
+                      <Badge className="absolute top-4 left-4 bg-[#1D50C9]">
+                        Featured
+                      </Badge>
                     </div>
                   )}
 
