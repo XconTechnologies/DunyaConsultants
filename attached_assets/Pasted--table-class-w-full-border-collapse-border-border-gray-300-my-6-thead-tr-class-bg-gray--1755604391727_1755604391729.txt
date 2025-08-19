@@ -1,0 +1,155 @@
+<table class="w-full border-collapse border border-gray-300 my-6">
+
+<thead>
+
+<tr class="bg-gray-50">
+
+<th class="border border-gray-300 px-4 py-2 text-left">Sr. No</th>
+
+<th class="border border-gray-300 px-4 py-2 text-left">UK Universities</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td class="border border-gray-300 px-4 py-2">1</td>
+
+<td class="border border-gray-300 px-4 py-2">University of Law (U Law)</td>
+
+</tr>
+
+<tr class="bg-gray-50">
+
+<td class="border border-gray-300 px-4 py-2">2</td>
+
+<td class="border border-gray-300 px-4 py-2">University of Hertfordshire</td>
+
+</tr>
+
+<tr>
+
+<td class="border border-gray-300 px-4 py-2">3</td>
+
+<td class="border border-gray-300 px-4 py-2">University of South Wales</td>
+
+</tr>
+
+<tr class="bg-gray-50">
+
+<td class="border border-gray-300 px-4 py-2">4</td>
+
+<td class="border border-gray-300 px-4 py-2">University of Suffolk</td>
+
+</tr>
+
+<tr>
+
+<td class="border border-gray-300 px-4 py-2">5</td>
+
+<td class="border border-gray-300 px-4 py-2">Nottingham Trent University</td>
+
+</tr>
+
+<tr class="bg-gray-50">
+
+<td class="border border-gray-300 px-4 py-2">6</td>
+
+<td class="border border-gray-300 px-4 py-2">Bangor University</td>
+
+</tr>
+
+<tr>
+
+<td class="border border-gray-300 px-4 py-2">7</td>
+
+<td class="border border-gray-300 px-4 py-2">Leeds Metropolitan University (LMU)</td>
+
+</tr>
+
+<tr class="bg-gray-50">
+
+<td class="border border-gray-300 px-4 py-2">8</td>
+
+<td class="border border-gray-300 px-4 py-2">Birmingham City University</td>
+
+</tr>
+
+<tr>
+
+<td class="border border-gray-300 px-4 py-2">9</td>
+
+<td class="border border-gray-300 px-4 py-2">University of Portsmouth</td>
+
+</tr>
+
+<tr class="bg-gray-50">
+
+<td class="border border-gray-300 px-4 py-2">10</td>
+
+<td class="border border-gray-300 px-4 py-2">University of Stirling</td>
+
+</tr>
+
+<tr>
+
+<td class="border border-gray-300 px-4 py-2">11</td>
+
+<td class="border border-gray-300 px-4 py-2">University of Wolverhampton</td>
+
+</tr>
+
+<tr class="bg-gray-50">
+
+<td class="border border-gray-300 px-4 py-2">12</td>
+
+<td class="border border-gray-300 px-4 py-2">University of Essex</td>
+
+</tr>
+
+<tr>
+
+<td class="border border-gray-300 px-4 py-2">13</td>
+
+<td class="border border-gray-300 px-4 py-2">Cardiff Metropolitan University</td>
+
+</tr>
+
+<tr class="bg-gray-50">
+
+<td class="border border-gray-300 px-4 py-2">14</td>
+
+<td class="border border-gray-300 px-4 py-2">University of Central Lancashire</td>
+
+</tr>
+
+<tr>
+
+<td class="border border-gray-300 px-4 py-2">15</td>
+
+<td class="border border-gray-300 px-4 py-2">University of Sunderland</td>
+
+</tr>
+
+<tr class="bg-gray-50">
+
+<td class="border border-gray-300 px-4 py-2">16</td>
+
+<td class="border border-gray-300 px-4 py-2">St. Mary's University</td>
+
+</tr>
+
+<tr>
+
+<td class="border border-gray-300 px-4 py-2">17</td>
+
+<td class="border border-gray-300 px-4 py-2">Edinburgh Napier University (ENU)</td>
+
+</tr>
+
+</tbody>
+
+</table>

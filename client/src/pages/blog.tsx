@@ -694,7 +694,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                         </tr>
                                         <tr className="hover:bg-gray-50">
                                           <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">14</td>
-                                          <td class-name="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Central Lancashire</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Central Lancashire</td>
                                         </tr>
                                         <tr className="hover:bg-gray-50">
                                           <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">15</td>
@@ -999,11 +999,34 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               return null;
                             }
                             
+                            // Handle numbered lists (1., 2., 3., etc.)
+                            if (/^\d+\.\s/.test(paragraph.trim())) {
+                              return (
+                                <div key={pIndex} className="flex items-start leading-tight mb-3">
+                                  <span className="text-[#1D50C9] mr-3 font-semibold text-base leading-none mt-0.5">
+                                    {paragraph.trim().match(/^\d+\./)?.[0]}
+                                  </span>
+                                  <span 
+                                    className="text-gray-700 text-base leading-relaxed"
+                                    dangerouslySetInnerHTML={{
+                                      __html: paragraph
+                                        .replace(/^\d+\.\s*/, '')
+                                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                    }}
+                                  />
+                                </div>
+                              );
+                            }
+
                             if (paragraph.trim()) {
                               return (
-                                <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
-                                  {paragraph}
-                                </p>
+                                <p 
+                                  key={pIndex} 
+                                  className="text-gray-700 leading-relaxed text-base mb-3"
+                                  dangerouslySetInnerHTML={{
+                                    __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                  }}
+                                />
                               );
                             }
                             return null;
