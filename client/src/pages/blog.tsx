@@ -456,28 +456,59 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         )}
                         
                         <div>
-                          {section.content.split('\n').map((paragraph: string, pIndex: number) => {
-                            if (paragraph.trim().startsWith('###')) {
-                              return (
-                                <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
-                                  <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
-                                    <span className="w-1.5 h-1.5 bg-[#1D50C9] rounded-full"></span>
-                                  </span>
-                                  <span>{paragraph.replace(/^#+\s*/, '')}</span>
-                                </h3>
-                              );
-                            }
-                            
-                            if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
-                              return (
-                                <div key={pIndex} className="flex items-start leading-tight mb-2">
-                                  <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
-                                  <span className="text-gray-700 text-base leading-tight">
-                                    {paragraph.replace(/^[-•]\s*/, '')}
-                                  </span>
-                                </div>
-                              );
-                            }
+                          {/* Check if this section contains FAQ content */}
+                          {section.title.toLowerCase().includes('faq') ? (
+                            <div className="space-y-4">
+                              {(() => {
+                                const lines = section.content.split('\n').filter((line: any) => line.trim());
+                                const faqs: Array<{question: string, answer: string}> = [];
+                                
+                                for (let i = 0; i < lines.length; i++) {
+                                  const trimmed = lines[i].trim();
+                                  if (trimmed.startsWith('**') && trimmed.endsWith('**') && trimmed.includes('?')) {
+                                    const question = trimmed.replace(/^\*\*|\*\*$/g, '');
+                                    const answer = lines[i + 1] ? lines[i + 1].trim() : '';
+                                    faqs.push({ question, answer });
+                                  }
+                                }
+                                
+                                return faqs.map((faq, index) => (
+                                  <FAQItem 
+                                    key={index}
+                                    question={faq.question}
+                                    answer={faq.answer}
+                                  />
+                                ));
+                              })()}
+                            </div>
+                          ) : (
+                            section.content.split('\n').map((paragraph: string, pIndex: number) => {
+                              if (paragraph.trim().startsWith('###')) {
+                                return (
+                                  <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
+                                    <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
+                                      <span className="w-1.5 h-1.5 bg-[#1D50C9] rounded-full"></span>
+                                    </span>
+                                    <span>{paragraph.replace(/^#+\s*/, '')}</span>
+                                  </h3>
+                                );
+                              }
+                              
+                              if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
+                                return (
+                                  <div key={pIndex} className="flex items-start leading-tight mb-2">
+                                    <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
+                                    <span className="text-gray-700 text-base leading-tight">
+                                      {paragraph.replace(/^[-•]\s*/, '')}
+                                    </span>
+                                  </div>
+                                );
+                              }
+                              
+                              // Skip FAQ questions and answers in regular content
+                              if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**')) {
+                                return null;
+                              }
                             
                             // Check if this specific paragraph contains the visa ratio table intro
                             if (paragraph.includes('The UK student visa success rate 2024 for different types is as follows:')) {
@@ -540,7 +571,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               );
                             }
                             return null;
-                          })}
+                            })
+                          )}
                         </div>
                       </section>
                     );
