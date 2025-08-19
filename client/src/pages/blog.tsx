@@ -181,7 +181,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     category: post.category || "Study Guides",
     author: "Path Visa Consultants",
     date: (() => {
-      const dateStr = post.published_at || post.created_at;
+      const dateStr = post.publishedAt || post.published_at || post.created_at;
       if (!dateStr) return 'Unknown Date';
       try {
         const date = new Date(dateStr);
@@ -675,7 +675,7 @@ export default function Blog() {
     category: post.category || "Study Guides",
     author: "Path Visa Consultants",
     date: (() => {
-      const dateStr = post.published_at || post.created_at;
+      const dateStr = post.publishedAt || post.published_at || post.created_at;
       if (!dateStr) return 'Unknown Date';
       try {
         const date = new Date(dateStr);
