@@ -180,11 +180,21 @@ function BlogPostDetail({ slug }: { slug: string }) {
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
     author: "Path Visa Consultants",
-    date: new Date(post.published_at || post.created_at).toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    }),
+    date: (() => {
+      const dateStr = post.published_at || post.created_at;
+      if (!dateStr) return 'Unknown Date';
+      try {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return 'Unknown Date';
+        return date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+      } catch {
+        return 'Unknown Date';
+      }
+    })(),
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
@@ -664,11 +674,21 @@ export default function Blog() {
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
     author: "Path Visa Consultants",
-    date: new Date(post.published_at || post.created_at).toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    }),
+    date: (() => {
+      const dateStr = post.published_at || post.created_at;
+      if (!dateStr) return 'Unknown Date';
+      try {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return 'Unknown Date';
+        return date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+      } catch {
+        return 'Unknown Date';
+      }
+    })(),
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
