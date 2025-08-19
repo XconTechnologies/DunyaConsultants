@@ -620,6 +620,51 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               );
                             }
                             
+                            // Check for UK Student Visa Types table intro
+                            if (paragraph.includes('There are three main types of UK study visa for international students that are as follows:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    There are three main types of UK study visa for international students that are as follows:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr. No
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Student Visa Type
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Who can Apply?
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Student route visa (Tier 4 General student visa)</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Those studying at a UK university course for more than six months or an English language course for more than eleven months.</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Child Student visa</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Those who are under 18</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Short-term study visa</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">For English language courses that are less than twelve months</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+
                             // Check for MOI Universities table intro
                             if (paragraph.includes('Here are some of the best private as well as public universities in UK that accept MOI instead of IELTS or PTE:')) {
                               return (
