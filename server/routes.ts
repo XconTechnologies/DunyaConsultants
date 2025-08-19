@@ -506,20 +506,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // PUBLIC BLOG ROUTES
   // ==============================================
 
-  // Get published blog posts (public)
-  app.get("/api/blog-posts/published", async (req, res) => {
-    try {
-      const posts = await storage.getBlogPosts(true); // Only published posts
-      res.json(posts);
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to fetch published blog posts' });
+  // Get single published blog post by slug (public) - handles nested paths like 2024/09/06/slug-name
+  app.get("/api/blog-posts/*", async (req, res) => {
+    // Skip if it's the published endpoint
+    if (req.params[0] === 'published') {
+      return;
     }
-  });
-
-  // Get single published blog post by slug (public)
-  app.get("/api/blog-posts/:slug", async (req, res) => {
     try {
-      const { slug } = req.params;
+      const slug = req.params[0]; // This captures the full path after /api/blog-posts/
       console.log(`Looking for blog post with slug: ${slug}`);
       const post = await storage.getBlogPostBySlug(slug);
       console.log(`Found post:`, post ? `${post.title} (published: ${post.isPublished})` : 'none');
@@ -535,6 +529,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error('Error fetching blog post by slug:', error);
       res.status(500).json({ message: 'Failed to fetch blog post', error: error?.message || error });
+    }
+  });
+
+  // Get published blog posts (public)
+  app.get("/api/blog-posts/published", async (req, res) => {
+    try {
+      const posts = await storage.getBlogPosts(true); // Only published posts
+      res.json(posts);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch published blog posts' });
     }
   });
 
