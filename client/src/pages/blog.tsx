@@ -426,11 +426,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         section.title.includes('What is the acceptance rate for the Türkiye Scholarships Burslari?') ||
                         section.title.includes('Is there an age limit for Turkey burslari scholarship?') ||
                         section.title.includes('How much of a stipend is granted for a Burslari scholarship in Turkey?') ||
-                        section.title.includes('What is the total SAT test fee for Pakistani students in 2024?') ||
-                        section.title.includes('Can Pakistani students get fee waivers for the SAT exam?') ||
-                        section.title.includes('What payment methods are accepted for SAT registration in Pakistan?') ||
-                        section.title.includes('How many times is the SAT offered in Pakistan each year?') ||
-                        section.title.includes('What additional fees should Pakistani students be aware of for SAT?')
+                        section.title.includes('Can I get a fee waiver for the SAT in Pakistan?') ||
+                        section.title.includes('How much is the SAT exam fee in Pakistan?') ||
+                        section.title.includes('How can I prepare for the SAT in Pakistan as a beginner?')
                     )) {
                       return null;
                     }
