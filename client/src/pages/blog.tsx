@@ -614,6 +614,101 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               );
                             }
                             
+                            // Check for MOI Universities table intro
+                            if (paragraph.includes('Here are some of the best private as well as public universities in UK that accept MOI instead of IELTS or PTE:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    Are you searching for the UK cheap university for international student that accepts MOI? If yes, then you are at the right place. Here are some of the best private as well as public universities in UK that accept MOI instead of IELTS or PTE:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr. No
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            UK Universities
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Law (U Law)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Hertfordshire</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of South Wales</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Suffolk</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Nottingham Trent University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Bangor University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">7</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Leeds Metropolitan University (LMU)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">8</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Birmingham City University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">9</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Portsmouth</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">10</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Stirling</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">11</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Wolverhampton</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">12</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Essex</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">13</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Cardiff Metropolitan University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">14</td>
+                                          <td class-name="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Central Lancashire</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">15</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Sunderland</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">16</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">St. Mary's University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">17</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Edinburgh Napier University (ENU)</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
                             // Check for Turkey Medical Universities table intro
                             if (paragraph.includes('Below given is the list of the top medical universities in Turkey:')) {
                               return (
