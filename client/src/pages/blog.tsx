@@ -574,6 +574,66 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               );
                             }
                             
+                            // Check for Turkey Medical Universities table intro
+                            if (paragraph.includes('Below given is the list of the top medical universities in Turkey:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    In Turkey, the majority of the students are searching to get admission to universities with good status and low cost to continue their higher studies. If you are one of them, there is no need to worry. In addition to some high-end medical universities, there are several cheapest universities in Turkey for international students as well. Below given is the list of the top medical universities in Turkey:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr No.
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            University Name
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Located In
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Atlas University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul, Hamidiye District</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Istinye University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Altinbas University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul (Bakırköy, Bağcılar, Şişli)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Beykent University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul (Büyükçekmece Campus)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Aydin University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul (Halit Aydın Florya Yerleşkesi)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Bahcesehir University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul (Bosporus)</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
                             // Check for University table intro
                             if (paragraph.includes('Here is the language cert accepted universities list you should know before applying:')) {
                               return (
@@ -698,6 +758,17 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 paragraph.includes('Abertay University') ||
                                 paragraph.includes('Aberystwyth University') ||
                                 paragraph.includes('Anglia Ruskin University') ||
+                                paragraph.includes('Atlas University') ||
+                                paragraph.includes('Istinye University') ||
+                                paragraph.includes('Altinbas University') ||
+                                paragraph.includes('Beykent University') ||
+                                paragraph.includes('Aydin University') ||
+                                paragraph.includes('Bahcesehir University') ||
+                                paragraph.includes('Istanbul, Hamidiye District') ||
+                                paragraph.includes('Istanbul (Bakırköy, Bağcılar, Şişli)') ||
+                                paragraph.includes('Istanbul (Büyükçekmece Campus)') ||
+                                paragraph.includes('Istanbul (Halit Aydın Florya Yerleşkesi)') ||
+                                paragraph.includes('Istanbul (Bosporus)') ||
                                 (paragraph.includes('Paper Bases') && paragraph.includes('IELTS Fee')) ||
                                 paragraph.includes('Computer-Based Module') ||
                                 paragraph.includes('Paper-Based Module') ||
