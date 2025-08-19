@@ -94,7 +94,7 @@ You will need a registered business address and name to move forward with busine
     authorId: 1,
     tags: ["UK Business", "Company Registration", "International Business", "Business Setup", "Legal Requirements"],
     metaDescription: "Complete guide for non-UK residents to register a company in the United Kingdom. Learn about business structures, requirements, costs, and step-by-step process.",
-    featuredImage: "image_1755600509275.png",
+    featuredImage: "image_1755602848915.png",
     viewCount: 0,
     category: "Business Guides",
     publishedAt: "2024-09-06"
