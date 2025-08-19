@@ -646,7 +646,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 paragraph.includes('Student Visa | 98%') ||
                                 paragraph.includes('Family Visa | 86%') ||
                                 paragraph.includes('Work Visas | 95%') ||
-                                paragraph.includes('Visitor Visas | 77%')) {
+                                paragraph.includes('Visitor Visas | 77%') ||
+                                paragraph.includes('|--------|-----------------|')) {
                               return null;
                             }
                             
