@@ -374,6 +374,40 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   {contentSections.filter((section: any, index: number) => {
                     // Skip first section if it's the intro (no title)
                     if (index === 0 && !section.title) return false;
+                    // Skip sections where title is just "Atlas University" without meaningful content
+                    if (section.title.trim() === 'Atlas University' && (!section.content || section.content.trim().length === 0)) {
+                      return false;
+                    }
+                    // Skip duplicate university sections that are standalone
+                    const duplicateUniversitySections = [
+                      'Aydin University',
+                      'Atlas University', 
+                      'Istinye University',
+                      'Altinbas University',
+                      'Beykent University',
+                      'Bahcesehir University'
+                    ];
+                    
+                    // Check if this is a standalone university section that duplicates table content
+                    if (duplicateUniversitySections.includes(section.title.trim())) {
+                      // Allow it only if it's part of the structured table content (contains proper intro text)
+                      const hasProperIntro = section.content && (
+                        section.content.includes('Located in Istanbul') ||
+                        section.content.includes('In 2015') ||
+                        section.content.includes('In 2008') ||
+                        section.content.includes('Another name') ||
+                        section.content.includes('Bahçeşehir University')
+                      );
+                      if (!hasProperIntro) {
+                        return false;
+                      }
+                    }
+                    
+                    // Skip sections with Aydin University duplicate content
+                    if (section.content && section.content.includes('Istanbul Aydın University was created on 18th May 2007')) {
+                      return false;
+                    }
+                    
                     return section.title && section.title.trim() !== '';
                   }).map((section: any, index: number) => {
                     // Special handling for intro-before-main section
@@ -847,7 +881,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 (paragraph.trim() === 'Altinbas University' && !paragraph.includes('In 2008')) ||
                                 (paragraph.trim() === 'Beykent University' && !paragraph.includes('Another name')) ||
                                 (paragraph.trim() === 'Aydin University' && !paragraph.includes('Istanbul Aydın')) ||
-                                (paragraph.trim() === 'Bahcesehir University' && !paragraph.includes('Bahçeşehir University'))) {
+                                (paragraph.trim() === 'Bahcesehir University' && !paragraph.includes('Bahçeşehir University')) ||
+                                // Skip standalone university content that creates duplicates
+                                paragraph.includes('Istanbul Aydın University was created on 18th May 2007') ||
+                                paragraph.includes('It is a private university made as an extension of its ancestor') ||
+                                paragraph.includes('The Faculty of Medicine of this university is a fantastic faculty') ||
+                                paragraph.includes('Furthermore, the seminars & lectures of the pre-clinical phase are given in English') ||
+                                paragraph.includes('The advanced field laboratories situated in the Basic Medical Sciences Laboratory') ||
+                                paragraph.includes('Also, the institute is a technology center of approximately 175,000 m²')) {
                               return null;
                             }
                             
