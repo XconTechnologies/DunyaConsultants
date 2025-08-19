@@ -273,7 +273,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="font-bold mb-6 leading-tight"
-              style={{ fontSize: '53px' }}
+              style={{ fontSize: '48px' }}
             >
               {blogPost.title}
             </motion.h1>
