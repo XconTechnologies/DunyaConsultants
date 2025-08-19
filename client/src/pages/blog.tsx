@@ -470,7 +470,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       }
                     }
                     
-                    // Skip individual FAQ sections that should be part of collapsible FAQs
+                    // Skip individual FAQ sections that should be part of collapsible FAQs and duplicate university sections
                     if (section.title && (
                         section.title.includes('What is the issue rate of UK student visas?') ||
                         section.title.includes('Is it difficult to get a UK student visa from Pakistan?') ||
@@ -480,7 +480,13 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         section.title.includes('How much of a stipend is granted for a Burslari scholarship in Turkey?') ||
                         section.title.includes('Can I get a fee waiver for the SAT in Pakistan?') ||
                         section.title.includes('How much is the SAT exam fee in Pakistan?') ||
-                        section.title.includes('How can I prepare for the SAT in Pakistan as a beginner?')
+                        section.title.includes('How can I prepare for the SAT in Pakistan as a beginner?') ||
+                        section.title === 'Atlas University' ||
+                        section.title === 'Istinye University' ||
+                        section.title === 'Altinbas University' ||
+                        section.title === 'Beykent University' ||
+                        section.title === 'Aydin University' ||
+                        section.title === 'Bahcesehir University'
                     )) {
                       return null;
                     }
