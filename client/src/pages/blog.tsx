@@ -840,7 +840,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 paragraph.includes('Student Visa | 98%') ||
                                 paragraph.includes('Family Visa | 86%') ||
                                 paragraph.includes('Work Visas | 95%') ||
-                                paragraph.includes('Visitor Visas | 77%')) {
+                                paragraph.includes('Visitor Visas | 77%') ||
+                                // Skip standalone university names that are duplicates
+                                (paragraph.trim() === 'Atlas University' && !paragraph.includes('Located in Istanbul')) ||
+                                (paragraph.trim() === 'Istinye University' && !paragraph.includes('In 2015')) ||
+                                (paragraph.trim() === 'Altinbas University' && !paragraph.includes('In 2008')) ||
+                                (paragraph.trim() === 'Beykent University' && !paragraph.includes('Another name')) ||
+                                (paragraph.trim() === 'Aydin University' && !paragraph.includes('Istanbul Aydın')) ||
+                                (paragraph.trim() === 'Bahcesehir University' && !paragraph.includes('Bahçeşehir University'))) {
                               return null;
                             }
                             
