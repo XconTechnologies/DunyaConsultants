@@ -519,6 +519,61 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               }
                             
+                            // Check for IELTS Fee table intro
+                            if (paragraph.includes('Here is the breakdown of IELTS test exam fee:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    The IELTS fee in Pakistan is the same for both IELTS formats (General Training and Academic). Here is the breakdown of IELTS test exam fee:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Paper Bases
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            IELTS Fee (in USD)
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            IELTS Fee (in PKR)
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Computer-Based Module</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">205 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 57,400</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Paper-Based Module</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">229 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 63,800</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Computer-Based UKVI Test</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">185 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 51,700</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Paper-Based UKVI Test</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">197 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 55,000</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">IELTS Life Skills Test</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">143 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 50,000</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
                             // Check for University table intro
                             if (paragraph.includes('Here is the language cert accepted universities list you should know before applying:')) {
                               return (
@@ -631,7 +686,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             }
                             
                             // Skip rendering raw table data since we have custom tables above
-                            if (paragraph.includes('Sr. No') && paragraph.includes('University Name') ||
+                            if ((paragraph.includes('Sr. No') && paragraph.includes('University Name')) ||
+                                paragraph.includes('|--------|') ||
                                 paragraph.includes('University of York') ||
                                 paragraph.includes('University of Warwick') ||
                                 paragraph.includes('University of Nottingham') ||
@@ -642,12 +698,27 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 paragraph.includes('Abertay University') ||
                                 paragraph.includes('Aberystwyth University') ||
                                 paragraph.includes('Anglia Ruskin University') ||
+                                (paragraph.includes('Paper Bases') && paragraph.includes('IELTS Fee')) ||
+                                paragraph.includes('Computer-Based Module') ||
+                                paragraph.includes('Paper-Based Module') ||
+                                paragraph.includes('Computer-Based UKVI Test') ||
+                                paragraph.includes('Paper-Based UKVI Test') ||
+                                paragraph.includes('IELTS Life Skills Test') ||
+                                paragraph.includes('205 USD') ||
+                                paragraph.includes('229 USD') ||
+                                paragraph.includes('185 USD') ||
+                                paragraph.includes('197 USD') ||
+                                paragraph.includes('143 USD') ||
+                                paragraph.includes('Rs. 57,400') ||
+                                paragraph.includes('Rs. 63,800') ||
+                                paragraph.includes('Rs. 51,700') ||
+                                paragraph.includes('Rs. 55,000') ||
+                                paragraph.includes('Rs. 50,000') ||
                                 paragraph.includes('Visa Category | UK Visa Ratio') || 
                                 paragraph.includes('Student Visa | 98%') ||
                                 paragraph.includes('Family Visa | 86%') ||
                                 paragraph.includes('Work Visas | 95%') ||
-                                paragraph.includes('Visitor Visas | 77%') ||
-                                paragraph.includes('|--------|-----------------|')) {
+                                paragraph.includes('Visitor Visas | 77%')) {
                               return null;
                             }
                             
