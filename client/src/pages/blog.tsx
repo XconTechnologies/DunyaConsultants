@@ -519,6 +519,73 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               }
                             
+                            // Check for University table intro
+                            if (paragraph.includes('Here is the language cert accepted universities list you should know before applying:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    Here is the language cert accepted universities list you should know before applying:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr. No
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            University Name
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of York</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Warwick</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Nottingham</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Leeds</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Liverpool</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Imperial College London</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">7</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">London University of the Arts</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">8</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Abertay University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">9</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Aberystwyth University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">10</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Anglia Ruskin University</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
                             // Check if this specific paragraph contains the visa ratio table intro
                             if (paragraph.includes('The UK student visa success rate 2024 for different types is as follows:')) {
                               // Render the complete table section in one go
@@ -563,8 +630,19 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               );
                             }
                             
-                            // Skip rendering raw table data since we have custom table above
-                            if (paragraph.includes('Visa Category | UK Visa Ratio') || 
+                            // Skip rendering raw table data since we have custom tables above
+                            if (paragraph.includes('Sr. No') && paragraph.includes('University Name') ||
+                                paragraph.includes('University of York') ||
+                                paragraph.includes('University of Warwick') ||
+                                paragraph.includes('University of Nottingham') ||
+                                paragraph.includes('University of Leeds') ||
+                                paragraph.includes('University of Liverpool') ||
+                                paragraph.includes('Imperial College London') ||
+                                paragraph.includes('London University of the Arts') ||
+                                paragraph.includes('Abertay University') ||
+                                paragraph.includes('Aberystwyth University') ||
+                                paragraph.includes('Anglia Ruskin University') ||
+                                paragraph.includes('Visa Category | UK Visa Ratio') || 
                                 paragraph.includes('Student Visa | 98%') ||
                                 paragraph.includes('Family Visa | 86%') ||
                                 paragraph.includes('Work Visas | 95%') ||
