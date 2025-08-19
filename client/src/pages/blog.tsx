@@ -384,9 +384,13 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             {section.content.split('\n').map((paragraph: string, pIndex: number) => {
                               if (paragraph.trim()) {
                                 return (
-                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-4 last:mb-0">
-                                    {paragraph}
-                                  </p>
+                                  <p 
+                                    key={pIndex} 
+                                    className="text-gray-700 leading-relaxed text-base mb-4 last:mb-0"
+                                    dangerouslySetInnerHTML={{
+                                      __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                    }}
+                                  />
                                 );
                               }
                               return null;
@@ -498,9 +502,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return (
                                   <div key={pIndex} className="flex items-start leading-tight mb-2">
                                     <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
-                                    <span className="text-gray-700 text-base leading-tight">
-                                      {paragraph.replace(/^[-•]\s*/, '')}
-                                    </span>
+                                    <span 
+                                      className="text-gray-700 text-base leading-tight"
+                                      dangerouslySetInnerHTML={{
+                                        __html: paragraph
+                                          .replace(/^[-•]\s*/, '')
+                                          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                      }}
+                                    />
                                   </div>
                                 );
                               }
