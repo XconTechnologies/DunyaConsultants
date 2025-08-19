@@ -272,18 +272,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              className="font-bold mb-6 leading-tight"
+              style={{ fontSize: '53px' }}
             >
               {blogPost.title}
             </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto"
-            >
-              {blogPost.excerpt}
-            </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
