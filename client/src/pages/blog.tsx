@@ -555,7 +555,13 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               }
                               
                               // Skip FAQ questions and answers in regular content
-                              if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**')) {
+                              if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**') && paragraph.includes('?')) {
+                                return null;
+                              }
+                              
+                              // Skip FAQ answer lines that follow **questions**
+                              const prevParagraph = section.content.split('\n')[section.content.split('\n').indexOf(paragraph) - 1];
+                              if (prevParagraph && prevParagraph.trim().startsWith('**') && prevParagraph.trim().endsWith('**') && prevParagraph.includes('?')) {
                                 return null;
                               }
                             
