@@ -1492,38 +1492,31 @@ export async function seedBlogPosts() {
     for (const post of allBlogPosts) {
       const blogPost = {
         ...post,
-        publishedAt: post.published ? new Date() : null,
+        publishedAt: post.publishedAt ? new Date(post.publishedAt) : null,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
       
-      // For the Finland post, let's use upsert to ensure it's properly updated
-      if (post.slug === "finland-online-visa-application-from-pakistan") {
-        await db.insert(blogPosts).values({
-          ...blogPost,
-          isPublished: post.published,
-        }).onConflictDoUpdate({
-          target: blogPosts.slug,
-          set: {
-            title: blogPost.title,
-            excerpt: blogPost.excerpt,
-            content: blogPost.content,
-            isPublished: post.published,
-            publishedAt: blogPost.publishedAt,
-            tags: blogPost.tags,
-            metaDescription: blogPost.metaDescription,
-            featuredImage: blogPost.featuredImage,
-            viewCount: blogPost.views,
-            category: blogPost.category,
-            updatedAt: new Date(),
-          }
-        });
-      } else {
-        await db.insert(blogPosts).values({
-          ...blogPost,
-          isPublished: post.published,
-        }).onConflictDoNothing();
-      }
+      // Use upsert for all posts to ensure they get properly updated
+      await db.insert(blogPosts).values({
+        ...blogPost,
+        isPublished: post.isPublished ?? true,
+      }).onConflictDoUpdate({
+        target: blogPosts.slug,
+        set: {
+          title: blogPost.title,
+          excerpt: blogPost.excerpt,
+          content: blogPost.content,
+          isPublished: post.isPublished ?? true,
+          publishedAt: blogPost.publishedAt,
+          tags: blogPost.tags,
+          metaDescription: blogPost.metaDescription,
+          featuredImage: blogPost.featuredImage,
+          viewCount: post.viewCount ?? 0,
+          category: post.category,
+          updatedAt: new Date(),
+        }
+      });
     }
     
     console.log(`Successfully seeded ${allBlogPosts.length} blog posts`);
