@@ -20,85 +20,6 @@ Furthermore, students who come from a nation where English is not the first lang
 
 Are you searching for the UK cheap university for international student that accepts MOI? If yes, then you are at the right place. Here are some of the best private as well as public universities in UK that accept MOI instead of IELTS or PTE:
 
-<table class="w-full border-collapse border border-gray-300 my-6">
-  <thead>
-    <tr class="bg-gray-50">
-      <th class="border border-gray-300 px-4 py-2 text-left">Sr. No</th>
-      <th class="border border-gray-300 px-4 py-2 text-left">UK Universities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="border border-gray-300 px-4 py-2">1</td>
-      <td class="border border-gray-300 px-4 py-2">University of Law (U Law)</td>
-    </tr>
-    <tr class="bg-gray-50">
-      <td class="border border-gray-300 px-4 py-2">2</td>
-      <td class="border border-gray-300 px-4 py-2">University of Hertfordshire</td>
-    </tr>
-    <tr>
-      <td class="border border-gray-300 px-4 py-2">3</td>
-      <td class="border border-gray-300 px-4 py-2">University of South Wales</td>
-    </tr>
-    <tr class="bg-gray-50">
-      <td class="border border-gray-300 px-4 py-2">4</td>
-      <td class="border border-gray-300 px-4 py-2">University of Suffolk</td>
-    </tr>
-    <tr>
-      <td class="border border-gray-300 px-4 py-2">5</td>
-      <td class="border border-gray-300 px-4 py-2">Nottingham Trent University</td>
-    </tr>
-    <tr class="bg-gray-50">
-      <td class="border border-gray-300 px-4 py-2">6</td>
-      <td class="border border-gray-300 px-4 py-2">Bangor University</td>
-    </tr>
-    <tr>
-      <td class="border border-gray-300 px-4 py-2">7</td>
-      <td class="border border-gray-300 px-4 py-2">Leeds Metropolitan University (LMU)</td>
-    </tr>
-    <tr class="bg-gray-50">
-      <td class="border border-gray-300 px-4 py-2">8</td>
-      <td class="border border-gray-300 px-4 py-2">Birmingham City University</td>
-    </tr>
-    <tr>
-      <td class="border border-gray-300 px-4 py-2">9</td>
-      <td class="border border-gray-300 px-4 py-2">University of Portsmouth</td>
-    </tr>
-    <tr class="bg-gray-50">
-      <td class="border border-gray-300 px-4 py-2">10</td>
-      <td class="border border-gray-300 px-4 py-2">University of Stirling</td>
-    </tr>
-    <tr>
-      <td class="border border-gray-300 px-4 py-2">11</td>
-      <td class="border border-gray-300 px-4 py-2">University of Wolverhampton</td>
-    </tr>
-    <tr class="bg-gray-50">
-      <td class="border border-gray-300 px-4 py-2">12</td>
-      <td class="border border-gray-300 px-4 py-2">University of Essex</td>
-    </tr>
-    <tr>
-      <td class="border border-gray-300 px-4 py-2">13</td>
-      <td class="border border-gray-300 px-4 py-2">Cardiff Metropolitan University</td>
-    </tr>
-    <tr class="bg-gray-50">
-      <td class="border border-gray-300 px-4 py-2">14</td>
-      <td class="border border-gray-300 px-4 py-2">University of Central Lancashire</td>
-    </tr>
-    <tr>
-      <td class="border border-gray-300 px-4 py-2">15</td>
-      <td class="border border-gray-300 px-4 py-2">University of Sunderland</td>
-    </tr>
-    <tr class="bg-gray-50">
-      <td class="border border-gray-300 px-4 py-2">16</td>
-      <td class="border border-gray-300 px-4 py-2">St. Mary's University</td>
-    </tr>
-    <tr>
-      <td class="border border-gray-300 px-4 py-2">17</td>
-      <td class="border border-gray-300 px-4 py-2">Edinburgh Napier University (ENU)</td>
-    </tr>
-  </tbody>
-</table>
-
 ## Eligibility Criteria for MOI Based University in UK
 
 If you are looking for the cheapest university in UK that accepts MOI letter as an alternative to PTE or IELTS, you should fulfill specific criteria fixed by the UKVI (UK Visa and Immigration) authorities. Let's have a look at the eligibility criteria below:
@@ -112,10 +33,10 @@ If you are looking for the cheapest university in UK that accepts MOI letter as 
 
 Your previous educational institution will generally grant a MOI letter. It can be your school, secondary college, or the university where you got your undergraduate degree. The steps to get MOI to study at a UK cheap university for international students:
 
-1. **Contact the admissions department** or registrar's office of your previous institution
-2. **Tell them about your requirement** for a Medium of Instruction (MOI) certificate. Universities might have particular application forms for this
-3. **Provide additional documents** - They might ask for some additional documents, like graduation certificates or transcripts, to check your academic background
-4. **Pay processing fees** - You may need to pay some processing fees and wait for some time to get the certificate
+1. Contact the admissions department or registrar's office of your previous institution
+2. Tell them about your requirement for a Medium of Instruction (MOI) certificate. Universities might have particular application forms for this
+3. Provide additional documents - They might ask for some additional documents, like graduation certificates or transcripts, to check your academic background
+4. Pay processing fees - You may need to pay some processing fees and wait for some time to get the certificate
 
 ## Conclusion
 
