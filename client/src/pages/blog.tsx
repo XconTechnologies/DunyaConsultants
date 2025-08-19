@@ -422,7 +422,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     if (section.title && (
                         section.title.includes('What is the issue rate of UK student visas?') ||
                         section.title.includes('Is it difficult to get a UK student visa from Pakistan?') ||
-                        section.title.includes('What is the UK student visa ratio from Pakistan?')
+                        section.title.includes('What is the UK student visa ratio from Pakistan?') ||
+                        section.title.includes('What is the acceptance rate for the Türkiye Scholarships Burslari?') ||
+                        section.title.includes('Is there an age limit for Turkey burslari scholarship?') ||
+                        section.title.includes('How much of a stipend is granted for a Burslari scholarship in Turkey?')
                     )) {
                       return null;
                     }
