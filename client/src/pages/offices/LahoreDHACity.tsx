@@ -167,15 +167,6 @@ export default function LahoreDHACity() {
             className="grid lg:grid-cols-2 gap-12 items-center"
           >
             <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                Your Study Abroad Partner in{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  DHA, Lahore
-                </span>
-              </h2>
-              <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-                Our team is here to ensure that the process is successful, simple, and stress-free. We provide personalized guidance to help you achieve your international education goals.
-              </p>
               
             </div>
 
@@ -183,7 +174,7 @@ export default function LahoreDHACity() {
               <Card className="border-0 shadow-2xl bg-white">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Countries We Support</h3>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="flex flex-wrap justify-center gap-2">
                     {countries.map((country, index) => (
                       <motion.div
                         key={country}
@@ -191,7 +182,7 @@ export default function LahoreDHACity() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3, delay: index * 0.05 }}
                       >
-                        <Badge variant="secondary" className="w-full justify-center py-2 bg-gradient-to-r from-blue-50 to-blue-100 text-gray-800 border border-blue-200">
+                        <Badge variant="secondary" className="justify-center py-2 px-4 bg-gradient-to-r from-blue-50 to-blue-100 text-gray-800 border border-blue-200">
                           {country}
                         </Badge>
                       </motion.div>
@@ -462,11 +453,6 @@ export default function LahoreDHACity() {
               </Card>
 
               <div className="text-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Visit Our Office</h3>
-                <p className="text-gray-600 leading-relaxed mb-8">
-                  Come visit us at our DHA office for personalized consultation and expert guidance on your study abroad journey.
-                </p>
-                
                 <div className="space-y-4">
                   <Button size="lg" className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1a73e8] hover:to-[#1565c0] text-white py-4">
                     <Link href="/contact" className="flex items-center justify-center w-full">
