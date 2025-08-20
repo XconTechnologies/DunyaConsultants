@@ -362,11 +362,60 @@ export default function LahoreDHACity() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Left Side - FAQs */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                Frequently Asked{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Questions
+                </span>
+              </h3>
+              <p className="text-gray-600 mb-8">Get answers to common questions about studying abroad from DHA, Lahore</p>
+              
+              <div className="space-y-4">
+                {faqs.map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.05 }}
+                  >
+                    <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                      <CardContent className="p-0">
+                        <button
+                          className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
+                          onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                        >
+                          <h4 className="text-sm font-bold text-gray-900 pr-4">{faq.question}</h4>
+                          {expandedFaq === index ? (
+                            <ChevronUp className="w-4 h-4 text-[#1D50C9] flex-shrink-0" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4 text-[#1D50C9] flex-shrink-0" />
+                          )}
+                        </button>
+                        {expandedFaq === index && (
+                          <div className="px-4 pb-4">
+                            <p className="text-gray-700 leading-relaxed text-sm">{faq.answer}</p>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right Side - Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8"
             >
               <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
                 <CardContent className="p-8">
@@ -411,14 +460,7 @@ export default function LahoreDHACity() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
               <div className="text-center">
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Visit Our Office</h3>
                 <p className="text-gray-600 leading-relaxed mb-8">
@@ -442,57 +484,6 @@ export default function LahoreDHACity() {
                 </div>
               </div>
             </motion.div>
-          </div>
-        </div>
-      </section>
-      {/* FAQs Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Frequently Asked{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                Questions
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600">Get answers to common questions about studying abroad from DHA, Lahore</p>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto space-y-4">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                  <CardContent className="p-0">
-                    <button
-                      className="w-full p-6 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
-                      onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                    >
-                      <h3 className="text-lg font-bold text-gray-900 pr-4">{faq.question}</h3>
-                      {expandedFaq === index ? (
-                        <ChevronUp className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
-                      )}
-                    </button>
-                    {expandedFaq === index && (
-                      <div className="px-6 pb-6">
-                        <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
