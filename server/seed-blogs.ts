@@ -2871,6 +2871,104 @@ You should fill out the scholarship form appropriately before submitting it. To 
     viewCount: 0,
     category: "Study Abroad",
     published: true
+  },
+  {
+    title: 'How to Get a Scholarship to Study Abroad after 12th?',
+    slug: '2024/09/05/how-to-get-scholarship-to-study-abroad-after-12th',
+    excerpt: 'Complete guide on how to get scholarship to study abroad after 12th including types of scholarships, application process, tips and tricks for international students.',
+    content: `If you are a citizen of any developing country, studying abroad from well-established nations like the UK, USA, etc., is something you have wished for at least once. As you all are aware, studying abroad after 12th has become so popular among students now. There are many reasons to go abroad for studies. However, it is quite expensive, and not everyone can afford it. However, many universities are providing different scholarships for international students.
+
+In addition, scholarships for foreign students allow them to learn about new cultures and gain a competitive edge in the job market. Are you searching for some of the scholarship programs, too? Don't worry! We at Dunya Consultants help you avail of scholarships in your favorite places, such as the UK, USA, Ireland, Germany, Türkiye, Australia, Finland, Cyprus, Denmark, Belgium, and Canada.
+
+## Kinds of Scholarship Programs for Students
+
+There are many types of scholarships for students abroad. Everyone is created to provide financial support to students and help them accomplish their academic goals. Basically, there are three main types of scholarships available for students to study abroad after the 12th. Let's have a look at undergraduate scholarships for international students below:
+
+### University-Specific Scholarships
+
+The university-specific scholarships are one of the most popular types of scholarships for foreign students. Those looking for the best country to study abroad for undergraduate studies can apply for these scholarships. However, eligibility requirements and applying process can vary.
+
+Some of these scholarships are as follows:
+
+- Gates Cambridge Scholarship (UK)
+- MIT Scholarships for International Students (USA)
+- Lester B. Pearson International Scholarship (University of Toronto, Canada)
+
+### Government Funded Scholarships
+
+There are different government-funded scholarships too for international students who want to study abroad for undergraduate or graduate programs. The list of some government-funded scholarships is as follows:
+
+- SN Bose Scholarship (USA)
+- Fulbright- Nehru Fellowships (USA)
+- Chevening Scholarship (UK)
+- Canadian Commonwealth Scholarship Program (Canada)
+- Commonwealth Scholarships (UK)
+
+### Externally-Funded Scholarships
+
+These types of scholarships are funded by several external organizations. International students who are willing to study abroad in the UK, Canada, or the USA after completing 12th grade are qualified to apply for these scholarships. Few external private organizations providing these scholarships are as follows:
+
+- Inlaks Shivdasani Foundation
+- TATA Scholarships
+- Rotary Foundation Scholarships
+
+## How do I get a scholarship to study abroad after 12th from Pakistan?
+
+No doubt, studying abroad with scholarships has lots of benefits. But keep in mind that you have to face challenges in order to be successful. That's why it is very important to follow the right process to get a foreign education scholarship for overseas study. Here is a proper guide for you to follow while applying to universities that offer scholarships to international students:
+
+### Pass English Language Proficiency Test
+
+If you want to increase your chances of receiving a scholarship, you have to pass the English language proficiency test with good grades. Therefore, give your best while preparing for this test. Students can get help from a trustworthy source to get the best training to improve their language abilities.
+
+### Give Standardized Test
+
+You must also prove your academic excellence to increase your chances of a foreign scholarship. For this, pass some standardized tests, such as the SAT, GMAT, GRE, etc., with high grades.
+
+### Properly Research
+
+Correctly research and list different universities that provide scholarship programs for students to support them with their tuition fees. Despite this, you can search for some government organizations, too. Select the university scholarship that aligns with your requirements and is enough for you. Cross-check that the scheme is trustworthy and officially approved.
+
+### Submit your application
+
+The next step is to submit your application to the best country for study before the deadline. Those who are applying for a merit-based scholarship do not have to prove why they need a scholarship. However, in case you are applying for a need-based scholarship, you should prove your need for the specific scholarship.
+
+### Gather and Submit Documents
+
+Collect all documents needed for a scholarship. Once you have gathered all required documents, make sure you submit them on time. Every document should be valid and authentic. Otherwise, you might face rejection.
+
+## Tips and Tricks to Get Scholarships for Study Abroad After 12th
+
+Whether you are looking for a free scholarship to study abroad for undergraduate or fully funded, there are lots of advantages. Some of the tips to keep in mind while applying for scholarships for foreign students are given below:
+
+- Write a detailed Personal Statement explaining your story in detail.
+- Tell about your interest in extracurricular activities like community service, sports, or leadership abilities.
+- You should maintain good grades throughout your school education and get good scores on standardized tests like the SAT, ACT, or IELTS.
+- Those scholarship applications that have an interview, make sure you prepare for them in the best way possible.
+- Get strong letters of recommendation from mentors, teachers, or experts who can attest to your educational abilities.
+- Most scholarships are need-based, so it is important to explain your financial situation well.
+
+## Conclusion
+
+Are you in search of the best scholarships to Study abroad after 12th? There are lots of universities that provide undergraduate scholarships for international students in the USA, UK, and much more. Students can apply for different types of scholarships, as it is mentioned earlier. However, you need proper knowledge and details before applying for international scholarships. If you are confused about the best country to study abroad in to apply for scholarships, take advantage of our expert guidance at Dunya Consultants.
+
+## FAQs
+
+**Do universities offer full scholarships for international students?**
+Yes, there are many universities that are providing fully-funded scholarships to international students. Proper research before applying.
+
+**How can I apply to semester abroad scholarships?**
+Many universities open scholarships for semesters abroad. To get those, you need to meet eligibility requirements and then apply.
+
+**Can I go abroad for studies on a scholarship?**
+Yes, you can apply to many scholarship programs for students as soon as they get open. Just make sure you are applying appropriately.`,
+    isPublished: true,
+    authorId: 1,
+    tags: ["Study Abroad Scholarships", "International Students", "Scholarship After 12th", "Education Finance", "Student Financial Aid"],
+    metaDescription: 'Complete guide on how to get scholarship to study abroad after 12th including types of scholarships, application process, tips and tricks for international students.',
+    featuredImage: '/attached_assets/image_1755675582619.png',
+    viewCount: 0,
+    category: "Study Abroad",
+    published: true
   }
 ];
 
