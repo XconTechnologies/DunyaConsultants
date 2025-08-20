@@ -92,11 +92,6 @@ export default function AboutCompany() {
                 <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-4">
                   WHO WE ARE
                 </h2>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  Dunya Consultants is one of the best education consultants in Pakistan. 
-                  We stand among the top study abroad consultants and provide detailed 
-                  guidance on study abroad programs to students.
-                </p>
               </motion.div>
 
               {/* Content Items */}
