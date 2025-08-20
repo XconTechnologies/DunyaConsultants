@@ -95,23 +95,23 @@ export default function AboutCompany() {
               </motion.div>
 
               {/* Content Items */}
-              <div className="space-y-6 flex-1">
+              <div className="space-y-3 flex-1">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-blue-50/50 transition-colors duration-300"
+                    className="flex items-start gap-3 p-2 rounded-xl hover:bg-blue-50/50 transition-colors duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                   >
-                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center shadow-lg">
-                      <item.icon className="w-5 h-5 text-white" />
+                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center shadow-lg">
+                      <item.icon className="w-4 h-4 text-white" />
                     </div>
                     <div className="flex-1 pt-1">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                      <h3 className="text-sm font-semibold text-gray-900 mb-1">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed text-sm">
+                      <p className="text-gray-600 leading-relaxed text-xs">
                         {item.content}
                       </p>
                     </div>
