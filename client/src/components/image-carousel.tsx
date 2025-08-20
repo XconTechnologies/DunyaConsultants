@@ -40,7 +40,7 @@ export default function ImageCarousel() {
         
         {/* Horizontal Sliding Images */}
         <motion.div
-          className="relative overflow-hidden rounded-2xl"
+          className="relative overflow-hidden"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
