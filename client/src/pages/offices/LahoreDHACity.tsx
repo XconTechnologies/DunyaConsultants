@@ -343,29 +343,29 @@ export default function LahoreDHACity() {
           {/* IELTS Features Carousel */}
           <div className="relative overflow-hidden mb-16">
             <motion.div
-              className="flex gap-8"
+              className="flex gap-6"
               animate={{
-                x: [0, -100 * ieltsFeatures.length + "%"]
+                x: [0, "-25%"]
               }}
               transition={{
                 x: {
                   repeat: Infinity,
                   repeatType: "loop",
-                  duration: 20,
+                  duration: 15,
                   ease: "linear"
                 }
               }}
               style={{
-                width: `${200 * ieltsFeatures.length}%`
+                width: "200%"
               }}
             >
               {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
                 <div
                   key={index}
                   className="flex-shrink-0"
-                  style={{ width: `${100 / (ieltsFeatures.length * 2)}%` }}
+                  style={{ width: "25%" }}
                 >
-                  <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 h-full group hover:-translate-y-1 mx-4">
+                  <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 h-full group hover:-translate-y-1 mx-3">
                     <CardContent className="p-8 text-center">
                       <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
                         <CheckCircle className="w-8 h-8 text-white" />
