@@ -181,7 +181,7 @@ export default function LahoreDHACity() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {whyChooseUs.map((reason, index) => (
                   <motion.div
                     key={index}
@@ -189,12 +189,12 @@ export default function LahoreDHACity() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-                      <CardContent className="p-6 flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
-                          <CheckCircle className="w-6 h-6 text-white" />
+                    <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300">
+                      <CardContent className="p-4 flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
+                          <CheckCircle className="w-4 h-4 text-white" />
                         </div>
-                        <p className="text-gray-800 font-medium">{reason}</p>
+                        <p className="text-gray-800 font-medium text-sm">{reason}</p>
                       </CardContent>
                     </Card>
                   </motion.div>
@@ -226,25 +226,35 @@ export default function LahoreDHACity() {
             transition={{ duration: 0.6 }}
             className="w-full"
           >
-            <Card className="border-0 shadow-2xl bg-white">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Countries We Support</h3>
-                <div className="flex flex-wrap justify-center gap-2">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                Countries We{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Support
+                </span>
+              </h3>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9]">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                   {countries.map((country, index) => (
                     <motion.div
                       key={country}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      className="group cursor-pointer"
                     >
-                      <Badge variant="secondary" className="justify-center py-2 px-4 bg-gradient-to-r from-blue-50 to-blue-100 text-gray-800 border border-blue-200">
-                        {country}
-                      </Badge>
+                      <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white rounded-xl p-4 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <Globe className="w-6 h-6 mx-auto mb-2 opacity-80" />
+                        <p className="text-sm font-semibold">{country}</p>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+                <div className="mt-6 text-center">
+                  <p className="text-gray-600 text-sm">Helping students achieve their dreams in top study destinations worldwide</p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
