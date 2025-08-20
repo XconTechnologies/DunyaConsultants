@@ -67,10 +67,10 @@ export default function AboutCompany() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
-            <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-xl h-full min-h-[400px] lg:min-h-[600px] flex flex-col">
+            <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-xl h-[600px] flex flex-col justify-between">
               {/* About Company Badge */}
               <motion.div
-                className="mb-6"
+                className="mb-4"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
@@ -95,7 +95,7 @@ export default function AboutCompany() {
               </motion.div>
 
               {/* Content Items */}
-              <div className="space-y-3 flex-1">
+              <div className="space-y-4 flex-1">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
