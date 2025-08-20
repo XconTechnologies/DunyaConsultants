@@ -557,6 +557,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               if (prevParagraph && prevParagraph.trim().startsWith('**') && prevParagraph.trim().endsWith('**') && prevParagraph.includes('?')) {
                                 return null;
                               }
+
+                              // Skip markdown table remnants
+                              if (paragraph.trim().startsWith('|') && paragraph.includes('|')) {
+                                return null;
+                              }
                             
                             // Check for Australia Universities table intro
                             if (paragraph.includes('Some of the cheapest universities in Australia for international students are as follows:')) {
