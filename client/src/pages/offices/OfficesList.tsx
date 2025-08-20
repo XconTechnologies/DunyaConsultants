@@ -299,7 +299,7 @@ export default function OfficesList() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex flex-col md:flex-row gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <Input
@@ -349,7 +349,7 @@ export default function OfficesList() {
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {pakistanOffices.map((office, index) => (
                 <motion.div
                   key={office.id}
@@ -445,7 +445,7 @@ export default function OfficesList() {
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-blue-300 to-transparent"></div>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {internationalOffices.map((office, index) => (
                 <motion.div
                   key={office.id}

@@ -16,7 +16,7 @@ export default function Footer() {
       </div>
       <div className="relative z-10 text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {/* Company Info */}
             <div className="lg:col-span-1">
               <div className="mb-6">
@@ -70,9 +70,9 @@ export default function Footer() {
             </div>
 
             {/* Contact Us Card */}
-            <div className="lg:col-span-1">
+            <div className="sm:col-span-2 lg:col-span-1">
               <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 shadow-lg relative overflow-hidden border border-white/20"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
@@ -122,9 +122,9 @@ export default function Footer() {
             </div>
 
             {/* Business Proposals Section */}
-            <div className="lg:col-span-1">
+            <div className="sm:col-span-2 lg:col-span-1">
               <motion.div
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}

@@ -82,7 +82,7 @@ export default function SargodhaHeadOffice() {
       </div>
 
       <div className="container mx-auto px-4 py-12">
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
             {/* Contact Information */}
@@ -99,7 +99,7 @@ export default function SargodhaHeadOffice() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="flex items-center space-x-3">
                       <MapPin className="w-5 h-5 text-gray-500" />
                       <div>
@@ -159,7 +159,7 @@ export default function SargodhaHeadOffice() {
                   <CardTitle>Services Offered</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {office.services.map((service, index) => (
                       <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
                         <CheckCircle className="w-5 h-5 #1D50C9" />

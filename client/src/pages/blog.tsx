@@ -330,7 +330,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
       </section>
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -1247,7 +1247,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-6">
+            <div className="sticky top-24 space-y-4 lg:space-y-6">
               
               {/* Search Bar */}
               <Card className="bg-white border border-gray-200 shadow-sm">
@@ -1477,7 +1477,7 @@ export default function Blog() {
         </div>
 
         {/* Blog Posts Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {filteredPosts.map((post: any) => (
             <motion.div
               key={post.id}

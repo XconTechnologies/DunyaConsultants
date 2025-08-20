@@ -38,7 +38,7 @@ export default function AboutCompany() {
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-stretch">
           
           {/* Left Side - Image */}
           <motion.div
@@ -47,7 +47,7 @@ export default function AboutCompany() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="relative bg-white rounded-3xl p-4 shadow-xl h-full min-h-[600px]">
+            <div className="relative bg-white rounded-3xl p-4 shadow-xl h-full min-h-[400px] lg:min-h-[600px]">
               <motion.div
                 className="relative w-full h-full"
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -71,7 +71,7 @@ export default function AboutCompany() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
-            <div className="bg-white rounded-3xl p-8 shadow-xl h-full min-h-[600px] flex flex-col">
+            <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-xl h-full min-h-[400px] lg:min-h-[600px] flex flex-col">
               {/* About Company Badge */}
               <motion.div
                 className="mb-6"

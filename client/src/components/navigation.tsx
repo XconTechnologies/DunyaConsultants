@@ -501,30 +501,109 @@ export default function Navigation() {
                 : 'bg-white border-t border-neutral-200'
             }`}
           >
-            <div className="px-4 py-4 space-y-4">
+            <div className="px-4 py-4 space-y-3 max-h-[80vh] overflow-y-auto">
               {navItems.map((item) => (
                 <div key={item.name || item.href}>
-                  {(item as any).submenu ? (
+                  {item.megaMenu ? (
                     <div className="space-y-2">
-                      <div className="text-neutral-800 font-medium py-2 border-b border-gray-100">
+                      <div className="text-neutral-800 font-semibold py-2 px-3 bg-gray-50 rounded-lg border border-gray-200">
                         {item.name}
                       </div>
-                      {(item as any).submenu.map((subItem: any) => (
-                        <Link key={subItem.name} href={subItem.href}>
-                          <button
-                            onClick={() => setIsOpen(false)}
-                            className="block w-full text-left pl-4 text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-1"
-                          >
-                            {subItem.name}
-                          </button>
-                        </Link>
-                      ))}
+                      {/* Mobile mega menu items */}
+                      {item.name === "About Us" && (
+                        <div className="pl-4 space-y-2">
+                          <Link href="/about/who-we-are">
+                            <button
+                              onClick={() => setIsOpen(false)}
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                            >
+                              Who We Are
+                            </button>
+                          </Link>
+                          <Link href="/about/mission-vision">
+                            <button
+                              onClick={() => setIsOpen(false)}
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                            >
+                              Mission & Vision
+                            </button>
+                          </Link>
+                          <Link href="/about/our-success-stories">
+                            <button
+                              onClick={() => setIsOpen(false)}
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                            >
+                              Our Success Stories
+                            </button>
+                          </Link>
+                          <Link href="/blog">
+                            <button
+                              onClick={() => setIsOpen(false)}
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                            >
+                              Blog
+                            </button>
+                          </Link>
+                        </div>
+                      )}
+                      {item.name === "Study Abroad" && (
+                        <div className="pl-4 space-y-2">
+                          {["USA", "UK", "Canada", "Finland", "Australia", "Belgium", "Turkey"].map((country) => (
+                            <Link key={country} href={`/study-abroad/${country.toLowerCase()}`}>
+                              <button
+                                onClick={() => setIsOpen(false)}
+                                className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                              >
+                                {country}
+                              </button>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                      {item.name === "Test Prep" && (
+                        <div className="pl-4 space-y-2">
+                          {["IELTS", "PTE", "TOEFL", "Duolingo"].map((test) => (
+                            <Link key={test} href={`/test-prep/${test.toLowerCase()}`}>
+                              <button
+                                onClick={() => setIsOpen(false)}
+                                className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                              >
+                                {test}
+                              </button>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                      {item.name === "Offices" && (
+                        <div className="pl-4 space-y-2">
+                          <Link href="/offices">
+                            <button
+                              onClick={() => setIsOpen(false)}
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                            >
+                              All Office Locations
+                            </button>
+                          </Link>
+                        </div>
+                      )}
+                      {item.name === "Blog" && (
+                        <div className="pl-4 space-y-2">
+                          <Link href="/blog">
+                            <button
+                              onClick={() => setIsOpen(false)}
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                            >
+                              All Blog Posts
+                            </button>
+                          </Link>
+                        </div>
+                      )}
                     </div>
                   ) : item.href ? (
                     <Link href={item.href}>
                       <button
                         onClick={() => setIsOpen(false)}
-                        className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-medium py-2"
+                        className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-semibold py-3 px-3 rounded-lg hover:bg-gray-50"
                       >
                         {item.name}
                       </button>
@@ -538,7 +617,7 @@ export default function Navigation() {
                     setShowConsultationPopup(true);
                     setIsOpen(false);
                   }}
-                  className="w-full #1845B3 hover:bg-#1a73e8 text-white font-semibold"
+                  className="w-full bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold py-3"
                 >
                   Free Consultation
                 </Button>
