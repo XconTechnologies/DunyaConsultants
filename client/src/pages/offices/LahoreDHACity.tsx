@@ -351,7 +351,7 @@ export default function LahoreDHACity() {
                 x: {
                   repeat: Infinity,
                   repeatType: "loop",
-                  duration: 15,
+                  duration: 8,
                   ease: "linear"
                 }
               }}
@@ -365,15 +365,15 @@ export default function LahoreDHACity() {
                   className="flex-shrink-0"
                   style={{ width: "25%" }}
                 >
-                  <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 h-full group hover:-translate-y-1 mx-3">
-                    <CardContent className="p-8 text-center">
-                      <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <CheckCircle className="w-8 h-8 text-white" />
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1 mx-3">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <CheckCircle className="w-6 h-6 text-white" />
                       </div>
-                      <h3 className="text-lg font-bold text-gray-900 mb-3">
+                      <h3 className="text-base font-bold text-gray-900 mb-2">
                         {feature.split(' – ')[0]}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-sm text-gray-600 leading-relaxed">
                         {feature.split(' – ')[1]}
                       </p>
                     </CardContent>
