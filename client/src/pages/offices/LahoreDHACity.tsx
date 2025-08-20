@@ -164,33 +164,27 @@ export default function LahoreDHACity() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="grid lg:grid-cols-2 gap-12 items-center"
+            className="w-full"
           >
-            <div>
-              
-            </div>
-
-            <div className="relative">
-              <Card className="border-0 shadow-2xl bg-white">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Countries We Support</h3>
-                  <div className="flex flex-wrap justify-center gap-2">
-                    {countries.map((country, index) => (
-                      <motion.div
-                        key={country}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: index * 0.05 }}
-                      >
-                        <Badge variant="secondary" className="justify-center py-2 px-4 bg-gradient-to-r from-blue-50 to-blue-100 text-gray-800 border border-blue-200">
-                          {country}
-                        </Badge>
-                      </motion.div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+            <Card className="border-0 shadow-2xl bg-white">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Countries We Support</h3>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {countries.map((country, index) => (
+                    <motion.div
+                      key={country}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                    >
+                      <Badge variant="secondary" className="justify-center py-2 px-4 bg-gradient-to-r from-blue-50 to-blue-100 text-gray-800 border border-blue-200">
+                        {country}
+                      </Badge>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </section>
