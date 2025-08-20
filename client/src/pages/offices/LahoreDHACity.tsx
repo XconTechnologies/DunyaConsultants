@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -69,6 +69,16 @@ export default function LahoreDHACity() {
   ];
 
   const countries = ["USA", "UK", "Australia", "Canada", "Belgium", "Cyprus", "Germany", "Turkey", "Finland", "Ireland"];
+  const totalSlides = Math.ceil(countries.length / countriesPerSlide);
+
+  // Auto-scroll infinite carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [totalSlides]);
 
   const faqs = [
     {
@@ -236,20 +246,21 @@ export default function LahoreDHACity() {
                 </span>
               </h3>
               <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9] relative">
-                {/* Carousel Container */}
+                {/* Infinite Carousel Container */}
                 <div className="relative overflow-hidden">
                   <motion.div 
-                    className="flex transition-transform duration-500 ease-in-out"
+                    className="flex"
                     animate={{ x: -currentSlide * 100 + "%" }}
+                    transition={{ duration: 1, ease: "easeInOut" }}
                   >
-                    {Array.from({ length: Math.ceil(countries.length / countriesPerSlide) }).map((_, slideIndex) => (
+                    {Array.from({ length: totalSlides }).map((_, slideIndex) => (
                       <div key={slideIndex} className="w-full flex-shrink-0">
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 px-4">
                           {countries
                             .slice(slideIndex * countriesPerSlide, (slideIndex + 1) * countriesPerSlide)
                             .map((country, index) => (
                               <motion.div
-                                key={country}
+                                key={`${slideIndex}-${country}`}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4, delay: index * 0.05 }}
@@ -265,37 +276,6 @@ export default function LahoreDHACity() {
                       </div>
                     ))}
                   </motion.div>
-                </div>
-
-                {/* Navigation Buttons */}
-                <div className="flex justify-center mt-6 space-x-4">
-                  <button
-                    onClick={() => setCurrentSlide(Math.max(0, currentSlide - 1))}
-                    disabled={currentSlide === 0}
-                    className="p-2 rounded-full bg-[#1D50C9] text-white hover:bg-[#1845B3] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  
-                  <div className="flex space-x-2 items-center">
-                    {Array.from({ length: Math.ceil(countries.length / countriesPerSlide) }).map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                          currentSlide === index ? 'bg-[#1D50C9]' : 'bg-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  
-                  <button
-                    onClick={() => setCurrentSlide(Math.min(Math.ceil(countries.length / countriesPerSlide) - 1, currentSlide + 1))}
-                    disabled={currentSlide === Math.ceil(countries.length / countriesPerSlide) - 1}
-                    className="p-2 rounded-full bg-[#1D50C9] text-white hover:bg-[#1845B3] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
-                  >
-                    <ChevronRight className="w-5 h-5" />
-                  </button>
                 </div>
 
                 <div className="mt-6 text-center">
