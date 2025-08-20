@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,8 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 export default function LahoreDHACity() {
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  
   const services = [
     {
       icon: Users,
@@ -26,25 +28,25 @@ export default function LahoreDHACity() {
       icon: FileText,
       title: "Application Support",
       description: "Applications can be difficult. We prepare your documents, fill out forms, and make sure everything is submitted on time — so you don't have to worry about deadlines.",
-      color: "from-orange-500 to-orange-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: Globe,
       title: "Visa Guidance",
       description: "Our study visa experts at DHA, Lahore follow the process with greatest care. We'll make sure your visa application is solid and meets with the most recent rules.",
-      color: "from-purple-500 to-purple-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: MessageCircle,
       title: "Interview Preparation",
       description: "We conduct practice interviews, provide practical advice, and boost your confidence to help you perform at your best in university and visa interviews.",
-      color: "from-teal-500 to-teal-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: Calendar,
       title: "Pre-Departure Briefing",
       description: "We'll give you advice on travel, lodging, cultural differences, and student life before you depart, ensuring a smooth start to your new adventure.",
-      color: "from-pink-500 to-pink-600"
+      color: "from-blue-500 to-blue-600"
     }
   ];
 
@@ -175,31 +177,6 @@ export default function LahoreDHACity() {
                 Our team is here to ensure that the process is successful, simple, and stress-free. We provide personalized guidance to help you achieve your international education goals.
               </p>
               
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-6 h-6 text-[#1D50C9] flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Address</h3>
-                    <p className="text-gray-700">1st Floor 174, 6 Street 123, Sector H, DHA Phase 1, Lahore</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <Phone className="w-6 h-6 text-[#1D50C9] flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Phone</h3>
-                    <p className="text-gray-700">+92 300-167-1947</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start space-x-3">
-                  <Mail className="w-6 h-6 text-[#1D50C9] flex-shrink-0 mt-1" />
-                  <div>
-                    <h3 className="font-semibold text-gray-900">Email</h3>
-                    <p className="text-gray-700">ar.nafey@dunyaconsultants.com</p>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="relative">
@@ -297,7 +274,7 @@ export default function LahoreDHACity() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="flex items-center space-x-3"
                   >
-                    <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-blue-600 flex-shrink-0" />
                     <p className="text-gray-700">{feature}</p>
                   </motion.div>
                 ))}
@@ -311,8 +288,8 @@ export default function LahoreDHACity() {
             >
               <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
                 <CardContent className="p-8 text-center">
-                  <BookOpen className="w-16 h-16 mx-auto mb-6 text-yellow-300" />
-                  <h3 className="text-2xl font-bold mb-4 text-[#ffffff]">Expert IELTS Training</h3>
+                  <BookOpen className="w-16 h-16 mx-auto mb-6 text-white" />
+                  <h3 className="text-2xl font-bold mb-4 text-white">Expert IELTS Training</h3>
                   <p className="text-blue-100 leading-relaxed mb-6">
                     Get comprehensive IELTS preparation with our experienced trainers and modern teaching methods.
                   </p>
@@ -393,7 +370,7 @@ export default function LahoreDHACity() {
             >
               <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-center text-[#ffffff]">Contact Information</h3>
+                  <h3 className="text-2xl font-bold mb-6 text-center text-white">Contact Information</h3>
                   
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
@@ -486,7 +463,7 @@ export default function LahoreDHACity() {
             <p className="text-xl text-gray-600">Get answers to common questions about studying abroad from DHA, Lahore</p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto space-y-6">
+          <div className="max-w-4xl mx-auto space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
                 key={index}
@@ -494,10 +471,24 @@ export default function LahoreDHACity() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">{faq.question}</h3>
-                    <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
+                  <CardContent className="p-0">
+                    <button
+                      className="w-full p-6 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
+                      onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                    >
+                      <h3 className="text-lg font-bold text-gray-900 pr-4">{faq.question}</h3>
+                      {expandedFaq === index ? (
+                        <ChevronUp className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
+                      )}
+                    </button>
+                    {expandedFaq === index && (
+                      <div className="px-6 pb-6">
+                        <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>
