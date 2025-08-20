@@ -10,8 +10,6 @@ import Footer from "@/components/footer";
 
 export default function LahoreDHACity() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const countriesPerSlide = 6;
   
   const services = [
     {
@@ -69,16 +67,8 @@ export default function LahoreDHACity() {
   ];
 
   const countries = ["USA", "UK", "Australia", "Canada", "Belgium", "Cyprus", "Germany", "Turkey", "Finland", "Ireland"];
-  const totalSlides = Math.ceil(countries.length / countriesPerSlide);
-
-  // Auto-scroll infinite carousel
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }, 3000); // Change slide every 3 seconds
-
-    return () => clearInterval(interval);
-  }, [totalSlides]);
+  // Duplicate countries for seamless infinite scrolling
+  const duplicatedCountries = [...countries, ...countries];
 
   const faqs = [
     {
@@ -246,39 +236,36 @@ export default function LahoreDHACity() {
                 </span>
               </h3>
               <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9] relative">
-                {/* Infinite Carousel Container */}
+                {/* Infinite Scrolling Container */}
                 <div className="relative overflow-hidden">
                   <motion.div 
-                    className="flex"
-                    animate={{ x: -currentSlide * 100 + "%" }}
-                    transition={{ duration: 1, ease: "easeInOut" }}
+                    className="flex gap-6"
+                    animate={{ x: [-0, -50 + "%"] }}
+                    transition={{ 
+                      duration: 20,
+                      ease: "linear",
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
                   >
-                    {Array.from({ length: totalSlides }).map((_, slideIndex) => (
-                      <div key={slideIndex} className="w-full flex-shrink-0">
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 px-4">
-                          {countries
-                            .slice(slideIndex * countriesPerSlide, (slideIndex + 1) * countriesPerSlide)
-                            .map((country, index) => (
-                              <motion.div
-                                key={`${slideIndex}-${country}`}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.4, delay: index * 0.05 }}
-                                className="group cursor-pointer"
-                              >
-                                <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white rounded-xl p-4 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                                  <Globe className="w-6 h-6 mx-auto mb-2 opacity-80" />
-                                  <p className="text-sm font-semibold">{country}</p>
-                                </div>
-                              </motion.div>
-                            ))}
+                    {duplicatedCountries.map((country, index) => (
+                      <motion.div
+                        key={`${country}-${index}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: (index % countries.length) * 0.05 }}
+                        className="group cursor-pointer flex-shrink-0"
+                      >
+                        <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px]">
+                          <Globe className="w-8 h-8 mx-auto mb-3 opacity-80" />
+                          <p className="text-sm font-semibold">{country}</p>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </motion.div>
                 </div>
 
-                <div className="mt-6 text-center">
+                <div className="mt-8 text-center">
                   <p className="text-gray-600 text-sm">Helping students achieve their dreams in top study destinations worldwide</p>
                 </div>
               </div>
