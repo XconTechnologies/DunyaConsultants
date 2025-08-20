@@ -31,6 +31,7 @@ import OfficesList from "@/pages/offices/OfficesList";
 import OfficeDetails from "@/pages/offices/OfficeDetails";
 import SargodhaHeadOffice from "@/pages/offices/SargodhaHeadOffice";
 import LahoreDHA from "@/pages/offices/LahoreDHA";
+import LahoreDHACity from "@/pages/offices/LahoreDHACity";
 import LahoreJohar from "@/pages/offices/lahore-johar";
 import IslamabadBlueArea from "@/pages/offices/IslamabadBlueArea";
 import KarachiGulshan from "@/pages/offices/KarachiGulshan";
@@ -125,6 +126,7 @@ function Router() {
       <Route path="/offices" component={OfficesList} />
       <Route path="/offices/sargodha-head-office" component={SargodhaHeadOffice} />
       <Route path="/offices/lahore-dha" component={LahoreDHA} />
+      <Route path="/offices/lahore-dha-city" component={LahoreDHACity} />
       <Route path="/offices/lahore-johar" component={LahoreJohar} />
       <Route path="/offices/islamabad-blue-area" component={IslamabadBlueArea} />
       <Route path="/offices/karachi-gulshan" component={KarachiGulshan} />

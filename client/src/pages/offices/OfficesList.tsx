@@ -408,15 +408,28 @@ export default function OfficesList() {
                           <NavigationIcon className="w-3 h-3 mr-1" />
                           Get Directions
                         </Button>
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          onClick={() => window.open(`tel:${office.phone}`, '_self')}
-                          className="flex-1 #1845B3 #1845B3 hover:bg-blue-50 font-medium text-sm"
-                        >
-                          <Phone className="w-3 h-3 mr-1" />
-                          Call
-                        </Button>
+                        {office.id === "lahore-dha" ? (
+                          <Link href="/offices/lahore-dha-city">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : (
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => window.open(`tel:${office.phone}`, '_self')}
+                            className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                          >
+                            <Phone className="w-3 h-3 mr-1" />
+                            Call
+                          </Button>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
