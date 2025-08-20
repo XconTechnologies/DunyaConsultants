@@ -380,7 +380,7 @@ export default function LahoreDHACity() {
                 
                 <div className="relative">
                   <BookOpen className="w-20 h-20 mx-auto mb-6 text-white opacity-90" />
-                  <h3 className="text-3xl font-bold mb-4" style={{color: '#ffffff'}}>
+                  <h3 className="text-3xl font-bold mb-4 text-[#ffffff]" style={{color: '#ffffff'}}>
                     Ready to Start Your IELTS Journey?
                   </h3>
                   <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
