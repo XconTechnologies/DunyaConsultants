@@ -35,41 +35,49 @@ export default function ImageCarousel() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="-mt-20 mb-20">
+    <section ref={ref} className="-mt-20 mb-20 overflow-hidden">
         <motion.div
-          className="flex gap-4 overflow-hidden"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
         >
             <motion.div
-              className="flex gap-4"
+              className="flex gap-6"
               animate={{
-                x: [0, -1220]
+                x: [0, -1500]
               }}
               transition={{
-                duration: 25,
+                duration: 40,
                 repeat: Infinity,
                 ease: "linear"
               }}
             >
-              {/* First set of images - Display 5 images */}
-              {carouselImages.slice(0, 10).map((image) => (
-                  <img
+              {/* First set of images */}
+              {carouselImages.slice(0, 8).map((image) => (
+                  <motion.img
                     key={`first-${image.id}`}
                     src={image.src}
                     alt={image.alt}
-                    className="max-w-[400px] max-h-[300px] object-contain flex-shrink-0"
+                    className="w-[350px] h-[250px] object-cover flex-shrink-0 rounded-lg shadow-lg"
+                    whileHover={{ 
+                      scale: 1.05,
+                      transition: { duration: 0.3, ease: "easeOut" }
+                    }}
                   />
               ))}
               
-              {/* Duplicate set for seamless loop - Display 5 images */}
-              {carouselImages.slice(0, 10).map((image) => (
-                  <img
+              {/* Duplicate set for seamless loop */}
+              {carouselImages.slice(0, 8).map((image) => (
+                  <motion.img
                     key={`second-${image.id}`}
                     src={image.src}
                     alt={image.alt}
-                    className="max-w-[400px] max-h-[300px] object-contain flex-shrink-0"
+                    className="w-[350px] h-[250px] object-cover flex-shrink-0 rounded-lg shadow-lg"
+                    whileHover={{ 
+                      scale: 1.05,
+                      transition: { duration: 0.3, ease: "easeOut" }
+                    }}
                   />
               ))}
             </motion.div>
