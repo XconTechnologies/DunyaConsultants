@@ -602,6 +602,19 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               if (paragraph.trim().match(/^<(table|thead|tbody|tr|th|td)/i) || paragraph.trim().match(/<\/(table|thead|tbody|tr|th|td)>$/i)) {
                                 return null;
                               }
+                              
+                              // Skip plain text table content that appears before HTML table in Statement of Purpose blog
+                              if (section.title === 'A General SOP VS an SOP for Scholarship' && 
+                                  (paragraph.trim() === 'General SOP' ||
+                                   paragraph.trim() === 'SOP for Scholarship' ||
+                                   paragraph.includes('A statement that is written to display your interest in a particular program.') ||
+                                   paragraph.includes('A statement to display the reasons for getting the scholarship.') ||
+                                   paragraph.includes('The purpose of writing it is to fulfill a requirement of an application process.') ||
+                                   paragraph.includes('Its purpose is to communicate that how availing the scholarship will help the student to achieve his goals.') ||
+                                   paragraph.includes('The major focus of this is to explain the reason for selecting the reason for selecting a particular program.') ||
+                                   paragraph.includes('The major focus is to explain the financial circumstances and sustainability for the scholarship of that applicant.'))) {
+                                return null;
+                              }
                             
                             // Check for Australia Universities table intro
                             if (paragraph.includes('Some of the cheapest universities in Australia for international students are as follows:')) {
