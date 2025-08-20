@@ -219,7 +219,7 @@ export default function LahoreDHACity() {
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
                   <img 
-                    src="@assets/WhatsApp Image 2024-07-20 at 10.54.08_100076f0_1755690900367.jpg" 
+                    src="/attached_assets/WhatsApp Image 2024-07-20 at 10.54.08_100076f0_1755690900367.jpg" 
                     alt="Dunya Consultants DHA Office Reception with Logo"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
                   />
@@ -233,7 +233,7 @@ export default function LahoreDHACity() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="@assets/WhatsApp Image 2024-07-20 at 10.54.11_613b4f8d_1755690898376.jpg" 
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 10.54.11_613b4f8d_1755690898376.jpg" 
                       alt="Professional Consultation Area"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
@@ -246,7 +246,7 @@ export default function LahoreDHACity() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="@assets/WhatsApp Image 2024-07-20 at 10.54.07_23cebcb6_1755690902473.jpg" 
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 10.54.07_23cebcb6_1755690902473.jpg" 
                       alt="Dunya Consultants Building Exterior"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
