@@ -49,7 +49,7 @@ export default function ImageCarousel() {
           {/* Infinite Sliding Container */}
           <div className="flex">
             <motion.div
-              className="flex gap-4 py-4"
+              className="flex gap-4"
               animate={{
                 x: [0, -1220]
               }}
@@ -63,20 +63,13 @@ export default function ImageCarousel() {
               {carouselImages.slice(0, 10).map((image) => (
                 <div
                   key={`first-${image.id}`}
-                  className="relative transition-all duration-300 flex-shrink-0 group"
+                  className="flex-shrink-0 group"
                 >
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="max-w-[300px] max-h-[200px] object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="max-w-[400px] max-h-[300px] object-contain transition-transform duration-300 group-hover:scale-105"
                   />
-                  
-                  {/* Hover Text Overlay */}
-                  <div className="absolute bottom-2 left-2 right-2 bg-black/70 backdrop-blur-sm rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white text-xs font-medium text-center">
-                      {image.caption}
-                    </p>
-                  </div>
                 </div>
               ))}
               
@@ -84,20 +77,13 @@ export default function ImageCarousel() {
               {carouselImages.slice(0, 10).map((image) => (
                 <div
                   key={`second-${image.id}`}
-                  className="relative transition-all duration-300 flex-shrink-0 group"
+                  className="flex-shrink-0 group"
                 >
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="max-w-[300px] max-h-[200px] object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="max-w-[400px] max-h-[300px] object-contain transition-transform duration-300 group-hover:scale-105"
                   />
-                  
-                  {/* Hover Text Overlay */}
-                  <div className="absolute bottom-2 left-2 right-2 bg-black/70 backdrop-blur-sm rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-white text-xs font-medium text-center">
-                      {image.caption}
-                    </p>
-                  </div>
                 </div>
               ))}
             </motion.div>
