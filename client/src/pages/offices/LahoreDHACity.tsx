@@ -96,7 +96,6 @@ export default function LahoreDHACity() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
@@ -156,7 +155,6 @@ export default function LahoreDHACity() {
           </motion.div>
         </div>
       </section>
-
       {/* Office Details */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -228,7 +226,6 @@ export default function LahoreDHACity() {
           </motion.div>
         </div>
       </section>
-
       {/* Services Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -272,7 +269,6 @@ export default function LahoreDHACity() {
           </div>
         </div>
       </section>
-
       {/* IELTS Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -329,7 +325,6 @@ export default function LahoreDHACity() {
           </div>
         </div>
       </section>
-
       {/* Why Choose Us */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -370,7 +365,6 @@ export default function LahoreDHACity() {
           </div>
         </div>
       </section>
-
       {/* Get in Touch Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -399,7 +393,7 @@ export default function LahoreDHACity() {
             >
               <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-center">Contact Information</h3>
+                  <h3 className="text-2xl font-bold mb-6 text-center text-[#ffffff]">Contact Information</h3>
                   
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
@@ -474,7 +468,6 @@ export default function LahoreDHACity() {
           </div>
         </div>
       </section>
-
       {/* FAQs Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -512,7 +505,6 @@ export default function LahoreDHACity() {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -547,7 +539,6 @@ export default function LahoreDHACity() {
           </motion.div>
         </div>
       </section>
-      
       <Footer />
     </div>
   );
