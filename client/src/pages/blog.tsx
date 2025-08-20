@@ -1418,7 +1418,7 @@ export default function Blog() {
       <Navigation />
       
       {/* Hero Section - Same style as other pages */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-white">
