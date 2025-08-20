@@ -132,26 +132,6 @@ export default function Navigation() {
         cta: "Find Office",
         href: "/offices"
       }
-    },
-    "Blog": {
-      icon: Newspaper,
-      sections: [
-        {
-          title: "Latest Articles",
-          icon: Newspaper,
-          items: [
-            { name: "All Blog Posts", href: "/blog", description: "Latest updates and guides" },
-            { name: "Study Abroad Tips", href: "/blog", description: "Expert guidance for studying abroad" },
-            { name: "Visa Guides", href: "/blog", description: "Step-by-step visa application help" }
-          ]
-        }
-      ],
-      featured: {
-        title: "Latest Insights",
-        description: "Expert guidance and tips",
-        cta: "Read More",
-        href: "/blog"
-      }
     }
   };
 
@@ -161,7 +141,6 @@ export default function Navigation() {
     { name: "Study Abroad", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },
-    { name: "Blog", megaMenu: true },
   ];
 
   return (
@@ -376,36 +355,6 @@ export default function Navigation() {
                         ))}
                       </div>
                     </div>)
-                  ) : activeMegaMenu === "Blog" ? (
-                    // Special layout for Blog with 2-column items (flattened from all sections)
-                    (<div className="space-y-3">
-                      <div className="flex items-center space-x-2 mb-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
-                          {React.createElement(Newspaper, { 
-                            className: "w-4 h-4 text-white" 
-                          })}
-                        </div>
-                        <h3 className="text-lg font-bold text-neutral-800">Blog Articles</h3>
-                      </div>
-                      <div className="grid grid-cols-2 gap-x-6 gap-y-2">
-                        {/* Flatten all blog items from all sections into 2 columns */}
-                        {megaMenuData["Blog"].sections.flatMap((section: any) => section.items).map((item: any, itemIdx: number) => (
-                          <Link key={itemIdx} href={item.href}>
-                            <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-200">
-                              <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
-                              <div>
-                                <div className="font-medium text-neutral-800 group-hover:text-primary transition-colors duration-200">
-                                  {item.name}
-                                </div>
-                                <div className="text-sm text-neutral-600 mt-1">
-                                  {item.description}
-                                </div>
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>)
                   ) : (
                     // Default layout for other menus
                     (<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -582,18 +531,6 @@ export default function Navigation() {
                               className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
                             >
                               All Office Locations
-                            </button>
-                          </Link>
-                        </div>
-                      )}
-                      {item.name === "Blog" && (
-                        <div className="pl-4 space-y-2">
-                          <Link href="/blog">
-                            <button
-                              onClick={() => setIsOpen(false)}
-                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
-                            >
-                              All Blog Posts
                             </button>
                           </Link>
                         </div>
