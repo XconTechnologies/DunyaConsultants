@@ -172,7 +172,7 @@ export default function Footer() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Mail className="w-3 h-3" />
+                    <Mail className="w-3 h-3 text-[#1D50C9]" />
                     <span className="text-[#1D50C9]">Send Proposal</span>
                   </motion.a>
                 </div>
