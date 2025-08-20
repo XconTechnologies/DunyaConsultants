@@ -63,18 +63,17 @@ export default function ImageCarousel() {
               {carouselImages.slice(0, 10).map((image) => (
                 <div
                   key={`first-${image.id}`}
-                  className="relative rounded-xl overflow-hidden transition-all duration-300 flex-shrink-0 w-[240px] h-[160px] group"
+                  className="relative transition-all duration-300 flex-shrink-0 group"
                 >
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="max-w-[300px] max-h-[200px] object-contain transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Hover Text Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-white text-sm font-medium text-center">
+                  <div className="absolute bottom-2 left-2 right-2 bg-black/70 backdrop-blur-sm rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-white text-xs font-medium text-center">
                       {image.caption}
                     </p>
                   </div>
@@ -85,18 +84,17 @@ export default function ImageCarousel() {
               {carouselImages.slice(0, 10).map((image) => (
                 <div
                   key={`second-${image.id}`}
-                  className="relative rounded-xl overflow-hidden transition-all duration-300 flex-shrink-0 w-[240px] h-[160px] group"
+                  className="relative transition-all duration-300 flex-shrink-0 group"
                 >
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="max-w-[300px] max-h-[200px] object-contain transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Hover Text Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-white text-sm font-medium text-center">
+                  <div className="absolute bottom-2 left-2 right-2 bg-black/70 backdrop-blur-sm rounded-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-white text-xs font-medium text-center">
                       {image.caption}
                     </p>
                   </div>
