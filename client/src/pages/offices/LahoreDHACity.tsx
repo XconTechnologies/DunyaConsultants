@@ -492,7 +492,7 @@ export default function LahoreDHACity() {
             >
               <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
                 <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold mb-6 text-center !text-white" style={{color: 'white !important'}}>Contact Information</h3>
+                  <div style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '1.5rem', textAlign: 'center'}}>Contact Information</div>
                   
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
@@ -500,7 +500,7 @@ export default function LahoreDHACity() {
                         <MapPin className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-lg mb-2">Address</h4>
+                        <div style={{color: '#ffffff', fontWeight: '600', fontSize: '1.125rem', marginBottom: '0.5rem'}}>Address</div>
                         <p className="text-blue-100 leading-relaxed">
                           1st Floor 174, 6 Street 123, Sector H, DHA Phase 1, Lahore
                         </p>
