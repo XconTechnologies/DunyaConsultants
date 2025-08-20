@@ -20,7 +20,7 @@ export default function LahoreDHACity() {
       icon: GraduationCap,
       title: "University Selection",
       description: "We work together at multiple top ranked universities worldwide. We will assist you in selecting a study abroad program that suits your profile and budget.",
-      color: "from-green-500 to-green-600"
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: FileText,
@@ -98,7 +98,7 @@ export default function LahoreDHACity() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-green-600 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
@@ -120,7 +120,7 @@ export default function LahoreDHACity() {
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Welcome to Dunya Consultants{" "}
-              <span className="bg-gradient-to-r from-yellow-300 to-green-200 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-yellow-300 to-blue-200 bg-clip-text text-transparent">
                 DHA, Lahore
               </span>
             </h1>
@@ -172,7 +172,7 @@ export default function LahoreDHACity() {
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Your Study Abroad Partner in{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-green-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   DHA, Lahore
                 </span>
               </h2>
@@ -219,7 +219,7 @@ export default function LahoreDHACity() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3, delay: index * 0.05 }}
                       >
-                        <Badge variant="secondary" className="w-full justify-center py-2 bg-gradient-to-r from-blue-50 to-green-50 text-gray-800 border border-blue-200">
+                        <Badge variant="secondary" className="w-full justify-center py-2 bg-gradient-to-r from-blue-50 to-blue-100 text-gray-800 border border-blue-200">
                           {country}
                         </Badge>
                       </motion.div>
@@ -243,7 +243,7 @@ export default function LahoreDHACity() {
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               What We Do for Students in{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-green-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 DHA, Lahore
               </span>
             </h2>
@@ -286,7 +286,7 @@ export default function LahoreDHACity() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                <span className="bg-gradient-to-r from-[#1D50C9] to-green-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   IELTS Classes
                 </span>{" "}
                 in DHA, Lahore
@@ -316,7 +316,7 @@ export default function LahoreDHACity() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-green-600 text-white">
+              <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
                 <CardContent className="p-8 text-center">
                   <BookOpen className="w-16 h-16 mx-auto mb-6 text-yellow-300" />
                   <h3 className="text-2xl font-bold mb-4">Expert IELTS Training</h3>
@@ -344,7 +344,7 @@ export default function LahoreDHACity() {
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Why Students Trust{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-green-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 Dunya Consultants DHA, Lahore
               </span>
             </h2>
@@ -361,7 +361,7 @@ export default function LahoreDHACity() {
                 >
                   <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300">
                     <CardContent className="p-6 flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
                         <CheckCircle className="w-6 h-6 text-white" />
                       </div>
                       <p className="text-gray-800 font-medium">{reason}</p>
@@ -385,7 +385,7 @@ export default function LahoreDHACity() {
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Frequently Asked{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-green-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 Questions
               </span>
             </h2>
@@ -413,7 +413,7 @@ export default function LahoreDHACity() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-green-600 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-xl"></div>
           <div className="absolute bottom-10 right-20 w-32 h-32 bg-white/10 rounded-full blur-lg"></div>
