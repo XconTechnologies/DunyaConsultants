@@ -186,7 +186,7 @@ export default function StatsBanner() {
           </motion.div>
         ))}
       </div>
-      <div className="container mx-auto px-8 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-[80px] sm:pt-[100px] lg:pt-[120px] pb-[40px] sm:pb-[50px]" ref={ref}>
         {/* Social Icons - Fixed Position Throughout Page */}
         <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-50 bg-white rounded-full px-3 py-4 shadow-lg border border-gray-200 hidden lg:block">
           <div className="flex flex-col gap-3">
@@ -234,8 +234,8 @@ export default function StatsBanner() {
         </div>
 
         {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl lg:text-4xl mb-4 text-white font-normal">
+        <div className="text-center mb-8 sm:mb-10">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 text-white font-normal">
             Turning <span className="font-bold italic">Ambition</span> into <span className="font-bold italic">Admission</span>
           </h2>
           
@@ -245,7 +245,7 @@ export default function StatsBanner() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6 max-w-5xl mx-auto">
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (

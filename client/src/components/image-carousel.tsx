@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import OptimizedImage from './OptimizedImage';
 
 // Import images from assets
 import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
@@ -65,7 +66,7 @@ export default function ImageCarousel() {
                   key={`first-${image.id}`}
                   className="relative rounded-xl overflow-hidden transition-all duration-300 flex-shrink-0 w-[240px] h-[160px] group"
                 >
-                  <img
+                  <OptimizedImage
                     src={image.src}
                     alt={image.alt}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -87,7 +88,7 @@ export default function ImageCarousel() {
                   key={`second-${image.id}`}
                   className="relative rounded-xl overflow-hidden transition-all duration-300 flex-shrink-0 w-[240px] h-[160px] group"
                 >
-                  <img
+                  <OptimizedImage
                     src={image.src}
                     alt={image.alt}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
