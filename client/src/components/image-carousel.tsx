@@ -35,19 +35,13 @@ export default function ImageCarousel() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="relative -mt-20 mb-20 z-20">
-      <div className="relative max-w-7xl mx-auto">
-        
-        {/* Horizontal Sliding Images */}
+    <section ref={ref} className="-mt-20 mb-20">
         <motion.div
-          className="overflow-hidden"
+          className="flex gap-4 overflow-hidden"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          
-          {/* Infinite Sliding Container */}
-          <div className="flex">
             <motion.div
               className="flex gap-4"
               animate={{
@@ -61,36 +55,25 @@ export default function ImageCarousel() {
             >
               {/* First set of images - Display 5 images */}
               {carouselImages.slice(0, 10).map((image) => (
-                <div
-                  key={`first-${image.id}`}
-                  className="flex-shrink-0 group"
-                >
                   <img
+                    key={`first-${image.id}`}
                     src={image.src}
                     alt={image.alt}
-                    className="max-w-[400px] max-h-[300px] object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="max-w-[400px] max-h-[300px] object-contain flex-shrink-0"
                   />
-                </div>
               ))}
               
               {/* Duplicate set for seamless loop - Display 5 images */}
               {carouselImages.slice(0, 10).map((image) => (
-                <div
-                  key={`second-${image.id}`}
-                  className="flex-shrink-0 group"
-                >
                   <img
+                    key={`second-${image.id}`}
                     src={image.src}
                     alt={image.alt}
-                    className="max-w-[400px] max-h-[300px] object-contain transition-transform duration-300 group-hover:scale-105"
+                    className="max-w-[400px] max-h-[300px] object-contain flex-shrink-0"
                   />
-                </div>
               ))}
             </motion.div>
-          </div>
         </motion.div>
-
-      </div>
     </section>
   );
 }
