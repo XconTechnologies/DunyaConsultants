@@ -487,40 +487,6 @@ export default function LahoreDHACity() {
           </div>
         </div>
       </section>
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-xl"></div>
-          <div className="absolute bottom-10 right-20 w-32 h-32 bg-white/10 rounded-full blur-lg"></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Start Your Journey?</h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Visit us today for a free consultation and take the first step toward your dream university abroad.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
-                  Book Free Consultation
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
-                <a href="tel:+923001671947" className="flex items-center">
-                  Call Now: +92 300-167-1947
-                  <Phone className="w-5 h-5 ml-2" />
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
       <Footer />
     </div>
   );
