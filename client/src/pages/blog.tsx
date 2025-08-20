@@ -558,6 +558,65 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               }
                             
+                            // Check for Australia Universities table intro
+                            if (paragraph.includes('Some of the cheapest universities in Australia for international students are as follows:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    Some of the cheapest universities in Australia for international students are as follows:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr No.
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            University Name
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Swinburne University of Technology</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of Queensland</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of Adelaide</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of Southern Queensland</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Bond University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of South Australia</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">7</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Macquarie University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">8</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of New South Wales</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
                             // Check for IELTS Fee table intro
                             if (paragraph.includes('Here is the breakdown of IELTS test exam fee:')) {
                               return (
