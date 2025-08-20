@@ -9,10 +9,10 @@ import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
 
 export default function WhoWeAre() {
   const stats = [
-    { number: "17+", label: "City Branches", icon: Building2 },
-    { number: "200+", label: "Certified Counsellors", icon: Users },
-    { number: "250+", label: "Global Ambassadors", icon: Globe },
-    { number: "50+", label: "Partner Universities", icon: GraduationCap },
+    { number: "10+", label: "Countries", icon: Globe },
+    { number: "14+", label: "Branches", icon: Building2 },
+    { number: "98%", label: "Success Rate", icon: Award },
+    { number: "2,000+", label: "Visa Processing", icon: Users },
   ];
 
   const highlights = [
@@ -55,10 +55,10 @@ export default function WhoWeAre() {
               <span className="text-sm font-medium">About Our Company</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-              Who We Are
+              Why We Are Unique
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-              One of Pakistan's leading study abroad consultants, dedicated to making international education accessible to all
+              Dunya Consultants is one of the best education consultants in Pakistan. We stand among the top study abroad consultants.
             </p>
           </motion.div>
         </div>
@@ -108,13 +108,19 @@ export default function WhoWeAre() {
                   <strong>Dunya Consultants</strong> is one of the best education consultants in Pakistan. We stand among the top study abroad consultants and provide detailed guidance on study abroad programs to students.
                 </p>
                 <p>
-                  With its head office in Sargodha, Dunya Consultants has branches in over <strong>17 cities</strong> across the country and a team of more than <strong>200 certified counsellors</strong>.
+                  With its head office in Lahore, Dunya Consultants has branches in over <strong>14 cities</strong> across the country and a team of more than <strong>200 counselors</strong>.
                 </p>
                 <p>
-                  We are proud to have around <strong>250 ambassadors</strong> working with us internationally and have partnered with 30 top educational institutions in Pakistan and more than <strong>50 foreign universities</strong>.
+                  We are proud to have around <strong>250 ambassadors</strong> working with us internationally and have partnered with 30 top educational institutions in Pakistan and more than <strong>20 foreign universities</strong>.
                 </p>
                 <p>
-                  Since the student visa process can be quite challenging, our Education Consultants are trained to provide <strong>personalized support</strong> to every student so that they can have a smooth and hassle-free experience.
+                  Since the student visa process can be quite challenging, that's why our Education Consultants are trained enough to provide <strong>personalized support</strong> to every student so that they can have a smooth and hassle-free experience.
+                </p>
+                <p>
+                  As a growing study abroad consultants' firm, we help students in <strong>visa interview preparations</strong> and guide them throughout the student visa application process.
+                </p>
+                <p>
+                  So, what are you waiting for? Get your consultancy booked with the best visa consultant in Lahore – <strong>Dunya Consultants</strong> today and get answers to your education queries!
                 </p>
               </div>
               
@@ -153,7 +159,79 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      {/* Highlights Section */}
+      {/* How We Work Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                How We{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Work
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Our admission process includes an online application, required documents, and an interview. We evaluate candidates holistically and notify successful applicants promptly.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                step: "1",
+                title: "Get All Details",
+                description: "Reach out to us to get all details and guidance for studying abroad from our expert education consultants."
+              },
+              {
+                step: "2",
+                title: "University Selection",
+                description: "Choose the right university for abroad education according to your choice."
+              },
+              {
+                step: "3",
+                title: "Meet Requirements",
+                description: "Our professionals will guide you to meet all requirements for study abroad programs."
+              },
+              {
+                step: "4",
+                title: "Apply To University",
+                description: "Apply to your selected foreign university. Our study abroad consultants streamline the student visa application process for a successful submission."
+              },
+              {
+                step: "5",
+                title: "Interview Preparation",
+                description: "Pass your international university interview with the help of our education counsellor."
+              },
+              {
+                step: "6",
+                title: "Visa Granted",
+                description: "Finally, your visa is granted. Get ready to travel to studying abroad!"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-gradient-to-br from-blue-50 to-blue-50 rounded-xl p-6 border border-blue-100 hover:shadow-lg transition-all duration-300"
+              >
+                <div className="w-12 h-12 mb-4 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">{item.step}</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -163,13 +241,55 @@ export default function WhoWeAre() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Why We Are{" "}
+                Why Choose{" "}
                 <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  Unique
+                  Dunya Consultants
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Our commitment to excellence and personalized support sets us apart in the education consultancy industry
+                We offer free consultation to help students in planning their study abroad journey. Our abroad education consultants provide guidance on selecting the right university and preparing your student visa application.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100"
+            >
+              <div className="text-center">
+                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
+                  <Heart className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Personalized Support</h3>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  Our expert provides personalized support to make your study overseas experience stress-free and successful. We understand your goals and needs and give the best advice according to your situation.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Highlights Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                We Serve Around{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  The Globe
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Your trusted partner for seamless study visa solutions abroad. From application to arrival, we ensure a smooth transition to your academic journey.
               </p>
             </motion.div>
           </div>
@@ -227,10 +347,10 @@ export default function WhoWeAre() {
                 <p className="text-xl text-[#1845B3] font-semibold mb-6">Chief Executive Officer</p>
                 <div className="text-lg text-gray-700 leading-relaxed space-y-4">
                   <p>
-                    CEO of Dunya Consultants, an Educational Consultancy Company located in Pakistan. Also the founder of XCON Technologies and a member of the Board of Directors of Dunya Group of Companies.
+                    Hi, myself Umer Farooq! I'm the Chief Executive Officer (CEO) of Dunya Consultants, an Educational Consultancy Company located in Pakistan. I am also the founder of XCON Technologies and a member of the Board of Directors of Dunya Group of Companies.
                   </p>
                   <p>
-                    Completed his Bachelor's in Science from University of the Punjab and did his Masters from University of Engineering and Technology, Lahore.
+                    I have completed my Graduation (Bachelor's in Science) from University of the Punjab and did my Masters from University of Engineering and Technology, Lahore.
                   </p>
                 </div>
                 <div className="mt-8">

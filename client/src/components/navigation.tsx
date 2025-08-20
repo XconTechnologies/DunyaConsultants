@@ -41,7 +41,7 @@ export default function Navigation() {
           title: "Company",
           icon: Users,
           items: [
-            { name: "Who We Are", href: "/about/who-we-are", description: "Meet our dedicated team" },
+            { name: "Who We Are", href: "/about/", description: "Meet our dedicated team" },
             { name: "Mission & Vision", href: "/about/mission-vision", description: "Our goals and values" }
           ]
         },
@@ -512,7 +512,7 @@ export default function Navigation() {
                       {/* Mobile mega menu items */}
                       {item.name === "About Us" && (
                         <div className="pl-4 space-y-2">
-                          <Link href="/about/who-we-are">
+                          <Link href="/about/">
                             <button
                               onClick={() => setIsOpen(false)}
                               className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"

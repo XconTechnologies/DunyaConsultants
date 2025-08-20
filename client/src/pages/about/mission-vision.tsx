@@ -291,7 +291,7 @@ export default function MissionVision() {
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
               </Link>
-              <Link href="/about/who-we-are">
+              <Link href="/about/">
                 <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                   Learn More About Us
                 </Button>

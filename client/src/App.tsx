@@ -107,7 +107,7 @@ function Router() {
       <Route path="/study-abroad-journey" component={StudyAbroadJourney} />
       
       {/* About Routes */}
-      <Route path="/about/who-we-are" component={WhoWeAre} />
+      <Route path="/about/" component={WhoWeAre} />
       <Route path="/about/mission-vision" component={MissionVision} />
       <Route path="/about/why-choose-us" component={WhyChooseUs} />
       <Route path="/about/success-stories" component={SuccessStories} />
