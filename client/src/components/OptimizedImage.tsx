@@ -63,7 +63,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     }
   };
 
-  const imageSrc = inView ? (src.startsWith('http') || src.startsWith('/attached_assets/') ? src : `/attached_assets/${src}`) : placeholder;
+  const imageSrc = inView ? src : placeholder;
 
   return (
     <div ref={imgRef} className={`relative overflow-hidden ${className}`}>
