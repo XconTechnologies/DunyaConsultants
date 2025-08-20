@@ -118,11 +118,8 @@ export default function LahoreDHACity() {
               <span className="text-sm font-medium">DHA Phase 1, Lahore</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Welcome to Dunya Consultants{" "}
-              <span className="bg-gradient-to-r from-yellow-300 to-blue-200 bg-clip-text text-transparent">
-                DHA, Lahore
-              </span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
+              Welcome to Dunya Consultants DHA, Lahore
             </h1>
             
             <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-8">
@@ -319,7 +316,7 @@ export default function LahoreDHACity() {
               <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
                 <CardContent className="p-8 text-center">
                   <BookOpen className="w-16 h-16 mx-auto mb-6 text-yellow-300" />
-                  <h3 className="text-2xl font-bold mb-4">Expert IELTS Training</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">Expert IELTS Training</h3>
                   <p className="text-blue-100 leading-relaxed mb-6">
                     Get comprehensive IELTS preparation with our experienced trainers and modern teaching methods.
                   </p>
@@ -370,6 +367,110 @@ export default function LahoreDHACity() {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Get in Touch Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Get in{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Touch
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              If you're searching for study abroad consultants in DHA, Lahore, we're here to help. Visit us today for a free consultation and take the first step toward your dream university abroad.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
+                <CardContent className="p-8">
+                  <h3 className="text-2xl font-bold mb-6 text-center">Contact Information</h3>
+                  
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <MapPin className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg mb-2">Address</h4>
+                        <p className="text-blue-100 leading-relaxed">
+                          1st Floor 174, 6 Street 123, Sector H, DHA Phase 1, Lahore
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Phone className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg mb-2">Phone</h4>
+                        <a href="tel:+923001671947" className="text-blue-100 hover:text-white transition-colors">
+                          +92 300-167-1947
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Mail className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-lg mb-2">Email</h4>
+                        <a href="mailto:ar.nafey@dunyaconsultants.com" className="text-blue-100 hover:text-white transition-colors">
+                          ar.nafey@dunyaconsultants.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
+              <div className="text-center">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Visit Our Office</h3>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  Come visit us at our DHA office for personalized consultation and expert guidance on your study abroad journey.
+                </p>
+                
+                <div className="space-y-4">
+                  <Button size="lg" className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1a73e8] hover:to-[#1565c0] text-white py-4">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <Calendar className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-[#1D50C9] text-[#1D50C9] hover:bg-blue-50 py-4">
+                    <a href="https://share.google/yDY7u2J5ED43ikhNp" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      Get Directions
+                      <MapPin className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
