@@ -90,9 +90,37 @@ function parseContentToSections(content: string) {
   const lines = content.split('\n');
   const sections: Array<{id: string, title: string, content: string}> = [];
   let currentSection: {id: string, title: string, content: string} | null = null;
+  let insideHTMLTable = false;
   
-  lines.forEach(line => {
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
     const trimmedLine = line.trim();
+    
+    // Check if we're starting an HTML table
+    if (trimmedLine.startsWith('<div class="overflow-x-auto">')) {
+      insideHTMLTable = true;
+      if (currentSection) {
+        currentSection.content += line + '\n';
+      }
+      continue;
+    }
+    
+    // Check if we're ending an HTML table
+    if (insideHTMLTable && trimmedLine.includes('</div>')) {
+      insideHTMLTable = false;
+      if (currentSection) {
+        currentSection.content += line + '\n';
+      }
+      continue;
+    }
+    
+    // If inside HTML table, add all lines to preserve formatting
+    if (insideHTMLTable) {
+      if (currentSection) {
+        currentSection.content += line + '\n';
+      }
+      continue;
+    }
     
     if (trimmedLine.startsWith('##')) {
       if (currentSection) {
@@ -118,7 +146,7 @@ function parseContentToSections(content: string) {
         };
       }
     }
-  });
+  }
   
   if (currentSection) {
     sections.push(currentSection);
@@ -563,37 +591,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               }
                               
-                              // Check for HTML table content and render it properly
-                              if (paragraph.trim().startsWith('<div class="overflow-x-auto">')) {
-                                // Find the complete HTML table block by collecting all lines until </div>
-                                const contentLines = section.content.split('\n');
-                                const startIndex = contentLines.indexOf(paragraph);
-                                let htmlContent = paragraph;
-                                let endIndex = startIndex;
-                                
-                                // If this line doesn't include the closing </div>, collect more lines
-                                if (!paragraph.includes('</div>')) {
-                                  for (let i = startIndex + 1; i < contentLines.length; i++) {
-                                    htmlContent += '\n' + contentLines[i];
-                                    endIndex = i;
-                                    if (contentLines[i].includes('</div>')) {
-                                      break;
-                                    }
-                                  }
-                                }
-                                
-                                // Mark the processed lines to skip them later
-                                for (let i = startIndex + 1; i <= endIndex; i++) {
-                                  contentLines[i] = '<!-- PROCESSED_TABLE_LINE -->';
-                                }
-                                
+                              // Check for complete HTML table content and render it properly
+                              if (paragraph.trim().startsWith('<div class="overflow-x-auto">') && paragraph.includes('</div>')) {
                                 return (
-                                  <div key={pIndex} className="my-6" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                                  <div key={pIndex} className="my-6" dangerouslySetInnerHTML={{ __html: paragraph }} />
                                 );
                               }
                               
-                              // Skip already processed table lines
-                              if (paragraph.trim() === '<!-- PROCESSED_TABLE_LINE -->') {
+                              // Skip individual HTML table lines that are part of a larger block
+                              if (paragraph.trim().match(/^<(table|thead|tbody|tr|th|td)/i) || paragraph.trim().match(/<\/(table|thead|tbody|tr|th|td)>$/i)) {
                                 return null;
                               }
                             
