@@ -1035,6 +1035,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             
                             // Skip rendering raw table data since we have custom tables above
                             if ((paragraph.includes('Sr. No') && paragraph.includes('University Name')) ||
+                                paragraph.includes('| Sr No. | University Name |') ||
                                 paragraph.includes('| Sr No. | University Name | Located In |') ||
                                 paragraph.includes('|--------|') ||
                                 paragraph.includes('University of York') ||
