@@ -1,30 +1,35 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Check, Shield, Award, Globe, Users } from "lucide-react";
+import { Check, Shield, Award, Globe, Users, CheckCircle } from "lucide-react";
 
 // Import the company collage image
 import companyCollage from "@assets/image_1755000279427.png";
 
 const expandableContent = [
   {
-    icon: Shield,
-    title: "Honesty",
-    content: "Clear guidance at every step. We explain options, costs, and timelines so you always know what's happening."
-  },
-  {
-    icon: Award,
-    title: "Certified Consultants", 
-    content: "Friendly experts help with course selection, documents, applications, and visa from start to finish."
+    icon: Users,
+    title: "17 City Branches & 200 Certified Counsellors",
+    content: "Comprehensive support network across Pakistan with expert counsellors providing personalized guidance to every student."
   },
   {
     icon: Globe,
-    title: "Multiple Destinations", 
-    content: "Apply to Turkey, the US, the UK, Canada, and more, with support in Pakistan and abroad."
+    title: "250 Ambassadors & 50+ Foreign Universities",
+    content: "Global partnerships with international representatives and direct university connections for priority processing."
   },
   {
-    icon: Users,
-    title: "Official Representatives", 
-    content: "We work directly with trusted universities so your application is accurate and gets priority."
+    icon: Award,
+    title: "Scholarship Programs",
+    content: "Access to exclusive scholarship opportunities and financial aid programs to make studying abroad more affordable."
+  },
+  {
+    icon: Shield,
+    title: "Smooth Visa Approval Process",
+    content: "Proven track record with streamlined visa processing and expert guidance throughout the entire application journey."
+  },
+  {
+    icon: CheckCircle,
+    title: "Study Abroad Guidance",
+    content: "End-to-end support from university selection to departure preparation, ensuring your success every step of the way."
   }
 ];
 
@@ -93,9 +98,14 @@ export default function AboutCompany() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <h2 className="text-2xl lg:text-3xl font-bold text-[#1D50C9] mb-2">
-                  Why Choose Dunya Consultants?
+                <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-4">
+                  WHO WE ARE
                 </h2>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  Dunya Consultants is one of the best education consultants in Pakistan. 
+                  We stand among the top study abroad consultants and provide detailed 
+                  guidance on study abroad programs to students.
+                </p>
               </motion.div>
 
               {/* Content Items */}
@@ -103,19 +113,19 @@ export default function AboutCompany() {
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-start gap-4"
+                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-blue-50/50 transition-colors duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                   >
-                    <div className="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center border border-blue-100">
-                      <item.icon className="w-6 h-6" style={{ color: '#1D50C9' }} />
+                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center shadow-lg">
+                      <item.icon className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1 pt-1">
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p className="text-gray-600 leading-relaxed text-sm">
                         {item.content}
                       </p>
                     </div>
