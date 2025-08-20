@@ -59,7 +59,7 @@ There are some UK universities with January intake that accept the MOI certifica
     authorId: 1,
     tags: ["MOI", "UK Universities", "Study Abroad", "English Proficiency", "University Admission"],
     metaDescription: "Complete list of UK universities that accept MOI (Medium of Instruction) instead of IELTS or PTE. Find MOI accepted universities and eligibility criteria for studying in the UK.",
-    featuredImage: "image_1755603898434.png",
+    featuredImage: "/attached_assets/image_1755676067750.png",
     viewCount: 0,
     category: "University Guides",
     publishedAt: "2024-10-23"
@@ -145,7 +145,7 @@ Yes, you can take the TOEFL test in Pakistan. Test centers are present in major 
     authorId: 1,
     tags: ["TOEFL", "English Test", "Pakistan", "Test Preparation", "Study Abroad"],
     metaDescription: "Complete guide to TOEFL test fees in Pakistan, registration process, eligibility criteria, and exam validity. Everything you need to know about taking the TOEFL exam in Pakistan.",
-    featuredImage: "image_1755603588012.png",
+    featuredImage: "/attached_assets/image_1755676366221.png",
     viewCount: 0,
     category: "Test Preparation",
     publishedAt: "2024-12-02"
@@ -242,7 +242,7 @@ You will need a registered business address and name to move forward with busine
     authorId: 1,
     tags: ["UK Business", "Company Registration", "International Business", "Business Setup", "Legal Requirements"],
     metaDescription: "Complete guide for non-UK residents to register a company in the United Kingdom. Learn about business structures, requirements, costs, and step-by-step process.",
-    featuredImage: "image_1755602848915.png",
+    featuredImage: "/attached_assets/image_1755676584173.png",
     viewCount: 0,
     category: "Business Guides",
     publishedAt: "2024-09-06"
@@ -256,8 +256,8 @@ You will need a registered business address and name to move forward with busine
     authorId: 1,
     tags: ["Finland", "Student Visa", "Study Abroad", "Europe", "Admissions"],
     metaDescription: "Complete guide to Finland student visa applications from Pakistan including admission requirements, fees, deadlines, and step-by-step application process for 2025.",
-    featuredImage: "/blog/finland-visa-application.jpg",
-    viewCount: 2847,
+    featuredImage: "/attached_assets/image_1755676673018.png",
+    viewCount: 0,
     category: "Visa Guides"
   },
   {
@@ -269,8 +269,8 @@ You will need a registered business address and name to move forward with busine
     authorId: 1,
     tags: ["KTE", "English Test", "Study Abroad"],
     metaDescription: "Complete guide to Kaplan Test of English including format, preparation tips, and requirements for international students",
-    featuredImage: "/blog/kte-guide.jpg",
-    viewCount: 1250
+    featuredImage: "/attached_assets/image_1755677389992.png",
+    viewCount: 0
   },
   {
     title: "Global Talent Visa Australia: Complete Guide 2025",
@@ -281,8 +281,8 @@ You will need a registered business address and name to move forward with busine
     authorId: 1,
     tags: ["Australia", "Visa", "Global Talent"],
     metaDescription: "Everything about Australia's Global Talent Visa including eligibility, application process, and benefits for skilled professionals",
-    featuredImage: "/blog/australia-global-talent.jpg",
-    viewCount: 2100
+    featuredImage: "/attached_assets/image_1755676067750.png",
+    viewCount: 0
   },
   {
     title: "Anglia Ruskin University – A Trusted Partner of Dunya Consultants",
@@ -293,8 +293,8 @@ You will need a registered business address and name to move forward with busine
     authorId: 1,
     tags: ["UK", "University", "Partnership"],
     metaDescription: "Discover Anglia Ruskin University programs, rankings, and admission requirements for international students",
-    featuredImage: "/blog/anglia-ruskin.jpg",
-    viewCount: 890
+    featuredImage: "/attached_assets/image_1755676366221.png",
+    viewCount: 0
   },
   {
     title: "Cyprus Visa for Pakistan: Complete Student Guide 2025",
@@ -305,8 +305,8 @@ You will need a registered business address and name to move forward with busine
     authorId: 1,
     tags: ["Cyprus", "Visa", "Pakistan", "Students"],
     metaDescription: "Complete guide for Pakistani students on Cyprus visa requirements, application process, and university admission",
-    featuredImage: "/blog/cyprus-visa.jpg",
-    viewCount: 1680
+    featuredImage: "/attached_assets/image_1755676584173.png",
+    viewCount: 0
   },
   {
     title: "Green Card for International Students: Complete Guide 2025",
@@ -318,9 +318,8 @@ You will need a registered business address and name to move forward with busine
     tags: ["USA", "Green Card", "Immigration", "Students", "Permanent Residency"],
     // metaTitle: "Green Card for International Students: Complete Guide 2025",
     metaDescription: "Comprehensive guide to obtaining a Green Card as an international student including benefits, application pathways, and step-by-step process",
-    featuredImage: "/blog/green-card-usa.jpg",
-    // readingTime: 15,
-    viewCount: 3250,
+    featuredImage: "/attached_assets/image_1755676673018.png",
+    viewCount: 0,
     category: "Immigration Guide"
   },
   {
@@ -333,9 +332,8 @@ You will need a registered business address and name to move forward with busine
     tags: ["UK", "Masters", "Study Gap", "University Admission", "Education"],
     // metaTitle: "How Much Study Gap is Acceptable in UK for Masters?",
     metaDescription: "Complete guide to understanding study gap acceptance for UK Masters programs including acceptable gap periods, documentation, and application tips",
-    featuredImage: "/blog/uk-study-gap.jpg",
-    // readingTime: 12,
-    viewCount: 2890,
+    featuredImage: "/attached_assets/image_1755677389992.png",
+    viewCount: 0,
     category: "Study Abroad"
   },
   {
@@ -3281,7 +3279,7 @@ export async function seedBlogPosts() {
             tags: blogPost.tags,
             metaDescription: blogPost.metaDescription,
             featuredImage: blogPost.featuredImage,
-            viewCount: blogPost.views,
+            viewCount: blogPost.viewCount || 0,
             category: blogPost.category,
             updatedAt: new Date(),
           }

@@ -24,7 +24,7 @@ const staticBlogPosts = [
     readTime: "8 min",
     views: 2450,
     tags: ["GRE", "Test Preparation", "Pakistan", "Study Abroad"],
-    image: "https://dunyaconsultants.com/wp-content/uploads/2024/10/GRE-Test-Fee-in-Pakistan.webp",
+    image: "/attached_assets/image_1755676067750.png",
     featured: true,
     slug: "2024/10/15/gre-test-fee-in-pakistan",
     content: `Do you want to show your best educational as well as analytical skills across several international countries? If yes, then this GRE Test in Pakistan is a perfect option for you. Several countries from worldwide check the logical reasoning, analytical capabilities, and critical thinking of international students via this test. ETS takes the graduate record examination or GRE.
