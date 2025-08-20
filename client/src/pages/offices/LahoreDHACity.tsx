@@ -340,29 +340,47 @@ export default function LahoreDHACity() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
-            {ieltsFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 h-full group hover:-translate-y-1">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">
-                      {feature.split(' – ')[0]}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {feature.split(' – ')[1]}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+          {/* IELTS Features Carousel */}
+          <div className="relative overflow-hidden mb-16">
+            <motion.div
+              className="flex gap-8"
+              animate={{
+                x: [0, -100 * ieltsFeatures.length + "%"]
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 20,
+                  ease: "linear"
+                }
+              }}
+              style={{
+                width: `${200 * ieltsFeatures.length}%`
+              }}
+            >
+              {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0"
+                  style={{ width: `${100 / (ieltsFeatures.length * 2)}%` }}
+                >
+                  <Card className="border-0 shadow-xl hover:shadow-2xl transition-all duration-300 h-full group hover:-translate-y-1 mx-4">
+                    <CardContent className="p-8 text-center">
+                      <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <CheckCircle className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-3">
+                        {feature.split(' – ')[0]}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {feature.split(' – ')[1]}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
           {/* Call to Action Card */}
@@ -380,7 +398,7 @@ export default function LahoreDHACity() {
                 
                 <div className="relative">
                   <BookOpen className="w-20 h-20 mx-auto mb-6 text-white opacity-90" />
-                  <h3 className="text-3xl font-bold mb-4 text-[#ffffff]" style={{color: '#ffffff'}}>
+                  <h3 style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.875rem', marginBottom: '1rem'}}>
                     Ready to Start Your IELTS Journey?
                   </h3>
                   <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
