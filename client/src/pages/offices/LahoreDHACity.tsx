@@ -358,7 +358,7 @@ export default function LahoreDHACity() {
               <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
                 <CardContent className="p-8 text-center">
                   <BookOpen className="w-16 h-16 mx-auto mb-6 text-white" />
-                  <h3 className="text-2xl font-bold mb-4 !text-white text-[#ffffff]" style={{color: 'white !important'}}>Expert IELTS Training</h3>
+                  <h3 style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '1rem'}}>Expert IELTS Training</h3>
                   <p className="text-blue-100 leading-relaxed mb-6">
                     Get comprehensive IELTS preparation with our experienced trainers and modern teaching methods.
                   </p>
