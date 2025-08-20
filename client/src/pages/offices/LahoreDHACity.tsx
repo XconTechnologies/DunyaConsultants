@@ -341,32 +341,27 @@ export default function LahoreDHACity() {
           </motion.div>
 
           {/* IELTS Features Carousel */}
-          <div className="relative overflow-hidden mb-16 max-w-6xl mx-auto">
-            <motion.div
-              className="flex gap-4"
-              animate={{
-                x: [0, `-${100 / ieltsFeatures.length * 4}%`]
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 10,
-                  ease: "linear"
-                }
-              }}
-              style={{
-                width: `${(ieltsFeatures.length * 2 * 100) / 4}%`
+          <div className="relative overflow-hidden mb-16">
+            <motion.div 
+              className="flex gap-6"
+              animate={{ x: [-0, -50 + "%"] }}
+              transition={{ 
+                duration: 20,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop"
               }}
             >
               {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0"
-                  style={{ width: `calc(${100 / 4}% - 12px)` }}
+                <motion.div
+                  key={`${feature}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: (index % ieltsFeatures.length) * 0.05 }}
+                  className="group cursor-pointer flex-shrink-0"
                 >
-                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1">
-                    <CardContent className="p-5 text-center">
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1 min-w-[280px]">
+                    <CardContent className="p-6 text-center">
                       <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                         <CheckCircle className="w-6 h-6 text-white" />
                       </div>
@@ -378,7 +373,7 @@ export default function LahoreDHACity() {
                       </p>
                     </CardContent>
                   </Card>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>
