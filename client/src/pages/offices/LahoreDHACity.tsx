@@ -341,47 +341,46 @@ export default function LahoreDHACity() {
           </motion.div>
 
           {/* IELTS Features Carousel */}
-          <div className="relative overflow-hidden mb-16">
-            <div className="flex justify-center">
-              <motion.div
-                className="flex"
-                animate={{
-                  x: [0, "-100%"]
-                }}
-                transition={{
-                  x: {
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    duration: 12,
-                    ease: "linear"
-                  }
-                }}
-                style={{
-                  width: "200%"
-                }}
-              >
-                {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
-                  <div
-                    key={index}
-                    className="w-1/4 px-3"
-                  >
-                    <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1">
-                      <CardContent className="p-6 text-center">
-                        <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                          <CheckCircle className="w-6 h-6 text-white" />
-                        </div>
-                        <h3 className="text-sm font-bold text-gray-900 mb-3">
-                          {feature.split(' – ')[0]}
-                        </h3>
-                        <p className="text-xs text-gray-600 leading-relaxed">
-                          {feature.split(' – ')[1]}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
+          <div className="relative overflow-hidden mb-16 max-w-6xl mx-auto">
+            <motion.div
+              className="flex gap-4"
+              animate={{
+                x: [0, `-${100 / ieltsFeatures.length * 4}%`]
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 10,
+                  ease: "linear"
+                }
+              }}
+              style={{
+                width: `${(ieltsFeatures.length * 2 * 100) / 4}%`
+              }}
+            >
+              {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0"
+                  style={{ width: `calc(${100 / 4}% - 12px)` }}
+                >
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1">
+                    <CardContent className="p-5 text-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <CheckCircle className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-sm font-bold text-gray-900 mb-3 leading-tight">
+                        {feature.split(' – ')[0]}
+                      </h3>
+                      <p className="text-xs text-gray-600 leading-relaxed">
+                        {feature.split(' – ')[1]}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
           {/* Call to Action Card */}
