@@ -3281,7 +3281,7 @@ export async function seedBlogPosts() {
             tags: blogPost.tags,
             metaDescription: blogPost.metaDescription,
             featuredImage: blogPost.featuredImage,
-            viewCount: blogPost.views,
+            viewCount: blogPost.viewCount,
             category: blogPost.category,
             updatedAt: new Date(),
           }
