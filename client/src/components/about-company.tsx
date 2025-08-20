@@ -95,11 +95,11 @@ export default function AboutCompany() {
               </motion.div>
 
               {/* Content Items */}
-              <div className="space-y-4 flex-1">
+              <div className="space-y-2 flex-1">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-start gap-3 p-2 rounded-xl hover:bg-blue-50/50 transition-colors duration-300"
+                    className="flex items-start gap-3 p-1 rounded-xl hover:bg-blue-50/50 transition-colors duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
