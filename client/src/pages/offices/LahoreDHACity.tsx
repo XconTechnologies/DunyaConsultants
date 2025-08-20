@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,6 +10,8 @@ import Footer from "@/components/footer";
 
 export default function LahoreDHACity() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const countriesPerSlide = 6;
   
   const services = [
     {
@@ -233,23 +235,69 @@ export default function LahoreDHACity() {
                   Support
                 </span>
               </h3>
-              <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9]">
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                  {countries.map((country, index) => (
-                    <motion.div
-                      key={country}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.05 }}
-                      className="group cursor-pointer"
-                    >
-                      <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white rounded-xl p-4 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
-                        <Globe className="w-6 h-6 mx-auto mb-2 opacity-80" />
-                        <p className="text-sm font-semibold">{country}</p>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9] relative">
+                {/* Carousel Container */}
+                <div className="relative overflow-hidden">
+                  <motion.div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    animate={{ x: -currentSlide * 100 + "%" }}
+                  >
+                    {Array.from({ length: Math.ceil(countries.length / countriesPerSlide) }).map((_, slideIndex) => (
+                      <div key={slideIndex} className="w-full flex-shrink-0">
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 px-4">
+                          {countries
+                            .slice(slideIndex * countriesPerSlide, (slideIndex + 1) * countriesPerSlide)
+                            .map((country, index) => (
+                              <motion.div
+                                key={country}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, delay: index * 0.05 }}
+                                className="group cursor-pointer"
+                              >
+                                <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white rounded-xl p-4 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                                  <Globe className="w-6 h-6 mx-auto mb-2 opacity-80" />
+                                  <p className="text-sm font-semibold">{country}</p>
+                                </div>
+                              </motion.div>
+                            ))}
+                        </div>
                       </div>
-                    </motion.div>
-                  ))}
+                    ))}
+                  </motion.div>
                 </div>
+
+                {/* Navigation Buttons */}
+                <div className="flex justify-center mt-6 space-x-4">
+                  <button
+                    onClick={() => setCurrentSlide(Math.max(0, currentSlide - 1))}
+                    disabled={currentSlide === 0}
+                    className="p-2 rounded-full bg-[#1D50C9] text-white hover:bg-[#1845B3] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  
+                  <div className="flex space-x-2 items-center">
+                    {Array.from({ length: Math.ceil(countries.length / countriesPerSlide) }).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentSlide(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                          currentSlide === index ? 'bg-[#1D50C9]' : 'bg-gray-300'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  
+                  <button
+                    onClick={() => setCurrentSlide(Math.min(Math.ceil(countries.length / countriesPerSlide) - 1, currentSlide + 1))}
+                    disabled={currentSlide === Math.ceil(countries.length / countriesPerSlide) - 1}
+                    className="p-2 rounded-full bg-[#1D50C9] text-white hover:bg-[#1845B3] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
+
                 <div className="mt-6 text-center">
                   <p className="text-gray-600 text-sm">Helping students achieve their dreams in top study destinations worldwide</p>
                 </div>
