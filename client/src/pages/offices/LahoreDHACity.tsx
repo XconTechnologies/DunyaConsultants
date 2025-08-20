@@ -204,15 +204,54 @@ export default function LahoreDHACity() {
               </div>
             </motion.div>
 
-            {/* Right Side - Space for Images */}
+            {/* Right Side - Office Gallery */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex items-center justify-center"
+              className="space-y-4"
             >
-              <div className="w-full h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
-                <p className="text-gray-500 text-lg">Images will be added here</p>
+              <div className="grid gap-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="overflow-hidden rounded-xl shadow-xl"
+                >
+                  <img 
+                    src="@assets/WhatsApp Image 2024-07-20 at 10.54.08_100076f0_1755690900367.jpg" 
+                    alt="Dunya Consultants DHA Office Reception with Logo"
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </motion.div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
+                      src="@assets/WhatsApp Image 2024-07-20 at 10.54.11_613b4f8d_1755690898376.jpg" 
+                      alt="Professional Consultation Area"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
+                      src="@assets/WhatsApp Image 2024-07-20 at 10.54.07_23cebcb6_1755690902473.jpg" 
+                      alt="Dunya Consultants Building Exterior"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </motion.div>
+                </div>
               </div>
             </motion.div>
           </div>
