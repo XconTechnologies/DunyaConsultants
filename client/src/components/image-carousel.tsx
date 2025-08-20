@@ -36,11 +36,11 @@ export default function ImageCarousel() {
 
   return (
     <section ref={ref} className="relative -mt-20 mb-20 z-20">
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto">
         
         {/* Horizontal Sliding Images */}
         <motion.div
-          className="relative overflow-hidden"
+          className="overflow-hidden"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
