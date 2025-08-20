@@ -52,21 +52,12 @@ export default function AboutCompany() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="relative bg-white rounded-3xl p-4 shadow-xl h-full min-h-[400px] lg:min-h-[600px]">
-              <motion.div
-                className="relative w-full h-full"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <img
-                  src={companyCollage}
-                  alt="Company collage showcasing achievements and team"
-                  className="w-full h-full object-cover rounded-2xl shadow-lg"
-                  loading="eager"
-                />
-              </motion.div>
-            </div>
+            <img
+              src={companyCollage}
+              alt="Company collage showcasing achievements and team"
+              className="w-full h-[600px] object-cover rounded-2xl shadow-lg"
+              loading="eager"
+            />
           </motion.div>
 
           {/* Right Side - Content */}
