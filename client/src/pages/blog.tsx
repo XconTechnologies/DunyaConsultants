@@ -603,16 +603,40 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               }
                               
-                              // Skip plain text table content that appears before HTML table in Statement of Purpose blog
-                              if (section.title === 'A General SOP VS an SOP for Scholarship' && 
-                                  (paragraph.trim() === 'General SOP' ||
-                                   paragraph.trim() === 'SOP for Scholarship' ||
-                                   paragraph.includes('A statement that is written to display your interest in a particular program.') ||
-                                   paragraph.includes('A statement to display the reasons for getting the scholarship.') ||
-                                   paragraph.includes('The purpose of writing it is to fulfill a requirement of an application process.') ||
-                                   paragraph.includes('Its purpose is to communicate that how availing the scholarship will help the student to achieve his goals.') ||
-                                   paragraph.includes('The major focus of this is to explain the reason for selecting the reason for selecting a particular program.') ||
-                                   paragraph.includes('The major focus is to explain the financial circumstances and sustainability for the scholarship of that applicant.'))) {
+                              // Special handling for Statement of Purpose comparison table
+                              if (section.title === 'A General SOP VS an SOP for Scholarship') {
+                                // Show table only once for the section
+                                if (pIndex === 0) {
+                                  return (
+                                    <div key={pIndex} className="my-6">
+                                      <div className="overflow-x-auto">
+                                        <table className="w-full border-collapse border border-gray-300 dark:border-gray-600">
+                                          <thead>
+                                            <tr className="bg-blue-50 dark:bg-blue-900">
+                                              <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-left font-semibold text-gray-900 dark:text-gray-100">General SOP</th>
+                                              <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-left font-semibold text-gray-900 dark:text-gray-100">SOP for Scholarship</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr className="bg-white dark:bg-gray-800">
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">A statement that is written to display your interest in a particular program.</td>
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">A statement to display the reasons for getting the scholarship.</td>
+                                            </tr>
+                                            <tr className="bg-gray-50 dark:bg-gray-700">
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">The purpose of writing it is to fulfill a requirement of an application process.</td>
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">Its purpose is to communicate that how availing the scholarship will help the student to achieve his goals.</td>
+                                            </tr>
+                                            <tr className="bg-white dark:bg-gray-800">
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">The major focus of this is to explain the reason for selecting the reason for selecting a particular program.</td>
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">The major focus is to explain the financial circumstances and sustainability for the scholarship of that applicant.</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                                // Skip all other content in this section since we only want the table
                                 return null;
                               }
                             
