@@ -2194,17 +2194,6 @@ Some students get disheartened after checking the higher study education costs a
 
 Some of the cheapest universities in Australia for international students are as follows:
 
-| Sr No. | University Name |
-|--------|-----------------|
-| 1 | Swinburne University of Technology |
-| 2 | The University of Queensland |
-| 3 | The University of Adelaide |
-| 4 | The University of Southern Queensland |
-| 5 | Bond University |
-| 6 | The University of South Australia |
-| 7 | Macquarie University |
-| 8 | The University of New South Wales |
-
 ## Swinburne University of Technology
 
 The Swinburne University of Technology is one of the leading universities in Australia currently. According to US News, it ranks number one in Australia.
