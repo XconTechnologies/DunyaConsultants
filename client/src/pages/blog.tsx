@@ -562,6 +562,40 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               if (paragraph.trim().startsWith('|') && paragraph.includes('|')) {
                                 return null;
                               }
+                              
+                              // Check for HTML table content and render it properly
+                              if (paragraph.trim().startsWith('<div class="overflow-x-auto">')) {
+                                // Find the complete HTML table block by collecting all lines until </div>
+                                const contentLines = section.content.split('\n');
+                                const startIndex = contentLines.indexOf(paragraph);
+                                let htmlContent = paragraph;
+                                let endIndex = startIndex;
+                                
+                                // If this line doesn't include the closing </div>, collect more lines
+                                if (!paragraph.includes('</div>')) {
+                                  for (let i = startIndex + 1; i < contentLines.length; i++) {
+                                    htmlContent += '\n' + contentLines[i];
+                                    endIndex = i;
+                                    if (contentLines[i].includes('</div>')) {
+                                      break;
+                                    }
+                                  }
+                                }
+                                
+                                // Mark the processed lines to skip them later
+                                for (let i = startIndex + 1; i <= endIndex; i++) {
+                                  contentLines[i] = '<!-- PROCESSED_TABLE_LINE -->';
+                                }
+                                
+                                return (
+                                  <div key={pIndex} className="my-6" dangerouslySetInnerHTML={{ __html: htmlContent }} />
+                                );
+                              }
+                              
+                              // Skip already processed table lines
+                              if (paragraph.trim() === '<!-- PROCESSED_TABLE_LINE -->') {
+                                return null;
+                              }
                             
                             // Check for Australia Universities table intro
                             if (paragraph.includes('Some of the cheapest universities in Australia for international students are as follows:')) {
