@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState, useMemo } from "react";
-import OptimizedImage from "./OptimizedImage";
+import OptimizedImage from "./optimized-image";
 
 // Import university logos - original 10
 import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750755121093.jpg";
@@ -173,22 +173,22 @@ export default function UniversityPartnersSection() {
   };
 
   return (
-    <section ref={ref} id="university-partners" className="py-16 sm:py-24 lg:py-32 bg-white">
+    <section ref={ref} id="university-partners" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          className="text-center mb-8 sm:mb-12 lg:mb-16"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 cursor-pointer transition-all duration-300 hover:scale-105" style={{ color: '#1D50C9' }}
+            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105" style={{ color: '#1D50C9' }}
             whileHover={{ scale: 1.05 }}
           >
             Our Global University Partners
           </motion.h2>
-          <p className="text-neutral-600 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
+          <p className="text-neutral-600 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
             Unlock your potential with our extensive network of world-class universities and institutions across the globe
           </p>
         </motion.div>
@@ -231,7 +231,7 @@ export default function UniversityPartnersSection() {
                       className="group flex items-center justify-center p-1 min-h-[100px]"
                       whileHover={{ scale: 1.1 }}
                     >
-                      <OptimizedImage
+                      <img
                         src={university.logoUrl}
                         alt={`${university.name} logo`}
                         className="h-24 w-40 object-contain transition-all duration-300"

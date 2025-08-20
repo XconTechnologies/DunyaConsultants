@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Check, Shield, Award, Globe, Users } from "lucide-react";
-import OptimizedImage from './OptimizedImage';
 
 // Import the company collage image
 import companyCollage from "@assets/image_1755000279427.png";
@@ -34,12 +33,12 @@ export default function AboutCompany() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="relative py-8 sm:py-12 lg:py-16 xl:py-24 overflow-hidden">
+    <section ref={ref} className="relative py-16 lg:py-24 overflow-hidden">
       {/* Clean Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-blue-50"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-stretch">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           
           {/* Left Side - Image */}
           <motion.div
@@ -48,18 +47,18 @@ export default function AboutCompany() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="relative bg-white rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-xl h-full min-h-[400px] sm:min-h-[500px] lg:min-h-[600px]">
+            <div className="relative bg-white rounded-3xl p-4 shadow-xl h-full min-h-[600px]">
               <motion.div
                 className="relative w-full h-full"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <OptimizedImage
+                <img
                   src={companyCollage}
                   alt="Company collage showcasing achievements and team"
                   className="w-full h-full object-cover rounded-2xl shadow-lg"
-                  priority
+                  loading="eager"
                 />
               </motion.div>
             </div>

@@ -501,35 +501,30 @@ export default function CountriesSection() {
     });
   };
 
-  const handleApplyNow = (country: Country) => {
-    setApplicationCountry(country);
-    setShowApplicationForm(true);
-  };
-
   return (
     <section 
       ref={ref}
       id="study-destinations"
-      className="relative py-8 sm:py-12 lg:py-16 bg-gradient-to-b from-slate-50 to-white overflow-hidden"
+      className="relative py-16 bg-gradient-to-b from-slate-50 to-white overflow-hidden"
     >
       {/* Rest of the component remains the same */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-8 sm:mb-12 lg:mb-16"
+          className="text-center mb-16"
         >
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6" style={{ color: '#1D50C9' }}>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D50C9' }}>
             Study Abroad Destinations
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Choose from top study destinations worldwide and start your journey to international education excellence.
           </p>
           
-          <div className="flex justify-center gap-1 mt-6 sm:mt-8 bg-gray-100 p-1 rounded-lg w-fit mx-auto">
+          <div className="flex justify-center gap-1 mt-8 bg-gray-100 p-1 rounded-lg w-fit mx-auto">
             <Button
               onClick={() => setActiveTab('popular')}
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
@@ -559,7 +554,7 @@ export default function CountriesSection() {
 
         {/* Grid View for All Countries */}
         {isGridView ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {displayCountries.map((country, index) => (
               <motion.div
                 key={country.id}
@@ -568,13 +563,13 @@ export default function CountriesSection() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
               >
-                <div className="relative h-40 sm:h-48 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
                   <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
-                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-                    <span className="text-2xl sm:text-3xl">{country.flag}</span>
+                  <div className="absolute top-4 left-4">
+                    <span className="text-3xl">{country.flag}</span>
                   </div>
-                  <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 country-card-header" data-country-card>
-                    <h3 className="text-lg sm:text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
+                  <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
+                    <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
                   </div>
                 </div>
                 

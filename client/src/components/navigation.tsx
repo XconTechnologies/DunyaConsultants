@@ -6,7 +6,6 @@ import { Link } from "wouter";
 import logoImage from "@assets/DC White Logo_1751441165041.png";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
 import SimpleConsultationPopup from "@/components/simple-consultation-popup";
-import OptimizedImage from './OptimizedImage';
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -182,7 +181,7 @@ export default function Navigation() {
           >
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <OptimizedImage 
+                <img 
                   src={isScrolled ? logoImageBlue : logoImage} 
                   alt="Dunya Consultants Logo" 
                   className="h-8 w-auto transition-all duration-500 drop-shadow-lg"

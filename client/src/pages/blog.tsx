@@ -5,7 +5,6 @@ import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
-import OptimizedImage from '@/components/OptimizedImage';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -24,7 +23,7 @@ const staticBlogPosts = [
     readTime: "8 min",
     views: 2450,
     tags: ["GRE", "Test Preparation", "Pakistan", "Study Abroad"],
-    image: "/attached_assets/image_1755676067750.png",
+    image: "https://dunyaconsultants.com/wp-content/uploads/2024/10/GRE-Test-Fee-in-Pakistan.webp",
     featured: true,
     slug: "2024/10/15/gre-test-fee-in-pakistan",
     content: `Do you want to show your best educational as well as analytical skills across several international countries? If yes, then this GRE Test in Pakistan is a perfect option for you. Several countries from worldwide check the logical reasoning, analytical capabilities, and critical thinking of international students via this test. ETS takes the graduate record examination or GRE.
@@ -330,8 +329,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
             <article className="bg-white rounded-xl shadow-lg overflow-hidden">
@@ -339,12 +338,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
               {/* Featured Image */}
               {blogPost.image && (
                 <div className="relative">
-                  <OptimizedImage 
-                    src={blogPost.image} 
+                  <img 
+                    src={blogPost.image.startsWith('http') || blogPost.image.startsWith('/attached_assets/') ? blogPost.image : `/attached_assets/${blogPost.image}`} 
                     alt={blogPost.title}
-                    className="w-full h-auto object-cover"
-                    priority={true}
-                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                    className="w-full h-auto"
+                    onError={(e) => {
                       // Fallback to a default placeholder or hide image on error
                       e.currentTarget.style.display = 'none';
                     }}
@@ -354,7 +352,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               )}
 
               {/* Content Container */}
-              <div className="p-4 sm:p-6 lg:p-8 xl:p-12">
+              <div className="p-8 lg:p-12">
                 
                 {/* Article Header */}
                 <header className="mb-10">
@@ -366,15 +364,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     ))}
                   </div>
                   
-                  <div className="bg-gradient-to-r from-[#1D50C9]/5 via-blue-50/50 to-transparent rounded-xl p-4 sm:p-6 lg:p-8 border-l-4 border-[#1D50C9]">
-                    <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed font-light italic">
+                  <div className="bg-gradient-to-r from-[#1D50C9]/5 via-blue-50/50 to-transparent rounded-xl p-8 border-l-4 border-[#1D50C9]">
+                    <p className="text-xl text-gray-700 leading-relaxed font-light italic">
                       {blogPost.excerpt}
                     </p>
                   </div>
                 </header>
 
                 {/* Blog Content */}
-                <div className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-xl max-w-none">
+                <div className="prose prose-xl max-w-none">
                   {/* Show Intro with Special Blue Box */}
                   {contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
                     <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
@@ -1428,7 +1426,7 @@ export default function Blog() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
             >
               Study Abroad Blog
             </motion.h1>
@@ -1436,7 +1434,7 @@ export default function Blog() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg sm:text-xl text-blue-100 mb-6 sm:mb-8 max-w-3xl mx-auto px-4 sm:px-0"
+              className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto"
             >
               Expert insights, tips, and guides for your international education journey
             </motion.p>
@@ -1444,11 +1442,11 @@ export default function Blog() {
         </div>
       </section>
 
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
         {/* Search and Filters */}
-        <div className="mb-8 sm:mb-12">
-          <div className="flex flex-col gap-4 mb-6 sm:mb-8">
+        <div className="mb-12">
+          <div className="flex flex-col md:flex-row gap-4 mb-8">
             <div className="flex-1">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -1464,13 +1462,13 @@ export default function Blog() {
           </div>
 
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+          <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <Button
                 key={category.name}
                 variant={selectedCategory === category.name ? "default" : "outline"}
                 onClick={() => setSelectedCategory(category.name)}
-                className="mb-2 text-xs sm:text-sm px-3 py-1.5 sm:px-4 sm:py-2"
+                className="mb-2"
               >
                 {category.name} ({category.count})
               </Button>
@@ -1479,7 +1477,7 @@ export default function Blog() {
         </div>
 
         {/* Blog Posts Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPosts.map((post: any) => (
             <motion.div
               key={post.id}
@@ -1493,21 +1491,20 @@ export default function Blog() {
                   {/* Featured Image */}
                   {post.image && (
                     <div className="relative overflow-hidden rounded-t-lg">
-                      <OptimizedImage 
-                        src={post.image} 
+                      <img 
+                        src={post.image.startsWith('http') || post.image.startsWith('/attached_assets/') ? post.image : `/attached_assets/${post.image}`} 
                         alt={post.title}
                         className="w-full h-56 object-cover transition-transform hover:scale-105"
-                        onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        onError={(e) => {
                           // Fallback to a default placeholder or hide image on error
                           e.currentTarget.style.display = 'none';
                         }}
-                        width={400}
-                        height={224}
                       />
                     </div>
                   )}
 
-                  <CardContent className="p-4 sm:p-6">
+                  <CardContent className="p-6">
                     
                     {/* Category Badge */}
                     <div className="mb-3">
