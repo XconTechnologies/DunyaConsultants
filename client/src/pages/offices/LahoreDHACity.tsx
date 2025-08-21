@@ -474,51 +474,59 @@ export default function LahoreDHACity() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left Side - FAQs */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Frequently Asked{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  Questions
-                </span>
-              </h3>
-              <p className="text-gray-600 mb-8">Get answers to common questions about studying abroad from DHA, Lahore</p>
-              
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                  >
-                    <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden">
-                      <CardContent className="p-0">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">
+                  Frequently Asked{" "}
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Questions
+                  </span>
+                </h3>
+                <p className="text-gray-600 mb-8 text-lg">Get answers to common questions about studying abroad from DHA, Lahore</p>
+                
+                <div className="space-y-3">
+                  {faqs.map((faq, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                    >
+                      <div className="bg-gray-50 rounded-lg border border-gray-200 hover:border-[#1D50C9] transition-all duration-300 overflow-hidden">
                         <button
                           className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
                           onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
                         >
-                          <h4 className="text-sm font-bold text-gray-900 pr-4">{faq.question}</h4>
-                          {expandedFaq === index ? (
-                            <ChevronUp className="w-4 h-4 text-[#1D50C9] flex-shrink-0" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4 text-[#1D50C9] flex-shrink-0" />
-                          )}
+                          <h4 className="text-gray-900 font-semibold pr-4">{faq.question}</h4>
+                          <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                            {expandedFaq === index ? (
+                              <ChevronUp className="w-4 h-4 text-[#1D50C9]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[#1D50C9]" />
+                            )}
+                          </div>
                         </button>
                         {expandedFaq === index && (
-                          <div className="px-4 pb-4">
-                            <p className="text-gray-700 leading-relaxed text-sm">{faq.answer}</p>
-                          </div>
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="px-4 pb-4 border-t border-gray-200"
+                          >
+                            <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
+                          </motion.div>
                         )}
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
 
@@ -527,68 +535,64 @@ export default function LahoreDHACity() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-8"
+              className="space-y-6"
             >
-              <Card className="border-0 shadow-2xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
-                <CardContent className="p-8">
-                  <div style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.5rem', marginBottom: '1.5rem', textAlign: 'center'}}>Contact Information</div>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <div style={{color: '#ffffff', fontWeight: '600', fontSize: '1.125rem', marginBottom: '0.5rem'}}>Address</div>
-                        <p className="text-blue-100 leading-relaxed">
-                          1st Floor 174, 6 Street 123, Sector H, DHA Phase 1, Lahore
-                        </p>
-                      </div>
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl">
+                <h3 className="text-2xl font-bold mb-8 text-center text-white">Contact Information</h3>
+                
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
-                    
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-lg mb-2">Phone</h4>
-                        <a href="tel:+923001671947" className="text-blue-100 hover:text-white transition-colors">
-                          +92 300-167-1947
-                        </a>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <Mail className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-lg mb-2">Email</h4>
-                        <a href="mailto:ar.nafey@dunyaconsultants.com" className="text-blue-100 hover:text-white transition-colors">
-                          ar.nafey@dunyaconsultants.com
-                        </a>
-                      </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Address</h4>
+                      <p className="text-blue-100 leading-relaxed">
+                        1st Floor 174, 6 Street 123, Sector H, DHA Phase 1, Lahore
+                      </p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-
-              <div className="text-center">
-                <div className="space-y-4">
-                  <Button size="lg" className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1a73e8] hover:to-[#1565c0] text-white py-4">
-                    <Link href="/contact" className="flex items-center justify-center w-full">
-                      Book Free Consultation
-                      <Calendar className="w-5 h-5 ml-2" />
-                    </Link>
-                  </Button>
                   
-                  <Button size="lg" variant="outline" className="w-full border-[#1D50C9] text-[#1D50C9] hover:bg-blue-50 py-4">
-                    <a href="https://share.google/yDY7u2J5ED43ikhNp" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
-                      Get Directions
-                      <MapPin className="w-5 h-5 ml-2" />
-                    </a>
-                  </Button>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Phone</h4>
+                      <a href="tel:+923001671947" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +92 300-167-1947
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Email</h4>
+                      <a href="mailto:ar.nafey@dunyaconsultants.com" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        ar.nafey@dunyaconsultants.com
+                      </a>
+                    </div>
+                  </div>
                 </div>
+              </div>
+
+              <div className="space-y-4">
+                <Button size="lg" className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1a73e8] hover:to-[#1565c0] text-white py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Link href="/contact" className="flex items-center justify-center w-full">
+                    Book Free Consultation
+                    <Calendar className="w-5 h-5 ml-2" />
+                  </Link>
+                </Button>
+                
+                <Button size="lg" variant="outline" className="w-full border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                  <a href="https://share.google/yDY7u2J5ED43ikhNp" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                    Get Directions
+                    <MapPin className="w-5 h-5 ml-2" />
+                  </a>
+                </Button>
               </div>
             </motion.div>
           </div>
