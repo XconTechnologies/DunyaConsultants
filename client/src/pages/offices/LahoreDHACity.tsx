@@ -536,9 +536,9 @@ export default function LahoreDHACity() {
               transition={{ duration: 0.6 }}
             >
               <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl h-full flex flex-col">
-                <h3 className="text-2xl font-bold mb-8 text-center" style={{color: '#ffffff !important'}}>Contact Information</h3>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
                 
-                <div className="space-y-6 flex-grow">
+                <div className="space-y-4 flex-grow">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
                       <MapPin className="w-6 h-6 text-white" />
@@ -576,7 +576,7 @@ export default function LahoreDHACity() {
                   </div>
                 </div>
 
-                <div className="space-y-4 mt-8">
+                <div className="space-y-4 mt-4">
                   <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
                     <Link href="/contact" className="flex items-center justify-center w-full">
                       Book Free Consultation
