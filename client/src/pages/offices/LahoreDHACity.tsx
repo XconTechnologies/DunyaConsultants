@@ -81,7 +81,7 @@ export default function LahoreDHACity() {
     },
     {
       question: "What services do you offer in DHA, Lahore?",
-      answer: "Career counseling, university shortlisting, application preparation, document review, scholarship guidance, visa file building, interview preparation, and pre-departure briefing."
+      answer: "Career counseling, university shortlisting, application preparation, document review, visa file building, interview preparation, and pre-departure briefing."
     },
     {
       question: "What documents do I need to start?",
