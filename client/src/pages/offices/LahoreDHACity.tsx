@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
-import { FiFlag } from "react-icons/fi";
+import ReactCountryFlag from "react-country-flag";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -71,18 +71,18 @@ export default function LahoreDHACity() {
   // Duplicate countries for seamless infinite scrolling
   const duplicatedCountries = [...countries, ...countries];
 
-  // Country flag and codes mapping
-  const countryData = {
-    "USA": { flag: "🇺🇸", code: "US" },
-    "UK": { flag: "🇬🇧", code: "GB" }, 
-    "Australia": { flag: "🇦🇺", code: "AU" },
-    "Canada": { flag: "🇨🇦", code: "CA" },
-    "Belgium": { flag: "🇧🇪", code: "BE" },
-    "Cyprus": { flag: "🇨🇾", code: "CY" },
-    "Germany": { flag: "🇩🇪", code: "DE" },
-    "Turkey": { flag: "🇹🇷", code: "TR" },
-    "Finland": { flag: "🇫🇮", code: "FI" },
-    "Ireland": { flag: "🇮🇪", code: "IE" }
+  // Country codes mapping for flags
+  const countryCodesMap = {
+    "USA": "US",
+    "UK": "GB", 
+    "Australia": "AU",
+    "Canada": "CA",
+    "Belgium": "BE",
+    "Cyprus": "CY",
+    "Germany": "DE",
+    "Turkey": "TR",
+    "Finland": "FI",
+    "Ireland": "IE"
   };
 
   const faqs = [
@@ -311,8 +311,16 @@ export default function LahoreDHACity() {
                       >
                         <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px]">
                           <div className="flex flex-col items-center">
-                            <div className="w-12 h-8 bg-white rounded-sm mb-3 flex items-center justify-center shadow-sm">
-                              <span className="text-2xl font-bold text-gray-800">{countryData[country as keyof typeof countryData]?.code}</span>
+                            <div className="w-16 h-12 mb-3 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
+                              <ReactCountryFlag 
+                                countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
+                                svg 
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover'
+                                }}
+                              />
                             </div>
                             <p className="text-sm font-semibold">{country}</p>
                           </div>
