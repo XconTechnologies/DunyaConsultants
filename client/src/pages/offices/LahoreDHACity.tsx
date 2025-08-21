@@ -71,18 +71,18 @@ export default function LahoreDHACity() {
   // Duplicate countries for seamless infinite scrolling
   const duplicatedCountries = [...countries, ...countries];
 
-  // Country flag emojis mapping
-  const countryFlags = {
-    "USA": "🇺🇸",
-    "UK": "🇬🇧", 
-    "Australia": "🇦🇺",
-    "Canada": "🇨🇦",
-    "Belgium": "🇧🇪",
-    "Cyprus": "🇨🇾",
-    "Germany": "🇩🇪",
-    "Turkey": "🇹🇷",
-    "Finland": "🇫🇮",
-    "Ireland": "🇮🇪"
+  // Country flag and codes mapping
+  const countryData = {
+    "USA": { flag: "🇺🇸", code: "US" },
+    "UK": { flag: "🇬🇧", code: "GB" }, 
+    "Australia": { flag: "🇦🇺", code: "AU" },
+    "Canada": { flag: "🇨🇦", code: "CA" },
+    "Belgium": { flag: "🇧🇪", code: "BE" },
+    "Cyprus": { flag: "🇨🇾", code: "CY" },
+    "Germany": { flag: "🇩🇪", code: "DE" },
+    "Turkey": { flag: "🇹🇷", code: "TR" },
+    "Finland": { flag: "🇫🇮", code: "FI" },
+    "Ireland": { flag: "🇮🇪", code: "IE" }
   };
 
   const faqs = [
@@ -310,8 +310,12 @@ export default function LahoreDHACity() {
                         className="group cursor-pointer flex-shrink-0"
                       >
                         <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px]">
-                          <div className="text-4xl mb-3">{countryFlags[country as keyof typeof countryFlags]}</div>
-                          <p className="text-sm font-semibold">{country}</p>
+                          <div className="flex flex-col items-center">
+                            <div className="w-12 h-8 bg-white rounded-sm mb-3 flex items-center justify-center shadow-sm">
+                              <span className="text-2xl font-bold text-gray-800">{countryData[country as keyof typeof countryData]?.code}</span>
+                            </div>
+                            <p className="text-sm font-semibold">{country}</p>
+                          </div>
                         </div>
                       </motion.div>
                     ))}
