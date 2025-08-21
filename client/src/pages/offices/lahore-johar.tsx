@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp, Star, Target } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -45,21 +45,28 @@ export default function LahoreJohar() {
       title: "Pre-Departure Preparation",
       description: "From mock interviews to travel tips, we make sure you're fully ready before you fly.",
       color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: Calendar,
+      title: "IELTS Training Support",
+      description: "Our experienced trainers focus on all four skills with personalized attention in small groups, plus free assessment before you start.",
+      color: "from-blue-500 to-blue-600"
     }
   ];
 
   const ieltsFeatures = [
-    "Friendly, experienced trainers",
-    "Focus on speaking, listening, reading & writing",
-    "Small groups for personalized attention",
-    "Free assessment before you start"
+    "Friendly, experienced trainers – Learn from skilled and supportive instructors",
+    "Focus on speaking, listening, reading & writing – Comprehensive skill development",
+    "Small groups for personalized attention – Individual feedback and guidance",
+    "Free assessment before you start – Find out where you stand and how to improve"
   ];
 
   const whyChooseUs = [
     "Experienced & trustworthy advisors",
-    "Honest, student-focused guidance", 
+    "Honest, student-focused guidance",
     "High success rate with admissions & visas",
-    "Convenient location in Johar Town, Lahore"
+    "Convenient location in Johar Town, Lahore",
+    "Personalized plans for each student"
   ];
 
   const countries = ["USA", "UK", "Australia", "Canada", "Belgium", "Cyprus", "Germany", "Turkey", "Finland", "Ireland"];
@@ -107,25 +114,9 @@ export default function LahoreJohar() {
     }
   ];
 
-  const officeImages = [
-    {
-      src: joharOffice1,
-      alt: "Study Consultants Johar Town Office - Modern consultation area with blue chairs and professional setup"
-    },
-    {
-      src: joharOffice2,
-      alt: "Study Consultants Johar Town Office - Professional workspace with country flags and motivational decor"
-    },
-    {
-      src: joharOffice3,
-      alt: "Study Consultants Johar Town Office - Spacious consultation lounge with comfortable seating arrangement"
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
@@ -134,76 +125,187 @@ export default function LahoreJohar() {
           <div className="absolute bottom-20 right-20 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
           <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
         </div>
-
-        <div className="container mx-auto px-4 relative z-10">
+        
+        <div className="relative max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+            className="text-center"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+            <div className="inline-flex items-center px-6 py-3 bg-white/15 rounded-full backdrop-blur-sm mb-8 border border-white/20">
+              <MapPin className="w-5 h-5 mr-2" />
+              <span className="text-sm font-medium">Johar Town, Lahore</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
               Dream of Studying Abroad? We Can Help!
             </h1>
-            <p className="text-xl lg:text-2xl mb-8 opacity-90">
-              At Study consultants Lahore, we make the process easy and stress-free as a study abroad consultants in Johar Town, Lahore.
+            
+            <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-8">
+              At Study consultants Lahore, we make the process easy and stress-free as a study abroad consultants in Johar Town, Lahore. From choosing the right course to getting your visa, we guide you every step of the way.
             </p>
-            <p className="text-lg mb-8 opacity-80">
-              From choosing the right course to getting your visa, we guide you every step of the way.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 text-lg px-8 py-4">
-                <Calendar className="w-5 h-5 mr-2" />
-                Book Free Consultation
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-4">
+
+            {/* Contact Info */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
+              <div className="flex items-center justify-center">
                 <Phone className="w-5 h-5 mr-2" />
-                Call Now: +92 300-827-1947
+                <span>+92 300-827-1947</span>
+              </div>
+              <div className="flex items-center justify-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>Mon–Sat 10 AM–6 PM</span>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                  Book Free Consultation
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                <a href="https://maps.app.goo.gl/dF9NNwLCi6prpgVq5" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  Get Directions
+                  <MapPin className="w-5 h-5 ml-2" />
+                </a>
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* How We Support You Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container mx-auto px-4">
+      {/* Why Choose Us */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D50C9' }}>
-              How We Support You:
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Why Students Trust{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Dunya Consultants Johar Town, Lahore
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Trust Reasons */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="space-y-4">
+                {whyChooseUs.map((reason, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300">
+                      <CardContent className="p-4 flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
+                          <CheckCircle className="w-4 h-4 text-white" />
+                        </div>
+                        <p className="text-gray-800 font-medium text-sm">{reason}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right Side - Office Gallery */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6"
+            >
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+                    <img
+                      src={joharOffice1}
+                      alt="Study Consultants Johar Town Office"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+                    <img
+                      src={joharOffice3}
+                      alt="Professional consultation space"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </div>
+                <div className="mt-8">
+                  <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
+                    <img
+                      src={joharOffice2}
+                      alt="Modern office environment"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 text-center">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Visit Our Johar Town Office</h3>
+                <p className="text-sm text-gray-600 mb-4">1st Floor, 85/R1, Phase 2, Johar Town, Lahore</p>
+                <Button size="sm" className="bg-[#1D50C9] hover:bg-[#1845B3]">
+                  <MapPin className="w-4 h-4 mr-2" />
+                  Get Directions
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              How We{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Support You
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive support system ensures your study abroad journey is smooth and successful
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group"
               >
-                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 shadow-lg group-hover:scale-105">
-                  <CardContent className="p-6">
-                    <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                      <service.icon className="w-6 h-6 text-white" />
+                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full bg-white group-hover:-translate-y-2">
+                  <CardContent className="p-8 text-center">
+                    <div className={`w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-r ${service.color} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <service.icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-800">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {service.description}
-                    </p>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -212,129 +314,124 @@ export default function LahoreJohar() {
         </div>
       </section>
 
-      {/* IELTS Training Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D50C9' }}>
-                IELTS Training in Johar Town
-              </h2>
-              <p className="text-lg text-gray-600 mb-8">
-                Need to take IELTS? Our program makes it easy:
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                {ieltsFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="flex items-center space-x-3"
-                  >
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </motion.div>
-                ))}
-              </div>
-
-              <Button size="lg" className="text-lg px-8 py-4" style={{ backgroundColor: '#1D50C9' }}>
-                <BookOpen className="w-5 h-5 mr-2" />
-                Join IELTS Training
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#1D50C9]/20 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
-                <div className="relative z-10">
-                  <div className="text-6xl font-bold mb-4" style={{ color: '#1D50C9' }}>IELTS</div>
-                  <p className="text-gray-600 mb-6">
-                    Comprehensive IELTS preparation with expert trainers and proven methods
-                  </p>
-                  <div className="flex items-center space-x-4 text-sm text-gray-500">
-                    <div className="flex items-center">
-                      <Users className="w-4 h-4 mr-1" />
-                      Small Classes
-                    </div>
-                    <div className="flex items-center">
-                      <Award className="w-4 h-4 mr-1" />
-                      Expert Trainers
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container mx-auto px-4">
+      {/* IELTS Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/30"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-blue-100/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-48 h-48 bg-purple-100/20 rounded-full blur-2xl"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D50C9' }}>
-              Why Choose Us?
+            <h2 className="text-5xl font-bold text-gray-900 mb-4">
+              Master{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                IELTS
+              </span>{" "}
+              in Johar Town
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Your trusted partner for study abroad success in Johar Town, Lahore
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Need to take IELTS? Our program makes it easy with experienced trainers and personalized attention
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {whyChooseUs.map((reason, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex items-center space-x-4 p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-                  <CheckCircle className="w-5 h-5 text-green-500" />
-                </div>
-                <span className="text-gray-700 font-medium">{reason}</span>
-              </motion.div>
-            ))}
+          {/* IELTS Features Carousel */}
+          <div className="relative overflow-hidden mb-16">
+            <motion.div 
+              className="flex gap-6"
+              animate={{ x: [-0, -50 + "%"] }}
+              transition={{ 
+                duration: 20,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop"
+              }}
+            >
+              {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
+                <motion.div
+                  key={`${feature}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: (index % ieltsFeatures.length) * 0.05 }}
+                  className="group cursor-pointer flex-shrink-0"
+                >
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1 min-w-[280px]">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <CheckCircle className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-sm font-bold text-gray-900 mb-3 leading-tight">
+                        {feature.split(' – ')[0]}
+                      </h3>
+                      <p className="text-xs text-gray-600 leading-relaxed">
+                        {feature.split(' – ')[1]}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
+
+          {/* Call to Action Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <Card className="border-0 shadow-2xl bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+              <CardContent className="p-12 text-center relative">
+                <div className="absolute inset-0 bg-black/10"></div>
+                <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+                <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                
+                <div className="relative">
+                  <BookOpen className="w-20 h-20 mx-auto mb-6 text-white opacity-90" />
+                  <div style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.875rem', marginBottom: '1rem', textShadow: 'none', display: 'block'}}>
+                    Ready to Start Your IELTS Journey?
+                  </div>
+                  <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Join hundreds of successful students who achieved their target scores with our expert guidance and proven teaching methods in Johar Town.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                      <BookOpen className="w-5 h-5 mr-2" />
+                      Join IELTS Training
+                    </Button>
+                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                      Free Assessment
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 
       {/* Countries We Support Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D50C9' }}>
-              Countries We Support
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Countries We{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Support
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Apply to top destinations worldwide with our expert guidance
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Apply to top destinations worldwide with our expert guidance from Johar Town
             </p>
           </motion.div>
 
@@ -356,7 +453,7 @@ export default function LahoreJohar() {
               {duplicatedCountries.map((country, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-48 bg-gradient-to-br from-blue-50 to-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow"
+                  className="flex-shrink-0 w-48 bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow"
                 >
                   <div className="w-16 h-12 mx-auto mb-4 rounded-lg overflow-hidden shadow-md border-2 border-blue-200">
                     <ReactCountryFlag 
@@ -377,89 +474,62 @@ export default function LahoreJohar() {
         </div>
       </section>
 
-      {/* Office Images Section */}
-      <section className="py-20 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container mx-auto px-4">
+      {/* Get in Touch Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D50C9' }}>
-              Our Johar Town Office
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Let's Start Your{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Journey
+              </span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Visit our modern, comfortable office designed for productive consultations
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Ready to study abroad? Reach out today! We'd love to help you turn your dream into reality from our Johar Town office.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {officeImages.map((image, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="group"
-              >
-                <div className="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="text-center mb-16">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D50C9' }}>
-                Frequently Asked Questions
-              </h2>
-              <p className="text-lg text-gray-600">
-                Get answers to common questions about our services in Johar Town
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="shadow-lg hover:shadow-xl transition-shadow border-0 h-full">
-                    <CardContent className="p-0">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - FAQs */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
+                <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                  Frequently Asked{" "}
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Questions
+                  </span>
+                </h3>
+                
+                <div className="space-y-3 flex-grow">
+                  {faqs.map((faq, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      className="border border-gray-100 rounded-xl overflow-hidden"
+                    >
                       <button
-                        className="w-full p-6 text-left focus:outline-none"
+                        className="w-full px-6 py-4 text-left focus:outline-none hover:bg-gray-50 transition-colors"
                         onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
                       >
                         <div className="flex items-center justify-between">
-                          <h3 className="text-lg font-semibold text-gray-800 pr-4">
+                          <h4 className="text-sm font-semibold text-gray-900 pr-4">
                             {faq.question}
-                          </h3>
+                          </h4>
                           {expandedFaq === index ? (
-                            <ChevronUp className="w-5 h-5 flex-shrink-0" style={{ color: '#1D50C9' }} />
+                            <ChevronUp className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
                           ) : (
-                            <ChevronDown className="w-5 h-5 flex-shrink-0" style={{ color: '#1D50C9' }} />
+                            <ChevronDown className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
                           )}
                         </div>
                         {expandedFaq === index && (
@@ -467,109 +537,85 @@ export default function LahoreJohar() {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="mt-4 pt-4 border-t border-gray-100"
+                            className="mt-3 pt-3 border-t border-gray-100"
                           >
-                            <p className="text-gray-600 leading-relaxed">
+                            <p className="text-sm text-gray-600 leading-relaxed">
                               {faq.answer}
                             </p>
                           </motion.div>
                         )}
                       </button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
 
-      {/* Contact & Location Section */}
-      <section className="py-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Right Side - Contact Information */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
+              className="bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] rounded-2xl p-8 text-white relative overflow-hidden h-full flex flex-col"
             >
-              <h2 className="text-3xl lg:text-4xl font-bold mb-8">
-                Let's Start Your Journey!
-              </h2>
-              <p className="text-xl mb-8 opacity-90">
-                Ready to study abroad? Reach out today! We'd love to help you turn your dream into reality.
-              </p>
-
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+              {/* Background Effects */}
+              <div className="absolute inset-0 bg-black/10"></div>
+              <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+              <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+              
+              <div className="relative flex-grow flex flex-col">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
                     <MapPin className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">Visit Us:</p>
-                    <p className="opacity-90">1st Floor, 85/R1, Phase 2, Johar Town, Lahore</p>
+                    <h3 className="text-xl font-bold mb-1">Visit Us</h3>
+                    <p className="text-blue-100">1st Floor, 85/R1, Phase 2, Johar Town, Lahore</p>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                <div className="flex items-center mb-6">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
                     <Phone className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">Call:</p>
-                    <a href="tel:+92300-827-1947" className="opacity-90 hover:opacity-100 transition-opacity">
+                    <h3 className="text-xl font-bold mb-1">Call Us</h3>
+                    <a href="tel:+92300-827-1947" className="text-blue-100 hover:text-white transition-colors">
                       +92 300-827-1947
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-                    <Globe className="w-6 h-6" />
+                <div className="flex items-center mb-8">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
+                    <Clock className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="font-semibold text-lg">Google Maps:</p>
-                    <a 
-                      href="https://maps.app.goo.gl/dF9NNwLCi6prpgVq5" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="opacity-90 hover:opacity-100 transition-opacity"
-                    >
-                      View Location
-                    </a>
+                    <h3 className="text-xl font-bold mb-1">Office Hours</h3>
+                    <p className="text-blue-100">Monday – Saturday: 10 AM – 6 PM</p>
                   </div>
                 </div>
-              </div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="bg-white/10 rounded-2xl p-8 backdrop-blur-sm"
-            >
-              <h3 className="text-2xl font-bold mb-6">Schedule Your Free Consultation</h3>
-              <p className="mb-6 opacity-90">
-                Take the first step towards your international education dreams. Book a free consultation with our expert counselors today.
-              </p>
-              
-              <div className="space-y-4">
-                <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 text-lg py-4">
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Book Free Consultation
-                </Button>
-                <Button size="lg" variant="outline" className="w-full border-white text-white hover:bg-white/10 text-lg py-4">
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  WhatsApp Chat
-                </Button>
-              </div>
-              
-              <div className="mt-6 pt-6 border-t border-white/20 text-center">
-                <p className="text-sm opacity-80">
-                  Walk-ins welcome • Free initial consultation • Expert guidance guaranteed
-                </p>
+                <div className="mt-auto">
+                  <div className="flex flex-col space-y-3">
+                    <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full">
+                      <Calendar className="w-5 h-5 mr-2" />
+                      Book Free Consultation
+                    </Button>
+                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
+                      <a href="https://maps.app.goo.gl/dF9NNwLCi6prpgVq5" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                        <MapPin className="w-5 h-5 mr-2" />
+                        Get Directions
+                      </a>
+                    </Button>
+                  </div>
+                  
+                  <div className="mt-6 pt-6 border-t border-white/20 text-center">
+                    <p className="text-sm text-blue-100">
+                      Walk-ins welcome • Free initial consultation • Expert guidance guaranteed
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
