@@ -15,7 +15,7 @@ export default function TopStudyAbroadCountries() {
             <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-sm font-medium mb-4">
               Study Destinations
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white italic">
               Top Study Abroad Countries for Pakistani Students in 2025
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
