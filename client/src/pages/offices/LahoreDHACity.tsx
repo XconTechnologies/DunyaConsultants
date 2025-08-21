@@ -481,14 +481,13 @@ export default function LahoreDHACity() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 h-full">
+                <h3 className="text-3xl font-bold text-gray-900 mb-8">
                   Frequently Asked{" "}
                   <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                     Questions
                   </span>
                 </h3>
-                <p className="text-gray-600 mb-8 text-lg">Get answers to common questions about studying abroad from DHA, Lahore</p>
                 
                 <div className="space-y-3">
                   {faqs.map((faq, index) => (
@@ -535,12 +534,11 @@ export default function LahoreDHACity() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-6"
             >
-              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl">
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl h-full flex flex-col">
                 <h3 className="text-2xl font-bold mb-8 text-center text-white">Contact Information</h3>
                 
-                <div className="space-y-6">
+                <div className="space-y-6 flex-grow">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
                       <MapPin className="w-6 h-6 text-white" />
@@ -577,22 +575,22 @@ export default function LahoreDHACity() {
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="space-y-4">
-                <Button size="lg" className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1a73e8] hover:to-[#1565c0] text-white py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                  <Link href="/contact" className="flex items-center justify-center w-full">
-                    Book Free Consultation
-                    <Calendar className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                
-                <Button size="lg" variant="outline" className="w-full border-2 border-[#1D50C9] text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                  <a href="https://share.google/yDY7u2J5ED43ikhNp" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
-                    Get Directions
-                    <MapPin className="w-5 h-5 ml-2" />
-                  </a>
-                </Button>
+                <div className="space-y-4 mt-8">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <Calendar className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <a href="https://share.google/yDY7u2J5ED43ikhNp" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      Get Directions
+                      <MapPin className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </div>
               </div>
             </motion.div>
           </div>
