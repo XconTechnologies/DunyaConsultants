@@ -227,43 +227,49 @@ export default function LahoreJohar() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-6"
+              className="space-y-4"
             >
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
-                    <img
-                      src={joharOffice1}
-                      alt="Study Consultants Johar Town Office"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
-                    <img
-                      src={joharOffice3}
-                      alt="Professional consultation space"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                </div>
-                <div className="mt-8">
-                  <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg">
-                    <img
+              <div className="grid gap-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="overflow-hidden rounded-xl shadow-xl"
+                >
+                  <img 
+                    src={joharOffice1}
+                    alt="Study Consultants Johar Town Office"
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </motion.div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
                       src={joharOffice2}
-                      alt="Modern office environment"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      alt="Professional consultation space"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
-                  </div>
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
+                      src={joharOffice3}
+                      alt="Modern office environment"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </motion.div>
                 </div>
-              </div>
-              
-              <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-6 text-center">
-                <h3 className="text-lg font-bold text-gray-900 mb-2">Visit Our Johar Town Office</h3>
-                <p className="text-sm text-gray-600 mb-4">1st Floor, 85/R1, Phase 2, Johar Town, Lahore</p>
-                <Button size="sm" className="bg-[#1D50C9] hover:bg-[#1845B3]">
-                  <MapPin className="w-4 h-4 mr-2" />
-                  Get Directions
-                </Button>
               </div>
             </motion.div>
           </div>
