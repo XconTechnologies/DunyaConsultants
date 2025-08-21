@@ -17,7 +17,7 @@ export default function RequirementsComputerScienceUSA() {
                 Study Destinations
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl font-bold mb-6 leading-tight text-white italic">
               Requirements to Study Computer Science in USA
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">

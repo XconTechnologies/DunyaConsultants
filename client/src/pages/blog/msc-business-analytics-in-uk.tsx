@@ -18,7 +18,7 @@ export default function MSCBusinessAnalyticsInUK() {
             }}
           />
           <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4">MSc Business Analytics in UK</h1>
+            <h1 className="text-5xl font-bold mb-4 text-white italic">MSc Business Analytics in UK</h1>
             <p className="text-2xl font-light">Complete guide to pursuing Master's in Business Analytics at top UK universities</p>
           </div>
         </div>

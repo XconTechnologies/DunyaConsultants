@@ -18,7 +18,7 @@ export default function CyprusVisaPakistan() {
                 Visa Guides
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl font-bold mb-6 leading-tight text-white italic">
               Cyprus Visa for Pakistan: Complete Student Guide 2025
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">

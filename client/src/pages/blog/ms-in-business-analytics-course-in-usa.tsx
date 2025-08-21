@@ -18,7 +18,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
             }}
           />
           <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4">MS in Business Analytics Course in USA</h1>
+            <h1 className="text-5xl font-bold mb-4 text-white italic">MS in Business Analytics Course in USA</h1>
             <p className="text-2xl font-light">Complete guide to pursuing Master's in Business Analytics in the United States</p>
           </div>
         </div>

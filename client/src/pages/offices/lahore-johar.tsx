@@ -138,7 +138,7 @@ export default function LahoreJohar() {
               <span className="text-sm font-medium">Johar Town, Lahore</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white italic">
               Dream of Studying Abroad? We Can Help!
             </h1>
             

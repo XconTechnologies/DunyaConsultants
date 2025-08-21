@@ -23,7 +23,7 @@ const StudyInUK = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center justify-center text-center">
           <div className="space-y-4">
-            <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-5xl md:text-6xl font-bold text-white italic leading-tight">
               Study in UK
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
