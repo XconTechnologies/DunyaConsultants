@@ -18,10 +18,10 @@ export default function MostCommonMistakesToAvoidForYourUKStudentVisaSuccess() {
                 Visa Guides
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-tight text-white italic">
+            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
               Mistakes to Avoid when Applying for a UK Study Visa
             </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed mb-8">
               Essential tips to ensure your UK student visa application success. Learn from common mistakes and increase your chances of approval.
             </p>
             <div className="flex items-center justify-center space-x-6 text-blue-200">

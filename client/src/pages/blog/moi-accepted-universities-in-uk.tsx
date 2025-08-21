@@ -72,8 +72,8 @@ export default function MOIAcceptedUniversitiesInUK() {
             }}
           />
           <div className="relative z-10 text-center px-8">
-            <h1 className="text-5xl font-bold mb-4 text-white italic">MOI Accepted Universities in UK</h1>
-            <p className="text-2xl font-light">Complete guide to universities accepting Medium of Instruction</p>
+            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">MOI Accepted Universities in UK</h1>
+            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">Complete guide to universities accepting Medium of Instruction</p>
           </div>
         </div>
 

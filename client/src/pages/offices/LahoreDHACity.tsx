@@ -136,11 +136,11 @@ export default function LahoreDHACity() {
               <span className="text-sm font-medium">DHA Phase 1, Lahore</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white italic">
+            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
               Welcome to Dunya Consultants DHA, Lahore
             </h1>
             
-            <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-8">
+            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed mb-8">
               Do you want to study overseas? We turn that dream into a reality at Dunya Consultants DHA, Lahore. We help you every step of the way, from selecting the best university to getting your student visa.
             </p>
 

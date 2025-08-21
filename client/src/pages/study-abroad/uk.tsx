@@ -88,10 +88,10 @@ Address: Alif Tower, Sargodha
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white italic">
-              Study in <span className="text-blue-400">UK</span>
+            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
+              Study in <span className="text-white">UK</span>
             </h1>
-            <p className="text-xl lg:text-2xl max-w-4xl mx-auto text-blue-100 mb-8">
+            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed mb-8">
               Experience world-renowned education with 166 universities offering over 50,000+ programs
             </p>
             <div className="flex flex-wrap justify-center gap-4">

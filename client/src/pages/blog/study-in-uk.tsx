@@ -23,10 +23,10 @@ const StudyInUK = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center justify-center text-center">
           <div className="space-y-4">
-            <h1 className="text-5xl md:text-6xl font-bold text-white italic leading-tight">
+            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
               Study in UK
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
+            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
               Comprehensive Guide to Education in the United Kingdom for Pakistani Students
             </p>
           </div>

@@ -18,10 +18,10 @@ export default function DifferenceBetweenIELTSGeneralAndAcademic() {
                 Test Preparation
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-tight text-white italic">
+            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
               Difference Between IELTS General and Academic
             </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed mb-8">
               Complete comparison guide to help you choose between IELTS Academic and General Training modules.
             </p>
             <div className="flex items-center justify-center space-x-6 text-blue-200">

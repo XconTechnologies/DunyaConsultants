@@ -138,11 +138,11 @@ export default function LahoreJohar() {
               <span className="text-sm font-medium">Johar Town, Lahore</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white italic">
+            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
               Dream of Studying Abroad? We Can Help!
             </h1>
             
-            <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-8">
+            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed mb-8">
               At Study consultants Lahore, we make the process easy and stress-free as a study abroad consultants in Johar Town, Lahore. From choosing the right course to getting your visa, we guide you every step of the way.
             </p>
 

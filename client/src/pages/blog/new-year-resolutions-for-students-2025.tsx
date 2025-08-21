@@ -19,8 +19,8 @@ export default function NewYearResolutionsForStudents2025() {
         <div className="absolute inset-0 bg-gradient-to-r from-#1e3a8a/80 to-[#1a73e8]/80" />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
           <div>
-            <h1 className="text-5xl font-bold mb-4 text-white italic">New Year Resolutions for Students 2025</h1>
-            <p className="text-2xl">Study Abroad Goals & Success Strategies</p>
+            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">New Year Resolutions for Students 2025</h1>
+            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">Study Abroad Goals & Success Strategies</p>
           </div>
         </div>
       </div>
