@@ -323,8 +323,8 @@ export default function CourseMatchTool() {
               transition={{ duration: 0.8 }}
               className="text-center mb-12"
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-[#1D50C9] via-#1a73e8 to-#1565c0 bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white italic">
+                <span className="text-white">
                   Your Perfect Study Matches
                 </span>
               </h1>
@@ -485,8 +485,8 @@ export default function CourseMatchTool() {
                 <Brain className="w-8 h-8 text-white" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white italic">
+              <span className="text-white">
                 Smart Course Match Tool
               </span>
             </h1>

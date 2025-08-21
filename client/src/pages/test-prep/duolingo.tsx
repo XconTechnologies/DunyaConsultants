@@ -130,7 +130,7 @@ export default function Duolingo() {
               <Award className="w-5 h-5 mr-2" />
               <span className="text-sm font-medium">Duolingo English Test</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent leading-tight py-2">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white italic leading-tight py-2">
               Duolingo English Test
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">

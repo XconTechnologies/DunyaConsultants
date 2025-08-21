@@ -98,7 +98,7 @@ export default function BusinessCardGenerator() {
             Design Tool
           </motion.div>
           
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-white italic mb-4">
             Elegant Glassmorphic Business Card Generator
           </h1>
           

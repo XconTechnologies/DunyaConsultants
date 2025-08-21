@@ -189,9 +189,9 @@ export default function ConsultationBooking() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl lg:text-5xl font-bold text-white italic mb-4">
             Book Your Free{" "}
-            <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+            <span className="text-white">
               Consultation
             </span>
           </h1>

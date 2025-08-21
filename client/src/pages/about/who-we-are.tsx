@@ -107,9 +107,9 @@ export default function WhoWeAre() {
               <span className="text-sm font-medium">About Dunya Consultants</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white italic">
               Why We Are{" "}
-              <span className="bg-gradient-to-r from-yellow-300 to-yellow-200 bg-clip-text text-transparent">
+              <span className="text-white">
                 Unique
               </span>
             </h1>
