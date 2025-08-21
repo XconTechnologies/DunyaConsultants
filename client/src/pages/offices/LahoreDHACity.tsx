@@ -577,9 +577,6 @@ export default function LahoreDHACity() {
                 </div>
 
                 <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-                  <p className="text-blue-100 text-sm leading-relaxed mb-3">
-                    Sunday: 10:00 AM - 4:00 PM
-                  </p>
                   <p className="text-blue-100 text-sm leading-relaxed">
                     Our DHA Lahore office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
                   </p>
