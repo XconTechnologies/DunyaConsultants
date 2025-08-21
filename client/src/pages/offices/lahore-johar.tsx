@@ -490,13 +490,13 @@ export default function LahoreJohar() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Let's Start Your{" "}
+              Get in{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                Journey
+                Touch
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Ready to study abroad? Reach out today! We'd love to help you turn your dream into reality from our Johar Town office.
+              If you're searching for study abroad consultants in Johar Town, Lahore, we're here to help. Visit us today for a free consultation and take the first step toward your dream university abroad.
             </p>
           </motion.div>
 
@@ -521,36 +521,34 @@ export default function LahoreJohar() {
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="border border-gray-100 rounded-xl overflow-hidden"
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
                     >
-                      <button
-                        className="w-full px-6 py-4 text-left focus:outline-none hover:bg-gray-50 transition-colors"
-                        onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                      >
-                        <div className="flex items-center justify-between">
-                          <h4 className="text-sm font-semibold text-gray-900 pr-4">
-                            {faq.question}
-                          </h4>
-                          {expandedFaq === index ? (
-                            <ChevronUp className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
-                          ) : (
-                            <ChevronDown className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
-                          )}
-                        </div>
+                      <div className="bg-gray-50 rounded-lg border border-gray-200 hover:border-[#1D50C9] transition-all duration-300 overflow-hidden">
+                        <button
+                          className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
+                          onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                        >
+                          <h4 className="text-gray-900 font-semibold pr-4">{faq.question}</h4>
+                          <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                            {expandedFaq === index ? (
+                              <ChevronUp className="w-4 h-4 text-[#1D50C9]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[#1D50C9]" />
+                            )}
+                          </div>
+                        </button>
                         {expandedFaq === index && (
-                          <motion.div
+                          <motion.div 
                             initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
+                            animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="mt-3 pt-3 border-t border-gray-100"
+                            transition={{ duration: 0.3 }}
+                            className="px-4 pb-4 border-t border-gray-200"
                           >
-                            <p className="text-sm text-gray-600 leading-relaxed">
-                              {faq.answer}
-                            </p>
+                            <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
                           </motion.div>
                         )}
-                      </button>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
@@ -562,65 +560,68 @@ export default function LahoreJohar() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] rounded-2xl p-8 text-white relative overflow-hidden h-full flex flex-col"
             >
-              {/* Background Effects */}
-              <div className="absolute inset-0 bg-black/10"></div>
-              <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
-              <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
-              
-              <div className="relative flex-grow flex flex-col">
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                    <MapPin className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-1">Visit Us</h3>
-                    <p className="text-blue-100">1st Floor, 85/R1, Phase 2, Johar Town, Lahore</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center mb-6">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                    <Phone className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-1">Call Us</h3>
-                    <a href="tel:+92300-827-1947" className="text-blue-100 hover:text-white transition-colors">
-                      +92 300-827-1947
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-center mb-8">
-                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                    <Clock className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-1">Office Hours</h3>
-                    <p className="text-blue-100">Monday – Saturday: 10 AM – 6 PM</p>
-                  </div>
-                </div>
-
-                <div className="mt-auto">
-                  <div className="flex flex-col space-y-3">
-                    <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full">
-                      <Calendar className="w-5 h-5 mr-2" />
-                      Book Free Consultation
-                    </Button>
-                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full">
-                      <a href="https://maps.app.goo.gl/dF9NNwLCi6prpgVq5" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
-                        <MapPin className="w-5 h-5 mr-2" />
-                        Get Directions
-                      </a>
-                    </Button>
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
+                
+                <div className="space-y-4 flex-grow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Address</h4>
+                      <p className="text-blue-100 leading-relaxed">
+                        1st Floor, 85/R1, Phase 2, Johar Town, Lahore
+                      </p>
+                    </div>
                   </div>
                   
-                  <div className="mt-6 pt-6 border-t border-white/20 text-center">
-                    <p className="text-sm text-blue-100">
-                      Walk-ins welcome • Free initial consultation • Expert guidance guaranteed
-                    </p>
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Phone</h4>
+                      <a href="tel:+923008271947" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +92 300-827-1947
+                      </a>
+                    </div>
                   </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Email</h4>
+                      <a href="mailto:info@dunyaconsultants.com" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        info@dunyaconsultants.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-sm leading-relaxed">
+                    Our Johar Town Lahore office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
+                  </p>
+                </div>
+
+                <div className="space-y-4 mt-4">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <Calendar className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <a href="https://maps.app.goo.gl/dF9NNwLCi6prpgVq5" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      Get Directions
+                      <MapPin className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
                 </div>
               </div>
             </motion.div>
