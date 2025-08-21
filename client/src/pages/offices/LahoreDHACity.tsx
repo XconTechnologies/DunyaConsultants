@@ -577,9 +577,6 @@ export default function LahoreDHACity() {
                 </div>
 
                 <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-                  <p className="text-blue-100 text-sm leading-relaxed mb-2">
-                    Monday - Saturday: 9:00 AM - 6:00 PM
-                  </p>
                   <p className="text-blue-100 text-sm leading-relaxed mb-3">
                     Sunday: 10:00 AM - 4:00 PM
                   </p>
