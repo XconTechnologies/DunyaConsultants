@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLocation } from "wouter";
 import ApplicationForm from "@/components/ApplicationForm";
+import ReactCountryFlag from "react-country-flag";
 
 interface Country {
   id: string;
@@ -406,6 +407,22 @@ export default function CountriesSection() {
   const [activeTab, setActiveTab] = useState<'popular' | 'all'>('popular');
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Country codes mapping for flags
+  const countryCodesMap = {
+    "United Kingdom": "GB",
+    "United States": "US", 
+    "Canada": "CA",
+    "Australia": "AU",
+    "Turkey": "TR",
+    "Dubai": "AE",
+    "Denmark": "DK",
+    "Sweden": "SE",
+    "Ireland": "IE",
+    "Finland": "FI",
+    "Cyprus": "CY",
+    "Kyrgyzstan": "KG"
+  };
+
   // Popular countries (most requested destinations)
   const popularCountries = countries.filter(country => 
     ['United Kingdom', 'United States', 'Canada', 'Australia', 'Turkey', 'Dubai'].includes(country.name)
@@ -566,7 +583,17 @@ export default function CountriesSection() {
                 <div className="relative h-48 overflow-hidden">
                   <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
                   <div className="absolute top-4 left-4">
-                    <span className="text-3xl">{country.flag}</span>
+                    <div className="w-12 h-8 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
+                      <ReactCountryFlag 
+                        countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
+                        svg 
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </div>
                   </div>
                   <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
                     <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
@@ -647,7 +674,17 @@ export default function CountriesSection() {
                     <div className="relative h-48 overflow-hidden">
                       <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
                       <div className="absolute top-4 left-4">
-                        <span className="text-3xl">{country.flag}</span>
+                        <div className="w-12 h-8 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
+                          <ReactCountryFlag 
+                            countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
+                            svg 
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover'
+                            }}
+                          />
+                        </div>
                       </div>
                       <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
                         <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
@@ -721,7 +758,17 @@ export default function CountriesSection() {
               </button>
               
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-4xl">{selectedCountry.flag}</span>
+                <div className="w-16 h-12 rounded-md overflow-hidden shadow-lg border-2 border-gray-300">
+                  <ReactCountryFlag 
+                    countryCode={countryCodesMap[selectedCountry.name as keyof typeof countryCodesMap] || selectedCountry.code} 
+                    svg 
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
                 <div>
                   <h3 className="text-2xl font-bold text-gray-800">{selectedCountry.name}</h3>
                   <p className="text-gray-600">{selectedCountry.continent}</p>
