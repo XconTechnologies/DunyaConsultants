@@ -279,7 +279,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
       {/* Hero Section - Same style as other pages */}
       <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
@@ -328,7 +327,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
-
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
           {/* Main Content */}
@@ -469,7 +467,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           <h2 className="text-2xl font-bold text-gray-900 mb-6">
                             {section.title.replace(/^#+\s*/, '')}
                           </h2>
-                          
                           <div className="space-y-4">
                             {faqSections.map((faqSection: any, faqIndex: number) => (
                               <FAQItem 
@@ -519,7 +516,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             {section.title.replace(/^#+\s*/, '')}
                           </h2>
                         )}
-                        
                         <div>
                           {/* Check if this section contains FAQ content */}
                           {section.title.toLowerCase().includes('faq') ? (
@@ -1319,7 +1315,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );
@@ -1416,7 +1411,6 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
       {/* Hero Section - Same style as other pages */}
       <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
@@ -1427,9 +1421,7 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight italic"
-            >
-              Study Abroad Blog
-            </motion.h1>
+            >Study Abroad Blogs</motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1441,7 +1433,6 @@ export default function Blog() {
           </div>
         </div>
       </section>
-
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
         {/* Search and Filters */}
@@ -1559,7 +1550,6 @@ export default function Blog() {
         )}
 
       </div>
-
       <Footer />
     </div>
   );
