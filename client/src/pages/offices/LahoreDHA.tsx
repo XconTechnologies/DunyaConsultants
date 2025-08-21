@@ -141,11 +141,48 @@ export default function LahoreDHA() {
               </Card>
             </motion.div>
 
-            {/* Services Offered */}
+            {/* Why Students Trust Dunya Consultants DHA, Lahore */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <Card>
+                <CardHeader>
+                  <CardTitle>Why Students Trust Dunya Consultants DHA, Lahore</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9]" />
+                      <span className="font-medium text-gray-800">Local office in DHA for easy access</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9]" />
+                      <span className="font-medium text-gray-800">Thousands of successful admissions and visas</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9]" />
+                      <span className="font-medium text-gray-800">Friendly, experienced counselors</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9]" />
+                      <span className="font-medium text-gray-800">Personalized plans for each student</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-[#1D50C9]" />
+                      <span className="font-medium text-gray-800">Clear and affordable process</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Services Offered */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               <Card>
                 <CardHeader>
@@ -155,7 +192,7 @@ export default function LahoreDHA() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {office.services.map((service, index) => (
                       <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                        <CheckCircle className="w-5 h-5 #1D50C9" />
+                        <CheckCircle className="w-5 h-5 text-[#1D50C9]" />
                         <span className="font-medium">{service}</span>
                       </div>
                     ))}
@@ -168,7 +205,7 @@ export default function LahoreDHA() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Card>
                 <CardHeader>
@@ -190,7 +227,7 @@ export default function LahoreDHA() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               <Card>
                 <CardHeader>
@@ -217,7 +254,7 @@ export default function LahoreDHA() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
               <Card>
                 <CardHeader>
