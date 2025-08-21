@@ -65,7 +65,7 @@ export default function GujranwalaOffice() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white italic">
               Dunya Consultants {office.city}
             </h1>
             <p className="text-xl opacity-90 mb-6">{office.name}</p>

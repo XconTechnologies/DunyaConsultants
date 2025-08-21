@@ -561,7 +561,7 @@ export default function Blogs() {
               transition={{ duration: 0.8 }}
             >
               <Badge className="mb-4 bg-primary">{selectedPost.category}</Badge>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">{selectedPost.title}</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white italic">{selectedPost.title}</h1>
               
               <div className="flex items-center space-x-6 text-blue-100 mb-8">
                 <div className="flex items-center space-x-2">

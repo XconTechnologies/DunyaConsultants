@@ -86,7 +86,7 @@ const GMATTestFeeInPakistan: React.FC = () => {
                 Back to Blog
               </Link>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white italic">
               {blogPost.title}
             </h1>
             <div className="flex items-center justify-center space-x-6 text-white/80">
