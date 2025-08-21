@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { FiFlag } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -69,6 +70,20 @@ export default function LahoreDHACity() {
   const countries = ["USA", "UK", "Australia", "Canada", "Belgium", "Cyprus", "Germany", "Turkey", "Finland", "Ireland"];
   // Duplicate countries for seamless infinite scrolling
   const duplicatedCountries = [...countries, ...countries];
+
+  // Country flag emojis mapping
+  const countryFlags = {
+    "USA": "🇺🇸",
+    "UK": "🇬🇧", 
+    "Australia": "🇦🇺",
+    "Canada": "🇨🇦",
+    "Belgium": "🇧🇪",
+    "Cyprus": "🇨🇾",
+    "Germany": "🇩🇪",
+    "Turkey": "🇹🇷",
+    "Finland": "🇫🇮",
+    "Ireland": "🇮🇪"
+  };
 
   const faqs = [
     {
@@ -295,7 +310,7 @@ export default function LahoreDHACity() {
                         className="group cursor-pointer flex-shrink-0"
                       >
                         <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px]">
-                          <Globe className="w-8 h-8 mx-auto mb-3 opacity-80" />
+                          <div className="text-4xl mb-3">{countryFlags[country as keyof typeof countryFlags]}</div>
                           <p className="text-sm font-semibold">{country}</p>
                         </div>
                       </motion.div>
