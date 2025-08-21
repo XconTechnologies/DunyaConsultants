@@ -9,7 +9,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 export default function LahoreDHACity() {
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(0);
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
   
   const services = [
     {
@@ -474,14 +474,14 @@ export default function LahoreDHACity() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-stretch">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Left Side - FAQs */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 h-full flex flex-col">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
                 <h3 className="text-3xl font-bold text-gray-900 mb-8">
                   Frequently Asked{" "}
                   <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
@@ -535,7 +535,7 @@ export default function LahoreDHACity() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl h-full flex flex-col">
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
                 <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
                 
                 <div className="space-y-4 flex-grow">
