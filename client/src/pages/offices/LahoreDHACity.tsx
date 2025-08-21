@@ -73,7 +73,7 @@ export default function LahoreDHACity() {
   const faqs = [
     {
       question: "Who are Dunya Consultants DHA, Lahore and how can you help me study abroad?",
-      answer: "We are local study-abroad consultants in DHA, Lahore. We guide you from course selection, country selection for applications, getting scholarships, IELTS prep, visa filing, and pre-departure support - step by step, stress-free."
+      answer: "We are local study-abroad consultants in DHA, Lahore. We guide you from course selection, country selection for applications, IELTS prep, visa filing, and pre-departure support - step by step, stress-free."
     },
     {
       question: "Which countries do you support?",
