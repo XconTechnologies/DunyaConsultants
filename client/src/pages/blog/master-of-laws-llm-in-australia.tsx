@@ -18,10 +18,10 @@ export default function MasterOfLawsLLMAustralia() {
                 Study in Australia
               </span>
             </div>
-            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
+            <h1 className="font-bold leading-tight mb-8 text-white italic" style={{ fontSize: '64px' }}>
               Master of Laws (LLM) in Australia: A Comprehensive Guide
             </h1>
-            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
               Discover advanced legal education opportunities in Australia with our complete guide to LLM programs, eligibility, applications, and career prospects.
             </p>
             <div className="flex items-center justify-center space-x-6 text-blue-200">

@@ -18,10 +18,10 @@ export default function CyprusVisaPakistan() {
                 Visa Guides
               </span>
             </div>
-            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
+            <h1 className="font-bold leading-tight mb-8 text-white italic" style={{ fontSize: '64px' }}>
               Cyprus Visa for Pakistan: Complete Student Guide 2025
             </h1>
-            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
               Complete guide for Pakistani students on Cyprus visa requirements, application process, fees, scholarships, and step-by-step procedure for studying in Cyprus.
             </p>
             <div className="flex items-center justify-center space-x-6 text-blue-200">

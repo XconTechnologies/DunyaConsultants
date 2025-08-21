@@ -87,7 +87,7 @@ const OxfordTestAcceptedUniversitiesUK: React.FC = () => {
                 Back to Blog
               </Link>
             </div>
-            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
+            <h1 className="font-bold leading-tight mb-8 text-white italic" style={{ fontSize: '64px' }}>
               {blogPost.title}
             </h1>
             <div className="flex items-center justify-center space-x-6 text-white/80">

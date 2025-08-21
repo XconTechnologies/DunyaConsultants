@@ -120,10 +120,10 @@ export default function MBBSInSwedenForPakistaniStudents() {
             transition={{ duration: 0.8 }}
             className="text-white max-w-4xl"
           >
-            <h1 className="text-3xl lg:text-4xl font-bold mb-4 text-white italic">
+            <h1 className="font-bold leading-tight mb-8 text-white italic" style={{ fontSize: '64px' }}>
               MBBS in Sweden for Pakistani Students
             </h1>
-            <p className="text-white text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
               Comprehensive guide to pursuing medical education in Sweden with world-class universities, affordable fees, and excellent career opportunities.
             </p>
             <div className="flex flex-wrap gap-4 text-sm">
