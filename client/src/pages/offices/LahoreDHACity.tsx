@@ -9,7 +9,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 export default function LahoreDHACity() {
-  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(0);
   
   const services = [
     {
