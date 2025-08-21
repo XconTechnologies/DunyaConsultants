@@ -577,7 +577,6 @@ export default function LahoreDHACity() {
                 </div>
 
                 <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-                  <h4 className="text-white font-semibold text-lg mb-2">Office Hours</h4>
                   <p className="text-blue-100 text-sm leading-relaxed mb-2">
                     Monday - Saturday: 9:00 AM - 6:00 PM
                   </p>
