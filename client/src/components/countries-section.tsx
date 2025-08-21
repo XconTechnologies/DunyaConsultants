@@ -612,7 +612,7 @@ export default function CountriesSection() {
                       onClick={() => handleViewDetails(country)}
                       variant="outline"
                       size="sm"
-                      className="flex-1 hover:bg-blue-50"
+                      className="flex-1 hover:bg-white"
                       style={{ color: '#1D50C9', borderColor: '#1D50C9' }}
                     >
                       View Details
@@ -622,7 +622,7 @@ export default function CountriesSection() {
                         size="sm"
                         className="flex-1 text-white hover:scale-105 transition-transform"
                         style={{ backgroundColor: '#1D50C9' }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1845B3'}
+                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
                         onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
                       >
                         Apply Now
@@ -639,7 +639,7 @@ export default function CountriesSection() {
             {/* Navigation Arrows - Always visible for infinite scroll */}
             <Button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
               style={{ color: "#1D50C9" }}
               variant="outline"
             >
@@ -647,7 +647,7 @@ export default function CountriesSection() {
             </Button>
             <Button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-gray-50 border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
               style={{ color: "#1D50C9" }}
               variant="outline"
             >
@@ -703,7 +703,7 @@ export default function CountriesSection() {
                           onClick={() => handleViewDetails(country)}
                           variant="outline"
                           size="sm"
-                          className="flex-1 hover:bg-blue-50"
+                          className="flex-1 hover:bg-white"
                           style={{ color: '#1D50C9', borderColor: '#1D50C9' }}
                         >
                           View Details
@@ -713,7 +713,7 @@ export default function CountriesSection() {
                             size="sm"
                             className="flex-1 text-white hover:scale-105 transition-transform"
                             style={{ backgroundColor: '#1D50C9' }}
-                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1845B3'}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
                             onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
                           >
                             Apply Now
@@ -735,7 +735,7 @@ export default function CountriesSection() {
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
                       ? 'scale-110' 
-                      : 'bg-blue-200 hover:bg-blue-300'
+                      : 'bg-blue-200 hover:bg-white'
                   }`}
                   style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
                 />
