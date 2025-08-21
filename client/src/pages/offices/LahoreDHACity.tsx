@@ -576,6 +576,19 @@ export default function LahoreDHACity() {
                   </div>
                 </div>
 
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <h4 className="text-white font-semibold text-lg mb-2">Office Hours</h4>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-2">
+                    Monday - Saturday: 9:00 AM - 6:00 PM
+                  </p>
+                  <p className="text-blue-100 text-sm leading-relaxed mb-3">
+                    Sunday: 10:00 AM - 4:00 PM
+                  </p>
+                  <p className="text-blue-100 text-sm leading-relaxed">
+                    Our DHA Lahore office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
+                  </p>
+                </div>
+
                 <div className="space-y-4 mt-4">
                   <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
                     <Link href="/contact" className="flex items-center justify-center w-full">
