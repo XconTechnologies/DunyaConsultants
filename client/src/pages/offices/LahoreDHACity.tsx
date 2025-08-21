@@ -474,14 +474,14 @@ export default function LahoreDHACity() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
+          <div className="grid lg:grid-cols-2 gap-12 items-stretch">
             {/* Left Side - FAQs */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 h-full">
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 h-full flex flex-col">
                 <h3 className="text-3xl font-bold text-gray-900 mb-8">
                   Frequently Asked{" "}
                   <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
@@ -489,7 +489,7 @@ export default function LahoreDHACity() {
                   </span>
                 </h3>
                 
-                <div className="space-y-3">
+                <div className="space-y-3 flex-grow">
                   {faqs.map((faq, index) => (
                     <motion.div
                       key={index}
@@ -536,7 +536,7 @@ export default function LahoreDHACity() {
               transition={{ duration: 0.6 }}
             >
               <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl h-full flex flex-col">
-                <h3 className="text-2xl font-bold mb-8 text-center text-white">Contact Information</h3>
+                <h3 className="text-2xl font-bold mb-8 text-center" style={{color: '#ffffff !important'}}>Contact Information</h3>
                 
                 <div className="space-y-6 flex-grow">
                   <div className="flex items-start space-x-4">
