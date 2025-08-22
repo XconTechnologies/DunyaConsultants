@@ -55,7 +55,7 @@ export default function AboutCompany() {
             <img
               src={companyCollage}
               alt="Company collage showcasing achievements and team"
-              className="w-full h-[600px] object-cover rounded-2xl shadow-lg"
+              className="w-full h-64 sm:h-80 md:h-96 lg:h-[600px] object-cover rounded-2xl shadow-lg"
               loading="eager"
             />
           </motion.div>
@@ -67,7 +67,7 @@ export default function AboutCompany() {
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
-            <div className="bg-white rounded-3xl p-6 lg:p-8 shadow-xl h-[600px] flex flex-col justify-between">
+            <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-8 shadow-xl min-h-64 sm:min-h-80 md:min-h-96 lg:h-[600px] flex flex-col justify-between">
               {/* About Company Badge */}
               <motion.div
                 className="mb-4"
@@ -89,29 +89,29 @@ export default function AboutCompany() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-4">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-3 sm:mb-4">
                   WHO WE ARE
                 </h2>
               </motion.div>
 
               {/* Content Items */}
-              <div className="space-y-2 flex-1">
+              <div className="space-y-1.5 sm:space-y-2 flex-1">
                 {expandableContent.map((item, index) => (
                   <motion.div
                     key={index}
-                    className="flex items-start gap-3 p-1 rounded-xl hover:bg-blue-50/50 transition-colors duration-300"
+                    className="flex items-start gap-2 sm:gap-3 p-1 rounded-xl hover:bg-blue-50/50 transition-colors duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                   >
-                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center shadow-lg">
-                      <item.icon className="w-4 h-4 text-white" />
+                    <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center shadow-lg">
+                      <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
                     </div>
-                    <div className="flex-1 pt-1">
-                      <h3 className="text-sm font-semibold text-gray-900 mb-1">
+                    <div className="flex-1 pt-0.5 sm:pt-1">
+                      <h3 className="text-xs sm:text-sm font-semibold text-gray-900 mb-0.5 sm:mb-1 leading-tight">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed text-xs">
+                      <p className="text-gray-600 leading-relaxed text-xs leading-snug">
                         {item.content}
                       </p>
                     </div>

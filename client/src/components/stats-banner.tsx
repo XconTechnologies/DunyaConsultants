@@ -186,7 +186,7 @@ export default function StatsBanner() {
           </motion.div>
         ))}
       </div>
-      <div className="container mx-auto px-8 relative z-10 pt-[120px] pb-[50px]" ref={ref}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 sm:pt-20 lg:pt-[120px] pb-8 sm:pb-12 lg:pb-[50px]" ref={ref}>
         {/* Social Icons - Fixed Position for Desktop, Bottom Section for Mobile */}
         <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-40 bg-white rounded-full px-2 py-3 shadow-lg border border-gray-200 hidden lg:block">
           <div className="flex flex-col gap-2">
@@ -280,18 +280,18 @@ export default function StatsBanner() {
         </div>
 
         {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl lg:text-4xl mb-4 text-white font-normal">
+        <div className="text-center mb-6 sm:mb-8 lg:mb-10">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 text-white font-normal px-2">
             Turning <span className="font-bold italic">Ambition</span> into <span className="font-bold italic">Admission</span>
           </h2>
           
-          <p className="text-white/80 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
+          <p className="text-white/80 text-xs sm:text-sm lg:text-base max-w-3xl mx-auto leading-relaxed px-4">
             Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.
           </p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 lg:gap-4 max-w-5xl mx-auto px-2 sm:px-4">
           {stats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
@@ -310,11 +310,11 @@ export default function StatsBanner() {
                 <div className={`absolute -inset-2 bg-gradient-to-r ${stat.gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
                 
                 {/* Main Card */}
-                <div className="relative bg-white/8 backdrop-blur-xl rounded-2xl p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
+                <div className="relative bg-white/8 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
                   {/* Icon Container */}
-                  <div className="relative mb-4 flex justify-center">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
-                      <IconComponent className="w-5 h-5 text-white" />
+                  <div className="relative mb-2 sm:mb-3 lg:mb-4 flex justify-center">
+                    <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
+                      <IconComponent className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
                     </div>
                     
                     {/* Floating Sparkles - Only star animation kept */}
@@ -335,8 +335,8 @@ export default function StatsBanner() {
                   </div>
 
                   {/* Content */}
-                  <div className="text-center space-y-2">
-                    <div className="text-lg lg:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500">
+                  <div className="text-center space-y-1 sm:space-y-1.5 lg:space-y-2">
+                    <div className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500">
                       <AnimatedCounter 
                         number={stat.number} 
                         suffix={stat.suffix} 
@@ -344,11 +344,11 @@ export default function StatsBanner() {
                       />
                     </div>
                     
-                    <h3 className="text-white font-semibold text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500">
+                    <h3 className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
                       {stat.label}
                     </h3>
                     
-                    <p className="text-white/60 text-xs group-hover:text-white/80 transition-colors duration-300">
+                    <p className="text-white/60 text-xs sm:text-xs group-hover:text-white/80 transition-colors duration-300 leading-tight">
                       {stat.description}
                     </p>
                   </div>
@@ -359,11 +359,11 @@ export default function StatsBanner() {
         </div>
 
         {/* Bottom Element */}
-        <div className="flex justify-center mt-16 mb-24">
-          <div className="flex items-center gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10">
-            <Shield className="w-5 h-5" style={{ color: '#1D50C9' }} />
-            <span className="text-white/80 font-medium">Trusted Excellence Since 2021</span>
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#1D50C9' }} />
+        <div className="flex justify-center mt-8 sm:mt-12 lg:mt-16 mb-8 sm:mb-16 lg:mb-24">
+          <div className="flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-white/10">
+            <Shield className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#1D50C9' }} />
+            <span className="text-white/80 font-medium text-sm sm:text-base">Trusted Excellence Since 2021</span>
+            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full" style={{ backgroundColor: '#1D50C9' }} />
           </div>
         </div>
       </div>
