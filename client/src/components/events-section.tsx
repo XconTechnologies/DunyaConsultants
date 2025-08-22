@@ -149,7 +149,7 @@ export default function EventsSection() {
   const handleFilterHover = (filterId: string, isHovering: boolean) => {
     const element = document.getElementById(`filter-${filterId}`);
     if (element && activeFilter !== filterId) {
-      element.style.color = isHovering ? 'white' : '#6b7280';
+      element.style.color = isHovering ? '#1D50C9' : '#6b7280';
     }
   };
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);

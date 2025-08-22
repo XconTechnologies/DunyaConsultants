@@ -126,7 +126,7 @@ export default function CountriesSection() {
   const handleTabHover = (tabName: 'popular' | 'all', isHovering: boolean) => {
     const element = document.getElementById(`tab-${tabName}`);
     if (element && activeTab !== tabName) {
-      element.style.color = isHovering ? 'white' : '#6b7280';
+      element.style.color = isHovering ? '#1D50C9' : '#6b7280';
     }
   };
   const [selectedCountry, setSelectedCountry] = useState<typeof countries[0] | null>(null);
