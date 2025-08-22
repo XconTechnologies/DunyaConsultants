@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { X, Phone, Mail, MapPin, Calendar, User } from "lucide-react";
+import { X, Phone, MessageCircle, Star, Users, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface SimpleConsultationPopupProps {
@@ -11,15 +9,7 @@ interface SimpleConsultationPopupProps {
 }
 
 export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsultationPopupProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    consultationType: "",
-    message: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState("General");
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -34,51 +24,28 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
     };
   }, [isOpen]);
 
-  const consultationTypes = [
-    "General Consultation",
+  const countryOptions = [
+    "General",
     "UK Study Visa",
     "Canada Study Visa", 
     "Australia Study Visa",
     "USA Study Visa",
-    "Germany Study Visa",
-    "IELTS Preparation",
-    "University Selection",
-    "Document Guidance"
+    "Germany Study Visa"
   ];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        consultationType: "",
-        message: ""
-      });
-      onClose();
-    }, 3000);
+  const handleCall = () => {
+    window.open('tel:+923041110947', '_self');
   };
 
-  const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+  const handleWhatsApp = () => {
+    window.open('https://wa.me/923041110947', '_blank');
   };
 
   if (!isOpen) return null;
 
   return (
     <div 
-      className="fixed inset-0 bg-black bg-opacity-70 flex items-start justify-center z-50 p-4 pt-16"
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
       style={{ 
         position: 'fixed',
         top: 0,
@@ -90,125 +57,97 @@ export default function SimpleConsultationPopup({ isOpen, onClose }: SimpleConsu
       onClick={onClose}
     >
       <div 
-        className="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-[85vh] overflow-auto mt-8"
+        className="bg-white rounded-xl shadow-2xl w-full max-w-sm"
         onClick={(e) => e.stopPropagation()}
-        style={{ marginTop: '2rem' }}
       >
         {/* Header */}
-        <div className="bg-gradient-to-r from-[#1D50C9] to-[#1a73e8] p-6 text-white relative">
+        <div className="bg-gradient-to-r from-[#1D50C9] to-[#1565c0] p-4 text-white relative rounded-t-xl">
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
+            className="absolute top-3 right-3 w-6 h-6 bg-white bg-opacity-20 rounded-full flex items-center justify-center hover:bg-opacity-30 transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
           
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
-              <Calendar className="w-5 h-5" />
+          <div className="flex items-center space-x-2 mb-3">
+            <Users className="w-5 h-5" />
+            <h2 className="text-lg font-bold">Free Consultation</h2>
+          </div>
+          
+          <div className="flex items-center justify-between text-sm">
+            <div className="flex items-center space-x-4">
+              <span className="flex items-center space-x-1">
+                <Clock className="w-4 h-4" />
+                <span>Available Now</span>
+              </span>
+              <span>• 15 online</span>
             </div>
-            <div>
-              <h2 className="text-2xl font-bold">Book Your Free Consultation</h2>
-              <p className="text-blue-100">Get expert guidance for your study abroad journey</p>
+            <div className="flex items-center space-x-1">
+              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <span className="font-semibold">4.8/5</span>
             </div>
           </div>
         </div>
 
-        <div className="p-6">
-          {!isSubmitted ? (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input
-                  placeholder="Full Name *"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
-                  required
-                  className="border-gray-300 focus:border-[#1D50C9]"
-                />
-                
-                <Input
-                  type="email"
-                  placeholder="Email Address *"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  required
-                  className="border-gray-300 focus:border-[#1D50C9]"
-                />
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Input
-                  type="tel"
-                  placeholder="Phone Number *"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                  required
-                  className="border-gray-300 focus:border-[#1D50C9]"
-                />
-                
-                <Select value={formData.consultationType} onValueChange={(value) => handleInputChange("consultationType", value)}>
-                  <SelectTrigger className="border-gray-300 focus:border-[#1D50C9]">
-                    <SelectValue placeholder="Select Consultation Type *" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-white">
-                    {consultationTypes.map((type) => (
-                      <SelectItem key={type} value={type}>
-                        {type}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+        <div className="p-4 space-y-4">
+          <p className="text-gray-600 text-sm">Get expert guidance for study abroad</p>
+          
+          <div className="space-y-3">
+            <div>
+              <label className="text-xs text-gray-600 mb-1 block">Country Counselor:</label>
+              <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+                <SelectTrigger className="w-full h-10 border-gray-300 focus:border-[#1D50C9]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-white">
+                  {countryOptions.map((option) => (
+                    <SelectItem key={option} value={option}>
+                      {option}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
 
-              <Textarea
-                placeholder="Tell us about your study abroad goals and any specific questions..."
-                value={formData.message}
-                onChange={(e) => handleInputChange("message", e.target.value)}
-                className="border-gray-300 focus:border-[#1D50C9] min-h-[100px]"
-              />
-
-              {/* Submit Button */}
-              <Button
-                type="submit"
-                disabled={isSubmitting || !formData.name || !formData.email || !formData.phone}
-                className="w-full bg-[#1D50C9] hover:bg-[#1565c0] text-white font-semibold py-3 text-lg transition-colors"
-              >
-                {isSubmitting ? "Booking Consultation..." : "Book Free Consultation"}
-              </Button>
-            </form>
-          ) : (
-            <div className="text-center py-8">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-8 h-8 text-[#1845B3]" />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Consultation Booked Successfully!</h3>
-              <p className="text-gray-600 mb-4">
-                Thank you for booking your free consultation. Our expert counselor will contact you within 24 hours.
-              </p>
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <p className="text-sm text-[#1D50C9]">
-                  <strong>Next Steps:</strong> Prepare your academic documents and think about your preferred study destinations.
-                </p>
+            <div className="bg-gray-50 p-3 rounded-lg">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-gray-600">Main Office</span>
+                <span className="text-gray-500">General</span>
               </div>
             </div>
-          )}
-        </div>
+          </div>
 
-        {/* Contact Information */}
-        <div className="bg-gray-50 p-6 border-t">
-          <h4 className="font-semibold text-gray-800 mb-3">Contact Information</h4>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-            <div className="flex items-center space-x-2">
-              <Phone className="w-4 h-4 text-[#1845B3]" />
-              <span>+92 304 1110947</span>
+          <div className="space-y-2">
+            <Button
+              onClick={handleCall}
+              className="w-full bg-[#1D50C9] hover:bg-[#1565c0] text-white font-medium py-3 rounded-lg transition-colors flex items-center justify-center space-x-2"
+            >
+              <Phone className="w-4 h-4" />
+              <span>Call Main Office</span>
+            </Button>
+            
+            <Button
+              onClick={handleWhatsApp}
+              variant="outline"
+              className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 font-medium py-3 rounded-lg transition-colors flex items-center justify-center space-x-2"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>WhatsApp</span>
+            </Button>
+          </div>
+
+          <div className="flex justify-center space-x-6 pt-2 text-center text-xs text-gray-500">
+            <div>
+              <div className="font-semibold text-[#1D50C9]">15K+</div>
+              <div>Students</div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Mail className="w-4 h-4 text-[#1845B3]" />
-              <span>info@dunyaconsultants.com</span>
+            <div>
+              <div className="font-semibold text-[#1D50C9]">98%</div>
+              <div>Success</div>
             </div>
-            <div className="flex items-center space-x-2">
-              <MapPin className="w-4 h-4 text-[#1845B3]" />
-              <span>Alif Tower, Sargodha</span>
+            <div>
+              <div className="font-semibold text-[#1D50C9]">15+</div>
+              <div>Years</div>
             </div>
           </div>
         </div>
