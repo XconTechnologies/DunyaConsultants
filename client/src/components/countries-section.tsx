@@ -229,8 +229,14 @@ export default function CountriesSection() {
               size="sm"
               className="flex-1 text-white hover:scale-105 transition-transform"
               style={{ backgroundColor: '#1D50C9' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'white'
+                e.currentTarget.style.color = '#1D50C9'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#1D50C9'
+                e.currentTarget.style.color = 'white'
+              }}
             >
               Apply Now
             </Button>
@@ -320,7 +326,7 @@ export default function CountriesSection() {
             </Button>
 
             {/* Desktop: Grid View */}
-            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 px-16">
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-8">
               {displayCountries.map((country, index) => renderCountryCard(country, index))}
             </div>
 
@@ -374,9 +380,9 @@ export default function CountriesSection() {
             </Button>
 
             {/* Desktop: Carousel */}
-            <div className="hidden md:block overflow-hidden px-16">
+            <div className="hidden md:block overflow-hidden px-8">
               <motion.div
-                className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+                className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
                 key={`desktop-popular-${currentSlide}`}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}

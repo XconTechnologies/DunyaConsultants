@@ -1,362 +1,604 @@
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle, CheckCircle } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import ReactCountryFlag from "react-country-flag";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 export default function SargodhaHeadOffice() {
-  const office = {
-    id: "sargodha-head",
-    city: "Sargodha",
-    name: "Head Office",
-    address: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
-    phone: "+92 304 1110947",
-    email: "info@dunyaconsultants.com",
-    hours: "Mon–Sat 9 AM–7 PM",
-    gradient: "from-[#1D50C9] to-purple-600",
-    isHeadOffice: true,
-    region: "Punjab",
-    services: ["Visa Processing", "University Applications", "IELTS Training", "Career Counseling", "Document Verification", "Scholarship Guidance"],
-    manager: "Mr. Abdul Majeed",
-    staffCount: 25,
-    established: "2015",
-    successRate: "98%",
-    studentsServed: "5000+",
-    specializations: ["UK Universities", "Canada Immigration", "IELTS Preparation", "Scholarship Guidance", "Australian Universities", "US Universities"],
-    description: "Our flagship office and headquarters, established in 2015 as the foundation of Dunya Consultants. This comprehensive center serves as our main hub for operations across Pakistan and international partnerships.",
-    testimonials: [
-      {
-        name: "Ahmed Hassan",
-        university: "University of Toronto",
-        message: "The Sargodha team helped me secure admission to my dream university in Canada. Their guidance throughout the visa process was exceptional."
-      },
-      {
-        name: "Fatima Khan", 
-        university: "University of Manchester",
-        message: "From IELTS preparation to final visa approval, the head office team supported me at every step. Highly professional service."
-      },
-      {
-        name: "Ali Ahmad",
-        university: "Monash University",
-        message: "The head office provided comprehensive support for my Australian student visa. Their expertise made the process smooth and stress-free."
-      }
-    ],
-    facilities: ["Private Consultation Rooms", "IELTS Testing Center", "Document Processing Unit", "Student Lounge", "Free WiFi", "Parking Available", "Conference Hall", "Reception Area"],
-    nearbyLandmarks: ["Sargodha University", "District Courts", "City Hospital", "Main Bus Stand", "Government College", "Sargodha Stadium"]
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  
+  const services = [
+    {
+      icon: Users,
+      title: "Career Counseling",
+      description: "We find out what your abilities and goals are, and then we recommend the best courses and countries for you.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: GraduationCap,
+      title: "University Selection", 
+      description: "Shortlists that fit your budget, profile, and preferences.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: FileText,
+      title: "Application Support",
+      description: "Forms, documents, and deadlines are all taking care of closely and on time.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: MessageCircle,
+      title: "Interview Preparation",
+      description: "Practice interviews, advice, and ways to boost your confidence.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: Calendar,
+      title: "Pre-Departure Support",
+      description: "Travel, lodging, a packing list, and cultural advice.",
+      color: "from-blue-500 to-blue-600"
+    }
+  ];
+
+  const ieltsFeatures = [
+    "Trainers who have been near for a while and teach clear strategies",
+    "New ways to make difficult topics easier to understand", 
+    "Small groups for personalized feedback",
+    "Classrooms that are comfortable and have the proper tools for learning",
+    "Free assessment to find out where you stand and develop a plan",
+    "Visa help while you study for the IELTS"
+  ];
+
+  const whyChooseUs = [
+    "Expert help: A team of professionals who care about your success",
+    "Plans that are made just for you: Advice that works you as well, not a blueprint",
+    "A strong track record of getting people into universities and getting visas",
+    "Local support: You can easily get to our Sargodha office"
+  ];
+
+  const countries = ["USA", "UK", "Australia", "Canada", "Belgium", "Cyprus", "Germany", "Turkey", "Finland", "Ireland"];
+  // Duplicate countries for seamless infinite scrolling
+  const duplicatedCountries = [...countries, ...countries];
+
+  // Country codes mapping for flags
+  const countryCodesMap = {
+    "USA": "US",
+    "UK": "GB", 
+    "Australia": "AU",
+    "Canada": "CA",
+    "Belgium": "BE",
+    "Cyprus": "CY",
+    "Germany": "DE",
+    "Turkey": "TR",
+    "Finland": "FI",
+    "Ireland": "IE"
   };
 
+  const faqs = [
+    {
+      question: "What services do you offer in Sargodha?",
+      answer: "We provide career counseling, university shortlisting, application support, interview preparation, pre-departure briefing, and IELTS training at our Sargodha office."
+    },
+    {
+      question: "Which countries can I apply to through your Sargodha office?",
+      answer: "We help students apply to USA, UK, Australia, Canada, Belgium, Cyprus, Germany, Turkey, Finland, and Ireland with comprehensive support for each destination."
+    },
+    {
+      question: "Do you offer IELTS classes in Sargodha?",
+      answer: "Yes, we offer IELTS training with experienced trainers, modern teaching methods, small groups, free assessment, and comfortable classrooms with proper learning tools."
+    },
+    {
+      question: "How can Dunya Consultants Sargodha help with my study visa?",
+      answer: "Our visa team stays up to date on current requirements and carefully checks your file to make it more likely that you will be approved. We make visa rules clear and understandable."
+    },
+    {
+      question: "Why should I choose Dunya Consultants Sargodha?",
+      answer: "We offer expert help from professionals who care about your success, personalized plans made just for you, a strong track record of university admissions and visa approvals, and convenient local support."
+    },
+    {
+      question: "How do I get started with your services?",
+      answer: "Contact us for a free consultation by calling +92 323-251-6319 or visiting our office at Alif Tower, Buhadur Shah Zafar Road, Sargodha."
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
-      
-      {/* Header */}
-      <div className={`bg-gradient-to-r ${office.gradient} text-white pt-32 pb-16`}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center mb-6">
-            <Link href="/offices">
-              <Button variant="ghost" className="text-white hover:bg-white/20 mr-4">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to All Offices
-              </Button>
-            </Link>
-            <Badge className="bg-white/20 text-white border-white/30">
-              Head Office
-            </Badge>
-          </div>
-          
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Dunya Consultants {office.city}
+            <div className="inline-flex items-center px-6 py-3 bg-white/15 rounded-full backdrop-blur-sm mb-8 border border-white/20">
+              <MapPin className="w-5 h-5 mr-2" />
+              <span className="text-sm font-medium">Sargodha Head Office</span>
+            </div>
+            
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-white">
+              Dunya Consultants Sargodha | Study Abroad & Visa Experts
             </h1>
-            <p className="text-xl opacity-90 mb-6">{office.name}</p>
-            <p className="text-lg opacity-80 max-w-3xl">{office.description}</p>
+            
+            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
+              Want to study abroad but don't know where to begin? We're here to help. We help you with every step, from picking a course to securing your visa, at Dunya Consultants (Sargodha). This makes the process look easy and stress-free.
+            </p>
+
+            {/* Contact Info */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
+              <div className="flex items-center justify-center">
+                <Phone className="w-5 h-5 mr-2" />
+                <span>+92 323-251-6319</span>
+              </div>
+              <div className="flex items-center justify-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>Mon–Sat 10 AM–6 PM</span>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                  Book Free Consultation
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                <a href="https://maps.app.goo.gl/4NrALSw714bypnzG7" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  Get Directions
+                  <MapPin className="w-5 h-5 ml-2" />
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </div>
-      </div>
+      </section>
 
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Contact Information */}
+      {/* Why Choose Us */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Why Students Trust{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Dunya Consultants Sargodha
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Trust Reasons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Building2 className="w-5 h-5 mr-2" />
-                    Contact Information
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="flex items-center space-x-3">
-                      <MapPin className="w-5 h-5 text-gray-500" />
-                      <div>
-                        <p className="font-medium">Address</p>
-                        <p className="text-gray-600">{office.address}</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Phone className="w-5 h-5 text-gray-500" />
-                      <div>
-                        <p className="font-medium">Phone</p>
-                        <a href={`tel:${office.phone}`} className="#1845B3 hover:underline">
-                          {office.phone}
-                        </a>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Mail className="w-5 h-5 text-gray-500" />
-                      <div>
-                        <p className="font-medium">Email</p>
-                        <a href={`mailto:${office.email}`} className="#1845B3 hover:underline">
-                          {office.email}
-                        </a>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                      <Clock className="w-5 h-5 text-gray-500" />
-                      <div>
-                        <p className="font-medium">Hours</p>
-                        <p className="text-gray-600">{office.hours}</p>
-                      </div>
-                    </div>
-                  </div>
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-lg border border-blue-100">
+                <div className="space-y-4">
+                {whyChooseUs.map((reason, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300">
+                      <CardContent className="p-4 flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
+                          <CheckCircle className="w-4 h-4 text-white" />
+                        </div>
+                        <p className="text-gray-800 font-medium text-sm">{reason}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Office Gallery */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-4"
+            >
+              <div className="grid gap-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="overflow-hidden rounded-xl shadow-xl"
+                >
+                  <img 
+                    src="/attached_assets/WhatsApp Image 2024-07-20 at 10.54.08_100076f0_1755690900367.jpg" 
+                    alt="Dunya Consultants Sargodha Office Reception with Logo"
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </motion.div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 10.54.11_613b4f8d_1755690898376.jpg" 
+                      alt="Professional Consultation Area"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </motion.div>
                   
-                  <div className="flex gap-4 pt-4">
-                    <Button className={`bg-gradient-to-r ${office.gradient}`}>
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Book Consultation
-                    </Button>
-                    <Button variant="outline">
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      Live Chat
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Services Offered */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle>Services Offered</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {office.services.map((service, index) => (
-                      <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                        <CheckCircle className="w-5 h-5 #1D50C9" />
-                        <span className="font-medium">{service}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Specializations */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle>Our Specializations</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {office.specializations.map((spec, index) => (
-                      <Badge key={index} variant="outline" className="px-3 py-1">
-                        {spec}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Student Testimonials */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Star className="w-5 h-5 mr-2" />
-                    Student Success Stories
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  {office.testimonials.map((testimonial, index) => (
-                    <div key={index} className="border-l-4 #1D50C9 pl-4 py-2">
-                      <p className="text-gray-700 italic mb-2">"{testimonial.message}"</p>
-                      <div className="text-sm">
-                        <p className="font-medium">{testimonial.name}</p>
-                        <p className="text-gray-500">{testimonial.university}</p>
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Facilities */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle>Office Facilities</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {office.facilities.map((facility, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
-                        <span>{facility}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Quick Stats */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Award className="w-5 h-5 mr-2" />
-                    Office Statistics
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="text-center">
-                    <div className="text-2xl font-bold #1845B3">{office.successRate}</div>
-                    <div className="text-sm text-gray-600">Success Rate</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold #1845B3">{office.studentsServed}</div>
-                    <div className="text-sm text-gray-600">Students Served</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold #1845B3">{office.staffCount}</div>
-                    <div className="text-sm text-gray-600">Team Members</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold #1845B3">{office.established}</div>
-                    <div className="text-sm text-gray-600">Established</div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Manager Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <Users className="w-5 h-5 mr-2" />
-                    Office Manager
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-3">
-                      {office.manager.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <h3 className="font-semibold">{office.manager}</h3>
-                    <p className="text-sm text-gray-600">Office Manager</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Nearby Landmarks */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <MapPin className="w-5 h-5 mr-2" />
-                    Nearby Landmarks
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {office.nearbyLandmarks.map((landmark, index) => (
-                      <div key={index} className="flex items-center space-x-2">
-                        <div className="w-2 h-2 #1D50C9 rounded-full"></div>
-                        <span className="text-sm">{landmark}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 10.54.07_23cebcb6_1755690902473.jpg" 
+                      alt="Dunya Consultants Building Exterior"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </motion.div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
+      </section>
 
-        {/* Call to Action */}
-        <motion.div
-          className="mt-16 bg-gradient-to-r from-[#1D50C9] to-#1565c0 rounded-2xl p-8 text-white text-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-        >
-          <h2 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h2>
-          <p className="mb-6 opacity-90">
-            Visit our head office for personalized consultation and expert guidance on your international education goals.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg">
-              <Calendar className="w-4 h-4 mr-2" />
-              Book Appointment
-            </Button>
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:bg-[#1845B3]">
-              <Phone className="w-4 h-4 mr-2" />
-              Call Now
-            </Button>
+      {/* Services Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              What We{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Do
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 shadow-lg group hover:scale-105">
+                  <CardContent className="p-6">
+                    <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                      <service.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
-      </div>
-      
+        </div>
+      </section>
+
+      {/* IELTS Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - IELTS Info */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl font-bold text-gray-900 mb-6">
+                Learn IELTS at{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Dunya (Sargodha)
+                </span>
+              </h2>
+              <p className="text-gray-600 text-lg mb-8">
+                Want a high score in the IELTS? Our program is useful as it focuses on results.
+              </p>
+              
+              <div className="space-y-4">
+                {ieltsFeatures.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex items-start space-x-3"
+                  >
+                    <div className="w-6 h-6 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <CheckCircle className="w-4 h-4 text-white" />
+                    </div>
+                    <p className="text-gray-700">{feature}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right Side - Visual */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white">
+                <BookOpen className="w-16 h-16 mb-6 opacity-80" />
+                <h3 className="text-2xl font-bold mb-4">Your Study Visa Team in Sargodha</h3>
+                <p className="text-blue-100 mb-6">
+                  Visa rules can be hard to understand, but we make things clear. Our team stays up to date on the current requirements and carefully checks your file to make it more likely that you will be approved.
+                </p>
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                    <Award className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <p className="font-semibold">Expert Visa Guidance</p>
+                    <p className="text-sm text-blue-200">Professional visa consultants</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Countries Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="w-full"
+          >
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                Countries We{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Support
+                </span>
+              </h3>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9] relative">
+                {/* Infinite Scrolling Container */}
+                <div className="relative overflow-hidden">
+                  <motion.div 
+                    className="flex gap-6"
+                    animate={{ x: [-0, -50 + "%"] }}
+                    transition={{ 
+                      duration: 20,
+                      ease: "linear",
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  >
+                    {duplicatedCountries.map((country, index) => (
+                      <motion.div
+                        key={`${country}-${index}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: (index % countries.length) * 0.05 }}
+                        className="group cursor-pointer flex-shrink-0"
+                      >
+                        <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px]">
+                          <div className="flex flex-col items-center">
+                            <div className="w-16 h-12 mb-3 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
+                              <ReactCountryFlag 
+                                countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
+                                svg 
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover'
+                                }}
+                              />
+                            </div>
+                            <h4 className="font-semibold text-white text-sm group-hover:scale-110 transition-transform duration-300">
+                              {country}
+                            </h4>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Frequently Asked{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Questions
+              </span>
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Get answers to common questions about studying abroad through our Sargodha office
+            </p>
+          </motion.div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="border border-gray-200 hover:shadow-md transition-all duration-300">
+                  <CardContent className="p-0">
+                    <button
+                      onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                      className="w-full text-left p-6 focus:outline-none"
+                    >
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
+                        <div className="flex-shrink-0">
+                          {expandedFaq === index ? (
+                            <ChevronUp className="w-5 h-5 text-[#1D50C9]" />
+                          ) : (
+                            <ChevronDown className="w-5 h-5 text-[#1D50C9]" />
+                          )}
+                        </div>
+                      </div>
+                    </button>
+                    {expandedFaq === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="px-6 pb-6">
+                          <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold mb-4">
+              Contact (Sargodha)
+            </h2>
+            <p className="text-xl text-blue-100">
+              Ready to begin? Visit us or call for a free consultation.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Contact Info */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold text-lg mb-2">Phone</h4>
+                    <a href="tel:+923232516319" className="text-blue-100 hover:text-white transition-colors text-lg">
+                      +92 323-251-6319
+                    </a>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold text-lg mb-2">Address</h4>
+                    <p className="text-blue-100 leading-relaxed">
+                      Alif Tower, Buhadur Shah Zafar Road, Sargodha
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold text-lg mb-2">Hours</h4>
+                    <p className="text-blue-100">Monday - Saturday: 10 AM - 6 PM</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side - CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center"
+            >
+              <div className="bg-white/10 rounded-2xl p-8 backdrop-blur-sm">
+                <h3 className="text-2xl font-bold mb-6">Start Your Journey Today</h3>
+                <p className="text-blue-100 mb-8">
+                  Book your free consultation and take the first step towards studying abroad
+                </p>
+                <div className="space-y-4">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 text-lg font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <ArrowRight className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="w-full border-white text-white hover:bg-white/10 py-4 text-lg">
+                    <a href="https://maps.app.goo.gl/4NrALSw714bypnzG7" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      Get Directions
+                      <MapPin className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

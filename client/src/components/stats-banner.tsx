@@ -291,8 +291,9 @@ export default function StatsBanner() {
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 lg:gap-4 max-w-5xl mx-auto px-2 sm:px-4">
-          {stats.map((stat, index) => {
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 lg:gap-4 max-w-5xl mx-auto px-2 sm:px-4">
+          {/* First 4 cards in normal grid */}
+          {stats.slice(0, 4).map((stat, index) => {
             const IconComponent = stat.icon;
             return (
               <div
@@ -356,6 +357,65 @@ export default function StatsBanner() {
               </div>
             );
           })}
+          
+          {/* 5th card centered */}
+          <div className="col-span-2 sm:col-span-2 md:col-span-3 lg:col-span-1 flex justify-center">
+            <div className="group relative cursor-pointer w-full max-w-[200px]" onClick={() => handleStatClick(4)}>
+              {/* Background Pattern */}
+              <div 
+                className="absolute inset-0 rounded-3xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"
+                style={{ background: stats[4].bgPattern }}
+              />
+              
+              {/* Glow Effect */}
+              <div className={`absolute -inset-2 bg-gradient-to-r ${stats[4].gradient} rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-500`}></div>
+              
+              {/* Main Card */}
+              <div className="relative bg-white/8 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-3 lg:p-4 border border-white/10 group-hover:border-white/20 transition-all duration-500 h-full group-hover:bg-white/12 group-hover:shadow-lg">
+                {/* Icon Container */}
+                <div className="relative mb-2 sm:mb-3 lg:mb-4 flex justify-center">
+                  <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center ${stats[4].glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
+                    <Star className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
+                  </div>
+                  
+                  {/* Floating Sparkles - Only star animation kept */}
+                  <motion.div
+                    className="absolute -top-2 -right-2 w-6 h-6"
+                    animate={{
+                      rotate: [0, 180, 360],
+                      scale: [1, 1.3, 1],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Sparkles className="w-6 h-6 text-white opacity-80" />
+                  </motion.div>
+                </div>
+
+                {/* Content */}
+                <div className="text-center space-y-1 sm:space-y-1.5 lg:space-y-2">
+                  <div className="text-sm sm:text-base lg:text-lg xl:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-white to-white/60 group-hover:from-white group-hover:via-blue-100 group-hover:to-white transition-all duration-500">
+                    <AnimatedCounter 
+                      number={stats[4].number} 
+                      suffix={stats[4].suffix} 
+                      isVisible={isInView} 
+                    />
+                  </div>
+                  
+                  <h3 className="text-white font-semibold text-xs sm:text-sm group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-200 transition-all duration-500 leading-tight">
+                    {stats[4].label}
+                  </h3>
+                  
+                  <p className="text-white/60 text-xs sm:text-xs group-hover:text-white/80 transition-colors duration-300 leading-tight">
+                    {stats[4].description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Element */}
