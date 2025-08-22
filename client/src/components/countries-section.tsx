@@ -286,7 +286,7 @@ export default function CountriesSection() {
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'popular' 
                   ? 'text-white shadow-sm' 
-                  : 'bg-transparent text-gray-600'
+                  : 'bg-transparent text-gray-600 hover:text-white'
               }`}
               style={activeTab === 'popular' ? { backgroundColor: '#1D50C9' } : {}}
               variant="ghost"
@@ -298,7 +298,7 @@ export default function CountriesSection() {
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'all' 
                   ? 'text-white shadow-sm' 
-                  : 'bg-transparent text-gray-600'
+                  : 'bg-transparent text-gray-600 hover:text-white'
               }`}
               style={activeTab === 'all' ? { backgroundColor: '#1D50C9' } : {}}
               variant="ghost"
