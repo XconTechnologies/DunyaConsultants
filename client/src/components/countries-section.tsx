@@ -331,7 +331,7 @@ export default function CountriesSection() {
             </div>
 
             {/* Mobile: Single Card View */}
-            <div className="md:hidden px-16">
+            <div className="md:hidden px-4">
               <motion.div
                 key={`mobile-all-${currentSlide}`}
                 initial={{ opacity: 0, x: 100 }}
@@ -395,7 +395,7 @@ export default function CountriesSection() {
             </div>
 
             {/* Mobile: Single Card View */}
-            <div className="md:hidden px-16">
+            <div className="md:hidden px-4">
               <motion.div
                 key={`mobile-popular-${currentSlide}`}
                 initial={{ opacity: 0, x: 100 }}
