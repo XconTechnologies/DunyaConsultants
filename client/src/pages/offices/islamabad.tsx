@@ -581,82 +581,75 @@ export default function Islamabad() {
               </div>
             </motion.div>
 
-            {/* Right Side - Contact Info */}
+            {/* Right Side - Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-8"
             >
-              {/* Contact Card */}
-              <Card className="border-0 shadow-xl bg-gradient-to-br from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
-                <CardContent className="p-8 relative">
-                  <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
-                  <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
-                  
-                  <div className="relative">
-                    <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-                    
-                    <div className="space-y-4">
-                      <div className="flex items-center">
-                        <MapPin className="w-5 h-5 mr-3 flex-shrink-0" />
-                        <div>
-                          <p className="font-medium">Mezz-3, ATS Centre</p>
-                          <p className="text-blue-100">Fazal-e-Haq Road, Blue Area, Islamabad</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center">
-                        <Phone className="w-5 h-5 mr-3 flex-shrink-0" />
-                        <div>
-                          <p className="font-medium">0333-7775458</p>
-                          <p className="text-blue-100">Call for free consultation</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center">
-                        <Clock className="w-5 h-5 mr-3 flex-shrink-0" />
-                        <div>
-                          <p className="font-medium">Mon - Sat: 10 AM - 6 PM</p>
-                          <p className="text-blue-100">Sunday Closed</p>
-                        </div>
-                      </div>
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
+                
+                <div className="space-y-4 flex-grow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
-                    
-                    <div className="flex flex-col gap-3 mt-8">
-                      <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50">
-                        <Phone className="w-5 h-5 mr-2" />
-                        Call Now
-                      </Button>
-                      <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                        <a href="https://maps.app.goo.gl/MPVGi5ZDaCbhBTjK7" target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <MapPin className="w-5 h-5 mr-2" />
-                          Get Directions
-                        </a>
-                      </Button>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Address</h4>
+                      <p className="text-blue-100 leading-relaxed">
+                        Mezz-3, ATS Centre, Fazal-e-Haq Road, Blue Area, Islamabad
+                      </p>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Phone</h4>
+                      <a href="tel:+923337775458" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        0333-7775458
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Email</h4>
+                      <a href="mailto:info@dunyaconsultants.com" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        info@dunyaconsultants.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
 
-              {/* Final CTA */}
-              <Card className="border-0 shadow-lg">
-                <CardContent className="p-8 text-center">
-                  <BookOpen className="w-16 h-16 mx-auto mb-4 text-[#1D50C9]" />
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">
-                    Your international education journey starts with a conversation.
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Let's have yours today.
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-sm leading-relaxed">
+                    Our Islamabad Blue Area office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
                   </p>
-                  <Link href="/contact">
-                    <Button size="lg" className="w-full">
+                </div>
+
+                <div className="space-y-4 mt-4">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
                       Book Free Consultation
-                      <ArrowRight className="w-5 h-5 ml-2" />
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+                      <Calendar className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <a href="https://maps.app.goo.gl/MPVGi5ZDaCbhBTjK7" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      Get Directions
+                      <MapPin className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
