@@ -227,16 +227,8 @@ export default function CountriesSection() {
           <ApplicationForm country={country.name}>
             <Button
               size="sm"
-              className="flex-1 text-white hover:scale-105 transition-transform"
+              className="flex-1 text-white hover:bg-white hover:text-[#1D50C9] hover:scale-105 transition-all duration-200"
               style={{ backgroundColor: '#1D50C9' }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'white'
-                e.currentTarget.style.color = '#1D50C9'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#1D50C9'
-                e.currentTarget.style.color = 'white'
-              }}
             >
               Apply Now
             </Button>
