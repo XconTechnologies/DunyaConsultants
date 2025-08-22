@@ -469,22 +469,6 @@ export default function Karachi() {
             </motion.div>
           </div>
 
-          <div className="mt-12 grid md:grid-cols-1 lg:grid-cols-5 gap-6">
-            {studyDestinations.map((destination, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-                  <CardContent className="p-4 text-center">
-                    <p className="text-sm text-gray-700 font-medium">{destination}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -611,11 +595,6 @@ export default function Karachi() {
                   </div>
                 </div>
 
-                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
-                  <p className="text-blue-100 text-sm leading-relaxed">
-                    Our Karachi Defence office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
-                  </p>
-                </div>
 
                 <div className="space-y-4 mt-4">
                   <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
