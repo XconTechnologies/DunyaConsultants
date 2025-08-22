@@ -117,10 +117,10 @@ export default function IELTS() {
               <Award className="w-5 h-5 mr-2" />
               <span className="text-sm font-medium">IELTS Academic & General</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
+            <h1 className="text-3xl md:text-7xl font-bold mb-6 text-white">
               IELTS
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-lg md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
               World's most popular English language proficiency test for higher education and global migration
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

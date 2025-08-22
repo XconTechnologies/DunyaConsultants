@@ -135,11 +135,11 @@ export default function Islamabad() {
               <span className="text-sm font-medium">Blue Area, Islamabad</span>
             </div>
             
-            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>
+            <h1 className="text-3xl md:text-6xl font-bold leading-tight mb-8 text-white">
               Dunya Consultants, Islamabad: Your Trustworthy Study Abroad Guide
             </h1>
             
-            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
+            <p className="text-lg lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
               Do you want to begin your studies in Australia, Canada, the United States, or the United Kingdom or anywhere else in Europe? Are you afraid to apply for visas and applications? We understand. For years, we at Dunya Consultants Islamabad have been assisting students just like you in recognizing their goals of studying abroad.
             </p>
 

@@ -87,10 +87,10 @@ Address: Alif Tower, Sargodha
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
-            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>
+            <h1 className="text-3xl md:text-6xl font-bold leading-tight mb-8 text-white">
               Study in <span className="text-white">Turkey</span>
             </h1>
-            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
+            <p className="text-lg lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
               Experience quality education at the crossroads of Europe and Asia with 200+ universities and rich cultural heritage
             </p>
             <div className="flex flex-wrap justify-center gap-4">

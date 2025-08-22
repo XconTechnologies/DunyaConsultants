@@ -146,10 +146,10 @@ export default function WhyChooseUs() {
               <Star className="w-5 h-5 mr-2" />
               <span className="text-sm font-medium">Pakistan's Most Trusted</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
+            <h1 className="text-3xl md:text-7xl font-bold mb-6 text-white">
               Why Choose Us
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-lg md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Discover why thousands of students trust Dunya Consultants for their international education journey
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -305,7 +305,7 @@ export default function DocumentChecklistGenerator() {
             <span className="text-sm font-medium text-[#1565c0]">Smart Document Planning</span>
           </div>
           
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6">
+          <h2 className="text-2xl md:text-6xl font-bold text-gray-800 mb-6">
             Document Checklist{" "}
             <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
               Generator

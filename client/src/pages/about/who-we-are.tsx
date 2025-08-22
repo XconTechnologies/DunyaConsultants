@@ -107,14 +107,14 @@ export default function WhoWeAre() {
               <span className="text-sm font-medium">About Dunya Consultants</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
+            <h1 className="text-3xl md:text-7xl font-bold mb-6 leading-tight text-white">
               Why We Are{" "}
               <span className="text-white">
                 Unique
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-8">
+            <p className="text-lg md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-8">
               Pakistan's leading education consultancy, dedicated to making your study abroad dreams a reality with personalized guidance and proven success.
             </p>
 

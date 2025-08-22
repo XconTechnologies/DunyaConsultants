@@ -301,7 +301,7 @@ export default function BlogList() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-[#1D50C9] to-#1565c0 bg-clip-text text-transparent mb-6"
+            className="text-2xl md:text-6xl font-bold bg-gradient-to-r from-[#1D50C9] to-#1565c0 bg-clip-text text-transparent mb-6"
           >
             Our Blog
           </motion.h1>

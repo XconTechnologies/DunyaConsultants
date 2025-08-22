@@ -237,7 +237,7 @@ export default function BlogArchive() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+                className="text-3xl md:text-7xl font-bold mb-6 leading-tight"
               >
                 Blog
               </motion.h1>
@@ -246,7 +246,7 @@ export default function BlogArchive() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed"
+                className="text-lg text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed"
               >
                 Explore our comprehensive collection of study abroad guides, visa information, and educational resources to help you succeed in your international education journey.
               </motion.p>

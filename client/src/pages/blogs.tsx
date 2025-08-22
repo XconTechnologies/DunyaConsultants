@@ -890,7 +890,7 @@ export default function Blogs() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-4xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight"
+              className="text-2xl md:text-6xl font-bold mb-6 text-gray-900 leading-tight"
             >
               Study Abroad
               <span className="block mt-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
