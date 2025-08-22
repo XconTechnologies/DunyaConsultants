@@ -252,9 +252,6 @@ export default function ConsultationBookingCalendar() {
                       <div className={`text-sm font-medium ${isActive ? 'text-[#1845B3]' : 'text-gray-600'}`}>
                         Step {stepNumber}
                       </div>
-                      <div className={`text-xs ${isActive ? 'text-[#1565c0]' : 'text-gray-500'}`}>
-                        {title}
-                      </div>
                     </div>
                   </div>
                 );
