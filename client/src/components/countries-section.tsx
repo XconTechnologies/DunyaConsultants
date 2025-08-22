@@ -286,7 +286,7 @@ export default function CountriesSection() {
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'popular' 
                   ? 'text-white shadow-sm' 
-                  : 'bg-transparent text-gray-600 hover:text-gray-800'
+                  : 'bg-transparent text-gray-600'
               }`}
               style={activeTab === 'popular' ? { backgroundColor: '#1D50C9' } : {}}
               variant="ghost"
@@ -298,7 +298,7 @@ export default function CountriesSection() {
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'all' 
                   ? 'text-white shadow-sm' 
-                  : 'bg-transparent text-gray-600 hover:text-gray-800'
+                  : 'bg-transparent text-gray-600'
               }`}
               style={activeTab === 'all' ? { backgroundColor: '#1D50C9' } : {}}
               variant="ghost"
@@ -309,32 +309,32 @@ export default function CountriesSection() {
         </motion.div>
 
         {/* Content Based on Active Tab */}
-        {isGridView ? (
+        {activeTab === 'all' ? (
           /* All Countries Grid/Single Card View */
           <div className="relative">
-            {/* Navigation Arrows */}
+            {/* Desktop: Grid View */}
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-16">
+              {displayCountries.map((country, index) => renderCountryCard(country, index))}
+            </div>
+
+            {/* Navigation Arrows - Outside Cards */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
               style={{ color: "#1D50C9" }}
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
               style={{ color: "#1D50C9" }}
             >
               <ChevronRight className="w-6 h-6" />
             </button>
 
-            {/* Desktop: Grid View */}
-            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-8">
-              {displayCountries.map((country, index) => renderCountryCard(country, index))}
-            </div>
-
             {/* Mobile: Single Card View */}
-            <div className="md:hidden px-4">
+            <div className="md:hidden px-12">
               <motion.div
                 key={`mobile-all-${currentSlide}`}
                 initial={{ opacity: 0, x: 100 }}
@@ -364,24 +364,8 @@ export default function CountriesSection() {
         ) : (
           /* Popular Countries Carousel/Single Card View */
           <div className="relative">
-            {/* Navigation Arrows */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
-              style={{ color: "#1D50C9" }}
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
-              style={{ color: "#1D50C9" }}
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-
             {/* Desktop: Carousel */}
-            <div className="hidden md:block overflow-hidden px-8">
+            <div className="hidden md:block overflow-hidden px-16">
               <motion.div
                 className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
                 key={`desktop-popular-${currentSlide}`}
@@ -395,8 +379,24 @@ export default function CountriesSection() {
               </motion.div>
             </div>
 
+            {/* Navigation Arrows - Outside Cards */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
+              style={{ color: "#1D50C9" }}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
+              style={{ color: "#1D50C9" }}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
             {/* Mobile: Single Card View */}
-            <div className="md:hidden px-4">
+            <div className="md:hidden px-12">
               <motion.div
                 key={`mobile-popular-${currentSlide}`}
                 initial={{ opacity: 0, x: 100 }}
