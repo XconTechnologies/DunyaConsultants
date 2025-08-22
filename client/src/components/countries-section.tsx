@@ -122,6 +122,13 @@ const popularCountries = countries.slice(0, 4);
 export default function CountriesSection() {
   const [activeTab, setActiveTab] = useState<'popular' | 'all'>('popular');
   const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const handleTabHover = (tabName: 'popular' | 'all', isHovering: boolean) => {
+    const element = document.getElementById(`tab-${tabName}`);
+    if (element && activeTab !== tabName) {
+      element.style.color = isHovering ? 'white' : '#6b7280';
+    }
+  };
   const [selectedCountry, setSelectedCountry] = useState<typeof countries[0] | null>(null);
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [applicationCountry, setApplicationCountry] = useState<typeof countries[0] | null>(null);
@@ -282,6 +289,7 @@ export default function CountriesSection() {
         >
           <div className="bg-white rounded-lg p-2 shadow-lg border border-gray-200">
             <Button
+              id="tab-popular"
               onClick={() => setActiveTab('popular')}
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'popular' 
@@ -290,20 +298,13 @@ export default function CountriesSection() {
               }`}
               style={activeTab === 'popular' ? { backgroundColor: '#1D50C9', color: 'white' } : { color: '#6b7280' }}
               variant="ghost"
-              onMouseEnter={(e) => {
-                if (activeTab !== 'popular') {
-                  e.currentTarget.style.color = 'white';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== 'popular') {
-                  e.currentTarget.style.color = '#6b7280';
-                }
-              }}
+              onMouseEnter={() => handleTabHover('popular', true)}
+              onMouseLeave={() => handleTabHover('popular', false)}
             >
               Popular Countries
             </Button>
             <Button
+              id="tab-all"
               onClick={() => setActiveTab('all')}
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'all' 
@@ -312,16 +313,8 @@ export default function CountriesSection() {
               }`}
               style={activeTab === 'all' ? { backgroundColor: '#1D50C9', color: 'white' } : { color: '#6b7280' }}
               variant="ghost"
-              onMouseEnter={(e) => {
-                if (activeTab !== 'all') {
-                  e.currentTarget.style.color = 'white';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeTab !== 'all') {
-                  e.currentTarget.style.color = '#6b7280';
-                }
-              }}
+              onMouseEnter={() => handleTabHover('all', true)}
+              onMouseLeave={() => handleTabHover('all', false)}
             >
               All Destinations
             </Button>

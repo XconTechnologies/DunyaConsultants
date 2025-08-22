@@ -145,6 +145,13 @@ interface RegistrationFormData {
 export default function EventsSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
+  
+  const handleFilterHover = (filterId: string, isHovering: boolean) => {
+    const element = document.getElementById(`filter-${filterId}`);
+    if (element && activeFilter !== filterId) {
+      element.style.color = isHovering ? 'white' : '#6b7280';
+    }
+  };
   const [showRegistrationForm, setShowRegistrationForm] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [formData, setFormData] = useState<RegistrationFormData>({
@@ -312,6 +319,7 @@ export default function EventsSection() {
           <div className="flex justify-center gap-1 mt-8 bg-gray-100 p-1 rounded-lg w-fit mx-auto">
             {filters.map((filter) => (
               <button
+                id={`filter-${filter.id}`}
                 key={filter.id}
                 onClick={() => setActiveFilter(filter.id)}
                 className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
@@ -320,16 +328,8 @@ export default function EventsSection() {
                     : 'bg-transparent text-gray-600'
                 }`}
                 style={activeFilter === filter.id ? { backgroundColor: '#1D50C9', color: 'white' } : { color: '#6b7280' }}
-                onMouseEnter={(e) => {
-                  if (activeFilter !== filter.id) {
-                    e.currentTarget.style.color = 'white';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (activeFilter !== filter.id) {
-                    e.currentTarget.style.color = '#6b7280';
-                  }
-                }}
+                onMouseEnter={() => handleFilterHover(filter.id, true)}
+                onMouseLeave={() => handleFilterHover(filter.id, false)}
               >
                 {filter.label}
               </button>
