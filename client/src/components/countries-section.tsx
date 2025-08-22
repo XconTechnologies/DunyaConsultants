@@ -571,16 +571,15 @@ export default function CountriesSection() {
 
         {/* Grid View for All Countries */}
         {isGridView ? (
-          <div className="overflow-x-auto md:overflow-x-visible">
-            <div className="flex gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 pb-4 md:pb-0">
-              {displayCountries.map((country, index) => (
-                <motion.div
-                  key={country.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="flex-shrink-0 w-72 md:w-auto bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
-                >
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {displayCountries.map((country, index) => (
+              <motion.div
+                key={country.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
+              >
                   <div className="relative h-48 overflow-hidden">
                     <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
                     <div className="absolute top-4 left-4">
@@ -629,9 +628,8 @@ export default function CountriesSection() {
                       </ApplicationForm>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
         ) : (
           /* Horizontal Scrolling Carousel for Popular Countries */
@@ -657,7 +655,7 @@ export default function CountriesSection() {
             {/* Cards Container */}
             <div className="overflow-hidden px-16">
               <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
                 key={currentSlide}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}

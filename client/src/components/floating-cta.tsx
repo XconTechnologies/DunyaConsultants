@@ -4,6 +4,7 @@ import { Phone, MessageCircle, X, Users, Calendar, Star, ChevronDown } from "luc
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Country counselor data
 const countryCounselors = [
@@ -46,6 +47,7 @@ const countryCounselors = [
 ];
 
 export default function FloatingCTA() {
+  const isMobile = useIsMobile();
   const [isVisible, setIsVisible] = useState(true); // Always visible
   const [showFull, setShowFull] = useState(true); // Auto-open in compact view
   const [selectedCountry, setSelectedCountry] = useState("General");
@@ -84,6 +86,11 @@ export default function FloatingCTA() {
   };
 
   const selectedCounselor = getSelectedCounselor();
+  
+  // Hide on mobile devices
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <AnimatePresence>
