@@ -317,7 +317,7 @@ export default function EventsSection() {
                 className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                   activeFilter === filter.id
                     ? 'text-white shadow-sm' 
-                    : 'bg-transparent text-gray-600 hover:text-gray-800'
+                    : 'bg-transparent text-gray-600 hover:text-white'
                 }`}
                 style={activeFilter === filter.id ? { backgroundColor: '#1D50C9' } : {}}
               >
