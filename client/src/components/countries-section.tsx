@@ -286,10 +286,20 @@ export default function CountriesSection() {
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'popular' 
                   ? 'text-white shadow-sm' 
-                  : 'bg-transparent text-gray-600 hover:text-white'
+                  : 'bg-transparent text-gray-600'
               }`}
-              style={activeTab === 'popular' ? { backgroundColor: '#1D50C9' } : {}}
+              style={activeTab === 'popular' ? { backgroundColor: '#1D50C9', color: 'white' } : { color: '#6b7280' }}
               variant="ghost"
+              onMouseEnter={(e) => {
+                if (activeTab !== 'popular') {
+                  e.currentTarget.style.color = 'white';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'popular') {
+                  e.currentTarget.style.color = '#6b7280';
+                }
+              }}
             >
               Popular Countries
             </Button>
@@ -298,10 +308,20 @@ export default function CountriesSection() {
               className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                 activeTab === 'all' 
                   ? 'text-white shadow-sm' 
-                  : 'bg-transparent text-gray-600 hover:text-white'
+                  : 'bg-transparent text-gray-600'
               }`}
-              style={activeTab === 'all' ? { backgroundColor: '#1D50C9' } : {}}
+              style={activeTab === 'all' ? { backgroundColor: '#1D50C9', color: 'white' } : { color: '#6b7280' }}
               variant="ghost"
+              onMouseEnter={(e) => {
+                if (activeTab !== 'all') {
+                  e.currentTarget.style.color = 'white';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (activeTab !== 'all') {
+                  e.currentTarget.style.color = '#6b7280';
+                }
+              }}
             >
               All Destinations
             </Button>

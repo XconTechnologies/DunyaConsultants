@@ -317,9 +317,19 @@ export default function EventsSection() {
                 className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
                   activeFilter === filter.id
                     ? 'text-white shadow-sm' 
-                    : 'bg-transparent text-gray-600 hover:text-white'
+                    : 'bg-transparent text-gray-600'
                 }`}
-                style={activeFilter === filter.id ? { backgroundColor: '#1D50C9' } : {}}
+                style={activeFilter === filter.id ? { backgroundColor: '#1D50C9', color: 'white' } : { color: '#6b7280' }}
+                onMouseEnter={(e) => {
+                  if (activeFilter !== filter.id) {
+                    e.currentTarget.style.color = 'white';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeFilter !== filter.id) {
+                    e.currentTarget.style.color = '#6b7280';
+                  }
+                }}
               >
                 {filter.label}
               </button>
