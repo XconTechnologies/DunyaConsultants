@@ -227,8 +227,21 @@ export default function CountriesSection() {
           <ApplicationForm country={country.name}>
             <Button
               size="sm"
-              className="flex-1 text-white hover:bg-white hover:text-[#1D50C9] hover:scale-105 transition-all duration-200"
-              style={{ backgroundColor: '#1D50C9' }}
+              className="flex-1 hover:scale-105 transition-all duration-200"
+              style={{ 
+                backgroundColor: '#1D50C9',
+                color: 'white'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'white';
+                e.currentTarget.style.color = '#1D50C9';
+                e.currentTarget.style.border = '1px solid #1D50C9';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#1D50C9';
+                e.currentTarget.style.color = 'white';
+                e.currentTarget.style.border = 'none';
+              }}
             >
               Apply Now
             </Button>
@@ -300,22 +313,20 @@ export default function CountriesSection() {
           /* All Countries Grid/Single Card View */
           <div className="relative">
             {/* Navigation Arrows */}
-            <Button
+            <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
               style={{ color: "#1D50C9" }}
-              variant="outline"
             >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <Button
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
               style={{ color: "#1D50C9" }}
-              variant="outline"
             >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
+              <ChevronRight className="w-6 h-6" />
+            </button>
 
             {/* Desktop: Grid View */}
             <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-8">
@@ -354,22 +365,20 @@ export default function CountriesSection() {
           /* Popular Countries Carousel/Single Card View */
           <div className="relative">
             {/* Navigation Arrows */}
-            <Button
+            <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
               style={{ color: "#1D50C9" }}
-              variant="outline"
             >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-            <Button
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
               style={{ color: "#1D50C9" }}
-              variant="outline"
             >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
+              <ChevronRight className="w-6 h-6" />
+            </button>
 
             {/* Desktop: Carousel */}
             <div className="hidden md:block overflow-hidden px-8">
