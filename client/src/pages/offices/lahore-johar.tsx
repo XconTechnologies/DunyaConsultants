@@ -201,7 +201,8 @@ export default function LahoreJohar() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="space-y-4">
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-lg border border-blue-100">
+                <div className="space-y-4">
                 {whyChooseUs.map((reason, index) => (
                   <motion.div
                     key={index}
@@ -219,6 +220,7 @@ export default function LahoreJohar() {
                     </Card>
                   </motion.div>
                 ))}
+                </div>
               </div>
             </motion.div>
 
