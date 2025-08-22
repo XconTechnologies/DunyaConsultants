@@ -49,7 +49,7 @@ const countryCounselors = [
 export default function FloatingCTA() {
   const isMobile = useIsMobile();
   const [isVisible, setIsVisible] = useState(true); // Always visible
-  const [showFull, setShowFull] = useState(true); // Auto-open in compact view
+  const [showFull, setShowFull] = useState(!isMobile); // Auto-open in compact view on desktop, collapsed on mobile
   const [selectedCountry, setSelectedCountry] = useState("General");
   const [isScrolling, setIsScrolling] = useState(false);
 
@@ -86,11 +86,6 @@ export default function FloatingCTA() {
   };
 
   const selectedCounselor = getSelectedCounselor();
-  
-  // Hide on mobile devices
-  if (isMobile) {
-    return null;
-  }
 
   return (
     <AnimatePresence>

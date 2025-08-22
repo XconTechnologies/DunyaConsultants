@@ -571,7 +571,7 @@ export default function CountriesSection() {
 
         {/* Grid View for All Countries */}
         {isGridView ? (
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {displayCountries.map((country, index) => (
               <motion.div
                 key={country.id}
@@ -655,7 +655,7 @@ export default function CountriesSection() {
             {/* Cards Container */}
             <div className="overflow-hidden px-16">
               <motion.div
-                className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
                 key={currentSlide}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
