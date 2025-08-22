@@ -417,6 +417,64 @@ export default function Islamabad() {
         </div>
       </section>
 
+      {/* Countries We Support Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Where We Can{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Take You
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Thinking about studying overseas but unsure where to go? We've guided students into top programs across:
+            </p>
+          </motion.div>
+
+          <div className="relative overflow-hidden">
+            <motion.div
+              className="flex space-x-6"
+              animate={{
+                x: [0, -100 * countries.length]
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 20,
+                  ease: "linear"
+                }
+              }}
+            >
+              {duplicatedCountries.map((country, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-48 bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow"
+                >
+                  <div className="w-16 h-12 mx-auto mb-4 rounded-lg overflow-hidden shadow-md border-2 border-blue-200">
+                    <ReactCountryFlag 
+                      countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
+                      svg 
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
+                  </div>
+                  <h3 className="font-semibold text-gray-800">{country}</h3>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Get in Touch Section */}
       <section className="py-20 bg-white">
