@@ -541,7 +541,7 @@ export default function Islamabad() {
                   </span>
                 </h3>
                 
-                <div className="space-y-4 flex-1">
+                <div className="space-y-3 flex-grow">
                   {faqs.map((faq, index) => (
                     <motion.div
                       key={index}
@@ -549,33 +549,32 @@ export default function Islamabad() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.05 }}
                     >
-                      <Card className="border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300">
-                        <CardContent className="p-0">
-                          <button
-                            className="w-full p-6 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
-                            onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                          >
-                            <span className="font-medium text-gray-900 pr-4">{faq.question}</span>
+                      <div className="bg-gray-50 rounded-lg border border-gray-200 hover:border-[#1D50C9] transition-all duration-300 overflow-hidden">
+                        <button
+                          className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
+                          onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                        >
+                          <h4 className="text-gray-900 font-semibold pr-4">{faq.question}</h4>
+                          <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
                             {expandedFaq === index ? (
-                              <ChevronUp className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
+                              <ChevronUp className="w-4 h-4 text-[#1D50C9]" />
                             ) : (
-                              <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
+                              <ChevronDown className="w-4 h-4 text-[#1D50C9]" />
                             )}
-                          </button>
-                          
-                          {expandedFaq === index && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="px-6 pb-6"
-                            >
-                              <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-                            </motion.div>
-                          )}
-                        </CardContent>
-                      </Card>
+                          </div>
+                        </button>
+                        {expandedFaq === index && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="px-4 pb-4 border-t border-gray-200"
+                          >
+                            <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
+                          </motion.div>
+                        )}
+                      </div>
                     </motion.div>
                   ))}
                 </div>
