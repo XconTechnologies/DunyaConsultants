@@ -43,9 +43,9 @@ export default function StudyInCanadaCompleteGuide() {
       </div>
 
       <div className="max-w-[1440px] mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-4">
             <article className="bg-white rounded-lg shadow-sm p-8">
               {/* Introduction */}
               <div className="mb-8">

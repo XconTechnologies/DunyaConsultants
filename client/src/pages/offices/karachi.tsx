@@ -127,7 +127,7 @@ export default function Karachi() {
               <span className="text-sm font-medium">Defence Housing Authority, Karachi</span>
             </div>
             
-            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-white">
               Your Friendly Study Abroad Guides in Karachi
             </h1>
             
