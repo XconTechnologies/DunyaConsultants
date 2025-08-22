@@ -59,13 +59,13 @@ const offices = [
   {
     id: "karachi",
     city: "Karachi",
-    name: "Gulshan-e-Iqbal",
-    address: "205 Madina City Mall, Block 13-A, Gulshan-e-Iqbal, Karachi",
-    phone: "+92 305‑555‑1947",
+    name: "Defence Housing Authority",
+    address: "05-C Prime Point Building, Main, 2 Khayaban-e-Ittehad Road, Phase Defence Housing Authority, Karachi",
+    phone: "+92 323-251-6319",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-orange-600 to-red-600",
     region: "Sindh",
-    services: ["Visa Processing", "University Applications", "IELTS Training"]
+    services: ["Visa Processing", "University Applications", "IELTS Training", "Study Abroad Consultation"]
   },
   {
     id: "faisalabad",
