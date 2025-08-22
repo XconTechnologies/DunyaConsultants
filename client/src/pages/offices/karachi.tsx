@@ -34,12 +34,6 @@ export default function Karachi() {
       title: "Visa Success",
       description: "Our consultants for study visas are skilled at making your application stand out. includes tested interviews!",
       color: "from-blue-500 to-blue-600"
-    },
-    {
-      icon: Globe,
-      title: "Pre-Departure Prep",
-      description: "Before you travel, get accommodation assistance, cultural knowledge, and travel advice.",
-      color: "from-blue-500 to-blue-600"
     }
   ];
 
