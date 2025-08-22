@@ -334,9 +334,8 @@ export default function LahoreJohar() {
             className="text-center mb-16"
           >
             <h2 className="text-5xl font-bold text-gray-900 mb-4">
-              Master{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                IELTS
+                IELTS Training
               </span>{" "}
               in Johar Town
             </h2>
