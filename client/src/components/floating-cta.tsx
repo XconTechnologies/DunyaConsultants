@@ -167,104 +167,76 @@ export default function FloatingCTA() {
                     </div>
                   </div>
 
-                  {/* Compact Content */}
+                  {/* Simplified Content */}
                   <div className="p-3 space-y-3">
-                    <div className="text-center">
-                      <p className="text-gray-600 text-xs mb-1">
-                        Get expert guidance for study abroad
-                      </p>
-                      <div className="flex items-center justify-center space-x-3 text-xs text-gray-500">
-                        <div className="flex items-center space-x-1">
-                          <Calendar className="w-2.5 h-2.5" />
-                          <span>30 min</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Star className="w-2.5 h-2.5" />
-                          <span>Free</span>
-                        </div>
-                      </div>
-                    </div>
+                    <p className="text-gray-600 text-xs">
+                      Get expert guidance for study abroad
+                    </p>
 
-                    {/* Compact Country Selection */}
+                    {/* Country Selection */}
                     <div className="space-y-2">
-                      <label className="text-xs font-medium text-gray-700">
+                      <label className="text-xs text-gray-600">
                         Country Counselor:
                       </label>
                       <Select value={selectedCountry} onValueChange={setSelectedCountry}>
                         <SelectTrigger className="w-full h-8 text-xs">
-                          <SelectValue placeholder="Choose" />
+                          <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
                           {countryCounselors.map((counselor) => (
                             <SelectItem key={counselor.country} value={counselor.country}>
-                              <div className="flex items-center space-x-2">
-                                <span className="text-sm">{counselor.flag}</span>
-                                <div>
-                                  <div className="font-medium text-xs">{counselor.country}</div>
-                                </div>
-                              </div>
+                              {counselor.country}
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
                       
-                      {/* Compact Selected Counselor Info */}
-                      <div className="bg-blue-50 p-2 rounded-md">
-                        <div className="flex items-center space-x-2 text-xs">
-                          <span className="text-sm">{selectedCounselor.flag}</span>
-                          <div>
-                            <div className="font-medium text-gray-900">
-                              {selectedCounselor.name}
-                            </div>
-                            <div className="text-gray-600 text-xs">
-                              {selectedCounselor.country}
-                            </div>
-                          </div>
+                      {/* Office Info */}
+                      <div className="bg-gray-50 p-2 rounded">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="text-gray-600">Main Office</span>
+                          <span className="text-gray-500">General</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Compact Action Buttons */}
-                    <div className="space-y-1.5">
+                    {/* Action Buttons */}
+                    <div className="space-y-2">
                       <Button 
                         asChild
-                        className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white font-medium text-xs h-8"
-                        size="sm"
+                        className="w-full bg-[#1D50C9] hover:bg-[#1565c0] text-white text-xs h-8"
                       >
                         <a href={`tel:${selectedCounselor.phone.replace(/\s+/g, '')}`}>
                           <Phone className="w-3 h-3 mr-1" />
-                          Call {selectedCounselor.name}
+                          Call Main Office
                         </a>
                       </Button>
                       
                       <Button 
                         asChild
                         variant="outline" 
-                        className="w-full border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9]/5 hover:text-[#1D50C9] text-xs h-8"
-                        size="sm"
+                        className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 text-xs h-8"
                       >
-                        <a href={`https://wa.me/${selectedCounselor.phone.replace(/[\s+-]/g, '')}?text=Hello! I would like to get a free consultation for ${selectedCounselor.country} from ${selectedCounselor.name}.`} target="_blank" rel="noopener noreferrer">
+                        <a href={`https://wa.me/${selectedCounselor.phone.replace(/[\s+-]/g, '')}?text=Hello! I need consultation for study abroad.`} target="_blank" rel="noopener noreferrer">
                           <MessageCircle className="w-3 h-3 mr-1" />
                           WhatsApp
                         </a>
                       </Button>
                     </div>
 
-                    {/* Compact Trust Indicators */}
-                    <div className="flex items-center justify-center space-x-3 pt-2 border-t border-gray-100">
-                      <div className="text-center">
-                        <div className="text-sm font-bold text-[#1D50C9]">15K+</div>
-                        <div className="text-xs text-gray-500">Students</div>
+                    {/* Trust Stats */}
+                    <div className="flex justify-center space-x-6 pt-2 text-center text-xs text-gray-500">
+                      <div>
+                        <div className="font-semibold text-[#1D50C9]">15K+</div>
+                        <div>Students</div>
                       </div>
-                      <div className="w-px h-6 bg-gray-200"></div>
-                      <div className="text-center">
-                        <div className="text-sm font-bold text-[#1845B3]">98%</div>
-                        <div className="text-xs text-gray-500">Success</div>
+                      <div>
+                        <div className="font-semibold text-[#1D50C9]">98%</div>
+                        <div>Success</div>
                       </div>
-                      <div className="w-px h-6 bg-gray-200"></div>
-                      <div className="text-center">
-                        <div className="text-sm font-bold text-[#1D50C9]">15+</div>
-                        <div className="text-xs text-gray-500">Years</div>
+                      <div>
+                        <div className="font-semibold text-[#1D50C9]">15+</div>
+                        <div>Years</div>
                       </div>
                     </div>
                   </div>
