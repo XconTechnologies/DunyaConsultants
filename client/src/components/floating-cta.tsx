@@ -49,9 +49,16 @@ const countryCounselors = [
 export default function FloatingCTA() {
   const isMobile = useIsMobile();
   const [isVisible, setIsVisible] = useState(true); // Always visible
-  const [showFull, setShowFull] = useState(!isMobile); // Auto-open in compact view on desktop, collapsed on mobile
+  const [showFull, setShowFull] = useState(false); // Start collapsed by default
   const [selectedCountry, setSelectedCountry] = useState("General");
   const [isScrolling, setIsScrolling] = useState(false);
+
+  // Set initial state based on mobile detection after component mounts
+  useEffect(() => {
+    if (isMobile !== undefined) {
+      setShowFull(!isMobile); // Expanded on desktop, collapsed on mobile
+    }
+  }, [isMobile]);
 
   useEffect(() => {
     let scrollTimeout: NodeJS.Timeout;
