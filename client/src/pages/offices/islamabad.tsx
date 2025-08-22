@@ -234,7 +234,7 @@ export default function Islamabad() {
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
                   <img 
-                    src={islamabadOffice1}
+                    src={islamabadOffice3}
                     alt="Dunya Consultants Islamabad Office"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
                   />
@@ -248,7 +248,7 @@ export default function Islamabad() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src={islamabadOffice2}
+                      src={islamabadOffice1}
                       alt="Professional consultation space"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
@@ -261,7 +261,7 @@ export default function Islamabad() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src={islamabadOffice3}
+                      src={islamabadOffice2}
                       alt="Modern office environment"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
