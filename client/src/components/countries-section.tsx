@@ -571,67 +571,67 @@ export default function CountriesSection() {
 
         {/* Grid View for All Countries */}
         {isGridView ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {displayCountries.map((country, index) => (
-              <motion.div
-                key={country.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
-                  <div className="absolute top-4 left-4">
-                    <div className="w-12 h-8 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
-                      <ReactCountryFlag 
-                        countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
-                        svg 
-                        style={{
-                          width: '100%',
-                          height: '100%',
-                          objectFit: 'cover'
-                        }}
-                      />
+          <div className="overflow-x-auto md:overflow-x-visible">
+            <div className="flex gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 pb-4 md:pb-0">
+              {displayCountries.map((country, index) => (
+                <motion.div
+                  key={country.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="flex-shrink-0 w-72 md:w-auto bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
+                    <div className="absolute top-4 left-4">
+                      <div className="w-12 h-8 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
+                        <ReactCountryFlag 
+                          countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
+                          svg 
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
+                      <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
                     </div>
                   </div>
-                  <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
-                    <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
-                  </div>
-                </div>
-                
-                <div className="p-6">
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {country.description}
-                  </p>
                   
-
-                  
-                  <div className="flex gap-2 mb-4">
-                    <Button
-                      onClick={() => handleViewDetails(country)}
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 hover:bg-white"
-                      style={{ color: '#1D50C9', borderColor: '#1D50C9' }}
-                    >
-                      View Details
-                    </Button>
-                    <ApplicationForm country={country.name}>
+                  <div className="p-6">
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                      {country.description}
+                    </p>
+                    
+                    <div className="flex gap-2 mb-4">
                       <Button
+                        onClick={() => handleViewDetails(country)}
+                        variant="outline"
                         size="sm"
-                        className="flex-1 text-white hover:scale-105 transition-transform"
-                        style={{ backgroundColor: '#1D50C9' }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
+                        className="flex-1 hover:bg-white"
+                        style={{ color: '#1D50C9', borderColor: '#1D50C9' }}
                       >
-                        Apply Now
+                        View Details
                       </Button>
-                    </ApplicationForm>
+                      <ApplicationForm country={country.name}>
+                        <Button
+                          size="sm"
+                          className="flex-1 text-white hover:scale-105 transition-transform"
+                          style={{ backgroundColor: '#1D50C9' }}
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
+                        >
+                          Apply Now
+                        </Button>
+                      </ApplicationForm>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         ) : (
           /* Horizontal Scrolling Carousel for Popular Countries */
