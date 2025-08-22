@@ -47,7 +47,7 @@ export default function AboutCompany() {
           
           {/* Left Side - Image */}
           <motion.div
-            className="relative"
+            className="relative order-2 lg:order-1"
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -62,7 +62,7 @@ export default function AboutCompany() {
 
           {/* Right Side - Content */}
           <motion.div
-            className="relative"
+            className="relative order-1 lg:order-2"
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
