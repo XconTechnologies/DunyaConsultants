@@ -190,11 +190,21 @@ export default function EventsSection() {
   // Auto-scroll removed as requested
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 4));
+    // Mobile: single card navigation, Desktop: multi-card navigation
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setCurrentSlide((prev) => (prev + 1) % filteredEvents.length);
+    } else {
+      setCurrentSlide((prev) => (prev + 1) % Math.ceil(filteredEvents.length / 4));
+    }
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + Math.ceil(filteredEvents.length / 4)) % Math.ceil(filteredEvents.length / 4));
+    // Mobile: single card navigation, Desktop: multi-card navigation
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setCurrentSlide((prev) => (prev - 1 + filteredEvents.length) % filteredEvents.length);
+    } else {
+      setCurrentSlide((prev) => (prev - 1 + Math.ceil(filteredEvents.length / 4)) % Math.ceil(filteredEvents.length / 4));
+    }
   };
 
   const handleRegistration = (event: Event) => {
@@ -335,11 +345,11 @@ export default function EventsSection() {
             <ChevronRight className="w-5 h-5" />
           </button>
 
-          {/* Cards Container */}
-          <div className="overflow-hidden px-16">
+          {/* Desktop: Cards Container */}
+          <div className="hidden md:block overflow-hidden px-16">
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-              key={currentSlide}
+              className="grid grid-cols-2 lg:grid-cols-4 gap-6"
+              key={`desktop-${currentSlide}`}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -406,20 +416,108 @@ export default function EventsSection() {
             </motion.div>
           </div>
 
+          {/* Mobile: Single Card View */}
+          <div className="md:hidden px-16">
+            <motion.div
+              key={`mobile-${currentSlide}`}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+            >
+              {filteredEvents[currentSlide] && (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6 }}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
+                >
+                  {/* Event Header */}
+                  <div className="h-48 relative overflow-hidden">
+                    <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-white text-xs font-medium">
+                        {filteredEvents[currentSlide].type}
+                      </span>
+                    </div>
+                    <div className="absolute bottom-4 left-4 text-white">
+                      <div className="text-xl font-bold">{filteredEvents[currentSlide].date.split(' ')[1]}</div>
+                      <div className="text-xs opacity-90">{filteredEvents[currentSlide].date.split(' ')[0]} {filteredEvents[currentSlide].date.split(' ')[2]}</div>
+                    </div>
+                  </div>
+
+                  {/* Event Content */}
+                  <div className="p-6">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+                      {filteredEvents[currentSlide].title}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                      {filteredEvents[currentSlide].description}
+                    </p>
+
+                    <div className="space-y-2 text-gray-600 mb-4">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4" style={{ color: "#1D50C9" }} />
+                        <span className="text-xs">{filteredEvents[currentSlide].time}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4" style={{ color: "#1D50C9" }} />
+                        <span className="text-xs line-clamp-1">{filteredEvents[currentSlide].location}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4" style={{ color: "#1D50C9" }} />
+                        <span className="text-xs">{filteredEvents[currentSlide].attendees} attending</span>
+                      </div>
+                    </div>
+
+                    {/* Register Button */}
+                    <button
+                      onClick={() => handleRegistration(filteredEvents[currentSlide])}
+                      className="w-full text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105"
+                      style={{ backgroundColor: '#1D50C9' }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1845B3'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
+                    >
+                      Register Now
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </motion.div>
+          </div>
+
           {/* Slide Indicators */}
           <div className="flex justify-center mt-8 gap-2">
-            {Array.from({ length: Math.ceil(filteredEvents.length / 4) }).map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  currentSlide === index
-                    ? 'w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                style={currentSlide === index ? { backgroundColor: '#1D50C9' } : {}}
-              />
-            ))}
+            {/* Desktop indicators */}
+            <div className="hidden md:flex">
+              {Array.from({ length: Math.ceil(filteredEvents.length / 4) }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentSlide === index
+                      ? 'w-8'
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  style={currentSlide === index ? { backgroundColor: '#1D50C9' } : {}}
+                />
+              ))}
+            </div>
+            
+            {/* Mobile indicators */}
+            <div className="md:hidden flex">
+              {filteredEvents.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 mx-1 ${
+                    index === currentSlide 
+                      ? 'w-6 scale-110' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
