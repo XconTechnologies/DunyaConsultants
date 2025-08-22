@@ -135,7 +135,7 @@ export default function Islamabad() {
               <span className="text-sm font-medium">Blue Area, Islamabad</span>
             </div>
             
-            <h1 className="font-bold leading-tight mb-8 text-white italic" style={{ fontSize: '64px' }}>
+            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>
               Dunya Consultants, Islamabad: Your Trustworthy Study Abroad Guide
             </h1>
             

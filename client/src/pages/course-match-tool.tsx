@@ -323,7 +323,7 @@ export default function CourseMatchTool() {
               transition={{ duration: 0.8 }}
               className="text-center mb-12"
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white italic">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                 <span className="text-white">
                   Your Perfect Study Matches
                 </span>
@@ -485,7 +485,7 @@ export default function CourseMatchTool() {
                 <Brain className="w-8 h-8 text-white" />
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white italic">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               <span className="text-white">
                 Smart Course Match Tool
               </span>

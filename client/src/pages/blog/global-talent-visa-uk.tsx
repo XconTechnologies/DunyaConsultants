@@ -15,7 +15,7 @@ export default function GlobalTalentVisaUK() {
             <div className="inline-block bg-white/20 px-3 py-1 rounded-full text-sm font-medium mb-4">
               Visa Guides
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white italic">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               Global Talent Visa UK: Complete Guide for Skilled Professionals
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">

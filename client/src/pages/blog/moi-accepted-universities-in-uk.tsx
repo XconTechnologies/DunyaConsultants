@@ -72,7 +72,7 @@ export default function MOIAcceptedUniversitiesInUK() {
             }}
           />
           <div className="relative z-10 text-center px-8">
-            <h1 className="font-bold leading-tight mb-8 text-white italic" style={{ fontSize: '64px' }}>MOI Accepted Universities in UK</h1>
+            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>MOI Accepted Universities in UK</h1>
             <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">Complete guide to universities accepting Medium of Instruction</p>
           </div>
         </div>

@@ -136,7 +136,7 @@ export default function LahoreDHACity() {
               <span className="text-sm font-medium">DHA Phase 1, Lahore</span>
             </div>
             
-            <h1 className="font-bold leading-tight mb-8 text-white italic" style={{ fontSize: '64px' }}>
+            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>
               Welcome to Dunya Consultants DHA, Lahore
             </h1>
             

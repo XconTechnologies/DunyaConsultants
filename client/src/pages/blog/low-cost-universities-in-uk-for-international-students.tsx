@@ -19,7 +19,7 @@ export default function LowCostUniversitiesInUkForInternationalStudents() {
       >
         <div className="container max-w-[1440px] mx-auto px-4">
           <div className="max-w-4xl">
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-white italic">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-white">
               Low-Cost Universities in UK for International Students
             </h1>
             <p className="text-xl lg:text-2xl mb-8 opacity-90">

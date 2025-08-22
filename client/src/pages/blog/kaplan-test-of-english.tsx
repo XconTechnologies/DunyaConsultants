@@ -18,7 +18,7 @@ export default function KaplanTestOfEnglish() {
                 Test Preparation
               </span>
             </div>
-            <h1 className="text-5xl font-bold mb-6 leading-tight text-white italic">
+            <h1 className="text-5xl font-bold mb-6 leading-tight text-white">
               Kaplan Test of English (KTE): Complete Guide 2025
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">

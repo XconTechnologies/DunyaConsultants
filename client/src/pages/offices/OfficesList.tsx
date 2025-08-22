@@ -282,7 +282,7 @@ export default function OfficesList() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white italic">Our Office Locations</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">Our Office Locations</h1>
             <p className="text-xl opacity-90 max-w-3xl mx-auto">
               Visit any of our strategically located offices across Pakistan and internationally for personalized consultation 
               and expert guidance on your international education journey.

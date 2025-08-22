@@ -299,7 +299,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-bold mb-6 leading-tight text-white italic"
+              className="font-bold mb-6 leading-tight text-white"
               style={{ fontSize: '48px' }}
             >
               {blogPost.title}
@@ -363,7 +363,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </div>
                   
                   <div className="bg-gradient-to-r from-[#1D50C9]/5 via-blue-50/50 to-transparent rounded-xl p-8 border-l-4 border-[#1D50C9]">
-                    <p className="text-xl text-gray-700 leading-relaxed font-light italic">
+                    <p className="text-xl text-gray-700 leading-relaxed font-light">
                       {blogPost.excerpt}
                     </p>
                   </div>
@@ -1420,7 +1420,7 @@ export default function Blog() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight italic"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
             >Study Abroad Blogs</motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}

@@ -18,7 +18,7 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
             }}
           />
           <div className="relative z-10 text-center px-8">
-            <h1 className="font-bold leading-tight mb-8 text-white italic" style={{ fontSize: '64px' }}>MS in Business Analytics Course in USA</h1>
+            <h1 className="font-bold leading-tight mb-8 text-white" style={{ fontSize: '64px' }}>MS in Business Analytics Course in USA</h1>
             <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">Complete guide to pursuing Master's in Business Analytics in the United States</p>
           </div>
         </div>
