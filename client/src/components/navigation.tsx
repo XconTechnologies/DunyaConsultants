@@ -245,9 +245,15 @@ export default function Navigation() {
                 !isScrolled 
                   ? 'text-white hover:bg-white/20 drop-shadow-md' 
                   : 'text-neutral-800 hover:text-primary hover:bg-primary/5'
-              } transition-all duration-300`}
+              } transition-all duration-200`}
+              style={{ willChange: 'transform' }}
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              <motion.div
+                animate={{ rotate: isOpen ? 90 : 0 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+              >
+                {isOpen ? <X size={24} /> : <Menu size={24} />}
+              </motion.div>
             </Button>
           </div>
         </div>
@@ -441,16 +447,22 @@ export default function Navigation() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className={`lg:hidden transition-all duration-300 ${
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ 
+              duration: 0.2, 
+              ease: [0.4, 0.0, 0.2, 1],
+              type: "tween"
+            }}
+            className={`lg:hidden overflow-hidden ${
               !isScrolled 
                 ? 'bg-white/95 backdrop-blur-md border-t border-white/20' 
                 : 'bg-white border-t border-neutral-200'
             }`}
+            style={{ willChange: 'transform, opacity' }}
           >
-            <div className="px-4 py-4 space-y-3 max-h-[80vh] overflow-y-auto">
+            <div className="px-4 py-4 space-y-3 max-h-[calc(100vh-4rem)] overflow-y-auto" style={{ willChange: 'scroll-position' }}>
               {navItems.map((item) => (
                 <div key={item.name || item.href}>
                   {item.megaMenu ? (
