@@ -133,24 +133,38 @@ export default function CountriesSection() {
   const totalSlides = Math.ceil(displayCountries.length / 4);
 
   const nextSlide = () => {
-    if (isGridView) {
+    // Mobile: single card navigation, Desktop: multi-card navigation
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
       setCurrentSlide((prev) => (prev + 1) % displayCountries.length);
     } else {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+      if (isGridView) {
+        setCurrentSlide((prev) => (prev + 1) % displayCountries.length);
+      } else {
+        setCurrentSlide((prev) => (prev + 1) % totalSlides);
+      }
     }
   };
 
   const prevSlide = () => {
-    if (isGridView) {
+    // Mobile: single card navigation, Desktop: multi-card navigation
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
       setCurrentSlide((prev) => (prev - 1 + displayCountries.length) % displayCountries.length);
     } else {
-      setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+      if (isGridView) {
+        setCurrentSlide((prev) => (prev - 1 + displayCountries.length) % displayCountries.length);
+      } else {
+        setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+      }
     }
   };
 
   const getCurrentCountries = () => {
     const start = currentSlide * 4;
     return displayCountries.slice(start, start + 4);
+  };
+
+  const getCurrentMobileCard = () => {
+    return displayCountries[currentSlide] || displayCountries[0];
   };
 
   const handleViewDetails = (country: typeof countries[0]) => {
@@ -166,6 +180,65 @@ export default function CountriesSection() {
   useEffect(() => {
     setCurrentSlide(0);
   }, [activeTab]);
+
+  const renderCountryCard = (country: typeof countries[0], index: number, keyPrefix = '') => (
+    <motion.div
+      key={keyPrefix ? `${keyPrefix}-${country.id}` : country.id}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
+    >
+      <div className="relative h-48 overflow-hidden">
+        <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
+        <div className="absolute top-4 left-4">
+          <div className="w-12 h-8 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
+            <ReactCountryFlag 
+              countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
+              svg 
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+          </div>
+        </div>
+        <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
+          <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
+        </div>
+      </div>
+      
+      <div className="p-6">
+        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+          {country.description}
+        </p>
+        
+        <div className="flex gap-2 mb-4">
+          <Button
+            onClick={() => handleViewDetails(country)}
+            variant="outline"
+            size="sm"
+            className="flex-1 hover:bg-white"
+            style={{ color: '#1D50C9', borderColor: '#1D50C9' }}
+          >
+            View Details
+          </Button>
+          <ApplicationForm country={country.name}>
+            <Button
+              size="sm"
+              className="flex-1 text-white hover:scale-105 transition-transform"
+              style={{ backgroundColor: '#1D50C9' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
+            >
+              Apply Now
+            </Button>
+          </ApplicationForm>
+        </div>
+      </div>
+    </motion.div>
+  );
 
   return (
     <div ref={ref} className="w-full py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -224,96 +297,9 @@ export default function CountriesSection() {
           </div>
         </motion.div>
 
-        {/* Grid View for All Countries - Mobile shows 1 card at a time */}
+        {/* Content Based on Active Tab */}
         {isGridView ? (
-          <div className="relative">
-            {/* Mobile Navigation Arrows */}
-            <div className="md:hidden">
-              <Button
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
-                style={{ color: "#1D50C9" }}
-                variant="outline"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </Button>
-              <Button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
-                style={{ color: "#1D50C9" }}
-                variant="outline"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </Button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 px-12 md:px-0">
-              {/* Mobile: Show only current card, Desktop: Show all */}
-              {(typeof window !== 'undefined' && window.innerWidth < 768 
-                ? displayCountries.slice(currentSlide, currentSlide + 1) 
-                : displayCountries
-              ).map((country, index) => (
-                <motion.div
-                  key={country.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
-                    <div className="absolute top-4 left-4">
-                      <div className="w-12 h-8 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
-                        <ReactCountryFlag 
-                          countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
-                          svg 
-                          style={{
-                            width: '100%',
-                            height: '100%',
-                            objectFit: 'cover'
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
-                      <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
-                    </div>
-                  </div>
-                  
-                  <div className="p-6">
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                      {country.description}
-                    </p>
-                    
-                    <div className="flex gap-2 mb-4">
-                      <Button
-                        onClick={() => handleViewDetails(country)}
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 hover:bg-white"
-                        style={{ color: '#1D50C9', borderColor: '#1D50C9' }}
-                      >
-                        View Details
-                      </Button>
-                      <ApplicationForm country={country.name}>
-                        <Button
-                          size="sm"
-                          className="flex-1 text-white hover:scale-105 transition-transform"
-                          style={{ backgroundColor: '#1D50C9' }}
-                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
-                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
-                        >
-                          Apply Now
-                        </Button>
-                      </ApplicationForm>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          /* Horizontal Scrolling Carousel for Popular Countries */
+          /* All Countries Grid/Single Card View */
           <div className="relative">
             {/* Navigation Arrows */}
             <Button
@@ -333,90 +319,120 @@ export default function CountriesSection() {
               <ChevronRight className="w-5 h-5" />
             </Button>
 
-            {/* Cards Container */}
-            <div className="overflow-hidden px-16">
+            {/* Desktop: Grid View */}
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 px-16">
+              {displayCountries.map((country, index) => renderCountryCard(country, index))}
+            </div>
+
+            {/* Mobile: Single Card View */}
+            <div className="md:hidden px-16">
               <motion.div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-                key={currentSlide}
+                key={`mobile-all-${currentSlide}`}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
               >
-                {getCurrentCountries().map((country, index) => (
-                  <motion.div
-                    key={`slide-${currentSlide}-${country.id}`}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
-                  >
-                    <div className="relative h-48 overflow-hidden">
-                      <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
-                      <div className="absolute top-4 left-4">
-                        <div className="w-12 h-8 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
-                          <ReactCountryFlag 
-                            countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
-                            svg 
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              objectFit: 'cover'
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
-                        <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
-                      </div>
-                    </div>
-                    
-                    <div className="p-6">
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                        {country.description}
-                      </p>
-                      
-                      <div className="flex gap-2 mb-4">
-                        <Button
-                          onClick={() => handleViewDetails(country)}
-                          variant="outline"
-                          size="sm"
-                          className="flex-1 hover:bg-white"
-                          style={{ color: '#1D50C9', borderColor: '#1D50C9' }}
-                        >
-                          View Details
-                        </Button>
-                        <ApplicationForm country={country.name}>
-                          <Button
-                            size="sm"
-                            className="flex-1 text-white hover:scale-105 transition-transform"
-                            style={{ backgroundColor: '#1D50C9' }}
-                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'white'}
-                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1D50C9'}
-                          >
-                            Apply Now
-                          </Button>
-                        </ApplicationForm>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+                {renderCountryCard(getCurrentMobileCard(), 0, 'mobile-all')}
+              </motion.div>
+            </div>
+
+            {/* Mobile Indicators */}
+            <div className="md:hidden flex justify-center mt-6 gap-2">
+              {displayCountries.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'w-6 scale-110' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          /* Popular Countries Carousel/Single Card View */
+          <div className="relative">
+            {/* Navigation Arrows */}
+            <Button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              style={{ color: "#1D50C9" }}
+              variant="outline"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </Button>
+            <Button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white hover:bg-white border border-blue-200 shadow-lg rounded-full w-12 h-12 p-0 hover:scale-110 transition-all duration-200"
+              style={{ color: "#1D50C9" }}
+              variant="outline"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+
+            {/* Desktop: Carousel */}
+            <div className="hidden md:block overflow-hidden px-16">
+              <motion.div
+                className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+                key={`desktop-popular-${currentSlide}`}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                {getCurrentCountries().map((country, index) => 
+                  renderCountryCard(country, index, `popular-slide-${currentSlide}`)
+                )}
+              </motion.div>
+            </div>
+
+            {/* Mobile: Single Card View */}
+            <div className="md:hidden px-16">
+              <motion.div
+                key={`mobile-popular-${currentSlide}`}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                {renderCountryCard(getCurrentMobileCard(), 0, 'mobile-popular')}
               </motion.div>
             </div>
 
             {/* Slide Indicators */}
             <div className="flex justify-center mt-8 gap-2">
-              {Array.from({ length: totalSlides }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'scale-110' 
-                      : 'bg-blue-200 hover:bg-white'
-                  }`}
-                  style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
-                />
-              ))}
+              {/* Desktop indicators */}
+              <div className="hidden md:flex">
+                {Array.from({ length: totalSlides }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentSlide 
+                        ? 'scale-110' 
+                        : 'bg-blue-200 hover:bg-white'
+                    }`}
+                    style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
+                  />
+                ))}
+              </div>
+              
+              {/* Mobile indicators */}
+              <div className="md:hidden flex">
+                {displayCountries.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 mx-1 ${
+                      index === currentSlide 
+                        ? 'w-6 scale-110' 
+                        : 'bg-gray-300 hover:bg-gray-400'
+                    }`}
+                    style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         )}
