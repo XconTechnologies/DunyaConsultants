@@ -76,10 +76,10 @@ export default function MissionVision() {
                 <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mr-4">
                   <Target className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-4xl font-bold text-gray-900">Our Mission</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900">Our Mission</h2>
               </div>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p className="text-2xl font-semibold text-[#1845B3] mb-4">
+                <p className="text-lg md:text-2xl font-semibold text-[#1845B3] mb-4">
                   "To help international students achieve their academic goals and become leaders in their respective fields."
                 </p>
                 <p>
@@ -104,7 +104,7 @@ export default function MissionVision() {
                     <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
                       <Target className="w-12 h-12 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Academic Excellence</h3>
+                    <h3 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">Academic Excellence</h3>
                     <p className="text-gray-700">
                       Guiding students towards achieving their academic goals and becoming leaders in their chosen fields.
                     </p>
@@ -130,10 +130,10 @@ export default function MissionVision() {
                 <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mr-4">
                   <Eye className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-4xl font-bold text-gray-900">Our Vision</h2>
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900">Our Vision</h2>
               </div>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p className="text-2xl font-semibold text-[#1845B3] mb-4">
+                <p className="text-lg md:text-2xl font-semibold text-[#1845B3] mb-4">
                   "To unlock the transformative power of education for our clients with our dedication to provide excellent service and personalized support to each of them."
                 </p>
                 <p>
@@ -158,7 +158,7 @@ export default function MissionVision() {
                     <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
                       <Eye className="w-12 h-12 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Transformative Education</h3>
+                    <h3 className="text-lg md:text-2xl font-bold text-gray-900 mb-4">Transformative Education</h3>
                     <p className="text-gray-700">
                       Unlocking the transformative power of education with excellent service and personalized support.
                     </p>
@@ -179,13 +179,13 @@ export default function MissionVision() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
                 Our Core{" "}
                 <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Values
                 </span>
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
                 The principles that guide everything we do and every decision we make
               </p>
             </motion.div>
@@ -203,7 +203,7 @@ export default function MissionVision() {
                 <div className="w-12 h-12 mb-4 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-lg flex items-center justify-center">
                   <value.icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{value.description}</p>
               </motion.div>
             ))}
@@ -219,7 +219,7 @@ export default function MissionVision() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-8">
+            <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-8">
               Built To Make{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 Study Abroad Easy
@@ -230,7 +230,7 @@ export default function MissionVision() {
                 <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
                   <Globe className="w-10 h-10 text-white" />
                 </div>
-                <p className="text-xl text-gray-700 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
                   <strong>Dunya Consultants</strong> aims to prepare students for success in other continents and for productive roles as professionals and intellectuals in society. We are dedicated to making international education accessible, affordable, and achievable for every aspiring student.
                 </p>
               </div>
@@ -248,8 +248,8 @@ export default function MissionVision() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Impact</h2>
-              <p className="text-xl text-gray-600">Numbers that reflect our commitment to student success</p>
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">Our Impact</h2>
+              <p className="text-lg md:text-xl text-gray-600">Numbers that reflect our commitment to student success</p>
             </motion.div>
           </div>
 
