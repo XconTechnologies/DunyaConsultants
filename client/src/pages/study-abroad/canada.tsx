@@ -194,49 +194,43 @@ Address: Alif Tower, Sargodha
             </Card>
 
             {/* Tuition Fee Details */}
-            <Card className="mb-8 bg-gray-50 border-0">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center">
-                  <DollarSign className="w-6 h-6 mr-2" />
-                  Tuition Fee Structure
+            <Card className="mb-6 bg-gray-50 border-0">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
+                  <DollarSign className="w-5 h-5 mr-2" />
+                  Tuition Fees
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                    <CardContent className="p-8 text-center">
-                      <h4 className="font-semibold text-gray-700 mb-3">Undergraduate Programs</h4>
-                      <p className="text-4xl font-bold text-[#1D50C9] mb-2">CAD $36,100</p>
-                      <p className="text-gray-500">per year</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                    <CardContent className="p-8 text-center">
-                      <h4 className="font-semibold text-gray-700 mb-3">Graduate Programs</h4>
-                      <p className="text-4xl font-bold text-[#1D50C9] mb-2">CAD $21,100</p>
-                      <p className="text-gray-500">per year</p>
-                    </CardContent>
-                  </Card>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="bg-white border border-gray-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
+                    <h4 className="font-medium text-gray-700 text-xs mb-1">Undergraduate</h4>
+                    <p className="text-lg font-bold text-[#1D50C9]">CAD $36,100</p>
+                    <p className="text-xs text-gray-500">per year</p>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
+                    <h4 className="font-medium text-gray-700 text-xs mb-1">Graduate</h4>
+                    <p className="text-lg font-bold text-[#1D50C9]">CAD $21,100</p>
+                    <p className="text-xs text-gray-500">per year</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* Why Choose Canada */}
-            <Card className="mb-8 bg-gray-50 border-0">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center">
-                  <Zap className="w-6 h-6 mr-2" />
-                  Why Choose To Study In Canada?
+            <Card className="mb-6 bg-gray-50 border-0">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
+                  <Zap className="w-5 h-5 mr-2" />
+                  Why Study in Canada?
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {whyChooseCanada.map((benefit, index) => (
-                    <div key={index} className="flex items-start space-x-3 p-4 bg-white rounded-lg border border-gray-200 hover:shadow-sm transition-shadow">
-                      <div className="bg-green-50 p-1 rounded-full">
-                        <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
-                      </div>
-                      <span className="text-gray-700 text-sm leading-relaxed">{benefit}</span>
+                    <div key={index} className="flex items-start space-x-2 p-3 bg-white rounded border border-gray-200 hover:shadow-sm transition-shadow">
+                      <CheckCircle className="w-3 h-3 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-xs leading-relaxed">{benefit}</span>
                     </div>
                   ))}
                 </div>
@@ -244,28 +238,26 @@ Address: Alif Tower, Sargodha
             </Card>
 
             {/* Visa Requirements */}
-            <Card className="mb-8 bg-gray-50 border-0">
-              <CardHeader className="pb-4">
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center">
-                  <FileText className="w-6 h-6 mr-2" />
-                  Study Visa Requirements
+            <Card className="mb-6 bg-gray-50 border-0">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
+                  <FileText className="w-5 h-5 mr-2" />
+                  Visa Requirements
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {visaRequirements.map((req, index) => (
-                    <Card key={index} className="bg-white border border-gray-200 hover:shadow-md transition-shadow">
-                      <CardContent className="p-6">
-                        <h4 className="font-semibold text-gray-900 mb-3 text-lg">{req.title}</h4>
-                        <p className="text-gray-600 text-sm leading-relaxed">{req.description}</p>
-                      </CardContent>
-                    </Card>
+                    <div key={index} className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
+                      <h4 className="font-medium text-gray-900 mb-2 text-sm">{req.title}</h4>
+                      <p className="text-gray-600 text-xs leading-relaxed">{req.description}</p>
+                    </div>
                   ))}
                 </div>
                 
-                <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-semibold text-[#1565c0] mb-2">Important Note:</h4>
-                  <p className="text-blue-700 text-sm">For Pakistani students, visa fees are approximately 80-90 lacs in total. Various scholarships are available for Pakistani students.</p>
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                  <h4 className="font-medium text-[#1565c0] mb-2 text-xs">Important Note:</h4>
+                  <p className="text-blue-700 text-xs">For Pakistani students, visa fees are approximately 80-90 lacs in total. Various scholarships are available.</p>
                 </div>
               </CardContent>
             </Card>

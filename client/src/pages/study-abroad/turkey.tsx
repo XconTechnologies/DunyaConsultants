@@ -190,47 +190,43 @@ Address: Alif Tower, Sargodha
             </Card>
 
             {/* Tuition Fee Details */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[text-[#1D50C9]] flex items-center">
-                  <DollarSign className="w-6 h-6 mr-2" />
-                  Tuition Fee Structure
+            <Card className="mb-6 bg-gray-50 border-0">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
+                  <DollarSign className="w-5 h-5 mr-2" />
+                  Tuition Fees
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="bg-blue-50 border-blue-200">
-                    <CardContent className="p-6 text-center">
-                      <h4 className="font-semibold text-blue-900 mb-2">Public Universities</h4>
-                      <p className="text-3xl font-bold text-[text-[#1D50C9]]">$200 - $700</p>
-                      <p className="text-#1a73e8">per year</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="bg-gray-50 border-gray-200">
-                    <CardContent className="p-6 text-center">
-                      <h4 className="font-semibold text-gray-900 mb-2">Private Universities</h4>
-                      <p className="text-3xl font-bold text-gray-600">$500 - $1,500</p>
-                      <p className="text-gray-700">per year</p>
-                    </CardContent>
-                  </Card>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
+                    <h4 className="font-medium text-blue-900 text-xs mb-1">Public Universities</h4>
+                    <p className="text-lg font-bold text-[#1D50C9]">$200 - $700</p>
+                    <p className="text-xs text-gray-500">per year</p>
+                  </div>
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
+                    <h4 className="font-medium text-gray-900 text-xs mb-1">Private Universities</h4>
+                    <p className="text-lg font-bold text-gray-600">$500 - $1,500</p>
+                    <p className="text-xs text-gray-500">per year</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* Why Choose Turkey */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[text-[#1D50C9]] flex items-center">
-                  <Zap className="w-6 h-6 mr-2" />
-                  Why Choose To Study In Turkey?
+            <Card className="mb-6 bg-gray-50 border-0">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
+                  <Zap className="w-5 h-5 mr-2" />
+                  Why Study in Turkey?
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                   {whyChooseTurkey.map((benefit, index) => (
-                    <div key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-5 h-5 text-[#1D50C9] mt-1 flex-shrink-0" />
-                      <span className="text-gray-700">{benefit}</span>
+                    <div key={index} className="flex items-start space-x-2 p-3 bg-white rounded border border-gray-200 hover:shadow-sm transition-shadow">
+                      <CheckCircle className="w-3 h-3 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700 text-xs leading-relaxed">{benefit}</span>
                     </div>
                   ))}
                 </div>
@@ -238,26 +234,26 @@ Address: Alif Tower, Sargodha
             </Card>
 
             {/* Visa Requirements */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[text-[#1D50C9]] flex items-center">
-                  <FileText className="w-6 h-6 mr-2" />
-                  Study Visa Requirements
+            <Card className="mb-6 bg-gray-50 border-0">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
+                  <FileText className="w-5 h-5 mr-2" />
+                  Visa Requirements
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {visaRequirements.map((req, index) => (
-                    <div key={index} className="border rounded-lg p-4 hover:shadow-md transition-shadow">
-                      <h4 className="font-semibold text-gray-900 mb-2">{req.title}</h4>
-                      <p className="text-gray-600 text-sm">{req.description}</p>
+                    <div key={index} className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
+                      <h4 className="font-medium text-gray-900 mb-2 text-sm">{req.title}</h4>
+                      <p className="text-gray-600 text-xs leading-relaxed">{req.description}</p>
                     </div>
                   ))}
                 </div>
                 
-                <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-                  <h4 className="font-semibold text-[#1565c0] mb-2">💡 Important Note:</h4>
-                  <p className="text-#1a73e8 text-sm">Turkey offers extensive scholarship programs including Türkiye Scholarships covering full tuition, accommodation, and monthly stipends. Students can work part-time with proper permits.</p>
+                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                  <h4 className="font-medium text-[#1565c0] mb-2 text-xs">Important Note:</h4>
+                  <p className="text-blue-700 text-xs">Turkey offers extensive scholarship programs including Türkiye Scholarships. Students can work part-time with proper permits.</p>
                 </div>
               </CardContent>
             </Card>
