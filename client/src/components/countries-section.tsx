@@ -128,14 +128,25 @@ export default function CountriesSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const displayCountries = countries; // Show all countries
-  const totalSlides = displayCountries.length; // One card per slide
+  const cardsPerSlide = 4; // Show 4 cards at once on desktop
+  const totalSlides = Math.ceil(displayCountries.length / cardsPerSlide);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    // Mobile: single card navigation, Desktop: 4-card group navigation
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setCurrentSlide((prev) => (prev + 1) % displayCountries.length);
+    } else {
+      setCurrentSlide((prev) => (prev + 1) % totalSlides);
+    }
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+    // Mobile: single card navigation, Desktop: 4-card group navigation
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setCurrentSlide((prev) => (prev - 1 + displayCountries.length) % displayCountries.length);
+    } else {
+      setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+    }
   };
 
   const getCurrentCard = () => {
