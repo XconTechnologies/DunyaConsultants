@@ -5,14 +5,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/DC White Logo_1751441165041.png";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
-import SimpleConsultationPopup from "@/components/simple-consultation-popup";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeroSection, setIsHeroSection] = useState(true);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
-  const [showConsultationPopup, setShowConsultationPopup] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -212,30 +210,6 @@ export default function Navigation() {
             </div>
           </div>
           
-          {/* CTA Button - Right Side */}
-          <motion.div
-            className="hidden lg:block ml-12"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <Button 
-              onClick={() => setShowConsultationPopup(true)}
-              className={`${
-                !isScrolled
-                  ? 'bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 hover:border-white/60 shadow-lg'
-                  : 'text-white shadow-md transition-all duration-300'
-              } font-semibold px-6 py-2`}
-              style={isScrolled ? { 
-                backgroundColor: '#1D50C9', 
-                borderColor: '#1D50C9'
-              } : {}}
-              onMouseEnter={isScrolled ? (e) => e.currentTarget.style.backgroundColor = '#1845B3' : undefined}
-              onMouseLeave={isScrolled ? (e) => e.currentTarget.style.backgroundColor = '#1D50C9' : undefined}
-            >
-              Free Consultation
-            </Button>
-          </motion.div>
 
           {/* Mobile Menu Toggle */}
           <div className="lg:hidden ml-auto">
@@ -562,26 +536,10 @@ export default function Navigation() {
                   ) : null}
                 </div>
               ))}
-              <div className="pt-4 border-t border-neutral-200">
-                <Button 
-                  onClick={() => {
-                    setShowConsultationPopup(true);
-                    setIsOpen(false);
-                  }}
-                  className="w-full bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold py-3"
-                >
-                  Free Consultation
-                </Button>
-              </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Consultation Popup */}
-      <SimpleConsultationPopup 
-        isOpen={showConsultationPopup} 
-        onClose={() => setShowConsultationPopup(false)} 
-      />
     </nav>
   );
 }
