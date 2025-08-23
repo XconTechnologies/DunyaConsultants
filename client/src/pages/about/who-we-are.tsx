@@ -167,12 +167,12 @@ export default function WhoWeAre() {
                 className="group"
               >
                 <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <CardContent className="p-8 text-center">
-                    <div className={`w-20 h-20 mx-auto mb-6 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300`}>
-                      <stat.icon className="w-10 h-10 text-white" />
+                  <CardContent className="p-4 md:p-8 text-center">
+                    <div className={`w-12 h-12 md:w-20 md:h-20 mx-auto mb-3 md:mb-6 bg-gradient-to-r ${stat.color} rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300`}>
+                      <stat.icon className="w-6 h-6 md:w-10 md:h-10 text-white" />
                     </div>
-                    <div className="text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                    <div className="text-gray-600 font-semibold">{stat.label}</div>
+                    <div className="text-2xl md:text-4xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                    <div className="text-sm md:text-base text-gray-600 font-semibold">{stat.label}</div>
                   </CardContent>
                 </Card>
               </motion.div>
