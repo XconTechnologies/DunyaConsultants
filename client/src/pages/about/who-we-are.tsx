@@ -394,7 +394,7 @@ export default function WhoWeAre() {
                     <h4 className="text-2xl font-bold text-gray-900 mb-6">About Our CEO</h4>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
                       <p>
-                        Hi, myself <span className="text-white">Umer Farooq</span>! I'm the Chief Executive Officer (CEO) of Dunya Consultants, an Educational Consultancy Company located in Pakistan.
+                        Hi, myself Umer Farooq! I'm the Chief Executive Officer (CEO) of Dunya Consultants, an Educational Consultancy Company located in Pakistan.
                       </p>
                       <p>
                         I am also the founder of XCON Technologies and a member of the Board of Directors of Dunya Group of Companies.
