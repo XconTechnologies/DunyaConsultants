@@ -137,7 +137,18 @@ export default function CountriesSection() {
 
   const isGridView = activeTab === 'all';
   const displayCountries = isGridView ? countries : popularCountries;
-  const totalSlides = Math.ceil(displayCountries.length / 4);
+  
+  // Calculate slides based on cards per slide: 2 for md, 3 for lg+
+  const getCardsPerSlide = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return 3; // lg+
+      if (window.innerWidth >= 768) return 2;  // md
+    }
+    return 3; // default to 3 for SSR
+  };
+  
+  const cardsPerSlide = getCardsPerSlide();
+  const totalSlides = isGridView ? 1 : Math.ceil(displayCountries.length / cardsPerSlide);
 
   const nextSlide = () => {
     // Mobile: single card navigation, Desktop: multi-card navigation
@@ -166,8 +177,11 @@ export default function CountriesSection() {
   };
 
   const getCurrentCountries = () => {
-    const start = currentSlide * 4;
-    return displayCountries.slice(start, start + 4);
+    if (isGridView) {
+      return displayCountries; // Show all countries in grid view
+    }
+    const start = currentSlide * cardsPerSlide;
+    return displayCountries.slice(start, start + cardsPerSlide);
   };
 
   const getCurrentMobileCard = () => {
@@ -187,6 +201,16 @@ export default function CountriesSection() {
   useEffect(() => {
     setCurrentSlide(0);
   }, [activeTab]);
+
+  // Update carousel on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setCurrentSlide(0); // Reset to first slide on resize
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const renderCountryCard = (country: typeof countries[0], index: number, keyPrefix = '') => (
     <motion.div
