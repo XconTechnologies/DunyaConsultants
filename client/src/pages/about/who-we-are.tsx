@@ -420,40 +420,6 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      {/* CTA Section - Redesigned */}
-      <section className="py-20 bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-xl"></div>
-          <div className="absolute bottom-10 right-20 w-32 h-32 bg-white/10 rounded-full blur-lg"></div>
-          <div className="absolute top-1/2 left-1/2 w-56 h-56 bg-white/5 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Start Your Journey?</h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Join thousands of successful students who have achieved their study abroad dreams with Dunya Consultants
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
-                  Book Free Consultation
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </Button>
-              </Link>
-              <Link href="/study-abroad-journey">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
-                  Explore Programs
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
       
       <Footer />
     </div>
