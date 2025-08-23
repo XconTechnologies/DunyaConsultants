@@ -41,13 +41,11 @@ import icUniversityLogo from "@assets/Artboard-1-copy-5_1750756577528.jpg";
 // Import additional university logos - batch 4 (10 logos)
 import beykozUniversityLogo from "@assets/Artboard-1-copy-14-2_1750756910267.jpg";
 import capilanoUniversityLogo from "@assets/Artboard-1-copy-19-3_1750756910268.jpg";
-import lutUniversityLogo from "@assets/Artboard-1-copy-31-2_1750756910270.jpg";
 import niagaraFallsLogo from "@assets/Artboard-1-copy-41-1_1750756910271.jpg";
 import universityOfEuropeLogo from "@assets/Artboard-1-copy-42_1750756910272.jpg";
 import hartpuryUniversityLogo from "@assets/download_1750756910273.jpg";
 import etonCollegeLogo from "@assets/download-1_1750756910275.jpg";
 import halicUniversityLogo from "@assets/Halic-University-15-2048x879_1750756910276.jpg";
-import labUniversityLogo from "@assets/lab-logo_1750756910277.jpg";
 import teessideUniversityLogo from "@assets/Teesside-University-logo_1750756910279.jpg";
 
 // Import additional university logos - batch 5 (6 logos)
@@ -118,9 +116,6 @@ const universityPartners = [
   { name: "University of Applied Sciences Europe", country: "Netherlands", logoUrl: universityAppliedSciencesLogo },
   { name: "IC University of Applied Sciences", country: "Netherlands", logoUrl: icUniversityLogo },
   
-  // Finland Universities
-  { name: "LUT University", country: "Finland", logoUrl: lutUniversityLogo },
-  { name: "LAB University of Applied Sciences", country: "Finland", logoUrl: labUniversityLogo },
   
   // Ireland Universities
   { name: "IBAT College Dublin", country: "Ireland", logoUrl: ibatCollegeLogo },
