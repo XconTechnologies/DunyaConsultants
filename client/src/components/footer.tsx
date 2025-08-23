@@ -187,7 +187,7 @@ export default function Footer() {
           <div className="border-t border-white/20 mt-12 pt-8 text-center">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
               <p className="text-blue-100 text-sm">
-                © 2025 Dunya Consultants. All rights reserved.
+                © 2025 Developed by XCon Technologies. All rights reserved.
               </p>
               <p className="text-white text-sm font-medium">
                 Dedicated to Education Excellence
