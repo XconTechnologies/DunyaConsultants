@@ -160,11 +160,13 @@ export default function Navigation() {
           >
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <img 
-                  src={isScrolled ? logoImageBlue : logoImage} 
-                  alt="Dunya Consultants Logo" 
-                  className="h-8 w-auto transition-all duration-500 drop-shadow-lg"
-                />
+                <Link href="/">
+                  <img 
+                    src={isScrolled ? logoImageBlue : logoImage} 
+                    alt="Dunya Consultants Logo" 
+                    className="h-8 w-auto transition-all duration-500 drop-shadow-lg cursor-pointer hover:scale-105 transition-transform"
+                  />
+                </Link>
               </div>
               
             </div>

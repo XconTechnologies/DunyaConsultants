@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'wouter';
 import { Mail, User, Building, Handshake, Users, Globe, Phone, MapPin, FileText, Calculator } from 'lucide-react';
 
 import Asset_1 from "@assets/Asset-1.png";
@@ -20,11 +21,13 @@ export default function Footer() {
             {/* Company Info */}
             <div className="lg:col-span-1">
               <div className="mb-6">
-                <img 
-                  src={New_Logo_White} 
-                  alt="Dunya Consultants Logo" 
-                  className="h-14 w-auto"
-                />
+                <Link href="/">
+                  <img 
+                    src={New_Logo_White} 
+                    alt="Dunya Consultants Logo" 
+                    className="h-14 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                  />
+                </Link>
               </div>
               <p className="text-blue-100 text-sm leading-relaxed mb-6">
                 Your trusted partner for global education opportunities. 
