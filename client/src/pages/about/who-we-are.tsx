@@ -379,13 +379,15 @@ export default function WhoWeAre() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 style={{ 
+                    <div style={{ 
                       fontSize: '1.5rem',
                       fontWeight: 'bold',
                       marginBottom: '0.5rem',
-                      color: '#ffffff',
-                      textShadow: '0 0 1px rgba(0,0,0,0.5)'
-                    }}>Umer Farooq</h3>
+                      color: 'white !important',
+                      backgroundColor: 'transparent',
+                      textShadow: '0 1px 2px rgba(0,0,0,0.3)',
+                      fontFamily: 'inherit'
+                    }}>Umer Farooq</div>
                     <p className="text-blue-200 font-semibold mb-4">Chief Executive Officer</p>
                     <div className="space-y-2">
                       <div className="text-sm">
