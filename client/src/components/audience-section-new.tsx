@@ -118,7 +118,7 @@ export default function AudienceSectionNew() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-[#e8f0ff] to-[#e8f0ff] relative overflow-hidden">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 via-[#e8f0ff] to-[#e8f0ff] relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-full h-full" style={{

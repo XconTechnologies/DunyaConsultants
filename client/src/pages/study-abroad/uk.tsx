@@ -189,7 +189,7 @@ Address: Alif Tower, Sargodha
             {/* Tuition Fee Details */}
             <Card className="mb-6 bg-gray-50 border-0">
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
+                <CardTitle className="text-2xl font-bold text-[#1D50C9] mb-4 flex items-center">
                   <DollarSign className="w-5 h-5 mr-2" />
                   Tuition Fees
                 </CardTitle>

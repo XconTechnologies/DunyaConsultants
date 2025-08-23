@@ -146,7 +146,7 @@ export default function WhoWeAre() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
               We Serve Around{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 The Globe
@@ -264,7 +264,7 @@ export default function WhoWeAre() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
               How We{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 Work
@@ -313,7 +313,7 @@ export default function WhoWeAre() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
               Why Choose{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 Dunya Consultants
@@ -358,7 +358,7 @@ export default function WhoWeAre() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Leadership</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">Meet Our Leadership</h2>
             <p className="text-xl text-gray-600">Visionary leadership driving educational excellence</p>
           </motion.div>
 

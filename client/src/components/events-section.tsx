@@ -309,7 +309,7 @@ export default function EventsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6" style={{ color: '#1D50C9' }}>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-[#1D50C9]">
             Events & Workshops
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">

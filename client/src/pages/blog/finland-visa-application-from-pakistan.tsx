@@ -13,7 +13,7 @@ export function FinlandVisaApplicationFromPakistan() {
         <div className="max-w-[1440px] mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <div className="mb-6">
-              <span className="#1D50C9 text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span className="bg-[#1D50C9] text-white px-4 py-2 rounded-full text-sm font-medium">
                 Visa Guides
               </span>
             </div>
@@ -75,7 +75,7 @@ export function FinlandVisaApplicationFromPakistan() {
 
               {/* Best Finnish Universities */}
               <div className="mb-8" id="universities">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Best Finnish Universities for International Students</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4 text-[#1D50C9]">Best Finnish Universities for International Students</h2>
                 <p className="text-gray-700 mb-6">Here is a list of some famous universities in Finland that are providing the best academic programs:</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -90,7 +90,7 @@ export function FinlandVisaApplicationFromPakistan() {
                     "Laurea University of Applied Sciences"
                   ].map((university, index) => (
                     <div key={index} className="flex items-center p-4 bg-blue-50 rounded-lg border border-blue-200">
-                      <Star className="h-5 w-5 #1D50C9 mr-3 flex-shrink-0" />
+                      <Star className="h-5 w-5 text-[#1D50C9] mr-3 flex-shrink-0" />
                       <span className="font-medium text-gray-900">{university}</span>
                     </div>
                   ))}
@@ -99,7 +99,7 @@ export function FinlandVisaApplicationFromPakistan() {
 
               {/* Eligibility Criteria */}
               <div className="mb-8" id="eligibility">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Eligibility Criteria for Finland Study Visa from Pakistan</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4 text-[#1D50C9]">Eligibility Criteria for Finland Study Visa from Pakistan</h2>
                 <p className="text-gray-700 mb-6">To apply for higher education programs in Finland, you must meet specific Finland student visa requirements based on the level of study:</p>
                 
                 {/* Bachelor's Requirements */}
@@ -110,15 +110,15 @@ export function FinlandVisaApplicationFromPakistan() {
                   </h3>
                   <ul className="text-gray-700 space-y-2">
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 #1845B3 mr-2 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-[#1845B3] mr-2 mt-1 flex-shrink-0" />
                       Completion of 12 years of education (Higher Secondary Certificate)
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 #1845B3 mr-2 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-[#1845B3] mr-2 mt-1 flex-shrink-0" />
                       English language proficiency (IELTS 6.0 or equivalent)
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 #1845B3 mr-2 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-[#1845B3] mr-2 mt-1 flex-shrink-0" />
                       Age requirement: 18-30 years
                     </li>
                   </ul>
@@ -132,15 +132,15 @@ export function FinlandVisaApplicationFromPakistan() {
                   </h3>
                   <ul className="text-gray-700 space-y-2">
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 #1845B3 mr-2 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-[#1845B3] mr-2 mt-1 flex-shrink-0" />
                       Bachelor's degree in relevant field (16 years of education)
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 #1845B3 mr-2 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-[#1845B3] mr-2 mt-1 flex-shrink-0" />
                       English language proficiency (IELTS 6.5 or equivalent)
                     </li>
                     <li className="flex items-start">
-                      <CheckCircle className="h-4 w-4 #1845B3 mr-2 mt-1 flex-shrink-0" />
+                      <CheckCircle className="h-4 w-4 text-[#1845B3] mr-2 mt-1 flex-shrink-0" />
                       Relevant work experience (preferred)
                     </li>
                   </ul>
@@ -149,7 +149,7 @@ export function FinlandVisaApplicationFromPakistan() {
 
               {/* Document Requirements */}
               <div className="mb-8" id="requirements">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Document Requirements</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4 text-[#1D50C9]">Document Requirements</h2>
                 <p className="text-gray-700 mb-6">The following documents are required for Finland student visa application:</p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
@@ -175,7 +175,7 @@ export function FinlandVisaApplicationFromPakistan() {
 
               {/* Application Process */}
               <div className="mb-8" id="application-process">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Application Process</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4 text-[#1D50C9]">Application Process</h2>
                 <p className="text-gray-700 mb-6">Follow these steps to apply for Finland student visa:</p>
                 
                 <div className="space-y-4">
@@ -226,7 +226,7 @@ export function FinlandVisaApplicationFromPakistan() {
 
               {/* Fees and Deadlines */}
               <div className="mb-8" id="fees">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Application Fees & Deadlines 2025</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4 text-[#1D50C9]">Application Fees & Deadlines 2025</h2>
                 
                 <div className="bg-blue-50 p-6 rounded-lg mb-6 border border-blue-200">
                   <h3 className="text-xl font-semibold mb-4 text-[#1565c0] flex items-center">
@@ -271,7 +271,7 @@ export function FinlandVisaApplicationFromPakistan() {
 
               {/* Conclusion */}
               <div className="mb-8" id="conclusion">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Conclusion</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4 text-[#1D50C9]">Conclusion</h2>
                 <p className="text-gray-700 leading-relaxed mb-4">
                   Finland offers excellent opportunities for Pakistani students seeking quality education in a student-friendly environment. With affordable tuition fees, world-class universities, and post-graduation work opportunities, Finland is an ideal destination for international students.
                 </p>
@@ -282,7 +282,7 @@ export function FinlandVisaApplicationFromPakistan() {
 
               {/* FAQs */}
               <div className="mb-8" id="faqs">
-                <h2 className="text-3xl font-bold mb-6 border-l-4 #1D50C9 pl-4">Frequently Asked Questions</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold mb-6 border-l-4 border-[#1D50C9] pl-4 text-[#1D50C9]">Frequently Asked Questions</h2>
                 <div className="space-y-4">
                   {[
                     {

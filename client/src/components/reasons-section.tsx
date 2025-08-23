@@ -67,12 +67,12 @@ export default function ReasonsSection() {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
+    <section ref={ref} className="py-16 lg:py-24 bg-gradient-to-br from-slate-50 to-blue-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-96 h-96 #1D50C9 rounded-full -translate-x-48 -translate-y-48" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 #1D50C9 rounded-full translate-x-48 translate-y-48" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 #1845B3 rounded-full" />
+        <div className="absolute top-0 left-0 w-96 h-96 bg-[#1D50C9] rounded-full -translate-x-48 -translate-y-48" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#1D50C9] rounded-full translate-x-48 translate-y-48" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#1845B3] rounded-full" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

@@ -89,7 +89,7 @@ export default function AboutCompany() {
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-3 sm:mb-4">
+                <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
                   WHO WE ARE
                 </h2>
               </motion.div>

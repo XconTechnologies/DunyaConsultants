@@ -25,11 +25,11 @@ export default function AssistanceSection() {
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-blue-50 to-blue-100 relative overflow-hidden">
+    <section ref={ref} className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-blue-100 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-0 w-64 h-64 #1D50C9 rounded-full -translate-x-32 -translate-y-32" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 #1845B3 rounded-full translate-x-48 translate-y-48" />
+        <div className="absolute top-0 left-0 w-64 h-64 bg-[#1D50C9] rounded-full -translate-x-32 -translate-y-32" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#1845B3] rounded-full translate-x-48 translate-y-48" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -44,11 +44,11 @@ export default function AssistanceSection() {
               className="text-4xl lg:text-5xl font-bold mb-6 leading-tight"
               whileHover={{ scale: 1.02 }}
             >
-              <span style={{ color: '#1D50C9' }}>Worried about Admission?</span>
+              <span className="text-[#1D50C9]">Worried about Admission?</span>
               <br />
-              <span style={{ color: '#1D50C9' }}>Get Assistance for</span>
+              <span className="text-[#1D50C9]">Get Assistance for</span>
               <br />
-              <span style={{ color: '#1D50C9' }}>
+              <span className="text-[#1D50C9]">
                 Free
               </span>
             </motion.h2>
@@ -68,7 +68,7 @@ export default function AssistanceSection() {
                   transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                   whileHover={{ scale: 1.02, shadow: "lg" }}
                 >
-                  <div className="#1845B3 bg-blue-50 p-2 rounded-lg">
+                  <div className="text-[#1845B3] bg-blue-50 p-2 rounded-lg">
                     {feature.icon}
                   </div>
                   <div>

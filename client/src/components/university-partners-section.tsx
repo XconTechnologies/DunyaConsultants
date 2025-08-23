@@ -168,7 +168,7 @@ export default function UniversityPartnersSection() {
   };
 
   return (
-    <section ref={ref} id="university-partners" className="py-32 bg-white">
+    <section ref={ref} id="university-partners" className="py-16 lg:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -178,7 +178,7 @@ export default function UniversityPartnersSection() {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-3xl lg:text-4xl font-bold mb-4 cursor-pointer transition-all duration-300 hover:scale-105" style={{ color: '#1D50C9' }}
+            className="text-3xl lg:text-4xl font-bold mb-6 cursor-pointer transition-all duration-300 hover:scale-105 text-[#1D50C9]"
             whileHover={{ scale: 1.05 }}
           >
             Our Global University Partners

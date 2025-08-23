@@ -146,7 +146,7 @@ export default function ContactUsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#1D50C9]">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-[#1D50C9]">
             Get In Touch With Us
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -161,26 +161,26 @@ export default function ContactUsSection() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid md:grid-cols-4 gap-6 mb-12"
         >
-          <Card className="text-center shadow-lg hover:shadow-xl transition-all border-l-4 #1D50C9">
+          <Card className="text-center shadow-lg hover:shadow-xl transition-all border-l-4 border-[#1D50C9]">
             <CardContent className="p-6">
-              <Phone className="h-10 w-10 #1845B3 mx-auto mb-3" />
+              <Phone className="h-10 w-10 text-[#1845B3] mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">Call Us</h3>
-              <a href="tel:+923041110947" className="#1845B3 hover:underline">
+              <a href="tel:+923041110947" className="text-[#1845B3] hover:underline">
                 +92 304 1110947
               </a>
               <p className="text-gray-500 text-sm mt-1">24/7 Support</p>
             </CardContent>
           </Card>
 
-          <Card className="text-center shadow-lg hover:shadow-xl transition-all border-l-4 #1D50C9">
+          <Card className="text-center shadow-lg hover:shadow-xl transition-all border-l-4 border-[#1D50C9]">
             <CardContent className="p-6">
-              <MessageCircle className="h-10 w-10 #1845B3 mx-auto mb-3" />
+              <MessageCircle className="h-10 w-10 text-[#1845B3] mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">WhatsApp</h3>
               <a 
                 href="https://wa.me/923041110947?text=Hello, I'm interested in studying abroad. Can you help me?"
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="#1845B3 hover:underline"
+                className="text-[#1845B3] hover:underline"
               >
                 Chat with Us
               </a>
@@ -188,22 +188,22 @@ export default function ContactUsSection() {
             </CardContent>
           </Card>
 
-          <Card className="text-center shadow-lg hover:shadow-xl transition-all border-l-4 #1D50C9">
+          <Card className="text-center shadow-lg hover:shadow-xl transition-all border-l-4 border-[#1D50C9]">
             <CardContent className="p-6">
-              <Mail className="h-10 w-10 #1845B3 mx-auto mb-3" />
+              <Mail className="h-10 w-10 text-[#1845B3] mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">Email Us</h3>
-              <a href="mailto:info@dunyaconsultants.com" className="#1845B3 hover:underline">
+              <a href="mailto:info@dunyaconsultants.com" className="text-[#1845B3] hover:underline">
                 info@dunyaconsultants.com
               </a>
               <p className="text-gray-500 text-sm mt-1">24 Hour Response</p>
             </CardContent>
           </Card>
 
-          <Card className="text-center shadow-lg hover:shadow-xl transition-all border-l-4 #1D50C9">
+          <Card className="text-center shadow-lg hover:shadow-xl transition-all border-l-4 border-[#1D50C9]">
             <CardContent className="p-6">
-              <MapPin className="h-10 w-10 #1845B3 mx-auto mb-3" />
+              <MapPin className="h-10 w-10 text-[#1845B3] mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">Visit Us</h3>
-              <p className="#1845B3 font-medium">17+ Offices</p>
+              <p className="text-[#1845B3] font-medium">17+ Offices</p>
               <p className="text-gray-500 text-sm mt-1">Across Pakistan</p>
             </CardContent>
           </Card>
@@ -374,13 +374,13 @@ export default function ContactUsSection() {
                         </div>
                         <div className="flex items-center space-x-2">
                           <Phone className="h-4 w-4 text-gray-500 flex-shrink-0" />
-                          <a href={`tel:${office.phone}`} className="#1845B3 hover:underline">
+                          <a href={`tel:${office.phone}`} className="text-[#1845B3] hover:underline">
                             {office.phone}
                           </a>
                         </div>
                         <div className="flex items-center space-x-2">
                           <Mail className="h-4 w-4 text-gray-500 flex-shrink-0" />
-                          <a href={`mailto:${office.email}`} className="#1845B3 hover:underline">
+                          <a href={`mailto:${office.email}`} className="text-[#1845B3] hover:underline">
                             {office.email}
                           </a>
                         </div>

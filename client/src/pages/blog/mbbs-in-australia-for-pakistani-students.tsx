@@ -203,7 +203,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                         transition={{ delay: index * 0.05 }}
                         className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
                       >
-                        <FileText className="h-5 w-5 #1845B3" />
+                        <FileText className="h-5 w-5 text-[#1845B3]" />
                         <span className="text-gray-800 text-sm">{document}</span>
                       </motion.div>
                     ))}
@@ -254,7 +254,7 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                       <div className="bg-blue-50 p-6 rounded-lg">
                         <div className="flex items-center gap-3 mb-4">
                           <DollarSign className="h-6 w-6 #1845B3" />
-                          <span className="text-2xl font-bold #1845B3">AUD 68,000 - 85,000</span>
+                          <span className="text-2xl font-bold text-[#1845B3]">AUD 68,000 - 85,000</span>
                         </div>
                         <p className="text-gray-700 text-sm leading-relaxed">
                           Annual tuition fees for MBBS programs at top Australian universities. Fees vary by institution and program structure.
