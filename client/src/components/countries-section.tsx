@@ -153,6 +153,12 @@ export default function CountriesSection() {
     return displayCountries[currentSlide] || displayCountries[0];
   };
 
+  const getCurrentCards = () => {
+    // For desktop: show 4 cards per slide
+    const start = currentSlide * cardsPerSlide;
+    return displayCountries.slice(start, start + cardsPerSlide);
+  };
+
   const handleViewDetails = (country: typeof countries[0]) => {
     setSelectedCountry(country);
   };
@@ -266,16 +272,18 @@ export default function CountriesSection() {
 
         {/* Single Carousel for All Destinations */}
         <div className="relative">
-          {/* Desktop: Single Card View */}
+          {/* Desktop: 4 Cards View */}
           <div className="hidden md:block overflow-hidden px-16">
             <motion.div
               key={`desktop-${currentSlide}`}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="flex justify-center"
+              className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
             >
-              {renderCountryCard(getCurrentCard(), 0, `desktop-slide-${currentSlide}`)}
+              {getCurrentCards().map((country, index) => 
+                renderCountryCard(country, index, `desktop-slide-${currentSlide}`)
+              )}
             </motion.div>
           </div>
 
@@ -309,18 +317,37 @@ export default function CountriesSection() {
 
           {/* Slide Indicators */}
           <div className="flex justify-center mt-8 gap-2">
-            {displayCountries.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentSlide 
-                    ? 'scale-110' 
-                    : 'bg-blue-200 hover:bg-blue-300'
-                }`}
-                style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
-              />
-            ))}
+            {/* Desktop indicators - show number of slides (groups of 4) */}
+            <div className="hidden md:flex">
+              {Array.from({ length: totalSlides }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'scale-110' 
+                      : 'bg-blue-200 hover:bg-blue-300'
+                  }`}
+                  style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
+                />
+              ))}
+            </div>
+            
+            {/* Mobile indicators - show individual cards */}
+            <div className="md:hidden flex">
+              {displayCountries.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide 
+                      ? 'scale-110' 
+                      : 'bg-blue-200 hover:bg-blue-300'
+                  }`}
+                  style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
