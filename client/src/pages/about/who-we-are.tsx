@@ -346,26 +346,6 @@ export default function WhoWeAre() {
             ))}
           </div>
 
-          {/* Personalized Support Highlight */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
-          >
-            <Card className="border-0 shadow-xl bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white overflow-hidden">
-              <CardContent className="p-8 relative">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-                <div className="relative text-center">
-                  <Heart className="w-16 h-16 mx-auto mb-6 text-yellow-300" />
-                  <h3 className="text-2xl font-bold mb-4 text-white">Personalized Support</h3>
-                  <p className="text-lg leading-relaxed text-blue-100">
-                    Our expert provides personalized support to make your study overseas experience stress-free and successful. We understand your goals and needs and give the best advice according to your situation.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
         </div>
       </section>
 
@@ -412,7 +392,7 @@ export default function WhoWeAre() {
                   
                   <div className="md:col-span-2 p-8">
                     <h4 className="text-2xl font-bold text-gray-900 mb-6">About Our CEO</h4>
-                    <div className="space-y-4 text-gray-700 leading-relaxed">
+                    <div className="space-y-4 text-white leading-relaxed">
                       <p>
                         Hi, myself Umer Farooq! I'm the Chief Executive Officer (CEO) of Dunya Consultants, an Educational Consultancy Company located in Pakistan.
                       </p>
