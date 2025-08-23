@@ -120,71 +120,25 @@ const countries = [
 const popularCountries = countries.slice(0, 4);
 
 export default function CountriesSection() {
-  const [activeTab, setActiveTab] = useState<'popular' | 'all'>('popular');
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  const handleTabHover = (tabName: 'popular' | 'all', isHovering: boolean) => {
-    const element = document.getElementById(`tab-${tabName}`);
-    if (element && activeTab !== tabName) {
-      element.style.color = isHovering ? '#1D50C9' : '#6b7280';
-    }
-  };
   const [selectedCountry, setSelectedCountry] = useState<typeof countries[0] | null>(null);
   const [showApplicationForm, setShowApplicationForm] = useState(false);
   const [applicationCountry, setApplicationCountry] = useState<typeof countries[0] | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
-  const isGridView = activeTab === 'all';
-  const displayCountries = isGridView ? countries : popularCountries;
-  
-  // Calculate slides based on cards per slide: 2 for md, 3 for lg+
-  const getCardsPerSlide = () => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 1024) return 3; // lg+
-      if (window.innerWidth >= 768) return 2;  // md
-    }
-    return 3; // default to 3 for SSR
-  };
-  
-  const cardsPerSlide = getCardsPerSlide();
-  const totalSlides = isGridView ? 1 : Math.ceil(displayCountries.length / cardsPerSlide);
+  const displayCountries = countries; // Show all countries
+  const totalSlides = displayCountries.length; // One card per slide
 
   const nextSlide = () => {
-    // Mobile: single card navigation, Desktop: multi-card navigation
-    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      setCurrentSlide((prev) => (prev + 1) % displayCountries.length);
-    } else {
-      if (isGridView) {
-        setCurrentSlide((prev) => (prev + 1) % displayCountries.length);
-      } else {
-        setCurrentSlide((prev) => (prev + 1) % totalSlides);
-      }
-    }
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
   };
 
   const prevSlide = () => {
-    // Mobile: single card navigation, Desktop: multi-card navigation
-    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      setCurrentSlide((prev) => (prev - 1 + displayCountries.length) % displayCountries.length);
-    } else {
-      if (isGridView) {
-        setCurrentSlide((prev) => (prev - 1 + displayCountries.length) % displayCountries.length);
-      } else {
-        setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-      }
-    }
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
-  const getCurrentCountries = () => {
-    if (isGridView) {
-      return displayCountries; // Show all countries in grid view
-    }
-    const start = currentSlide * cardsPerSlide;
-    return displayCountries.slice(start, start + cardsPerSlide);
-  };
-
-  const getCurrentMobileCard = () => {
+  const getCurrentCard = () => {
     return displayCountries[currentSlide] || displayCountries[0];
   };
 
@@ -196,11 +150,6 @@ export default function CountriesSection() {
     setApplicationCountry(country);
     setShowApplicationForm(true);
   };
-
-  // Reset slide when switching tabs
-  useEffect(() => {
-    setCurrentSlide(0);
-  }, [activeTab]);
 
   // Update carousel on window resize
   useEffect(() => {
@@ -304,182 +253,65 @@ export default function CountriesSection() {
           </p>
         </motion.div>
 
-        {/* Tab Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center mb-12"
-        >
-          <div className="bg-white rounded-lg p-2 shadow-lg border border-gray-200">
-            <Button
-              id="tab-popular"
-              onClick={() => setActiveTab('popular')}
-              className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
-                activeTab === 'popular' 
-                  ? 'text-white shadow-sm' 
-                  : 'bg-transparent text-gray-600'
-              }`}
-              style={activeTab === 'popular' ? { backgroundColor: '#1D50C9', color: 'white' } : { color: '#6b7280' }}
-              variant="ghost"
-              onMouseEnter={() => handleTabHover('popular', true)}
-              onMouseLeave={() => handleTabHover('popular', false)}
+        {/* Single Carousel for All Destinations */}
+        <div className="relative">
+          {/* Desktop: Single Card View */}
+          <div className="hidden md:block overflow-hidden px-16">
+            <motion.div
+              key={`desktop-${currentSlide}`}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="flex justify-center"
             >
-              Popular Countries
-            </Button>
-            <Button
-              id="tab-all"
-              onClick={() => setActiveTab('all')}
-              className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
-                activeTab === 'all' 
-                  ? 'text-white shadow-sm' 
-                  : 'bg-transparent text-gray-600'
-              }`}
-              style={activeTab === 'all' ? { backgroundColor: '#1D50C9', color: 'white' } : { color: '#6b7280' }}
-              variant="ghost"
-              onMouseEnter={() => handleTabHover('all', true)}
-              onMouseLeave={() => handleTabHover('all', false)}
-            >
-              All Destinations
-            </Button>
+              {renderCountryCard(getCurrentCard(), 0, `desktop-slide-${currentSlide}`)}
+            </motion.div>
           </div>
-        </motion.div>
 
-        {/* Content Based on Active Tab */}
-        {activeTab === 'all' ? (
-          /* All Countries Grid/Single Card View */
-          <div className="relative">
-            {/* Desktop: Grid View */}
-            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 px-16">
-              {displayCountries.map((country, index) => renderCountryCard(country, index))}
-            </div>
-
-            {/* Navigation Arrows - Outside Cards */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
-              style={{ color: "#1D50C9" }}
+          {/* Mobile: Single Card View */}
+          <div className="md:hidden px-12">
+            <motion.div
+              key={`mobile-${currentSlide}`}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
-              style={{ color: "#1D50C9" }}
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-
-            {/* Mobile: Single Card View */}
-            <div className="md:hidden px-12">
-              <motion.div
-                key={`mobile-all-${currentSlide}`}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                {renderCountryCard(getCurrentMobileCard(), 0, 'mobile-all')}
-              </motion.div>
-            </div>
-
-            {/* Mobile Indicators */}
-            <div className="md:hidden flex justify-center mt-6 gap-2">
-              {displayCountries.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'w-6 scale-110' 
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                  style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
-                />
-              ))}
-            </div>
+              {renderCountryCard(getCurrentCard(), 0, `mobile-slide-${currentSlide}`)}
+            </motion.div>
           </div>
-        ) : (
-          /* Popular Countries Carousel/Single Card View */
-          <div className="relative">
-            {/* Desktop: Carousel */}
-            <div className="hidden md:block overflow-hidden px-16">
-              <motion.div
-                className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
-                key={`desktop-popular-${currentSlide}`}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                {getCurrentCountries().map((country, index) => 
-                  renderCountryCard(country, index, `popular-slide-${currentSlide}`)
-                )}
-              </motion.div>
-            </div>
 
-            {/* Navigation Arrows - Outside Cards */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
-              style={{ color: "#1D50C9" }}
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
-              style={{ color: "#1D50C9" }}
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+          {/* Navigation Arrows - Outside Cards */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
+            style={{ color: "#1D50C9" }}
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 hover:scale-110 transition-all duration-200 p-2"
+            style={{ color: "#1D50C9" }}
+          >
+            <ChevronRight className="w-6 h-6" />
+          </button>
 
-            {/* Mobile: Single Card View */}
-            <div className="md:hidden px-12">
-              <motion.div
-                key={`mobile-popular-${currentSlide}`}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-              >
-                {renderCountryCard(getCurrentMobileCard(), 0, 'mobile-popular')}
-              </motion.div>
-            </div>
-
-            {/* Slide Indicators */}
-            <div className="flex justify-center mt-8 gap-2">
-              {/* Desktop indicators */}
-              <div className="hidden md:flex">
-                {Array.from({ length: totalSlides }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === currentSlide 
-                        ? 'scale-110' 
-                        : 'bg-blue-200 hover:bg-white'
-                    }`}
-                    style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
-                  />
-                ))}
-              </div>
-              
-              {/* Mobile indicators */}
-              <div className="md:hidden flex">
-                {displayCountries.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 mx-1 ${
-                      index === currentSlide 
-                        ? 'w-6 scale-110' 
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                    style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
-                  />
-                ))}
-              </div>
-            </div>
+          {/* Slide Indicators */}
+          <div className="flex justify-center mt-8 gap-2">
+            {displayCountries.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentSlide 
+                    ? 'scale-110' 
+                    : 'bg-blue-200 hover:bg-blue-300'
+                }`}
+                style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
+              />
+            ))}
           </div>
-        )}
+        </div>
       </div>
 
       {/* Country Details Modal */}
