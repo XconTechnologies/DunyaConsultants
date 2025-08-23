@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
+import Chatbot from "@/components/Chatbot";
 import Home from "@/pages/home";
 import CostCalculator from "@/pages/cost-calculator";
 import CourseMatchTool from "@/pages/course-match-tool";
@@ -159,6 +160,7 @@ function Router() {
       
       <Route component={NotFound} />
     </Switch>
+    <Chatbot />
     </>
   );
 }

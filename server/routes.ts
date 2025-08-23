@@ -2,6 +2,7 @@ import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { seedBlogPosts } from "./seed-blogs";
+import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
   insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema 
@@ -63,6 +64,35 @@ async function initializeAdmin() {
 export async function registerRoutes(app: Express): Promise<Server> {
   // Initialize admin user
   await initializeAdmin();
+  // Chatbot route
+  app.post("/api/chat", async (req, res) => {
+    try {
+      const { message, context } = req.body;
+      
+      if (!message) {
+        return res.status(400).json({ 
+          success: false, 
+          message: "Message is required" 
+        });
+      }
+
+      const response = await getChatbotResponse(message, context);
+      
+      res.json({ 
+        success: true, 
+        response,
+        message: "Response generated successfully"
+      });
+    } catch (error) {
+      console.error('Chatbot error:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to get chatbot response",
+        response: "I'm having trouble responding right now. Please contact our consultants directly for immediate assistance."
+      });
+    }
+  });
+
   // Contact form submission
   app.post("/api/contact", async (req, res) => {
     try {
@@ -509,11 +539,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get single published blog post by slug (public) - handles nested paths like 2024/09/06/slug-name
   app.get("/api/blog-posts/*", async (req, res) => {
     // Skip if it's the published endpoint
-    if (req.params[0] === 'published') {
+    if ((req.params as any)['0'] === 'published') {
       return;
     }
     try {
-      const slug = req.params[0]; // This captures the full path after /api/blog-posts/
+      const slug = (req.params as any)['0']; // This captures the full path after /api/blog-posts/
       console.log(`Looking for blog post with slug: ${slug}`);
       const post = await storage.getBlogPostBySlug(slug);
       console.log(`Found post:`, post ? `${post.title} (published: ${post.isPublished})` : 'none');
