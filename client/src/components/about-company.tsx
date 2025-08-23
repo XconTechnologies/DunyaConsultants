@@ -55,7 +55,7 @@ export default function AboutCompany() {
             <img
               src={companyCollage}
               alt="Company collage showcasing achievements and team"
-              className="w-full h-[300px] object-contain sm:h-80 sm:object-cover md:h-96 lg:h-[600px] object-center rounded-2xl shadow-lg"
+              className="w-full h-[450px] object-contain sm:h-80 sm:object-cover md:h-96 lg:h-[600px] object-center rounded-2xl shadow-lg"
               loading="eager"
             />
           </motion.div>
