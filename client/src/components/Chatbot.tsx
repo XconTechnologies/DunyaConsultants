@@ -2,76 +2,61 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MessageCircle, Send, X, Bot, User, Minimize2, Maximize2 } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
 
 interface ChatMessage {
     id: string;
     text: string;
     isUser: boolean;
     timestamp: Date;
+    isButton?: boolean;
+    buttonText?: string;
+    buttonAction?: string;
 }
 
-const quickQuestions = [
-    "What are the requirements to study in the USA?",
-    "How can I apply for a UK student visa?",
-    "Which universities in Canada offer scholarships?", 
-    "What IELTS score do I need for Australia?",
-    "How much does it cost to study in Finland?",
-    "What documents do I need for visa application?",
-    "Can you help me choose the right course?",
-    "What are the English language requirements?"
-];
+interface UserData {
+    firstName: string;
+    lastName: string;
+    mobile: string;
+    email: string;
+}
+
+type ChatStep = 
+    | 'welcome' 
+    | 'service-selection'
+    | 'intro' 
+    | 'first-name' 
+    | 'last-name' 
+    | 'mobile' 
+    | 'email' 
+    | 'registered' 
+    | 'live-agent' 
+    | 'transferring';
 
 export default function Chatbot() {
     const [isOpen, setIsOpen] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
+    const [currentStep, setCurrentStep] = useState<ChatStep>('welcome');
+    const [userData, setUserData] = useState<UserData>({
+        firstName: '',
+        lastName: '',
+        mobile: '',
+        email: ''
+    });
     const [messages, setMessages] = useState<ChatMessage[]>([
         {
             id: "welcome",
-            text: "👋 Hi! I'm your AI assistant from Path Visa Consultants. I'm here to help with your study abroad journey, visa questions, and university guidance. How can I assist you today?",
+            text: "Hi! What brings you to Dunyaconsultants today?",
             isUser: false,
-            timestamp: new Date()
+            timestamp: new Date(),
+            isButton: true,
+            buttonText: "Looking for Study Abroad",
+            buttonAction: "study-abroad"
         }
     ]);
     const [input, setInput] = useState("");
     const scrollRef = useRef<HTMLDivElement>(null);
-
-    const chatMutation = useMutation({
-        mutationFn: async (message: string) => {
-            const response = await fetch("/api/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ message })
-            });
-            if (!response.ok) {
-                throw new Error('Failed to get response');
-            }
-            return response.json();
-        },
-        onSuccess: (data: { response: string }) => {
-            const botMessage: ChatMessage = {
-                id: Date.now().toString() + "_bot",
-                text: data.response,
-                isUser: false,
-                timestamp: new Date()
-            };
-            setMessages(prev => [...prev, botMessage]);
-        },
-        onError: () => {
-            const errorMessage: ChatMessage = {
-                id: Date.now().toString() + "_error",
-                text: "I'm having trouble responding right now. Please contact our consultants directly for immediate assistance.",
-                isUser: false,
-                timestamp: new Date()
-            };
-            setMessages(prev => [...prev, errorMessage]);
-        }
-    });
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -79,31 +64,84 @@ export default function Chatbot() {
         }
     }, [messages]);
 
-    const handleSend = () => {
-        if (!input.trim() || chatMutation.isPending) return;
-
-        const userMessage: ChatMessage = {
-            id: Date.now().toString(),
-            text: input,
-            isUser: true,
-            timestamp: new Date()
+    const addMessage = (text: string, isUser: boolean, isButton?: boolean, buttonText?: string, buttonAction?: string) => {
+        const message: ChatMessage = {
+            id: Date.now().toString() + (isUser ? "_user" : "_bot"),
+            text,
+            isUser,
+            timestamp: new Date(),
+            isButton,
+            buttonText,
+            buttonAction
         };
-
-        setMessages(prev => [...prev, userMessage]);
-        chatMutation.mutate(input);
-        setInput("");
+        setMessages(prev => [...prev, message]);
     };
 
-    const handleQuickQuestion = (question: string) => {
-        const userMessage: ChatMessage = {
-            id: Date.now().toString(),
-            text: question,
-            isUser: true,
-            timestamp: new Date()
-        };
+    const handleButtonClick = (action: string) => {
+        if (action === "study-abroad") {
+            addMessage("Looking for Study Abroad", true);
+            setCurrentStep('intro');
+            setTimeout(() => {
+                addMessage("Let's get started by getting to know you", false);
+                setTimeout(() => {
+                    addMessage("What is your first name?", false);
+                    setCurrentStep('first-name');
+                }, 1000);
+            }, 500);
+        } else if (action === "yes-live-agent") {
+            addMessage("Yes", true);
+            setCurrentStep('transferring');
+            setTimeout(() => {
+                addMessage("Thanks – transferring you now", false);
+            }, 500);
+        }
+    };
 
-        setMessages(prev => [...prev, userMessage]);
-        chatMutation.mutate(question);
+    const handleSend = () => {
+        if (!input.trim()) return;
+
+        const userMessage = input.trim();
+        addMessage(userMessage, true);
+        setInput("");
+
+        // Handle responses based on current step
+        setTimeout(() => {
+            switch (currentStep) {
+                case 'first-name':
+                    setUserData(prev => ({ ...prev, firstName: userMessage }));
+                    addMessage("What is your last name?", false);
+                    setCurrentStep('last-name');
+                    break;
+                    
+                case 'last-name':
+                    setUserData(prev => ({ ...prev, lastName: userMessage }));
+                    addMessage("What is your mobile number?", false);
+                    setCurrentStep('mobile');
+                    break;
+                    
+                case 'mobile':
+                    setUserData(prev => ({ ...prev, mobile: userMessage }));
+                    addMessage("What is your email?", false);
+                    setCurrentStep('email');
+                    break;
+                    
+                case 'email':
+                    setUserData(prev => ({ ...prev, email: userMessage }));
+                    setCurrentStep('registered');
+                    setTimeout(() => {
+                        addMessage(`Hey ${userData.firstName}, looks like you are already registered with us`, false);
+                        setTimeout(() => {
+                            addMessage("Do you want to chat with our Live Agent?", false, true, "Yes", "yes-live-agent");
+                            setCurrentStep('live-agent');
+                        }, 1000);
+                    }, 500);
+                    break;
+                    
+                default:
+                    addMessage("I'm here to help you with your study abroad journey. Please follow the questions above to get started.", false);
+                    break;
+            }
+        }, 500);
     };
 
     const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -133,7 +171,7 @@ export default function Chatbot() {
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <Bot className="h-5 w-5" />
-                        <CardTitle className="text-sm font-semibold">Path Visa Assistant</CardTitle>
+                        <CardTitle className="text-sm font-semibold">Dunyaconsultants Virtual Assistant</CardTitle>
                     </div>
                     <div className="flex gap-1">
                         <Button
@@ -178,6 +216,17 @@ export default function Chatbot() {
                                         }`}
                                     >
                                         {message.text}
+                                        {message.isButton && message.buttonText && message.buttonAction && !message.isUser && (
+                                            <div className="mt-3">
+                                                <Button
+                                                    onClick={() => handleButtonClick(message.buttonAction!)}
+                                                    size="sm"
+                                                    className="bg-gray-800 hover:bg-gray-700 text-white"
+                                                >
+                                                    {message.buttonText}
+                                                </Button>
+                                            </div>
+                                        )}
                                     </div>
                                     {message.isUser && (
                                         <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
@@ -186,39 +235,7 @@ export default function Chatbot() {
                                     )}
                                 </div>
                             ))}
-                            {chatMutation.isPending && (
-                                <div className="flex gap-2 justify-start">
-                                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <Bot className="h-4 w-4 text-blue-600" />
-                                    </div>
-                                    <div className="bg-gray-100 p-3 rounded-lg text-sm text-gray-800">
-                                        <div className="flex gap-1">
-                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
                         </div>
-
-                        {messages.length === 1 && (
-                            <div className="mt-4 space-y-2">
-                                <p className="text-xs text-gray-600 font-medium">Quick questions to get started:</p>
-                                <div className="flex flex-wrap gap-2">
-                                    {quickQuestions.slice(0, 4).map((question, index) => (
-                                        <Badge
-                                            key={index}
-                                            variant="outline"
-                                            className="cursor-pointer text-xs py-1 px-2 hover:bg-blue-50 hover:border-blue-300 transition-colors"
-                                            onClick={() => handleQuickQuestion(question)}
-                                        >
-                                            {question}
-                                        </Badge>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
                     </ScrollArea>
 
                     <div className="p-4 border-t bg-gray-50">
@@ -229,19 +246,19 @@ export default function Chatbot() {
                                 onKeyPress={handleKeyPress}
                                 placeholder="Ask about study abroad, visas, universities..."
                                 className="flex-1 text-sm"
-                                disabled={chatMutation.isPending}
+                                disabled={false}
                             />
                             <Button
                                 onClick={handleSend}
                                 size="icon"
-                                disabled={!input.trim() || chatMutation.isPending}
+                                disabled={!input.trim()}
                                 className="bg-blue-600 hover:bg-blue-700"
                             >
                                 <Send className="h-4 w-4" />
                             </Button>
                         </div>
                         <p className="text-xs text-gray-500 mt-2 text-center">
-                            AI-powered assistance for your study abroad journey
+                            Dunyaconsultants Virtual Assistant
                         </p>
                     </div>
                 </CardContent>
