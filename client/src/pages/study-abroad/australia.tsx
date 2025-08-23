@@ -118,101 +118,93 @@ Address: Alif Tower, Sargodha
           <div className="lg:col-span-3">
             
             {/* Quick Stats */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <Card className="border-l-4 border-l-green-600">
-                <CardContent className="p-6">
-                  <div className="flex items-center">
-                    <DollarSign className="w-8 h-8 text-[text-[#1D50C9]] mr-3" />
-                    <div>
-                      <p className="text-2xl font-bold text-gray-900">AUD $20,000 - $45,000</p>
-                      <p className="text-gray-600">Annual Tuition Fee</p>
-                    </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+              <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
+                <div className="flex items-center">
+                  <div className="bg-green-50 p-2 rounded mr-3">
+                    <DollarSign className="w-4 h-4 text-green-600" />
                   </div>
-                </CardContent>
-              </Card>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">AUD $20,000 - $45,000</p>
+                    <p className="text-xs text-gray-600">Annual Tuition</p>
+                  </div>
+                </div>
+              </div>
               
-              <Card className="border-l-4 border-l-yellow-600">
-                <CardContent className="p-6">
-                  <div className="flex items-center">
-                    <FileText className="w-8 h-8 text-[#1D50C9] mr-3" />
-                    <div>
-                      <p className="text-2xl font-bold text-gray-900">AUD $21,041</p>
-                      <p className="text-gray-600">Living Cost per Year</p>
-                    </div>
+              <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
+                <div className="flex items-center">
+                  <div className="bg-yellow-50 p-2 rounded mr-3">
+                    <FileText className="w-4 h-4 text-yellow-600" />
                   </div>
-                </CardContent>
-              </Card>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">AUD $21,041</p>
+                    <p className="text-xs text-gray-600">Living Cost per Year</p>
+                  </div>
+                </div>
+              </div>
               
-              <Card className="border-l-4 border-l-blue-600">
-                <CardContent className="p-6">
-                  <div className="flex items-center">
-                    <GraduationCap className="w-8 h-8 text-[#1D50C9] mr-3" />
-                    <div>
-                      <p className="text-2xl font-bold text-gray-900">43</p>
-                      <p className="text-gray-600">Universities Available</p>
-                    </div>
+              <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
+                <div className="flex items-center">
+                  <div className="bg-blue-50 p-2 rounded mr-3">
+                    <GraduationCap className="w-4 h-4 text-blue-600" />
                   </div>
-                </CardContent>
-              </Card>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">43</p>
+                    <p className="text-xs text-gray-600">Universities Available</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* English Requirements */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center">
-                  <FileText className="w-6 h-6 mr-2" />
-                  English Language Requirements
+            <Card className="mb-6 bg-gray-50 border-0">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
+                  <FileText className="w-5 h-5 mr-2" />
+                  English Requirements
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {englishRequirements.map((req, index) => (
-                    <Card key={index} className="border-2">
-                      <CardHeader className="pb-3">
-                        <CardTitle className="text-lg text-center">{req.test}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="space-y-3">
-                          <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
-                            <span className="font-medium">Undergraduate:</span>
-                            <span className="text-[#1D50C9] font-semibold">{req.ug}</span>
-                          </div>
-                          <div className="flex justify-between items-center p-3 bg-blue-50 rounded">
-                            <span className="font-medium">Postgraduate:</span>
-                            <span className="text-[#1D50C9] font-semibold">{req.pg}</span>
-                          </div>
+                    <div key={index} className="bg-white border border-gray-200 rounded p-3">
+                      <h4 className="font-medium text-center text-sm mb-2">{req.test}</h4>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center p-2 bg-blue-50 rounded text-xs">
+                          <span className="font-medium">Undergraduate:</span>
+                          <span className="text-[#1D50C9] font-semibold">{req.ug}</span>
                         </div>
-                      </CardContent>
-                    </Card>
+                        <div className="flex justify-between items-center p-2 bg-blue-50 rounded text-xs">
+                          <span className="font-medium">Postgraduate:</span>
+                          <span className="text-[#1D50C9] font-semibold">{req.pg}</span>
+                        </div>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
 
             {/* Tuition Fee Details */}
-            <Card className="mb-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#1D50C9] flex items-center">
-                  <DollarSign className="w-6 h-6 mr-2" />
-                  Tuition Fee Structure
+            <Card className="mb-6 bg-gray-50 border-0">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
+                  <DollarSign className="w-5 h-5 mr-2" />
+                  Tuition Fees
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <Card className="bg-blue-50 border-blue-200">
-                    <CardContent className="p-6 text-center">
-                      <h4 className="font-semibold text-blue-900 mb-2">Undergraduate Programs</h4>
-                      <p className="text-3xl font-bold text-[#1D50C9]">AUD $20,000 - $35,000</p>
-                      <p className="text-[#1D50C9]">per year</p>
-                    </CardContent>
-                  </Card>
-                  <Card className="bg-blue-50 border-blue-200">
-                    <CardContent className="p-6 text-center">
-                      <h4 className="font-semibold text-blue-900 mb-2">Postgraduate Programs</h4>
-                      <p className="text-3xl font-bold text-[#1D50C9]">AUD $22,000 - $45,000</p>
-                      <p className="text-[#1D50C9]">per year</p>
-                    </CardContent>
-                  </Card>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
+                    <h4 className="font-medium text-blue-900 text-xs mb-1">Undergraduate</h4>
+                    <p className="text-lg font-bold text-[#1D50C9]">AUD $20,000 - $35,000</p>
+                    <p className="text-xs text-gray-500">per year</p>
+                  </div>
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
+                    <h4 className="font-medium text-blue-900 text-xs mb-1">Postgraduate</h4>
+                    <p className="text-lg font-bold text-[#1D50C9]">AUD $22,000 - $45,000</p>
+                    <p className="text-xs text-gray-500">per year</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>

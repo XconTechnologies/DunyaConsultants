@@ -121,48 +121,42 @@ Address: Alif Tower, Sargodha
           <div className="lg:col-span-3">
             
             {/* Quick Stats */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-center">
-                    <div className="bg-blue-50 p-3 rounded-lg mr-4">
-                      <DollarSign className="w-6 h-6 text-[#1D50C9]" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold text-gray-900">$27,940 - $65,000</p>
-                      <p className="text-sm text-gray-600">Annual Tuition Range</p>
-                    </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+              <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
+                <div className="flex items-center">
+                  <div className="bg-blue-50 p-2 rounded mr-3">
+                    <DollarSign className="w-4 h-4 text-[#1D50C9]" />
                   </div>
-                </CardContent>
-              </Card>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">$27,940 - $65,000</p>
+                    <p className="text-xs text-gray-600">Annual Tuition Range</p>
+                  </div>
+                </div>
+              </div>
               
-              <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-center">
-                    <div className="bg-green-50 p-3 rounded-lg mr-4">
-                      <FileText className="w-6 h-6 text-green-600" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold text-gray-900">SEVIS $350</p>
-                      <p className="text-sm text-gray-600">+ DS-160 $185</p>
-                    </div>
+              <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
+                <div className="flex items-center">
+                  <div className="bg-green-50 p-2 rounded mr-3">
+                    <FileText className="w-4 h-4 text-green-600" />
                   </div>
-                </CardContent>
-              </Card>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">SEVIS $350</p>
+                    <p className="text-xs text-gray-600">+ DS-160 $185</p>
+                  </div>
+                </div>
+              </div>
               
-              <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-center">
-                    <div className="bg-purple-50 p-3 rounded-lg mr-4">
-                      <GraduationCap className="w-6 h-6 text-purple-600" />
-                    </div>
-                    <div>
-                      <p className="text-2xl font-bold text-gray-900">5,000+</p>
-                      <p className="text-sm text-gray-600">Higher Education Institutes</p>
-                    </div>
+              <div className="bg-white border border-gray-200 rounded p-3 hover:shadow-sm transition-shadow">
+                <div className="flex items-center">
+                  <div className="bg-purple-50 p-2 rounded mr-3">
+                    <GraduationCap className="w-4 h-4 text-purple-600" />
                   </div>
-                </CardContent>
-              </Card>
+                  <div>
+                    <p className="text-sm font-bold text-gray-900">5,000+</p>
+                    <p className="text-xs text-gray-600">Higher Education Institutes</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Tuition Fee Details */}
