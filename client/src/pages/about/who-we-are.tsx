@@ -10,10 +10,10 @@ import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
 
 export default function WhoWeAre() {
   const stats = [
-    { number: "10+", label: "Countries", icon: Globe, color: "from-blue-500 to-blue-600" },
-    { number: "14+", label: "Branches", icon: Building2, color: "from-green-500 to-green-600" },
-    { number: "98%", label: "Success Rate", icon: Award, color: "from-orange-500 to-orange-600" },
-    { number: "2,000+", label: "Visa Processing", icon: Users, color: "from-purple-500 to-purple-600" },
+    { number: "10+", label: "Countries", icon: Globe, color: "from-[#1D50C9] to-[#1845B3]" },
+    { number: "14+", label: "Branches", icon: Building2, color: "from-[#1D50C9] to-[#1845B3]" },
+    { number: "98%", label: "Success Rate", icon: Award, color: "from-[#1D50C9] to-[#1845B3]" },
+    { number: "2,000+", label: "Visa Processing", icon: Users, color: "from-[#1D50C9] to-[#1845B3]" },
   ];
 
   const processSteps = [
@@ -60,25 +60,25 @@ export default function WhoWeAre() {
       icon: Users,
       title: "Expert Team",
       description: "Over 200 certified counsellors providing personalized guidance to every student.",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#1D50C9] to-[#1845B3]"
     },
     {
       icon: Globe,
       title: "Global Network", 
       description: "250 ambassadors working internationally with partnerships across multiple countries.",
-      color: "from-green-500 to-green-600"
+      color: "from-[#1D50C9] to-[#1845B3]"
     },
     {
       icon: Award,
       title: "Proven Success",
       description: "Years of experience helping students achieve their study abroad dreams successfully.",
-      color: "from-orange-500 to-orange-600"
+      color: "from-[#1D50C9] to-[#1845B3]"
     },
     {
       icon: Target,
       title: "Personalized Support",
       description: "Tailored guidance ensuring smooth and hassle-free visa and admission processes.",
-      color: "from-purple-500 to-purple-600"
+      color: "from-[#1D50C9] to-[#1845B3]"
     }
   ];
 
@@ -358,7 +358,7 @@ export default function WhoWeAre() {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
                 <div className="relative text-center">
                   <Heart className="w-16 h-16 mx-auto mb-6 text-yellow-300" />
-                  <h3 className="text-2xl font-bold mb-4">Personalized Support</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">Personalized Support</h3>
                   <p className="text-lg leading-relaxed text-blue-100">
                     Our expert provides personalized support to make your study overseas experience stress-free and successful. We understand your goals and needs and give the best advice according to your situation.
                   </p>
@@ -399,7 +399,7 @@ export default function WhoWeAre() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="text-2xl font-bold mb-2">Umer Farooq</h3>
+                    <h3 className="text-2xl font-bold mb-2 text-white">Umer Farooq</h3>
                     <p className="text-blue-200 font-semibold mb-4">Chief Executive Officer</p>
                     <div className="space-y-2">
                       <div className="text-sm">
