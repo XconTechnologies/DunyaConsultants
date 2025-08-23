@@ -272,34 +272,6 @@ export default function MissionVision() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl font-bold mb-6">Join Our Mission</h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Be part of our vision to transform lives through quality international education. Your journey to academic excellence starts here.
-            </p>
-            <div className="flex flex-row gap-2 sm:gap-4 justify-center">
-              <Link href="/contact">
-                <Button size="sm" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-base sm:size-lg">
-                  Start Your Journey
-                  <ArrowRight className="w-3 h-3 ml-1 sm:w-5 sm:h-5 sm:ml-2" />
-                </Button>
-              </Link>
-              <Link href="/about/">
-                <Button size="sm" variant="outline" className="border-white text-white hover:bg-white/10 px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-base sm:size-lg">
-                  Learn More About Us
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
       
       <Footer />
     </div>
