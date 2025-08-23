@@ -68,18 +68,6 @@ const countries = [
     averageCost: "AUD 40,000"
   },
   {
-    id: 5,
-    name: "Germany",
-    code: "DE",
-    continent: "Europe",
-    description: "Access world-class engineering and technical programs with low tuition fees and strong industry connections.",
-    universities: ["Technical University Munich", "Heidelberg University", "Humboldt University"],
-    visaSuccessRate: 92,
-    scholarships: "35+",
-    studentCount: "8000",
-    averageCost: "€15,000"
-  },
-  {
     id: 6,
     name: "Finland",
     code: "FI",
@@ -160,7 +148,24 @@ export default function CountriesSection() {
   };
 
   const handleViewDetails = (country: typeof countries[0]) => {
-    setSelectedCountry(country);
+    // Navigate to study abroad pages
+    const countryRoutes: { [key: string]: string } = {
+      "United States": "/study-abroad/usa",
+      "United Kingdom": "/study-abroad/uk", 
+      "Canada": "/study-abroad/canada",
+      "Australia": "/study-abroad/australia",
+      "Finland": "/study-abroad/finland",
+      "Belgium": "/study-abroad/belgium",
+      "Turkey": "/study-abroad/turkey"
+    };
+    
+    const route = countryRoutes[country.name];
+    if (route) {
+      window.location.href = route;
+    } else {
+      // Fallback to modal for countries without dedicated pages
+      setSelectedCountry(country);
+    }
   };
 
   const handleApplyNow = (country: typeof countries[0]) => {
