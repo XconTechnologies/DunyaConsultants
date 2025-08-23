@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react";
 import Navigation from "@/components/navigation";
 import StatsBanner from "@/components/stats-banner";
 import ScrollProgress from "@/components/scroll-progress";
-import FloatingCTA from "@/components/floating-cta";
 import Footer from "@/components/footer";
 
 // Lazy load ALL heavy components for better performance
@@ -71,7 +70,6 @@ export default function Home() {
         <BusinessProposalsSection />
       </Suspense>
       
-      <FloatingCTA />
       <Footer />
     </div>
   );
