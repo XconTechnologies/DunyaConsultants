@@ -119,15 +119,15 @@ export default function WhoWeAre() {
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <div className="flex flex-row gap-2 sm:gap-4 justify-center mb-16">
               <Link href="/contact">
-                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                <Button size="sm" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-3 py-2 text-sm sm:px-8 sm:py-4 sm:text-lg font-semibold sm:size-lg">
                   Book Free Consultation
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-4 h-4 ml-1 sm:w-5 sm:h-5 sm:ml-2" />
                 </Button>
               </Link>
               <Link href="/about/mission-vision">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                <Button size="sm" variant="outline" className="border-white text-white hover:bg-white/10 px-3 py-2 text-sm sm:px-8 sm:py-4 sm:text-lg sm:size-lg">
                   Our Mission & Vision
                 </Button>
               </Link>
