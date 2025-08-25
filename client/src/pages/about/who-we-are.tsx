@@ -137,14 +137,14 @@ export default function WhoWeAre() {
       </section>
 
       {/* Stats Section - Redesigned */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 relative">
+      <section className="py-12 bg-gradient-to-br from-gray-50 to-blue-50 relative">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div className="max-w-7xl mx-auto px-6 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
               We Serve Around{" "}
@@ -182,7 +182,7 @@ export default function WhoWeAre() {
       </section>
 
       {/* About Content - Redesigned */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div
@@ -256,13 +256,13 @@ export default function WhoWeAre() {
       </section>
 
       {/* How We Work - Redesigned */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-12 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
               How We{" "}
@@ -350,13 +350,13 @@ export default function WhoWeAre() {
       </section>
 
       {/* Leadership Section - Redesigned */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-12 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">Meet Our Leadership</h2>
             <p className="text-xl text-gray-600">Visionary leadership driving educational excellence</p>
