@@ -54,7 +54,7 @@ export default function AboutCompany() {
           >
             <img
               src={companyCollage}
-              alt="Company collage showcasing achievements and team"
+              alt="Pakistani students studying abroad with Dunya Consultants"
               className="w-full h-[450px] object-contain sm:h-80 sm:object-cover md:h-96 lg:h-[600px] object-center rounded-2xl shadow-lg"
               loading="eager"
             />

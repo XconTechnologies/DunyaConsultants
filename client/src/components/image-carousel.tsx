@@ -16,7 +16,7 @@ import img11 from "@assets/IMG-20250510-WA0070_1751536114476.webp";
 import img12 from "@assets/MHQ07558_1751536114477.webp";
 
 const carouselImages = [
-  { id: 1, src: img1, alt: "Student Counseling Session", caption: "One-on-one student guidance sessions" },
+  { id: 1, src: img1, alt: "best Study Abroad Consultants in Pakistan", caption: "One-on-one student guidance sessions" },
   { id: 2, src: img2, alt: "Annual Awards Ceremony", caption: "Celebrating excellence in education consulting" },
   { id: 3, src: img3, alt: "Branch Manager Recognition", caption: "Branch Manager of the Year award ceremony" },
   { id: 4, src: img4, alt: "Team Meeting", caption: "Strategic planning and team collaboration" },
