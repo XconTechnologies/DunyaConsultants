@@ -503,154 +503,135 @@ export default function SargodhaHeadOffice() {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Visit our Sargodha office or connect with us for personalized study abroad guidance
+              If you're searching for study abroad consultants in Sargodha, we're here to help. Visit us today for a free consultation and take the first step toward your dream university abroad.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Phone */}
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - FAQs */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0 * 0.05 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Phone className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">Call Us</h3>
-                  <div className="space-y-2">
-                    <p className="font-medium text-gray-800">Phone</p>
-                    <a href="tel:+92323-251-6319" className="text-[#1845B3] hover:text-[#1a73e8] text-lg font-semibold">
-                      +92 323-251-6319
-                    </a>
-                  </div>
-                  <div className="mt-4">
-                    <p className="font-medium text-gray-800">Hours</p>
-                    <p className="text-gray-600 text-sm">Mon–Sat 10 AM–6 PM</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Location */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 1 * 0.05 }}
-            >
-              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <MapPin className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">Visit Office</h3>
-                  <div className="space-y-2">
-                    <p className="font-medium text-gray-800">Address</p>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      Alif Tower, Buhadur Shah Zafar Road, Sargodha
-                    </p>
-                  </div>
-                  <div className="mt-4">
-                    <a href="https://maps.app.goo.gl/4NrALSw714bypnzG7" target="_blank" rel="noopener noreferrer" className="text-[#1845B3] hover:text-[#1a73e8] text-sm font-medium">
-                      Get Directions →
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Email */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 2 * 0.05 }}
-            >
-              <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group">
-                <CardContent className="p-8 text-center">
-                  <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Mail className="w-8 h-8 text-white" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">Email Us</h3>
-                  <div className="space-y-2">
-                    <p className="font-medium text-gray-800">Email</p>
-                    <a href="mailto:sargodha@dunyaconsultants.com" className="text-[#1845B3] hover:text-[#1a73e8] text-sm">
-                      sargodha@dunyaconsultants.com
-                    </a>
-                  </div>
-                  <div className="mt-4">
-                    <p className="font-medium text-gray-800">Response Time</p>
-                    <p className="text-gray-600 text-sm">Within 24 hours</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Frequently Asked{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                Questions
-              </span>
-            </h2>
-            <p className="text-gray-600 text-lg">
-              Get answers to common questions about studying abroad through our Sargodha office
-            </p>
-          </motion.div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="border border-gray-200 hover:shadow-md transition-all duration-300">
-                  <CardContent className="p-0">
-                    <button
-                      onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                      className="w-full text-left p-6 focus:outline-none"
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
+                <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                  Frequently Asked{" "}
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Questions
+                  </span>
+                </h3>
+                
+                <div className="space-y-3 flex-grow">
+                  {faqs.map((faq, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
                     >
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-lg font-semibold text-gray-900 pr-4">{faq.question}</h3>
-                        <div className="flex-shrink-0">
-                          {expandedFaq === index ? (
-                            <ChevronUp className="w-5 h-5 text-[#1D50C9]" />
-                          ) : (
-                            <ChevronDown className="w-5 h-5 text-[#1D50C9]" />
-                          )}
-                        </div>
+                      <div className="bg-gray-50 rounded-lg border border-gray-200 hover:border-[#1D50C9] transition-all duration-300 overflow-hidden">
+                        <button
+                          className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
+                          onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                        >
+                          <h4 className="text-gray-900 font-semibold pr-4">{faq.question}</h4>
+                          <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                            {expandedFaq === index ? (
+                              <ChevronUp className="w-4 h-4 text-[#1D50C9]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[#1D50C9]" />
+                            )}
+                          </div>
+                        </button>
+                        {expandedFaq === index && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="px-4 pb-4 border-t border-gray-200"
+                          >
+                            <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
+                          </motion.div>
+                        )}
                       </div>
-                    </button>
-                    {expandedFaq === index && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="px-6 pb-6">
-                          <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
+                
+                <div className="space-y-4 flex-grow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Address</h4>
+                      <p className="text-blue-100 leading-relaxed">
+                        Alif Tower, Buhadur Shah Zafar Road, Sargodha
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Phone</h4>
+                      <a href="tel:+923232516319" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +92 323-251-6319
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Mail className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Email</h4>
+                      <a href="mailto:sargodha@dunyaconsultants.com" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        sargodha@dunyaconsultants.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-sm leading-relaxed">
+                    Our Sargodha office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
+                  </p>
+                </div>
+
+                <div className="space-y-4 mt-4">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <Calendar className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <a href="https://maps.app.goo.gl/4NrALSw714bypnzG7" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      Get Directions
+                      <MapPin className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
