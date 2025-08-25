@@ -1326,6 +1326,7 @@ export default function Blog() {
   const [simpleMatch, simpleParams] = useRoute("/blog/:slug");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [displayCount, setDisplayCount] = useState(12); // Show 12 blogs initially
 
   // Fetch blog posts from API
   const { data: blogPostsData, isLoading } = useQuery({
@@ -1408,6 +1409,20 @@ export default function Blog() {
     return matchesSearch && matchesCategory;
   });
 
+  // Get posts to display based on current displayCount
+  const postsToDisplay = filteredPosts.slice(0, displayCount);
+  const hasMorePosts = filteredPosts.length > displayCount;
+
+  // Load more function
+  const loadMorePosts = () => {
+    setDisplayCount(prev => prev + 3); // Show 3 more posts each time
+  };
+
+  // Reset displayCount when search or category changes
+  const resetPagination = () => {
+    setDisplayCount(12);
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -1445,7 +1460,10 @@ export default function Blog() {
                   type="text"
                   placeholder="Search articles..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    resetPagination();
+                  }}
                   className="pl-10"
                 />
               </div>
@@ -1458,7 +1476,10 @@ export default function Blog() {
               <Button
                 key={category.name}
                 variant={selectedCategory === category.name ? "default" : "outline"}
-                onClick={() => setSelectedCategory(category.name)}
+                onClick={() => {
+                  setSelectedCategory(category.name);
+                  resetPagination();
+                }}
                 className="mb-2"
               >
                 {category.name} ({category.count})
@@ -1469,7 +1490,7 @@ export default function Blog() {
 
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {filteredPosts.map((post: any) => (
+          {postsToDisplay.map((post: any) => (
             <motion.div
               key={post.id}
               initial={{ opacity: 0, y: 20 }}
@@ -1536,6 +1557,19 @@ export default function Blog() {
             </motion.div>
           ))}
         </div>
+
+        {/* Load More Button */}
+        {hasMorePosts && (
+          <div className="text-center mt-12">
+            <Button 
+              onClick={loadMorePosts}
+              size="lg"
+              className="bg-[#1D50C9] hover:bg-[#1845B3] text-white px-8 py-3"
+            >
+              Load More
+            </Button>
+          </div>
+        )}
 
         {/* No Results */}
         {filteredPosts.length === 0 && (
