@@ -287,15 +287,16 @@ export default function BlogsCarouselSection() {
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
               >
                 <Link href={post.slug.includes('/') ? `/blog/${post.slug}` : `/blog/${post.slug}`}>
-                  <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full overflow-hidden">
+                  <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                     
-                    {/* Featured Image - Fixed Aspect Ratio */}
+                    {/* Featured Image - Exact same as blog page */}
                     {post.image && (
-                      <div className="relative w-full aspect-[16/10] overflow-hidden">
+                      <div className="relative overflow-hidden rounded-t-lg">
                         <img 
                           src={post.image.startsWith('http') || post.image.startsWith('/attached_assets/') ? post.image : `/attached_assets/${post.image}`} 
                           alt={post.title}
-                          className="absolute inset-0 w-full h-full object-cover transition-transform hover:scale-105"
+                          className="w-full h-56 object-cover transition-transform hover:scale-105"
+                          style={{ objectFit: 'cover', objectPosition: 'center' }}
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                           }}
@@ -303,41 +304,41 @@ export default function BlogsCarouselSection() {
                       </div>
                     )}
 
-                    <CardContent className="p-6 flex flex-col">
+                    <CardContent className="p-6">
                       
                       {/* Category Badge */}
                       <div className="mb-3">
-                        <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9] text-xs">
+                        <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
                           {post.category}
                         </Badge>
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 min-h-[3.5rem]">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                         {post.title}
                       </h3>
 
                       {/* Excerpt */}
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-3 min-h-[4.5rem] leading-relaxed">
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
 
                       {/* Meta Information and Read More - Same Line */}
-                      <div className="flex items-center justify-between text-sm mt-auto">
-                        <div className="flex items-center space-x-3 text-gray-500">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center space-x-4 text-gray-500">
                           <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-1" />
-                            <span className="text-xs">{post.date}</span>
+                            <span>{post.date}</span>
                           </div>
                           <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-1" />
-                            <span className="text-xs">{post.readTime}</span>
+                            <span>{post.readTime}</span>
                           </div>
                         </div>
                         
                         {/* Read More Link */}
                         <div className="flex items-center text-[#1D50C9] font-medium">
-                          <span className="text-sm">Read More</span>
+                          <span>Read More</span>
                           <ArrowRight className="w-4 h-4 ml-1" />
                         </div>
                       </div>
