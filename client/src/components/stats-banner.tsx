@@ -420,7 +420,7 @@ export default function StatsBanner() {
         </div>
 
         {/* Bottom Element */}
-        <div className="flex justify-center mt-8 sm:mt-12 lg:mt-16 mb-8 sm:mb-16 lg:mb-24">
+        <div className="flex justify-center mt-8 sm:mt-12 lg:mt-16 mb-4 sm:mb-6 lg:mb-8">
           <div className="flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-white/10">
             <Shield className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#1D50C9' }} />
             <span className="text-white/80 font-medium text-sm sm:text-base">Trusted Excellence Since 2021</span>
