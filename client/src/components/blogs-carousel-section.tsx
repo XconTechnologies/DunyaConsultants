@@ -155,14 +155,48 @@ export default function BlogsCarouselSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-  // Fetch blog posts from API
-  const { data: blogPosts = staticBlogPosts } = useQuery({
-    queryKey: ['/api/blog/posts'],
-    retry: false,
+  // Fetch blog posts from API (same as blog page)
+  const { data: blogPostsData } = useQuery({
+    queryKey: ['/api/blog-posts'],
+    queryFn: async () => {
+      const response = await fetch('/api/blog-posts');
+      if (!response.ok) throw new Error('Failed to fetch blog posts');
+      return response.json();
+    }
   });
 
+  // Transform API data to component format (same as blog page)
+  const blogPosts = blogPostsData ? blogPostsData.map((post: any) => ({
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category || "Study Guides",
+    author: "Path Visa Consultants",
+    date: (() => {
+      const dateStr = post.publishedAt || post.published_at || post.created_at;
+      if (!dateStr) return 'Unknown Date';
+      try {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return 'Unknown Date';
+        return date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+      } catch {
+        return 'Unknown Date';
+      }
+    })(),
+    readTime: "5 min",
+    views: post.view_count || 0,
+    tags: post.tags || [],
+    image: post.featured_image || post.featuredImage,
+    featured: false,
+    slug: post.slug
+  })) : staticBlogPosts;
+
   // Get latest 10 blogs
-  const latestBlogs = (blogPosts as typeof staticBlogPosts).slice(0, 10);
+  const latestBlogs = blogPosts.slice(0, 10);
 
   // Duplicate the blogs for infinite scroll effect
   const duplicatedBlogs = [...latestBlogs, ...latestBlogs];
