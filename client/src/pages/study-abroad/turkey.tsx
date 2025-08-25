@@ -13,15 +13,32 @@ export default function StudyAbroadTurkey() {
   const downloadChecklist = () => {
     const checklistText = `TURKEY STUDY ABROAD DOCUMENT CHECKLIST
 
-Required Documents:
-• Original Passport
-• All Educational Documents Notarized
-• Degree & Transcript Apostilled Copies
-• YÖS Exam Score (if required)
-• TOEFL / IELTS Score Card
-• Health Report
-• 2 Passport Photos
-• Financial Guarantee Letter
+BACHELOR PROGRAM REQUIREMENTS:
+• Matric Degree and Result card
+• Intermediate Degree and Result card
+• Passport
+• Photo
+• Parent names
+• Email address
+• Contact number
+Note: For those with pending results can share hope certificate/predicted grades.
+
+MASTER PROGRAM REQUIREMENTS:
+• Bachelor Degree
+• Bachelor Transcript
+• Inter and Matric Degree
+• Passport
+• Photo
+• Parent names
+• Email address
+• Contact number
+Note: For those with pending degree can share Provisional certificate/Completion certificate.
+
+FEES INFORMATION:
+• Bachelor fee: $3,500-$6,000 per year (depending on University and program)
+• Bachelor initial deposit: $1,000-$1,500 (depends on university)
+• Master whole program fee: $3,000-$6,000 (depending on University and programs)
+• Master initial deposit: $1,000-$1,500 (depends on university)
 
 Contact Information:
 UAN: (+92) 304 1110947
@@ -41,15 +58,25 @@ Address: Alif Tower, Sargodha
     window.URL.revokeObjectURL(url);
   };
 
-  const documentChecklist = [
-    "Original Passport",
-    "All Educational Documents Notarized", 
-    "Degree & Transcript Apostilled Copies",
-    "YÖS Exam Score (if required)",
-    "TOEFL / IELTS Score Card",
-    "Health Report",
-    "2 Passport Photos",
-    "Financial Guarantee Letter"
+  const bachelorDocuments = [
+    "Matric Degree and Result card",
+    "Intermediate Degree and Result card", 
+    "Passport",
+    "Photo",
+    "Parent names",
+    "Email address",
+    "Contact number"
+  ];
+
+  const masterDocuments = [
+    "Bachelor Degree",
+    "Bachelor Transcript",
+    "Inter and Matric Degree",
+    "Passport",
+    "Photo",
+    "Parent names",
+    "Email address",
+    "Contact number"
   ];
 
   const whyChooseTurkey = [
@@ -125,7 +152,7 @@ Address: Alif Tower, Sargodha
                     <DollarSign className="w-4 h-4 text-red-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900">$200 - $1,500</p>
+                    <p className="text-sm font-bold text-gray-900">$3,000 - $6,000</p>
                     <p className="text-xs text-gray-600">Annual Tuition Fee</p>
                   </div>
                 </div>
@@ -194,17 +221,22 @@ Address: Alif Tower, Sargodha
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
-                    <h4 className="font-medium text-blue-900 text-xs mb-1">Public Universities</h4>
-                    <p className="text-lg font-bold text-[#1D50C9]">$200 - $700</p>
+                    <h4 className="font-medium text-blue-900 text-xs mb-1">Bachelor Programs</h4>
+                    <p className="text-lg font-bold text-[#1D50C9]">$3,500 - $6,000</p>
                     <p className="text-xs text-gray-500">per year</p>
+                    <p className="text-xs text-blue-600 mt-1">Initial Deposit: $1,000 - $1,500</p>
                   </div>
                   <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
-                    <h4 className="font-medium text-gray-900 text-xs mb-1">Private Universities</h4>
-                    <p className="text-lg font-bold text-gray-600">$500 - $1,500</p>
-                    <p className="text-xs text-gray-500">per year</p>
+                    <h4 className="font-medium text-gray-900 text-xs mb-1">Master Programs</h4>
+                    <p className="text-lg font-bold text-gray-600">$3,000 - $6,000</p>
+                    <p className="text-xs text-gray-500">whole program</p>
+                    <p className="text-xs text-gray-600 mt-1">Initial Deposit: $1,000 - $1,500</p>
                   </div>
+                </div>
+                <div className="p-3 bg-yellow-50 border border-yellow-200 rounded">
+                  <p className="text-yellow-800 text-xs"><strong>Note:</strong> Fees depend on University and program. Initial deposit varies by university.</p>
                 </div>
               </CardContent>
             </Card>
@@ -280,18 +312,45 @@ Address: Alif Tower, Sargodha
               <CardHeader>
                 <CardTitle className="text-xl text-[text-[#1D50C9]] flex items-center">
                   <FileCheck className="w-5 h-5 mr-2" />
-                  Documents Checklist
+                  Documents Requirements
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-3">
-                  {documentChecklist.map((doc, index) => (
-                    <li key={index} className="flex items-start space-x-3">
-                      <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-1 flex-shrink-0" />
-                      <span className="text-sm text-gray-700">{doc}</span>
-                    </li>
-                  ))}
-                </ul>
+                <Tabs defaultValue="bachelor" className="w-full">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="bachelor">Bachelor</TabsTrigger>
+                    <TabsTrigger value="master">Master</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="bachelor" className="mt-4">
+                    <ul className="space-y-2">
+                      {bachelorDocuments.map((doc, index) => (
+                        <li key={index} className="flex items-start space-x-3">
+                          <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-gray-700">{doc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                      <p className="text-blue-700 text-xs"><strong>Note:</strong> For those with pending results can share hope certificate/predicted grades.</p>
+                    </div>
+                  </TabsContent>
+                  
+                  <TabsContent value="master" className="mt-4">
+                    <ul className="space-y-2">
+                      {masterDocuments.map((doc, index) => (
+                        <li key={index} className="flex items-start space-x-3">
+                          <CheckCircle className="w-4 h-4 text-[#1D50C9] mt-0.5 flex-shrink-0" />
+                          <span className="text-sm text-gray-700">{doc}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
+                      <p className="text-blue-700 text-xs"><strong>Note:</strong> For those with pending degree can share Provisional certificate/Completion certificate.</p>
+                    </div>
+                  </TabsContent>
+                </Tabs>
+                
                 <Button 
                   onClick={downloadChecklist}
                   className="w-full mt-6 text-[text-[#1D50C9]] hover:bg-[#0f3ba8] text-white">
