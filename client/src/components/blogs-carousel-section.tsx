@@ -325,14 +325,10 @@ export default function BlogsCarouselSection() {
 
                       {/* Meta Information and Read More - Same Line */}
                       <div className="flex items-center justify-between text-sm">
-                        <div className="flex items-center space-x-4 text-gray-500">
+                        <div className="flex items-center text-gray-500">
                           <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-1" />
                             <span>{post.date}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <Clock className="w-4 h-4 mr-1" />
-                            <span>{post.readTime}</span>
                           </div>
                         </div>
                         
