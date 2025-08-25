@@ -305,13 +305,13 @@ export default function WhoWeAre() {
       </section>
 
       {/* Why Choose Us - Redesigned */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-8"
           >
             <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
               Why Choose{" "}
@@ -324,7 +324,7 @@ export default function WhoWeAre() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-4">
             {highlights.map((item, index) => (
               <motion.div
                 key={index}
