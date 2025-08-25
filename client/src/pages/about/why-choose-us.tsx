@@ -348,31 +348,6 @@ export default function WhyChooseUs() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl font-bold mb-6">
-              Ready to Start Your Journey?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Join thousands of successful students who chose Dunya Consultants for their international education
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white hover:bg-blue-50 text-[#1D50C9]">
-                Book Free Consultation
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Download Brochure
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       <Footer />
     </div>

@@ -422,31 +422,6 @@ export default function OurSuccessStories() {
 
 
 
-      {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl font-bold mb-6">
-              Be Our Next Success Story
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Join thousands of students who have achieved their international education dreams with Dunya Consultants
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white #1845B3 hover:bg-blue-50">
-                Start Your Journey
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Book Free Consultation
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       <Footer />
     </div>
