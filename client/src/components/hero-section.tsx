@@ -82,7 +82,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Expert visa consultation services to help you achieve your dream of studying abroad. Professional guidance, proven success rates.
+            Join thousands of successful students who achieved their international education dreams with the best study abroad consultants in Pakistan, trusted and experienced visa experts guiding your journey step by step
           </motion.p>
           
           {/* Stats Cards - Made Smaller */}

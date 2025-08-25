@@ -481,7 +481,7 @@ export default function RedesignedProcessSection() {
             <div className="relative z-10">
               <h3 className="text-3xl font-bold mb-4">Begin Your Educational Journey Today</h3>
               <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-                Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.
+                Join thousands of successful students who have achieved their international education dreams through our comprehensive 8-step process. Expert guidance at every step.
               </p>
               <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <Button
