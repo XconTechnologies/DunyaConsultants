@@ -183,34 +183,6 @@ Address: Alif Tower, Sargodha
               </div>
             </div>
 
-            {/* English Requirements */}
-            <Card className="mb-6 bg-gray-50 border-0">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg md:text-xl text-[#1D50C9] flex items-center">
-                  <FileText className="w-5 h-5 mr-2" />
-                  English Requirements
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {englishRequirements.map((req, index) => (
-                    <div key={index} className="bg-white border border-gray-200 rounded p-3">
-                      <h4 className="font-medium text-center text-sm mb-2">{req.test}</h4>
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-center p-2 bg-blue-50 rounded text-xs">
-                          <span className="font-medium">Undergraduate:</span>
-                          <span className="text-[#1D50C9] font-semibold">{req.ug}</span>
-                        </div>
-                        <div className="flex justify-between items-center p-2 bg-gray-50 rounded text-xs">
-                          <span className="font-medium">Postgraduate:</span>
-                          <span className="text-gray-600 font-semibold">{req.pg}</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
 
             {/* Tuition Fee Details */}
             <Card className="mb-6 bg-gray-50 border-0">
