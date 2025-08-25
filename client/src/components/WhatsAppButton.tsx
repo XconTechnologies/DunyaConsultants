@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
 export default function WhatsAppButton() {
@@ -21,7 +22,7 @@ export default function WhatsAppButton() {
         className="w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center group"
         size="lg"
       >
-        <MessageCircle className="w-8 h-8" />
+        <FaWhatsapp className="w-8 h-8" />
       </Button>
       
       {/* Tooltip */}

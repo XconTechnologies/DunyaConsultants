@@ -203,7 +203,7 @@ export default function WhoWeAre() {
                 </p>
                 
                 <p className="leading-relaxed">
-                  With its head office in Lahore, Dunya Consultants has branches in over <strong className="text-[#1D50C9]">14 cities</strong> across the country and a team of more than <strong className="text-[#1D50C9]">200 counselors</strong>.
+                  With its head office in Lahore, Dunya Consultants has branches in over <strong className="text-[#1D50C9]">20+ cities</strong> across the country and a team of more than <strong className="text-[#1D50C9]">200 counselors</strong>.
                 </p>
                 
                 <p className="leading-relaxed">
