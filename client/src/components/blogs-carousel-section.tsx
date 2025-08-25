@@ -281,22 +281,21 @@ export default function BlogsCarouselSection() {
             {duplicatedBlogs.map((post, index) => (
               <motion.div
                 key={`${post.id}-${index}`}
-                className="flex-shrink-0 w-72 md:w-80"
+                className="flex-shrink-0 w-80 md:w-96"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
               >
                 <Link href={post.slug.includes('/') ? `/blog/${post.slug}` : `/blog/${post.slug}`}>
-                  <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+                  <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full overflow-hidden">
                     
-                    {/* Featured Image - Clean, No Overlays */}
+                    {/* Featured Image - Fixed Aspect Ratio */}
                     {post.image && (
-                      <div className="relative overflow-hidden rounded-t-lg">
+                      <div className="relative w-full aspect-[16/10] overflow-hidden">
                         <img 
                           src={post.image.startsWith('http') || post.image.startsWith('/attached_assets/') ? post.image : `/attached_assets/${post.image}`} 
                           alt={post.title}
-                          className="w-full h-56 object-cover transition-transform hover:scale-105"
-                          style={{ objectFit: 'cover', objectPosition: 'center' }}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform hover:scale-105"
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                           }}
@@ -304,41 +303,41 @@ export default function BlogsCarouselSection() {
                       </div>
                     )}
 
-                    <CardContent className="p-6">
+                    <CardContent className="p-6 flex flex-col">
                       
                       {/* Category Badge */}
                       <div className="mb-3">
-                        <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
+                        <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9] text-xs">
                           {post.category}
                         </Badge>
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 min-h-[3.5rem]">
                         {post.title}
                       </h3>
 
                       {/* Excerpt */}
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-3 min-h-[4.5rem] leading-relaxed">
                         {post.excerpt}
                       </p>
 
                       {/* Meta Information and Read More - Same Line */}
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="flex items-center space-x-4 text-gray-500">
+                      <div className="flex items-center justify-between text-sm mt-auto">
+                        <div className="flex items-center space-x-3 text-gray-500">
                           <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-1" />
-                            <span>{post.date}</span>
+                            <span className="text-xs">{post.date}</span>
                           </div>
                           <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-1" />
-                            <span>{post.readTime}</span>
+                            <span className="text-xs">{post.readTime}</span>
                           </div>
                         </div>
                         
                         {/* Read More Link */}
                         <div className="flex items-center text-[#1D50C9] font-medium">
-                          <span>Read More</span>
+                          <span className="text-sm">Read More</span>
                           <ArrowRight className="w-4 h-4 ml-1" />
                         </div>
                       </div>
