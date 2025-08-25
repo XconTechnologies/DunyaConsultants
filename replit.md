@@ -50,7 +50,7 @@ Preferred communication style: Simple, everyday language.
 - Complete Study Destination Guides (USA, UK, Canada, Finland, Australia, Belgium, Turkey)
 - Event Management (with registration forms)
 - Consultation Booking (real-time calendar)
-- AI-Powered Chatbot (Google Gemini integration for study abroad queries, visa assistance, and consultancy services)
+- WhatsApp Integration (Direct contact button linking to +92 325 1631947 for instant consultation)
 
 ### UI/UX Decisions
 - Professional dark blue gradient design with custom branding.

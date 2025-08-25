@@ -249,7 +249,7 @@ export default function IELTS() {
                         </li>
                       ))}
                     </ul>
-                    <Button className="w-full mt-6 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] hover:from-#1a73e8 hover:to-purple-700 text-white">
+                    <Button className="w-full mt-6 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] hover:from-[#1a73e8] hover:to-[#1D50C9] text-white">
                       Enroll Now
                     </Button>
                   </CardContent>
