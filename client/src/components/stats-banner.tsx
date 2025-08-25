@@ -286,7 +286,7 @@ export default function StatsBanner() {
           </h2>
           
           <p className="text-white/80 text-xs sm:text-sm lg:text-base max-w-3xl mx-auto leading-relaxed px-4">
-            Join thousands of successful students who achieved their international education goals with Pakistan's most trusted and experienced visa consultancy.
+            Join thousands of successful students who achieved their international education dreams with the best study abroad consultants in Pakistan, trusted and experienced visa experts guiding your journey step by step
           </p>
         </div>
 
