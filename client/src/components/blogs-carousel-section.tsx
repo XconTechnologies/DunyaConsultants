@@ -287,87 +287,58 @@ export default function BlogsCarouselSection() {
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
               >
                 <Link href={post.slug.includes('/') ? `/blog/${post.slug}` : `/blog/${post.slug}`}>
-                  <Card className="bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer h-full rounded-xl overflow-hidden group">
+                  <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                     
-                    {/* Featured Image with Overlay */}
+                    {/* Featured Image - Clean, No Overlays */}
                     {post.image && (
-                      <div className="relative h-48 md:h-52 overflow-hidden">
+                      <div className="relative overflow-hidden rounded-t-lg">
                         <img 
                           src={post.image.startsWith('http') || post.image.startsWith('/attached_assets/') ? post.image : `/attached_assets/${post.image}`} 
                           alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-56 object-cover transition-transform hover:scale-105"
                           style={{ objectFit: 'cover', objectPosition: 'center' }}
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
                           }}
                         />
-                        
-                        {/* Blue Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9]/95 via-[#1D50C9]/85 to-[#1845B3]/95"></div>
-                        
-                        {/* Company Branding */}
-                        <div className="absolute top-4 left-4">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                              <div className="w-3 h-3 bg-[#1D50C9] rounded-full"></div>
-                            </div>
-                            <div className="text-white font-bold text-sm md:text-base tracking-wide">
-                              DUNYA
-                            </div>
-                          </div>
-                        </div>
-                        
-                        {/* Website URL - Bottom Right */}
-                        <div className="absolute bottom-4 right-4">
-                          <div className="bg-white/20 backdrop-blur-sm rounded-full px-2 py-1">
-                            <span className="text-white text-xs font-medium">dunyaconsultants.com</span>
-                          </div>
-                        </div>
-                        
-                        {/* Title Overlay */}
-                        <div className="absolute bottom-4 left-4 right-16">
-                          <h3 className="text-white font-bold text-base md:text-lg leading-tight line-clamp-3">
-                            {post.title.toUpperCase()}
-                          </h3>
-                        </div>
                       </div>
                     )}
 
-                    <CardContent className="p-4 md:p-5">
+                    <CardContent className="p-6">
                       
                       {/* Category Badge */}
                       <div className="mb-3">
-                        <Badge variant="secondary" className="bg-blue-100 text-[#1D50C9] text-xs px-3 py-1 font-medium">
+                        <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
                           {post.category}
                         </Badge>
                       </div>
 
                       {/* Title */}
-                      <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
                         {post.title}
-                      </h4>
+                      </h3>
 
                       {/* Excerpt */}
-                      <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
 
-                      {/* Meta Information */}
+                      {/* Meta Information and Read More - Same Line */}
                       <div className="flex items-center justify-between text-sm">
                         <div className="flex items-center space-x-4 text-gray-500">
                           <div className="flex items-center">
                             <Calendar className="w-4 h-4 mr-1" />
-                            <span className="text-xs">{post.date}</span>
+                            <span>{post.date}</span>
                           </div>
                           <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-1" />
-                            <span className="text-xs">{post.readTime}</span>
+                            <span>{post.readTime}</span>
                           </div>
                         </div>
                         
                         {/* Read More Link */}
-                        <div className="flex items-center text-[#1D50C9] font-semibold hover:text-[#1845B3] transition-colors">
-                          <span className="text-sm">Read More</span>
+                        <div className="flex items-center text-[#1D50C9] font-medium">
+                          <span>Read More</span>
                           <ArrowRight className="w-4 h-4 ml-1" />
                         </div>
                       </div>
