@@ -9,12 +9,12 @@ const expandableContent = [
   {
     icon: Users,
     title: "17 City Branches & 200 Certified Counsellors",
-    content: "Comprehensive support network across Pakistan with expert counsellors providing personalized guidance to every student."
+    content: "Comprehensive support network across Pakistan with certified overseas education consultants Pakistan, providing personalized guidance to every student."
   },
   {
     icon: Globe,
     title: "250 Ambassadors & 50+ Foreign Universities",
-    content: "Global partnerships with international representatives and direct university connections for priority processing."
+    content: "Global partnerships with universities abroad and direct university connections for priority processing and seamless admission process."
   },
   {
     icon: Award,
@@ -24,7 +24,7 @@ const expandableContent = [
   {
     icon: Shield,
     title: "Smooth Visa Approval Process",
-    content: "Proven track record with streamlined visa processing and expert guidance throughout the entire application journey."
+    content: "Proven track record with streamlined visa application processing and expert study visa consultants guiding you throughout the entire admission process."
   },
   {
     icon: CheckCircle,

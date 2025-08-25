@@ -267,8 +267,8 @@ export default function CountriesSection() {
             Study Abroad Destinations
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Explore world-class universities and discover your perfect study destination. 
-            From Ivy League institutions to innovative European schools, find the right fit for your academic journey.
+            Explore world-class universities abroad and discover your perfect study destination with our overseas education consultants Pakistan. 
+            From Ivy League institutions to innovative European schools, find the right fit for your academic journey and visa application support.
           </p>
         </motion.div>
 

@@ -146,7 +146,7 @@ export default function AudienceSectionNew() {
           </h2>
           
           <p className="text-xl lg:text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed">
-            Whether you're a student, educational partner, or university, we have specialized solutions designed for your unique needs and goals
+            Whether you're a student seeking universities abroad, educational partner, or university, our study visa consultants provide specialized solutions designed for your unique admission process and goals
           </p>
         </motion.div>
 
