@@ -1482,7 +1482,7 @@ export default function Blog() {
                 }}
                 className="mb-2"
               >
-                {category.name} ({category.count})
+{category.name}
               </Button>
             ))}
           </div>
