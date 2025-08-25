@@ -281,9 +281,9 @@ export default function StatsBanner() {
 
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8 lg:mb-10">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 text-white font-normal px-2">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 text-white font-normal px-2">
             Turning <span className="font-bold italic">Ambition</span> into <span className="font-bold italic">Admission</span>
-          </h2>
+          </h1>
           
           <p className="text-white/80 text-xs sm:text-sm lg:text-base max-w-3xl mx-auto leading-relaxed px-4">
             Join thousands of successful students who achieved their international education dreams with the best study abroad consultants in Pakistan, trusted and experienced visa experts guiding your journey step by step
