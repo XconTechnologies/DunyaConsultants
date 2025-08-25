@@ -25,7 +25,7 @@ export default function AssistanceSection() {
   ];
 
   return (
-    <section ref={ref} className="py-16 lg:py-24 bg-gradient-to-br from-blue-50 to-blue-100 relative overflow-hidden">
+    <section ref={ref} className="py-8 lg:py-12 bg-gradient-to-br from-blue-50 to-blue-100 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 left-0 w-64 h-64 bg-[#1D50C9] rounded-full -translate-x-32 -translate-y-32" />

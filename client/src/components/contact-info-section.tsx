@@ -8,7 +8,7 @@ export default function ContactInfoSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 relative overflow-hidden" ref={ref}>
+    <section className="py-10 relative overflow-hidden" ref={ref}>
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-#1e3a8a to-#1565c0">
         <div className="absolute inset-0 opacity-20">
