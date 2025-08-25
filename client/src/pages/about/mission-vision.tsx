@@ -31,9 +31,9 @@ export default function MissionVision() {
   ];
 
   const achievements = [
-    { number: "15+", label: "Years of Excellence" },
+    { number: "5+", label: "Years of Excellence" },
     { number: "10,000+", label: "Students Guided" },
-    { number: "17+", label: "Cities Served" },
+    { number: "20+", label: "Cities Served" },
     { number: "98%", label: "Success Rate" }
   ];
 

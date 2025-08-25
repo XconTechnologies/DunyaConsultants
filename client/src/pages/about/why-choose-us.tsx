@@ -22,21 +22,21 @@ export default function WhyChooseUs() {
   const advantages = [
     {
       icon: Award,
-      title: "17+ Years of Excellence",
+      title: "More Than 5 Years of Excellence",
       description: "Trusted by thousands of students worldwide with proven track record of success",
       stats: "95% Success Rate"
     },
     {
       icon: Globe,
-      title: "400+ University Partners",
+      title: "50+ University Partners",
       description: "Direct partnerships with top universities across USA, UK, Canada, Australia & Europe",
-      stats: "400+ Universities"
+      stats: "50+ Universities"
     },
     {
       icon: MapPin,
-      title: "17+ Office Locations",
+      title: "20+ Office Locations",
       description: "Physical presence across Pakistan and international offices for better support",
-      stats: "17+ Offices"
+      stats: "20+ Offices"
     },
     {
       icon: Users,
@@ -70,12 +70,12 @@ export default function WhyChooseUs() {
       description: "One of the highest visa approval rates in Pakistan"
     },
     {
-      number: "400+",
+      number: "50+",
       label: "University Partners",
       description: "Direct partnerships with prestigious institutions globally"
     },
     {
-      number: "17+",
+      number: "20+",
       label: "Office Locations",
       description: "Physical presence across Pakistan and internationally"
     }

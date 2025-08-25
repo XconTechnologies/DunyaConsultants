@@ -203,7 +203,7 @@ export default function ContactUsSection() {
             <CardContent className="p-6">
               <MapPin className="h-10 w-10 text-[#1845B3] mx-auto mb-3" />
               <h3 className="font-semibold text-gray-900 mb-2">Visit Us</h3>
-              <p className="text-[#1845B3] font-medium">17+ Offices</p>
+              <p className="text-[#1845B3] font-medium">20+ Offices</p>
               <p className="text-gray-500 text-sm mt-1">Across Pakistan</p>
             </CardContent>
           </Card>
@@ -419,7 +419,7 @@ export default function ContactUsSection() {
                   <div className="flex items-start space-x-3">
                     <Users className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">15+ Years Experience</h4>
+                      <h4 className="font-semibold text-gray-900">5+ Years Experience</h4>
                       <p className="text-gray-600 text-sm">Trusted by thousands of students since 2009</p>
                     </div>
                   </div>
@@ -433,7 +433,7 @@ export default function ContactUsSection() {
                   <div className="flex items-start space-x-3">
                     <Building className="h-5 w-5 #1845B3 mt-1 flex-shrink-0" />
                     <div>
-                      <h4 className="font-semibold text-gray-900">17+ Offices</h4>
+                      <h4 className="font-semibold text-gray-900">20+ Offices</h4>
                       <p className="text-gray-600 text-sm">Nationwide presence for easy access</p>
                     </div>
                   </div>

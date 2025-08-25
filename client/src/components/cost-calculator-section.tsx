@@ -343,7 +343,7 @@ export default function CostCalculatorSection() {
                     <div className="w-2 h-2 bg-primary rounded-full mt-2 mr-3 flex-shrink-0"></div>
                     <div>
                       <div className="font-medium text-neutral-800">Expert Guidance</div>
-                      <div className="text-sm text-neutral-600">200+ certified counselors with 15+ years experience</div>
+                      <div className="text-sm text-neutral-600">200+ certified counselors with 5+ years experience</div>
                     </div>
                   </div>
                   <div className="flex items-start">

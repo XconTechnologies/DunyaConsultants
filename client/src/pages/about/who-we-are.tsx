@@ -11,7 +11,7 @@ import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
 export default function WhoWeAre() {
   const stats = [
     { number: "10+", label: "Countries", icon: Globe, color: "from-[#1D50C9] to-[#1845B3]" },
-    { number: "14+", label: "Branches", icon: Building2, color: "from-[#1D50C9] to-[#1845B3]" },
+    { number: "20+", label: "Branches", icon: Building2, color: "from-[#1D50C9] to-[#1845B3]" },
     { number: "98%", label: "Success Rate", icon: Award, color: "from-[#1D50C9] to-[#1845B3]" },
     { number: "2,000+", label: "Visa Processing", icon: Users, color: "from-[#1D50C9] to-[#1845B3]" },
   ];
@@ -238,7 +238,7 @@ export default function WhoWeAre() {
                       </p>
                       <div className="flex justify-center space-x-4">
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-[#1D50C9]">15+</div>
+                          <div className="text-2xl font-bold text-[#1D50C9]">5+</div>
                           <div className="text-sm text-gray-600">Years Experience</div>
                         </div>
                         <div className="text-center">

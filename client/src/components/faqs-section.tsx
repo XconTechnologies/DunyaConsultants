@@ -112,7 +112,7 @@ export default function FAQsSection() {
       faqs: [
         {
           question: "Why should I choose Dunya Consultants?",
-          answer: "With 15+ years of experience, 5,000+ successful placements, 98% visa success rate, and 17+ offices across Pakistan, we provide comprehensive end-to-end services from university selection to post-arrival support."
+          answer: "With more than 5 years since company built, 5,000+ successful placements, 98% visa success rate, and 20+ offices across Pakistan, we provide comprehensive end-to-end services from university selection to post-arrival support."
         },
         {
           question: "Do you provide services after I reach my destination country?",

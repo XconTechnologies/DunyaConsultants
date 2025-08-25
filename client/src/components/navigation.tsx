@@ -60,7 +60,7 @@ export default function Navigation() {
         }
       ],
       featured: {
-        title: "17+ Years of Excellence",
+        title: "More Than 5 Years of Excellence",
         description: "Trusted by thousands of students worldwide",
         cta: "Learn More",
         href: "/about"
@@ -120,12 +120,12 @@ export default function Navigation() {
           title: "All Locations",
           icon: MapPin,
           items: [
-            { name: "All Office Locations", href: "/offices", description: "View all 18+ office locations nationwide & internationally" }
+            { name: "All Office Locations", href: "/offices", description: "View all 20+ office locations nationwide & internationally" }
           ]
         }
       ],
       featured: {
-        title: "18+ Office Locations",
+        title: "20+ Office Locations",
         description: "Nationwide & international coverage",
         cta: "Find Office",
         href: "/offices"
@@ -410,7 +410,7 @@ export default function Navigation() {
                       </div>
                       <div className="flex items-center space-x-2 text-neutral-600">
                         <MapPin className="w-3 h-3" />
-                        <span>17+ Offices Nationwide</span>
+                        <span>20+ Offices Nationwide</span>
                       </div>
                     </div>
                   </div>

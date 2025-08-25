@@ -351,7 +351,7 @@ const StudyAbroadEducationConsultants = () => {
               <div className="space-y-3 text-sm">
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-4 w-4 #1845B3 mt-0.5" />
-                  <span className="text-gray-700">15+ years of experience</span>
+                  <span className="text-gray-700">More than 5 years since company built</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-4 w-4 #1845B3 mt-0.5" />
@@ -363,11 +363,11 @@ const StudyAbroadEducationConsultants = () => {
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-4 w-4 #1845B3 mt-0.5" />
-                  <span className="text-gray-700">17+ office locations</span>
+                  <span className="text-gray-700">20+ office locations</span>
                 </div>
                 <div className="flex items-start space-x-3">
                   <CheckCircle className="h-4 w-4 #1845B3 mt-0.5" />
-                  <span className="text-gray-700">400+ university partnerships</span>
+                  <span className="text-gray-700">50+ university partners</span>
                 </div>
               </div>
             </div>

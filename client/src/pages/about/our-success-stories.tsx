@@ -101,12 +101,12 @@ export default function OurSuccessStories() {
     },
     {
       metric: "Branches",
-      value: "15+",
+      value: "20+",
       description: "Office branches across Pakistan"
     },
     {
       metric: "Universities",
-      value: "400+",
+      value: "50+",
       description: "Partner universities globally"
     }
   ];

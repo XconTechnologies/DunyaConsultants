@@ -43,8 +43,8 @@ Preferred communication style: Simple, everyday language.
 - Authentication Framework
 - Study Abroad Journey (interactive timeline)
 - Smart Tools (Cost Calculator, Course Match, Document Checklist)
-- Dynamic display of 17+ Office Locations
-- Display of 400+ Global University Partners
+- Dynamic display of 20+ Office Locations
+- Display of 50+ Global University Partners
 - Test Preparation Pages (IELTS, PTE, TOEFL, Duolingo with authentic content and pricing)
 - Extensive Blog System (SEO-optimized, dynamic content)
 - Complete Study Destination Guides (USA, UK, Canada, Finland, Australia, Belgium, Turkey)

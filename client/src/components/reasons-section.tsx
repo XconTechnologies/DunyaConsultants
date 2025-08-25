@@ -18,7 +18,7 @@ export default function ReasonsSection() {
   const reasons = [
     {
       icon: <Award className="w-8 h-8" />,
-      title: "15+ Years of Excellence",
+      title: "More Than 5 Years of Excellence",
       description: "Established in 2009, we have successfully guided thousands of students with our proven track record and expertise in international education.",
       gradient: "from-blue-400 to-blue-500"
     },
@@ -42,13 +42,13 @@ export default function ReasonsSection() {
     },
     {
       icon: <GraduationCap className="w-8 h-8" />,
-      title: "400+ University Partners",
+      title: "50+ University Partners",
       description: "Direct partnerships with top universities across 30+ countries, ensuring you get the best placement opportunities worldwide.",
       gradient: "from-blue-400 to-blue-500"
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      title: "17+ Office Locations",
+      title: "20+ Office Locations",
       description: "Extensive network across Pakistan with offices in major cities, providing convenient access to our services nationwide.",
       gradient: "from-blue-400 to-blue-500"
     },

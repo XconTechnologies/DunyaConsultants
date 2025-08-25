@@ -181,7 +181,7 @@ export default function SuccessStories() {
     },
     {
       year: "2024",
-      milestone: "17+ offices globally, 10,000+ success stories",
+      milestone: "20+ offices globally, 10,000+ success stories",
       impact: "Pakistan's most trusted education consultancy"
     }
   ];

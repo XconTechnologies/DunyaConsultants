@@ -25,14 +25,14 @@ export default function AboutSection() {
     },
     {
       icon: Users,
-      title: "17 City Branches",
+      title: "20 City Branches",
       description: "Nationwide presence with 250 ambassadors ensuring local support everywhere.",
       color: "text-secondary",
       bgColor: "bg-secondary/10"
     },
     {
       icon: Heart,
-      title: "20+ University Partnerships",
+      title: "50+ University Partnerships",
       description: "Direct partnerships with leading international universities for better admission chances.",
       color: "text-accent",
       bgColor: "bg-accent/10"
@@ -40,10 +40,10 @@ export default function AboutSection() {
   ];
 
   const stats = [
-    { value: "17", label: "City Branches", color: "text-primary" },
+    { value: "20", label: "City Branches", color: "text-primary" },
     { value: "200", label: "Certified Counsellors", color: "text-secondary" },
     { value: "250", label: "Ambassadors", color: "text-accent" },
-    { value: "20+", label: "University Partners", color: "#1845B3" }
+    { value: "50+", label: "University Partners", color: "#1845B3" }
   ];
 
   return (
