@@ -345,29 +345,6 @@ export default function IELTS() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-#1e3a8a via-#1e3a8a to-purple-900 text-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl font-bold mb-6">Ready to Achieve Your IELTS Goals?</h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-              Join thousands of successful students who achieved their target band scores with our expert guidance
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-[#1e3a8a] hover:bg-blue-50">
-                Contact Our Experts
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Download Study Materials
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       <Footer />
     </div>
