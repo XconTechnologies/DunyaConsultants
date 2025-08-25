@@ -263,13 +263,10 @@ export default function CountriesSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-              Study Abroad
-            </span>{" "}
-            <span className="text-gray-800">Destinations</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
+            Study Abroad Destinations
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Explore world-class universities and discover your perfect study destination. 
             From Ivy League institutions to innovative European schools, find the right fit for your academic journey.
           </p>
