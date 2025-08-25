@@ -420,61 +420,69 @@ export default function Islamabad() {
       </section>
 
       {/* Countries We Support Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="w-full"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Where We Can{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                Take You
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Thinking about studying overseas but unsure where to go? We've guided students into top programs across:
-            </p>
-          </motion.div>
-
-          <div className="relative overflow-hidden">
-            <motion.div
-              className="flex space-x-6"
-              animate={{
-                x: [0, -100 * countries.length]
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 20,
-                  ease: "linear"
-                }
-              }}
-            >
-              {duplicatedCountries.map((country, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 w-48 bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow"
-                >
-                  <div className="w-16 h-12 mx-auto mb-4 rounded-md overflow-hidden shadow-md border-2 border-gray-200">
-                    <ReactCountryFlag 
-                      countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
-                      svg 
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover'
-                      }}
-                    />
-                  </div>
-                  <h3 className="font-semibold text-gray-800">{country}</h3>
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                Countries We{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Support
+                </span>
+              </h3>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9] relative">
+                {/* Infinite Scrolling Container */}
+                <div className="relative overflow-hidden">
+                  <motion.div 
+                    className="flex gap-6"
+                    animate={{ x: [-0, -50 + "%"] }}
+                    transition={{ 
+                      duration: 20,
+                      ease: "linear",
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  >
+                    {duplicatedCountries.map((country, index) => (
+                      <motion.div
+                        key={`${country}-${index}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: (index % countries.length) * 0.05 }}
+                        className="group cursor-pointer flex-shrink-0"
+                      >
+                        <div className="bg-white text-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px] border border-gray-200">
+                          <div className="flex flex-col items-center">
+                            <div className="w-16 h-12 mb-3 rounded-md overflow-hidden shadow-md border-2 border-gray-200">
+                              <ReactCountryFlag 
+                                countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
+                                svg 
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover'
+                                }}
+                              />
+                            </div>
+                            <p className="text-sm font-semibold">{country}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
                 </div>
-              ))}
-            </motion.div>
-          </div>
+
+                <div className="mt-8 text-center">
+                  <p className="text-gray-600 text-sm">Helping students achieve their dreams in top study destinations worldwide</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
