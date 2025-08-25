@@ -206,27 +206,29 @@ export default function BlogsCarouselSection() {
     if (!carousel) return;
 
     let animationId: number;
+    let isPaused = false;
     
     const animate = () => {
-      if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-        carousel.scrollLeft = 0;
-      } else {
-        carousel.scrollLeft += 0.5; // Slow scroll speed
+      if (!isPaused) {
+        if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
+          carousel.scrollLeft = 0;
+        } else {
+          carousel.scrollLeft += 1; // Smooth scroll speed
+        }
       }
       animationId = requestAnimationFrame(animate);
     };
 
+    // Start animation
     animationId = requestAnimationFrame(animate);
 
     // Pause on hover
     const handleMouseEnter = () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
+      isPaused = true;
     };
 
     const handleMouseLeave = () => {
-      animationId = requestAnimationFrame(animate);
+      isPaused = false;
     };
 
     carousel.addEventListener('mouseenter', handleMouseEnter);
@@ -269,92 +271,104 @@ export default function BlogsCarouselSection() {
         >
           <div
             ref={carouselRef}
-            className="flex gap-6 overflow-x-hidden"
+            className="flex gap-4 md:gap-6 overflow-x-hidden will-change-scroll"
             style={{
-              scrollBehavior: 'smooth',
-              width: '100%'
+              scrollBehavior: 'auto',
+              width: '100%',
+              WebkitOverflowScrolling: 'touch'
             }}
           >
             {duplicatedBlogs.map((post, index) => (
               <motion.div
                 key={`${post.id}-${index}`}
-                className="flex-shrink-0 w-80"
+                className="flex-shrink-0 w-72 md:w-80"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
               >
                 <Link href={post.slug.includes('/') ? `/blog/${post.slug}` : `/blog/${post.slug}`}>
-                  <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer h-full rounded-lg overflow-hidden">
+                  <Card className="bg-white border border-gray-200 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer h-full rounded-xl overflow-hidden group">
                     
                     {/* Featured Image with Overlay */}
                     {post.image && (
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative h-48 md:h-52 overflow-hidden">
                         <img 
                           src={post.image.startsWith('http') || post.image.startsWith('/attached_assets/') ? post.image : `/attached_assets/${post.image}`} 
                           alt={post.title}
-                          className="w-full h-full object-cover transition-transform hover:scale-105"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           style={{ objectFit: 'cover', objectPosition: 'center' }}
                           onError={(e) => {
-                            // Fallback to a default placeholder or hide image on error
                             e.currentTarget.style.display = 'none';
                           }}
                         />
                         
                         {/* Blue Gradient Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9]/90 via-[#1D50C9]/80 to-[#1845B3]/90"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9]/95 via-[#1D50C9]/85 to-[#1845B3]/95"></div>
                         
                         {/* Company Branding */}
                         <div className="absolute top-4 left-4">
-                          <div className="text-white font-bold text-lg tracking-wide">
-                            DUNYA
+                          <div className="flex items-center space-x-2">
+                            <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+                              <div className="w-3 h-3 bg-[#1D50C9] rounded-full"></div>
+                            </div>
+                            <div className="text-white font-bold text-sm md:text-base tracking-wide">
+                              DUNYA
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Website URL - Bottom Right */}
+                        <div className="absolute bottom-4 right-4">
+                          <div className="bg-white/20 backdrop-blur-sm rounded-full px-2 py-1">
+                            <span className="text-white text-xs font-medium">dunyaconsultants.com</span>
                           </div>
                         </div>
                         
                         {/* Title Overlay */}
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <h3 className="text-white font-bold text-lg leading-tight line-clamp-2">
+                        <div className="absolute bottom-4 left-4 right-16">
+                          <h3 className="text-white font-bold text-base md:text-lg leading-tight line-clamp-3">
                             {post.title.toUpperCase()}
                           </h3>
                         </div>
                       </div>
                     )}
 
-                    <CardContent className="p-4">
+                    <CardContent className="p-4 md:p-5">
                       
                       {/* Category Badge */}
                       <div className="mb-3">
-                        <Badge variant="secondary" className="bg-[#1D50C9] text-white text-xs px-2 py-1">
+                        <Badge variant="secondary" className="bg-blue-100 text-[#1D50C9] text-xs px-3 py-1 font-medium">
                           {post.category}
                         </Badge>
                       </div>
 
                       {/* Title */}
-                      <h4 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+                      <h4 className="text-lg md:text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight">
                         {post.title}
                       </h4>
 
                       {/* Excerpt */}
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-2 leading-relaxed">
+                      <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
 
                       {/* Meta Information */}
-                      <div className="flex items-center justify-between text-xs text-gray-500">
-                        <div className="flex items-center space-x-3">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center space-x-4 text-gray-500">
                           <div className="flex items-center">
-                            <Calendar className="w-3 h-3 mr-1" />
-                            <span>{post.date}</span>
+                            <Calendar className="w-4 h-4 mr-1" />
+                            <span className="text-xs">{post.date}</span>
                           </div>
                           <div className="flex items-center">
-                            <Clock className="w-3 h-3 mr-1" />
-                            <span>{post.readTime}</span>
+                            <Clock className="w-4 h-4 mr-1" />
+                            <span className="text-xs">{post.readTime}</span>
                           </div>
                         </div>
                         
                         {/* Read More Link */}
-                        <div className="flex items-center text-[#1D50C9] font-medium hover:text-[#1845B3] transition-colors">
-                          <span className="text-xs">Read More</span>
-                          <ArrowRight className="w-3 h-3 ml-1" />
+                        <div className="flex items-center text-[#1D50C9] font-semibold hover:text-[#1845B3] transition-colors">
+                          <span className="text-sm">Read More</span>
+                          <ArrowRight className="w-4 h-4 ml-1" />
                         </div>
                       </div>
 
