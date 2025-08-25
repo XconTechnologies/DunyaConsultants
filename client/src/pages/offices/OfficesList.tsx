@@ -408,7 +408,18 @@ export default function OfficesList() {
                           <NavigationIcon className="w-3 h-3 mr-1" />
                           Get Directions
                         </Button>
-                        {office.id === "lahore-dha" ? (
+                        {office.id === "sargodha-head" ? (
+                          <Link href="/offices/sargodha-head-office">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : office.id === "lahore-dha" ? (
                           <Link href="/offices/lahore-dha-city">
                             <Button 
                               variant="outline" 
