@@ -256,18 +256,10 @@ export default function BlogsCarouselSection() {
           <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
             Latest Blog Posts
           </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
+          <p className="text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Stay updated with the latest insights, guides, and tips for your study abroad journey. 
             From visa applications to university admissions, we've got you covered.
           </p>
-          
-          {/* View All Blogs Button */}
-          <Link href="/blog">
-            <div className="inline-flex items-center bg-[#1D50C9] hover:bg-[#1845B3] text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer">
-              View All Blogs
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </div>
-          </Link>
         </motion.div>
 
         {/* Infinite Scroll Carousel */}
@@ -353,6 +345,21 @@ export default function BlogsCarouselSection() {
               </motion.div>
             ))}
           </div>
+        </motion.div>
+
+        {/* View All Blogs Button - After Carousel */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <Link href="/blog">
+            <div className="inline-flex items-center bg-[#1D50C9] hover:bg-[#1845B3] text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl cursor-pointer">
+              View All Blogs
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </div>
+          </Link>
         </motion.div>
       </div>
     </section>
