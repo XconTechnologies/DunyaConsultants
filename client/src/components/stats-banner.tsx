@@ -186,52 +186,53 @@ export default function StatsBanner() {
           </motion.div>
         ))}
       </div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 sm:pt-20 lg:pt-[120px] pb-8 sm:pb-12 lg:pb-[50px]" ref={ref}>
-        {/* Social Icons - Fixed Position for Desktop, Bottom Section for Mobile */}
-        <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-[9999] bg-white rounded-full px-2 py-3 shadow-lg border border-gray-200 hidden lg:block">
-          <div className="flex flex-col gap-2">
-            <a
-              href="https://www.facebook.com/DunyaConsultant/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
-            >
-              <FaFacebook className="w-3 h-3 text-white" />
-            </a>
-            <a
-              href="https://www.instagram.com/dunya.consultants/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
-            >
-              <FaInstagram className="w-3 h-3 text-white" />
-            </a>
-            <a
-              href="https://www.tiktok.com/@dunya.consultants"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
-            >
-              <FaTiktok className="w-3 h-3 text-white" />
-            </a>
-            <a
-              href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
-            >
-              <FaYoutube className="w-3 h-3 text-white" />
-            </a>
-            <a
-              href="https://pk.linkedin.com/company/dunyaconsultant"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
-            >
-              <FaLinkedin className="w-3 h-3 text-white" />
-            </a>
-          </div>
+      {/* Social Icons - Fixed Position for Desktop, Bottom Section for Mobile - Outside container for proper z-index */}
+      <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-[9999] bg-white rounded-full px-2 py-3 shadow-lg border border-gray-200 hidden lg:block">
+        <div className="flex flex-col gap-2">
+          <a
+            href="https://www.facebook.com/DunyaConsultant/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
+          >
+            <FaFacebook className="w-3 h-3 text-white" />
+          </a>
+          <a
+            href="https://www.instagram.com/dunya.consultants/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
+          >
+            <FaInstagram className="w-3 h-3 text-white" />
+          </a>
+          <a
+            href="https://www.tiktok.com/@dunya.consultants"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
+          >
+            <FaTiktok className="w-3 h-3 text-white" />
+          </a>
+          <a
+            href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
+          >
+            <FaYoutube className="w-3 h-3 text-white" />
+          </a>
+          <a
+            href="https://pk.linkedin.com/company/dunyaconsultant"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
+          >
+            <FaLinkedin className="w-3 h-3 text-white" />
+          </a>
         </div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-16 sm:pt-20 lg:pt-[120px] pb-8 sm:pb-12 lg:pb-[50px]" ref={ref}>
 
         {/* Mobile Social Icons - At bottom of banner */}
         <div className="flex justify-center mt-8 mb-4 lg:hidden">
