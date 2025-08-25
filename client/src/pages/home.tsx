@@ -12,6 +12,7 @@ const CountriesSection = lazy(() => import("@/components/countries-section"));
 const ConsultationBookingCalendar = lazy(() => import("@/components/consultation-booking-calendar"));
 const UniversityPartnersSection = lazy(() => import("@/components/university-partners-section"));
 const EventsSection = lazy(() => import("@/components/events-section"));
+const BlogsCarouselSection = lazy(() => import("@/components/blogs-carousel-section"));
 const BusinessProposalsSection = lazy(() => import("@/components/business-proposals-section"));
 
 // Loading skeleton component
@@ -64,6 +65,10 @@ export default function Home() {
       
       <Suspense fallback={<SectionSkeleton />}>
         <EventsSection />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
+        <BlogsCarouselSection />
       </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>
