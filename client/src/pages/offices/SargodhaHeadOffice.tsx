@@ -314,7 +314,7 @@ export default function SargodhaHeadOffice() {
                       >
                         <div className="bg-white text-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px] border border-gray-200">
                           <div className="flex flex-col items-center">
-                            <div className="w-16 h-12 mb-3 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
+                            <div className="w-16 h-12 mb-3 rounded-md overflow-hidden shadow-md border-2 border-gray-200">
                               <ReactCountryFlag 
                                 countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
                                 svg 

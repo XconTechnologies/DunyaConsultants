@@ -459,7 +459,7 @@ export default function Islamabad() {
                   key={index}
                   className="flex-shrink-0 w-48 bg-white rounded-xl shadow-lg p-6 text-center hover:shadow-xl transition-shadow"
                 >
-                  <div className="w-16 h-12 mx-auto mb-4 rounded-lg overflow-hidden shadow-md border-2 border-blue-200">
+                  <div className="w-16 h-12 mx-auto mb-4 rounded-md overflow-hidden shadow-md border-2 border-gray-200">
                     <ReactCountryFlag 
                       countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
                       svg 
