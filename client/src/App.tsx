@@ -39,6 +39,7 @@ import Karachi from "@/pages/offices/karachi";
 import IslamabadBlueArea from "@/pages/offices/IslamabadBlueArea";
 import KarachiGulshan from "@/pages/offices/KarachiGulshan";
 import FaisalabadCivilLines from "@/pages/offices/FaisalabadCivilLines";
+import FaisalabadOffice from "@/pages/offices/FaisalabadOffice";
 import GujranwalaOffice from "@/pages/offices/gujranwala";
 import SialkotOffice from "@/pages/offices/sialkot";
 import GujratOffice from "@/pages/offices/gujrat";
@@ -136,6 +137,7 @@ function Router() {
       <Route path="/offices/islamabad-blue-area" component={IslamabadBlueArea} />
       <Route path="/offices/karachi-gulshan" component={KarachiGulshan} />
       <Route path="/offices/faisalabad-civil-lines" component={FaisalabadCivilLines} />
+      <Route path="/offices/faisalabad" component={FaisalabadOffice} />
       <Route path="/offices/gujranwala" component={GujranwalaOffice} />
       <Route path="/offices/sialkot" component={SialkotOffice} />
       <Route path="/offices/gujrat" component={GujratOffice} />
