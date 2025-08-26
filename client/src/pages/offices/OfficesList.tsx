@@ -137,12 +137,12 @@ const offices = [
     id: "mandi-bahauddin",
     city: "Mandi Bahauddin",
     name: "Punjab Center",
-    address: "Ground Floor, Punjab Center, GT Road, Mandi Bahauddin",
-    phone: "+92 300‑167‑1960",
+    address: "Dunya Consultants Punjab Center, Mandi Bahauddin",
+    phone: "+92 321-3001947",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-emerald-600 to-teal-600",
     region: "Punjab",
-    services: ["Visa Processing", "Student Counseling", "Test Preparation"]
+    services: ["Career Counseling", "University Selection", "Application Handling", "Visa Guidance"]
   },
   {
     id: "sheikhupura",
@@ -520,6 +520,17 @@ export default function OfficesList() {
                           </Link>
                         ) : office.id === "mian-channu" ? (
                           <Link href="/offices/mianchannu">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : office.id === "mandi-bahauddin" ? (
+                          <Link href="/offices/mandi-bahauddin">
                             <Button 
                               variant="outline" 
                               size="sm"
