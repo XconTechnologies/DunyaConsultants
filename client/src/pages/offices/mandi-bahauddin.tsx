@@ -479,7 +479,7 @@ export default function MandiBahauddinOffice() {
       </section>
 
       {/* Get in Touch Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -498,136 +498,131 @@ export default function MandiBahauddinOffice() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* FAQs */}
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - FAQs */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200"
-                  >
-                    <button
-                      onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                      className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between"
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
+                <h3 className="text-4xl font-bold text-gray-900 mb-8">
+                  Frequently Asked{" "}
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Questions
+                  </span>
+                </h3>
+                
+                <div className="space-y-3 flex-grow">
+                  {faqs.map((faq, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
                     >
-                      <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
-                      <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
-                        {expandedFaq === index ? (
-                          <ChevronUp className="w-4 h-4 text-white" />
-                        ) : (
-                          <ChevronDown className="w-4 h-4 text-white" />
+                      <div className="bg-gray-50 rounded-lg border border-gray-200 hover:border-[#1D50C9] transition-all duration-300 overflow-hidden">
+                        <button
+                          className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
+                          onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                        >
+                          <h4 className="text-gray-900 font-semibold pr-4">{faq.question}</h4>
+                          <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                            {expandedFaq === index ? (
+                              <ChevronUp className="w-4 h-4 text-[#1D50C9]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[#1D50C9]" />
+                            )}
+                          </div>
+                        </button>
+                        {expandedFaq === index && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="px-4 pb-4 border-t border-gray-200"
+                          >
+                            <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
+                          </motion.div>
                         )}
                       </div>
-                    </button>
-                    {expandedFaq === index && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="px-6 py-4 bg-gray-50 border-t border-gray-200"
-                      >
-                        <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                      </motion.div>
-                    )}
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
 
-            {/* Contact Information */}
+            {/* Right Side - Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="bg-white shadow-xl border-0 h-full" style={{ minHeight: '600px' }}>
-                <CardContent className="p-8 h-full flex flex-col">
-                  <div className="text-center mb-8">
-                    <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Phone className="w-8 h-8 text-white" />
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
+                
+                <div className="space-y-4 flex-grow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Contact Information</h3>
-                    <p className="text-gray-600">Visit our Mandi Bahauddin office or get in touch</p>
-                  </div>
-
-                  <div className="space-y-6 flex-grow">
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
-                        <p className="text-gray-600">Dunya Consultants Punjab Center, Mandi Bahauddin</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
-                        <Phone className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
-                        <a href="tel:+923213001947" className="text-[#1845B3] hover:text-blue-700 font-medium">
-                          +92 321-3001947
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
-                        <Clock className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Hours</h4>
-                        <p className="text-gray-600">Mon–Sat 10 AM–6 PM</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
-                        <Globe className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Location</h4>
-                        <a 
-                          href="https://maps.app.goo.gl/yJkUy1AaRXaxoEhy5" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-[#1845B3] hover:text-blue-700 font-medium"
-                        >
-                          View on Google Maps
-                        </a>
-                      </div>
+                    <div>
+                      <h4 className="text-white font-bold text-lg mb-2">Address</h4>
+                      <p className="text-blue-100 leading-relaxed">
+                        Dunya Consultants Punjab Center, Mandi Bahauddin
+                      </p>
                     </div>
                   </div>
-
-                  <div className="space-y-4 mt-8">
-                    <Button className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3">
-                      <Calendar className="w-5 h-5 mr-2" />
-                      Schedule Consultation
-                    </Button>
-                    <Button variant="outline" className="w-full border-[#1845B3] text-[#1845B3] hover:bg-blue-50 font-semibold py-3">
-                      <MessageCircle className="w-5 h-5 mr-2" />
-                      Start WhatsApp Chat
-                    </Button>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
+                      <a href="tel:+923213001947" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +92 321-3001947
+                      </a>
+                    </div>
                   </div>
-
-                  <div className="mt-6 text-center">
-                    <p className="text-sm text-gray-500 mb-2">Call or visit for a free consultation</p>
-                    <p className="text-[#1845B3] font-semibold">Start your study-abroad journey today</p>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-lg mb-2">Office Hours</h4>
+                      <p className="text-blue-100 text-lg">
+                        Monday - Saturday: 10 AM - 6 PM
+                      </p>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
+                  
+                </div>
+
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-sm leading-relaxed">
+                    Our Mandi Bahauddin office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
+                  </p>
+                </div>
+
+                <div className="space-y-4 mt-4">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <Calendar className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <a href="https://maps.app.goo.gl/yJkUy1AaRXaxoEhy5" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      Get Directions
+                      <MapPin className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
