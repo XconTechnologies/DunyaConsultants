@@ -1,27 +1,7 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { 
-  MapPin, 
-  Phone, 
-  Clock, 
-  Users, 
-  Star, 
-  Award, 
-  Building2, 
-  ArrowLeft, 
-  Calendar, 
-  CheckCircle, 
-  ChevronDown,
-  ChevronUp,
-  GraduationCap,
-  Globe,
-  BookOpen,
-  Target,
-  TrendingUp,
-  Shield,
-  Briefcase,
-  User
-} from "lucide-react";
+import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import ReactCountryFlag from "react-country-flag";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -31,78 +11,79 @@ import Footer from "@/components/footer";
 
 export default function GujranwalaOffice() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
-
+  
   const services = [
     {
-      icon: User,
+      icon: Users,
       title: "Career Counselling",
-      description: "Match your goals and budget to the right program and country."
+      description: "Match your goals and budget to the right program and country. Our advisors at Gujranwala sit down with you, understand your profile, and suggest the best study options for your future.",
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: GraduationCap,
       title: "University Selection",
-      description: "Shortlists aligned with your profile and intake timelines."
+      description: "Shortlists aligned with your profile and intake timelines. We will assist you in selecting a study abroad program that suits your profile and budget.",
+      color: "from-blue-500 to-blue-600"
     },
     {
-      icon: BookOpen,
+      icon: FileText,
       title: "Application Handling",
-      description: "Preparing documents, forms, SOPs correctly and on time."
-    },
-    {
-      icon: Shield,
-      title: "Visa Guidance",
-      description: "Up-to-date checklists, file review, and interview prep."
+      description: "Preparing documents, forms, SOPs correctly and on time. We prepare your documents, fill out forms, and make sure everything is submitted on time.",
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: Globe,
+      title: "Visa Guidance",
+      description: "Up-to-date checklists, file review, and interview prep. Our study visa experts at Gujranwala follow the process with greatest care.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: MessageCircle,
+      title: "Interview Preparation",
+      description: "We conduct practice interviews, provide practical advice, and boost your confidence to help you perform at your best in university and visa interviews.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: Calendar,
       title: "Pre-departure Briefing",
-      description: "Travel, accommodation, culture, and packing tips."
+      description: "Travel, accommodation, culture, and packing tips. We'll give you advice on travel, lodging, cultural differences, and student life before you depart.",
+      color: "from-blue-500 to-blue-600"
     }
   ];
 
   const ieltsFeatures = [
-    "Experienced trainers for LRWS",
-    "Modern teaching with practical tasks", 
-    "Small batches for personal feedback",
-    "Free assessment to map your band-score plan",
-    "End-to-end support: IELTS + admission + visa under one roof"
+    "Experienced trainers for LRWS – Learn from skilled and friendly instructors",
+    "Modern teaching with practical tasks – Easy lessons that actually make sense",
+    "Small batches for personal feedback – More personal attention and feedback",
+    "Free assessment to map your band-score plan – Find out where you stand and how to improve",
+    "End-to-end support: IELTS + admission + visa under one roof – A supportive environment with the latest facilities"
   ];
 
   const whyChooseUs = [
-    {
-      icon: Award,
-      title: "Expert Guidance",
-      description: "Friendly, qualified counsellors"
-    },
-    {
-      icon: Target,
-      title: "Personalized Plans", 
-      description: "Advice tailored to you"
-    },
-    {
-      icon: TrendingUp,
-      title: "Strong Results",
-      description: "Proven admissions and visa approvals"
-    },
-    {
-      icon: Building2,
-      title: "Local Support",
-      description: "Easy follow-ups at our Gujranwala office"
-    }
+    "Local office in Gujranwala for easy access",
+    "Proven admissions and visa approvals",
+    "Friendly, qualified counsellors",
+    "Personalized plans for each student",
+    "Clear and affordable process"
   ];
 
-  const countries = [
-    { name: "USA", flag: "🇺🇸" },
-    { name: "UK", flag: "🇬🇧" },
-    { name: "Australia", flag: "🇦🇺" },
-    { name: "Canada", flag: "🇨🇦" },
-    { name: "Belgium", flag: "🇧🇪" },
-    { name: "Cyprus", flag: "🇨🇾" },
-    { name: "Germany", flag: "🇩🇪" },
-    { name: "Turkey", flag: "🇹🇷" },
-    { name: "Finland", flag: "🇫🇮" },
-    { name: "Ireland", flag: "🇮🇪" }
-  ];
+  const countries = ["USA", "UK", "Australia", "Canada", "Belgium", "Cyprus", "Germany", "Turkey", "Finland", "Ireland"];
+  // Duplicate countries for seamless infinite scrolling
+  const duplicatedCountries = [...countries, ...countries];
+
+  // Country codes mapping for flags
+  const countryCodesMap = {
+    "USA": "US",
+    "UK": "GB", 
+    "Australia": "AU",
+    "Canada": "CA",
+    "Belgium": "BE",
+    "Cyprus": "CY",
+    "Germany": "DE",
+    "Turkey": "TR",
+    "Finland": "FI",
+    "Ireland": "IE"
+  };
 
   const faqs = [
     {
@@ -124,85 +105,78 @@ export default function GujranwalaOffice() {
     {
       question: "Do you offer online counselling if I can't visit?",
       answer: "Yes! phone/WhatsApp/video sessions available, plus in-office meetings for local students."
+    },
+    {
+      question: "Do you offer IELTS classes in Gujranwala?",
+      answer: "Yes. We provide expert IELTS training with modern teaching methods, small batches, free assessments, and focused feedback - right here in Gujranwala."
     }
   ];
 
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
+        </div>
+        
         <div className="relative max-w-7xl mx-auto px-6">
-          <div className="flex items-center mb-6">
-            <Link href="/offices">
-              <Button variant="ghost" className="text-white hover:bg-white/20 mb-4">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to All Offices
-              </Button>
-            </Link>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h1 className="text-5xl font-bold mb-6 leading-tight">
-                Dunya Consultants{" "}
-                <span className="text-yellow-300">Gujranwala</span>
-              </h1>
-              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Studying abroad from Gujranwala shouldn't feel complicated. We guide you step by step from choosing the right course and country, preparing strong applications, and filing a compliant student visa, so the journey stays simple, clear, and stress-free.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-3">
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Book Free Consultation
-                </Button>
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-3">
-                  <Phone className="w-5 h-5 mr-2" />
-                  Call +92 332-9991947
-                </Button>
-              </div>
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center px-6 py-3 bg-white/15 rounded-full backdrop-blur-sm mb-8 border border-white/20">
+              <MapPin className="w-5 h-5 mr-2" />
+              <span className="text-sm font-medium">Gujranwala Office</span>
+            </div>
+            
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-white">
+              Dunya Consultants Gujranwala | Study Abroad & Student Visa Experts
+            </h1>
+            
+            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
+              Studying abroad from Gujranwala shouldn't feel complicated. We guide you step by step from choosing the right course and country, preparing strong applications, and filing a compliant student visa, so the journey stays simple, clear, and stress-free.
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="relative"
-            >
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <img 
-                    src="/attached_assets/WhatsApp Image 2024-07-20 at 17.59.34_c77d42af_1756191592651.jpg" 
-                    alt="Dunya Consultants Gujranwala Office - Reception Area"
-                    className="w-full h-48 object-cover rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300"
-                  />
-                  <img 
-                    src="/attached_assets/WhatsApp Image 2024-07-20 at 17.59.33_bb208391_1756191597249.jpg" 
-                    alt="Executive Consultation Room"
-                    className="w-full h-32 object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="pt-8">
-                  <img 
-                    src="/attached_assets/WhatsApp Image 2024-07-20 at 17.59.34_cb96a013_1756191605533.jpg" 
-                    alt="Dunya Consultants Gujranwala Building Exterior"
-                    className="w-full h-64 object-cover rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+            {/* Contact Info */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
+              <div className="flex items-center justify-center">
+                <Phone className="w-5 h-5 mr-2" />
+                <span>+92 332-9991947</span>
               </div>
-            </motion.div>
-          </div>
+              <div className="flex items-center justify-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>Mon–Sat 10 AM–6 PM</span>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                  Book Free Consultation
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                <a href="https://maps.app.goo.gl/qTLB3khgQTmrFyY88" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  Get Directions
+                  <MapPin className="w-5 h-5 ml-2" />
+                </a>
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 bg-gray-50">
+      {/* Why Choose Us */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -211,13 +185,180 @@ export default function GujranwalaOffice() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Services we offer{" "}
+              Why Students Trust{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                (Gujranwala)
+                Dunya Consultants Gujranwala
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Trust Reasons */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-lg border border-blue-100">
+                <div className="space-y-4">
+                {whyChooseUs.map((reason, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300">
+                      <CardContent className="p-4 flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
+                          <CheckCircle className="w-4 h-4 text-white" />
+                        </div>
+                        <p className="text-gray-800 font-medium text-sm">{reason}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Office Gallery */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-4"
+            >
+              <div className="grid gap-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="overflow-hidden rounded-xl shadow-xl"
+                >
+                  <img 
+                    src="/attached_assets/WhatsApp Image 2024-07-20 at 17.59.34_c77d42af_1756191592651.jpg" 
+                    alt="Dunya Consultants Gujranwala Office - Student Consultation Area with Professional Setup"
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </motion.div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 17.59.33_bb208391_1756191597249.jpg" 
+                      alt="Dunya Consultants Gujranwala - Executive Consultation Room"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 17.59.34_cb96a013_1756191605533.jpg" 
+                      alt="Dunya Consultants Gujranwala - Building Exterior with Professional Branding"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+      {/* Office Details */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="w-full"
+          >
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                Countries We{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Support
+                </span>
+              </h3>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9] relative">
+                {/* Infinite Scrolling Container */}
+                <div className="relative overflow-hidden">
+                  <motion.div 
+                    className="flex gap-6"
+                    animate={{ x: [-0, -50 + "%"] }}
+                    transition={{ 
+                      duration: 20,
+                      ease: "linear",
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  >
+                    {duplicatedCountries.map((country, index) => (
+                      <motion.div
+                        key={`${country}-${index}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: (index % countries.length) * 0.05 }}
+                        className="group cursor-pointer flex-shrink-0"
+                      >
+                        <div className="bg-white text-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px] border border-gray-200">
+                          <div className="flex flex-col items-center">
+                            <div className="w-16 h-12 mb-3 rounded-md overflow-hidden shadow-md border-2 border-gray-200">
+                              <ReactCountryFlag 
+                                countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
+                                svg 
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover'
+                                }}
+                              />
+                            </div>
+                            <p className="text-sm font-semibold">{country}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <p className="text-gray-600 text-sm">Helping students achieve their dreams in top study destinations worldwide</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              What We Do for Students in{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Gujranwala
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive study abroad services designed to make your international education journey seamless
+              Comprehensive support for your study abroad journey
             </p>
           </motion.div>
 
@@ -225,16 +366,17 @@ export default function GujranwalaOffice() {
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group"
               >
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white hover:scale-105">
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center mb-6">
-                      <service.icon className="w-8 h-8 text-white" />
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <CardContent className="p-6">
+                    <div className={`w-14 h-14 mb-4 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300`}>
+                      <service.icon className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{service.description}</p>
                   </CardContent>
                 </Card>
@@ -245,233 +387,103 @@ export default function GujranwalaOffice() {
       </section>
 
       {/* IELTS Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/30"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-blue-100/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-48 h-48 bg-purple-100/20 rounded-full blur-2xl"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              IELTS Classes in{" "}
+            <h2 className="text-5xl font-bold text-gray-900 mb-4">
+              Master{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                Gujranwala
-              </span>
+                IELTS
+              </span>{" "}
+              with Expert Training
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Professional IELTS preparation with experienced trainers and proven teaching methods
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Achieve your dream IELTS score with our comprehensive training program designed for success
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+          {/* IELTS Features Carousel */}
+          <div className="relative overflow-hidden mb-16">
+            <motion.div 
+              className="flex gap-6"
+              animate={{ x: [-0, -50 + "%"] }}
+              transition={{ 
+                duration: 20,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop"
+              }}
             >
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Choose Our IELTS Program?</h3>
-                <div className="space-y-4">
-                  {ieltsFeatures.map((feature, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-start space-x-3"
-                    >
-                      <CheckCircle className="w-6 h-6 text-[#1D50C9] flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-700 leading-relaxed">{feature}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Card className="border-0 shadow-xl">
-                <CardContent className="p-8">
-                  <div className="text-center mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <BookOpen className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900">IELTS Band Score Target</h3>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-[#1D50C9] mb-2">7.5+</div>
-                    <p className="text-gray-600 mb-6">Average student achievement</p>
-                    <Button className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:shadow-lg">
-                      Start Free Assessment
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+              {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
+                <motion.div
+                  key={`${feature}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: (index % ieltsFeatures.length) * 0.05 }}
+                  className="group cursor-pointer flex-shrink-0"
+                >
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1 min-w-[280px]">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <CheckCircle className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-sm font-bold text-gray-900 mb-3 leading-tight">
+                        {feature.split(' – ')[0] || feature.split(':')[0] || feature.split('.')[0]}
+                      </h3>
+                      <p className="text-xs text-gray-600 leading-relaxed">
+                        {feature.split(' – ')[1] || feature.split(':')[1] || feature}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
-        </div>
-      </section>
 
-      {/* Why Choose Us Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why choose{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                Dunya Consultants (Gujranwala)
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Your trusted partner for study abroad success with proven expertise and personalized guidance
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyChooseUs.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="text-center h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white hover:scale-105">
-                  <CardContent className="p-8">
-                    <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center mx-auto mb-6">
-                      <item.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Countries Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Study{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                Destinations
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We offer admission and visa services for top study destinations worldwide
-            </p>
-          </motion.div>
-
+          {/* Call to Action Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-5 gap-6"
+            className="max-w-4xl mx-auto"
           >
-            {countries.map((country, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="text-center"
-              >
-                <Card className="border-2 border-gray-100 hover:border-[#1D50C9] transition-all duration-300 hover:shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="text-4xl mb-3">{country.flag}</div>
-                    <h3 className="font-semibold text-gray-900">{country.name}</h3>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            <Card className="border-0 shadow-2xl bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+              <CardContent className="p-12 text-center relative">
+                <div className="absolute inset-0 bg-black/10"></div>
+                <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+                <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                
+                <div className="relative">
+                  <BookOpen className="w-20 h-20 mx-auto mb-6 text-white opacity-90" />
+                  <div style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.875rem', marginBottom: '1rem', textShadow: 'none', display: 'block'}}>
+                    Ready to Start Your IELTS Journey?
+                  </div>
+                  <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Join hundreds of successful students who achieved their target scores with our expert guidance and proven teaching methods.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                      <BookOpen className="w-5 h-5 mr-2" />
+                      Enroll Now
+                    </Button>
+                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                      Free Assessment
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </motion.div>
-        </div>
-      </section>
-
-      {/* How it Works Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              How it works{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                (3 simple steps)
-              </span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our proven 3-step process ensures your study abroad journey is smooth and successful
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                step: "1",
-                title: "Profile review & plan",
-                description: "Course, country, and intake selection",
-                icon: User
-              },
-              {
-                step: "2", 
-                title: "Documents & applications",
-                description: "University filing options",
-                icon: BookOpen
-              },
-              {
-                step: "3",
-                title: "Visa file & interview",
-                description: "Compliant case + mock interview", 
-                icon: Shield
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                <Card className="relative h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-                  <CardContent className="p-8 text-center">
-                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center text-white font-bold text-lg">
-                        {item.step}
-                      </div>
-                    </div>
-                    <div className="mt-8">
-                      <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <item.icon className="w-8 h-8 text-[#1D50C9]" />
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{item.description}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -624,6 +636,7 @@ export default function GujranwalaOffice() {
           </div>
         </div>
       </section>
+
 
       <Footer />
     </div>
