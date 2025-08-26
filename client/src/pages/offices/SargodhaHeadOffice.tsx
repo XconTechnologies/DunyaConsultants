@@ -237,8 +237,8 @@ export default function SargodhaHeadOffice() {
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
                   <img 
-                    src="/attached_assets/WhatsApp Image 2024-07-20 at 10.54.08_100076f0_1755690900367.jpg" 
-                    alt="Dunya Consultants Sargodha Office Reception with Logo"
+                    src="/attached_assets/IMG-20240909-WA0043_1756189128801.jpg" 
+                    alt="Dunya Consultants Sargodha Office - Student Consultation Area with International Flags"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </motion.div>
@@ -251,8 +251,8 @@ export default function SargodhaHeadOffice() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 10.54.11_613b4f8d_1755690898376.jpg" 
-                      alt="Professional Consultation Area"
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.31_4ea9c94d_1756189137592.jpg" 
+                      alt="Dunya Consultants Sargodha - Active Consultation Sessions"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
@@ -264,8 +264,8 @@ export default function SargodhaHeadOffice() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 10.54.07_23cebcb6_1755690902473.jpg" 
-                      alt="Dunya Consultants Building Exterior"
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.33_46995c46 (1)_1756189140861.jpg" 
+                      alt="Dunya Consultants Sargodha - Professional Counseling Environment"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
