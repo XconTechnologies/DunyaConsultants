@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/DC White Logo_1751441165041.png";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
-import ConsultationBooking from "@/components/consultation-booking";
+import ConsultationBooking from "@/components/ConsultationBooking";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -228,8 +228,10 @@ export default function Navigation() {
                   Free Consultation
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0 bg-transparent border-0">
-                <ConsultationBooking />
+              <DialogContent className="max-w-md bg-white">
+                <ConsultationBooking country="Pakistan">
+                  <div></div>
+                </ConsultationBooking>
               </DialogContent>
             </Dialog>
           </div>
