@@ -285,7 +285,7 @@ export default function FaisalabadOffice() {
             className="w-full"
           >
             <div className="text-center">
-              <h3 className="text-3xl font-bold text-gray-900 mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8">
                 Countries We{" "}
                 <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Support
@@ -376,7 +376,7 @@ export default function FaisalabadOffice() {
                     <div className={`w-14 h-14 mb-4 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300`}>
                       <service.icon className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
                     <p className="text-gray-600 leading-relaxed">{service.description}</p>
                   </CardContent>
                 </Card>
@@ -399,7 +399,7 @@ export default function FaisalabadOffice() {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
               IELTS{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 Coaching
@@ -436,7 +436,7 @@ export default function FaisalabadOffice() {
                       <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                         <CheckCircle className="w-6 h-6 text-white" />
                       </div>
-                      <h3 className="text-sm font-bold text-gray-900 mb-3 leading-tight">
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
                         {feature.split(' – ')[0] || feature.split(':')[0] || feature.split('.')[0]}
                       </h3>
                       <p className="text-xs text-gray-600 leading-relaxed">
@@ -515,7 +515,7 @@ export default function FaisalabadOffice() {
               transition={{ duration: 0.6 }}
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
-                <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-8">
                   Frequently Asked{" "}
                   <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                     Questions
@@ -577,7 +577,7 @@ export default function FaisalabadOffice() {
                       <MapPin className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold text-lg mb-2">Address</h4>
+                      <h4 className="text-white font-bold text-lg mb-2">Address</h4>
                       <p className="text-blue-100 leading-relaxed">
                         20-1st Floor, Center Point Plaza, Koh-i-Noor City, Jaranwala Road, Faisalabad
                       </p>
@@ -589,7 +589,7 @@ export default function FaisalabadOffice() {
                       <Phone className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold text-lg mb-2">Phone</h4>
+                      <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
                       <a href="tel:+923326628487" className="text-blue-100 hover:text-white transition-colors text-lg">
                         +92 332-6628487
                       </a>
@@ -601,7 +601,7 @@ export default function FaisalabadOffice() {
                       <Clock className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-white font-semibold text-lg mb-2">Office Hours</h4>
+                      <h4 className="text-white font-bold text-lg mb-2">Office Hours</h4>
                       <p className="text-blue-100 text-lg">
                         Monday - Saturday: 10 AM - 6 PM
                       </p>
