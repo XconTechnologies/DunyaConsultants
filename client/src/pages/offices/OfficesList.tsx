@@ -126,12 +126,12 @@ const offices = [
     id: "mian-channu",
     city: "Mian Channu",
     name: "Moti Plaza",
-    address: "1st Floor, Moti Plaza, Faisalabad Road, Mian Channu",
-    phone: "+92 300‑167‑1959",
+    address: "1st Floor, Moti Plaza, Allama Iqbal Road, Mian Channu",
+    phone: "+92 300-9841947",
     hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-rose-600 to-red-600",
+    gradient: "from-teal-600 to-green-600",
     region: "Punjab",
-    services: ["Student Counseling", "Document Verification", "University Applications"]
+    services: ["Career Counseling", "University Selection", "Application Handling", "Interview Preparation"]
   },
   {
     id: "mandi-bahauddin",
@@ -509,6 +509,17 @@ export default function OfficesList() {
                           </Link>
                         ) : office.id === "bahawalpur" ? (
                           <Link href="/offices/bahawalpur">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : office.id === "mian-channu" ? (
+                          <Link href="/offices/mianchannu">
                             <Button 
                               variant="outline" 
                               size="sm"

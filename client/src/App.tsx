@@ -44,7 +44,7 @@ import GujranwalaOffice from "@/pages/offices/gujranwala";
 import SialkotOffice from "@/pages/offices/sialkot";
 import GujratOffice from "@/pages/offices/gujrat";
 import BahawalpurOffice from "@/pages/offices/bahawalpur";
-import MianChannuOffice from "@/pages/offices/mian-channu";
+import MianChannuOffice from "@/pages/offices/mianchannu";
 import MandiBahauddinOffice from "@/pages/offices/mandi-bahauddin";
 import SheikhupuraOffice from "@/pages/offices/sheikhupura";
 import MultanOffice from "@/pages/offices/multan";
@@ -142,7 +142,7 @@ function Router() {
       <Route path="/offices/sialkot" component={SialkotOffice} />
       <Route path="/offices/gujrat" component={GujratOffice} />
       <Route path="/offices/bahawalpur" component={BahawalpurOffice} />
-      <Route path="/offices/mian-channu" component={MianChannuOffice} />
+      <Route path="/offices/mianchannu" component={MianChannuOffice} />
       <Route path="/offices/mandi-bahauddin" component={MandiBahauddinOffice} />
       <Route path="/offices/sheikhupura" component={SheikhupuraOffice} />
       <Route path="/offices/multan" component={MultanOffice} />
