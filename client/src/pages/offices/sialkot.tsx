@@ -171,168 +171,96 @@ export default function SialkotOffice() {
         </div>
       </section>
 
-      {/* Why Choose Us - Redesigned Professional Section */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/40 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-6">
+      {/* Why Choose Us */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
           >
-            <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-blue-100 mb-6">
-              <Award className="w-5 h-5 text-[#1D50C9] mr-2" />
-              <span className="text-sm font-medium text-gray-700">Why Students Trust Us</span>
-            </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Why Choose{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] bg-clip-text text-transparent">
-                Dunya Consultants
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Dunya Consultants (Sialkot)
               </span>
-              <br />
-              <span className="text-3xl md:text-4xl text-gray-600 font-normal">in Sialkot</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Your trusted partner for study abroad dreams - where expertise meets excellence
-            </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            {/* Left Side - Enhanced Trust Reasons */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Trust Reasons */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-5"
+              transition={{ duration: 0.6 }}
             >
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {whyChooseUs.map((reason, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.15 }}
-                    className="group"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="flex items-start space-x-3"
                   >
-                    <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/50 hover:shadow-xl hover:scale-105 transition-all duration-300">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                          <CheckCircle className="w-6 h-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-bold text-gray-900 text-lg mb-2 group-hover:text-[#1D50C9] transition-colors">
-                            {reason.split(':')[0] || reason}
-                          </h3>
-                          {reason.includes(':') && (
-                            <p className="text-gray-600 text-sm leading-relaxed">
-                              {reason.split(':')[1]?.trim()}
-                            </p>
-                          )}
-                        </div>
-                      </div>
+                    <div className="w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <CheckCircle className="w-5 h-5 text-white" />
                     </div>
+                    <p className="text-gray-700 text-lg leading-relaxed">{reason}</p>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Right Side - Premium Office Showcase */}
+            {/* Right Side - Office Gallery */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-7"
+              transition={{ duration: 0.6 }}
+              className="space-y-4"
             >
-              <div className="relative">
-                {/* Main Featured Image */}
+              <div className="grid gap-4">
+                {/* Building Exterior - Full Width */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="relative group mb-8"
+                  transition={{ duration: 0.5 }}
+                  className="overflow-hidden rounded-xl shadow-xl"
                 >
-                  <div className="overflow-hidden rounded-3xl shadow-2xl bg-white border-4 border-white">
-                    <div className="relative">
-                      <img 
-                        src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.56_0e41312d_1756192682291.jpg" 
-                        alt="Dunya Consultants Sialkot Building - Located on 2nd Floor Above Bank Islami, Cantt Plaza"
-                        className="w-full h-80 object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-                      
-                      {/* Floating Info Card */}
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl border border-white/50">
-                          <div className="flex items-center justify-between">
-                            <div>
-                              <h4 className="font-bold text-gray-900 text-lg mb-2">Our Sialkot Office</h4>
-                              <p className="text-gray-600 text-sm mb-1">2nd Floor, Bank Islami, Cantt Plaza</p>
-                              <p className="text-gray-500 text-xs">Sialkot Cantonment, Sialkot</p>
-                            </div>
-                            <div className="text-right">
-                              <div className="inline-flex items-center px-3 py-1 bg-green-100 rounded-full mb-2">
-                                <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                                <span className="text-green-700 text-xs font-medium">Open Now</span>
-                              </div>
-                              <p className="text-gray-500 text-xs">Mon-Sat 10 AM - 6 PM</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <img 
+                    src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.56_0e41312d_1756192682291.jpg" 
+                    alt="Dunya Consultants Sialkot Building - Located on 2nd Floor Above Bank Islami, Cantt Plaza"
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
                 </motion.div>
-
-                {/* Interior Gallery */}
-                <div className="grid grid-cols-2 gap-6">
+                
+                {/* Interior Images - Side by Side */}
+                <div className="grid grid-cols-2 gap-4">
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="group relative"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <div className="overflow-hidden rounded-2xl shadow-xl bg-white border-2 border-white">
-                      <img 
-                        src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.55_95200d91_1756192688607.jpg" 
-                        alt="Dunya Consultants Sialkot - Modern Office Interior with Professional Staff"
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                        <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 shadow-lg">
-                          <h5 className="font-bold text-gray-900 text-sm mb-1">Modern Workspace</h5>
-                          <p className="text-gray-600 text-xs">Professional consultation environment</p>
-                        </div>
-                      </div>
-                    </div>
+                    <img 
+                      src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.55_95200d91_1756192688607.jpg" 
+                      alt="Dunya Consultants Sialkot - Modern Office Interior with Professional Staff"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
                   </motion.div>
                   
                   <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.5 }}
-                    className="group relative"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
                   >
-                    <div className="overflow-hidden rounded-2xl shadow-xl bg-white border-2 border-white">
-                      <img 
-                        src="/attached_assets/2426cce6-dd7f-4632-9bf9-3d3c161a7bcb_1756192695813.jpg" 
-                        alt="Dunya Consultants Sialkot - Executive Consultation Room with International Flags"
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                        <div className="bg-white/95 backdrop-blur-sm rounded-xl p-3 shadow-lg">
-                          <h5 className="font-bold text-gray-900 text-sm mb-1">Executive Suite</h5>
-                          <p className="text-gray-600 text-xs">Private consultation room</p>
-                        </div>
-                      </div>
-                    </div>
+                    <img 
+                      src="/attached_assets/2426cce6-dd7f-4632-9bf9-3d3c161a7bcb_1756192695813.jpg" 
+                      alt="Dunya Consultants Sialkot - Executive Consultation Room with International Flags"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
                   </motion.div>
                 </div>
               </div>
