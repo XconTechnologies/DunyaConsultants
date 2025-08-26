@@ -285,7 +285,7 @@ export default function Islamabad() {
             className="w-full"
           >
             <div className="text-center">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">
+              <h3 className="text-4xl font-bold text-gray-900 mb-8">
                 Countries We{" "}
                 <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                   Support
@@ -515,7 +515,7 @@ export default function Islamabad() {
               transition={{ duration: 0.6 }}
             >
               <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
-                <h3 className="text-2xl font-bold text-gray-900 mb-8">
+                <h3 className="text-4xl font-bold text-gray-900 mb-8">
                   Frequently Asked{" "}
                   <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                     Questions
