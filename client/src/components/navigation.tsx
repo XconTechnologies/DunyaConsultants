@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin, Building2, MessageCircle, Calendar, Newspaper, PenTool, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import logoImage from "@assets/DC White Logo_1751441165041.png";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
+import ConsultationBooking from "@/components/consultation-booking";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -212,19 +214,24 @@ export default function Navigation() {
           
           {/* Free Consultation Button - Right Side */}
           <div className="hidden lg:flex items-center ml-auto">
-            <Link href="/contact">
-              <Button 
-                size="sm"
-                className={`${
-                  !isScrolled 
-                    ? 'bg-white text-[#1D50C9] hover:bg-blue-50' 
-                    : 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:from-[#1845B3] hover:to-[#1D50C9]'
-                } font-semibold px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
-              >
-                <Phone className="w-4 h-4 mr-2" />
-                Free Consultation
-              </Button>
-            </Link>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button 
+                  size="sm"
+                  className={`${
+                    !isScrolled 
+                      ? 'bg-white text-[#1D50C9] hover:bg-blue-50' 
+                      : 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:from-[#1845B3] hover:to-[#1D50C9]'
+                  } font-semibold px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
+                >
+                  <Phone className="w-4 h-4 mr-2" />
+                  Free Consultation
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto p-0 bg-transparent border-0">
+                <ConsultationBooking />
+              </DialogContent>
+            </Dialog>
           </div>
 
           {/* Mobile Menu Toggle */}
