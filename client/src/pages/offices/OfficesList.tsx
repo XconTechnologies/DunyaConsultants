@@ -584,6 +584,17 @@ export default function OfficesList() {
                               View Details
                             </Button>
                           </Link>
+                        ) : office.id === "mardan" ? (
+                          <Link href="/offices/mardan">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
                         ) : (
                           <Button 
                             variant="outline" 
