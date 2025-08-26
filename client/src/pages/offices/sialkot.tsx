@@ -236,7 +236,7 @@ export default function SialkotOffice() {
                   <img 
                     src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.56_0e41312d_1756192682291.jpg" 
                     alt="Dunya Consultants Sialkot Building - Located on 2nd Floor Above Bank Islami, Cantt Plaza"
-                    className="w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
+                    className="w-full h-40 object-cover object-top hover:scale-105 transition-transform duration-300"
                   />
                 </motion.div>
                 
