@@ -79,7 +79,7 @@ export default function MandiBahauddinOffice() {
   // Country codes mapping for flags
   const countryCodesMap = {
     "USA": "US",
-    "UK": "GB",
+    "UK": "GB", 
     "Australia": "AU",
     "Canada": "CA",
     "Belgium": "BE",
@@ -117,237 +117,272 @@ export default function MandiBahauddinOffice() {
     }
   ];
 
-  const officeGallery = [
-    {
-      image: MandiBahauddinOffice1,
-      title: "Consultation Area",
-      description: "Modern consultation space with international flags and world map"
-    },
-    {
-      image: MandiBahauddinOffice2,
-      title: "Reception & Entrance",
-      description: "Professional reception area with blue diamond ceiling displays"
-    },
-    {
-      image: MandiBahauddinOffice3,
-      title: "Executive Office",
-      description: "Executive consultation area with country flags and university materials"
-    }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
-      
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden">
-        {/* Background with gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#164095]"></div>
-        
-        {/* Decorative elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-white/10 rounded-full blur-lg animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 right-1/3 w-16 h-16 bg-white/10 rounded-full blur-md animate-pulse delay-500"></div>
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
         </div>
-
-        <div className="container mx-auto px-4 relative z-10">
+        
+        <div className="relative max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center text-white"
+            className="text-center"
           >
-            <Badge className="mb-6 bg-white/20 text-white border-white/30 hover:bg-white/30">
-              <MapPin className="w-4 h-4 mr-2" />
-              Mandi Bahauddin Office
-            </Badge>
+            <div className="inline-flex items-center px-6 py-3 bg-white/15 rounded-full backdrop-blur-sm mb-8 border border-white/20">
+              <MapPin className="w-5 h-5 mr-2" />
+              <span className="text-sm font-medium">Mandi Bahauddin Office</span>
+            </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-white">
               Dunya Consultants Mandi Bahauddin | Study Abroad & Visa Experts
             </h1>
             
-            <p className="text-xl md:text-2xl mb-8 text-blue-100 leading-relaxed">
+            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
               Are you thinking of studying abroad from Mandi Bahauddin? It's easy for us. Our local experts will help you every step of the way, from picking the best course and country to getting your visa documentation ready.
             </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-[#1845B3] hover:bg-blue-50 font-semibold px-8 py-3">
-                <Calendar className="w-5 h-5 mr-2" />
-                Book Free Consultation
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 font-semibold px-8 py-3">
+
+            {/* Contact Info */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
+              <div className="flex items-center justify-center">
                 <Phone className="w-5 h-5 mr-2" />
-                Call +92 321-3001947
+                <span>+92 321-3001947</span>
+              </div>
+              <div className="flex items-center justify-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>Mon–Sat 10 AM–6 PM</span>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                  Book Free Consultation
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                <a href="https://maps.app.goo.gl/yJkUy1AaRXaxoEhy5" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  Get Directions
+                  <MapPin className="w-5 h-5 ml-2" />
+                </a>
               </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Why Choose Us */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                Why Choose Dunya Consultants (Mandi Bahauddin)
-              </h2>
-              <p className="text-xl text-gray-600">
-                Your trusted local partner for international education
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                {whyChooseUs.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-start space-x-4"
-                  >
-                    <div className="flex-shrink-0 w-8 h-8 bg-[#1845B3] rounded-full flex items-center justify-center">
-                      <CheckCircle className="w-5 h-5 text-white" />
-                    </div>
-                    <p className="text-gray-700 text-lg">{item}</p>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {officeGallery.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="group relative overflow-hidden rounded-xl shadow-lg"
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:from-black/70 transition-all duration-300" />
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h4 className="font-semibold text-sm">{item.title}</h4>
-                      <p className="text-xs text-gray-200">{item.description}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Countries Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Countries We Support
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Why Students Trust{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Dunya Consultants Mandi Bahauddin
+              </span>
             </h2>
-            <p className="text-xl text-gray-600">
-              Study destinations available through our Mandi Bahauddin office
-            </p>
           </motion.div>
 
-          <div className="relative overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Side - Trust Reasons */}
             <motion.div
-              className="flex space-x-8"
-              animate={{
-                x: [0, -100 * countries.length]
-              }}
-              transition={{
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 20,
-                  ease: "linear",
-                },
-              }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              {duplicatedCountries.map((country, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 flex flex-col items-center space-y-4 bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 w-40"
-                >
-                  <ReactCountryFlag
-                    countryCode={countryCodesMap[country as keyof typeof countryCodesMap]}
-                    svg
-                    style={{
-                      width: '60px',
-                      height: '60px',
-                      borderRadius: '50%',
-                      objectFit: 'cover'
-                    }}
-                  />
-                  <span className="font-semibold text-gray-800 text-center text-sm">
-                    {country}
-                  </span>
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-lg border border-blue-100">
+                <div className="space-y-4">
+                {whyChooseUs.map((reason, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300">
+                      <CardContent className="p-4 flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
+                          <CheckCircle className="w-4 h-4 text-white" />
+                        </div>
+                        <p className="text-gray-800 font-medium text-sm">{reason}</p>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
                 </div>
-              ))}
+              </div>
+            </motion.div>
+
+            {/* Right Side - Office Gallery */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-4"
+            >
+              <div className="grid gap-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="overflow-hidden rounded-xl shadow-xl"
+                >
+                  <img 
+                    src={MandiBahauddinOffice1} 
+                    alt="Dunya Consultants Mandi Bahauddin Office - Student Consultation Area with International Flags"
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </motion.div>
+                
+                <div className="grid grid-cols-2 gap-4">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
+                      src={MandiBahauddinOffice2} 
+                      alt="Dunya Consultants Mandi Bahauddin - Reception & Entrance"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </motion.div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="overflow-hidden rounded-xl shadow-lg"
+                  >
+                    <img 
+                      src={MandiBahauddinOffice3} 
+                      alt="Dunya Consultants Mandi Bahauddin - Executive Office"
+                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
+                    />
+                  </motion.div>
+                </div>
+              </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+      {/* Office Details */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="w-full"
+          >
+            <div className="text-center">
+              <h3 className="text-4xl font-bold text-gray-900 mb-8">
+                Countries We{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Support
+                </span>
+              </h3>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9] relative">
+                {/* Infinite Scrolling Container */}
+                <div className="relative overflow-hidden">
+                  <motion.div 
+                    className="flex gap-6"
+                    animate={{ x: [-0, -50 + "%"] }}
+                    transition={{ 
+                      duration: 20,
+                      ease: "linear",
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  >
+                    {duplicatedCountries.map((country, index) => (
+                      <motion.div
+                        key={`${country}-${index}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: (index % countries.length) * 0.05 }}
+                        className="group cursor-pointer flex-shrink-0"
+                      >
+                        <div className="bg-white text-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px] border border-gray-200">
+                          <div className="flex flex-col items-center">
+                            <div className="w-16 h-12 mb-3 rounded-md overflow-hidden shadow-md border-2 border-gray-200">
+                              <ReactCountryFlag 
+                                countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
+                                svg 
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover'
+                                }}
+                              />
+                            </div>
+                            <p className="text-sm font-semibold">{country}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+
+                <div className="mt-8 text-center">
+                  <p className="text-gray-600 text-sm">Helping students achieve their dreams in top study destinations worldwide</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Services Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Study Abroad Services (Mandi Bahauddin)
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              What We Do for Students in{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Mandi Bahauddin
+              </span>
             </h2>
-            <p className="text-xl text-gray-600">
-              Complete support for your international education journey
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Comprehensive support for your study abroad journey
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
                 className="group"
               >
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
-                  <CardContent className="p-8">
-                    <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <service.icon className="w-8 h-8 text-white" />
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <CardContent className="p-6">
+                    <div className={`w-14 h-14 mb-4 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300`}>
+                      <service.icon className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-[#1845B3] transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 leading-relaxed">
-                      {service.description}
-                    </p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -356,90 +391,121 @@ export default function MandiBahauddinOffice() {
         </div>
       </section>
 
-      {/* IELTS Classes Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-50">
-        <div className="container mx-auto px-4">
+      {/* IELTS Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/30"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-blue-100/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-48 h-48 bg-purple-100/20 rounded-full blur-2xl"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Master{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                IELTS
+              </span>{" "}
+              with Expert Training
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Achieve your dream IELTS score with our comprehensive training program designed for success
+            </p>
+          </motion.div>
+
+          {/* IELTS Features Carousel */}
+          <div className="relative overflow-hidden mb-16">
+            <motion.div 
+              className="flex gap-6"
+              animate={{ x: [-0, -50 + "%"] }}
+              transition={{ 
+                duration: 20,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop"
+              }}
+            >
+              {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
+                <motion.div
+                  key={`${feature}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: (index % ieltsFeatures.length) * 0.05 }}
+                  className="group cursor-pointer flex-shrink-0"
+                >
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1 min-w-[280px]">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <CheckCircle className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
+                        {feature.split(' – ')[0] || feature.split(':')[0] || feature.split('.')[0]}
+                      </h3>
+                      <p className="text-xs text-gray-600 leading-relaxed">
+                        {feature.split(' – ')[1] || feature.split(':')[1] || feature}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Call to Action */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
+            transition={{ duration: 0.6 }}
+            className="text-center"
           >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-800 mb-4">
-                IELTS Classes in Mandi Bahauddin
-              </h2>
-              <p className="text-xl text-gray-600">
-                Professional IELTS preparation with proven results
-              </p>
-            </div>
-
-            <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                    Why Choose Our IELTS Classes?
-                  </h3>
-                  <div className="space-y-4">
-                    {ieltsFeatures.map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                        className="flex items-start space-x-3"
-                      >
-                        <CheckCircle className="w-5 h-5 text-[#1845B3] mt-1 flex-shrink-0" />
-                        <p className="text-gray-700">{feature}</p>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <div className="bg-gradient-to-br from-[#1845B3] to-blue-600 rounded-xl p-8 text-white">
-                    <BookOpen className="w-12 h-12 mb-6" />
-                    <h4 className="text-xl font-bold mb-4">Start Your IELTS Journey</h4>
-                    <p className="text-blue-100 mb-6">
-                      Get a free assessment to know your current level and receive a personalized study plan.
-                    </p>
-                    <Button className="bg-white text-[#1845B3] hover:bg-blue-50 font-semibold w-full">
-                      Book Free Assessment
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Card className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-0 shadow-2xl max-w-2xl mx-auto">
+              <CardContent className="p-8 text-white">
+                <BookOpen className="w-16 h-16 mx-auto mb-6" />
+                <h3 className="text-2xl font-bold mb-4">Ready to Start Your IELTS Journey?</h3>
+                <p className="text-lg text-blue-100 mb-6 leading-relaxed">
+                  Book your free IELTS assessment today and get a personalized study plan to achieve your target score.
+                </p>
+                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold px-8 py-3">
+                  <Calendar className="w-5 h-5 mr-2" />
+                  Book Free Assessment
+                </Button>
+              </CardContent>
+            </Card>
           </motion.div>
         </div>
       </section>
 
       {/* Get in Touch Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">
-              Get in Touch
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Get in{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Touch
+              </span>
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Have questions? We're here to help you start your study abroad journey
             </p>
           </motion.div>
 
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12">
             {/* FAQs */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-8">
-                Frequently Asked Questions
-              </h3>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-8">Frequently Asked Questions</h3>
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
                   <motion.div
@@ -447,15 +513,14 @@ export default function MandiBahauddinOffice() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="border border-gray-200 rounded-lg overflow-hidden"
+                    className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200"
                   >
                     <button
                       onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                      className="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex items-center justify-between"
+                      className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 flex items-center justify-between"
                     >
-                      <span className="font-semibold text-gray-800">{faq.question}</span>
-                      <div className="ml-4 flex-shrink-0 w-8 h-8 bg-[#1845B3] rounded-full flex items-center justify-center">
+                      <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
+                      <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
                         {expandedFaq === index ? (
                           <ChevronUp className="w-4 h-4 text-white" />
                         ) : (
@@ -469,42 +534,49 @@ export default function MandiBahauddinOffice() {
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="px-6 py-4 bg-white"
+                        className="px-6 py-4 bg-gray-50 border-t border-gray-200"
                       >
-                        <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                        <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
                       </motion.div>
                     )}
                   </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* Contact Information */}
-            <div>
-              <Card className="shadow-xl border-0 h-full" style={{ minHeight: '600px' }}>
-                <CardContent className="p-8 h-full">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Card className="bg-white shadow-xl border-0 h-full" style={{ minHeight: '600px' }}>
+                <CardContent className="p-8 h-full flex flex-col">
                   <div className="text-center mb-8">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-2">Contact Information</h3>
+                    <div className="w-16 h-16 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Phone className="w-8 h-8 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Contact Information</h3>
                     <p className="text-gray-600">Visit our Mandi Bahauddin office or get in touch</p>
                   </div>
 
-                  <div className="space-y-6 mb-8">
+                  <div className="space-y-6 flex-grow">
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-[#1845B3] rounded-full flex items-center justify-center">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
                         <MapPin className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-1">Address</h4>
+                        <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
                         <p className="text-gray-600">Dunya Consultants Punjab Center, Mandi Bahauddin</p>
                       </div>
                     </div>
 
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-[#1845B3] rounded-full flex items-center justify-center">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
                         <Phone className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-1">Phone</h4>
+                        <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
                         <a href="tel:+923213001947" className="text-[#1845B3] hover:text-blue-700 font-medium">
                           +92 321-3001947
                         </a>
@@ -512,21 +584,21 @@ export default function MandiBahauddinOffice() {
                     </div>
 
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-[#1845B3] rounded-full flex items-center justify-center">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
                         <Clock className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-1">Hours</h4>
+                        <h4 className="font-semibold text-gray-900 mb-1">Hours</h4>
                         <p className="text-gray-600">Mon–Sat 10 AM–6 PM</p>
                       </div>
                     </div>
 
                     <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 w-12 h-12 bg-[#1845B3] rounded-full flex items-center justify-center">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
                         <Globe className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-1">Location</h4>
+                        <h4 className="font-semibold text-gray-900 mb-1">Location</h4>
                         <a 
                           href="https://maps.app.goo.gl/yJkUy1AaRXaxoEhy5" 
                           target="_blank" 
@@ -539,8 +611,8 @@ export default function MandiBahauddinOffice() {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <Button className="w-full bg-[#1845B3] hover:bg-blue-700 text-white font-semibold py-3">
+                  <div className="space-y-4 mt-8">
+                    <Button className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3">
                       <Calendar className="w-5 h-5 mr-2" />
                       Schedule Consultation
                     </Button>
@@ -550,13 +622,13 @@ export default function MandiBahauddinOffice() {
                     </Button>
                   </div>
 
-                  <div className="mt-8 text-center">
+                  <div className="mt-6 text-center">
                     <p className="text-sm text-gray-500 mb-2">Call or visit for a free consultation</p>
                     <p className="text-[#1845B3] font-semibold">Start your study-abroad journey today</p>
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
