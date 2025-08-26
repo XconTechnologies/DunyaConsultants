@@ -139,8 +139,6 @@ export default function Navigation() {
     { name: "Study Abroad", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },
-    { name: "Events", href: "/events" },
-    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -212,6 +210,22 @@ export default function Navigation() {
             </div>
           </div>
           
+          {/* Free Consultation Button - Right Side */}
+          <div className="hidden lg:flex items-center ml-auto">
+            <Link href="/contact">
+              <Button 
+                size="sm"
+                className={`${
+                  !isScrolled 
+                    ? 'bg-white text-[#1D50C9] hover:bg-blue-50' 
+                    : 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:from-[#1845B3] hover:to-[#1D50C9]'
+                } font-semibold px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
+              >
+                <Phone className="w-4 h-4 mr-2" />
+                Free Consultation
+              </Button>
+            </Link>
+          </div>
 
           {/* Mobile Menu Toggle */}
           <div className="lg:hidden ml-auto">
