@@ -402,7 +402,7 @@ export default function ContactUsSection() {
               </div>
             </motion.div>
 
-            {/* Office Information */}
+            {/* Our Services */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -412,60 +412,54 @@ export default function ContactUsSection() {
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
                   <h3 className="text-2xl font-bold flex items-center mb-3">
-                    <Building className="w-6 h-6 mr-3" />
-                    Our Office Locations
+                    <Globe className="w-6 h-6 mr-3" />
+                    Our Expert Services
                   </h3>
-                  <p className="text-white/90 text-lg">Visit us at any of our convenient locations</p>
+                  <p className="text-white/90 text-lg">Comprehensive support for your study abroad journey</p>
                 </div>
 
                 <div className="p-8">
-                <div className="space-y-6">
-                  {offices.map((office, index) => (
-                    <div key={index} className="border-b border-gray-200 last:border-b-0 pb-6 last:pb-0">
-                      <div className="flex justify-between items-start mb-3">
-                        <h4 className="font-semibold text-gray-900 text-lg">{office.city}</h4>
-                        {office.city.includes("Head Office") && (
-                          <Badge variant="secondary" className="bg-blue-100 text-[#1565c0]">
-                            Head Office
-                          </Badge>
-                        )}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Users className="w-6 h-6 text-[#1845B3]" />
                       </div>
-                      
-                      <div className="space-y-2 text-sm">
-                        <div className="flex items-start space-x-2">
-                          <MapPin className="h-4 w-4 text-gray-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{office.address}</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Phone className="h-4 w-4 text-gray-500 flex-shrink-0" />
-                          <a href={`tel:${office.phone}`} className="text-[#1845B3] hover:underline">
-                            {office.phone}
-                          </a>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Mail className="h-4 w-4 text-gray-500 flex-shrink-0" />
-                          <a href={`mailto:${office.email}`} className="text-[#1845B3] hover:underline">
-                            {office.email}
-                          </a>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Clock className="h-4 w-4 text-gray-500 flex-shrink-0" />
-                          <span className="text-gray-700">{office.hours}</span>
-                        </div>
-                      </div>
-
-                      <div className="mt-3">
-                        <div className="flex flex-wrap gap-1">
-                          {office.specialties.map((specialty, i) => (
-                            <Badge key={i} variant="outline" className="text-xs">
-                              {specialty}
-                            </Badge>
-                          ))}
-                        </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Career Counseling</h4>
+                        <p className="text-gray-600 text-sm">Personalized guidance to help you choose the right course and country for your academic goals.</p>
                       </div>
                     </div>
-                  ))}
-                </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Building className="w-6 h-6 text-[#1845B3]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">University Selection</h4>
+                        <p className="text-gray-600 text-sm">Access to 50+ partner universities worldwide with guaranteed admission pathways.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="w-6 h-6 text-[#1845B3]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Visa Processing</h4>
+                        <p className="text-gray-600 text-sm">Complete visa application support with 98% success rate and expert documentation.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <MessageCircle className="w-6 h-6 text-[#1845B3]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">Test Preparation</h4>
+                        <p className="text-gray-600 text-sm">IELTS, PTE, TOEFL coaching with experienced instructors and proven strategies.</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -480,39 +474,109 @@ export default function ContactUsSection() {
                 </div>
 
                 <div className="p-8">
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-3">
-                    <Users className="h-5 w-5 text-[#1845B3] mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-gray-900">5+ Years Experience</h4>
-                      <p className="text-gray-600 text-sm">Trusted by thousands of students since 2009</p>
+                  <div className="space-y-6">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Users className="w-6 h-6 text-green-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">15+ Years Experience</h4>
+                        <p className="text-gray-600 text-sm">Trusted by thousands of students since 2009 with proven expertise in study abroad guidance.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Globe className="w-6 h-6 text-[#1845B3]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">98% Success Rate</h4>
+                        <p className="text-gray-600 text-sm">Outstanding track record in university admissions and visa approvals across all destinations.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <Building className="w-6 h-6 text-orange-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">20+ Offices Nationwide</h4>
+                        <p className="text-gray-600 text-sm">Convenient locations across Pakistan for easy access to our expert counseling services.</p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="w-6 h-6 text-purple-600" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-2">End-to-End Support</h4>
+                        <p className="text-gray-600 text-sm">Complete assistance from initial consultation to post-arrival support and settlement guidance.</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-start space-x-3">
-                    <Globe className="h-5 w-5 text-[#1845B3] mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-gray-900">98% Success Rate</h4>
-                      <p className="text-gray-600 text-sm">Proven track record in admissions and visas</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <Building className="h-5 w-5 text-[#1845B3] mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-gray-900">20+ Offices</h4>
-                      <p className="text-gray-600 text-sm">Nationwide presence for easy access</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-3">
-                    <CheckCircle className="h-5 w-5 text-[#1845B3] mt-1 flex-shrink-0" />
-                    <div>
-                      <h4 className="font-semibold text-gray-900">End-to-End Services</h4>
-                      <p className="text-gray-600 text-sm">From consultation to post-arrival support</p>
-                    </div>
-                  </div>
-                </div>
                 </div>
               </div>
             </motion.div>
+          </div>
+
+          {/* Additional Information Section */}
+          <div className="mt-20">
+            <div className="text-center mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h2 className="text-3xl md:text-4xl font-bold text-[#1D50C9] mb-4">
+                  Ready to Start Your Journey?
+                </h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  Join thousands of successful students who have achieved their dreams of studying abroad with our expert guidance
+                </p>
+              </motion.div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-center bg-white rounded-2xl p-8 shadow-lg"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">200+ Certified Counselors</h3>
+                <p className="text-gray-600">Expert guidance from certified professionals with extensive experience in international education.</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-center bg-white rounded-2xl p-8 shadow-lg"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Globe className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">50+ Partner Universities</h3>
+                <p className="text-gray-600">Direct partnerships with top-ranked universities across UK, USA, Canada, Australia, and more.</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="text-center bg-white rounded-2xl p-8 shadow-lg"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">15,000+ Success Stories</h3>
+                <p className="text-gray-600">Thousands of students have successfully achieved their study abroad dreams through our services.</p>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
