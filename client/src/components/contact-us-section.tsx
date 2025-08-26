@@ -138,21 +138,57 @@ export default function ContactUsSection() {
   ];
 
   return (
-    <section className="py-8 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-[#1D50C9]">
-            Get In Touch With Us
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Ready to start your study abroad journey? Contact our expert counselors for personalized guidance
-          </p>
-        </motion.div>
+    <>
+      {/* Blue Hero Section */}
+      <section className="relative bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white pt-32 pb-20">
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 relative">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8 text-white">
+              Contact <span className="text-white">Dunya Consultants</span>
+            </h1>
+            <p className="text-lg lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
+              Ready to start your study abroad journey? Get in touch with our expert counselors for personalized guidance and support
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Badge variant="secondary" className="px-4 py-2 text-lg">
+                <Phone className="w-5 h-5 mr-2" />
+                24/7 Support
+              </Badge>
+              <Badge variant="secondary" className="px-4 py-2 text-lg">
+                <Mail className="w-5 h-5 mr-2" />
+                Quick Response
+              </Badge>
+              <Badge variant="secondary" className="px-4 py-2 text-lg">
+                <Users className="w-5 h-5 mr-2" />
+                Expert Counselors
+              </Badge>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Form and Info Section */}
+      <section className="py-8 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-[#1D50C9]">
+              Get In Touch With Us
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Fill out the form below or contact us directly through any of our communication channels
+            </p>
+          </motion.div>
 
         {/* Quick Contact Cards */}
         <motion.div
@@ -451,5 +487,6 @@ export default function ContactUsSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }
