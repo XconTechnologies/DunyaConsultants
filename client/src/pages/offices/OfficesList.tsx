@@ -181,12 +181,12 @@ const offices = [
     id: "jhelum",
     city: "Jhelum",
     name: "Sultan Plaza",
-    address: "1st Floor, Sultan Plaza, Civil Lines, Jhelum",
-    phone: "+92 300‑167‑1964",
+    address: "2nd Floor, NADRA Executive Office, Sultan Plaza, GT Road, Jhelum",
+    phone: "+92 317-1114693",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-indigo-600 to-purple-600",
     region: "Punjab",
-    services: ["University Applications", "Document Verification", "Career Guidance"]
+    services: ["Career Counseling", "University Selection", "Application Handling", "Visa Guidance", "IELTS Classes", "Interview Preparation"]
   },
   {
     id: "mardan",
@@ -564,6 +564,17 @@ export default function OfficesList() {
                           </Link>
                         ) : office.id === "peshawar" ? (
                           <Link href="/offices/peshawar">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : office.id === "jhelum" ? (
+                          <Link href="/offices/jhelum">
                             <Button 
                               variant="outline" 
                               size="sm"

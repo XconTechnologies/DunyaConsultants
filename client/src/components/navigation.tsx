@@ -139,6 +139,8 @@ export default function Navigation() {
     { name: "Study Abroad", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },
+    { name: "Events", href: "/events" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
