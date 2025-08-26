@@ -225,33 +225,33 @@ export default function SialkotOffice() {
               transition={{ duration: 0.6 }}
               className="space-y-4"
             >
-              <div className="grid grid-cols-2 gap-4 h-56">
-                {/* Building Exterior - Vertical Layout for Better Visibility */}
+              <div className="grid gap-4">
+                {/* Building Exterior - Full Width for Better Visibility */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="overflow-hidden rounded-xl shadow-xl h-full"
+                  className="overflow-hidden rounded-xl shadow-xl"
                 >
                   <img 
                     src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.56_0e41312d_1756192682291.jpg" 
                     alt="Dunya Consultants Sialkot Building - Located on 2nd Floor Above Bank Islami, Cantt Plaza"
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    className="w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </motion.div>
                 
-                {/* Right Side - Stacked Interior Images */}
-                <div className="flex flex-col gap-4 h-full">
+                {/* Interior Images - Side by Side */}
+                <div className="grid grid-cols-2 gap-4">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="overflow-hidden rounded-xl shadow-lg flex-1"
+                    className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
                       src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.55_95200d91_1756192688607.jpg" 
                       alt="Dunya Consultants Sialkot - Modern Office Interior with Professional Staff"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      className="w-full h-28 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
                   
@@ -259,12 +259,12 @@ export default function SialkotOffice() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="overflow-hidden rounded-xl shadow-lg flex-1"
+                    className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
                       src="/attached_assets/2426cce6-dd7f-4632-9bf9-3d3c161a7bcb_1756192695813.jpg" 
                       alt="Dunya Consultants Sialkot - Executive Consultation Room with International Flags"
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      className="w-full h-28 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
                 </div>
