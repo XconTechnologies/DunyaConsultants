@@ -148,12 +148,12 @@ const offices = [
     id: "sheikhupura",
     city: "Sheikhupura",
     name: "Stadium Road",
-    address: "1st Floor, Al-Noor Plaza, Stadium Road, Sheikhupura",
-    phone: "+92 300‑167‑1961",
+    address: "Besides Darul Barkat Medicare Hospital, Stadium Rd, Sheikhupura",
+    phone: "+92 300-5071947",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-violet-600 to-purple-600",
     region: "Punjab",
-    services: ["University Applications", "Document Preparation", "Career Guidance"]
+    services: ["Career Counseling", "University Selection", "Application Handling", "Visa Guidance", "IELTS Classes", "Interview Preparation"]
   },
   {
     id: "multan",
