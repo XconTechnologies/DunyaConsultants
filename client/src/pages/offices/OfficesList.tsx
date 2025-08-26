@@ -192,12 +192,12 @@ const offices = [
     id: "mardan",
     city: "Mardan",
     name: "Walyan Commercial",
-    address: "Ground Floor, Walyan Commercial Center, Mardan",
-    phone: "+92 300‑167‑1965",
+    address: "2nd Floor, Office Unit A, Walyan Commercial Centre, Nowshera Road, Mardan",
+    phone: "+92 317-1114617",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-slate-600 to-gray-600",
     region: "KPK",
-    services: ["Student Counseling", "Visa Processing", "University Applications"]
+    services: ["Career Counseling", "University Selection", "Application Handling", "Visa Guidance", "IELTS Classes", "Interview Preparation"]
   },
   {
     id: "jeddah",
