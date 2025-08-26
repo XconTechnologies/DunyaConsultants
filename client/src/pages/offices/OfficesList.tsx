@@ -170,12 +170,12 @@ const offices = [
     id: "peshawar",
     city: "Peshawar",
     name: "Phase 3",
-    address: "Ground Floor, Malik Center, Phase 3, Hayatabad, Peshawar",
-    phone: "+92 300‑167‑1963",
+    address: "Office 27, 4th Floor, Alhaj Tower 2, Near Phase 3 Chowk, Peshawar",
+    phone: "+92 317-1114726",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-sky-600 to-[#1845B3]",
     region: "KPK",
-    services: ["Student Counseling", "Visa Processing", "Test Preparation"]
+    services: ["Career Counseling", "University Selection", "Application Handling", "Visa Guidance", "IELTS Classes", "Interview Preparation"]
   },
   {
     id: "jhelum",
@@ -553,6 +553,17 @@ export default function OfficesList() {
                           </Link>
                         ) : office.id === "multan" ? (
                           <Link href="/offices/multan">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : office.id === "peshawar" ? (
+                          <Link href="/offices/peshawar">
                             <Button 
                               variant="outline" 
                               size="sm"
