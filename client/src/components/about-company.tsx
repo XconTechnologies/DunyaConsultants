@@ -83,16 +83,14 @@ export default function AboutCompany() {
               </motion.div>
 
               {/* Main Heading */}
-              <motion.div
-                className="mb-2"
+              <motion.h2
+                className="text-3xl lg:text-4xl font-bold mb-6 text-[#1D50C9]"
                 initial={{ opacity: 0, y: -20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
-                  WHO WE ARE
-                </h2>
-              </motion.div>
+                WHO WE ARE
+              </motion.h2>
 
               {/* Content Items */}
               <div className="space-y-1.5 sm:space-y-2 flex-1">
