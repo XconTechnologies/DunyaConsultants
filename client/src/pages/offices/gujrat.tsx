@@ -504,7 +504,7 @@ export default function GujratOffice() {
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* FAQ Section */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -518,7 +518,7 @@ export default function GujratOffice() {
                     Questions
                   </span>
                 </h3>
-                <div className="space-y-4 flex-grow">
+                <div className="space-y-3 flex-grow">
                   {faqs.map((faq, index) => (
                     <motion.div
                       key={index}
@@ -526,22 +526,30 @@ export default function GujratOffice() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.05 }}
                     >
-                      <div className="border border-gray-200 rounded-lg overflow-hidden">
+                      <div className="bg-gray-50 rounded-lg border border-gray-200 hover:border-[#1D50C9] transition-all duration-300 overflow-hidden">
                         <button
+                          className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
                           onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                          className="w-full px-6 py-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center"
                         >
                           <h4 className="text-gray-900 font-semibold pr-4">{faq.question}</h4>
-                          {expandedFaq === index ? (
-                            <ChevronUp className="w-5 h-5 text-[#1D50C9] flex-shrink-0" />
-                          ) : (
-                            <ChevronDown className="w-5 h-5 text-gray-400 flex-shrink-0" />
-                          )}
+                          <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                            {expandedFaq === index ? (
+                              <ChevronUp className="w-4 h-4 text-[#1D50C9]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[#1D50C9]" />
+                            )}
+                          </div>
                         </button>
                         {expandedFaq === index && (
-                          <div className="px-6 py-4 bg-white border-t border-gray-200">
-                            <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-                          </div>
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="px-4 pb-4 border-t border-gray-200"
+                          >
+                            <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
+                          </motion.div>
                         )}
                       </div>
                     </motion.div>
@@ -556,16 +564,10 @@ export default function GujratOffice() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] rounded-2xl p-8 text-white shadow-2xl h-full flex flex-col">
-                <div className="text-center mb-8">
-                  <MapPin className="w-16 h-16 mx-auto mb-4 text-white opacity-90" />
-                  <h3 className="text-2xl font-bold mb-4">Visit Our Gujrat Office</h3>
-                  <p className="text-blue-100 leading-relaxed">
-                    Stop by our conveniently located office for a face-to-face consultation with our expert counselors.
-                  </p>
-                </div>
-
-                <div className="space-y-6 flex-grow">
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
+                
+                <div className="space-y-4 flex-grow">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
                       <MapPin className="w-6 h-6 text-white" />
