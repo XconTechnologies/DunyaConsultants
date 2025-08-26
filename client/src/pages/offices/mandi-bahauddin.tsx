@@ -454,24 +454,38 @@ export default function MandiBahauddinOffice() {
             </motion.div>
           </div>
 
-          {/* Call to Action */}
+          {/* Call to Action Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center"
+            className="max-w-4xl mx-auto"
           >
-            <Card className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] border-0 shadow-2xl max-w-2xl mx-auto">
-              <CardContent className="p-8 text-white">
-                <BookOpen className="w-16 h-16 mx-auto mb-6" />
-                <h3 className="text-2xl font-bold mb-4">Ready to Start Your IELTS Journey?</h3>
-                <p className="text-lg text-blue-100 mb-6 leading-relaxed">
-                  Book your free IELTS assessment today and get a personalized study plan to achieve your target score.
-                </p>
-                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold px-8 py-3">
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Book Free Assessment
-                </Button>
+            <Card className="border-0 shadow-2xl bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+              <CardContent className="p-12 text-center relative">
+                <div className="absolute inset-0 bg-black/10"></div>
+                <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+                <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                
+                <div className="relative">
+                  <BookOpen className="w-20 h-20 mx-auto mb-6 text-white opacity-90" />
+                  <div style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.875rem', marginBottom: '1rem', textShadow: 'none', display: 'block'}}>
+                    Ready to Start Your IELTS Journey?
+                  </div>
+                  <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Join hundreds of successful students who achieved their target scores with our expert guidance and proven teaching methods.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                      <BookOpen className="w-5 h-5 mr-2" />
+                      Enroll Now
+                    </Button>
+                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                      Free Assessment
+                    </Button>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
