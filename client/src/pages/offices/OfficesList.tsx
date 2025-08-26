@@ -103,13 +103,13 @@ const offices = [
   {
     id: "gujrat",
     city: "Gujrat",
-    name: "GT Road",
-    address: "1st Floor, Malik Plaza, G.T Road, Gujrat",
-    phone: "+92 300‑167‑1957",
+    name: "Service Morh Road",
+    address: "Beside KFC, Service Morh Road, G.T. Gujrat",
+    phone: "+92 300-105-1947",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-teal-600 to-green-600",
     region: "Punjab",
-    services: ["Student Counseling", "University Applications", "Document Preparation"]
+    services: ["Career & Course Counselling", "University Shortlisting", "Application Support", "Visa Guidance"]
   },
   {
     id: "bahawalpur",
@@ -487,6 +487,17 @@ export default function OfficesList() {
                           </Link>
                         ) : office.id === "sialkot" ? (
                           <Link href="/offices/sialkot">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : office.id === "gujrat" ? (
+                          <Link href="/offices/gujrat">
                             <Button 
                               variant="outline" 
                               size="sm"
