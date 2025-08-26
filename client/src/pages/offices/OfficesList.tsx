@@ -159,12 +159,12 @@ const offices = [
     id: "multan",
     city: "Multan",
     name: "Shalimar Metro",
-    address: "2nd Floor, Shalimar Metro Center, Gulgasht Colony, Multan",
-    phone: "+92 300‑167‑1962",
+    address: "Shalimar Metro Station, Bosan Rd, New Sabzazar Colony, Multan",
+    phone: "+92 305-4441947",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-lime-600 to-green-600",
     region: "Punjab",
-    services: ["Visa Processing", "University Applications", "Student Counseling"]
+    services: ["Career Counseling", "University Selection", "Application Handling", "Visa Guidance", "IELTS Classes", "Interview Preparation"]
   },
   {
     id: "peshawar",
@@ -542,6 +542,17 @@ export default function OfficesList() {
                           </Link>
                         ) : office.id === "sheikhupura" ? (
                           <Link href="/offices/sheikhupura">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : office.id === "multan" ? (
+                          <Link href="/offices/multan">
                             <Button 
                               variant="outline" 
                               size="sm"
