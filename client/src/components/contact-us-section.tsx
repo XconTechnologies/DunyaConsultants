@@ -280,7 +280,7 @@ export default function ContactUsSection() {
             >
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
-                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white" style={{ color: '#ffffff' }}>
+                  <h3 className="text-2xl font-bold flex items-center mb-3" style={{ color: '#ffffff !important' }}>
                     <Send className="w-6 h-6 mr-3" />
                     Send Us a Message
                   </h3>
@@ -411,7 +411,7 @@ export default function ContactUsSection() {
             >
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
-                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white" style={{ color: '#ffffff' }}>
+                  <h3 className="text-2xl font-bold flex items-center mb-3" style={{ color: '#ffffff !important' }}>
                     <Globe className="w-6 h-6 mr-3" />
                     Our Expert Services
                   </h3>
@@ -466,7 +466,7 @@ export default function ContactUsSection() {
               {/* Why Choose Us */}
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
-                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white" style={{ color: '#ffffff' }}>
+                  <h3 className="text-2xl font-bold flex items-center mb-3" style={{ color: '#ffffff !important' }}>
                     <CheckCircle className="w-6 h-6 mr-3" />
                     Why Choose Dunya Consultants?
                   </h3>
@@ -547,7 +547,7 @@ export default function ContactUsSection() {
                 <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Users className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">200+ Certified Counselors</h3>
+                <h3 className="text-xl font-bold text-[#1D50C9] mb-3">200+ Certified Counselors</h3>
                 <p className="text-gray-600">Expert guidance from certified professionals with extensive experience in international education.</p>
               </motion.div>
 
@@ -557,10 +557,10 @@ export default function ContactUsSection() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-center bg-white rounded-2xl p-8 shadow-lg"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Globe className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">50+ Partner Universities</h3>
+                <h3 className="text-xl font-bold text-[#1D50C9] mb-3">50+ Partner Universities</h3>
                 <p className="text-gray-600">Direct partnerships with top-ranked universities across UK, USA, Canada, Australia, and more.</p>
               </motion.div>
 
@@ -570,10 +570,10 @@ export default function ContactUsSection() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-center bg-white rounded-2xl p-8 shadow-lg"
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <CheckCircle className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">15,000+ Success Stories</h3>
+                <h3 className="text-xl font-bold text-[#1D50C9] mb-3">15,000+ Success Stories</h3>
                 <p className="text-gray-600">Thousands of students have successfully achieved their study abroad dreams through our services.</p>
               </motion.div>
             </div>
