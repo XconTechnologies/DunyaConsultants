@@ -567,48 +567,63 @@ export default function GujratOffice() {
 
                 <div className="space-y-6 flex-grow">
                   <div className="flex items-start space-x-4">
-                    <MapPin className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Address</h4>
-                      <p className="text-blue-100">
+                      <p className="text-blue-100 leading-relaxed">
                         Beside KFC, Service Morh Road, G.T. Gujrat
                       </p>
                     </div>
                   </div>
-
+                  
                   <div className="flex items-start space-x-4">
-                    <Phone className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
-                      <p className="text-blue-100">+92 300-105-1947</p>
+                      <a href="tel:+923001051947" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +92 300-105-1947
+                      </a>
                     </div>
                   </div>
-
+                  
                   <div className="flex items-start space-x-4">
-                    <Clock className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Office Hours</h4>
-                      <p className="text-blue-100">Monday – Saturday</p>
-                      <p className="text-blue-100">10:00 AM – 6:00 PM</p>
+                      <p className="text-blue-100 text-lg">
+                        Monday - Saturday: 10 AM - 6 PM
+                      </p>
                     </div>
                   </div>
+                  
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-white/20">
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Link href="/contact" className="flex-1">
-                      <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold">
-                        <Mail className="w-5 h-5 mr-2" />
-                        Schedule Meeting
-                      </Button>
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-sm leading-relaxed">
+                    Our Gujrat office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
+                  </p>
+                </div>
+
+                <div className="space-y-4 mt-4">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <Calendar className="w-5 h-5 ml-2" />
                     </Link>
-                    <Button size="lg" variant="outline" className="flex-1 border-white text-white hover:bg-white/10">
-                      <a href="https://maps.app.goo.gl/CCixqVyJaA8Hjz756" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
-                        <MapPin className="w-5 h-5 mr-2" />
-                        Directions
-                      </a>
-                    </Button>
-                  </div>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <a href="https://maps.app.goo.gl/CCixqVyJaA8Hjz756" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      Get Directions
+                      <MapPin className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
                 </div>
               </div>
             </motion.div>
