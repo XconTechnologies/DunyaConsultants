@@ -35,39 +35,25 @@ export default function Footer() {
               </p>
             </div>
 
-            {/* Quick Links */}
+            {/* Offices */}
             <div className="lg:col-span-1">
-              <h4 className="text-lg font-bold mb-6 text-white">Quick Links</h4>
+              <h4 className="text-lg font-bold mb-6 text-white">Pakistan Offices</h4>
+              <ul className="space-y-3 text-sm mb-6">
+                <li>
+                  <Link href="/offices" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
+                    <Building className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
+                    View All Pakistan Offices
+                  </Link>
+                </li>
+              </ul>
+              
+              <h4 className="text-lg font-bold mb-6 text-white">International Offices</h4>
               <ul className="space-y-3 text-sm">
                 <li>
-                  <a href="/country-guide" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
+                  <Link href="/offices#international-offices" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
                     <Globe className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
-                    Country Guide
-                  </a>
-                </li>
-                <li>
-                  <a href="/ielts" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
-                    <FileText className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
-                    IELTS Preparation
-                  </a>
-                </li>
-                <li>
-                  <a href="/cost-calculator" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
-                    <Calculator className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
-                    Cost Calculator
-                  </a>
-                </li>
-                <li>
-                  <a href="/course-match-tool" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
-                    <FileText className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
-                    Course Match Tool
-                  </a>
-                </li>
-                <li>
-                  <a href="/document-checklist" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
-                    <FileText className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
-                    Document Checklist
-                  </a>
+                    View International Offices
+                  </Link>
                 </li>
               </ul>
             </div>
