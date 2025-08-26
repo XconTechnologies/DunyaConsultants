@@ -280,7 +280,7 @@ export default function ContactUsSection() {
             >
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
-                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white">
+                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white" style={{ color: '#ffffff' }}>
                     <Send className="w-6 h-6 mr-3" />
                     Send Us a Message
                   </h3>
@@ -411,7 +411,7 @@ export default function ContactUsSection() {
             >
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
-                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white">
+                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white" style={{ color: '#ffffff' }}>
                     <Globe className="w-6 h-6 mr-3" />
                     Our Expert Services
                   </h3>
@@ -466,7 +466,7 @@ export default function ContactUsSection() {
               {/* Why Choose Us */}
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
-                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white">
+                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white" style={{ color: '#ffffff' }}>
                     <CheckCircle className="w-6 h-6 mr-3" />
                     Why Choose Dunya Consultants?
                   </h3>
