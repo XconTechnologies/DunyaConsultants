@@ -114,13 +114,13 @@ const offices = [
   {
     id: "bahawalpur",
     city: "Bahawalpur",
-    name: "Muslim Town",
-    address: "Ground Floor, Al-Madina Plaza, Muslim Town, Bahawalpur",
-    phone: "+92 300‑167‑1958",
+    name: "Rafi Qamar Road",
+    address: "Rafi Qamar Road, near Muslim Town, Goth Muslim Town, Bahawalpur",
+    phone: "+92 300-1731947",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-amber-600 to-orange-600",
     region: "Punjab",
-    services: ["Visa Processing", "Test Preparation", "Career Guidance"]
+    services: ["Career Counselling", "University Selection", "Application Handling", "Visa Guidance"]
   },
   {
     id: "mian-channu",
@@ -498,6 +498,17 @@ export default function OfficesList() {
                           </Link>
                         ) : office.id === "gujrat" ? (
                           <Link href="/offices/gujrat">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : office.id === "bahawalpur" ? (
+                          <Link href="/offices/bahawalpur">
                             <Button 
                               variant="outline" 
                               size="sm"
