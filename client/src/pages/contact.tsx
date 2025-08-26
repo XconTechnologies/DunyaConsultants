@@ -8,9 +8,7 @@ export default function ContactPage() {
     <div className="min-h-screen">
       <ScrollProgress />
       <Navigation />
-      <div className="pt-20">
-        <ContactUsSection />
-      </div>
+      <ContactUsSection />
       <Footer />
     </div>
   );
