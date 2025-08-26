@@ -15,34 +15,20 @@ const consultationTypes = [
   { id: "general", name: "General Consultation", duration: "30 mins", price: "Free" },
   { id: "university", name: "University Selection", duration: "45 mins", price: "Free" },
   { id: "visa", name: "Visa Guidance", duration: "60 mins", price: "Free" },
-  { id: "scholarship", name: "Scholarship Guidance", duration: "45 mins", price: "Free" },
   { id: "ielts", name: "IELTS Consultation", duration: "30 mins", price: "Free" },
   { id: "comprehensive", name: "Comprehensive Planning", duration: "90 mins", price: "Free" }
 ];
 
-// Office locations for booking - Authentic office data from offices page
-const officeLocations = [
-  { id: "sargodha", name: "Sargodha (Head Office)", address: "Alif Tower, Bahadur Shah Zafar Road, Sargodha", phone: "+92 304-111-0947" },
-  { id: "lahore-dha", name: "Lahore DHA Phase 1", address: "1st Floor, 174-6 Street 123, Sector H, DHA Phase 1, Lahore", phone: "+92 300-827-1947" },
-  { id: "lahore-johar", name: "Lahore Johar Town", address: "1st Floor, 85 /R-1, Phase 2, Johar Town, Lahore", phone: "+92 300-827-1947" },
-  { id: "islamabad", name: "Islamabad Blue Area", address: "Mezzanine-3, ATS Centre, Fazal-e-Haq Road, Blue Area, Islamabad", phone: "+92 333-777-5458" },
-  { id: "karachi", name: "Karachi Gulistan-e-Johar", address: "05-C Prime Point Building, Main 2, Gulistan-e-Johar, Karachi", phone: "+92 332-364-3373" },
-  { id: "faisalabad", name: "Faisalabad Civil Lines", address: "1st Floor Centre, Mktg City Civil Lines, Faisalabad", phone: "+92 332-662-8487" },
-  { id: "gujranwala", name: "Gujranwala Peoples Colony", address: "1st Floor, Plaza 83, Peoples Colony No. 1, Gujranwala", phone: "+92 333-777-5458" },
-  { id: "sialkot", name: "Sialkot Cantonment", address: "2nd Floor, Malik Centre, Kutla Road, Sialkot Cantt, Sialkot", phone: "+92 332-255-8487" },
-  { id: "gujrat", name: "Gujrat GT Road", address: "1st Floor, Malik Plaza, G.T Road, Gujrat", phone: "+92 333-777-5458" },
-  { id: "bahawalpur", name: "Bahawalpur Muslim Town", address: "Ground Floor, Al-Madina Plaza, Muslim Town, Bahawalpur", phone: "+92 332-662-8487" },
-  { id: "mian-channu", name: "Mian Channu Moti Plaza", address: "1st Floor, Moti Plaza, Faisalabad Road, Mian Channu", phone: "+92 333-777-5458" },
-  { id: "mandi-bahauddin", name: "Mandi Bahauddin Punjabi Center", address: "Ground Floor, Punjabi Center, GT Road, Mandi Bahauddin", phone: "+92 332-255-8487" },
-  { id: "sheikhupura", name: "Sheikhupura Stadium Road", address: "1st Floor, Al-Noor Plaza, Stadium Road, Sheikhupura", phone: "+92 333-777-5458" },
-  { id: "multan", name: "Multan Gulgasht Colony", address: "2nd Floor, Gulgasht Metro Center, Gulgasht Colony, Multan", phone: "+92 332-662-8487" },
-  { id: "peshawar", name: "Peshawar Phase 3", address: "Ground Floor, Malik Center, Phase 3, Hayatabad, Peshawar", phone: "+92 333-777-5458" },
-  { id: "jhelum", name: "Jhelum Sultan Plaza", address: "1st Floor, Sultan Plaza, Civil Lines, Jhelum", phone: "+92 332-255-8487" },
-  { id: "mardan", name: "Mardan Warsak Commercial", address: "Ground Floor, Warsak Commercial Center, Mardan", phone: "+92 333-777-5458" },
-  { id: "jeddah", name: "Jeddah Engineering Square (International)", address: "Aisha Towers, Engineering Square, Makarrona Street, 2nd Floor, Office 27, Jeddah 23447", phone: "+966-53-635-6950" },
-  { id: "istanbul", name: "Istanbul Aksaray Square (International)", address: "Ankara Towers, Aksaray 7-8-9-50 Susan Main, Gülenquma", phone: "+90 500-355-0042" },
-  { id: "edinburgh", name: "Edinburgh Ferry Road Place (International)", address: "4 Ferry Road Place, Edinburgh EH4 4AX", phone: "+44 7448-419291" },
-  { id: "online", name: "Online Consultation", address: "Video Call via Zoom/Teams", phone: "+92 304-111-0947" }
+// Available countries for study abroad consultation
+const studyCountries = [
+  { id: "usa", name: "USA", description: "Study in the United States" },
+  { id: "uk", name: "UK", description: "Study in the United Kingdom" },
+  { id: "canada", name: "Canada", description: "Study in Canada" },
+  { id: "finland", name: "Finland", description: "Study in Finland" },
+  { id: "australia", name: "Australia", description: "Study in Australia" },
+  { id: "belgium", name: "Belgium", description: "Study in Belgium" },
+  { id: "turkey", name: "Turkey", description: "Study in Turkey" },
+  { id: "general", name: "General Inquiry", description: "Not sure about destination yet" }
 ];
 
 interface BookingFormData {
@@ -52,7 +38,7 @@ interface BookingFormData {
   consultationType: string;
   preferredDate: string;
   preferredTime: string;
-  location: string;
+  country: string;
   message: string;
 }
 
@@ -64,7 +50,7 @@ export default function ConsultationBookingCalendar() {
   const [selectedDate, setSelectedDate] = useState<string>("");
   const [selectedTime, setSelectedTime] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
-  const [selectedLocation, setSelectedLocation] = useState<string>("");
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   
@@ -75,7 +61,7 @@ export default function ConsultationBookingCalendar() {
     consultationType: "",
     preferredDate: "",
     preferredTime: "",
-    location: "",
+    country: "",
     message: ""
   });
 
@@ -83,7 +69,7 @@ export default function ConsultationBookingCalendar() {
 
   const stepTitles = [
     "Choose Consultation Type",
-    "Select Office Location", 
+    "Select Country of Interest", 
     "Pick Your Date",
     "Choose Time Slot",
     "Enter Your Details"
@@ -132,7 +118,7 @@ export default function ConsultationBookingCalendar() {
   const canProceed = () => {
     switch (currentStep) {
       case 1: return selectedType !== "";
-      case 2: return selectedLocation !== "";
+      case 2: return selectedCountry !== "";
       case 3: return selectedDate !== "";
       case 4: return selectedTime !== "";
       case 5: return formData.name && formData.email && formData.phone;
@@ -159,13 +145,13 @@ export default function ConsultationBookingCalendar() {
           consultationType: "",
           preferredDate: "",
           preferredTime: "",
-          location: "",
+          country: "",
           message: ""
         });
         setSelectedDate("");
         setSelectedTime("");
         setSelectedType("");
-        setSelectedLocation("");
+        setSelectedCountry("");
       }, 3000);
     }, 2000);
   };
@@ -313,35 +299,30 @@ export default function ConsultationBookingCalendar() {
               </div>
             )}
 
-            {/* Step 2: Location Selection */}
+            {/* Step 2: Country Selection */}
             {currentStep === 2 && (
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Select Office Location</h3>
-                <p className="text-gray-600 mb-8">Choose your preferred consultation location</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Select Country of Interest</h3>
+                <p className="text-gray-600 mb-8">Choose your preferred study destination</p>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto pr-2 scrollbar-hide">
-                  {officeLocations.map((location) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {studyCountries.map((country) => (
                     <motion.button
-                      key={location.id}
+                      key={country.id}
                       onClick={() => {
-                        setSelectedLocation(location.id);
-                        handleInputChange('location', location.id);
+                        setSelectedCountry(country.id);
+                        handleInputChange('country', country.id);
                       }}
-                      className={`p-4 rounded-xl border-2 text-left transition-all duration-300 ${
-                        selectedLocation === location.id
+                      className={`p-6 rounded-xl border-2 text-left transition-all duration-300 ${
+                        selectedCountry === country.id
                           ? 'border-[#1D50C9] bg-blue-50'
                           : 'border-gray-200 hover:border-blue-300'
                       }`}
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.99 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <div className="flex items-start">
-                        <MapPin className="w-4 h-4 text-[#1845B3] mr-2 mt-1 flex-shrink-0" />
-                        <div className="min-w-0">
-                          <div className="font-semibold text-gray-900 text-sm truncate">{location.name}</div>
-                          <div className="text-xs text-gray-600 line-clamp-2">{location.address}</div>
-                        </div>
-                      </div>
+                      <div className="font-semibold text-gray-900 text-base mb-2">{country.name}</div>
+                      <div className="text-sm text-gray-600">{country.description}</div>
                     </motion.button>
                   ))}
                 </div>
@@ -478,7 +459,7 @@ export default function ConsultationBookingCalendar() {
                     <h4 className="font-semibold text-[#1e3a8a] mb-4">Booking Summary</h4>
                     <div className="space-y-2 text-sm text-[#1565c0]">
                       <div><strong>Type:</strong> {consultationTypes.find(t => t.id === selectedType)?.name}</div>
-                      <div><strong>Location:</strong> {officeLocations.find(l => l.id === selectedLocation)?.name}</div>
+                      <div><strong>Country:</strong> {studyCountries.find(c => c.id === selectedCountry)?.name}</div>
                       <div><strong>Date:</strong> {selectedDate && new Date(selectedDate).toLocaleDateString()}</div>
                       <div><strong>Time:</strong> {selectedTime}</div>
                     </div>
