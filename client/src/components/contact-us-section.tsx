@@ -162,7 +162,7 @@ export default function ContactUsSection() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <Button 
                 size="lg"
-                className="bg-white text-[#1D50C9] hover:bg-gray-100 font-semibold px-8 py-3 rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="bg-white text-[#1D50C9] hover:bg-gray-100 font-semibold px-8 py-3 shadow-xl transform hover:scale-105 transition-all duration-300"
                 onClick={() => window.open('tel:+923041110947')}
               >
                 <Phone className="w-5 h-5 mr-2" />
@@ -171,7 +171,7 @@ export default function ContactUsSection() {
               <Button 
                 size="lg"
                 variant="outline"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1D50C9] font-semibold px-8 py-3 rounded-full shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1D50C9] font-semibold px-8 py-3 shadow-xl transform hover:scale-105 transition-all duration-300"
                 onClick={() => window.open('https://wa.me/923041110947?text=Hello, I want to learn about study abroad opportunities')}
               >
                 <MessageCircle className="w-5 h-5 mr-2" />
@@ -280,7 +280,7 @@ export default function ContactUsSection() {
             >
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
-                  <h3 className="text-2xl font-bold flex items-center mb-3">
+                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white">
                     <Send className="w-6 h-6 mr-3" />
                     Send Us a Message
                   </h3>
@@ -392,7 +392,7 @@ export default function ContactUsSection() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white h-12 text-lg font-semibold hover:shadow-lg transition-all duration-300 rounded-xl"
+                      className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white h-12 text-lg font-semibold hover:shadow-lg transition-all duration-300"
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}
                       <Send className="w-5 h-5 ml-2" />
@@ -411,7 +411,7 @@ export default function ContactUsSection() {
             >
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
-                  <h3 className="text-2xl font-bold flex items-center mb-3">
+                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white">
                     <Globe className="w-6 h-6 mr-3" />
                     Our Expert Services
                   </h3>
@@ -466,7 +466,7 @@ export default function ContactUsSection() {
               {/* Why Choose Us */}
               <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8">
-                  <h3 className="text-2xl font-bold flex items-center mb-3">
+                  <h3 className="text-2xl font-bold flex items-center mb-3 text-white">
                     <CheckCircle className="w-6 h-6 mr-3" />
                     Why Choose Dunya Consultants?
                   </h3>

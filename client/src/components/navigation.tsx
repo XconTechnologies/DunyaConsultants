@@ -222,7 +222,7 @@ export default function Navigation() {
                     !isScrolled 
                       ? 'bg-white text-[#1D50C9] hover:bg-blue-50' 
                       : 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:from-[#1845B3] hover:to-[#1D50C9]'
-                  } font-semibold px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
+                  } font-semibold px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
                 >
                   <Phone className="w-4 h-4 mr-2" />
                   Free Consultation
