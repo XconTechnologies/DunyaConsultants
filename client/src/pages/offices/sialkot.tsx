@@ -225,13 +225,13 @@ export default function SialkotOffice() {
               transition={{ duration: 0.6 }}
               className="space-y-4"
             >
-              <div className="grid grid-cols-2 gap-4 h-80">
+              <div className="grid grid-cols-2 gap-4 h-56">
                 {/* Building Exterior - Vertical Layout for Better Visibility */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5 }}
-                  className="overflow-hidden rounded-xl shadow-xl"
+                  className="overflow-hidden rounded-xl shadow-xl h-full"
                 >
                   <img 
                     src="/attached_assets/WhatsApp Image 2024-07-22 at 13.33.56_0e41312d_1756192682291.jpg" 
@@ -241,7 +241,7 @@ export default function SialkotOffice() {
                 </motion.div>
                 
                 {/* Right Side - Stacked Interior Images */}
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 h-full">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
