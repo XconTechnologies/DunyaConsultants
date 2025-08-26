@@ -237,7 +237,7 @@ export default function FaisalabadOffice() {
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
                   <img 
-                    src="/attached_assets/IMG-20240909-WA0043_1756189128801.jpg" 
+                    src="/attached_assets/WhatsApp Image 2024-07-20 at 12.33.10_e6eb58d6_1756191180572.jpg" 
                     alt="Dunya Consultants Faisalabad Office - Student Consultation Area"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
                   />
@@ -251,7 +251,7 @@ export default function FaisalabadOffice() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.31_4ea9c94d_1756189137592.jpg" 
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 12.33.10_2bedb1ad_1756191176804.jpg" 
                       alt="Professional Consultation Area"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
@@ -264,7 +264,7 @@ export default function FaisalabadOffice() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.33_46995c46 (1)_1756189140861.jpg" 
+                      src="/attached_assets/WhatsApp Image 2024-07-20 at 13.44.41_463fcd8b_1756191184002.jpg" 
                       alt="Professional Counseling Environment"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
@@ -503,122 +503,134 @@ export default function FaisalabadOffice() {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Visit our Faisalabad office or contact us to begin your study abroad journey
+              If you're searching for study abroad consultants in Faisalabad, we're here to help. Visit us today for a free consultation and take the first step toward your dream university abroad.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - FAQs */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-blue-50 to-indigo-50">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-6 h-6 text-white" />
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
+                <h3 className="text-3xl font-bold text-gray-900 mb-8">
+                  Frequently Asked{" "}
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Questions
+                  </span>
+                </h3>
+                
+                <div className="space-y-3 flex-grow">
+                  {faqs.map((faq, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                    >
+                      <div className="bg-gray-50 rounded-lg border border-gray-200 hover:border-[#1D50C9] transition-all duration-300 overflow-hidden">
+                        <button
+                          className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
+                          onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                        >
+                          <h4 className="text-gray-900 font-semibold pr-4">{faq.question}</h4>
+                          <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                            {expandedFaq === index ? (
+                              <ChevronUp className="w-4 h-4 text-[#1D50C9]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[#1D50C9]" />
+                            )}
+                          </div>
+                        </button>
+                        {expandedFaq === index && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="px-4 pb-4 border-t border-gray-200"
+                          >
+                            <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
+                          </motion.div>
+                        )}
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Address</h4>
-                        <p className="text-gray-600">20-1st Floor, Center Point Plaza, Koh-i-Noor City, Jaranwala Road, Faisalabad</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Phone className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
-                        <p className="text-gray-600">+92 332-6628487</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
-                        <Clock className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Hours</h4>
-                        <p className="text-gray-600">Monday - Saturday: 10:00 AM - 6:00 PM</p>
-                        <p className="text-gray-600">Sunday: Closed</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-8 pt-6 border-t border-blue-200">
-                    <h4 className="font-semibold text-gray-900 mb-4">How it works (3 steps)</h4>
-                    <div className="space-y-3 text-sm">
-                      <div className="flex items-center space-x-3">
-                        <Badge className="bg-[#1D50C9] text-white text-xs">1</Badge>
-                        <span className="text-gray-600">Profile review & plan: course, country, intake</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Badge className="bg-[#1D50C9] text-white text-xs">2</Badge>
-                        <span className="text-gray-600">Applications & scholarships: documents, SOP, submissions</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Badge className="bg-[#1D50C9] text-white text-xs">3</Badge>
-                        <span className="text-gray-600">Visa file & interview: compliant case + practice interviews</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             </motion.div>
 
-            {/* FAQ Section */}
+            {/* Right Side - Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
-              
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <Card className="border border-gray-200 hover:shadow-md transition-all duration-300">
-                      <CardContent className="p-0">
-                        <button
-                          onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                          className="w-full text-left p-6 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
-                        >
-                          <div className="flex justify-between items-center">
-                            <h4 className="font-semibold text-gray-900 pr-4">{faq.question}</h4>
-                            {expandedFaq === index ? (
-                              <ChevronUp className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                            ) : (
-                              <ChevronDown className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                            )}
-                          </div>
-                        </button>
-                        
-                        {expandedFaq === index && (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="px-6 pb-6"
-                          >
-                            <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-                          </motion.div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
+                
+                <div className="space-y-4 flex-grow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <MapPin className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Address</h4>
+                      <p className="text-blue-100 leading-relaxed">
+                        20-1st Floor, Center Point Plaza, Koh-i-Noor City, Jaranwala Road, Faisalabad
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Phone</h4>
+                      <a href="tel:+923326628487" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +92 332-6628487
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-semibold text-lg mb-2">Office Hours</h4>
+                      <p className="text-blue-100 text-lg">
+                        Monday - Saturday: 10 AM - 6 PM
+                      </p>
+                    </div>
+                  </div>
+                  
+                </div>
+
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-sm leading-relaxed">
+                    Our Faisalabad office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
+                  </p>
+                </div>
+
+                <div className="space-y-4 mt-4">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <Calendar className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <a href="https://maps.app.goo.gl/e4cEbfQ6HDYFGhhs7" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      Get Directions
+                      <MapPin className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </div>
               </div>
             </motion.div>
           </div>
