@@ -1516,48 +1516,51 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Table of Contents - Sticky */}
-              {contentSections.length > 0 && (
-                <div className="sticky top-24 mb-6">
-                  <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
+              {/* Sidebar with TOC and Contact Box */}
+              <div className="space-y-6">
+                {/* Table of Contents - Sticky */}
+                {contentSections.length > 0 && (
+                  <div className="sticky top-24">
+                    <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
+                      <CardHeader className="pb-4">
+                        <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="space-y-2">
+                          {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
+                            <li key={index}>
+                              <a 
+                                href={`#${section.id}`}
+                                className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                              >
+                                {index + 1}. {section.title}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
+
+                {/* Contact Box - Sticky */}
+                <div className="sticky top-[calc(6rem+400px)]">
+                  <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
                     <CardHeader className="pb-4">
-                      <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                      <CardTitle className="text-xl">Need Help?</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <ul className="space-y-2">
-                        {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
-                          <li key={index}>
-                            <a 
-                              href={`#${section.id}`}
-                              className="text-[#1D50C9] hover:underline block py-1 text-sm"
-                            >
-                              {index + 1}. {section.title}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
+                      <p className="text-blue-100 text-sm mb-4">
+                        Get personalized guidance for your study abroad journey
+                      </p>
+                      <Link href="/contact">
+                        <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
+                          Contact Us
+                        </Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 </div>
-              )}
-
-              {/* Contact Box - Sticky */}
-              <div className="sticky top-[calc(100vh-250px)]">
-                <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
-                  <CardHeader className="pb-4">
-                    <CardTitle className="text-xl">Need Help?</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-blue-100 text-sm mb-4">
-                      Get personalized guidance for your study abroad journey
-                    </p>
-                    <Link href="/contact">
-                      <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
-                        Contact Us
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
               </div>
 
             </div>
