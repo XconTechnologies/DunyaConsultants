@@ -1532,14 +1532,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Table of Contents - sticky till end of scrolling */}
+              {/* Table of Contents - fixed position during scroll */}
               {contentSections.length > 0 && (
-                <div className="sticky top-24">
-                  <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
+                <div className="sticky top-24 z-40">
+                  <Card className="hidden md:block bg-white border border-gray-200 shadow-lg">
                     <CardHeader className="pb-4">
                       <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="max-h-96 overflow-y-auto">
                       <ul className="space-y-2">
                         {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
                           <li key={index}>
