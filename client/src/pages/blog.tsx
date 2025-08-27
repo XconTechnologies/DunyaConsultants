@@ -1485,38 +1485,38 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-start gap-3">
+                  <div className="flex justify-center gap-4">
                     <button
                       onClick={() => handleShare('facebook')}
-                      className="text-[#1877F2] hover:text-[#166FE5] transition-colors"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
                       title="Share on Facebook"
                     >
                       <Facebook className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('x')}
-                      className="text-black hover:text-gray-700 transition-colors"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
                       title="Share on X"
                     >
                       <X className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('linkedin')}
-                      className="text-[#0A66C2] hover:text-[#094D92] transition-colors"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
                       title="Share on LinkedIn"
                     >
                       <Linkedin className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('instagram')}
-                      className="text-pink-500 hover:text-pink-600 transition-colors"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
                       title="Share on Instagram"
                     >
                       <Instagram className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('share')}
-                      className="text-gray-600 hover:text-gray-700 transition-colors"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
                       title="Share"
                     >
                       <Share className="w-5 h-5" />
