@@ -1488,38 +1488,43 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   <div className="flex justify-center gap-4">
                     <button
                       onClick={() => handleShare('facebook')}
-                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
+                      className="flex items-center justify-center w-12 h-12 min-w-[48px] min-h-[48px] max-w-[48px] max-h-[48px] bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors border-0 p-0 overflow-hidden"
+                      style={{ borderRadius: '50%', aspectRatio: '1/1' }}
                       title="Share on Facebook"
                     >
-                      <Facebook className="w-5 h-5" />
+                      <Facebook className="w-5 h-5 text-white fill-white" style={{ color: 'white', fill: 'white' }} />
                     </button>
                     <button
                       onClick={() => handleShare('x')}
-                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
+                      className="flex items-center justify-center w-12 h-12 min-w-[48px] min-h-[48px] max-w-[48px] max-h-[48px] bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors border-0 p-0 overflow-hidden"
+                      style={{ borderRadius: '50%', aspectRatio: '1/1' }}
                       title="Share on X"
                     >
-                      <X className="w-5 h-5" />
+                      <X className="w-5 h-5 text-white fill-white" style={{ color: 'white', fill: 'white' }} />
                     </button>
                     <button
                       onClick={() => handleShare('linkedin')}
-                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
+                      className="flex items-center justify-center w-12 h-12 min-w-[48px] min-h-[48px] max-w-[48px] max-h-[48px] bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors border-0 p-0 overflow-hidden"
+                      style={{ borderRadius: '50%', aspectRatio: '1/1' }}
                       title="Share on LinkedIn"
                     >
-                      <Linkedin className="w-5 h-5" />
+                      <Linkedin className="w-5 h-5 text-white fill-white" style={{ color: 'white', fill: 'white' }} />
                     </button>
                     <button
                       onClick={() => handleShare('instagram')}
-                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
+                      className="flex items-center justify-center w-12 h-12 min-w-[48px] min-h-[48px] max-w-[48px] max-h-[48px] bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors border-0 p-0 overflow-hidden"
+                      style={{ borderRadius: '50%', aspectRatio: '1/1' }}
                       title="Share on Instagram"
                     >
-                      <Instagram className="w-5 h-5" />
+                      <Instagram className="w-5 h-5 text-white fill-white" style={{ color: 'white', fill: 'white' }} />
                     </button>
                     <button
                       onClick={() => handleShare('share')}
-                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
+                      className="flex items-center justify-center w-12 h-12 min-w-[48px] min-h-[48px] max-w-[48px] max-h-[48px] bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors border-0 p-0 overflow-hidden"
+                      style={{ borderRadius: '50%', aspectRatio: '1/1' }}
                       title="Share"
                     >
-                      <Share className="w-5 h-5" />
+                      <Share className="w-5 h-5 text-white fill-white" style={{ color: 'white', fill: 'white' }} />
                     </button>
                   </div>
                 </CardContent>
