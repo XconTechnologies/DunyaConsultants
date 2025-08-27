@@ -458,9 +458,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
         </div>
       </section>
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="blog-content-grid gap-6 lg:gap-8">
           {/* Main Content */}
-          <div className="lg:col-span-3">
+          <div>
             <article className="bg-white rounded-xl shadow-lg overflow-hidden">
               
               {/* Featured Image */}
@@ -1518,8 +1518,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Sidebar with Sticky Behavior */}
-              <div className="sticky top-24 self-start space-y-6 max-h-[calc(100vh-6rem)] overflow-y-auto">
+              {/* Sidebar with Smart Sticky Behavior */}
+              <div className="sticky top-24 self-start space-y-6">
                 {/* Table of Contents */}
                 {contentSections.length > 0 && (
                   <div className="mb-6">

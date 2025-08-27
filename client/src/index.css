@@ -315,3 +315,24 @@ div[class*="from-[#1D50C9]"] .mega-menu-button,
 div[class*="from-[#1D50C9]"] button.mega-menu-button {
   color: #ffffff !important;
 }
+
+/* Smart sticky sidebar that stops at the bottom */
+.smart-sticky-sidebar {
+  position: sticky;
+  top: 6rem;
+  align-self: flex-start;
+}
+
+/* Ensure proper grid/flex layout for sidebar constraints */
+.blog-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .blog-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
