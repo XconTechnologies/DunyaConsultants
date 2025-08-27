@@ -1516,12 +1516,20 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Sidebar with TOC and Contact Box */}
-              <div className="space-y-6">
-                {/* Table of Contents - Sticky */}
+              {/* Sidebar with TOC and Contact Box - Fixed Position */}
+              <div className="relative">
+                {/* Table of Contents - Fixed */}
                 {contentSections.length > 0 && (
-                  <div className="sticky top-24">
-                    <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
+                  <div 
+                    className="fixed top-24 right-4 w-80 z-20"
+                    style={{
+                      position: 'fixed',
+                      top: '6rem',
+                      right: '1rem',
+                      width: '20rem'
+                    }}
+                  >
+                    <Card className="hidden lg:block bg-white border border-gray-200 shadow-lg">
                       <CardHeader className="pb-4">
                         <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
                       </CardHeader>
@@ -1543,9 +1551,17 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </div>
                 )}
 
-                {/* Contact Box - Sticky */}
-                <div className="sticky top-[calc(6rem+400px)]">
-                  <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
+                {/* Contact Box - Fixed Below TOC */}
+                <div 
+                  className="fixed bottom-8 right-4 w-80 z-20"
+                  style={{
+                    position: 'fixed',
+                    bottom: '2rem',
+                    right: '1rem',
+                    width: '20rem'
+                  }}
+                >
+                  <Card className="hidden lg:block bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-xl">
                     <CardHeader className="pb-4">
                       <CardTitle className="text-xl">Need Help?</CardTitle>
                     </CardHeader>
