@@ -1284,14 +1284,26 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               
                               {/* Featured Image */}
                               {blog.image && (
-                                <div className="relative overflow-hidden rounded-t-lg">
+                                <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
                                   <img 
                                     src={blog.image.startsWith('http') || blog.image.startsWith('/attached_assets/') ? blog.image : `/attached_assets/${blog.image}`} 
                                     alt={blog.title}
                                     className="w-full h-56 object-cover transition-transform hover:scale-105"
-                                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                                    style={{ 
+                                      objectFit: 'cover', 
+                                      objectPosition: 'center',
+                                      imageRendering: 'auto',
+                                      backfaceVisibility: 'hidden'
+                                    }}
+                                    loading="lazy"
+                                    decoding="async"
+                                    onLoad={(e) => {
+                                      e.currentTarget.style.opacity = '1';
+                                    }}
                                     onError={(e) => {
-                                      e.currentTarget.style.display = 'none';
+                                      console.log('Image failed to load:', blog.image);
+                                      e.currentTarget.src = '/attached_assets/default-blog-image.png';
+                                      e.currentTarget.onerror = null; // Prevent infinite loop
                                     }}
                                   />
                                 </div>
