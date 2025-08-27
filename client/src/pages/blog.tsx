@@ -1449,9 +1449,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 space-y-4 lg:space-y-6">
+            <div className="space-y-4 lg:space-y-6">
               
-              {/* Search Bar */}
+              {/* Search Bar - scrolls with content */}
               <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader className="pb-4">
                   <CardTitle className="text-xl text-[#1D50C9]">Search</CardTitle>
@@ -1477,7 +1477,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Share Buttons */}
+              {/* Share Buttons - scrolls with content */}
               <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader className="pb-4">
                   <CardTitle className="text-xl text-[#1D50C9]">
@@ -1532,30 +1532,32 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Table of Contents */}
+              {/* Table of Contents - sticky/fixed position */}
               {contentSections.length > 0 && (
-                <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
-                  <CardHeader className="pb-4">
-                    <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
-                      {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
-                        <li key={index}>
-                          <a 
-                            href={`#${section.id}`}
-                            className="text-[#1D50C9] hover:underline block py-1 text-sm"
-                          >
-                            {index + 1}. {section.title}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                <div className="sticky top-24">
+                  <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
+                    <CardHeader className="pb-4">
+                      <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-2">
+                        {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
+                          <li key={index}>
+                            <a 
+                              href={`#${section.id}`}
+                              className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                            >
+                              {index + 1}. {section.title}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
               )}
 
-              {/* Contact Box */}
+              {/* Contact Box - scrolls with content */}
               <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0">
                 <CardHeader className="pb-4">
                   <CardTitle className="text-xl">Need Help?</CardTitle>
