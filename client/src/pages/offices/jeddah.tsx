@@ -87,28 +87,24 @@ export default function JeddahOffice() {
 
   const faqs = [
     {
-      question: "What documents do I need?",
-      answer: "Passport, transcripts, English test if required, CV, SOP, references, and proof of funds."
+      question: "Which documents are needed?",
+      answer: "Passport, transcripts, English test if required, CV, SOP, references, and funds evidence."
+    },
+    {
+      question: "Do you help with scholarships?",
+      answer: "Yes, both country and university awards."
     },
     {
       question: "Is IELTS mandatory?",
-      answer: "Not always. Some courses accept PTE, TOEFL, Duolingo, or MOI."
+      answer: "Not always. PTE, TOEFL, Duolingo, or MOI may be accepted."
     },
     {
-      question: "How long does a visa take?",
-      answer: "It depends on the country. Starting 6 to 9 months early helps."
+      question: "Can families ask about dependents?",
+      answer: "Yes, rules differ by country. We advise case by case."
     },
     {
-      question: "Do you support online counselling?",
+      question: "Do you support online meetings?",
       answer: "Yes, by WhatsApp or video, and in the office."
-    },
-    {
-      question: "Which countries do you support from Jeddah?",
-      answer: "We currently help students apply to the USA, UK, Australia, Canada, Belgium, Cyprus, Germany, Turkey, Finland, Ireland and more - guiding you through admissions and student visas for each country."
-    },
-    {
-      question: "What makes Path Visa Consultants Jeddah special?",
-      answer: "Our local team understands the unique needs of Saudi students and international students in Jeddah. We provide personalized guidance with proven results and both local and online support."
     }
   ];
 
@@ -137,18 +133,18 @@ export default function JeddahOffice() {
             </div>
             
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-white">
-              Path Visa Consultants | Jeddah (Saudi Arabia)
+              Dunya Consultants | Jeddah (Saudi Arabia)
             </h1>
             
             <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
-              Planning to study abroad from Jeddah? We guide you from choosing a course and country to submitting strong applications and a compliant student visa. The goal is to make everything simple and stress free.
+              Based in Jeddah, we make overseas education simple. We help with course and country selection, strong applications, and a compliant student visa.
             </p>
 
             {/* Contact Info */}
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
               <div className="flex items-center justify-center">
                 <Phone className="w-5 h-5 mr-2" />
-                <span>+966 12 234 5678</span>
+                <span>+966 59 638 2593</span>
               </div>
               <div className="flex items-center justify-center">
                 <Clock className="w-5 h-5 mr-2" />
@@ -369,7 +365,7 @@ export default function JeddahOffice() {
                     Ready to Start Your Study Abroad Journey?
                   </div>
                   <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
-                    Book your free consultation and start your study abroad Jeddah journey with our expert guidance and proven success methods.
+                    Book a free consultation and start your study abroad plan from Jeddah with our expert guidance and proven success methods.
                   </p>
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -480,7 +476,7 @@ export default function JeddahOffice() {
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Address</h4>
                       <p className="text-blue-100 leading-relaxed">
-                        King Fahd Road, Al-Salamah District, Jeddah 23441, Saudi Arabia
+                        Above Topten, Engineering Square, Makarona Street, 2nd Floor, Office 27, Jeddah 23447, Saudi Arabia
                       </p>
                     </div>
                   </div>
@@ -491,8 +487,8 @@ export default function JeddahOffice() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
-                      <a href="tel:+966122345678" className="text-blue-100 hover:text-white transition-colors text-lg">
-                        +966 12 234 5678
+                      <a href="tel:+966596382593" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +966 59 638 2593
                       </a>
                     </div>
                   </div>
@@ -514,7 +510,7 @@ export default function JeddahOffice() {
 
                 <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
                   <p className="text-blue-100 text-sm leading-relaxed">
-                    Our Jeddah office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
+                    Book a free consultation and start your study abroad plan from Jeddah. Email: umer@dunyaconsultants.com
                   </p>
                 </div>
 
@@ -527,7 +523,7 @@ export default function JeddahOffice() {
                   </Button>
                   
                   <Button size="lg" variant="outline" className="w-full border-white/50 text-white hover:bg-white/10 py-4 rounded-xl backdrop-blur-sm transition-all duration-300 font-semibold">
-                    <a href="https://wa.me/966122345678" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                    <a href="https://wa.me/966596382593" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
                       WhatsApp Chat
                       <MessageCircle className="w-5 h-5 ml-2" />
                     </a>
