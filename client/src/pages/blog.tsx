@@ -1546,7 +1546,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 )}
 
                 {/* Quick Cost Calculator - Only for exchange programs post */}
-                {(post.slug.includes("exchange-programs-for-pakistani-students")) && (
+                {(slug.includes("exchange-programs-for-pakistani-students")) && (
                   <div className="sticky top-[28rem] z-10 mb-6">
                     <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
                       <CardHeader className="pb-4">
