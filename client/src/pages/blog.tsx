@@ -565,13 +565,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             {section.content.split('\n').map((paragraph: string, pIndex: number) => {
                               if (paragraph.trim()) {
                                 return (
-                                  <p 
-                                    key={pIndex} 
-                                    className="text-gray-700 leading-relaxed text-base mb-4 last:mb-0"
-                                    dangerouslySetInnerHTML={{
-                                      __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                    }}
-                                  />
+                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-4 last:mb-0">
+                                    {paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}
+                                  </p>
                                 );
                               }
                               return null;
@@ -687,14 +683,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return (
                                   <div key={pIndex} className="flex items-start leading-tight mb-2">
                                     <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
-                                    <span 
-                                      className="text-gray-700 text-base leading-tight"
-                                      dangerouslySetInnerHTML={{
-                                        __html: paragraph
-                                          .replace(/^[-•]\s*/, '')
-                                          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                      }}
-                                    />
+                                    <span className="text-gray-700 text-base leading-tight">
+                                      <strong>{paragraph.replace(/^[-•]\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1')}</strong>
+                                    </span>
                                   </div>
                                 );
                               }
@@ -718,7 +709,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               // Check for complete HTML table content and render it properly
                               if (paragraph.trim().startsWith('<div class="overflow-x-auto">') && paragraph.includes('</div>')) {
                                 return (
-                                  <div key={pIndex} className="my-6" dangerouslySetInnerHTML={{ __html: paragraph }} />
+                                  <div key={pIndex} className="my-6">
+                                    <p className="text-gray-700 leading-relaxed text-base mb-3">{paragraph.replace(/<[^>]*>/g, '')}</p>
+                                  </div>
                                 );
                               }
                               
@@ -1310,27 +1303,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                   <span className="text-[#1D50C9] mr-3 font-semibold text-base leading-none mt-0.5">
                                     {paragraph.trim().match(/^\d+\./)?.[0]}
                                   </span>
-                                  <span 
-                                    className="text-gray-700 text-base leading-relaxed"
-                                    dangerouslySetInnerHTML={{
-                                      __html: paragraph
-                                        .replace(/^\d+\.\s*/, '')
-                                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                    }}
-                                  />
+                                  <span className="text-gray-700 text-base leading-relaxed">
+                                    <strong>{paragraph.replace(/^\d+\.\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1')}</strong>
+                                  </span>
                                 </div>
                               );
                             }
 
                             if (paragraph.trim()) {
                               return (
-                                <p 
-                                  key={pIndex} 
-                                  className="text-gray-700 leading-relaxed text-base mb-3"
-                                  dangerouslySetInnerHTML={{
-                                    __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                  }}
-                                />
+                                <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
+                                  <strong>{paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}</strong>
+                                </p>
                               );
                             }
                             return null;
