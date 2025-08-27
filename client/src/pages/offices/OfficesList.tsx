@@ -728,6 +728,18 @@ export default function OfficesList() {
                               View Details
                             </Button>
                           </Link>
+                        ) : office.id === "edinburgh" ? (
+                          <Link href="/offices/edinburgh">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 font-medium text-sm hover:bg-blue-50"
+                              style={{ borderColor: '#1D50C9', color: '#1D50C9' }}
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
                         ) : (
                           <Button 
                             variant="outline" 
