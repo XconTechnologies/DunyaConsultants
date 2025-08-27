@@ -1451,7 +1451,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
           <div className="lg:col-span-1">
             <div className="space-y-4 lg:space-y-6">
               
-              {/* Search Bar - scrolls with content */}
+              {/* Search Bar */}
               <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader className="pb-4">
                   <CardTitle className="text-xl text-[#1D50C9]">Search</CardTitle>
@@ -1477,7 +1477,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Share Buttons - scrolls with content */}
+              {/* Share Buttons */}
               <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader className="pb-4">
                   <CardTitle className="text-xl text-[#1D50C9]">
@@ -1532,15 +1532,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Sidebar - Always visible when scrolling */}
-              <div className="fixed top-24 right-8 w-80 z-50 space-y-4 hidden lg:block">
-                {/* Table of Contents - always visible in sidebar */}
-                {contentSections.length > 0 && (
-                  <Card className="bg-white border border-gray-200 shadow-lg">
+              {/* Table of Contents - Sticky */}
+              {contentSections.length > 0 && (
+                <div className="sticky top-24">
+                  <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
                     <CardHeader className="pb-4">
                       <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="max-h-96 overflow-y-auto">
                       <ul className="space-y-2">
                         {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
                           <li key={index}>
@@ -1555,25 +1554,25 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       </ul>
                     </CardContent>
                   </Card>
-                )}
+                </div>
+              )}
 
-                {/* Contact Box - always visible in sidebar */}
-                <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
-                  <CardHeader className="pb-4">
-                    <CardTitle className="text-xl">Need Help?</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-blue-100 text-sm mb-4">
-                      Get personalized guidance for your study abroad journey
-                    </p>
-                    <Link href="/contact">
-                      <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
-                        Contact Us
-                      </Button>
-                    </Link>
-                  </CardContent>
-                </Card>
-              </div>
+              {/* Contact Box */}
+              <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl">Need Help?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-blue-100 text-sm mb-4">
+                    Get personalized guidance for your study abroad journey
+                  </p>
+                  <Link href="/contact">
+                    <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
+                      Contact Us
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
 
             </div>
           </div>
