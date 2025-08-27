@@ -1532,15 +1532,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Fixed section containing both TOC and Contact Box */}
-              <div className="sticky top-24 z-40 space-y-4">
-                {/* Table of Contents - fixed position during scroll */}
+              {/* Sidebar - Always visible when scrolling */}
+              <div className="fixed top-24 right-8 w-80 z-50 space-y-4 hidden lg:block">
+                {/* Table of Contents - always visible in sidebar */}
                 {contentSections.length > 0 && (
-                  <Card className="hidden md:block bg-white border border-gray-200 shadow-lg">
+                  <Card className="bg-white border border-gray-200 shadow-lg">
                     <CardHeader className="pb-4">
                       <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
                     </CardHeader>
-                    <CardContent className="max-h-96 overflow-y-auto">
+                    <CardContent>
                       <ul className="space-y-2">
                         {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
                           <li key={index}>
@@ -1557,7 +1557,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </Card>
                 )}
 
-                {/* Contact Box - fixed position during scroll */}
+                {/* Contact Box - always visible in sidebar */}
                 <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
                   <CardHeader className="pb-4">
                     <CardTitle className="text-xl">Need Help?</CardTitle>
