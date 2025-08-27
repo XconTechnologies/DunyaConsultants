@@ -457,6 +457,8 @@ export default function JeddahOffice() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
