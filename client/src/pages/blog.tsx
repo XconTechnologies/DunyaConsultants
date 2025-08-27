@@ -1486,41 +1486,41 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-center gap-6">
+                  <div className="flex items-center justify-center gap-3">
                     <button
                       onClick={() => handleShare('facebook')}
-                      className="p-3 bg-[#1877F2] text-white rounded-lg hover:bg-[#166FE5] transition-colors"
+                      className="text-[#1877F2] hover:text-[#166FE5] transition-colors"
                       title="Share on Facebook"
                     >
-                      <Facebook className="w-6 h-6" />
+                      <Facebook className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('x')}
-                      className="p-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                      className="text-black hover:text-gray-700 transition-colors"
                       title="Share on X"
                     >
-                      <X className="w-6 h-6" />
+                      <X className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('linkedin')}
-                      className="p-3 bg-[#0A66C2] text-white rounded-lg hover:bg-[#094D92] transition-colors"
+                      className="text-[#0A66C2] hover:text-[#094D92] transition-colors"
                       title="Share on LinkedIn"
                     >
-                      <Linkedin className="w-6 h-6" />
+                      <Linkedin className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('instagram')}
-                      className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
+                      className="text-pink-500 hover:text-pink-600 transition-colors"
                       title="Share on Instagram"
                     >
-                      <Instagram className="w-6 h-6" />
+                      <Instagram className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('share')}
-                      className="p-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                      className="text-gray-600 hover:text-gray-700 transition-colors"
                       title="Share"
                     >
-                      <Share className="w-6 h-6" />
+                      <Share className="w-5 h-5" />
                     </button>
                   </div>
                 </CardContent>
