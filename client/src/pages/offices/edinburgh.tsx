@@ -1,326 +1,535 @@
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Mail, Users, Star, Award, Building2, ArrowLeft, Calendar, MessageCircle, CheckCircle, Globe } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, CheckCircle, Users, GraduationCap, FileText, Globe, Award, Heart, ArrowRight, BookOpen, MessageCircle, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import ReactCountryFlag from "react-country-flag";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
 export default function EdinburghOffice() {
-  const office = {
-    id: "edinburgh",
-    city: "Edinburgh",
-    name: "Ferry Road Place",
-    address: "4 Ferry Road Place, Edinburgh EH4 4AX",
-    phone: "+44 7448‑419291",
-    email: "edinburgh@dunyaconsultants.com",
-    hours: "Mon–Sat 10 AM–6 PM",
-    gradient: "from-slate-600 to-gray-600",
-    region: "International",
-    services: ["Student Support", "University Applications", "Career Guidance", "Visa Assistance", "Academic Support"],
-    manager: "Dr. Sarah McKenzie",
-    staffCount: 7,
-    established: "2021",
-    successRate: "98%",
-    studentsServed: "1500+",
-    specializations: ["UK Universities", "Scottish Institutions", "Medical Sciences", "Engineering Studies", "Business Programs"],
-    description: "Our Edinburgh office, located in Scotland's historic capital, serves as our UK headquarters, providing comprehensive support for Pakistani students studying across the United Kingdom. We specialize in UK university admissions, academic support, and career guidance with deep expertise in Scottish educational institutions.",
-    testimonials: [
-      {
-        name: "Hamza MacDonald",
-        university: "University of Edinburgh",
-        message: "The Edinburgh office provided outstanding support throughout my medical studies in Scotland. Their knowledge of UK education system was exceptional."
-      },
-      {
-        name: "Zara Campbell",
-        university: "Heriot-Watt University",
-        message: "Excellent guidance for my engineering program in Edinburgh. The team understood both Pakistani background and Scottish academic culture perfectly."
-      },
-      {
-        name: "Omar Stewart",
-        university: "University of Glasgow",
-        message: "Professional support from application to graduation. The Edinburgh team made my Scottish education journey incredibly smooth."
-      }
-    ],
-    facilities: ["UK Academic Support", "Career Services Center", "Student Counseling", "Visa & Immigration Help", "Academic Writing Support", "Free WiFi", "24/7 Emergency Helpline"],
-    nearbyLandmarks: ["Ferry Road Place", "Royal Botanic Garden", "Edinburgh Castle", "University of Edinburgh", "Princes Street", "Arthur's Seat"]
+  const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
+  
+  const services = [
+    {
+      icon: Users,
+      title: "Career and Course Counselling",
+      description: "Match your career goals with the right program and country. Our advisors in Edinburgh sit down with you, understand your aspirations, and suggest the best study options for your future.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: GraduationCap,
+      title: "University Shortlisting",
+      description: "University shortlisting by profile and intake. We work with multiple top-ranked universities worldwide to find the perfect match for your academic background and budget.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: FileText,
+      title: "Application Support",
+      description: "Application filing, documents, and statement of purpose. We handle all your application requirements professionally and ensure everything is submitted on time.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: Globe,
+      title: "Visa Guidance",
+      description: "Visa guidance, checklists, file review, and mock interviews. Our visa experts in Edinburgh follow the process with greatest care to ensure your success.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: MessageCircle,
+      title: "Pre-Departure Briefing",
+      description: "Pre-departure briefing on travel, housing, and culture. We'll give you comprehensive advice to ensure a smooth start to your new adventure.",
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      icon: Calendar,
+      title: "Test Preparation",
+      description: "IELTS | PTE | TOEFL | Duolingo small groups, clear strategies, free assessment. Expert trainers with personalized feedback to help you achieve your target scores.",
+      color: "from-blue-500 to-blue-600"
+    }
+  ];
+
+  const ieltsFeatures = [
+    "IELTS | PTE | TOEFL | Duolingo small groups",
+    "Clear strategies and proven methods",
+    "Free assessment to map your score plan",
+    "Expert trainers with personalized feedback",
+    "End-to-end support: test prep + admission + visa"
+  ];
+
+  const whyChooseUs = [
+    "Expert counsellors with proven track record",
+    "Personalised plans tailored to your goals",
+    "Proven outcomes with strong success rate",
+    "Local and online support available",
+    "Clear and affordable process"
+  ];
+
+  const countries = ["USA", "UK", "Australia", "Canada", "Belgium", "Cyprus", "Germany", "Turkey", "Finland", "Ireland"];
+  // Duplicate countries for seamless infinite scrolling
+  const duplicatedCountries = [...countries, ...countries];
+
+  // Country codes mapping for flags
+  const countryCodesMap = {
+    "USA": "US",
+    "UK": "GB", 
+    "Australia": "AU",
+    "Canada": "CA",
+    "Belgium": "BE",
+    "Cyprus": "CY",
+    "Germany": "DE",
+    "Turkey": "TR",
+    "Finland": "FI",
+    "Ireland": "IE"
   };
 
+  const faqs = [
+    {
+      question: "Do you help with UCAS and non UCAS routes?",
+      answer: "Yes, for UK and international applications."
+    },
+    {
+      question: "Can I study without IELTS?",
+      answer: "Sometimes. PTE, Duolingo, or MOI may be accepted. We will shortlist options."
+    },
+    {
+      question: "How early should I apply?",
+      answer: "Start 6 to 9 months before your intake."
+    },
+    {
+      question: "Do you offer online counselling?",
+      answer: "Yes, both remote and in office sessions."
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
-      
-      {/* Header */}
-      <div className={`bg-gradient-to-r ${office.gradient} text-white pt-32 pb-16`}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center mb-6">
-            <Link href="/offices">
-              <Button variant="ghost" className="text-white hover:bg-white/20 mr-4">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back to All Offices
-              </Button>
-            </Link>
-          </div>
-          
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/10"></div>
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
+          <div className="absolute bottom-20 right-20 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
+        </div>
+        
+        <div className="relative max-w-7xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
+            className="text-center"
           >
-            <div className="flex items-center mb-4">
-              <Globe className="w-8 h-8 mr-3" />
-              <Badge className="bg-white/20 text-white border-white/30">International Office</Badge>
+            <div className="inline-flex items-center px-6 py-3 bg-white/15 rounded-full backdrop-blur-sm mb-8 border border-white/20">
+              <MapPin className="w-5 h-5 mr-2" />
+              <span className="text-sm font-medium">Edinburgh Office</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Dunya Consultants {office.city}
+            
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-white">
+              Dunya Consultants | Edinburgh (United Kingdom)
             </h1>
-            <p className="text-xl opacity-90 mb-6">{office.name} • Scotland, UK</p>
-            <p className="text-lg opacity-80 max-w-3xl">{office.description}</p>
+            
+            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
+              From Edinburgh, we help you choose the right universities worldwide, prepare strong applications, and manage a complete student visa file. We focus on clarity and timing.
+            </p>
+
+            {/* Contact Info */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
+              <div className="flex items-center justify-center">
+                <Phone className="w-5 h-5 mr-2" />
+                <span>+44 753 511 93 65</span>
+              </div>
+              <div className="flex items-center justify-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>Mon–Fri 9 AM–6 PM</span>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                  Book Free Consultation
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                <a href="https://maps.app.goo.gl/YourEdinburghLocationLink" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  Get Directions
+                  <MapPin className="w-5 h-5 ml-2" />
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </div>
-      </div>
+      </section>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Contact Info */}
+
+      {/* Office Details */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="space-y-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="w-full"
           >
-            <Card className="shadow-lg border-0">
-              <CardHeader>
-                <CardTitle className="flex items-center text-gray-800">
-                  <Building2 className="w-5 h-5 mr-2 #1845B3" />
-                  Office Information
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <MapPin className="w-5 h-5 text-gray-500 mt-1 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-gray-800">Address</p>
-                    <p className="text-gray-600 text-sm">{office.address}</p>
-                    <Badge variant="outline" className="mt-1 border-slate-200 text-slate-700">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland, UK</Badge>
-                  </div>
+            <div className="text-center">
+              <h3 className="text-4xl font-bold text-gray-900 mb-8">
+                Countries We{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Support
+                </span>
+              </h3>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9] relative">
+                {/* Infinite Scrolling Container */}
+                <div className="relative overflow-hidden">
+                  <motion.div 
+                    className="flex gap-6"
+                    animate={{ x: [-0, -50 + "%"] }}
+                    transition={{ 
+                      duration: 20,
+                      ease: "linear",
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  >
+                    {duplicatedCountries.map((country, index) => (
+                      <motion.div
+                        key={`${country}-${index}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: (index % countries.length) * 0.05 }}
+                        className="group cursor-pointer flex-shrink-0"
+                      >
+                        <div className="bg-white text-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px] border border-gray-200">
+                          <div className="flex flex-col items-center">
+                            <div className="w-16 h-12 mb-3 rounded-md overflow-hidden shadow-md border-2 border-gray-200">
+                              <ReactCountryFlag 
+                                countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
+                                svg 
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover'
+                                }}
+                              />
+                            </div>
+                            <p className="text-sm font-semibold">{country}</p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
                 </div>
-                
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-gray-800">Phone</p>
-                    <a href={`tel:${office.phone}`} className="#1845B3 hover:text-#1a73e8 text-sm">
-                      {office.phone}
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-gray-800">Email</p>
-                    <a href={`mailto:${office.email}`} className="#1845B3 hover:text-#1a73e8 text-sm">
-                      {office.email}
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-3">
-                  <Clock className="w-5 h-5 text-gray-500 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-gray-800">Hours</p>
-                    <p className="text-gray-600 text-sm">{office.hours}</p>
-                    <p className="text-xs text-slate-600">* Greenwich Mean Time (GMT)</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
 
-            <Card className="shadow-lg border-0">
-              <CardHeader>
-                <CardTitle className="flex items-center text-gray-800">
-                  <Award className="w-5 h-5 mr-2 #1845B3" />
-                  Office Statistics
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Success Rate</span>
-                  <Badge variant="secondary" className="bg-blue-100 text-#1a73e8">{office.successRate}</Badge>
+                <div className="mt-8 text-center">
+                  <p className="text-gray-600 text-sm">Helping students achieve their dreams in top study destinations worldwide</p>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Students Served</span>
-                  <Badge variant="secondary" className="bg-blue-100 text-#1a73e8">{office.studentsServed}</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Staff Members</span>
-                  <Badge variant="secondary" className="bg-blue-100 text-#1a73e8">{office.staffCount}</Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Established</span>
-                  <Badge variant="secondary" className="bg-blue-100 text-#1a73e8">{office.established}</Badge>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Services in{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Edinburgh
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Comprehensive support for your study abroad journey
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group"
+              >
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <CardContent className="p-6">
+                    <div className={`w-14 h-14 mb-4 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300`}>
+                      <service.icon className="w-7 h-7 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* IELTS Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/30"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-blue-100/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-48 h-48 bg-purple-100/20 rounded-full blur-2xl"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Master{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Test Preparation
+              </span>{" "}
+              with Expert Training
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Achieve your dream test scores with our comprehensive training program designed for success
+            </p>
+          </motion.div>
+
+          {/* IELTS Features Carousel */}
+          <div className="relative overflow-hidden mb-16">
+            <motion.div 
+              className="flex gap-6"
+              animate={{ x: [-0, -50 + "%"] }}
+              transition={{ 
+                duration: 20,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop"
+              }}
+            >
+              {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
+                <motion.div
+                  key={`${feature}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: (index % ieltsFeatures.length) * 0.05 }}
+                  className="group cursor-pointer flex-shrink-0"
+                >
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1 min-w-[280px]">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <CheckCircle className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
+                        {feature.split(' – ')[0] || feature.split(':')[0] || feature.split('.')[0]}
+                      </h3>
+                      <p className="text-xs text-gray-600 leading-relaxed">
+                        {feature.split(' – ')[1] || feature.split(':')[1] || feature}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Call to Action Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <Card className="border-0 shadow-2xl bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+              <CardContent className="p-12 text-center relative">
+                <div className="absolute inset-0 bg-black/10"></div>
+                <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+                <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                
+                <div className="relative">
+                  <BookOpen className="w-20 h-20 mx-auto mb-6 text-white opacity-90" />
+                  <div style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.875rem', marginBottom: '1rem', textShadow: 'none', display: 'block'}}>
+                    Ready to Start Your Study Abroad Journey?
+                  </div>
+                  <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Book a free consultation and start your study abroad plan from Edinburgh with our expert guidance and proven success methods.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                      <BookOpen className="w-5 h-5 mr-2" />
+                      Book Free Consultation
+                    </Button>
+                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                      Free Assessment
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Middle Column - Services & Specializations */}
+      {/* Get in Touch Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="space-y-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
           >
-            <Card className="shadow-lg border-0">
-              <CardHeader>
-                <CardTitle className="flex items-center text-gray-800">
-                  <CheckCircle className="w-5 h-5 mr-2 #1845B3" />
-                  Our Services
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 gap-3">
-                  {office.services.map((service, index) => (
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Get in{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Touch
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              If you're searching for study abroad consultants in Edinburgh, we're here to help. Visit us today for a free consultation and take the first step toward your dream university abroad.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - FAQs */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
+                <h3 className="text-4xl font-bold text-gray-900 mb-8">
+                  Frequently Asked{" "}
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Questions
+                  </span>
+                </h3>
+                
+                <div className="space-y-3 flex-grow">
+                  {faqs.map((faq, index) => (
                     <motion.div
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex items-center space-x-3 p-3 rounded-lg bg-gray-50 hover:bg-blue-50 transition-colors"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
                     >
-                      <CheckCircle className="w-4 h-4 #1D50C9 flex-shrink-0" />
-                      <span className="text-gray-700">{service}</span>
+                      <div className="bg-gray-50 rounded-lg border border-gray-200 hover:border-[#1D50C9] transition-all duration-300 overflow-hidden">
+                        <button
+                          className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
+                          onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                        >
+                          <h4 className="text-gray-900 font-semibold pr-4">{faq.question}</h4>
+                          <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                            {expandedFaq === index ? (
+                              <ChevronUp className="w-4 h-4 text-[#1D50C9]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[#1D50C9]" />
+                            )}
+                          </div>
+                        </button>
+                        {expandedFaq === index && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="px-4 pb-4 border-t border-gray-200"
+                          >
+                            <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
+                          </motion.div>
+                        )}
+                      </div>
                     </motion.div>
                   ))}
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </motion.div>
 
-            <Card className="shadow-lg border-0">
-              <CardHeader>
-                <CardTitle className="flex items-center text-gray-800">
-                  <Star className="w-5 h-5 mr-2 #1845B3" />
-                  Specializations
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {office.specializations.map((spec, index) => (
-                    <Badge 
-                      key={index} 
-                      variant="outline" 
-                      className="border-blue-200 text-#1a73e8 hover:bg-blue-50"
-                    >
-                      {spec}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-lg border-0">
-              <CardHeader>
-                <CardTitle className="flex items-center text-gray-800">
-                  <Building2 className="w-5 h-5 mr-2 #1845B3" />
-                  Office Facilities
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-2">
-                  {office.facilities.map((facility, index) => (
-                    <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                      <CheckCircle className="w-3 h-3 #1D50C9" />
-                      <span>{facility}</span>
+            {/* Right Side - Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
+                
+                <div className="space-y-4 flex-grow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Right Column - Action Buttons & Testimonials */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="space-y-6"
-          >
-            <Card className="shadow-lg border-0 bg-gradient-to-br from-[#1D50C9] to-purple-600 text-white">
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-4">UK Headquarters Support</h3>
-                <p className="text-blue-100 mb-6 text-sm">
-                  Connect with our Edinburgh office for specialized UK university support, academic guidance, and comprehensive student services across Scotland and the UK.
-                </p>
-                <div className="space-y-3">
-                  <Button 
-                    className="w-full bg-white #1845B3 hover:bg-blue-50"
-                    size="lg"
-                  >
-                    <Calendar className="w-4 h-4 mr-2" />
-                    Book Appointment
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-white text-white hover:bg-white/10"
-                    size="lg"
-                  >
-                    <Phone className="w-4 h-4 mr-2" />
-                    Call Edinburgh Office
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-lg border-0">
-              <CardHeader>
-                <CardTitle className="flex items-center text-gray-800">
-                  <MessageCircle className="w-5 h-5 mr-2 #1845B3" />
-                  Student Testimonials
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {office.testimonials.map((testimonial, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="border-l-4 #1D50C9 pl-4 py-2"
-                  >
-                    <p className="text-gray-600 text-sm italic mb-2">"{testimonial.message}"</p>
                     <div>
-                      <p className="font-semibold text-gray-800 text-sm">{testimonial.name}</p>
-                      <p className="#1845B3 text-xs">{testimonial.university}</p>
+                      <h4 className="text-white font-bold text-lg mb-2">Address</h4>
+                      <p className="text-blue-100 leading-relaxed">
+                        4 Ferry Rd Pl, Edinburgh EH4 4AX, UK
+                      </p>
                     </div>
-                  </motion.div>
-                ))}
-              </CardContent>
-            </Card>
-
-            <Card className="shadow-lg border-0">
-              <CardHeader>
-                <CardTitle className="flex items-center text-gray-800">
-                  <MapPin className="w-5 h-5 mr-2 #1845B3" />
-                  Nearby Landmarks
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {office.nearbyLandmarks.map((landmark, index) => (
-                    <div key={index} className="flex items-center space-x-2 text-sm text-gray-600">
-                      <MapPin className="w-3 h-3 #1D50C9" />
-                      <span>{landmark}</span>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Phone className="w-6 h-6 text-white" />
                     </div>
-                  ))}
+                    <div>
+                      <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
+                      <a href="tel:+447535119365" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +44 753 511 93 65
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-lg mb-2">Office Hours</h4>
+                      <p className="text-blue-100 text-lg">
+                        Monday - Friday: 9 AM - 6 PM<br />
+                        Saturday: 10 AM - 4 PM
+                      </p>
+                    </div>
+                  </div>
+                  
                 </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-sm leading-relaxed">
+                    Book a free consultation and start your study abroad plan from Edinburgh. Email: umer@dunyaconsultants.com
+                  </p>
+                </div>
+
+                <div className="space-y-4 mt-4">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <Calendar className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-white/50 text-white hover:bg-white/10 py-4 rounded-xl backdrop-blur-sm transition-all duration-300 font-semibold">
+                    <a href="https://wa.me/447535119365" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      WhatsApp Chat
+                      <MessageCircle className="w-5 h-5 ml-2" />
+                    </a>
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </div>
+      </section>
 
       <Footer />
     </div>
