@@ -1538,7 +1538,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   <CardHeader className="pb-4">
                     <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
                   </CardHeader>
-                  <CardContent>
+                  <CardContent className="max-h-96 overflow-y-auto">
                     <ul className="space-y-2">
                       {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
                         <li key={index}>
