@@ -693,7 +693,7 @@ export default function OfficesList() {
                           Get Directions
                         </Button>
                         {office.id === "istanbul" ? (
-                          <Link href="/offices/istanbul">
+                          <Link href="/offices/turkey-istanbul">
                             <Button 
                               variant="outline" 
                               size="sm"

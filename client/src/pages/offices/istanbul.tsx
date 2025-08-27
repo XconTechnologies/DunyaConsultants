@@ -470,7 +470,7 @@ export default function IstanbulOffice() {
               transition={{ duration: 0.6 }}
             >
               <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
-                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Istanbul</div>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
                 
                 <div className="space-y-4 flex-grow">
                   <div className="flex items-start space-x-4">
