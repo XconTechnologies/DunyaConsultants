@@ -216,26 +216,29 @@ function BlogPostDetail({ slug }: { slug: string }) {
     {
       id: 'mbbs-in-uk-for-pakistani-students',
       title: 'MBBS in UK for Pakistani Students',
-      excerpt: 'Complete guide about pursuing MBBS in UK for Pakistani students, including admission requirements, top universities, fees, and career prospects.',
-      category: 'Medical Education',
-      readTime: '8 min',
-      href: '/blog/2024/09/21/mbbs-in-uk-for-pakistani-students'
+      excerpt: 'Complete guide to MBBS in UK for Pakistani students including eligibility requirements, admission process, fees, scholarships, and top medical universities.',
+      category: 'Study Abroad',
+      date: 'September 21, 2024',
+      image: '/attached_assets/image_1755675204547.png',
+      slug: '2024/09/21/mbbs-in-uk-for-pakistani-students'
     },
     {
-      id: 'gre-test-fee-in-pakistan',
-      title: 'GRE Test Fee in Pakistan',
-      excerpt: 'Complete guide to GRE test fees, registration process, and format options for Pakistani students planning to study abroad.',
-      category: 'Test Preparation', 
-      readTime: '8 min',
-      href: '/blog/2024/10/15/gre-test-fee-in-pakistan'
+      id: 'mbbs-in-germany-for-pakistani-students',
+      title: 'MBBS in Germany for Pakistani Students | Admission Process & Fee Structure',
+      excerpt: 'Complete guide to studying MBBS in Germany for Pakistani students including admission process, fee structure, eligibility requirements, and scholarship opportunities.',
+      category: 'Study Abroad',
+      date: 'October 5, 2024',
+      image: '/attached_assets/image_1755674890474.png',
+      slug: '2024/10/05/mbbs-in-germany-for-pakistani-students'
     },
     {
-      id: 'ielts-exam-fee-in-pakistan',
-      title: 'IELTS Exam Fee in Pakistan',
-      excerpt: 'Comprehensive information about IELTS exam fees, registration process, test centers, and preparation tips for Pakistani students.',
-      category: 'Test Preparation',
-      readTime: '7 min',
-      href: '/blog/2024/11/05/ielts-exam-fee-in-pakistan'
+      id: 'how-to-get-scholarship-to-study-abroad-after-12th',
+      title: 'How to Get a Scholarship to Study Abroad after 12th?',
+      excerpt: 'Complete guide on how to get scholarship to study abroad after 12th including types of scholarships, application process, tips and tricks for international students.',
+      category: 'Study Abroad',
+      date: 'September 5, 2024',
+      image: '/attached_assets/image_1755675582619.png',
+      slug: '2024/09/05/how-to-get-scholarship-to-study-abroad-after-12th'
     }
   ];
   
@@ -1268,48 +1271,71 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 <footer className="pt-8 border-t border-gray-200">
                   <section className="mb-10">
                     <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                       {relatedBlogs.map((blog, index) => (
-                        <Link key={blog.id} href={blog.href}>
-                          <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
-                            <CardContent className="p-6">
+                        <motion.div
+                          key={blog.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <Link href={`/blog/${blog.slug}`}>
+                            <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                               
-                              {/* Category Badge */}
-                              <div className="mb-3">
-                                <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
-                                  {blog.category}
-                                </Badge>
-                              </div>
+                              {/* Featured Image */}
+                              {blog.image && (
+                                <div className="relative overflow-hidden rounded-t-lg">
+                                  <img 
+                                    src={blog.image.startsWith('http') || blog.image.startsWith('/attached_assets/') ? blog.image : `/attached_assets/${blog.image}`} 
+                                    alt={blog.title}
+                                    className="w-full h-56 object-cover transition-transform hover:scale-105"
+                                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                                    onError={(e) => {
+                                      e.currentTarget.style.display = 'none';
+                                    }}
+                                  />
+                                </div>
+                              )}
 
-                              {/* Title */}
-                              <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                                {blog.title}
-                              </h3>
+                              <CardContent className="p-6">
+                                
+                                {/* Category Badge */}
+                                <div className="mb-3">
+                                  <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
+                                    {blog.category}
+                                  </Badge>
+                                </div>
 
-                              {/* Excerpt */}
-                              <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                                {blog.excerpt}
-                              </p>
+                                {/* Title */}
+                                <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                                  {blog.title}
+                                </h3>
 
-                              {/* Meta Information and Read More - Same Line */}
-                              <div className="flex items-center justify-between text-sm">
-                                <div className="flex items-center text-gray-500">
-                                  <div className="flex items-center">
-                                    <Clock className="w-4 h-4 mr-1" />
-                                    <span>{blog.readTime}</span>
+                                {/* Excerpt */}
+                                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                                  {blog.excerpt}
+                                </p>
+
+                                {/* Meta Information and Read More - Same Line */}
+                                <div className="flex items-center justify-between text-sm">
+                                  <div className="flex items-center text-gray-500">
+                                    <div className="flex items-center">
+                                      <Calendar className="w-4 h-4 mr-1" />
+                                      <span>{blog.date}</span>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Read More Link */}
+                                  <div className="flex items-center text-[#1D50C9] font-medium">
+                                    <span>Read More</span>
+                                    <ArrowRight className="w-4 h-4 ml-1" />
                                   </div>
                                 </div>
-                                
-                                {/* Read More Link */}
-                                <div className="flex items-center text-[#1D50C9] font-medium">
-                                  <span>Read More</span>
-                                  <ArrowRight className="w-4 h-4 ml-1" />
-                                </div>
-                              </div>
 
-                            </CardContent>
-                          </Card>
-                        </Link>
+                              </CardContent>
+                            </Card>
+                          </Link>
+                        </motion.div>
                       ))}
                     </div>
                   </section>
