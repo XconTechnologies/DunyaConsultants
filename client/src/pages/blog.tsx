@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, Twitter, Linkedin, Copy } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from '@/components/navigation';
@@ -190,6 +190,54 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 // Blog Post Detail Component
 function BlogPostDetail({ slug }: { slug: string }) {
   const [sidebarSearch, setSidebarSearch] = useState("");
+
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareTitle = 'Blog Post - Path Visa Consultants';
+
+  const handleShare = (platform: string) => {
+    const encodedUrl = encodeURIComponent(shareUrl);
+    const encodedTitle = encodeURIComponent(shareTitle);
+    
+    const shareUrls = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+      copy: shareUrl
+    };
+    
+    if (platform === 'copy') {
+      navigator.clipboard.writeText(shareUrl);
+    } else {
+      window.open(shareUrls[platform as keyof typeof shareUrls], '_blank', 'width=600,height=400');
+    }
+  };
+
+  const relatedBlogs = [
+    {
+      id: 'study-in-uk-complete-guide',
+      title: 'Study in UK Complete Guide',
+      excerpt: 'Comprehensive guide covering everything Pakistani students need to know about studying in the UK, from admission requirements to visa processes and living costs.',
+      category: 'Study Guides',
+      readTime: '12 min',
+      href: '/blog/study-in-uk-complete-guide'
+    },
+    {
+      id: 'study-in-canada-complete-guide',
+      title: 'Study in Canada Complete Guide',
+      excerpt: 'Everything Pakistani students need to know about studying in Canada, from admission requirements to post-graduation opportunities and pathway to permanent residence.',
+      category: 'Study Guides', 
+      readTime: '12 min',
+      href: '/blog/study-in-canada-complete-guide'
+    },
+    {
+      id: 'study-in-australia-guide',
+      title: 'Study in Australia Guide',
+      excerpt: 'Complete information about studying in Australia, including university requirements, visa processes, and living costs for Pakistani students.',
+      category: 'Study Guides',
+      readTime: '10 min',
+      href: '/blog/study-in-australia-guide'
+    }
+  ];
   
   // Fetch blog posts for detail view
   const { data: blogPostsData, isLoading } = useQuery({
@@ -1216,25 +1264,49 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
 
 
-                {/* Tags Section */}
-                <footer className="pt-6 border-t border-gray-200">
-                  <div className="flex items-center justify-between mb-4">
-                    <h4 className="text-lg font-bold text-gray-900">Related Topics</h4>
-                    <Link href="/blog" className="text-[#1D50C9] hover:underline font-medium">
-                      View All Articles →
-                    </Link>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {blogPost.tags.map((tag: string, index: number) => (
-                      <Badge 
-                        key={index} 
-                        variant="outline" 
-                        className="border border-[#1D50C9]/30 text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white hover:border-[#1D50C9] transition-all duration-300 px-3 py-1 text-sm font-medium cursor-pointer"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
+                {/* Related Blogs Section */}
+                <footer className="pt-8 border-t border-gray-200">
+                  <section className="mb-10">
+                    <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      {relatedBlogs.map((blog, index) => (
+                        <div key={blog.id} className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-lg overflow-hidden group">
+                          <div className="p-6">
+                            <div className="mb-3">
+                              <span className="bg-[#1D50C9]/10 text-[#1D50C9] text-xs font-medium px-2.5 py-1 rounded-full">
+                                {blog.category}
+                              </span>
+                            </div>
+                            
+                            <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#1D50C9] transition-colors">
+                              {blog.title}
+                            </h3>
+                            
+                            <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                              {blog.excerpt}
+                            </p>
+                            
+                            <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                              <div className="flex items-center space-x-4">
+                                <div className="flex items-center">
+                                  <Clock className="w-3 h-3 mr-1" />
+                                  {blog.readTime}
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <a 
+                              href={blog.href}
+                              className="inline-flex items-center text-[#1D50C9] hover:text-[#1565c0] font-medium text-sm group-hover:translate-x-1 transition-all duration-200"
+                            >
+                              Read More
+                              <ArrowRight className="w-4 h-4 ml-1" />
+                            </a>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
                 </footer>
 
               </div>
@@ -1267,6 +1339,48 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         </Link>
                       </div>
                     )}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Share Buttons */}
+              <Card className="bg-white border border-gray-200 shadow-sm">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl text-[#1D50C9] flex items-center">
+                    <Share2 className="w-5 h-5 mr-2" />
+                    Share This Article
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      onClick={() => handleShare('facebook')}
+                      className="flex items-center justify-center p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <Facebook className="w-4 h-4 mr-2" />
+                      Facebook
+                    </button>
+                    <button
+                      onClick={() => handleShare('twitter')}
+                      className="flex items-center justify-center p-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors"
+                    >
+                      <Twitter className="w-4 h-4 mr-2" />
+                      Twitter
+                    </button>
+                    <button
+                      onClick={() => handleShare('linkedin')}
+                      className="flex items-center justify-center p-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
+                    >
+                      <Linkedin className="w-4 h-4 mr-2" />
+                      LinkedIn
+                    </button>
+                    <button
+                      onClick={() => handleShare('copy')}
+                      className="flex items-center justify-center p-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                    >
+                      <Copy className="w-4 h-4 mr-2" />
+                      Copy Link
+                    </button>
                   </div>
                 </CardContent>
               </Card>
