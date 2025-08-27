@@ -204,7 +204,7 @@ const offices = [
     city: "Saudi Arabia (Jeddah)",
     name: "Engineering Square",
     address: "Above Topten, Engineering Square, Makarona Street, 2nd Floor, Office 27, Jeddah 23447",
-    phone: "+966 50‑851‑0785",
+    phone: "+966 59 638 2593",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-amber-600 to-yellow-600",
     region: "International",
@@ -706,6 +706,18 @@ export default function OfficesList() {
                           </Link>
                         ) : office.id === "cairo" ? (
                           <Link href="/offices/egypt-cairo">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="flex-1 font-medium text-sm hover:bg-blue-50"
+                              style={{ borderColor: '#1D50C9', color: '#1D50C9' }}
+                            >
+                              <Users className="w-3 h-3 mr-1" />
+                              View Details
+                            </Button>
+                          </Link>
+                        ) : office.id === "jeddah" ? (
+                          <Link href="/offices/saudi-arabia-jeddah">
                             <Button 
                               variant="outline" 
                               size="sm"
