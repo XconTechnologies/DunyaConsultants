@@ -125,7 +125,7 @@ Address: Alif Tower, Sargodha
                     <DollarSign className="w-4 h-4 text-yellow-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900">€906 - €4,175</p>
+                    <p className="text-sm font-bold text-gray-900">€906 - €8,000</p>
                     <p className="text-xs text-gray-600">Annual Tuition Fee</p>
                   </div>
                 </div>
@@ -202,7 +202,7 @@ Address: Alif Tower, Sargodha
                   </div>
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-center hover:shadow-sm transition-shadow">
                     <h4 className="font-medium text-blue-900 text-xs mb-1">Non-EU Students</h4>
-                    <p className="text-lg font-bold text-[#1D50C9]">€4,175</p>
+                    <p className="text-lg font-bold text-[#1D50C9]">€8,000</p>
                     <p className="text-xs text-gray-500">per year</p>
                   </div>
                 </div>

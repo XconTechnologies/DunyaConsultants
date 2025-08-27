@@ -17,7 +17,7 @@ Required Documents:
 • Original Passport
 • All Educational Documents Attested
 • Degree & Transcript Copies
-• IELTS / PTE / TOEFL Score Card
+• IELTS / PTE Score Card
 • Motivation Letter
 • CV/Resume
 • 2 Recommendation Letters
@@ -44,7 +44,7 @@ Address: Alif Tower, Sargodha
     "Original Passport",
     "All Educational Documents Attested", 
     "Degree & Transcript Copies",
-    "IELTS / PTE / TOEFL Score Card",
+    "IELTS / PTE Score Card",
     "Motivation Letter",
     "CV/Resume",
     "2 Recommendation Letters"
@@ -68,12 +68,12 @@ Address: Alif Tower, Sargodha
     { title: "Financial Proof", description: "Bank statement showing €560 per month for living expenses" },
     { title: "Health Insurance", description: "Comprehensive health insurance coverage" },
     { title: "Academic Transcripts", description: "Certified copies of all academic qualifications" },
-    { title: "Language Proficiency", description: "IELTS/TOEFL/PTE scores or Finnish language proficiency" }
+    { title: "Language Proficiency", description: "IELTS/PTE scores or Finnish language proficiency" }
   ];
 
   const englishRequirements = [
     { test: "IELTS", ug: "6.0-6.5", pg: "6.5-7.0" },
-    { test: "TOEFL", ug: "80-92", pg: "92-100" }
+    { test: "PTE", ug: "50-59", pg: "59-65" }
   ];
 
   return (
