@@ -270,20 +270,6 @@ export default function MardanOffice() {
                     />
                   </motion.div>
                 </div>
-                
-                {/* Additional Consultation Activities Image */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  className="overflow-hidden rounded-xl shadow-xl mt-4"
-                >
-                  <img 
-                    src="/attached_assets/image_1756289780161.png" 
-                    alt="Dunya Consultants Mardan - Active Student Consultation Sessions and Group Activities"
-                    className="w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </motion.div>
               </div>
             </motion.div>
           </div>
