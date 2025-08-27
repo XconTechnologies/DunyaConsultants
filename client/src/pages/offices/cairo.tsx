@@ -599,18 +599,6 @@ export default function CairoOffice() {
                   
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-lg mb-2">Email</h4>
-                      <a href="mailto:umer@dunyaconsultants.com" className="text-blue-100 hover:text-white transition-colors text-lg">
-                        umer@dunyaconsultants.com
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
                       <Clock className="w-6 h-6 text-white" />
                     </div>
                     <div>
