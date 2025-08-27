@@ -26,7 +26,7 @@ export default function Footer() {
                   <img 
                     src={New_Logo_White} 
                     alt="Dunya Consultants Logo" 
-                    className="h-14 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                    className="h-10 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"
                   />
                 </Link>
               </div>
