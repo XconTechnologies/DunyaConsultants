@@ -1545,6 +1545,74 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </div>
                 )}
 
+                {/* Quick Cost Calculator - Only for exchange programs post */}
+                {(params?.slug === "exchange-programs-for-pakistani-students" || simpleParams?.slug === "exchange-programs-for-pakistani-students") && (
+                  <div className="sticky top-[28rem] z-10 mb-6">
+                    <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
+                      <CardHeader className="pb-4">
+                        <CardTitle className="text-lg flex items-center">
+                          <Calculator className="w-5 h-5 mr-2" />
+                          Quick Cost Calculator
+                        </CardTitle>
+                        <p className="text-blue-100 text-sm">Get an instant estimate of your study abroad costs</p>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3">
+                          <div>
+                            <Label className="text-blue-100 text-sm mb-2 block">Country</Label>
+                            <Select>
+                              <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                                <SelectValue placeholder="Select Country" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="canada">Canada</SelectItem>
+                                <SelectItem value="uk">United Kingdom</SelectItem>
+                                <SelectItem value="usa">United States</SelectItem>
+                                <SelectItem value="australia">Australia</SelectItem>
+                                <SelectItem value="germany">Germany</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label className="text-blue-100 text-sm mb-2 block">Study Level</Label>
+                            <Select>
+                              <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                                <SelectValue placeholder="Select Level" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="undergraduate">Undergraduate</SelectItem>
+                                <SelectItem value="postgraduate">Postgraduate</SelectItem>
+                                <SelectItem value="diploma">Diploma</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label className="text-blue-100 text-sm mb-2 block">Duration</Label>
+                            <Select>
+                              <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                                <SelectValue placeholder="Years" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="1">1 Year</SelectItem>
+                                <SelectItem value="2">2 Years</SelectItem>
+                                <SelectItem value="3">3 Years</SelectItem>
+                                <SelectItem value="4">4 Years</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 mt-4">
+                            Calculate
+                          </Button>
+                          <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/20">
+                            <span className="text-blue-100 text-sm">Estimated Total:</span>
+                            <span className="text-white font-bold">$45,000 - $65,000</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
+
                 {/* Contact Box - Sticky in sidebar */}
                 <div className="sticky top-[32rem] z-10">
                   <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
@@ -1740,74 +1808,6 @@ export default function Blog() {
               </Button>
             ))}
           </div>
-        </div>
-
-        {/* Quick Cost Calculator */}
-        <div className="mb-12">
-          <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
-            <CardHeader className="pb-4">
-              <CardTitle className="text-xl flex items-center">
-                <Calculator className="w-5 h-5 mr-2" />
-                Quick Cost Calculator
-              </CardTitle>
-              <p className="text-blue-100 text-sm">Get an instant estimate of your study abroad costs</p>
-            </CardHeader>
-            <CardContent>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                <div>
-                  <Label className="text-blue-100 text-sm mb-2 block">Country</Label>
-                  <Select>
-                    <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                      <SelectValue placeholder="Select Country" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="canada">Canada</SelectItem>
-                      <SelectItem value="uk">United Kingdom</SelectItem>
-                      <SelectItem value="usa">United States</SelectItem>
-                      <SelectItem value="australia">Australia</SelectItem>
-                      <SelectItem value="germany">Germany</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label className="text-blue-100 text-sm mb-2 block">Study Level</Label>
-                  <Select>
-                    <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                      <SelectValue placeholder="Select Level" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="undergraduate">Undergraduate</SelectItem>
-                      <SelectItem value="postgraduate">Postgraduate</SelectItem>
-                      <SelectItem value="diploma">Diploma</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <Label className="text-blue-100 text-sm mb-2 block">Duration</Label>
-                  <Select>
-                    <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                      <SelectValue placeholder="Years" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="1">1 Year</SelectItem>
-                      <SelectItem value="2">2 Years</SelectItem>
-                      <SelectItem value="3">3 Years</SelectItem>
-                      <SelectItem value="4">4 Years</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="flex items-end">
-                  <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
-                    Calculate
-                  </Button>
-                </div>
-              </div>
-              <div className="flex justify-between items-center">
-                <span className="text-blue-100 text-sm">Estimated Total Cost:</span>
-                <span className="text-white font-bold text-lg">$45,000 - $65,000</span>
-              </div>
-            </CardContent>
-          </Card>
         </div>
 
         {/* Blog Posts Grid */}
