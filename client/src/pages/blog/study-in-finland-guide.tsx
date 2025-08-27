@@ -1,10 +1,61 @@
-import React from 'react';
-import { Calendar, Clock, User, FileText, GraduationCap, CheckCircle, Users, AlertCircle, BookOpen, DollarSign, MapPin, Star } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, Clock, User, FileText, GraduationCap, CheckCircle, Users, AlertCircle, BookOpen, DollarSign, MapPin, Star, Search, Share2, Facebook, Twitter, Linkedin, Copy, ArrowRight } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import ContactForm from '@/components/blog/ContactForm';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
 export default function StudyInFinlandGuide() {
+  const [sidebarSearch, setSidebarSearch] = useState("");
+
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareTitle = 'Study in Finland Guide - Dunya Consultants';
+
+  const handleShare = (platform: string) => {
+    const encodedUrl = encodeURIComponent(shareUrl);
+    const encodedTitle = encodeURIComponent(shareTitle);
+    
+    const shareUrls = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+      copy: shareUrl
+    };
+    
+    if (platform === 'copy') {
+      navigator.clipboard.writeText(shareUrl);
+    } else {
+      window.open(shareUrls[platform as keyof typeof shareUrls], '_blank', 'width=600,height=400');
+    }
+  };
+
+  const relatedBlogs = [
+    {
+      id: 'study-in-canada-complete-guide',
+      title: 'Study in Canada Complete Guide',
+      excerpt: 'Comprehensive guide covering everything Pakistani students need to know about studying in Canada, from admission requirements to post-graduation opportunities.',
+      category: 'Study Guides',
+      readTime: '12 min',
+      href: '/blog/study-in-canada-complete-guide'
+    },
+    {
+      id: 'study-in-belgium-guide',
+      title: 'Study in Belgium Guide',
+      excerpt: 'Complete information about studying in Belgium, including university requirements, visa processes, and living costs for international students.',
+      category: 'Study Guides', 
+      readTime: '10 min',
+      href: '/blog/study-in-belgium-guide'
+    },
+    {
+      id: 'erasmus-mundus-scholarship',
+      title: 'Erasmus Mundus Scholarship Guide',
+      excerpt: 'Everything about Erasmus Mundus scholarships for Pakistani students, including application process, requirements, and opportunities.',
+      category: 'Scholarships',
+      readTime: '8 min',
+      href: '/blog/erasmus-mundus-scholarship'
+    }
+  ];
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -349,6 +400,49 @@ export default function StudyInFinlandGuide() {
                   </a>
                 </div>
               </div>
+
+              {/* Related Blogs Section */}
+              <section className="mb-10">
+                <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {relatedBlogs.map((blog, index) => (
+                    <div key={blog.id} className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-lg overflow-hidden group">
+                      <div className="p-6">
+                        <div className="mb-3">
+                          <span className="bg-[#1D50C9]/10 text-[#1D50C9] text-xs font-medium px-2.5 py-1 rounded-full">
+                            {blog.category}
+                          </span>
+                        </div>
+                        
+                        <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#1D50C9] transition-colors">
+                          {blog.title}
+                        </h3>
+                        
+                        <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                          {blog.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                          <div className="flex items-center space-x-4">
+                            <div className="flex items-center">
+                              <Clock className="w-3 h-3 mr-1" />
+                              {blog.readTime}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <a 
+                          href={blog.href}
+                          className="inline-flex items-center text-[#1D50C9] hover:text-[#1565c0] font-medium text-sm group-hover:translate-x-1 transition-all duration-200"
+                        >
+                          Read More
+                          <ArrowRight className="w-4 h-4 ml-1" />
+                        </a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
             </article>
           </div>
 
@@ -357,6 +451,74 @@ export default function StudyInFinlandGuide() {
             <div className="sticky top-8 space-y-8">
               {/* Contact Form */}
               <ContactForm />
+              
+              {/* Search Bar */}
+              <Card className="bg-white border border-gray-200 shadow-sm">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl text-[#1D50C9]">Search Articles</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <Input
+                      type="text"
+                      placeholder="Search blog posts..."
+                      value={sidebarSearch}
+                      onChange={(e) => setSidebarSearch(e.target.value)}
+                      className="pl-10"
+                    />
+                    {sidebarSearch && (
+                      <div className="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">
+                        <a href={`/blog?search=${encodeURIComponent(sidebarSearch)}`} className="text-[#1D50C9] hover:underline">
+                          Search for "{sidebarSearch}" →
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+              
+              {/* Share Buttons */}
+              <Card className="bg-white border border-gray-200 shadow-sm">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl text-[#1D50C9] flex items-center">
+                    <Share2 className="w-5 h-5 mr-2" />
+                    Share This Article
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      onClick={() => handleShare('facebook')}
+                      className="flex items-center justify-center p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <Facebook className="w-4 h-4 mr-2" />
+                      Facebook
+                    </button>
+                    <button
+                      onClick={() => handleShare('twitter')}
+                      className="flex items-center justify-center p-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors"
+                    >
+                      <Twitter className="w-4 h-4 mr-2" />
+                      Twitter
+                    </button>
+                    <button
+                      onClick={() => handleShare('linkedin')}
+                      className="flex items-center justify-center p-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
+                    >
+                      <Linkedin className="w-4 h-4 mr-2" />
+                      LinkedIn
+                    </button>
+                    <button
+                      onClick={() => handleShare('copy')}
+                      className="flex items-center justify-center p-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                    >
+                      <Copy className="w-4 h-4 mr-2" />
+                      Copy Link
+                    </button>
+                  </div>
+                </CardContent>
+              </Card>
               
               {/* Quick Info */}
               <div className="bg-blue-50 p-6 rounded-lg">
@@ -381,16 +543,44 @@ export default function StudyInFinlandGuide() {
                 </div>
               </div>
 
-              {/* Related Posts */}
-              <div className="bg-white p-6 rounded-lg shadow-sm border">
-                <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
-                <div className="space-y-3">
-                  <a href="/blog/finland-visa-requirements-pakistani-students" className="block #1845B3 hover:text-[#1565c0] text-sm">Finland Visa Requirements</a>
-                  <a href="/blog/study-in-uk-complete-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in UK Guide</a>
-                  <a href="/blog/study-in-canada-complete-guide" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in Canada Guide</a>
-                  <a href="/blog/ielts-preparation-tips-and-tricks" className="block #1845B3 hover:text-[#1565c0] text-sm">IELTS Preparation Tips</a>
-                </div>
-              </div>
+              {/* Related Blogs */}
+              <Card className="bg-white border border-gray-200 shadow-sm">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl text-[#1D50C9]">Related Blogs</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {relatedBlogs.slice(0, 3).map((blog, index) => (
+                      <div key={blog.id} className="border border-gray-100 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                        <div className="mb-2">
+                          <span className="bg-[#1D50C9]/10 text-[#1D50C9] text-xs font-medium px-2 py-1 rounded-full">
+                            {blog.category}
+                          </span>
+                        </div>
+                        <h4 className="font-semibold text-gray-900 mb-2 text-sm leading-tight">
+                          {blog.title}
+                        </h4>
+                        <p className="text-gray-600 text-xs leading-relaxed mb-3 line-clamp-2">
+                          {blog.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center text-xs text-gray-500">
+                            <Clock className="w-3 h-3 mr-1" />
+                            {blog.readTime}
+                          </div>
+                          <a 
+                            href={blog.href}
+                            className="text-[#1D50C9] hover:text-[#1565c0] font-medium text-xs flex items-center"
+                          >
+                            Read More
+                            <ArrowRight className="w-3 h-3 ml-1" />
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
 
               {/* Contact Info */}
               <div className="bg-gray-50 p-6 rounded-lg">
