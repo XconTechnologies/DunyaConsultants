@@ -53,6 +53,7 @@ import JhelumOffice from "@/pages/offices/jhelum";
 import MardanOffice from "@/pages/offices/mardan";
 import JeddahOffice from "@/pages/offices/jeddah";
 import IstanbulOffice from "@/pages/offices/istanbul";
+import CairoOffice from "@/pages/offices/cairo";
 import EdinburghOffice from "@/pages/offices/edinburgh";
 import StudyAbroadJourney from "@/pages/study-abroad-journey";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
@@ -151,6 +152,7 @@ function Router() {
       <Route path="/offices/mardan" component={MardanOffice} />
       <Route path="/offices/jeddah" component={JeddahOffice} />
       <Route path="/offices/istanbul" component={IstanbulOffice} />
+      <Route path="/offices/cairo" component={CairoOffice} />
       <Route path="/offices/edinburgh" component={EdinburghOffice} />
       <Route path="/offices/:officeId" component={OfficeDetails} />
       
