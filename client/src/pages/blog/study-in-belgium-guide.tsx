@@ -61,7 +61,7 @@ export default function StudyInBelgiumGuide() {
               </div>
 
               {/* Table of Contents */}
-              <div className="bg-gray-50 p-6 rounded-lg mb-8">
+              <div className="hidden md:block bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li><a href="#why-study-belgium" className="hover:bg-[#1845B3]">Why Choose to Study in Belgium?</a></li>

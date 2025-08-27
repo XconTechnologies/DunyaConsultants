@@ -112,7 +112,7 @@ export default function StudyInUKCompleteGuide() {
               </div>
 
               {/* Table of Contents */}
-              <div className="bg-gray-50 p-6 rounded-lg mb-8">
+              <div className="hidden md:block bg-gray-50 p-6 rounded-lg mb-8">
                 <h3 className="text-xl font-semibold mb-4 text-gray-800">Table of Contents</h3>
                 <ul className="space-y-2 text-gray-600">
                   <li><a href="#why-study-uk" className="hover:bg-[#1845B3]">Why Choose to Study in UK?</a></li>
@@ -511,7 +511,7 @@ export default function StudyInUKCompleteGuide() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex justify-center gap-3">
+                  <div className="flex justify-start gap-3">
                     <button
                       onClick={() => handleShare('facebook')}
                       className="flex items-center justify-center w-10 h-10 min-w-[40px] min-h-[40px] max-w-[40px] max-h-[40px] bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors border-0 p-0 overflow-hidden"

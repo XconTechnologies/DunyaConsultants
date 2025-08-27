@@ -1485,7 +1485,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex justify-center gap-3">
+                  <div className="flex justify-start gap-3">
                     <button
                       onClick={() => handleShare('facebook')}
                       className="flex items-center justify-center w-10 h-10 min-w-[40px] min-h-[40px] max-w-[40px] max-h-[40px] bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors border-0 p-0 overflow-hidden"
@@ -1534,7 +1534,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
               {/* Table of Contents */}
               {contentSections.length > 0 && (
-                <Card className="bg-white border border-gray-200 shadow-sm">
+                <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
                   <CardHeader className="pb-4">
                     <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
                   </CardHeader>
