@@ -214,28 +214,28 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
   const relatedBlogs = [
     {
-      id: 'study-in-uk-complete-guide',
-      title: 'Study in UK Complete Guide',
-      excerpt: 'Comprehensive guide covering everything Pakistani students need to know about studying in the UK, from admission requirements to visa processes and living costs.',
-      category: 'Study Guides',
-      readTime: '12 min',
-      href: '/blog/study-in-uk-complete-guide'
+      id: 'mbbs-in-uk-for-pakistani-students',
+      title: 'MBBS in UK for Pakistani Students',
+      excerpt: 'Complete guide about pursuing MBBS in UK for Pakistani students, including admission requirements, top universities, fees, and career prospects.',
+      category: 'Medical Education',
+      readTime: '8 min',
+      href: '/blog/2024/09/21/mbbs-in-uk-for-pakistani-students'
     },
     {
-      id: 'study-in-canada-complete-guide',
-      title: 'Study in Canada Complete Guide',
-      excerpt: 'Everything Pakistani students need to know about studying in Canada, from admission requirements to post-graduation opportunities and pathway to permanent residence.',
-      category: 'Study Guides', 
-      readTime: '12 min',
-      href: '/blog/study-in-canada-complete-guide'
+      id: 'gre-test-fee-in-pakistan',
+      title: 'GRE Test Fee in Pakistan',
+      excerpt: 'Complete guide to GRE test fees, registration process, and format options for Pakistani students planning to study abroad.',
+      category: 'Test Preparation', 
+      readTime: '8 min',
+      href: '/blog/2024/10/15/gre-test-fee-in-pakistan'
     },
     {
-      id: 'study-in-australia-guide',
-      title: 'Study in Australia Guide',
-      excerpt: 'Complete information about studying in Australia, including university requirements, visa processes, and living costs for Pakistani students.',
-      category: 'Study Guides',
-      readTime: '10 min',
-      href: '/blog/study-in-australia-guide'
+      id: 'ielts-exam-fee-in-pakistan',
+      title: 'IELTS Exam Fee in Pakistan',
+      excerpt: 'Comprehensive information about IELTS exam fees, registration process, test centers, and preparation tips for Pakistani students.',
+      category: 'Test Preparation',
+      readTime: '7 min',
+      href: '/blog/2024/11/05/ielts-exam-fee-in-pakistan'
     }
   ];
   
