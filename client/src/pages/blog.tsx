@@ -1449,7 +1449,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
-            <div className="space-y-4 lg:space-y-6">
+            <div className="sticky top-24 space-y-4 lg:space-y-6">
               
               {/* Search Bar */}
               <Card className="bg-white border border-gray-200 shadow-sm">
@@ -1532,29 +1532,27 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Table of Contents - Sticky */}
+              {/* Table of Contents */}
               {contentSections.length > 0 && (
-                <div className="sticky top-24">
-                  <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
-                    <CardHeader className="pb-4">
-                      <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
-                    </CardHeader>
-                    <CardContent className="max-h-96 overflow-y-auto">
-                      <ul className="space-y-2">
-                        {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
-                          <li key={index}>
-                            <a 
-                              href={`#${section.id}`}
-                              className="text-[#1D50C9] hover:underline block py-1 text-sm"
-                            >
-                              {index + 1}. {section.title}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
+                <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2">
+                      {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
+                        <li key={index}>
+                          <a 
+                            href={`#${section.id}`}
+                            className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                          >
+                            {index + 1}. {section.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
               )}
 
               {/* Contact Box */}
