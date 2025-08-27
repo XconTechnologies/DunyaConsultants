@@ -16,12 +16,12 @@ export default function WhatsAppButton() {
         onClick={handleWhatsAppClick}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="w-16 h-16 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center cursor-pointer"
+        className="w-14 h-14 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center cursor-pointer"
       >
         {/* WhatsApp SVG Icon */}
         <svg 
-          width="32" 
-          height="32" 
+          width="28" 
+          height="28" 
           viewBox="0 0 24 24" 
           fill="currentColor"
           className="text-white"

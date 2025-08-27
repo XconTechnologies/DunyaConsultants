@@ -164,7 +164,7 @@ export default function Navigation() {
                   <img 
                     src={isScrolled ? logoImageBlue : logoImage} 
                     alt="Dunya Consultants Logo" 
-                    className="h-8 w-auto transition-all duration-500 drop-shadow-lg cursor-pointer hover:scale-105 transition-transform"
+                    className="h-6 w-auto transition-all duration-500 drop-shadow-lg cursor-pointer hover:scale-105 transition-transform"
                   />
                 </Link>
               </div>
