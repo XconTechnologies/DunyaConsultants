@@ -175,106 +175,6 @@ export default function IstanbulOffice() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Why Students Trust{" "}
-              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                Dunya Consultants Istanbul
-              </span>
-            </h2>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Side - Trust Reasons */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-lg border border-blue-100">
-                <div className="space-y-4">
-                {whyChooseUs.map((reason, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <Card className="border-0 shadow-md hover:shadow-lg transition-all duration-300">
-                      <CardContent className="p-4 flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
-                          <CheckCircle className="w-4 h-4 text-white" />
-                        </div>
-                        <p className="text-gray-800 font-medium text-sm">{reason}</p>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right Side - Office Gallery */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-4"
-            >
-              <div className="grid gap-4">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="overflow-hidden rounded-xl shadow-xl"
-                >
-                  <img 
-                    src="/attached_assets/IMG-20240909-WA0043_1756189128801.jpg" 
-                    alt="Dunya Consultants Istanbul Office - Student Consultation Area with International Flags"
-                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </motion.div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    className="overflow-hidden rounded-xl shadow-lg"
-                  >
-                    <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.31_4ea9c94d_1756189137592.jpg" 
-                      alt="Dunya Consultants Istanbul - Active Consultation Sessions"
-                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </motion.div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="overflow-hidden rounded-xl shadow-lg"
-                  >
-                    <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.33_46995c46 (1)_1756189140861.jpg" 
-                      alt="Dunya Consultants Istanbul - Professional Counseling Environment"
-                      className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
-                    />
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* Office Details */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
@@ -593,18 +493,6 @@ export default function IstanbulOffice() {
                       <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
                       <a href="tel:+905469544894" className="text-blue-100 hover:text-white transition-colors text-lg">
                         +90 546 954 48 94
-                      </a>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
-                      <Mail className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="text-white font-bold text-lg mb-2">Email</h4>
-                      <a href="mailto:umer@dunyaconsultants.com" className="text-blue-100 hover:text-white transition-colors text-lg">
-                        umer@dunyaconsultants.com
                       </a>
                     </div>
                   </div>
