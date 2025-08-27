@@ -237,8 +237,8 @@ export default function CairoOffice() {
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
                   <img 
-                    src="/attached_assets/IMG-20240909-WA0044_1756189128801.jpg" 
-                    alt="Dunya Consultants Cairo Office - Professional Consultation Area"
+                    src="/attached_assets/WhatsApp Image 2025-08-26 at 21.50.21_5b1a1b9c_1756275821613.jpg" 
+                    alt="Dunya Consultants Cairo Office - Professional Consultation Area with International Flags"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </motion.div>
@@ -251,8 +251,8 @@ export default function CairoOffice() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.32_ed3ba13e_1756189137593.jpg" 
-                      alt="Dunya Consultants Cairo - Student Meeting Room"
+                      src="/attached_assets/WhatsApp Image 2025-08-26 at 21.50.21_122c38b1_1756275821608.jpg" 
+                      alt="Dunya Consultants Cairo - Modern Office Interior"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
@@ -264,8 +264,8 @@ export default function CairoOffice() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.33_98ff17aa_1756189140862.jpg" 
-                      alt="Dunya Consultants Cairo - Expert Counseling Services"
+                      src="/attached_assets/WhatsApp Image 2025-08-26 at 21.50.24_574374d2_1756275821612.jpg" 
+                      alt="Dunya Consultants Cairo - Grand Plaza Tower Building Entrance"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
