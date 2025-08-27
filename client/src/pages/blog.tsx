@@ -1480,13 +1480,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
               {/* Share Buttons */}
               <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-xl text-[#1D50C9] flex items-center">
-                    <Share2 className="w-5 h-5 mr-2" />
+                  <CardTitle className="text-xl text-[#1D50C9]">
                     Share This Article
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center justify-center gap-3">
+                  <div className="flex items-center justify-start gap-3">
                     <button
                       onClick={() => handleShare('facebook')}
                       className="text-[#1877F2] hover:text-[#166FE5] transition-colors"
