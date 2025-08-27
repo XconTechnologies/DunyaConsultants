@@ -15,7 +15,7 @@ export default function JeddahOffice() {
   const services = [
     {
       icon: Users,
-      title: "Student Counselling",
+      title: "Career and Course Counselling",
       description: "Match your career goals with the right program and country. Our advisors in Jeddah sit down with you, understand your aspirations, and suggest the best study options for your future.",
       color: "from-blue-500 to-blue-600"
     },
@@ -105,6 +105,10 @@ export default function JeddahOffice() {
     {
       question: "Which countries do you support from Jeddah?",
       answer: "We currently help students apply to the USA, UK, Australia, Canada, Belgium, Cyprus, Germany, Turkey, Finland, Ireland and more - guiding you through admissions and student visas for each country."
+    },
+    {
+      question: "What makes Path Visa Consultants Jeddah special?",
+      answer: "Our local team understands the unique needs of Saudi students and international students in Jeddah. We provide personalized guidance with proven results and both local and online support."
     }
   ];
 
@@ -120,361 +124,417 @@ export default function JeddahOffice() {
           <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
         </div>
         
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Badge 
-                variant="secondary" 
-                className="mb-6 bg-white/20 text-white border-white/30 px-4 py-2 text-sm font-medium backdrop-blur-sm"
-              >
-                <ReactCountryFlag
-                  countryCode="SA"
-                  svg
-                  style={{
-                    width: '1.2em',
-                    height: '1.2em',
-                  }}
-                  className="mr-2"
-                />
-                Jeddah, Saudi Arabia
-              </Badge>
-              
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-                Study Abroad from Jeddah
-              </h1>
-              
-              <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed max-w-3xl mx-auto">
-                Your gateway to world-class education. Expert guidance for students from Jeddah seeking international study opportunities with personalized support.
-              </p>
-              
-              {/* Countries Infinite Scroll */}
-              <div className="relative overflow-hidden bg-white/10 backdrop-blur-sm rounded-2xl p-4 mb-8">
-                <div className="flex animate-scroll whitespace-nowrap">
-                  {duplicatedCountries.map((country, index) => (
-                    <div key={index} className="inline-flex items-center mx-4 text-white/90">
-                      <ReactCountryFlag
-                        countryCode={countryCodesMap[country]}
-                        svg
-                        style={{
-                          width: '1.5em',
-                          height: '1.5em',
-                        }}
-                        className="mr-2"
-                      />
-                      <span className="font-medium">{country}</span>
-                    </div>
-                  ))}
-                </div>
+        <div className="relative max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <div className="inline-flex items-center px-6 py-3 bg-white/15 rounded-full backdrop-blur-sm mb-8 border border-white/20">
+              <MapPin className="w-5 h-5 mr-2" />
+              <span className="text-sm font-medium">Jeddah Office</span>
+            </div>
+            
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8 text-white">
+              Path Visa Consultants | Jeddah (Saudi Arabia)
+            </h1>
+            
+            <p className="text-xl lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
+              Planning to study abroad from Jeddah? We guide you from choosing a course and country to submitting strong applications and a compliant student visa. The goal is to make everything simple and stress free.
+            </p>
+
+            {/* Contact Info */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
+              <div className="flex items-center justify-center">
+                <Phone className="w-5 h-5 mr-2" />
+                <span>+966 12 234 5678</span>
               </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold px-8 py-3 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-                >
-                  <Phone className="w-5 h-5 mr-2" />
+              <div className="flex items-center justify-center">
+                <Clock className="w-5 h-5 mr-2" />
+                <span>Sun–Thu 9 AM–7 PM</span>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
                   Book Free Consultation
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-semibold px-8 py-3 transition-all duration-300"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  WhatsApp Now
-                </Button>
-              </div>
-            </motion.div>
-          </div>
+              </Link>
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                <a href="https://maps.app.goo.gl/YourJeddahLocationLink" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                  Get Directions
+                  <MapPin className="w-5 h-5 ml-2" />
+                </a>
+              </Button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Office Details Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <h2 className="text-4xl font-bold text-gray-900 mb-6">
-                  Path Visa Consultants
-                  <span className="block text-[#1D50C9]">Jeddah Office</span>
-                </h2>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  Located in the heart of Jeddah, we serve students across Saudi Arabia with comprehensive study abroad guidance. Our local expertise combined with international standards ensures your success.
-                </p>
-                
-                <div className="space-y-4">
-                  <div className="flex items-center text-gray-700">
-                    <MapPin className="w-5 h-5 text-[#1D50C9] mr-3 flex-shrink-0" />
-                    <span className="font-medium">King Fahd Road, Jeddah 23441, Saudi Arabia</span>
-                  </div>
-                  <div className="flex items-center text-gray-700">
-                    <Phone className="w-5 h-5 text-[#1D50C9] mr-3 flex-shrink-0" />
-                    <span className="font-medium">+966 12 234 5678</span>
-                  </div>
-                  <div className="flex items-center text-gray-700">
-                    <Clock className="w-5 h-5 text-[#1D50C9] mr-3 flex-shrink-0" />
-                    <span className="font-medium">Sunday - Thursday: 9 AM - 7 PM</span>
-                  </div>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                <div className="bg-gradient-to-br from-[#1D50C9] to-[#1565c0] rounded-2xl p-8 text-white shadow-2xl">
-                  <h3 className="text-2xl font-bold mb-6">Why Choose Our Jeddah Office?</h3>
-                  <div className="space-y-4">
-                    {whyChooseUs.map((reason, index) => (
-                      <div key={index} className="flex items-center">
-                        <CheckCircle className="w-5 h-5 text-white mr-3 flex-shrink-0" />
-                        <span>{reason}</span>
-                      </div>
+
+      {/* Office Details */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="w-full"
+          >
+            <div className="text-center">
+              <h3 className="text-4xl font-bold text-gray-900 mb-8">
+                Countries We{" "}
+                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                  Support
+                </span>
+              </h3>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-[#1D50C9] relative">
+                {/* Infinite Scrolling Container */}
+                <div className="relative overflow-hidden">
+                  <motion.div 
+                    className="flex gap-6"
+                    animate={{ x: [-0, -50 + "%"] }}
+                    transition={{ 
+                      duration: 20,
+                      ease: "linear",
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  >
+                    {duplicatedCountries.map((country, index) => (
+                      <motion.div
+                        key={`${country}-${index}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: (index % countries.length) * 0.05 }}
+                        className="group cursor-pointer flex-shrink-0"
+                      >
+                        <div className="bg-white text-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:scale-105 hover:shadow-lg min-w-[160px] border border-gray-200">
+                          <div className="flex flex-col items-center">
+                            <div className="w-16 h-12 mb-3 rounded-md overflow-hidden shadow-md border-2 border-gray-200">
+                              <ReactCountryFlag 
+                                countryCode={countryCodesMap[country as keyof typeof countryCodesMap]} 
+                                svg 
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'cover'
+                                }}
+                              />
+                            </div>
+                            <p className="text-sm font-semibold">{country}</p>
+                          </div>
+                        </div>
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </div>
-              </motion.div>
+
+                <div className="mt-8 text-center">
+                  <p className="text-gray-600 text-sm">Helping students achieve their dreams in top study destinations worldwide</p>
+                </div>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Services Section */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Our <span className="bg-gradient-to-r from-[#1D50C9] to-[#1565c0] bg-clip-text text-transparent">Services</span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Complete study abroad solutions from consultation to visa approval
-              </p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Services in{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Jeddah
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Comprehensive support for your study abroad journey
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group"
+              >
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <CardContent className="p-6">
+                    <div className={`w-14 h-14 mb-4 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center transform group-hover:rotate-6 transition-transform duration-300`}>
+                      <service.icon className="w-7 h-7 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                    <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* IELTS Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/30"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 bg-blue-100/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-48 h-48 bg-purple-100/20 rounded-full blur-2xl"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Master{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Test Preparation
+              </span>{" "}
+              with Expert Training
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Achieve your dream test scores with our comprehensive training program designed for success
+            </p>
+          </motion.div>
+
+          {/* IELTS Features Carousel */}
+          <div className="relative overflow-hidden mb-16">
+            <motion.div 
+              className="flex gap-6"
+              animate={{ x: [-0, -50 + "%"] }}
+              transition={{ 
+                duration: 20,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop"
+              }}
+            >
+              {[...ieltsFeatures, ...ieltsFeatures].map((feature, index) => (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
+                  key={`${feature}-${index}`}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: (index % ieltsFeatures.length) * 0.05 }}
+                  className="group cursor-pointer flex-shrink-0"
                 >
-                  <Card className="h-full hover:shadow-xl transition-all duration-300 border-0 shadow-lg group hover:scale-105">
-                    <CardContent className="p-8">
-                      <div className={`w-16 h-16 rounded-xl bg-gradient-to-r ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                        <service.icon className="w-8 h-8 text-white" />
+                  <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 h-full group hover:-translate-y-1 min-w-[280px]">
+                    <CardContent className="p-6 text-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <CheckCircle className="w-6 h-6 text-white" />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                      <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                      <h3 className="text-lg font-bold text-gray-900 mb-3 leading-tight">
+                        {feature.split(' – ')[0] || feature.split(':')[0] || feature.split('.')[0]}
+                      </h3>
+                      <p className="text-xs text-gray-600 leading-relaxed">
+                        {feature.split(' – ')[1] || feature.split(':')[1] || feature}
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
 
-      {/* IELTS Test Preparation Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Test <span className="bg-gradient-to-r from-[#1D50C9] to-[#1565c0] bg-clip-text text-transparent">Preparation</span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Master IELTS, PTE, TOEFL & Duolingo with expert guidance in Jeddah
-              </p>
-            </div>
-            
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                {/* Infinite Scrolling Test Features */}
-                <div className="space-y-6 mb-8">
-                  <div className="relative overflow-hidden bg-white rounded-2xl p-6 shadow-lg">
-                    <div className="flex animate-scroll-slow whitespace-nowrap">
-                      {ieltsFeatures.concat(ieltsFeatures).map((feature, index) => (
-                        <div key={index} className="inline-flex items-center mx-6 text-gray-700">
-                          <CheckCircle className="w-5 h-5 text-[#1D50C9] mr-2 flex-shrink-0" />
-                          <span className="font-medium">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
+          {/* Call to Action Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
+          >
+            <Card className="border-0 shadow-2xl bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+              <CardContent className="p-12 text-center relative">
+                <div className="absolute inset-0 bg-black/10"></div>
+                <div className="absolute top-4 right-4 w-24 h-24 bg-white/10 rounded-full blur-xl"></div>
+                <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+                
+                <div className="relative">
+                  <BookOpen className="w-20 h-20 mx-auto mb-6 text-white opacity-90" />
+                  <div style={{color: '#ffffff', fontWeight: 'bold', fontSize: '1.875rem', marginBottom: '1rem', textShadow: 'none', display: 'block'}}>
+                    Ready to Start Your Study Abroad Journey?
+                  </div>
+                  <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Book your free consultation and start your study abroad Jeddah journey with our expert guidance and proven success methods.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-8 py-4 text-lg font-semibold">
+                      <BookOpen className="w-5 h-5 mr-2" />
+                      Book Free Consultation
+                    </Button>
+                    <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
+                      Free Assessment
+                    </Button>
                   </div>
                 </div>
-                
-                <div className="space-y-4">
-                  {ieltsFeatures.map((feature, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                      className="flex items-center"
-                    >
-                      <div className="w-8 h-8 rounded-full bg-[#1D50C9] flex items-center justify-center mr-4 flex-shrink-0">
-                        <CheckCircle className="w-5 h-5 text-white" />
-                      </div>
-                      <span className="text-gray-700 font-medium">{feature}</span>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-gradient-to-br from-[#1D50C9] to-[#1565c0] text-white border-0 shadow-2xl">
-                  <CardContent className="p-8">
-                    <div className="text-center">
-                      <Award className="w-16 h-16 text-white mx-auto mb-6" />
-                      <h3 className="text-2xl font-bold mb-4">Start Your Test Prep Journey</h3>
-                      <p className="text-blue-100 mb-6 leading-relaxed">
-                        Join our proven test preparation program in Jeddah. Small groups, personalized attention, and guaranteed score improvement.
-                      </p>
-                      <Button 
-                        size="lg" 
-                        className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-                      >
-                        <BookOpen className="w-5 h-5 mr-2" />
-                        Free Assessment Test
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </div>
-          </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 
       {/* Get in Touch Section */}
-      <section className="py-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">Get in Touch</h2>
-              <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-                Visit our Jeddah office or connect online. We're here to guide your study abroad journey.
-              </p>
-            </div>
-            
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* FAQ Section */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-2xl font-bold mb-8">Frequently Asked Questions</h3>
-                <div className="space-y-4">
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Get in{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Touch
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              If you're searching for study abroad consultants in Jeddah, we're here to help. Visit us today for a free consultation and take the first step toward your dream university abroad.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - FAQs */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 flex flex-col">
+                <h3 className="text-4xl font-bold text-gray-900 mb-8">
+                  Frequently Asked{" "}
+                  <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                    Questions
+                  </span>
+                </h3>
+                
+                <div className="space-y-3 flex-grow">
                   {faqs.map((faq, index) => (
-                    <div key={index} className="bg-white/10 backdrop-blur-sm rounded-xl overflow-hidden">
-                      <button
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-white/5 transition-colors duration-200"
-                        onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
-                      >
-                        <span className="font-medium text-white">{faq.question}</span>
-                        {expandedFaq === index ? (
-                          <ChevronUp className="w-5 h-5 text-white flex-shrink-0" />
-                        ) : (
-                          <ChevronDown className="w-5 h-5 text-white flex-shrink-0" />
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.05 }}
+                    >
+                      <div className="bg-gray-50 rounded-lg border border-gray-200 hover:border-[#1D50C9] transition-all duration-300 overflow-hidden">
+                        <button
+                          className="w-full p-4 text-left flex items-center justify-between hover:bg-blue-50 transition-colors duration-200"
+                          onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
+                        >
+                          <h4 className="text-gray-900 font-semibold pr-4">{faq.question}</h4>
+                          <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                            {expandedFaq === index ? (
+                              <ChevronUp className="w-4 h-4 text-[#1D50C9]" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-[#1D50C9]" />
+                            )}
+                          </div>
+                        </button>
+                        {expandedFaq === index && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="px-4 pb-4 border-t border-gray-200"
+                          >
+                            <p className="text-gray-700 leading-relaxed pt-3">{faq.answer}</p>
+                          </motion.div>
                         )}
-                      </button>
-                      {expandedFaq === index && (
-                        <div className="px-6 pb-4">
-                          <p className="text-blue-100 leading-relaxed">{faq.answer}</p>
-                        </div>
-                      )}
-                    </div>
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
-              </motion.div>
-              
-              {/* Contact Information */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                  <h3 className="text-2xl font-bold mb-8">Contact Information</h3>
-                  
-                  <div className="space-y-6">
-                    <div className="flex items-start">
-                      <MapPin className="w-6 h-6 text-white mr-4 mt-1 flex-shrink-0" />
-                      <div>
-                        <h4 className="text-white font-bold text-lg mb-2">Address</h4>
-                        <p className="text-blue-100 text-sm leading-relaxed">
-                          King Fahd Road<br />
-                          Jeddah 23441<br />
-                          Saudi Arabia
-                        </p>
-                      </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 text-white shadow-2xl flex flex-col" style={{minHeight: '600px'}}>
+                <div className="text-3xl font-bold mb-8 text-center" style={{color: '#ffffff', fontWeight: 'bold'}}>Contact Information</div>
+                
+                <div className="space-y-4 flex-grow">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <MapPin className="w-6 h-6 text-white" />
                     </div>
-                    
-                    <div className="flex items-start">
-                      <Phone className="w-6 h-6 text-white mr-4 mt-1 flex-shrink-0" />
-                      <div>
-                        <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
-                        <p className="text-blue-100 text-sm leading-relaxed">
-                          +966 12 234 5678
-                        </p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <Clock className="w-6 h-6 text-white mr-4 mt-1 flex-shrink-0" />
-                      <div>
-                        <h4 className="text-white font-bold text-lg mb-2">Office Hours</h4>
-                        <p className="text-blue-100 text-sm leading-relaxed">
-                          Sunday - Thursday: 9 AM - 7 PM<br />
-                          Friday: 2 PM - 7 PM<br />
-                          Saturday: Closed
-                        </p>
-                      </div>
+                    <div>
+                      <h4 className="text-white font-bold text-lg mb-2">Address</h4>
+                      <p className="text-blue-100 leading-relaxed">
+                        King Fahd Road, Al-Salamah District, Jeddah 23441, Saudi Arabia
+                      </p>
                     </div>
                   </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
+                      <a href="tel:+966122345678" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +966 12 234 5678
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
+                      <Clock className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-white font-bold text-lg mb-2">Office Hours</h4>
+                      <p className="text-blue-100 text-lg">
+                        Sunday - Thursday: 9 AM - 7 PM<br />
+                        Friday: 2 PM - 7 PM
+                      </p>
+                    </div>
+                  </div>
+                  
                 </div>
-                
-                <div className="mt-8 pt-6 border-t border-white/20">
-                  <Button 
-                    size="lg" 
-                    className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-                  >
-                    <Phone className="w-5 h-5 mr-2" />
-                    Book a Free Consultation
+
+                <div className="bg-white/10 rounded-lg p-4 backdrop-blur-sm">
+                  <p className="text-blue-100 text-sm leading-relaxed">
+                    Our Jeddah office provides comprehensive visa consultation services including document preparation, application processing, and pre-departure guidance for students planning to study abroad.
+                  </p>
+                </div>
+
+                <div className="space-y-4 mt-4">
+                  <Button size="lg" className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                    <Link href="/contact" className="flex items-center justify-center w-full">
+                      Book Free Consultation
+                      <Calendar className="w-5 h-5 ml-2" />
+                    </Link>
+                  </Button>
+                  
+                  <Button size="lg" variant="outline" className="w-full border-white/50 text-white hover:bg-white/10 py-4 rounded-xl backdrop-blur-sm transition-all duration-300 font-semibold">
+                    <a href="https://wa.me/966122345678" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                      WhatsApp Chat
+                      <MessageCircle className="w-5 h-5 ml-2" />
+                    </a>
                   </Button>
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
