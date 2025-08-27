@@ -1475,34 +1475,42 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-4">
                     <button
                       onClick={() => handleShare('facebook')}
-                      className="flex items-center justify-center p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      className="flex flex-col items-center justify-center gap-2 group"
                     >
-                      <Facebook className="w-4 h-4 mr-2" />
-                      Facebook
+                      <div className="w-14 h-14 bg-[#1877F2] rounded-full flex items-center justify-center hover:bg-[#166FE5] transition-colors shadow-lg">
+                        <Facebook className="w-7 h-7 text-white" />
+                      </div>
+                      <span className="text-sm font-medium text-gray-700 group-hover:text-[#1877F2] transition-colors">Facebook</span>
                     </button>
                     <button
                       onClick={() => handleShare('twitter')}
-                      className="flex items-center justify-center p-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors"
+                      className="flex flex-col items-center justify-center gap-2 group"
                     >
-                      <Twitter className="w-4 h-4 mr-2" />
-                      Twitter
+                      <div className="w-14 h-14 bg-[#1DA1F2] rounded-full flex items-center justify-center hover:bg-[#1A91DA] transition-colors shadow-lg">
+                        <Twitter className="w-7 h-7 text-white" />
+                      </div>
+                      <span className="text-sm font-medium text-gray-700 group-hover:text-[#1DA1F2] transition-colors">Twitter</span>
                     </button>
                     <button
                       onClick={() => handleShare('linkedin')}
-                      className="flex items-center justify-center p-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
+                      className="flex flex-col items-center justify-center gap-2 group"
                     >
-                      <Linkedin className="w-4 h-4 mr-2" />
-                      LinkedIn
+                      <div className="w-14 h-14 bg-[#0A66C2] rounded-full flex items-center justify-center hover:bg-[#094D92] transition-colors shadow-lg">
+                        <Linkedin className="w-7 h-7 text-white" />
+                      </div>
+                      <span className="text-sm font-medium text-gray-700 group-hover:text-[#0A66C2] transition-colors">LinkedIn</span>
                     </button>
                     <button
                       onClick={() => handleShare('copy')}
-                      className="flex items-center justify-center p-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                      className="flex flex-col items-center justify-center gap-2 group"
                     >
-                      <Copy className="w-4 h-4 mr-2" />
-                      Copy Link
+                      <div className="w-14 h-14 bg-gray-600 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors shadow-lg">
+                        <Copy className="w-7 h-7 text-white" />
+                      </div>
+                      <span className="text-sm font-medium text-gray-700 group-hover:text-gray-600 transition-colors">Copy Link</span>
                     </button>
                   </div>
                 </CardContent>
