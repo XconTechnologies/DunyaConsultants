@@ -1518,11 +1518,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Sidebar with TOC and Fixed Bottom Elements */}
-              <div className="space-y-6 h-full flex flex-col">
+              {/* Sidebar with TOC and Bottom Elements */}
+              <div className="space-y-6">
                 {/* Table of Contents - Sticky in sidebar */}
                 {contentSections.length > 0 && (
-                  <div className="sticky top-24 z-10">
+                  <div className="sticky top-24 z-10 mb-6">
                     <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
                       <CardHeader className="pb-4">
                         <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
@@ -1545,97 +1545,91 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </div>
                 )}
 
-                {/* Spacer to push bottom elements down */}
-                <div className="flex-grow"></div>
-
-                {/* Fixed Bottom Elements */}
-                <div className="space-y-6 mt-auto">
-                  {/* Quick Cost Calculator - Only for exchange programs post */}
-                  {(slug.includes("exchange-programs-for-pakistani-students")) && (
-                    <div>
-                      <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
-                        <CardHeader className="pb-4">
-                          <CardTitle className="text-lg flex items-center">
-                            <Calculator className="w-5 h-5 mr-2" />
-                            Quick Cost Calculator
-                          </CardTitle>
-                          <p className="text-blue-100 text-sm">Get an instant estimate of your study abroad costs</p>
-                        </CardHeader>
-                        <CardContent>
-                          <div className="space-y-3">
-                            <div>
-                              <Label className="text-blue-100 text-sm mb-2 block">Country</Label>
-                              <Select>
-                                <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                                  <SelectValue placeholder="Select Country" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="canada">Canada</SelectItem>
-                                  <SelectItem value="uk">United Kingdom</SelectItem>
-                                  <SelectItem value="usa">United States</SelectItem>
-                                  <SelectItem value="australia">Australia</SelectItem>
-                                  <SelectItem value="germany">Germany</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                            <div>
-                              <Label className="text-blue-100 text-sm mb-2 block">Study Level</Label>
-                              <Select>
-                                <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                                  <SelectValue placeholder="Select Level" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="undergraduate">Undergraduate</SelectItem>
-                                  <SelectItem value="postgraduate">Postgraduate</SelectItem>
-                                  <SelectItem value="diploma">Diploma</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                            <div>
-                              <Label className="text-blue-100 text-sm mb-2 block">Duration</Label>
-                              <Select>
-                                <SelectTrigger className="bg-white/10 border-white/20 text-white">
-                                  <SelectValue placeholder="Years" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="1">1 Year</SelectItem>
-                                  <SelectItem value="2">2 Years</SelectItem>
-                                  <SelectItem value="3">3 Years</SelectItem>
-                                  <SelectItem value="4">4 Years</SelectItem>
-                                </SelectContent>
-                              </Select>
-                            </div>
-                            <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 mt-4">
-                              Calculate
-                            </Button>
-                            <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/20">
-                              <span className="text-blue-100 text-sm">Estimated Total:</span>
-                              <span className="text-white font-bold">$45,000 - $65,000</span>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </div>
-                  )}
-
-                  {/* Contact Box - Fixed at bottom */}
-                  <div>
+                {/* Quick Cost Calculator - Only for exchange programs post */}
+                {(slug.includes("exchange-programs-for-pakistani-students")) && (
+                  <div className="mb-6">
                     <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
                       <CardHeader className="pb-4">
-                        <CardTitle className="text-xl">Need Help?</CardTitle>
+                        <CardTitle className="text-lg flex items-center">
+                          <Calculator className="w-5 h-5 mr-2" />
+                          Quick Cost Calculator
+                        </CardTitle>
+                        <p className="text-blue-100 text-sm">Get an instant estimate of your study abroad costs</p>
                       </CardHeader>
                       <CardContent>
-                        <p className="text-blue-100 text-sm mb-4">
-                          Get personalized guidance for your study abroad journey
-                        </p>
-                        <Link href="/contact">
-                          <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
-                            Contact Us
+                        <div className="space-y-3">
+                          <div>
+                            <Label className="text-blue-100 text-sm mb-2 block">Country</Label>
+                            <Select>
+                              <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                                <SelectValue placeholder="Select Country" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="canada">Canada</SelectItem>
+                                <SelectItem value="uk">United Kingdom</SelectItem>
+                                <SelectItem value="usa">United States</SelectItem>
+                                <SelectItem value="australia">Australia</SelectItem>
+                                <SelectItem value="germany">Germany</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label className="text-blue-100 text-sm mb-2 block">Study Level</Label>
+                            <Select>
+                              <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                                <SelectValue placeholder="Select Level" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="undergraduate">Undergraduate</SelectItem>
+                                <SelectItem value="postgraduate">Postgraduate</SelectItem>
+                                <SelectItem value="diploma">Diploma</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <Label className="text-blue-100 text-sm mb-2 block">Duration</Label>
+                            <Select>
+                              <SelectTrigger className="bg-white/10 border-white/20 text-white">
+                                <SelectValue placeholder="Years" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="1">1 Year</SelectItem>
+                                <SelectItem value="2">2 Years</SelectItem>
+                                <SelectItem value="3">3 Years</SelectItem>
+                                <SelectItem value="4">4 Years</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50 mt-4">
+                            Calculate
                           </Button>
-                        </Link>
+                          <div className="flex justify-between items-center mt-4 pt-4 border-t border-white/20">
+                            <span className="text-blue-100 text-sm">Estimated Total:</span>
+                            <span className="text-white font-bold">$45,000 - $65,000</span>
+                          </div>
+                        </div>
                       </CardContent>
                     </Card>
                   </div>
+                )}
+
+                {/* Contact Box */}
+                <div>
+                  <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
+                    <CardHeader className="pb-4">
+                      <CardTitle className="text-xl">Need Help?</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-blue-100 text-sm mb-4">
+                        Get personalized guidance for your study abroad journey
+                      </p>
+                      <Link href="/contact">
+                        <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
+                          Contact Us
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
                 </div>
               </div>
 
