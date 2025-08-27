@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, Twitter, Linkedin, Copy } from "lucide-react";
 import { Link, useRoute } from "wouter";
@@ -212,6 +212,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
     }
   };
 
+  const relatedBlogsCarouselRef = useRef<HTMLDivElement>(null);
+
   const relatedBlogs = [
     {
       id: 'mbbs-in-uk-for-pakistani-students',
@@ -239,8 +241,72 @@ function BlogPostDetail({ slug }: { slug: string }) {
       date: 'September 5, 2024',
       image: '/attached_assets/image_1755675582619.png',
       slug: '2024/09/05/how-to-get-scholarship-to-study-abroad-after-12th'
+    },
+    {
+      id: 'bank-statement-for-uk-visa',
+      title: 'Bank Statement for UK Visa: Complete Guide',
+      excerpt: 'Complete guide to bank statement requirements for UK visa including documents needed, financial requirements, and tips to avoid visa refusal.',
+      category: 'Visa Services',
+      date: 'August 15, 2024',
+      image: '/attached_assets/image_1755675870364.png',
+      slug: '2024/08/15/bank-statement-for-uk-visa'
+    },
+    {
+      id: 'exchange-programs-for-pakistani-students',
+      title: 'Exchange Programs for Pakistani Students',
+      excerpt: 'Complete guide to exchange programs for Pakistani students including types, popular programs like Fulbright, Erasmus+, YES, and application process.',
+      category: 'Study Abroad',
+      date: 'July 20, 2024',
+      image: '/attached_assets/image_1755676067750.png',
+      slug: '2024/07/20/exchange-programs-for-pakistani-students'
     }
   ];
+
+  // Duplicate the blogs for infinite scroll effect
+  const duplicatedRelatedBlogs = [...relatedBlogs, ...relatedBlogs];
+
+  // Infinite scroll animation for related blogs
+  useEffect(() => {
+    const carousel = relatedBlogsCarouselRef.current;
+    if (!carousel) return;
+
+    let animationId: number;
+    let isPaused = false;
+    
+    const animate = () => {
+      if (!isPaused) {
+        if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
+          carousel.scrollLeft = 0;
+        } else {
+          carousel.scrollLeft += 1; // Smooth scroll speed
+        }
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+
+    // Start animation
+    animationId = requestAnimationFrame(animate);
+
+    // Pause on hover
+    const handleMouseEnter = () => {
+      isPaused = true;
+    };
+
+    const handleMouseLeave = () => {
+      isPaused = false;
+    };
+
+    carousel.addEventListener('mouseenter', handleMouseEnter);
+    carousel.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+      carousel.removeEventListener('mouseenter', handleMouseEnter);
+      carousel.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, []);
   
   // Fetch blog posts for detail view
   const { data: blogPostsData, isLoading } = useQuery({
@@ -1267,88 +1333,101 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
 
 
-                {/* Related Blogs Section */}
+                {/* Related Blogs Section - Infinite Scroll Carousel */}
                 <footer className="pt-8 border-t border-gray-200">
                   <section className="mb-10">
                     <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-                      {relatedBlogs.map((blog, index) => (
-                        <motion.div
-                          key={blog.id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <Link href={`/blog/${blog.slug}`}>
-                            <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
-                              
-                              {/* Featured Image */}
-                              {blog.image && (
-                                <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
-                                  <img 
-                                    src={blog.image.startsWith('http') || blog.image.startsWith('/attached_assets/') ? blog.image : `/attached_assets/${blog.image}`} 
-                                    alt={blog.title}
-                                    className="w-full h-56 object-cover transition-transform hover:scale-105"
-                                    style={{ 
-                                      objectFit: 'cover', 
-                                      objectPosition: 'center',
-                                      imageRendering: 'auto',
-                                      backfaceVisibility: 'hidden'
-                                    }}
-                                    loading="lazy"
-                                    decoding="async"
-                                    onLoad={(e) => {
-                                      e.currentTarget.style.opacity = '1';
-                                    }}
-                                    onError={(e) => {
-                                      console.log('Image failed to load:', blog.image);
-                                      e.currentTarget.src = '/attached_assets/default-blog-image.png';
-                                      e.currentTarget.onerror = null; // Prevent infinite loop
-                                    }}
-                                  />
-                                </div>
-                              )}
-
-                              <CardContent className="p-6">
+                    
+                    {/* Infinite Scroll Carousel */}
+                    <div className="relative">
+                      <div
+                        ref={relatedBlogsCarouselRef}
+                        className="flex gap-4 md:gap-6 overflow-x-hidden will-change-scroll"
+                        style={{
+                          scrollBehavior: 'auto',
+                          width: '100%',
+                          WebkitOverflowScrolling: 'touch'
+                        }}
+                      >
+                        {duplicatedRelatedBlogs.map((blog, index) => (
+                          <motion.div
+                            key={`${blog.id}-${index}`}
+                            className="flex-shrink-0 w-80 md:w-96"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
+                          >
+                            <Link href={`/blog/${blog.slug}`}>
+                              <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                                 
-                                {/* Category Badge */}
-                                <div className="mb-3">
-                                  <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
-                                    {blog.category}
-                                  </Badge>
-                                </div>
+                                {/* Featured Image */}
+                                {blog.image && (
+                                  <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
+                                    <img 
+                                      src={blog.image.startsWith('http') || blog.image.startsWith('/attached_assets/') ? blog.image : `/attached_assets/${blog.image}`} 
+                                      alt={blog.title}
+                                      className="w-full h-56 object-cover transition-transform hover:scale-105"
+                                      style={{ 
+                                        objectFit: 'cover', 
+                                        objectPosition: 'center',
+                                        imageRendering: 'auto',
+                                        backfaceVisibility: 'hidden'
+                                      }}
+                                      loading="lazy"
+                                      decoding="async"
+                                      onLoad={(e) => {
+                                        e.currentTarget.style.opacity = '1';
+                                      }}
+                                      onError={(e) => {
+                                        console.log('Image failed to load:', blog.image);
+                                        e.currentTarget.src = '/attached_assets/default-blog-image.png';
+                                        e.currentTarget.onerror = null; // Prevent infinite loop
+                                      }}
+                                    />
+                                  </div>
+                                )}
 
-                                {/* Title */}
-                                <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
-                                  {blog.title}
-                                </h3>
+                                <CardContent className="p-6">
+                                  
+                                  {/* Category Badge */}
+                                  <div className="mb-3">
+                                    <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
+                                      {blog.category}
+                                    </Badge>
+                                  </div>
 
-                                {/* Excerpt */}
-                                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                                  {blog.excerpt}
-                                </p>
+                                  {/* Title */}
+                                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                                    {blog.title}
+                                  </h3>
 
-                                {/* Meta Information and Read More - Same Line */}
-                                <div className="flex items-center justify-between text-sm">
-                                  <div className="flex items-center text-gray-500">
-                                    <div className="flex items-center">
-                                      <Calendar className="w-4 h-4 mr-1" />
-                                      <span>{blog.date}</span>
+                                  {/* Excerpt */}
+                                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                                    {blog.excerpt}
+                                  </p>
+
+                                  {/* Meta Information and Read More - Same Line */}
+                                  <div className="flex items-center justify-between text-sm">
+                                    <div className="flex items-center text-gray-500">
+                                      <div className="flex items-center">
+                                        <Calendar className="w-4 h-4 mr-1" />
+                                        <span>{blog.date}</span>
+                                      </div>
+                                    </div>
+                                    
+                                    {/* Read More Link */}
+                                    <div className="flex items-center text-[#1D50C9] font-medium">
+                                      <span>Read More</span>
+                                      <ArrowRight className="w-4 h-4 ml-1" />
                                     </div>
                                   </div>
-                                  
-                                  {/* Read More Link */}
-                                  <div className="flex items-center text-[#1D50C9] font-medium">
-                                    <span>Read More</span>
-                                    <ArrowRight className="w-4 h-4 ml-1" />
-                                  </div>
-                                </div>
 
-                              </CardContent>
-                            </Card>
-                          </Link>
-                        </motion.div>
-                      ))}
+                                </CardContent>
+                              </Card>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
                   </section>
                 </footer>
