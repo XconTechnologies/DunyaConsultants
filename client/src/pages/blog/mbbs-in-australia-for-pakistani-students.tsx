@@ -1,64 +1,12 @@
 import { motion } from "framer-motion";
-import React, { useState } from 'react';
-import { Calendar, Clock, User, GraduationCap, MapPin, DollarSign, BookOpen, Award, FileText, Phone, Mail, Building, CheckCircle, Search, Share2, Facebook, Twitter, Linkedin, Copy, ArrowRight } from "lucide-react";
+import { Calendar, Clock, User, GraduationCap, MapPin, DollarSign, BookOpen, Award, FileText, Phone, Mail, Building, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
 import Navigation from '../../components/navigation';
 import Footer from '../../components/footer';
 import ContactSection from '../../components/blog/ContactSection';
-import ContactForm from '../../components/blog/ContactForm';
 
 export default function MBBSInAustraliaForPakistaniStudents() {
-  const [sidebarSearch, setSidebarSearch] = useState("");
-
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const shareTitle = 'MBBS in Australia for Pakistani Students - Dunya Consultants';
-
-  const handleShare = (platform: string) => {
-    const encodedUrl = encodeURIComponent(shareUrl);
-    const encodedTitle = encodeURIComponent(shareTitle);
-    
-    const shareUrls = {
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-      copy: shareUrl
-    };
-    
-    if (platform === 'copy') {
-      navigator.clipboard.writeText(shareUrl);
-    } else {
-      window.open(shareUrls[platform as keyof typeof shareUrls], '_blank', 'width=600,height=400');
-    }
-  };
-
-  const relatedBlogs = [
-    {
-      id: 'study-in-australia-guide',
-      title: 'Study in Australia Complete Guide',
-      excerpt: 'Complete guide to studying in Australia including admission requirements, visa processes, and opportunities for Pakistani students.',
-      category: 'Study Guides',
-      readTime: '15 min',
-      href: '/blog/study-in-australia-guide'
-    },
-    {
-      id: 'study-nursing-uk',
-      title: 'Study Nursing in UK Guide',
-      excerpt: 'Comprehensive guide to nursing programs in the UK including admission requirements, career prospects, and application process.',
-      category: 'Medical Studies', 
-      readTime: '12 min',
-      href: '/blog/study-nursing-uk'
-    },
-    {
-      id: 'ielts-preparation-tips-and-tricks',
-      title: 'IELTS Preparation Tips and Tricks',
-      excerpt: 'Expert strategies and tips to achieve your target IELTS score for medical studies and university admissions in Australia.',
-      category: 'Test Preparation',
-      readTime: '8 min',
-      href: '/blog/ielts-preparation-tips-and-tricks'
-    }
-  ];
   const eligibilityRequirements = [
     "Completed higher secondary education from a certified board",
     "Minimum age of seventeen years",
@@ -410,125 +358,12 @@ export default function MBBSInAustraliaForPakistaniStudents() {
                 </div>
               </section>
 
-              {/* Related Blogs Section */}
-              <section className="mb-10">
-                <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {relatedBlogs.map((blog, index) => (
-                    <div key={blog.id} className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-lg overflow-hidden group">
-                      <div className="p-6">
-                        <div className="mb-3">
-                          <span className="bg-[#1D50C9]/10 text-[#1D50C9] text-xs font-medium px-2.5 py-1 rounded-full">
-                            {blog.category}
-                          </span>
-                        </div>
-                        
-                        <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#1D50C9] transition-colors">
-                          {blog.title}
-                        </h3>
-                        
-                        <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                          {blog.excerpt}
-                        </p>
-                        
-                        <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                          <div className="flex items-center space-x-4">
-                            <div className="flex items-center">
-                              <Clock className="w-3 h-3 mr-1" />
-                              {blog.readTime}
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <a 
-                          href={blog.href}
-                          className="inline-flex items-center text-[#1D50C9] hover:text-[#1565c0] font-medium text-sm group-hover:translate-x-1 transition-all duration-200"
-                        >
-                          Read More
-                          <ArrowRight className="w-4 h-4 ml-1" />
-                        </a>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
             </motion.article>
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-8 space-y-8">
-              
-              {/* Contact Form */}
-              <ContactForm />
-              
-              {/* Search Bar */}
-              <Card className="bg-white border border-gray-200 shadow-sm">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl text-[#1D50C9]">Search Articles</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                    <Input
-                      type="text"
-                      placeholder="Search blog posts..."
-                      value={sidebarSearch}
-                      onChange={(e) => setSidebarSearch(e.target.value)}
-                      className="pl-10"
-                    />
-                    {sidebarSearch && (
-                      <div className="mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600">
-                        <a href={`/blog?search=${encodeURIComponent(sidebarSearch)}`} className="text-[#1D50C9] hover:underline">
-                          Search for "{sidebarSearch}" →
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-              
-              {/* Share Buttons */}
-              <Card className="bg-white border border-gray-200 shadow-sm">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl text-[#1D50C9] flex items-center">
-                    <Share2 className="w-5 h-5 mr-2" />
-                    Share This Article
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-2 gap-3">
-                    <button
-                      onClick={() => handleShare('facebook')}
-                      className="flex items-center justify-center p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                    >
-                      <Facebook className="w-4 h-4 mr-2" />
-                      Facebook
-                    </button>
-                    <button
-                      onClick={() => handleShare('twitter')}
-                      className="flex items-center justify-center p-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors"
-                    >
-                      <Twitter className="w-4 h-4 mr-2" />
-                      Twitter
-                    </button>
-                    <button
-                      onClick={() => handleShare('linkedin')}
-                      className="flex items-center justify-center p-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
-                    >
-                      <Linkedin className="w-4 h-4 mr-2" />
-                      LinkedIn
-                    </button>
-                    <button
-                      onClick={() => handleShare('copy')}
-                      className="flex items-center justify-center p-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
-                    >
-                      <Copy className="w-4 h-4 mr-2" />
-                      Copy Link
-                    </button>
-                  </div>
-                </CardContent>
-              </Card>
               
               {/* Quick Facts */}
               <Card className="bg-gradient-to-br from-blue-50 to-teal-50 border-blue-200">
