@@ -127,7 +127,7 @@ function parseContentToSections(content: string) {
         sections.push(currentSection);
       }
       
-      let title = trimmedLine.replace(/^##\s*/, '').trim();
+      let title = trimmedLine.replace(/^#+\s*/, '').replace(/#+/g, '').trim();
       const id = title.toLowerCase()
         .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '-')
@@ -391,7 +391,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
           .filter((section: any) => section.title.trim() !== '') // Filter out empty titles
           .map((section: any, index: number) => ({
             id: `section-${index}`,
-            title: section.title.replace(/^##\s*/, ''),
+            title: section.title.replace(/^#+\s*/, '').replace(/#+/g, ''),
             content: section.content
           }));
       } else {
