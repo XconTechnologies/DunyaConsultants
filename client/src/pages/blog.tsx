@@ -1270,40 +1270,46 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                       {relatedBlogs.map((blog, index) => (
-                        <div key={blog.id} className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-lg overflow-hidden group">
-                          <div className="p-6">
-                            <div className="mb-3">
-                              <span className="bg-[#1D50C9]/10 text-[#1D50C9] text-xs font-medium px-2.5 py-1 rounded-full">
-                                {blog.category}
-                              </span>
-                            </div>
-                            
-                            <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#1D50C9] transition-colors">
-                              {blog.title}
-                            </h3>
-                            
-                            <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                              {blog.excerpt}
-                            </p>
-                            
-                            <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                              <div className="flex items-center space-x-4">
-                                <div className="flex items-center">
-                                  <Clock className="w-3 h-3 mr-1" />
-                                  {blog.readTime}
+                        <Link key={blog.id} href={blog.href}>
+                          <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+                            <CardContent className="p-6">
+                              
+                              {/* Category Badge */}
+                              <div className="mb-3">
+                                <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
+                                  {blog.category}
+                                </Badge>
+                              </div>
+
+                              {/* Title */}
+                              <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                                {blog.title}
+                              </h3>
+
+                              {/* Excerpt */}
+                              <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                                {blog.excerpt}
+                              </p>
+
+                              {/* Meta Information and Read More - Same Line */}
+                              <div className="flex items-center justify-between text-sm">
+                                <div className="flex items-center text-gray-500">
+                                  <div className="flex items-center">
+                                    <Clock className="w-4 h-4 mr-1" />
+                                    <span>{blog.readTime}</span>
+                                  </div>
+                                </div>
+                                
+                                {/* Read More Link */}
+                                <div className="flex items-center text-[#1D50C9] font-medium">
+                                  <span>Read More</span>
+                                  <ArrowRight className="w-4 h-4 ml-1" />
                                 </div>
                               </div>
-                            </div>
-                            
-                            <a 
-                              href={blog.href}
-                              className="inline-flex items-center text-[#1D50C9] hover:text-[#1565c0] font-medium text-sm group-hover:translate-x-1 transition-all duration-200"
-                            >
-                              Read More
-                              <ArrowRight className="w-4 h-4 ml-1" />
-                            </a>
-                          </div>
-                        </div>
+
+                            </CardContent>
+                          </Card>
+                        </Link>
                       ))}
                     </div>
                   </section>
