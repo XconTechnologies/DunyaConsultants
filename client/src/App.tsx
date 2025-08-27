@@ -152,7 +152,7 @@ function Router() {
       <Route path="/offices/mardan" component={MardanOffice} />
       <Route path="/offices/jeddah" component={JeddahOffice} />
       <Route path="/offices/istanbul" component={IstanbulOffice} />
-      <Route path="/offices/cairo" component={CairoOffice} />
+      <Route path="/offices/egypt-cairo" component={CairoOffice} />
       <Route path="/offices/edinburgh" component={EdinburghOffice} />
       <Route path="/offices/:officeId" component={OfficeDetails} />
       

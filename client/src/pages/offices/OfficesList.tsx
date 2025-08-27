@@ -705,7 +705,7 @@ export default function OfficesList() {
                             </Button>
                           </Link>
                         ) : office.id === "cairo" ? (
-                          <Link href="/offices/cairo">
+                          <Link href="/offices/egypt-cairo">
                             <Button 
                               variant="outline" 
                               size="sm"
