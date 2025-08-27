@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, Twitter, Linkedin, Copy } from "lucide-react";
+import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, X, Linkedin, Share, Instagram } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from '@/components/navigation';
@@ -200,13 +200,24 @@ function BlogPostDetail({ slug }: { slug: string }) {
     
     const shareUrls = {
       facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      x: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-      copy: shareUrl
+      instagram: `https://www.instagram.com/`,
+      share: shareUrl
     };
     
-    if (platform === 'copy') {
-      navigator.clipboard.writeText(shareUrl);
+    if (platform === 'share') {
+      if (navigator.share) {
+        navigator.share({
+          title: shareTitle,
+          url: shareUrl,
+        }).catch(console.error);
+      } else {
+        navigator.clipboard.writeText(shareUrl);
+        alert('Link copied to clipboard!');
+      }
+    } else if (platform === 'instagram') {
+      window.open('https://www.instagram.com/', '_blank');
     } else {
       window.open(shareUrls[platform as keyof typeof shareUrls], '_blank', 'width=600,height=400');
     }
@@ -1475,42 +1486,41 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center justify-center gap-6">
                     <button
                       onClick={() => handleShare('facebook')}
-                      className="flex flex-col items-center justify-center gap-2 group"
+                      className="p-3 bg-[#1877F2] text-white rounded-lg hover:bg-[#166FE5] transition-colors"
+                      title="Share on Facebook"
                     >
-                      <div className="w-14 h-14 bg-[#1877F2] rounded-full flex items-center justify-center hover:bg-[#166FE5] transition-colors shadow-lg">
-                        <Facebook className="w-7 h-7 text-white" />
-                      </div>
-                      <span className="text-sm font-medium text-gray-700 group-hover:text-[#1877F2] transition-colors">Facebook</span>
+                      <Facebook className="w-6 h-6" />
                     </button>
                     <button
-                      onClick={() => handleShare('twitter')}
-                      className="flex flex-col items-center justify-center gap-2 group"
+                      onClick={() => handleShare('x')}
+                      className="p-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
+                      title="Share on X"
                     >
-                      <div className="w-14 h-14 bg-[#1DA1F2] rounded-full flex items-center justify-center hover:bg-[#1A91DA] transition-colors shadow-lg">
-                        <Twitter className="w-7 h-7 text-white" />
-                      </div>
-                      <span className="text-sm font-medium text-gray-700 group-hover:text-[#1DA1F2] transition-colors">Twitter</span>
+                      <X className="w-6 h-6" />
                     </button>
                     <button
                       onClick={() => handleShare('linkedin')}
-                      className="flex flex-col items-center justify-center gap-2 group"
+                      className="p-3 bg-[#0A66C2] text-white rounded-lg hover:bg-[#094D92] transition-colors"
+                      title="Share on LinkedIn"
                     >
-                      <div className="w-14 h-14 bg-[#0A66C2] rounded-full flex items-center justify-center hover:bg-[#094D92] transition-colors shadow-lg">
-                        <Linkedin className="w-7 h-7 text-white" />
-                      </div>
-                      <span className="text-sm font-medium text-gray-700 group-hover:text-[#0A66C2] transition-colors">LinkedIn</span>
+                      <Linkedin className="w-6 h-6" />
                     </button>
                     <button
-                      onClick={() => handleShare('copy')}
-                      className="flex flex-col items-center justify-center gap-2 group"
+                      onClick={() => handleShare('instagram')}
+                      className="p-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all"
+                      title="Share on Instagram"
                     >
-                      <div className="w-14 h-14 bg-gray-600 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors shadow-lg">
-                        <Copy className="w-7 h-7 text-white" />
-                      </div>
-                      <span className="text-sm font-medium text-gray-700 group-hover:text-gray-600 transition-colors">Copy Link</span>
+                      <Instagram className="w-6 h-6" />
+                    </button>
+                    <button
+                      onClick={() => handleShare('share')}
+                      className="p-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                      title="Share"
+                    >
+                      <Share className="w-6 h-6" />
                     </button>
                   </div>
                 </CardContent>
