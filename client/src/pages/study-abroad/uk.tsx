@@ -248,14 +248,7 @@ Address: Alif Tower, Sargodha
                   ))}
                 </div>
                 
-                <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
-                  <h4 className="font-medium text-[#1565c0] mb-2 text-xs">TB Test Centers:</h4>
-                  <ul className="list-disc list-inside text-blue-700 space-y-1 text-xs">
-                    <li>AMC (Approved Medical Centre)</li>
-                    <li>Dr. Arshad Health Associates</li>
-                    <li>IOM (International Organization for Migration)</li>
-                  </ul>
-                </div>
+                
               </CardContent>
             </Card>
 
