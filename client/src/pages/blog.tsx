@@ -1518,11 +1518,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Sidebar with TOC and Bottom Elements */}
+              {/* Sidebar with TOC and Elements */}
               <div className="space-y-6">
-                {/* Table of Contents - Sticky in sidebar */}
+                {/* Table of Contents - Regular (not sticky) */}
                 {contentSections.length > 0 && (
-                  <div className="sticky top-24 z-10 mb-6">
+                  <div className="mb-6">
                     <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
                       <CardHeader className="pb-4">
                         <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
