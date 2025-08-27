@@ -1454,14 +1454,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
               {/* Search Bar */}
               <Card className="bg-white border border-gray-200 shadow-sm">
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-xl text-[#1D50C9]">Search Website</CardTitle>
+                  <CardTitle className="text-xl text-[#1D50C9]">Search</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                     <Input
                       type="text"
-                      placeholder="Search our website..."
+                      placeholder="Search..."
                       value={sidebarSearch}
                       onChange={(e) => setSidebarSearch(e.target.value)}
                       className="pl-10"
