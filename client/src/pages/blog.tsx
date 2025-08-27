@@ -1532,24 +1532,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Contact Box - scrolls with content */}
-              <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl">Need Help?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-blue-100 text-sm mb-4">
-                    Get personalized guidance for your study abroad journey
-                  </p>
-                  <Link href="/contact">
-                    <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
-                      Contact Us
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-
-              {/* Table of Contents - sticky/fixed position till end of page */}
+              {/* Table of Contents - sticky till end of scrolling */}
               {contentSections.length > 0 && (
                 <div className="sticky top-24">
                   <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
@@ -1573,6 +1556,23 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </Card>
                 </div>
               )}
+
+              {/* Contact Box - scrolls with content (placed after TOC) */}
+              <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0">
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl">Need Help?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-blue-100 text-sm mb-4">
+                    Get personalized guidance for your study abroad journey
+                  </p>
+                  <Link href="/contact">
+                    <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
+                      Contact Us
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
 
             </div>
           </div>
