@@ -1518,9 +1518,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Sidebar with TOC and Elements */}
-              <div className="space-y-6">
-                {/* Table of Contents - Regular (not sticky) */}
+              {/* Sidebar with Sticky Behavior */}
+              <div className="sticky top-24 self-start space-y-6 max-h-[calc(100vh-6rem)] overflow-y-auto">
+                {/* Table of Contents */}
                 {contentSections.length > 0 && (
                   <div className="mb-6">
                     <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
