@@ -53,13 +53,6 @@ export default function Navigation() {
             { name: "Why Choose Us", href: "/about/why-choose-us", description: "Our unique advantages" }
           ]
         },
-        {
-          title: "Resources",
-          icon: BookOpen,
-          items: [
-            { name: "Blog", href: "/blog", description: "Latest updates and guides" }
-          ]
-        }
       ],
       featured: {
         title: "More Than 5 Years of Excellence",
@@ -141,6 +134,7 @@ export default function Navigation() {
     { name: "Study Abroad", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },
+    { name: "Blog", href: "/blog" },
   ];
 
   return (

@@ -1516,14 +1516,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Table of Contents - Sticky */}
+              {/* Table of Contents - Fixed */}
               {contentSections.length > 0 && (
-                <div className="sticky top-24 mb-6">
-                  <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
+                <div className="fixed top-24 right-4 w-80 z-30 mb-6">
+                  <Card className="hidden md:block bg-white border border-gray-200 shadow-lg">
                     <CardHeader className="pb-4">
                       <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="max-h-[60vh] overflow-y-auto">
                       <ul className="space-y-2">
                         {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
                           <li key={index}>
@@ -1541,9 +1541,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </div>
               )}
 
-              {/* Contact Box */}
-              <div className="sticky top-[calc(100vh-300px)]">
-                <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
+              {/* Contact Box - Fixed */}
+              <div className="fixed bottom-8 right-4 w-80 z-30">
+                <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-xl">
                   <CardHeader className="pb-4">
                     <CardTitle className="text-xl">Need Help?</CardTitle>
                   </CardHeader>
