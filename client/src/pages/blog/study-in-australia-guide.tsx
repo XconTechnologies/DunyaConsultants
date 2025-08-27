@@ -518,34 +518,30 @@ export default function StudyInAustraliaGuide() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="flex justify-center gap-4">
                     <button
                       onClick={() => handleShare('facebook')}
-                      className="flex items-center justify-center p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
                     >
-                      <Facebook className="w-4 h-4 mr-2" />
-                      Facebook
+                      <Facebook className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('twitter')}
-                      className="flex items-center justify-center p-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
                     >
-                      <Twitter className="w-4 h-4 mr-2" />
-                      Twitter
+                      <Twitter className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('linkedin')}
-                      className="flex items-center justify-center p-3 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
                     >
-                      <Linkedin className="w-4 h-4 mr-2" />
-                      LinkedIn
+                      <Linkedin className="w-5 h-5" />
                     </button>
                     <button
                       onClick={() => handleShare('copy')}
-                      className="flex items-center justify-center p-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                      className="flex items-center justify-center w-12 h-12 bg-[#1D50C9] text-white rounded-full hover:bg-[#1845B3] transition-colors"
                     >
-                      <Copy className="w-4 h-4 mr-2" />
-                      Copy Link
+                      <Copy className="w-5 h-5" />
                     </button>
                   </div>
                 </CardContent>
