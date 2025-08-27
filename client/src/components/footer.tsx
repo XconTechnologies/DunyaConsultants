@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
 import { Mail, User, Building, Handshake, Users, Globe, Phone, MapPin, FileText, Calculator } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 import Asset_1 from "@assets/Asset-1.png";
 
@@ -58,6 +59,57 @@ export default function Footer() {
               </ul>
             </div>
 
+            {/* Contact Us Card */}
+            <div className="sm:col-span-2 lg:col-span-1">
+              <motion.div 
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Background accent */}
+                <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-6 translate-x-6" />
+                <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-4 -translate-x-4" />
+                
+                <div className="relative z-10">
+                  <h4 className="text-lg font-bold text-white mb-4">
+                    Contact Us
+                  </h4>
+                
+                  <div className="space-y-3">
+                    <div className="flex items-start space-x-3">
+                      <Phone className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-blue-100 text-xs font-medium">UAN:</p>
+                        <a href="tel:+923041110947" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors">
+                          (+92) 304 1110947
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-3">
+                      <Mail className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-blue-100 text-xs font-medium">Email:</p>
+                        <a href="mailto:info@dunyaconsultants.com" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors break-all">
+                          info@dunyaconsultants.com
+                        </a>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-3">
+                      <MapPin className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
+                      <div>
+                        <p className="text-blue-100 text-xs font-medium">Head Office:</p>
+                        <p className="text-white text-sm font-semibold leading-relaxed">
+                          Alif Tower, Buhadur shah zafar road, Sargodha
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
             {/* For Business Proposals Card */}
             <div className="sm:col-span-2 lg:col-span-1">
               <motion.div 
@@ -70,8 +122,7 @@ export default function Footer() {
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-4 -translate-x-4" />
                 
                 <div className="relative z-10">
-                  <h4 className="text-lg font-bold text-white mb-4 flex items-center">
-                    <Mail className="w-4 h-4 mr-2" />
+                  <h4 className="text-lg font-bold text-white mb-4">
                     For Business Proposals
                   </h4>
                 
@@ -86,11 +137,11 @@ export default function Footer() {
                     </div>
                     
                     <div className="flex items-start space-x-3">
-                      <User className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
+                      <FaWhatsapp className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="text-white text-sm font-semibold">
+                        <a href="https://www.whatsapp.com/channel/0029Va8G4zN1HsptSet4Cs2j" target="_blank" rel="noopener noreferrer" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors">
                           Umer Farooq
-                        </p>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -110,8 +161,7 @@ export default function Footer() {
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-4 -translate-x-4" />
                 
                 <div className="relative z-10">
-                  <h4 className="text-lg font-bold text-white mb-4 flex items-center">
-                    <Phone className="w-4 h-4 mr-2" />
+                  <h4 className="text-lg font-bold text-white mb-4">
                     For Admission & Query
                   </h4>
                 
