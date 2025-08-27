@@ -684,7 +684,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                   <div key={pIndex} className="flex items-start leading-tight mb-2">
                                     <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
                                     <span className="text-gray-700 text-base leading-tight">
-                                      <strong>{paragraph.replace(/^[-•]\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1')}</strong>
+                                      {paragraph.replace(/^[-•]\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1')}
                                     </span>
                                   </div>
                                 );
@@ -1304,7 +1304,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                     {paragraph.trim().match(/^\d+\./)?.[0]}
                                   </span>
                                   <span className="text-gray-700 text-base leading-relaxed">
-                                    <strong>{paragraph.replace(/^\d+\.\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1')}</strong>
+                                    {paragraph.replace(/^\d+\.\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1')}
                                   </span>
                                 </div>
                               );
@@ -1313,7 +1313,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             if (paragraph.trim()) {
                               return (
                                 <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
-                                  <strong>{paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}</strong>
+                                  {paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}
                                 </p>
                               );
                             }
@@ -1518,7 +1518,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
               {/* Table of Contents - Sticky */}
               {contentSections.length > 0 && (
-                <div className="sticky top-24">
+                <div className="sticky top-24 mb-6">
                   <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
                     <CardHeader className="pb-4">
                       <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
@@ -1542,21 +1542,23 @@ function BlogPostDetail({ slug }: { slug: string }) {
               )}
 
               {/* Contact Box */}
-              <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-xl">Need Help?</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-blue-100 text-sm mb-4">
-                    Get personalized guidance for your study abroad journey
-                  </p>
-                  <Link href="/contact">
-                    <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
-                      Contact Us
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+              <div className="sticky top-[calc(100vh-300px)]">
+                <Card className="bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] text-white border-0 shadow-lg">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="text-xl">Need Help?</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-blue-100 text-sm mb-4">
+                      Get personalized guidance for your study abroad journey
+                    </p>
+                    <Link href="/contact">
+                      <Button className="w-full bg-white text-[#1D50C9] hover:bg-blue-50">
+                        Contact Us
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </div>
 
             </div>
           </div>
