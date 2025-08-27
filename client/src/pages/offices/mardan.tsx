@@ -237,8 +237,8 @@ export default function MardanOffice() {
                   className="overflow-hidden rounded-xl shadow-xl"
                 >
                   <img 
-                    src="/attached_assets/IMG-20240909-WA0043_1756189128801.jpg" 
-                    alt="Dunya Consultants Mardan Office - Student Consultation Area with International Flags"
+                    src="/attached_assets/IMG-20250827-WA0041_1756289745680.jpg" 
+                    alt="Dunya Consultants Mardan Office - Professional Reception Area with International Flags and Branding"
                     className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </motion.div>
@@ -251,8 +251,8 @@ export default function MardanOffice() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.31_4ea9c94d_1756189137592.jpg" 
-                      alt="Dunya Consultants Mardan - Active Consultation Sessions"
+                      src="/attached_assets/IMG-20250827-WA0040_1756289748502.jpg" 
+                      alt="Dunya Consultants Mardan - Executive Office Interior with International Flags"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
@@ -264,12 +264,26 @@ export default function MardanOffice() {
                     className="overflow-hidden rounded-xl shadow-lg"
                   >
                     <img 
-                      src="/attached_assets/WhatsApp Image 2024-07-20 at 11.08.33_46995c46 (1)_1756189140861.jpg" 
-                      alt="Dunya Consultants Mardan - Professional Counseling Environment"
+                      src="/attached_assets/IMG-20250827-WA0038_1756289752430.jpg" 
+                      alt="Dunya Consultants Mardan - Main Office Workspace with Professional Setup"
                       className="w-full h-32 object-cover hover:scale-105 transition-transform duration-300"
                     />
                   </motion.div>
                 </div>
+                
+                {/* Additional Consultation Activities Image */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="overflow-hidden rounded-xl shadow-xl mt-4"
+                >
+                  <img 
+                    src="/attached_assets/image_1756289780161.png" 
+                    alt="Dunya Consultants Mardan - Active Student Consultation Sessions and Group Activities"
+                    className="w-full h-40 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </motion.div>
               </div>
             </motion.div>
           </div>
