@@ -141,7 +141,7 @@ export default function TeamPage() {
                 <Card className="bg-white border-0 shadow-lg h-72 sm:h-80">
                   <CardContent className="p-2 sm:p-3 md:p-4 text-center h-full flex flex-col justify-between">
                     <div>
-                      <div className="mb-3 sm:mb-4">
+                      <div className="mb-1 sm:mb-2">
                         <div className="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] mx-auto">
                           <img
                             src={member.image}
@@ -153,7 +153,7 @@ export default function TeamPage() {
                       {member.name && (
                         <>
                           <h3 
-                            className="text-[#1D50C9] mb-2 sm:mb-3" 
+                            className="text-[#1D50C9] mb-1" 
                             style={{ fontSize: '18px', fontWeight: 600, lineHeight: '1.2' }}
                           >
                             {member.name}
