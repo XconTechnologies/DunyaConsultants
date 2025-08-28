@@ -138,35 +138,33 @@ export default function TeamPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="bg-white border-0 shadow-lg h-72 sm:h-80">
-                  <CardContent className="p-2 sm:p-3 md:p-4 text-center h-full flex flex-col justify-between">
-                    <div>
-                      <div className="mb-1 sm:mb-2">
-                        <div className="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] mx-auto">
-                          <img
-                            src={member.image}
-                            alt={member.name}
-                            className="w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
-                          />
-                        </div>
+                <Card className="bg-white border-0 shadow-lg">
+                  <CardContent className="p-2 sm:p-3 md:p-4 text-center">
+                    <div className="mb-1 sm:mb-2">
+                      <div className="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] mx-auto">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
+                        />
                       </div>
-                      {member.name && (
-                        <>
-                          <h3 
-                            className="text-[#1D50C9] mb-1" 
-                            style={{ fontSize: '18px', fontWeight: 600, lineHeight: '1.2' }}
-                          >
-                            {member.name}
-                          </h3>
-                          <p 
-                            className="text-gray-600" 
-                            style={{ fontSize: '14px', fontWeight: 400, lineHeight: '1.4' }}
-                          >
-                            {member.designation}
-                          </p>
-                        </>
-                      )}
                     </div>
+                    {member.name && (
+                      <>
+                        <h3 
+                          className="text-[#1D50C9] mb-1" 
+                          style={{ fontSize: '18px', fontWeight: 600, lineHeight: '1.2' }}
+                        >
+                          {member.name}
+                        </h3>
+                        <p 
+                          className="text-gray-600" 
+                          style={{ fontSize: '14px', fontWeight: 400, lineHeight: '1.4' }}
+                        >
+                          {member.designation}
+                        </p>
+                      </>
+                    )}
                   </CardContent>
                 </Card>
               </motion.div>
