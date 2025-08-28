@@ -90,10 +90,10 @@ export default function ContactInfoSection() {
               </div>
               <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm text-neutral-800 px-6 py-3 rounded-full shadow-lg">
                 <a 
-                  href="tel:+923041110947"
+                  href="tel:+923261111947"
                   className="text-lg font-bold hover:text-primary transition-colors"
                 >
-                  (+92) 304 1110947
+                  (+92) 326 1111947
                 </a>
               </div>
             </motion.div>

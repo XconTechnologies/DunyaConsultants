@@ -325,7 +325,7 @@ Address: Alif Tower, Sargodha
                 <Button 
                   variant="outline" 
                   className="w-full"
-                  onClick={() => window.open('https://wa.me/923041110947?text=Hello, I want to start my application for studying in Australia. Please guide me through the process.')}
+                  onClick={() => window.open('https://wa.me/923261111947?text=Hello, I want to start my application for studying in Australia. Please guide me through the process.')}
                 >
                   <Globe className="w-4 h-4 mr-2" />
                   Start Your Application
