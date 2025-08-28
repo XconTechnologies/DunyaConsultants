@@ -138,7 +138,7 @@ export default function TeamPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="bg-white border-0 shadow-lg">
+                <Card className="bg-white border-0 shadow-lg h-80">
                   <CardContent className="px-2 py-8 sm:px-3 sm:py-10 md:px-4 md:py-12 text-center">
                     <div className="mb-1 sm:mb-2">
                       <div className="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] mx-auto">
