@@ -139,10 +139,10 @@ export default function TeamPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 <Card className="bg-white border-0 shadow-lg h-72 sm:h-80">
-                  <CardContent className="p-4 sm:p-6 md:p-8 text-center h-full flex flex-col justify-between">
+                  <CardContent className="p-2 sm:p-3 md:p-4 text-center h-full flex flex-col justify-between">
                     <div>
-                      <div className="mb-4 sm:mb-6">
-                        <div className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] mx-auto">
+                      <div className="mb-3 sm:mb-4">
+                        <div className="w-[130px] h-[130px] sm:w-[150px] sm:h-[150px] mx-auto">
                           <img
                             src={member.image}
                             alt={member.name}
