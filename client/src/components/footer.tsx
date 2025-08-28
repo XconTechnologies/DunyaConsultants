@@ -1,11 +1,123 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
 import { Mail, User, Building, Handshake, Users, Globe, Phone, MapPin, FileText, Calculator } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 import Asset_1 from "@assets/Asset-1.png";
 
 import New_Logo_White from "@assets/New Logo White.png";
+
+function ContactDialog() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    message: ''
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Create mailto link with form data
+    const subject = `Business Proposal from ${formData.name}`;
+    const body = `Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Company: ${formData.company}
+
+Message:
+${formData.message}`;
+    
+    const mailtoLink = `mailto:abdul.majeed@dunyaconsultants.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoLink);
+    
+    setIsSubmitting(false);
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      company: '',
+      message: ''
+    });
+  };
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="inline-flex items-center justify-center w-full px-4 py-2 bg-white/20 hover:bg-white/30 border border-white/30 text-white text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105">
+          <Mail className="w-4 h-4 mr-2" />
+          Contact
+        </button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[500px]">
+        <DialogHeader>
+          <DialogTitle className="text-xl font-bold text-[#1D50C9]">Business Proposal Contact</DialogTitle>
+          <DialogDescription className="text-gray-600">
+            Send us your business proposal and we'll get back to you within 24 hours.
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              placeholder="Your Name *"
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              required
+            />
+            <Input
+              type="email"
+              placeholder="Email Address *"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              required
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Input
+              type="tel"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+            />
+            <Input
+              placeholder="Company/Organization"
+              value={formData.company}
+              onChange={(e) => setFormData({...formData, company: e.target.value})}
+            />
+          </div>
+          <Textarea
+            placeholder="Describe your business proposal... *"
+            value={formData.message}
+            onChange={(e) => setFormData({...formData, message: e.target.value})}
+            className="min-h-[120px]"
+            required
+          />
+          <div className="flex justify-between items-center pt-4">
+            <p className="text-sm text-gray-600">
+              * Required fields
+            </p>
+            <Button
+              type="submit"
+              disabled={isSubmitting}
+              className="bg-[#1D50C9] hover:bg-[#1a47b8] text-white px-6"
+            >
+              {isSubmitting ? 'Sending...' : 'Send Proposal'}
+            </Button>
+          </div>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
 
 export default function Footer() {
   return (
@@ -148,13 +260,7 @@ export default function Footer() {
                   </div>
                   
                   <div className="mt-4">
-                    <a 
-                      href="mailto:abdul.majeed@dunyaconsultants.com?subject=Business Proposal"
-                      className="inline-flex items-center justify-center w-full px-4 py-2 bg-white/20 hover:bg-white/30 border border-white/30 text-white text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105"
-                    >
-                      <Mail className="w-4 h-4 mr-2" />
-                      Contact for Business
-                    </a>
+                    <ContactDialog />
                   </div>
                 </div>
               </motion.div>
