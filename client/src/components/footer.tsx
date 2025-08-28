@@ -153,7 +153,7 @@ export default function Footer() {
                       className="inline-flex items-center justify-center w-full px-4 py-2 bg-white/20 hover:bg-white/30 border border-white/30 text-white text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105"
                     >
                       <Mail className="w-4 h-4 mr-2" />
-                      Contact for Business
+                      Send Proposal
                     </a>
                   </div>
                 </div>
