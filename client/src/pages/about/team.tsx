@@ -130,7 +130,7 @@ export default function TeamPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.id}
@@ -138,10 +138,10 @@ export default function TeamPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="bg-white border-0 shadow-lg h-72 sm:h-80">
-                  <CardContent className="px-2 py-4 sm:px-3 sm:py-8 md:px-4 md:py-10 text-center">
-                    <div className="mb-2 sm:mb-3">
-                      <div className="w-[100px] h-[100px] sm:w-[130px] sm:h-[130px] md:w-[150px] md:h-[150px] mx-auto">
+                <Card className="bg-white border-0 shadow-lg h-64 sm:h-80">
+                  <CardContent className="px-1 py-3 sm:px-3 sm:py-8 md:px-4 md:py-10 text-center">
+                    <div className="mb-1 sm:mb-3">
+                      <div className="w-[80px] h-[80px] sm:w-[130px] sm:h-[130px] md:w-[150px] md:h-[150px] mx-auto">
                         <img
                           src={member.image}
                           alt={member.name}
@@ -152,14 +152,14 @@ export default function TeamPage() {
                     {member.name && (
                       <>
                         <h3 
-                          className="mb-2 sm:mb-3 font-bold" 
-                          style={{ fontSize: '16px', fontWeight: 700, lineHeight: '1.2', color: '#1D50C9' }}
+                          className="mb-1 sm:mb-3 font-bold" 
+                          style={{ fontSize: '14px', fontWeight: 700, lineHeight: '1.1', color: '#1D50C9' }}
                         >
                           {member.name}
                         </h3>
                         <p 
-                          className="text-gray-600 mb-3 sm:mb-4" 
-                          style={{ fontSize: '13px', fontWeight: 400, lineHeight: '1.4' }}
+                          className="text-gray-600 mb-2 sm:mb-4" 
+                          style={{ fontSize: '11px', fontWeight: 400, lineHeight: '1.3' }}
                         >
                           {member.designation}
                         </p>
