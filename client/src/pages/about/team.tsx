@@ -5,27 +5,35 @@ import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 
 // Import team member images
-import usamaAshrafImg from "@assets/teamdunya-Usama Ashraf_1756376501719.png";
-import taimurKhanImg from "@assets/teamdunya-Taimur Ahmad Khan_1756376504586.png";
+import usamaAshrafImg from "@assets/WhatsApp Image 2025-08-28 at 16.42.49_5510c1da_1756381388641.jpg";
+import taimurKhanImg from "@assets/image_1756381126653.png";
 import abdullahImg from "@assets/teamdunya-Abdullah_1756376507602.png";
 import usamaRandhawaImg from "@assets/teamdunya-Usama Bashir Randhawa (1)_1756377685166.png";
 
 const teamMembers = [
   {
     id: 1,
-    image: usamaAshrafImg
+    image: taimurKhanImg,
+    name: "Taimur Ahmar Khan",
+    designation: "Senior Business Development Manager"
   },
   {
     id: 2,
-    image: taimurKhanImg
+    image: usamaAshrafImg,
+    name: "Usama Ashraf",
+    designation: "Regional Manager"
   },
   {
     id: 3,
-    image: abdullahImg
+    image: abdullahImg,
+    name: "",
+    designation: ""
   },
   {
     id: 4,
-    image: usamaRandhawaImg
+    image: usamaRandhawaImg,
+    name: "",
+    designation: ""
   }
 ];
 
@@ -122,22 +130,32 @@ export default function TeamPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6 justify-items-center">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="flex justify-center"
+                className="flex flex-col items-center text-center"
               >
-                <div className="relative overflow-hidden w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] group">
+                <div className="relative overflow-hidden w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:w-[220px] lg:h-[220px] group mb-4">
                   <img
                     src={member.image}
                     alt="Team Member"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-lg"
                   />
                 </div>
+                {member.name && (
+                  <>
+                    <h3 className="text-2xl font-semibold text-[#1D50C9] mb-2" style={{ fontSize: '24px', fontWeight: 600 }}>
+                      {member.name}
+                    </h3>
+                    <p className="text-gray-600" style={{ fontSize: '18px', fontWeight: 400 }}>
+                      {member.designation}
+                    </p>
+                  </>
+                )}
               </motion.div>
             ))}
           </div>
