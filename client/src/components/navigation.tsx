@@ -42,7 +42,8 @@ export default function Navigation() {
           icon: Users,
           items: [
             { name: "Who We Are", href: "/about/", description: "Meet our dedicated team" },
-            { name: "Mission & Vision", href: "/about/mission-vision", description: "Our goals and values" }
+            { name: "Mission & Vision", href: "/about/mission-vision", description: "Our goals and values" },
+            { name: "Team Dunya Consultants", href: "/about/team", description: "Our expert team members" }
           ]
         },
         {

@@ -78,6 +78,7 @@ import MissionVision from "@/pages/about/mission-vision";
 import WhyChooseUs from "@/pages/about/why-choose-us";
 import SuccessStories from "@/pages/about/success-stories";
 import OurSuccessStories from "@/pages/about/our-success-stories";
+import TeamPage from "@/pages/about/team";
 
 function Router() {
   return (
@@ -118,6 +119,7 @@ function Router() {
       <Route path="/about/why-choose-us" component={WhyChooseUs} />
       <Route path="/about/success-stories" component={SuccessStories} />
       <Route path="/about/our-success-stories" component={OurSuccessStories} />
+      <Route path="/about/team" component={TeamPage} />
       
       {/* Study Abroad Routes */}
       <Route path="/study-abroad/usa" component={StudyAbroadUSA} />
