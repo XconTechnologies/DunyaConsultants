@@ -122,7 +122,7 @@ export default function TeamPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8 justify-items-center">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={member.id}
@@ -131,7 +131,7 @@ export default function TeamPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="flex justify-center"
               >
-                <div className="relative overflow-hidden w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] md:w-[200px] md:h-[200px] lg:w-[250px] lg:h-[250px] group">
+                <div className="relative overflow-hidden w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] md:w-[280px] md:h-[280px] lg:w-[320px] lg:h-[320px] group">
                   <img
                     src={member.image}
                     alt="Team Member"
