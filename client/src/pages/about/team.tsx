@@ -13,26 +13,18 @@ import usamaRandhawaImg from "@assets/teamdunya-Usama Bashir Randhawa_1756376511
 const teamMembers = [
   {
     id: 1,
-    name: "Usama Ashraf",
-    position: "Regional Manager",
     image: usamaAshrafImg
   },
   {
     id: 2,
-    name: "Taimur Ahmad Khan", 
-    position: "Senior Business Development Manager",
     image: taimurKhanImg
   },
   {
     id: 3,
-    name: "Abdullah",
-    position: "Branch Manager of Sargodha Office",
     image: abdullahImg
   },
   {
     id: 4,
-    name: "Usama Bashir Randhawa",
-    position: "Branch Manager Dunya Consultants Gujranwala",
     image: usamaRandhawaImg
   }
 ];
@@ -143,18 +135,10 @@ export default function TeamPage() {
                     <div className="relative overflow-hidden">
                       <img
                         src={member.image}
-                        alt={member.name}
+                        alt="Team Member"
                         className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#1D50C9]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                    <div className="p-8 text-center">
-                      <h3 className="text-2xl font-bold text-[#1D50C9] mb-2 group-hover:text-[#1845B3] transition-colors">
-                        {member.name}
-                      </h3>
-                      <p className="text-lg font-semibold text-gray-600">
-                        {member.position}
-                      </p>
                     </div>
                   </CardContent>
                 </Card>
