@@ -152,14 +152,14 @@ export default function TeamPage() {
                     {member.name && (
                       <>
                         <h3 
-                          className="text-[#1D50C9] mb-1" 
-                          style={{ fontSize: '18px', fontWeight: 600, lineHeight: '1.2' }}
+                          className="text-[#1D50C9] mb-4 font-bold" 
+                          style={{ fontSize: '20px', fontWeight: 700, lineHeight: '1.2', color: '#1D50C9' }}
                         >
                           {member.name}
                         </h3>
                         <p 
-                          className="text-gray-600" 
-                          style={{ fontSize: '14px', fontWeight: 400, lineHeight: '1.4' }}
+                          className="text-gray-600 mb-6" 
+                          style={{ fontSize: '15px', fontWeight: 400, lineHeight: '1.4' }}
                         >
                           {member.designation}
                         </p>
