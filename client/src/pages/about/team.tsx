@@ -152,7 +152,7 @@ export default function TeamPage() {
                     {member.name && (
                       <>
                         <h3 
-                          className="text-[#1D50C9] mb-4 font-bold" 
+                          className="mb-4 font-bold" 
                           style={{ fontSize: '20px', fontWeight: 700, lineHeight: '1.2', color: '#1D50C9' }}
                         >
                           {member.name}
