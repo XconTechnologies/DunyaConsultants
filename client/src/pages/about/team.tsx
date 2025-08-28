@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import usamaAshrafImg from "@assets/WhatsApp Image 2025-08-28 at 16.42.49_5510c1da_1756381388641.jpg";
 import taimurKhanImg from "@assets/image_1756381126653.png";
 import abdullahImg from "@assets/WhatsApp Image 2025-08-28 at 16.47.01_86cf7a45_1756381633554.jpg";
-import usamaRandhawaImg from "@assets/WhatsApp Image 2025-08-28 at 12.50.31_085433b5_1756381848992.jpg";
+import usamaRandhawaImg from "@assets/WhatsApp Image 2025-08-28 at 12.50.31_9a52d3d7_1756381984656.jpg";
 
 const teamMembers = [
   {
