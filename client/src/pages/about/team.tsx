@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Users, MapPin, Mail, Phone, Award, Star, Target, Heart } from "lucide-react";
+import { Users, MapPin, Mail, Phone, Award, Star, Target } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -30,10 +30,10 @@ const teamMembers = [
 ];
 
 const stats = [
-  { icon: Users, label: "Team Members", value: "50+" },
+  { icon: Users, label: "Team Members", value: "200+" },
   { icon: Target, label: "Success Rate", value: "98%" },
-  { icon: Award, label: "Years Experience", value: "10+" },
-  { icon: Heart, label: "Students Helped", value: "15,000+" }
+  { icon: Award, label: "Years Experience", value: "5+" },
+  { icon: MapPin, label: "Countries Covered", value: "15+" }
 ];
 
 export default function TeamPage() {
