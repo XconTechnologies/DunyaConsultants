@@ -171,7 +171,7 @@ export default function TeamPage() {
                 description: "Years of experience in international education and visa processing"
               },
               {
-                icon: Heart,
+                icon: Users,
                 title: "Dedication",
                 description: "Personal attention to each student's unique goals and aspirations"
               },
