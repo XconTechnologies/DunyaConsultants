@@ -91,7 +91,7 @@ export default function StatsBanner() {
     },
     {
       icon: Building,
-      number: 17,
+      number: 20,
       suffix: '+',
       label: 'Office Branches',
       description: 'Nationwide Coverage',
