@@ -15,33 +15,25 @@ const teamMembers = [
     id: 1,
     name: "Usama Ashraf",
     position: "Regional Manager",
-    image: usamaAshrafImg,
-    description: "Leading regional operations with expertise in student counseling and international partnerships.",
-    specialties: ["Regional Operations", "Student Counseling", "Partnership Management"]
+    image: usamaAshrafImg
   },
   {
     id: 2,
     name: "Taimur Ahmad Khan", 
     position: "Senior Business Development Manager",
-    image: taimurKhanImg,
-    description: "Driving business growth and strategic partnerships across multiple educational institutions.",
-    specialties: ["Business Development", "Strategic Partnerships", "Market Expansion"]
+    image: taimurKhanImg
   },
   {
     id: 3,
     name: "Abdullah",
     position: "Branch Manager of Sargodha Office",
-    image: abdullahImg,
-    description: "Managing the head office operations and ensuring exceptional student services in Sargodha.",
-    specialties: ["Branch Operations", "Student Services", "Team Management"]
+    image: abdullahImg
   },
   {
     id: 4,
     name: "Usama Bashir Randhawa",
     position: "Branch Manager Dunya Consultants Gujranwala",
-    image: usamaRandhawaImg,
-    description: "Leading the Gujranwala branch with focus on personalized student guidance and visa processing.",
-    specialties: ["Branch Management", "Visa Processing", "Student Guidance"]
+    image: usamaRandhawaImg
   }
 ];
 
@@ -156,29 +148,13 @@ export default function TeamPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#1D50C9]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
-                    <div className="p-8">
+                    <div className="p-8 text-center">
                       <h3 className="text-2xl font-bold text-[#1D50C9] mb-2 group-hover:text-[#1845B3] transition-colors">
                         {member.name}
                       </h3>
-                      <p className="text-lg font-semibold text-gray-600 mb-4">
+                      <p className="text-lg font-semibold text-gray-600">
                         {member.position}
                       </p>
-                      <p className="text-gray-700 mb-6 leading-relaxed">
-                        {member.description}
-                      </p>
-                      <div className="space-y-2">
-                        <h4 className="font-semibold text-[#1D50C9] mb-3">Specialties:</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {member.specialties.map((specialty, i) => (
-                            <span
-                              key={i}
-                              className="inline-block bg-gradient-to-r from-[#1D50C9]/10 to-[#1845B3]/10 text-[#1D50C9] px-3 py-1 rounded-full text-sm font-medium"
-                            >
-                              {specialty}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
                     </div>
                   </CardContent>
                 </Card>
