@@ -129,7 +129,7 @@ export default function Footer() {
                 
                   <div className="space-y-3">
                     <div className="flex items-start space-x-3">
-                      <Mail className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
+                      <Mail className="w-4 h-4 text-white mt-1 flex-shrink-0" />
                       <div>
                         <a href="mailto:abdul.majeed@dunyaconsultants.com" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors break-all">
                           abdul.majeed@dunyaconsultants.com
