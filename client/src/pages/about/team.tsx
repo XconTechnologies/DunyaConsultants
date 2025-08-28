@@ -26,8 +26,8 @@ const teamMembers = [
   {
     id: 3,
     image: abdullahImg,
-    name: "",
-    designation: ""
+    name: "Abdullah",
+    designation: "Branch Manager of Sargodha Office"
   },
   {
     id: 4,
