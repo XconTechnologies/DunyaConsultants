@@ -137,45 +137,36 @@ export default function TeamPage() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group"
               >
-                <Card className="bg-white hover:bg-gradient-to-br hover:from-blue-50 hover:to-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                  <CardContent className="p-8 text-center">
-                    <div className="relative mb-6">
-                      <div className="w-[120px] h-[120px] sm:w-[140px] sm:h-[140px] md:w-[160px] md:h-[160px] mx-auto">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="w-full h-full object-cover rounded-full border-4 border-white shadow-lg group-hover:border-[#1D50C9] transition-all duration-300"
-                        />
-                      </div>
-                      <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <Star className="w-4 h-4 text-white" />
-                      </div>
-                    </div>
-                    {member.name && (
-                      <>
-                        <h3 
-                          className="text-[#1D50C9] mb-3 group-hover:text-[#1845B3] transition-colors duration-300" 
-                          style={{ fontSize: '20px', fontWeight: 600, lineHeight: '1.2' }}
-                        >
-                          {member.name}
-                        </h3>
-                        <p 
-                          className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300" 
-                          style={{ fontSize: '16px', fontWeight: 400, lineHeight: '1.4' }}
-                        >
-                          {member.designation}
-                        </p>
-                        <div className="mt-4 pt-4 border-t border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="flex justify-center space-x-3">
-                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full"></div>
-                            <div className="w-2 h-2 bg-[#1845B3] rounded-full"></div>
-                            <div className="w-2 h-2 bg-[#1D50C9] rounded-full"></div>
-                          </div>
+                <Card className="bg-white border-0 shadow-lg h-80">
+                  <CardContent className="p-8 text-center h-full flex flex-col justify-between">
+                    <div>
+                      <div className="mb-6">
+                        <div className="w-[120px] h-[120px] mx-auto">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
+                          />
                         </div>
-                      </>
-                    )}
+                      </div>
+                      {member.name && (
+                        <>
+                          <h3 
+                            className="text-[#1D50C9] mb-3" 
+                            style={{ fontSize: '20px', fontWeight: 600, lineHeight: '1.2' }}
+                          >
+                            {member.name}
+                          </h3>
+                          <p 
+                            className="text-gray-600" 
+                            style={{ fontSize: '16px', fontWeight: 400, lineHeight: '1.4' }}
+                          >
+                            {member.designation}
+                          </p>
+                        </>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
