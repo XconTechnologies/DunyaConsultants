@@ -92,7 +92,7 @@ function Router() {
 
       {/* Blog Routes - Date-based slugs */}
       <Route path="/blog" component={Blog} />
-      <Route path="/blog/:year/:month/:day/:slug" component={Blog} />
+      <Route path="/:year/:month/:day/:slug" component={Blog} />
       <Route path="/blog/:slug" component={Blog} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/test-prep/ielts" component={IELTS} />
