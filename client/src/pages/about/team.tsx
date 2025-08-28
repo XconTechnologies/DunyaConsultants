@@ -15,7 +15,7 @@ const teamMembers = [
     id: 1,
     image: taimurKhanImg,
     name: "Taimur Ahmar Khan",
-    designation: "Senior Business Development Manager"
+    designation: "Senior Business Manager"
   },
   {
     id: 2,
@@ -27,13 +27,13 @@ const teamMembers = [
     id: 3,
     image: abdullahImg,
     name: "Abdullah",
-    designation: "Branch Manager of Sargodha Office"
+    designation: "Branch Manager Sargodha"
   },
   {
     id: 4,
     image: usamaRandhawaImg,
     name: "Usama Bashir Randhawa",
-    designation: "Branch Manager Dunya Consultants Gujranwala"
+    designation: "Branch Manager Gujranwala"
   }
 ];
 
