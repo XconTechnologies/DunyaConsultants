@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import usamaAshrafImg from "@assets/teamdunya-Usama Ashraf_1756376501719.png";
 import taimurKhanImg from "@assets/teamdunya-Taimur Ahmad Khan_1756376504586.png";
 import abdullahImg from "@assets/teamdunya-Abdullah_1756376507602.png";
-import usamaRandhawaImg from "@assets/teamdunya-Usama Bashir Randhawa_1756376511547.png";
+import usamaRandhawaImg from "@assets/teamdunya-Usama Bashir Randhawa (1)_1756377685166.png";
 
 const teamMembers = [
   {
