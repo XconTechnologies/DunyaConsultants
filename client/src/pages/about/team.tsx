@@ -138,11 +138,11 @@ export default function TeamPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="bg-white border-0 shadow-lg h-80">
-                  <CardContent className="p-8 text-center h-full flex flex-col justify-between">
+                <Card className="bg-white border-0 shadow-lg h-72 sm:h-80">
+                  <CardContent className="p-4 sm:p-6 md:p-8 text-center h-full flex flex-col justify-between">
                     <div>
-                      <div className="mb-6">
-                        <div className="w-[120px] h-[120px] mx-auto">
+                      <div className="mb-4 sm:mb-6">
+                        <div className="w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] mx-auto">
                           <img
                             src={member.image}
                             alt={member.name}
@@ -153,14 +153,14 @@ export default function TeamPage() {
                       {member.name && (
                         <>
                           <h3 
-                            className="text-[#1D50C9] mb-3" 
-                            style={{ fontSize: '20px', fontWeight: 600, lineHeight: '1.2' }}
+                            className="text-[#1D50C9] mb-2 sm:mb-3" 
+                            style={{ fontSize: '18px', fontWeight: 600, lineHeight: '1.2' }}
                           >
                             {member.name}
                           </h3>
                           <p 
                             className="text-gray-600" 
-                            style={{ fontSize: '16px', fontWeight: 400, lineHeight: '1.4' }}
+                            style={{ fontSize: '14px', fontWeight: 400, lineHeight: '1.4' }}
                           >
                             {member.designation}
                           </p>
