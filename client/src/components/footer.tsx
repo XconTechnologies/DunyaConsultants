@@ -138,7 +138,7 @@ export default function Footer() {
                     </div>
                     
                     <div className="flex items-start space-x-3">
-                      <Users className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
+                      <User className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                       <div>
                         <span className="text-white text-sm font-semibold">
                           Mr. Abdul Majeed
