@@ -22,6 +22,7 @@ import talhaAzizImg from "@assets/rg[1]_1756448344892.jpg";
 import shahanRashidImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.43_18fb300b_1756448434602.jpg";
 import aliHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.39_cb66050c_1756451810921.jpg";
 import ahmedUsmanImg from "@assets/image_1756452209487.png";
+import khalilAhmadImg from "@assets/image_1756452528951.png";
 
 const teamMembers = [
   {
@@ -125,6 +126,12 @@ const teamMembers = [
     image: ahmedUsmanImg,
     name: "Ahmed Usman",
     designation: "Operational Manager"
+  },
+  {
+    id: 18,
+    image: khalilAhmadImg,
+    name: "Khalil Ahmad",
+    designation: "Branch Manager Bahawalpur"
   }
 ];
 
