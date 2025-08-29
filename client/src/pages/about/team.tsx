@@ -18,7 +18,7 @@ import muhammadUsamaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.42_750d
 import muhammadUmerImg from "@assets/image_1756447669274.png";
 import mudassarRazaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.46_4b955486_1756447920101.jpg";
 import rashidAliImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.47_29125617_1756448310126.jpg";
-import talhaAzizImg from "@assets/rg[1]_1756448344892.jpg";
+import talhaAzizImg from "@assets/rg[2]_1756453049445.jpg";
 import shahanRashidImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.43_18fb300b_1756448434602.jpg";
 import aliHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.39_cb66050c_1756451810921.jpg";
 import ahmedUsmanImg from "@assets/image_1756452209487.png";
