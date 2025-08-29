@@ -25,131 +25,138 @@ import ahmedUsmanImg from "@assets/image_1756452209487.png";
 import khalilAhmadImg from "@assets/image_1756452528951.png";
 import muhammadAmanImg from "@assets/IMG-20250216-WA0054[1]_1756452725383.jpg";
 import adeelHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.41_6510ceda_1756452812999.jpg";
-import salmanMargubImg from "@assets/IMG_8987[1]_1756455375610.JPG";
+import salmanMargubImg from "@assets/salman-marghub.jpg";
+import umerFarooqImg from "@assets/umer-farooq.jpg";
 
 const teamMembers = [
   {
     id: 1,
+    image: umerFarooqImg,
+    name: "Umer Farooq",
+    designation: "CEO Dunya Consultants"
+  },
+  {
+    id: 2,
     image: salmanMargubImg,
     name: "Salman Marghub",
     designation: "Co Founder Director Operations"
   },
   {
-    id: 2,
+    id: 3,
     image: taimurKhanImg,
     name: "Taimur Ahmad Khan",
     designation: "Senior Business Development Manager"
   },
   {
-    id: 3,
+    id: 4,
     image: usamaAshrafImg,
     name: "Usama Ashraf",
     designation: "Regional Manager"
   },
   {
-    id: 4,
+    id: 5,
     image: abdullahImg,
     name: "Abdullah",
     designation: "Branch Manager Sargodha"
   },
   {
-    id: 5,
+    id: 6,
     image: usamaRandhawaImg,
     name: "Usama Bashir Randhawa",
     designation: "Branch Manager Gujranwala"
   },
   {
-    id: 6,
+    id: 7,
     image: aliAbidImg,
     name: "Ali Abid",
     designation: "Branch Manager Sheikhupura"
   },
   {
-    id: 7,
+    id: 8,
     image: hafizHamzaImg,
     name: "Hafiz Hamza Sabir",
     designation: "Branch Manager Sialkot"
   },
   {
-    id: 8,
+    id: 9,
     image: muhammadDabeerImg,
     name: "Muhammad Dabeer Raza",
     designation: "Operations Manager SGD/ Supervisor Jhelum"
   },
   {
-    id: 9,
+    id: 10,
     image: muhammadSohailImg,
     name: "Muhammad Sohail Ashraf",
     designation: "Lead Language Instructor"
   },
   {
-    id: 10,
+    id: 11,
     image: asadUllahImg,
     name: "Asad Ullah",
     designation: "Business Development Manager"
   },
   {
-    id: 11,
+    id: 12,
     image: muhammadUsamaImg,
     name: "Muhammad Usama",
     designation: "Accounts Manager"
   },
   {
-    id: 12,
+    id: 13,
     image: muhammadUmerImg,
     name: "Muhammad Umer Nadeem",
     designation: "Europe Destination Manager"
   },
   {
-    id: 13,
+    id: 14,
     image: mudassarRazaImg,
     name: "Mudassar Raza",
     designation: "Branch Manager"
   },
   {
-    id: 14,
+    id: 15,
     image: rashidAliImg,
     name: "Rashid Ali",
     designation: "Branch Manager Islamabad"
   },
   {
-    id: 15,
+    id: 16,
     image: talhaAzizImg,
     name: "Talha Aziz",
     designation: "Regional Manager: South Punjab"
   },
   {
-    id: 16,
+    id: 17,
     image: shahanRashidImg,
     name: "Shahan Rashid",
     designation: "Branch Manager Peshawar"
   },
   {
-    id: 17,
+    id: 18,
     image: aliHassanImg,
     name: "Ali Hassan Bhatti",
     designation: "Regional Manager-North"
   },
   {
-    id: 18,
+    id: 19,
     image: ahmedUsmanImg,
     name: "Ahmed Usman",
     designation: "Operational Manager"
   },
   {
-    id: 19,
+    id: 20,
     image: khalilAhmadImg,
     name: "Khalil Ahmad",
     designation: "Branch Manager Bahawalpur"
   },
   {
-    id: 20,
+    id: 21,
     image: muhammadAmanImg,
     name: "Muhammad Aman Khan",
     designation: "Branch Manager Mardan"
   },
   {
-    id: 21,
+    id: 22,
     image: adeelHassanImg,
     name: "Adeel Hassan",
     designation: "Marketing Manager"
