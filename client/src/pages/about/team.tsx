@@ -138,8 +138,8 @@ export default function TeamPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="bg-white border-0 shadow-lg h-64 sm:h-80">
-                  <CardContent className="px-1 py-3 sm:px-3 sm:py-8 md:px-4 md:py-10 text-center">
+                <Card className="bg-white border-0 shadow-lg h-auto sm:h-80">
+                  <CardContent className="px-1 py-2 sm:px-3 sm:py-8 md:px-4 md:py-10 text-center">
                     <div className="mb-1 sm:mb-3">
                       <div className="w-[80px] h-[80px] sm:w-[130px] sm:h-[130px] md:w-[150px] md:h-[150px] mx-auto">
                         <img
@@ -158,7 +158,7 @@ export default function TeamPage() {
                           {member.name}
                         </h3>
                         <p 
-                          className="text-gray-600 mb-2 sm:mb-4" 
+                          className="text-gray-600 mb-1 sm:mb-4" 
                           style={{ fontSize: '11px', fontWeight: 400, lineHeight: '1.3' }}
                         >
                           {member.designation}
