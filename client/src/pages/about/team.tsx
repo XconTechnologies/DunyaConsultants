@@ -59,91 +59,93 @@ const teamMembers = [
     name: "Muhammad Ibrahim",
     designation: "Director Sargodha Branch"
   },
-  // Branch Managers
+  // Regional Managers
   {
     id: 5,
-    image: abdullahImg,
-    name: "Abdullah",
-    designation: "Branch Manager Sargodha"
+    image: usamaAshrafImg,
+    name: "Usama Ashraf",
+    designation: "Regional Manager"
   },
   {
     id: 6,
+    image: talhaAzizImg,
+    name: "Talha Aziz",
+    designation: "Regional Manager: South Punjab"
+  },
+  {
+    id: 7,
+    image: aliHassanImg,
+    name: "Ali Hassan Bhatti",
+    designation: "Regional Manager-North"
+  },
+  // Operations Manager
+  {
+    id: 8,
+    image: muhammadDabeerImg,
+    name: "Muhammad Dabeer Raza",
+    designation: "Operations Manager SGD/ Supervisor Jhelum"
+  },
+  // Branch Managers (City-wise order)
+  {
+    id: 9,
     image: usamaRandhawaImg,
     name: "Usama Bashir Randhawa",
     designation: "Branch Manager Gujranwala"
   },
   {
-    id: 7,
+    id: 10,
     image: aliAbidImg,
     name: "Ali Abid",
     designation: "Branch Manager Sheikhupura"
   },
   {
-    id: 8,
-    image: hafizHamzaImg,
-    name: "Hafiz Hamza Sabir",
-    designation: "Branch Manager Sialkot"
+    id: 11,
+    image: abdullahImg,
+    name: "Abdullah",
+    designation: "Branch Manager Sargodha"
   },
   {
-    id: 9,
+    id: 12,
     image: mudassarRazaImg,
     name: "Mudassar Raza",
     designation: "Branch Manager Mandi Bahauddin"
   },
   {
-    id: 10,
-    image: rashidAliImg,
-    name: "Rashid Ali",
-    designation: "Branch Manager Islamabad"
-  },
-  {
-    id: 11,
-    image: shahanRashidImg,
-    name: "Shahan Rashid",
-    designation: "Branch Manager Peshawar"
-  },
-  {
-    id: 12,
+    id: 13,
     image: khalilAhmadImg,
     name: "Khalil Ahmad",
     designation: "Branch Manager Bahawalpur"
   },
   {
-    id: 13,
+    id: 14,
+    image: rashidAliImg,
+    name: "Rashid Ali",
+    designation: "Branch Manager Islamabad"
+  },
+  {
+    id: 15,
+    image: hafizHamzaImg,
+    name: "Hafiz Hamza Sabir",
+    designation: "Branch Manager Sialkot"
+  },
+  {
+    id: 16,
+    image: shahanRashidImg,
+    name: "Shahan Rashid",
+    designation: "Branch Manager Peshawar"
+  },
+  {
+    id: 17,
     image: muhammadAmanImg,
     name: "Muhammad Aman Khan",
     designation: "Branch Manager Mardan"
   },
   // Other Management Positions
   {
-    id: 14,
+    id: 18,
     image: taimurKhanImg,
     name: "Taimur Ahmad Khan",
     designation: "Senior Business Development Manager"
-  },
-  {
-    id: 15,
-    image: usamaAshrafImg,
-    name: "Usama Ashraf",
-    designation: "Regional Manager"
-  },
-  {
-    id: 16,
-    image: talhaAzizImg,
-    name: "Talha Aziz",
-    designation: "Regional Manager: South Punjab"
-  },
-  {
-    id: 17,
-    image: aliHassanImg,
-    name: "Ali Hassan Bhatti",
-    designation: "Regional Manager-North"
-  },
-  {
-    id: 18,
-    image: muhammadDabeerImg,
-    name: "Muhammad Dabeer Raza",
-    designation: "Operations Manager SGD/ Supervisor Jhelum"
   },
   {
     id: 19,
