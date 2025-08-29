@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 // Import team member images
 import usamaAshrafImg from "@assets/WhatsApp Image 2025-08-28 at 16.42.49_5510c1da_1756381388641.jpg";
 import taimurKhanImg from "@assets/WhatsApp Image 2025-08-28 at 12.50.30_0e095d54_1756452952351.jpg";
-import abdullahImg from "@assets/WhatsApp Image 2025-08-28 at 16.47.01_86cf7a45_1756381633554.jpg";
+import abdullahImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.36_fc7e1925_1756453355622.jpg";
 import usamaRandhawaImg from "@assets/WhatsApp Image 2025-08-28 at 12.50.31_9a52d3d7_1756381984656.jpg";
 import aliAbidImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.37_2bc11f6e_1756446807208.jpg";
 import hafizHamzaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.38_c995b7bf_1756446909359.jpg";
