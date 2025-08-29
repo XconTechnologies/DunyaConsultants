@@ -266,12 +266,12 @@ export default function TeamPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1D50C9] to-[#1845B3]">
                 Our Leadership Team
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Meet the experienced professionals leading our mission to help students achieve their global education goals
             </p>
           </motion.div>
@@ -328,12 +328,12 @@ export default function TeamPage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1D50C9] to-[#1845B3]">
                 Why Our Team Stands Out
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Our success comes from our people - dedicated professionals committed to your educational journey
             </p>
           </motion.div>
