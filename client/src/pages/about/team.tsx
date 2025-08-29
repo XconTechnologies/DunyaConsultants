@@ -16,7 +16,7 @@ import muhammadSohailImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.42_14f
 import asadUllahImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.45_76d68df5_1756447435212.jpg";
 import muhammadUsamaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.42_750d3eaa_1756447532273.jpg";
 import muhammadUmerImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.49_60eea4f8_1756453502813.jpg";
-import mudassarRazaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.46_4b955486_1756447920101.jpg";
+import mudassarRazaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.46_e2b8f68e_1756461933614.jpg";
 import rashidAliImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.47_29125617_1756448310126.jpg";
 import talhaAzizImg from "@assets/rg[2]_1756453049445.jpg";
 import shahanRashidImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.43_18fb300b_1756448434602.jpg";
@@ -72,7 +72,7 @@ const teamMembers = [
     id: 7,
     image: mudassarRazaImg,
     name: "Mudassar Raza",
-    designation: "Branch Manager"
+    designation: "Branch Manager Mandi Bahauddin"
   },
   {
     id: 8,
