@@ -14,8 +14,8 @@ const teamMembers = [
   {
     id: 1,
     image: taimurKhanImg,
-    name: "Taimur Ahmar Khan",
-    designation: "Senior Business Manager"
+    name: "Taimur Ahmad Khan",
+    designation: "Senior Business Development Manager"
   },
   {
     id: 2,
