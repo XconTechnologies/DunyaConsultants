@@ -29,131 +29,135 @@ import salmanMargubImg from "@assets/salman-marghub.jpg";
 import umerFarooqImg from "@assets/umer-farooq.jpg";
 
 const teamMembers = [
+  // CEO
   {
     id: 1,
     image: umerFarooqImg,
     name: "Umer Farooq",
     designation: "CEO Dunya Consultants"
   },
+  // Co Founder
   {
     id: 2,
     image: salmanMargubImg,
     name: "Salman Marghub",
     designation: "Co Founder Director Operations"
   },
+  // Branch Managers
   {
     id: 3,
-    image: taimurKhanImg,
-    name: "Taimur Ahmad Khan",
-    designation: "Senior Business Development Manager"
-  },
-  {
-    id: 4,
-    image: usamaAshrafImg,
-    name: "Usama Ashraf",
-    designation: "Regional Manager"
-  },
-  {
-    id: 5,
     image: abdullahImg,
     name: "Abdullah",
     designation: "Branch Manager Sargodha"
   },
   {
-    id: 6,
+    id: 4,
     image: usamaRandhawaImg,
     name: "Usama Bashir Randhawa",
     designation: "Branch Manager Gujranwala"
   },
   {
-    id: 7,
+    id: 5,
     image: aliAbidImg,
     name: "Ali Abid",
     designation: "Branch Manager Sheikhupura"
   },
   {
-    id: 8,
+    id: 6,
     image: hafizHamzaImg,
     name: "Hafiz Hamza Sabir",
     designation: "Branch Manager Sialkot"
   },
   {
-    id: 9,
-    image: muhammadDabeerImg,
-    name: "Muhammad Dabeer Raza",
-    designation: "Operations Manager SGD/ Supervisor Jhelum"
-  },
-  {
-    id: 10,
-    image: muhammadSohailImg,
-    name: "Muhammad Sohail Ashraf",
-    designation: "Lead Language Instructor"
-  },
-  {
-    id: 11,
-    image: asadUllahImg,
-    name: "Asad Ullah",
-    designation: "Business Development Manager"
-  },
-  {
-    id: 12,
-    image: muhammadUsamaImg,
-    name: "Muhammad Usama",
-    designation: "Accounts Manager"
-  },
-  {
-    id: 13,
-    image: muhammadUmerImg,
-    name: "Muhammad Umer Nadeem",
-    designation: "Europe Destination Manager"
-  },
-  {
-    id: 14,
+    id: 7,
     image: mudassarRazaImg,
     name: "Mudassar Raza",
     designation: "Branch Manager"
   },
   {
-    id: 15,
+    id: 8,
     image: rashidAliImg,
     name: "Rashid Ali",
     designation: "Branch Manager Islamabad"
   },
   {
-    id: 16,
-    image: talhaAzizImg,
-    name: "Talha Aziz",
-    designation: "Regional Manager: South Punjab"
-  },
-  {
-    id: 17,
+    id: 9,
     image: shahanRashidImg,
     name: "Shahan Rashid",
     designation: "Branch Manager Peshawar"
   },
   {
-    id: 18,
-    image: aliHassanImg,
-    name: "Ali Hassan Bhatti",
-    designation: "Regional Manager-North"
-  },
-  {
-    id: 19,
-    image: ahmedUsmanImg,
-    name: "Ahmed Usman",
-    designation: "Operational Manager"
-  },
-  {
-    id: 20,
+    id: 10,
     image: khalilAhmadImg,
     name: "Khalil Ahmad",
     designation: "Branch Manager Bahawalpur"
   },
   {
-    id: 21,
+    id: 11,
     image: muhammadAmanImg,
     name: "Muhammad Aman Khan",
     designation: "Branch Manager Mardan"
+  },
+  // Other Management Positions
+  {
+    id: 12,
+    image: taimurKhanImg,
+    name: "Taimur Ahmad Khan",
+    designation: "Senior Business Development Manager"
+  },
+  {
+    id: 13,
+    image: usamaAshrafImg,
+    name: "Usama Ashraf",
+    designation: "Regional Manager"
+  },
+  {
+    id: 14,
+    image: talhaAzizImg,
+    name: "Talha Aziz",
+    designation: "Regional Manager: South Punjab"
+  },
+  {
+    id: 15,
+    image: aliHassanImg,
+    name: "Ali Hassan Bhatti",
+    designation: "Regional Manager-North"
+  },
+  {
+    id: 16,
+    image: muhammadDabeerImg,
+    name: "Muhammad Dabeer Raza",
+    designation: "Operations Manager SGD/ Supervisor Jhelum"
+  },
+  {
+    id: 17,
+    image: ahmedUsmanImg,
+    name: "Ahmed Usman",
+    designation: "Operational Manager"
+  },
+  {
+    id: 18,
+    image: muhammadSohailImg,
+    name: "Muhammad Sohail Ashraf",
+    designation: "Lead Language Instructor"
+  },
+  {
+    id: 19,
+    image: asadUllahImg,
+    name: "Asad Ullah",
+    designation: "Business Development Manager"
+  },
+  {
+    id: 20,
+    image: muhammadUsamaImg,
+    name: "Muhammad Usama",
+    designation: "Accounts Manager"
+  },
+  {
+    id: 21,
+    image: muhammadUmerImg,
+    name: "Muhammad Umer Nadeem",
+    designation: "Europe Destination Manager"
   },
   {
     id: 22,
