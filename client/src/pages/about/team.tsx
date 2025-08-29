@@ -190,7 +190,6 @@ export default function TeamPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <Navigation />
-      
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -229,7 +228,6 @@ export default function TeamPage() {
           </motion.div>
         </div>
       </div>
-
       {/* Stats Section */}
       <div className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -252,7 +250,6 @@ export default function TeamPage() {
           </div>
         </div>
       </div>
-
       {/* Team Members Section */}
       <div className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -263,9 +260,7 @@ export default function TeamPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1D50C9] to-[#1845B3]">
-                Our Leadership Team
-              </span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#1D50C9] to-[#1845B3]">Our Core Team</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Meet the experienced professionals leading our mission to help students achieve their global education goals
@@ -314,7 +309,6 @@ export default function TeamPage() {
           </div>
         </div>
       </div>
-
       {/* Values Section */}
       <div className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -369,8 +363,6 @@ export default function TeamPage() {
           </div>
         </div>
       </div>
-
-
       <Footer />
     </div>
   );
