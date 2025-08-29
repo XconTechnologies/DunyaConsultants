@@ -212,10 +212,10 @@ export default function TeamPage() {
             >
               <Users className="w-10 h-10" />
             </motion.div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
               Team Dunya Consultants
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
               Meet the dedicated professionals who make your study abroad dreams come true
             </p>
             <div className="mt-8 flex justify-center">
