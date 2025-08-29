@@ -359,12 +359,12 @@ export default function TeamPage() {
       </div>
 
       {/* CTA Section */}
-      <div className="py-20 bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white relative overflow-hidden">
+      <div className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white relative overflow-hidden">
         {/* Glow Effects */}
         <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-emerald-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-orange-500/15 rounded-full blur-2xl"></div>
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-blue-300/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-400/15 rounded-full blur-2xl"></div>
         </div>
         
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -376,7 +376,7 @@ export default function TeamPage() {
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg">
               Ready to Start Your Journey?
             </h2>
-            <p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto drop-shadow-md">
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto drop-shadow-md">
               Our expert team is here to guide you every step of the way to your study abroad success.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -384,7 +384,7 @@ export default function TeamPage() {
                 href="/contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors duration-300 shadow-xl hover:shadow-2xl"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#1D50C9] rounded-full font-bold text-lg hover:bg-blue-50 transition-colors duration-300 shadow-xl hover:shadow-2xl"
               >
                 <Mail className="w-5 h-5 mr-2" />
                 Contact Our Team
@@ -393,7 +393,7 @@ export default function TeamPage() {
                 href="tel:+923261111947"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-full font-bold text-lg hover:bg-white/20 hover:border-white/50 transition-all duration-300 shadow-lg"
+                className="inline-flex items-center justify-center px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all duration-300 shadow-lg"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Call Now
