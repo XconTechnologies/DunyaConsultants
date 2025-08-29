@@ -88,51 +88,51 @@ const teamMembers = [
   // Branch Managers (City-wise order)
   {
     id: 9,
-    image: usamaRandhawaImg,
-    name: "Usama Bashir Randhawa",
-    designation: "Branch Manager Gujranwala"
-  },
-  {
-    id: 10,
-    image: aliAbidImg,
-    name: "Ali Abid",
-    designation: "Branch Manager Sheikhupura"
-  },
-  {
-    id: 11,
-    image: abdullahImg,
-    name: "Abdullah",
-    designation: "Branch Manager Sargodha"
-  },
-  {
-    id: 12,
-    image: mudassarRazaImg,
-    name: "Mudassar Raza",
-    designation: "Branch Manager Mandi Bahauddin"
-  },
-  {
-    id: 13,
-    image: khalilAhmadImg,
-    name: "Khalil Ahmad",
-    designation: "Branch Manager Bahawalpur"
-  },
-  {
-    id: 14,
     image: rashidAliImg,
     name: "Rashid Ali",
     designation: "Branch Manager Islamabad"
   },
   {
+    id: 10,
+    image: ahmedUsmanImg,
+    name: "Ahmed Usman",
+    designation: "Operational Manager Karachi"
+  },
+  {
+    id: 11,
+    image: usamaRandhawaImg,
+    name: "Usama Bashir Randhawa",
+    designation: "Branch Manager Gujranwala"
+  },
+  {
+    id: 12,
+    image: aliAbidImg,
+    name: "Ali Abid",
+    designation: "Branch Manager Sheikhupura"
+  },
+  {
+    id: 13,
+    image: abdullahImg,
+    name: "Abdullah",
+    designation: "Branch Manager Sargodha"
+  },
+  {
+    id: 14,
+    image: mudassarRazaImg,
+    name: "Mudassar Raza",
+    designation: "Branch Manager Mandi Bahauddin"
+  },
+  {
     id: 15,
-    image: hafizHamzaImg,
-    name: "Hafiz Hamza Sabir",
-    designation: "Branch Manager Sialkot"
+    image: khalilAhmadImg,
+    name: "Khalil Ahmad",
+    designation: "Branch Manager Bahawalpur"
   },
   {
     id: 16,
-    image: shahanRashidImg,
-    name: "Shahan Rashid",
-    designation: "Branch Manager Peshawar"
+    image: hafizHamzaImg,
+    name: "Hafiz Hamza Sabir",
+    designation: "Branch Manager Sialkot"
   },
   {
     id: 17,
@@ -143,21 +143,21 @@ const teamMembers = [
   // Other Management Positions
   {
     id: 18,
+    image: muhammadSohailImg,
+    name: "Muhammad Sohail Ashraf",
+    designation: "Lead Language Instructor"
+  },
+  {
+    id: 19,
     image: taimurKhanImg,
     name: "Taimur Ahmad Khan",
     designation: "Senior Business Development Manager"
   },
   {
-    id: 19,
-    image: ahmedUsmanImg,
-    name: "Ahmed Usman",
-    designation: "Operational Manager"
-  },
-  {
     id: 20,
-    image: muhammadSohailImg,
-    name: "Muhammad Sohail Ashraf",
-    designation: "Lead Language Instructor"
+    image: muhammadUmerImg,
+    name: "Muhammad Umer Nadeem",
+    designation: "Europe Destination Manager"
   },
   {
     id: 21,
@@ -167,21 +167,15 @@ const teamMembers = [
   },
   {
     id: 22,
-    image: muhammadUsamaImg,
-    name: "Muhammad Usama",
-    designation: "Accounts Manager"
-  },
-  {
-    id: 23,
-    image: muhammadUmerImg,
-    name: "Muhammad Umer Nadeem",
-    designation: "Europe Destination Manager"
-  },
-  {
-    id: 24,
     image: adeelHassanImg,
     name: "Adeel Hassan",
     designation: "Marketing Manager"
+  },
+  {
+    id: 23,
+    image: muhammadUsamaImg,
+    name: "Muhammad Usama",
+    designation: "Accountant"
   }
 ];
 
