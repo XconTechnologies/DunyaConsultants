@@ -24,7 +24,7 @@ import aliHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.39_cb66050c
 import ahmedUsmanImg from "@assets/image_1756452209487.png";
 import khalilAhmadImg from "@assets/image_1756452528951.png";
 import muhammadAmanImg from "@assets/IMG-20250216-WA0054[1]_1756452725383.jpg";
-import adeelHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.41_6510ceda_1756452812999.jpg";
+import adeelHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.40_ecef8705_1756461783760.jpg";
 import salmanMargubImg from "@assets/salman-marghub.jpg";
 import umerFarooqImg from "@assets/umer-farooq.jpg";
 
