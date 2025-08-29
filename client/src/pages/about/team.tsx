@@ -24,6 +24,7 @@ import aliHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.39_cb66050c
 import ahmedUsmanImg from "@assets/image_1756452209487.png";
 import khalilAhmadImg from "@assets/image_1756452528951.png";
 import muhammadAmanImg from "@assets/IMG-20250216-WA0054[1]_1756452725383.jpg";
+import adeelHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.41_6510ceda_1756452812999.jpg";
 
 const teamMembers = [
   {
@@ -139,6 +140,12 @@ const teamMembers = [
     image: muhammadAmanImg,
     name: "Muhammad Aman Khan",
     designation: "Branch Manager Mardan"
+  },
+  {
+    id: 20,
+    image: adeelHassanImg,
+    name: "Adeel Hassan",
+    designation: "Marketing Manager"
   }
 ];
 
