@@ -143,6 +143,9 @@ export default function Footer() {
                         <span className="text-white text-sm font-semibold">
                           Mr. Abdul Majeed
                         </span>
+                        <p className="text-blue-100 text-xs mt-0.5">
+                          General Manager
+                        </p>
                       </div>
                     </div>
                   </div>
