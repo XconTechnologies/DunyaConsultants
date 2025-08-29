@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MapPin, Phone, Clock, Building2, Users, Star, Search, Filter, Navigation as NavigationIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -248,6 +248,30 @@ const offices = [
 export default function OfficesList() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
+
+  // Handle hash fragment scrolling
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash;
+      if (hash === '#international-offices') {
+        setTimeout(() => {
+          const element = document.getElementById('international-offices');
+          if (element) {
+            element.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }, 100);
+      }
+    };
+
+    // Run on mount and when hash changes
+    handleHashScroll();
+    window.addEventListener('hashchange', handleHashScroll);
+    
+    return () => window.removeEventListener('hashchange', handleHashScroll);
+  }, []);
 
   // Function to handle get directions
   const handleGetDirections = (address: string) => {
