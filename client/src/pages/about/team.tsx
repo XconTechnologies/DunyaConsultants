@@ -11,6 +11,7 @@ import abdullahImg from "@assets/WhatsApp Image 2025-08-28 at 16.47.01_86cf7a45_
 import usamaRandhawaImg from "@assets/WhatsApp Image 2025-08-28 at 12.50.31_9a52d3d7_1756381984656.jpg";
 import aliAbidImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.37_2bc11f6e_1756446807208.jpg";
 import hafizHamzaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.38_c995b7bf_1756446909359.jpg";
+import muhammadDabeerImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.39_1a086e0b_1756447231089.jpg";
 
 const teamMembers = [
   {
@@ -48,6 +49,12 @@ const teamMembers = [
     image: hafizHamzaImg,
     name: "Hafiz Hamza Sabir",
     designation: "Branch Manager Sialkot"
+  },
+  {
+    id: 7,
+    image: muhammadDabeerImg,
+    name: "Muhammad Dabeer Raza",
+    designation: "Operations Manager SGD/ Supervisor Jhelum"
   }
 ];
 
