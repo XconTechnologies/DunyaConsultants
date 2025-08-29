@@ -28,7 +28,7 @@ import adeelHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.40_ecef87
 import salmanMargubImg from "@assets/salman-marghub.jpg";
 import umerFarooqImg from "@assets/umer-farooq.jpg";
 import abdulMajeedImg from "@assets/IMG-20250707-WA0042[1]_1756462751467.jpg";
-import muhammadIbrahimImg from "@assets/Cards[1]_1756466481596.jpg";
+import muhammadIbrahimImg from "@assets/Cards[1]_1756466659432.jpg";
 
 const teamMembers = [
   // CEO
