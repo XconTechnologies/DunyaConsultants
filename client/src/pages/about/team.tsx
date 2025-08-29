@@ -16,6 +16,7 @@ import muhammadSohailImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.42_14f
 import asadUllahImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.45_76d68df5_1756447435212.jpg";
 import muhammadUsamaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.42_750d3eaa_1756447532273.jpg";
 import muhammadUmerImg from "@assets/image_1756447669274.png";
+import mudassarRazaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.46_4b955486_1756447920101.jpg";
 
 const teamMembers = [
   {
@@ -83,6 +84,12 @@ const teamMembers = [
     image: muhammadUmerImg,
     name: "Muhammad Umer Nadeem",
     designation: "Europe Destination Manager"
+  },
+  {
+    id: 12,
+    image: mudassarRazaImg,
+    name: "Mudassar Raza",
+    designation: "Branch Manager"
   }
 ];
 
