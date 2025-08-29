@@ -618,6 +618,7 @@ export default function OfficesList() {
         {/* International Offices Section */}
         {(selectedRegion === 'all' || selectedRegion === 'International') && internationalOffices.length > 0 && (
           <motion.div
+            id="international-offices"
             className="mb-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
