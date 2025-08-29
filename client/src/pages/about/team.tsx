@@ -20,7 +20,7 @@ import mudassarRazaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.46_4b955
 import rashidAliImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.47_29125617_1756448310126.jpg";
 import talhaAzizImg from "@assets/rg[1]_1756448344892.jpg";
 import shahanRashidImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.43_18fb300b_1756448434602.jpg";
-import aliHassanImg from "@assets/image_1756451584263.png";
+import aliHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.39_cb66050c_1756451810921.jpg";
 
 const teamMembers = [
   {
