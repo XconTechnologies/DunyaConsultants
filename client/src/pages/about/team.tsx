@@ -13,9 +13,7 @@ import aliAbidImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.37_2bc11f6e_1
 import hafizHamzaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.38_c995b7bf_1756446909359.jpg";
 import muhammadDabeerImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.39_1a086e0b_1756447231089.jpg";
 import muhammadSohailImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.42_14fc9675_1756447399651.jpg";
-import asadUllahImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.45_76d68df5_1756447435212.jpg";
 import muhammadUsamaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.42_750d3eaa_1756447532273.jpg";
-import muhammadUmerImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.49_60eea4f8_1756453502813.jpg";
 import mudassarRazaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.46_e2b8f68e_1756461933614.jpg";
 import rashidAliImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.47_29125617_1756448310126.jpg";
 import talhaAzizImg from "@assets/rg[2]_1756453049445.jpg";
@@ -152,18 +150,6 @@ const teamMembers = [
     image: taimurKhanImg,
     name: "Taimur Ahmad Khan",
     designation: "Senior Business Development Manager"
-  },
-  {
-    id: 20,
-    image: muhammadUmerImg,
-    name: "Muhammad Umer Nadeem",
-    designation: "Europe Destination Manager"
-  },
-  {
-    id: 21,
-    image: asadUllahImg,
-    name: "Asad Ullah",
-    designation: "Business Development Manager"
   },
   {
     id: 22,
