@@ -44,7 +44,7 @@ const teamMembers = [
     id: 2,
     image: salmanMargubImg,
     name: "Salman Marghub",
-    designation: "Co Founder Director Operations"
+    designation: "Director Operations"
   },
   // General Manager
   {
@@ -84,7 +84,7 @@ const teamMembers = [
     id: 8,
     image: muhammadDabeerImg,
     name: "Muhammad Dabeer Raza",
-    designation: "Operations Manager SGD/ Supervisor Jhelum"
+    designation: "Coordinator Jhelum"
   },
   // Branch Managers (City-wise order)
   {
