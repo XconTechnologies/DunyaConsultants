@@ -27,6 +27,7 @@ import salmanMargubImg from "@assets/salman-marghub.jpg";
 import umerFarooqImg from "@assets/umer-farooq.jpg";
 import abdulMajeedImg from "@assets/IMG-20250707-WA0042[1]_1756462751467.jpg";
 import muhammadIbrahimImg from "@assets/Cards[1]_1756466659432.jpg";
+import drWaleedMostafaImg from "@assets/image_1756554691033.png";
 
 const teamMembers = [
   // CEO
@@ -138,27 +139,33 @@ const teamMembers = [
     name: "Muhammad Aman Khan",
     designation: "Branch Manager Mardan"
   },
-  // Other Management Positions
   {
     id: 18,
+    image: drWaleedMostafaImg,
+    name: "Dr. Waleed Mostafa",
+    designation: "Branch Manager Egypt"
+  },
+  // Other Management Positions
+  {
+    id: 19,
     image: muhammadSohailImg,
     name: "Muhammad Sohail Ashraf",
     designation: "Lead Language Instructor"
   },
   {
-    id: 19,
+    id: 20,
     image: taimurKhanImg,
     name: "Taimur Ahmad Khan",
     designation: "Senior Business Development Manager"
   },
   {
-    id: 22,
+    id: 21,
     image: adeelHassanImg,
     name: "Adeel Hassan",
     designation: "Marketing Manager"
   },
   {
-    id: 23,
+    id: 22,
     image: muhammadUsamaImg,
     name: "Muhammad Usama",
     designation: "Accountant"
