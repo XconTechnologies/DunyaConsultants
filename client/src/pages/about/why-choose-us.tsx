@@ -132,7 +132,6 @@ export default function WhyChooseUs() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
-      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -163,7 +162,6 @@ export default function WhyChooseUs() {
           </motion.div>
         </div>
       </section>
-
       {/* Key Advantages Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -218,7 +216,6 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </section>
-
       {/* Achievements Stats Section */}
       <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -244,7 +241,7 @@ export default function WhyChooseUs() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-5xl font-bold text-blue-400 mb-2">
+                <div className="text-5xl font-bold mb-2 text-[#ffffff]">
                   {achievement.number}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{achievement.label}</h3>
@@ -254,7 +251,6 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </section>
-
       {/* Services Overview */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -295,7 +291,6 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </section>
-
       {/* Student Testimonials */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -347,8 +342,6 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </section>
-
-
       <Footer />
     </div>
   );
