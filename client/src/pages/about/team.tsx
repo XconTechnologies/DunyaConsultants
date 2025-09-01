@@ -96,7 +96,7 @@ const teamMembers = [
   {
     id: 11,
     image: hafizHamzaImg,
-    name: "Hafiz Hamza Sabir",
+    name: "Hamza Sabir",
     designation: "Branch Manager Sialkot"
   },
   {
