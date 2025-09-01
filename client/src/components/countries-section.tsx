@@ -203,9 +203,8 @@ export default function CountriesSection() {
             }}
           />
         </div>
-        <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute bottom-4 left-4 country-card-header z-10" data-country-card>
-          <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>{country.name}</h3>
+          <h3 className="text-xl font-bold text-white">{country.name}</h3>
         </div>
       </div>
       
