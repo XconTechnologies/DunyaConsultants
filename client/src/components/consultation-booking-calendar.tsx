@@ -130,30 +130,59 @@ export default function ConsultationBookingCalendar() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate booking submission
-    setTimeout(() => {
+    try {
+      // Prepare the consultation booking data
+      const bookingData = {
+        ...formData,
+        consultationType: selectedType,
+        preferredDate: selectedDate,
+        preferredTime: selectedTime,
+        country: selectedCountry
+      };
+
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'Consultation Booking',
+          formData: bookingData
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            name: "",
+            email: "",
+            phone: "",
+            consultationType: "",
+            preferredDate: "",
+            preferredTime: "",
+            country: "",
+            message: ""
+          });
+          setSelectedDate("");
+          setSelectedTime("");
+          setSelectedType("");
+          setSelectedCountry("");
+        }, 3000);
+      } else {
+        alert('There was an error booking your consultation. Please try again or call us directly at +92 304 1110947.');
+      }
+    } catch (error) {
+      console.error('Error submitting consultation booking:', error);
+      alert('There was an error booking your consultation. Please try again or call us directly at +92 304 1110947.');
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-      
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({
-          name: "",
-          email: "",
-          phone: "",
-          consultationType: "",
-          preferredDate: "",
-          preferredTime: "",
-          country: "",
-          message: ""
-        });
-        setSelectedDate("");
-        setSelectedTime("");
-        setSelectedType("");
-        setSelectedCountry("");
-      }, 3000);
-    }, 2000);
+    }
   };
 
   if (isSubmitted) {

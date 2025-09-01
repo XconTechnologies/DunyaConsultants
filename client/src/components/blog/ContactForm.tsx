@@ -26,20 +26,40 @@ export default function ContactForm({ className = "" }: ContactFormProps) {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setFormData({
-        name: '',
-        phone: '',
-        qualification: '',
-        country: '',
-        percentage: '',
-        testScore: '',
-        message: ''
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'Contact Form',
+          formData: formData
+        }),
       });
-      alert('Form submitted successfully! We will contact you soon.');
-    }, 1000);
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormData({
+          name: '',
+          phone: '',
+          qualification: '',
+          country: '',
+          percentage: '',
+          testScore: '',
+          message: ''
+        });
+        alert('Thank you for contacting us! We will get back to you within 24 hours.');
+      } else {
+        alert('There was an error submitting your form. Please try again or call us directly.');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('There was an error submitting your form. Please try again or call us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {

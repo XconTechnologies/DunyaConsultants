@@ -13,6 +13,10 @@ import crypto from "crypto";
 import path from "path";
 import fs from "fs";
 import multer from "multer";
+import { Resend } from "resend";
+
+// Initialize Resend (conditional to allow server to start without API key)
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 // Extend Request interface to include adminId
 interface AuthenticatedRequest extends Request {
@@ -253,19 +257,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { to, subject, html, attachment } = req.body;
       
-      // In a real implementation, you would use SendGrid or another email service
-      // For now, we'll simulate email sending and return success
-      console.log(`Simulating email send to: ${to}`);
-      console.log(`Subject: ${subject}`);
-      console.log(`Has attachment: ${!!attachment}`);
+      if (!resend) {
+        return res.status(500).json({ 
+          success: false, 
+          message: "Email service not configured. Please check RESEND_API_KEY." 
+        });
+      }
       
-      // Simulate processing delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const emailOptions: any = {
+        from: 'Dunya Consultants <query@dunyaconsultants.com>',
+        to: to,
+        subject: subject,
+        html: html,
+      };
+
+      // Add attachment if provided
+      if (attachment) {
+        emailOptions.attachments = [{
+          filename: attachment.filename,
+          content: Buffer.from(attachment.content, 'base64'),
+          contentType: attachment.type
+        }];
+      }
+
+      const result = await resend.emails.send(emailOptions);
       
       res.json({ 
         success: true, 
         message: "Email sent successfully",
-        emailId: `sim_${Date.now()}_${Math.random().toString(36).substring(7)}`
+        emailId: result.data?.id || `resend_${Date.now()}`
       });
     } catch (error) {
       console.error('Email sending error:', error);
@@ -275,6 +295,101 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     }
   });
+
+  // Form submission endpoint for all website forms
+  app.post("/api/submit-form", async (req, res) => {
+    try {
+      const { formType, formData } = req.body;
+      
+      if (!resend) {
+        return res.status(500).json({ 
+          success: false, 
+          message: "Email service not configured. Please check RESEND_API_KEY." 
+        });
+      }
+
+      // Generate email content based on form type
+      const emailContent = generateFormEmailHTML(formType, formData);
+      const subject = `New ${formType} Submission - ${formData.name || 'Anonymous'}`;
+
+      const emailOptions = {
+        from: 'Dunya Consultants <query@dunyaconsultants.com>',
+        to: 'query@dunyaconsultants.com',
+        subject: subject,
+        html: emailContent,
+      };
+
+      const result = await resend.emails.send(emailOptions);
+      
+      res.json({ 
+        success: true, 
+        message: "Form submitted successfully",
+        emailId: result.data?.id || `resend_${Date.now()}`
+      });
+    } catch (error) {
+      console.error('Form submission error:', error);
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to submit form" 
+      });
+    }
+  });
+
+  // Helper function to generate form email HTML
+  function generateFormEmailHTML(formType: string, formData: any): string {
+    const formatDate = new Date().toLocaleString('en-US', {
+      timeZone: 'Asia/Karachi',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    const fields = Object.entries(formData)
+      .filter(([key, value]) => value && value !== '')
+      .map(([key, value]) => {
+        const formattedKey = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
+        return `<tr><td style="padding: 8px 12px; border: 1px solid #e2e8f0; font-weight: 600; background-color: #f8fafc;">${formattedKey}</td><td style="padding: 8px 12px; border: 1px solid #e2e8f0;">${value}</td></tr>`;
+      }).join('');
+
+    return `
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>New ${formType} Submission</title>
+      </head>
+      <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 20px; background-color: #f8fafc;">
+          <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); overflow: hidden;">
+              <div style="background: linear-gradient(135deg, #1D50C9, #1a73e8); color: white; padding: 30px; text-align: center;">
+                  <h1 style="margin: 0; font-size: 28px; font-weight: bold;">New ${formType} Submission</h1>
+                  <p style="margin: 8px 0 0 0; opacity: 0.9; font-size: 16px;">Received on ${formatDate}</p>
+              </div>
+              
+              <div style="padding: 30px;">
+                  <h2 style="color: #1e293b; margin-bottom: 20px;">Submission Details</h2>
+                  
+                  <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                      ${fields}
+                  </table>
+                  
+                  <div style="background: #f1f5f9; border-radius: 8px; padding: 20px; margin: 20px 0; border-left: 4px solid #1D50C9;">
+                      <h3 style="margin: 0 0 10px 0; color: #1e293b;">📞 Next Steps</h3>
+                      <p style="margin: 0; color: #475569;">Please respond to this inquiry within 24 hours for the best customer experience.</p>
+                  </div>
+              </div>
+              
+              <div style="background: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0; font-size: 14px; color: #64748b;">
+                  <p style="margin: 0;">This email was automatically generated from the Dunya Consultants website.</p>
+                  <p style="margin: 5px 0 0 0;">&copy; ${new Date().getFullYear()} Dunya Consultants. All rights reserved.</p>
+              </div>
+          </div>
+      </body>
+      </html>
+    `;
+  }
 
   // ==============================================
   // ADMIN AUTHENTICATION ROUTES
