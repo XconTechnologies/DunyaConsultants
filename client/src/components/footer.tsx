@@ -81,9 +81,7 @@ export default function Footer() {
                       <Phone className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-blue-100 text-xs font-medium">UAN:</p>
-                        <a href="tel:+923261111947" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors">
-                          (+92) 326 1111947
-                        </a>
+                        <a href="tel:+923261111947" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors">(+92) 304 1110947</a>
                       </div>
                     </div>
                     
