@@ -238,15 +238,10 @@ export default function BlogList() {
                 }}
               >
                 <a 
-                  href={`/${post.slug}`}
+                  href={`${window.location.origin}/${post.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block h-full"
-                  onClick={(e) => {
-                    // Double ensure new tab behavior
-                    e.preventDefault();
-                    window.open(`/${post.slug}`, '_blank');
-                  }}
                 >
                   <Card className="hover:shadow-xl transition-all duration-300 border shadow-md cursor-pointer h-full">
                     <CardContent className="p-6">
