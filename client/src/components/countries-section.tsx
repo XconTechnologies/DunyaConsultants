@@ -203,12 +203,10 @@ export default function CountriesSection() {
             }}
           />
         </div>
-        <div className="absolute bottom-4 left-4 country-card-header z-10" data-country-card>
-          <h3 className="text-xl font-bold text-white">{country.name}</h3>
-        </div>
       </div>
       
       <div className="p-6">
+        <h3 className="text-xl font-bold text-gray-900 mb-3">{country.name}</h3>
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {country.description}
         </p>
