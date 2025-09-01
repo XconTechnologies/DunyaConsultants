@@ -673,9 +673,9 @@ export default function OfficesList() {
                       {/* Header */}
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
-                          <div className="flex items-center justify-between mb-2">
+                          <div className="flex items-center space-x-2 mb-2">
                             <h3 className="text-xl font-bold text-gray-800">{office.city}</h3>
-                            <Badge className="text-white text-xs ml-2" style={{ backgroundColor: '#1D50C9' }}>
+                            <Badge className="text-white text-xs" style={{ backgroundColor: '#1D50C9' }}>
                               International
                             </Badge>
                           </div>
