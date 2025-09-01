@@ -91,10 +91,9 @@ function Router() {
       <Route path="/document-checklist" component={DocumentChecklist} />
       <Route path="/events" component={Events} />
 
-      {/* Blog Routes - Date-based slugs */}
+      {/* Blog Routes - Date-based slugs only */}
       <Route path="/blog" component={Blog} />
       <Route path="/:year/:month/:day/:slug" component={Blog} />
-      <Route path="/blog/:slug" component={Blog} />
       <Route path="/ielts" component={IELTS} />
       <Route path="/test-prep/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
