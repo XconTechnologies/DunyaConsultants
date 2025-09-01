@@ -266,8 +266,8 @@ export default function TeamPage() {
                           {member.name}
                         </h3>
                         <p 
-                          className="text-gray-600 mb-1 sm:mb-4" 
-                          style={{ fontSize: '9px', fontWeight: 400, lineHeight: '1.2' }}
+                          className="text-gray-600 mb-1 sm:mb-4 text-[9px] sm:text-[11px]" 
+                          style={{ fontWeight: 400, lineHeight: '1.2' }}
                         >
                           {member.designation}
                         </p>
