@@ -286,7 +286,12 @@ export default function BlogsCarouselSection() {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
               >
-                <Link href={post.slug.includes('/') ? `/${post.slug}` : `/${post.slug}`}>
+                <a 
+                  href={post.slug.includes('/') ? `/${post.slug}` : `/${post.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full"
+                >
                   <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                     
                     {/* Featured Image - Exact same as blog page */}
@@ -341,7 +346,7 @@ export default function BlogsCarouselSection() {
 
                     </CardContent>
                   </Card>
-                </Link>
+                </a>
               </motion.div>
             ))}
           </div>
