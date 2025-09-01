@@ -231,52 +231,49 @@ export default function BlogList() {
                 whileHover={{ y: -5 }}
                 className="group"
               >
-                <Card className="hover:shadow-xl transition-all duration-300 border shadow-md">
-                  <CardContent className="p-6">
-                    {/* Category Badge */}
-                    <div className="mb-3">
-                      <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
-                        {post.category}
-                      </Badge>
-                    </div>
+                <a 
+                  href={post.slug.includes('/') ? `/${post.slug}` : `/${post.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full"
+                >
+                  <Card className="hover:shadow-xl transition-all duration-300 border shadow-md cursor-pointer h-full">
+                    <CardContent className="p-6">
+                      {/* Category Badge */}
+                      <div className="mb-3">
+                        <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
+                          {post.category}
+                        </Badge>
+                      </div>
 
-                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#1845B3] transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                    
-                    <p className="text-gray-600 mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                    
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-sm text-gray-500">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{post.date}</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#1845B3] transition-colors line-clamp-2">
+                        {post.title}
+                      </h3>
+                      
+                      <p className="text-gray-600 mb-4 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                      
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4 text-sm text-gray-500">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            <span>{post.date}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Eye className="w-4 h-4" />
+                            <span>{post.views.toLocaleString()}</span>
+                          </div>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Eye className="w-4 h-4" />
-                          <span>{post.views.toLocaleString()}</span>
+                        
+                        <div className="flex items-center text-[#1D50C9] font-medium">
+                          <span>Read More</span>
+                          <ArrowRight className="w-4 h-4 ml-1" />
                         </div>
                       </div>
-                      
-                      <a 
-                        href={post.slug.includes('/') ? `/${post.slug}` : `/${post.slug}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex"
-                      >
-                        <Button 
-                          size="sm" 
-                          className="bg-[#1D50C9] hover:bg-[#1845B3] text-white"
-                        >
-                          Read More
-                          <ArrowRight className="w-4 h-4 ml-2" />
-                        </Button>
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </a>
               </motion.div>
             ))}
           </div>

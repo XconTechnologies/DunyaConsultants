@@ -1345,7 +1345,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
                           >
-                            <Link href={`/blog/${blog.slug}`}>
+                            <a 
+                              href={`/${blog.slug}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block h-full"
+                            >
                               <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                                 
                                 {/* Featured Image */}
@@ -1412,7 +1417,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                                 </CardContent>
                               </Card>
-                            </Link>
+                            </a>
                           </motion.div>
                         ))}
                       </div>
