@@ -134,7 +134,7 @@ const teamMembers = [
     id: 17,
     image: mudassarRazaImg,
     name: "Mudassar Raza",
-    designation: "Branch Manager Mandi"
+    designation: "Branch Manager Mandi Bahauddin"
   },
   {
     id: 18,
