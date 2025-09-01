@@ -1641,7 +1641,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
 // Main Blog Component
 export default function Blog() {
   const [match, params] = useRoute("/:year/:month/:day/:slug");
-  const [simpleMatch, simpleParams] = useRoute("/blog/:slug");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [displayCount, setDisplayCount] = useState(12); // Show 12 blogs initially
@@ -1694,15 +1693,38 @@ export default function Blog() {
     { name: "Test Preparation", count: blogPosts.filter((p: any) => p.category === "Test Preparation").length },
   ].filter(cat => cat.count > 0);
 
-  // If we're viewing a specific blog post
+  // If we're viewing a specific blog post with date validation
   if (match && params) {
-    const slug = `${params.year}/${params.month}/${params.day}/${params.slug}`;
-    return <BlogPostDetail slug={slug} />;
-  }
-  
-  // Handle simple slug format (for older posts)
-  if (simpleMatch && simpleParams) {
-    return <BlogPostDetail slug={simpleParams.slug} />;
+    const { year, month, day, slug } = params;
+    
+    // Validate that year, month, day are proper numbers
+    const yearNum = parseInt(year);
+    const monthNum = parseInt(month);
+    const dayNum = parseInt(day);
+    
+    // Validate date format: year 2020-2030, month 01-12, day 01-31
+    if (
+      year?.length === 4 && yearNum >= 2020 && yearNum <= 2030 &&
+      month?.length === 2 && monthNum >= 1 && monthNum <= 12 &&
+      day?.length === 2 && dayNum >= 1 && dayNum <= 31 &&
+      slug
+    ) {
+      const fullSlug = `${year}/${month}/${day}/${slug}`;
+      return <BlogPostDetail slug={fullSlug} />;
+    }
+    
+    // Invalid date format - redirect to 404
+    return <div className="min-h-screen bg-white">
+      <Navigation />
+      <div className="flex flex-col justify-center items-center h-64">
+        <h1 className="text-2xl font-bold text-gray-900 mb-4">404 - Page Not Found</h1>
+        <p className="text-gray-600 mb-4">The blog post you're looking for doesn't exist.</p>
+        <Link href="/blog">
+          <Button>Back to Blog</Button>
+        </Link>
+      </div>
+      <Footer />
+    </div>;
   }
 
   // Show loading state
