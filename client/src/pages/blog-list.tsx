@@ -232,7 +232,7 @@ export default function BlogList() {
                 className="group"
               >
                 <a 
-                  href={post.slug.includes('/') ? `/${post.slug}` : `/${post.slug}`}
+                  href={`/${post.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block h-full"
