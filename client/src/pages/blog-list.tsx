@@ -31,7 +31,7 @@ const blogPosts = [
     date: "March 24, 2025",
     readTime: "12 min",
     author: "Dunya Consultants",
-    slug: "/global-talent-visa-australia",
+    slug: "/2024/10/25/global-talent-visa-australia",
     views: "12,456"
   },
   {
@@ -43,7 +43,7 @@ const blogPosts = [
     date: "March 23, 2025",
     readTime: "10 min",
     author: "Dunya Consultants",
-    slug: "/anglia-ruskin-university",
+    slug: "/2024/10/22/anglia-ruskin-university",
     views: "9,823"
   },
   {
@@ -55,7 +55,7 @@ const blogPosts = [
     date: "March 22, 2025",
     readTime: "9 min",
     author: "Dunya Consultants",
-    slug: "/cyprus-visa-pakistan",
+    slug: "/2024/10/20/cyprus-visa-pakistan",
     views: "8,765"
   },
   {
@@ -67,7 +67,7 @@ const blogPosts = [
     date: "March 21, 2025",
     readTime: "15 min",
     author: "Dunya Consultants",
-    slug: "/engineering-law-canada",
+    slug: "/2024/10/14/engineering-law-canada",
     views: "11,234"
   },
   {
@@ -79,7 +79,7 @@ const blogPosts = [
     date: "March 20, 2025",
     readTime: "11 min",
     author: "Dunya Consultants",
-    slug: "/turkey-pakistani-students",
+    slug: "/2024/10/12/turkey-pakistani-students",
     views: "7,892"
   },
   {
@@ -91,7 +91,7 @@ const blogPosts = [
     date: "March 19, 2025",
     readTime: "13 min",
     author: "Dunya Consultants",
-    slug: "/uk-llm-pakistani-bar",
+    slug: "/2024/10/08/uk-llm-pakistani-bar",
     views: "6,543"
   },
   {
@@ -103,7 +103,7 @@ const blogPosts = [
     date: "March 18, 2025",
     readTime: "10 min",
     author: "Dunya Consultants",
-    slug: "/study-nursing-uk",
+    slug: "/2024/10/06/study-nursing-uk",
     views: "9,456"
   },
   {
@@ -115,7 +115,7 @@ const blogPosts = [
     date: "March 17, 2025",
     readTime: "12 min",
     author: "Dunya Consultants",
-    slug: "/global-talent-visa-uk",
+    slug: "/2024/09/24/global-talent-visa-uk",
     views: "10,123"
   },
   {
@@ -127,7 +127,7 @@ const blogPosts = [
     date: "March 16, 2025",
     readTime: "14 min",
     author: "Dunya Consultants",
-    slug: "/top-study-abroad-countries",
+    slug: "/2024/09/22/top-study-abroad-countries",
     views: "13,789"
   },
   {
@@ -139,7 +139,7 @@ const blogPosts = [
     date: "March 15, 2025",
     readTime: "16 min",
     author: "Dunya Consultants",
-    slug: "/llm-australia-guide",
+    slug: "/2024/09/20/llm-australia-guide",
     views: "8,654"
   },
   {
@@ -151,7 +151,7 @@ const blogPosts = [
     date: "March 14, 2025",
     readTime: "11 min",
     author: "Dunya Consultants",
-    slug: "/oxford-test-uk-universities",
+    slug: "/2024/09/18/oxford-test-uk-universities",
     views: "7,321"
   },
   {
@@ -163,7 +163,7 @@ const blogPosts = [
     date: "March 13, 2025",
     readTime: "9 min",
     author: "Dunya Consultants",
-    slug: "/improve-ielts-listening",
+    slug: "/2024/09/16/improve-ielts-listening",
     views: "14,567"
   },
   {
@@ -175,7 +175,7 @@ const blogPosts = [
     date: "March 12, 2025",
     readTime: "12 min",
     author: "Dunya Consultants",
-    slug: "/uk-internship-international-students",
+    slug: "/2024/09/14/uk-internship-international-students",
     views: "9,876"
   },
   {
@@ -187,7 +187,7 @@ const blogPosts = [
     date: "March 11, 2025",
     readTime: "8 min",
     author: "Dunya Consultants",
-    slug: "/gmat-exam-date-2025",
+    slug: "/2024/09/12/gmat-exam-date-2025",
     views: "11,234"
   },
   {
@@ -199,7 +199,7 @@ const blogPosts = [
     date: "March 10, 2025",
     readTime: "13 min",
     author: "Dunya Consultants",
-    slug: "/ielts-preparation-tips",
+    slug: "/2024/09/10/ielts-preparation-tips",
     views: "18,765"
   },
   {
@@ -211,7 +211,7 @@ const blogPosts = [
     date: "March 9, 2025",
     readTime: "10 min",
     author: "Dunya Consultants",
-    slug: "/apply-ielts-pakistan",
+    slug: "/2024/09/08/apply-ielts-pakistan",
     views: "16,543"
   },
   {
@@ -223,7 +223,7 @@ const blogPosts = [
     date: "March 8, 2025",
     readTime: "11 min",
     author: "Dunya Consultants",
-    slug: "/bachelors-ict-software-engineering",
+    slug: "/2024/09/06/bachelors-ict-software-engineering",
     views: "8,234"
   },
   {
@@ -235,7 +235,7 @@ const blogPosts = [
     date: "March 7, 2025",
     readTime: "12 min",
     author: "Dunya Consultants",
-    slug: "/bachelors-industrial-engineering",
+    slug: "/2024/09/04/bachelors-industrial-engineering",
     views: "7,654"
   },
   {
@@ -247,7 +247,7 @@ const blogPosts = [
     date: "March 6, 2025",
     readTime: "10 min",
     author: "Dunya Consultants",
-    slug: "/teesside-university-partner",
+    slug: "/2024/09/02/teesside-university-partner",
     views: "9,123"
   }
 ];

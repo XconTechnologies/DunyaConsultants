@@ -249,7 +249,7 @@ You will need a registered business address and name to move forward with busine
   },
   {
     title: "Finland Admissions 2025 – Finland Application Fee & Deadline 2025",
-    slug: "finland-online-visa-application-from-pakistan",
+    slug: "2024/11/15/finland-online-visa-application-from-pakistan",
     excerpt: "Complete guide to Finland student visa applications from Pakistan, including admission requirements, application fees, deadlines, and step-by-step visa process for 2025.",
     content: "Finland is quite popular for providing high-quality education to international students. Those who are willing to study in Finland will find many degree programs that focus on student learning as well as advanced technology. Tuition fees in Finland are more affordable as compared to other Western countries. The country also provides a friendly environment which makes it a top choice for students looking for the best education experience.",
     isPublished: true,
@@ -262,7 +262,7 @@ You will need a registered business address and name to move forward with busine
   },
   {
     title: "Kaplan Test of English (KTE): Complete Guide 2025",
-    slug: "kaplan-test-of-english",
+    slug: "2024/10/28/kaplan-test-of-english",
     excerpt: "Everything you need to know about the Kaplan Test of English (KTE) for international students",
     content: "Comprehensive guide to KTE test format, preparation, and requirements...",
     isPublished: true,
@@ -274,7 +274,7 @@ You will need a registered business address and name to move forward with busine
   },
   {
     title: "Global Talent Visa Australia: Complete Guide 2025",
-    slug: "global-talent-visa-australia",
+    slug: "2024/10/25/global-talent-visa-australia",
     excerpt: "Complete guide to Australia's Global Talent Visa program for skilled professionals",
     content: "Detailed information about Global Talent Visa requirements, application process, and benefits...",
     isPublished: true,
@@ -286,7 +286,7 @@ You will need a registered business address and name to move forward with busine
   },
   {
     title: "Anglia Ruskin University – A Trusted Partner of Dunya Consultants",
-    slug: "anglia-ruskin-university",
+    slug: "2024/10/22/anglia-ruskin-university",
     excerpt: "Learn about Anglia Ruskin University and its partnership with education consultants",
     content: "Comprehensive information about Anglia Ruskin University programs and admission requirements...",
     isPublished: true,
@@ -298,7 +298,7 @@ You will need a registered business address and name to move forward with busine
   },
   {
     title: "Cyprus Visa for Pakistan: Complete Student Guide 2025",
-    slug: "cyprus-visa-pakistan",
+    slug: "2024/10/20/cyprus-visa-pakistan",
     excerpt: "Complete guide for Pakistani students applying for Cyprus student visa",
     content: "Step-by-step guide to Cyprus student visa application process for Pakistani students...",
     isPublished: true,
@@ -325,7 +325,7 @@ You will need a registered business address and name to move forward with busine
   },
   {
     title: "How Much Study Gap is Acceptable in UK for Masters?",
-    slug: "study-gap-acceptable-uk-masters",
+    slug: "2024/10/16/study-gap-acceptable-uk-masters",
     excerpt: "Complete guide to understanding study gap acceptance for UK Masters programs, including acceptable gap periods, documentation requirements, and tips for strengthening your application",
     content: "One of the most common concerns for Pakistani students planning to pursue a Masters degree in the UK is whether their study gap will affect their admission chances. The good news is that UK universities are generally understanding about study gaps, especially when they are well-justified and documented properly. The gap accepted in UK for a Bachelor's degree is around two-years and up to five years for a Master's degree.",
     isPublished: true,
@@ -340,7 +340,7 @@ You will need a registered business address and name to move forward with busine
   },
   {
     title: "Engineering and Law Programs in Canada: Best Universities for Pakistani Students in 2025",
-    slug: "engineering-law-canada",
+    slug: "2024/10/14/engineering-law-canada",
     excerpt: "Canada is one of the most popular choices for Pakistani students around the world. Studying in Canada can improve your career as well as social life. The country is popular for high-quality education and research opportunities where students from all backgrounds feel welcome.",
     content: `Canada is one of the most popular choices for Pakistani students around the world. Studying in Canada can improve your career as well as social life. The country is popular for high-quality education and research opportunities where students from all backgrounds feel welcome. There are some of the best engineering universities in Canada that provide advanced facilities, modern programs, and industry partnerships that help students succeed worldwide. Pakistani students can get practical experience through internships while studying.
 
@@ -408,7 +408,7 @@ Law degree programs in Canada typically take 3 years for a JD (Juris Doctor) deg
   },
   {
     title: "Why Turkey is Best Choice for Pakistani Students?",
-    slug: "why-turkey-best-choice-pakistani-students",
+    slug: "2024/10/12/why-turkey-best-choice-pakistani-students",
     excerpt: "Study in Turkey has become a top choice for Pakistani students. There are many reasons for this. Turkey provides affordable tuition fees, high-quality education, as well as a rich cultural history. Since it is a Muslim-majority country, Pakistani students find it easier to adjust and practice their faith.",
     content: `At present, numerous students are choosing to study abroad. Study in Turkey has become a top choice for Pakistani students. There are many reasons for this. Turkey provides affordable tuition fees, high-quality education, as well as a rich cultural history. Since it is a Muslim-majority country, Pakistani students find it easier to adjust and practice their faith.
 
@@ -501,7 +501,7 @@ Students need to apply directly to the university, meet academic requirements, p
   },
   {
     title: "From UK LLM to Pakistani Bar: How to Convert Your Degree for Legal Practice?",
-    slug: "uk-llm-pakistani-bar",
+    slug: "2024/10/08/uk-llm-pakistani-bar",
     excerpt: "An LLM in UK for Pakistani students is a master's degree in law that allows them to study a specific area of law in more detail than a bachelor's degree. UK law degrees are well-respected worldwide, and getting a Law Degree from the UK is a great way to start your legal career.",
     content: `An LLM in UK for Pakistani students is a master's degree in law that allows them to study a specific area of law in more detail than a bachelor's degree. UK law degrees are well-respected worldwide, and getting a Law Degree from the UK is a great way to start your legal career. Many Pakistani students stay in the UK for up to a year to prepare for the Bar Council Entry Test, which is required to get a law practice license in Pakistan.
 
@@ -569,7 +569,7 @@ Yes, you can study British law in Pakistan through the University of London (UOL
   },
   {
     title: "Study Nursing in the UK",
-    slug: "study-nursing-uk",
+    slug: "2024/10/06/study-nursing-uk",
     excerpt: "Nursing is a highly respected and in-demand profession worldwide which makes it the best career choice for students. The UK is a popular place for those who want to study nursing, especially for international students. To work as a nurse in the UK, international students must complete the Overseas Nursing Programme (ONP).",
     content: `Nursing is a highly respected and in-demand profession worldwide which makes it the best career choice for students. The UK is a popular place for those who want to study nursing, especially for international students. To work as a nurse in the UK, international students must complete the Overseas Nursing Programme (ONP), which allows them to register as nurses. Once registered, they can work in hospitals, clinics, or private healthcare settings. A nursing degree in the UK usually takes four years to complete.
 
@@ -689,7 +689,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Study in UK: Complete Guide for Pakistani Students",
-    slug: "study-in-uk",
+    slug: "2024/10/04/study-in-uk",
     excerpt: "Comprehensive guide for Pakistani students planning to study in the United Kingdom",
     content: "Everything Pakistani students need to know about studying in the UK...",
     isPublished: true,
@@ -703,7 +703,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "How Much Study Gap Acceptable in UK for Masters",
-    slug: "how-much-study-gap-acceptable-in-uk-for-masters",
+    slug: "2024/10/02/how-much-study-gap-acceptable-in-uk-for-masters",
     excerpt: "Understanding study gap requirements for UK Masters programs",
     content: "Detailed information about acceptable study gaps for UK Masters programs...",
     isPublished: true,
@@ -731,7 +731,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Requirements to Study Computer Science in USA",
-    slug: "requirements-to-study-computer-science-in-usa",
+    slug: "2024/09/30/requirements-to-study-computer-science-in-usa",
     excerpt: "Complete requirements and admission criteria for Computer Science programs in USA",
     content: "Detailed requirements for Computer Science programs in US universities...",
     isPublished: true,
@@ -787,7 +787,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "How to Improve IELTS Listening Skills",
-    slug: "how-to-improve-ielts-listening-skills",
+    slug: "2024/09/28/how-to-improve-ielts-listening-skills",
     excerpt: "Effective strategies and tips to improve your IELTS listening score",
     content: "Comprehensive strategies for improving IELTS listening skills...",
     isPublished: true,
@@ -801,7 +801,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Dubai Visa for Pakistani: Complete Guide 2025",
-    slug: "dubai-visa-for-pakistani",
+    slug: "2024/10/10/dubai-visa-for-pakistani",
     excerpt: "Complete guide for Pakistani citizens applying for Dubai visa",
     content: "Step-by-step guide to Dubai visa application for Pakistani citizens...",
     isPublished: true,
@@ -815,7 +815,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "UK Student Dependent Visa New Rules",
-    slug: "uk-student-dependent-visa-new-rules",
+    slug: "2024/09/26/uk-student-dependent-visa-new-rules",
     excerpt: "Latest updates on UK student dependent visa rules and requirements",
     content: "Updated information about UK student dependent visa regulations...",
     isPublished: true,
@@ -857,7 +857,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Most Common Mistakes to Avoid for Your UK Student Visa Success",
-    slug: "most-common-mistakes-to-avoid-for-your-uk-student-visa-success",
+    slug: "2024/09/22/most-common-mistakes-to-avoid-for-your-uk-student-visa-success",
     excerpt: "Learn about common UK student visa mistakes and how to avoid them",
     content: "Detailed guide on common UK student visa application mistakes...",
     isPublished: true,
@@ -871,7 +871,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "UK Student Visa Ratio from Pakistan",
-    slug: "uk-student-visa-ratio-from-pakistan",
+    slug: "2024/09/20/uk-student-visa-ratio-from-pakistan",
     excerpt: "Statistics and analysis of UK student visa approval rates for Pakistani students",
     content: "Comprehensive analysis of UK student visa approval statistics for Pakistani applicants...",
     isPublished: true,
@@ -885,7 +885,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Low Cost Universities in UK for International Students",
-    slug: "low-cost-universities-in-uk-for-international-students",
+    slug: "2024/09/18/low-cost-universities-in-uk-for-international-students",
     excerpt: "Affordable UK universities with quality education for international students",
     content: "List of budget-friendly UK universities offering quality education...",
     isPublished: true,
@@ -1039,7 +1039,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Low-Cost Universities in UK for International Students",
-    slug: "low-cost-universities-in-uk-for-international-students", 
+    slug: "2024/09/18/low-cost-universities-in-uk-for-international-students", 
     excerpt: "Complete guide to affordable UK universities and living costs for international students",
     content: "Comprehensive guide to low-cost universities in UK, tuition fees, and living expenses for international students...",
     isPublished: true,
