@@ -145,7 +145,7 @@ const teamMembers = [
   {
     id: 19,
     image: muhammadAmanImg,
-    name: "Muhammad Aman Khan",
+    name: "Aman Khan",
     designation: "Branch Manager Mardan"
   }
 ];
