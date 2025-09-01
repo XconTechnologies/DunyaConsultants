@@ -321,10 +321,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const result = await resend.emails.send(emailOptions);
       
+      console.log('Resend API Response:', JSON.stringify(result, null, 2));
+      
       res.json({ 
         success: true, 
         message: "Form submitted successfully",
-        emailId: result.data?.id || `resend_${Date.now()}`
+        emailId: result.data?.id || `resend_${Date.now()}`,
+        debug: result
       });
     } catch (error) {
       console.error('Form submission error:', error);
