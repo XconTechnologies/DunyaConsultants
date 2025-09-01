@@ -313,7 +313,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const subject = `New ${formType} Submission - ${formData.name || 'Anonymous'}`;
 
       const emailOptions = {
-        from: 'Dunya Consultants <query@teamdunya.com>',
+        from: 'Dunya Consultants <onboarding@resend.dev>',
         to: 'query@teamdunya.com',
         subject: subject,
         html: emailContent,
