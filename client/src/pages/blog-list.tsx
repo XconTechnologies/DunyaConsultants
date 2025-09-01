@@ -231,11 +231,12 @@ export default function BlogList() {
                 whileHover={{ y: -5 }}
                 className="group"
               >
-                <a 
-                  href={`/${post.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block h-full"
+                <div 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.open(`/${post.slug}`, '_blank', 'noopener,noreferrer');
+                  }}
+                  className="block h-full cursor-pointer"
                 >
                   <Card className="hover:shadow-xl transition-all duration-300 border shadow-md cursor-pointer h-full">
                     <CardContent className="p-6">
@@ -273,7 +274,7 @@ export default function BlogList() {
                       </div>
                     </CardContent>
                   </Card>
-                </a>
+                </div>
               </motion.div>
             ))}
           </div>
