@@ -16,8 +16,11 @@ export default function NotFound() {
               <AlertCircle className="h-16 w-16 #1D50C9 mx-auto mb-4" />
               <h1 className="text-3xl font-bold text-gray-900 mb-2">404</h1>
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Page Not Found</h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-4">
                 The page you're looking for doesn't exist or has been moved.
+              </p>
+              <p className="text-sm text-gray-500 mb-6">
+                <strong>Blog URLs require date format:</strong> /YYYY/MM/DD/blog-title
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/">
