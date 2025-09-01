@@ -237,11 +237,14 @@ export default function BlogList() {
                   e.currentTarget.style.transform = 'translateY(0px)';
                 }}
               >
-                <a 
-                  href={`${window.location.origin}/${post.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block h-full"
+                <div
+                  className="block h-full cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    const url = `${window.location.origin}/${post.slug}`;
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                  }}
                 >
                   <Card className="hover:shadow-xl transition-all duration-300 border shadow-md cursor-pointer h-full">
                     <CardContent className="p-6">
@@ -279,7 +282,7 @@ export default function BlogList() {
                       </div>
                     </CardContent>
                   </Card>
-                </a>
+                </div>
               </motion.div>
             ))}
           </div>
