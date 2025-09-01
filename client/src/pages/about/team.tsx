@@ -105,48 +105,48 @@ const teamMembers = [
     name: "Sadeeza Nasir",
     designation: "Branch Manager Multan"
   },
-  // Other Branch Managers
   {
     id: 13,
-    image: usamaRandhawaImg,
-    name: "Usama Bashir Randhawa",
-    designation: "Branch Manager Gujranwala"
+    image: usamaAshrafImg,
+    name: "Usama Ashraf",
+    designation: "Branch Manager Gujrat"
   },
   {
     id: 14,
+    image: talhaAzizImg,
+    name: "Talha Aziz",
+    designation: "Branch Manager Mian Channu (MC)"
+  },
+  // Other Branch Managers
+  {
+    id: 15,
+    image: usamaRandhawaImg,
+    name: "Usama Bashir",
+    designation: "Branch Manager Gujranwala"
+  },
+  {
+    id: 16,
     image: aliAbidImg,
     name: "Ali Abid",
     designation: "Branch Manager Sheikhupura"
   },
   {
-    id: 15,
+    id: 17,
     image: mudassarRazaImg,
     name: "Mudassar Raza",
     designation: "Branch Manager Mandi Bahauddin"
   },
   {
-    id: 16,
+    id: 18,
     image: khalilAhmadImg,
     name: "Khalil Ahmad",
     designation: "Branch Manager Bahawalpur"
   },
   {
-    id: 17,
+    id: 19,
     image: muhammadAmanImg,
     name: "Muhammad Aman Khan",
     designation: "Branch Manager Mardan"
-  },
-  {
-    id: 18,
-    image: usamaAshrafImg,
-    name: "Usama Ashraf",
-    designation: "Regional Manager"
-  },
-  {
-    id: 19,
-    image: talhaAzizImg,
-    name: "Talha Aziz",
-    designation: "Regional Manager: South Punjab"
   }
 ];
 
