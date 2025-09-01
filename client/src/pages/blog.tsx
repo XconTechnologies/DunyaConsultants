@@ -444,15 +444,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 <Calendar className="w-5 h-5 mr-2" />
                 <span>{blogPost.date}</span>
               </div>
-              <div className="flex items-center">
-                <User className="w-5 h-5 mr-2" />
-                <span>{blogPost.author}</span>
-              </div>
-              <div className="flex items-center">
-                <Clock className="w-5 h-5 mr-2" />
-                <span>{blogPost.readTime}</span>
-              </div>
-
             </motion.div>
           </div>
         </div>
