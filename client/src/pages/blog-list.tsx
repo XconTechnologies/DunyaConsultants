@@ -41,7 +41,7 @@ const categories = [
 export default function BlogList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [visiblePosts, setVisiblePosts] = useState(12); // Show 12 posts initially
+  const [visiblePosts, setVisiblePosts] = useState(75); // Show all posts initially
 
   // Fetch blog posts from API
   const { data: blogPostsData, isLoading } = useQuery({
@@ -180,7 +180,7 @@ export default function BlogList() {
                     onClick={() => setSelectedCategory(category)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                       selectedCategory === category
-                        ? '#1D50C9 text-white shadow-lg'
+                        ? 'bg-[#1D50C9] text-white shadow-lg'
                         : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                   >
