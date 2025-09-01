@@ -60,104 +60,104 @@ const teamMembers = [
     name: "Muhammad Ibrahim",
     designation: "Country Manager Pakistan"
   },
-  // Regional Managers
   {
     id: 5,
+    image: drWaleedMostafaImg,
+    name: "Dr. Waleed Mostafa",
+    designation: "Country Manager Cairo"
+  },
+  {
+    id: 6,
+    image: jowariaImg,
+    name: "Jowaria",
+    designation: "Partnerships Manager"
+  },
+  // Regional Managers
+  {
+    id: 7,
     image: usamaAshrafImg,
     name: "Usama Ashraf",
     designation: "Regional Manager"
   },
   {
-    id: 6,
+    id: 8,
     image: talhaAzizImg,
     name: "Talha Aziz",
     designation: "Regional Manager: South Punjab"
   },
   {
-    id: 7,
+    id: 9,
     image: aliHassanImg,
-    name: "Ali Hassan Bhatti",
+    name: "Ali Hassan",
     designation: "Regional Manager-North"
   },
   // Operations Manager
   {
-    id: 8,
+    id: 10,
     image: muhammadDabeerImg,
     name: "Muhammad Dabeer Raza",
     designation: "Coordinator Jhelum"
   },
   // Branch Managers (City-wise order)
   {
-    id: 9,
+    id: 11,
     image: rashidAliImg,
     name: "Rashid Ali",
     designation: "Branch Manager Islamabad"
   },
   {
-    id: 10,
+    id: 12,
     image: ahmedUsmanImg,
     name: "Ahmed Usman",
     designation: "Operational Manager Karachi"
   },
   {
-    id: 11,
+    id: 13,
     image: usamaRandhawaImg,
     name: "Usama Bashir Randhawa",
     designation: "Branch Manager Gujranwala"
   },
   {
-    id: 12,
+    id: 14,
     image: aliAbidImg,
     name: "Ali Abid",
     designation: "Branch Manager Sheikhupura"
   },
   {
-    id: 13,
+    id: 15,
     image: abdullahImg,
     name: "Abdullah",
     designation: "Branch Manager Sargodha"
   },
   {
-    id: 14,
+    id: 16,
     image: mudassarRazaImg,
     name: "Mudassar Raza",
     designation: "Branch Manager Mandi Bahauddin"
   },
   {
-    id: 15,
+    id: 17,
     image: khalilAhmadImg,
     name: "Khalil Ahmad",
     designation: "Branch Manager Bahawalpur"
   },
   {
-    id: 16,
+    id: 18,
     image: hafizHamzaImg,
     name: "Hafiz Hamza Sabir",
     designation: "Branch Manager Sialkot"
   },
   {
-    id: 17,
+    id: 19,
     image: muhammadAmanImg,
     name: "Muhammad Aman Khan",
     designation: "Branch Manager Mardan"
   },
   {
-    id: 18,
+    id: 20,
     image: sadeezaImg,
     name: "Sadeeza",
     designation: "Branch Manager Multan"
-  },
-  {
-    id: 19,
-    image: drWaleedMostafaImg,
-    name: "Dr. Waleed Mostafa",
-    designation: "Branch Manager Egypt"
-  },
-  {
-    id: 20,
-    image: jowariaImg,
-    name: "Jowaria",
-    designation: "Business Development Manager UK"
   },
   // Other Management Positions
   {
