@@ -1345,12 +1345,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
                           >
-                            <a 
-                              href={`/${blog.slug}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="block h-full"
-                            >
+                            <Link href={`/blog/${blog.slug}`}>
                               <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                                 
                                 {/* Featured Image */}
@@ -1417,7 +1412,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                                 </CardContent>
                               </Card>
-                            </a>
+                            </Link>
                           </motion.div>
                         ))}
                       </div>
@@ -1641,6 +1636,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 // Main Blog Component
 export default function Blog() {
   const [match, params] = useRoute("/:year/:month/:day/:slug");
+  const [simpleMatch, simpleParams] = useRoute("/blog/:slug");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [displayCount, setDisplayCount] = useState(12); // Show 12 blogs initially
@@ -1693,38 +1689,15 @@ export default function Blog() {
     { name: "Test Preparation", count: blogPosts.filter((p: any) => p.category === "Test Preparation").length },
   ].filter(cat => cat.count > 0);
 
-  // If we're viewing a specific blog post with date validation
+  // If we're viewing a specific blog post
   if (match && params) {
-    const { year, month, day, slug } = params;
-    
-    // Validate that year, month, day are proper numbers
-    const yearNum = parseInt(year);
-    const monthNum = parseInt(month);
-    const dayNum = parseInt(day);
-    
-    // Validate date format: year 2020-2030, month 01-12, day 01-31
-    if (
-      year?.length === 4 && yearNum >= 2020 && yearNum <= 2030 &&
-      month?.length === 2 && monthNum >= 1 && monthNum <= 12 &&
-      day?.length === 2 && dayNum >= 1 && dayNum <= 31 &&
-      slug
-    ) {
-      const fullSlug = `${year}/${month}/${day}/${slug}`;
-      return <BlogPostDetail slug={fullSlug} />;
-    }
-    
-    // Invalid date format - redirect to 404
-    return <div className="min-h-screen bg-white">
-      <Navigation />
-      <div className="flex flex-col justify-center items-center h-64">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">404 - Page Not Found</h1>
-        <p className="text-gray-600 mb-4">The blog post you're looking for doesn't exist.</p>
-        <Link href="/blog">
-          <Button>Back to Blog</Button>
-        </Link>
-      </div>
-      <Footer />
-    </div>;
+    const slug = `${params.year}/${params.month}/${params.day}/${params.slug}`;
+    return <BlogPostDetail slug={slug} />;
+  }
+  
+  // Handle simple slug format (for older posts)
+  if (simpleMatch && simpleParams) {
+    return <BlogPostDetail slug={simpleParams.slug} />;
   }
 
   // Show loading state
