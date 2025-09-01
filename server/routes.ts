@@ -314,7 +314,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const emailOptions = {
         from: 'Dunya Consultants <onboarding@resend.dev>',
-        to: 'query@teamdunya.com',
+        to: 'globaldc89@gmail.com',
         subject: subject,
         html: emailContent,
       };
