@@ -58,7 +58,7 @@ const teamMembers = [
     id: 4,
     image: muhammadIbrahimImg,
     name: "Muhammad Ibrahim",
-    designation: "Director Sargodha Branch"
+    designation: "Country Manager Pakistan"
   },
   // Regional Managers
   {
