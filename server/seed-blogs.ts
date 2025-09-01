@@ -3265,33 +3265,26 @@ export async function seedBlogPosts() {
         updatedAt: new Date(),
       };
       
-      // For the Finland post, let's use upsert to ensure it's properly updated
-      if (post.slug === "finland-online-visa-application-from-pakistan") {
-        await db.insert(blogPosts).values({
-          ...blogPost,
+      // Use upsert for all posts to ensure they're properly updated with correct slugs
+      await db.insert(blogPosts).values({
+        ...blogPost,
+        isPublished: post.published,
+      }).onConflictDoUpdate({
+        target: blogPosts.slug,
+        set: {
+          title: blogPost.title,
+          excerpt: blogPost.excerpt,
+          content: blogPost.content,
           isPublished: post.published,
-        }).onConflictDoUpdate({
-          target: blogPosts.slug,
-          set: {
-            title: blogPost.title,
-            excerpt: blogPost.excerpt,
-            content: blogPost.content,
-            isPublished: post.published,
-            publishedAt: blogPost.publishedAt,
-            tags: blogPost.tags,
-            metaDescription: blogPost.metaDescription,
-            featuredImage: blogPost.featuredImage,
-            viewCount: blogPost.viewCount,
-            category: blogPost.category,
-            updatedAt: new Date(),
-          }
-        });
-      } else {
-        await db.insert(blogPosts).values({
-          ...blogPost,
-          isPublished: post.published,
-        }).onConflictDoNothing();
-      }
+          publishedAt: blogPost.publishedAt,
+          tags: blogPost.tags,
+          metaDescription: blogPost.metaDescription,
+          featuredImage: blogPost.featuredImage,
+          viewCount: blogPost.viewCount,
+          category: blogPost.category,
+          updatedAt: new Date(),
+        }
+      });
     }
     
     console.log(`Successfully seeded ${allBlogPosts.length} blog posts`);
