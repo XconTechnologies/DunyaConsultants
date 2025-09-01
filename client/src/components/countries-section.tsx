@@ -191,10 +191,9 @@ export default function CountriesSection() {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
     >
-      <div className="relative h-48 overflow-hidden">
-        <div className="w-full h-full bg-[#1D50C9] transition-all duration-300 group-hover:bg-[#1e4db5]" />
-        <div className="absolute top-4 left-4">
-          <div className="w-12 h-8 rounded-md overflow-hidden shadow-lg border-2 border-white/30">
+      <div className="relative h-48 overflow-hidden bg-[#1D50C9] group-hover:bg-[#1e4db5] transition-all duration-300">
+        <div className="absolute top-4 left-4 z-10">
+          <div className="w-16 h-12 rounded-md overflow-hidden shadow-lg border-2 border-white/50">
             <ReactCountryFlag 
               countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
               svg 
@@ -206,8 +205,8 @@ export default function CountriesSection() {
             />
           </div>
         </div>
-        <div className="absolute bottom-4 left-4 country-card-header" data-country-card>
-          <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.5)' }}>{country.name}</h3>
+        <div className="absolute bottom-4 left-4 country-card-header z-10" data-country-card>
+          <h3 className="text-xl font-bold" style={{ color: 'white !important', textShadow: '1px 1px 2px rgba(0,0,0,0.7)' }}>{country.name}</h3>
         </div>
       </div>
       
