@@ -6,14 +6,10 @@ import { Card, CardContent } from "@/components/ui/card";
 
 // Import team member images
 import usamaAshrafImg from "@assets/WhatsApp Image 2025-08-28 at 16.42.49_5510c1da_1756381388641.jpg";
-import taimurKhanImg from "@assets/WhatsApp Image 2025-08-28 at 12.50.30_0e095d54_1756452952351.jpg";
 import abdullahImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.36_fc7e1925_1756453355622.jpg";
 import usamaRandhawaImg from "@assets/WhatsApp Image 2025-08-28 at 12.50.31_9a52d3d7_1756470982418.jpg";
 import aliAbidImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.37_2bc11f6e_1756470109036.jpg";
 import hafizHamzaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.38_c995b7bf_1756446909359.jpg";
-import muhammadDabeerImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.39_1a086e0b_1756447231089.jpg";
-import muhammadSohailImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.42_14fc9675_1756447399651.jpg";
-import muhammadUsamaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.42_750d3eaa_1756447532273.jpg";
 import mudassarRazaImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.46_e2b8f68e_1756461933614.jpg";
 import rashidAliImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.47_29125617_1756448310126.jpg";
 import talhaAzizImg from "@assets/rg[2]_1756453049445.jpg";
@@ -22,7 +18,6 @@ import aliHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.39_cb66050c
 import ahmedUsmanImg from "@assets/IMG_20230412_203731[1]_1756462166994.jpg";
 import khalilAhmadImg from "@assets/image_1756452528951.png";
 import muhammadAmanImg from "@assets/IMG-20250216-WA0054[1]_1756452725383.jpg";
-import adeelHassanImg from "@assets/WhatsApp Image 2025-08-29 at 10.45.40_ecef8705_1756461783760.jpg";
 import salmanMargubImg from "@assets/salman-marghub.jpg";
 import umerFarooqImg from "@assets/umer-farooq.jpg";
 import abdulMajeedImg from "@assets/IMG-20250707-WA0042[1]_1756462751467.jpg";
@@ -69,48 +64,48 @@ const teamMembers = [
   {
     id: 6,
     image: jowariaImg,
-    name: "Jowaria",
+    name: "Jowaria Mohammad",
     designation: "Partnerships Manager"
   },
   // Regional Managers
   {
     id: 7,
-    image: usamaAshrafImg,
-    name: "Usama Ashraf",
-    designation: "Regional Manager"
-  },
-  {
-    id: 8,
-    image: talhaAzizImg,
-    name: "Talha Aziz",
-    designation: "Regional Manager: South Punjab"
-  },
-  {
-    id: 9,
     image: aliHassanImg,
     name: "Ali Hassan",
     designation: "Regional Manager-North"
   },
-  // Operations Manager
   {
-    id: 10,
-    image: muhammadDabeerImg,
-    name: "Muhammad Dabeer Raza",
-    designation: "Coordinator Jhelum"
-  },
-  // Branch Managers (City-wise order)
-  {
-    id: 11,
+    id: 8,
     image: rashidAliImg,
     name: "Rashid Ali",
     designation: "Branch Manager Islamabad"
   },
+  // Branch Managers (Specified order)
   {
-    id: 12,
+    id: 9,
     image: ahmedUsmanImg,
     name: "Ahmed Usman",
     designation: "Operational Manager Karachi"
   },
+  {
+    id: 10,
+    image: abdullahImg,
+    name: "Abdullah",
+    designation: "Branch Manager Sargodha"
+  },
+  {
+    id: 11,
+    image: hafizHamzaImg,
+    name: "Hafiz Hamza Sabir",
+    designation: "Branch Manager Sialkot"
+  },
+  {
+    id: 12,
+    image: sadeezaImg,
+    name: "Sadeeza Nasir",
+    designation: "Branch Manager Multan"
+  },
+  // Other Branch Managers
   {
     id: 13,
     image: usamaRandhawaImg,
@@ -125,64 +120,33 @@ const teamMembers = [
   },
   {
     id: 15,
-    image: abdullahImg,
-    name: "Abdullah",
-    designation: "Branch Manager Sargodha"
-  },
-  {
-    id: 16,
     image: mudassarRazaImg,
     name: "Mudassar Raza",
     designation: "Branch Manager Mandi Bahauddin"
   },
   {
-    id: 17,
+    id: 16,
     image: khalilAhmadImg,
     name: "Khalil Ahmad",
     designation: "Branch Manager Bahawalpur"
   },
   {
-    id: 18,
-    image: hafizHamzaImg,
-    name: "Hafiz Hamza Sabir",
-    designation: "Branch Manager Sialkot"
-  },
-  {
-    id: 19,
+    id: 17,
     image: muhammadAmanImg,
     name: "Muhammad Aman Khan",
     designation: "Branch Manager Mardan"
   },
   {
-    id: 20,
-    image: sadeezaImg,
-    name: "Sadeeza",
-    designation: "Branch Manager Multan"
-  },
-  // Other Management Positions
-  {
-    id: 21,
-    image: muhammadSohailImg,
-    name: "Muhammad Sohail Ashraf",
-    designation: "Lead Language Instructor"
+    id: 18,
+    image: usamaAshrafImg,
+    name: "Usama Ashraf",
+    designation: "Regional Manager"
   },
   {
-    id: 22,
-    image: taimurKhanImg,
-    name: "Taimur Ahmad Khan",
-    designation: "Senior Business Development Manager"
-  },
-  {
-    id: 23,
-    image: adeelHassanImg,
-    name: "Adeel Hassan",
-    designation: "Marketing Manager"
-  },
-  {
-    id: 24,
-    image: muhammadUsamaImg,
-    name: "Muhammad Usama",
-    designation: "Accountant"
+    id: 19,
+    image: talhaAzizImg,
+    name: "Talha Aziz",
+    designation: "Regional Manager: South Punjab"
   }
 ];
 
