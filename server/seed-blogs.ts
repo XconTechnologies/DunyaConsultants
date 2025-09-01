@@ -310,7 +310,7 @@ You will need a registered business address and name to move forward with busine
   },
   {
     title: "Green Card for International Students: Complete Guide 2025",
-    slug: "green-card-for-international-students",
+    slug: "2024/09/13/green-card-for-international-students",
     excerpt: "Comprehensive guide to obtaining a Green Card as an international student, including benefits, application process, and pathways to permanent residency",
     content: "Are you a non-U.S. student looking to become an official green card holder in the USA? Getting a green card is one of the most important steps. It lets you live as well as work in the United States without the worry of leaving one day. A green card makes you a permanent resident, giving you many of the same rights as a U.S. citizen, but not all. Each year, the US government gives the opportunity of green card for students.",
     isPublished: true,
@@ -717,7 +717,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Green Card for International Students: Complete Guide 2025",
-    slug: "green-card-for-international-students",
+    slug: "2024/09/13/green-card-for-international-students",
     excerpt: "Comprehensive guide to obtaining US Green Card as an international student",
     content: "Step-by-step process for international students to obtain US Green Card...",
     isPublished: true,
@@ -745,7 +745,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Top 10 Universities in London",
-    slug: "top-10-universities-in-london",
+    slug: "2024/11/10/top-10-universities-in-london",
     excerpt: "Best universities in London for international students with rankings and programs",
     content: "Comprehensive list of top 10 universities in London with detailed information...",
     isPublished: true,
@@ -759,7 +759,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "How to Write a Recommendation Letter for a Student?",
-    slug: "recommendation-letter-for-student-scholarship",
+    slug: "2024/11/08/recommendation-letter-for-student-scholarship",
     excerpt: "Complete guide to writing effective recommendation letters for students",
     content: "Step-by-step guide to writing compelling recommendation letters...",
     isPublished: true,
@@ -773,7 +773,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Study Abroad Education Consultants: Your Path to International Success",
-    slug: "study-abroad-education-consultants-dunya-consultants",
+    slug: "2024/11/06/study-abroad-education-consultants-dunya-consultants",
     excerpt: "How education consultants help students achieve their study abroad dreams",
     content: "Comprehensive guide about the role of education consultants in study abroad process...",
     isPublished: true,
@@ -829,7 +829,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Benefits of Studying in London",
-    slug: "benefits-of-studying-in-london",
+    slug: "2024/09/17/benefits-of-studying-in-london",
     excerpt: "Discover the top benefits and advantages of studying in London",
     content: "Comprehensive overview of benefits of studying in London for international students...",
     isPublished: true,
@@ -843,7 +843,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Bangor University Acceptance Rate",
-    slug: "bangor-university-acceptance-rate",
+    slug: "2024/09/15/bangor-university-acceptance-rate",
     excerpt: "Complete information about Bangor University acceptance rates and admission requirements",
     content: "Detailed analysis of Bangor University acceptance rates and admission statistics...",
     isPublished: true,
@@ -899,7 +899,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "MS in Business Analytics Course in USA",
-    slug: "ms-in-business-analytics-course-in-usa",
+    slug: "2024/11/04/ms-in-business-analytics-course-in-usa",
     excerpt: "Complete guide to MS in Business Analytics programs in USA",
     content: "Detailed information about Business Analytics Masters programs in US universities...",
     isPublished: true,
@@ -913,7 +913,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Master of Finance in UK",
-    slug: "master-of-finance-in-uk",
+    slug: "2024/11/02/master-of-finance-in-uk",
     excerpt: "Complete guide to Masters in Finance programs in UK universities",
     content: "Comprehensive information about Masters in Finance programs in UK...",
     isPublished: true,
@@ -927,7 +927,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "MSC Business Analytics in UK",
-    slug: "msc-business-analytics-in-uk",
+    slug: "2024/10/31/msc-business-analytics-in-uk",
     excerpt: "Complete guide to MSc Business Analytics programs in UK universities",
     content: "Detailed information about Business Analytics Masters programs in UK...",
     isPublished: true,
@@ -941,7 +941,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Germany Blocked Account",
-    slug: "germany-blocked-account",
+    slug: "2024/09/19/germany-blocked-account",
     excerpt: "Complete guide to opening blocked account for German student visa",
     content: "Step-by-step guide to opening blocked account for Germany student visa...",
     isPublished: true,
@@ -955,7 +955,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "TOEFL Test Fee in Pakistan",
-    slug: "toefl-test-fee-in-pakistan",
+    slug: "2024/10/29/toefl-test-fee-in-pakistan",
     excerpt: "Complete information about TOEFL test fees and registration in Pakistan",
     content: "Detailed information about TOEFL test fees, dates, and registration process in Pakistan...",
     isPublished: true,
@@ -969,7 +969,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Top 10 Reasons to Study in UK",
-    slug: "top-10-reasons-to-study-in-uk",
+    slug: "2024/10/27/top-10-reasons-to-study-in-uk",
     excerpt: "Discover the top 10 compelling reasons to choose UK for higher education",
     content: "Comprehensive list of top reasons why international students choose UK...",
     isPublished: true,
@@ -983,7 +983,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Jobs in Canada for Pakistani Students",
-    slug: "jobs-in-canada-for-pakistani-students",
+    slug: "2024/10/26/jobs-in-canada-for-pakistani-students",
     excerpt: "Complete guide to job opportunities in Canada for Pakistani students",
     content: "Comprehensive guide to employment opportunities for Pakistani students in Canada...",
     isPublished: true,
@@ -997,7 +997,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "What is Foundation Year in UK",
-    slug: "what-is-foundation-year-in-uk",
+    slug: "2024/10/24/what-is-foundation-year-in-uk",
     excerpt: "Complete guide to UK Foundation Year programs for international students",
     content: "Detailed information about UK Foundation Year programs and their benefits...",
     isPublished: true,
@@ -1011,7 +1011,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Which Degree is Best in Pakistan",
-    slug: "which-degree-is-best-in-pakistan",
+    slug: "2024/10/23/which-degree-is-best-in-pakistan",
     excerpt: "Guide to choosing the best degree programs in Pakistan for career success",
     content: "Comprehensive analysis of best degree programs in Pakistan for career prospects...",
     isPublished: true,
@@ -1025,7 +1025,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Canada Student Visa for Pakistani",
-    slug: "canada-student-visa-for-pakistani",
+    slug: "2024/10/21/canada-student-visa-for-pakistani",
     excerpt: "Complete guide to Canada student visa application for Pakistani students",
     content: "Step-by-step guide to Canadian student visa application process for Pakistani students...",
     isPublished: true,
@@ -1053,7 +1053,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "LLM in UK for Pakistani Students",
-    slug: "llm-in-uk-for-pakistani-students",
+    slug: "2024/10/19/llm-in-uk-for-pakistani-students",
     excerpt: "Complete guide to LLM programs in UK for Pakistani law students",
     content: "Comprehensive guide to Masters in Law programs in UK universities for Pakistani students...",
     isPublished: true,
@@ -1067,7 +1067,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "MBBS in Sweden for Pakistani Students",
-    slug: "mbbs-in-sweden-for-pakistani-students",
+    slug: "2024/10/17/mbbs-in-sweden-for-pakistani-students",
     excerpt: "Complete guide to studying MBBS in Sweden for Pakistani medical students",
     content: "Comprehensive guide to medical education in Sweden for Pakistani students...",
     isPublished: true,
@@ -1081,7 +1081,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "MBBS in Australia for Pakistani Students",
-    slug: "mbbs-in-australia-for-pakistani-students",
+    slug: "2024/10/15/mbbs-in-australia-for-pakistani-students",
     excerpt: "Complete guide to studying MBBS in Australia for Pakistani medical students",
     content: "Comprehensive guide to medical education in Australia for Pakistani students...",
     isPublished: true,
@@ -1095,7 +1095,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Turkey Burslari Scholarship: Complete Guide",
-    slug: "a-complete-guide-to-turkey-burslari-scholarship",
+    slug: "2024/11/19/a-complete-guide-to-turkey-burslari-scholarship",
     excerpt: "Complete guide to Turkey Burslari government scholarship for international students",
     content: "Comprehensive guide to Turkey's flagship scholarship program...",
     isPublished: true,
@@ -1109,7 +1109,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "TB Test for UK Visa in Pakistan",
-    slug: "tb-test-for-uk-visa-in-pakistan",
+    slug: "2024/10/13/tb-test-for-uk-visa-in-pakistan",
     excerpt: "Complete guide to TB test requirements for UK visa applications from Pakistan",
     content: "Detailed information about tuberculosis test requirements for UK visa...",
     isPublished: true,
@@ -1123,7 +1123,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "MOI Accepted Universities in UK",
-    slug: "moi-accepted-universities-in-uk",
+    slug: "2024/10/11/moi-accepted-universities-in-uk",
     excerpt: "List of UK universities accepting Medium of Instruction (MOI) certificate",
     content: "Comprehensive list of UK universities that accept MOI certificates...",
     isPublished: true,
@@ -1137,7 +1137,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "IELTS Exam Fee in Pakistan",
-    slug: "ielts-exam-fee-in-pakistan",
+    slug: "2024/10/09/ielts-exam-fee-in-pakistan",
     excerpt: "Complete information about IELTS exam fees and registration in Pakistan",
     content: "Detailed information about IELTS exam fees, test centers, and registration in Pakistan...",
     isPublished: true,
@@ -1151,7 +1151,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Erasmus Mundus Scholarship",
-    slug: "erasmus-mundus-scholarship",
+    slug: "2024/10/07/erasmus-mundus-scholarship",
     excerpt: "Complete guide to Erasmus Mundus scholarship for international students",
     content: "Comprehensive guide to European Union's Erasmus Mundus scholarship program...",
     isPublished: true,
@@ -1165,7 +1165,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "January Intake Universities in UK",
-    slug: "january-intake-universities-in-uk",
+    slug: "2024/10/05/january-intake-universities-in-uk",
     excerpt: "List of UK universities offering January intake for international students",
     content: "Comprehensive list of UK universities with January admission intake...",
     isPublished: true,
@@ -1179,7 +1179,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "GRE Test Fee in Pakistan",
-    slug: "gre-test-fee-in-pakistan",
+    slug: "2024/10/03/gre-test-fee-in-pakistan",
     excerpt: "Complete information about GRE test fees and registration in Pakistan",
     content: "Detailed information about GRE test fees, centers, and registration process in Pakistan...",
     isPublished: true,
@@ -1193,7 +1193,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Top Reasons to Study in London",
-    slug: "benefits-of-studying-in-london",
+    slug: "2024/09/17/benefits-of-studying-in-london",
     excerpt: "Discover why London is one of the world's top destinations for international students, offering world-class education, vibrant culture, and endless opportunities.",
     content: "London is the capital of the United Kingdom and is home to around eight million people at present including more than 382,000 students. Undoubtedly, it is one of the best cities for international students to pursue their higher education.",
     isPublished: true,
@@ -1208,7 +1208,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Study in USA: Complete Guide for Pakistani Students",
-    slug: "study-in-usa",
+    slug: "2024/10/01/study-in-usa",
     excerpt: "Comprehensive guide to studying in the United States, including admission requirements, visa process, scholarships, and top universities for Pakistani students.",
     content: `The United States remains the world's most popular destination for international students, attracting over 1 million students annually. For Pakistani students, studying in the USA offers unparalleled opportunities for academic excellence, research, and career growth.
 
@@ -1263,7 +1263,7 @@ The USA offers excellent post-graduation work opportunities through Optional Pra
   },
   {
     title: "Study in Canada: Complete Guide for Pakistani Students",
-    slug: "study-in-canada",
+    slug: "2024/09/29/study-in-canada",
     excerpt: "Everything you need to know about studying in Canada, including admission requirements, visa process, work permits, and pathway to permanent residence.",
     content: `Canada has become one of the most sought-after destinations for Pakistani students, offering high-quality education, multicultural environment, and excellent post-graduation opportunities.
 
@@ -1325,7 +1325,7 @@ Annual expenses typically range from CAD 15,000 to CAD 25,000 including accommod
   },
   {
     title: "Study in Finland: Complete Guide for Pakistani Students",
-    slug: "study-in-finland",
+    slug: "2024/09/27/study-in-finland",
     excerpt: "Discover why Finland is an excellent choice for Pakistani students, offering free education, high-quality programs, and excellent student support services.",
     content: `Finland offers one of the world's best education systems, consistently ranking at the top in global education rankings. For Pakistani students, Finland presents unique opportunities for quality education in a Nordic setting.
 
@@ -1390,7 +1390,7 @@ Annual expenses typically range from CAD 15,000 to CAD 25,000 including accommod
   },
   {
     title: "Study in Australia: Complete Guide for Pakistani Students",
-    slug: "study-in-australia",
+    slug: "2024/09/25/study-in-australia",
     excerpt: "Everything about studying in Australia including top universities, visa requirements, work opportunities, and pathway to permanent residence for Pakistani students.",
     content: `Australia is one of the top destinations for Pakistani students, offering world-class education, diverse culture, and excellent post-study work opportunities in a beautiful country.
 
@@ -1462,7 +1462,7 @@ Australia has strong job market in:
   },
   {
     title: "Study in Belgium: Complete Guide for Pakistani Students",
-    slug: "study-in-belgium",
+    slug: "2024/09/23/study-in-belgium",
     excerpt: "Comprehensive guide to studying in Belgium, covering universities, admission requirements, student visa process, and living costs for Pakistani students.",
     content: `Belgium, located in the heart of Europe, offers excellent higher education opportunities with a rich cultural heritage and strategic location for Pakistani students.
 
@@ -1535,7 +1535,7 @@ For studies longer than 90 days:
   },
   {
     title: "Study in Turkey: Complete Guide for Pakistani Students",
-    slug: "study-in-turkey",
+    slug: "2024/09/21/study-in-turkey",
     excerpt: "Everything you need to know about studying in Turkey, including scholarships, universities, admission process, and cultural compatibility for Pakistani students.",
     content: `Turkey has emerged as one of the most popular study destinations for Pakistani students, offering quality education, cultural familiarity, and excellent scholarship opportunities.
 
@@ -1618,7 +1618,7 @@ Government scholarship program offering:
   },
   {
     title: "A Complete Guide to Bangor University UK",
-    slug: "bangor-university-acceptance-rate",
+    slug: "2024/09/15/bangor-university-acceptance-rate",
     excerpt: "Comprehensive guide to Bangor University admission requirements, acceptance rates, application process, and everything Pakistani students need to know.",
     content: "If you plan to study in the United Kingdom, finding the right university is very important. Bangor University is included in the top ten universities in the UK and is known for providing high-quality education to international students.",
     isPublished: true,
