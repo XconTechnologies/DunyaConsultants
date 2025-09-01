@@ -115,7 +115,7 @@ const teamMembers = [
     id: 14,
     image: talhaAzizImg,
     name: "Talha Aziz",
-    designation: "Branch Manager Mian Channu (MC)"
+    designation: "Branch Manager Mian Channu"
   },
   // Other Branch Managers
   {
@@ -134,7 +134,7 @@ const teamMembers = [
     id: 17,
     image: mudassarRazaImg,
     name: "Mudassar Raza",
-    designation: "Branch Manager Mandi Bahauddin"
+    designation: "Branch Manager Mandi"
   },
   {
     id: 18,
