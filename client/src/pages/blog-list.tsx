@@ -239,32 +239,9 @@ export default function BlogList() {
               >
                 <div
                   className="block h-full cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    e.preventDefault();
-                    console.log('Blog card clicked:', post.title);
+                  onClick={() => {
                     const url = `${window.location.origin}/${post.slug}`;
-                    console.log('Opening URL:', url);
-                    
-                    // Try multiple approaches to ensure new tab opening
-                    try {
-                      const newWindow = window.open(url, '_blank');
-                      if (!newWindow) {
-                        console.error('Popup blocked! Trying alternative method...');
-                        // Fallback if popup blocked
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.target = '_blank';
-                        link.rel = 'noopener noreferrer';
-                        document.body.appendChild(link);
-                        link.click();
-                        document.body.removeChild(link);
-                      } else {
-                        console.log('New tab opened successfully');
-                      }
-                    } catch (error) {
-                      console.error('Error opening new tab:', error);
-                    }
+                    window.open(url, '_blank', 'noopener,noreferrer');
                   }}
                 >
                   <Card className="hover:shadow-xl transition-all duration-300 border shadow-md cursor-pointer h-full">
