@@ -671,21 +671,24 @@ export default function OfficesList() {
                     <div className={`h-2 bg-gradient-to-r ${office.gradient}`}></div>
                     <CardContent className="p-6">
                       {/* Header */}
-                      <div className="flex items-start justify-between mb-4">
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-2 mb-2">
-                            <h3 className="text-xl font-bold text-gray-800">{office.city}</h3>
-                            <Badge className="text-white text-xs" style={{ backgroundColor: '#1D50C9' }}>
-                              International
-                            </Badge>
+                      <div className="relative mb-4">
+                        {/* International Badge - Top Right */}
+                        <div className="absolute top-0 right-0 flex items-center space-x-2">
+                          <Badge className="text-white text-xs" style={{ backgroundColor: '#1D50C9' }}>
+                            International
+                          </Badge>
+                          <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#1D50C9' }}>
+                            <Building2 className="w-6 h-6 text-white" />
                           </div>
+                        </div>
+                        
+                        {/* Title and Details - Left Side */}
+                        <div className="pr-20">
+                          <h3 className="text-xl font-bold text-gray-800 mb-2">{office.city}</h3>
                           <p className="text-gray-600 font-medium">{office.name}</p>
                           <Badge variant="outline" className="text-xs mt-1" style={{ borderColor: '#1D50C9', color: '#1D50C9' }}>
                             {office.region}
                           </Badge>
-                        </div>
-                        <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#1D50C9' }}>
-                          <Building2 className="w-6 h-6 text-white" />
                         </div>
                       </div>
 
