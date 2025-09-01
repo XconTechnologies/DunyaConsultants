@@ -508,14 +508,6 @@ export default function Navigation() {
                               Our Success Stories
                             </button>
                           </Link>
-                          <Link href="/blog">
-                            <button
-                              onClick={() => setIsOpen(false)}
-                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
-                            >
-                              Blog
-                            </button>
-                          </Link>
                         </div>
                       )}
                       {item.name === "Study Abroad" && expandedMobileMenu === item.name && (
