@@ -228,15 +228,25 @@ export default function BlogList() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index, duration: 0.6 }}
-                whileHover={{ y: -5 }}
                 className="group"
+                style={{ transform: 'none' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-5px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0px)';
+                }}
               >
-                <div 
+                <a 
+                  href={`/${post.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full"
                   onClick={(e) => {
+                    // Double ensure new tab behavior
                     e.preventDefault();
-                    window.open(`/${post.slug}`, '_blank', 'noopener,noreferrer');
+                    window.open(`/${post.slug}`, '_blank');
                   }}
-                  className="block h-full cursor-pointer"
                 >
                   <Card className="hover:shadow-xl transition-all duration-300 border shadow-md cursor-pointer h-full">
                     <CardContent className="p-6">
@@ -274,7 +284,7 @@ export default function BlogList() {
                       </div>
                     </CardContent>
                   </Card>
-                </div>
+                </a>
               </motion.div>
             ))}
           </div>
