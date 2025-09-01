@@ -13,6 +13,7 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHeroSection, setIsHeroSection] = useState(true);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -463,11 +464,17 @@ export default function Navigation() {
                 <div key={item.name || item.href}>
                   {item.megaMenu ? (
                     <div className="space-y-2">
-                      <div className="text-neutral-800 font-semibold py-2 px-3 bg-gray-50 rounded-lg border border-gray-200">
-                        {item.name}
-                      </div>
+                      <button
+                        onClick={() => setExpandedMobileMenu(expandedMobileMenu === item.name ? null : item.name)}
+                        className="w-full text-neutral-800 font-semibold py-2 px-3 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-between hover:bg-gray-100 transition-colors duration-200"
+                      >
+                        <span>{item.name}</span>
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${
+                          expandedMobileMenu === item.name ? 'rotate-180' : ''
+                        }`} />
+                      </button>
                       {/* Mobile mega menu items */}
-                      {item.name === "About Us" && (
+                      {item.name === "About Us" && expandedMobileMenu === item.name && (
                         <div className="pl-4 space-y-2">
                           <Link href="/about/">
                             <button
@@ -483,6 +490,14 @@ export default function Navigation() {
                               className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
                             >
                               Mission & Vision
+                            </button>
+                          </Link>
+                          <Link href="/about/team">
+                            <button
+                              onClick={() => setIsOpen(false)}
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                            >
+                              Team Dunya Consultants
                             </button>
                           </Link>
                           <Link href="/about/our-success-stories">
@@ -503,7 +518,7 @@ export default function Navigation() {
                           </Link>
                         </div>
                       )}
-                      {item.name === "Study Abroad" && (
+                      {item.name === "Study Abroad" && expandedMobileMenu === item.name && (
                         <div className="pl-4 space-y-2">
                           {["USA", "UK", "Canada", "Finland", "Australia", "Belgium", "Turkey"].map((country) => (
                             <Link key={country} href={`/study-abroad/${country.toLowerCase()}`}>
@@ -517,7 +532,7 @@ export default function Navigation() {
                           ))}
                         </div>
                       )}
-                      {item.name === "Test Prep" && (
+                      {item.name === "Test Prep" && expandedMobileMenu === item.name && (
                         <div className="pl-4 space-y-2">
                           {["IELTS", "PTE", "TOEFL", "Duolingo"].map((test) => (
                             <Link key={test} href={`/test-prep/${test.toLowerCase()}`}>
@@ -531,7 +546,7 @@ export default function Navigation() {
                           ))}
                         </div>
                       )}
-                      {item.name === "Offices" && (
+                      {item.name === "Offices" && expandedMobileMenu === item.name && (
                         <div className="pl-4 space-y-2">
                           <Link href="/offices">
                             <button
