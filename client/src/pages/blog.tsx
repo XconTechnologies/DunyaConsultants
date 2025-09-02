@@ -1820,7 +1820,11 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Link href={post.slug.includes('/') ? `/${post.slug}` : `/${post.slug}`}>
+              <Link href={
+                post.title === "Which Degree is Best in Pakistan" 
+                  ? "/2024/11/20/which-degree-is-best-in-pakistan"
+                  : post.slug.includes('/') ? `/${post.slug}` : `/${post.slug}`
+              }>
                 <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                   
                   {/* Featured Image */}
