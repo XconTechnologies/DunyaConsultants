@@ -1308,7 +1308,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             if (/^\d+\.\s/.test(paragraph.trim())) {
                               return (
                                 <div key={pIndex} className="flex items-start leading-tight mb-3">
-                                  <span className="text-[#1D50C9] mr-3 font-semibold text-base leading-none mt-0.5">
+                                  <span className="mr-3 font-semibold text-base leading-none mt-0.5 text-[#000000]">
                                     {paragraph.trim().match(/^\d+\./)?.[0]}
                                   </span>
                                   <span className="text-gray-700 text-base leading-relaxed">
