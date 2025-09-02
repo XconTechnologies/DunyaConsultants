@@ -801,7 +801,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Dubai Visa for Pakistani: Complete Guide 2025",
-    slug: "2024/10/10/dubai-visa-for-pakistani",
+    slug: "2025/01/01/dubai-visa-for-pakistani",
     excerpt: "Complete guide for Pakistani citizens applying for Dubai visa",
     content: "Step-by-step guide to Dubai visa application for Pakistani citizens...",
     isPublished: true,
