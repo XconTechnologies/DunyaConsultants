@@ -800,20 +800,6 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
     viewCount: 2150
   },
   {
-    title: "Dubai Visa for Pakistani: Complete Guide 2025",
-    slug: "2025/01/01/dubai-visa-for-pakistani",
-    excerpt: "Complete guide for Pakistani citizens applying for Dubai visa",
-    content: "Step-by-step guide to Dubai visa application for Pakistani citizens...",
-    isPublished: true,
-    authorId: 1,
-    tags: ["Dubai", "UAE", "Visa", "Pakistan"],
-    // metaTitle: "Dubai Visa for Pakistani Citizens: Complete Guide 2025",
-    metaDescription: "Complete guide for Pakistani citizens on Dubai visa requirements, application process, types, and fees",
-    featuredImage: "/blog/dubai-visa-pakistan.jpg",
-    // readingTime: 10,
-    viewCount: 3450
-  },
-  {
     title: "UK Student Dependent Visa New Rules",
     slug: "2024/09/26/uk-student-dependent-visa-new-rules",
     excerpt: "Latest updates on UK student dependent visa rules and requirements",
