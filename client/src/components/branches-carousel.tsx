@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { Link } from "wouter";
+import { useState } from "react";
 import { 
   Building, 
   Building2, 
@@ -34,21 +36,23 @@ import multanIcon from "@assets/15_1753704363733.webp";
 
 // Optimized branches array with only key locations for faster loading
 const branches = [
-  { name: "Karachi", icon: Building2, sketch: "🏢", landmarkIcon: karachiIcon },
-  { name: "Sargodha", icon: Landmark, sketch: "🏛️", landmarkIcon: sargodhaIcon },
-  { name: "Gujrat", icon: Castle, sketch: "🏰", landmarkIcon: gujratIcon },
-  { name: "Faisalabad", icon: Factory, sketch: "🏭", landmarkIcon: faisalabadIcon },
-  { name: "Sialkot", icon: Trophy, sketch: "🏆", landmarkIcon: sialkotIcon },
-  { name: "Multan", icon: Star, sketch: "⭐", landmarkIcon: multanIcon },
-  { name: "Bahawalpur", icon: Crown, sketch: "👑", landmarkIcon: bahawalputIcon },
-  { name: "Sheikhupura", icon: Building, sketch: "🏘️", landmarkIcon: sheikhupuraIcon },
-  { name: "Mardan", icon: Mountain, sketch: "⛰️", landmarkIcon: mardanIcon },
-  { name: "Mian Channu", icon: Shield, sketch: "🛡️", landmarkIcon: mianChannuIcon },
-  { name: "Mandi Bahauddin", icon: Target, sketch: "🎯", landmarkIcon: mandiBahauddinIcon },
-  { name: "Lahore", icon: Building2, sketch: "🏢", landmarkIcon: lahoreIcon }
+  { name: "Karachi", icon: Building2, sketch: "🏢", landmarkIcon: karachiIcon, route: "/offices/karachi" },
+  { name: "Sargodha", icon: Landmark, sketch: "🏛️", landmarkIcon: sargodhaIcon, route: "/offices/sargodha-head-office" },
+  { name: "Gujrat", icon: Castle, sketch: "🏰", landmarkIcon: gujratIcon, route: "/offices/gujrat" },
+  { name: "Faisalabad", icon: Factory, sketch: "🏭", landmarkIcon: faisalabadIcon, route: "/offices/faisalabad" },
+  { name: "Sialkot", icon: Trophy, sketch: "🏆", landmarkIcon: sialkotIcon, route: "/offices/sialkot" },
+  { name: "Multan", icon: Star, sketch: "⭐", landmarkIcon: multanIcon, route: "/offices/multan" },
+  { name: "Bahawalpur", icon: Crown, sketch: "👑", landmarkIcon: bahawalputIcon, route: "/offices/bahawalpur" },
+  { name: "Sheikhupura", icon: Building, sketch: "🏘️", landmarkIcon: sheikhupuraIcon, route: "/offices/sheikhupura" },
+  { name: "Mardan", icon: Mountain, sketch: "⛰️", landmarkIcon: mardanIcon, route: "/offices/mardan" },
+  { name: "Mian Channu", icon: Shield, sketch: "🛡️", landmarkIcon: mianChannuIcon, route: "/offices/mianchannu" },
+  { name: "Mandi Bahauddin", icon: Target, sketch: "🎯", landmarkIcon: mandiBahauddinIcon, route: "/offices/mandi-bahauddin" },
+  { name: "Lahore", icon: Building2, sketch: "🏢", landmarkIcon: lahoreIcon, route: "/offices/lahore-dha" }
 ];
 
 export default function BranchesCarousel() {
+  const [isHovered, setIsHovered] = useState(false);
+  
   // Duplicate the array for seamless infinite scrolling
   const duplicatedBranches = [...branches, ...branches];
 
@@ -74,9 +78,13 @@ export default function BranchesCarousel() {
         </div>
 
         {/* Infinite Scrolling Carousel */}
-        <div className="relative overflow-hidden">
+        <div 
+          className="relative overflow-hidden"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           <motion.div
-            animate={{
+            animate={isHovered ? {} : {
               x: [0, -120 * branches.length]
             }}
             transition={{
@@ -97,18 +105,20 @@ export default function BranchesCarousel() {
                   key={index}
                   className="flex-shrink-0 w-28 sm:w-32 lg:w-40 flex items-center justify-center"
                 >
-                  {/* Clean Icon Container - Only Image */}
-                  <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    {branch.landmarkIcon ? (
-                      <img 
-                        src={branch.landmarkIcon} 
-                        alt={`${branch.name} landmark`}
-                        className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain"
-                      />
-                    ) : (
-                      <IconComponent className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#1D50C9]" />
-                    )}
-                  </div>
+                  {/* Clean Icon Container with Link */}
+                  <Link href={branch.route} className="block">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group">
+                      {branch.landmarkIcon ? (
+                        <img 
+                          src={branch.landmarkIcon} 
+                          alt={`${branch.name} landmark`}
+                          className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 object-contain group-hover:scale-105 transition-transform duration-300"
+                        />
+                      ) : (
+                        <IconComponent className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#1D50C9] group-hover:scale-105 transition-transform duration-300" />
+                      )}
+                    </div>
+                  </Link>
                 </div>
               );
             })}
@@ -118,8 +128,6 @@ export default function BranchesCarousel() {
           <div className="absolute top-0 left-0 w-8 sm:w-16 lg:w-24 h-full bg-gradient-to-r from-blue-50 via-blue-50/80 to-transparent z-10 pointer-events-none"></div>
           <div className="absolute top-0 right-0 w-8 sm:w-16 lg:w-24 h-full bg-gradient-to-l from-blue-50 via-blue-50/80 to-transparent z-10 pointer-events-none"></div>
         </div>
-
-
       </div>
     </section>
   );
