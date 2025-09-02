@@ -1180,57 +1180,57 @@ To apply for a Dubai Study Visa, Pakistani students need a minimum IELTS score o
       <h2>Turkey Burslari Scholarship Universities</h2>
       <p>The Turkey Burslari Scholarship universities list is given below:</p>
       
-      <div style="overflow-x: auto; margin: 20px 0;">
-        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
-          <thead>
-            <tr style="background-color: #f8f9fa;">
-              <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: bold;">#</th>
-              <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: bold;">University Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td style="padding: 12px; border: 1px solid #ddd;">1</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Akdeniz University</td>
-            </tr>
-            <tr style="background-color: #f8f9fa;">
-              <td style="padding: 12px; border: 1px solid #ddd;">2</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Abdullah Gül University</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px; border: 1px solid #ddd;">3</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Ankara University</td>
-            </tr>
-            <tr style="background-color: #f8f9fa;">
-              <td style="padding: 12px; border: 1px solid #ddd;">4</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Boğaziçi University</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px; border: 1px solid #ddd;">5</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Bursa Technical University</td>
-            </tr>
-            <tr style="background-color: #f8f9fa;">
-              <td style="padding: 12px; border: 1px solid #ddd;">6</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Çanakkale Onsekiz Mart University</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px; border: 1px solid #ddd;">7</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Çukurova University</td>
-            </tr>
-            <tr style="background-color: #f8f9fa;">
-              <td style="padding: 12px; border: 1px solid #ddd;">8</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Dokuz Eylül University</td>
-            </tr>
-            <tr>
-              <td style="padding: 12px; border: 1px solid #ddd;">9</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Ankara University</td>
-            </tr>
-            <tr style="background-color: #f8f9fa;">
-              <td style="padding: 12px; border: 1px solid #ddd;">10</td>
-              <td style="padding: 12px; border: 1px solid #ddd;">Boğaziçi University</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="overflow-x-auto">
+      <table class="w-full border-collapse border border-gray-300 mb-6">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">#</th>
+            <th class="border border-gray-300 px-4 py-3 text-left font-semibold text-gray-700">University Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">1</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Akdeniz University</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">2</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Abdullah Gül University</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">3</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Ankara University</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">4</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Boğaziçi University</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">5</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Bursa Technical University</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">6</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Çanakkale Onsekiz Mart University</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">7</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Çukurova University</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">8</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Dokuz Eylül University</td>
+          </tr>
+          <tr>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">9</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Ankara University</td>
+          </tr>
+          <tr class="bg-gray-50">
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">10</td>
+            <td class="border border-gray-300 px-4 py-3 text-gray-700">Boğaziçi University</td>
+          </tr>
+        </tbody>
+      </table>
       </div>
       
       <h2>Types of Turkey Burslari Scholarship for International Students</h2>
