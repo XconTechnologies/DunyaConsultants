@@ -112,7 +112,7 @@ export default function Footer() {
             {/* For Business Proposals Card */}
             <div className="sm:col-span-2 lg:col-span-1">
               <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20 min-w-[280px]"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20 min-w-[320px]"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
