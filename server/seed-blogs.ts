@@ -1159,7 +1159,124 @@ To apply for a Dubai Study Visa, Pakistani students need a minimum IELTS score o
     title: "Turkey Burslari Scholarship: Complete Guide",
     slug: "2024/11/19/a-complete-guide-to-turkey-burslari-scholarship",
     excerpt: "Complete guide to Turkey Burslari government scholarship for international students",
-    content: "Comprehensive guide to Turkey's flagship scholarship program...",
+    content: `
+      <h1>Turkey Burslari Scholarship: Complete Guide</h1>
+      
+      <p>The Turkey Burslari Scholarship is one of the most prestigious government-funded scholarship programs in Turkey, providing excellent opportunities for international students to pursue their education in Turkey's top universities.</p>
+      
+      <h2>What is Turkey Burslari Scholarship?</h2>
+      <p>Turkey Burslari Scholarship, also known as Türkiye Scholarships, is a comprehensive scholarship program initiated by the Turkish government to attract talented international students to Turkey. This program covers undergraduate, graduate, and doctoral studies across various fields.</p>
+      
+      <h2>Benefits of Turkey Burslari Scholarship</h2>
+      <ul>
+        <li>Full tuition fee coverage</li>
+        <li>Monthly stipend for living expenses</li>
+        <li>Accommodation support</li>
+        <li>Health insurance</li>
+        <li>Turkish language course (1 year)</li>
+        <li>Round-trip airfare</li>
+      </ul>
+      
+      <h2>Turkey Burslari Scholarship Universities</h2>
+      <p>The Turkey Burslari Scholarship universities list is given below:</p>
+      
+      <div style="overflow-x: auto; margin: 20px 0;">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+          <thead>
+            <tr style="background-color: #f8f9fa;">
+              <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: bold;">#</th>
+              <th style="padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: bold;">University Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 12px; border: 1px solid #ddd;">1</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Akdeniz University</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border: 1px solid #ddd;">2</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Abdullah Gül University</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border: 1px solid #ddd;">3</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Ankara University</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border: 1px solid #ddd;">4</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Boğaziçi University</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border: 1px solid #ddd;">5</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Bursa Technical University</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border: 1px solid #ddd;">6</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Çanakkale Onsekiz Mart University</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border: 1px solid #ddd;">7</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Çukurova University</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border: 1px solid #ddd;">8</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Dokuz Eylül University</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border: 1px solid #ddd;">9</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Ankara University</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border: 1px solid #ddd;">10</td>
+              <td style="padding: 12px; border: 1px solid #ddd;">Boğaziçi University</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <h2>Types of Turkey Burslari Scholarship for International Students</h2>
+      <p>The scholarship program offers various categories depending on the level of study and field of interest:</p>
+      
+      <h3>1. Undergraduate Scholarships</h3>
+      <ul>
+        <li>General undergraduate scholarships for all fields</li>
+        <li>Duration: 4-6 years depending on the program</li>
+        <li>Age limit: Under 21 years</li>
+      </ul>
+      
+      <h3>2. Graduate Scholarships</h3>
+      <ul>
+        <li>Master's and PhD scholarships</li>
+        <li>Duration: 2-4 years depending on the program</li>
+        <li>Age limit: Under 30 years for master's, under 35 for PhD</li>
+      </ul>
+      
+      <h2>Eligibility Requirements</h2>
+      <ul>
+        <li>Academic excellence (minimum 70% or equivalent)</li>
+        <li>English proficiency (TOEFL, IELTS, or equivalent)</li>
+        <li>Health certificate</li>
+        <li>Clean criminal record</li>
+        <li>Statement of purpose</li>
+        <li>Letters of recommendation</li>
+      </ul>
+      
+      <h2>Application Process</h2>
+      <ol>
+        <li>Create an account on the official Turkey Scholarships website</li>
+        <li>Complete the online application form</li>
+        <li>Upload required documents</li>
+        <li>Submit your application before the deadline</li>
+        <li>Wait for initial evaluation results</li>
+        <li>Participate in interviews if selected</li>
+        <li>Receive final selection results</li>
+      </ol>
+      
+      <h2>Important Dates and Deadlines</h2>
+      <p>Applications typically open in January and close in February each year. It's essential to check the official website for exact dates as they may vary.</p>
+      
+      <h2>Conclusion</h2>
+      <p>The Turkey Burslari Scholarship provides an excellent opportunity for international students to pursue quality education in Turkey. With comprehensive benefits and access to top universities, this scholarship opens doors to academic and cultural growth in one of the world's most historically rich countries.</p>
+    `,
     isPublished: true,
     authorId: 1,
     tags: ["Turkey", "Scholarship", "Burslari", "Government"],
