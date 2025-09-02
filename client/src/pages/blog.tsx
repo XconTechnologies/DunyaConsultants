@@ -558,6 +558,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       return false;
                     }
                     
+                    // Skip the section with title "Is there a data science scope in Pakistan?"
+                    if (section.title && section.title.trim() === 'Is there a data science scope in Pakistan?') {
+                      return false;
+                    }
+                    
                     return section.title && section.title.trim() !== '';
                   }).map((section: any, index: number) => {
                     // Special handling for intro-before-main section
