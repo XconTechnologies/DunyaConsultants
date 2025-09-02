@@ -1011,7 +1011,7 @@ Yes, nursing degrees from UK universities are highly respected globally and prov
   },
   {
     title: "Which Degree is Best in Pakistan",
-    slug: "2024/11/20/which-degree-is-best-in-pakistan",
+    slug: "which-degree-is-best-in-pakistan",
     excerpt: "Guide to choosing the best degree programs in Pakistan for career success",
     content: "Comprehensive analysis of best degree programs in Pakistan for career prospects...",
     isPublished: true,
@@ -3265,7 +3265,7 @@ export async function seedBlogPosts() {
         updatedAt: new Date(),
       };
       
-      // For specific posts, let's use upsert to ensure they're properly updated
+      // For the Finland post, let's use upsert to ensure it's properly updated
       if (post.slug === "finland-online-visa-application-from-pakistan") {
         await db.insert(blogPosts).values({
           ...blogPost,
