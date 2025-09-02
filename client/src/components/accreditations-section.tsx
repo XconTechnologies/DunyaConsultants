@@ -83,7 +83,7 @@ export default function AccreditationsSection() {
                       {accreditation.name}
                     </h3>
                     
-                    <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                    <p className="text-sm text-gray-600 mb-3 leading-relaxed">
                       {accreditation.description}
                     </p>
                   </div>
