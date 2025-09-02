@@ -8,78 +8,28 @@ export default function AccreditationsSection() {
 
   const accreditations = [
     {
-      name: "ICEF Agency",
-      description: "International Consultants for Education and Fairs",
-      logo: (
-        <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
-          <div className="text-center">
-            <div className="font-bold text-xs leading-tight" style={{ color: '#1D50C9' }}>ICEF</div>
-            <div className="font-bold text-sm" style={{ color: '#1D50C9' }}>AGENCY</div>
-            <div className="text-xs" style={{ color: '#1D50C9' }}>STATUS</div>
-          </div>
-        </div>
-      ),
-      status: "Certified Agent"
-    },
-    {
       name: "British Council",
       description: "UK's International Cultural Relations Organization",
-      logo: (
-        <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
-          <div className="text-center">
-            <div className="w-16 h-6 rounded flex items-center justify-center mb-1" style={{ backgroundColor: '#1D50C9' }}>
-              <span className="text-white font-bold text-xs">BC</span>
-            </div>
-            <div className="text-xs" style={{ color: '#1D50C9' }}>British Council</div>
-          </div>
-        </div>
-      ),
+      image: "/attached_assets/Group 1000008328_1756811863750.png",
       status: "Authorized Partner"
     },
     {
-      name: "LanguageCert",
-      description: "International English Language Assessment",
-      logo: (
-        <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
-          <div className="text-center">
-            <div className="font-bold text-xs" style={{ color: '#1D50C9' }}>Language</div>
-            <div className="font-bold text-xs" style={{ color: '#1D50C9' }}>Cert</div>
-            <div className="w-12 h-0.5 rounded mx-auto mt-1" style={{ backgroundColor: '#1D50C9' }}></div>
-            <div className="text-xs mt-1" style={{ color: '#1D50C9' }}>INTERNATIONAL</div>
-          </div>
-        </div>
-      ),
-      status: "Testing Partner"
+      name: "ICEF Agency", 
+      description: "International Consultants for Education and Fairs",
+      image: "/attached_assets/Group 1000008327_1756811863752.png",
+      status: "Certified Agent"
     },
     {
       name: "Duolingo",
       description: "English Test Official Partner",
-      logo: (
-        <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
-          <div className="text-center">
-            <div className="w-8 h-6 #1D50C9 rounded-full flex items-center justify-center mb-1 mx-auto">
-              <div className="w-2 h-2 bg-white rounded-full"></div>
-            </div>
-            <div className="#1845B3 font-bold text-xs">Duolingo</div>
-            <div className="text-xs #1D50C9">English Test</div>
-          </div>
-        </div>
-      ),
+      image: "/attached_assets/Group 1000008325_1756811863753.png",
       status: "Test Center"
     },
     {
-      name: "PTE Academic",
-      description: "Pearson Test of English Academic",
-      logo: (
-        <div className="w-24 h-16 bg-white rounded-lg flex items-center justify-center shadow-md border">
-          <div className="text-center">
-            <div className="font-bold text-lg" style={{ color: '#1D50C9' }}>PTE</div>
-            <div className="font-medium text-xs" style={{ color: '#1D50C9' }}>Academic</div>
-            <div className="text-xs" style={{ color: '#1D50C9' }}>Pearson</div>
-          </div>
-        </div>
-      ),
-      status: "Authorized Center"
+      name: "LanguageCert",
+      description: "International English Language Assessment",
+      image: "/attached_assets/Group 1000008326_1756811863754.png",
+      status: "Testing Partner"
     }
   ];
 
@@ -107,7 +57,7 @@ export default function AccreditationsSection() {
         </motion.div>
 
         {/* Accreditations Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {accreditations.map((accreditation, index) => (
             <motion.div
               key={accreditation.name}
@@ -130,8 +80,12 @@ export default function AccreditationsSection() {
 
                 {/* Logo Area */}
                 <div className="text-center mb-4">
-                  <div className="transform group-hover:scale-105 transition-transform duration-300">
-                    {accreditation.logo}
+                  <div className="transform group-hover:scale-105 transition-transform duration-300 h-20 flex items-center justify-center">
+                    <img
+                      src={accreditation.image}
+                      alt={accreditation.name}
+                      className="max-h-16 max-w-full object-contain"
+                    />
                   </div>
                 </div>
 
