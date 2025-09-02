@@ -1450,7 +1450,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
                           >
-                            <Link href={`/blog/${blog.slug}`}>
+                            <Link href={`/${blog.slug}`}>
                               <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                                 
                                 {/* Featured Image */}
