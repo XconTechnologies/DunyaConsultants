@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { Link } from "wouter";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Building, 
   Building2, 
@@ -52,9 +52,35 @@ const branches = [
 
 export default function BranchesCarousel() {
   const [isHovered, setIsHovered] = useState(false);
+  const controls = useAnimation();
   
   // Duplicate the array for seamless infinite scrolling
   const duplicatedBranches = [...branches, ...branches];
+  const totalDistance = -120 * branches.length;
+
+  useEffect(() => {
+    const startAnimation = () => {
+      controls.start({
+        x: [null, totalDistance],
+        transition: {
+          repeat: Infinity,
+          repeatType: "loop",
+          duration: 18,
+          ease: "linear",
+        },
+      });
+    };
+
+    if (!isHovered) {
+      startAnimation();
+    } else {
+      controls.stop();
+    }
+
+    return () => {
+      controls.stop();
+    };
+  }, [isHovered, controls, totalDistance]);
 
   return (
     <section className="py-8 lg:py-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
@@ -84,17 +110,7 @@ export default function BranchesCarousel() {
           onMouseLeave={() => setIsHovered(false)}
         >
           <motion.div
-            animate={isHovered ? {} : {
-              x: [0, -120 * branches.length]
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 18,
-                ease: "linear",
-              },
-            }}
+            animate={controls}
             className="flex gap-2 sm:gap-3 lg:gap-4 will-change-transform"
             style={{ width: `${120 * duplicatedBranches.length}px` }}
           >
