@@ -69,7 +69,7 @@ export default function AccreditationsSection() {
               }}
               className="group relative"
             >
-              <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-neutral-100">
+              <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-neutral-100 h-80 flex flex-col">
                 {/* Status Badge */}
                 <div className="absolute top-3 right-3">
                   <div className="text-xs font-semibold px-2 py-1 rounded-full flex items-center space-x-1" style={{ backgroundColor: '#e8f0ff', color: '#1D50C9' }}>
@@ -79,8 +79,8 @@ export default function AccreditationsSection() {
                 </div>
 
                 {/* Logo Area */}
-                <div className="text-center mb-4">
-                  <div className="transform group-hover:scale-105 transition-transform duration-300 h-20 flex items-center justify-center">
+                <div className="text-center mb-4 flex-shrink-0">
+                  <div className="transform group-hover:scale-105 transition-transform duration-300 h-24 flex items-center justify-center">
                     <img
                       src={accreditation.image}
                       alt={accreditation.name}
@@ -90,19 +90,23 @@ export default function AccreditationsSection() {
                 </div>
 
                 {/* Content */}
-                <div className="text-center">
-                  <h3 className="text-sm lg:text-base font-bold text-neutral-800 mb-2 group-hover:text-primary transition-colors duration-300">
-                    {accreditation.name}
-                  </h3>
-                  
-                  <p className="text-xs text-neutral-600 mb-3 leading-relaxed hidden lg:block">
-                    {accreditation.description}
-                  </p>
+                <div className="text-center flex-grow flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-sm lg:text-base font-bold text-neutral-800 mb-2 group-hover:text-primary transition-colors duration-300">
+                      {accreditation.name}
+                    </h3>
+                    
+                    <p className="text-xs text-neutral-600 mb-4 leading-relaxed hidden lg:block min-h-[2.5rem]">
+                      {accreditation.description}
+                    </p>
+                  </div>
 
-                  <div className="inline-flex items-center space-x-1 bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
-                    <Star className="w-3 h-3" />
-                    <span className="hidden sm:inline">{accreditation.status}</span>
-                    <span className="sm:hidden">Certified</span>
+                  <div className="mt-auto">
+                    <div className="inline-flex items-center space-x-1 bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
+                      <Star className="w-3 h-3" />
+                      <span className="hidden sm:inline">{accreditation.status}</span>
+                      <span className="sm:hidden">Certified</span>
+                    </div>
                   </div>
                 </div>
               </div>
