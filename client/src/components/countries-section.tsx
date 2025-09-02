@@ -192,11 +192,7 @@ export default function CountriesSection() {
       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
     >
       <div className="relative h-48 overflow-hidden flex flex-col">
-        {/* Blue half - Top */}
-        <div className="w-full h-1/2 bg-[#1D50C9]">
-        </div>
-        
-        {/* Flag half - Bottom */}
+        {/* Flag half - Top */}
         <div className="w-full h-1/2 bg-gray-100 flex items-center justify-center p-4">
           <div className="w-20 h-14 rounded-md overflow-hidden shadow-lg border-2 border-white">
             <ReactCountryFlag 
@@ -209,6 +205,10 @@ export default function CountriesSection() {
               }}
             />
           </div>
+        </div>
+        
+        {/* Blue half - Bottom */}
+        <div className="w-full h-1/2 bg-[#1D50C9]">
         </div>
       </div>
       
