@@ -765,6 +765,73 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               }
                             
+                            // Check for Turkey Burslari Scholarship Universities table intro
+                            if (paragraph.includes('The Turkey Burslari Scholarship universities list is given below:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    The Turkey Burslari Scholarship universities list is given below:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            #
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            University Name
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Akdeniz University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Abdullah Gül University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Ankara University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Boğaziçi University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Bursa Technical University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Çanakkale Onsekiz Mart University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">7</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Çukurova University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">8</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Dokuz Eylül University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">9</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Ankara University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">10</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Boğaziçi University</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
                             // Check for Australia Universities table intro
                             if (paragraph.includes('Some of the cheapest universities in Australia for international students are as follows:')) {
                               return (
