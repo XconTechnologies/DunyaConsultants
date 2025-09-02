@@ -1307,7 +1307,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             // Handle numbered lists (1., 2., 3., etc.)
                             if (/^\d+\.\s/.test(paragraph.trim())) {
                               return (
-                                <div key={pIndex} className="flex items-start leading-tight mb-3">
+                                <div key={pIndex} className="flex items-start leading-tight mt-[5px] mb-[5px] pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
                                   <span className="mr-3 font-semibold text-base leading-none mt-0.5 text-[#000000]">
                                     {paragraph.trim().match(/^\d+\./)?.[0]}
                                   </span>
