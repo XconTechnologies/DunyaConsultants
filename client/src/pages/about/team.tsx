@@ -32,7 +32,7 @@ const teamMembers = [
     id: 1,
     image: umerFarooqImg,
     name: "Umer Farooq",
-    designation: "CEO Dunya Consultants"
+    designation: "Chief Executive Officer"
   },
   // Co Founder
   {
@@ -53,13 +53,13 @@ const teamMembers = [
     id: 4,
     image: muhammadIbrahimImg,
     name: "Muhammad Ibrahim",
-    designation: "Country Manager Pakistan"
+    designation: "Compliance Director"
   },
   {
     id: 5,
     image: drWaleedMostafaImg,
     name: "Dr. Waleed Mostafa",
-    designation: "Country Manager Cairo"
+    designation: "Country Manager Egypt"
   },
   {
     id: 6,
