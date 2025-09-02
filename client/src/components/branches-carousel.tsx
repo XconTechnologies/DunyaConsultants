@@ -17,7 +17,9 @@ import {
   Shield,
   Trophy,
   Target,
-  Flag
+  Flag,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
 // Import branch landmark icons
@@ -52,35 +54,73 @@ const branches = [
 
 export default function BranchesCarousel() {
   const [isHovered, setIsHovered] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isManualControl, setIsManualControl] = useState(false);
   const controls = useAnimation();
   
   // Duplicate the array for seamless infinite scrolling
   const duplicatedBranches = [...branches, ...branches];
   const totalDistance = -120 * branches.length;
+  const itemWidth = 120; // Width of each carousel item
+
+  const scrollToIndex = (index: number) => {
+    const newPosition = -index * itemWidth;
+    controls.start({
+      x: newPosition,
+      transition: { duration: 0.5, ease: "easeInOut" }
+    });
+    setCurrentIndex(index);
+  };
+
+  const scrollLeft = () => {
+    setIsManualControl(true);
+    const newIndex = currentIndex > 0 ? currentIndex - 1 : branches.length - 1;
+    scrollToIndex(newIndex);
+  };
+
+  const scrollRight = () => {
+    setIsManualControl(true);
+    const newIndex = currentIndex < branches.length - 1 ? currentIndex + 1 : 0;
+    scrollToIndex(newIndex);
+  };
 
   useEffect(() => {
-    const startAnimation = () => {
-      controls.start({
-        x: [null, totalDistance],
-        transition: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration: 18,
-          ease: "linear",
-        },
-      });
-    };
+    if (!isManualControl) {
+      const startAnimation = () => {
+        controls.start({
+          x: [null, totalDistance],
+          transition: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 18,
+            ease: "linear",
+          },
+        });
+      };
 
-    if (!isHovered) {
-      startAnimation();
-    } else {
-      controls.stop();
+      if (!isHovered) {
+        startAnimation();
+      } else {
+        controls.stop();
+      }
     }
 
     return () => {
       controls.stop();
     };
-  }, [isHovered, controls, totalDistance]);
+  }, [isHovered, controls, totalDistance, isManualControl]);
+
+  // Reset to auto-scroll after manual control
+  useEffect(() => {
+    if (isManualControl) {
+      const timer = setTimeout(() => {
+        setIsManualControl(false);
+        setCurrentIndex(0);
+      }, 3000); // Resume auto-scroll after 3 seconds of inactivity
+
+      return () => clearTimeout(timer);
+    }
+  }, [isManualControl, currentIndex]);
 
   return (
     <section className="py-8 lg:py-12 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
@@ -109,6 +149,24 @@ export default function BranchesCarousel() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
+          {/* Left Arrow */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white shadow-lg hover:shadow-xl rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110 border border-gray-200"
+            aria-label="Scroll left"
+          >
+            <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-[#1D50C9]" />
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={scrollRight}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/90 hover:bg-white shadow-lg hover:shadow-xl rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110 border border-gray-200"
+            aria-label="Scroll right"
+          >
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#1D50C9]" />
+          </button>
+
           <motion.div
             animate={controls}
             className="flex gap-2 sm:gap-3 lg:gap-4 will-change-transform"
