@@ -191,17 +191,28 @@ export default function CountriesSection() {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
     >
-      <div className="relative h-48 overflow-hidden">
-        <div className="w-full h-full absolute inset-0">
-          <ReactCountryFlag 
-            countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
-            svg 
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover'
-            }}
-          />
+      <div className="relative h-48 overflow-hidden flex">
+        {/* Blue half */}
+        <div className="w-1/2 h-full bg-[#1D50C9] flex items-center justify-center">
+          <div className="text-white text-center">
+            <div className="w-2 h-2 bg-white rounded-full mx-auto mb-2"></div>
+            <div className="w-4 h-4 bg-white/20 rounded-full mx-auto"></div>
+          </div>
+        </div>
+        
+        {/* Flag half */}
+        <div className="w-1/2 h-full bg-gray-100 flex items-center justify-center p-4">
+          <div className="w-20 h-14 rounded-md overflow-hidden shadow-lg border-2 border-white">
+            <ReactCountryFlag 
+              countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
+              svg 
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover'
+              }}
+            />
+          </div>
         </div>
       </div>
       
