@@ -283,43 +283,63 @@ function BlogPostDetail({ slug }: { slug: string }) {
     const carousel = relatedBlogsCarouselRef.current;
     if (!carousel) return;
 
-    let animationId: number;
-    let isPaused = false;
-    
-    const animate = () => {
-      if (!isPaused) {
-        if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-          carousel.scrollLeft = 0;
-        } else {
-          carousel.scrollLeft += 1; // Smooth scroll speed
-        }
+    // Wait for content to load and measure
+    const startAnimation = () => {
+      if (carousel.scrollWidth <= carousel.clientWidth) {
+        // If content doesn't exceed container, no need to animate
+        return;
       }
+
+      let animationId: number;
+      let isPaused = false;
+      
+      const animate = () => {
+        if (!isPaused && carousel) {
+          // Reset scroll position when we reach halfway point (since we duplicated content)
+          if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
+            carousel.scrollLeft = 0;
+          } else {
+            carousel.scrollLeft += 1; // Smooth scroll speed
+          }
+        }
+        animationId = requestAnimationFrame(animate);
+      };
+
+      // Start animation
       animationId = requestAnimationFrame(animate);
+
+      // Pause on hover
+      const handleMouseEnter = () => {
+        isPaused = true;
+      };
+
+      const handleMouseLeave = () => {
+        isPaused = false;
+      };
+
+      if (carousel) {
+        carousel.addEventListener('mouseenter', handleMouseEnter);
+        carousel.addEventListener('mouseleave', handleMouseLeave);
+      }
+
+      return () => {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+        if (carousel) {
+          carousel.removeEventListener('mouseenter', handleMouseEnter);
+          carousel.removeEventListener('mouseleave', handleMouseLeave);
+        }
+      };
     };
 
-    // Start animation
-    animationId = requestAnimationFrame(animate);
-
-    // Pause on hover
-    const handleMouseEnter = () => {
-      isPaused = true;
-    };
-
-    const handleMouseLeave = () => {
-      isPaused = false;
-    };
-
-    carousel.addEventListener('mouseenter', handleMouseEnter);
-    carousel.addEventListener('mouseleave', handleMouseLeave);
+    // Small delay to ensure content is rendered
+    const timeoutId = setTimeout(startAnimation, 100);
 
     return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-      carousel.removeEventListener('mouseenter', handleMouseEnter);
-      carousel.removeEventListener('mouseleave', handleMouseLeave);
+      clearTimeout(timeoutId);
     };
-  }, []);
+  }, [duplicatedRelatedBlogs]);
   
   // Fetch blog posts for detail view
   const { data: blogPostsData, isLoading } = useQuery({
@@ -1412,11 +1432,14 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     <div className="relative">
                       <div
                         ref={relatedBlogsCarouselRef}
-                        className="flex gap-4 md:gap-6 overflow-x-hidden will-change-scroll"
+                        className="flex gap-4 md:gap-6 will-change-scroll [&::-webkit-scrollbar]:hidden"
                         style={{
                           scrollBehavior: 'auto',
                           width: '100%',
-                          WebkitOverflowScrolling: 'touch'
+                          WebkitOverflowScrolling: 'touch',
+                          overflowX: 'auto',
+                          scrollbarWidth: 'none',
+                          msOverflowStyle: 'none'
                         }}
                       >
                         {duplicatedRelatedBlogs.map((blog, index) => (
