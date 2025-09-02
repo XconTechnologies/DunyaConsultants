@@ -65,7 +65,7 @@ export default function AccreditationsSection() {
               }}
               className="group relative"
             >
-              <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] h-80 flex flex-col">
+              <div className="bg-white rounded-xl pt-4 pb-6 px-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] h-80 flex flex-col">
 
                 {/* Logo Area */}
                 <div className="text-center mb-2 flex-shrink-0">
