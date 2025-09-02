@@ -1637,6 +1637,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 export default function Blog() {
   const [match, params] = useRoute("/:year/:month/:day/:slug");
   const [simpleMatch, simpleParams] = useRoute("/blog/:slug");
+  const [directMatch, directParams] = useRoute("/:slug");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [displayCount, setDisplayCount] = useState(12); // Show 12 blogs initially
@@ -1698,6 +1699,15 @@ export default function Blog() {
   // Handle simple slug format (for older posts)
   if (simpleMatch && simpleParams) {
     return <BlogPostDetail slug={simpleParams.slug} />;
+  }
+  
+  // Handle direct slug format (backward compatibility)
+  if (directMatch && directParams) {
+    // Find blog post that ends with this slug
+    const post = blogPosts.find((p: any) => p.slug.endsWith(directParams.slug));
+    if (post) {
+      return <BlogPostDetail slug={post.slug} />;
+    }
   }
 
   // Show loading state
