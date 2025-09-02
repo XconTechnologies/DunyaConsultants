@@ -65,7 +65,7 @@ const teamMembers = [
     id: 6,
     image: jowariaImg,
     name: "Jowaria Mohammad",
-    designation: "Partnerships Manager"
+    designation: "Partnerships Manager UK"
   },
   // Regional Managers
   {
