@@ -110,54 +110,6 @@ export default function AccreditationsSection() {
           ))}
         </div>
 
-        {/* Trust Indicators */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 text-center"
-        >
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-neutral-100">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">5+</div>
-                <div className="text-sm text-neutral-600">International Certifications</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-secondary mb-2">15+</div>
-                <div className="text-sm text-neutral-600">Years Experience</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-accent mb-2">100%</div>
-                <div className="text-sm text-neutral-600">Compliance Rate</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold #1845B3 mb-2">24/7</div>
-                <div className="text-sm text-neutral-600">Quality Assurance</div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Quality Commitment */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-12 text-center"
-        >
-          <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 text-white relative overflow-hidden">
-            <div className="absolute inset-0 bg-black/10"></div>
-            <div className="relative z-10">
-              <Award className="w-12 h-12 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Quality You Can Trust</h3>
-              <p className="text-lg text-blue-100 max-w-2xl mx-auto">
-                Our accreditations ensure that you receive the highest quality service and guidance 
-                throughout your international education journey
-              </p>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
