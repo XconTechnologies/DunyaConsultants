@@ -68,7 +68,7 @@ export default function AccreditationsSection() {
               <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] h-80 flex flex-col">
 
                 {/* Logo Area */}
-                <div className="text-center mb-6 flex-shrink-0">
+                <div className="text-center mb-4 flex-shrink-0">
                   <img
                     src={accreditation.image}
                     alt={accreditation.name}
@@ -83,7 +83,7 @@ export default function AccreditationsSection() {
                       {accreditation.name}
                     </h3>
                     
-                    <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">
                       {accreditation.description}
                     </p>
                   </div>
