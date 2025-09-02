@@ -77,13 +77,13 @@ export default function AccreditationsSection() {
                 </div>
 
                 {/* Content */}
-                <div className="text-center flex-grow flex flex-col justify-between">
+                <div className="text-center flex-grow flex flex-col">
                   <div>
                     <h3 className="text-lg font-bold text-gray-800 mb-3 group-hover:text-[#1D50C9] transition-colors duration-300">
                       {accreditation.name}
                     </h3>
                     
-                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                    <p className="text-sm text-gray-600 mb-6 leading-relaxed">
                       {accreditation.description}
                     </p>
                   </div>
