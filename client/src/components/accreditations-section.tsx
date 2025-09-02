@@ -66,20 +66,13 @@ export default function AccreditationsSection() {
               className="group relative"
             >
               <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] h-80 flex flex-col">
-                {/* Status Badge */}
-                <div className="absolute top-3 right-3">
-                  <div className="text-xs font-semibold px-3 py-1 rounded-full flex items-center space-x-1 text-white" style={{ backgroundColor: '#1D50C9' }}>
-                    <CheckCircle className="w-3 h-3" />
-                    <span className="hidden sm:inline">Verified</span>
-                  </div>
-                </div>
 
                 {/* Logo Area */}
                 <div className="text-center mb-6 flex-shrink-0">
                   <img
                     src={accreditation.image}
                     alt={accreditation.name}
-                    className="max-h-32 max-w-32 mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                    className="max-h-40 max-w-40 mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
 
@@ -90,7 +83,7 @@ export default function AccreditationsSection() {
                       {accreditation.name}
                     </h3>
                     
-                    <p className="text-sm text-gray-600 mb-4 leading-relaxed min-h-[3rem]">
+                    <p className="text-sm text-gray-600 mb-6 leading-relaxed">
                       {accreditation.description}
                     </p>
                   </div>
