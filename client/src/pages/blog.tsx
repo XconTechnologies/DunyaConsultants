@@ -1311,7 +1311,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                   <span className="mr-3 font-semibold text-base leading-none mt-0.5 text-[#000000]">
                                     {paragraph.trim().match(/^\d+\./)?.[0]}
                                   </span>
-                                  <span className="text-gray-700 text-base leading-relaxed">
+                                  <span className="text-base leading-relaxed text-[#000000]">
                                     {paragraph.replace(/^\d+\.\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1')}
                                   </span>
                                 </div>
