@@ -3266,7 +3266,7 @@ export async function seedBlogPosts() {
       };
       
       // For specific posts, let's use upsert to ensure they're properly updated
-      if (post.slug === "finland-online-visa-application-from-pakistan" || post.title === "Which Degree is Best in Pakistan") {
+      if (post.slug === "finland-online-visa-application-from-pakistan") {
         await db.insert(blogPosts).values({
           ...blogPost,
           isPublished: post.published,
