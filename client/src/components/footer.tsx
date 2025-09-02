@@ -112,7 +112,7 @@ export default function Footer() {
             {/* For Business Proposals Card */}
             <div className="sm:col-span-2 lg:col-span-1">
               <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20 min-w-[280px]"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
@@ -126,10 +126,10 @@ export default function Footer() {
                   </h4>
                 
                   <div className="space-y-3">
-                    <div className="flex items-start space-x-3">
-                      <Mail className="w-4 h-4 text-white mt-1 flex-shrink-0" />
+                    <div className="flex items-center space-x-3">
+                      <Mail className="w-4 h-4 text-white flex-shrink-0" />
                       <div>
-                        <a href="mailto:abdul.majeed@dunyaconsultants.com" className="text-white text-[10px] font-semibold hover:text-blue-200 transition-colors whitespace-nowrap">
+                        <a href="mailto:abdul.majeed@dunyaconsultants.com" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors whitespace-nowrap">
                           abdul.majeed@dunyaconsultants.com
                         </a>
                       </div>
