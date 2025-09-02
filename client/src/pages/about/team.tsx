@@ -76,53 +76,52 @@ const teamMembers = [
   },
   {
     id: 8,
+    image: usamaRandhawaImg,
+    name: "Usama Bashir",
+    designation: "Branch Manager Gujranwala"
+  },
+  {
+    id: 9,
     image: rashidAliImg,
     name: "Rashid Ali",
     designation: "Branch Manager Islamabad"
   },
   // Branch Managers (Specified order)
   {
-    id: 9,
+    id: 10,
     image: ahmedUsmanImg,
     name: "Ahmed Usman",
     designation: "Operational Manager Karachi"
   },
   {
-    id: 10,
+    id: 11,
     image: abdullahImg,
     name: "Abdullah",
     designation: "Branch Manager Sargodha"
   },
   {
-    id: 11,
+    id: 12,
     image: hafizHamzaImg,
     name: "Hamza Sabir",
     designation: "Branch Manager Sialkot"
   },
   {
-    id: 12,
+    id: 13,
     image: sadeezaImg,
     name: "Sadeeza Nasir",
     designation: "Branch Manager Multan"
   },
   {
-    id: 13,
+    id: 14,
     image: usamaAshrafImg,
     name: "Usama Ashraf",
     designation: "Branch Manager Gujrat"
   },
   {
-    id: 14,
+    id: 15,
     image: talhaAzizImg,
     name: "Talha Aziz",
     designation: "Branch Manager Mian Channu"
-  },
-  // Other Branch Managers
-  {
-    id: 15,
-    image: usamaRandhawaImg,
-    name: "Usama Bashir",
-    designation: "Branch Manager Gujranwala"
   },
   {
     id: 16,
