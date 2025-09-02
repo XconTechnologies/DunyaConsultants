@@ -548,6 +548,16 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       return false;
                     }
                     
+                    // Skip the specific h2 element with text "Which engineering has the highest scope in Pakistan?"
+                    if (section.title && section.title.trim() === 'Which engineering has the highest scope in Pakistan?') {
+                      return false;
+                    }
+                    
+                    // Skip the section with title "Which university is best for BS Artificial Intelligence in Pakistan?"
+                    if (section.title && section.title.trim() === 'Which university is best for BS Artificial Intelligence in Pakistan?') {
+                      return false;
+                    }
+                    
                     return section.title && section.title.trim() !== '';
                   }).map((section: any, index: number) => {
                     // Special handling for intro-before-main section
