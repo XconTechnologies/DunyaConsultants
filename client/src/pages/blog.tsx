@@ -262,7 +262,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
       category: 'Visa Services',
       date: 'August 15, 2024',
       image: '/attached_assets/image_1755675870364.png',
-      slug: '2024/08/15/bank-statement-for-uk-visa'
+      slug: 'bank-statement-for-uk-visa'
     },
     {
       id: 'exchange-programs-for-pakistani-students',
