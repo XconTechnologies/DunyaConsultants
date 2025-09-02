@@ -83,7 +83,7 @@ export default function BlogArchive() {
     'study-abroad-education-consultants-dunya-consultants': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Study-Abroad-Education-Consultants.webp',
     
     // Dubai Visa Guide
-    'dubai-visa-for-pakistani': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Dubai-Visa-for-Pakistani.webp'
+    '2025/01/01/dubai-visa-for-pakistani': 'https://dunyaconsultants.com/wp-content/uploads/2025/03/Dubai-Visa-for-Pakistani.webp'
   };
 
   // Convert API data to archive format
