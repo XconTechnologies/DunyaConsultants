@@ -181,75 +181,157 @@ export default function WhoWeAre() {
         </div>
       </section>
 
-      {/* About Content - Redesigned */}
-      <section className="py-12 bg-white">
+      {/* About Content - Completely Redesigned */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full text-white font-semibold mb-6">
+              <Award className="w-5 h-5 mr-2" />
+              About Dunya Consultants
+            </div>
+            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Pakistan's Most Trusted{" "}
+              <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
+                Education Consultancy
+              </span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              Empowering Pakistani students to achieve their global education dreams through expert guidance, proven processes, and unwavering support.
+            </p>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            {/* Main Content */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
+              className="lg:col-span-2"
             >
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8 leading-tight">
-                Leading Education Consultants in{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  Pakistan
-                </span>
-              </h2>
-              
-              <div className="space-y-6 text-lg text-gray-700">
-                <p className="leading-relaxed">
-                  <strong>Dunya Consultants</strong> is one of the best education consultants in Pakistan. We stand among the top study abroad consultants and provide detailed guidance on study abroad programs to students.
-                </p>
-                
-                <p className="leading-relaxed">
-                  With its head office in Lahore, Dunya Consultants has branches in over <strong className="text-[#1D50C9]">20+ cities</strong> across the country and a team of more than <strong className="text-[#1D50C9]">200 counselors</strong>.
-                </p>
-                
-                <p className="leading-relaxed">
-                  We are proud to have around <strong className="text-[#1D50C9]">250 ambassadors</strong> working with us internationally and have partnered with 30 top educational institutions in Pakistan and more than <strong className="text-[#1D50C9]">20 foreign universities</strong>.
-                </p>
+              <Card className="h-full border-0 shadow-xl bg-white">
+                <CardContent className="p-8">
+                  <div className="space-y-8">
+                    {/* Company Overview */}
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center">
+                        <Globe className="w-6 h-6 mr-3 text-[#1D50C9]" />
+                        Who We Are
+                      </h3>
+                      <p className="text-lg text-gray-700 leading-relaxed">
+                        <strong className="text-[#1D50C9]">Dunya Consultants</strong> stands as Pakistan's premier education consultancy, dedicated to transforming study abroad dreams into reality. Based in Sargodha with nationwide presence, we've successfully guided thousands of students toward their global education goals.
+                      </p>
+                    </div>
 
-                <div className="bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-xl border-l-4 border-[#1D50C9]">
-                  <p className="leading-relaxed font-medium text-gray-800">
-                    So, what are you waiting for? Get your consultancy booked with the best visa consultant in Lahore – <strong className="text-[#1D50C9]">Dunya Consultants</strong> today and get answers to your education queries!
-                  </p>
-                </div>
-              </div>
+                    {/* Key Stats Grid */}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
+                        <div className="flex items-center mb-3">
+                          <Building2 className="w-8 h-8 text-[#1D50C9] mr-3" />
+                          <div>
+                            <div className="text-2xl font-bold text-[#1D50C9]">20+</div>
+                            <div className="text-sm font-semibold text-gray-700">Branch Offices</div>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600">Strategic locations across Pakistan ensuring local support everywhere</p>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
+                        <div className="flex items-center mb-3">
+                          <Users className="w-8 h-8 text-green-600 mr-3" />
+                          <div>
+                            <div className="text-2xl font-bold text-green-600">200+</div>
+                            <div className="text-sm font-semibold text-gray-700">Expert Counselors</div>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600">Certified professionals providing personalized guidance</p>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
+                        <div className="flex items-center mb-3">
+                          <Globe className="w-8 h-8 text-purple-600 mr-3" />
+                          <div>
+                            <div className="text-2xl font-bold text-purple-600">15+</div>
+                            <div className="text-sm font-semibold text-gray-700">Countries</div>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600">Global network spanning major study destinations</p>
+                      </div>
+
+                      <div className="bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl">
+                        <div className="flex items-center mb-3">
+                          <GraduationCap className="w-8 h-8 text-orange-600 mr-3" />
+                          <div>
+                            <div className="text-2xl font-bold text-orange-600">2,500+</div>
+                            <div className="text-sm font-semibold text-gray-700">Success Stories</div>
+                          </div>
+                        </div>
+                        <p className="text-sm text-gray-600">Students successfully placed in top universities</p>
+                      </div>
+                    </div>
+
+                    {/* Call to Action */}
+                    <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-8 rounded-2xl text-white">
+                      <div className="text-center">
+                        <h4 className="text-2xl font-bold mb-4">Ready to Start Your Journey?</h4>
+                        <p className="text-blue-100 mb-6 leading-relaxed">
+                          Join thousands of successful students who chose Dunya Consultants for their study abroad journey. Get expert guidance from Pakistan's most trusted education consultancy.
+                        </p>
+                        <Button 
+                          size="lg" 
+                          className="bg-white text-[#1D50C9] hover:bg-gray-100 font-semibold px-8 py-3"
+                        >
+                          Book Free Consultation
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
 
+            {/* Excellence Card */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="relative"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="lg:col-span-1"
             >
-              <div className="relative">
-                <div className="absolute -inset-4 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-3xl blur-lg opacity-20"></div>
-                <Card className="relative bg-white shadow-2xl border-0 overflow-hidden">
-                  <CardContent className="p-8">
-                    <div className="text-center">
-                      <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center">
-                        <GraduationCap className="w-12 h-12 text-white" />
+              <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
+                <CardContent className="p-8 text-center h-full flex flex-col justify-center">
+                  <div className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <Award className="w-10 h-10 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-4">Excellence in Education</h3>
+                  <p className="text-blue-100 leading-relaxed mb-8">
+                    Committed to preparing students for success on international platforms and fostering their growth as global professionals and intellectuals.
+                  </p>
+                  
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-white">5+</div>
+                        <div className="text-sm text-blue-200">Years Excellence</div>
                       </div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">Excellence in Education</h3>
-                      <p className="text-gray-700 leading-relaxed mb-6">
-                        Preparing students for success on international platforms and for productive roles as professionals and intellectuals in society.
-                      </p>
-                      <div className="flex justify-center space-x-4">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-[#1D50C9]">5+</div>
-                          <div className="text-sm text-gray-600">Years Experience</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-[#1D50C9]">10K+</div>
-                          <div className="text-sm text-gray-600">Students Served</div>
-                        </div>
+                      <div className="text-center">
+                        <div className="text-3xl font-bold text-white">98%</div>
+                        <div className="text-sm text-blue-200">Success Rate</div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </div>
+                    
+                    <div className="pt-6 border-t border-white/20">
+                      <div className="text-center">
+                        <div className="text-4xl font-bold text-white mb-2">2,500+</div>
+                        <div className="text-blue-200 font-semibold">Students Successfully Placed</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
           </div>
         </div>
