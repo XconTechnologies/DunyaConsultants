@@ -54,6 +54,52 @@ export default function Footer() {
                 Dedicated to helping students achieve their academic dreams worldwide.
               </p>
               
+              {/* Accreditation Badges */}
+              <div className="flex items-center gap-3 mb-4">
+                {/* ICEF Badge with Link */}
+                <a 
+                  href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:scale-105 transition-transform duration-300"
+                >
+                  <div className="bg-white rounded-lg p-2 shadow-sm">
+                    <img 
+                      src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
+                      alt="ICEF Accredited" 
+                      className="h-10 w-auto"
+                    />
+                  </div>
+                </a>
+                
+                {/* British Council Logo */}
+                <div className="bg-white rounded-lg p-2 shadow-sm">
+                  <img 
+                    src={BritishCouncilLogo} 
+                    alt="British Council" 
+                    className="h-8 w-auto"
+                  />
+                </div>
+                
+                {/* Duolingo Logo */}
+                <div className="bg-white rounded-lg p-2 shadow-sm">
+                  <img 
+                    src={DuolingoLogo} 
+                    alt="Duolingo" 
+                    className="h-8 w-auto"
+                  />
+                </div>
+                
+                {/* Language Cert Logo */}
+                <div className="bg-white rounded-lg p-2 shadow-sm">
+                  <img 
+                    src={LanguageCertLogo} 
+                    alt="Language Cert" 
+                    className="h-8 w-auto"
+                  />
+                </div>
+              </div>
+              
             </div>
 
             {/* Offices */}
@@ -183,45 +229,6 @@ export default function Footer() {
 
           </div>
 
-          {/* Accreditation Badges - Full Width */}
-          <div className="border-t border-white/20 mt-12 pt-8 pb-6">
-            <div className="flex justify-center items-center gap-8">
-              {/* ICEF Badge with Link */}
-              <a 
-                href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:scale-105 transition-transform duration-300"
-              >
-                <img 
-                  src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
-                  alt="ICEF Accredited" 
-                  className="h-14 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-                />
-              </a>
-              
-              {/* British Council Logo */}
-              <img 
-                src={BritishCouncilLogo} 
-                alt="British Council" 
-                className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-              />
-              
-              {/* Duolingo Logo */}
-              <img 
-                src={DuolingoLogo} 
-                alt="Duolingo" 
-                className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-              />
-              
-              {/* Language Cert Logo */}
-              <img 
-                src={LanguageCertLogo} 
-                alt="Language Cert" 
-                className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-              />
-            </div>
-          </div>
 
           {/* Bottom Bar */}
           <div className="border-t border-white/20 pt-6 text-center">
