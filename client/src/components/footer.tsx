@@ -186,7 +186,7 @@ export default function Footer() {
           </div>
 
           {/* Accreditation Badges - Below first two sections */}
-          <div className="-mt-6 lg:max-w-[50%]">
+          <div className="-mt-10 lg:max-w-[50%]">
             <div className="flex items-center gap-4 ml-[0px] mr-[0px] mt-[20px] mb-[20px] pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
               {/* ICEF Badge with Link */}
               <a 
