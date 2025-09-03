@@ -226,120 +226,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
   };
 
   const relatedBlogsCarouselRef = useRef<HTMLDivElement>(null);
-
-  const relatedBlogs = [
-    {
-      id: 'mbbs-in-uk-for-pakistani-students',
-      title: 'MBBS in UK for Pakistani Students',
-      excerpt: 'Complete guide to MBBS in UK for Pakistani students including eligibility requirements, admission process, fees, scholarships, and top medical universities.',
-      category: 'Study Abroad',
-      date: 'September 21, 2024',
-      image: '/attached_assets/image_1755675204547.png',
-      slug: '2024/09/21/mbbs-in-uk-for-pakistani-students'
-    },
-    {
-      id: 'mbbs-in-germany-for-pakistani-students',
-      title: 'MBBS in Germany for Pakistani Students | Admission Process & Fee Structure',
-      excerpt: 'Complete guide to studying MBBS in Germany for Pakistani students including admission process, fee structure, eligibility requirements, and scholarship opportunities.',
-      category: 'Study Abroad',
-      date: 'October 5, 2024',
-      image: '/attached_assets/image_1755674890474.png',
-      slug: '2024/10/05/mbbs-in-germany-for-pakistani-students'
-    },
-    {
-      id: 'how-to-get-scholarship-to-study-abroad-after-12th',
-      title: 'How to Get a Scholarship to Study Abroad after 12th?',
-      excerpt: 'Complete guide on how to get scholarship to study abroad after 12th including types of scholarships, application process, tips and tricks for international students.',
-      category: 'Study Abroad',
-      date: 'September 5, 2024',
-      image: '/attached_assets/image_1755675582619.png',
-      slug: '2024/09/05/how-to-get-scholarship-to-study-abroad-after-12th'
-    },
-    {
-      id: 'bank-statement-for-uk-visa',
-      title: 'Bank Statement for UK Visa: Complete Guide',
-      excerpt: 'Complete guide to bank statement requirements for UK visa including documents needed, financial requirements, and tips to avoid visa refusal.',
-      category: 'Visa Services',
-      date: 'August 15, 2024',
-      image: '/attached_assets/image_1755675870364.png',
-      slug: 'bank-statement-for-uk-visa'
-    },
-    {
-      id: 'exchange-programs-for-pakistani-students',
-      title: 'Exchange Programs for Pakistani Students',
-      excerpt: 'Complete guide to exchange programs for Pakistani students including types, popular programs like Fulbright, Erasmus+, YES, and application process.',
-      category: 'Study Abroad',
-      date: 'July 20, 2024',
-      image: '/attached_assets/image_1755676067750.png',
-      slug: '2024/07/20/exchange-programs-for-pakistani-students'
-    }
-  ];
-
-  // Duplicate the blogs for infinite scroll effect
-  const duplicatedRelatedBlogs = [...relatedBlogs, ...relatedBlogs];
-
-  // Infinite scroll animation for related blogs
-  useEffect(() => {
-    const carousel = relatedBlogsCarouselRef.current;
-    if (!carousel) return;
-
-    // Wait for content to load and measure
-    const startAnimation = () => {
-      if (carousel.scrollWidth <= carousel.clientWidth) {
-        // If content doesn't exceed container, no need to animate
-        return;
-      }
-
-      let animationId: number;
-      let isPaused = false;
-      
-      const animate = () => {
-        if (!isPaused && carousel) {
-          // Reset scroll position when we reach halfway point (since we duplicated content)
-          if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
-            carousel.scrollLeft = 0;
-          } else {
-            carousel.scrollLeft += 1; // Smooth scroll speed
-          }
-        }
-        animationId = requestAnimationFrame(animate);
-      };
-
-      // Start animation
-      animationId = requestAnimationFrame(animate);
-
-      // Pause on hover
-      const handleMouseEnter = () => {
-        isPaused = true;
-      };
-
-      const handleMouseLeave = () => {
-        isPaused = false;
-      };
-
-      if (carousel) {
-        carousel.addEventListener('mouseenter', handleMouseEnter);
-        carousel.addEventListener('mouseleave', handleMouseLeave);
-      }
-
-      return () => {
-        if (animationId) {
-          cancelAnimationFrame(animationId);
-        }
-        if (carousel) {
-          carousel.removeEventListener('mouseenter', handleMouseEnter);
-          carousel.removeEventListener('mouseleave', handleMouseLeave);
-        }
-      };
-    };
-
-    // Small delay to ensure content is rendered
-    const timeoutId = setTimeout(startAnimation, 100);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [duplicatedRelatedBlogs]);
   
   // Fetch blog posts for detail view
   const { data: blogPostsData, isLoading } = useQuery({
@@ -425,6 +311,77 @@ function BlogPostDetail({ slug }: { slug: string }) {
   } else {
     contentSections = parseContentToSections(blogPost.content);
   }
+
+  // Get latest 5 blogs excluding the current blog
+  const relatedBlogs = blogPosts
+    .filter((post: any) => post.slug !== slug) // Exclude current blog
+    .slice(0, 5); // Get latest 5
+
+  // Duplicate the blogs for infinite scroll effect
+  const duplicatedRelatedBlogs = [...relatedBlogs, ...relatedBlogs];
+
+  // Infinite scroll animation for related blogs
+  useEffect(() => {
+    const carousel = relatedBlogsCarouselRef.current;
+    if (!carousel) return;
+
+    // Wait for content to load and measure
+    const startAnimation = () => {
+      if (carousel.scrollWidth <= carousel.clientWidth) {
+        // If content doesn't exceed container, no need to animate
+        return;
+      }
+
+      let animationId: number;
+      let isPaused = false;
+      
+      const animate = () => {
+        if (!isPaused && carousel) {
+          // Reset scroll position when we reach halfway point (since we duplicated content)
+          if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
+            carousel.scrollLeft = 0;
+          } else {
+            carousel.scrollLeft += 1; // Smooth scroll speed
+          }
+        }
+        animationId = requestAnimationFrame(animate);
+      };
+
+      // Start animation
+      animationId = requestAnimationFrame(animate);
+
+      // Pause on hover
+      const handleMouseEnter = () => {
+        isPaused = true;
+      };
+
+      const handleMouseLeave = () => {
+        isPaused = false;
+      };
+
+      if (carousel) {
+        carousel.addEventListener('mouseenter', handleMouseEnter);
+        carousel.addEventListener('mouseleave', handleMouseLeave);
+      }
+
+      return () => {
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
+        if (carousel) {
+          carousel.removeEventListener('mouseenter', handleMouseEnter);
+          carousel.removeEventListener('mouseleave', handleMouseLeave);
+        }
+      };
+    };
+
+    // Small delay to ensure content is rendered
+    const timeoutId = setTimeout(startAnimation, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [duplicatedRelatedBlogs]);
 
   return (
     <div className="min-h-screen bg-white">
