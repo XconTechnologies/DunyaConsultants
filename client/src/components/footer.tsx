@@ -79,8 +79,11 @@ export default function Footer() {
                 </li>
               </ul>
               
-              {/* Accreditation Badges */}
-              <div className="flex flex-wrap items-center gap-3">
+            </div>
+
+            {/* Accreditation Badges - Spanning both sections */}
+            <div className="lg:col-span-2 mt-8">
+              <div className="flex justify-center items-center gap-4">
                 {/* ICEF Badge with Link */}
                 <a 
                   href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
@@ -125,7 +128,6 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-
 
             {/* Contact Us Card */}
             <div className="sm:col-span-2 lg:col-span-1">
