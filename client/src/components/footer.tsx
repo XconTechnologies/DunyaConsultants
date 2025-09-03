@@ -54,9 +54,13 @@ export default function Footer() {
               
               {/* Accreditation Badges */}
               <div className="mb-4">
-                <div className="flex flex-wrap items-center gap-3">
-                  {/* ICEF Badge */}
-                  <span id='iasBadge' data-account-id='6061'></span>
+                <div className="flex flex-wrap items-center gap-4">
+                  {/* ICEF Logo */}
+                  <img 
+                    src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
+                    alt="ICEF Accredited" 
+                    className="h-10 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                  />
                   
                   {/* British Council Logo */}
                   <img 
