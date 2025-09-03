@@ -56,7 +56,7 @@ export default function Footer() {
               
               {/* Accreditation Badges */}
               <div className="mb-4">
-                <div className="flex flex-wrap items-center gap-4">
+                <div className="flex items-center gap-4 overflow-x-auto">
                   {/* ICEF Badge with Link */}
                   <a 
                     href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
