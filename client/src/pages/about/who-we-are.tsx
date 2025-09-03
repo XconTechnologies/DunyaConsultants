@@ -308,9 +308,28 @@ export default function WhoWeAre() {
                       <Award className="w-10 h-10 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-4">Excellence in Education</h3>
-                    <p className="text-white/90 leading-relaxed text-base px-2">
+                    <p className="text-white/90 leading-relaxed text-base px-2 mb-6">
                       Committed to preparing students for success on international platforms and fostering their growth as global professionals and intellectuals.
                     </p>
+                    
+                    <div className="space-y-4 text-white/80 text-sm">
+                      <div className="flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white/60 rounded-full mr-3"></div>
+                        <span>Comprehensive study abroad guidance</span>
+                      </div>
+                      <div className="flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white/60 rounded-full mr-3"></div>
+                        <span>Expert visa processing support</span>
+                      </div>
+                      <div className="flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white/60 rounded-full mr-3"></div>
+                        <span>Trusted by thousands of families</span>
+                      </div>
+                      <div className="flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white/60 rounded-full mr-3"></div>
+                        <span>Proven track record since 2009</span>
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="mt-8 space-y-6">
