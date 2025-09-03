@@ -58,27 +58,27 @@ export default function SuccessStories() {
 
   const studentAchievements = [
     {
-      category: "Top Universities",
+      category: "Students Placed",
       count: "2,500+",
-      description: "Students successfully placed worldwide",
+      description: "Successful university placements worldwide",
       examples: ["Harvard", "Oxford", "Cambridge", "MIT", "Stanford"]
-    },
-    {
-      category: "Scholarships Won",
-      count: "PKR 2B+",
-      description: "Total scholarship amount secured for students",
-      examples: ["Merit Awards", "Need-based Aid", "Research Grants", "Full Funding"]
     },
     {
       category: "Countries",
       count: "15+",
-      description: "Countries covered globally",
+      description: "Global reach across major study destinations",
       examples: ["USA", "UK", "Canada", "Australia", "Germany"]
     },
     {
+      category: "Branches",
+      count: "20+",
+      description: "Office branches across Pakistan",
+      examples: ["Sargodha", "Lahore", "Karachi", "Islamabad", "Faisalabad"]
+    },
+    {
       category: "Success Rate",
-      count: "95%",
-      description: "Visa approval rate for our students",
+      count: "98%",
+      description: "Visa approval success rate",
       examples: ["Student Visas", "Study Permits", "F-1 Visas", "Tier 4 Visas"]
     }
   ];
