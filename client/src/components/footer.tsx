@@ -54,45 +54,6 @@ export default function Footer() {
                 Dedicated to helping students achieve their academic dreams worldwide.
               </p>
               
-              {/* Accreditation Badges */}
-              <div className="mb-4">
-                <div className="flex items-center gap-4 overflow-x-auto">
-                  {/* ICEF Badge with Link */}
-                  <a 
-                    href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="hover:scale-105 transition-transform duration-300"
-                  >
-                    <img 
-                      src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
-                      alt="ICEF Accredited" 
-                      className="h-14 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-                    />
-                  </a>
-                  
-                  {/* British Council Logo */}
-                  <img 
-                    src={BritishCouncilLogo} 
-                    alt="British Council" 
-                    className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-                  />
-                  
-                  {/* Duolingo Logo */}
-                  <img 
-                    src={DuolingoLogo} 
-                    alt="Duolingo" 
-                    className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-                  />
-                  
-                  {/* Language Cert Logo */}
-                  <img 
-                    src={LanguageCertLogo} 
-                    alt="Language Cert" 
-                    className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-                  />
-                </div>
-              </div>
             </div>
 
             {/* Offices */}
@@ -222,8 +183,48 @@ export default function Footer() {
 
           </div>
 
+          {/* Accreditation Badges - Full Width */}
+          <div className="border-t border-white/20 mt-12 pt-8 pb-6">
+            <div className="flex justify-center items-center gap-8">
+              {/* ICEF Badge with Link */}
+              <a 
+                href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:scale-105 transition-transform duration-300"
+              >
+                <img 
+                  src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
+                  alt="ICEF Accredited" 
+                  className="h-14 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                />
+              </a>
+              
+              {/* British Council Logo */}
+              <img 
+                src={BritishCouncilLogo} 
+                alt="British Council" 
+                className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+              />
+              
+              {/* Duolingo Logo */}
+              <img 
+                src={DuolingoLogo} 
+                alt="Duolingo" 
+                className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+              />
+              
+              {/* Language Cert Logo */}
+              <img 
+                src={LanguageCertLogo} 
+                alt="Language Cert" 
+                className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
+          </div>
+
           {/* Bottom Bar */}
-          <div className="border-t border-white/20 mt-12 pt-8 text-center">
+          <div className="border-t border-white/20 pt-6 text-center">
             <p className="text-blue-100 text-sm">
               © 2025 Developed by <a href="https://xcontechnologies.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-200 transition-colors duration-300">XCon Technologies</a>. All rights reserved.
             </p>
