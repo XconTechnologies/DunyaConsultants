@@ -34,6 +34,12 @@ export default function Footer() {
                 Your trusted partner for global education opportunities. 
                 Dedicated to helping students achieve their academic dreams worldwide.
               </p>
+              
+              {/* ICEF Badge */}
+              <div className="mb-4">
+                <span id='iasBadge' data-account-id='6061'></span>
+                <script async defer crossOrigin="anonymous" src="https://www-cdn.icef.com/scripts/iasbadgeid.js"></script>
+              </div>
             </div>
 
             {/* Offices */}
