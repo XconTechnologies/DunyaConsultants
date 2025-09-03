@@ -77,7 +77,7 @@ export default function AccreditationsSection() {
                 </div>
 
                 {/* Content */}
-                <div className="text-center flex-grow flex flex-col justify-end pt-[22px] pb-[22px] pl-[0px] pr-[0px]">
+                <div className="text-center flex-grow flex flex-col justify-end pt-[8px] pb-[22px] pl-[0px] pr-[0px]">
                   <div className="inline-flex items-center space-x-2 text-white text-sm font-medium px-4 py-2 rounded-full" style={{ backgroundColor: '#1D50C9' }}>
                     <Star className="w-4 h-4" />
                     <span>{accreditation.status}</span>
