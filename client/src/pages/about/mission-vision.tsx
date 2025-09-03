@@ -65,106 +65,77 @@ export default function MissionVision() {
 
       {/* Mission Section */}
       <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-[#1D50C9] rounded-full flex items-center justify-center mr-4">
-                  <Target className="w-6 h-6 text-white" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center mb-8">
+              <div className="w-16 h-16 bg-[#1D50C9] rounded-full flex items-center justify-center mr-4">
+                <Target className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-[#1D50C9]">Our Mission</h2>
+            </div>
+            
+            <div className="max-w-4xl mx-auto">
+              <p className="text-2xl md:text-3xl font-semibold text-[#1D50C9] mb-8 leading-relaxed">
+                "To help international students achieve their academic goals and become leaders in their respective fields."
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8 text-left">
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    At Dunya Consultants, our mission is centered on empowering students to reach their full potential through quality international education. We are dedicated to providing comprehensive guidance and support throughout every step of their academic journey.
+                  </p>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#1D50C9]">Our Mission</h2>
-              </div>
-              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p className="text-xl md:text-2xl font-semibold text-[#1D50C9] mb-4">
-                  "To help international students achieve their academic goals and become leaders in their respective fields."
-                </p>
-                <p>
-                  At Dunya Consultants, our mission is centered on empowering students to reach their full potential through quality international education. We are dedicated to providing comprehensive guidance and support throughout every step of their academic journey.
-                </p>
-                <p>
-                  We believe that education is the key to unlocking opportunities and creating positive change in the world. Our commitment extends beyond just visa processing - we aim to shape future leaders who will contribute meaningfully to society.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="relative"
-            >
-              <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 h-80 lg:h-96">
-                <div className="relative h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-6 bg-[#1D50C9] rounded-full flex items-center justify-center">
-                      <Target className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Academic Excellence</h3>
-                    <p className="text-gray-700">
-                      Guiding students towards achieving their academic goals and becoming leaders in their chosen fields.
-                    </p>
-                  </div>
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    We believe that education is the key to unlocking opportunities and creating positive change in the world. Our commitment extends beyond just visa processing - we aim to shape future leaders who will contribute meaningfully to society.
+                  </p>
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Vision Section */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-slate-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:order-2"
-            >
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-[#1D50C9] rounded-full flex items-center justify-center mr-4">
-                  <Eye className="w-6 h-6 text-white" />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center mb-8">
+              <div className="w-16 h-16 bg-[#1D50C9] rounded-full flex items-center justify-center mr-4">
+                <Eye className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-[#1D50C9]">Our Vision</h2>
+            </div>
+            
+            <div className="max-w-4xl mx-auto">
+              <p className="text-2xl md:text-3xl font-semibold text-[#1D50C9] mb-8 leading-relaxed">
+                "To unlock the transformative power of education for our clients with our dedication to provide excellent service and personalized support to each of them."
+              </p>
+              
+              <div className="grid md:grid-cols-2 gap-8 text-left">
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    We envision a world where every student has access to quality international education, regardless of their background or circumstances. Our vision drives us to continuously innovate and improve our services.
+                  </p>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#1D50C9]">Our Vision</h2>
-              </div>
-              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
-                <p className="text-xl md:text-2xl font-semibold text-[#1D50C9] mb-4">
-                  "To unlock the transformative power of education for our clients with our dedication to provide excellent service and personalized support to each of them."
-                </p>
-                <p>
-                  We envision a world where every student has access to quality international education, regardless of their background or circumstances. Our vision drives us to continuously innovate and improve our services.
-                </p>
-                <p>
-                  We aim to be recognized as the most trusted and reliable education consultancy in Pakistan, known for our commitment to excellence, integrity, and student success.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="lg:order-1 relative"
-            >
-              <div className="relative bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 h-80 lg:h-96">
-                <div className="relative h-full flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-20 h-20 mx-auto mb-6 bg-[#1D50C9] rounded-full flex items-center justify-center">
-                      <Eye className="w-10 h-10 text-white" />
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Transformative Education</h3>
-                    <p className="text-gray-700">
-                      Unlocking the transformative power of education with excellent service and personalized support.
-                    </p>
-                  </div>
+                <div className="space-y-4">
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    We aim to be recognized as the most trusted and reliable education consultancy in Pakistan, known for our commitment to excellence, integrity, and student success.
+                  </p>
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
