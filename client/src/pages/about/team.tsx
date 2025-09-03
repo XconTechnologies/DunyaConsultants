@@ -53,7 +53,7 @@ const teamMembers = [
     id: 4,
     image: muhammadIbrahimImg,
     name: "Muhammad Ibrahim",
-    designation: "Compliance Director"
+    designation: "Director Compliance"
   },
   {
     id: 5,
