@@ -302,33 +302,41 @@ export default function WhoWeAre() {
               className="lg:col-span-1"
             >
               <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
-                <CardContent className="p-6 text-center h-full flex flex-col justify-between min-h-[500px]">
-                  <div className="flex-1 flex flex-col justify-center">
-                    <div className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                      <Award className="w-10 h-10 text-white" />
+                <CardContent className="p-8 text-center h-full flex flex-col justify-center min-h-[500px]">
+                  <div className="w-20 h-20 mx-auto mb-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <Award className="w-10 h-10 text-white" />
+                  </div>
+                  
+                  <h3 className="text-3xl font-bold text-white mb-6">Excellence in Education</h3>
+                  
+                  <p className="text-white/90 leading-relaxed text-lg mb-8 px-2">
+                    Committed to preparing students for success on international platforms and fostering their growth as global professionals and intellectuals.
+                  </p>
+                  
+                  <div className="space-y-5 text-white/90 text-base">
+                    <div className="flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white/70 rounded-full mr-4"></div>
+                      <span>Comprehensive study abroad guidance</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Excellence in Education</h3>
-                    <p className="text-white/90 leading-relaxed text-base px-2 mb-6">
-                      Committed to preparing students for success on international platforms and fostering their growth as global professionals and intellectuals.
-                    </p>
-                    
-                    <div className="space-y-4 text-white/80 text-sm">
-                      <div className="flex items-center justify-center">
-                        <div className="w-2 h-2 bg-white/60 rounded-full mr-3"></div>
-                        <span>Comprehensive study abroad guidance</span>
-                      </div>
-                      <div className="flex items-center justify-center">
-                        <div className="w-2 h-2 bg-white/60 rounded-full mr-3"></div>
-                        <span>Expert visa processing support</span>
-                      </div>
-                      <div className="flex items-center justify-center">
-                        <div className="w-2 h-2 bg-white/60 rounded-full mr-3"></div>
-                        <span>Trusted by thousands of families</span>
-                      </div>
-                      <div className="flex items-center justify-center">
-                        <div className="w-2 h-2 bg-white/60 rounded-full mr-3"></div>
-                        <span>Proven track record since 2009</span>
-                      </div>
+                    <div className="flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white/70 rounded-full mr-4"></div>
+                      <span>Expert visa processing support</span>
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white/70 rounded-full mr-4"></div>
+                      <span>Trusted by thousands of families</span>
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white/70 rounded-full mr-4"></div>
+                      <span>Proven track record since 2009</span>
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white/70 rounded-full mr-4"></div>
+                      <span>Personalized counselling sessions</span>
+                    </div>
+                    <div className="flex items-center justify-center">
+                      <div className="w-3 h-3 bg-white/70 rounded-full mr-4"></div>
+                      <span>Post-admission support services</span>
                     </div>
                   </div>
                 </CardContent>
