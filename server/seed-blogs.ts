@@ -3313,6 +3313,7 @@ Some of the best student exchange programs include the Susi exchange program and
     featuredImage: '/attached_assets/image_1755676067750.png',
     viewCount: 0,
     category: "Study Abroad",
+    publishedAt: "2024-09-02",
     published: true
   },
   {
