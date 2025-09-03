@@ -85,7 +85,6 @@ export default function WhoWeAre() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
       {/* Hero Section - Redesigned */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
@@ -135,7 +134,6 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
       </section>
-
       {/* Stats Section - Redesigned */}
       <section className="py-12 bg-gradient-to-br from-gray-50 to-blue-50 relative">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
@@ -180,7 +178,6 @@ export default function WhoWeAre() {
           </div>
         </div>
       </section>
-
       {/* About Content - Completely Redesigned */}
       <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -307,7 +304,7 @@ export default function WhoWeAre() {
                     <div className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                       <Award className="w-10 h-10 text-white" />
                     </div>
-                    <h3 className="text-3xl font-bold text-white mb-4">Our Mission</h3>
+                    <h3 className="text-3xl font-bold mb-4 text-[#ffffff]">Our Mission</h3>
                     <p className="text-white/90 text-lg leading-relaxed">
                       Transforming dreams into reality by guiding Pakistani students to world-class educational opportunities abroad.
                     </p>
@@ -335,7 +332,6 @@ export default function WhoWeAre() {
           </div>
         </div>
       </section>
-
       {/* How We Work - Redesigned */}
       <section className="py-12 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -384,7 +380,6 @@ export default function WhoWeAre() {
           </div>
         </div>
       </section>
-
       {/* Why Choose Us - Redesigned */}
       <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-6">
@@ -429,7 +424,6 @@ export default function WhoWeAre() {
 
         </div>
       </section>
-
       {/* Leadership Section - Redesigned */}
       <section className="py-12 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -508,8 +502,6 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
       </section>
-
-      
       <Footer />
     </div>
   );
