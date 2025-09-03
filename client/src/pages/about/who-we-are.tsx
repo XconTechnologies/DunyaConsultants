@@ -331,26 +331,6 @@ export default function WhoWeAre() {
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="mt-8 space-y-6">
-                    <div className="grid grid-cols-2 gap-6">
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-white mb-1">5+</div>
-                        <div className="text-sm text-white/80 font-medium">Years Excellence</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-bold text-white mb-1">98%</div>
-                        <div className="text-sm text-white/80 font-medium">Success Rate</div>
-                      </div>
-                    </div>
-                    
-                    <div className="pt-6 border-t border-white/30">
-                      <div className="text-center">
-                        <div className="text-4xl font-bold text-white mb-2">2,500+</div>
-                        <div className="text-white/90 font-semibold text-base">Students Successfully Placed</div>
-                      </div>
-                    </div>
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>
