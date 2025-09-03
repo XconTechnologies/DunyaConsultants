@@ -72,7 +72,7 @@ export default function AccreditationsSection() {
                   <img
                     src={accreditation.image}
                     alt={accreditation.name}
-                    className="max-h-32 max-w-32 mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                    className="max-h-48 max-w-48 mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
 
