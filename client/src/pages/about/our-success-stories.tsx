@@ -207,7 +207,7 @@ export default function OurSuccessStories() {
 
           {/* Country Tabs */}
           <div className="flex justify-center mb-8 px-4">
-            <div className="grid grid-cols-2 sm:flex bg-white rounded-lg p-1 shadow-lg border gap-1 w-full max-w-2xl">
+            <div className="grid grid-cols-2 gap-2 sm:inline-flex sm:gap-0 bg-white rounded-lg p-1 shadow-lg border w-full max-w-xs sm:max-w-none sm:w-auto">
               {[
                 { id: 'UK', name: 'United Kingdom', shortName: 'UK', color: 'blue' },
                 { id: 'Finland', name: 'Finland', shortName: 'Finland', color: 'blue' },
