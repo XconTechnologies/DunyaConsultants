@@ -67,6 +67,16 @@ import swedenImage6 from '@assets/23,07,2025_1754129628353.jpg';
 import swedenImage7 from '@assets/2_1754129628353.jpg';
 import swedenImage8 from '@assets/1_1754129628354.jpg';
 
+// Import Turkey visa success images
+import turkeyImage1 from '@assets/WhatsApp Image 2025-09-03 at 12.46.23_0ac5251e_1756886175507.jpg';
+import turkeyImage2 from '@assets/WhatsApp Image 2025-09-03 at 12.46.23_fe2f0e0d_1756886183710.jpg';
+import turkeyImage3 from '@assets/WhatsApp Image 2025-09-03 at 12.46.24_1b3e1796_1756886192939.jpg';
+import turkeyImage4 from '@assets/WhatsApp Image 2025-09-03 at 12.46.24_192154b4_1756886201760.jpg';
+import turkeyImage5 from '@assets/WhatsApp Image 2025-09-03 at 12.46.24_9c6ad7be_1756886210800.jpg';
+import turkeyImage6 from '@assets/WhatsApp Image 2025-09-03 at 12.46.25_2860443a_1756886219686.jpg';
+import turkeyImage7 from '@assets/WhatsApp Image 2025-09-03 at 12.46.25_9a3d7a44_1756886230561.jpg';
+import turkeyImage8 from '@assets/WhatsApp Image 2025-09-03 at 12.46.25_1036e576_1756886239900.jpg';
+
 export default function OurSuccessStories() {
   const finlandSuccessImages = [
     image2, image3, image4, image5, image6,
@@ -83,6 +93,11 @@ export default function OurSuccessStories() {
   const swedenSuccessImages = [
     swedenImage1, swedenImage2, swedenImage3, swedenImage4,
     swedenImage5, swedenImage6, swedenImage7, swedenImage8
+  ];
+
+  const turkeySuccessImages = [
+    turkeyImage1, turkeyImage2, turkeyImage3, turkeyImage4,
+    turkeyImage5, turkeyImage6, turkeyImage7, turkeyImage8
   ];
 
   // Tab state for country selection
@@ -194,9 +209,10 @@ export default function OurSuccessStories() {
           <div className="flex justify-center mb-8">
             <div className="inline-flex bg-white rounded-lg p-1 shadow-lg border">
               {[
-                { id: 'UK', name: 'United Kingdom', color: 'indigo' },
+                { id: 'UK', name: 'United Kingdom', color: 'blue' },
                 { id: 'Finland', name: 'Finland', color: 'blue' },
-                { id: 'Sweden', name: 'Sweden', color: 'blue' }
+                { id: 'Sweden', name: 'Sweden', color: 'blue' },
+                { id: 'Turkey', name: 'Turkey', color: 'blue' }
               ].map((country) => (
                 <button
                   key={country.id}
@@ -225,7 +241,10 @@ export default function OurSuccessStories() {
               
               {(() => {
                 // Get current tab images
-                const currentImages = activeTab === 'UK' ? ukSuccessImages : activeTab === 'Finland' ? finlandSuccessImages : swedenSuccessImages;
+                const currentImages = activeTab === 'UK' ? ukSuccessImages : 
+                                    activeTab === 'Finland' ? finlandSuccessImages : 
+                                    activeTab === 'Sweden' ? swedenSuccessImages : 
+                                    turkeySuccessImages;
                 
                 // Split images into 2 columns for mobile
                 const splitIntoColumns = (array: string[], numColumns: number) => {
@@ -294,7 +313,10 @@ export default function OurSuccessStories() {
               
               {(() => {
                 // Get current tab images
-                const currentImages = activeTab === 'UK' ? ukSuccessImages : activeTab === 'Finland' ? finlandSuccessImages : swedenSuccessImages;
+                const currentImages = activeTab === 'UK' ? ukSuccessImages : 
+                                    activeTab === 'Finland' ? finlandSuccessImages : 
+                                    activeTab === 'Sweden' ? swedenSuccessImages : 
+                                    turkeySuccessImages;
                 
                 // Split images into 3 columns for desktop
                 const splitIntoColumns = (array: string[], numColumns: number) => {
@@ -381,7 +403,7 @@ export default function OurSuccessStories() {
                 description: "Admissions to leading Finnish institutions",
                 gradient: "from-[#1D50C9] to-[#1845B3]"
               }
-            ] : [
+            ] : activeTab === 'Sweden' ? [
               {
                 icon: Trophy,
                 title: "Lightning Fast Processing",
@@ -398,6 +420,25 @@ export default function OurSuccessStories() {
                 icon: GraduationCap,
                 title: "Multiple Entry Visas",
                 description: "Schengen multiple entry visas for enhanced mobility",
+                gradient: "from-[#1D50C9] to-[#1845B3]"
+              }
+            ] : [
+              {
+                icon: Trophy,
+                title: "Outstanding Success Rate",
+                description: "100% visa approval rate for Turkey applications",
+                gradient: "from-[#1D50C9] to-[#1845B3]"
+              },
+              {
+                icon: Star,
+                title: "Scholarship Excellence", 
+                description: "Students secured scholarships up to 60% without IELTS",
+                gradient: "from-[#1D50C9] to-[#1845B3]"
+              },
+              {
+                icon: GraduationCap,
+                title: "Premier Universities",
+                description: "Admissions to top Turkish universities like ISIK & Atlas",
                 gradient: "from-[#1D50C9] to-[#1845B3]"
               }
             ]).map((item, index) => (
