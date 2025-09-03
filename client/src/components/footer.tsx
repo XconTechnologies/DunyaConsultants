@@ -10,20 +10,19 @@ import New_Logo_White from "@assets/New Logo White.png";
 
 export default function Footer() {
   useEffect(() => {
-    // Load ICEF badge script
-    const script = document.createElement('script');
-    script.src = 'https://www-cdn.icef.com/scripts/iasbadgeid.js';
-    script.async = true;
-    script.defer = true;
-    script.crossOrigin = 'anonymous';
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup script on component unmount
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
+    // Check if ICEF script is already loaded
+    const existingScript = document.querySelector('script[src="https://www-cdn.icef.com/scripts/iasbadgeid.js"]');
+    
+    if (!existingScript) {
+      // Load ICEF badge script only if not already loaded
+      const script = document.createElement('script');
+      script.src = 'https://www-cdn.icef.com/scripts/iasbadgeid.js';
+      script.async = true;
+      script.defer = true;
+      script.crossOrigin = 'anonymous';
+      script.id = 'icef-badge-script'; // Add ID for easier identification
+      document.body.appendChild(script);
+    }
   }, []);
 
   return (
