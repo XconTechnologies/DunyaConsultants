@@ -54,38 +54,53 @@ export default function AccreditationsSection() {
 
         {/* Accreditations Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {accreditations.map((accreditation, index) => (
-            <motion.div
-              key={accreditation.name}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.1
-              }}
-              className="group relative"
-            >
-              <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] flex flex-col items-center justify-center space-y-4">
+          {accreditations.map((accreditation, index) => {
+            const isICEF = accreditation.name === "ICEF Agency";
+            const content = (
+              <motion.div
+                key={accreditation.name}
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1
+                }}
+                className="group relative"
+              >
+                <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] flex flex-col items-center justify-center space-y-4">
 
-                {/* Logo Area */}
-                <div className="text-center">
-                  <img
-                    src={accreditation.image}
-                    alt={accreditation.name}
-                    className="max-h-48 max-w-48 mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+                  {/* Logo Area */}
+                  <div className="text-center">
+                    <img
+                      src={accreditation.image}
+                      alt={accreditation.name}
+                      className="max-h-48 max-w-48 mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
 
-                {/* Badge */}
-                <div className="text-center">
-                  <div className="inline-flex items-center space-x-2 text-white text-sm font-medium px-4 py-2 rounded-full" style={{ backgroundColor: '#1D50C9' }}>
-                    <Star className="w-4 h-4" />
-                    <span>{accreditation.status}</span>
+                  {/* Badge */}
+                  <div className="text-center">
+                    <div className="inline-flex items-center space-x-2 text-white text-sm font-medium px-4 py-2 rounded-full" style={{ backgroundColor: '#1D50C9' }}>
+                      <Star className="w-4 h-4" />
+                      <span>{accreditation.status}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+
+            return isICEF ? (
+              <a 
+                key={accreditation.name}
+                href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block"
+              >
+                {content}
+              </a>
+            ) : content;
+          })}
         </div>
 
       </div>
