@@ -43,7 +43,7 @@ export default function AccreditationsSection() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4" style={{ color: '#1D50C9' }}>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
             Our Accreditations
           </h2>
           
@@ -77,22 +77,10 @@ export default function AccreditationsSection() {
                 </div>
 
                 {/* Content */}
-                <div className="text-center flex-grow flex flex-col pt-[22px] pb-[22px] pl-[0px] pr-[0px]">
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-800 mb-3 group-hover:text-[#1D50C9] transition-colors duration-300">
-                      {accreditation.name}
-                    </h3>
-                    
-                    <p className="text-sm text-gray-600 mb-3 leading-relaxed">
-                      {accreditation.description}
-                    </p>
-                  </div>
-
-                  <div className="mt-auto">
-                    <div className="inline-flex items-center space-x-2 text-white text-sm font-medium px-4 py-2 rounded-full" style={{ backgroundColor: '#1D50C9' }}>
-                      <Star className="w-4 h-4" />
-                      <span>{accreditation.status}</span>
-                    </div>
+                <div className="text-center flex-grow flex flex-col justify-end pt-[22px] pb-[22px] pl-[0px] pr-[0px]">
+                  <div className="inline-flex items-center space-x-2 text-white text-sm font-medium px-4 py-2 rounded-full" style={{ backgroundColor: '#1D50C9' }}>
+                    <Star className="w-4 h-4" />
+                    <span>{accreditation.status}</span>
                   </div>
                 </div>
               </div>
