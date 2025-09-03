@@ -131,27 +131,27 @@ export default function OurSuccessStories() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
+      <section className="relative pt-24 sm:pt-32 pb-16 sm:pb-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-6 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-6">
-              <Trophy className="w-5 h-5 mr-2" />
-              <span className="text-sm font-medium">Our Success Stories</span>
+            <div className="inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 bg-white/10 rounded-full backdrop-blur-sm mb-4 sm:mb-6">
+              <Trophy className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <span className="text-xs sm:text-sm font-medium">Our Success Stories</span>
             </div>
-            <h1 className="text-3xl md:text-7xl font-bold mb-6 text-white">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 text-white px-2">
               Our Success Stories
             </h1>
-            <p className="text-lg md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
               Real stories of students who achieved their dreams with Dunya Consultants
             </p>
             
             {/* Achievements Statistics */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 px-2">
               {achievements.map((achievement, index) => (
                 <motion.div
                   key={index}
@@ -160,19 +160,19 @@ export default function OurSuccessStories() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="text-4xl lg:text-5xl font-bold text-white mb-2">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-1 sm:mb-2">
                     {achievement.value}
                   </div>
-                  <p className="text-blue-100 text-sm lg:text-base">{achievement.description}</p>
+                  <p className="text-blue-100 text-xs sm:text-sm lg:text-base px-1">{achievement.description}</p>
                 </motion.div>
               ))}
             </div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto">
                 Share Your Story
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
                 Free Consultation
               </Button>
             </div>
@@ -206,24 +206,25 @@ export default function OurSuccessStories() {
           </motion.div>
 
           {/* Country Tabs */}
-          <div className="flex justify-center mb-8">
-            <div className="inline-flex bg-white rounded-lg p-1 shadow-lg border">
+          <div className="flex justify-center mb-8 px-4">
+            <div className="grid grid-cols-2 sm:flex bg-white rounded-lg p-1 shadow-lg border gap-1 w-full max-w-2xl">
               {[
-                { id: 'UK', name: 'United Kingdom', color: 'blue' },
-                { id: 'Finland', name: 'Finland', color: 'blue' },
-                { id: 'Sweden', name: 'Sweden', color: 'blue' },
-                { id: 'Turkey', name: 'Turkey', color: 'blue' }
+                { id: 'UK', name: 'United Kingdom', shortName: 'UK', color: 'blue' },
+                { id: 'Finland', name: 'Finland', shortName: 'Finland', color: 'blue' },
+                { id: 'Sweden', name: 'Sweden', shortName: 'Sweden', color: 'blue' },
+                { id: 'Turkey', name: 'Turkey', shortName: 'Turkey', color: 'blue' }
               ].map((country) => (
                 <button
                   key={country.id}
                   onClick={() => setActiveTab(country.id)}
-                  className={`px-6 py-3 rounded-md font-medium transition-all duration-300 ${
+                  className={`px-3 py-2 sm:px-6 sm:py-3 rounded-md font-medium transition-all duration-300 text-sm sm:text-base ${
                     activeTab === country.id
-                      ? `bg-gradient-to-r from-${country.color}-500 to-${country.color}-600 text-white shadow-md`
+                      ? 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white shadow-md'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                   }`}
                 >
-                  {country.name}
+                  <span className="sm:hidden">{country.shortName}</span>
+                  <span className="hidden sm:inline">{country.name}</span>
                 </button>
               ))}
             </div>
@@ -381,7 +382,7 @@ export default function OurSuccessStories() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-0"
           >
             {(activeTab === 'UK' ? [
             ] : activeTab === 'Finland' ? [

@@ -86,7 +86,7 @@ export default function WhoWeAre() {
     <div className="min-h-screen bg-white">
       <Navigation />
       {/* Hero Section - Redesigned */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
+      <section className="relative pt-24 sm:pt-32 pb-16 sm:pb-20 bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#1565c0] text-white overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
@@ -94,39 +94,39 @@ export default function WhoWeAre() {
           <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/10 rounded-full blur-lg"></div>
         </div>
         
-        <div className="relative max-w-7xl mx-auto px-6">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <div className="inline-flex items-center px-6 py-3 bg-white/15 rounded-full backdrop-blur-sm mb-8 border border-white/20">
-              <Star className="w-5 h-5 mr-2" />
-              <span className="text-sm font-medium">About Dunya Consultants</span>
+            <div className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-white/15 rounded-full backdrop-blur-sm mb-6 sm:mb-8 border border-white/20">
+              <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+              <span className="text-xs sm:text-sm font-medium">About Dunya Consultants</span>
             </div>
             
-            <h1 className="text-3xl md:text-7xl font-bold mb-6 leading-tight text-white">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight text-white px-2">
               Why We Are{" "}
               <span className="text-white">
                 Unique
               </span>
             </h1>
             
-            <p className="text-lg md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-8">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
               Pakistan's leading education consultancy, dedicated to making your study abroad dreams a reality with personalized guidance and proven success.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-row gap-2 sm:gap-4 justify-center mb-16">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4">
               <Link href="/contact">
-                <Button size="sm" className="bg-white text-[#1D50C9] hover:bg-blue-50 px-2 py-1 text-xs sm:px-8 sm:py-4 sm:text-lg font-semibold sm:size-lg">
+                <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 px-4 py-3 sm:px-8 sm:py-4 text-sm sm:text-lg font-semibold w-full sm:w-auto">
                   Book Free Consultation
-                  <ArrowRight className="w-3 h-3 ml-1 sm:w-5 sm:h-5 sm:ml-2" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Button>
               </Link>
               <Link href="/about/mission-vision">
-                <Button size="sm" variant="outline" className="border-white text-white hover:bg-white/10 px-2 py-1 text-xs sm:px-8 sm:py-4 sm:text-lg sm:size-lg">
+                <Button variant="outline" className="border-white text-white hover:bg-white/10 px-4 py-3 sm:px-8 sm:py-4 text-sm sm:text-lg w-full sm:w-auto">
                   Our Mission & Vision
                 </Button>
               </Link>
@@ -135,27 +135,27 @@ export default function WhoWeAre() {
         </div>
       </section>
       {/* Stats Section - Redesigned */}
-      <section className="py-12 bg-gradient-to-br from-gray-50 to-blue-50 relative">
+      <section className="py-12 sm:py-16 bg-gradient-to-br from-gray-50 to-blue-50 relative">
         <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div className="max-w-7xl mx-auto px-6 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="text-center mb-8"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-4 sm:mb-6 px-4">
               We Serve Around{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 The Globe
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Your trusted partner for seamless study visa solutions abroad
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 px-2 sm:px-0">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -179,8 +179,8 @@ export default function WhoWeAre() {
         </div>
       </section>
       {/* About Content - Completely Redesigned */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -191,18 +191,18 @@ export default function WhoWeAre() {
               <Award className="w-5 h-5 mr-2" />
               About Dunya Consultants
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-4 sm:mb-6 px-4">
               Pakistan's Most Trusted{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 Education Consultancy
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-12 px-4">
               Empowering Pakistani students to achieve their global education dreams through expert guidance, proven processes, and unwavering support.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
             {/* Main Content */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -211,7 +211,7 @@ export default function WhoWeAre() {
               className="lg:col-span-2"
             >
               <Card className="h-full border-0 shadow-xl bg-white">
-                <CardContent className="p-8">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   <div className="space-y-8">
                     {/* Company Overview */}
                     <div>
@@ -225,7 +225,7 @@ export default function WhoWeAre() {
                     </div>
 
                     {/* Key Stats Grid */}
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                       <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
                         <div className="flex items-center mb-3">
                           <Building2 className="w-8 h-8 text-[#1D50C9] mr-3" />
