@@ -91,12 +91,12 @@ export default function OurSuccessStories() {
   const achievements = [
     {
       metric: "Students Placed",
-      value: "10,000+",
+      value: "2,500+",
       description: "Successful university placements worldwide"
     },
     {
       metric: "Success Rate",
-      value: "95%",
+      value: "98%",
       description: "Visa approval success rate"
     },
     {
@@ -105,9 +105,9 @@ export default function OurSuccessStories() {
       description: "Office branches across Pakistan"
     },
     {
-      metric: "Universities",
-      value: "50+",
-      description: "Partner universities globally"
+      metric: "Countries",
+      value: "15+",
+      description: "Global reach across major study destinations"
     }
   ];
 
