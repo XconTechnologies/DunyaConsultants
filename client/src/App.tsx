@@ -74,7 +74,6 @@ import StudyAbroadTurkey from "@/pages/study-abroad/turkey";
 
 // About Pages
 import WhoWeAre from "@/pages/about/who-we-are";
-import MissionVision from "@/pages/about/mission-vision";
 import WhyChooseUs from "@/pages/about/why-choose-us";
 import SuccessStories from "@/pages/about/success-stories";
 import OurSuccessStories from "@/pages/about/our-success-stories";
@@ -115,7 +114,6 @@ function Router() {
       
       {/* About Routes */}
       <Route path="/about/" component={WhoWeAre} />
-      <Route path="/about/mission-vision" component={MissionVision} />
       <Route path="/about/why-choose-us" component={WhyChooseUs} />
       <Route path="/about/success-stories" component={SuccessStories} />
       <Route path="/about/our-success-stories" component={OurSuccessStories} />
