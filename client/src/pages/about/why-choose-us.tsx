@@ -172,9 +172,8 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Our{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  Advantages
+                <span className="text-[#1D50C9]">
+                  Our Advantages
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -261,9 +260,8 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Complete{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  Services
+                <span className="text-[#1D50C9]">
+                  Complete Services
                 </span>
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -301,9 +299,8 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Student{" "}
-                <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
-                  Testimonials
+                <span className="text-[#1D50C9]">
+                  Student Testimonials
                 </span>
               </h2>
               <p className="text-xl text-gray-600">
