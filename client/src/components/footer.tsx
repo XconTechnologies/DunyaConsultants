@@ -70,7 +70,7 @@ export default function Footer() {
               </ul>
               
               <h4 className="text-lg font-bold mb-6 text-white">International Offices</h4>
-              <ul className="space-y-3 text-sm">
+              <ul className="space-y-3 text-sm mb-6">
                 <li>
                   <Link href="/offices#international-offices" className="text-blue-100 hover:text-white transition-colors duration-300 flex items-center group">
                     <Globe className="w-3 h-3 mr-2 opacity-60 group-hover:opacity-100" />
@@ -78,6 +78,52 @@ export default function Footer() {
                   </Link>
                 </li>
               </ul>
+              
+              {/* Accreditation Badges */}
+              <div className="flex flex-wrap items-center gap-3">
+                {/* ICEF Badge with Link */}
+                <a 
+                  href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:scale-105 transition-transform duration-300"
+                >
+                  <div className="bg-white rounded-lg p-2 shadow-lg">
+                    <img 
+                      src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
+                      alt="ICEF Accredited" 
+                      className="h-10 w-auto"
+                    />
+                  </div>
+                </a>
+                
+                {/* British Council Logo */}
+                <div className="bg-white rounded-lg p-2 shadow-lg hover:scale-105 transition-transform duration-300">
+                  <img 
+                    src={BritishCouncilLogo} 
+                    alt="British Council" 
+                    className="h-8 w-auto"
+                  />
+                </div>
+                
+                {/* Duolingo Logo */}
+                <div className="bg-white rounded-lg p-2 shadow-lg hover:scale-105 transition-transform duration-300">
+                  <img 
+                    src={DuolingoLogo} 
+                    alt="Duolingo" 
+                    className="h-8 w-auto"
+                  />
+                </div>
+                
+                {/* Language Cert Logo */}
+                <div className="bg-white rounded-lg p-2 shadow-lg hover:scale-105 transition-transform duration-300">
+                  <img 
+                    src={LanguageCertLogo} 
+                    alt="Language Cert" 
+                    className="h-8 w-auto"
+                  />
+                </div>
+              </div>
             </div>
 
 
@@ -184,53 +230,6 @@ export default function Footer() {
 
           </div>
 
-          {/* Accreditation Badges - Full Width */}
-          <div className="mt-12 mb-8">
-            <div className="flex justify-center items-center gap-6">
-              {/* ICEF Badge with Link */}
-              <a 
-                href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:scale-105 transition-transform duration-300"
-              >
-                <div className="bg-white rounded-lg p-3 shadow-lg">
-                  <img 
-                    src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
-                    alt="ICEF Accredited" 
-                    className="h-12 w-auto"
-                  />
-                </div>
-              </a>
-              
-              {/* British Council Logo */}
-              <div className="bg-white rounded-lg p-3 shadow-lg hover:scale-105 transition-transform duration-300">
-                <img 
-                  src={BritishCouncilLogo} 
-                  alt="British Council" 
-                  className="h-10 w-auto"
-                />
-              </div>
-              
-              {/* Duolingo Logo */}
-              <div className="bg-white rounded-lg p-3 shadow-lg hover:scale-105 transition-transform duration-300">
-                <img 
-                  src={DuolingoLogo} 
-                  alt="Duolingo" 
-                  className="h-10 w-auto"
-                />
-              </div>
-              
-              {/* Language Cert Logo */}
-              <div className="bg-white rounded-lg p-3 shadow-lg hover:scale-105 transition-transform duration-300">
-                <img 
-                  src={LanguageCertLogo} 
-                  alt="Language Cert" 
-                  className="h-10 w-auto"
-                />
-              </div>
-            </div>
-          </div>
 
           {/* Bottom Bar */}
           <div className="border-t border-white/20 pt-6 text-center">
