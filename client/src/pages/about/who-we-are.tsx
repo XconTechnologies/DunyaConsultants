@@ -302,31 +302,33 @@ export default function WhoWeAre() {
               className="lg:col-span-1"
             >
               <Card className="h-full border-0 shadow-xl bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white">
-                <CardContent className="p-8 text-center h-full flex flex-col justify-center">
-                  <div className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <Award className="w-10 h-10 text-white" />
+                <CardContent className="p-6 text-center h-full flex flex-col justify-between min-h-[500px]">
+                  <div className="flex-1 flex flex-col justify-center">
+                    <div className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                      <Award className="w-10 h-10 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-4">Excellence in Education</h3>
+                    <p className="text-white/90 leading-relaxed text-base px-2">
+                      Committed to preparing students for success on international platforms and fostering their growth as global professionals and intellectuals.
+                    </p>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4">Excellence in Education</h3>
-                  <p className="text-blue-100 leading-relaxed mb-8">
-                    Committed to preparing students for success on international platforms and fostering their growth as global professionals and intellectuals.
-                  </p>
                   
-                  <div className="space-y-6">
-                    <div className="grid grid-cols-2 gap-4">
+                  <div className="mt-8 space-y-6">
+                    <div className="grid grid-cols-2 gap-6">
                       <div className="text-center">
-                        <div className="text-3xl font-bold text-white">5+</div>
-                        <div className="text-sm text-blue-200">Years Excellence</div>
+                        <div className="text-3xl font-bold text-white mb-1">5+</div>
+                        <div className="text-sm text-white/80 font-medium">Years Excellence</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-3xl font-bold text-white">98%</div>
-                        <div className="text-sm text-blue-200">Success Rate</div>
+                        <div className="text-3xl font-bold text-white mb-1">98%</div>
+                        <div className="text-sm text-white/80 font-medium">Success Rate</div>
                       </div>
                     </div>
                     
-                    <div className="pt-6 border-t border-white/20">
+                    <div className="pt-6 border-t border-white/30">
                       <div className="text-center">
                         <div className="text-4xl font-bold text-white mb-2">2,500+</div>
-                        <div className="text-blue-200 font-semibold">Students Successfully Placed</div>
+                        <div className="text-white/90 font-semibold text-base">Students Successfully Placed</div>
                       </div>
                     </div>
                   </div>
