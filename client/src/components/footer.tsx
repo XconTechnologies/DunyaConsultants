@@ -55,32 +55,39 @@ export default function Footer() {
               {/* Accreditation Badges */}
               <div className="mb-4">
                 <div className="flex flex-wrap items-center gap-4">
-                  {/* ICEF Logo */}
-                  <img 
-                    src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
-                    alt="ICEF Accredited" 
-                    className="h-10 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
-                  />
+                  {/* ICEF Badge with Link */}
+                  <a 
+                    href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:scale-105 transition-transform duration-300"
+                  >
+                    <img 
+                      src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
+                      alt="ICEF Accredited" 
+                      className="h-10 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                    />
+                  </a>
                   
                   {/* British Council Logo */}
                   <img 
-                    src="https://www.britishcouncil.org/sites/default/files/british-council-logo-white.png" 
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/British_Council_logo.svg/320px-British_Council_logo.svg.png" 
                     alt="British Council" 
-                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                   />
                   
                   {/* Duolingo Logo */}
                   <img 
-                    src="https://d35aaqx5ub95lt.cloudfront.net/images/duolingo-logo-white.svg" 
+                    src="https://logos-world.net/wp-content/uploads/2021/03/Duolingo-Logo.png" 
                     alt="Duolingo" 
-                    className="h-6 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                   />
                   
                   {/* Language Cert Logo */}
                   <img 
-                    src="https://www.languagecert.org/media/1087/languagecert-logo-white.png" 
+                    src="https://www.languagecert.org/en/hubfs/raw_assets/public/languagecert/images/brand/languagecert-logo.svg" 
                     alt="Language Cert" 
-                    className="h-7 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
                   />
                 </div>
               </div>
