@@ -304,7 +304,7 @@ export default function WhoWeAre() {
                     <div className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                       <Award className="w-10 h-10 text-white" />
                     </div>
-                    <h3 className="text-3xl font-bold mb-4 text-white !text-white">Our Mission</h3>
+                    <h3 className="text-3xl font-bold mb-4" style={{ color: '#ffffff !important' }}>Our Mission</h3>
                     <p className="text-white/90 text-lg leading-relaxed">
                       Transforming dreams into reality by guiding Pakistani students to world-class educational opportunities abroad.
                     </p>
