@@ -10,10 +10,10 @@ import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
 
 export default function WhoWeAre() {
   const stats = [
-    { number: "10+", label: "Countries", icon: Globe, color: "from-[#1D50C9] to-[#1845B3]" },
+    { number: "15+", label: "Countries", icon: Globe, color: "from-[#1D50C9] to-[#1845B3]" },
     { number: "20+", label: "Branches", icon: Building2, color: "from-[#1D50C9] to-[#1845B3]" },
     { number: "98%", label: "Success Rate", icon: Award, color: "from-[#1D50C9] to-[#1845B3]" },
-    { number: "2,000+", label: "Visa Processing", icon: Users, color: "from-[#1D50C9] to-[#1845B3]" },
+    { number: "2,500+", label: "Students Placed", icon: Users, color: "from-[#1D50C9] to-[#1845B3]" },
   ];
 
   const processSteps = [
