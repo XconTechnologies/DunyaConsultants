@@ -2,12 +2,30 @@ import { motion } from 'framer-motion';
 import { Link } from 'wouter';
 import { Mail, User, Building, Handshake, Users, Globe, Phone, MapPin, FileText, Calculator } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { useEffect } from 'react';
 
 import Asset_1 from "@assets/Asset-1.png";
 
 import New_Logo_White from "@assets/New Logo White.png";
 
 export default function Footer() {
+  useEffect(() => {
+    // Load ICEF badge script
+    const script = document.createElement('script');
+    script.src = 'https://www-cdn.icef.com/scripts/iasbadgeid.js';
+    script.async = true;
+    script.defer = true;
+    script.crossOrigin = 'anonymous';
+    document.body.appendChild(script);
+
+    return () => {
+      // Cleanup script on component unmount
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <footer className="relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #1D50C9 0%, #1E4BA8 50%, #163C8C 100%)' }}>
       {/* Background Effects */}
@@ -38,7 +56,6 @@ export default function Footer() {
               {/* ICEF Badge */}
               <div className="mb-4">
                 <span id='iasBadge' data-account-id='6061'></span>
-                <script async defer crossOrigin="anonymous" src="https://www-cdn.icef.com/scripts/iasbadgeid.js"></script>
               </div>
             </div>
 
