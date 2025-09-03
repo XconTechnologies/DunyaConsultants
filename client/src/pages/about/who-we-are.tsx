@@ -4,6 +4,7 @@ import { Users, Globe, Award, Target, Building2, GraduationCap, Heart, Star, Che
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
+import CalendlyButton from "@/components/calendly-button";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
@@ -119,12 +120,11 @@ export default function WhoWeAre() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4">
-              <Link href="/contact">
-                <Button className="bg-white text-[#1D50C9] hover:bg-blue-50 px-4 py-3 sm:px-8 sm:py-4 text-sm sm:text-lg font-semibold w-full sm:w-auto">
-                  Book Free Consultation
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
-                </Button>
-              </Link>
+              <CalendlyButton 
+                text="📅 Book Free Consultation"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 px-4 py-3 sm:px-8 sm:py-4 text-sm sm:text-lg font-semibold w-full sm:w-auto"
+                showIcon={false}
+              />
               <Link href="/about/mission-vision">
                 <Button variant="outline" className="border-white text-white hover:bg-white/10 px-4 py-3 sm:px-8 sm:py-4 text-sm sm:text-lg w-full sm:w-auto">
                   Our Mission & Vision

@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Calendar, Clock, User, Phone, Mail, MapPin, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CalendlyButton from "@/components/calendly-button";
 
 // Available time slots
 const timeSlots = [
@@ -232,9 +233,16 @@ export default function ConsultationBookingCalendar() {
           >
             Book Your Free Consultation
           </motion.h2>
-          <p className="text-neutral-600 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed">
+          <p className="text-neutral-600 text-sm lg:text-base max-w-3xl mx-auto leading-relaxed mb-8">
             Schedule a personalized consultation with our expert counsellors to kickstart your study abroad journey
           </p>
+          <div className="flex justify-center">
+            <CalendlyButton 
+              text="📅 Schedule Online Meeting"
+              className="px-8 py-3 text-lg"
+              size="lg"
+            />
+          </div>
         </motion.div>
 
         {/* Step-by-Step Timeline */}

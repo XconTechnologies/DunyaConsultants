@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { CheckCircle, Circle, ArrowRight, Calendar, MapPin, GraduationCap, Plane, FileText, Users, Award, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CalendlyButton from "@/components/calendly-button";
 
 const journeySteps = [
   {
@@ -321,12 +322,12 @@ export default function EducationJourneySection() {
                 Book your free consultation today and take the first step towards your international education.
               </p>
               <div className="flex flex-col sm:flex-row justify-center space-y-3 sm:space-y-0 sm:space-x-4">
-                <Button
+                <CalendlyButton
                   size="lg"
+                  text="📅 Book Free Consultation"
                   className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-3"
-                >
-                  Book Free Consultation
-                </Button>
+                  showIcon={false}
+                />
                 <Button
                   size="lg"
                   variant="outline"

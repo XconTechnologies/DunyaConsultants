@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CalendlyButton from "@/components/calendly-button";
 
 interface QuizQuestion {
   id: string;
@@ -441,7 +442,7 @@ export default function CourseMatchTool() {
                       size="lg"
                       className="bg-white text-primary hover:bg-white/90 font-semibold px-8 py-3"
                     >
-                      Book Free Consultation
+                      📅 Book Free Consultation
                     </Button>
                     <Button
                       size="lg"

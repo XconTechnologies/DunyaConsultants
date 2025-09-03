@@ -30,6 +30,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CalendlyButton from "@/components/calendly-button";
 
 interface BlogPost {
   id: string;
@@ -619,7 +620,7 @@ export default function Blogs() {
                               </Select>
                             </div>
                             <Button className="w-full mt-4 bg-primary hover:bg-primary/90 text-white py-3">
-                              Get Free Consultation
+                              📅 Get Free Consultation
                             </Button>
                           </div>
                         </div>
@@ -814,7 +815,7 @@ export default function Blogs() {
                 <p className="text-xl mb-6">Don't let your dreams wait! Get personalized guidance from our experts today.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
                   <Button className="bg-white #1845B3 hover:bg-blue-50 flex-1">
-                    Book Free Consultation
+                    📅 Book Free Consultation
                   </Button>
                   <Button variant="outline" className="border-white text-white hover:bg-white/10 flex-1">
                     Download Guide

@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CalendlyButton from "@/components/calendly-button";
 
 interface CostData {
   country: string;
@@ -448,7 +449,7 @@ export default function CostCalculator() {
                       {/* CTA */}
                       <div className="pt-4">
                         <Button className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
-                          Book Free Consultation
+                          📅 Book Free Consultation
                         </Button>
                       </div>
                     </div>

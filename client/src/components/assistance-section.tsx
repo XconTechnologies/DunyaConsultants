@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Phone, Mail, MessageCircle, Clock, CheckCircle, ArrowRight, Headphones } from 'lucide-react';
+import CalendlyButton from '@/components/calendly-button';
 
 export default function AssistanceSection() {
   const ref = useRef(null);
@@ -176,15 +177,17 @@ export default function AssistanceSection() {
                   </select>
                 </div>
 
-                <motion.button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1a73e8] text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-#1a73e8 hover:to-#1565c0 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+                <motion.div
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  className="w-full"
                 >
-                  Get Free Consultation
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
+                  <CalendlyButton 
+                    text="📅 Get Free Consultation"
+                    className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1a73e8] text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-#1a73e8 hover:to-#1565c0 transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+                    showIcon={false}
+                  />
+                </motion.div>
               </form>
 
               {/* Trust Indicators */}

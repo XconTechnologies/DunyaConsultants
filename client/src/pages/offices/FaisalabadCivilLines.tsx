@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CalendlyButton from "@/components/calendly-button";
 
 export default function FaisalabadCivilLines() {
   const office = {
