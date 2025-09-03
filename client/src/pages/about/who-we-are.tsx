@@ -194,13 +194,13 @@ export default function WhoWeAre() {
               <Award className="w-5 h-5 mr-2" />
               About Dunya Consultants
             </div>
-            <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#1D50C9] mb-6">
               Pakistan's Most Trusted{" "}
               <span className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent">
                 Education Consultancy
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
               Empowering Pakistani students to achieve their global education dreams through expert guidance, proven processes, and unwavering support.
             </p>
           </motion.div>
