@@ -67,7 +67,7 @@ export default function Footer() {
                     <img 
                       src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
                       alt="ICEF Accredited" 
-                      className="h-10 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                      className="h-14 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
                     />
                   </a>
                   
@@ -75,21 +75,21 @@ export default function Footer() {
                   <img 
                     src={BritishCouncilLogo} 
                     alt="British Council" 
-                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                    className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
                   />
                   
                   {/* Duolingo Logo */}
                   <img 
                     src={DuolingoLogo} 
                     alt="Duolingo" 
-                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                    className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
                   />
                   
                   {/* Language Cert Logo */}
                   <img 
                     src={LanguageCertLogo} 
                     alt="Language Cert" 
-                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
+                    className="h-12 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
                   />
                 </div>
               </div>
