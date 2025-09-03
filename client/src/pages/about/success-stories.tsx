@@ -64,10 +64,10 @@ export default function SuccessStories() {
       examples: ["Harvard", "Oxford", "Cambridge", "MIT", "Stanford"]
     },
     {
-      category: "Countries",
-      count: "15+",
-      description: "Global reach across major study destinations",
-      examples: ["USA", "UK", "Canada", "Australia", "Germany"]
+      category: "Success Rate",
+      count: "98%",
+      description: "Visa approval success rate",
+      examples: ["Student Visas", "Study Permits", "F-1 Visas", "Tier 4 Visas"]
     },
     {
       category: "Branches",
@@ -76,10 +76,10 @@ export default function SuccessStories() {
       examples: ["Sargodha", "Lahore", "Karachi", "Islamabad", "Faisalabad"]
     },
     {
-      category: "Success Rate",
-      count: "98%",
-      description: "Visa approval success rate",
-      examples: ["Student Visas", "Study Permits", "F-1 Visas", "Tier 4 Visas"]
+      category: "Countries",
+      count: "15+",
+      description: "Global reach across major study destinations",
+      examples: ["USA", "UK", "Canada", "Australia", "Germany"]
     }
   ];
 
