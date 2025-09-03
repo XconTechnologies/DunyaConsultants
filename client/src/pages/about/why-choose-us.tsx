@@ -24,7 +24,7 @@ export default function WhyChooseUs() {
       icon: Award,
       title: "More Than 5 Years of Excellence",
       description: "Trusted by thousands of students worldwide with proven track record of success",
-      stats: "95% Success Rate"
+      stats: "98% Success Rate"
     },
     {
       icon: Globe,
@@ -60,12 +60,12 @@ export default function WhyChooseUs() {
 
   const achievements = [
     {
-      number: "10,000+",
+      number: "2,500+",
       label: "Students Placed",
       description: "Successfully placed students in top universities worldwide"
     },
     {
-      number: "95%",
+      number: "98%",
       label: "Visa Success Rate",
       description: "One of the highest visa approval rates in Pakistan"
     },
