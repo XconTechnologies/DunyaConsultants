@@ -5,8 +5,10 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { useEffect } from 'react';
 
 import Asset_1 from "@assets/Asset-1.png";
-
 import New_Logo_White from "@assets/New Logo White.png";
+import BritishCouncilLogo from "@assets/image_1756901212132.png";
+import DuolingoLogo from "@assets/image_1756901218470.png";
+import LanguageCertLogo from "@assets/image_1756901223335.png";
 
 export default function Footer() {
   useEffect(() => {
@@ -71,23 +73,23 @@ export default function Footer() {
                   
                   {/* British Council Logo */}
                   <img 
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/British_Council_logo.svg/320px-British_Council_logo.svg.png" 
+                    src={BritishCouncilLogo} 
                     alt="British Council" 
-                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
                   />
                   
                   {/* Duolingo Logo */}
                   <img 
-                    src="https://logos-world.net/wp-content/uploads/2021/03/Duolingo-Logo.png" 
+                    src={DuolingoLogo} 
                     alt="Duolingo" 
-                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
                   />
                   
                   {/* Language Cert Logo */}
                   <img 
-                    src="https://www.languagecert.org/en/hubfs/raw_assets/public/languagecert/images/brand/languagecert-logo.svg" 
+                    src={LanguageCertLogo} 
                     alt="Language Cert" 
-                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
+                    className="h-8 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
                   />
                 </div>
               </div>
