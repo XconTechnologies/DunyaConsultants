@@ -152,40 +152,6 @@ export default function StatsBanner() {
           }} />
         </div>
       </div>
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              x: [0, Math.random() * 150 - 75],
-              y: [0, Math.random() * 150 - 75],
-              scale: [1, 1.5, 1],
-              opacity: [0.2, 0.8, 0.2],
-              rotate: [0, 360],
-            }}
-            transition={{
-              duration: 6 + Math.random() * 8,
-              repeat: Infinity,
-              delay: Math.random() * 4,
-              ease: "easeInOut"
-            }}
-          >
-            {i % 3 === 0 ? (
-              <Sparkles className="w-3 h-3 text-white/60" />
-            ) : i % 3 === 1 ? (
-              <Star className="w-2 h-2 text-white/50" />
-            ) : (
-              <Zap className="w-2 h-2 text-white/50" />
-            )}
-          </motion.div>
-        ))}
-      </div>
       {/* Social Icons - Fixed Position for Desktop, Bottom Section for Mobile - Outside container for proper z-index */}
       <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-[9999] bg-white rounded-full px-2 py-3 shadow-lg border border-gray-200 hidden lg:block">
         <div className="flex flex-col gap-2">
@@ -318,22 +284,6 @@ export default function StatsBanner() {
                     <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center ${stat.glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
                       <IconComponent className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
                     </div>
-                    
-                    {/* Floating Sparkles - Only star animation kept */}
-                    <motion.div
-                      className="absolute -top-2 -right-2 w-6 h-6"
-                      animate={{
-                        rotate: [0, 180, 360],
-                        scale: [1, 1.3, 1],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      <Sparkles className="w-6 h-6 text-white opacity-80" />
-                    </motion.div>
                   </div>
 
                   {/* Content */}
@@ -378,22 +328,6 @@ export default function StatsBanner() {
                   <div className={`w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center ${stats[4].glowColor} shadow-lg group-hover:shadow-xl transition-all duration-500`} style={{ backgroundColor: '#1D50C9' }}>
                     <Star className="w-4 h-4 sm:w-4 sm:h-4 lg:w-5 lg:h-5 text-white" />
                   </div>
-                  
-                  {/* Floating Sparkles - Only star animation kept */}
-                  <motion.div
-                    className="absolute -top-2 -right-2 w-6 h-6"
-                    animate={{
-                      rotate: [0, 180, 360],
-                      scale: [1, 1.3, 1],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    <Sparkles className="w-6 h-6 text-white opacity-80" />
-                  </motion.div>
                 </div>
 
                 {/* Content */}

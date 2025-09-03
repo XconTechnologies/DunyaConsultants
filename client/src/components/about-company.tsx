@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { Check, Shield, Award, Globe, Users, CheckCircle } from "lucide-react";
 
 // Import the company collage image
@@ -46,61 +46,38 @@ export default function AboutCompany() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-stretch">
           
           {/* Left Side - Image */}
-          <motion.div
-            className="relative order-2 lg:order-1"
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+          <div className="relative order-2 lg:order-1">
             <img
               src={companyCollage}
               alt="Pakistani students studying abroad with Dunya Consultants"
               className="w-full h-[450px] object-contain sm:h-80 sm:object-cover md:h-96 lg:h-[600px] object-center rounded-2xl shadow-lg"
               loading="eager"
             />
-          </motion.div>
+          </div>
 
           {/* Right Side - Content */}
-          <motion.div
-            className="relative order-1 lg:order-2"
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          >
+          <div className="relative order-1 lg:order-2">
             <div className="bg-white rounded-3xl p-4 sm:p-6 lg:p-8 shadow-xl min-h-64 sm:min-h-80 md:min-h-96 lg:h-[600px] flex flex-col justify-between">
               {/* About Company Badge */}
-              <motion.div
-                className="mb-4"
-                initial={{ opacity: 0, y: -20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
+              <div className="mb-4">
                 <div className="inline-flex items-center px-4 py-2 rounded-full shadow-sm" style={{ backgroundColor: '#1D50C9' }}>
                   <span className="text-xs font-semibold text-white tracking-wide uppercase">
                     ✦ About Company
                   </span>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Main Heading */}
-              <motion.h2
-                className="text-3xl lg:text-4xl font-bold mb-6 text-[#1D50C9]"
-                initial={{ opacity: 0, y: -20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-              >
+              <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-[#1D50C9]">
                 Who We Are
-              </motion.h2>
+              </h2>
 
               {/* Content Items */}
               <div className="space-y-1.5 sm:space-y-2 flex-1">
                 {expandableContent.map((item, index) => (
-                  <motion.div
+                  <div
                     key={index}
                     className="flex items-start gap-2 sm:gap-3 p-1 rounded-xl hover:bg-blue-50/50 transition-colors duration-300"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
                   >
                     <div className="flex-shrink-0 w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center shadow-lg">
                       <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
@@ -113,11 +90,11 @@ export default function AboutCompany() {
                         {item.content}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>
