@@ -65,19 +65,19 @@ export default function AccreditationsSection() {
               }}
               className="group relative"
             >
-              <div className="bg-white rounded-xl pt-4 pb-6 px-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] h-80 flex flex-col">
+              <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] flex flex-col items-center justify-center space-y-4">
 
                 {/* Logo Area */}
-                <div className="text-center flex-shrink-0">
+                <div className="text-center">
                   <img
                     src={accreditation.image}
                     alt={accreditation.name}
-                    className="max-h-48 max-w-48 mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                    className="max-h-32 max-w-32 mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>
 
-                {/* Content */}
-                <div className="text-center flex-grow flex flex-col justify-end pt-[8px] pb-[22px] pl-[0px] pr-[0px]">
+                {/* Badge */}
+                <div className="text-center">
                   <div className="inline-flex items-center space-x-2 text-white text-sm font-medium px-4 py-2 rounded-full" style={{ backgroundColor: '#1D50C9' }}>
                     <Star className="w-4 h-4" />
                     <span>{accreditation.status}</span>
