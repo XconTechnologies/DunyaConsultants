@@ -271,48 +271,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
   const blogPost = blogPosts.find((post: any) => post.slug === slug);
 
-  if (!blogPost) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
-            <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
-            <Link href="/blog" className="text-[#1D50C9] hover:underline">
-              ← Back to Blog
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
-
-  // Parse content based on format
-  let contentSections;
-  if (typeof blogPost.rawContent === 'string' && blogPost.rawContent.startsWith('{')) {
-    try {
-      const parsedContent = JSON.parse(blogPost.rawContent);
-      if (parsedContent.sections) {
-        contentSections = parsedContent.sections
-          .filter((section: any) => section.title.trim() !== '') // Filter out empty titles
-          .map((section: any, index: number) => ({
-            id: `section-${index}`,
-            title: section.title.replace(/^#+\s*/, '').replace(/#+/g, ''),
-            content: section.content
-          }));
-      } else {
-        contentSections = parseContentToSections(blogPost.content);
-      }
-    } catch {
-      contentSections = parseContentToSections(blogPost.content);
-    }
-  } else {
-    contentSections = parseContentToSections(blogPost.content);
-  }
-
-  // Get latest 5 blogs excluding the current blog
+  // Get latest 5 blogs excluding the current blog (always run this)
   const relatedBlogs = blogPosts
     .filter((post: any) => post.slug !== slug) // Exclude current blog
     .slice(0, 5); // Get latest 5
@@ -320,7 +279,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
   // Duplicate the blogs for infinite scroll effect
   const duplicatedRelatedBlogs = [...relatedBlogs, ...relatedBlogs];
 
-  // Infinite scroll animation for related blogs
+  // Infinite scroll animation for related blogs (always call this hook)
   useEffect(() => {
     const carousel = relatedBlogsCarouselRef.current;
     if (!carousel) return;
@@ -382,6 +341,47 @@ function BlogPostDetail({ slug }: { slug: string }) {
       clearTimeout(timeoutId);
     };
   }, [duplicatedRelatedBlogs]);
+
+  if (!blogPost) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
+            <p className="text-gray-600 mb-6">The blog post you're looking for doesn't exist.</p>
+            <Link href="/blog" className="text-[#1D50C9] hover:underline">
+              ← Back to Blog
+            </Link>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Parse content based on format
+  let contentSections;
+  if (typeof blogPost.rawContent === 'string' && blogPost.rawContent.startsWith('{')) {
+    try {
+      const parsedContent = JSON.parse(blogPost.rawContent);
+      if (parsedContent.sections) {
+        contentSections = parsedContent.sections
+          .filter((section: any) => section.title.trim() !== '') // Filter out empty titles
+          .map((section: any, index: number) => ({
+            id: `section-${index}`,
+            title: section.title.replace(/^#+\s*/, '').replace(/#+/g, ''),
+            content: section.content
+          }));
+      } else {
+        contentSections = parseContentToSections(blogPost.content);
+      }
+    } catch {
+      contentSections = parseContentToSections(blogPost.content);
+    }
+  } else {
+    contentSections = parseContentToSections(blogPost.content);
+  }
 
   return (
     <div className="min-h-screen bg-white">
