@@ -223,7 +223,7 @@ const offices = [
   },
   {
     id: "edinburgh",
-    city: "United Kingdom (Edinburgh)",
+    city: "Edinburgh",
     name: "Ferry Road Place",
     address: "4 Ferry Road Place, Edinburgh EH4 4AX",
     phone: "+44 7448‑419291",
