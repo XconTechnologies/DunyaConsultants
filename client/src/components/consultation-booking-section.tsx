@@ -71,43 +71,21 @@ export default function ConsultationBookingSection() {
             </motion.div>
           </div>
 
-          {/* CTA Buttons - Two Step Process */}
+          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col md:flex-row items-center justify-center gap-6"
+            className="flex justify-center"
           >
-            {/* Step 1: Fill Form */}
-            <div className="text-center">
-              <h4 className="text-white font-semibold mb-3">Step 1: Fill Your Details</h4>
-              <CalendlyButton
-                url="https://calendly.com/d/cr7w-sby-xzh"
-                text="📋 Fill Consultation Form"
-                className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                size="lg"
-                showIcon={false}
-              />
-            </div>
-
-            {/* Arrow or Separator */}
-            <div className="hidden md:block text-white text-2xl font-bold">→</div>
-
-            {/* Step 2: Schedule Meeting */}
-            <div className="text-center">
-              <h4 className="text-white font-semibold mb-3">Step 2: Schedule Your Meeting</h4>
-              <CalendlyButton
-                url="https://calendly.com/globaldc89/30min"
-                text="📅 Schedule Online Meeting"
-                className="bg-white/20 text-white border-2 border-white hover:bg-white hover:text-[#1D50C9] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                size="lg"
-                showIcon={false}
-              />
-            </div>
+            <CalendlyButton
+              url="https://calendly.com/d/cr7w-sby-xzh"
+              text="📋 Fill Consultation Form"
+              className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              size="lg"
+              showIcon={false}
+            />
           </motion.div>
-          
-          {/* Helper Text */}
-          <p className="text-blue-100 text-sm mt-4">Complete the form first, then schedule your meeting</p>
 
           {/* Additional Info */}
           <motion.div
