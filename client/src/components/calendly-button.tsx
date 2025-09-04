@@ -19,7 +19,7 @@ interface CalendlyButtonProps {
 }
 
 export default function CalendlyButton({
-  url = "https://calendly.com/pathvisaconsultants/consultation",
+  url = "https://calendly.com/globaldc89/30min",
   text = "Schedule Meeting",
   className = "",
   variant = "default",
