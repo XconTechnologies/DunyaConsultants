@@ -316,6 +316,9 @@ export default function OfficesList() {
         </div>
       </div>
 
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       <div className="container mx-auto px-4 py-12">
         {/* Search and Filter */}
         <motion.div
@@ -821,9 +824,6 @@ export default function OfficesList() {
           </div>
         </motion.div>
       </div>
-
-      {/* Consultation Booking Section */}
-      <ConsultationBookingSection />
 
       <Footer />
     </div>

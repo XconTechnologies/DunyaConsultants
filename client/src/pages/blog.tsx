@@ -1850,6 +1850,10 @@ export default function Blog() {
           </div>
         </div>
       </section>
+
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
         {/* Search and Filters */}
@@ -1982,9 +1986,6 @@ export default function Blog() {
         )}
 
       </div>
-
-      {/* Consultation Booking Section */}
-      <ConsultationBookingSection />
 
       <Footer />
     </div>

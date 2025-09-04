@@ -113,6 +113,9 @@ Address: Alif Tower, Sargodha
         </div>
       </section>
 
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid lg:grid-cols-4 gap-8">
           
@@ -339,9 +342,6 @@ Address: Alif Tower, Sargodha
           </div>
         </div>
       </div>
-
-      {/* Consultation Booking Section */}
-      <ConsultationBookingSection />
 
       <Footer />
     </div>

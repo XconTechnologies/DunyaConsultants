@@ -179,6 +179,10 @@ export default function WhoWeAre() {
           </div>
         </div>
       </section>
+
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       {/* About Content - Completely Redesigned */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -505,9 +509,6 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
       </section>
-
-      {/* Consultation Booking Section */}
-      <ConsultationBookingSection />
 
       <Footer />
     </div>
