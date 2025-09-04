@@ -11,7 +11,7 @@ interface CalendlyButtonProps {
 }
 
 export default function CalendlyButton({
-  url = "https://calendly.com/globaldc89/30min",
+  url = "https://calendly.com/d/cr7w-sby-xzh",
   text = "Schedule Meeting",
   className = "",
   variant = "default",
