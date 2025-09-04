@@ -185,53 +185,6 @@ export default function Footer() {
 
           </div>
 
-          {/* Accreditation Badges - Below first two sections */}
-          <div className="-mt-20 lg:max-w-[50%]">
-            <div className="flex items-center gap-4 ml-[0px] mr-[0px] mt-[20px] mb-[20px] pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
-              {/* ICEF Badge with Link */}
-              <a 
-                href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="hover:scale-105 transition-transform duration-300"
-              >
-                <div className="bg-white rounded-lg p-3 shadow-lg">
-                  <img 
-                    src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000002BpEKQA0_badge.png" 
-                    alt="ICEF Accredited" 
-                    className="h-16 w-auto"
-                  />
-                </div>
-              </a>
-              
-              {/* British Council Logo */}
-              <div className="bg-white rounded-lg p-3 shadow-lg hover:scale-105 transition-transform duration-300">
-                <img 
-                  src={BritishCouncilLogo} 
-                  alt="British Council" 
-                  className="h-12 w-auto"
-                />
-              </div>
-              
-              {/* Duolingo Logo */}
-              <div className="bg-white rounded-lg p-3 shadow-lg hover:scale-105 transition-transform duration-300">
-                <img 
-                  src={DuolingoLogo} 
-                  alt="Duolingo" 
-                  className="h-12 w-auto"
-                />
-              </div>
-              
-              {/* Language Cert Logo */}
-              <div className="bg-white rounded-lg p-3 shadow-lg hover:scale-105 transition-transform duration-300">
-                <img 
-                  src={LanguageCertLogo} 
-                  alt="Language Cert" 
-                  className="h-12 w-auto"
-                />
-              </div>
-            </div>
-          </div>
 
           {/* Bottom Bar */}
           <div className="border-t border-white/20 pt-6 text-center">
