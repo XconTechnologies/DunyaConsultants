@@ -15,7 +15,13 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Calendly will be loaded dynamically when needed for faster page loading -->
+    <!-- Calendly CSS for better performance -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    
+    <!-- Calendly backup script for reliability -->
+    <script type="text/javascript">
+      window.CalendlyConfig = {url: 'https://calendly.com/globaldc89/30min'};
+    </script>
     <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
     <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
   </body>
