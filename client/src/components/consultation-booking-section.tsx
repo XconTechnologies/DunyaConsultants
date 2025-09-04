@@ -71,18 +71,37 @@ export default function ConsultationBookingSection() {
             </motion.div>
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Buttons - Two Step Process */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.6, delay: 0.5 }}
+            className="space-y-4"
           >
-            <CalendlyButton
-              text="📅 Schedule Online Meeting"
-              className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              size="lg"
-              showIcon={false}
-            />
+            {/* Step 1: Fill Form */}
+            <div className="mb-4">
+              <h4 className="text-white font-semibold mb-2">Step 1: Fill Your Details</h4>
+              <CalendlyButton
+                url="https://calendly.com/d/cr7w-sby-xzh"
+                text="📋 Fill Consultation Form"
+                className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                size="lg"
+                showIcon={false}
+              />
+            </div>
+
+            {/* Step 2: Schedule Meeting */}
+            <div>
+              <h4 className="text-white font-semibold mb-2">Step 2: Schedule Your Meeting</h4>
+              <CalendlyButton
+                url="https://calendly.com/globaldc89/30min"
+                text="📅 Schedule Online Meeting"
+                className="bg-white/20 text-white border-2 border-white hover:bg-white hover:text-[#1D50C9] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                size="lg"
+                showIcon={false}
+              />
+              <p className="text-blue-100 text-sm mt-2">Complete the form above first, then schedule your meeting</p>
+            </div>
           </motion.div>
 
           {/* Additional Info */}
