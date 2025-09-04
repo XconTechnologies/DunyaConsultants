@@ -251,10 +251,6 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </section>
-
-      {/* Consultation Booking Section */}
-      <ConsultationBookingSection />
-
       {/* Services Overview */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
@@ -294,6 +290,10 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </section>
+
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       {/* Student Testimonials */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
