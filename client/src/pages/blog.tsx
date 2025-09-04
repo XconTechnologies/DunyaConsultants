@@ -1851,9 +1851,6 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Consultation Booking Section */}
-      <ConsultationBookingSection />
-
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         
         {/* Search and Filters */}
