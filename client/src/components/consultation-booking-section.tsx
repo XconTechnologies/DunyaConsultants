@@ -8,7 +8,7 @@ export default function ConsultationBookingSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3]" ref={ref}>
+    <section className="py-16 bg-gray-50" ref={ref}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Content */}
@@ -16,7 +16,7 @@ export default function ConsultationBookingSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
-          className="text-center"
+          className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 lg:p-12 text-center shadow-xl max-w-4xl mx-auto"
         >
           {/* Heading */}
           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
