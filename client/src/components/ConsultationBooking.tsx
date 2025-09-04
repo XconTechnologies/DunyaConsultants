@@ -23,10 +23,6 @@ export default function ConsultationBooking({ country, children }: ConsultationB
           <p className="text-xl font-bold text-[#1845B3]">(+92) 304 1110947</p>
         </div>
         <div className="space-y-3">
-          <CalendlyButton 
-            text="📅 Schedule Online Meeting"
-            className="w-full bg-[#1845B3] hover:bg-[#1a73e8] text-white"
-          />
           <Button 
             onClick={() => window.open('tel:+923041110947')}
             className="w-full bg-[#1845B3] hover:bg-[#1a73e8] text-white"
