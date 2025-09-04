@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import ConsultationBookingSection from "@/components/consultation-booking-section";
 import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calendar, Calculator, FileCheck, Users, Zap, Heart, Download } from "lucide-react";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
 import ApplicationForm from "@/components/ApplicationForm";
@@ -338,6 +339,9 @@ Address: Alif Tower, Sargodha
           </div>
         </div>
       </div>
+
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
 
       <Footer />
     </div>

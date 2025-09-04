@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
+import ConsultationBookingSection from "@/components/consultation-booking-section";
 
 // Static blog posts data structure for fallback
 const staticBlogPosts = [
@@ -1981,6 +1982,10 @@ export default function Blog() {
         )}
 
       </div>
+
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       <Footer />
     </div>
   );

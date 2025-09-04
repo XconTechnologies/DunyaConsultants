@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import ConsultationBookingSection from "@/components/consultation-booking-section";
 
 export default function Duolingo() {
   const testSections = [
@@ -399,6 +400,8 @@ export default function Duolingo() {
         </div>
       </section>
 
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
 
       <Footer />
     </div>

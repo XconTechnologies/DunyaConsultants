@@ -7,6 +7,7 @@ import { Link } from "wouter";
 import CalendlyButton from "@/components/calendly-button";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import ConsultationBookingSection from "@/components/consultation-booking-section";
 import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
 
 export default function WhoWeAre() {
@@ -504,6 +505,10 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
       </section>
+
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       <Footer />
     </div>
   );

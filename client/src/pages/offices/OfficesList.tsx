@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "wouter";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import ConsultationBookingSection from "@/components/consultation-booking-section";
 
 // Office data
 const offices = [
@@ -820,6 +821,10 @@ export default function OfficesList() {
           </div>
         </motion.div>
       </div>
+
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       <Footer />
     </div>
   );
