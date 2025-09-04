@@ -17,6 +17,7 @@ import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import ConsultationBookingSection from '@/components/consultation-booking-section';
 
 export default function WhyChooseUs() {
   const advantages = [
@@ -250,6 +251,10 @@ export default function WhyChooseUs() {
           </div>
         </div>
       </section>
+
+      {/* Consultation Booking Section */}
+      <ConsultationBookingSection />
+
       {/* Services Overview */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
