@@ -8,7 +8,7 @@ export default function ConsultationBookingSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-16 bg-gray-50" ref={ref}>
+    <section className="py-16" ref={ref} style={{ backgroundColor: '#f9fafb' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Content */}
