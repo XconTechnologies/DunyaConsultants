@@ -58,23 +58,13 @@ export default function WhatsAppButton() {
           <div style={{ backgroundColor: '#1D50C9', padding: '16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div style={{ flex: 1 }}>
-                <h3 style={{ 
-                  color: '#ffffff !important', 
-                  fontSize: '16px', 
-                  fontWeight: 'bold', 
-                  margin: '0 0 4px 0',
-                  lineHeight: '1.2',
-                  textShadow: 'none',
-                  opacity: 1
-                }}>Dunya Consultants</h3>
-                <p style={{ 
-                  color: '#ffffff !important', 
-                  fontSize: '12px', 
-                  margin: 0,
-                  lineHeight: '1.3',
-                  textShadow: 'none',
-                  opacity: 1
-                }}>Hi! Click one of our member below to chat on WhatsApp</p>
+                <div 
+                  dangerouslySetInnerHTML={{ __html: '<span style="color: white; font-size: 16px; font-weight: bold;">Dunya Consultants</span>' }}
+                  style={{ marginBottom: '4px' }}
+                />
+                <div 
+                  dangerouslySetInnerHTML={{ __html: '<span style="color: white; font-size: 12px;">Hi! Click one of our member below to chat on WhatsApp</span>' }}
+                />
               </div>
               <button
                 onClick={() => setShowPopup(false)}
