@@ -55,17 +55,16 @@ export default function WhatsAppButton() {
       {showPopup && (
         <div className="absolute bottom-16 right-0 w-80 bg-white rounded-2xl shadow-2xl border-0 z-50 overflow-hidden">
           {/* Header */}
-          <div className="bg-[#1D50C9] text-white p-4">
+          <div className="bg-[#1D50C9] p-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3">
-                <div>
-                  <h3 className="font-bold text-white text-base" style={{ color: '#ffffff' }}>Start a Conversation</h3>
-                  <p className="text-xs text-white" style={{ color: '#ffffff' }}>Hi! Click one of our member below to chat on WhatsApp</p>
-                </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-lg mb-1" style={{ color: '#ffffff', fontSize: '16px', fontWeight: 'bold' }}>Start a Conversation</h3>
+                <p className="text-sm" style={{ color: '#ffffff', fontSize: '12px' }}>Hi! Click one of our member below to chat on WhatsApp</p>
               </div>
               <button
                 onClick={() => setShowPopup(false)}
-                className="text-white/80 hover:text-white transition-colors p-1 hover:bg-white/10 rounded"
+                className="p-1 rounded ml-3"
+                style={{ color: '#ffffff' }}
               >
                 <X className="w-4 h-4" />
               </button>
