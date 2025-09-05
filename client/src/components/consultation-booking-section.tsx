@@ -24,7 +24,7 @@ export default function ConsultationBookingSection() {
           </h2>
           
           {/* Description */}
-          <p className="text-lg max-w-3xl mx-auto mb-8 leading-relaxed" style={{ color: '#ffffff' }}>
+          <p className="text-lg max-w-3xl mx-auto mb-8 leading-relaxed" style={{ color: '#ffffff !important' }}>
             Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. 
             We'll discuss your goals, recommend the best destinations, and create a customized plan for your success.
           </p>
@@ -40,8 +40,8 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <Calendar className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold text-[#ffffff]">30-Minute Session</h3>
-              <p className="text-sm" style={{ color: '#ffffff' }}>Comprehensive consultation covering all aspects of your study abroad plans</p>
+              <h3 className="font-semibold" style={{ color: '#ffffff !important' }}>30-Minute Session</h3>
+              <p className="text-sm" style={{ color: '#ffffff !important' }}>Comprehensive consultation covering all aspects of your study abroad plans</p>
             </motion.div>
 
             <motion.div
@@ -53,8 +53,8 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <Users className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-white font-semibold">Expert Advisors</h3>
-              <p className="text-sm" style={{ color: '#ffffff' }}>Connect with certified education consultants with years of experience</p>
+              <h3 className="font-semibold" style={{ color: '#ffffff !important' }}>Expert Advisors</h3>
+              <p className="text-sm" style={{ color: '#ffffff !important' }}>Connect with certified education consultants with years of experience</p>
             </motion.div>
 
             <motion.div
@@ -66,8 +66,8 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <CheckCircle className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-white font-semibold">Personalized Plan</h3>
-              <p className="text-sm" style={{ color: '#ffffff' }}>Get a customized roadmap tailored to your goals and requirements</p>
+              <h3 className="font-semibold" style={{ color: '#ffffff !important' }}>Personalized Plan</h3>
+              <p className="text-sm" style={{ color: '#ffffff !important' }}>Get a customized roadmap tailored to your goals and requirements</p>
             </motion.div>
           </div>
 
