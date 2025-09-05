@@ -70,7 +70,7 @@ export default function WhatsAppButton() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[#ffffff]">Start a Conversation</h3>
+                  <h3 className="font-semibold text-white">Start a Conversation</h3>
                   <p className="text-xs text-white">Hi! Click one of our member below to chat on WhatsApp</p>
                 </div>
               </div>
