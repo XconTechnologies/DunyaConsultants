@@ -30,7 +30,7 @@ export default function WhatsAppButton() {
       {/* WhatsApp Button with Text Always Visible */}
       <div className="flex items-center space-x-3">
         {/* Text on the left */}
-        <div className="bg-gray-900 text-white text-sm px-3 py-2 rounded-lg whitespace-nowrap shadow-lg">
+        <div className="text-gray-700 text-sm px-3 py-2 whitespace-nowrap font-medium">
           Let's chat on WhatsApp
         </div>
         
