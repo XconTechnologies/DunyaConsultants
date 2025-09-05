@@ -64,7 +64,7 @@ export default function WhatsAppButton() {
                   fontWeight: 'bold', 
                   margin: '0 0 4px 0',
                   lineHeight: '1.2'
-                }}>Start a Conversation</h3>
+                }}>Dunya Consultants</h3>
                 <p style={{ 
                   color: '#ffffff', 
                   fontSize: '12px', 
