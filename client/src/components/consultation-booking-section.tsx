@@ -40,7 +40,7 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <Calendar className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-white font-semibold">30-Minute Session</h3>
+              <h3 className="font-semibold text-[#ffffff]">30-Minute Session</h3>
               <p className="text-white text-sm">Comprehensive consultation covering all aspects of your study abroad plans</p>
             </motion.div>
 
