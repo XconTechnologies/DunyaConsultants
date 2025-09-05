@@ -24,7 +24,7 @@ export default function ConsultationBookingSection() {
           </h2>
           
           {/* Description */}
-          <p className="text-lg text-blue-100 max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg text-white max-w-3xl mx-auto mb-8 leading-relaxed">
             Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. 
             We'll discuss your goals, recommend the best destinations, and create a customized plan for your success.
           </p>
@@ -41,7 +41,7 @@ export default function ConsultationBookingSection() {
                 <Calendar className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-white font-semibold">30-Minute Session</h3>
-              <p className="text-blue-100 text-sm">Comprehensive consultation covering all aspects of your study abroad plans</p>
+              <p className="text-white text-sm">Comprehensive consultation covering all aspects of your study abroad plans</p>
             </motion.div>
 
             <motion.div
@@ -54,7 +54,7 @@ export default function ConsultationBookingSection() {
                 <Users className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-white font-semibold">Expert Advisors</h3>
-              <p className="text-blue-100 text-sm">Connect with certified education consultants with years of experience</p>
+              <p className="text-white text-sm">Connect with certified education consultants with years of experience</p>
             </motion.div>
 
             <motion.div
@@ -67,7 +67,7 @@ export default function ConsultationBookingSection() {
                 <CheckCircle className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-white font-semibold">Personalized Plan</h3>
-              <p className="text-blue-100 text-sm">Get a customized roadmap tailored to your goals and requirements</p>
+              <p className="text-white text-sm">Get a customized roadmap tailored to your goals and requirements</p>
             </motion.div>
           </div>
 
@@ -92,7 +92,7 @@ export default function ConsultationBookingSection() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-6 flex items-center justify-center space-x-2 text-blue-100 text-sm"
+            className="mt-6 flex items-center justify-center space-x-2 text-white text-sm"
           >
             <Clock className="w-4 h-4" />
             <span>Available Monday to Saturday, 10 AM - 6 PM</span>
