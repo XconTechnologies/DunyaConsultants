@@ -19,12 +19,25 @@ export default function ConsultationBookingSection() {
           className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 lg:p-12 text-center shadow-xl max-w-5xl mx-auto"
         >
           {/* Heading */}
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+          <h2 style={{ 
+            color: 'white', 
+            fontSize: '2.5rem', 
+            fontWeight: 'bold', 
+            marginBottom: '1.5rem',
+            lineHeight: '1.2'
+          }}>
             Book Your Free Consultation
           </h2>
           
           {/* Description */}
-          <p className="text-lg max-w-3xl mx-auto mb-8 leading-relaxed" style={{ color: '#ffffff !important' }}>
+          <p style={{ 
+            color: 'white', 
+            fontSize: '1.125rem', 
+            marginBottom: '2rem',
+            lineHeight: '1.6',
+            maxWidth: '48rem',
+            margin: '0 auto 2rem auto'
+          }}>
             Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. 
             We'll discuss your goals, recommend the best destinations, and create a customized plan for your success.
           </p>
@@ -40,8 +53,8 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <Calendar className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold" style={{ color: '#ffffff !important' }}>30-Minute Session</h3>
-              <p className="text-sm" style={{ color: '#ffffff !important' }}>Comprehensive consultation covering all aspects of your study abroad plans</p>
+              <h3 style={{ color: 'white', fontWeight: 'bold', fontSize: '1.1rem' }}>30-Minute Session</h3>
+              <p style={{ color: 'white', fontSize: '0.875rem', textAlign: 'center' }}>Comprehensive consultation covering all aspects of your study abroad plans</p>
             </motion.div>
 
             <motion.div
@@ -53,8 +66,8 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <Users className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold" style={{ color: '#ffffff !important' }}>Expert Advisors</h3>
-              <p className="text-sm" style={{ color: '#ffffff !important' }}>Connect with certified education consultants with years of experience</p>
+              <h3 style={{ color: 'white', fontWeight: 'bold', fontSize: '1.1rem' }}>Expert Advisors</h3>
+              <p style={{ color: 'white', fontSize: '0.875rem', textAlign: 'center' }}>Connect with certified education consultants with years of experience</p>
             </motion.div>
 
             <motion.div
@@ -66,8 +79,8 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <CheckCircle className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-semibold" style={{ color: '#ffffff !important' }}>Personalized Plan</h3>
-              <p className="text-sm" style={{ color: '#ffffff !important' }}>Get a customized roadmap tailored to your goals and requirements</p>
+              <h3 style={{ color: 'white', fontWeight: 'bold', fontSize: '1.1rem' }}>Personalized Plan</h3>
+              <p style={{ color: 'white', fontSize: '0.875rem', textAlign: 'center' }}>Get a customized roadmap tailored to your goals and requirements</p>
             </motion.div>
           </div>
 
@@ -92,7 +105,8 @@ export default function ConsultationBookingSection() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="mt-6 flex items-center justify-center space-x-2 text-sm" style={{ color: '#ffffff' }}
+            className="mt-6 flex items-center justify-center space-x-2"
+            style={{ color: 'white', fontSize: '0.875rem' }}
           >
             <Clock className="w-4 h-4" />
             <span>Available Monday to Saturday, 10 AM - 6 PM</span>
