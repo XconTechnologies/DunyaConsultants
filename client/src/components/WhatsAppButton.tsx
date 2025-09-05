@@ -59,8 +59,8 @@ export default function WhatsAppButton() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <div>
-                  <h3 className="font-bold text-white text-base">Start a Conversation</h3>
-                  <p className="text-xs text-white/90">Hi! Click one of our member below to chat on WhatsApp</p>
+                  <h3 className="font-bold text-white text-base" style={{ color: '#ffffff' }}>Start a Conversation</h3>
+                  <p className="text-xs text-white" style={{ color: '#ffffff' }}>Hi! Click one of our member below to chat on WhatsApp</p>
                 </div>
               </div>
               <button
