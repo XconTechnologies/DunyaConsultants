@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin, Building2, MessageCircle, Calendar, Newspaper, PenTool, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import logoImage from "@assets/DC White Logo_1751441165041.png";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
 import ConsultationBooking from "@/components/ConsultationBooking";
@@ -14,6 +14,7 @@ export default function Navigation() {
   const [isHeroSection, setIsHeroSection] = useState(true);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +33,16 @@ export default function Navigation() {
       element.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
     }
+  };
+
+  const handleHomeClick = (e: React.MouseEvent) => {
+    // If already on homepage, scroll to top instead of navigating
+    if (location === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setIsOpen(false);
+    }
+    // Otherwise, let the Link handle navigation normally
   };
 
   const megaMenuData = {
@@ -155,7 +166,7 @@ export default function Navigation() {
           >
             <div className="flex items-center space-x-3">
               <div className="relative">
-                <Link href="/">
+                <Link href="/" onClick={handleHomeClick}>
                   <img 
                     src={isScrolled ? logoImageBlue : logoImage} 
                     alt="Dunya Consultants Logo" 
@@ -192,7 +203,7 @@ export default function Navigation() {
                       }`} />
                     </button>
                   ) : item.href ? (
-                    <Link href={item.href}>
+                    <Link href={item.href} onClick={item.name === "Home" ? handleHomeClick : undefined}>
                       <span className={`${
                         !isScrolled 
                           ? 'text-white drop-shadow-md hover:text-white/90' 
@@ -551,7 +562,7 @@ export default function Navigation() {
                       )}
                     </div>
                   ) : item.href ? (
-                    <Link href={item.href}>
+                    <Link href={item.href} onClick={item.name === "Home" ? handleHomeClick : undefined}>
                       <button
                         onClick={() => setIsOpen(false)}
                         className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-semibold py-3 px-3 rounded-lg hover:bg-gray-50"
