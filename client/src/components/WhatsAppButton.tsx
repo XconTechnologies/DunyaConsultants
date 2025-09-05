@@ -56,10 +56,10 @@ export default function WhatsAppButton() {
       {showPopup && (
         <div className="absolute bottom-16 right-0 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
           {/* Header */}
-          <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-4 rounded-t-lg">
+          <div className="bg-[#1D50C9] text-white p-4 rounded-t-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
                   <svg 
                     width="16" 
                     height="16" 
@@ -72,12 +72,12 @@ export default function WhatsAppButton() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-white">Start a Conversation</h3>
-                  <p className="text-xs text-white/90">Hi! Click one of our member below to chat on WhatsApp</p>
+                  <p className="text-xs text-white/95">Hi! Click one of our member below to chat on WhatsApp</p>
                 </div>
               </div>
               <button
                 onClick={() => setShowPopup(false)}
-                className="text-white/90 hover:text-white transition-colors"
+                className="text-white/95 hover:text-white transition-colors"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -102,7 +102,7 @@ export default function WhatsAppButton() {
             {/* WhatsApp Contact */}
             <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg mb-4 hover:bg-blue-50 cursor-pointer" onClick={handleSendMessage}>
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-[#25D366] flex items-center justify-center">
                   <svg 
                     width="20" 
                     height="20" 
@@ -117,7 +117,7 @@ export default function WhatsAppButton() {
                   <h4 className="font-medium text-gray-900">WhatsApp</h4>
                 </div>
               </div>
-              <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] flex items-center justify-center">
+              <div className="w-6 h-6 rounded-full bg-[#25D366] flex items-center justify-center">
                 <svg 
                   width="12" 
                   height="12" 
