@@ -59,17 +59,21 @@ export default function WhatsAppButton() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div style={{ flex: 1 }}>
                 <h3 style={{ 
-                  color: '#ffffff', 
+                  color: '#ffffff !important', 
                   fontSize: '16px', 
                   fontWeight: 'bold', 
                   margin: '0 0 4px 0',
-                  lineHeight: '1.2'
+                  lineHeight: '1.2',
+                  textShadow: 'none',
+                  opacity: 1
                 }}>Dunya Consultants</h3>
                 <p style={{ 
-                  color: '#ffffff', 
+                  color: '#ffffff !important', 
                   fontSize: '12px', 
                   margin: 0,
-                  lineHeight: '1.3'
+                  lineHeight: '1.3',
+                  textShadow: 'none',
+                  opacity: 1
                 }}>Hi! Click one of our member below to chat on WhatsApp</p>
               </div>
               <button
