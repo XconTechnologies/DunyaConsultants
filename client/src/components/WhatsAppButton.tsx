@@ -55,16 +55,34 @@ export default function WhatsAppButton() {
       {showPopup && (
         <div className="absolute bottom-16 right-0 w-80 bg-white rounded-2xl shadow-2xl border-0 z-50 overflow-hidden">
           {/* Header */}
-          <div className="bg-[#1D50C9] p-4">
-            <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <h3 className="font-bold text-lg mb-1" style={{ color: '#ffffff', fontSize: '16px', fontWeight: 'bold' }}>Start a Conversation</h3>
-                <p className="text-sm" style={{ color: '#ffffff', fontSize: '12px' }}>Hi! Click one of our member below to chat on WhatsApp</p>
+          <div style={{ backgroundColor: '#1D50C9', padding: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ flex: 1 }}>
+                <h3 style={{ 
+                  color: '#ffffff', 
+                  fontSize: '16px', 
+                  fontWeight: 'bold', 
+                  margin: '0 0 4px 0',
+                  lineHeight: '1.2'
+                }}>Start a Conversation</h3>
+                <p style={{ 
+                  color: '#ffffff', 
+                  fontSize: '12px', 
+                  margin: 0,
+                  lineHeight: '1.3'
+                }}>Hi! Click one of our member below to chat on WhatsApp</p>
               </div>
               <button
                 onClick={() => setShowPopup(false)}
-                className="p-1 rounded ml-3"
-                style={{ color: '#ffffff' }}
+                style={{ 
+                  color: '#ffffff',
+                  background: 'none',
+                  border: 'none',
+                  padding: '4px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  marginLeft: '12px'
+                }}
               >
                 <X className="w-4 h-4" />
               </button>
