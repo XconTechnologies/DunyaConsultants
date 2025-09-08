@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import CalendlyButton from "@/components/calendly-button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 import { 
   GraduationCap, 
   FileText, 
@@ -108,6 +111,8 @@ const services = [
 ];
 
 export default function ServicesOverview() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   return (
     <div className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container mx-auto px-4">
@@ -202,23 +207,30 @@ export default function ServicesOverview() {
               Get personalized guidance from our expert counselors and take the first step towards your dream education abroad.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
+              <CalendlyButton
                 size="lg"
-                className="bg-white #1845B3 hover:bg-blue-50 px-8 py-3 rounded-full font-semibold"
-              >
-                Book Free Consultation
-              </Button>
+                text="📅 Book Free Consultation"
+                className="bg-white text-[#1845B3] hover:bg-blue-50 px-8 py-3 rounded-full font-semibold shadow-xl"
+                showIcon={false}
+              />
               <Button 
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:bg-[#1845B3] px-8 py-3 rounded-full font-semibold"
+                onClick={() => setIsPopupOpen(true)}
+                className="border-white text-white hover:bg-white hover:text-[#1845B3] px-8 py-3 rounded-full font-semibold"
               >
-                Download Brochure
+                💬 Connect Now
               </Button>
             </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+      />
     </div>
   );
 }
