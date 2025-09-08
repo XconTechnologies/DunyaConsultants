@@ -1,11 +1,13 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Calendar, Clock, Users, CheckCircle } from "lucide-react";
-import CalendlyButton from "@/components/calendly-button";
+import { Button } from "@/components/ui/button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 export default function ConsultationBookingSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const whiteTextStyle = {
     color: '#FFFFFF',
@@ -149,13 +151,13 @@ export default function ConsultationBookingSection() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex justify-center"
           >
-            <CalendlyButton
-              url="https://calendly.com/d/cr7w-sby-xzh"
-              text="📋 Fill Consultation Form"
+            <Button
+              onClick={() => setIsPopupOpen(true)}
               className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               size="lg"
-              showIcon={false}
-            />
+            >
+              📋 Fill Consultation Form
+            </Button>
           </motion.div>
 
           {/* Additional Info */}
@@ -176,6 +178,12 @@ export default function ConsultationBookingSection() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </section>
   );
 }
