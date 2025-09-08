@@ -20,6 +20,8 @@ import {
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
+import CalendlyButton from '@/components/calendly-button';
+import ConsultationFormPopup from '@/components/consultation-form-popup';
 
 // Import Finland visa success images - using the actual files from attached_assets
 // Removed image1 as requested by user
@@ -102,6 +104,7 @@ export default function OurSuccessStories() {
 
   // Tab state for country selection
   const [activeTab, setActiveTab] = useState('UK');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const achievements = [
     {
@@ -169,11 +172,19 @@ export default function OurSuccessStories() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto">
-                Share Your Story
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
-                Free Consultation
+              <CalendlyButton
+                text="Book Free Consultation"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
+                size="lg"
+                showIcon={false}
+              />
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
+                onClick={() => setIsPopupOpen(true)}
+              >
+                Connect now
               </Button>
             </div>
           </motion.div>
@@ -466,6 +477,12 @@ export default function OurSuccessStories() {
 
 
       <Footer />
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }
