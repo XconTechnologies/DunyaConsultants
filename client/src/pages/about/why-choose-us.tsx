@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Shield, 
@@ -18,8 +19,10 @@ import Footer from '@/components/footer';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ConsultationBookingSection from '@/components/consultation-booking-section';
+import ConsultationFormPopup from '@/components/consultation-form-popup';
 
 export default function WhyChooseUs() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const advantages = [
     {
       icon: Award,
@@ -153,8 +156,12 @@ export default function WhyChooseUs() {
               Discover why thousands of students trust Dunya Consultants for their international education journey
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50">
-                Free Consultation
+              <Button 
+                size="lg" 
+                className="bg-white text-[#1D50C9] hover:bg-blue-50"
+                onClick={() => setIsPopupOpen(true)}
+              >
+                Connect now
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
                 View Success Stories
@@ -345,6 +352,12 @@ export default function WhyChooseUs() {
         </div>
       </section>
       <Footer />
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }
