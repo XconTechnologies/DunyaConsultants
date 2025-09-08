@@ -85,7 +85,7 @@ export default function Footer() {
             {/* Contact Us Card */}
             <div className="sm:col-span-2 lg:col-span-1">
               <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20 h-full flex flex-col"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
@@ -93,12 +93,12 @@ export default function Footer() {
                 <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-6 translate-x-6" />
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-4 -translate-x-4" />
                 
-                <div className="relative z-10">
+                <div className="relative z-10 flex-1 flex flex-col">
                   <h4 className="text-lg font-bold text-white mb-4">
                     Contact Us
                   </h4>
                 
-                  <div className="space-y-3">
+                  <div className="space-y-3 flex-1">
                     <div className="flex items-start space-x-3">
                       <Phone className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                       <div>
@@ -134,7 +134,7 @@ export default function Footer() {
             {/* For Business Proposals Card */}
             <div className="sm:col-span-2 lg:col-span-1">
               <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20 min-w-[320px]"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 shadow-lg relative overflow-hidden border border-white/20 min-w-[320px] h-full flex flex-col"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
@@ -142,12 +142,12 @@ export default function Footer() {
                 <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-6 translate-x-6" />
                 <div className="absolute bottom-0 left-0 w-16 h-16 bg-white/10 rounded-full translate-y-4 -translate-x-4" />
                 
-                <div className="relative z-10">
+                <div className="relative z-10 flex-1 flex flex-col">
                   <h4 className="text-lg font-bold text-white mb-4">
                     For Business Proposals
                   </h4>
                 
-                  <div className="space-y-3">
+                  <div className="space-y-3 flex-1">
                     <div className="flex items-center space-x-3">
                       <Mail className="w-4 h-4 text-white flex-shrink-0" />
                       <div>
