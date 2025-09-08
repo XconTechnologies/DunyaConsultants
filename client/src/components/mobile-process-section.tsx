@@ -18,12 +18,15 @@ import {
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import CalendlyButton from "@/components/calendly-button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 export default function MobileProcessSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [expandedSteps, setExpandedSteps] = useState<Set<number>>(new Set([0])); // First step expanded by default
   const [expandAll, setExpandAll] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const processSteps = [
     {
@@ -317,16 +320,32 @@ export default function MobileProcessSection() {
             <p className="text-blue-100 mb-6">
               Begin with a free consultation and take the first step towards your international education goals
             </p>
-            <Button 
-              size="lg"
-              className="bg-white text-primary hover:bg-blue-50 font-semibold"
-            >
-              Book Free Consultation
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <CalendlyButton
+                size="lg"
+                text="📅 Book Free Consultation"
+                className="bg-white text-[#1845B3] hover:bg-blue-50 font-semibold px-6 py-3 shadow-xl"
+                showIcon={false}
+              />
+              <Button 
+                size="lg"
+                variant="outline"
+                onClick={() => setIsPopupOpen(true)}
+                className="border-white text-white hover:bg-white hover:text-[#1845B3] font-semibold px-6 py-3"
+              >
+                💬 Connect Now
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </div>
           </Card>
         </motion.div>
       </div>
+
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+      />
     </section>
   );
 }
