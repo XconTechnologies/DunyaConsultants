@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Award, Clock, Users, CheckCircle, BookOpen, FileText, Headphones, Mic, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,8 +7,11 @@ import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
+import CalendlyButton from "@/components/calendly-button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 export default function Duolingo() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const testSections = [
     {
       title: "Adaptive Test",
@@ -137,12 +140,20 @@ export default function Duolingo() {
             <p className="text-lg md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Online English proficiency test accepted by 4,000+ universities worldwide
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-[#1e3a8a] hover:bg-blue-50">
-                Take Test Now
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Start Preparation
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <CalendlyButton
+                text="Book Free Consultation"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
+                size="lg"
+                showIcon={false}
+              />
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
+                onClick={() => setIsPopupOpen(true)}
+              >
+                Connect now
               </Button>
             </div>
           </motion.div>
@@ -404,6 +415,12 @@ export default function Duolingo() {
       </section>
 
       <Footer />
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }

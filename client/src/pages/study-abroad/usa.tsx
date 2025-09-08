@@ -11,9 +11,12 @@ import { CheckCircle, DollarSign, FileText, GraduationCap, Globe, MapPin, Calend
 import CountryFlag from "@/components/CountryFlag";
 import ApplicationForm from "@/components/ApplicationForm";
 import SmartToolsPopup from "@/components/SmartToolsPopup";
+import CalendlyButton from "@/components/calendly-button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 export default function StudyAbroadUSA() {
   const [showSmartTools, setShowSmartTools] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
 
   const downloadChecklist = () => {
@@ -97,7 +100,7 @@ Address: Alif Tower, Sargodha
             <p className="text-lg lg:text-2xl mb-10 text-white leading-relaxed max-w-4xl mx-auto">
               Discover world-class education opportunities in the United States with over 5,000 higher education institutes
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
               <Badge variant="secondary" className="px-4 py-2 text-lg">
                 <GraduationCap className="w-5 h-5 mr-2" />
                 5,000+ Universities
@@ -110,6 +113,23 @@ Address: Alif Tower, Sargodha
                 <Users className="w-5 h-5 mr-2" />
                 International Students Welcome
               </Badge>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <CalendlyButton
+                text="Book Free Consultation"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
+                size="lg"
+                showIcon={false}
+              />
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
+                onClick={() => setIsPopupOpen(true)}
+              >
+                Connect now
+              </Button>
             </div>
           </div>
         </div>
@@ -333,6 +353,12 @@ Address: Alif Tower, Sargodha
       </div>
 
       <Footer />
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }
