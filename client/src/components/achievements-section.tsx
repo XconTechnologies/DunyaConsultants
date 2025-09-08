@@ -1,10 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Award, TrendingUp, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import CalendlyButton from "@/components/calendly-button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 export default function AchievementsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const achievements = [
     {
@@ -105,12 +109,31 @@ export default function AchievementsSection() {
             <p className="text-neutral-600 mb-6 max-w-2xl mx-auto">
               Be part of our growing community of successful students who have achieved their international education dreams
             </p>
-            <button className="bg-gradient-to-r from-primary to-secondary text-white font-semibold px-8 py-3 rounded-full hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-              Start Your Journey Today
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <CalendlyButton
+                size="lg"
+                text="📅 Book Free Consultation"
+                className="bg-[#1D50C9] hover:bg-[#1845B3] text-white px-8 py-3 rounded-full font-semibold shadow-xl"
+                showIcon={false}
+              />
+              <Button 
+                size="lg"
+                variant="outline"
+                onClick={() => setIsPopupOpen(true)}
+                className="border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9] hover:text-white px-8 py-3 rounded-full font-semibold"
+              >
+                💬 Connect Now
+              </Button>
+            </div>
           </div>
         </motion.div>
       </div>
+
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+      />
     </section>
   );
 }
