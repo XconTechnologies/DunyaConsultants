@@ -59,7 +59,7 @@ const teamMembers = [
     id: 5,
     image: drWaleedMostafaImg,
     name: "Dr. Waleed Mostafa",
-    designation: "Country Manager Egypt"
+    designation: "Branch Manager Egypt"
   },
   {
     id: 6,
