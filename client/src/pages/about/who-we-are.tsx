@@ -119,19 +119,7 @@ export default function WhoWeAre() {
               Pakistan's leading education consultancy, dedicated to making your study abroad dreams a reality with personalized guidance and proven success.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-12 sm:mb-16 px-4">
-              <CalendlyButton 
-                text="📅 Book Free Consultation"
-                className="bg-white text-[#1D50C9] hover:bg-blue-50 px-4 py-3 sm:px-8 sm:py-4 text-sm sm:text-lg font-semibold w-full sm:w-auto"
-                showIcon={false}
-              />
-              <Link href="/about/mission-vision">
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 px-4 py-3 sm:px-8 sm:py-4 text-sm sm:text-lg w-full sm:w-auto">
-                  Our Mission & Vision
-                </Button>
-              </Link>
-            </div>
+            
           </motion.div>
         </div>
       </section>
