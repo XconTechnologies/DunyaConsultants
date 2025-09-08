@@ -19,32 +19,18 @@ export default function ConsultationBookingSection() {
           className="bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl p-8 lg:p-12 text-center shadow-xl max-w-5xl mx-auto"
         >
           {/* Heading */}
-          <h2 className="text-white" style={{ 
-            color: '#ffffff !important', 
-            fontSize: '2.5rem', 
-            fontWeight: 'bold', 
-            marginBottom: '1.5rem',
-            lineHeight: '1.2',
-            textShadow: 'none',
-            opacity: '1'
-          }}>
-            Book Your Free Consultation
-          </h2>
+          <div 
+            dangerouslySetInnerHTML={{ 
+              __html: '<h2 style="color: white; font-size: 2.5rem; font-weight: bold; margin-bottom: 1.5rem; line-height: 1.2;">Book Your Free Consultation</h2>' 
+            }}
+          />
           
           {/* Description */}
-          <p className="text-white" style={{ 
-            color: '#ffffff !important', 
-            fontSize: '1.125rem', 
-            marginBottom: '2rem',
-            lineHeight: '1.6',
-            maxWidth: '48rem',
-            margin: '0 auto 2rem auto',
-            textShadow: 'none',
-            opacity: '1'
-          }}>
-            Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. 
-            We'll discuss your goals, recommend the best destinations, and create a customized plan for your success.
-          </p>
+          <div 
+            dangerouslySetInnerHTML={{ 
+              __html: '<p style="color: white; font-size: 1.125rem; margin-bottom: 2rem; line-height: 1.6; max-width: 48rem; margin: 0 auto 2rem auto;">Ready to start your study abroad journey? Schedule a personalized consultation with our expert advisors. We\'ll discuss your goals, recommend the best destinations, and create a customized plan for your success.</p>' 
+            }}
+          />
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
@@ -57,8 +43,8 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <Calendar className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-white" style={{ color: '#ffffff !important', fontWeight: 'bold', fontSize: '1.1rem', textShadow: 'none', opacity: '1' }}>30-Minute Session</h3>
-              <p className="text-white" style={{ color: '#ffffff !important', fontSize: '0.875rem', textAlign: 'center', textShadow: 'none', opacity: '1' }}>Comprehensive consultation covering all aspects of your study abroad plans</p>
+              <div dangerouslySetInnerHTML={{ __html: '<h3 style="color: white; font-weight: bold; font-size: 1.1rem;">30-Minute Session</h3>' }} />
+              <div dangerouslySetInnerHTML={{ __html: '<p style="color: white; font-size: 0.875rem; text-align: center;">Comprehensive consultation covering all aspects of your study abroad plans</p>' }} />
             </motion.div>
 
             <motion.div
@@ -70,8 +56,8 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <Users className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-white" style={{ color: '#ffffff !important', fontWeight: 'bold', fontSize: '1.1rem', textShadow: 'none', opacity: '1' }}>Expert Advisors</h3>
-              <p className="text-white" style={{ color: '#ffffff !important', fontSize: '0.875rem', textAlign: 'center', textShadow: 'none', opacity: '1' }}>Connect with certified education consultants with years of experience</p>
+              <div dangerouslySetInnerHTML={{ __html: '<h3 style="color: white; font-weight: bold; font-size: 1.1rem;">Expert Advisors</h3>' }} />
+              <div dangerouslySetInnerHTML={{ __html: '<p style="color: white; font-size: 0.875rem; text-align: center;">Connect with certified education consultants with years of experience</p>' }} />
             </motion.div>
 
             <motion.div
@@ -83,8 +69,8 @@ export default function ConsultationBookingSection() {
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
                 <CheckCircle className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-white" style={{ color: '#ffffff !important', fontWeight: 'bold', fontSize: '1.1rem', textShadow: 'none', opacity: '1' }}>Personalized Plan</h3>
-              <p className="text-white" style={{ color: '#ffffff !important', fontSize: '0.875rem', textAlign: 'center', textShadow: 'none', opacity: '1' }}>Get a customized roadmap tailored to your goals and requirements</p>
+              <div dangerouslySetInnerHTML={{ __html: '<h3 style="color: white; font-weight: bold; font-size: 1.1rem;">Personalized Plan</h3>' }} />
+              <div dangerouslySetInnerHTML={{ __html: '<p style="color: white; font-size: 0.875rem; text-align: center;">Get a customized roadmap tailored to your goals and requirements</p>' }} />
             </motion.div>
           </div>
 
@@ -110,10 +96,9 @@ export default function ConsultationBookingSection() {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="mt-6 flex items-center justify-center space-x-2"
-            style={{ color: '#ffffff !important', fontSize: '0.875rem', textShadow: 'none', opacity: '1' }}
           >
-            <Clock className="w-4 h-4" />
-            <span>Available Monday to Saturday, 10 AM - 6 PM</span>
+            <Clock className="w-4 h-4" style={{ color: 'white' }} />
+            <div dangerouslySetInnerHTML={{ __html: '<span style="color: white; font-size: 0.875rem;">Available Monday to Saturday, 10 AM - 6 PM</span>' }} />
           </motion.div>
         </motion.div>
       </div>
