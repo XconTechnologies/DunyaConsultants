@@ -193,7 +193,7 @@ export default function CountriesSection() {
     >
       <div className="relative h-48 overflow-hidden">
         {/* Blue background with flag on left center */}
-        <div className="w-full h-full bg-[#1D50C9] flex items-center justify-start py-3 px-6">
+        <div className="w-full h-full bg-[#1D50C9] flex items-center justify-start py-3 px-3">
           <div className="w-20 h-14 rounded-md overflow-hidden shadow-lg border-2 border-white">
             <ReactCountryFlag 
               countryCode={countryCodesMap[country.name as keyof typeof countryCodesMap] || country.code} 
