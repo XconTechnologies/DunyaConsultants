@@ -191,7 +191,7 @@ export default function CountriesSection() {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 group"
     >
-      <div className="relative h-48 overflow-hidden">
+      <div className="relative h-32 overflow-hidden">
         {/* Blue background with flag on left center */}
         <div className="w-full h-full bg-[#1D50C9] flex items-center justify-start py-3 px-3">
           <div className="w-20 h-14 rounded-md overflow-hidden shadow-lg border-2 border-white">
