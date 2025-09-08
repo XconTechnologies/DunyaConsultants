@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Calendar, Clock, User, FileText, GraduationCap, CheckCircle, Users, AlertCircle, BookOpen, DollarSign, MapPin } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import ContactForm from '@/components/blog/ContactForm';
+import ConsultationFormPopup from '@/components/consultation-form-popup';
+import { Button } from '@/components/ui/button';
 
 export default function StudyInUSAGuide() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -343,10 +346,16 @@ export default function StudyInUSAGuide() {
                 <h3 className="text-2xl font-bold text-[#1565c0] mb-4">Ready to Start Your USA Study Journey?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants is here to guide you through every step of the application process. Contact us today for personalized assistance.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/contact" className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
+                  <a href="/contact" className="bg-[#1845B3] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#1a73e8] transition-colors">
                     Get Free Consultation
                   </a>
-                  <a href="tel:+923041110947" className="border #1845B3 #1845B3 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  <Button 
+                    onClick={() => setIsPopupOpen(true)}
+                    className="bg-white text-[#1845B3] border-2 border-[#1845B3] hover:bg-[#1845B3] hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  >
+                    Connect now
+                  </Button>
+                  <a href="tel:+923041110947" className="border border-[#1845B3] text-[#1845B3] px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                     Call Now: +92 304 111 0947
                   </a>
                 </div>
@@ -409,6 +418,12 @@ export default function StudyInUSAGuide() {
       </div>
 
       <Footer />
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }

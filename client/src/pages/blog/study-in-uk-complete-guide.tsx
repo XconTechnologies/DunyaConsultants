@@ -5,9 +5,12 @@ import Footer from '@/components/footer';
 import ContactForm from '@/components/blog/ContactForm';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import ConsultationFormPopup from '@/components/consultation-form-popup';
+import { Button } from '@/components/ui/button';
 
 export default function StudyInUKCompleteGuide() {
   const [sidebarSearch, setSidebarSearch] = useState("");
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareTitle = 'Study in UK Complete Guide - Dunya Consultants';
@@ -459,10 +462,16 @@ export default function StudyInUKCompleteGuide() {
                 <h3 className="text-2xl font-bold text-[#1565c0] mb-4">Ready to Start Your UK Study Journey?</h3>
                 <p className="text-gray-700 mb-6">Dunya Consultants provides expert guidance for UK university applications and visa processes. Contact us for personalized assistance.</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <a href="/contact" className="#1845B3 text-white px-6 py-3 rounded-lg font-medium hover:bg-#1a73e8 transition-colors">
+                  <a href="/contact" className="bg-[#1845B3] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#1a73e8] transition-colors">
                     Get Free Consultation
                   </a>
-                  <a href="tel:+923041110947" className="border #1845B3 #1845B3 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
+                  <Button 
+                    onClick={() => setIsPopupOpen(true)}
+                    className="bg-white text-[#1845B3] border-2 border-[#1845B3] hover:bg-[#1845B3] hover:text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  >
+                    Connect now
+                  </Button>
+                  <a href="tel:+923041110947" className="border border-[#1845B3] text-[#1845B3] px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors">
                     Call Now: +92 304 111 0947
                   </a>
                 </div>
@@ -621,6 +630,12 @@ export default function StudyInUKCompleteGuide() {
       </div>
 
       <Footer />
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Calendar, Clock, Users, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import CalendlyButton from "@/components/calendly-button";
 import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 export default function ConsultationBookingSection() {
@@ -144,19 +145,26 @@ export default function ConsultationBookingSection() {
             </motion.div>
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <Button
-              onClick={() => setIsPopupOpen(true)}
+            <CalendlyButton
+              url="https://calendly.com/d/cr7w-sby-xzh"
+              text="Book Free Consultation"
               className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               size="lg"
+              showIcon={false}
+            />
+            <Button
+              onClick={() => setIsPopupOpen(true)}
+              className="bg-white/20 border-2 border-white text-white hover:bg-white hover:text-[#1D50C9] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              size="lg"
             >
-              📋 Fill Consultation Form
+              Connect now
             </Button>
           </motion.div>
 
