@@ -20,6 +20,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ConsultationBookingSection from '@/components/consultation-booking-section';
 import ConsultationFormPopup from '@/components/consultation-form-popup';
+import CalendlyButton from '@/components/calendly-button';
 
 export default function WhyChooseUs() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -156,15 +157,19 @@ export default function WhyChooseUs() {
               Discover why thousands of students trust Dunya Consultants for their international education journey
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <CalendlyButton
+                text="Book Free Consultation"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
+                size="lg"
+                showIcon={false}
+              />
               <Button 
                 size="lg" 
-                className="bg-white text-[#1D50C9] hover:bg-blue-50"
+                variant="outline" 
+                className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
                 onClick={() => setIsPopupOpen(true)}
               >
                 Connect now
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                View Success Stories
               </Button>
             </div>
           </motion.div>

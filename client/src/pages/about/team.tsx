@@ -3,6 +3,10 @@ import { Users, MapPin, Mail, Phone, Award, Star, Target } from "lucide-react";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import CalendlyButton from "@/components/calendly-button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
+import { useState } from "react";
 
 // Import team member images
 import usamaAshrafImg from "@assets/WhatsApp Image 2025-08-28 at 16.42.49_5510c1da_1756381388641.jpg";
@@ -157,6 +161,7 @@ const stats = [
 ];
 
 export default function TeamPage() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50">
       <Navigation />
@@ -183,7 +188,23 @@ export default function TeamPage() {
             <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
               Meet the dedicated professionals who make your study abroad dreams come true
             </p>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <CalendlyButton
+                text="Book Free Consultation"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
+                size="lg"
+                showIcon={false}
+              />
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
+                onClick={() => setIsPopupOpen(true)}
+              >
+                Connect now
+              </Button>
+            </div>
+            <div className="mt-6 flex justify-center">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -334,6 +355,12 @@ export default function TeamPage() {
         </div>
       </div>
       <Footer />
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }
