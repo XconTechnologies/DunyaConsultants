@@ -185,9 +185,8 @@ export default function Footer() {
 
           </div>
 
-
           {/* Bottom Bar */}
-          <div className="border-t border-white/20 pt-6 text-center">
+          <div className="border-t border-white/20 pt-6 mt-8 text-center">
             <p className="text-blue-100 text-sm">
               © 2025 Developed by <a href="https://xcontechnologies.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-200 transition-colors duration-300">XCon Technologies</a>. All rights reserved.
             </p>
