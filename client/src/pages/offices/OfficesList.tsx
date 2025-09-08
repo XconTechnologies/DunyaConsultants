@@ -10,6 +10,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import CalendlyButton from "@/components/calendly-button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 // Office data
 const offices = [
@@ -250,6 +251,7 @@ const offices = [
 export default function OfficesList() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('all');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // Handle hash fragment scrolling
   useEffect(() => {
@@ -814,20 +816,30 @@ export default function OfficesList() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <CalendlyButton
-              url="https://calendly.com/d/cr7w-sby-xzh"
-              text="📋 Fill Consultation Form"
+              text="Book Free Consultation"
               className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-6 py-3 font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
               size="lg"
               showIcon={false}
             />
-            <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:bg-[#1845B3]">
-              Contact Head Office
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="border-white text-white hover:bg-white hover:text-[#1845B3]"
+              onClick={() => setIsPopupOpen(true)}
+            >
+              Connect now
             </Button>
           </div>
         </motion.div>
       </div>
 
       <Footer />
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }
