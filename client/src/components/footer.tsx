@@ -5,7 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { useEffect } from 'react';
 
 import Asset_1 from "@assets/Asset-1.png";
-import New_Logo_White from "@assets/New Logo White.png";
+const dunyaConsultantsLogoWhiteHeader = "https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.webp";
 import BritishCouncilLogo from "@assets/image_1756901212132.png";
 import DuolingoLogo from "@assets/image_1756901218470.png";
 import LanguageCertLogo from "@assets/image_1756901223335.png";
@@ -43,7 +43,7 @@ export default function Footer() {
               <div className="mb-6">
                 <Link href="/">
                   <img 
-                    src={New_Logo_White} 
+                    src={dunyaConsultantsLogoWhiteHeader} 
                     alt="Dunya Consultants Logo" 
                     className="h-10 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"
                   />
