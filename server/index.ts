@@ -9,6 +9,31 @@ app.use(express.urlencoded({ extended: false }));
 // Serve attached assets statically
 app.use('/attached_assets', express.static('attached_assets'));
 
+// Serve robots.txt before other routes
+app.get("/robots.txt", (req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
+  res.send(`# robots.txt for dunyaconsultants.com
+# Default rule for all bots
+User-agent: *
+# Disallow access to private or irrelevant areas
+Disallow: /admin/
+Disallow: /login/
+Disallow: /wp-admin/
+# Example: block tracking or temp folders (customize if applicable)
+# Disallow: /temp/
+# Disallow: /*?s=  # block internal search pages (modify as needed)
+
+
+Allow: /wp-content/uploads/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.svg$
+
+Sitemap: https://dunyaconsultants.com/sitemap.xml`);
+});
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
