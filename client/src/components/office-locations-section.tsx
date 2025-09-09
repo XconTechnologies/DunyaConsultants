@@ -23,7 +23,7 @@ const offices: Office[] = [
     city: "Sargodha",
     name: "Head Office",
     address: "Alif Tower, Bahadur Shah Zafar Road, Sargodha",
-    phone: "+92 323‑251‑6319",
+    phone: "+92 321 9991947",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-[#1D50C9] to-[#1845B3]",
     isHeadOffice: true,

@@ -19,7 +19,7 @@ const offices = [
     city: "Sargodha",
     name: "Alif Tower",
     address: "Alif Tower, Buhadur Shah Zafar Road, Sargodha",
-    phone: "+92 304 1110947",
+    phone: "+92 321 9991947",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-[#1D50C9] to-purple-600",
     isHeadOffice: true,
