@@ -1,22 +1,10 @@
-import { useState } from "react";
-import { X, Send } from "lucide-react";
 
 export default function WhatsAppButton() {
-  const [showPopup, setShowPopup] = useState(false);
-  const [message, setMessage] = useState("");
-  
   const handleWhatsAppClick = () => {
     const phoneNumber = "+923261111947";
     const message = "Hi! I'm interested in studying abroad and would like to know more about your services.";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
   };
 
   return (
