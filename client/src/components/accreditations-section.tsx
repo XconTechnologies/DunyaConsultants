@@ -70,11 +70,11 @@ export default function AccreditationsSection() {
                 <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] flex flex-col items-center justify-center space-y-4">
 
                   {/* Logo Area */}
-                  <div className="text-center">
+                  <div className="text-center h-20 flex items-center justify-center">
                     <img
                       src={accreditation.image}
                       alt={accreditation.name}
-                      className="max-h-48 max-w-48 mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                      className="h-16 w-auto max-w-full mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
 
