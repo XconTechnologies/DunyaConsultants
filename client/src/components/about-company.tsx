@@ -7,7 +7,7 @@ import aboutImage from "@assets/best-study-abroad-consultants-in-pakistan_175742
 const expandableContent = [
   {
     icon: Users,
-    title: "20+ branches & 200 Certified Counsellors",
+    title: "20+ Branches & 200 Certified Counsellors",
     content: "Comprehensive support network across Pakistan with certified overseas education consultants Pakistan, providing personalized guidance to every student."
   },
   {
