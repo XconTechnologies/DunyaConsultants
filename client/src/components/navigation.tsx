@@ -7,8 +7,6 @@ import { Link, useLocation } from "wouter";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
 import ConsultationBooking from "@/components/ConsultationBooking";
 
-const dunyaConsultantsLogoWhiteHeader = "https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png";
-
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -169,7 +167,7 @@ export default function Navigation() {
               <div className="relative">
                 <Link href="/" onClick={handleHomeClick}>
                   <img 
-                    src={isScrolled ? logoImageBlue : dunyaConsultantsLogoWhiteHeader} 
+                    src={logoImageBlue} 
                     alt="Dunya Consultants Logo" 
                     className="h-10 w-auto transition-all duration-500 drop-shadow-lg cursor-pointer hover:scale-105 transition-transform"
                   />
