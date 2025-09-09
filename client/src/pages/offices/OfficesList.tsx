@@ -678,9 +678,6 @@ export default function OfficesList() {
                       <div className="relative mb-4">
                         {/* International Badge - Top Right */}
                         <div className="absolute top-0 right-0 flex items-center space-x-2">
-                          <Badge className="text-white text-xs" style={{ backgroundColor: '#1D50C9' }}>
-                            International
-                          </Badge>
                           <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300" style={{ backgroundColor: '#1D50C9' }}>
                             <Building2 className="w-6 h-6 text-white" />
                           </div>
