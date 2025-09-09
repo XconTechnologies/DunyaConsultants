@@ -98,8 +98,6 @@ export default function WhatsAppButton() {
               />
             </div>
             
-            
-            
             <p className="text-xs text-gray-500 text-center">Our team will reply in a few minutes</p>
           </div>
         </div>
