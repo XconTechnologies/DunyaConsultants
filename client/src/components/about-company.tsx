@@ -2,8 +2,6 @@ import { useRef } from "react";
 import { useInView } from "framer-motion";
 import { Check, Shield, Award, Globe, Users, CheckCircle } from "lucide-react";
 
-// Import the company collage image
-import companyCollage from "@assets/Frame 1000007739_1755692774444.png";
 
 const expandableContent = [
   {
@@ -48,8 +46,8 @@ export default function AboutCompany() {
           {/* Left Side - Image */}
           <div className="relative order-2 lg:order-1">
             <img
-              src={companyCollage}
-              alt="Pakistani students studying abroad with Dunya Consultants"
+              src="https://dunyaconsultants.com/assets/Frame%201000007739_1755692774444-Ctm0aR7x.png"
+              alt="best-study-abroad-consultants-in-pakistan"
               className="w-full h-[450px] object-contain sm:h-80 sm:object-cover md:h-96 lg:h-[600px] object-center rounded-2xl shadow-lg"
               loading="eager"
             />
