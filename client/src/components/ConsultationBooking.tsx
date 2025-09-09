@@ -20,17 +20,17 @@ export default function ConsultationBooking({ country, children }: ConsultationB
       <div className="space-y-4">
         <div className="text-center p-4 bg-blue-50 rounded-lg">
           <p className="font-semibold text-[#1e3a8a]">UAN Number</p>
-          <p className="text-xl font-bold text-[#1845B3]">(+92) 304 1110947</p>
+          <p className="text-xl font-bold text-[#1845B3]">(+92) 326 1111947</p>
         </div>
         <div className="space-y-3">
           <Button 
-            onClick={() => window.open('tel:+923041110947')}
+            onClick={() => window.open('tel:+923261111947')}
             className="w-full bg-[#1845B3] hover:bg-[#1a73e8] text-white"
           >
             📞 Call Now
           </Button>
           <Button 
-            onClick={() => window.open('https://wa.me/923041110947?text=Hello, I want to book a free consultation for study abroad')}
+            onClick={() => window.open('https://wa.me/923261111947?text=Hello, I want to book a free consultation for study abroad')}
             className="w-full bg-[#1845B3] hover:bg-[#1a73e8] text-white"
           >
             💬 WhatsApp
