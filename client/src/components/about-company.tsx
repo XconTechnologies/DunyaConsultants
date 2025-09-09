@@ -46,7 +46,7 @@ export default function AboutCompany() {
           {/* Left Side - Image */}
           <div className="relative order-2 lg:order-1">
             <img
-              src="https://dunyaconsultants.com/assets/Frame%201000007739_1755692774444-Ctm0aR7x.png"
+              src="best-study-abroad-consultants-in-pakistan"
               alt="best-study-abroad-consultants-in-pakistan"
               className="w-full h-[450px] object-contain sm:h-80 sm:object-cover md:h-96 lg:h-[600px] object-center rounded-2xl shadow-lg"
               loading="eager"
