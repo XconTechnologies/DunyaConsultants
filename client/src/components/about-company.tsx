@@ -50,7 +50,7 @@ export default function AboutCompany() {
               src={aboutImage}
               alt="best-study-abroad-consultants-in-pakistan"
               className="w-full h-[450px] object-contain sm:h-80 sm:object-cover md:h-96 lg:h-[600px] object-center rounded-2xl shadow-lg"
-              loading="eager"
+              loading="lazy"
             />
           </div>
 

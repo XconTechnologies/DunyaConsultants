@@ -8,21 +8,37 @@
     <meta property="og:title" content="Study Abroad Consultants in Pakistan - Dunya Consultants" />
     <meta property="og:description" content="Looking for top Study Abroad Consultants in Pakistan? Dunya Consultants offers expert guidance for global education. Apply now!" />
     <meta property="og:type" content="website" />
+    
+    <!-- DNS prefetch for better performance -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://assets.calendly.com">
+    <link rel="dns-prefetch" href="https://replit.com">
+    
+    <!-- Preconnect for critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Optimized font loading with font-display swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical assets -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    <link rel="preload" href="/src/index.css" as="style">
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Calendly CSS for better performance -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <!-- Defer non-critical CSS -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"></noscript>
     
-    <!-- Calendly backup script for reliability -->
-    <script type="text/javascript">
+    <!-- Defer non-critical scripts -->
+    <script type="text/javascript" defer>
       window.CalendlyConfig = {url: 'https://calendly.com/d/cr7w-sby-xzh'};
     </script>
-    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+    
+    <!-- Defer replit banner script -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" defer></script>
   </body>
 </html>
