@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import { Check, Shield, Award, Globe, Users, CheckCircle } from "lucide-react";
-import aboutImage from "@assets/Frame 1000007739_1755692774444.png";
+import aboutImage from "@assets/best-study-abroad-consultants-in-pakistan_1757419928075.png";
 
 
 const expandableContent = [
