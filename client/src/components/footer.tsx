@@ -46,6 +46,7 @@ export default function Footer() {
                     src={logoImageBlue} 
                     alt="Dunya Consultants Logo" 
                     className="h-10 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
                   />
                 </Link>
               </div>
