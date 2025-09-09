@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, 
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
+import logoImageWhite from "@assets/DC White Logo_1751441165041.png";
 import ConsultationBooking from "@/components/ConsultationBooking";
 
 export default function Navigation() {
@@ -167,7 +168,7 @@ export default function Navigation() {
               <div className="relative">
                 <Link href="/" onClick={handleHomeClick}>
                   <img 
-                    src={logoImageBlue} 
+                    src={isScrolled ? logoImageBlue : logoImageWhite} 
                     alt="Dunya Consultants Logo" 
                     className="h-10 w-auto transition-all duration-500 drop-shadow-lg cursor-pointer hover:scale-105 transition-transform"
                   />
