@@ -16,7 +16,7 @@ export default function AccreditationsSection() {
     {
       name: "ICEF Agency", 
       description: "International Consultants for Education and Fairs",
-      image: "/attached_assets/Group 1000008327_1756811863752.png",
+      image: "/attached_assets/icef-agency-certification.png",
       status: "Certified Agent"
     },
     {
