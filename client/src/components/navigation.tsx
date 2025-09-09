@@ -4,9 +4,10 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin, Building2, MessageCircle, Calendar, Newspaper, PenTool, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
-const dunyaConsultantsLogoWhiteHeader = "https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.webp";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
 import ConsultationBooking from "@/components/ConsultationBooking";
+
+const dunyaConsultantsLogoWhiteHeader = "https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);

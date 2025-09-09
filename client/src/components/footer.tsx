@@ -5,10 +5,11 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { useEffect } from 'react';
 
 import Asset_1 from "@assets/Asset-1.png";
-const dunyaConsultantsLogoWhiteHeader = "https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.webp";
 import BritishCouncilLogo from "@assets/image_1756901212132.png";
 import DuolingoLogo from "@assets/image_1756901218470.png";
 import LanguageCertLogo from "@assets/image_1756901223335.png";
+
+const dunyaConsultantsLogoWhiteHeader = "https://dunyaconsultants.com/assets/DC%20White%20Logo_1751441165041-BqFe8mYE.png";
 
 export default function Footer() {
   useEffect(() => {
