@@ -94,7 +94,7 @@ export default function AccreditationsSection() {
                 key={accreditation.name}
                 href="https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1" 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="nofollow noopener noreferrer"
                 className="block"
               >
                 {content}

@@ -165,7 +165,7 @@ export default function JhelumOffice() {
                 </Button>
               </Link>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
-                <a href="https://maps.app.goo.gl/yk2Dw2WD68qfPtJu9" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                <a href="https://maps.app.goo.gl/yk2Dw2WD68qfPtJu9" target="_blank" rel="nofollow noopener noreferrer" className="flex items-center">
                   Get Directions
                   <MapPin className="w-5 h-5 ml-2" />
                 </a>

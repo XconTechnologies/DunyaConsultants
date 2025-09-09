@@ -158,7 +158,7 @@ export default function StatsBanner() {
           <a
             href="https://www.facebook.com/DunyaConsultant/"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow noopener noreferrer"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaFacebook className="w-3 h-3 text-white" />
@@ -166,7 +166,7 @@ export default function StatsBanner() {
           <a
             href="https://www.instagram.com/dunya.consultants/"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow noopener noreferrer"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaInstagram className="w-3 h-3 text-white" />
@@ -174,7 +174,7 @@ export default function StatsBanner() {
           <a
             href="https://www.tiktok.com/@dunya.consultants"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow noopener noreferrer"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaTiktok className="w-3 h-3 text-white" />
@@ -182,7 +182,7 @@ export default function StatsBanner() {
           <a
             href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow noopener noreferrer"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaYoutube className="w-3 h-3 text-white" />
@@ -190,7 +190,7 @@ export default function StatsBanner() {
           <a
             href="https://pk.linkedin.com/company/dunyaconsultant"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="nofollow noopener noreferrer"
             className="w-7 h-7 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
           >
             <FaLinkedin className="w-3 h-3 text-white" />
@@ -206,7 +206,7 @@ export default function StatsBanner() {
             <a
               href="https://www.facebook.com/DunyaConsultant/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaFacebook className="w-4 h-4 text-white" />
@@ -214,7 +214,7 @@ export default function StatsBanner() {
             <a
               href="https://www.instagram.com/dunya.consultants/"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaInstagram className="w-4 h-4 text-white" />
@@ -222,7 +222,7 @@ export default function StatsBanner() {
             <a
               href="https://www.tiktok.com/@dunya.consultants"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaTiktok className="w-4 h-4 text-white" />
@@ -230,7 +230,7 @@ export default function StatsBanner() {
             <a
               href="https://www.youtube.com/channel/UC7m3BZYXrHTeu1RXaK3PeLA"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaYoutube className="w-4 h-4 text-white" />
@@ -238,7 +238,7 @@ export default function StatsBanner() {
             <a
               href="https://pk.linkedin.com/company/dunyaconsultant"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="w-8 h-8 flex items-center justify-center rounded-full social-icon-background transition-all duration-300 hover:scale-110"
             >
               <FaLinkedin className="w-4 h-4 text-white" />

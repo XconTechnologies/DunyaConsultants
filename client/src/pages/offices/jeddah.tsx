@@ -161,7 +161,7 @@ export default function JeddahOffice() {
                 </Button>
               </Link>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
-                <a href="https://maps.app.goo.gl/YourJeddahLocationLink" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                <a href="https://maps.app.goo.gl/YourJeddahLocationLink" target="_blank" rel="nofollow noopener noreferrer" className="flex items-center">
                   Get Directions
                   <MapPin className="w-5 h-5 ml-2" />
                 </a>
@@ -523,7 +523,7 @@ export default function JeddahOffice() {
                   </Button>
                   
                   <Button size="lg" variant="outline" className="w-full border-white/50 text-white hover:bg-white/10 py-4 rounded-xl backdrop-blur-sm transition-all duration-300 font-semibold">
-                    <a href="https://wa.me/966596382593" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-full">
+                    <a href="https://wa.me/966596382593" target="_blank" rel="nofollow noopener noreferrer" className="flex items-center justify-center w-full">
                       WhatsApp Chat
                       <MessageCircle className="w-5 h-5 ml-2" />
                     </a>

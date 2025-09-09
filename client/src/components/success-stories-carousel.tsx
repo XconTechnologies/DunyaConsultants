@@ -117,7 +117,7 @@ export default function SuccessStoriesCarousel() {
             <a 
               href="https://g.co/kgs/GsNsmyR" 
               target="_blank" 
-              rel="noopener noreferrer"
+              rel="nofollow noopener noreferrer"
               className="text-sm text-primary hover:text-secondary transition-colors"
             >
               View all reviews →

@@ -484,7 +484,7 @@ export default function WhoWeAre() {
                     
                     <div className="mt-6">
                       <Button variant="outline" className="border-[#1D50C9] text-[#1D50C9] hover:bg-blue-50">
-                        <a href="https://meetumerfarooq.com/" target="_blank" rel="noopener noreferrer" className="flex items-center">
+                        <a href="https://meetumerfarooq.com/" target="_blank" rel="nofollow noopener noreferrer" className="flex items-center">
                           Meet Umer Farooq
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </a>

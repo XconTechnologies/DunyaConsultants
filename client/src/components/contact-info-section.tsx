@@ -164,7 +164,7 @@ export default function ContactInfoSection() {
                     <a href="mailto:umer@dunyaconsultants.com" className="block hover:text-blue-300">
                       umer@dunyaconsultants.com
                     </a>
-                    <a href="https://wa.me/923216051057" className="block hover:text-blue-300">
+                    <a href="https://wa.me/923216051057" target="_blank" rel="nofollow noopener noreferrer" className="block hover:text-blue-300">
                       +923216051057
                     </a>
                   </div>
@@ -188,10 +188,10 @@ export default function ContactInfoSection() {
                 </div>
                 <div className="absolute bottom-28 left-1/2 transform -translate-x-1/2 bg-neutral-800 text-white text-xs px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-20">
                   <div className="space-y-1">
-                    <a href="https://wa.me/923011231947" className="block hover:text-blue-300">
+                    <a href="https://wa.me/923011231947" target="_blank" rel="nofollow noopener noreferrer" className="block hover:text-blue-300">
                       +923011231947
                     </a>
-                    <a href="https://wa.me/923219991947" className="block hover:text-blue-300">
+                    <a href="https://wa.me/923219991947" target="_blank" rel="nofollow noopener noreferrer" className="block hover:text-blue-300">
                       +923219991947
                     </a>
                   </div>
