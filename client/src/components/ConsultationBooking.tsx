@@ -9,7 +9,6 @@ interface ConsultationBookingProps {
 }
 
 export default function ConsultationBooking({ country, children }: ConsultationBookingProps) {
-  // Fixed phone number handling to use proper tel: links instead of window.open
   return (
     <>
       <DialogHeader>
