@@ -52,31 +52,10 @@ const branches = [
 
 export default function BranchesCarousel() {
   const [isHovered, setIsHovered] = useState(false);
-  const controls = useAnimation();
   
   // Triple the array for seamless infinite scrolling
   const duplicatedBranches = [...branches, ...branches, ...branches];
   const totalDistance = -120 * branches.length;
-
-  useEffect(() => {
-    if (!isHovered) {
-      controls.start({
-        x: totalDistance,
-        transition: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration: 12,
-          ease: "linear",
-        },
-      });
-    } else {
-      controls.stop();
-    }
-
-    return () => {
-      controls.stop();
-    };
-  }, [isHovered, controls, totalDistance]);
 
   return (
     <section className="py-8 lg:py-12 pb-16 lg:pb-20 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden">
@@ -106,10 +85,12 @@ export default function BranchesCarousel() {
           onMouseLeave={() => setIsHovered(false)}
         >
 
-          <motion.div
-            animate={controls}
-            className="flex gap-2 sm:gap-3 lg:gap-4 will-change-transform py-4"
-            style={{ width: `${120 * duplicatedBranches.length}px` }}
+          <div
+            className="flex gap-2 sm:gap-3 lg:gap-4 will-change-transform py-4 animate-scroll"
+            style={{ 
+              width: `${120 * duplicatedBranches.length}px`,
+              animationPlayState: isHovered ? 'paused' : 'running'
+            }}
           >
             {duplicatedBranches.map((branch, index) => {
               const IconComponent = branch.icon;
@@ -135,13 +116,23 @@ export default function BranchesCarousel() {
                 </div>
               );
             })}
-          </motion.div>
+          </div>
 
           {/* Gradient Overlays for smooth fade effect */}
           <div className="absolute top-0 left-0 w-8 sm:w-16 lg:w-24 h-full bg-gradient-to-r from-blue-50 via-blue-50/80 to-transparent z-10 pointer-events-none"></div>
           <div className="absolute top-0 right-0 w-8 sm:w-16 lg:w-24 h-full bg-gradient-to-l from-blue-50 via-blue-50/80 to-transparent z-10 pointer-events-none"></div>
         </div>
       </div>
+      
+      <style>{`
+        @keyframes scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(${totalDistance}px); }
+        }
+        .animate-scroll {
+          animation: scroll 12s linear infinite;
+        }
+      `}</style>
     </section>
   );
 }
