@@ -199,10 +199,8 @@ export default function WhoWeAre() {
           </div>
         </div>
       </section>
-
       {/* Consultation Booking Section */}
       <ConsultationBookingSection />
-
       {/* About Content - Completely Redesigned */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -262,16 +260,18 @@ export default function WhoWeAre() {
                         <p className="text-sm text-gray-600">Strategic locations across Pakistan ensuring local support everywhere</p>
                       </div>
 
-                      <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl">
-                        <div className="flex items-center mb-3">
-                          <Users className="w-8 h-8 text-green-600 mr-3" />
-                          <div>
-                            <div className="text-2xl font-bold text-green-600">200+</div>
-                            <div className="text-sm font-semibold text-gray-700">Expert Counselors</div>
+                      <Link href="/about/team">
+                        <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+                          <div className="flex items-center mb-3">
+                            <Users className="w-8 h-8 text-green-600 mr-3" />
+                            <div>
+                              <div className="text-2xl font-bold text-green-600">200+</div>
+                              <div className="text-sm font-semibold text-gray-700">Expert Counselors</div>
+                            </div>
                           </div>
+                          <p className="text-sm text-gray-600">Certified professionals providing personalized guidance</p>
                         </div>
-                        <p className="text-sm text-gray-600">Certified professionals providing personalized guidance</p>
-                      </div>
+                      </Link>
 
                       <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl">
                         <div className="flex items-center mb-3">
@@ -502,7 +502,7 @@ export default function WhoWeAre() {
                   </div>
                   
                   <div className="md:col-span-2 p-8">
-                    <h4 className="text-2xl font-bold text-gray-900 mb-6">About Our CEO</h4>
+                    <h4 className="text-2xl font-bold text-gray-900 mb-6">About CEO</h4>
                     <div className="space-y-4 text-gray-700 leading-relaxed">
                       <p>
                         Hi, myself Umer Farooq! I'm the Chief Executive Officer (CEO) of Dunya Consultants, an Educational Consultancy Company located in Pakistan.
@@ -530,9 +530,7 @@ export default function WhoWeAre() {
           </motion.div>
         </div>
       </section>
-
       <Footer />
-      
       <ConsultationFormPopup
         isOpen={isPopupOpen}
         onClose={() => setIsPopupOpen(false)}
