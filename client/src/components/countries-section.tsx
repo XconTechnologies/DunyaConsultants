@@ -252,7 +252,7 @@ export default function CountriesSection() {
   );
 
   return (
-    <div ref={ref} className="w-full py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <div ref={ref} className="w-full py-20 pb-32 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
@@ -271,15 +271,15 @@ export default function CountriesSection() {
         </motion.div>
 
         {/* Single Carousel for All Destinations */}
-        <div className="relative">
+        <div className="relative pb-8">
           {/* Desktop: 4 Cards View */}
-          <div className="hidden md:block overflow-hidden px-16">
+          <div className="hidden md:block overflow-hidden px-16 pb-4">
             <motion.div
               key={`desktop-${currentSlide}`}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+              className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 min-h-[400px]"
             >
               {getCurrentCards().map((country, index) => 
                 renderCountryCard(country, index, `desktop-slide-${currentSlide}`)
@@ -288,12 +288,13 @@ export default function CountriesSection() {
           </div>
 
           {/* Mobile: Single Card View */}
-          <div className="md:hidden px-12">
+          <div className="md:hidden px-12 pb-4">
             <motion.div
               key={`mobile-${currentSlide}`}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="min-h-[400px]"
             >
               {renderCountryCard(getCurrentCard(), 0, `mobile-slide-${currentSlide}`)}
             </motion.div>
@@ -315,40 +316,6 @@ export default function CountriesSection() {
             <ChevronRight className="w-6 h-6" />
           </button>
 
-          {/* Slide Indicators */}
-          <div className="flex justify-center mt-8 gap-2">
-            {/* Desktop indicators - show number of slides (groups of 4) */}
-            <div className="hidden md:flex">
-              {Array.from({ length: totalSlides }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'scale-110' 
-                      : 'bg-blue-200 hover:bg-blue-300'
-                  }`}
-                  style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
-                />
-              ))}
-            </div>
-            
-            {/* Mobile indicators - show individual cards */}
-            <div className="md:hidden flex">
-              {displayCountries.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'scale-110' 
-                      : 'bg-blue-200 hover:bg-blue-300'
-                  }`}
-                  style={index === currentSlide ? { backgroundColor: '#1D50C9' } : {}}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
