@@ -306,6 +306,7 @@ export default function WhoWeAre() {
                         <Button 
                           size="lg" 
                           className="bg-white text-[#1D50C9] hover:bg-gray-100 font-semibold px-8 py-3"
+                          onClick={() => setIsPopupOpen(true)}
                         >
                           Book Free Consultation
                         </Button>
