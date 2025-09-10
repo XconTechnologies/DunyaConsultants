@@ -120,21 +120,13 @@ export default function CountriesSection() {
   const totalSlides = Math.ceil(displayCountries.length / cardsPerSlide);
 
   const nextSlide = () => {
-    // Mobile: single card navigation, Desktop: 4-card group navigation
-    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      setCurrentSlide((prev) => (prev + 1) % displayCountries.length);
-    } else {
-      setCurrentSlide((prev) => (prev + 1) % totalSlides);
-    }
+    // Always loop infinitely through all countries one by one
+    setCurrentSlide((prev) => (prev + 1) % displayCountries.length);
   };
 
   const prevSlide = () => {
-    // Mobile: single card navigation, Desktop: 4-card group navigation
-    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-      setCurrentSlide((prev) => (prev - 1 + displayCountries.length) % displayCountries.length);
-    } else {
-      setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-    }
+    // Always loop infinitely through all countries one by one
+    setCurrentSlide((prev) => (prev - 1 + displayCountries.length) % displayCountries.length);
   };
 
   const getCurrentCard = () => {
@@ -142,9 +134,13 @@ export default function CountriesSection() {
   };
 
   const getCurrentCards = () => {
-    // For desktop: show 4 cards per slide
-    const start = currentSlide * cardsPerSlide;
-    return displayCountries.slice(start, start + cardsPerSlide);
+    // For desktop: show 4 consecutive cards starting from currentSlide, wrapping around
+    const cards = [];
+    for (let i = 0; i < cardsPerSlide; i++) {
+      const index = (currentSlide + i) % displayCountries.length;
+      cards.push(displayCountries[index]);
+    }
+    return cards;
   };
 
   const handleViewDetails = (country: typeof countries[0]) => {
@@ -252,7 +248,7 @@ export default function CountriesSection() {
   );
 
   return (
-    <div ref={ref} className="w-full py-20 pb-32 bg-gradient-to-br from-gray-50 to-blue-50">
+    <div ref={ref} className="w-full py-20 bg-gradient-to-br from-gray-50 to-blue-50">
       <div className="container mx-auto px-6">
         {/* Section Header */}
         <motion.div
@@ -271,15 +267,15 @@ export default function CountriesSection() {
         </motion.div>
 
         {/* Single Carousel for All Destinations */}
-        <div className="relative pb-8">
+        <div className="relative">
           {/* Desktop: 4 Cards View */}
-          <div className="hidden md:block overflow-hidden px-16 pb-4">
+          <div className="hidden md:block overflow-hidden px-16">
             <motion.div
               key={`desktop-${currentSlide}`}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 min-h-[400px]"
+              className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
             >
               {getCurrentCards().map((country, index) => 
                 renderCountryCard(country, index, `desktop-slide-${currentSlide}`)
@@ -288,13 +284,12 @@ export default function CountriesSection() {
           </div>
 
           {/* Mobile: Single Card View */}
-          <div className="md:hidden px-12 pb-4">
+          <div className="md:hidden px-12">
             <motion.div
               key={`mobile-${currentSlide}`}
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="min-h-[400px]"
             >
               {renderCountryCard(getCurrentCard(), 0, `mobile-slide-${currentSlide}`)}
             </motion.div>
