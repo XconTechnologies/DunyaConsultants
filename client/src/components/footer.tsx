@@ -8,7 +8,7 @@ import Asset_1 from "@assets/Asset-1.png";
 import BritishCouncilLogo from "@assets/image_1756901212132.png";
 import DuolingoLogo from "@assets/image_1756901218470.png";
 import LanguageCertLogo from "@assets/image_1756901223335.png";
-import logoImageBlue from "@assets/DC Blue Logo_1751614676879.png";
+import logoImageWhite from "@assets/DC White Logo_1751441165041.png";
 
 export default function Footer() {
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function Footer() {
               <div className="mb-6">
                 <Link href="/">
                   <img 
-                    src={logoImageBlue} 
+                    src={logoImageWhite} 
                     alt="Dunya Consultants Logo" 
                     className="h-10 w-auto cursor-pointer hover:scale-105 transition-transform duration-300"
                     loading="lazy"
