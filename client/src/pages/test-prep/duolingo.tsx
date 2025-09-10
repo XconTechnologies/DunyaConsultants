@@ -156,6 +156,18 @@ export default function Duolingo() {
                 Connect now
               </Button>
             </div>
+            <div className="mt-6 flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20"
+              >
+                <p className="text-sm font-medium">
+                  Online • Convenient • Fast Results
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>

@@ -113,23 +113,39 @@ export default function IELTS() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-6">
-              <Award className="w-5 h-5 mr-2" />
-              <span className="text-sm font-medium">IELTS Academic & General</span>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6"
+            >
+              <Award className="w-10 h-10" />
+            </motion.div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
               IELTS
             </h1>
-            <p className="text-lg md:text-2xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
               World's most popular English language proficiency test for higher education and global migration
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-[#1e3a8a] hover:bg-blue-50">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold">
                 Book Your Test
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
                 Start Preparation
               </Button>
+            </div>
+            <div className="mt-6 flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20"
+              >
+                <p className="text-sm font-medium">
+                  Academic • General • Global Recognition
+                </p>
+              </motion.div>
             </div>
           </motion.div>
         </div>

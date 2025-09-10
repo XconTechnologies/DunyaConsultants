@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -92,6 +93,14 @@ Address: Alif Tower, Sargodha
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6"
+            >
+              <GraduationCap className="w-10 h-10" />
+            </motion.div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
               Study in <span className="text-white">UK</span>
             </h1>
@@ -128,6 +137,18 @@ Address: Alif Tower, Sargodha
               >
                 Connect now
               </Button>
+            </div>
+            <div className="mt-6 flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20"
+              >
+                <p className="text-sm font-medium">
+                  Tradition • Quality • Achievement
+                </p>
+              </motion.div>
             </div>
           </div>
         </div>

@@ -117,10 +117,14 @@ export default function PTE() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full backdrop-blur-sm mb-6">
-              <Award className="w-5 h-5 mr-2" />
-              <span className="text-sm font-medium">PTE Academic</span>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6"
+            >
+              <Award className="w-10 h-10" />
+            </motion.div>
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
               PTE Academic
             </h1>
@@ -143,6 +147,18 @@ export default function PTE() {
               >
                 Connect now
               </Button>
+            </div>
+            <div className="mt-6 flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20"
+              >
+                <p className="text-sm font-medium">
+                  Computer-Based • Fast Results • Trusted
+                </p>
+              </motion.div>
             </div>
           </motion.div>
         </div>

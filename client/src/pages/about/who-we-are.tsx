@@ -104,10 +104,14 @@ export default function WhoWeAre() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <div className="inline-flex items-center px-4 py-2 sm:px-6 sm:py-3 bg-white/15 rounded-full backdrop-blur-sm mb-6 sm:mb-8 border border-white/20">
-              <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-              <span className="text-xs sm:text-sm font-medium">About Dunya Consultants</span>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center justify-center w-20 h-20 bg-white/10 rounded-full mb-6"
+            >
+              <Star className="w-10 h-10" />
+            </motion.div>
             
             <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
               Why We Are{" "}
@@ -116,11 +120,36 @@ export default function WhoWeAre() {
               </span>
             </h1>
             
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
               Pakistan's leading education consultancy, dedicated to making your study abroad dreams a reality with personalized guidance and proven success.
             </p>
-
-            
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+              <CalendlyButton
+                text="Book Free Consultation"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
+                size="lg"
+                showIcon={false}
+              />
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
+              >
+                Connect now
+              </Button>
+            </div>
+            <div className="mt-6 flex justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-white/20"
+              >
+                <p className="text-sm font-medium">
+                  Trusted • Professional • Results-Driven
+                </p>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
