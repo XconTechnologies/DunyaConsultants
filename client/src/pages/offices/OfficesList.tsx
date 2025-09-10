@@ -624,15 +624,16 @@ export default function OfficesList() {
                             </Button>
                           </Link>
                         ) : (
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            onClick={() => window.open(`tel:${office.phone}`, '_self')}
-                            className="flex-1 text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
-                          >
-                            <Phone className="w-3 h-3 mr-1" />
-                            Call
-                          </Button>
+                          <a href={`tel:${office.phone}`} className="flex-1">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="w-full text-[#1845B3] border-[#1845B3] hover:bg-blue-50 font-medium text-sm"
+                            >
+                              <Phone className="w-3 h-3 mr-1" />
+                              Call
+                            </Button>
+                          </a>
                         )}
                       </div>
                     </CardContent>
@@ -770,16 +771,17 @@ export default function OfficesList() {
                             </Button>
                           </Link>
                         ) : (
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            onClick={() => window.open(`tel:${office.phone}`, '_self')}
-                            className="flex-1 font-medium text-sm hover:bg-blue-50"
-                            style={{ borderColor: '#1D50C9', color: '#1D50C9' }}
-                          >
-                            <Phone className="w-3 h-3 mr-1" />
-                            Call
-                          </Button>
+                          <a href={`tel:${office.phone}`} className="flex-1">
+                            <Button 
+                              variant="outline" 
+                              size="sm"
+                              className="w-full font-medium text-sm hover:bg-blue-50"
+                              style={{ borderColor: '#1D50C9', color: '#1D50C9' }}
+                            >
+                              <Phone className="w-3 h-3 mr-1" />
+                              Call
+                            </Button>
+                          </a>
                         )}
                       </div>
                     </CardContent>

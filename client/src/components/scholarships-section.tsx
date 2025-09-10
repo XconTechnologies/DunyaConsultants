@@ -324,13 +324,14 @@ export default function ScholarshipsSection() {
                     >
                       Apply Now
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      className="w-full"
-                      onClick={() => window.open(`tel:+923041110947`, '_self')}
-                    >
-                      Get Guidance
-                    </Button>
+                    <a href="tel:+923041110947" className="w-full">
+                      <Button 
+                        variant="outline" 
+                        className="w-full"
+                      >
+                        Get Guidance
+                      </Button>
+                    </a>
                   </div>
                 </CardContent>
               </Card>
@@ -377,13 +378,14 @@ export default function ScholarshipsSection() {
                     <p className="text-gray-600">Scholarships secured for our students</p>
                   </div>
                   <div className="space-y-3">
-                    <Button 
-                      size="lg" 
-                      className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:shadow-xl transition-all"
-                      onClick={() => window.open(`tel:+923041110947`, '_self')}
-                    >
-                      Book Free Consultation
-                    </Button>
+                    <a href="tel:+923041110947" className="w-full">
+                      <Button 
+                        size="lg" 
+                        className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:shadow-xl transition-all"
+                      >
+                        Book Free Consultation
+                      </Button>
+                    </a>
                     <Button 
                       variant="outline" 
                       size="lg" 
