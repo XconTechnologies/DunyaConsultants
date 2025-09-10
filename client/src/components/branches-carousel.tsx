@@ -59,9 +59,9 @@ export default function BranchesCarousel() {
   const totalDistance = -120 * branches.length;
 
   useEffect(() => {
-    const startInfiniteAnimation = () => {
+    if (!isHovered) {
       controls.start({
-        x: [0, totalDistance],
+        x: totalDistance,
         transition: {
           repeat: Infinity,
           repeatType: "loop",
@@ -69,10 +69,6 @@ export default function BranchesCarousel() {
           ease: "linear",
         },
       });
-    };
-
-    if (!isHovered) {
-      startInfiniteAnimation();
     } else {
       controls.stop();
     }
@@ -120,11 +116,11 @@ export default function BranchesCarousel() {
               return (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-28 sm:w-32 lg:w-40 flex flex-col items-center justify-center"
+                  className="flex-shrink-0 w-28 sm:w-32 lg:w-40 flex items-center justify-center"
                 >
                   {/* Clean Icon Container with Link */}
                   <Link href={branch.route} className="block">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group mb-2">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 bg-white rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg sm:shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group">
                       {branch.landmarkIcon ? (
                         <img 
                           src={branch.landmarkIcon} 
@@ -134,12 +130,6 @@ export default function BranchesCarousel() {
                       ) : (
                         <IconComponent className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-[#1D50C9] group-hover:scale-105 transition-transform duration-300" />
                       )}
-                    </div>
-                    {/* Branch Name */}
-                    <div className="text-center">
-                      <span className="text-xs sm:text-sm font-medium text-[#1D50C9] group-hover:text-[#1845B3] transition-colors duration-300">
-                        {branch.name}
-                      </span>
                     </div>
                   </Link>
                 </div>
