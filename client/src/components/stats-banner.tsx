@@ -71,7 +71,8 @@ export default function StatsBanner() {
       case 3: // Countries Covered - Scroll to study destinations section
         scrollToSection('study-destinations');
         break;
-      case 4: // Expert Counselors - No navigation
+      case 4: // Expert Counselors - Go to team page
+        setLocation('/about/team');
         break;
       default:
         break;
