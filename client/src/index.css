@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -212,10 +211,38 @@ img {
 .lazy-load {
   opacity: 0;
   transition: opacity 0.3s;
+  will-change: opacity;
 }
 
 .lazy-load.loaded {
   opacity: 1;
+}
+
+/* Performance critical styles */
+.perf-critical {
+  contain: layout style paint;
+}
+
+/* Reduce layout thrashing */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-auto {
+  will-change: auto;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: no-preference) {
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Resource hints */
+.resource-hint {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
 }
 
 /* Critical CSS inlining placeholder */

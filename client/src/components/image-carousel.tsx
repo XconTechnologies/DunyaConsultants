@@ -1,34 +1,19 @@
-import { useRef } from "react";
+import { useRef, lazy, Suspense } from "react";
 import { motion, useInView } from "framer-motion";
+import { LazyImage } from "@/components/ui/lazy-image";
 
-// Import images from assets
-import img1 from "@assets/Avari Carnival (147 of 1139)_1751536114472.webp";
-import img2 from "@assets/Avari Carnival (152 of 1139)_1751536114473.webp";
-import img3 from "@assets/Branch Manager of the year_1751536114473.webp";
-import img4 from "@assets/Dunya AGM (183 of 577)_1751536114474.webp";
-import img5 from "@assets/Dunya AGM (187 of 577)_1751536114474.webp";
-import img6 from "@assets/Dunya AGM (319 of 577)_1751536114475.webp";
-import img7 from "@assets/Dunya AGM (337 of 577)_1751536114475.webp";
-import img8 from "@assets/Dunya AGM (350 of 577)_1751536114475.webp";
-import img9 from "@assets/IMG-20250510-WA0020_1751536114476.webp";
-import img10 from "@assets/IMG-20250510-WA0028_1751536114476.webp";
-import img11 from "@assets/IMG-20250510-WA0070_1751536114476.webp";
-import img12 from "@assets/MHQ07558_1751536114477.webp";
-
+// Lazy load images for better initial performance
 const carouselImages = [
-  { id: 1, src: img1, alt: "best Study Abroad Consultants in Pakistan", caption: "One-on-one student guidance sessions" },
-  { id: 2, src: img2, alt: "Annual Awards Ceremony", caption: "Celebrating excellence in education consulting" },
-  { id: 3, src: img3, alt: "Branch Manager Recognition", caption: "Branch Manager of the Year award ceremony" },
-  { id: 4, src: img4, alt: "Team Meeting", caption: "Strategic planning and team collaboration" },
-  { id: 5, src: img5, alt: "Professional Conference", caption: "International education conference participation" },
-  { id: 6, src: img6, alt: "Training Workshop", caption: "Professional development and training session" },
-  { id: 7, src: img7, alt: "Corporate Event", caption: "Company milestone celebration" },
-  { id: 8, src: img8, alt: "Educational Seminar", caption: "Educational seminar for prospective students" },
-  { id: 9, src: img9, alt: "Office Consultation", caption: "Professional consultation services" },
-  { id: 10, src: img10, alt: "Team Building", caption: "Team building and motivational session" },
-  { id: 11, src: img11, alt: "International Programs", caption: "Global education program showcase" },
-  { id: 12, src: img12, alt: "Success Stories", caption: "Celebrating student success stories" }
+  { id: 1, src: "/attached_assets/Avari Carnival (147 of 1139)_1751536114472.webp", alt: "best Study Abroad Consultants in Pakistan", caption: "One-on-one student guidance sessions" },
+  { id: 2, src: "/attached_assets/Avari Carnival (152 of 1139)_1751536114473.webp", alt: "Annual Awards Ceremony", caption: "Celebrating excellence in education consulting" },
+  { id: 3, src: "/attached_assets/Branch Manager of the year_1751536114473.webp", alt: "Branch Manager Recognition", caption: "Branch Manager of the Year award ceremony" },
+  { id: 4, src: "/attached_assets/Dunya AGM (183 of 577)_1751536114474.webp", alt: "Team Meeting", caption: "Strategic planning and team collaboration" },
+  { id: 5, src: "/attached_assets/Dunya AGM (187 of 577)_1751536114474.webp", alt: "Professional Conference", caption: "International education conference participation" },
+  { id: 6, src: "/attached_assets/Dunya AGM (319 of 577)_1751536114475.webp", alt: "Training Workshop", caption: "Professional development and training session" },
+  { id: 7, src: "/attached_assets/Dunya AGM (337 of 577)_1751536114475.webp", alt: "Corporate Event", caption: "Company milestone celebration" },
+  { id: 8, src: "/attached_assets/Dunya AGM (350 of 577)_1751536114475.webp", alt: "Educational Seminar", caption: "Educational seminar for prospective students" },
 ];
+
 
 export default function ImageCarousel() {
   const ref = useRef(null);
@@ -54,31 +39,47 @@ export default function ImageCarousel() {
               }}
             >
               {/* First set of images */}
-              {carouselImages.slice(0, 8).map((image) => (
-                  <motion.img
+              {carouselImages.map((image) => (
+                  <motion.div
                     key={`first-${image.id}`}
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-[350px] h-[250px] object-cover flex-shrink-0 rounded-lg shadow-lg"
+                    className="w-[350px] h-[250px] flex-shrink-0 rounded-lg shadow-lg overflow-hidden"
                     whileHover={{ 
                       scale: 1.05,
                       transition: { duration: 0.3, ease: "easeOut" }
                     }}
-                  />
+                  >
+                    <LazyImage
+                      src={image.src}
+                      alt={image.alt}
+                      width={350}
+                      height={250}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
               ))}
               
               {/* Duplicate set for seamless loop */}
-              {carouselImages.slice(0, 8).map((image) => (
-                  <motion.img
+              {carouselImages.map((image) => (
+                  <motion.div
                     key={`second-${image.id}`}
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-[350px] h-[250px] object-cover flex-shrink-0 rounded-lg shadow-lg"
+                    className="w-[350px] h-[250px] flex-shrink-0 rounded-lg shadow-lg overflow-hidden"
                     whileHover={{ 
                       scale: 1.05,
                       transition: { duration: 0.3, ease: "easeOut" }
                     }}
-                  />
+                  >
+                    <LazyImage
+                      src={image.src}
+                      alt={image.alt}
+                      width={350}
+                      height={250}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
               ))}
             </motion.div>
         </motion.div>

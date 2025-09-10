@@ -9,36 +9,67 @@
     <meta property="og:description" content="Looking for top Study Abroad Consultants in Pakistan? Dunya Consultants offers expert guidance for global education. Apply now!" />
     <meta property="og:type" content="website" />
     
-    <!-- DNS prefetch for better performance -->
+    <!-- Critical inline CSS for above-the-fold content -->
+    <style>
+      body{margin:0;padding:0;font-family:Inter,sans-serif;background:#fff;}
+      .critical-section{min-height:100vh;display:flex;align-items:center;justify-content:center;}
+      .hero-gradient{background:linear-gradient(135deg,#1D50C9 0%,#2764E8 100%);}
+      .loading-spinner{width:40px;height:40px;border:4px solid #f3f4f6;border-top:4px solid #1D50C9;border-radius:50%;animation:spin 1s linear infinite;}
+      @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+    </style>
+    
+    <!-- Resource hints for critical resources -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="https://assets.calendly.com">
-    <link rel="dns-prefetch" href="https://replit.com">
-    
-    <!-- Preconnect for critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Optimized font loading with font-display swap -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Critical font preload -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
     
-    <!-- Preload critical assets -->
+    <!-- Critical CSS preload -->
+    <link rel="preload" href="/src/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/src/index.css"></noscript>
+    
+    <!-- Font optimization -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Module preload for main entry -->
     <link rel="modulepreload" href="/src/main.tsx">
-    <link rel="preload" href="/src/index.css" as="style">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Critical above-the-fold content loading state -->
+      <div class="critical-section hero-gradient">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
-    <!-- Defer non-critical CSS -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Defer all non-critical resources -->
+    <link rel="dns-prefetch" href="https://assets.calendly.com" />
+    <link rel="dns-prefetch" href="https://replit.com" />
+    
+    <!-- Load Calendly CSS asynchronously -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" media="print">
     <noscript><link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"></noscript>
     
-    <!-- Defer non-critical scripts -->
-    <script type="text/javascript" defer>
-      window.CalendlyConfig = {url: 'https://calendly.com/d/cr7w-sby-xzh'};
+    <!-- Defer Calendly config -->
+    <script>
+      window.addEventListener('load', function() {
+        window.CalendlyConfig = {url: 'https://calendly.com/d/cr7w-sby-xzh'};
+      });
     </script>
     
-    <!-- Defer replit banner script -->
-    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js" defer></script>
+    <!-- Defer Replit banner -->
+    <script>
+      window.addEventListener('load', function() {
+        const script = document.createElement('script');
+        script.src = 'https://replit.com/public/js/replit-dev-banner.js';
+        script.defer = true;
+        document.head.appendChild(script);
+      });
+    </script>
   </body>
 </html>

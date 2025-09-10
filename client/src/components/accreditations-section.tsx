@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Award, Shield, CheckCircle, Star } from "lucide-react";
+import { LazyImage } from "@/components/ui/lazy-image";
 
 export default function AccreditationsSection() {
   const ref = useRef(null);
@@ -71,9 +72,13 @@ export default function AccreditationsSection() {
 
                   {/* Logo Area */}
                   <div className="text-center h-20 flex items-center justify-center">
-                    <img
+                    <LazyImage
                       src={accreditation.image}
                       alt={accreditation.name}
+                      width={120}
+                      height={64}
+                      loading="lazy"
+                      decoding="async"
                       className="h-16 w-auto max-w-full mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>

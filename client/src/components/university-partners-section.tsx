@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState, useMemo } from "react";
-import OptimizedImage from "./optimized-image";
+import { LazyImage } from "@/components/ui/lazy-image";
 
 // Import university logos - original 10
 import southamptonSolentLogo from "@assets/IMG-20250425-WA0016_1750755121093.jpg";
@@ -226,9 +226,13 @@ export default function UniversityPartnersSection() {
                       className="group flex items-center justify-center p-1 min-h-[100px]"
                       whileHover={{ scale: 1.1 }}
                     >
-                      <img
+                      <LazyImage
                         src={university.logoUrl}
                         alt={`${university.name} logo`}
+                        width={160}
+                        height={96}
+                        loading="lazy"
+                        decoding="async"
                         className="h-24 w-40 object-contain transition-all duration-300"
                       />
                     </motion.div>
