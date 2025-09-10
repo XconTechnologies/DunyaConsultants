@@ -127,13 +127,16 @@ export default function ContactUsSection() {
   ];
 
   const countries = [
-    "United Kingdom",
-    "Canada", 
+    "USA",
+    "UK",
+    "Canada",
     "Australia",
-    "United States",
+    "Finland",
+    "Belgium",
+    "Turkey",
     "Germany",
-    "New Zealand",
     "Ireland",
+    "Cyprus",
     "Not Sure"
   ];
 
@@ -258,7 +261,7 @@ export default function ContactUsSection() {
           >
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
               <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8 text-center">
-                <h3 className="text-3xl font-bold mb-3" style={{ color: '#ffffff !important' }}>
+                <h3 className="text-3xl font-bold mb-3 text-white" style={{ color: '#ffffff !important' }}>
                   Send Us a Message
                 </h3>
                 <p className="text-white/90 text-lg">Get personalized guidance for your study abroad plans</p>
@@ -289,7 +292,7 @@ export default function ContactUsSection() {
                         onChange={handleInputChange}
                         required
                         className="mt-2 h-12 border-2 border-gray-200 focus:border-[#1D50C9] rounded-xl"
-                        placeholder="your.email@example.com"
+                        placeholder=""
                       />
                     </div>
                   </div>
@@ -304,7 +307,7 @@ export default function ContactUsSection() {
                         onChange={handleInputChange}
                         required
                         className="mt-2 h-12 border-2 border-gray-200 focus:border-[#1D50C9] rounded-xl"
-                        placeholder="+92 300 1234567"
+                        placeholder=""
                       />
                     </div>
                     <div>
@@ -332,7 +335,7 @@ export default function ContactUsSection() {
                       value={formData.subject}
                       onChange={handleInputChange}
                       className="mt-2 h-12 border-2 border-gray-200 focus:border-[#1D50C9] rounded-xl"
-                      placeholder="Brief subject line"
+                      placeholder=""
                     />
                   </div>
 
@@ -346,7 +349,7 @@ export default function ContactUsSection() {
                       required
                       rows={5}
                       className="mt-2 border-2 border-gray-200 focus:border-[#1D50C9] rounded-xl resize-none"
-                      placeholder="Tell us about your study abroad plans, academic background, and any specific questions you have..."
+                      placeholder=""
                     />
                   </div>
 
