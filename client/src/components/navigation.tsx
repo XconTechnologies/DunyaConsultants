@@ -489,23 +489,15 @@ export default function Navigation() {
                           <Link href="/about/">
                             <button
                               onClick={() => setIsOpen(false)}
-                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-[#1D50C9] transition-colors duration-200 py-2"
                             >
                               Who We Are
-                            </button>
-                          </Link>
-                          <Link href="/about/mission-vision">
-                            <button
-                              onClick={() => setIsOpen(false)}
-                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
-                            >
-                              Mission & Vision
                             </button>
                           </Link>
                           <Link href="/about/team">
                             <button
                               onClick={() => setIsOpen(false)}
-                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-[#1D50C9] transition-colors duration-200 py-2"
                             >
                               Team Dunya Consultants
                             </button>
@@ -513,7 +505,7 @@ export default function Navigation() {
                           <Link href="/about/our-success-stories">
                             <button
                               onClick={() => setIsOpen(false)}
-                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-[#1D50C9] transition-colors duration-200 py-2"
                             >
                               Our Success Stories
                             </button>
@@ -526,7 +518,7 @@ export default function Navigation() {
                             <Link key={country} href={`/study-abroad/${country.toLowerCase()}`}>
                               <button
                                 onClick={() => setIsOpen(false)}
-                                className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                                className="block w-full text-left text-sm text-neutral-600 hover:text-[#1D50C9] transition-colors duration-200 py-2"
                               >
                                 {country}
                               </button>
@@ -540,7 +532,7 @@ export default function Navigation() {
                             <Link key={test} href={`/test-prep/${test.toLowerCase()}`}>
                               <button
                                 onClick={() => setIsOpen(false)}
-                                className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                                className="block w-full text-left text-sm text-neutral-600 hover:text-[#1D50C9] transition-colors duration-200 py-2"
                               >
                                 {test}
                               </button>
@@ -553,7 +545,7 @@ export default function Navigation() {
                           <Link href="/offices">
                             <button
                               onClick={() => setIsOpen(false)}
-                              className="block w-full text-left text-sm text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                              className="block w-full text-left text-sm text-neutral-600 hover:text-[#1D50C9] transition-colors duration-200 py-2"
                             >
                               All Office Locations
                             </button>
@@ -565,7 +557,7 @@ export default function Navigation() {
                     <Link href={item.href} onClick={item.name === "Home" ? handleHomeClick : undefined}>
                       <button
                         onClick={() => setIsOpen(false)}
-                        className="block w-full text-left text-neutral-800 hover:text-primary transition-colors duration-200 font-semibold py-3 px-3 rounded-lg hover:bg-gray-50"
+                        className="block w-full text-left text-neutral-800 hover:text-[#1D50C9] transition-colors duration-200 font-semibold py-3 px-3 rounded-lg hover:bg-gray-50"
                       >
                         {item.name}
                       </button>
