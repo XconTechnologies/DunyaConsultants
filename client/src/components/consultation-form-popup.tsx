@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { X } from "lucide-react";
+import { X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -193,6 +193,20 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
                 >
                   {isSubmitting ? "Submitting..." : "Submit Consultation Request"}
                 </Button>
+                
+                <div className="text-center">
+                  <p className="text-sm text-gray-500 mb-3">UAN Number</p>
+                  <p className="text-lg font-bold text-[#1D50C9] mb-3">(+92) 326 1111947</p>
+                </div>
+
+                {/* Call Now Button */}
+                <a
+                  href="tel:+923261111947"
+                  className="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-[1.02] flex items-center justify-center space-x-2 block no-underline"
+                >
+                  <Phone className="w-5 h-5" />
+                  <span>Call Now</span>
+                </a>
                 
                 {/* WhatsApp Button */}
                 <div className="text-center">
