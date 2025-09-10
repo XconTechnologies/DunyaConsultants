@@ -161,26 +161,6 @@ export default function ContactUsSection() {
               Ready to start your study abroad journey? Connect with our expert counselors for personalized guidance
             </p>
             
-            {/* Contact CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-              <Button 
-                size="lg"
-                className="bg-white text-[#1D50C9] hover:bg-gray-100 font-semibold px-8 py-3 shadow-xl transform hover:scale-105 transition-all duration-300"
-                onClick={() => window.open('tel:+923041110947')}
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Call Now: +92 304 1110947
-              </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#1D50C9] font-semibold px-8 py-3 shadow-xl transform hover:scale-105 transition-all duration-300"
-                onClick={() => window.open('https://wa.me/923041110947?text=Hello, I want to learn about study abroad opportunities')}
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                WhatsApp Chat
-              </Button>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -200,12 +180,12 @@ export default function ContactUsSection() {
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block"
             >
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <Phone className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Call Now</h3>
-                  <p className="text-green-600 font-semibold text-lg">+92 304 1110947</p>
+                  <p className="text-[#1D50C9] font-semibold text-lg">+92 304 1110947</p>
                   <p className="text-gray-500 text-sm">Instant Support</p>
                 </div>
               </div>
@@ -221,12 +201,12 @@ export default function ContactUsSection() {
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block"
             >
               <div className="flex items-center space-x-4">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <MessageCircle className="w-8 h-8 text-white" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">WhatsApp</h3>
-                  <p className="text-green-600 font-semibold">Chat Instantly</p>
+                  <p className="text-[#1D50C9] font-semibold">Chat Instantly</p>
                   <p className="text-gray-500 text-sm">Quick Replies</p>
                 </div>
               </div>
@@ -245,7 +225,7 @@ export default function ContactUsSection() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">Email Us</h3>
-                  <p className="text-[#1845B3] font-semibold">Professional Support</p>
+                  <p className="text-[#1D50C9] font-semibold">Professional Support</p>
                   <p className="text-gray-500 text-sm">24 hour response</p>
                 </div>
               </div>
@@ -267,8 +247,8 @@ export default function ContactUsSection() {
                 <p className="text-white/90 text-lg">Get personalized guidance for your study abroad plans</p>
               </div>
 
-              <div className="p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="p-6">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <Label htmlFor="name" className="text-gray-700 font-semibold">Full Name *</Label>
@@ -279,7 +259,7 @@ export default function ContactUsSection() {
                         onChange={handleInputChange}
                         required
                         className="mt-2 h-12 border-2 border-gray-200 focus:border-[#1D50C9] rounded-xl"
-                        placeholder="Your full name"
+                        placeholder=""
                       />
                     </div>
                     <div>
@@ -311,13 +291,14 @@ export default function ContactUsSection() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="preferredCountry" className="text-gray-700 font-semibold">Preferred Country</Label>
+                      <Label htmlFor="preferredCountry" className="text-gray-700 font-semibold">Preferred Country *</Label>
                       <select
                         id="preferredCountry"
                         name="preferredCountry"
                         value={formData.preferredCountry}
                         onChange={handleInputChange}
-                        className="w-full mt-2 h-12 px-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-[#1D50C9] bg-white"
+                        required
+                        className="w-full mt-2 h-12 px-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all bg-white"
                       >
                         <option value="">Select country</option>
                         {countries.map((country) => (
@@ -356,10 +337,9 @@ export default function ContactUsSection() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white h-14 text-lg font-semibold hover:shadow-lg transition-all duration-300 rounded-xl"
+                    className="w-full py-3 bg-[#1D50C9] hover:bg-[#1845B3] text-white font-semibold rounded-lg transition-all duration-200 hover:scale-[1.02]"
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
-                    <Send className="w-5 h-5 ml-2" />
                   </Button>
                 </form>
               </div>
