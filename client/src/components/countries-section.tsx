@@ -267,9 +267,9 @@ export default function CountriesSection() {
         </motion.div>
 
         {/* Single Carousel for All Destinations */}
-        <div className="relative">
+        <div className="relative mb-8">
           {/* Desktop: 4 Cards View */}
-          <div className="hidden md:block overflow-hidden px-16">
+          <div className="hidden md:block overflow-visible px-16 pb-8">
             <motion.div
               key={`desktop-${currentSlide}`}
               initial={{ opacity: 0, x: 100 }}
@@ -284,7 +284,7 @@ export default function CountriesSection() {
           </div>
 
           {/* Mobile: Single Card View */}
-          <div className="md:hidden px-12">
+          <div className="md:hidden px-12 pb-8">
             <motion.div
               key={`mobile-${currentSlide}`}
               initial={{ opacity: 0, x: 100 }}
