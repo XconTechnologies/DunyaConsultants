@@ -285,7 +285,7 @@ export default function ContactUsSection() {
             {/* Right Side - Contact Form */}
             <div className="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-6">
-                <h3 className="text-2xl font-bold mb-2 text-white" style={{ color: '#ffffff !important' }}>
+                <h3 className="text-2xl font-bold mb-2" style={{ color: 'white', WebkitTextFillColor: 'white', MozTextFillColor: 'white' }}>
                   Send Us a Message
                 </h3>
                 <p className="text-white/90">Get personalized guidance for your study abroad plans</p>
