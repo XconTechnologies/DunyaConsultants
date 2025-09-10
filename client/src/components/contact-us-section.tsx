@@ -234,54 +234,56 @@ export default function ContactUsSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid lg:grid-cols-2 gap-12 items-start"
+            className="grid lg:grid-cols-2 gap-12 items-stretch"
           >
             {/* Left Side - Content */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                  Ready to Start Your Study Abroad Journey?
-                </h3>
-                <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                  Connect with our expert counselors for personalized guidance and support throughout your educational journey.
-                </p>
-              </div>
-              
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
-                    <CheckCircle className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-2">Expert Guidance</h4>
-                    <p className="text-gray-600">Get personalized advice from our experienced counselors who understand your unique goals.</p>
-                  </div>
+            <div className="bg-white rounded-3xl shadow-2xl p-8 h-full flex flex-col justify-center">
+              <div className="space-y-8">
+                <div>
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                    Ready to Start Your Study Abroad Journey?
+                  </h3>
+                  <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                    Connect with our expert counselors for personalized guidance and support throughout your educational journey.
+                  </p>
                 </div>
                 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Globe className="w-6 h-6 text-white" />
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
+                      <CheckCircle className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Expert Guidance</h4>
+                      <p className="text-gray-600">Get personalized advice from our experienced counselors who understand your unique goals.</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-2">Global Universities</h4>
-                    <p className="text-gray-600">Access to 50+ partner universities across USA, UK, Canada, Australia, and more.</p>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Globe className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-gray-900 mb-2">Global Universities</h4>
+                      <p className="text-gray-600">Access to 50+ partner universities across USA, UK, Canada, Australia, and more.</p>
+                    </div>
                   </div>
-                </div>
-                
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Users className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-2">15+ Years Experience</h4>
-                    <p className="text-gray-600">Trusted by thousands of students with our proven track record of success.</p>
+                  
+                  <div className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Users className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-semibold text-gray-900 mb-2">15+ Years Experience</h4>
+                      <p className="text-gray-600">Trusted by thousands of students with our proven track record of success.</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             
             {/* Right Side - Contact Form */}
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden h-full flex flex-col">
               <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8 text-center">
                 <h3 className="text-3xl font-bold mb-3 text-white" style={{ color: '#ffffff !important' }}>
                   Send Us a Message
@@ -289,7 +291,7 @@ export default function ContactUsSection() {
                 <p className="text-white/90 text-lg">Get personalized guidance for your study abroad plans</p>
               </div>
 
-              <div className="p-6">
+              <div className="p-6 flex-1">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
@@ -388,50 +390,6 @@ export default function ContactUsSection() {
             </div>
           </motion.div>
 
-          {/* Modern Stats Section */}
-          <div className="mt-20">
-            <div className="grid md:grid-cols-4 gap-6">
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-center bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="text-3xl font-bold text-[#1D50C9] mb-2">15+</div>
-                <div className="text-gray-600 font-medium">Years Experience</div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-center bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="text-3xl font-bold text-[#1D50C9] mb-2">98%</div>
-                <div className="text-gray-600 font-medium">Success Rate</div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-center bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="text-3xl font-bold text-[#1D50C9] mb-2">50+</div>
-                <div className="text-gray-600 font-medium">Partner Universities</div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-center bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                <div className="text-3xl font-bold text-[#1D50C9] mb-2">20+</div>
-                <div className="text-gray-600 font-medium">Office Locations</div>
-              </motion.div>
-            </div>
-          </div>
         </div>
       </section>
     </>
