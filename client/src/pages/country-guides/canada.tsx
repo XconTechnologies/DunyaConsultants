@@ -139,7 +139,7 @@ export default function CanadaGuide() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100" ref={ref}>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-r from-[#1D50C9] to-[#1565c0] text-white relative overflow-hidden">
+      <section className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white pt-32 pb-16 relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <div className="w-full h-full bg-gradient-to-r from-[#1D50C9]/30 to-[#1565c0]/30"></div>
         </div>
@@ -163,7 +163,7 @@ export default function CanadaGuide() {
               <span className="text-sm font-medium">Study in Canada</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-#1e3a8a">
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
               Study in<br />
               <span className="#1845B3">Canada</span>
             </h1>
