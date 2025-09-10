@@ -65,7 +65,7 @@ export default function BranchesCarousel() {
         transition: {
           repeat: Infinity,
           repeatType: "loop",
-          duration: 25,
+          duration: 12,
           ease: "linear",
         },
       });
