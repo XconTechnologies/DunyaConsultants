@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Users, Globe, Award, Target, Building2, GraduationCap, Heart, Star, CheckCircle, ArrowRight, MapPin, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,9 +9,11 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import AboutCompany from "@/components/about-company";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
 
 export default function WhoWeAre() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const stats = [
     { number: "15+", label: "Countries", icon: Globe, color: "from-[#1D50C9] to-[#1845B3]" },
     { number: "20+", label: "Branches", icon: Building2, color: "from-[#1D50C9] to-[#1845B3]" },
@@ -134,6 +136,7 @@ export default function WhoWeAre() {
                 size="lg" 
                 variant="outline" 
                 className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
+                onClick={() => setIsPopupOpen(true)}
               >
                 Connect now
               </Button>
@@ -532,6 +535,11 @@ export default function WhoWeAre() {
       </section>
 
       <Footer />
+      
+      <ConsultationFormPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }
