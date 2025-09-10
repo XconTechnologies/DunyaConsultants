@@ -234,10 +234,10 @@ export default function ContactUsSection() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid lg:grid-cols-2 gap-12 items-stretch"
+            className="grid lg:grid-cols-5 gap-8 items-start"
           >
             {/* Left Side - Content */}
-            <div className="bg-white rounded-3xl shadow-2xl p-8 h-full flex flex-col justify-center">
+            <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6">
               <div className="space-y-8">
                 <div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-4">
@@ -283,19 +283,19 @@ export default function ContactUsSection() {
             </div>
             
             {/* Right Side - Contact Form */}
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden h-full flex flex-col">
-              <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8 text-center">
-                <h3 className="text-3xl font-bold mb-3 text-white" style={{ color: '#ffffff !important' }}>
+            <div className="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-6">
+                <h3 className="text-2xl font-bold mb-2 text-white" style={{ color: '#ffffff !important' }}>
                   Send Us a Message
                 </h3>
-                <p className="text-white/90 text-lg">Get personalized guidance for your study abroad plans</p>
+                <p className="text-white/90">Get personalized guidance for your study abroad plans</p>
               </div>
 
-              <div className="p-6 flex-1">
+              <div className="p-6">
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="name" className="text-gray-700 font-semibold">Full Name *</Label>
+                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">Full Name *</label>
                       <Input
                         id="name"
                         name="name"
@@ -307,7 +307,7 @@ export default function ContactUsSection() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="email" className="text-gray-700 font-semibold">Email Address *</Label>
+                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
                       <Input
                         id="email"
                         name="email"
@@ -321,9 +321,9 @@ export default function ContactUsSection() {
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <Label htmlFor="phone" className="text-gray-700 font-semibold">Phone Number *</Label>
+                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
                       <Input
                         id="phone"
                         name="phone"
@@ -335,7 +335,7 @@ export default function ContactUsSection() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="preferredCountry" className="text-gray-700 font-semibold">Preferred Country *</Label>
+                      <label htmlFor="preferredCountry" className="block text-sm font-semibold text-gray-700 mb-2">Preferred Country *</label>
                       <select
                         id="preferredCountry"
                         name="preferredCountry"
@@ -353,7 +353,7 @@ export default function ContactUsSection() {
                   </div>
 
                   <div>
-                    <Label htmlFor="subject" className="text-gray-700 font-semibold">Subject</Label>
+                    <label htmlFor="subject" className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
                     <Input
                       id="subject"
                       name="subject"
@@ -365,7 +365,7 @@ export default function ContactUsSection() {
                   </div>
 
                   <div>
-                    <Label htmlFor="message" className="text-gray-700 font-semibold">Message *</Label>
+                    <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
                     <Textarea
                       id="message"
                       name="message"
