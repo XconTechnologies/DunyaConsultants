@@ -134,10 +134,7 @@ export default function ContactUsSection() {
     "Finland",
     "Belgium",
     "Turkey",
-    "Germany",
-    "Ireland",
-    "Cyprus",
-    "Not Sure"
+    "Germany"
   ];
 
   return (
@@ -232,13 +229,58 @@ export default function ContactUsSection() {
             </motion.a>
           </div>
 
-          {/* Contact Form - Centered */}
+          {/* Contact Form and Content - Side by Side */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-3xl mx-auto"
+            className="grid lg:grid-cols-2 gap-12 items-start"
           >
+            {/* Left Side - Content */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                  Ready to Start Your Study Abroad Journey?
+                </h3>
+                <p className="text-lg text-gray-600 leading-relaxed mb-6">
+                  Connect with our expert counselors for personalized guidance and support throughout your educational journey.
+                </p>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-2">Expert Guidance</h4>
+                    <p className="text-gray-600">Get personalized advice from our experienced counselors who understand your unique goals.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-2">Global Universities</h4>
+                    <p className="text-gray-600">Access to 50+ partner universities across USA, UK, Canada, Australia, and more.</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Users className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-gray-900 mb-2">15+ Years Experience</h4>
+                    <p className="text-gray-600">Trusted by thousands of students with our proven track record of success.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right Side - Contact Form */}
             <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
               <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-8 text-center">
                 <h3 className="text-3xl font-bold mb-3 text-white" style={{ color: '#ffffff !important' }}>
@@ -258,7 +300,7 @@ export default function ContactUsSection() {
                         value={formData.name}
                         onChange={handleInputChange}
                         required
-                        className="mt-2 h-12 border-2 border-gray-200 focus:border-[#1D50C9] rounded-xl"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all"
                         placeholder=""
                       />
                     </div>
@@ -271,7 +313,7 @@ export default function ContactUsSection() {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="mt-2 h-12 border-2 border-gray-200 focus:border-[#1D50C9] rounded-xl"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all"
                         placeholder=""
                       />
                     </div>
@@ -286,7 +328,7 @@ export default function ContactUsSection() {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className="mt-2 h-12 border-2 border-gray-200 focus:border-[#1D50C9] rounded-xl"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all"
                         placeholder=""
                       />
                     </div>
@@ -329,7 +371,7 @@ export default function ContactUsSection() {
                       onChange={handleInputChange}
                       required
                       rows={5}
-                      className="mt-2 border-2 border-gray-200 focus:border-[#1D50C9] rounded-xl resize-none"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#1D50C9] focus:border-transparent outline-none transition-all resize-none"
                       placeholder=""
                     />
                   </div>
