@@ -8,7 +8,6 @@ import CalendlyButton from "@/components/calendly-button";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
-import AboutCompany from "@/components/about-company";
 import ConsultationFormPopup from "@/components/consultation-form-popup";
 import umerFarooqPhoto from "@assets/1705387657661_1753962152110.jpeg";
 
@@ -203,9 +202,6 @@ export default function WhoWeAre() {
 
       {/* Consultation Booking Section */}
       <ConsultationBookingSection />
-
-      {/* About Company Section with Image */}
-      <AboutCompany />
 
       {/* About Content - Completely Redesigned */}
       <section className="py-16 sm:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
