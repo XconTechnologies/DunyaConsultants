@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Award, Clock, Users, CheckCircle, BookOpen, PenTool, Headphones, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,8 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import CalendlyButton from "@/components/calendly-button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 export default function IELTS() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const testSections = [
     {
       title: "Listening",
@@ -128,11 +131,19 @@ export default function IELTS() {
               World's most popular English language proficiency test for higher education and global migration
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-              <Button size="lg" className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold">
-                Book Your Test
-              </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 w-full sm:w-auto">
-                Start Preparation
+              <CalendlyButton
+                text="Book Free Consultation"
+                className="bg-white text-[#1D50C9] hover:bg-blue-50 w-full sm:w-auto px-6 py-3 text-lg font-semibold"
+                size="lg"
+                showIcon={false}
+              />
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white text-white hover:bg-white/10 w-full sm:w-auto"
+                onClick={() => setIsPopupOpen(true)}
+              >
+                Connect now
               </Button>
             </div>
             <div className="mt-6 flex justify-center">
@@ -363,6 +374,11 @@ export default function IELTS() {
 
 
       <Footer />
+      
+      <ConsultationFormPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
     </div>
   );
 }
