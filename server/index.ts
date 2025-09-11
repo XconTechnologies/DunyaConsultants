@@ -3,6 +3,25 @@ import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
+
+// 301 Redirect from www to non-www (security-hardened)
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const host = req.get('host');
+  const canonicalDomain = 'dunyaconsultants.com';
+  
+  // Only redirect our specific www subdomain to prevent open redirects
+  if (host === `www.${canonicalDomain}` || host === `www.${canonicalDomain}:5000`) {
+    // Handle multiple proxies by taking first protocol value
+    const xForwardedProto = req.get('x-forwarded-proto');
+    const protocol = xForwardedProto?.split(',')[0] || (req.secure ? 'https' : req.protocol) || 'https';
+    const redirectUrl = `${protocol}://${canonicalDomain}${req.originalUrl}`;
+    
+    log(`301 Redirect: ${host}${req.originalUrl} → ${canonicalDomain}${req.originalUrl}`);
+    return res.redirect(301, redirectUrl);
+  }
+  next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
