@@ -692,6 +692,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               }
                               
+                              // Check if paragraph contains HTML links and render them properly
+                              if (paragraph.includes('<a href=') && paragraph.includes('</a>')) {
+                                return (
+                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
+                                    <span dangerouslySetInnerHTML={{ __html: paragraph }} />
+                                  </p>
+                                );
+                              }
+                              
                               // Check for complete HTML table content and render it properly
                               if (paragraph.trim().startsWith('<div class="overflow-x-auto">') && paragraph.includes('</div>')) {
                                 return (
