@@ -17,7 +17,7 @@ export default function AccreditationsSection() {
     {
       name: "ICEF Agency", 
       description: "International Consultants for Education and Fairs",
-      image: "/attached_assets/icef-agency-certification.png",
+      image: "/attached_assets/ICEF_Agency[1]_1757412494408.png",
       status: "Certified Agent"
     },
     {
@@ -75,11 +75,11 @@ export default function AccreditationsSection() {
                     <LazyImage
                       src={accreditation.image}
                       alt={accreditation.name}
-                      width={120}
-                      height={64}
+                      width={isICEF ? 100 : 120}
+                      height={isICEF ? 80 : 64}
                       loading="lazy"
                       decoding="async"
-                      className="h-16 w-auto max-w-full mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                      className={`${isICEF ? 'h-20 w-20' : 'h-16 w-auto'} max-w-full mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300`}
                     />
                   </div>
 
