@@ -5,7 +5,6 @@ Path Visa Consultants is a full-stack web application for visa consultation serv
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
-Blog URL format: Use clean slugs without dates (e.g., /blog/post-title instead of /blog/2025/09/11/post-title).
 
 ## System Architecture
 

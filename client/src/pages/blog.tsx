@@ -621,7 +621,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     
                     return (
                       <section key={index} id={section.id} className="mb-8">
-                        {section.title && section.title.trim() !== 'Introduction' && (
+                        {section.title && (
                           <h2 className="text-2xl font-bold text-gray-900 mb-3">
                             {section.title.replace(/^#+\s*/, '')}
                           </h2>
@@ -631,26 +631,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           {section.title.toLowerCase().includes('faq') ? (
                             <div className="space-y-4">
                               {(() => {
-                                // Check if content has JSON FAQs
-                                if (section.content.includes('"faqs"')) {
-                                  try {
-                                    const jsonMatch = section.content.match(/\{[\s\S]*\}/);
-                                    if (jsonMatch) {
-                                      const faqData = JSON.parse(jsonMatch[0]);
-                                      return faqData.faqs.map((faq: any, index: number) => (
-                                        <FAQItem 
-                                          key={index}
-                                          question={faq.question}
-                                          answer={faq.answer}
-                                        />
-                                      ));
-                                    }
-                                  } catch (e) {
-                                    console.error('Error parsing FAQ JSON:', e);
-                                  }
-                                }
-                                
-                                // Fallback to markdown-style FAQs
                                 const lines = section.content.split('\n').filter((line: any) => line.trim());
                                 const faqs: Array<{question: string, answer: string}> = [];
                                 
@@ -710,15 +690,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               // Skip markdown table remnants
                               if (paragraph.trim().startsWith('|') && paragraph.includes('|')) {
                                 return null;
-                              }
-                              
-                              // Check if paragraph contains HTML links and render them properly
-                              if (paragraph.includes('<a href=') && paragraph.includes('</a>')) {
-                                return (
-                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
-                                    <span dangerouslySetInnerHTML={{ __html: paragraph }} />
-                                  </p>
-                                );
                               }
                               
                               // Check for complete HTML table content and render it properly
@@ -1929,7 +1900,7 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <Link href={`/blog/${post.slug}`}>
+              <Link href={post.slug.includes('/') ? `/${post.slug}` : `/${post.slug}`}>
                 <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                   
                   {/* Featured Image */}
