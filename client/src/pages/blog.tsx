@@ -541,6 +541,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       return false;
                     }
                     
+                    // Skip any broken FAQ sections with jumbled HTML content
+                    if (section.title && section.title.toLowerCase().includes('frequently asked questions') && 
+                        section.content && section.content.includes('What services do Dunya Consultants provide')) {
+                      return false;
+                    }
+                    
                     return section.title && section.title.trim() !== '';
                   }).map((section: any, index: number) => {
                     // Special handling for intro-before-main section
@@ -563,33 +569,72 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       );
                     }
                     // Check if this is an FAQ section or a question that should be rendered as FAQ
-                    const isFAQSection = section.title.toLowerCase().includes('faq');
+                    const isFAQSection = section.title.toLowerCase().includes('faq') || 
+                                       section.title.toLowerCase().includes('frequently asked questions');
                     const isQuestionSection = section.title && section.title.includes('?');
                     const nextSections = contentSections.slice(contentSections.indexOf(section) + 1);
                     
                     // Handle explicit FAQ sections
-                    if (isFAQSection && section.content.trim() === '') {
-                      // This is an FAQ header, render FAQs from following sections
-                      const faqSections = nextSections.filter((nextSection: any) => 
-                        nextSection.title && nextSection.content.trim() !== ''
-                      );
+                    if (isFAQSection) {
+                      // Parse FAQ content properly
+                      let faqItems: Array<{question: string, answer: string}> = [];
                       
-                      return (
-                        <section key={index} id={section.id} className="mb-8">
-                          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                            {section.title.replace(/^#+\s*/, '')}
-                          </h2>
-                          <div className="space-y-4">
-                            {faqSections.map((faqSection: any, faqIndex: number) => (
-                              <FAQItem 
-                                key={faqIndex}
-                                question={faqSection.title}
-                                answer={faqSection.content}
-                              />
-                            ))}
-                          </div>
-                        </section>
-                      );
+                      // If this section has content, parse it for FAQ items
+                      if (section.content && section.content.trim() !== '') {
+                        const lines = section.content.split('\n').filter((line: string) => line.trim());
+                        for (let i = 0; i < lines.length; i++) {
+                          const trimmed = lines[i].trim();
+                          // Look for question patterns
+                          if (trimmed.includes('?')) {
+                            const question = trimmed.replace(/^\*\*|\*\*$/g, '').replace(/^#+\s*/, '');
+                            let answer = '';
+                            // Get answer from next lines until we hit another question or end
+                            for (let j = i + 1; j < lines.length; j++) {
+                              const nextLine = lines[j].trim();
+                              if (nextLine.includes('?') && !nextLine.includes('answer')) {
+                                break;
+                              }
+                              if (nextLine && !nextLine.startsWith('**')) {
+                                answer += nextLine + '\n';
+                              }
+                            }
+                            if (answer.trim()) {
+                              faqItems.push({ question, answer: answer.trim() });
+                            }
+                          }
+                        }
+                      }
+                      
+                      // If no FAQ items found in content, look at following sections
+                      if (faqItems.length === 0) {
+                        const faqSections = nextSections.filter((nextSection: any) => 
+                          nextSection.title && nextSection.title.includes('?') && nextSection.content.trim() !== ''
+                        ).slice(0, 10); // Limit to reasonable number
+                        
+                        faqItems = faqSections.map((faqSection: any) => ({
+                          question: faqSection.title,
+                          answer: faqSection.content
+                        }));
+                      }
+                      
+                      if (faqItems.length > 0) {
+                        return (
+                          <section key={index} id={section.id} className="mb-8">
+                            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                              {section.title.replace(/^#+\s*/, '')}
+                            </h2>
+                            <div className="space-y-4">
+                              {faqItems.map((faqItem: any, faqIndex: number) => (
+                                <FAQItem 
+                                  key={faqIndex}
+                                  question={faqItem.question}
+                                  answer={faqItem.answer}
+                                />
+                              ))}
+                            </div>
+                          </section>
+                        );
+                      }
                     }
                     
                     // Check if we're in a group of question sections that should be rendered as FAQs
@@ -625,7 +670,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           section.title.includes('How much is the SAT exam fee in Pakistan?') ||
                           section.title.includes('How can I prepare for the SAT in Pakistan as a beginner?') ||
                           section.title.includes('Which countries and universities can Dunya Consultants help me apply to?') ||
-                          section.title.includes('What services does Dunya Consultants provide?') ||
+                          section.title.includes('What services do Dunya Consultants provide') ||
+                          section.title.includes('Do Dunya Consultants provide IELTS coaching') ||
+                          section.title.includes('How do Dunya Consultants support student visa applications') ||
+                          section.title.includes('What is Dunya Consultants\' track record') ||
                           section.title.includes('How can I contact Dunya Consultants?')) {
                         
                         // Only render this if we're at the start of the question group
@@ -673,7 +721,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         section.title.includes('How much is the SAT exam fee in Pakistan?') ||
                         section.title.includes('How can I prepare for the SAT in Pakistan as a beginner?') ||
                         section.title.includes('Which countries and universities can Dunya Consultants help me apply to?') ||
-                        section.title.includes('What services does Dunya Consultants provide?') ||
+                        section.title.includes('What services do Dunya Consultants provide') ||
+                        section.title.includes('Do Dunya Consultants provide IELTS coaching') ||
+                        section.title.includes('How do Dunya Consultants support student visa applications') ||
+                        section.title.includes('What is Dunya Consultants\' track record') ||
                         section.title.includes('How can I contact Dunya Consultants?') ||
                         section.title === 'Atlas University' ||
                         section.title === 'Istinye University' ||
