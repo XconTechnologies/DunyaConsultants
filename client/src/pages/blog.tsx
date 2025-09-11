@@ -562,10 +562,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         </div>
                       );
                     }
-                    // Check if this is an FAQ section
+                    // Check if this is an FAQ section or a question that should be rendered as FAQ
                     const isFAQSection = section.title.toLowerCase().includes('faq');
+                    const isQuestionSection = section.title && section.title.includes('?');
                     const nextSections = contentSections.slice(contentSections.indexOf(section) + 1);
                     
+                    // Handle explicit FAQ sections
                     if (isFAQSection && section.content.trim() === '') {
                       // This is an FAQ header, render FAQs from following sections
                       const faqSections = nextSections.filter((nextSection: any) => 
@@ -590,6 +592,67 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       );
                     }
                     
+                    // Check if we're in a group of question sections that should be rendered as FAQs
+                    if (isQuestionSection) {
+                      // Look for other question sections around this one to group them as FAQs
+                      const questionSections: any[] = [];
+                      let startIndex = index;
+                      
+                      // Find the start of question group (look backwards)
+                      while (startIndex > 0 && contentSections[startIndex - 1].title && contentSections[startIndex - 1].title.includes('?')) {
+                        startIndex--;
+                      }
+                      
+                      // Collect all consecutive question sections
+                      let currentIndex = startIndex;
+                      while (currentIndex < contentSections.length && 
+                             contentSections[currentIndex].title && 
+                             contentSections[currentIndex].title.includes('?') &&
+                             contentSections[currentIndex].content.trim() !== '') {
+                        questionSections.push(contentSections[currentIndex]);
+                        currentIndex++;
+                      }
+                      
+                      // If we have multiple questions or specific FAQ-type questions, render as FAQ group
+                      if (questionSections.length > 1 || 
+                          section.title.includes('What is the issue rate of UK student visas?') ||
+                          section.title.includes('Is it difficult to get a UK student visa from Pakistan?') ||
+                          section.title.includes('What is the UK student visa ratio from Pakistan?') ||
+                          section.title.includes('What is the acceptance rate for the Türkiye Scholarships Burslari?') ||
+                          section.title.includes('Is there an age limit for Turkey burslari scholarship?') ||
+                          section.title.includes('How much of a stipend is granted for a Burslari scholarship in Turkey?') ||
+                          section.title.includes('Can I get a fee waiver for the SAT in Pakistan?') ||
+                          section.title.includes('How much is the SAT exam fee in Pakistan?') ||
+                          section.title.includes('How can I prepare for the SAT in Pakistan as a beginner?') ||
+                          section.title.includes('Which countries and universities can Dunya Consultants help me apply to?') ||
+                          section.title.includes('What services does Dunya Consultants provide?') ||
+                          section.title.includes('How can I contact Dunya Consultants?')) {
+                        
+                        // Only render this if we're at the start of the question group
+                        if (index === startIndex) {
+                          return (
+                            <section key={index} id={section.id} className="mb-8">
+                              <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                                Frequently Asked Questions
+                              </h2>
+                              <div className="space-y-4">
+                                {questionSections.map((faqSection: any, faqIndex: number) => (
+                                  <FAQItem 
+                                    key={faqIndex}
+                                    question={faqSection.title}
+                                    answer={faqSection.content}
+                                  />
+                                ))}
+                              </div>
+                            </section>
+                          );
+                        } else {
+                          // Skip if we're not at the start of the group
+                          return null;
+                        }
+                      }
+                    }
+                    
                     // Skip FAQ answer sections as they're handled above
                     if (index > 0) {
                       const prevSection = contentSections[contentSections.indexOf(section) - 1];
@@ -609,6 +672,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         section.title.includes('Can I get a fee waiver for the SAT in Pakistan?') ||
                         section.title.includes('How much is the SAT exam fee in Pakistan?') ||
                         section.title.includes('How can I prepare for the SAT in Pakistan as a beginner?') ||
+                        section.title.includes('Which countries and universities can Dunya Consultants help me apply to?') ||
+                        section.title.includes('What services does Dunya Consultants provide?') ||
+                        section.title.includes('How can I contact Dunya Consultants?') ||
                         section.title === 'Atlas University' ||
                         section.title === 'Istinye University' ||
                         section.title === 'Altinbas University' ||
@@ -670,7 +736,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                   <div key={pIndex} className="flex items-start leading-tight mb-2">
                                     <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
                                     <span className="text-gray-700 text-base leading-tight">
-                                      {paragraph.replace(/^[-•]\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1')}
+                                      {paragraph.replace(/^[-•]\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1').replace(/<[^>]*>/g, '')}
                                     </span>
                                   </div>
                                 );
@@ -692,6 +758,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               }
                               
+                              // Skip HTML tags and content that shouldn't be displayed as text
+                              if (paragraph.trim().match(/^<[^>]+>.*<\/[^>]+>$/)) {
+                                return null;
+                              }
+                              
                               // Check for complete HTML table content and render it properly
                               if (paragraph.trim().startsWith('<div class="overflow-x-auto">') && paragraph.includes('</div>')) {
                                 return (
@@ -702,7 +773,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               }
                               
                               // Skip individual HTML table lines that are part of a larger block
-                              if (paragraph.trim().match(/^<(table|thead|tbody|tr|th|td)/i) || paragraph.trim().match(/<\/(table|thead|tbody|tr|th|td)>$/i)) {
+                              if (paragraph.trim().match(/^<(table|thead|tbody|tr|th|td|div)/i) || paragraph.trim().match(/<\/(table|thead|tbody|tr|th|td|div)>$/i)) {
                                 return null;
                               }
                               
@@ -1364,11 +1435,20 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             }
 
                             if (paragraph.trim()) {
-                              return (
-                                <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
-                                  {paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}
-                                </p>
-                              );
+                              // Clean HTML tags and format text properly
+                              const cleanText = paragraph
+                                .replace(/\*\*(.*?)\*\*/g, '$1') // Remove markdown bold
+                                .replace(/<[^>]*>/g, '') // Remove HTML tags
+                                .trim();
+                              
+                              // Only render if there's actual text content after cleaning
+                              if (cleanText) {
+                                return (
+                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
+                                    {cleanText}
+                                  </p>
+                                );
+                              }
                             }
                             return null;
                             })
