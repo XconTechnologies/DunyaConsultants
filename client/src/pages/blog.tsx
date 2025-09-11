@@ -1714,7 +1714,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       </CardHeader>
                       <CardContent>
                         <ul className="space-y-2">
-                          {contentSections.filter((section: any) => section.title && section.title.trim() !== '').map((section: any, index: number) => (
+                          {contentSections.filter((section: any) => section.title && section.title.trim() !== '' && !section.title.includes('?')).map((section: any, index: number) => (
                             <li key={index}>
                               <a 
                                 href={`#${section.id}`}
