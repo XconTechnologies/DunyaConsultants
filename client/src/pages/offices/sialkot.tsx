@@ -144,7 +144,7 @@ export default function SialkotOffice() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
               <div className="flex items-center justify-center">
                 <Phone className="w-5 h-5 mr-2" />
-                <span>+92 323-0021947</span>
+                <span>+92 323 0021947</span>
               </div>
               <div className="flex items-center justify-center">
                 <Clock className="w-5 h-5 mr-2" />

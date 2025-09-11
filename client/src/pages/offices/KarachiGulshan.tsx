@@ -14,7 +14,7 @@ export default function KarachiGulshan() {
     city: "Karachi",
     name: "Gulshan-e-Iqbal",
     address: "205 Madina City Mall, Block 13-A, Gulshan-e-Iqbal, Karachi",
-    phone: "+92 305‑555‑1947",
+    phone: "+92 320 1731947",
     email: "karachi@dunyaconsultants.com",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-orange-600 to-red-600",

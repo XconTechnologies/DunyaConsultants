@@ -13,7 +13,7 @@ export default function LahoreDHA() {
     city: "Lahore",
     name: "DHA Phase 1",
     address: "1st Floor, 174 6th Street 123, Sector H, DHA Phase 1, Lahore",
-    phone: "+92 300‑167‑1947",
+    phone: "+92 333 1741947",
     email: "lahore.dha@dunyaconsultants.com",
     hours: "Mon–Sat 10 AM–6 PM",
     gradient: "from-green-600 to-teal-600",
