@@ -679,7 +679,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         // Only render this if we're at the start of the question group
                         if (index === startIndex) {
                           return (
-                            <section key={index} id={section.id} className="mb-8">
+                            <section key={index} id="faqs" className="mb-8">
                               <h2 className="text-2xl font-bold text-gray-900 mb-6">
                                 Frequently Asked Questions
                               </h2>
@@ -1714,16 +1714,33 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       </CardHeader>
                       <CardContent>
                         <ul className="space-y-2">
-                          {contentSections.filter((section: any) => section.title && section.title.trim() !== '' && !section.title.includes('?')).map((section: any, index: number) => (
-                            <li key={index}>
-                              <a 
-                                href={`#${section.id}`}
-                                className="text-[#1D50C9] hover:underline block py-1 text-sm"
-                              >
-                                {index + 1}. {section.title}
-                              </a>
-                            </li>
-                          ))}
+                          {(() => {
+                            const mainSections = contentSections.filter((section: any) => section.title && section.title.trim() !== '' && !section.title.includes('?'));
+                            const hasFAQs = contentSections.some((section: any) => section.title && section.title.includes('?'));
+                            
+                            return [
+                              ...mainSections.map((section: any, index: number) => (
+                                <li key={index}>
+                                  <a 
+                                    href={`#${section.id}`}
+                                    className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                                  >
+                                    {index + 1}. {section.title}
+                                  </a>
+                                </li>
+                              )),
+                              ...(hasFAQs ? [
+                                <li key="faqs">
+                                  <a 
+                                    href="#faqs"
+                                    className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                                  >
+                                    {mainSections.length + 1}. FAQs
+                                  </a>
+                                </li>
+                              ] : [])
+                            ];
+                          })()}
                         </ul>
                       </CardContent>
                     </Card>
