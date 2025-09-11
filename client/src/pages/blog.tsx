@@ -669,11 +669,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           section.title.includes('Can I get a fee waiver for the SAT in Pakistan?') ||
                           section.title.includes('How much is the SAT exam fee in Pakistan?') ||
                           section.title.includes('How can I prepare for the SAT in Pakistan as a beginner?') ||
-                          section.title.includes('What services do Dunya Consultants provide as study abroad consultants in Pakistan?') ||
-                          section.title.includes('Which countries and universities can Dunya Consultants help me apply to?') ||
-                          section.title.includes('Do Dunya Consultants provide IELTS coaching and test preparation?') ||
-                          section.title.includes('How do Dunya Consultants support student visa applications and interview preparation?') ||
-                          section.title.includes('What is Dunya Consultants\' track record and why should I trust them?') ||
+                          section.title === 'What services do Dunya Consultants provide as study abroad consultants in Pakistan?' ||
+                          section.title === 'Which countries and universities can Dunya Consultants help me apply to?' ||
+                          section.title === 'Do Dunya Consultants provide IELTS coaching and test preparation?' ||
+                          section.title === 'How do Dunya Consultants support student visa applications and interview preparation?' ||
+                          section.title === 'What is Dunya Consultants\' track record and why should I trust them?' ||
                           section.title.includes('How can I contact Dunya Consultants?')) {
                         
                         // Only render this if we're at the start of the question group
@@ -720,11 +720,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         section.title.includes('Can I get a fee waiver for the SAT in Pakistan?') ||
                         section.title.includes('How much is the SAT exam fee in Pakistan?') ||
                         section.title.includes('How can I prepare for the SAT in Pakistan as a beginner?') ||
-                        section.title.includes('What services do Dunya Consultants provide as study abroad consultants in Pakistan?') ||
-                        section.title.includes('Which countries and universities can Dunya Consultants help me apply to?') ||
-                        section.title.includes('Do Dunya Consultants provide IELTS coaching and test preparation?') ||
-                        section.title.includes('How do Dunya Consultants support student visa applications and interview preparation?') ||
-                        section.title.includes('What is Dunya Consultants\' track record and why should I trust them?') ||
+                        section.title === 'What services do Dunya Consultants provide as study abroad consultants in Pakistan?' ||
+                        section.title === 'Which countries and universities can Dunya Consultants help me apply to?' ||
+                        section.title === 'Do Dunya Consultants provide IELTS coaching and test preparation?' ||
+                        section.title === 'How do Dunya Consultants support student visa applications and interview preparation?' ||
+                        section.title === 'What is Dunya Consultants\' track record and why should I trust them?' ||
                         section.title.includes('How can I contact Dunya Consultants?') ||
                         section.title === 'Atlas University' ||
                         section.title === 'Istinye University' ||
