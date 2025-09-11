@@ -631,6 +631,26 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           {section.title.toLowerCase().includes('faq') ? (
                             <div className="space-y-4">
                               {(() => {
+                                // Check if content has JSON FAQs
+                                if (section.content.includes('"faqs"')) {
+                                  try {
+                                    const jsonMatch = section.content.match(/\{[\s\S]*\}/);
+                                    if (jsonMatch) {
+                                      const faqData = JSON.parse(jsonMatch[0]);
+                                      return faqData.faqs.map((faq: any, index: number) => (
+                                        <FAQItem 
+                                          key={index}
+                                          question={faq.question}
+                                          answer={faq.answer}
+                                        />
+                                      ));
+                                    }
+                                  } catch (e) {
+                                    console.error('Error parsing FAQ JSON:', e);
+                                  }
+                                }
+                                
+                                // Fallback to markdown-style FAQs
                                 const lines = section.content.split('\n').filter((line: any) => line.trim());
                                 const faqs: Array<{question: string, answer: string}> = [];
                                 
