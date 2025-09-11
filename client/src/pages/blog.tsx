@@ -621,7 +621,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     
                     return (
                       <section key={index} id={section.id} className="mb-8">
-                        {section.title && (
+                        {section.title && section.title.trim() !== 'Introduction' && (
                           <h2 className="text-2xl font-bold text-gray-900 mb-3">
                             {section.title.replace(/^#+\s*/, '')}
                           </h2>
