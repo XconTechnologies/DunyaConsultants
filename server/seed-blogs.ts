@@ -3440,7 +3440,7 @@ export async function seedBlogPosts() {
     for (const post of allBlogPosts) {
       const blogPost = {
         ...post,
-        publishedAt: post.published ? new Date() : null,
+        publishedAt: post.isPublished ? new Date() : null,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
@@ -3449,14 +3449,14 @@ export async function seedBlogPosts() {
       if (post.slug === "finland-online-visa-application-from-pakistan") {
         await db.insert(blogPosts).values({
           ...blogPost,
-          isPublished: post.published,
+          isPublished: post.isPublished,
         }).onConflictDoUpdate({
           target: blogPosts.slug,
           set: {
             title: blogPost.title,
             excerpt: blogPost.excerpt,
             content: blogPost.content,
-            isPublished: post.published,
+            isPublished: post.isPublished,
             publishedAt: blogPost.publishedAt,
             tags: blogPost.tags,
             metaDescription: blogPost.metaDescription,
@@ -3469,7 +3469,7 @@ export async function seedBlogPosts() {
       } else {
         await db.insert(blogPosts).values({
           ...blogPost,
-          isPublished: post.published,
+          isPublished: post.isPublished,
         }).onConflictDoNothing();
       }
     }
