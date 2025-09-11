@@ -571,7 +571,7 @@ export default function SialkotOffice() {
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Address</h4>
                       <p className="text-blue-100 leading-relaxed">
-                        2nd Floor, Bank Islami, Cantt Plaza, Sialkot Cantonment, Sialkot
+                        2nd Floor, Bank Islami, Cantt Plaza, Aziz Bhati Shaheed Road, Sadar Bazar Saddar Cantt Sialkot Cantonment, Sialkot
                       </p>
                     </div>
                   </div>
@@ -583,7 +583,7 @@ export default function SialkotOffice() {
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
                       <a href="tel:+923230021947" className="text-blue-100 hover:text-white transition-colors text-lg">
-                        +92 323-0021947
+                        +92 323 0021947
                       </a>
                     </div>
                   </div>

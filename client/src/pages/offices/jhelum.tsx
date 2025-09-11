@@ -579,7 +579,7 @@ export default function JhelumOffice() {
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Address</h4>
                       <p className="text-blue-100 leading-relaxed">
-                        2nd Floor, NADRA Executive Office, Sultan Plaza, GT Road, Jhelum
+                        2nd floor nadra executive office sultan plaza, main GT Rd, Jada, Jhelum
                       </p>
                     </div>
                   </div>

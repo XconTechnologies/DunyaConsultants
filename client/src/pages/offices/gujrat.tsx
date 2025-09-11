@@ -575,7 +575,7 @@ export default function GujratOffice() {
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Address</h4>
                       <p className="text-blue-100 leading-relaxed">
-                        Beside KFC, Service Morh Road, G.T. Gujrat
+                        Dunya Consultants, Service Morh Road, Baghdad Colony, Gujrat
                       </p>
                     </div>
                   </div>

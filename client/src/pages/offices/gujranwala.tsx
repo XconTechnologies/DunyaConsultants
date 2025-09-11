@@ -591,7 +591,7 @@ export default function GujranwalaOffice() {
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
                       <a href="tel:+923329991947" className="text-blue-100 hover:text-white transition-colors text-lg">
-                        +92 332-9991947
+                        +92 332 9991947
                       </a>
                     </div>
                   </div>

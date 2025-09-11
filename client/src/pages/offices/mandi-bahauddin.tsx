@@ -584,7 +584,7 @@ export default function MandiBahauddinOffice() {
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Address</h4>
                       <p className="text-blue-100 leading-relaxed">
-                        Dunya Consultants Punjab Center, Mandi Bahauddin
+                        Dunya Consultants 1st floor Rukkan Plaza Gheegha Chowk Phalia, Road, Mandi Bahauddin
                       </p>
                     </div>
                   </div>

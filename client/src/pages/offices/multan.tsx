@@ -590,8 +590,8 @@ export default function MultanOffice() {
                     </div>
                     <div>
                       <h4 className="text-white font-bold text-lg mb-2">Phone</h4>
-                      <a href="tel:+923054441947" className="text-blue-100 hover:text-white transition-colors text-lg">
-                        +92 305-4441947
+                      <a href="tel:+923171114696" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +92 317 1114696
                       </a>
                     </div>
                   </div>
