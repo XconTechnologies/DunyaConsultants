@@ -65,6 +65,16 @@ export function LazyImage({
     };
   }, [loading]);
 
+  // Set fetchpriority imperatively to avoid React warning
+  useEffect(() => {
+    if (imgRef.current && fetchPriority && fetchPriority !== 'auto') {
+      // Apply fetchpriority for eager images or when in view for lazy images
+      if (loading === 'eager' || inView) {
+        imgRef.current.setAttribute('fetchpriority', fetchPriority);
+      }
+    }
+  }, [fetchPriority, loading, inView]);
+
   const handleLoad = () => {
     setIsLoaded(true);
     onLoad?.();
@@ -85,7 +95,6 @@ export function LazyImage({
         height={height}
         loading={loading}
         decoding={decoding}
-        fetchPriority={fetchPriority}
         sizes={sizes}
         srcSet={inView ? srcSet : undefined}
         onLoad={handleLoad}
