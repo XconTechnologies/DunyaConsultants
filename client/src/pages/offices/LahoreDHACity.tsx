@@ -148,7 +148,7 @@ export default function LahoreDHACity() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-8 text-lg">
               <div className="flex items-center justify-center">
                 <Phone className="w-5 h-5 mr-2" />
-                <span>+92 300-167-1947</span>
+                <span>+92 333 1741947</span>
               </div>
               <div className="flex items-center justify-center">
                 <Clock className="w-5 h-5 mr-2" />
@@ -586,8 +586,8 @@ export default function LahoreDHACity() {
                     </div>
                     <div>
                       <h4 className="text-white font-semibold text-lg mb-2">Phone</h4>
-                      <a href="tel:+923001671947" className="text-blue-100 hover:text-white transition-colors text-lg">
-                        +92 300-167-1947
+                      <a href="tel:+923331741947" className="text-blue-100 hover:text-white transition-colors text-lg">
+                        +92 333 1741947
                       </a>
                     </div>
                   </div>
