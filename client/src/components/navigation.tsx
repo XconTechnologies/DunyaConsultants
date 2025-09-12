@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin, Building2, MessageCircle, Calendar, Newspaper, PenTool, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
 import logoImageWhite from "@assets/DC White Logo_1751441165041.png";
-import ConsultationBooking from "@/components/ConsultationBooking";
+import ConsultationFormModal from "@/components/consultation-form-modal";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +13,7 @@ export default function Navigation() {
   const [isHeroSection, setIsHeroSection] = useState(true);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [expandedMobileMenu, setExpandedMobileMenu] = useState<string | null>(null);
+  const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
   const [location, setLocation] = useLocation();
 
   useEffect(() => {
@@ -220,26 +220,19 @@ export default function Navigation() {
           
           {/* Free Consultation Button - Right Side */}
           <div className="hidden lg:flex items-center ml-auto">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button 
-                  size="sm"
-                  className={`${
-                    !isScrolled 
-                      ? 'bg-white text-[#1D50C9] hover:bg-blue-50' 
-                      : 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:from-[#1845B3] hover:to-[#1D50C9]'
-                  } font-semibold px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
-                >
-                  <Phone className="w-4 h-4 mr-2" />
-                  Free Consultation
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-md bg-white">
-                <ConsultationBooking country="Pakistan">
-                  <div></div>
-                </ConsultationBooking>
-              </DialogContent>
-            </Dialog>
+            <Button 
+              size="sm"
+              onClick={() => setIsConsultationModalOpen(true)}
+              className={`${
+                !isScrolled 
+                  ? 'bg-white text-[#1D50C9] hover:bg-blue-50' 
+                  : 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:from-[#1845B3] hover:to-[#1D50C9]'
+              } font-semibold px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
+              data-testid="button-free-consultation"
+            >
+              <Phone className="w-4 h-4 mr-2" />
+              Free Consultation
+            </Button>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -569,6 +562,12 @@ export default function Navigation() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Consultation Form Modal */}
+      <ConsultationFormModal 
+        isOpen={isConsultationModalOpen}
+        onClose={() => setIsConsultationModalOpen(false)}
+      />
     </nav>
   );
 }
