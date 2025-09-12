@@ -134,7 +134,7 @@ export default function UniversityPartnersSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  // Split universities into 5 columns for vertical scrolling
+  // Split universities into columns for vertical scrolling (responsive)
   const splitIntoColumns = (array: typeof universityPartners, numColumns: number) => {
     const columns = Array.from({ length: numColumns }, () => [] as typeof universityPartners);
     array.forEach((item, index) => {
@@ -143,7 +143,21 @@ export default function UniversityPartnersSection() {
     return columns;
   };
 
-  const columns = splitIntoColumns(universityPartners, 5);
+  // Responsive column count
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const numColumns = isMobile ? 3 : 5; // 3 columns on mobile, 5 on desktop
+  const columns = splitIntoColumns(universityPartners, numColumns);
 
   // Get country colors for modern styling
   const getCountryColor = (country: string): string => {
@@ -199,7 +213,7 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className="flex gap-2 max-w-6xl mx-auto h-[500px] relative">
+          <div className={`flex gap-1 md:gap-2 max-w-6xl mx-auto h-[400px] md:h-[500px] relative ${isMobile ? 'px-2' : ''}`}>
             {/* Top fade overlay */}
             <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
             
@@ -223,17 +237,19 @@ export default function UniversityPartnersSection() {
                   {[...column, ...column].map((university, index) => (
                     <motion.div
                       key={`${university.name}-${columnIndex}-${index}`}
-                      className="group flex items-center justify-center p-1 min-h-[100px]"
+                      className={`group flex items-center justify-center p-1 ${isMobile ? 'min-h-[80px]' : 'min-h-[100px]'}`}
                       whileHover={{ scale: 1.1 }}
                     >
                       <LazyImage
                         src={university.logoUrl}
                         alt={`${university.name} logo`}
-                        width={160}
-                        height={96}
+                        width={isMobile ? 120 : 160}
+                        height={isMobile ? 72 : 96}
                         loading="lazy"
                         decoding="async"
-                        className="h-24 w-40 object-contain transition-all duration-300"
+                        className={`object-contain transition-all duration-300 ${
+                          isMobile ? 'h-16 w-28' : 'h-24 w-40'
+                        }`}
                       />
                     </motion.div>
                   ))}
