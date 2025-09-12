@@ -176,11 +176,13 @@ export default function ConsultationBookingSection() {
             className="mt-6 flex items-center justify-center space-x-2"
           >
             <Clock className="w-4 h-4" style={whiteTextStyle} />
-            <span style={{
-              ...whiteTextStyle,
-              fontSize: '0.875rem',
-              display: 'inline-block'
-            }}>
+            <span 
+              className="text-xs sm:text-sm text-center block sm:inline-block"
+              style={{
+                ...whiteTextStyle,
+                display: 'block'
+              }}
+            >
               Available Monday to Saturday, 10 AM - 6 PM
             </span>
           </motion.div>
