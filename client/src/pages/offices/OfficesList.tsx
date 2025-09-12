@@ -327,25 +327,23 @@ export default function OfficesList() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="space-y-4 mb-6">
-            {/* Search Input */}
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row gap-4 mb-6">
+            <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <Input
                 type="text"
                 placeholder="Search by city, office name, or address..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 py-3 w-full"
+                className="pl-10 py-3"
               />
             </div>
-            
-            {/* Filter Buttons */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Filter className="w-5 h-5 text-gray-500" />
-                <span className="text-sm font-medium text-gray-700">Filter by region:</span>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <div className="flex items-center gap-2 sm:hidden">
+                <Filter className="w-4 h-4 text-gray-500" />
+                <span className="text-sm font-medium text-gray-700">Filter:</span>
               </div>
+              <Filter className="w-5 h-5 text-gray-500 mt-3 hidden sm:block" />
               <div className="flex flex-wrap gap-2">
                 {regions.map((region) => (
                   <Button
@@ -353,7 +351,7 @@ export default function OfficesList() {
                     variant={selectedRegion === region ? "default" : "outline"}
                     onClick={() => setSelectedRegion(region)}
                     size="sm"
-                    className="text-xs sm:text-sm px-3 py-2"
+                    className="text-xs sm:text-sm"
                   >
                     {region === 'all' ? 'All Regions' : region}
                   </Button>
