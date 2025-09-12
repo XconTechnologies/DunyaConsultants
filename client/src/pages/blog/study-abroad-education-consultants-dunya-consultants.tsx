@@ -24,10 +24,10 @@ const StudyAbroadEducationConsultants = () => {
         <div className="relative max-w-7xl mx-auto px-4 h-full flex items-center justify-center text-center">
           <div className="space-y-4">
             <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
-              Study Abroad Education Consultants
+              Why Dunya Consultants Are the Best Study Abroad Consultants in Pakistan
             </h1>
             <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-              Your Trusted Partner for International Education Success
+              Expert visa guidance, university admissions, and IELTS coaching for your study abroad journey
             </p>
           </div>
         </div>
@@ -56,249 +56,194 @@ const StudyAbroadEducationConsultants = () => {
 
             {/* Introduction */}
             <div className="bg-white rounded-lg shadow-sm p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Introduction</h2>
               <p className="text-gray-700 leading-relaxed mb-6">
-                Studying abroad has become a highly sought-after opportunity for students worldwide, and Pakistani students are no exception. The chance to experience new cultures, gain global exposure, and enhance career prospects are just a few reasons that make studying abroad an attractive option for ambitious students seeking quality education and international exposure.
+                To study abroad is one of the most important life decisions. It presents doors to new opportunities, cultures and career expansion. But it can also feel overwhelming to apply, get accepted and obtain a visa. That is why most students look for the Best Study Abroad Consultants in Pakistan to facilitate them in every possible manner.
+              </p>
+              <p className="text-gray-700 leading-relaxed mb-6">
+                From the plethora of consultancy firms across the nation, Dunya Consultants is known to be dependable, seasoned and student centered. Having a great success rate, they assist in making your dream of studying abroad come true.
               </p>
             </div>
 
-            {/* Benefits of Studying Abroad */}
+            {/* Comprehensive Support From Start to Finish */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <Globe className="h-6 w-6 #1845B3 mr-3" />
-                Benefits of Studying Abroad
+                <CheckCircle className="h-6 w-6 #1845B3 mr-3" />
+                Comprehensive Support From Start to Finish
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                Here are some key benefits that make studying abroad a worthwhile experience for Pakistani students:
+                Complete Support from Day One till you Fly One of the reasons as to why Dunya Consultants distinguish themselves as the Best Study Abroad Consultants in Pakistan, its full services from admission to departure. They ensure no student gets lost in the shuffle.
               </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
-                  <Globe className="h-10 w-10 #1845B3 mb-4" />
-                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Global Exposure</h4>
+                  <Users className="h-10 w-10 #1845B3 mb-4" />
+                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Career Counseling</h4>
                   <p className="text-[#1565c0] text-sm">
-                    Studying abroad exposes Pakistani students to different cultures, languages, and teaching methodologies. This exposure helps them develop a broader perspective on life and adapt to various situations in their personal and professional lives.
+                    Guiding the students to select the best suited country, course and university of their choice according to their academic background and career plans.
                   </p>
                 </div>
                 
                 <div className="bg-gradient-to-br from-blue-50 to-green-100 rounded-lg p-6">
-                  <Users className="h-10 w-10 #1845B3 mb-4" />
-                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Personal Growth</h4>
+                  <BookOpen className="h-10 w-10 #1845B3 mb-4" />
+                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">University Selection & Applications</h4>
                   <p className="text-[#1565c0] text-sm">
-                    Living and studying in a foreign country can be challenging but often leads to significant personal growth. Students become more independent, learn to navigate new environments, and develop essential problem-solving skills.
+                    Helping to shortlist universities and managing all application documentation to minimize delays or errors.
                   </p>
                 </div>
                 
                 <div className="bg-gradient-to-br from-blue-50 to-purple-100 rounded-lg p-6">
-                  <TrendingUp className="h-10 w-10 #1845B3 mb-4" />
-                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Enhanced Career Prospects</h4>
+                  <CheckCircle className="h-10 w-10 #1845B3 mb-4" />
+                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Visa Guidance & Interview Preparation</h4>
                   <p className="text-[#1565c0] text-sm">
-                    International education credentials are highly valued by employers worldwide. Graduates with foreign degrees often have better job prospects and higher earning potential in the global job market.
+                    We provide guidance step by step through mock interview and question rounds, with the possibilities of visa approval.
+                  </p>
+                </div>
+                
+                <div className="bg-gradient-to-br from-blue-50 to-teal-100 rounded-lg p-6">
+                  <Globe className="h-10 w-10 #1845B3 mb-4" />
+                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Pre-Departure Assistance</h4>
+                  <p className="text-[#1565c0] text-sm">
+                    Giving information about the country that will make you well enough helping you in easing your transition.
                   </p>
                 </div>
               </div>
+              
+              <p className="text-gray-700 leading-relaxed">
+                This comprehensive support system is to make sure the student doesn't only apply, but actually arrive in the country of choice, securing admission and beginning studies without struggle.
+              </p>
             </div>
 
-            {/* The Need for Education Consultants */}
+            {/* Experience That Builds Trust */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <BookOpen className="h-6 w-6 #1845B3 mr-3" />
-                The Need for Education Consultants
+                <Award className="h-6 w-6 #1845B3 mr-3" />
+                Experience That Builds Trust
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                Navigating the complex world of international education can be overwhelming for students and their families. From choosing the right program and university to understanding visa requirements and cultural differences, the process involves numerous challenges that require expert guidance and support.
+                Over a decade long experience has earned Dunya Consultants the trust in overseas education services. Their team keeps in touch with the latest visa policies, scholarship and admission requirements of top universities.
               </p>
               
               <div className="bg-blue-50 rounded-lg p-6">
-                <h4 className="font-semibold text-#1e3a8a mb-4">Why Students Need Professional Guidance</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-3">
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-[#1565c0] text-sm">Complex application processes</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-[#1565c0] text-sm">Visa documentation requirements</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-[#1565c0] text-sm">University selection criteria</span>
-                    </div>
+                <h4 className="font-semibold text-#1e3a8a mb-4">Because of this experience:</h4>
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">Students gain scientifically based, practical and current advice.</span>
                   </div>
-                  <div className="space-y-3">
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-[#1565c0] text-sm">Financial planning and scholarships</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-[#1565c0] text-sm">Cultural adaptation guidance</span>
-                    </div>
-                    <div className="flex items-start space-x-3">
-                      <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
-                      <span className="text-[#1565c0] text-sm">Pre-departure preparation</span>
-                    </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">The odds of getting an admission and visa get much higher.</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">Families are more secure, with the peace of mind that comes from working with a trusted counselor.</span>
                   </div>
                 </div>
+                <p className="text-gray-700 leading-relaxed mt-4">
+                  The strong success stories and the positive feedback from students from every part of Pakistan is a reflection of why they are known as the Best Study Abroad Consultants in Pakistan.
+                </p>
               </div>
             </div>
 
-            {/* Role of Abroad Education Consultants */}
+            {/* IELTS Coaching That Makes a Difference */}
             <div className="space-y-6">
               <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <Target className="h-6 w-6 #1845B3 mr-3" />
-                Role of Abroad Education Consultants
+                <BookOpen className="h-6 w-6 #1845B3 mr-3" />
+                IELTS Coaching That Makes a Difference
               </h3>
               <p className="text-gray-700 leading-relaxed">
-                Professional education consultants play a crucial role in making the study abroad journey smooth and successful. They provide comprehensive support throughout the entire process, from initial counseling to post-arrival assistance.
-              </p>
-              
-              <div className="space-y-4">
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                    <Award className="h-5 w-5 #1845B3 mr-2" />
-                    Choosing the Right Program
-                  </h4>
-                  <p className="text-gray-700 text-sm mb-3">
-                    Education consultants help students identify the most suitable programs based on their academic background, career goals, and financial situation. They provide detailed information about various universities, their rankings, and program offerings.
-                  </p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Academic program assessment and matching</li>
-                    <li>• University rankings and reputation analysis</li>
-                    <li>• Career prospects and alumni networks</li>
-                    <li>• Financial considerations and cost analysis</li>
-                  </ul>
-                </div>
-                
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                    <CheckCircle className="h-5 w-5 #1845B3 mr-2" />
-                    Assistance with Documentation and Visa Processing
-                  </h4>
-                  <p className="text-gray-700 text-sm mb-3">
-                    One of the most critical aspects of studying abroad is proper documentation and visa processing. Consultants ensure all documents are correctly prepared and submitted within deadlines.
-                  </p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Document preparation and verification</li>
-                    <li>• Visa application guidance and support</li>
-                    <li>• Interview preparation and coaching</li>
-                    <li>• Financial documentation assistance</li>
-                  </ul>
-                </div>
-                
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
-                    <Globe className="h-5 w-5 #1845B3 mr-2" />
-                    Pre-departure Guidance
-                  </h4>
-                  <p className="text-gray-700 text-sm mb-3">
-                    Consultants provide comprehensive pre-departure briefings to help students prepare for their new academic and cultural environment.
-                  </p>
-                  <ul className="text-sm text-gray-600 space-y-1">
-                    <li>• Cultural orientation and adaptation tips</li>
-                    <li>• Accommodation and housing guidance</li>
-                    <li>• Banking and financial setup assistance</li>
-                    <li>• Travel and arrival preparation</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Dunya Consultants: The Best Choice */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
-                <Star className="h-6 w-6 #1845B3 mr-3" />
-                Dunya Consultants: The Best Choice for Pakistani Students
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
-                Dunya Consultants has established itself as a leading education consultancy in Pakistan, helping thousands of students achieve their international education dreams. Our comprehensive services and experienced team make us the ideal partner for your study abroad journey.
+                The English language is a must for overseas studies and Dunya Consultants is well aware of the importance. That is why they provide IELTS preparation coaching with:
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-blue-50 to-orange-50 rounded-lg p-6">
-                  <Award className="h-10 w-10 #1845B3 mb-4" />
-                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Expertise and Experience</h4>
-                  <p className="text-[#1565c0] text-sm">
-                    With years of experience in international education, our team of experts understands the unique challenges faced by Pakistani students and provides tailored solutions to overcome them.
-                  </p>
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                    <Users className="h-5 w-5 #1845B3 mr-2" />
+                    Expert Training
+                  </h4>
+                  <ul className="text-sm text-gray-600 space-y-1">
+                    <li>• Experienced trainers</li>
+                    <li>• Modern teaching techniques</li>
+                    <li>• Individual attention</li>
+                    <li>• Free assessments and practice sessions</li>
+                  </ul>
                 </div>
                 
-                <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-6">
-                  <Users className="h-10 w-10 #1845B3 mb-4" />
-                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Customized Counseling</h4>
-                  <p className="text-[#1565c0] text-sm">
-                    We believe that every student is unique, which is why we provide personalized counseling sessions to understand individual needs and create customized study plans.
-                  </p>
-                </div>
-                
-                <div className="bg-gradient-to-br from-blue-50 to-teal-50 rounded-lg p-6">
-                  <Globe className="h-10 w-10 #1845B3 mb-4" />
-                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Strong International Network</h4>
-                  <p className="text-[#1565c0] text-sm">
-                    Our extensive network of partner universities and institutions worldwide ensures that our students have access to the best educational opportunities available.
-                  </p>
-                </div>
-                
-                <div className="bg-gradient-to-br from-blue-50 to-pink-50 rounded-lg p-6">
-                  <Heart className="h-10 w-10 #1845B3 mb-4" />
-                  <h4 className="text-lg font-semibold text-#1e3a8a mb-3">Continuous Support</h4>
-                  <p className="text-[#1565c0] text-sm">
-                    Our commitment to students doesn't end with admission. We provide ongoing support throughout their academic journey and beyond.
+                <div className="bg-white border border-gray-200 rounded-lg p-6">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3 flex items-center">
+                    <TrendingUp className="h-5 w-5 #1845B3 mr-2" />
+                    Student Success
+                  </h4>
+                  <p className="text-gray-700 text-sm">
+                    This way, students are not only well educated but confident enough to score high in IELTS and thereby increase their admission prospects in foreign universities.
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Services Overview */}
+            {/* Strong Global Partnerships */}
             <div className="space-y-6">
-              <h3 className="text-2xl font-semibold text-gray-900">Our Comprehensive Services</h3>
-              <div className="bg-white rounded-lg p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-gray-900">Academic Services</h4>
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #1845B3" />
-                        <span>University selection and application</span>
-                      </li>
-                      <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #1845B3" />
-                        <span>Course and program counseling</span>
-                      </li>
-                      <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #1845B3" />
-                        <span>Scholarship guidance and applications</span>
-                      </li>
-                      <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #1845B3" />
-                        <span>Academic document preparation</span>
-                      </li>
-                    </ul>
+              <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
+                <Globe className="h-6 w-6 #1845B3 mr-3" />
+                Strong Global Partnerships
+              </h3>
+              <p className="text-gray-700 leading-relaxed">
+                Although being one of the leading Study Abroad Consultants in Pakistan, one major reason for why Dunya Consultants is becoming a household brand in today's era is because of its powerful connections with universities worldwide. These partnerships provide students:
+              </p>
+              
+              <div className="bg-blue-50 rounded-lg p-6">
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">More options Access to quality institutions in the UK, USA, Canada, Australia, Finland, Turkey & more</span>
                   </div>
-                  
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-gray-900">Support Services</h4>
-                    <ul className="space-y-2 text-sm text-gray-700">
-                      <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #1845B3" />
-                        <span>Visa application and processing</span>
-                      </li>
-                      <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #1845B3" />
-                        <span>Interview preparation and coaching</span>
-                      </li>
-                      <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #1845B3" />
-                        <span>Pre-departure orientation</span>
-                      </li>
-                      <li className="flex items-center space-x-2">
-                        <ArrowRight className="h-4 w-4 #1845B3" />
-                        <span>Post-arrival assistance</span>
-                      </li>
-                    </ul>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">Simplified admission processes with faster response</span>
                   </div>
                 </div>
+                <p className="text-gray-700 leading-relaxed mt-4">
+                  Due to these worldwide links students receive opportunities not possible on their own.
+                </p>
+              </div>
+            </div>
+
+            {/* Why Choose Dunya Consultants? */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold text-gray-900 flex items-center">
+                <Star className="h-6 w-6 #1845B3 mr-3" />
+                Why Choose Dunya Consultants?
+              </h3>
+              <p className="text-gray-700 leading-relaxed">
+                In one simple words why students choose Dunya consultants over the rest of the consultants:
+              </p>
+              
+              <div className="bg-blue-50 rounded-lg p-6">
+                <div className="space-y-3">
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">Comprehensive services (counseling, admissions, visas, IELTS, pre-departure).</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">Experienced team with a high success rate.</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">Proven track record backed by student success stories.</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">IELTS coaching to boost admission chances.</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <CheckCircle className="h-5 w-5 #1845B3 mt-0.5" />
+                    <span className="text-[#1565c0] text-sm">Global university partnerships offering diverse study options.</span>
+                  </div>
+                </div>
+                <p className="text-gray-700 leading-relaxed mt-4">
+                  For students and families who seek the trusted source on this industry, refer to Dunya Consultants as the Best Study Abroad Consultants in Pakistan.
+                </p>
               </div>
             </div>
 
@@ -307,37 +252,29 @@ const StudyAbroadEducationConsultants = () => {
               <h3 className="text-2xl font-semibold text-gray-900">Frequently Asked Questions</h3>
               <div className="space-y-4">
                 <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <h4 className="font-medium text-gray-900 mb-2">Why do Pakistani students need education consultants for studying abroad?</h4>
-                  <p className="text-gray-700 text-sm">Pakistani students benefit from education consultants because they provide expert guidance on complex application processes, visa requirements, and cultural adaptation, making the study abroad journey smoother and more successful.</p>
+                  <h4 className="font-medium text-gray-900 mb-2">What services do Dunya Consultants provide as study abroad consultants in Pakistan?</h4>
+                  <p className="text-gray-700 text-sm">Dunya Consultants offer complete support for students planning to study abroad, including career counselling, help with university selection and applications, IELTS coaching, student visa guidance and interview preparation, and pre-departure assistance. They handle the whole process so students can focus on preparing for their studies.</p>
                 </div>
                 
                 <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <h4 className="font-medium text-gray-900 mb-2">How do Dunya Consultants help Pakistani students choose the right study abroad program?</h4>
-                  <p className="text-gray-700 text-sm">We provide personalized counseling sessions to understand each student's academic background, career goals, and financial situation, then recommend the most suitable programs and universities that align with their objectives.</p>
+                  <h4 className="font-medium text-gray-900 mb-2">Which countries and universities can Dunya Consultants help me apply to?</h4>
+                  <p className="text-gray-700 text-sm">They work with a wide range of partner universities around the world, including top institutions in the UK, USA, Canada, Australia, Finland and Turkey. Their global partnerships give students more options and smoother application processes.</p>
                 </div>
                 
                 <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <h4 className="font-medium text-gray-900 mb-2">What kind of pre-departure guidance do Dunya Consultants offer?</h4>
-                  <p className="text-gray-700 text-sm">Our pre-departure services include cultural orientation, accommodation guidance, banking setup assistance, travel preparation, and comprehensive briefings about academic and social life in the destination country.</p>
+                  <h4 className="font-medium text-gray-900 mb-2">Do Dunya Consultants provide IELTS coaching and test preparation?</h4>
+                  <p className="text-gray-700 text-sm">Yes. Dunya offers professional IELTS coaching with experienced trainers, modern teaching methods, free assessments and personalized practice plans to help students improve their scores and strengthen their university applications.</p>
                 </div>
                 
                 <div className="bg-white border border-gray-200 rounded-lg p-4">
-                  <h4 className="font-medium text-gray-900 mb-2">How does Dunya Consultants' international network benefit Pakistani students?</h4>
-                  <p className="text-gray-700 text-sm">Our extensive network of partner universities and institutions worldwide ensures students have access to the best educational opportunities, scholarship programs, and preferential admission processes.</p>
+                  <h4 className="font-medium text-gray-900 mb-2">How do Dunya Consultants support student visa applications and interview preparation?</h4>
+                  <p className="text-gray-700 text-sm">They provide step-by-step visa guidance, document checks, and mock interviews so students feel confident during the visa interview. Their team stays updated on visa rules to give accurate, practical advice that increases the chance of approval.</p>
                 </div>
-              </div>
-            </div>
-
-            {/* Conclusion */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold text-gray-900">Wrapping It Up</h3>
-              <p className="text-gray-700 leading-relaxed">
-                Choosing the right education consultant is crucial for a successful study abroad experience. Dunya Consultants combines expertise, experience, and personalized service to ensure that Pakistani students achieve their international education goals. With our comprehensive support and strong international network, we are committed to making your study abroad dreams a reality.
-              </p>
-              <div className="bg-gradient-to-r from-blue-50 to-green-50 rounded-lg p-6">
-                <p className="text-center text-gray-800 font-medium">
-                  Ready to start your international education journey? Contact Dunya Consultants today for expert guidance and support.
-                </p>
+                
+                <div className="bg-white border border-gray-200 rounded-lg p-4">
+                  <h4 className="font-medium text-gray-900 mb-2">What is Dunya Consultants' track record and why should I trust them?</h4>
+                  <p className="text-gray-700 text-sm">With over a decade of experience and many positive student testimonials, Dunya has built a reputation for reliable, student-centered service. Their up-to-date knowledge of admissions, scholarships and visa policies helps students get into the right programs with less stress.</p>
+                </div>
               </div>
             </div>
           </div>
