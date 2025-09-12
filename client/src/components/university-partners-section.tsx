@@ -213,7 +213,7 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className={`flex gap-2 md:gap-3 max-w-6xl mx-auto h-[500px] md:h-[600px] relative ${isMobile ? 'px-6' : 'px-4'} overflow-hidden`}>
+          <div className={`grid ${isMobile ? 'grid-cols-3' : 'grid-cols-5'} gap-1 max-w-6xl mx-auto h-[500px] md:h-[600px] relative ${isMobile ? 'px-8' : 'px-6'} overflow-hidden`}>
             {/* Top fade overlay */}
             <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
             
@@ -221,7 +221,7 @@ export default function UniversityPartnersSection() {
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
             
             {columns.map((column, columnIndex) => (
-              <div key={columnIndex} className="flex-1 overflow-hidden min-w-0">
+              <div key={columnIndex} className="overflow-hidden">
                 <motion.div
                   className="flex flex-col gap-1"
                   animate={{
@@ -244,12 +244,12 @@ export default function UniversityPartnersSection() {
                         <LazyImage
                           src={university.logoUrl}
                           alt={`${university.name} logo`}
-                          width={isMobile ? 120 : 160}
-                          height={isMobile ? 72 : 96}
+                          width={isMobile ? 110 : 140}
+                          height={isMobile ? 66 : 84}
                           loading="lazy"
                           decoding="async"
-                          className={`object-contain transition-all duration-300 max-w-full max-h-full ${
-                            isMobile ? 'h-18 w-28' : 'h-24 w-40'
+                          className={`object-contain object-center transition-all duration-300 max-w-full max-h-full w-full h-auto ${
+                            isMobile ? 'max-h-16' : 'max-h-20'
                           }`}
                         />
                       </div>
