@@ -18,19 +18,14 @@ interface FormData {
 
 const countries = [
   "Select a country",
-  "USA",
-  "UK", 
+  "United States",
+  "United Kingdom", 
   "Canada",
   "Australia",
+  "Germany",
   "Finland",
   "Belgium",
-  "Turkey",
-  "Germany",
-  "France",
-  "Netherlands",
-  "Sweden",
-  "Denmark",
-  "Norway"
+  "Turkey"
 ];
 
 export default function ConsultationFormModal({ isOpen, onClose }: ConsultationFormModalProps) {
