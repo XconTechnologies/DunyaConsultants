@@ -81,29 +81,14 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
 
   return (
     <AnimatePresence>
-      <div 
-        className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 z-[9999] flex items-center justify-center p-4"
-        style={{ 
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          zIndex: 9999 
-        }}
-      >
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: -50 }}
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.9, y: -50 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="bg-white rounded-2xl w-full max-w-md shadow-2xl"
-          style={{ 
-            maxHeight: '90vh',
-            margin: '0 auto'
-          }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          transition={{ duration: 0.2 }}
+          className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto shadow-2xl"
         >
-          <div className="overflow-y-auto max-h-full rounded-2xl">
           {/* Header */}
           <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] p-6 relative rounded-t-2xl">
             <button
@@ -226,7 +211,6 @@ export default function ConsultationFormModal({ isOpen, onClose }: ConsultationF
                 {isSubmitting ? "Submitting..." : "Submit Consultation Request"}
               </Button>
             </form>
-          </div>
           </div>
         </motion.div>
       </div>
