@@ -14,7 +14,6 @@ import Events from "@/pages/events";
 import IELTS from "@/pages/ielts";
 import IELTSExamDay from "@/pages/ielts-exam-day";
 import PTE from "@/pages/test-prep/pte";
-import TOEFL from "@/pages/test-prep/toefl";
 import Duolingo from "@/pages/test-prep/duolingo";
 import CountryGuide from "@/pages/country-guide";
 import USAGuide from "@/pages/country-guides/usa";
@@ -97,7 +96,6 @@ function Router() {
       <Route path="/test-prep/ielts" component={IELTS} />
       <Route path="/ielts/exam-day" component={IELTSExamDay} />
       <Route path="/test-prep/pte" component={PTE} />
-      <Route path="/test-prep/toefl" component={TOEFL} />
       <Route path="/test-prep/duolingo" component={Duolingo} />
       <Route path="/country-guide" component={CountryGuide} />
       <Route path="/country-guide/usa" component={USAGuide} />

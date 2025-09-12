@@ -107,7 +107,6 @@ export default function Navigation() {
           items: [
             { name: "IELTS", href: "/test-prep/ielts", description: "Most accepted English test" },
             { name: "PTE", href: "/test-prep/pte", description: "Computer-based English test" },
-            { name: "TOEFL", href: "/test-prep/toefl", description: "Academic English assessment" },
             { name: "Duolingo", href: "/test-prep/duolingo", description: "Online English proficiency" }
           ]
         },
@@ -521,7 +520,7 @@ export default function Navigation() {
                       )}
                       {item.name === "Test Prep" && expandedMobileMenu === item.name && (
                         <div className="pl-4 space-y-2">
-                          {["IELTS", "PTE", "TOEFL", "Duolingo"].map((test) => (
+                          {["IELTS", "PTE", "Duolingo"].map((test) => (
                             <Link key={test} href={`/test-prep/${test.toLowerCase()}`}>
                               <button
                                 onClick={() => setIsOpen(false)}

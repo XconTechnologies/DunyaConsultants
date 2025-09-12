@@ -338,10 +338,7 @@ const StudyAbroadEducationConsultants = () => {
         </div>
       </div>
 
-      <ContactSection 
-        title="Ready to Begin Your Study Abroad Journey?"
-        description="Connect with our expert education consultants and take the first step towards your international education success."
-      />
+      <ContactSection />
       
       <Footer />
     </div>
