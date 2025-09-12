@@ -344,7 +344,7 @@ export default function OfficesList() {
                 <span className="text-sm font-medium text-gray-700">Filter:</span>
               </div>
               <Filter className="w-5 h-5 text-gray-500 mt-3 hidden sm:block" />
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
                 {regions.map((region) => (
                   <Button
                     key={region}
