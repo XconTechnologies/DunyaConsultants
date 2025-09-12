@@ -213,7 +213,7 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className={`grid ${isMobile ? 'grid-cols-3' : 'grid-cols-5'} gap-1 max-w-6xl mx-auto h-[500px] md:h-[600px] relative ${isMobile ? 'px-8' : 'px-6'} overflow-hidden`}>
+          <div className={`grid ${isMobile ? 'grid-cols-3' : 'grid-cols-5'} gap-1 max-w-6xl mx-auto h-[500px] md:h-[600px] relative ${isMobile ? 'px-8' : 'px-6'} overflow-y-hidden overflow-x-visible`}>
             {/* Top fade overlay */}
             <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
             
@@ -221,7 +221,7 @@ export default function UniversityPartnersSection() {
             <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
             
             {columns.map((column, columnIndex) => (
-              <div key={columnIndex} className="overflow-hidden">
+              <div key={columnIndex} className="overflow-y-hidden overflow-x-visible">
                 <motion.div
                   className="flex flex-col gap-1"
                   animate={{
@@ -235,25 +235,18 @@ export default function UniversityPartnersSection() {
                 >
                   {/* Duplicate column for seamless loop */}
                   {[...column, ...column].map((university, index) => (
-                    <motion.div
+                    <div
                       key={`${university.name}-${columnIndex}-${index}`}
-                      className={`group flex items-center justify-center p-3 w-full ${isMobile ? 'min-h-[100px]' : 'min-h-[120px]'}`}
-                      whileHover={{ scale: 1.05 }}
+                      className={`flex items-center justify-center p-2 ${isMobile ? 'w-28 h-16' : 'w-36 h-20'}`}
                     >
-                      <div className="w-full h-full flex items-center justify-center">
-                        <LazyImage
-                          src={university.logoUrl}
-                          alt={`${university.name} logo`}
-                          width={isMobile ? 70 : 100}
-                          height={isMobile ? 42 : 60}
-                          loading="lazy"
-                          decoding="async"
-                          className={`object-contain object-center transition-all duration-300 max-w-full max-h-full w-full h-auto ${
-                            isMobile ? 'max-h-10' : 'max-h-14'
-                          }`}
-                        />
-                      </div>
-                    </motion.div>
+                      <img
+                        src={university.logoUrl}
+                        alt={`${university.name} logo`}
+                        loading="lazy"
+                        decoding="async"
+                        className="block max-h-full max-w-full object-contain object-center pointer-events-none"
+                      />
+                    </div>
                   ))}
                 </motion.div>
               </div>
