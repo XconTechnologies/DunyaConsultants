@@ -244,12 +244,12 @@ export default function UniversityPartnersSection() {
                         <LazyImage
                           src={university.logoUrl}
                           alt={`${university.name} logo`}
-                          width={isMobile ? 110 : 140}
-                          height={isMobile ? 66 : 84}
+                          width={isMobile ? 90 : 120}
+                          height={isMobile ? 54 : 72}
                           loading="lazy"
                           decoding="async"
                           className={`object-contain object-center transition-all duration-300 max-w-full max-h-full w-full h-auto ${
-                            isMobile ? 'max-h-16' : 'max-h-20'
+                            isMobile ? 'max-h-12' : 'max-h-16'
                           }`}
                         />
                       </div>
