@@ -104,7 +104,7 @@ export default function Footer() {
                       <Phone className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                       <div>
                         <p className="text-blue-100 text-xs font-medium">UAN:</p>
-                        <a href="tel:+923041110947" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors">(+92) 304-111-0947</a>
+                        <a href="tel:+923041110947" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors">304-111-0947</a>
                       </div>
                     </div>
                     
