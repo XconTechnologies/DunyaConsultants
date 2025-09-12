@@ -54,7 +54,7 @@ export default function AccreditationsSection() {
         </motion.div>
 
         {/* Accreditations Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
           {accreditations.map((accreditation, index) => {
             const isICEF = accreditation.name === "ICEF Agency";
             const content = (
@@ -68,10 +68,10 @@ export default function AccreditationsSection() {
                 }}
                 className="group relative"
               >
-                <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] flex flex-col items-center justify-center space-y-4">
+                <div className="bg-white rounded-xl p-3 md:p-4 lg:p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[#1D50C9] flex flex-col items-center justify-center space-y-2 md:space-y-3 lg:space-y-4">
 
                   {/* Logo Area */}
-                  <div className="text-center h-20 flex items-center justify-center">
+                  <div className="text-center h-12 md:h-16 lg:h-20 flex items-center justify-center w-full">
                     <LazyImage
                       src={accreditation.image}
                       alt={accreditation.name}
@@ -79,15 +79,15 @@ export default function AccreditationsSection() {
                       height={isICEF ? 80 : 64}
                       loading="lazy"
                       decoding="async"
-                      className={`${isICEF ? 'h-20 w-20' : 'h-16 w-auto'} max-w-full mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300`}
+                      className={`${isICEF ? 'h-12 md:h-16 lg:h-20 w-auto' : 'h-10 md:h-12 lg:h-16 w-auto'} max-w-full mx-auto object-contain transform group-hover:scale-105 transition-transform duration-300`}
                     />
                   </div>
 
                   {/* Badge */}
                   <div className="text-center">
-                    <div className="inline-flex items-center space-x-2 text-white text-sm font-medium px-4 py-2 rounded-full" style={{ backgroundColor: '#1D50C9' }}>
-                      <Star className="w-4 h-4" />
-                      <span>{accreditation.status}</span>
+                    <div className="inline-flex items-center space-x-1 md:space-x-2 text-white text-xs md:text-sm font-medium px-2 md:px-3 lg:px-4 py-1 md:py-2 rounded-full" style={{ backgroundColor: '#1D50C9' }}>
+                      <Star className="w-3 h-3 md:w-4 md:h-4" />
+                      <span className="text-xs md:text-sm leading-tight">{accreditation.status}</span>
                     </div>
                   </div>
                 </div>

@@ -101,10 +101,10 @@ export default function Footer() {
                 
                   <div className="space-y-3 flex-1">
                     <div className="flex items-start space-x-3">
-                      <Phone className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
+                      <FaWhatsapp className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="text-blue-100 text-xs font-medium">UAN:</p>
-                        <a href="tel:+923261111947" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors">(+92) 304-111-0947</a>
+                        <p className="text-blue-100 text-xs font-medium">WhatsApp:</p>
+                        <a href="https://wa.me/923041110947" target="_blank" rel="noopener noreferrer" className="text-white text-sm font-semibold hover:text-blue-200 transition-colors">(+92) 304-111-0947</a>
                       </div>
                     </div>
                     
