@@ -213,12 +213,12 @@ export default function UniversityPartnersSection() {
           animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          <div className={`flex gap-1 md:gap-2 max-w-6xl mx-auto h-[400px] md:h-[500px] relative ${isMobile ? 'px-2' : ''}`}>
+          <div className={`flex gap-2 md:gap-3 max-w-6xl mx-auto h-[500px] md:h-[600px] relative ${isMobile ? 'px-4' : ''}`}>
             {/* Top fade overlay */}
-            <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 left-0 right-0 h-16 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
             
             {/* Bottom fade overlay */}
-            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent z-10 pointer-events-none" />
             
             {columns.map((column, columnIndex) => (
               <div key={columnIndex} className="flex-1 overflow-hidden">
@@ -237,18 +237,18 @@ export default function UniversityPartnersSection() {
                   {[...column, ...column].map((university, index) => (
                     <motion.div
                       key={`${university.name}-${columnIndex}-${index}`}
-                      className={`group flex items-center justify-center p-1 ${isMobile ? 'min-h-[80px]' : 'min-h-[100px]'}`}
-                      whileHover={{ scale: 1.1 }}
+                      className={`group flex items-center justify-center p-2 ${isMobile ? 'min-h-[100px]' : 'min-h-[120px]'}`}
+                      whileHover={{ scale: 1.05 }}
                     >
                       <LazyImage
                         src={university.logoUrl}
                         alt={`${university.name} logo`}
-                        width={isMobile ? 120 : 160}
-                        height={isMobile ? 72 : 96}
+                        width={isMobile ? 140 : 180}
+                        height={isMobile ? 84 : 108}
                         loading="lazy"
                         decoding="async"
                         className={`object-contain transition-all duration-300 ${
-                          isMobile ? 'h-16 w-28' : 'h-24 w-40'
+                          isMobile ? 'h-20 w-32 max-h-20 max-w-32' : 'h-28 w-44 max-h-28 max-w-44'
                         }`}
                       />
                     </motion.div>
