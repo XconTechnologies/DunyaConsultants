@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Plane, DollarSign, HelpCircle, Users, Clock } from "lucide-react";
+import { GraduationCap, Plane, DollarSign, HelpCircle, Users, Clock, CheckCircle, Globe } from "lucide-react";
 
 export default function FAQsSection() {
   const faqCategories = [
@@ -111,10 +111,6 @@ export default function FAQsSection() {
       color: "from-[#1D50C9] to-[#1845B3]",
       faqs: [
         {
-          question: "Why should I choose Dunya Consultants?",
-          answer: "With more than 5 years since company built, 5,000+ successful placements, 98% visa success rate, and 20+ offices across Pakistan, we provide comprehensive end-to-end services from university selection to post-arrival support."
-        },
-        {
           question: "Do you provide services after I reach my destination country?",
           answer: "Yes, we offer post-arrival support including airport pickup assistance, accommodation guidance, SIM card and bank account setup help, orientation sessions, and ongoing support throughout your studies."
         },
@@ -143,21 +139,155 @@ export default function FAQsSection() {
   const currentCategory = faqCategories.find(cat => cat.id === selectedCategory) || faqCategories[0];
 
   return (
-    <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#1D50C9]">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Get answers to the most common questions about studying abroad and our services
-          </p>
-        </motion.div>
+    <>
+      {/* Strong Global Partnerships Section */}
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#1D50C9]">
+              Strong Global Partnerships
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Although being one of the leading Study Abroad Consultants in Pakistan, one major reason for why Dunya Consultants is becoming a household brand in today's era is because of its powerful connections with universities worldwide. These partnerships provide students:
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8"
+          >
+            <Card className="shadow-lg border-l-4 border-[#1D50C9] hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-8">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
+                    <Globe className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-3 text-gray-900">More Options</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Access to quality institutions in the UK, USA, Canada, Australia, Finland, Turkey & more
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-lg border-l-4 border-[#1D50C9] hover:shadow-xl transition-all duration-300">
+              <CardContent className="p-8">
+                <div className="flex items-start space-x-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
+                    <CheckCircle className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-3 text-gray-900">Simplified Processes</h3>
+                    <p className="text-gray-700 leading-relaxed">
+                      Simplified admission processes with faster response
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-center mt-8"
+          >
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Due to these worldwide links students receive opportunities not possible on their own.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why Choose Dunya Consultants Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#1D50C9]">
+              Why Choose Dunya Consultants?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              In one simple words why students choose Dunya consultants over the rest of the consultants:
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="grid md:grid-cols-1 gap-6">
+              {[
+                "Comprehensive services (counseling, admissions, visas, IELTS, pre-departure).",
+                "Experienced team with a high success rate.",
+                "Proven track record backed by student success stories.",
+                "IELTS coaching to boost admission chances.",
+                "Global university partnerships offering diverse study options."
+              ].map((reason, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-[#1D50C9]">
+                    <CardContent className="p-6 flex items-center space-x-4">
+                      <div className="w-8 h-8 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] rounded-full flex items-center justify-center flex-shrink-0">
+                        <CheckCircle className="w-4 h-4 text-white" />
+                      </div>
+                      <p className="text-gray-800 font-medium text-lg">{reason}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="text-center mt-8"
+          >
+            <p className="text-lg text-gray-700 max-w-3xl mx-auto font-medium">
+              For students and families who seek the trusted source on this industry, refer to Dunya Consultants as the <span className="text-[#1D50C9] font-bold">Best Study Abroad Consultants in Pakistan</span>.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQs Section */}
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-[#1D50C9]">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Get answers to the most common questions about studying abroad and our services
+            </p>
+          </motion.div>
 
         {/* Category Statistics */}
         <motion.div
@@ -296,5 +426,6 @@ export default function FAQsSection() {
         </motion.div>
       </div>
     </section>
+    </>
   );
 }
