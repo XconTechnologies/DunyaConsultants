@@ -66,6 +66,15 @@ async function initializeAdmin() {
 }
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint (doesn't require database)
+  app.head("/api", (req, res) => {
+    res.status(200).end();
+  });
+
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok", timestamp: new Date().toISOString() });
+  });
+
   // Initialize admin user
   await initializeAdmin();
   // Chatbot route

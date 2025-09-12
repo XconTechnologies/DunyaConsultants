@@ -65,7 +65,7 @@ export interface IStorage {
 
 
 
-import { db } from "./db";
+import { db, withRetry } from "./db";
 import { eq, and, desc, asc, sql } from "drizzle-orm";
 
 export class DatabaseStorage implements IStorage {
@@ -109,34 +109,40 @@ export class DatabaseStorage implements IStorage {
   }
 
   async trackEngagement(insertEngagement: InsertUserEngagement): Promise<UserEngagement> {
-    const [engagement] = await db.insert(userEngagement).values(insertEngagement).returning();
-    await this.updateUserStatsFromEngagement(insertEngagement);
-    return engagement;
+    return await withRetry(async () => {
+      const [engagement] = await db.insert(userEngagement).values(insertEngagement).returning();
+      await this.updateUserStatsFromEngagement(insertEngagement);
+      return engagement;
+    });
   }
 
   async getUserStats(sessionId: string): Promise<UserStats | undefined> {
-    const [stats] = await db.select().from(userStats).where(eq(userStats.sessionId, sessionId));
-    return stats || undefined;
+    return await withRetry(async () => {
+      const [stats] = await db.select().from(userStats).where(eq(userStats.sessionId, sessionId));
+      return stats || undefined;
+    });
   }
 
   async updateUserStats(sessionId: string, updates: Partial<UserStats>): Promise<UserStats> {
-    const existing = await this.getUserStats(sessionId);
-    
-    if (existing) {
-      const [updated] = await db
-        .update(userStats)
-        .set({ ...updates, lastActiveAt: new Date() })
-        .where(eq(userStats.sessionId, sessionId))
-        .returning();
-      return updated;
-    } else {
-      const [created] = await db.insert(userStats).values({
-        sessionId,
-        ...updates,
-        lastActiveAt: new Date(),
-      }).returning();
-      return created;
-    }
+    return await withRetry(async () => {
+      const existing = await this.getUserStats(sessionId);
+      
+      if (existing) {
+        const [updated] = await db
+          .update(userStats)
+          .set({ ...updates, lastActiveAt: new Date() })
+          .where(eq(userStats.sessionId, sessionId))
+          .returning();
+        return updated;
+      } else {
+        const [created] = await db.insert(userStats).values({
+          sessionId,
+          ...updates,
+          lastActiveAt: new Date(),
+        }).returning();
+        return created;
+      }
+    });
   }
 
   async getUserAchievements(sessionId: string): Promise<Achievement[]> {
