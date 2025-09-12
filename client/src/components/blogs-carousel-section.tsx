@@ -295,7 +295,7 @@ export default function BlogsCarouselSection() {
                         <img 
                           src={post.image.startsWith('http') || post.image.startsWith('/attached_assets/') ? post.image : `/attached_assets/${post.image}`} 
                           alt={post.title}
-                          className="w-full h-56 object-cover transition-transform hover:scale-105"
+                          className="w-full h-48 md:h-56 object-cover transition-transform hover:scale-105"
                           style={{ objectFit: 'cover', objectPosition: 'center' }}
                           onError={(e) => {
                             e.currentTarget.style.display = 'none';
