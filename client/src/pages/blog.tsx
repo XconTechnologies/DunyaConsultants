@@ -749,7 +749,17 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       <section key={index} id={section.id} className="mb-8">
                         {section.title && (
                           <h2 className="text-2xl font-bold text-gray-900 mb-3">
-                            {section.title.replace(/^#+\s*/, '')}
+                            {(() => {
+                              const cleanTitle = section.title.replace(/^#+\s*/, '');
+                              // Check if the title contains HTML links
+                              const hasHtmlLinks = /<a\s+[^>]*href[^>]*>/.test(cleanTitle);
+                              
+                              if (hasHtmlLinks) {
+                                return <span dangerouslySetInnerHTML={{ __html: cleanTitle }} />;
+                              } else {
+                                return cleanTitle;
+                              }
+                            })()}
                           </h2>
                         )}
                         <div>
