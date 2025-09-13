@@ -476,11 +476,20 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       <div className="text-gray-700 leading-relaxed">
                         {contentSections[0].content.split('\n').map((paragraph: string, pIndex: number) => {
                           if (paragraph.trim()) {
-                            return (
-                              <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 last:mb-0">
-                                {paragraph}
-                              </p>
-                            );
+                            // Check if the paragraph contains HTML links
+                            const hasHtmlLinks = /<a\s+[^>]*href[^>]*>/.test(paragraph);
+                            
+                            if (hasHtmlLinks) {
+                              return (
+                                <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 last:mb-0" dangerouslySetInnerHTML={{ __html: paragraph }} />
+                              );
+                            } else {
+                              return (
+                                <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 last:mb-0">
+                                  {paragraph}
+                                </p>
+                              );
+                            }
                           }
                           return null;
                         })}
@@ -1486,19 +1495,29 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             }
 
                             if (paragraph.trim()) {
-                              // Clean HTML tags and format text properly
-                              const cleanText = paragraph
+                              // Clean markdown bold and preserve HTML links
+                              const processedText = paragraph
                                 .replace(/\*\*(.*?)\*\*/g, '$1') // Remove markdown bold
-                                .replace(/<[^>]*>/g, '') // Remove HTML tags
                                 .trim();
                               
-                              // Only render if there's actual text content after cleaning
-                              if (cleanText) {
-                                return (
-                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
-                                    {cleanText}
-                                  </p>
-                                );
+                              // Check if the paragraph contains HTML links
+                              const hasHtmlLinks = /<a\s+[^>]*href[^>]*>/.test(processedText);
+                              
+                              // Only render if there's actual text content
+                              if (processedText) {
+                                if (hasHtmlLinks) {
+                                  return (
+                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                  );
+                                } else {
+                                  // For non-HTML content, clean tags and render as text
+                                  const cleanText = processedText.replace(/<[^>]*>/g, '');
+                                  return (
+                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
+                                      {cleanText}
+                                    </p>
+                                  );
+                                }
                               }
                             }
                             return null;

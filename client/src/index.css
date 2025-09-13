@@ -342,3 +342,22 @@ div[class*="from-[#1D50C9]"] .mega-menu-button,
 div[class*="from-[#1D50C9]"] button.mega-menu-button {
   color: #ffffff !important;
 }
+
+/* Blog content links styling */
+.prose a,
+.text-gray-700 a,
+div[class*="text-gray-700"] a,
+p[class*="text-gray-700"] a {
+  color: #1D50C9 !important;
+  text-decoration: underline;
+  text-decoration-color: #1D50C9;
+  transition: all 0.2s ease;
+}
+
+.prose a:hover,
+.text-gray-700 a:hover,
+div[class*="text-gray-700"] a:hover,
+p[class*="text-gray-700"] a:hover {
+  color: #1845B3 !important;
+  text-decoration-color: #1845B3;
+}
