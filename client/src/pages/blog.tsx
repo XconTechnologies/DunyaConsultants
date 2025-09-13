@@ -436,7 +436,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               {blogPost.image && (
                 <div className="relative">
                   <img 
-                    src={blogPost.image.startsWith('http') || blogPost.image.startsWith('/attached_assets/') ? blogPost.image : `/attached_assets/${blogPost.image}`} 
+                    src={blogPost.image.startsWith('http') || blogPost.image.startsWith('/') ? blogPost.image : `/${blogPost.image}`} 
                     alt={blogPost.title}
                     className="w-full h-auto"
                     onError={(e) => {
@@ -2072,7 +2072,7 @@ export default function Blog() {
                   {post.image && (
                     <div className="relative overflow-hidden rounded-t-lg">
                       <img 
-                        src={post.image.startsWith('http') || post.image.startsWith('/attached_assets/') ? post.image : `/attached_assets/${post.image}`} 
+                        src={post.image.startsWith('http') || post.image.startsWith('/') ? post.image : `/${post.image}`} 
                         alt={post.title}
                         className="w-full h-56 object-cover transition-transform hover:scale-105"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
