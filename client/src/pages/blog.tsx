@@ -1873,6 +1873,8 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [displayCount, setDisplayCount] = useState(12); // Show 12 blogs initially
 
+  console.log('DEBUG: Blog component rendering...');
+
   // Fetch blog posts from API
   const { data: blogPostsData, isLoading } = useQuery({
     queryKey: ['/api/blog-posts'],
@@ -1929,6 +1931,8 @@ export default function Blog() {
     return b.sortDate.getTime() - a.sortDate.getTime();
   }) : staticBlogPosts;
 
+  console.log('DEBUG: blogPosts after transform:', blogPosts ? `${blogPosts.length} posts` : 'null/undefined');
+
   // Categories for filtering
   const categories = [
     { name: "All", count: blogPosts.length },
@@ -1982,6 +1986,12 @@ export default function Blog() {
   // Get posts to display based on current displayCount
   const postsToDisplay = filteredPosts.slice(0, displayCount);
   const hasMorePosts = filteredPosts.length > displayCount;
+
+  console.log('DEBUG: filteredPosts:', filteredPosts.length);
+  console.log('DEBUG: postsToDisplay:', postsToDisplay.length);
+  if (postsToDisplay.length > 0) {
+    console.log('DEBUG: first displayed post:', postsToDisplay[0]);
+  }
 
   // Load more function
   const loadMorePosts = () => {
