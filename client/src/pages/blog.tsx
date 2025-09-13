@@ -743,6 +743,22 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             {section.title.replace(/^#+\s*/, '')}
                           </h2>
                         )}
+                        {/* Special handling for Conclusion section to ensure content displays */}
+                        {section.title && section.title.toLowerCase().includes('conclusion') && section.content && (
+                          <div className="mb-6">
+                            {section.content.split('\n').filter(p => p.trim()).map((paragraph: string, pIndex: number) => {
+                              const cleanText = paragraph.replace(/\*\*(.*?)\*\*/g, '$1').replace(/<[^>]*>/g, '').trim();
+                              if (cleanText && !cleanText.startsWith('**') && !cleanText.includes('?')) {
+                                return (
+                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
+                                    {cleanText}
+                                  </p>
+                                );
+                              }
+                              return null;
+                            })}
+                          </div>
+                        )}
                         <div>
                           {/* Check if this section contains FAQ content */}
                           {section.title.toLowerCase().includes('faq') ? (
