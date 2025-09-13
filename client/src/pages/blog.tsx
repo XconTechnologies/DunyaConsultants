@@ -471,7 +471,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
                   {/* Show Intro with Special Blue Box */}
-                  {contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
+                  {contentSections.length > 0 && contentSections[0] && (!contentSections[0].title || contentSections[0].title === 'Introduction') && (
                     <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
                       <div className="text-gray-700 leading-relaxed">
                         {contentSections[0].content.split('\n').map((paragraph: string, pIndex: number) => {
@@ -499,8 +499,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                   {/* Regular Content Sections */}
                   {contentSections.filter((section: any, index: number) => {
-                    // Skip first section if it's the intro (no title)
-                    if (index === 0 && !section.title) return false;
+                    // Skip first section if it's the intro (no title or title is 'Introduction')
+                    if (index === 0 && (!section.title || section.title === 'Introduction')) return false;
                     // Skip sections where title is just "Atlas University" without meaningful content
                     if (section.title.trim() === 'Atlas University' && (!section.content || section.content.trim().length === 0)) {
                       return false;
