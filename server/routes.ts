@@ -903,15 +903,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // PUBLIC BLOG ROUTES (for frontend)
   // ==============================================
 
-  // Get published blog posts
-  app.get("/api/blog-posts", async (req, res) => {
-    try {
-      const posts = await storage.getBlogPosts(true); // Only published
-      res.json(posts);
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to fetch blog posts' });
-    }
-  });
+  // Get published blog posts - REMOVED DUPLICATE (keeping earlier version)
 
   // Get single published blog post by slug
   app.get("/api/blog-posts/:slug", async (req, res) => {
