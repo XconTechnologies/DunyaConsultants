@@ -680,7 +680,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       return;
     }
     try {
-      const slug = (req.params as any)['0']; // This captures the full path after /api/blog-posts/
+      let slug = (req.params as any)['0']; // This captures the full path after /api/blog-posts/
+      
+      // Handle cases where the frontend might add an extra 'slug/' prefix
+      if (slug.startsWith('slug/')) {
+        slug = slug.substring(5); // Remove 'slug/' prefix
+      }
+      
       console.log(`Looking for blog post with slug: ${slug}`);
       const post = await storage.getBlogPostBySlug(slug);
       console.log(`Found post:`, post ? `${post.title} (published: ${post.isPublished})` : 'none');
