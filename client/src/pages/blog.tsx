@@ -1718,28 +1718,16 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             const mainSections = contentSections.filter((section: any) => section.title && section.title.trim() !== '' && !section.title.includes('?'));
                             const hasFAQs = contentSections.some((section: any) => section.title && section.title.includes('?'));
                             
-                            return [
-                              ...mainSections.map((section: any, index: number) => (
-                                <li key={index}>
-                                  <a 
-                                    href={`#${section.id}`}
-                                    className="text-[#1D50C9] hover:underline block py-1 text-sm"
-                                  >
-                                    {index + 1}. {section.title}
-                                  </a>
-                                </li>
-                              )),
-                              ...(hasFAQs ? [
-                                <li key="faqs">
-                                  <a 
-                                    href="#faqs"
-                                    className="text-[#1D50C9] hover:underline block py-1 text-sm"
-                                  >
-                                    {mainSections.length + 1}. FAQs
-                                  </a>
-                                </li>
-                              ] : [])
-                            ];
+                            return mainSections.map((section: any, index: number) => (
+                              <li key={index}>
+                                <a 
+                                  href={`#${section.id}`}
+                                  className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                                >
+                                  {index + 1}. {section.title}
+                                </a>
+                              </li>
+                            ));
                           })()}
                         </ul>
                       </CardContent>
