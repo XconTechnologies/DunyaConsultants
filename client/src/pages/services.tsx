@@ -263,13 +263,8 @@ export default function ServicesPage() {
                   </CardHeader>
                   
                   <CardContent className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <div className="text-sm text-gray-500">
-                        <span className="font-medium">Duration:</span> {service.duration}
-                      </div>
-                      <div className="text-sm font-medium text-[#1D50C9]">
-                        {service.price}
-                      </div>
+                    <div className="text-sm text-gray-500">
+                      <span className="font-medium">Duration:</span> {service.duration}
                     </div>
                     
                     <div className="flex justify-between items-center">

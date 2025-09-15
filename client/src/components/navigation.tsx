@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, BookOpen, Award, Phone, MapPin, Building2, MessageCircle, Calendar, Newspaper, PenTool, Heart } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Star, Globe, Users, Award, Phone, MapPin, Building2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import logoImageBlue from "@assets/Logo BLue_1754907499757.png";
@@ -274,7 +274,7 @@ export default function Navigation() {
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
                 {/* Menu Sections */}
                 <div className="lg:col-span-3">
-                  {activeMegaMenu === "Study Abroad" ? (
+                  {activeMegaMenu === "Destinations" ? (
                     // Special layout for Study Abroad with 2-column countries
                     (<div className="space-y-3">
                       <div className="flex items-center space-x-2 mb-3">
@@ -286,7 +286,7 @@ export default function Navigation() {
                         <h3 className="text-lg font-bold text-neutral-800">Popular Destinations</h3>
                       </div>
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2">
-                        {megaMenuData["Study Abroad"].sections[0].items.map((item: any, itemIdx: number) => (
+                        {megaMenuData["Destinations"].sections[0].items.map((item: any, itemIdx: number) => (
                           <Link key={itemIdx} href={item.href}>
                             <div className="group flex items-start space-x-2 p-2 rounded-lg hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 transition-all duration-200">
                               <ArrowRight className="w-4 h-4 text-primary mt-0.5 group-hover:translate-x-1 transition-transform duration-200 flex-shrink-0" />
@@ -505,7 +505,7 @@ export default function Navigation() {
                           </Link>
                         </div>
                       )}
-                      {item.name === "Study Abroad" && expandedMobileMenu === item.name && (
+                      {item.name === "Destinations" && expandedMobileMenu === item.name && (
                         <div className="pl-4 space-y-2">
                           {["USA", "UK", "Canada", "Finland", "Australia", "Belgium", "Turkey"].map((country) => (
                             <Link key={country} href={`/study-abroad/${country.toLowerCase()}`}>
