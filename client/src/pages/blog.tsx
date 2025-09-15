@@ -830,6 +830,94 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                    dangerouslySetInnerHTML={{ __html: section.content }} 
                               />
                             ) : 
+                            // Handle intake cards for Canada student visa blog
+                            slug === 'canada-student-visa-consultants' && section.content.includes('INTAKE_CARDS_START') ? (
+                              (() => {
+                                const startMarker = section.content.indexOf('**INTAKE_CARDS_START**');
+                                const endMarker = section.content.indexOf('**INTAKE_CARDS_END**');
+                                
+                                if (startMarker !== -1 && endMarker !== -1) {
+                                  const beforeCards = section.content.substring(0, startMarker);
+                                  const cardsContent = section.content.substring(startMarker + 23, endMarker);
+                                  const afterCards = section.content.substring(endMarker + 21);
+                                  
+                                  const intakeSteps = cardsContent.split('**').filter((step: string) => step.trim()).reduce((acc: Array<{title: string, content: string}>, current: string, index: number) => {
+                                    if (index % 2 === 0) {
+                                      acc.push({ title: current.trim(), content: '' });
+                                    } else {
+                                      if (acc.length > 0) {
+                                        acc[acc.length - 1].content = current.trim();
+                                      }
+                                    }
+                                    return acc;
+                                  }, [] as Array<{title: string, content: string}>);
+
+                                  return (
+                                    <div>
+                                      {/* Before cards content */}
+                                      {beforeCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                      
+                                      {/* Intake Cards */}
+                                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
+                                        {intakeSteps.map((intake: {title: string, content: string}, intakeIndex: number) => (
+                                          <div key={intakeIndex} className="bg-gradient-to-br from-indigo-50 to-blue-50 border border-indigo-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+                                            <h3 className="text-lg font-bold text-[#1D50C9] mb-4 border-b border-indigo-200 pb-2">
+                                              {intake.title}
+                                            </h3>
+                                            <div className="space-y-3">
+                                              {intake.content.split('\n').filter((line: string) => line.trim()).map((line: string, lineIndex: number) => {
+                                                if (line.trim().startsWith('-')) {
+                                                  return (
+                                                    <div key={lineIndex} className="flex items-start">
+                                                      <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
+                                                      <span className="text-gray-700 text-sm leading-relaxed">
+                                                        {line.replace(/^[-•]\s*/, '')}
+                                                      </span>
+                                                    </div>
+                                                  );
+                                                } else {
+                                                  return (
+                                                    <p key={lineIndex} className="text-gray-600 text-sm leading-relaxed mb-2">
+                                                      {line}
+                                                    </p>
+                                                  );
+                                                }
+                                              })}
+                                            </div>
+                                          </div>
+                                        ))}
+                                      </div>
+                                      
+                                      {/* After cards content */}
+                                      {afterCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })()
+                            ) : 
                             // Handle timeline cards for Canada student visa blog
                             slug === 'canada-student-visa-consultants' && section.content.includes('TIMELINE_CARDS_START') ? (
                               (() => {
