@@ -233,7 +233,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.8 }}
               className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent mb-6"
             >
-              Our Complete Service Portfolio
+              Our Complete Service
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -290,10 +290,6 @@ export default function ServicesPage() {
                       </ul>
                     </div>
 
-                    <Button className="w-full bg-[#1D50C9] hover:bg-[#1845B3] text-white group">
-                      Learn More
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
                   </CardContent>
                 </Card>
               </motion.div>
