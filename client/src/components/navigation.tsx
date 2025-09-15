@@ -54,7 +54,8 @@ export default function Navigation() {
           icon: Users,
           items: [
             { name: "Who We Are", href: "/about/", description: "Meet our dedicated team" },
-            { name: "Team Dunya Consultants", href: "/about/team", description: "Our expert team members" }
+            { name: "Team Dunya Consultants", href: "/about/team", description: "Our expert team members" },
+            { name: "Services", href: "/services", description: "Our complete service portfolio" }
           ]
         },
         {
@@ -73,7 +74,7 @@ export default function Navigation() {
         href: "/about"
       }
     },
-    "Study Abroad": {
+    "Destinations": {
       icon: Globe,
       sections: [
         {
@@ -142,7 +143,7 @@ export default function Navigation() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About Us", megaMenu: true },
-    { name: "Study Abroad", megaMenu: true },
+    { name: "Destinations", megaMenu: true },
     { name: "Test Prep", megaMenu: true },
     { name: "Offices", megaMenu: true },
     { name: "Blog", href: "/blog" },
