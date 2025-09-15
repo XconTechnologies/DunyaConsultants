@@ -559,6 +559,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       return false;
                     }
                     
+                    // Skip the main FAQ section with "Frequently Asked Questions" title
+                    if (section.title && section.title.toLowerCase().includes('frequently asked questions')) {
+                      return false;
+                    }
+                    
                     return section.title && section.title.trim() !== '';
                   }).map((section: any, index: number) => {
                     // Special handling for intro-before-main section
