@@ -152,7 +152,6 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-      
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
@@ -202,7 +201,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
       {/* Stats Section */}
       <section className="py-16 bg-gray-50">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -225,7 +223,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
       {/* Services Section */}
       <section className="py-20">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -309,7 +306,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
       {/* Why Choose Our Services */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -319,9 +315,7 @@ export default function ServicesPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#1845B3] bg-clip-text text-transparent mb-6"
-            >
-              Why Choose Path Visa Consultants?
-            </motion.h2>
+            >Why Choose Dunya Consultants?</motion.h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -374,7 +368,6 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
       {/* Contact Information */}
       <section className="py-16 bg-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -423,10 +416,8 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-
       {/* Book Your Free Consultation Section */}
       <ConsultationBookingSection />
-
       <Footer />
     </div>
   );
