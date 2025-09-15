@@ -168,12 +168,11 @@ export default function ContactUsSection() {
           
           {/* Quick Contact Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-16">
-            <motion.a
-              href="tel:+923041110947"
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block"
+              className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
             >
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -185,7 +184,7 @@ export default function ContactUsSection() {
                   <p className="text-gray-500 text-sm">Instant Support</p>
                 </div>
               </div>
-            </motion.a>
+            </motion.div>
 
             <motion.a
               href="https://wa.me/923041110947?text=Hello, I want to learn about study abroad opportunities"
