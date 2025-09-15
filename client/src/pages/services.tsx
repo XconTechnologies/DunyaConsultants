@@ -42,8 +42,8 @@ export default function ServicesPage() {
         "Interview preparation",
         "Offer letter negotiation"
       ],
-      successRate: "95%",
-      clientsServed: "2,500+"
+      successRate: "High",
+      clientsServed: "Many"
     },
     {
       id: "visa",
@@ -61,8 +61,8 @@ export default function ServicesPage() {
         "Interview preparation",
         "Visa tracking and updates"
       ],
-      successRate: "92%",
-      clientsServed: "1,800+"
+      successRate: "High",
+      clientsServed: "Many"
     },
     {
       id: "test-prep",
@@ -80,8 +80,8 @@ export default function ServicesPage() {
         "Reading and listening exercises",
         "Score improvement guarantee"
       ],
-      successRate: "88%",
-      clientsServed: "3,200+"
+      successRate: "High",
+      clientsServed: "Many"
     },
     {
       id: "scholarship",
@@ -99,8 +99,8 @@ export default function ServicesPage() {
         "Interview preparation",
         "Follow-up and negotiation"
       ],
-      successRate: "78%",
-      clientsServed: "850+"
+      successRate: "Good",
+      clientsServed: "Many"
     },
     {
       id: "accommodation",
@@ -118,8 +118,8 @@ export default function ServicesPage() {
         "Airport pickup arrangements",
         "Ongoing support and assistance"
       ],
-      successRate: "94%",
-      clientsServed: "1,600+"
+      successRate: "High",
+      clientsServed: "Many"
     },
     {
       id: "pre-departure",
@@ -137,16 +137,17 @@ export default function ServicesPage() {
         "Emergency contact setup",
         "Alumni network introduction"
       ],
-      successRate: "98%",
-      clientsServed: "2,100+"
+      successRate: "Excellent",
+      clientsServed: "Many"
     }
   ];
 
+  // Stats to be updated with real numbers
   const stats = [
-    { icon: Users, label: "Students Helped", value: "10,000+" },
-    { icon: GraduationCap, label: "Universities", value: "500+" },
-    { icon: Award, label: "Success Rate", value: "94%" },
-    { icon: Clock, label: "Years Experience", value: "15+" }
+    { icon: Users, label: "Students Helped", value: "Coming Soon" },
+    { icon: GraduationCap, label: "Universities", value: "Coming Soon" },
+    { icon: Award, label: "Success Rate", value: "Coming Soon" },
+    { icon: Clock, label: "Years Experience", value: "Coming Soon" }
   ];
 
   return (
@@ -192,11 +193,11 @@ export default function ServicesPage() {
             >
               <div className="flex items-center">
                 <Users className="w-5 h-5 mr-2" />
-                <span>10,000+ Students Helped</span>
+                <span>Trusted by Students Nationwide</span>
               </div>
               <div className="flex items-center">
                 <Award className="w-5 h-5 mr-2" />
-                <span>94% Success Rate</span>
+                <span>High Success Rate</span>
               </div>
             </motion.div>
           </div>
@@ -328,8 +329,8 @@ export default function ServicesPage() {
             {[
               {
                 icon: Award,
-                title: "15+ Years of Excellence",
-                description: "Over a decade of proven expertise in international education consulting with thousands of successful cases."
+                title: "Years of Excellence",
+                description: "Proven expertise in international education consulting with many successful cases."
               },
               {
                 icon: Users,
@@ -338,8 +339,8 @@ export default function ServicesPage() {
               },
               {
                 icon: CheckCircle,
-                title: "94% Success Rate",
-                description: "Industry-leading success rate in university admissions and visa approvals across all destinations."
+                title: "High Success Rate",
+                description: "Strong track record in university admissions and visa approvals across all destinations."
               },
               {
                 icon: Clock,
