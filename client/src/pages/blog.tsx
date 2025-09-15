@@ -753,8 +753,35 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           </h2>
                         )}
                         <div>
-                          {/* Skip all FAQ content - no rendering */}
-                          {section.title.toLowerCase().includes('faq') ? null : (
+                          {/* Allow FAQs for specific blog posts, skip for others */}
+                          {section.title.toLowerCase().includes('faq') ? (
+                            // Only show FAQs for the cheapest countries blog post
+                            slug === 'top-study-abroad-countries' ? (
+                              <div className="space-y-4">
+                                {(() => {
+                                  const lines = section.content.split('\n').filter((line: any) => line.trim());
+                                  const faqs: Array<{question: string, answer: string}> = [];
+                                  
+                                  for (let i = 0; i < lines.length; i++) {
+                                    const trimmed = lines[i].trim();
+                                    if (trimmed.startsWith('**') && trimmed.endsWith('**') && trimmed.includes('?')) {
+                                      const question = trimmed.replace(/^\*\*|\*\*$/g, '');
+                                      const answer = lines[i + 1] ? lines[i + 1].trim() : '';
+                                      faqs.push({ question, answer });
+                                    }
+                                  }
+                                  
+                                  return faqs.map((faq, index) => (
+                                    <FAQItem 
+                                      key={index}
+                                      question={faq.question}
+                                      answer={faq.answer}
+                                    />
+                                  ));
+                                })()}
+                              </div>
+                            ) : null
+                          ) : (
                             section.content.split('\n').map((paragraph: string, pIndex: number) => {
                               if (paragraph.trim().startsWith('###')) {
                                 return (
@@ -778,15 +805,17 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 );
                               }
                               
-                              // Skip FAQ questions and answers in regular content
-                              if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**') && paragraph.includes('?')) {
-                                return null;
-                              }
-                              
-                              // Skip FAQ answer lines that follow **questions**
-                              const prevParagraph = section.content.split('\n')[section.content.split('\n').indexOf(paragraph) - 1];
-                              if (prevParagraph && prevParagraph.trim().startsWith('**') && prevParagraph.trim().endsWith('**') && prevParagraph.includes('?')) {
-                                return null;
+                              // Skip FAQ questions and answers in regular content (except for specific blog posts)
+                              if (slug !== 'top-study-abroad-countries') {
+                                if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**') && paragraph.includes('?')) {
+                                  return null;
+                                }
+                                
+                                // Skip FAQ answer lines that follow **questions**
+                                const prevParagraph = section.content.split('\n')[section.content.split('\n').indexOf(paragraph) - 1];
+                                if (prevParagraph && prevParagraph.trim().startsWith('**') && prevParagraph.trim().endsWith('**') && prevParagraph.includes('?')) {
+                                  return null;
+                                }
                               }
 
                               // Skip markdown table remnants
