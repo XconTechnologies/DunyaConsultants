@@ -159,7 +159,7 @@ export default function ServicesDetailSection() {
       icon: Home,
       description: "Housing and travel arrangement services",
       color: "from-[#1D50C9] to-[#1845B3]",
-      price: "PKR 10,000 - 30,000",
+      
       duration: "2-6 weeks",
       features: [
         "University accommodation booking",
