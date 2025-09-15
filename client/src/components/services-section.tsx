@@ -13,6 +13,20 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 
+// Type definition for Service
+type Service = {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  color: string;
+  bgPattern: string;
+  process: string[];
+  benefits: string[];
+  duration: string;
+  includes: string[];
+};
+
 // Services data with your specified offerings
 const services = [
   {
@@ -197,7 +211,7 @@ export default function ServicesSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
   const servicesPerPage = 3;
 
   // Auto-slide functionality

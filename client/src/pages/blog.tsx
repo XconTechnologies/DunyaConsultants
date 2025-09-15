@@ -693,28 +693,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           section.title === 'What is Dunya Consultants\' track record and why should I trust them?' ||
                           section.title.includes('How can I contact Dunya Consultants?')) {
                         
-                        // Only render this if we're at the start of the question group
-                        if (index === startIndex) {
-                          return (
-                            <section key={index} id="faqs" className="mb-8">
-                              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                                Frequently Asked Questions
-                              </h2>
-                              <div className="space-y-4">
-                                {questionSections.map((faqSection: any, faqIndex: number) => (
-                                  <FAQItem 
-                                    key={faqIndex}
-                                    question={faqSection.title}
-                                    answer={faqSection.content}
-                                  />
-                                ))}
-                              </div>
-                            </section>
-                          );
-                        } else {
-                          // Skip if we're not at the start of the group
-                          return null;
-                        }
+                        // Skip FAQ sections entirely - no rendering
+                        return null;
                       }
                     }
                     
@@ -726,8 +706,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       }
                     }
                     
-                    // Skip individual FAQ sections that should be part of collapsible FAQs and duplicate university sections
+                    // Skip all FAQ sections and individual question-based sections
                     if (section.title && (
+                        section.title.toLowerCase().includes('faq') ||
+                        section.title.toLowerCase().includes('frequently asked questions') ||
                         section.title.includes('What is the issue rate of UK student visas?') ||
                         section.title.includes('Is it difficult to get a UK student visa from Pakistan?') ||
                         section.title.includes('What is the UK student visa ratio from Pakistan?') ||
@@ -771,32 +753,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           </h2>
                         )}
                         <div>
-                          {/* Check if this section contains FAQ content */}
-                          {section.title.toLowerCase().includes('faq') ? (
-                            <div className="space-y-4">
-                              {(() => {
-                                const lines = section.content.split('\n').filter((line: any) => line.trim());
-                                const faqs: Array<{question: string, answer: string}> = [];
-                                
-                                for (let i = 0; i < lines.length; i++) {
-                                  const trimmed = lines[i].trim();
-                                  if (trimmed.startsWith('**') && trimmed.endsWith('**') && trimmed.includes('?')) {
-                                    const question = trimmed.replace(/^\*\*|\*\*$/g, '');
-                                    const answer = lines[i + 1] ? lines[i + 1].trim() : '';
-                                    faqs.push({ question, answer });
-                                  }
-                                }
-                                
-                                return faqs.map((faq, index) => (
-                                  <FAQItem 
-                                    key={index}
-                                    question={faq.question}
-                                    answer={faq.answer}
-                                  />
-                                ));
-                              })()}
-                            </div>
-                          ) : (
+                          {/* Skip all FAQ content - no rendering */}
+                          {section.title.toLowerCase().includes('faq') ? null : (
                             section.content.split('\n').map((paragraph: string, pIndex: number) => {
                               if (paragraph.trim().startsWith('###')) {
                                 return (
