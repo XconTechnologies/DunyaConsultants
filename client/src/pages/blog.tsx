@@ -829,6 +829,84 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               <div className="text-gray-700 leading-relaxed"
                                    dangerouslySetInnerHTML={{ __html: section.content }} 
                               />
+                            ) : 
+                            // Handle timeline cards for Canada student visa blog
+                            slug === 'canada-student-visa-consultants' && section.content.includes('TIMELINE_CARDS_START') ? (
+                              (() => {
+                                const startMarker = section.content.indexOf('**TIMELINE_CARDS_START**');
+                                const endMarker = section.content.indexOf('**TIMELINE_CARDS_END**');
+                                
+                                if (startMarker !== -1 && endMarker !== -1) {
+                                  const beforeCards = section.content.substring(0, startMarker);
+                                  const cardsContent = section.content.substring(startMarker + 25, endMarker);
+                                  const afterCards = section.content.substring(endMarker + 23);
+                                  
+                                  const timelineSteps = cardsContent.split('**').filter((step: string) => step.trim()).reduce((acc: Array<{title: string, content: string}>, current: string, index: number) => {
+                                    if (index % 2 === 0) {
+                                      acc.push({ title: current.trim(), content: '' });
+                                    } else {
+                                      if (acc.length > 0) {
+                                        acc[acc.length - 1].content = current.trim();
+                                      }
+                                    }
+                                    return acc;
+                                  }, [] as Array<{title: string, content: string}>);
+
+                                  return (
+                                    <div>
+                                      {/* Before cards content */}
+                                      {beforeCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                      
+                                      {/* Timeline Cards */}
+                                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">
+                                        {timelineSteps.map((step: {title: string, content: string}, stepIndex: number) => (
+                                          <div key={stepIndex} className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                                            <h4 className="text-sm font-semibold text-[#1D50C9] mb-3 leading-tight">
+                                              {step.title}
+                                            </h4>
+                                            <div className="space-y-1">
+                                              {step.content.split('\n').filter((line: string) => line.trim()).map((line: string, lineIndex: number) => (
+                                                <div key={lineIndex} className="flex items-start">
+                                                  <span className="text-[#1D50C9] mr-2 text-xs leading-none mt-1">•</span>
+                                                  <span className="text-gray-700 text-xs leading-relaxed">
+                                                    {line.replace(/^[-•]\s*/, '')}
+                                                  </span>
+                                                </div>
+                                              ))}
+                                            </div>
+                                          </div>
+                                        ))}
+                                      </div>
+                                      
+                                      {/* After cards content */}
+                                      {afterCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })()
                             ) : (
                               section.content.split('\n').map((paragraph: string, pIndex: number) => {
                                 if (paragraph.trim().startsWith('###')) {
@@ -1566,6 +1644,19 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             }
 
                             if (paragraph.trim()) {
+                              // Special handling for Contact Us button in Canada student visa blog
+                              if (slug === 'canada-student-visa-consultants' && paragraph.trim() === '**Contact Us for Expert Guidance**') {
+                                return (
+                                  <div key={pIndex} className="text-center my-8">
+                                    <Link href="/contact">
+                                      <Button className="bg-[#1D50C9] hover:bg-[#1845B3] text-white px-8 py-3 text-lg font-semibold rounded-lg transition-colors">
+                                        Contact Us for Expert Guidance
+                                      </Button>
+                                    </Link>
+                                  </div>
+                                );
+                              }
+                              
                               // Clean markdown bold and preserve HTML links
                               const processedText = paragraph
                                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert markdown bold to HTML
