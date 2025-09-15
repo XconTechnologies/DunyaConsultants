@@ -142,12 +142,11 @@ export default function ServicesPage() {
     }
   ];
 
-  // Stats to be updated with real numbers
   const stats = [
-    { icon: Users, label: "Students Helped", value: "Coming Soon" },
-    { icon: GraduationCap, label: "Universities", value: "Coming Soon" },
-    { icon: Award, label: "Success Rate", value: "Coming Soon" },
-    { icon: Clock, label: "Years Experience", value: "Coming Soon" }
+    { icon: Users, label: "Team Members", value: "200+" },
+    { icon: Award, label: "Success Rate", value: "98%" },
+    { icon: Clock, label: "Years Experience", value: "5+" },
+    { icon: MapPin, label: "Countries Covered", value: "15+" }
   ];
 
   return (
@@ -193,11 +192,11 @@ export default function ServicesPage() {
             >
               <div className="flex items-center">
                 <Users className="w-5 h-5 mr-2" />
-                <span>Trusted by Students Nationwide</span>
+                <span>200+ Team Members</span>
               </div>
               <div className="flex items-center">
                 <Award className="w-5 h-5 mr-2" />
-                <span>High Success Rate</span>
+                <span>98% Success Rate</span>
               </div>
             </motion.div>
           </div>
@@ -329,7 +328,7 @@ export default function ServicesPage() {
             {[
               {
                 icon: Award,
-                title: "Years of Excellence",
+                title: "5+ Years of Excellence",
                 description: "Proven expertise in international education consulting with many successful cases."
               },
               {
@@ -339,8 +338,8 @@ export default function ServicesPage() {
               },
               {
                 icon: CheckCircle,
-                title: "High Success Rate",
-                description: "Strong track record in university admissions and visa approvals across all destinations."
+                title: "98% Success Rate",
+                description: "Industry-leading success rate in university admissions and visa approvals across all destinations."
               },
               {
                 icon: Clock,
