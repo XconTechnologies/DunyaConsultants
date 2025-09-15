@@ -1645,7 +1645,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                             if (paragraph.trim()) {
                               // Special handling for Contact Us button in Canada student visa blog
-                              if (slug === 'canada-student-visa-consultants' && paragraph.trim() === '**Contact Us for Expert Guidance**') {
+                              if (slug === 'canada-student-visa-consultants' && (paragraph.trim() === '**Contact Us for Expert Guidance**' || paragraph.trim() === '**Contact Us for more details**')) {
                                 return (
                                   <div key={pIndex} className="text-center my-8">
                                     <Link href="/contact">
