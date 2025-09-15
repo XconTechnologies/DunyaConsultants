@@ -140,7 +140,7 @@ export default function ContactUsSection() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0f3ba8] text-white pt-24 pb-16 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#1D50C9] via-[#1845B3] to-[#0f3ba8] text-white pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"></div>
         
@@ -283,7 +283,7 @@ export default function ContactUsSection() {
             {/* Right Side - Contact Form */}
             <div className="lg:col-span-3 bg-white rounded-2xl shadow-lg overflow-hidden">
               <div className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white p-6">
-                <h3 className="text-2xl font-bold mb-2" style={{ color: 'white', WebkitTextFillColor: 'white', MozTextFillColor: 'white' }}>
+                <h3 className="text-2xl font-bold mb-2 text-white">
                   Send Us a Message
                 </h3>
                 <p className="text-white/90">Get personalized guidance for your study abroad plans</p>
