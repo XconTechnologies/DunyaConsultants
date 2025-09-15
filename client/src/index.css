@@ -343,21 +343,110 @@ div[class*="from-[#1D50C9]"] button.mega-menu-button {
   color: #ffffff !important;
 }
 
-/* Blog content links styling */
+/* Blog content styling - Links, Bold text, Headings */
 .prose a,
 .text-gray-700 a,
 div[class*="text-gray-700"] a,
-p[class*="text-gray-700"] a {
+p[class*="text-gray-700"] a,
+.blog-content a {
   color: #1D50C9 !important;
   text-decoration: underline;
   text-decoration-color: #1D50C9;
   transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 .prose a:hover,
 .text-gray-700 a:hover,
 div[class*="text-gray-700"] a:hover,
-p[class*="text-gray-700"] a:hover {
+p[class*="text-gray-700"] a:hover,
+.blog-content a:hover {
   color: #1845B3 !important;
   text-decoration-color: #1845B3;
+}
+
+/* Blog content bold text styling */
+.blog-content strong,
+.blog-content b,
+.prose strong,
+.prose b {
+  font-weight: 700 !important;
+  color: #111827 !important;
+}
+
+/* Blog content headings styling */
+.blog-content h2,
+.prose h2 {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+  line-height: 1.3 !important;
+}
+
+.blog-content h3,
+.prose h3 {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+  line-height: 1.4 !important;
+}
+
+.blog-content h4,
+.prose h4 {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+  line-height: 1.4 !important;
+}
+
+/* Blog content paragraphs */
+.blog-content p,
+.prose p {
+  margin-bottom: 1rem !important;
+  line-height: 1.7 !important;
+  color: #374151 !important;
+}
+
+/* Blog content lists */
+.blog-content ul,
+.blog-content ol,
+.prose ul,
+.prose ol {
+  margin-bottom: 1rem !important;
+  padding-left: 1.5rem !important;
+}
+
+.blog-content li,
+.prose li {
+  margin-bottom: 0.5rem !important;
+  line-height: 1.6 !important;
+  color: #374151 !important;
+}
+
+/* Contact button styling */
+.contact-button {
+  display: inline-block;
+  background-color: #1D50C9;
+  color: white;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+  margin: 30px 0;
+}
+
+.contact-button:hover {
+  background-color: #1845B3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 80, 201, 0.3);
+  color: white !important;
+  text-decoration: none;
 }

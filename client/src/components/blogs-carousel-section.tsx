@@ -293,7 +293,11 @@ export default function BlogsCarouselSection() {
                     {post.image && (
                       <div className="relative overflow-hidden rounded-t-lg">
                         <img 
-                          src={post.image.startsWith('http') || post.image.startsWith('/attached_assets/') ? post.image : `/attached_assets/${post.image}`} 
+                          src={post.image.startsWith('http') ? post.image : 
+                               post.image.startsWith('/blog/') ? post.image :
+                               post.image.startsWith('/attached_assets/') ? post.image :
+                               post.image.startsWith('attached_assets/') ? `/${post.image}` :
+                               `/blog/${post.image}`} 
                           alt={post.title}
                           className="w-full h-48 md:h-56 object-cover transition-transform hover:scale-105"
                           style={{ objectFit: 'cover', objectPosition: 'center' }}

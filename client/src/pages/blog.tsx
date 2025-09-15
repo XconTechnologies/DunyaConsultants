@@ -576,7 +576,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               if (paragraph.trim()) {
                                 return (
                                   <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-4 last:mb-0">
-                                    {paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}
+                                    {(() => {
+                                      // Parse markdown-style formatting
+                                      let processedParagraph = paragraph
+                                        // Handle bold text **text** -> <strong>text</strong>
+                                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                        // Handle markdown links [text](url) -> <a href="url">text</a>
+                                        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+                                      
+                                      return (
+                                        <span className="blog-content" dangerouslySetInnerHTML={{ __html: processedParagraph }} />
+                                      );
+                                    })()}
                                   </p>
                                 );
                               }
@@ -836,7 +847,16 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                     <div key={pIndex} className="flex items-start leading-tight mb-2">
                                       <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
                                       <span className="text-gray-700 text-base leading-tight">
-                                        {paragraph.replace(/^[-•]\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1').replace(/<[^>]*>/g, '')}
+                                        {(() => {
+                                          let processedText = paragraph.replace(/^[-•]\s*/, '');
+                                          // Handle bold text **text** -> <strong>text</strong>
+                                          processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                                          // Handle markdown links [text](url) -> <a href="url">text</a>
+                                          processedText = processedText.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+                                          return (
+                                            <span className="blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        })()}
                                       </span>
                                     </div>
                                   );
@@ -1530,7 +1550,16 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                     {paragraph.trim().match(/^\d+\./)?.[0]}
                                   </span>
                                   <span className="text-base leading-relaxed text-[#000000]">
-                                    {paragraph.replace(/^\d+\.\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1')}
+                                    {(() => {
+                                      let processedText = paragraph.replace(/^\d+\.\s*/, '');
+                                      // Handle bold text **text** -> <strong>text</strong>
+                                      processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                                      // Handle markdown links [text](url) -> <a href="url">text</a>
+                                      processedText = processedText.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+                                      return (
+                                        <span className="blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                      );
+                                    })()}
                                   </span>
                                 </div>
                               );
@@ -1539,7 +1568,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             if (paragraph.trim()) {
                               // Clean markdown bold and preserve HTML links
                               const processedText = paragraph
-                                .replace(/\*\*(.*?)\*\*/g, '$1') // Remove markdown bold
+                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert markdown bold to HTML
+                                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>') // Convert markdown links
                                 .trim();
                               
                               // Check if the paragraph contains HTML links
@@ -1547,19 +1577,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               
                               // Only render if there's actual text content
                               if (processedText) {
-                                if (hasHtmlLinks) {
-                                  return (
-                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3" dangerouslySetInnerHTML={{ __html: processedText }} />
-                                  );
-                                } else {
-                                  // For non-HTML content, clean tags and render as text
-                                  const cleanText = processedText.replace(/<[^>]*>/g, '');
-                                  return (
-                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
-                                      {cleanText}
-                                    </p>
-                                  );
-                                }
+                                // Always render with dangerouslySetInnerHTML to preserve formatting
+                                return (
+                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                );
                               }
                             }
                             return null;
