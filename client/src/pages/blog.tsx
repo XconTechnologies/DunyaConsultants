@@ -1650,7 +1650,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                   <div key={pIndex} className="text-center my-8">
                                     <Link href="/contact">
                                       <Button className="bg-[#1D50C9] hover:bg-[#1845B3] text-white px-8 py-3 text-lg font-semibold rounded-lg transition-colors">
-                                        Contact Us for Expert Guidance
+                                        Contact Us for more details
                                       </Button>
                                     </Link>
                                   </div>
