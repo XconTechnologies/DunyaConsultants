@@ -437,6 +437,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 <div className="relative">
                   <img 
                     src={blogPost.image.startsWith('http') ? blogPost.image : 
+                         blogPost.image.startsWith('/blog/') ? blogPost.image :
                          blogPost.image.startsWith('/attached_assets/') ? blogPost.image :
                          blogPost.image.startsWith('attached_assets/') ? `/${blogPost.image}` :
                          `/attached_assets/${blogPost.image}`} 
@@ -1608,6 +1609,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                   <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
                                     <img 
                                       src={blog.image.startsWith('http') ? blog.image : 
+                                           blog.image.startsWith('/blog/') ? blog.image :
                                            blog.image.startsWith('/attached_assets/') ? blog.image :
                                            blog.image.startsWith('attached_assets/') ? `/${blog.image}` :
                                            `/attached_assets/${blog.image}`} 
@@ -2119,6 +2121,7 @@ export default function Blog() {
                     <div className="relative overflow-hidden rounded-t-lg">
                       <img 
                         src={post.image.startsWith('http') ? post.image : 
+                             post.image.startsWith('/blog/') ? post.image :
                              post.image.startsWith('/attached_assets/') ? post.image :
                              post.image.startsWith('attached_assets/') ? `/${post.image}` :
                              `/attached_assets/${post.image}`} 
