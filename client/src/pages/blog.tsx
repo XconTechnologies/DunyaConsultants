@@ -997,6 +997,20 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               })()
                             ) : (
                               section.content.split('\n').map((paragraph: string, pIndex: number) => {
+                                // Check for Contact Us button
+                                if (paragraph.trim() === 'Contact Us for more details') {
+                                  return (
+                                    <div key={pIndex} className="text-center my-8">
+                                      <a 
+                                        href="/contact" 
+                                        className="inline-block bg-[#1D50C9] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#1845B3] transition-colors duration-300 shadow-lg hover:shadow-xl"
+                                      >
+                                        Contact Us
+                                      </a>
+                                    </div>
+                                  );
+                                }
+                                
                                 if (paragraph.trim().startsWith('###')) {
                                   return (
                                     <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
