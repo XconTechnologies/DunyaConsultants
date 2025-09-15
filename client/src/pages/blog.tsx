@@ -676,7 +676,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       }
                       
                       // If we have multiple questions or specific FAQ-type questions, render as FAQ group
-                      if (questionSections.length > 1 || 
+                      if (slug !== 'top-study-abroad-countries' && (questionSections.length > 1 || 
                           section.title.includes('What is the issue rate of UK student visas?') ||
                           section.title.includes('Is it difficult to get a UK student visa from Pakistan?') ||
                           section.title.includes('What is the UK student visa ratio from Pakistan?') ||
@@ -691,7 +691,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           section.title === 'Do Dunya Consultants provide IELTS coaching and test preparation?' ||
                           section.title === 'How do Dunya Consultants support student visa applications and interview preparation?' ||
                           section.title === 'What is Dunya Consultants\' track record and why should I trust them?' ||
-                          section.title.includes('How can I contact Dunya Consultants?')) {
+                          section.title.includes('How can I contact Dunya Consultants?'))) {
                         
                         // Skip FAQ sections entirely - no rendering
                         return null;
@@ -706,8 +706,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       }
                     }
                     
-                    // Skip all FAQ sections and individual question-based sections
-                    if (section.title && (
+                    // Skip all FAQ sections and individual question-based sections, except for top-study-abroad-countries
+                    if (slug !== 'top-study-abroad-countries' && section.title && (
                         section.title.toLowerCase().includes('faq') ||
                         section.title.toLowerCase().includes('frequently asked questions') ||
                         section.title.includes('What is the issue rate of UK student visas?') ||
@@ -738,19 +738,49 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     return (
                       <section key={index} id={section.id} className="mb-8">
                         {section.title && (
-                          <h2 className="text-2xl font-bold text-gray-900 mb-3">
-                            {(() => {
-                              const cleanTitle = section.title.replace(/^#+\s*/, '');
-                              // Check if the title contains HTML links
-                              const hasHtmlLinks = /<a\s+[^>]*href[^>]*>/.test(cleanTitle);
+                          (() => {
+                            const cleanTitle = section.title.replace(/^#+\s*/, '');
+                            // Check if the title contains HTML links
+                            const hasHtmlLinks = /<a\s+[^>]*href[^>]*>/.test(cleanTitle);
+                            
+                            // For top-study-abroad-countries, use h2 for numbered headings and h3 for sub-headings
+                            if (slug === 'top-study-abroad-countries') {
+                              const isNumberedHeading = /^\d+\./.test(cleanTitle);
+                              const isSubHeading = cleanTitle.includes('Why ') || cleanTitle.includes('Real Example');
                               
-                              if (hasHtmlLinks) {
-                                return <span dangerouslySetInnerHTML={{ __html: cleanTitle }} />;
-                              } else {
-                                return cleanTitle;
+                              if (isNumberedHeading) {
+                                // Numbered countries are h2
+                                return (
+                                  <h2 className="text-2xl font-bold text-gray-900 mb-3">
+                                    {hasHtmlLinks ? 
+                                      <span dangerouslySetInnerHTML={{ __html: cleanTitle }} /> : 
+                                      cleanTitle
+                                    }
+                                  </h2>
+                                );
+                              } else if (isSubHeading) {
+                                // Sub-headings are h3
+                                return (
+                                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                                    {hasHtmlLinks ? 
+                                      <span dangerouslySetInnerHTML={{ __html: cleanTitle }} /> : 
+                                      cleanTitle
+                                    }
+                                  </h3>
+                                );
                               }
-                            })()}
-                          </h2>
+                            }
+                            
+                            // Default h2 for all other blogs
+                            return (
+                              <h2 className="text-2xl font-bold text-gray-900 mb-3">
+                                {hasHtmlLinks ? 
+                                  <span dangerouslySetInnerHTML={{ __html: cleanTitle }} /> : 
+                                  cleanTitle
+                                }
+                              </h2>
+                            );
+                          })()
                         )}
                         <div>
                           {/* Allow FAQs for specific blog posts, skip for others */}
@@ -1741,7 +1771,19 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       <CardContent>
                         <ul className="space-y-2">
                           {(() => {
-                            const mainSections = contentSections.filter((section: any) => section.title && section.title.trim() !== '' && !section.title.includes('?'));
+                            let mainSections;
+                            
+                            // For top-study-abroad-countries, show only numbered headings (h2) in table of contents
+                            if (slug === 'top-study-abroad-countries') {
+                              mainSections = contentSections.filter((section: any) => {
+                                if (!section.title || section.title.trim() === '') return false;
+                                const cleanTitle = section.title.replace(/^#+\s*/, '');
+                                return /^\d+\./.test(cleanTitle) || cleanTitle.toLowerCase().includes('faq');
+                              });
+                            } else {
+                              mainSections = contentSections.filter((section: any) => section.title && section.title.trim() !== '' && !section.title.includes('?'));
+                            }
+                            
                             const hasFAQs = contentSections.some((section: any) => section.title && section.title.includes('?'));
                             
                             return mainSections.map((section: any, index: number) => (
