@@ -1782,14 +1782,27 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           {(() => {
                             let mainSections;
                             
-                            // For top-study-abroad-countries, show only numbered headings (h2) in table of contents
+                            // Show only main headings (h2) in table of contents for all blog posts
                             if (slug === 'top-study-abroad-countries') {
+                              // For this blog, only show numbered country headings (h2), not sub-headings
                               mainSections = contentSections.filter((section: any) => {
                                 if (!section.title || section.title.trim() === '') return false;
                                 const cleanTitle = section.title.replace(/^#+\s*/, '');
-                                return /^\d+\./.test(cleanTitle) || cleanTitle.toLowerCase().includes('faq');
+                                // Only numbered countries (h2) and main sections, not sub-headings
+                                return /^\d+\./.test(cleanTitle) || cleanTitle.toLowerCase().includes('faq') || cleanTitle.toLowerCase().includes('conclusion');
+                              });
+                            } else if (slug === 'how-to-apply-for-student-visa') {
+                              // For visa guide, only show main h2 headings, not sub-headings
+                              mainSections = contentSections.filter((section: any) => {
+                                if (!section.title || section.title.trim() === '') return false;
+                                const cleanTitle = section.title.replace(/^#+\s*/, '');
+                                // Exclude sub-headings that typically start with numbers or are very specific
+                                return !cleanTitle.match(/^\d+\)/i) && // Exclude "1)", "2)", etc.
+                                       !cleanTitle.match(/^(pick|build|shortlist|secure|pay|prepare|gather|complete|book|track|get|lock)/i) && // Exclude step sub-headings
+                                       !cleanTitle.includes('?'); // Exclude FAQ questions
                               });
                             } else {
+                              // For other blogs, show main headings that are not questions
                               mainSections = contentSections.filter((section: any) => section.title && section.title.trim() !== '' && !section.title.includes('?'));
                             }
                             
