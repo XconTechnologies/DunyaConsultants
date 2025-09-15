@@ -753,8 +753,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                           </h2>
                         )}
                         <div>
-                          {/* Render all content including FAQs as regular content */}
-                          {(
+                          {/* Skip all FAQ content - no rendering */}
+                          {section.title.toLowerCase().includes('faq') ? null : (
                             section.content.split('\n').map((paragraph: string, pIndex: number) => {
                               if (paragraph.trim().startsWith('###')) {
                                 return (
@@ -778,68 +778,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 );
                               }
                               
-                              // Render FAQ questions in bold
+                              // Skip FAQ questions and answers in regular content
                               if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**') && paragraph.includes('?')) {
-                                return (
-                                  <h4 key={pIndex} className="text-lg font-bold text-gray-900 mt-4 mb-2">
-                                    {paragraph.replace(/^\*\*|\*\*$/g, '')}
-                                  </h4>
-                                );
+                                return null;
                               }
                               
-                              // Render markdown table
-                              if (paragraph.trim().startsWith('|') && paragraph.includes('|') && paragraph.includes('---')) {
-                                // This is a table header separator, start building table
-                                const lines = section.content.split('\n');
-                                const currentLineIndex = lines.indexOf(paragraph);
-                                const headerLine = lines[currentLineIndex - 1];
-                                const dataLines = [];
-                                
-                                // Collect table data lines
-                                for (let i = currentLineIndex + 1; i < lines.length; i++) {
-                                  if (lines[i].trim().startsWith('|') && lines[i].includes('|')) {
-                                    dataLines.push(lines[i]);
-                                  } else {
-                                    break;
-                                  }
-                                }
-                                
-                                if (headerLine && dataLines.length > 0) {
-                                  const headers = headerLine.split('|').map((h: string) => h.trim()).filter((h: string) => h);
-                                  const rows = dataLines.map((line: string) => 
-                                    line.split('|').map((cell: string) => cell.trim()).filter((cell: string) => cell)
-                                  );
-                                  
-                                  return (
-                                    <div key={pIndex} className="my-6 overflow-x-auto">
-                                      <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
-                                        <thead className="bg-[#1D50C9]/10">
-                                          <tr>
-                                            {headers.map((header: string, idx: number) => (
-                                              <th key={idx} className="border border-gray-300 px-4 py-3 text-left text-sm font-semibold text-gray-900">
-                                                {header}
-                                              </th>
-                                            ))}
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          {rows.map((row, rowIdx) => (
-                                            <tr key={rowIdx} className={rowIdx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                                              {row.map((cell: string, cellIdx: number) => (
-                                                <td key={cellIdx} className="border border-gray-300 px-4 py-3 text-sm text-gray-700">
-                                                  {cell}
-                                                </td>
-                                              ))}
-                                            </tr>
-                                          ))}
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  );
-                                }
+                              // Skip FAQ answer lines that follow **questions**
+                              const prevParagraph = section.content.split('\n')[section.content.split('\n').indexOf(paragraph) - 1];
+                              if (prevParagraph && prevParagraph.trim().startsWith('**') && prevParagraph.trim().endsWith('**') && prevParagraph.includes('?')) {
+                                return null;
                               }
-                              
-                              // Skip individual table lines that were already processed
+
+                              // Skip markdown table remnants
                               if (paragraph.trim().startsWith('|') && paragraph.includes('|')) {
                                 return null;
                               }
