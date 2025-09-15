@@ -1000,8 +1000,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 // Check for Contact Us text
                                 if (paragraph.trim() === 'Contact Us for more details') {
                                   return (
-                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
-                                      Need help with your Canada student visa application? <a href="https://dunyaconsultants.com/contact" className="text-[#1D50C9] hover:text-[#1845B3] font-medium underline">Contact us</a> for expert guidance and personalized assistance.
+                                    <p key={pIndex} className="text-center my-4">
+                                      <a 
+                                        href="https://dunyaconsultants.com/contact" 
+                                        className="text-[#1D50C9] hover:text-[#1845B3] font-medium underline text-base cursor-pointer"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        Contact Us for more details
+                                      </a>
                                     </p>
                                   );
                                 }
