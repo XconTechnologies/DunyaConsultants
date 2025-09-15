@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, X, Linkedin, Share, Instagram, Calculator } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
-import { marked } from 'marked';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -157,66 +156,6 @@ function parseContentToSections(content: string) {
   }
   
   return sections.filter(section => section.content.trim().length > 0);
-}
-
-// Markdown processing function
-function processMarkdownContent(content: string): string {
-  if (!content) return '';
-  
-  let processedContent = content;
-  
-  // Process contact button syntax first
-  processedContent = processedContent.replace(
-    /<div style="text-align: center; margin: 30px 0;">\s*<a href="[^"]*"[^>]*>\s*([^<]+)\s*<\/a>\s*<\/div>/g,
-    '<div class="text-center my-8"><a href="/contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg">$1</a></div>'
-  );
-  
-  // Process markdown links to add blue styling
-  processedContent = processedContent.replace(
-    /\[([^\]]+)\]\(([^)]+)\)/g,
-    '<a href="$2" class="text-blue-600 hover:text-blue-800 underline font-medium">$1</a>'
-  );
-  
-  // Process bold text
-  processedContent = processedContent.replace(
-    /\*\*([^*]+)\*\*/g,
-    '<strong class="font-bold text-gray-900">$1</strong>'
-  );
-  
-  // Process h2 headings
-  processedContent = processedContent.replace(
-    /^## (.+)$/gm,
-    '<h2 class="text-2xl font-bold text-gray-900 mb-3 mt-6">$1</h2>'
-  );
-  
-  // Process h3 headings with blue bullet
-  processedContent = processedContent.replace(
-    /^### (.+)$/gm,
-    '<h3 class="text-xl font-semibold text-gray-800 mb-2 mt-4 flex items-center"><span class="w-6 h-6 bg-blue-50 rounded-lg flex items-center justify-center mr-3"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full"></span></span><span>$1</span></h3>'
-  );
-  
-  // Process list items
-  processedContent = processedContent.replace(
-    /^- (.+)$/gm,
-    '<li class="flex items-start mb-2"><span class="text-blue-600 mr-2 text-sm leading-none mt-1">•</span><span class="text-gray-700 text-base leading-tight">$1</span></li>'
-  );
-  
-  // Wrap consecutive list items in ul tags
-  processedContent = processedContent.replace(
-    /(<li[^>]*>.*?<\/li>\s*)+/g,
-    '<ul class="space-y-1 mb-4">$&</ul>'
-  );
-  
-  // Process paragraphs
-  processedContent = processedContent.split('\n').map(line => {
-    const trimmed = line.trim();
-    if (trimmed && !trimmed.startsWith('<') && !trimmed.includes('<h') && !trimmed.includes('<li') && !trimmed.includes('<div')) {
-      return `<p class="text-gray-700 leading-relaxed text-base mb-4">${trimmed}</p>`;
-    }
-    return line;
-  }).join('\n');
-  
-  return processedContent;
 }
 
 // FAQ Component for collapsible questions
