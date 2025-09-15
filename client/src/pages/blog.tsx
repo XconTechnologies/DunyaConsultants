@@ -1741,18 +1741,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             }
 
                             if (paragraph.trim()) {
-                              // Special handling for Contact Us button in Canada student visa blog
-                              if (slug === 'canada-student-visa-consultants' && (paragraph.trim() === '**Contact Us for Expert Guidance**' || paragraph.trim() === '**Contact Us for more details**')) {
-                                return (
-                                  <div key={pIndex} className="text-center my-8">
-                                    <Link href="/contact">
-                                      <Button className="bg-[#1D50C9] hover:bg-[#1845B3] text-white px-8 py-3 text-lg font-semibold rounded-lg transition-colors">
-                                        Contact Us for more details
-                                      </Button>
-                                    </Link>
-                                  </div>
-                                );
-                              }
                               
                               // Clean markdown bold and preserve HTML links
                               const processedText = paragraph
