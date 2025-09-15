@@ -161,7 +161,6 @@ export default function ContactUsSection() {
           </motion.div>
         </div>
       </section>
-
       {/* Modern Contact Section */}
       <section className="py-20 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 relative overflow-hidden">
         <div className="absolute inset-0 bg-white/60"></div>
@@ -274,7 +273,7 @@ export default function ContactUsSection() {
                       <Users className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold text-gray-900 mb-2">15+ Years Experience</h4>
+                      <h4 className="text-xl font-semibold text-gray-900 mb-2">5+ Years Experience</h4>
                       <p className="text-gray-600">Trusted by thousands of students with our proven track record of success.</p>
                     </div>
                   </div>
