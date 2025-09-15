@@ -812,46 +812,52 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               </div>
                             ) : null
                           ) : (
-                            section.content.split('\n').map((paragraph: string, pIndex: number) => {
-                              if (paragraph.trim().startsWith('###')) {
-                                return (
-                                  <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
-                                    <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
-                                      <span className="w-1.5 h-1.5 bg-[#1D50C9] rounded-full"></span>
-                                    </span>
-                                    <span>{paragraph.replace(/^#+\s*/, '')}</span>
-                                  </h3>
-                                );
-                              }
-                              
-                              if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
-                                return (
-                                  <div key={pIndex} className="flex items-start leading-tight mb-2">
-                                    <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
-                                    <span className="text-gray-700 text-base leading-tight">
-                                      {paragraph.replace(/^[-•]\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1').replace(/<[^>]*>/g, '')}
-                                    </span>
-                                  </div>
-                                );
-                              }
-                              
-                              // Skip FAQ questions and answers in regular content (except for specific blog posts)
-                              if (slug !== 'top-study-abroad-countries') {
-                                if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**') && paragraph.includes('?')) {
-                                  return null;
+                            // For this specific blog post with table content, render HTML directly
+                            slug === 'top-study-abroad-countries' && section.content.includes('<table') ? (
+                              <div className="text-gray-700 leading-relaxed"
+                                   dangerouslySetInnerHTML={{ __html: section.content }} 
+                              />
+                            ) : (
+                              section.content.split('\n').map((paragraph: string, pIndex: number) => {
+                                if (paragraph.trim().startsWith('###')) {
+                                  return (
+                                    <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
+                                      <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
+                                        <span className="w-1.5 h-1.5 bg-[#1D50C9] rounded-full"></span>
+                                      </span>
+                                      <span>{paragraph.replace(/^#+\s*/, '')}</span>
+                                    </h3>
+                                  );
                                 }
                                 
-                                // Skip FAQ answer lines that follow **questions**
-                                const prevParagraph = section.content.split('\n')[section.content.split('\n').indexOf(paragraph) - 1];
-                                if (prevParagraph && prevParagraph.trim().startsWith('**') && prevParagraph.trim().endsWith('**') && prevParagraph.includes('?')) {
+                                if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
+                                  return (
+                                    <div key={pIndex} className="flex items-start leading-tight mb-2">
+                                      <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
+                                      <span className="text-gray-700 text-base leading-tight">
+                                        {paragraph.replace(/^[-•]\s*/, '').replace(/\*\*(.*?)\*\*/g, '$1').replace(/<[^>]*>/g, '')}
+                                      </span>
+                                    </div>
+                                  );
+                                }
+                                
+                                // Skip FAQ questions and answers in regular content (except for specific blog posts)
+                                if (slug !== 'top-study-abroad-countries') {
+                                  if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**') && paragraph.includes('?')) {
+                                    return null;
+                                  }
+                                  
+                                  // Skip FAQ answer lines that follow **questions**
+                                  const prevParagraph = section.content.split('\n')[section.content.split('\n').indexOf(paragraph) - 1];
+                                  if (prevParagraph && prevParagraph.trim().startsWith('**') && prevParagraph.trim().endsWith('**') && prevParagraph.includes('?')) {
+                                    return null;
+                                  }
+                                }
+
+                                // Skip markdown table remnants
+                                if (paragraph.trim().startsWith('|') && paragraph.includes('|')) {
                                   return null;
                                 }
-                              }
-
-                              // Skip markdown table remnants
-                              if (paragraph.trim().startsWith('|') && paragraph.includes('|')) {
-                                return null;
-                              }
                               
                               // Skip HTML tags and content that shouldn't be displayed as text
                               if (paragraph.trim().match(/^<[^>]+>.*<\/[^>]+>$/)) {
@@ -1557,6 +1563,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             }
                             return null;
                             })
+                          )
                           )}
                         </div>
                       </section>
