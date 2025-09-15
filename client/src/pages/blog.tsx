@@ -997,17 +997,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               })()
                             ) : (
                               section.content.split('\n').map((paragraph: string, pIndex: number) => {
-                                // Check for Contact Us button
+                                // Check for Contact Us text
                                 if (paragraph.trim() === 'Contact Us for more details') {
                                   return (
-                                    <div key={pIndex} className="text-center my-8">
-                                      <a 
-                                        href="/contact" 
-                                        className="inline-block bg-[#1D50C9] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#1845B3] transition-colors duration-300 shadow-lg hover:shadow-xl"
-                                      >
-                                        Contact Us
-                                      </a>
-                                    </div>
+                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3">
+                                      Need help with your Canada student visa application? <a href="/contact" className="text-[#1D50C9] hover:text-[#1845B3] font-medium underline">Contact us</a> for expert guidance and personalized assistance.
+                                    </p>
                                   );
                                 }
                                 
