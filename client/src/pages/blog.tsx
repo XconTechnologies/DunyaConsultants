@@ -1220,6 +1220,70 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               })()
                             ) : 
+                            // Handle requirements box for UK student visa blog
+                            slug === 'best-uk-study-visa-consultants' && section.content.includes('REQUIREMENTS_BOX_START') ? (
+                              (() => {
+                                const startMarker = section.content.indexOf('**REQUIREMENTS_BOX_START**');
+                                const endMarker = section.content.indexOf('**REQUIREMENTS_BOX_END**');
+                                
+                                if (startMarker !== -1 && endMarker !== -1) {
+                                  const beforeReq = section.content.substring(0, startMarker);
+                                  const reqContent = section.content.substring(startMarker + 26, endMarker);
+                                  const afterReq = section.content.substring(endMarker + 24);
+                                  
+                                  return (
+                                    <div>
+                                      {/* Before requirements content */}
+                                      {beforeReq.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                      
+                                      {/* Requirements Box */}
+                                      <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
+                                        <div className="text-gray-700 leading-relaxed">
+                                          {reqContent.split('\n').map((paragraph: string, reqIndex: number) => {
+                                            if (paragraph.trim()) {
+                                              const processedText = paragraph
+                                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#1D50C9] hover:text-[#1845B3] font-medium underline">$1</a>')
+                                                .trim();
+                                              return (
+                                                <p key={reqIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                              );
+                                            }
+                                            return null;
+                                          })}
+                                        </div>
+                                      </div>
+                                      
+                                      {/* After requirements content */}
+                                      {afterReq.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })()
+                            ) : 
                             // Handle pro tip box for UK student visa blog
                             slug === 'best-uk-study-visa-consultants' && section.content.includes('PRO_TIP_BOX_START') ? (
                               (() => {
