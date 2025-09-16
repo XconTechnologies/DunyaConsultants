@@ -841,6 +841,24 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               }
                             }
                             
+                            // For best-uk-study-visa-consultants, properly handle h2 and h3 based on original markdown
+                            if (slug === 'best-uk-study-visa-consultants') {
+                              const originalTitle = section.title;
+                              const isH3 = originalTitle.startsWith('### ');
+                              
+                              if (isH3) {
+                                // Sub-sections are h3
+                                return (
+                                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                                    {hasHtmlLinks ? 
+                                      <span dangerouslySetInnerHTML={{ __html: cleanTitle }} /> : 
+                                      cleanTitle
+                                    }
+                                  </h3>
+                                );
+                              }
+                            }
+                            
                             // Default h2 for all other blogs
                             return (
                               <h2 className="text-2xl font-bold text-gray-900 mb-3">
