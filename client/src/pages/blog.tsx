@@ -1026,13 +1026,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                     links: 'EducationUSA, official consular site'
                                   },
                                   {
-                                    name: 'Canada',
-                                    portal: 'IRCC online. Check the process to submit online application',
-                                    keyProof: 'Letter of acceptance, proof of funds, medicals if asked',
-                                    work: 'Part-time during studies within national rules',
-                                    links: 'IRCC'
-                                  },
-                                  {
                                     name: 'Australia',
                                     portal: 'ImmiAccount',
                                     keyProof: 'COE, OSHC, financial means, GTE-style statements as required',
