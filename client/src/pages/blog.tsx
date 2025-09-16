@@ -841,10 +841,39 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               }
                             }
                             
-                            // For best-uk-study-visa-consultants, properly handle h2 and h3 based on original markdown
+                            // For best-uk-study-visa-consultants, properly handle h2 and h3 based on document structure
                             if (slug === 'best-uk-study-visa-consultants') {
-                              const originalTitle = section.title;
-                              const isH3 = originalTitle.startsWith('### ');
+                              // These should be h3 (subsections)
+                              const h3Sections = [
+                                'What is on a CAS',
+                                'CAS checklist before you request it',
+                                'Common CAS delays',
+                                'Core fees you will pay',
+                                'Living cost plan',
+                                'Payment methods and tips',
+                                'Identity and academics',
+                                'Educational documents',
+                                'University and course',
+                                'Language and tests',
+                                'Financial evidence',
+                                'Compliance and extras',
+                                'Create and complete your GOV.UK application',
+                                'Biometrics at the Visa Application Centre',
+                                'Processing times',
+                                'Typical questions',
+                                'How to answer well',
+                                'Red flags to avoid',
+                                'A structure that works',
+                                'Good lines you can adapt',
+                                '6–8 months before intake',
+                                '5–6 months before intake',
+                                '4–5 months before intake',
+                                '3–4 months before intake',
+                                '2–3 months before intake',
+                                'After approval'
+                              ];
+                              
+                              const isH3 = h3Sections.includes(cleanTitle);
                               
                               if (isH3) {
                                 // Sub-sections are h3
