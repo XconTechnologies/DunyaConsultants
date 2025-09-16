@@ -2337,17 +2337,55 @@ export default function Blog() {
                   {post.image && (
                     <div className="relative overflow-hidden rounded-t-lg">
                       <img 
-                        src={post.image.startsWith('http') ? post.image : 
-                             post.image.startsWith('/blog/') ? post.image :
-                             post.image.startsWith('/attached_assets/') ? post.image :
-                             post.image.startsWith('attached_assets/') ? `/${post.image}` :
-                             `/attached_assets/${post.image}`} 
+                        src={(() => {
+                          const normalizeImageSrc = (image: string) => {
+                            const trimmed = image.trim();
+                            if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+                              return trimmed;
+                            }
+                            if (trimmed.startsWith('/blog/') || trimmed.startsWith('blog/')) {
+                              return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+                            }
+                            if (trimmed.startsWith('/attached_assets/') || trimmed.startsWith('attached_assets/')) {
+                              return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+                            }
+                            return `/attached_assets/${trimmed}`;
+                          };
+                          return normalizeImageSrc(post.image);
+                        })()}
                         alt={post.title}
                         className="w-full h-56 object-cover transition-transform hover:scale-105"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
                         onError={(e) => {
-                          // Fallback to a default placeholder or hide image on error
-                          e.currentTarget.style.display = 'none';
+                          const img = e.currentTarget;
+                          const originalSrc = img.src;
+                          
+                          // Try different extensions if not already tried
+                          if (!img.dataset.retryCount) {
+                            img.dataset.retryCount = '0';
+                          }
+                          
+                          const retryCount = parseInt(img.dataset.retryCount);
+                          const basePath = originalSrc.replace(/\.[^/.]+$/, '');
+                          const extensions = ['.png', '.jpg', '.jpeg', '.webp'];
+                          
+                          if (retryCount < extensions.length) {
+                            const newSrc = basePath + extensions[retryCount];
+                            img.dataset.retryCount = String(retryCount + 1);
+                            img.src = newSrc;
+                            return;
+                          }
+                          
+                          // Try uploads API as final fallback
+                          if (retryCount === extensions.length) {
+                            const filename = originalSrc.split('/').pop()?.replace(/\.[^/.]+$/, '') + '.jpg';
+                            img.dataset.retryCount = String(retryCount + 1);
+                            img.src = `/api/uploads/${filename}`;
+                            return;
+                          }
+                          
+                          // Hide image after all attempts failed
+                          img.style.display = 'none';
                         }}
                       />
                     </div>
