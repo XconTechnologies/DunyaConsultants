@@ -14,7 +14,8 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { Editor } from '@tinymce/tinymce-react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
   Calendar, User, Hash, Globe, Upload, Image as ImageIcon
@@ -141,11 +142,8 @@ export default function BlogEditor() {
           isPublished: !!blogPost.isPublished,
         });
         
-        // Force content field to update using both methods
+        // Force content field to update (ReactQuill is controlled by the value prop)
         setValue('content', blogPost.content || "", { shouldDirty: true, shouldTouch: true });
-        if (editorRef.current) {
-          editorRef.current.setContent(blogPost.content || "");
-        }
       }, 200);
     }
   }, [blogPost, isEditing, reset, setValue]);
@@ -446,98 +444,65 @@ export default function BlogEditor() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="min-h-[500px]">
-                    <Editor
-                      apiKey="am2iok0s73lcnsijb3hur23kxm3og294tohmq58nmey54vsh"
-                      onInit={(evt, editor) => {
-                        editorRef.current = editor;
-                        // Set initial content if available
-                        if (content) {
-                          editor.setContent(content);
+                  <div className="min-h-[500px] react-quill-container">
+                    <ReactQuill
+                      ref={editorRef}
+                      value={content || ''}
+                      onChange={handleEditorChange}
+                      placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
+                      modules={{
+                        toolbar: [
+                          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                          [{ 'font': [] }, { 'size': [] }],
+                          ['bold', 'italic', 'underline', 'strike'],
+                          [{ 'color': [] }, { 'background': [] }],
+                          [{ 'script': 'sub' }, { 'script': 'super' }],
+                          ['blockquote', 'code-block'],
+                          [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                          [{ 'indent': '-1' }, { 'indent': '+1' }],
+                          [{ 'direction': 'rtl' }],
+                          [{ 'align': [] }],
+                          ['link', 'image', 'video'],
+                          ['clean']
+                        ],
+                        clipboard: {
+                          matchVisual: false,
+                          matchers: [
+                            // Google Docs heading preservation
+                            ['P', function(node, delta) {
+                              const fontSize = node.style.fontSize;
+                              if (fontSize && fontSize.includes('24px')) {
+                                delta.ops = delta.ops.map(op => ({ ...op, attributes: { ...op.attributes, header: 1 } }));
+                              } else if (fontSize && fontSize.includes('18px')) {
+                                delta.ops = delta.ops.map(op => ({ ...op, attributes: { ...op.attributes, header: 2 } }));
+                              } else if (fontSize && fontSize.includes('16px')) {
+                                delta.ops = delta.ops.map(op => ({ ...op, attributes: { ...op.attributes, header: 3 } }));
+                              }
+                              return delta;
+                            }],
+                            // Preserve bold formatting from Google Docs
+                            ['SPAN', function(node, delta) {
+                              if (node.style && node.style.fontWeight === 'bold') {
+                                delta.ops = delta.ops.map(op => ({ ...op, attributes: { ...op.attributes, bold: true } }));
+                              }
+                              return delta;
+                            }]
+                          ]
                         }
                       }}
-                      value={content || ''}
-                      onEditorChange={handleEditorChange}
-                      init={{
-                        height: 500,
-                        menubar: true,
-                        plugins: [
-                          'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                          'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                          'insertdatetime', 'media', 'table', 'help', 'wordcount',
-                          'emoticons', 'codesample'
-                        ],
-                        toolbar: [
-                          'undo redo | blocks | bold italic underline strikethrough | fontfamily fontsize',
-                          'forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
-                          'removeformat | charmap emoticons | fullscreen preview | insertfile image media link anchor codesample',
-                          'ltr rtl | table | code | help'
-                        ].join(' | '),
-                        content_style: `
-                          body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; line-height: 1.6; }
-                          h1, h2, h3, h4, h5, h6 { margin-top: 1em; margin-bottom: 0.5em; }
-                          p { margin: 0.5em 0; }
-                          ul, ol { margin: 0.5em 0; padding-left: 2em; }
-                          blockquote { margin: 1em 0; padding: 0.5em 1em; border-left: 3px solid #ccc; background: #f9f9f9; }
-                          img { max-width: 100%; height: auto; }
-                        `,
-                        // Enhanced paste settings for Google Docs  
-                        paste_data_images: false,
-                        paste_block_drop: false,
-                        paste_webkit_styles: 'color font-size font-family background-color',
-                        paste_merge_formats: true,
-                        smart_paste: true,
-                        paste_auto_cleanup_on_paste: true,
-                        paste_convert_headers_to_strong: false,
-                        paste_strip_class_attributes: 'all',
-                        
-                        // Preserve Google Docs formatting
-                        paste_preprocess: function(plugin, args) {
-                          // Clean up Google Docs HTML while preserving structure
-                          let content = args.content;
-                          
-                          // Preserve headings by converting various heading formats
-                          content = content.replace(/<p[^>]*style="[^"]*font-size:\s*24px[^"]*"[^>]*>(.*?)<\/p>/gi, '<h1>$1</h1>');
-                          content = content.replace(/<p[^>]*style="[^"]*font-size:\s*18px[^"]*"[^>]*>(.*?)<\/p>/gi, '<h2>$1</h2>');
-                          content = content.replace(/<p[^>]*style="[^"]*font-size:\s*16px[^"]*"[^>]*>(.*?)<\/p>/gi, '<h3>$1</h3>');
-                          
-                          // Preserve bold text
-                          content = content.replace(/<span[^>]*font-weight:\s*bold[^>]*>(.*?)<\/span>/gi, '<strong>$1</strong>');
-                          
-                          // Clean up excessive spans while preserving links
-                          content = content.replace(/<span[^>]*>([^<]+)<\/span>/gi, '$1');
-                          
-                          args.content = content;
-                        },
-                        
-                        // Additional formatting preservation
-                        formats: {
-                          alignleft: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign: 'left'}},
-                          aligncenter: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign: 'center'}},
-                          alignright: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign: 'right'}},
-                          alignjustify: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign: 'justify'}}
-                        },
-                        
-                        // Allow all HTML elements and attributes
-                        valid_elements: '*[*]',
-                        valid_children: '+body[style],+div[p|div|h1|h2|h3|h4|h5|h6]',
-                        
-                        // Development configuration
-                        branding: false,
-                        promotion: false,
-                        
-                        // Additional settings
-                        resize: true,
-                        elementpath: false,
-                        statusbar: true,
-                        
-                        // File handling
-                        file_picker_types: 'image',
-                        file_picker_callback: function(cb, value, meta) {
-                          if (meta.filetype === 'image') {
-                            fileInputRef.current?.click();
-                          }
-                        }
+                      formats={[
+                        'header', 'font', 'size',
+                        'bold', 'italic', 'underline', 'strike',
+                        'color', 'background',
+                        'script',
+                        'blockquote', 'code-block',
+                        'list', 'bullet', 'indent',
+                        'direction', 'align',
+                        'link', 'image', 'video'
+                      ]}
+                      style={{
+                        height: '400px',
+                        marginBottom: '60px'
                       }}
                     />
                   </div>
