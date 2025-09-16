@@ -153,8 +153,8 @@ function Router() {
       <Route path="/offices/:officeId" component={OfficeDetails} />
       
       {/* Admin Routes */}
-      <Route path="/admin/login" component={AdminLogin} />
-      <Route path="/admin/dashboard" component={AdminDashboard} />
+      <Route path="/login" component={AdminLogin} />
+      <Route path="/dashboard" component={AdminDashboard} />
       <Route path="/admin/blog-editor/:id?" component={BlogEditor} />
       <Route path="/admin/blog-editor" component={BlogEditor} />
       

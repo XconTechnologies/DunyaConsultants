@@ -83,7 +83,7 @@ export default function AdminDashboard() {
     const user = localStorage.getItem("adminUser");
     
     if (!token || !user) {
-      setLocation("/admin/login");
+      setLocation("/login");
       return;
     }
 
@@ -92,7 +92,7 @@ export default function AdminDashboard() {
       setAdminUser(userData);
       setAuthChecked(true);
     } catch {
-      setLocation("/admin/login");
+      setLocation("/login");
     }
   }, [setLocation]);
 
