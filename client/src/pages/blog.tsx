@@ -1630,6 +1630,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               })()
                             ) : (
+                              // Skip default content rendering for Country notes section since it's handled with cards
+                              slug === 'how-to-apply-for-student-visa' && section.title === 'Country notes' ? 
+                                null :
                               section.content.split('\n').map((paragraph: string, pIndex: number) => {
                                 // Check for Contact Us text
                                 if (paragraph.trim() === 'Contact Us for more details') {
