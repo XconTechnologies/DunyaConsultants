@@ -56,6 +56,7 @@ export default function BlogEditor() {
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [editorMounted, setEditorMounted] = useState(false);
+  const [editorContent, setEditorContent] = useState('');
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const contentRef = useRef<HTMLTextAreaElement>(null);
@@ -148,7 +149,9 @@ export default function BlogEditor() {
         });
         
         // Force content field to update (ReactQuill is controlled by the value prop)
-        setValue('content', blogPost.content || "", { shouldDirty: true, shouldTouch: true });
+        const content = blogPost.content || "";
+        setValue('content', content, { shouldDirty: true, shouldTouch: true });
+        setEditorContent(content);
       }, 200);
     }
   }, [blogPost, isEditing, reset, setValue]);
@@ -211,9 +214,10 @@ export default function BlogEditor() {
     }
   };
 
-  // Handle content change from TinyMCE
-  const handleEditorChange = (content: string) => {
-    setValue('content', content, { shouldDirty: true, shouldTouch: true });
+  // Handle content change from ReactQuill
+  const handleEditorChange = (newContent: string) => {
+    setEditorContent(newContent);
+    setValue('content', newContent, { shouldDirty: true, shouldTouch: true });
   };
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -452,7 +456,7 @@ export default function BlogEditor() {
                   <div className="react-quill-container" style={{ minHeight: '500px', width: '100%' }}>
                     {editorMounted ? (
                       <ReactQuill
-                        value={content || ''}
+                        value={editorContent || content || ''}
                         onChange={handleEditorChange}
                         placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
                         modules={{
