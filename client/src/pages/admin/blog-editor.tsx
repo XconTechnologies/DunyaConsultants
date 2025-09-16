@@ -14,10 +14,10 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { Editor } from '@tinymce/tinymce-react';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe, Upload, Image as ImageIcon,
-  Bold, Italic, Link, Heading1, Heading2, Heading3
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon
 } from "lucide-react";
 
 const blogSchema = z.object({
@@ -58,6 +58,7 @@ export default function BlogEditor() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const contentRef = useRef<HTMLTextAreaElement>(null);
+  const editorRef = useRef<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   const isEditing = !!params?.id;
@@ -142,9 +143,8 @@ export default function BlogEditor() {
         
         // Force content field to update using both methods
         setValue('content', blogPost.content || "", { shouldDirty: true, shouldTouch: true });
-        if (contentRef.current) {
-          contentRef.current.value = blogPost.content || "";
-          contentRef.current.dispatchEvent(new Event('input', { bubbles: true }));
+        if (editorRef.current) {
+          editorRef.current.setContent(blogPost.content || "");
         }
       }, 200);
     }
@@ -208,68 +208,9 @@ export default function BlogEditor() {
     }
   };
 
-  // Text formatting functions
-  const insertAtCursor = (text: string) => {
-    const textarea = contentRef.current;
-    if (!textarea) return;
-
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const currentContent = content || "";
-    
-    const newContent = 
-      currentContent.substring(0, start) + 
-      text + 
-      currentContent.substring(end);
-    
-    setValue("content", newContent);
-    
-    // Restore cursor position
-    setTimeout(() => {
-      textarea.focus();
-      textarea.setSelectionRange(start + text.length, start + text.length);
-    }, 0);
-  };
-
-  const wrapSelectedText = (prefix: string, suffix: string = "") => {
-    const textarea = contentRef.current;
-    if (!textarea) return;
-
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const currentContent = content || "";
-    const selectedText = currentContent.substring(start, end);
-    
-    if (selectedText) {
-      const wrappedText = prefix + selectedText + suffix;
-      const newContent = 
-        currentContent.substring(0, start) + 
-        wrappedText + 
-        currentContent.substring(end);
-      
-      setValue("content", newContent);
-      
-      setTimeout(() => {
-        textarea.focus();
-        textarea.setSelectionRange(
-          start + prefix.length, 
-          start + prefix.length + selectedText.length
-        );
-      }, 0);
-    }
-  };
-
-  const addHeading = (level: number) => {
-    const hashes = "#".repeat(level);
-    insertAtCursor(`\n${hashes} Heading ${level}\n`);
-  };
-
-  const addLink = () => {
-    const url = prompt("Enter URL:");
-    if (url) {
-      const linkText = prompt("Enter link text:") || url;
-      wrapSelectedText(`[${linkText}](${url})`);
-    }
+  // Handle content change from TinyMCE
+  const handleEditorChange = (content: string) => {
+    setValue('content', content, { shouldDirty: true, shouldTouch: true });
   };
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -295,9 +236,11 @@ export default function BlogEditor() {
         setValue("featuredImage", url);
         setShowImageUpload(false);
       } else {
-        // For content image with preview
-        const imagePreview = `\n\n[Image Preview: ${file.name}]\n![${file.name}](${url})\n\n`;
-        insertAtCursor(imagePreview);
+        // For content image - insert directly into TinyMCE
+        if (editorRef.current) {
+          const imageHtml = `<p><img src="${url}" alt="${file.name}" style="max-width: 100%; height: auto;" /></p>`;
+          editorRef.current.insertContent(imageHtml);
+        }
       }
       
       toast({
@@ -477,68 +420,11 @@ export default function BlogEditor() {
                 </CardContent>
               </Card>
 
-              {/* Content Area */}
+              {/* Content Area with Rich Text Editor */}
               <Card>
                 <CardHeader>
-                  <CardTitle>Content</CardTitle>
-                  {/* Formatting Toolbar */}
-                  <div className="flex flex-wrap gap-2 p-2 bg-gray-50 rounded border">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => wrapSelectedText("**", "**")}
-                      title="Bold"
-                    >
-                      <Bold className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => wrapSelectedText("*", "*")}
-                      title="Italic"
-                    >
-                      <Italic className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={addLink}
-                      title="Add Link"
-                    >
-                      <Link className="w-4 h-4" />
-                    </Button>
-                    <div className="border-l border-gray-300 mx-2" />
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => addHeading(1)}
-                      title="Heading 1"
-                    >
-                      <Heading1 className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => addHeading(2)}
-                      title="Heading 2"
-                    >
-                      <Heading2 className="w-4 h-4" />
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => addHeading(3)}
-                      title="Heading 3"
-                    >
-                      <Heading3 className="w-4 h-4" />
-                    </Button>
-                    <div className="border-l border-gray-300 mx-2" />
+                  <CardTitle className="flex items-center justify-between">
+                    <span>Content</span>
                     <Button
                       type="button"
                       variant="outline"
@@ -555,23 +441,110 @@ export default function BlogEditor() {
                       ) : (
                         <ImageIcon className="w-4 h-4" />
                       )}
+                      <span className="ml-2">Insert Image</span>
                     </Button>
-                  </div>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent>
-
-                  <Textarea
-                    {...register("content")}
-                    ref={contentRef}
-                    placeholder="Write your blog content here... You can use Markdown formatting, paste content with formatting preserved, and add images using the toolbar above."
-                    rows={20}
-                    className="text-sm leading-relaxed"
-                  />
+                  <div className="min-h-[500px]">
+                    <Editor
+                      onInit={(evt, editor) => {
+                        editorRef.current = editor;
+                        // Set initial content if available
+                        if (content) {
+                          editor.setContent(content);
+                        }
+                      }}
+                      value={content || ''}
+                      onEditorChange={handleEditorChange}
+                      init={{
+                        height: 500,
+                        menubar: true,
+                        plugins: [
+                          'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                          'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                          'insertdatetime', 'media', 'table', 'help', 'wordcount',
+                          'emoticons', 'codesample'
+                        ],
+                        toolbar: [
+                          'undo redo | blocks | bold italic underline strikethrough | fontfamily fontsize',
+                          'forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent',
+                          'removeformat | charmap emoticons | fullscreen preview | insertfile image media link anchor codesample',
+                          'ltr rtl | table | code | help'
+                        ].join(' | '),
+                        content_style: `
+                          body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; line-height: 1.6; }
+                          h1, h2, h3, h4, h5, h6 { margin-top: 1em; margin-bottom: 0.5em; }
+                          p { margin: 0.5em 0; }
+                          ul, ol { margin: 0.5em 0; padding-left: 2em; }
+                          blockquote { margin: 1em 0; padding: 0.5em 1em; border-left: 3px solid #ccc; background: #f9f9f9; }
+                          img { max-width: 100%; height: auto; }
+                        `,
+                        // Enhanced paste settings for Google Docs  
+                        paste_data_images: false,
+                        paste_block_drop: false,
+                        paste_webkit_styles: 'color font-size font-family background-color',
+                        paste_merge_formats: true,
+                        smart_paste: true,
+                        paste_auto_cleanup_on_paste: true,
+                        paste_convert_headers_to_strong: false,
+                        paste_strip_class_attributes: 'all',
+                        
+                        // Preserve Google Docs formatting
+                        paste_preprocess: function(plugin, args) {
+                          // Clean up Google Docs HTML while preserving structure
+                          let content = args.content;
+                          
+                          // Preserve headings by converting various heading formats
+                          content = content.replace(/<p[^>]*style="[^"]*font-size:\s*24px[^"]*"[^>]*>(.*?)<\/p>/gi, '<h1>$1</h1>');
+                          content = content.replace(/<p[^>]*style="[^"]*font-size:\s*18px[^"]*"[^>]*>(.*?)<\/p>/gi, '<h2>$1</h2>');
+                          content = content.replace(/<p[^>]*style="[^"]*font-size:\s*16px[^"]*"[^>]*>(.*?)<\/p>/gi, '<h3>$1</h3>');
+                          
+                          // Preserve bold text
+                          content = content.replace(/<span[^>]*font-weight:\s*bold[^>]*>(.*?)<\/span>/gi, '<strong>$1</strong>');
+                          
+                          // Clean up excessive spans while preserving links
+                          content = content.replace(/<span[^>]*>([^<]+)<\/span>/gi, '$1');
+                          
+                          args.content = content;
+                        },
+                        
+                        // Additional formatting preservation
+                        formats: {
+                          alignleft: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign: 'left'}},
+                          aligncenter: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign: 'center'}},
+                          alignright: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign: 'right'}},
+                          alignjustify: {selector: 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', styles: {textAlign: 'justify'}}
+                        },
+                        
+                        // Allow all HTML elements and attributes
+                        valid_elements: '*[*]',
+                        valid_children: '+body[style],+div[p|div|h1|h2|h3|h4|h5|h6]',
+                        
+                        // Development configuration
+                        branding: false,
+                        promotion: false,
+                        
+                        // Additional settings
+                        resize: true,
+                        elementpath: false,
+                        statusbar: true,
+                        
+                        // File handling
+                        file_picker_types: 'image',
+                        file_picker_callback: function(cb, value, meta) {
+                          if (meta.filetype === 'image') {
+                            fileInputRef.current?.click();
+                          }
+                        }
+                      }}
+                    />
+                  </div>
                   {errors.content && (
-                    <p className="#1D50C9 text-sm mt-1">{errors.content.message}</p>
+                    <p className="text-red-500 text-sm mt-2">{errors.content.message}</p>
                   )}
                   <p className="text-sm text-gray-500 mt-2">
-                    Supports Markdown formatting. Use the toolbar above to format text or insert images.
+                    ✨ <strong>Google Docs Paste Support:</strong> Copy content from Google Docs and paste here - all formatting, headings, links, and lists will be preserved!
                   </p>
                 </CardContent>
               </Card>
