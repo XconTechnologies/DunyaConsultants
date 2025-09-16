@@ -1,14 +1,17 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
-  adminUsers, blogPosts, services, pages, adminSessions,
+  adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
   type EligibilityCheck, type InsertEligibilityCheck, type Consultation, type InsertConsultation,
   type AdminUser, type InsertAdminUser, type BlogPost, type InsertBlogPost,
   type Service, type InsertService, type Page, type InsertPage,
-  type AdminSession, type InsertAdminSession
+  type AdminSession, type InsertAdminSession, type UserSession, type InsertUserSession,
+  type Media, type InsertMedia, type BlogPostRevision, type InsertBlogPostRevision,
+  type AuditLog, type InsertAuditLog
 } from "@shared/schema";
+import bcrypt from "bcryptjs";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -61,6 +64,34 @@ export interface IStorage {
   updatePage(id: number, updates: Partial<Page>): Promise<Page>;
   deletePage(id: number): Promise<void>;
   publishPage(id: number): Promise<Page>;
+  
+  // User Session Management (for reader authentication)
+  createUserSession(session: InsertUserSession): Promise<UserSession>;
+  getUserSession(token: string): Promise<UserSession | undefined>;
+  deleteUserSession(token: string): Promise<void>;
+  getUserByEmail(email: string): Promise<User | undefined>;
+  
+  // Enhanced Blog Management with Status Workflow
+  getBlogPostsByStatus(status: BlogPost["status"]): Promise<BlogPost[]>;
+  getBlogPostsByAuthor(authorId: number): Promise<BlogPost[]>;
+  updateBlogPostStatus(id: number, status: BlogPost["status"], approverId?: number): Promise<BlogPost>;
+  getRelatedBlogPosts(postId: number, tags: string[], limit?: number): Promise<BlogPost[]>;
+  
+  // Media Library
+  getMedia(): Promise<Media[]>;
+  getMediaById(id: number): Promise<Media | undefined>;
+  createMedia(media: InsertMedia): Promise<Media>;
+  updateMedia(id: number, updates: Partial<Media>): Promise<Media>;
+  deleteMedia(id: number): Promise<void>;
+  
+  // Blog Post Revisions
+  getBlogPostRevisions(postId: number): Promise<BlogPostRevision[]>;
+  createBlogPostRevision(revision: InsertBlogPostRevision): Promise<BlogPostRevision>;
+  
+  // Audit Logs
+  getAuditLogs(limit?: number, offset?: number): Promise<AuditLog[]>;
+  createAuditLog(auditLog: InsertAuditLog): Promise<AuditLog>;
+  getAuditLogsByEntity(entity: string, entityId: number): Promise<AuditLog[]>;
 }
 
 
@@ -80,7 +111,12 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db.insert(users).values(insertUser).returning();
+    // Hash the password before storing
+    const hashedPassword = await bcrypt.hash(insertUser.password, 10);
+    const [user] = await db.insert(users).values({
+      ...insertUser,
+      password: hashedPassword
+    }).returning();
     return user;
   }
 
@@ -242,7 +278,12 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createAdminUser(insertAdminUser: InsertAdminUser): Promise<AdminUser> {
-    const [admin] = await db.insert(adminUsers).values(insertAdminUser).returning();
+    // Hash the password before storing
+    const hashedPassword = await bcrypt.hash(insertAdminUser.password, 10);
+    const [admin] = await db.insert(adminUsers).values({
+      ...insertAdminUser,
+      password: hashedPassword
+    }).returning();
     return admin;
   }
 
@@ -403,6 +444,150 @@ export class DatabaseStorage implements IStorage {
     await db.update(blogPosts)
       .set({ viewCount: sql`${blogPosts.viewCount} + 1` })
       .where(eq(blogPosts.id, id));
+  }
+
+  // User Session Management Methods
+  async createUserSession(insertSession: InsertUserSession): Promise<UserSession> {
+    const [session] = await db.insert(userSessions).values(insertSession).returning();
+    return session;
+  }
+
+  async getUserSession(token: string): Promise<UserSession | undefined> {
+    const [session] = await db.select().from(userSessions).where(eq(userSessions.sessionToken, token));
+    if (session && session.expiresAt > new Date()) {
+      return session;
+    }
+    if (session) {
+      await this.deleteUserSession(token);
+    }
+    return undefined;
+  }
+
+  async deleteUserSession(token: string): Promise<void> {
+    await db.delete(userSessions).where(eq(userSessions.sessionToken, token));
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user || undefined;
+  }
+
+  // Enhanced Blog Management Methods
+  async getBlogPostsByStatus(status: BlogPost["status"]): Promise<BlogPost[]> {
+    return await db.select().from(blogPosts)
+      .where(eq(blogPosts.status, status))
+      .orderBy(desc(blogPosts.updatedAt));
+  }
+
+  async getBlogPostsByAuthor(authorId: number): Promise<BlogPost[]> {
+    return await db.select().from(blogPosts)
+      .where(eq(blogPosts.authorId, authorId))
+      .orderBy(desc(blogPosts.updatedAt));
+  }
+
+  async updateBlogPostStatus(id: number, status: BlogPost["status"], approverId?: number): Promise<BlogPost> {
+    const updates: Partial<BlogPost> = { 
+      status, 
+      updatedAt: new Date() 
+    };
+    
+    if (approverId) {
+      updates.approverId = approverId;
+    }
+    
+    // Properly synchronize status with isPublished/publishedAt fields
+    switch (status) {
+      case 'published':
+        updates.isPublished = true;
+        updates.publishedAt = new Date();
+        break;
+      case 'draft':
+      case 'in_review':
+      case 'archived':
+        updates.isPublished = false;
+        // Don't clear publishedAt - keep it for history
+        break;
+    }
+    
+    const [post] = await db.update(blogPosts)
+      .set(updates)
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return post;
+  }
+
+  async getRelatedBlogPosts(postId: number, tags: string[], limit: number = 6): Promise<BlogPost[]> {
+    // Get related posts by matching tags, excluding current post
+    return await db.select().from(blogPosts)
+      .where(and(
+        eq(blogPosts.isPublished, true),
+        eq(blogPosts.status, 'published'),
+        sql`${blogPosts.id} != ${postId}`,
+        sql`${blogPosts.tags} && ${tags}`
+      ))
+      .orderBy(desc(blogPosts.publishedAt))
+      .limit(limit);
+  }
+
+  // Media Library Methods
+  async getMedia(): Promise<Media[]> {
+    return await db.select().from(media).orderBy(desc(media.createdAt));
+  }
+
+  async getMediaById(id: number): Promise<Media | undefined> {
+    const [mediaItem] = await db.select().from(media).where(eq(media.id, id));
+    return mediaItem || undefined;
+  }
+
+  async createMedia(insertMedia: InsertMedia): Promise<Media> {
+    const [mediaItem] = await db.insert(media).values(insertMedia).returning();
+    return mediaItem;
+  }
+
+  async updateMedia(id: number, updates: Partial<Media>): Promise<Media> {
+    const [mediaItem] = await db.update(media)
+      .set(updates)
+      .where(eq(media.id, id))
+      .returning();
+    return mediaItem;
+  }
+
+  async deleteMedia(id: number): Promise<void> {
+    await db.delete(media).where(eq(media.id, id));
+  }
+
+  // Blog Post Revisions Methods
+  async getBlogPostRevisions(postId: number): Promise<BlogPostRevision[]> {
+    return await db.select().from(blogPostRevisions)
+      .where(eq(blogPostRevisions.postId, postId))
+      .orderBy(desc(blogPostRevisions.createdAt));
+  }
+
+  async createBlogPostRevision(insertRevision: InsertBlogPostRevision): Promise<BlogPostRevision> {
+    const [revision] = await db.insert(blogPostRevisions).values(insertRevision).returning();
+    return revision;
+  }
+
+  // Audit Logs Methods
+  async getAuditLogs(limit: number = 100, offset: number = 0): Promise<AuditLog[]> {
+    return await db.select().from(auditLogs)
+      .orderBy(desc(auditLogs.createdAt))
+      .limit(limit)
+      .offset(offset);
+  }
+
+  async createAuditLog(insertAuditLog: InsertAuditLog): Promise<AuditLog> {
+    const [auditLog] = await db.insert(auditLogs).values(insertAuditLog).returning();
+    return auditLog;
+  }
+
+  async getAuditLogsByEntity(entity: string, entityId: number): Promise<AuditLog[]> {
+    return await db.select().from(auditLogs)
+      .where(and(
+        eq(auditLogs.entity, entity),
+        eq(auditLogs.entityId, entityId)
+      ))
+      .orderBy(desc(auditLogs.createdAt));
   }
 }
 
