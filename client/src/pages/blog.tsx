@@ -1023,7 +1023,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 return null;
                               })()
                             ) : 
-                            // Handle intake cards for UK student visa blog
+                            // Handle intake cards for UK student visa blog (includes requirements box)
                             slug === 'best-uk-study-visa-consultants' && section.content.includes('INTAKE_CARDS_START') ? (
                               (() => {
                                 const startMarker = section.content.indexOf('**INTAKE_CARDS_START**');
@@ -1044,6 +1044,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                     }
                                     return acc;
                                   }, [] as Array<{title: string, content: string}>);
+
+                                  // Check for requirements box in afterCards content
+                                  const reqStartMarker = afterCards.indexOf('**REQUIREMENTS_BOX_START**');
+                                  const reqEndMarker = afterCards.indexOf('**REQUIREMENTS_BOX_END**');
 
                                   return (
                                     <div>
@@ -1092,19 +1096,78 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                         ))}
                                       </div>
                                       
-                                      {/* After cards content */}
-                                      {afterCards.split('\n').map((paragraph: string, pIndex: number) => {
-                                        if (paragraph.trim()) {
-                                          const processedText = paragraph
-                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
-                                            .trim();
+                                      {/* After cards content with requirements box handling */}
+                                      {reqStartMarker !== -1 && reqEndMarker !== -1 ? (
+                                        (() => {
+                                          const beforeReq = afterCards.substring(0, reqStartMarker);
+                                          const reqContent = afterCards.substring(reqStartMarker + 26, reqEndMarker);
+                                          const afterReq = afterCards.substring(reqEndMarker + 24);
+                                          
                                           return (
-                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                            <div>
+                                              {/* Content before requirements box */}
+                                              {beforeReq.split('\n').map((paragraph: string, pIndex: number) => {
+                                                if (paragraph.trim()) {
+                                                  const processedText = paragraph
+                                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                                    .trim();
+                                                  return (
+                                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                                  );
+                                                }
+                                                return null;
+                                              })}
+                                              
+                                              {/* Requirements Box */}
+                                              <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
+                                                <div className="text-gray-700 leading-relaxed">
+                                                  {reqContent.split('\n').map((paragraph: string, reqIndex: number) => {
+                                                    if (paragraph.trim()) {
+                                                      const processedText = paragraph
+                                                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#1D50C9] hover:text-[#1845B3] font-medium underline">$1</a>')
+                                                        .trim();
+                                                      return (
+                                                        <p key={reqIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                                      );
+                                                    }
+                                                    return null;
+                                                  })}
+                                                </div>
+                                              </div>
+                                              
+                                              {/* Content after requirements box */}
+                                              {afterReq.split('\n').map((paragraph: string, pIndex: number) => {
+                                                if (paragraph.trim()) {
+                                                  const processedText = paragraph
+                                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                                    .trim();
+                                                  return (
+                                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                                  );
+                                                }
+                                                return null;
+                                              })}
+                                            </div>
                                           );
-                                        }
-                                        return null;
-                                      })}
+                                        })()
+                                      ) : (
+                                        // No requirements box, render normally
+                                        afterCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                          if (paragraph.trim()) {
+                                            const processedText = paragraph
+                                              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                              .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                              .trim();
+                                            return (
+                                              <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                            );
+                                          }
+                                          return null;
+                                        })
+                                      )}
                                     </div>
                                   );
                                 }
