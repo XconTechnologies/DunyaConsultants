@@ -448,6 +448,7 @@ export default function BlogEditor() {
                 <CardContent>
                   <div className="min-h-[500px]">
                     <Editor
+                      apiKey={import.meta.env.VITE_TINYMCE_API_KEY || "no-api-key"}
                       onInit={(evt, editor) => {
                         editorRef.current = editor;
                         // Set initial content if available
