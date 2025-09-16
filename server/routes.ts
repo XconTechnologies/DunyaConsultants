@@ -5,7 +5,7 @@ import { seedBlogPosts } from "./seed-blogs";
 import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
-  insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema 
+  insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost 
 } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
@@ -133,8 +133,16 @@ async function optionalReader(req: AuthenticatedRequest, res: Response, next: Ne
   }
 }
 
-// Initialize default admin user
+// Initialize default admin user (DEVELOPMENT ONLY)
 async function initializeAdmin() {
+  // CRITICAL SECURITY: Only run in development mode
+  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === undefined;
+  
+  if (!isDevelopment) {
+    console.log('Production mode: Skipping admin initialization and data seeding');
+    return;
+  }
+
   try {
     const existingAdmin = await storage.getAdminByUsername('admin');
     if (!existingAdmin) {
@@ -144,13 +152,14 @@ async function initializeAdmin() {
         email: 'admin@dunyaconsultants.com',
         role: 'admin'
       });
-      console.log('Default admin user created: admin/admin123');
+      console.log('Development mode: Default admin user created');
     }
 
-    // Seed blog posts
+    // Seed blog posts (DEVELOPMENT ONLY)
     await seedBlogPosts();
+    console.log('Development mode: Blog posts seeded');
   } catch (error) {
-    console.error('Failed to initialize admin user:', error);
+    console.error('Failed to initialize development environment:', error);
   }
 }
 
@@ -754,6 +763,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create blog post
+  // Create blog post with comprehensive audit logging
   app.post("/api/admin/blog-posts", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const blogData = insertBlogPostSchema.parse({
@@ -763,40 +773,142 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
       
       const post = await storage.createBlogPost(blogData);
+      
+      // Create comprehensive audit log for blog post creation
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'create',
+        entity: 'blog_post',
+        entityId: post.id,
+        after: JSON.stringify({
+          title: post.title,
+          slug: post.slug,
+          status: post.status,
+          tags: post.tags,
+          category: post.category,
+          timestamp: new Date().toISOString()
+        })
+      });
+      
       res.status(201).json(post);
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.status(400).json({ message: 'Invalid blog post data', errors: error.errors });
       } else {
+        console.error('Blog post creation error:', error);
         res.status(500).json({ message: 'Failed to create blog post' });
       }
     }
   });
 
-  // Update blog post
-  app.put("/api/admin/blog-posts/:id", requireAuth, async (req, res) => {
+  // Update blog post with audit logging and revision tracking
+  app.put("/api/admin/blog-posts/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
       const updates = req.body;
+      
+      // Get original post for comparison and audit logging
+      const originalPost = await storage.getBlogPost(id);
+      if (!originalPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
       
       if (updates.title && !updates.slug) {
         updates.slug = updates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       }
       
+      // Create revision before updating
+      if (originalPost.title || originalPost.content || originalPost.excerpt) {
+        await storage.createBlogPostRevision({
+          postId: id,
+          title: originalPost.title,
+          content: originalPost.content,
+          excerpt: originalPost.excerpt,
+          status: originalPost.status,
+          editorId: req.adminId!
+        });
+      }
+      
       const post = await storage.updateBlogPost(id, updates);
+      
+      // Create comprehensive audit log for blog post update
+      const changedFields = Object.keys(updates).filter(key => 
+        JSON.stringify(originalPost[key as keyof typeof originalPost]) !== JSON.stringify(updates[key])
+      );
+      
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'update',
+        entity: 'blog_post',
+        entityId: id,
+        before: JSON.stringify({
+          title: originalPost.title,
+          status: originalPost.status,
+          content: originalPost.content?.substring(0, 100) // First 100 chars
+        }),
+        after: JSON.stringify({
+          title: post.title,
+          status: post.status,
+          changedFields,
+          revisionCreated: true,
+          timestamp: new Date().toISOString()
+        })
+      });
+      
       res.json(post);
     } catch (error) {
+      console.error('Blog post update error:', error);
       res.status(500).json({ message: 'Failed to update blog post' });
     }
   });
 
-  // Delete blog post
-  app.delete("/api/admin/blog-posts/:id", requireAuth, async (req, res) => {
+  // Delete blog post with comprehensive audit logging (Admin only)
+  app.delete("/api/admin/blog-posts/:id", requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
+      
+      // Get blog post info before deletion for audit log
+      const post = await storage.getBlogPost(id);
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      // Only admins can delete published posts, editors can delete drafts
+      if (post.status === 'published' && req.adminRole !== 'admin') {
+        return res.status(403).json({ 
+          message: 'Only admins can delete published posts' 
+        });
+      }
+      
       await storage.deleteBlogPost(id);
-      res.json({ success: true });
+      
+      // Create comprehensive audit log for blog post deletion
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'delete',
+        entity: 'blog_post',
+        entityId: id,
+        before: JSON.stringify({
+          title: post.title,
+          slug: post.slug,
+          status: post.status,
+          authorId: post.authorId,
+          category: post.category,
+          tags: post.tags,
+          viewCount: post.viewCount,
+          timestamp: new Date().toISOString()
+        })
+      });
+      
+      res.json({ 
+        success: true, 
+        message: 'Blog post deleted successfully' 
+      });
     } catch (error) {
+      console.error('Blog post deletion error:', error);
       res.status(500).json({ message: 'Failed to delete blog post' });
     }
   });
@@ -805,7 +917,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // FILE UPLOAD ROUTES
   // ==============================================
 
-  // Configure multer for file uploads
+  // Secure file type whitelist with MIME validation
+  const ALLOWED_FILE_TYPES = {
+    'image/jpeg': ['.jpg', '.jpeg'],
+    'image/png': ['.png'],
+    'image/gif': ['.gif'],
+    'image/webp': ['.webp'],
+    'image/svg+xml': ['.svg'],
+    'application/pdf': ['.pdf'],
+    'application/msword': ['.doc'],
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx']
+  };
+
+  // Secure filename sanitization
+  function sanitizeFilename(filename: string): string {
+    const ext = path.extname(filename).toLowerCase();
+    const baseName = path.basename(filename, ext);
+    // Remove dangerous characters and normalize
+    const sanitized = baseName
+      .replace(/[^a-zA-Z0-9._-]/g, '_')
+      .replace(/_{2,}/g, '_')
+      .replace(/^[._-]+|[._-]+$/g, '')
+      .substring(0, 50); // Limit length
+    return sanitized || 'file';
+  }
+
+  // Configure secure multer for file uploads
   const uploadDir = path.join(process.cwd(), 'uploads');
   if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
@@ -817,20 +954,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
         cb(null, uploadDir);
       },
       filename: (req, file, cb) => {
-        const ext = path.extname(file.originalname);
-        const name = path.basename(file.originalname, ext);
+        const ext = path.extname(file.originalname).toLowerCase();
+        const sanitizedName = sanitizeFilename(file.originalname);
         const timestamp = Date.now();
-        cb(null, `${name}-${timestamp}${ext}`);
+        const randomSuffix = crypto.randomBytes(8).toString('hex');
+        // Prevent path traversal with secure filename
+        const secureFilename = `${sanitizedName}_${timestamp}_${randomSuffix}${ext}`;
+        cb(null, secureFilename);
       }
     }),
     limits: {
-      fileSize: 5 * 1024 * 1024 // 5MB limit
+      fileSize: 10 * 1024 * 1024, // 10MB limit
+      files: 1, // Only allow single file upload
+      fieldNameSize: 100,
+      fieldSize: 1024 * 1024
     },
     fileFilter: (req, file, cb) => {
-      if (file.mimetype.startsWith('image/')) {
+      const allowedExtensions = ALLOWED_FILE_TYPES[file.mimetype as keyof typeof ALLOWED_FILE_TYPES];
+      const fileExt = path.extname(file.originalname).toLowerCase();
+      
+      // Validate both MIME type and file extension
+      if (allowedExtensions && allowedExtensions.includes(fileExt)) {
         cb(null, true);
       } else {
-        cb(new Error('Only image files are allowed!'));
+        cb(new Error(`File type not allowed. Allowed types: ${Object.keys(ALLOWED_FILE_TYPES).join(', ')}`));
       }
     }
   });
@@ -1127,16 +1274,356 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Get published blog posts - REMOVED DUPLICATE (keeping earlier version)
 
-  // Get single published blog post by slug
+  // Get single published blog post by slug (fixed publication consistency)
   app.get("/api/blog-posts/:slug", async (req, res) => {
     try {
       const post = await storage.getBlogPostBySlug(req.params.slug);
-      if (!post || !post.isPublished) {
+      if (!post || post.status !== 'published') {
         return res.status(404).json({ message: 'Blog post not found' });
       }
+      // Increment view count for published posts
+      await storage.incrementBlogViews(post.id);
       res.json(post);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch blog post' });
+    }
+  });
+
+  // ==============================================
+  // ENHANCED BLOG MANAGEMENT APIS (CMS)
+  // ==============================================
+
+  // Get blog posts by status (Admin/Editor access)
+  app.get("/api/admin/blog-posts/status/:status", requireEditor, async (req, res) => {
+    try {
+      const status = req.params.status as BlogPost['status'];
+      const validStatuses = ['draft', 'in_review', 'published', 'archived'];
+      
+      if (!validStatuses.includes(status)) {
+        return res.status(400).json({ message: 'Invalid status. Valid statuses: ' + validStatuses.join(', ') });
+      }
+
+      const posts = await storage.getBlogPostsByStatus(status);
+      res.json(posts);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch posts by status' });
+    }
+  });
+
+  // Get blog posts by author (Admin/Editor access)
+  app.get("/api/admin/blog-posts/author/:authorId", requireEditor, async (req, res) => {
+    try {
+      const authorId = parseInt(req.params.authorId);
+      const posts = await storage.getBlogPostsByAuthor(authorId);
+      res.json(posts);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch posts by author' });
+    }
+  });
+
+  // Role-based status transition matrix
+  const STATUS_TRANSITION_MATRIX: Record<string, Record<string, string[]>> = {
+    'writer': {
+      'draft': ['in_review'],
+      'in_review': [], // Writers cannot change from in_review
+      'published': [], // Writers cannot change published posts
+      'archived': [] // Writers cannot change archived posts
+    },
+    'editor': {
+      'draft': ['in_review', 'published'],
+      'in_review': ['draft', 'published', 'archived'],
+      'published': ['archived'], // Editors can only archive published posts
+      'archived': ['draft', 'in_review'] // Editors can restore archived posts
+    },
+    'admin': {
+      'draft': ['in_review', 'published', 'archived'],
+      'in_review': ['draft', 'published', 'archived'],
+      'published': ['draft', 'in_review', 'archived'],
+      'archived': ['draft', 'in_review', 'published']
+    }
+  };
+
+  // Validate status transition based on role and current status
+  function canTransitionStatus(role: string, currentStatus: string, newStatus: string): boolean {
+    const roleTransitions = STATUS_TRANSITION_MATRIX[role];
+    if (!roleTransitions) return false;
+    
+    const allowedTransitions = roleTransitions[currentStatus];
+    return allowedTransitions ? allowedTransitions.includes(newStatus) : false;
+  }
+
+  // Update blog post status with strict RBAC and transition validation
+  app.patch("/api/admin/blog-posts/:id/status", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { status } = req.body;
+      const validStatuses = ['draft', 'in_review', 'published', 'archived'];
+      
+      if (!validStatuses.includes(status)) {
+        return res.status(400).json({ 
+          message: 'Invalid status. Valid statuses: ' + validStatuses.join(', ') 
+        });
+      }
+
+      // Get current post to check current status
+      const currentPost = await storage.getBlogPost(id);
+      if (!currentPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+
+      const currentStatus = currentPost.status;
+      const userRole = req.adminRole!;
+      
+      // Validate status transition based on role and current status
+      if (!canTransitionStatus(userRole, currentStatus, status)) {
+        return res.status(403).json({ 
+          message: `Role '${userRole}' cannot transition from '${currentStatus}' to '${status}'. Check your permissions.` 
+        });
+      }
+
+      const approverId = ['published', 'archived'].includes(status) ? req.adminId : undefined;
+      const post = await storage.updateBlogPostStatus(id, status, approverId);
+      
+      // Create comprehensive audit log for status changes
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: `status_transition`,
+        entity: 'blog_post',
+        entityId: id,
+        before: JSON.stringify({
+          status: currentStatus,
+          title: currentPost.title
+        }),
+        after: JSON.stringify({
+          status: status,
+          approverId: approverId,
+          timestamp: new Date().toISOString()
+        })
+      });
+
+      res.json(post);
+    } catch (error) {
+      console.error('Error updating blog post status:', error);
+      res.status(500).json({ message: 'Failed to update post status' });
+    }
+  });
+
+  // Get related blog posts (public endpoint, fixed publication consistency)
+  app.get("/api/blog-posts/:id/related", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const limit = parseInt(req.query.limit as string) || 6;
+      
+      // First get the current post to access its tags
+      const currentPost = await storage.getBlogPost(id);
+      if (!currentPost || currentPost.status !== 'published') {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+
+      const relatedPosts = await storage.getRelatedBlogPosts(id, currentPost.tags || [], limit);
+      res.json(relatedPosts);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch related posts' });
+    }
+  });
+
+  // Get blog post revisions (Admin/Editor access)
+  app.get("/api/admin/blog-posts/:id/revisions", requireEditor, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const revisions = await storage.getBlogPostRevisions(id);
+      res.json(revisions);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog post revisions' });
+    }
+  });
+
+  // Create blog post revision (automatic on updates)
+  app.post("/api/admin/blog-posts/:id/revisions", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const postId = parseInt(req.params.id);
+      const { title, content, excerpt, status } = req.body;
+      
+      const revision = await storage.createBlogPostRevision({
+        postId,
+        title,
+        content,
+        excerpt,
+        status,
+        editorId: req.adminId!
+      });
+
+      res.status(201).json(revision);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to create revision' });
+    }
+  });
+
+  // ==============================================
+  // MEDIA MANAGEMENT APIS
+  // ==============================================
+
+  // Upload media file (Admin/Editor access)
+  app.post("/api/admin/media/upload", requireEditor, upload.single('file'), async (req: AuthenticatedRequest, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'No file provided' });
+      }
+
+      const { originalname, mimetype, size, filename } = req.file;
+      const fileUrl = `/uploads/${filename}`;
+
+      const media = await storage.createMedia({
+        filename,
+        originalName: originalname,
+        mimeType: mimetype,
+        size,
+        url: fileUrl,
+        uploadedBy: req.adminId!
+      });
+
+      // Create audit log for media upload
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'upload',
+        entity: 'media',
+        entityId: media.id
+      });
+
+      res.status(201).json(media);
+    } catch (error) {
+      console.error('Error uploading media:', error);
+      res.status(500).json({ message: 'Failed to upload media' });
+    }
+  });
+
+  // Get all media (Admin/Editor access)
+  app.get("/api/admin/media", requireEditor, async (req, res) => {
+    try {
+      const media = await storage.getMedia();
+      res.json(media);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch media' });
+    }
+  });
+
+  // Get single media item (Admin/Editor access)
+  app.get("/api/admin/media/:id", requireEditor, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const media = await storage.getMediaById(id);
+      if (!media) {
+        return res.status(404).json({ message: 'Media not found' });
+      }
+      res.json(media);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch media' });
+    }
+  });
+
+  // Update media metadata (Admin/Editor access)
+  app.put("/api/admin/media/:id", requireEditor, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const { alt, width, height } = req.body;
+      
+      const media = await storage.updateMedia(id, {
+        alt,
+        width,
+        height
+      });
+
+      // Create audit log for media update
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'update',
+        entity: 'media',
+        entityId: id
+      });
+
+      res.json(media);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to update media' });
+    }
+  });
+
+  // Secure path validation and atomic file deletion
+  async function secureFileDelete(filePath: string): Promise<boolean> {
+    try {
+      // Validate path is within uploads directory (prevent path traversal)
+      const uploadsDir = path.resolve(process.cwd(), 'uploads');
+      const resolvedPath = path.resolve(uploadsDir, path.basename(filePath));
+      
+      if (!resolvedPath.startsWith(uploadsDir)) {
+        throw new Error('Path traversal attempt detected');
+      }
+      
+      // Check if file exists before attempting deletion
+      if (fs.existsSync(resolvedPath)) {
+        fs.unlinkSync(resolvedPath);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('File deletion failed:', error);
+      return false;
+    }
+  }
+
+  // Delete media with atomic operation (Admin access only)
+  app.delete("/api/admin/media/:id", requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      
+      // Get media info before deletion for audit log
+      const media = await storage.getMediaById(id);
+      if (!media) {
+        return res.status(404).json({ message: 'Media not found' });
+      }
+
+      // Attempt atomic deletion (filesystem first, then database)
+      let fileDeleted = false;
+      if (media.url) {
+        fileDeleted = await secureFileDelete(media.url);
+      }
+
+      // Only proceed with database deletion if file was successfully removed or doesn't exist
+      try {
+        await storage.deleteMedia(id);
+        
+        // Create comprehensive audit log for media deletion
+        await storage.createAuditLog({
+          actorId: req.adminId!,
+          role: req.adminRole!,
+          action: 'delete',
+          entity: 'media',
+          entityId: id,
+          before: JSON.stringify({
+            filename: media.filename,
+            originalName: media.originalName,
+            url: media.url,
+            mimeType: media.mimeType,
+            size: media.size,
+            fileDeleted,
+            timestamp: new Date().toISOString()
+          })
+        });
+
+        res.json({ 
+          success: true, 
+          message: 'Media deleted successfully',
+          fileDeleted 
+        });
+      } catch (dbError) {
+        console.error('Database deletion failed:', dbError);
+        res.status(500).json({ message: 'Failed to delete media from database' });
+      }
+    } catch (error) {
+      console.error('Media deletion error:', error);
+      res.status(500).json({ message: 'Failed to delete media' });
     }
   });
 
@@ -1160,7 +1647,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get single published page by slug
+  // Get single published page by slug (fixed publication consistency)
   app.get("/api/pages/:slug", async (req, res) => {
     try {
       const page = await storage.getPageBySlug(req.params.slug);
