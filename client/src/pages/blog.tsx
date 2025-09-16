@@ -783,6 +783,23 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               }
                             }
                             
+                            // For how-to-apply-for-student-visa, use h3 for numbered headings in Step-by-step visa process section
+                            if (slug === 'how-to-apply-for-student-visa') {
+                              const isStepNumberHeading = /^\d+\)/.test(cleanTitle);
+                              
+                              if (isStepNumberHeading) {
+                                // Numbered steps are h3
+                                return (
+                                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                                    {hasHtmlLinks ? 
+                                      <span dangerouslySetInnerHTML={{ __html: cleanTitle }} /> : 
+                                      cleanTitle
+                                    }
+                                  </h3>
+                                );
+                              }
+                            }
+                            
                             // Default h2 for all other blogs
                             return (
                               <h2 className="text-2xl font-bold text-gray-900 mb-3">
