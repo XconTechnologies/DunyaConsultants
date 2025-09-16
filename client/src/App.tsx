@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
+// Global ReactQuill CSS import to ensure proper loading
+import 'react-quill/dist/quill.snow.css';
 import Home from "@/pages/home";
 import CostCalculator from "@/pages/cost-calculator";
 import CourseMatchTool from "@/pages/course-match-tool";

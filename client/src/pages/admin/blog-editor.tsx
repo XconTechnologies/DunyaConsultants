@@ -15,7 +15,6 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
   Calendar, User, Hash, Globe, Upload, Image as ImageIcon
@@ -56,6 +55,7 @@ export default function BlogEditor() {
   const [isSaving, setIsSaving] = useState(false);
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(false);
+  const [editorMounted, setEditorMounted] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const contentRef = useRef<HTMLTextAreaElement>(null);
@@ -66,6 +66,11 @@ export default function BlogEditor() {
   const blogId = params?.id;
 
   const token = localStorage.getItem("adminToken");
+
+  // Ensure editor is mounted client-side
+  useEffect(() => {
+    setEditorMounted(true);
+  }, []);
 
   // Fetch blog post for editing
   const { data: blogPost, isLoading, error } = useQuery({
@@ -444,67 +449,54 @@ export default function BlogEditor() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="min-h-[500px] react-quill-container">
-                    <ReactQuill
-                      ref={editorRef}
-                      value={content || ''}
-                      onChange={handleEditorChange}
-                      placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
-                      modules={{
-                        toolbar: [
-                          [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                          [{ 'font': [] }, { 'size': [] }],
-                          ['bold', 'italic', 'underline', 'strike'],
-                          [{ 'color': [] }, { 'background': [] }],
-                          [{ 'script': 'sub' }, { 'script': 'super' }],
-                          ['blockquote', 'code-block'],
-                          [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                          [{ 'indent': '-1' }, { 'indent': '+1' }],
-                          [{ 'direction': 'rtl' }],
-                          [{ 'align': [] }],
-                          ['link', 'image', 'video'],
-                          ['clean']
-                        ],
-                        clipboard: {
-                          matchVisual: false,
-                          matchers: [
-                            // Google Docs heading preservation
-                            ['P', function(node, delta) {
-                              const fontSize = node.style.fontSize;
-                              if (fontSize && fontSize.includes('24px')) {
-                                delta.ops = delta.ops.map(op => ({ ...op, attributes: { ...op.attributes, header: 1 } }));
-                              } else if (fontSize && fontSize.includes('18px')) {
-                                delta.ops = delta.ops.map(op => ({ ...op, attributes: { ...op.attributes, header: 2 } }));
-                              } else if (fontSize && fontSize.includes('16px')) {
-                                delta.ops = delta.ops.map(op => ({ ...op, attributes: { ...op.attributes, header: 3 } }));
-                              }
-                              return delta;
-                            }],
-                            // Preserve bold formatting from Google Docs
-                            ['SPAN', function(node, delta) {
-                              if (node.style && node.style.fontWeight === 'bold') {
-                                delta.ops = delta.ops.map(op => ({ ...op, attributes: { ...op.attributes, bold: true } }));
-                              }
-                              return delta;
-                            }]
-                          ]
-                        }
-                      }}
-                      formats={[
-                        'header', 'font', 'size',
-                        'bold', 'italic', 'underline', 'strike',
-                        'color', 'background',
-                        'script',
-                        'blockquote', 'code-block',
-                        'list', 'bullet', 'indent',
-                        'direction', 'align',
-                        'link', 'image', 'video'
-                      ]}
-                      style={{
-                        height: '400px',
-                        marginBottom: '60px'
-                      }}
-                    />
+                  <div className="react-quill-container" style={{ minHeight: '500px', width: '100%' }}>
+                    {editorMounted ? (
+                      <ReactQuill
+                        value={content || ''}
+                        onChange={handleEditorChange}
+                        placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
+                        modules={{
+                          toolbar: [
+                            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                            ['bold', 'italic', 'underline', 'strike'],
+                            [{ 'color': [] }, { 'background': [] }],
+                            ['blockquote', 'code-block'],
+                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                            [{ 'align': [] }],
+                            ['link'],
+                            ['clean']
+                          ],
+                          clipboard: {
+                            matchVisual: false,
+                            matchers: [
+                              // Google Docs heading preservation
+                              ['P', function(node: any, delta: any) {
+                                const fontSize = node.style.fontSize;
+                                if (fontSize && fontSize.includes('24px')) {
+                                  delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 1 } }));
+                                } else if (fontSize && fontSize.includes('18px')) {
+                                  delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 2 } }));
+                                } else if (fontSize && fontSize.includes('16px')) {
+                                  delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 3 } }));
+                                }
+                                return delta;
+                              }],
+                              // Preserve bold formatting from Google Docs
+                              ['SPAN', function(node: any, delta: any) {
+                                if (node.style && node.style.fontWeight === 'bold') {
+                                  delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, bold: true } }));
+                                }
+                                return delta;
+                              }]
+                            ]
+                          }
+                        }}
+                      />
+                    ) : (
+                      <div className="h-[460px] border border-gray-300 rounded-md bg-gray-50 flex items-center justify-center">
+                        <p className="text-gray-500">Loading editor...</p>
+                      </div>
+                    )}
                   </div>
                   {errors.content && (
                     <p className="text-red-500 text-sm mt-2">{errors.content.message}</p>
