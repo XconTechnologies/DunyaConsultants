@@ -1268,7 +1268,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               })()
                             ) : 
                             // Handle requirements box for UK student visa blog
-                            slug === 'best-uk-study-visa-consultants' && section.content.includes('REQUIREMENTS_BOX_START') ? (
+                            slug === 'best-uk-study-visa-consultants' && section.content.includes('**REQUIREMENTS_BOX_START**') ? (
                               (() => {
                                 const startMarker = section.content.indexOf('**REQUIREMENTS_BOX_START**');
                                 const endMarker = section.content.indexOf('**REQUIREMENTS_BOX_END**');
