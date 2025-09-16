@@ -14,6 +14,24 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 
+// Unified image src normalization function
+const normalizeImageSrc = (image: string) => {
+  const trimmed = image.trim();
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+  if (trimmed.startsWith('/api/uploads/') || trimmed.startsWith('api/uploads/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  if (trimmed.startsWith('/blog/') || trimmed.startsWith('blog/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  if (trimmed.startsWith('/attached_assets/') || trimmed.startsWith('attached_assets/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  return `/attached_assets/${trimmed}`;
+};
+
 // Static blog posts data structure for fallback
 const staticBlogPosts = [
   {
@@ -436,16 +454,39 @@ function BlogPostDetail({ slug }: { slug: string }) {
               {blogPost.image && (
                 <div className="relative">
                   <img 
-                    src={blogPost.image.startsWith('http') ? blogPost.image : 
-                         blogPost.image.startsWith('/blog/') ? blogPost.image :
-                         blogPost.image.startsWith('/attached_assets/') ? blogPost.image :
-                         blogPost.image.startsWith('attached_assets/') ? `/${blogPost.image}` :
-                         `/attached_assets/${blogPost.image}`} 
+                    src={normalizeImageSrc(blogPost.image)}
                     alt={blogPost.title}
                     className="w-full h-auto"
                     onError={(e) => {
-                      // Fallback to a default placeholder or hide image on error
-                      e.currentTarget.style.display = 'none';
+                      const img = e.currentTarget;
+                      const originalSrc = img.src;
+                      
+                      // Try different extensions if not already tried
+                      if (!img.dataset.retryCount) {
+                        img.dataset.retryCount = '0';
+                      }
+                      
+                      const retryCount = parseInt(img.dataset.retryCount);
+                      const basePath = originalSrc.replace(/\.[^/.]+$/, '');
+                      const extensions = ['.png', '.jpg', '.jpeg', '.webp'];
+                      
+                      if (retryCount < extensions.length) {
+                        const newSrc = basePath + extensions[retryCount];
+                        img.dataset.retryCount = String(retryCount + 1);
+                        img.src = newSrc;
+                        return;
+                      }
+                      
+                      // Try uploads API as final fallback
+                      if (retryCount === extensions.length) {
+                        const filename = originalSrc.split('/').pop()?.replace(/\.[^/.]+$/, '') + '.jpg';
+                        img.dataset.retryCount = String(retryCount + 1);
+                        img.src = `/api/uploads/${filename}`;
+                        return;
+                      }
+                      
+                      // Hide image after all attempts failed
+                      img.style.display = 'none';
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
@@ -2584,22 +2625,7 @@ export default function Blog() {
                   {post.image && (
                     <div className="relative overflow-hidden rounded-t-lg">
                       <img 
-                        src={(() => {
-                          const normalizeImageSrc = (image: string) => {
-                            const trimmed = image.trim();
-                            if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
-                              return trimmed;
-                            }
-                            if (trimmed.startsWith('/blog/') || trimmed.startsWith('blog/')) {
-                              return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-                            }
-                            if (trimmed.startsWith('/attached_assets/') || trimmed.startsWith('attached_assets/')) {
-                              return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-                            }
-                            return `/attached_assets/${trimmed}`;
-                          };
-                          return normalizeImageSrc(post.image);
-                        })()}
+                        src={normalizeImageSrc(post.image)}
                         alt={post.title}
                         className="w-full h-56 object-cover transition-transform hover:scale-105"
                         style={{ objectFit: 'cover', objectPosition: 'center' }}
