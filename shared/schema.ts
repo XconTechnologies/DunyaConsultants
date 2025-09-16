@@ -6,6 +6,8 @@ export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
+  email: text("email").notNull().unique(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const contacts = pgTable("contacts", {
@@ -120,8 +122,8 @@ export const adminUsers = pgTable("admin_users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
-  email: text("email"),
-  role: text("role").default("admin").notNull(),
+  email: text("email").notNull().unique(),
+  role: text("role", { enum: ["admin", "editor", "writer"] }).default("writer").notNull(),
   isActive: boolean("is_active").default(true).notNull(),
   lastLogin: timestamp("last_login"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -131,6 +133,7 @@ export const blogPosts = pgTable("blog_posts", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   slug: text("slug").notNull().unique(),
+  metaTitle: text("meta_title"),
   metaDescription: text("meta_description"),
   focusKeyword: text("focus_keyword"),
   featuredImage: text("featured_image"),
@@ -138,10 +141,13 @@ export const blogPosts = pgTable("blog_posts", {
   excerpt: text("excerpt"),
   category: text("category").default("General"),
   tags: text("tags").array(),
+  status: text("status", { enum: ["draft", "in_review", "published", "archived"] }).default("draft").notNull(),
   viewCount: integer("view_count").default(0).notNull(),
+  readingTime: integer("reading_time").default(5),
   isPublished: boolean("is_published").default(false).notNull(),
   publishedAt: timestamp("published_at"),
   authorId: integer("author_id").references(() => adminUsers.id),
+  approverId: integer("approver_id").references(() => adminUsers.id),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -183,9 +189,59 @@ export const adminSessions = pgTable("admin_sessions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
+// User sessions for reader authentication
+export const userSessions = pgTable("user_sessions", {
+  id: serial("id").primaryKey(),
+  sessionToken: text("session_token").notNull().unique(),
+  userId: integer("user_id").references(() => users.id).notNull(),
+  expiresAt: timestamp("expires_at").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Media library for file uploads
+export const media = pgTable("media", {
+  id: serial("id").primaryKey(),
+  filename: text("filename").notNull(),
+  originalName: text("original_name").notNull(),
+  url: text("url").notNull(),
+  alt: text("alt"),
+  width: integer("width"),
+  height: integer("height"),
+  mimeType: text("mime_type").notNull(),
+  size: integer("size").notNull(),
+  uploadedBy: integer("uploaded_by").references(() => adminUsers.id).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Blog post revisions for version control
+export const blogPostRevisions = pgTable("blog_post_revisions", {
+  id: serial("id").primaryKey(),
+  postId: integer("post_id").references(() => blogPosts.id).notNull(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  excerpt: text("excerpt"),
+  status: text("status").notNull(),
+  editorId: integer("editor_id").references(() => adminUsers.id).notNull(),
+  note: text("note"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+// Audit logs for user activity tracking
+export const auditLogs = pgTable("audit_logs", {
+  id: serial("id").primaryKey(),
+  actorId: integer("actor_id").references(() => adminUsers.id).notNull(),
+  role: text("role").notNull(),
+  action: text("action").notNull(), // create, update, delete, publish, unpublish
+  entity: text("entity").notNull(), // blog_post, media, user
+  entityId: integer("entity_id").notNull(),
+  before: json("before"),
+  after: json("after"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const insertUserSchema = createInsertSchema(users).omit({
+  id: true,
+  createdAt: true,
 });
 
 export const insertContactSchema = createInsertSchema(contacts).omit({
@@ -261,6 +317,27 @@ export const insertAdminSessionSchema = createInsertSchema(adminSessions).omit({
   createdAt: true,
 });
 
+// New CMS Schema Inserts
+export const insertUserSessionSchema = createInsertSchema(userSessions).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertMediaSchema = createInsertSchema(media).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertBlogPostRevisionSchema = createInsertSchema(blogPostRevisions).omit({
+  id: true,
+  createdAt: true,
+});
+
+export const insertAuditLogSchema = createInsertSchema(auditLogs).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
@@ -291,3 +368,13 @@ export type InsertPage = z.infer<typeof insertPageSchema>;
 export type Page = typeof pages.$inferSelect;
 export type InsertAdminSession = z.infer<typeof insertAdminSessionSchema>;
 export type AdminSession = typeof adminSessions.$inferSelect;
+
+// New CMS Types
+export type InsertUserSession = z.infer<typeof insertUserSessionSchema>;
+export type UserSession = typeof userSessions.$inferSelect;
+export type InsertMedia = z.infer<typeof insertMediaSchema>;
+export type Media = typeof media.$inferSelect;
+export type InsertBlogPostRevision = z.infer<typeof insertBlogPostRevisionSchema>;
+export type BlogPostRevision = typeof blogPostRevisions.$inferSelect;
+export type InsertAuditLog = z.infer<typeof insertAuditLogSchema>;
+export type AuditLog = typeof auditLogs.$inferSelect;
