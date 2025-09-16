@@ -963,6 +963,150 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                    dangerouslySetInnerHTML={{ __html: section.content }} 
                               />
                             ) : 
+                            // Handle country cards for how-to-apply-for-student-visa blog in Country notes section
+                            slug === 'how-to-apply-for-student-visa' && section.title === 'Country notes' ? (
+                              (() => {
+                                // Parse countries from the content
+                                const countries = [
+                                  {
+                                    name: 'United Kingdom',
+                                    visaName: 'Student route',
+                                    keyProof: 'CAS, tuition deposit receipt as applicable, financial evidence, language test',
+                                    work: 'Usually allowed part-time in term and full-time during breaks, subject to visa rules',
+                                    links: 'UKVI, UCAS'
+                                  },
+                                  {
+                                    name: 'Sweden',
+                                    portal: 'Migrationsverket',
+                                    keyProof: 'Admission, financial means, insurance, housing details if asked',
+                                    work: 'Part-time work allowed within limits',
+                                    links: 'Study in Sweden'
+                                  },
+                                  {
+                                    name: 'Finland',
+                                    portal: 'Enter Finland',
+                                    keyProof: 'Admission, financial means, insurance',
+                                    work: 'Part-time within national limits',
+                                    links: 'Migri, Studyinfo.fi, Study in Finland'
+                                  },
+                                  {
+                                    name: 'Turkey',
+                                    process: 'Admission first, then visa appointment through the Turkish system',
+                                    keyProof: 'Offer letter, financial means, accommodation plan',
+                                    work: 'Options vary by city and program rules',
+                                    links: 'YÖK Atlas, official consular site'
+                                  },
+                                  {
+                                    name: 'Cyprus',
+                                    process: 'Offer letter, visa application via embassy or college guidance',
+                                    keyProof: 'Financial means and health checks as requested',
+                                    work: 'Limited roles depending on rules',
+                                    links: 'Official university pages, embassy guidance'
+                                  },
+                                  {
+                                    name: 'Germany',
+                                    portal: 'Embassy appointment plus online steps. Many programs use Uni-Assist',
+                                    keyProof: 'Admission, blocked account or other acceptable proof, insurance',
+                                    work: 'Limited part-time hours per year',
+                                    links: 'DAAD, Uni-Assist'
+                                  },
+                                  {
+                                    name: 'Belgium',
+                                    process: 'Long-stay student category via embassy',
+                                    keyProof: 'Admission, financial means, insurance, housing',
+                                    work: 'Part-time options available with limits',
+                                    links: 'Study in Flanders'
+                                  },
+                                  {
+                                    name: 'United States',
+                                    visaName: 'F-1',
+                                    keyProof: 'I-20, SEVIS fee receipt, financial evidence, intent to study',
+                                    interview: 'Usually required',
+                                    work: 'On-campus during studies, other options have rules',
+                                    links: 'EducationUSA, official consular site'
+                                  },
+                                  {
+                                    name: 'Canada',
+                                    portal: 'IRCC online. Check the process to submit online application',
+                                    keyProof: 'Letter of acceptance, proof of funds, medicals if asked',
+                                    work: 'Part-time during studies within national rules',
+                                    links: 'IRCC'
+                                  },
+                                  {
+                                    name: 'Australia',
+                                    portal: 'ImmiAccount',
+                                    keyProof: 'COE, OSHC, financial means, GTE-style statements as required',
+                                    work: 'Part-time during studies within national limits',
+                                    links: 'Study in Australia, Department of Home Affairs'
+                                  }
+                                ];
+
+                                return (
+                                  <div>
+                                    {/* Section summary */}
+                                    <p className="text-gray-700 leading-relaxed text-base mb-6">
+                                      Each destination has its own form names, portals, and typical proofs. Always check the latest guidance.
+                                    </p>
+                                    
+                                    {/* Country Cards */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                                      {countries.map((country, index) => (
+                                        <div key={index} className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300">
+                                          <h3 className="text-lg font-bold text-[#1D50C9] mb-4 border-b border-blue-200 pb-2">
+                                            {country.name}
+                                          </h3>
+                                          <div className="space-y-3 text-sm">
+                                            {country.visaName && (
+                                              <div>
+                                                <span className="font-semibold text-gray-800">Visa name: </span>
+                                                <span className="text-gray-700">{country.visaName}</span>
+                                              </div>
+                                            )}
+                                            {country.portal && (
+                                              <div>
+                                                <span className="font-semibold text-gray-800">Portal: </span>
+                                                <span className="text-gray-700">{country.portal}</span>
+                                              </div>
+                                            )}
+                                            {country.process && (
+                                              <div>
+                                                <span className="font-semibold text-gray-800">Process: </span>
+                                                <span className="text-gray-700">{country.process}</span>
+                                              </div>
+                                            )}
+                                            <div>
+                                              <span className="font-semibold text-gray-800">Key proof: </span>
+                                              <span className="text-gray-700">{country.keyProof}</span>
+                                            </div>
+                                            {country.interview && (
+                                              <div>
+                                                <span className="font-semibold text-gray-800">Interview: </span>
+                                                <span className="text-gray-700">{country.interview}</span>
+                                              </div>
+                                            )}
+                                            <div>
+                                              <span className="font-semibold text-gray-800">Work: </span>
+                                              <span className="text-gray-700">{country.work}</span>
+                                            </div>
+                                            <div>
+                                              <span className="font-semibold text-gray-800">Useful links: </span>
+                                              <span className="text-gray-700">{country.links}</span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      ))}
+                                    </div>
+                                    
+                                    {/* Note at the bottom */}
+                                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                      <p className="text-sm text-gray-700">
+                                        <span className="font-semibold">Note:</span> Policies change. Always confirm the latest rules on the official websites before you apply.
+                                      </p>
+                                    </div>
+                                  </div>
+                                );
+                              })()
+                            ) : 
                             // Handle intake cards for Canada student visa blog
                             slug === 'canada-student-visa-consultants' && section.content.includes('INTAKE_CARDS_START') ? (
                               (() => {
