@@ -824,12 +824,40 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               }
                             }
                             
-                            // For how-to-apply-for-student-visa, use h3 for numbered headings in Step-by-step visa process section
+                            // For how-to-apply-for-student-visa, properly handle h2 and h3 based on document structure
                             if (slug === 'how-to-apply-for-student-visa') {
-                              const isStepNumberHeading = /^\d+\)/.test(cleanTitle);
+                              // These should be h3 (subsections)
+                              const h3Sections = [
+                                'Pick your country and course',
+                                'Build a simple timeline',
+                                '1) Shortlist and apply to universities',
+                                '2) Secure your offer and confirm acceptance',
+                                '3) Pay the tuition deposit if required',
+                                '4) Prepare financial proof',
+                                '5) Gather the full document set',
+                                '6) Complete the online visa application',
+                                '7) Book biometrics and, if required, the interview',
+                                '8) Track your application',
+                                '9) Get the decision and check the details',
+                                '10) Book travel and housing, then attend pre-departure',
+                                'United Kingdom',
+                                'Sweden',
+                                'Finland',
+                                'Turkey',
+                                'Cyprus',
+                                'Germany',
+                                'Belgium',
+                                'United States',
+                                'Canada',
+                                'Australia',
+                                'Cost buckets to plan',
+                                'Sample timeline (generic)'
+                              ];
                               
-                              if (isStepNumberHeading) {
-                                // Numbered steps are h3
+                              const isH3 = h3Sections.includes(cleanTitle);
+                              
+                              if (isH3) {
+                                // Sub-sections are h3
                                 return (
                                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
                                     {hasHtmlLinks ? 
