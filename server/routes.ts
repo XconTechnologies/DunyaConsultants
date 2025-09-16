@@ -18,9 +18,12 @@ import { Resend } from "resend";
 // Initialize Resend (conditional to allow server to start without API key)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-// Extend Request interface to include adminId
+// Extend Request interface to include adminId and user info
 interface AuthenticatedRequest extends Request {
   adminId?: number;
+  adminRole?: string;
+  userId?: number;
+  isAuthenticated?: boolean;
 }
 
 // Admin authentication middleware
@@ -36,10 +39,97 @@ async function requireAuth(req: AuthenticatedRequest, res: Response, next: NextF
       return res.status(401).json({ message: 'Invalid or expired token' });
     }
 
+    // Get admin details to include role information
+    const admin = await storage.getAdminById(session.adminUserId);
+    if (!admin || !admin.isActive) {
+      return res.status(401).json({ message: 'Admin account inactive' });
+    }
+
     req.adminId = session.adminUserId;
+    req.adminRole = admin.role;
+    req.isAuthenticated = true;
     next();
   } catch (error) {
     res.status(401).json({ message: 'Authentication failed' });
+  }
+}
+
+// Role-based access control middleware
+function requireRole(...allowedRoles: string[]) {
+  return (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+    if (!req.adminRole) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+
+    if (!allowedRoles.includes(req.adminRole)) {
+      return res.status(403).json({ 
+        message: `Access denied. Required roles: ${allowedRoles.join(', ')}` 
+      });
+    }
+
+    next();
+  };
+}
+
+// Admin-only access middleware
+const requireAdmin = requireRole('admin');
+
+// Editor and Admin access middleware  
+const requireEditor = requireRole('admin', 'editor');
+
+// Any admin role access middleware
+const requireAnyAdminRole = requireRole('admin', 'editor', 'writer');
+
+// Reader authentication middleware (for content gating)
+async function requireReader(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  try {
+    // Check for reader session token
+    const token = req.headers.authorization?.replace('Bearer ', '') || req.cookies?.readerToken;
+    
+    if (!token) {
+      return res.status(401).json({ 
+        message: 'Reader authentication required',
+        type: 'reader_auth_required'
+      });
+    }
+
+    const session = await storage.getUserSession(token);
+    if (!session) {
+      return res.status(401).json({ 
+        message: 'Invalid or expired reader session',
+        type: 'reader_auth_required'
+      });
+    }
+
+    req.userId = session.userId;
+    req.isAuthenticated = true;
+    next();
+  } catch (error) {
+    res.status(401).json({ 
+      message: 'Reader authentication failed',
+      type: 'reader_auth_required'
+    });
+  }
+}
+
+// Optional reader authentication (allows both authenticated and guest access)
+async function optionalReader(req: AuthenticatedRequest, res: Response, next: NextFunction) {
+  try {
+    const token = req.headers.authorization?.replace('Bearer ', '') || req.cookies?.readerToken;
+    
+    if (token) {
+      const session = await storage.getUserSession(token);
+      if (session) {
+        req.userId = session.userId;
+        req.isAuthenticated = true;
+      }
+    }
+    
+    // Continue regardless of authentication status
+    next();
+  } catch (error) {
+    // Continue even if authentication fails for optional auth
+    next();
   }
 }
 
@@ -48,10 +138,9 @@ async function initializeAdmin() {
   try {
     const existingAdmin = await storage.getAdminByUsername('admin');
     if (!existingAdmin) {
-      const hashedPassword = await bcrypt.hash('admin123', 10);
       await storage.createAdminUser({
         username: 'admin',
-        password: hashedPassword,
+        password: 'admin123',
         email: 'admin@dunyaconsultants.com',
         role: 'admin'
       });
@@ -486,6 +575,139 @@ export async function registerRoutes(app: Express): Promise<Server> {
         username: admin.username,
         email: admin.email,
         role: admin.role
+      });
+    } catch (error) {
+      res.status(500).json({ message: 'Session verification failed' });
+    }
+  });
+
+  // ==============================================
+  // READER AUTHENTICATION ROUTES (Content Gating)
+  // ==============================================
+
+  // Reader registration
+  app.post("/api/reader/register", async (req, res) => {
+    try {
+      const { username, email, password } = req.body;
+      
+      if (!username || !email || !password) {
+        return res.status(400).json({ message: 'Username, email and password required' });
+      }
+
+      // Check if user already exists
+      const existingUser = await storage.getUserByEmail(email);
+      if (existingUser) {
+        return res.status(409).json({ message: 'Email already registered' });
+      }
+
+      // Create new user
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await storage.createUser({
+        username,
+        email,
+        password: hashedPassword
+      });
+
+      // Create session
+      const sessionToken = crypto.randomBytes(32).toString('hex');
+      const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+
+      await storage.createUserSession({
+        sessionToken,
+        userId: user.id,
+        expiresAt
+      });
+
+      res.json({
+        success: true,
+        token: sessionToken,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email
+        }
+      });
+    } catch (error) {
+      console.error('Reader registration error:', error);
+      res.status(500).json({ message: 'Registration failed' });
+    }
+  });
+
+  // Reader login
+  app.post("/api/reader/login", async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      
+      if (!email || !password) {
+        return res.status(400).json({ message: 'Email and password required' });
+      }
+
+      const user = await storage.getUserByEmail(email);
+      if (!user) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+
+      // Create session
+      const sessionToken = crypto.randomBytes(32).toString('hex');
+      const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); // 7 days
+
+      await storage.createUserSession({
+        sessionToken,
+        userId: user.id,
+        expiresAt
+      });
+
+      res.json({
+        success: true,
+        token: sessionToken,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email
+        }
+      });
+    } catch (error) {
+      console.error('Reader login error:', error);
+      res.status(500).json({ message: 'Login failed' });
+    }
+  });
+
+  // Reader logout
+  app.post("/api/reader/logout", async (req, res) => {
+    try {
+      const token = req.headers.authorization?.replace('Bearer ', '') || req.cookies?.readerToken;
+      if (token) {
+        await storage.deleteUserSession(token);
+      }
+      res.json({ success: true, message: 'Logged out successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Logout failed' });
+    }
+  });
+
+  // Verify reader session
+  app.get("/api/reader/me", requireReader, async (req: AuthenticatedRequest, res) => {
+    try {
+      const token = req.headers.authorization?.replace('Bearer ', '') || req.cookies?.readerToken;
+      const session = await storage.getUserSession(token!);
+      if (!session) {
+        return res.status(401).json({ message: 'Session expired' });
+      }
+
+      const user = await storage.getUserById(session.userId);
+      if (!user) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+      res.json({
+        id: user.id,
+        username: user.username,
+        email: user.email
       });
     } catch (error) {
       res.status(500).json({ message: 'Session verification failed' });

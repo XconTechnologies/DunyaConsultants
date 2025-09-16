@@ -32,6 +32,7 @@ export interface IStorage {
   
   // Admin Authentication
   getAdminByUsername(username: string): Promise<AdminUser | undefined>;
+  getAdminById(id: number): Promise<AdminUser | undefined>;
   createAdminUser(adminUser: InsertAdminUser): Promise<AdminUser>;
   createAdminSession(session: InsertAdminSession): Promise<AdminSession>;
   getAdminSession(token: string): Promise<AdminSession | undefined>;
@@ -70,6 +71,7 @@ export interface IStorage {
   getUserSession(token: string): Promise<UserSession | undefined>;
   deleteUserSession(token: string): Promise<void>;
   getUserByEmail(email: string): Promise<User | undefined>;
+  getUserById(id: number): Promise<User | undefined>;
   
   // Enhanced Blog Management with Status Workflow
   getBlogPostsByStatus(status: BlogPost["status"]): Promise<BlogPost[]>;
@@ -277,6 +279,11 @@ export class DatabaseStorage implements IStorage {
     return admin || undefined;
   }
 
+  async getAdminById(id: number): Promise<AdminUser | undefined> {
+    const [admin] = await db.select().from(adminUsers).where(eq(adminUsers.id, id));
+    return admin || undefined;
+  }
+
   async createAdminUser(insertAdminUser: InsertAdminUser): Promise<AdminUser> {
     // Hash the password before storing
     const hashedPassword = await bcrypt.hash(insertAdminUser.password, 10);
@@ -469,6 +476,11 @@ export class DatabaseStorage implements IStorage {
 
   async getUserByEmail(email: string): Promise<User | undefined> {
     const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user || undefined;
+  }
+
+  async getUserById(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
     return user || undefined;
   }
 
