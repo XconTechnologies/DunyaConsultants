@@ -588,6 +588,7 @@ export default function BlogEditor() {
                         control={control}
                         render={({ field }) => (
                           <ReactQuill
+                            key={`quill-${blogId || 'new'}-${field.value ? 'loaded' : 'empty'}`}
                             value={field.value || ''}
                             onChange={(value) => field.onChange(value)}
                             placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
