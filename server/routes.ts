@@ -920,8 +920,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Delete blog post with comprehensive audit logging (Admin only)
-  app.delete("/api/admin/blog-posts/:id", requireAdmin, async (req: AuthenticatedRequest, res) => {
+  // Delete blog post with comprehensive audit logging (Editors and Admins)
+  app.delete("/api/admin/blog-posts/:id", requireEditor, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
       
