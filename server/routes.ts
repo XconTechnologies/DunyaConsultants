@@ -1134,16 +1134,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Delete blog post
-  app.delete("/api/admin/blog-posts/:id", requireAuth, async (req, res) => {
-    try {
-      const id = parseInt(req.params.id);
-      await storage.deleteBlogPost(id);
-      res.json({ success: true, message: 'Blog post deleted successfully' });
-    } catch (error) {
-      res.status(500).json({ message: 'Failed to delete blog post' });
-    }
-  });
+  // Remove this duplicate route - the proper delete route with audit logging exists above
 
   // Publish blog post
   app.patch("/api/admin/blog-posts/:id/publish", requireAuth, async (req, res) => {

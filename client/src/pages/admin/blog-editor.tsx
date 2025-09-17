@@ -281,8 +281,11 @@ export default function BlogEditor() {
           isPublished: !!blogPost.isPublished,
         });
         
-        // Content is already set via reset() above
-      }, 200);
+        // Force ReactQuill to update with content after reset
+        setTimeout(() => {
+          setValue("content", blogPost.content || "", { shouldValidate: true });
+        }, 100);
+      }, 300);
     }
   }, [blogPost, isEditing, reset, setValue]);
 
