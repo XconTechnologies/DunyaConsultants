@@ -384,7 +384,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
   // Parse content based on format
   let contentSections;
-  if (typeof blogPost.rawContent === 'string' && blogPost.rawContent.startsWith('{')) {
+  let isHTMLContent = false;
+  
+  // Check if content is HTML (starts with HTML tags)
+  if (blogPost.content && (blogPost.content.startsWith('<') || blogPost.content.includes('<p>'))) {
+    isHTMLContent = true;
+    // For HTML content, create a single section to render as HTML
+    contentSections = [{
+      id: 'content',
+      title: '',
+      content: blogPost.content
+    }];
+  } else if (typeof blogPost.rawContent === 'string' && blogPost.rawContent.startsWith('{')) {
     try {
       const parsedContent = JSON.parse(blogPost.rawContent);
       if (parsedContent.sections) {
@@ -518,8 +529,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
                 {/* Blog Content */}
                 <div className="prose prose-xl max-w-none">
-                  {/* Show Intro with Special Blue Box */}
-                  {contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
+                  {/* Handle HTML content or regular intro sections */}
+                  {isHTMLContent ? (
+                    <div className="blog-content prose prose-xl max-w-none" dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }} />
+                  ) : contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
                     <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
                       <div className="text-gray-700 leading-relaxed">
                         {contentSections[0].content.split('\n').map((paragraph: string, pIndex: number) => {
