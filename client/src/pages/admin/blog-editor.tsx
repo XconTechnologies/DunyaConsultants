@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useLocation, useRoute } from "wouter";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -104,6 +104,7 @@ export default function BlogEditor() {
     resolver: zodResolver(blogSchema),
     defaultValues: {
       isPublished: false,
+      content: "",
     },
   });
 
@@ -111,6 +112,44 @@ export default function BlogEditor() {
   const content = watch("content");
   const isPublished = watch("isPublished");
   
+  // Memoized ReactQuill modules to prevent reinitializing
+  const quillModules = useMemo(() => ({
+    toolbar: [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'color': [] }, { 'background': [] }],
+      ['blockquote', 'code-block'],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'align': [] }],
+      ['link'],
+      ['clean']
+    ],
+    clipboard: {
+      matchVisual: false,
+      matchers: [
+        // Google Docs heading preservation
+        ['P', function(node: any, delta: any) {
+          const fontSize = node.style.fontSize;
+          if (fontSize && fontSize.includes('24px')) {
+            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 1 } }));
+          } else if (fontSize && fontSize.includes('18px')) {
+            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 2 } }));
+          } else if (fontSize && fontSize.includes('16px')) {
+            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 3 } }));
+          }
+          return delta;
+        }],
+        // Preserve bold formatting from Google Docs
+        ['SPAN', function(node: any, delta: any) {
+          if (node.style && node.style.fontWeight === 'bold') {
+            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, bold: true } }));
+          }
+          return delta;
+        }]
+      ]
+    }
+  }), []);
+
   // Debug logging for form state changes
   useEffect(() => {
     console.log('Form content changed:', content?.length || 0, 'characters');
@@ -456,48 +495,12 @@ export default function BlogEditor() {
                       <Controller
                         name="content"
                         control={control}
-                        defaultValue=""
                         render={({ field }) => (
                           <ReactQuill
                             value={field.value || ''}
                             onChange={(value) => field.onChange(value)}
-                        placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
-                        modules={{
-                          toolbar: [
-                            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                            ['bold', 'italic', 'underline', 'strike'],
-                            [{ 'color': [] }, { 'background': [] }],
-                            ['blockquote', 'code-block'],
-                            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-                            [{ 'align': [] }],
-                            ['link'],
-                            ['clean']
-                          ],
-                          clipboard: {
-                            matchVisual: false,
-                            matchers: [
-                              // Google Docs heading preservation
-                              ['P', function(node: any, delta: any) {
-                                const fontSize = node.style.fontSize;
-                                if (fontSize && fontSize.includes('24px')) {
-                                  delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 1 } }));
-                                } else if (fontSize && fontSize.includes('18px')) {
-                                  delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 2 } }));
-                                } else if (fontSize && fontSize.includes('16px')) {
-                                  delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 3 } }));
-                                }
-                                return delta;
-                              }],
-                              // Preserve bold formatting from Google Docs
-                              ['SPAN', function(node: any, delta: any) {
-                                if (node.style && node.style.fontWeight === 'bold') {
-                                  delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, bold: true } }));
-                                }
-                                return delta;
-                              }]
-                            ]
-                          }
-                        }}
+                            placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
+                            modules={quillModules}
                           />
                         )}
                       />
