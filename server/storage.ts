@@ -352,6 +352,9 @@ export class DatabaseStorage implements IStorage {
   }
 
   async deleteBlogPost(id: number): Promise<void> {
+    // First delete related blog post revisions
+    await db.delete(blogPostRevisions).where(eq(blogPostRevisions.postId, id));
+    // Then delete the blog post itself
     await db.delete(blogPosts).where(eq(blogPosts.id, id));
   }
 
