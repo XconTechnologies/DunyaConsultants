@@ -128,109 +128,177 @@ export default function BlogEditor() {
       ['clean']
     ],
     clipboard: {
+      // Don't try to match visual formatting - let our matchers handle it
       matchVisual: false,
       matchers: [
-        // Individual heading matchers for Google Docs
-        ['H1', function(node: any, delta: any) {
-          delta.ops = delta.ops.map((op: any) => ({ 
-            ...op, 
-            attributes: { ...op.attributes, header: 1 } 
-          }));
-          return delta;
+        // Clean Google Docs specific elements first
+        ['[class*="docs-internal-guid"]', function() {
+          return new (window as any).Quill.import('delta')().insert('');
         }],
-        ['H2', function(node: any, delta: any) {
-          delta.ops = delta.ops.map((op: any) => ({ 
-            ...op, 
-            attributes: { ...op.attributes, header: 2 } 
-          }));
-          return delta;
+        
+        // Handle headings - preserve structure from Google Docs
+        ['H1', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { header: 1 });
         }],
-        ['H3', function(node: any, delta: any) {
-          delta.ops = delta.ops.map((op: any) => ({ 
-            ...op, 
-            attributes: { ...op.attributes, header: 3 } 
-          }));
-          return delta;
+        ['H2', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { header: 2 });
         }],
-        ['H4', function(node: any, delta: any) {
-          delta.ops = delta.ops.map((op: any) => ({ 
-            ...op, 
-            attributes: { ...op.attributes, header: 4 } 
-          }));
-          return delta;
+        ['H3', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { header: 3 });
         }],
-        ['H5', function(node: any, delta: any) {
-          delta.ops = delta.ops.map((op: any) => ({ 
-            ...op, 
-            attributes: { ...op.attributes, header: 5 } 
-          }));
-          return delta;
+        ['H4', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { header: 4 });
         }],
-        ['H6', function(node: any, delta: any) {
-          delta.ops = delta.ops.map((op: any) => ({ 
-            ...op, 
-            attributes: { ...op.attributes, header: 6 } 
-          }));
-          return delta;
+        ['H5', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { header: 5 });
         }],
-        // Conservative paragraph styling for very large fonts only
-        ['P', function(node: any, delta: any) {
-          const computedStyle = window.getComputedStyle ? window.getComputedStyle(node) : node.style;
-          const fontSize = computedStyle.fontSize || node.style.fontSize;
-          const fontWeight = computedStyle.fontWeight || node.style.fontWeight;
+        ['H6', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { header: 6 });
+        }],
+        
+        // Handle paragraphs with better font size detection for Google Docs
+        ['P', function(node: any) {
+          const text = node.textContent || '';
+          const style = node.style || {};
+          const computedStyle = window.getComputedStyle ? window.getComputedStyle(node) : { fontSize: '', fontWeight: '', fontStyle: '' };
           
-          // Only convert to headers for very distinctive large sizes (be conservative)
+          const fontSize = computedStyle.fontSize || (style as any).fontSize;
+          const fontWeight = computedStyle.fontWeight || (style as any).fontWeight;
+          const fontStyle = computedStyle.fontStyle || (style as any).fontStyle;
+          
+          let attributes: any = {};
+          
+          // Convert large font sizes to headers (Google Docs pattern)
           if (fontSize) {
-            const sizeValue = parseFloat(fontSize);
-            if (sizeValue >= 28 || fontSize.includes('28pt')) {
-              delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 1 } }));
-            } else if (sizeValue >= 24 || fontSize.includes('24pt')) {
-              delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 2 } }));
+            const sizeNum = parseFloat(fontSize);
+            if (sizeNum >= 26 || fontSize.includes('26pt') || fontSize.includes('24pt')) {
+              attributes.header = 1;
+            } else if (sizeNum >= 20 || fontSize.includes('20pt') || fontSize.includes('18pt')) {
+              attributes.header = 2;
+            } else if (sizeNum >= 16 || fontSize.includes('16pt')) {
+              attributes.header = 3;
             }
           }
           
-          // Handle bold formatting in paragraphs
+          // Preserve text formatting
           if (fontWeight === 'bold' || fontWeight === '700' || parseInt(fontWeight) >= 700) {
-            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, bold: true } }));
+            attributes.bold = true;
           }
-          
-          return delta;
-        }],
-        // Enhanced span formatting for Google Docs
-        ['SPAN', function(node: any, delta: any) {
-          const computedStyle = window.getComputedStyle ? window.getComputedStyle(node) : node.style;
-          const fontWeight = computedStyle.fontWeight || node.style.fontWeight;
-          const fontStyle = computedStyle.fontStyle || node.style.fontStyle;
-          const textDecoration = computedStyle.textDecoration || node.style.textDecoration;
-          
-          // Handle bold (Google Docs uses various bold indicators)
-          if (fontWeight === 'bold' || fontWeight === '700' || parseInt(fontWeight) >= 700) {
-            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, bold: true } }));
-          }
-          
-          // Handle italic
           if (fontStyle === 'italic') {
-            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, italic: true } }));
+            attributes.italic = true;
           }
           
-          // Handle underline
+          const delta = new (window as any).Quill.import('delta')();
+          return Object.keys(attributes).length > 0 
+            ? delta.insert(text, attributes).insert('\n')
+            : delta.insert(text).insert('\n');
+        }],
+        
+        // Handle spans (Google Docs uses these heavily for formatting)
+        ['SPAN', function(node: any) {
+          const text = node.textContent || '';
+          const style = node.style || {};
+          const computedStyle = window.getComputedStyle ? window.getComputedStyle(node) : { fontWeight: '', fontStyle: '', textDecoration: '', color: '' };
+          
+          const fontWeight = computedStyle.fontWeight || (style as any).fontWeight;
+          const fontStyle = computedStyle.fontStyle || (style as any).fontStyle;
+          const textDecoration = computedStyle.textDecoration || (style as any).textDecoration;
+          const color = computedStyle.color || (style as any).color;
+          
+          let attributes: any = {};
+          
+          // Handle formatting
+          if (fontWeight === 'bold' || fontWeight === '700' || parseInt(fontWeight) >= 700) {
+            attributes.bold = true;
+          }
+          if (fontStyle === 'italic') {
+            attributes.italic = true;
+          }
           if (textDecoration && textDecoration.includes('underline')) {
-            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, underline: true } }));
+            attributes.underline = true;
           }
           
+          // Handle colors if they're not default
+          if (color && color !== 'rgb(0, 0, 0)' && color !== '#000000' && color !== 'black') {
+            attributes.color = color;
+          }
+          
+          return Object.keys(attributes).length > 0 
+            ? new (window as any).Quill.import('delta')().insert(text, attributes)
+            : new (window as any).Quill.import('delta')().insert(text);
+        }],
+        
+        // Handle lists properly
+        ['OL', function(node: any) {
+          const delta = new (window as any).Quill.import('delta')();
+          const items = node.querySelectorAll('li');
+          items.forEach((li: any) => {
+            const text = li.textContent || '';
+            delta.insert(text, { list: 'ordered' }).insert('\n');
+          });
           return delta;
         }],
-        // Handle list items properly (not the container)
-        ['LI', function(node: any, delta: any) {
-          const parentList = node.parentElement;
-          if (parentList) {
-            const isOrdered = parentList.tagName.toLowerCase() === 'ol';
-            delta.ops = delta.ops.map((op: any) => ({ 
-              ...op, 
-              attributes: { ...op.attributes, list: isOrdered ? 'ordered' : 'bullet' } 
-            }));
-          }
+        ['UL', function(node: any) {
+          const delta = new (window as any).Quill.import('delta')();
+          const items = node.querySelectorAll('li');
+          items.forEach((li: any) => {
+            const text = li.textContent || '';
+            delta.insert(text, { list: 'bullet' }).insert('\n');
+          });
           return delta;
+        }],
+        ['LI', function(node: any) {
+          const text = node.textContent || '';
+          const parent = node.parentElement;
+          const listType = parent && parent.tagName.toLowerCase() === 'ol' ? 'ordered' : 'bullet';
+          return new (window as any).Quill.import('delta')().insert(text, { list: listType }).insert('\n');
+        }],
+        
+        // Handle links
+        ['A', function(node: any) {
+          const text = node.textContent || '';
+          const href = node.href;
+          return href 
+            ? new (window as any).Quill.import('delta')().insert(text, { link: href })
+            : new (window as any).Quill.import('delta')().insert(text);
+        }],
+        
+        // Handle strong/b tags
+        ['STRONG', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { bold: true });
+        }],
+        ['B', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { bold: true });
+        }],
+        
+        // Handle em/i tags
+        ['EM', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { italic: true });
+        }],
+        ['I', function(node: any) {
+          const text = node.textContent || '';
+          return new (window as any).Quill.import('delta')().insert(text, { italic: true });
+        }],
+        
+        // Catch-all for other elements - just extract text
+        [(window as any).Node?.ELEMENT_NODE || 1, function(node: any) {
+          // Skip if already handled by specific matchers
+          const tagName = node.tagName;
+          if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'P', 'SPAN', 'OL', 'UL', 'LI', 'A', 'STRONG', 'B', 'EM', 'I'].includes(tagName)) {
+            return;
+          }
+          
+          const text = node.textContent || '';
+          return text ? new (window as any).Quill.import('delta')().insert(text) : new (window as any).Quill.import('delta')();
         }]
       ]
     }
