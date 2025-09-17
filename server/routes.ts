@@ -30,26 +30,37 @@ interface AuthenticatedRequest extends Request {
 async function requireAuth(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   try {
     const token = req.headers.authorization?.replace('Bearer ', '');
+    console.log('Delete auth debug - Token received:', token ? 'Yes' : 'No');
+    
     if (!token) {
+      console.log('Delete auth debug - No token provided');
       return res.status(401).json({ message: 'No token provided' });
     }
 
     const session = await storage.getAdminSession(token);
+    console.log('Delete auth debug - Session found:', session ? 'Yes' : 'No');
+    
     if (!session) {
+      console.log('Delete auth debug - Invalid session');
       return res.status(401).json({ message: 'Invalid or expired token' });
     }
 
     // Get admin details to include role information
     const admin = await storage.getAdminById(session.adminUserId);
+    console.log('Delete auth debug - Admin found:', admin ? `Yes (${admin.role})` : 'No');
+    
     if (!admin || !admin.isActive) {
+      console.log('Delete auth debug - Admin inactive or not found');
       return res.status(401).json({ message: 'Admin account inactive' });
     }
 
     req.adminId = session.adminUserId;
     req.adminRole = admin.role;
     req.isAuthenticated = true;
+    console.log('Delete auth debug - Authentication successful');
     next();
   } catch (error) {
+    console.log('Delete auth debug - Error:', error);
     res.status(401).json({ message: 'Authentication failed' });
   }
 }
