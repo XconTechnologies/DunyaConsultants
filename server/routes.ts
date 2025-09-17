@@ -748,6 +748,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin preview route for drafts/unpublished posts  
+  app.get("/api/admin/blog-posts/:id/preview", requireAuth, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const post = await storage.getBlogPost(id);
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      // Return the full post data regardless of publication status for admin preview
+      res.json(post);
+    } catch (error) {
+      console.error('Error in admin preview:', error);
+      res.status(500).json({ message: 'Failed to fetch blog post preview' });
+    }
+  });
+
   // Get single blog post (admin)
   app.get("/api/admin/blog-posts/:id", requireAuth, async (req, res) => {
     try {
@@ -1105,31 +1121,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get single published blog post by slug (public) - handles nested paths like 2024/09/06/slug-name
-  app.get("/api/blog-posts/*", async (req, res) => {
-    // Skip if it's the published endpoint
-    if ((req.params as any)['0'] === 'published') {
-      return;
-    }
-    try {
-      const slug = (req.params as any)['0']; // This captures the full path after /api/blog-posts/
-      console.log(`Looking for blog post with slug: ${slug}`);
-      const post = await storage.getBlogPostBySlug(slug);
-      console.log(`Found post:`, post ? `${post.title} (published: ${post.isPublished})` : 'none');
-      
-      if (!post || !post.isPublished) {
-        return res.status(404).json({ message: 'Blog post not found' });
-      }
-      
-      // Increment view count
-      await storage.incrementBlogViews(post.id);
-      
-      res.json(post);
-    } catch (error: any) {
-      console.error('Error fetching blog post by slug:', error);
-      res.status(500).json({ message: 'Failed to fetch blog post', error: error?.message || error });
-    }
-  });
+  // DISABLED: This wildcard route conflicts with the /:slug route below - removed to fix content display issue
+  // app.get("/api/blog-posts/*", async (req, res) => {
+  //   // Skip if it's the published endpoint
+  //   if ((req.params as any)['0'] === 'published') {
+  //     return;
+  //   }
+  //   try {
+  //     const slug = (req.params as any)['0']; // This captures the full path after /api/blog-posts/
+  //     console.log(`Looking for blog post with slug: ${slug}`);
+  //     const post = await storage.getBlogPostBySlug(slug);
+  //     console.log(`Found post:`, post ? `${post.title} (published: ${post.isPublished})` : 'none');
+  //     
+  //     if (!post || !post.isPublished) {
+  //       return res.status(404).json({ message: 'Blog post not found' });
+  //     }
+  //     
+  //     // Increment view count
+  //     await storage.incrementBlogViews(post.id);
+  //     
+  //     res.json(post);
+  //   } catch (error: any) {
+  //     console.error('Error fetching blog post by slug:', error);
+  //     res.status(500).json({ message: 'Failed to fetch blog post', error: error?.message || error });
+  //   }
+  // });
 
   // Get published blog posts (public)
   app.get("/api/blog-posts/published", async (req, res) => {
@@ -1332,7 +1348,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/blog-posts/:slug", async (req, res) => {
     try {
       const post = await storage.getBlogPostBySlug(req.params.slug);
-      if (!post || post.status !== 'published') {
+      if (!post || !post.isPublished) {
         return res.status(404).json({ message: 'Blog post not found' });
       }
       // Increment view count for published posts

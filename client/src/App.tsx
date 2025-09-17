@@ -61,6 +61,7 @@ import EngagementTracker from "@/components/gamification/engagement-tracker";
 import AdminLogin from "@/pages/admin/login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import BlogEditor from "@/pages/admin/blog-editor";
+import AdminBlogPreview from "@/pages/admin/blog-preview";
 
 
 
@@ -160,6 +161,7 @@ function Router() {
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/admin/blog-editor/:id?" component={BlogEditor} />
       <Route path="/admin/blog-editor" component={BlogEditor} />
+      <Route path="/admin/blog-preview/:id" component={AdminBlogPreview} />
       
       {/* Backward compatibility for old blog slug format */}
       <Route path="/:slug" component={Blog} />

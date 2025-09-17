@@ -459,11 +459,19 @@ export default function BlogEditor() {
               <Badge variant={isPublished ? "default" : "secondary"}>
                 {isPublished ? "Published" : "Draft"}
               </Badge>
-              {isEditing && blogPost?.slug && (
+              {isEditing && blogPost?.id && (
                 <Button
                   variant="outline"
                   className="flex items-center space-x-2"
-                  onClick={() => window.open(`/blog/${blogPost.slug}`, '_blank')}
+                  onClick={() => {
+                    if (blogPost.isPublished && blogPost.slug) {
+                      // For published posts, open public URL
+                      window.open(`/blog/${blogPost.slug}`, '_blank');
+                    } else {
+                      // For drafts, open admin preview page
+                      window.open(`/admin/blog-preview/${blogPost.id}`, '_blank');
+                    }
+                  }}
                   data-testid="preview-blog"
                 >
                   <Eye className="w-4 h-4" />
