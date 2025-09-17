@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useRoute } from "wouter";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -56,7 +56,6 @@ export default function BlogEditor() {
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [editorMounted, setEditorMounted] = useState(false);
-  const [editorContent, setEditorContent] = useState('');
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const contentRef = useRef<HTMLTextAreaElement>(null);
@@ -100,6 +99,7 @@ export default function BlogEditor() {
     setValue,
     watch,
     reset,
+    control,
   } = useForm<BlogForm>({
     resolver: zodResolver(blogSchema),
     defaultValues: {
@@ -114,8 +114,7 @@ export default function BlogEditor() {
   // Debug logging for form state changes
   useEffect(() => {
     console.log('Form content changed:', content?.length || 0, 'characters');
-    console.log('Editor content:', editorContent?.length || 0, 'characters');
-  }, [content, editorContent]);
+  }, [content]);
 
   // Generate slug from title
   useEffect(() => {
@@ -154,10 +153,7 @@ export default function BlogEditor() {
           isPublished: !!blogPost.isPublished,
         });
         
-        // Force content field to update (ReactQuill is controlled by the value prop)
-        const content = blogPost.content || "";
-        setValue('content', content, { shouldDirty: true, shouldTouch: true });
-        setEditorContent(content);
+        // Content is already set via reset() above
       }, 200);
     }
   }, [blogPost, isEditing, reset, setValue]);
@@ -220,13 +216,7 @@ export default function BlogEditor() {
     }
   };
 
-  // Handle content change from ReactQuill
-  const handleEditorChange = (newContent: string) => {
-    console.log('ReactQuill onChange called with content length:', newContent.length);
-    console.log('ReactQuill content preview:', newContent.substring(0, 100));
-    setEditorContent(newContent);
-    setValue('content', newContent, { shouldDirty: true, shouldTouch: true });
-  };
+  // ReactQuill now handled via Controller - no manual handler needed
 
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -463,9 +453,14 @@ export default function BlogEditor() {
                 <CardContent>
                   <div className="react-quill-container" style={{ minHeight: '500px', width: '100%' }}>
                     {editorMounted ? (
-                      <ReactQuill
-                        value={editorContent || content || ''}
-                        onChange={handleEditorChange}
+                      <Controller
+                        name="content"
+                        control={control}
+                        defaultValue=""
+                        render={({ field }) => (
+                          <ReactQuill
+                            value={field.value || ''}
+                            onChange={(value) => field.onChange(value)}
                         placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
                         modules={{
                           toolbar: [
@@ -503,6 +498,8 @@ export default function BlogEditor() {
                             ]
                           }
                         }}
+                          />
+                        )}
                       />
                     ) : (
                       <div className="h-[460px] border border-gray-300 rounded-md bg-gray-50 flex items-center justify-center">
