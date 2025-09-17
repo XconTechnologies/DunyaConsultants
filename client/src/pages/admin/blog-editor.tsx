@@ -291,6 +291,7 @@ export default function BlogEditor() {
       const payload = {
         ...data,
         tags: data.tags ? data.tags.split(",").map(tag => tag.trim()) : [],
+        status: data.isPublished ? "published" : "draft", // Set status field correctly
       };
 
       const response = await fetch(url, {
