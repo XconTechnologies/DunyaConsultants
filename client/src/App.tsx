@@ -5,6 +5,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { useEffect } from "react";
+import { initGA } from "./lib/analytics";
+import { useAnalytics } from "./hooks/use-analytics";
 // Global ReactQuill CSS import to ensure proper loading
 import 'react-quill/dist/quill.snow.css';
 import Home from "@/pages/home";
@@ -81,6 +84,9 @@ import OurSuccessStories from "@/pages/about/our-success-stories";
 import TeamPage from "@/pages/about/team";
 
 function Router() {
+  // Track page views when routes change - Google Analytics integration
+  useAnalytics();
+
   return (
     <>
       <ScrollToTop />
@@ -174,6 +180,16 @@ function Router() {
 }
 
 function App() {
+  // Initialize Google Analytics when app loads
+  useEffect(() => {
+    // Verify required environment variable is present
+    if (!import.meta.env.VITE_GA_MEASUREMENT_ID) {
+      console.warn('Missing required Google Analytics key: VITE_GA_MEASUREMENT_ID');
+    } else {
+      initGA();
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <EngagementTracker>
