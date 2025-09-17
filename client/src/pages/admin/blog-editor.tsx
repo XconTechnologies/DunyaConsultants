@@ -127,22 +127,105 @@ export default function BlogEditor() {
     clipboard: {
       matchVisual: false,
       matchers: [
-        // Google Docs heading preservation
-        ['P', function(node: any, delta: any) {
-          const fontSize = node.style.fontSize;
-          if (fontSize && fontSize.includes('24px')) {
-            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 1 } }));
-          } else if (fontSize && fontSize.includes('18px')) {
-            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 2 } }));
-          } else if (fontSize && fontSize.includes('16px')) {
-            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 3 } }));
-          }
+        // Individual heading matchers for Google Docs
+        ['H1', function(node: any, delta: any) {
+          delta.ops = delta.ops.map((op: any) => ({ 
+            ...op, 
+            attributes: { ...op.attributes, header: 1 } 
+          }));
           return delta;
         }],
-        // Preserve bold formatting from Google Docs
-        ['SPAN', function(node: any, delta: any) {
-          if (node.style && node.style.fontWeight === 'bold') {
+        ['H2', function(node: any, delta: any) {
+          delta.ops = delta.ops.map((op: any) => ({ 
+            ...op, 
+            attributes: { ...op.attributes, header: 2 } 
+          }));
+          return delta;
+        }],
+        ['H3', function(node: any, delta: any) {
+          delta.ops = delta.ops.map((op: any) => ({ 
+            ...op, 
+            attributes: { ...op.attributes, header: 3 } 
+          }));
+          return delta;
+        }],
+        ['H4', function(node: any, delta: any) {
+          delta.ops = delta.ops.map((op: any) => ({ 
+            ...op, 
+            attributes: { ...op.attributes, header: 4 } 
+          }));
+          return delta;
+        }],
+        ['H5', function(node: any, delta: any) {
+          delta.ops = delta.ops.map((op: any) => ({ 
+            ...op, 
+            attributes: { ...op.attributes, header: 5 } 
+          }));
+          return delta;
+        }],
+        ['H6', function(node: any, delta: any) {
+          delta.ops = delta.ops.map((op: any) => ({ 
+            ...op, 
+            attributes: { ...op.attributes, header: 6 } 
+          }));
+          return delta;
+        }],
+        // Conservative paragraph styling for very large fonts only
+        ['P', function(node: any, delta: any) {
+          const computedStyle = window.getComputedStyle ? window.getComputedStyle(node) : node.style;
+          const fontSize = computedStyle.fontSize || node.style.fontSize;
+          const fontWeight = computedStyle.fontWeight || node.style.fontWeight;
+          
+          // Only convert to headers for very distinctive large sizes (be conservative)
+          if (fontSize) {
+            const sizeValue = parseFloat(fontSize);
+            if (sizeValue >= 28 || fontSize.includes('28pt')) {
+              delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 1 } }));
+            } else if (sizeValue >= 24 || fontSize.includes('24pt')) {
+              delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, header: 2 } }));
+            }
+          }
+          
+          // Handle bold formatting in paragraphs
+          if (fontWeight === 'bold' || fontWeight === '700' || parseInt(fontWeight) >= 700) {
             delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, bold: true } }));
+          }
+          
+          return delta;
+        }],
+        // Enhanced span formatting for Google Docs
+        ['SPAN', function(node: any, delta: any) {
+          const computedStyle = window.getComputedStyle ? window.getComputedStyle(node) : node.style;
+          const fontWeight = computedStyle.fontWeight || node.style.fontWeight;
+          const fontStyle = computedStyle.fontStyle || node.style.fontStyle;
+          const textDecoration = computedStyle.textDecoration || node.style.textDecoration;
+          
+          // Handle bold (Google Docs uses various bold indicators)
+          if (fontWeight === 'bold' || fontWeight === '700' || parseInt(fontWeight) >= 700) {
+            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, bold: true } }));
+          }
+          
+          // Handle italic
+          if (fontStyle === 'italic') {
+            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, italic: true } }));
+          }
+          
+          // Handle underline
+          if (textDecoration && textDecoration.includes('underline')) {
+            delta.ops = delta.ops.map((op: any) => ({ ...op, attributes: { ...op.attributes, underline: true } }));
+          }
+          
+          return delta;
+        }],
+        // Handle list items properly (not the container)
+        ['LI', function(node: any, delta: any) {
+          const parentList = node.parentElement;
+          if (parentList) {
+            const isOrdered = parentList.tagName.toLowerCase() === 'ol';
+            delta.ops = delta.ops.map((op: any) => ({ 
+              ...op, 
+              attributes: { ...op.attributes, list: isOrdered ? 'ordered' : 'bullet' } 
+            }));
           }
           return delta;
         }]
