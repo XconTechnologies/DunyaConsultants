@@ -16,6 +16,9 @@ import ConsultationBookingSection from "@/components/consultation-booking-sectio
 
 // Unified image src normalization function
 const normalizeImageSrc = (image: string) => {
+  if (!image || image.trim() === '') {
+    return '/attached_assets/placeholder.jpg'; // fallback for empty images
+  }
   const trimmed = image.trim();
   if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
     return trimmed;
@@ -281,7 +284,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
-    image: post.image || post.featuredImage || post.featured_image,
+    image: normalizeImageSrc(post.image || post.featuredImage || post.featured_image || ''),
     featured: false,
     slug: post.slug,
     content: post.content,
@@ -2800,7 +2803,7 @@ export default function Blog() {
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
-    image: post.image || post.featuredImage || post.featured_image,
+    image: normalizeImageSrc(post.image || post.featuredImage || post.featured_image || ''),
     featured: false,
     slug: post.slug,
     sortDate: (() => {

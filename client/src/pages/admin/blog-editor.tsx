@@ -29,6 +29,7 @@ const blogSchema = z.object({
   focusKeyword: z.string().optional(),
   featuredImage: z.string().optional(),
   tags: z.string().optional(),
+  publishedAt: z.string().optional(),
   isPublished: z.boolean().default(false),
 });
 
@@ -44,6 +45,7 @@ interface BlogPost {
   focusKeyword?: string;
   featuredImage?: string;
   tags: string[];
+  publishedAt?: string;
   isPublished: boolean;
   createdAt: string;
   updatedAt: string;
@@ -105,6 +107,7 @@ export default function BlogEditor() {
     defaultValues: {
       isPublished: false,
       content: "",
+      publishedAt: "", // Don't pre-fill - only set when actually publishing
     },
   });
 
@@ -272,6 +275,9 @@ export default function BlogEditor() {
             : typeof blogPost.tags === 'string' 
               ? blogPost.tags 
               : "",
+          publishedAt: blogPost.publishedAt 
+            ? new Date(blogPost.publishedAt).toISOString().split('T')[0] 
+            : "",
           isPublished: !!blogPost.isPublished,
         });
         
@@ -292,6 +298,7 @@ export default function BlogEditor() {
         ...data,
         tags: data.tags ? data.tags.split(",").map(tag => tag.trim()) : [],
         status: data.isPublished ? "published" : "draft", // Set status field correctly
+        publishedAt: data.isPublished ? (data.publishedAt || new Date().toISOString()) : null, // Set publishedAt when publishing
       };
 
       const response = await fetch(url, {
@@ -656,6 +663,26 @@ export default function BlogEditor() {
                       </>
                     )}
                   </Button>
+                </CardContent>
+              </Card>
+
+              {/* Publish Date */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Calendar className="w-5 h-5" />
+                    <span>Publish Date</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Input
+                    type="date"
+                    {...register("publishedAt")}
+                    placeholder="Select publish date..."
+                  />
+                  <p className="text-sm text-gray-500 mt-2">
+                    Date when the post will be/was published
+                  </p>
                 </CardContent>
               </Card>
 

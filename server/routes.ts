@@ -782,13 +782,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const baseSlug = req.body.slug || req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       const uniqueSlug = await generateUniqueSlug(baseSlug);
       
+      // Parse the form data but handle publishedAt separately since it's omitted from schema
       const blogData = insertBlogPostSchema.parse({
         ...req.body,
         authorId: req.adminId,
         slug: uniqueSlug
       });
-      
-      const post = await storage.createBlogPost(blogData);
+
+      // Handle publishedAt based on isPublished status and provided date
+      let publishedAt = null;
+      if (req.body.isPublished) {
+        if (req.body.publishedAt) {
+          // Handle YYYY-MM-DD format from form
+          publishedAt = new Date(req.body.publishedAt);
+          // If invalid date, default to now
+          if (isNaN(publishedAt.getTime())) {
+            publishedAt = new Date();
+          }
+        } else {
+          publishedAt = new Date();
+        }
+      }
+
+      const post = await storage.createBlogPost({
+        ...blogData,
+        publishedAt
+      } as any);
       
       // Create comprehensive audit log for blog post creation
       await storage.createAuditLog({
@@ -833,6 +852,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (updates.title && !updates.slug) {
         const baseSlug = updates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
         updates.slug = await generateUniqueSlug(baseSlug);
+      }
+
+      // Handle publishedAt based on isPublished status
+      if (updates.hasOwnProperty('isPublished')) {
+        if (updates.isPublished) {
+          // When publishing, set publishedAt if provided, otherwise use current time
+          if (updates.publishedAt) {
+            const parsedDate = new Date(updates.publishedAt);
+            updates.publishedAt = isNaN(parsedDate.getTime()) ? new Date() : parsedDate;
+          } else {
+            updates.publishedAt = new Date();
+          }
+        } else {
+          // When unpublishing, keep existing publishedAt (for history) but set isPublished to false
+          // updates.publishedAt stays as is
+        }
+      } else if (updates.publishedAt) {
+        // If only publishedAt is updated without isPublished status change
+        const parsedDate = new Date(updates.publishedAt);
+        updates.publishedAt = isNaN(parsedDate.getTime()) ? originalPost.publishedAt : parsedDate;
       }
       
       // Create revision before updating

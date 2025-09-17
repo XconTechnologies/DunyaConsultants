@@ -6,6 +6,27 @@ import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
+// Unified image src normalization function (same as blog.tsx)
+const normalizeImageSrc = (image: string) => {
+  if (!image || image.trim() === '') {
+    return '/attached_assets/placeholder.jpg'; // fallback for empty images
+  }
+  const trimmed = image.trim();
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+  if (trimmed.startsWith('/api/uploads/') || trimmed.startsWith('api/uploads/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  if (trimmed.startsWith('/blog/') || trimmed.startsWith('blog/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  if (trimmed.startsWith('/attached_assets/') || trimmed.startsWith('attached_assets/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  return `/attached_assets/${trimmed}`;
+};
+
 // Static blog posts data structure for fallback
 const staticBlogPosts = [
   {
@@ -190,7 +211,7 @@ export default function BlogsCarouselSection() {
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
-    image: post.image || post.featuredImage || post.featured_image,
+    image: normalizeImageSrc(post.image || post.featuredImage || post.featured_image || ''),
     featured: false,
     slug: post.slug
   })) : staticBlogPosts;
