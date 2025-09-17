@@ -763,13 +763,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Create blog post
+  // Helper function to generate unique slugs
+  async function generateUniqueSlug(baseSlug: string): Promise<string> {
+    let slug = baseSlug;
+    let counter = 1;
+    
+    while (await storage.getBlogPostBySlug(slug)) {
+      slug = `${baseSlug}-${counter}`;
+      counter++;
+    }
+    
+    return slug;
+  }
+
   // Create blog post with comprehensive audit logging
   app.post("/api/admin/blog-posts", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
+      const baseSlug = req.body.slug || req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const uniqueSlug = await generateUniqueSlug(baseSlug);
+      
       const blogData = insertBlogPostSchema.parse({
         ...req.body,
         authorId: req.adminId,
-        slug: req.body.slug || req.body.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+        slug: uniqueSlug
       });
       
       const post = await storage.createBlogPost(blogData);
@@ -815,7 +831,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       if (updates.title && !updates.slug) {
-        updates.slug = updates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        const baseSlug = updates.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        updates.slug = await generateUniqueSlug(baseSlug);
       }
       
       // Create revision before updating
