@@ -283,6 +283,7 @@ export default function BlogEditor() {
       
       if (showImageUpload === true) {
         // For featured image
+        console.log('Setting featured image URL:', url);
         setValue("featuredImage", url);
         setShowImageUpload(false);
       } else {
@@ -573,10 +574,17 @@ export default function BlogEditor() {
                         src={watch("featuredImage")} 
                         alt="Featured image preview" 
                         className="max-w-full h-32 object-cover rounded border"
+                        onLoad={() => console.log('Featured image loaded successfully:', watch("featuredImage"))}
                         onError={(e) => {
+                          console.log('Featured image failed to load:', watch("featuredImage"));
                           e.currentTarget.style.display = 'none';
                         }}
                       />
+                    </div>
+                  )}
+                  {!watch("featuredImage") && (
+                    <div className="mt-2 text-sm text-gray-500">
+                      No featured image selected
                     </div>
                   )}
                   <Button
