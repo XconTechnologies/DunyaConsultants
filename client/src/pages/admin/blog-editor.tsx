@@ -320,13 +320,17 @@ export default function BlogEditor() {
       
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (result) => {
       toast({
         title: isEditing ? "Blog Updated" : "Blog Created",
         description: `Blog post has been ${isEditing ? "updated" : "created"} successfully.`,
       });
       queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
-      setLocation("/admin/dashboard");
+      // Don't redirect - stay on the blog editor
+      // If creating a new post, update the URL to the edit mode
+      if (!isEditing && result?.id) {
+        setLocation(`/admin/blog-editor/${result.id}`);
+      }
     },
     onError: (error: any) => {
       toast({
@@ -455,6 +459,17 @@ export default function BlogEditor() {
               <Badge variant={isPublished ? "default" : "secondary"}>
                 {isPublished ? "Published" : "Draft"}
               </Badge>
+              {isEditing && blogPost?.slug && (
+                <Button
+                  variant="outline"
+                  className="flex items-center space-x-2"
+                  onClick={() => window.open(`/blog/${blogPost.slug}`, '_blank')}
+                  data-testid="preview-blog"
+                >
+                  <Eye className="w-4 h-4" />
+                  <span>Preview</span>
+                </Button>
+              )}
               <Button
                 type="submit"
                 form="blog-form"
@@ -464,6 +479,7 @@ export default function BlogEditor() {
                   console.log('Save button clicked');
                   setValue('isPublished', false);
                 }}
+                data-testid="save-draft-blog"
               >
                 {isSaving ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -481,6 +497,7 @@ export default function BlogEditor() {
                   console.log('Publish button clicked');
                   setValue('isPublished', true);
                 }}
+                data-testid="publish-blog"
               >
                 {isSaving ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
