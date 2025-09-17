@@ -315,6 +315,7 @@ export default function BlogsCarouselSection() {
                       <div className="relative overflow-hidden rounded-t-lg">
                         <img 
                           src={post.image.startsWith('http') ? post.image : 
+                               post.image.startsWith('/api/') ? post.image :
                                post.image.startsWith('/blog/') ? post.image :
                                post.image.startsWith('/attached_assets/') ? post.image :
                                post.image.startsWith('attached_assets/') ? `/${post.image}` :
