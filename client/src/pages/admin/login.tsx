@@ -54,7 +54,7 @@ export default function AdminLogin() {
         localStorage.setItem("adminUser", JSON.stringify(result.admin));
         
         // Redirect to admin dashboard
-        navigate("/dashboard");
+        navigate("/admin/dashboard");
       } else {
         setError(result.message || "Login failed");
       }
