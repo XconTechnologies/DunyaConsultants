@@ -130,17 +130,19 @@ export default function BlogEditor() {
     clipboard: {
       // Preserve basic formatting when pasting from Google Docs and other sources
       matchVisual: false
-    },
-    formats: [
-      'header', 'font', 'size',
-      'bold', 'italic', 'underline', 'strike',
-      'color', 'background',
-      'blockquote', 'code-block',
-      'list', 'bullet', 'indent',
-      'align', 'direction',
-      'link', 'image', 'video'
-    ]
+    }
   }), []);
+
+  // ReactQuill formats (separate from modules)
+  const quillFormats = [
+    'header', 'font', 'size',
+    'bold', 'italic', 'underline', 'strike',
+    'color', 'background',
+    'blockquote', 'code-block',
+    'list', 'bullet', 'indent',
+    'align', 'direction',
+    'link', 'image', 'video'
+  ];
 
   // Debug logging for form state changes
   useEffect(() => {
@@ -527,6 +529,7 @@ export default function BlogEditor() {
                             onChange={(value) => field.onChange(value)}
                             placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
                             modules={quillModules}
+                            formats={quillFormats}
                           />
                         )}
                       />
