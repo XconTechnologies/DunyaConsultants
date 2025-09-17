@@ -187,6 +187,13 @@ function App() {
       console.warn('Missing required Google Analytics key: VITE_GA_MEASUREMENT_ID');
     } else {
       initGA();
+      // Track the initial page view after initialization
+      window.setTimeout(() => {
+        const currentPath = window.location.pathname;
+        import('./lib/analytics').then(({ trackPageView }) => {
+          trackPageView(currentPath);
+        });
+      }, 100);
     }
   }, []);
 

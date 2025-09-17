@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 interface CalendlyButtonProps {
   url?: string;
@@ -20,6 +21,9 @@ export default function CalendlyButton({
 }: CalendlyButtonProps) {
 
   const openCalendly = () => {
+    // Track Calendly button click
+    trackEvent('calendly_click', 'engagement', 'consultation_booking');
+    
     // Open Calendly directly in new tab
     window.open(url, '_blank', 'noopener,noreferrer');
   };

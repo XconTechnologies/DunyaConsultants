@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { trackEvent, trackContactForm } from "@/lib/analytics";
 import { 
   Phone, 
   Mail, 
@@ -46,6 +47,10 @@ export default function ContactUsSection() {
       });
 
       if (response.ok) {
+        // Track successful contact form submission
+        trackContactForm();
+        trackEvent('contact_form_success', 'conversion', formData.preferredCountry || 'unknown');
+        
         toast({
           title: "Message Sent Successfully!",
           description: "Thank you for your inquiry. We'll get back to you within 24 hours.",
@@ -194,6 +199,7 @@ export default function ContactUsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 block"
+              onClick={() => trackEvent('whatsapp_click', 'engagement', 'contact_page')}
             >
               <div className="flex items-center space-x-4">
                 <div className="w-16 h-16 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">

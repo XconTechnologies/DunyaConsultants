@@ -2,6 +2,7 @@ import { useState } from "react";
 import { X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackEvent, trackConsultationBooking } from "@/lib/analytics";
 
 interface ConsultationFormPopupProps {
   isOpen: boolean;
@@ -51,6 +52,10 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
     
     // Simulate form submission
     setTimeout(() => {
+      // Track successful consultation booking
+      trackConsultationBooking();
+      trackEvent('consultation_popup_success', 'conversion', formData.interestedCountry || 'unknown');
+      
       alert("Thank you! Your consultation request has been submitted. We'll contact you soon.");
       setFormData({
         name: "",

@@ -28,6 +28,7 @@ import {
 import { insertConsultationSchema } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import { toast } from "@/hooks/use-toast";
+import { trackEvent, trackConsultationBooking } from "@/lib/analytics";
 
 const formSchema = insertConsultationSchema.extend({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -72,16 +73,28 @@ export default function ConsultationBooking() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      const response = await apiRequest("/api/consultations", {
+      const response = await fetch("/api/consultations", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           ...data,
           documents: [], // Will be implemented with file upload
         }),
       });
-      return response;
+      
+      if (!response.ok) {
+        throw new Error('Failed to submit consultation');
+      }
+      
+      return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (data, variables) => {
+      // Track successful consultation booking
+      trackConsultationBooking();
+      trackEvent('consultation_form_success', 'conversion', variables.preferredCountry || 'unknown');
+      
       setIsCompleted(true);
       toast({
         title: "Consultation Booked Successfully",
@@ -297,7 +310,7 @@ export default function ConsultationBooking() {
                           <FormItem>
                             <FormLabel>Date of Birth (Optional)</FormLabel>
                             <FormControl>
-                              <Input type="date" {...field} />
+                              <Input type="date" {...field} value={field.value || ""} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -320,7 +333,7 @@ export default function ConsultationBooking() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Highest Education Level</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue placeholder="Select your education level" />
@@ -343,7 +356,7 @@ export default function ConsultationBooking() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Field of Study</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue placeholder="Select your field of study" />
@@ -370,7 +383,7 @@ export default function ConsultationBooking() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Work Experience (Optional)</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue placeholder="Select your work experience" />
@@ -404,7 +417,7 @@ export default function ConsultationBooking() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Preferred Study Destination</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue placeholder="Select your preferred country" />
@@ -430,7 +443,7 @@ export default function ConsultationBooking() {
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>Preferred Intake (Optional)</FormLabel>
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                                 <FormControl>
                                   <SelectTrigger>
                                     <SelectValue placeholder="Select intake" />
@@ -453,7 +466,7 @@ export default function ConsultationBooking() {
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel>Budget Range (Optional)</FormLabel>
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                                 <FormControl>
                                   <SelectTrigger>
                                     <SelectValue placeholder="Select budget" />
@@ -477,7 +490,7 @@ export default function ConsultationBooking() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>English Test Status (Optional)</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                               <FormControl>
                                 <SelectTrigger>
                                   <SelectValue placeholder="Select English test status" />
@@ -540,6 +553,7 @@ export default function ConsultationBooking() {
                                 placeholder="Tell us about your specific questions, concerns, or any additional information that would help us prepare for your consultation..."
                                 className="min-h-[100px] resize-none"
                                 {...field}
+                                value={field.value || ""}
                               />
                             </FormControl>
                             <FormMessage />
