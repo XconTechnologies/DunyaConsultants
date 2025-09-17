@@ -110,6 +110,12 @@ export default function BlogEditor() {
   const title = watch("title");
   const content = watch("content");
   const isPublished = watch("isPublished");
+  
+  // Debug logging for form state changes
+  useEffect(() => {
+    console.log('Form content changed:', content?.length || 0, 'characters');
+    console.log('Editor content:', editorContent?.length || 0, 'characters');
+  }, [content, editorContent]);
 
   // Generate slug from title
   useEffect(() => {
@@ -216,6 +222,8 @@ export default function BlogEditor() {
 
   // Handle content change from ReactQuill
   const handleEditorChange = (newContent: string) => {
+    console.log('ReactQuill onChange called with content length:', newContent.length);
+    console.log('ReactQuill content preview:', newContent.substring(0, 100));
     setEditorContent(newContent);
     setValue('content', newContent, { shouldDirty: true, shouldTouch: true });
   };
