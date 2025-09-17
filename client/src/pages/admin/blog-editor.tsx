@@ -298,7 +298,7 @@ export default function BlogEditor() {
         ...data,
         tags: data.tags ? data.tags.split(",").map(tag => tag.trim()) : [],
         status: data.isPublished ? "published" : "draft", // Set status field correctly
-        publishedAt: data.isPublished ? (data.publishedAt || new Date().toISOString()) : null, // Set publishedAt when publishing
+        publishedAt: data.isPublished && data.publishedAt ? data.publishedAt : undefined, // Only send if provided
       };
 
       const response = await fetch(url, {
