@@ -217,6 +217,90 @@ export default function AdminDashboard() {
     },
   });
 
+  // Bulk publish mutation
+  const bulkPublishMutation = useMutation({
+    mutationFn: async (ids: number[]) => {
+      const response = await fetch('/api/admin/blog-posts/bulk/publish', {
+        method: 'PATCH',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ ids }),
+      });
+      if (!response.ok) throw new Error('Failed to bulk publish blog posts');
+      return response.json();
+    },
+    onSuccess: (result) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
+      setSelectedIds([]);
+      toast({
+        title: "Success",
+        description: `Successfully published ${result.publishedCount} blog post${result.publishedCount === 1 ? '' : 's'}`,
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to publish selected blog posts",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Bulk draft mutation
+  const bulkDraftMutation = useMutation({
+    mutationFn: async (ids: number[]) => {
+      const response = await fetch('/api/admin/blog-posts/bulk/draft', {
+        method: 'PATCH',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ ids }),
+      });
+      if (!response.ok) throw new Error('Failed to bulk draft blog posts');
+      return response.json();
+    },
+    onSuccess: (result) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
+      setSelectedIds([]);
+      toast({
+        title: "Success",
+        description: `Successfully moved ${result.draftedCount} blog post${result.draftedCount === 1 ? '' : 's'} to draft`,
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to move selected blog posts to draft",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Bulk delete mutation
+  const bulkDeleteMutation = useMutation({
+    mutationFn: async (ids: number[]) => {
+      const response = await fetch('/api/admin/blog-posts/bulk', {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ ids }),
+      });
+      if (!response.ok) throw new Error('Failed to bulk delete blog posts');
+      return response.json();
+    },
+    onSuccess: (result) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/blog-posts"] });
+      setSelectedIds([]);
+      toast({
+        title: "Success",
+        description: `Successfully deleted ${result.deletedCount} blog post${result.deletedCount === 1 ? '' : 's'}`,
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Error",
+        description: "Failed to delete selected blog posts",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     localStorage.removeItem("adminUser");
@@ -345,8 +429,7 @@ export default function AdminDashboard() {
                   disabled={selectedIds.length === 0}
                   onClick={() => {
                     if (window.confirm(`Are you sure you want to publish ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}?`)) {
-                      // TODO: Add bulk publish mutation
-                      console.log('Bulk publish:', selectedIds);
+                      bulkPublishMutation.mutate(selectedIds);
                     }
                   }}
                   className="bg-green-600 hover:bg-green-700 text-white"
@@ -361,8 +444,7 @@ export default function AdminDashboard() {
                   disabled={selectedIds.length === 0}
                   onClick={() => {
                     if (window.confirm(`Are you sure you want to move ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'} to draft?`)) {
-                      // TODO: Add bulk draft mutation
-                      console.log('Bulk draft:', selectedIds);
+                      bulkDraftMutation.mutate(selectedIds);
                     }
                   }}
                 >
@@ -376,8 +458,7 @@ export default function AdminDashboard() {
                   disabled={selectedIds.length === 0}
                   onClick={() => {
                     if (window.confirm(`Are you sure you want to DELETE ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}? This action cannot be undone.`)) {
-                      // TODO: Add bulk delete mutation
-                      console.log('Bulk delete:', selectedIds);
+                      bulkDeleteMutation.mutate(selectedIds);
                     }
                   }}
                 >
