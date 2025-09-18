@@ -465,10 +465,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
             <article className="bg-white rounded-xl shadow-lg overflow-hidden">
               
               {/* Featured Image */}
-              {blogPost.image && (
+              {blogPost.featuredImage && (
                 <div className="relative">
                   <img 
-                    src={normalizeImageSrc(blogPost.image)}
+                    src={normalizeImageSrc(blogPost.featuredImage)}
                     alt={blogPost.title}
                     className="w-full h-auto"
                     onError={(e) => {
