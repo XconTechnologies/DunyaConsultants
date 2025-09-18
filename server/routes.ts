@@ -950,64 +950,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Delete blog post with comprehensive audit logging (Editors and Admins)
-  app.delete("/api/admin/blog-posts/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
-    try {
-      // Check if user has editor or admin role
-      if (!['admin', 'editor'].includes(req.adminRole!)) {
-        return res.status(403).json({ 
-          message: 'Access denied. Only admins and editors can delete blog posts.' 
-        });
-      }
-      
-      const id = parseInt(req.params.id);
-      
-      // Get blog post info before deletion for audit log
-      const post = await storage.getBlogPost(id);
-      if (!post) {
-        return res.status(404).json({ message: 'Blog post not found' });
-      }
-      
-      // Only admins can delete published posts, editors can delete drafts
-      if (post.status === 'published' && req.adminRole !== 'admin') {
-        return res.status(403).json({ 
-          message: 'Only admins can delete published posts' 
-        });
-      }
-      
-      await storage.deleteBlogPost(id);
-      
-      // Create comprehensive audit log for blog post deletion
-      await storage.createAuditLog({
-        actorId: req.adminId!,
-        role: req.adminRole!,
-        action: 'delete',
-        entity: 'blog_post',
-        entityId: id,
-        before: JSON.stringify({
-          title: post.title,
-          slug: post.slug,
-          status: post.status,
-          authorId: post.authorId,
-          category: post.category,
-          tags: post.tags,
-          viewCount: post.viewCount,
-          timestamp: new Date().toISOString()
-        })
-      });
-      
-      res.json({ 
-        success: true, 
-        message: 'Blog post deleted successfully' 
-      });
-    } catch (error) {
-      console.error('Blog post deletion error:', error);
-      res.status(500).json({ message: 'Failed to delete blog post' });
-    }
-  });
-
   // ==============================================
-  // BULK BLOG POST OPERATIONS
+  // BULK BLOG POST OPERATIONS (MUST BE BEFORE SINGLE OPERATIONS)
   // ==============================================
 
   // Bulk publish blog posts
@@ -1096,7 +1040,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const { ids } = z.object({ ids: z.array(z.number()) }).parse(req.body);
-      console.log('Backend: Received bulk delete IDs:', ids, 'Types:', ids.map(id => typeof id));
       
       if (!ids || ids.length === 0) {
         return res.status(400).json({ message: 'No blog post IDs provided' });
@@ -1106,7 +1049,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const results = [];
 
       for (const id of ids) {
-        console.log('Backend: Processing delete for ID:', id, 'Type:', typeof id);
         try {
           const post = await storage.getBlogPost(id);
           if (!post) {
@@ -1132,6 +1074,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Bulk delete error:', error);
       res.status(500).json({ message: 'Failed to bulk delete blog posts' });
+    }
+  });
+
+  // Delete blog post with comprehensive audit logging (Editors and Admins)
+  app.delete("/api/admin/blog-posts/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      // Check if user has editor or admin role
+      if (!['admin', 'editor'].includes(req.adminRole!)) {
+        return res.status(403).json({ 
+          message: 'Access denied. Only admins and editors can delete blog posts.' 
+        });
+      }
+      
+      const id = parseInt(req.params.id);
+      
+      // Get blog post info before deletion for audit log
+      const post = await storage.getBlogPost(id);
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      
+      // Only admins can delete published posts, editors can delete drafts
+      if (post.status === 'published' && req.adminRole !== 'admin') {
+        return res.status(403).json({ 
+          message: 'Only admins can delete published posts' 
+        });
+      }
+      
+      await storage.deleteBlogPost(id);
+      
+      // Create comprehensive audit log for blog post deletion
+      await storage.createAuditLog({
+        actorId: req.adminId!,
+        role: req.adminRole!,
+        action: 'delete',
+        entity: 'blog_post',
+        entityId: id,
+        before: JSON.stringify({
+          title: post.title,
+          slug: post.slug,
+          status: post.status,
+          authorId: post.authorId,
+          category: post.category,
+          tags: post.tags,
+          viewCount: post.viewCount,
+          timestamp: new Date().toISOString()
+        })
+      });
+      
+      res.json({ 
+        success: true, 
+        message: 'Blog post deleted successfully' 
+      });
+    } catch (error) {
+      console.error('Blog post deletion error:', error);
+      res.status(500).json({ message: 'Failed to delete blog post' });
     }
   });
 
