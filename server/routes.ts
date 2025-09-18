@@ -1096,6 +1096,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const { ids } = z.object({ ids: z.array(z.number()) }).parse(req.body);
+      console.log('Backend: Received bulk delete IDs:', ids, 'Types:', ids.map(id => typeof id));
       
       if (!ids || ids.length === 0) {
         return res.status(400).json({ message: 'No blog post IDs provided' });
@@ -1105,6 +1106,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const results = [];
 
       for (const id of ids) {
+        console.log('Backend: Processing delete for ID:', id, 'Type:', typeof id);
         try {
           const post = await storage.getBlogPost(id);
           if (!post) {

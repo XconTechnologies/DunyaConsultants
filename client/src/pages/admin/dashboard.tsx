@@ -276,6 +276,7 @@ export default function AdminDashboard() {
   // Bulk delete mutation
   const bulkDeleteMutation = useMutation({
     mutationFn: async (ids: number[]) => {
+      console.log('Frontend: Bulk deleting IDs:', ids, 'Types:', ids.map(id => typeof id));
       const response = await fetch('/api/admin/blog-posts/bulk', {
         method: 'DELETE',
         headers: getAuthHeaders(),
