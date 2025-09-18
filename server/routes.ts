@@ -1786,6 +1786,161 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ==============================================
+  // SITEMAP ROUTES
+  // ==============================================
+
+  // Main sitemap index
+  app.get("/sitemap.xml", async (req, res) => {
+    try {
+      const siteUrl = process.env.SITE_URL || `${req.protocol}://${req.get('host')}`;
+      
+      // Get latest timestamps for lastmod
+      const [blogPosts, pages] = await Promise.all([
+        storage.getBlogPosts(true), // Only published
+        storage.getPages(true) // Only published
+      ]);
+
+      const latestBlogPost = blogPosts.sort((a, b) => 
+        new Date(b.updatedAt || b.createdAt).getTime() - new Date(a.updatedAt || a.createdAt).getTime()
+      )[0];
+      
+      const latestPage = pages.sort((a, b) => 
+        new Date(b.updatedAt || b.createdAt).getTime() - new Date(a.updatedAt || a.createdAt).getTime()
+      )[0];
+
+      const blogLastMod = latestBlogPost ? 
+        new Date(latestBlogPost.updatedAt || latestBlogPost.createdAt).toISOString() : 
+        new Date().toISOString();
+      
+      const pageLastMod = latestPage ? 
+        new Date(latestPage.updatedAt || latestPage.createdAt).toISOString() : 
+        new Date().toISOString();
+
+      const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${siteUrl}/post-sitemap.xml</loc>
+    <lastmod>${blogLastMod}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${siteUrl}/page-sitemap.xml</loc>
+    <lastmod>${pageLastMod}</lastmod>
+  </sitemap>
+</sitemapindex>`;
+
+      res.set({
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'public, max-age=3600' // 1 hour cache
+      });
+      res.send(xml);
+    } catch (error) {
+      console.error('Sitemap generation error:', error);
+      res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Sitemap generation failed</error>');
+    }
+  });
+
+  // Blog posts sitemap
+  app.get("/post-sitemap.xml", async (req, res) => {
+    try {
+      const siteUrl = process.env.SITE_URL || `${req.protocol}://${req.get('host')}`;
+      const blogPosts = await storage.getBlogPosts(true); // Only published
+
+      // Filter to only include published posts with valid dates
+      const publishedPosts = blogPosts.filter(post => 
+        post.status === 'published' && 
+        post.isPublished && 
+        post.slug
+      );
+
+      const urls = publishedPosts.map(post => {
+        const lastMod = new Date(post.updatedAt || post.publishedAt || post.createdAt).toISOString();
+        return `  <url>
+    <loc>${siteUrl}/blog/${post.slug}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+      }).join('\n');
+
+      const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>`;
+
+      res.set({
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'public, max-age=3600' // 1 hour cache
+      });
+      res.send(xml);
+    } catch (error) {
+      console.error('Post sitemap generation error:', error);
+      res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Post sitemap generation failed</error>');
+    }
+  });
+
+  // Pages sitemap
+  app.get("/page-sitemap.xml", async (req, res) => {
+    try {
+      const siteUrl = process.env.SITE_URL || `${req.protocol}://${req.get('host')}`;
+      const pages = await storage.getPages(true); // Only published
+
+      // Filter to only include published pages with valid slugs
+      const publishedPages = pages.filter(page => 
+        page.isPublished && 
+        page.slug
+      );
+
+      const urls = publishedPages.map(page => {
+        const lastMod = new Date(page.updatedAt || page.createdAt).toISOString();
+        return `  <url>
+    <loc>${siteUrl}/${page.slug}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>`;
+      }).join('\n');
+
+      // Add static important pages
+      const staticPages = [
+        { url: '/', priority: '1.0', changefreq: 'daily' },
+        { url: '/about', priority: '0.9', changefreq: 'monthly' },
+        { url: '/services', priority: '0.9', changefreq: 'weekly' },
+        { url: '/blog', priority: '0.9', changefreq: 'daily' },
+        { url: '/contact', priority: '0.8', changefreq: 'monthly' },
+        { url: '/cost-calculator', priority: '0.7', changefreq: 'monthly' },
+        { url: '/course-match', priority: '0.7', changefreq: 'monthly' },
+        { url: '/document-checklist', priority: '0.7', changefreq: 'monthly' },
+        { url: '/consultation-booking', priority: '0.8', changefreq: 'monthly' }
+      ];
+
+      const staticUrls = staticPages.map(page => {
+        const lastMod = new Date().toISOString();
+        return `  <url>
+    <loc>${siteUrl}${page.url}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`;
+      }).join('\n');
+
+      const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${staticUrls}
+${urls}
+</urlset>`;
+
+      res.set({
+        'Content-Type': 'application/xml',
+        'Cache-Control': 'public, max-age=3600' // 1 hour cache
+      });
+      res.send(xml);
+    } catch (error) {
+      console.error('Page sitemap generation error:', error);
+      res.status(500).send('<?xml version="1.0" encoding="UTF-8"?><error>Page sitemap generation failed</error>');
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
