@@ -1071,12 +1071,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      const url = `/api/uploads/${req.file.filename}`;
+      const filename = req.file.filename;
+      const filePath = path.join(uploadDir, filename);
+      
+      // Verify file was actually written to disk
+      if (!fs.existsSync(filePath)) {
+        console.error('Upload error: File not found on disk after upload:', filePath);
+        return res.status(500).json({ 
+          success: false, 
+          message: "File upload verification failed" 
+        });
+      }
+
+      const url = `/api/uploads/${filename}`;
+      
+      console.log('File uploaded successfully:', {
+        originalName: req.file.originalname,
+        filename: filename,
+        size: req.file.size,
+        path: filePath,
+        url: url
+      });
       
       res.json({ 
         success: true, 
         url: url,
-        filename: req.file.filename,
+        filename: filename,
+        originalName: req.file.originalname,
+        size: req.file.size,
         message: "Image uploaded successfully" 
       });
     } catch (error) {
@@ -1088,24 +1110,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Serve uploaded files
-  app.get("/api/uploads/:filename", (req, res) => {
+  // Serve uploaded files (GET and HEAD)
+  const handleUploadRequest = (req: any, res: any) => {
     const { filename } = req.params;
     const filePath = path.join(uploadDir, filename);
     
     // Check if file exists
     if (fs.existsSync(filePath)) {
-      res.sendFile(filePath);
+      if (req.method === 'HEAD') {
+        // For HEAD requests, just send headers
+        res.set({
+          'Content-Type': req.get('Content-Type') || 'image/webp',
+          'Content-Length': fs.statSync(filePath).size.toString()
+        });
+        res.status(200).end();
+      } else {
+        res.sendFile(filePath);
+      }
     } else {
       // Fallback to existing demo image
       const demoImagePath = path.join(process.cwd(), 'attached_assets', 'GRE-Test-Fee-in-Pakistan.webp');
       if (fs.existsSync(demoImagePath)) {
-        res.sendFile(demoImagePath);
+        if (req.method === 'HEAD') {
+          res.set({
+            'Content-Type': 'image/webp',
+            'Content-Length': fs.statSync(demoImagePath).size.toString()
+          });
+          res.status(200).end();
+        } else {
+          res.sendFile(demoImagePath);
+        }
       } else {
         res.status(404).json({ message: 'File not found' });
       }
     }
-  });
+  };
+
+  app.get("/api/uploads/:filename", handleUploadRequest);
+  app.head("/api/uploads/:filename", handleUploadRequest);
 
   // ==============================================
   // PUBLIC BLOG ROUTES

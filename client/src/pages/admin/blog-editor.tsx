@@ -277,20 +277,29 @@ export default function BlogEditor() {
         body: formData,
       });
 
-      if (!response.ok) throw new Error('Upload failed');
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Upload failed');
+      }
 
-      const { url } = await response.json();
+      const { url, filename } = await response.json();
+      
+      // Verify the uploaded file exists before setting it
+      const verifyResponse = await fetch(url, { method: 'HEAD' });
+      if (!verifyResponse.ok) {
+        throw new Error('Uploaded file verification failed');
+      }
       
       if (showImageUpload === true) {
         // For featured image
-        console.log('Setting featured image URL:', url);
         setValue("featuredImage", url);
         setShowImageUpload(false);
       } else {
-        // For content image - insert directly into TinyMCE
-        if (editorRef.current) {
+        // For content image - insert directly into ReactQuill
+        const quillEditor = document.querySelector('.ql-editor');
+        if (quillEditor) {
           const imageHtml = `<p><img src="${url}" alt="${file.name}" style="max-width: 100%; height: auto;" /></p>`;
-          editorRef.current.insertContent(imageHtml);
+          quillEditor.innerHTML += imageHtml;
         }
       }
       
@@ -298,10 +307,11 @@ export default function BlogEditor() {
         title: "Image Uploaded",
         description: "Image has been uploaded successfully.",
       });
-    } catch (error) {
+    } catch (error: any) {
+      console.error('Image upload error:', error);
       toast({
         title: "Upload Failed",
-        description: "Failed to upload image. Please try again.",
+        description: error.message || "Failed to upload image. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -390,7 +400,7 @@ export default function BlogEditor() {
               <Button
                 type="submit"
                 form="blog-form"
-                disabled={isSaving}
+                disabled={isSaving || isImageUploading}
                 className="flex items-center space-x-2"
                 onClick={() => {
                   console.log('Save button clicked');
@@ -408,7 +418,7 @@ export default function BlogEditor() {
               <Button
                 type="submit"
                 form="blog-form"
-                disabled={isSaving}
+                disabled={isSaving || isImageUploading}
                 className="flex items-center space-x-2 ml-2"
                 onClick={() => {
                   console.log('Publish button clicked');
@@ -574,9 +584,8 @@ export default function BlogEditor() {
                         src={watch("featuredImage")} 
                         alt="Featured image preview" 
                         className="max-w-full h-32 object-cover rounded border"
-                        onLoad={() => console.log('Featured image loaded successfully:', watch("featuredImage"))}
+                        onLoad={() => {}}
                         onError={(e) => {
-                          console.log('Featured image failed to load:', watch("featuredImage"));
                           e.currentTarget.style.display = 'none';
                         }}
                       />
