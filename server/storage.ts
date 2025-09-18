@@ -34,6 +34,7 @@ export interface IStorage {
   getAdminByUsername(username: string): Promise<AdminUser | undefined>;
   getAdminById(id: number): Promise<AdminUser | undefined>;
   createAdminUser(adminUser: InsertAdminUser): Promise<AdminUser>;
+  updateAdminCredentials(id: number, credentials: { username: string; password: string }): Promise<AdminUser>;
   createAdminSession(session: InsertAdminSession): Promise<AdminSession>;
   getAdminSession(token: string): Promise<AdminSession | undefined>;
   deleteAdminSession(token: string): Promise<void>;
@@ -312,6 +313,19 @@ export class DatabaseStorage implements IStorage {
 
   async deleteAdminSession(token: string): Promise<void> {
     await db.delete(adminSessions).where(eq(adminSessions.sessionToken, token));
+  }
+
+  async updateAdminCredentials(id: number, credentials: { username: string; password: string }): Promise<AdminUser> {
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(credentials.password, 10);
+    const [admin] = await db.update(adminUsers)
+      .set({ 
+        username: credentials.username,
+        password: hashedPassword 
+      })
+      .where(eq(adminUsers.id, id))
+      .returning();
+    return admin;
   }
 
   async updateAdminLastLogin(id: number): Promise<void> {

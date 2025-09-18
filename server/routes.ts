@@ -144,15 +144,29 @@ async function initializeAdmin() {
   }
 
   try {
-    const existingAdmin = await storage.getAdminByUsername('admin');
+    // Check for new admin user
+    let existingAdmin = await storage.getAdminByUsername('dunyasgd');
+    
     if (!existingAdmin) {
-      await storage.createAdminUser({
-        username: 'admin',
-        password: 'admin123',
-        email: 'admin@dunyaconsultants.com',
-        role: 'admin'
-      });
-      console.log('Development mode: Default admin user created');
+      // Check for old admin user and update it
+      const oldAdmin = await storage.getAdminByUsername('admin');
+      if (oldAdmin) {
+        // Update existing admin with new credentials
+        await storage.updateAdminCredentials(oldAdmin.id, {
+          username: 'dunyasgd',
+          password: 'dunya@newweb101'
+        });
+        console.log('Development mode: Admin credentials updated to new values');
+      } else {
+        // Create new admin user if no existing one found
+        await storage.createAdminUser({
+          username: 'dunyasgd',
+          password: 'dunya@newweb101',
+          email: 'admin@dunyaconsultants.com',
+          role: 'admin'
+        });
+        console.log('Development mode: Default admin user created');
+      }
     }
 
     // Seed blog posts (DEVELOPMENT ONLY)
