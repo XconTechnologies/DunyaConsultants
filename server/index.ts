@@ -1,7 +1,6 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { storage } from "./storage";
 
 const app = express();
 
@@ -52,100 +51,6 @@ Allow: /*.png$
 Allow: /*.svg$
 
 Sitemap: https://dunyaconsultants.com/sitemap.xml`);
-});
-
-// Serve sitemap.xml before other routes (must be before Vite middleware)
-app.get("/sitemap.xml", (req, res) => {
-  res.setHeader('Content-Type', 'application/xml');
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
-  res.send(`<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://dunyaconsultants.com/post-sitemap.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-  </sitemap>
-  <sitemap>
-    <loc>https://dunyaconsultants.com/page-sitemap.xml</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-  </sitemap>
-</sitemapindex>`);
-});
-
-// Serve post-sitemap.xml before other routes
-app.get("/post-sitemap.xml", async (req, res) => {
-  try {
-    const publishedPosts = await storage.getBlogPosts(true); // Only published posts
-    
-    res.setHeader('Content-Type', 'application/xml');
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    
-    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${publishedPosts.map(post => `  <url>
-    <loc>https://dunyaconsultants.com/blog/${post.slug}</loc>
-    <lastmod>${post.updatedAt?.toISOString() || post.createdAt?.toISOString() || new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>`).join('\n')}
-</urlset>`;
-    
-    res.send(sitemapXml);
-  } catch (error) {
-    console.error('Error generating post sitemap:', error);
-    res.status(500).send('Error generating sitemap');
-  }
-});
-
-// Serve page-sitemap.xml before other routes
-app.get("/page-sitemap.xml", async (req, res) => {
-  try {
-    const publishedPages = await storage.getPages(true); // Only published pages
-    
-    res.setHeader('Content-Type', 'application/xml');
-    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    
-    // Core site pages (always include these)
-    const corePages = [
-      { url: 'https://dunyaconsultants.com/', changefreq: 'daily', priority: '1.0' },
-      { url: 'https://dunyaconsultants.com/about', changefreq: 'monthly', priority: '0.9' },
-      { url: 'https://dunyaconsultants.com/services', changefreq: 'weekly', priority: '0.9' },
-      { url: 'https://dunyaconsultants.com/blog', changefreq: 'daily', priority: '0.9' },
-      { url: 'https://dunyaconsultants.com/contact', changefreq: 'monthly', priority: '0.8' },
-      { url: 'https://dunyaconsultants.com/cost-calculator', changefreq: 'monthly', priority: '0.7' },
-      { url: 'https://dunyaconsultants.com/course-match', changefreq: 'monthly', priority: '0.7' },
-      { url: 'https://dunyaconsultants.com/document-checklist', changefreq: 'monthly', priority: '0.7' },
-      { url: 'https://dunyaconsultants.com/consultation-booking', changefreq: 'monthly', priority: '0.8' }
-    ];
-    
-    const currentTime = new Date().toISOString();
-    
-    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${corePages.map(page => `  <url>
-    <loc>${page.url}</loc>
-    <lastmod>${currentTime}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
-  </url>`).join('\n')}
-${publishedPages.map(page => `  <url>
-    <loc>https://dunyaconsultants.com/${page.slug}</loc>
-    <lastmod>${page.updatedAt?.toISOString() || page.createdAt?.toISOString() || currentTime}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>`).join('\n')}
-</urlset>`;
-    
-    res.send(sitemapXml);
-  } catch (error) {
-    console.error('Error generating page sitemap:', error);
-    res.status(500).send('Error generating sitemap');
-  }
 });
 
 app.use((req, res, next) => {

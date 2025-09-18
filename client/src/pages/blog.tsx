@@ -2777,7 +2777,6 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [displayCount, setDisplayCount] = useState(12); // Show 12 blogs initially
 
-
   // Fetch blog posts from API
   const { data: blogPostsData, isLoading } = useQuery({
     queryKey: ['/api/blog-posts'],
