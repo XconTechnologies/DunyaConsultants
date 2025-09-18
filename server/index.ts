@@ -1,6 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { storage } from "./storage";
 
 const app = express();
 
@@ -73,97 +74,78 @@ app.get("/sitemap.xml", (req, res) => {
 });
 
 // Serve post-sitemap.xml before other routes
-app.get("/post-sitemap.xml", (req, res) => {
-  res.setHeader('Content-Type', 'application/xml');
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
-  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+app.get("/post-sitemap.xml", async (req, res) => {
+  try {
+    const publishedPosts = await storage.getBlogPosts(true); // Only published posts
+    
+    res.setHeader('Content-Type', 'application/xml');
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    
+    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dunyaconsultants.com/blog/best-usa-student-visa-consultants</loc>
-    <lastmod>2025-09-18T08:03:49.629Z</lastmod>
+${publishedPosts.map(post => `  <url>
+    <loc>https://dunyaconsultants.com/blog/${post.slug}</loc>
+    <lastmod>${post.updatedAt?.toISOString() || post.createdAt?.toISOString() || new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/blog/germany-study-visa-guide</loc>
-    <lastmod>2025-09-17T13:05:06.095Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/blog/australia-student-visa-guide</loc>
-    <lastmod>2025-09-17T07:30:33.425Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>`);
+  </url>`).join('\n')}
+</urlset>`;
+    
+    res.send(sitemapXml);
+  } catch (error) {
+    console.error('Error generating post sitemap:', error);
+    res.status(500).send('Error generating sitemap');
+  }
 });
 
 // Serve page-sitemap.xml before other routes
-app.get("/page-sitemap.xml", (req, res) => {
-  res.setHeader('Content-Type', 'application/xml');
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
-  res.send(`<?xml version="1.0" encoding="UTF-8"?>
+app.get("/page-sitemap.xml", async (req, res) => {
+  try {
+    const publishedPages = await storage.getPages(true); // Only published pages
+    
+    res.setHeader('Content-Type', 'application/xml');
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    
+    // Core site pages (always include these)
+    const corePages = [
+      { url: 'https://dunyaconsultants.com/', changefreq: 'daily', priority: '1.0' },
+      { url: 'https://dunyaconsultants.com/about', changefreq: 'monthly', priority: '0.9' },
+      { url: 'https://dunyaconsultants.com/services', changefreq: 'weekly', priority: '0.9' },
+      { url: 'https://dunyaconsultants.com/blog', changefreq: 'daily', priority: '0.9' },
+      { url: 'https://dunyaconsultants.com/contact', changefreq: 'monthly', priority: '0.8' },
+      { url: 'https://dunyaconsultants.com/cost-calculator', changefreq: 'monthly', priority: '0.7' },
+      { url: 'https://dunyaconsultants.com/course-match', changefreq: 'monthly', priority: '0.7' },
+      { url: 'https://dunyaconsultants.com/document-checklist', changefreq: 'monthly', priority: '0.7' },
+      { url: 'https://dunyaconsultants.com/consultation-booking', changefreq: 'monthly', priority: '0.8' }
+    ];
+    
+    const currentTime = new Date().toISOString();
+    
+    const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dunyaconsultants.com/</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/about</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
+${corePages.map(page => `  <url>
+    <loc>${page.url}</loc>
+    <lastmod>${currentTime}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>`).join('\n')}
+${publishedPages.map(page => `  <url>
+    <loc>https://dunyaconsultants.com/${page.slug}</loc>
+    <lastmod>${page.updatedAt?.toISOString() || page.createdAt?.toISOString() || currentTime}</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/services</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/blog</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/contact</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/cost-calculator</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/course-match</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/document-checklist</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://dunyaconsultants.com/consultation-booking</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>`);
+    <priority>0.6</priority>
+  </url>`).join('\n')}
+</urlset>`;
+    
+    res.send(sitemapXml);
+  } catch (error) {
+    console.error('Error generating page sitemap:', error);
+    res.status(500).send('Error generating sitemap');
+  }
 });
 
 app.use((req, res, next) => {
