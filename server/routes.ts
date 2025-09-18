@@ -1031,6 +1031,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Bulk delete blog posts
   app.delete("/api/admin/blog-posts/bulk", requireAuth, async (req: AuthenticatedRequest, res) => {
+    console.log('🔥 BULK DELETE ENDPOINT HIT - /api/admin/blog-posts/bulk');
     try {
       // Check if user has editor or admin role
       if (!['admin', 'editor'].includes(req.adminRole!)) {
@@ -1040,6 +1041,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const { ids } = z.object({ ids: z.array(z.number()) }).parse(req.body);
+      console.log('🔥 BULK DELETE - Received IDs:', ids);
       
       if (!ids || ids.length === 0) {
         return res.status(400).json({ message: 'No blog post IDs provided' });
@@ -1079,6 +1081,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Delete blog post with comprehensive audit logging (Editors and Admins)
   app.delete("/api/admin/blog-posts/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    console.log('⚠️ SINGLE DELETE ENDPOINT HIT - /api/admin/blog-posts/:id with ID:', req.params.id);
     try {
       // Check if user has editor or admin role
       if (!['admin', 'editor'].includes(req.adminRole!)) {
