@@ -56,6 +56,9 @@ Sitemap: https://dunyaconsultants.com/sitemap.xml`);
 // Serve sitemap.xml before other routes (must be before Vite middleware)
 app.get("/sitemap.xml", (req, res) => {
   res.setHeader('Content-Type', 'application/xml');
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
@@ -72,6 +75,9 @@ app.get("/sitemap.xml", (req, res) => {
 // Serve post-sitemap.xml before other routes
 app.get("/post-sitemap.xml", (req, res) => {
   res.setHeader('Content-Type', 'application/xml');
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
@@ -98,6 +104,9 @@ app.get("/post-sitemap.xml", (req, res) => {
 // Serve page-sitemap.xml before other routes
 app.get("/page-sitemap.xml", (req, res) => {
   res.setHeader('Content-Type', 'application/xml');
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
   res.send(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
