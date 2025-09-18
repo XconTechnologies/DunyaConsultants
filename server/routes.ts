@@ -1007,6 +1007,133 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // ==============================================
+  // BULK BLOG POST OPERATIONS
+  // ==============================================
+
+  // Bulk publish blog posts
+  app.patch("/api/admin/blog-posts/bulk/publish", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { ids } = z.object({ ids: z.array(z.number()) }).parse(req.body);
+      
+      if (!ids || ids.length === 0) {
+        return res.status(400).json({ message: 'No blog post IDs provided' });
+      }
+
+      let publishedCount = 0;
+      const results = [];
+
+      for (const id of ids) {
+        try {
+          const post = await storage.getBlogPost(id);
+          if (post) {
+            await storage.updateBlogPost(id, { 
+              isPublished: true, 
+              publishedAt: new Date(),
+              status: 'published'
+            });
+            publishedCount++;
+            results.push({ id, status: 'success', message: 'Published successfully' });
+          } else {
+            results.push({ id, status: 'error', message: 'Blog post not found' });
+          }
+        } catch (error) {
+          results.push({ id, status: 'error', message: 'Failed to publish' });
+        }
+      }
+
+      res.json({ publishedCount, results, total: ids.length });
+    } catch (error) {
+      console.error('Bulk publish error:', error);
+      res.status(500).json({ message: 'Failed to bulk publish blog posts' });
+    }
+  });
+
+  // Bulk draft blog posts
+  app.patch("/api/admin/blog-posts/bulk/draft", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { ids } = z.object({ ids: z.array(z.number()) }).parse(req.body);
+      
+      if (!ids || ids.length === 0) {
+        return res.status(400).json({ message: 'No blog post IDs provided' });
+      }
+
+      let draftedCount = 0;
+      const results = [];
+
+      for (const id of ids) {
+        try {
+          const post = await storage.getBlogPost(id);
+          if (post) {
+            await storage.updateBlogPost(id, { 
+              isPublished: false,
+              status: 'draft'
+            });
+            draftedCount++;
+            results.push({ id, status: 'success', message: 'Moved to draft successfully' });
+          } else {
+            results.push({ id, status: 'error', message: 'Blog post not found' });
+          }
+        } catch (error) {
+          results.push({ id, status: 'error', message: 'Failed to move to draft' });
+        }
+      }
+
+      res.json({ draftedCount, results, total: ids.length });
+    } catch (error) {
+      console.error('Bulk draft error:', error);
+      res.status(500).json({ message: 'Failed to bulk draft blog posts' });
+    }
+  });
+
+  // Bulk delete blog posts
+  app.delete("/api/admin/blog-posts/bulk", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      // Check if user has editor or admin role
+      if (!['admin', 'editor'].includes(req.adminRole!)) {
+        return res.status(403).json({ 
+          message: 'Access denied. Only admins and editors can delete blog posts.' 
+        });
+      }
+
+      const { ids } = z.object({ ids: z.array(z.number()) }).parse(req.body);
+      
+      if (!ids || ids.length === 0) {
+        return res.status(400).json({ message: 'No blog post IDs provided' });
+      }
+
+      let deletedCount = 0;
+      const results = [];
+
+      for (const id of ids) {
+        try {
+          const post = await storage.getBlogPost(id);
+          if (!post) {
+            results.push({ id, status: 'error', message: 'Blog post not found' });
+            continue;
+          }
+
+          // Only admins can delete published posts, editors can delete drafts
+          if (post.status === 'published' && req.adminRole !== 'admin') {
+            results.push({ id, status: 'error', message: 'Only admins can delete published posts' });
+            continue;
+          }
+
+          await storage.deleteBlogPost(id);
+          deletedCount++;
+          results.push({ id, status: 'success', message: 'Deleted successfully' });
+        } catch (error) {
+          results.push({ id, status: 'error', message: 'Failed to delete' });
+        }
+      }
+
+      res.json({ deletedCount, results, total: ids.length });
+    } catch (error) {
+      console.error('Bulk delete error:', error);
+      res.status(500).json({ message: 'Failed to bulk delete blog posts' });
+    }
+  });
+
+  // ==============================================
   // FILE UPLOAD ROUTES
   // ==============================================
 
