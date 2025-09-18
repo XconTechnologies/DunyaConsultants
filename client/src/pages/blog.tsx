@@ -2458,11 +2458,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                 {blog.image && (
                                   <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
                                     <img 
-                                      src={blog.image.startsWith('http') ? blog.image : 
-                                           blog.image.startsWith('/blog/') ? blog.image :
-                                           blog.image.startsWith('/attached_assets/') ? blog.image :
-                                           blog.image.startsWith('attached_assets/') ? `/${blog.image}` :
-                                           `/attached_assets/${blog.image}`} 
+                                      src={normalizeImageSrc(blog.image)} 
                                       alt={blog.title}
                                       className="w-full h-56 object-cover transition-transform hover:scale-105"
                                       style={{ 
