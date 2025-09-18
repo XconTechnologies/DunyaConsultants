@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -74,6 +75,7 @@ export default function AdminDashboard() {
   const [, setLocation] = useLocation();
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -235,6 +237,29 @@ export default function AdminDashboard() {
     }
   };
 
+  // Handle checkbox selection
+  const handleSelectBlog = (blogId: number, checked: boolean) => {
+    if (checked) {
+      setSelectedIds(prev => [...prev, blogId]);
+    } else {
+      setSelectedIds(prev => prev.filter(id => id !== blogId));
+    }
+  };
+
+  // Handle select all checkbox
+  const handleSelectAll = (checked: boolean) => {
+    if (checked) {
+      const allIds = blogPosts.map((post: BlogPost) => post.id);
+      setSelectedIds(allIds);
+    } else {
+      setSelectedIds([]);
+    }
+  };
+
+  // Check if all blogs are selected
+  const isAllSelected = blogPosts.length > 0 && selectedIds.length === blogPosts.length;
+  const isSomeSelected = selectedIds.length > 0 && selectedIds.length < blogPosts.length;
+
   if (!authChecked || !adminUser) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -311,6 +336,18 @@ export default function AdminDashboard() {
               <Table>
                 <TableHeader>
                   <TableRow>
+                    <TableHead className="w-12">
+                      <Checkbox
+                        data-testid="checkbox-select-all"
+                        checked={isAllSelected}
+                        onCheckedChange={handleSelectAll}
+                        ref={(ref) => {
+                          if (ref && isSomeSelected && !isAllSelected) {
+                            ref.indeterminate = true;
+                          }
+                        }}
+                      />
+                    </TableHead>
                     <TableHead>Title</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Views</TableHead>
@@ -321,19 +358,26 @@ export default function AdminDashboard() {
                 <TableBody>
                   {blogLoading ? (
                     <TableRow>
-                      <TableCell colSpan={5} className="text-center py-8">
+                      <TableCell colSpan={6} className="text-center py-8">
                         Loading blog posts...
                       </TableCell>
                     </TableRow>
                   ) : blogPosts.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={5} className="text-center py-8 text-gray-500">
+                      <TableCell colSpan={6} className="text-center py-8 text-gray-500">
                         No blog posts found. Create your first post!
                       </TableCell>
                     </TableRow>
                   ) : (
                     blogPosts.map((post: BlogPost) => (
                       <TableRow key={post.id}>
+                        <TableCell>
+                          <Checkbox
+                            data-testid={`checkbox-select-blog-${post.id}`}
+                            checked={selectedIds.includes(post.id)}
+                            onCheckedChange={(checked) => handleSelectBlog(post.id, checked as boolean)}
+                          />
+                        </TableCell>
                         <TableCell className="font-medium">{post.title}</TableCell>
                         <TableCell>
                           <Badge variant={post.isPublished ? "default" : "secondary"}>
