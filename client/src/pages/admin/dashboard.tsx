@@ -331,6 +331,63 @@ export default function AdminDashboard() {
             </Button>
           </div>
 
+          {/* Bulk Actions */}
+          {selectedIds.length > 0 && (
+            <div className="flex items-center gap-2 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+              <span className="text-sm text-blue-700 font-medium">
+                {selectedIds.length} blog{selectedIds.length === 1 ? '' : 's'} selected
+              </span>
+              <div className="flex gap-2">
+                <Button
+                  data-testid="button-bulk-publish"
+                  size="sm"
+                  variant="default"
+                  disabled={selectedIds.length === 0}
+                  onClick={() => {
+                    if (window.confirm(`Are you sure you want to publish ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}?`)) {
+                      // TODO: Add bulk publish mutation
+                      console.log('Bulk publish:', selectedIds);
+                    }
+                  }}
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  <CheckCircle className="w-4 h-4 mr-1" />
+                  Publish Selected
+                </Button>
+                <Button
+                  data-testid="button-bulk-draft"
+                  size="sm"
+                  variant="outline"
+                  disabled={selectedIds.length === 0}
+                  onClick={() => {
+                    if (window.confirm(`Are you sure you want to move ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'} to draft?`)) {
+                      // TODO: Add bulk draft mutation
+                      console.log('Bulk draft:', selectedIds);
+                    }
+                  }}
+                >
+                  <FileText className="w-4 h-4 mr-1" />
+                  Draft Selected
+                </Button>
+                <Button
+                  data-testid="button-bulk-delete"
+                  size="sm"
+                  variant="destructive"
+                  disabled={selectedIds.length === 0}
+                  onClick={() => {
+                    if (window.confirm(`Are you sure you want to DELETE ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}? This action cannot be undone.`)) {
+                      // TODO: Add bulk delete mutation
+                      console.log('Bulk delete:', selectedIds);
+                    }
+                  }}
+                >
+                  <Trash2 className="w-4 h-4 mr-1" />
+                  Delete Selected
+                </Button>
+              </div>
+            </div>
+          )}
+
           <Card>
             <CardContent className="p-0">
               <Table>
@@ -341,11 +398,6 @@ export default function AdminDashboard() {
                         data-testid="checkbox-select-all"
                         checked={isAllSelected}
                         onCheckedChange={handleSelectAll}
-                        ref={(ref) => {
-                          if (ref && isSomeSelected && !isAllSelected) {
-                            ref.indeterminate = true;
-                          }
-                        }}
                       />
                     </TableHead>
                     <TableHead>Title</TableHead>
