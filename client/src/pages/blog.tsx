@@ -2777,13 +2777,6 @@ export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [displayCount, setDisplayCount] = useState(12); // Show 12 blogs initially
 
-  // Handle sitemap requests - redirect to backend
-  if (directMatch && directParams && directParams.slug.includes('sitemap.xml')) {
-    if (typeof window !== 'undefined') {
-      window.location.href = `/${directParams.slug}`;
-    }
-    return null;
-  }
 
   // Fetch blog posts from API
   const { data: blogPostsData, isLoading } = useQuery({
