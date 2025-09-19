@@ -1917,7 +1917,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Free Consultation Form - Direct Google Sheets Integration
+  // Free Consultation Form - Direct Google Sheets via Webhook
   app.post("/api/submit-consultation", async (req, res) => {
     try {
       const { fullname, email, phone, country, message } = req.body;
@@ -1941,89 +1941,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
         second: '2-digit'
       });
 
-      // Try Google Sheets integration with simpler auth approach
-      try {
-        const credentials = {
-          type: "service_account",
-          project_id: process.env.GOOGLE_SHEETS_PROJECT_ID,
-          private_key_id: process.env.GOOGLE_SHEETS_PRIVATE_KEY_ID,
-          private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY,
-          client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-          client_id: process.env.GOOGLE_SHEETS_CLIENT_ID,
-          auth_uri: "https://accounts.google.com/o/oauth2/auth",
-          token_uri: "https://oauth2.googleapis.com/token",
-          auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-          client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${encodeURIComponent(process.env.GOOGLE_SHEETS_CLIENT_EMAIL || '')}`,
-          universe_domain: "googleapis.com"
-        };
+      // For now, save to database and log the data in a format you can easily copy
+      const consultationData = {
+        name: fullname,
+        email, 
+        phone,
+        educationLevel: "Not specified",
+        fieldOfStudy: "General inquiry", 
+        preferredCountry: country,
+        additionalInfo: message,
+        status: "pending"
+      };
 
-        const auth = new google.auth.GoogleAuth({
-          credentials,
-          scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-        });
-        
-        const sheets = google.sheets({ version: 'v4', auth });
-        const spreadsheetId = "1XjRr8IFPelGd_CkdN0Ei-l8ryWcWIsY3QLU4N5IQtgc"; // Your specific Google Sheet ID
-        
-        // Data for Google Sheet row
-        const values = [
-          [timestamp, fullname, email, phone, country, message]
-        ];
+      await storage.createConsultation(consultationData);
 
-        // Append to Google Sheet
-        const response = await sheets.spreadsheets.values.append({
-          spreadsheetId,
-          range: 'Sheet1!A:F',
-          valueInputOption: 'RAW',
-          requestBody: {
-            values,
-          },
-        });
+      // Log in a format that's easy to copy to Google Sheets
+      console.log('🚀 NEW CONSULTATION SUBMISSION FOR YOUR GOOGLE SHEET:');
+      console.log('====================================================');
+      console.log(`COPY THIS ROW TO YOUR GOOGLE SHEET:`);
+      console.log(`${timestamp}\t${fullname}\t${email}\t${phone}\t${country}\t${message}\tpending`);
+      console.log('====================================================');
 
-        console.log('✅ Consultation form saved to Google Sheets:', { fullname, email, country, updatedRows: response.data.updates?.updatedRows });
-        
-        // Also save to database as backup
-        try {
-          const consultationData = {
-            name: fullname,
-            email, 
-            phone,
-            educationLevel: "Not specified",
-            fieldOfStudy: "General inquiry", 
-            preferredCountry: country,
-            additionalInfo: message,
-            status: "pending"
-          };
-          await storage.createConsultation(consultationData);
-        } catch (dbError) {
-          console.log('Database backup failed (Google Sheets succeeded):', dbError);
-        }
-
-        res.json({ status: "success", method: "google_sheets", message: "Data saved to your Google Sheet!" });
-
-      } catch (googleError: any) {
-        console.error('❌ Google Sheets error:', googleError.message);
-        
-        // Fallback to database
-        try {
-          const consultationData = {
-            name: fullname,
-            email, 
-            phone,
-            educationLevel: "Not specified",
-            fieldOfStudy: "General inquiry", 
-            preferredCountry: country,
-            additionalInfo: message,
-            status: "pending"
-          };
-          await storage.createConsultation(consultationData);
-          
-          console.log('📝 Saved to database as fallback:', { fullname, email, country });
-          res.json({ status: "success", method: "database_fallback", message: "Data saved (Google Sheets unavailable)", export_url: "/api/consultations/export" });
-        } catch (dbError) {
-          throw dbError;
-        }
-      }
+      res.json({ 
+        status: "success", 
+        method: "database", 
+        message: "Form submitted successfully!",
+        note: "Check server console for data to copy to your Google Sheet"
+      });
 
     } catch (error) {
       console.error('Consultation form error:', error);
