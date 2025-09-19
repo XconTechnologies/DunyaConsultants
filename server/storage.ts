@@ -22,6 +22,7 @@ export interface IStorage {
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
   createEligibilityCheck(eligibilityCheck: InsertEligibilityCheck): Promise<EligibilityCheck>;
   createConsultation(consultation: InsertConsultation): Promise<Consultation>;
+  getConsultations(): Promise<Consultation[]>;
   // Engagement tracking
   trackEngagement(engagement: InsertUserEngagement): Promise<UserEngagement>;
   getUserStats(sessionId: string): Promise<UserStats | undefined>;
@@ -145,6 +146,10 @@ export class DatabaseStorage implements IStorage {
   async createConsultation(insertConsultation: InsertConsultation): Promise<Consultation> {
     const [consultation] = await db.insert(consultations).values(insertConsultation).returning();
     return consultation;
+  }
+
+  async getConsultations(): Promise<Consultation[]> {
+    return await db.select().from(consultations).orderBy(desc(consultations.createdAt));
   }
 
   async trackEngagement(insertEngagement: InsertUserEngagement): Promise<UserEngagement> {

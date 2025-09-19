@@ -1917,7 +1917,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Free Consultation Form - Google Sheets Integration
+  // Free Consultation Form - Database Storage with CSV Export
   app.post("/api/submit-consultation", async (req, res) => {
     try {
       const { fullname, email, phone, country, message } = req.body;
@@ -1930,97 +1930,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Prepare timestamp
-      const timestamp = new Date().toLocaleString('en-US', {
-        timeZone: 'Asia/Karachi',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
+      // Map simple form data to existing consultation schema
+      const consultationData = {
+        name: fullname,
+        email, 
+        phone,
+        educationLevel: "Not specified", // Required field, using default
+        fieldOfStudy: "General inquiry", // Required field, using default
+        preferredCountry: country,
+        additionalInfo: message,
+        status: "pending"
+      };
 
-      try {
-        // Setup Google Sheets API using environment variables
-        let privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY || '';
-        
-        // Clean and format the private key properly
-        privateKey = privateKey
-          .replace(/\\n/g, '\n')  // Replace literal \n with actual newlines
-          .replace(/\n\n/g, '\n') // Remove double newlines
-          .trim(); // Remove leading/trailing whitespace
-        
-        // Ensure proper private key format
-        if (!privateKey.startsWith('-----BEGIN PRIVATE KEY-----')) {
-          throw new Error('Invalid private key format - missing BEGIN header');
-        }
-        
-        if (!privateKey.endsWith('-----END PRIVATE KEY-----')) {
-          throw new Error('Invalid private key format - missing END footer');
-        }
-        
-        const credentials = {
-          type: "service_account",
-          project_id: process.env.GOOGLE_SHEETS_PROJECT_ID,
-          private_key_id: process.env.GOOGLE_SHEETS_PRIVATE_KEY_ID,
-          private_key: privateKey,
-          client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-          client_id: process.env.GOOGLE_SHEETS_CLIENT_ID,
-          auth_uri: "https://accounts.google.com/o/oauth2/auth",
-          token_uri: "https://oauth2.googleapis.com/token",
-          auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
-          client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${encodeURIComponent(process.env.GOOGLE_SHEETS_CLIENT_EMAIL || '')}`,
-          universe_domain: "googleapis.com"
-        };
+      await storage.createConsultation(consultationData);
 
-        const auth = new google.auth.GoogleAuth({
-          credentials,
-          scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-        });
-        
-        const sheets = google.sheets({ version: 'v4', auth });
-        const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
-        
-        const values = [
-          [timestamp, fullname, email, phone, country, message]
-        ];
-
-        // Append to Google Sheet
-        await sheets.spreadsheets.values.append({
-          spreadsheetId,
-          range: 'Sheet1!A:F',
-          valueInputOption: 'RAW',
-          requestBody: {
-            values,
-          },
-        });
-
-        console.log('✅ Consultation form saved to Google Sheets:', { fullname, email, country });
-        res.json({ status: "success", method: "google_sheets" });
-
-      } catch (googleError: any) {
-        // Log detailed error and fallback to console logging
-        console.error('❌ Google Sheets error:', googleError.message);
-        
-        // Fallback logging - formatted for easy copying to Google Sheets
-        console.log('🔥 NEW CONSULTATION LEAD RECEIVED 🔥');
-        console.log('=====================================');
-        console.log('COPY THIS DATA TO YOUR GOOGLE SHEET:');
-        console.log('-------------------------------------');
-        console.log(`${timestamp}\t${fullname}\t${email}\t${phone}\t${country}\t${message}`);
-        console.log('-------------------------------------');
-        console.log('Individual fields:');
-        console.log(`Timestamp: ${timestamp}`);
-        console.log(`Name: ${fullname}`);
-        console.log(`Email: ${email}`);
-        console.log(`Phone: ${phone}`);
-        console.log(`Country: ${country}`);
-        console.log(`Message: ${message}`);
-        console.log('=====================================');
-        
-        res.json({ status: "success", method: "fallback_logging", note: "Data logged - check server console" });
-      }
+      console.log('✅ Consultation form saved to database:', { fullname, email, country });
+      res.json({ status: "success", method: "database", export_url: "/api/consultations/export" });
 
     } catch (error) {
       console.error('Consultation form error:', error);
@@ -2028,6 +1953,38 @@ export async function registerRoutes(app: Express): Promise<Server> {
         status: "error", 
         message: "Failed to submit consultation form" 
       });
+    }
+  });
+
+  // CSV Export endpoint for consultations
+  app.get("/api/consultations/export", async (req, res) => {
+    try {
+      const consultations = await storage.getConsultations();
+      
+      // Create CSV content
+      const csvHeader = "Timestamp,Name,Email,Phone,Country,Message,Status\n";
+      const csvRows = consultations.map((c: any) => {
+        const timestamp = new Date(c.createdAt).toLocaleString('en-US', {
+          timeZone: 'Asia/Karachi',
+          year: 'numeric', 
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+        return `"${timestamp}","${c.name}","${c.email}","${c.phone}","${c.preferredCountry}","${c.additionalInfo || ''}","${c.status || 'pending'}"`;
+      }).join('\n');
+      
+      const csvContent = csvHeader + csvRows;
+      
+      res.setHeader('Content-Type', 'text/csv');
+      res.setHeader('Content-Disposition', 'attachment; filename="consultations.csv"');
+      res.send(csvContent);
+      
+    } catch (error) {
+      console.error('Export error:', error);
+      res.status(500).json({ error: 'Failed to export data' });
     }
   });
 
