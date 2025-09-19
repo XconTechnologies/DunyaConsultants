@@ -1917,7 +1917,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Free Consultation Form - Logging System (Working Solution)
+  // Free Consultation Form - Google Sheets Integration
   app.post("/api/submit-consultation", async (req, res) => {
     try {
       const { fullname, email, phone, country, message } = req.body;
@@ -1930,7 +1930,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Prepare timestamp and data
+      // Prepare timestamp
       const timestamp = new Date().toLocaleString('en-US', {
         timeZone: 'Asia/Karachi',
         year: 'numeric',
@@ -1941,27 +1941,86 @@ export async function registerRoutes(app: Express): Promise<Server> {
         second: '2-digit'
       });
 
-      const consultationData = {
-        timestamp,
-        fullname,
-        email,
-        phone,
-        country,
-        message
-      };
+      try {
+        // Setup Google Sheets API using environment variables
+        let privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY || '';
+        
+        // Clean and format the private key properly
+        privateKey = privateKey
+          .replace(/\\n/g, '\n')  // Replace literal \n with actual newlines
+          .replace(/\n\n/g, '\n') // Remove double newlines
+          .trim(); // Remove leading/trailing whitespace
+        
+        // Ensure proper private key format
+        if (!privateKey.startsWith('-----BEGIN PRIVATE KEY-----')) {
+          throw new Error('Invalid private key format - missing BEGIN header');
+        }
+        
+        if (!privateKey.endsWith('-----END PRIVATE KEY-----')) {
+          throw new Error('Invalid private key format - missing END footer');
+        }
+        
+        const credentials = {
+          type: "service_account",
+          project_id: process.env.GOOGLE_SHEETS_PROJECT_ID,
+          private_key_id: process.env.GOOGLE_SHEETS_PRIVATE_KEY_ID,
+          private_key: privateKey,
+          client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+          client_id: process.env.GOOGLE_SHEETS_CLIENT_ID,
+          auth_uri: "https://accounts.google.com/o/oauth2/auth",
+          token_uri: "https://oauth2.googleapis.com/token",
+          auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+          client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${encodeURIComponent(process.env.GOOGLE_SHEETS_CLIENT_EMAIL || '')}`,
+          universe_domain: "googleapis.com"
+        };
 
-      // Log consultation data (working solution until Google Sheets is properly configured)
-      console.log('📝 NEW CONSULTATION FORM SUBMISSION 📝');
-      console.log('=====================================');
-      console.log(`Timestamp: ${timestamp}`);
-      console.log(`Name: ${fullname}`);
-      console.log(`Email: ${email}`);
-      console.log(`Phone: ${phone}`);
-      console.log(`Country: ${country}`);
-      console.log(`Message: ${message}`);
-      console.log('=====================================');
-      
-      res.json({ status: "success", method: "console_logging" });
+        const auth = new google.auth.GoogleAuth({
+          credentials,
+          scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+        });
+        
+        const sheets = google.sheets({ version: 'v4', auth });
+        const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID;
+        
+        const values = [
+          [timestamp, fullname, email, phone, country, message]
+        ];
+
+        // Append to Google Sheet
+        await sheets.spreadsheets.values.append({
+          spreadsheetId,
+          range: 'Sheet1!A:F',
+          valueInputOption: 'RAW',
+          requestBody: {
+            values,
+          },
+        });
+
+        console.log('✅ Consultation form saved to Google Sheets:', { fullname, email, country });
+        res.json({ status: "success", method: "google_sheets" });
+
+      } catch (googleError: any) {
+        // Log detailed error and fallback to console logging
+        console.error('❌ Google Sheets error:', googleError.message);
+        
+        // Fallback logging - formatted for easy copying to Google Sheets
+        console.log('🔥 NEW CONSULTATION LEAD RECEIVED 🔥');
+        console.log('=====================================');
+        console.log('COPY THIS DATA TO YOUR GOOGLE SHEET:');
+        console.log('-------------------------------------');
+        console.log(`${timestamp}\t${fullname}\t${email}\t${phone}\t${country}\t${message}`);
+        console.log('-------------------------------------');
+        console.log('Individual fields:');
+        console.log(`Timestamp: ${timestamp}`);
+        console.log(`Name: ${fullname}`);
+        console.log(`Email: ${email}`);
+        console.log(`Phone: ${phone}`);
+        console.log(`Country: ${country}`);
+        console.log(`Message: ${message}`);
+        console.log('=====================================');
+        
+        res.json({ status: "success", method: "fallback_logging", note: "Data logged - check server console" });
+      }
 
     } catch (error) {
       console.error('Consultation form error:', error);
