@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "skillful-portal-472512-t2",
+  "private_key_id": "dfb650d609f5f3908e9410fa56d04f050b465347",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCXTj4Vb1c4dENB\nfWl/CgQerVvHMZXLXWLAo/Nu++39N4TB6K9AQtHe9c2rihmKaLoU1FdYt/7w9PIA\ne3EWeDRWLKzp78LEi6W5CKNkxyWuiwyZsEMFqvU0+MdnEl2z+M60+bBiQAq/vVKC\nu75T/Tl0N2m2Fw4iA65NFCkJGs5rEQgl3txmaHXYJbAOky0e2BicvdaFabW1KdI8\nFI+Wbqi8Y9dCy5vkskKgYzSlNGd47N+MmW6Cy9rwlOiFLgCqKafqjK+QWK2XwCTF\nyHlET1IZXm3hM3soYPgL4U8aI75whMc3MDGj++qtZ4hqYxMb7tAxOch/y7ppPN1E\nQOyLMmp7AgMBAAECggEABJEIKOIlzcriWOp2VsK3vkSDGEHXqmpYZADf+szzyeNm\nata53N/CevGMT9AceNeCtLE7LJFD1GaYJdPPAupnwalLSfCpvjs7qivKObvZa8u/\njkLUCI0HEhSiZUNm/IJIEoOGiFOqaTtHSApvFMXuPkBsgcSqSfRKGdsOfOyW7FwK\nJquka5HuOAl5GtKi/+qHq3NvrNwCoyGWu95J8oPCmGiHefWBBWjc2ic2tajqIJvl\nzUpc5/dzGjGeARtvLZUm4xhaTBuEakQa/Pr5ds7tFVOjW+IfysU5xu6CkklHe+yv\nyZMRtmFHgVa2XTEsLMR7q15vr5jr6WY92UTYUrjM+QKBgQDN4Qf0MtBrLh41NfH6\nSu7tFRCuXPsc/9JkXEoLUu9CmcJGdGySceF44JoQ93B882OTAtOtymzsNmV/W7xe\nqkew3RQsgFf5ySmwFuurnpSS6QrsdT5GdMO9wtUOwR1hHu6z1/O+U2gQ3kv6SHLC\ns/xcZHMgQ+SP3urFCc2Oodj3CQKBgQC8JAqwzzz+Jh03Duwt33SuKxQCa/vAShuJ\nisZp75kAS35myz9lEESBiYmjhLdVpMUEC4z4ESVfrs6egZdPBnSkx7+qXQpRGk8w\nT17ooEINEM1bLvcniKCgXgcLRkhJgASnIgk+w6xfPLLO6axlwliDVxqeJ4Ekb4eP\ncskjvFpSYwKBgAcZf4C4T9+iU4BaP+H1u4+Jbm3U3wP8/nBfjl4dmgqd6skrMqNK\nMhBNDoMPRV3JtuFW853GoUL0DUP7Ed/h118OAKgYNPB0M2/TGoVsjosSZkIJOQCM\n/kMI+PftSOoUev7Qr6MclTYftFcJMIvuUQGOpTmznaooccghsmj8w9KhAoGAXD77\nsudZi28aofVCHdfTONZMUEervwNW7yBI2oYsqXVae4IqCh5oyG6sOq2GyoooQyx6\nqOKXRYvLKPJ3QrrylByQQDKwLUXOD+zKpxp0aD2VwqCLdCnMP/T6VS/Xn5oSLfRF\nPi3opSV4snTmH1qj1Xnuxh6udjPs7oukTU47pusCgYB0XgIyunP534kM0ZZLWOur\nFWS6tkkktGQGZ4vQdXlix+qa17BLvRJYIQZMJ4YnqSeR9+vWqGHNICz+pXO/pW58\nN0T9St9Sk84R3z0IKh3VJu1OqHQsS6BtCIZwXvDbI58tjwyG+e2LRytgv/DLoqTB\ny1hE0KWamf3erBt7fJJCSw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "dc-leads@skillful-portal-472512-t2.iam.gserviceaccount.com",
+  "client_id": "109783864136113932757",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dc-leads%40skillful-portal-472512-t2.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
