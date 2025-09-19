@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 // Unified image src normalization function (same as blog.tsx)
 const normalizeImageSrc = (image: string) => {
   if (!image || image.trim() === '') {
-    return '/attached_assets/placeholder.jpg'; // fallback for empty images
+    return '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png'; // fallback for empty images
   }
   const trimmed = image.trim();
   if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
@@ -324,7 +324,7 @@ export default function BlogsCarouselSection() {
                           className="w-full h-48 md:h-56 object-cover transition-transform hover:scale-105"
                           style={{ objectFit: 'cover', objectPosition: 'center' }}
                           onError={(e) => {
-                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.src = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
                           }}
                         />
                       </div>
