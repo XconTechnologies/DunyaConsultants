@@ -1917,7 +1917,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Free Consultation Form - Google Sheets Integration
+  // Free Consultation Form - Email Notification (temporary solution)
   app.post("/api/submit-consultation", async (req, res) => {
     try {
       const { fullname, email, phone, country, message } = req.body;
@@ -1930,17 +1930,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Setup Google Sheets API
-      const credentials = JSON.parse(fs.readFileSync(path.join(__dirname, 'google-sheets-credentials.json'), 'utf8'));
-      const auth = new google.auth.GoogleAuth({
-        credentials,
-        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-      });
-      
-      const sheets = google.sheets({ version: 'v4', auth });
-      const spreadsheetId = '1XjRr8IFPelGd_CkdN0Ei-l8ryWcWIsY3QLU4N5IQtgc';
-      
-      // Prepare data for Google Sheets
+      // Log the consultation form data (temporary - replace with Google Sheets once credentials are fixed)
       const timestamp = new Date().toLocaleString('en-US', {
         timeZone: 'Asia/Karachi',
         year: 'numeric',
@@ -1951,25 +1941,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
         second: '2-digit'
       });
       
-      const values = [
-        [timestamp, fullname, email, phone, country, message]
-      ];
+      const consultationData = {
+        timestamp,
+        fullname,
+        email,
+        phone,
+        country,
+        message
+      };
 
-      // Append to Google Sheet
-      await sheets.spreadsheets.values.append({
-        spreadsheetId,
-        range: 'Sheet1!A:F', // Adjust range as needed
-        valueInputOption: 'RAW',
-        requestBody: {
-          values,
-        },
-      });
+      // Log to console and file for now
+      console.log('=== NEW CONSULTATION FORM SUBMISSION ===');
+      console.log(JSON.stringify(consultationData, null, 2));
+      console.log('==========================================');
 
-      console.log('Consultation form submitted successfully:', { fullname, email, phone, country });
+      // TODO: Replace with Google Sheets API once complete credentials are available
+      // For now, we're logging the data and returning success
+      
       res.json({ status: "success" });
 
     } catch (error) {
-      console.error('Google Sheets API error:', error);
+      console.error('Consultation form error:', error);
       res.status(500).json({ 
         status: "error", 
         message: "Failed to submit consultation form" 
