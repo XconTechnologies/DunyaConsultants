@@ -216,8 +216,8 @@ export default function BlogsCarouselSection() {
     slug: post.slug
   })) : staticBlogPosts;
 
-  // Get latest 10 blogs
-  const latestBlogs = blogPosts.slice(0, 10);
+  // Get latest 5 blogs
+  const latestBlogs = blogPosts.slice(0, 5);
 
   // Duplicate the blogs for infinite scroll effect
   const duplicatedBlogs = [...latestBlogs, ...latestBlogs];
