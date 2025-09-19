@@ -482,9 +482,9 @@ export default function AdminDashboard() {
                       />
                     </TableHead>
                     <TableHead>Title</TableHead>
+                    <TableHead>Date</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Views</TableHead>
-                    <TableHead>Created</TableHead>
                     <TableHead>Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -512,13 +512,29 @@ export default function AdminDashboard() {
                           />
                         </TableCell>
                         <TableCell className="font-medium">{post.title}</TableCell>
+                        <TableCell className="text-sm text-gray-600">
+                          {post.isPublished && post.publishedAt 
+                            ? new Date(post.publishedAt).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short', 
+                                day: 'numeric'
+                              })
+                            : new Date(post.createdAt).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
+                              })
+                          }
+                          <div className="text-xs text-gray-400">
+                            {post.isPublished && post.publishedAt ? 'Published' : 'Created'}
+                          </div>
+                        </TableCell>
                         <TableCell>
                           <Badge variant={post.isPublished ? "default" : "secondary"}>
                             {post.isPublished ? "Published" : "Draft"}
                           </Badge>
                         </TableCell>
                         <TableCell>{post.views || 0}</TableCell>
-                        <TableCell>{new Date(post.createdAt).toLocaleDateString()}</TableCell>
                         <TableCell>
                           <div className="flex items-center space-x-2">
                             <Button
