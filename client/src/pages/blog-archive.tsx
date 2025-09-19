@@ -103,7 +103,7 @@ export default function BlogArchive() {
       readTime: "5 min",
       views: post.views || 0,
       tags: post.tags || [],
-      image: post.featuredImage || featuredImages[post.slug] || "https://dunyaconsultants.com/wp-content/uploads/2025/03/Study-Abroad-Default.webp",
+      image: post.featured_image || featuredImages[post.slug] || "https://dunyaconsultants.com/wp-content/uploads/2025/03/Study-Abroad-Default.webp",
       featured: false,
       trending: (post.views || 0) > 1000,
       href: `/blog/${post.slug}`

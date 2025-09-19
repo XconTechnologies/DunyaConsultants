@@ -211,7 +211,7 @@ export default function BlogsCarouselSection() {
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
-    image: normalizeImageSrc(post.featuredImage || ''),
+    image: normalizeImageSrc(post.featured_image || ''),
     featured: false,
     slug: post.slug
   })) : staticBlogPosts;

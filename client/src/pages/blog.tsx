@@ -284,7 +284,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
-    image: normalizeImageSrc(post.featuredImage || ''),
+    image: normalizeImageSrc(post.featured_image || ''),
     featured: false,
     slug: post.slug,
     content: post.content,
@@ -2812,7 +2812,7 @@ export default function Blog() {
     readTime: "5 min",
     views: post.view_count || 0,
     tags: post.tags || [],
-    image: normalizeImageSrc(post.featuredImage || ''),
+    image: normalizeImageSrc(post.featured_image || ''),
     featured: false,
     slug: post.slug,
     sortDate: (() => {
