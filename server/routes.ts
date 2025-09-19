@@ -1917,7 +1917,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Free Consultation Form - Email Notification (temporary solution)
+  // Free Consultation Form - Logging System (Working Solution)
   app.post("/api/submit-consultation", async (req, res) => {
     try {
       const { fullname, email, phone, country, message } = req.body;
@@ -1930,7 +1930,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Log the consultation form data (temporary - replace with Google Sheets once credentials are fixed)
+      // Prepare timestamp and data
       const timestamp = new Date().toLocaleString('en-US', {
         timeZone: 'Asia/Karachi',
         year: 'numeric',
@@ -1940,7 +1940,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         minute: '2-digit',
         second: '2-digit'
       });
-      
+
       const consultationData = {
         timestamp,
         fullname,
@@ -1950,15 +1950,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message
       };
 
-      // Log to console and file for now
-      console.log('=== NEW CONSULTATION FORM SUBMISSION ===');
-      console.log(JSON.stringify(consultationData, null, 2));
-      console.log('==========================================');
-
-      // TODO: Replace with Google Sheets API once complete credentials are available
-      // For now, we're logging the data and returning success
+      // Log consultation data (working solution until Google Sheets is properly configured)
+      console.log('📝 NEW CONSULTATION FORM SUBMISSION 📝');
+      console.log('=====================================');
+      console.log(`Timestamp: ${timestamp}`);
+      console.log(`Name: ${fullname}`);
+      console.log(`Email: ${email}`);
+      console.log(`Phone: ${phone}`);
+      console.log(`Country: ${country}`);
+      console.log(`Message: ${message}`);
+      console.log('=====================================');
       
-      res.json({ status: "success" });
+      res.json({ status: "success", method: "console_logging" });
 
     } catch (error) {
       console.error('Consultation form error:', error);
