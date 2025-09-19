@@ -50,23 +50,47 @@ export default function ConsultationFormPopup({ isOpen, onClose }: ConsultationF
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      // Track successful consultation booking
-      trackConsultationBooking();
-      trackEvent('consultation_popup_success', 'conversion', formData.interestedCountry || 'unknown');
-      
-      alert("Thank you! Your consultation request has been submitted. We'll contact you soon.");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        interestedCountry: "",
-        message: ""
+    try {
+      // Send data to Google Sheets via backend
+      const response = await fetch('/api/submit-consultation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullname: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          country: formData.interestedCountry,
+          message: formData.message
+        }),
       });
+
+      const result = await response.json();
+
+      if (result.status === 'success') {
+        // Track successful consultation booking
+        trackConsultationBooking();
+        trackEvent('consultation_popup_success', 'conversion', formData.interestedCountry || 'unknown');
+        
+        alert("✅ Submitted Successfully");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          interestedCountry: "",
+          message: ""
+        });
+        onClose();
+      } else {
+        alert("Error submitting form. Please try again.");
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert("Error submitting form. Please try again.");
+    } finally {
       setIsSubmitting(false);
-      onClose();
-    }, 1000);
+    }
   };
 
   if (!isOpen) return null;

@@ -14,6 +14,7 @@ import path from "path";
 import fs from "fs";
 import multer from "multer";
 import { Resend } from "resend";
+import { google } from 'googleapis';
 
 // Initialize Resend (conditional to allow server to start without API key)
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
@@ -1913,6 +1914,66 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(page);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch page' });
+    }
+  });
+
+  // Free Consultation Form - Google Sheets Integration
+  app.post("/api/submit-consultation", async (req, res) => {
+    try {
+      const { fullname, email, phone, country, message } = req.body;
+
+      // Validate required fields
+      if (!fullname || !email || !phone || !country || !message) {
+        return res.status(400).json({ 
+          status: "error", 
+          message: "All fields are required" 
+        });
+      }
+
+      // Setup Google Sheets API
+      const credentials = JSON.parse(fs.readFileSync(path.join(__dirname, 'google-sheets-credentials.json'), 'utf8'));
+      const auth = new google.auth.GoogleAuth({
+        credentials,
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      });
+      
+      const sheets = google.sheets({ version: 'v4', auth });
+      const spreadsheetId = '1XjRr8IFPelGd_CkdN0Ei-l8ryWcWIsY3QLU4N5IQtgc';
+      
+      // Prepare data for Google Sheets
+      const timestamp = new Date().toLocaleString('en-US', {
+        timeZone: 'Asia/Karachi',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      
+      const values = [
+        [timestamp, fullname, email, phone, country, message]
+      ];
+
+      // Append to Google Sheet
+      await sheets.spreadsheets.values.append({
+        spreadsheetId,
+        range: 'Sheet1!A:F', // Adjust range as needed
+        valueInputOption: 'RAW',
+        requestBody: {
+          values,
+        },
+      });
+
+      console.log('Consultation form submitted successfully:', { fullname, email, phone, country });
+      res.json({ status: "success" });
+
+    } catch (error) {
+      console.error('Google Sheets API error:', error);
+      res.status(500).json({ 
+        status: "error", 
+        message: "Failed to submit consultation form" 
+      });
     }
   });
 
