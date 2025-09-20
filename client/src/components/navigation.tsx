@@ -226,7 +226,7 @@ export default function Navigation() {
               className={`${
                 !isScrolled 
                   ? 'bg-white/20 border border-white text-white hover:bg-white/30' 
-                  : 'bg-[#1D50C9] text-white hover:bg-[#1845B3]'
+                  : 'bg-white text-[#1D50C9] hover:bg-blue-50 border border-blue-200'
               } font-medium px-3 py-1.5 text-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
               data-testid="button-uan-number"
             >
