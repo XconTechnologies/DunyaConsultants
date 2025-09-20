@@ -176,11 +176,11 @@ export default function BlogsCarouselSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-  // Fetch blog posts from API (same as blog page)
+  // Fetch latest 5 blog posts from API for carousel
   const { data: blogPostsData } = useQuery({
-    queryKey: ['/api/blog-posts'],
+    queryKey: ['/api/blog-posts', { limit: 5 }],
     queryFn: async () => {
-      const response = await fetch('/api/blog-posts');
+      const response = await fetch('/api/blog-posts?limit=5');
       if (!response.ok) throw new Error('Failed to fetch blog posts');
       return response.json();
     }

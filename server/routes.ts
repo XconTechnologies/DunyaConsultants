@@ -1304,11 +1304,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // PUBLIC BLOG ROUTES
   // ==============================================
 
-  // Get all published blog posts (public)
+  // Get all published blog posts (public) with optional limit
   app.get("/api/blog-posts", async (req, res) => {
     try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
       const posts = await storage.getBlogPosts(true); // Only published posts
-      res.json(posts);
+      
+      // Apply limit if specified
+      const limitedPosts = limit ? posts.slice(0, limit) : posts;
+      res.json(limitedPosts);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch published blog posts' });
     }
@@ -1340,11 +1344,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   //   }
   // });
 
-  // Get published blog posts (public)
+  // Get published blog posts (public) with optional limit
   app.get("/api/blog-posts/published", async (req, res) => {
     try {
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
       const posts = await storage.getBlogPosts(true); // Only published posts
-      res.json(posts);
+      
+      // Apply limit if specified  
+      const limitedPosts = limit ? posts.slice(0, limit) : posts;
+      res.json(limitedPosts);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch published blog posts' });
     }
@@ -1676,7 +1684,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/blog-posts/:id/related", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      const limit = parseInt(req.query.limit as string) || 6;
+      const limit = parseInt(req.query.limit as string) || 5;
       
       // First get the current post to access its tags
       const currentPost = await storage.getBlogPost(id);
