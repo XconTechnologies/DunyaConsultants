@@ -12,7 +12,7 @@ interface CalendlyButtonProps {
 }
 
 export default function CalendlyButton({
-  url = "https://calendly.com/d/cr7w-sby-xzh",
+  url = "https://calendly.com/d/cw4q-ymv-8wh",
   text = "Book Free Consultation",
   className = "",
   variant = "default",

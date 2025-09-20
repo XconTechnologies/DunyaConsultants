@@ -153,7 +153,7 @@ export default function ConsultationBookingSection() {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <CalendlyButton
-              url="https://calendly.com/d/cr7w-sby-xzh"
+              url="https://calendly.com/d/cw4q-ymv-8wh"
               text="Book Free Consultation"
               className="bg-white text-[#1D50C9] hover:bg-gray-100 hover:text-[#1845B3] px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               size="lg"
