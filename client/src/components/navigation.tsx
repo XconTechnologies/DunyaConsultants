@@ -225,7 +225,7 @@ export default function Navigation() {
               !isScrolled ? 'text-white' : 'text-[#1D50C9]'
             } font-semibold transition-colors duration-300`}>
               <Phone className="w-4 h-4 mr-2" />
-              <span className="text-sm">+92 326 111 1947</span>
+              <span className="text-sm">UAN: (+92) 304-111-0947</span>
             </div>
             
             {/* Free Consultation Button */}
