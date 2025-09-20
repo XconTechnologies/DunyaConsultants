@@ -336,7 +336,75 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Consultation booking
+  // Submit consultation to Google Sheets
+  app.post("/api/submit-consultation", async (req, res) => {
+    try {
+      const { fullname, email, phone, country, message } = req.body;
+      
+      // Validate required fields
+      if (!fullname || !email || !phone) {
+        return res.status(400).json({ 
+          status: "error", 
+          message: "Name, email, and phone are required" 
+        });
+      }
+
+      // Configure Google Sheets API
+      const auth = new google.auth.GoogleAuth({
+        credentials: {
+          client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+          private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+          project_id: process.env.GOOGLE_SHEETS_PROJECT_ID,
+        },
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      });
+
+      const sheets = google.sheets({ version: 'v4', auth });
+      const spreadsheetId = '1XjRr8IFPelGd_CkdN0Ei-l8ryWcWIsY3QLU4N5IQtgc';
+
+      // Prepare row data with timestamp
+      const timestamp = new Date().toLocaleString('en-US', { 
+        timeZone: 'Asia/Karachi',
+        year: 'numeric',
+        month: '2-digit', 
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+
+      const rowData = [
+        timestamp,
+        fullname || '',
+        email || '',
+        phone || '',
+        country || '',
+        message || ''
+      ];
+
+      // Append data to Google Sheet
+      await sheets.spreadsheets.values.append({
+        spreadsheetId,
+        range: 'Sheet1!A:F', // Adjust range if your sheet has different columns
+        valueInputOption: 'RAW',
+        requestBody: {
+          values: [rowData],
+        },
+      });
+
+      console.log(`✅ Consultation saved to Google Sheets: ${fullname} (${email})`);
+      res.json({ status: "success" });
+
+    } catch (error) {
+      console.error('Google Sheets API error:', error);
+      res.status(500).json({ 
+        status: "error", 
+        message: "Failed to save consultation data" 
+      });
+    }
+  });
+
+  // Consultation booking (keep existing for backward compatibility)
   app.post("/api/consultations", async (req, res) => {
     try {
       const consultationData = insertConsultationSchema.parse(req.body);
