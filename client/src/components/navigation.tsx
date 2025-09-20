@@ -218,8 +218,17 @@ export default function Navigation() {
             </div>
           </div>
           
-          {/* Free Consultation Button - Right Side */}
-          <div className="hidden lg:flex items-center ml-auto">
+          {/* UAN Number and Free Consultation Button - Right Side */}
+          <div className="hidden lg:flex items-center ml-auto space-x-3">
+            {/* UAN Number */}
+            <div className={`flex items-center ${
+              !isScrolled ? 'text-white' : 'text-[#1D50C9]'
+            } font-semibold transition-colors duration-300`}>
+              <Phone className="w-4 h-4 mr-2" />
+              <span className="text-sm">+92 326 111 1947</span>
+            </div>
+            
+            {/* Free Consultation Button */}
             <Button 
               size="sm"
               onClick={() => setIsConsultationModalOpen(true)}
@@ -227,10 +236,9 @@ export default function Navigation() {
                 !isScrolled 
                   ? 'bg-white text-[#1D50C9] hover:bg-blue-50' 
                   : 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:from-[#1845B3] hover:to-[#1D50C9]'
-              } font-semibold px-4 py-2 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
+              } font-medium px-3 py-1.5 text-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
               data-testid="button-free-consultation"
             >
-              <Phone className="w-4 h-4 mr-2" />
               Free Consultation
             </Button>
           </div>
