@@ -218,28 +218,16 @@ export default function Navigation() {
             </div>
           </div>
           
-          {/* UAN Number and Free Consultation Button - Right Side */}
-          <div className="hidden lg:flex items-center ml-auto space-x-3">
-            {/* UAN Number */}
-            <div className={`flex items-center ${
-              !isScrolled ? 'text-white' : 'text-[#1D50C9]'
-            } font-semibold transition-colors duration-300`}>
-              <Phone className="w-4 h-4 mr-2" />
-              <span className="text-sm">UAN: (+92) 304-111-0947</span>
-            </div>
-            
-            {/* Free Consultation Button */}
+          {/* UAN Number Button - Right Side */}
+          <div className="hidden lg:flex items-center ml-auto">
             <Button 
               size="sm"
-              onClick={() => setIsConsultationModalOpen(true)}
-              className={`${
-                !isScrolled 
-                  ? 'bg-white text-[#1D50C9] hover:bg-blue-50' 
-                  : 'bg-gradient-to-r from-[#1D50C9] to-[#1845B3] text-white hover:from-[#1845B3] hover:to-[#1D50C9]'
-              } font-medium px-3 py-1.5 text-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
-              data-testid="button-free-consultation"
+              onClick={() => window.open('tel:+923041110947')}
+              className="bg-white text-[#1D50C9] hover:bg-blue-50 border border-white/20 font-medium px-3 py-1.5 text-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              data-testid="button-uan-number"
             >
-              Free Consultation
+              <Phone className="w-4 h-4 mr-2" />
+              UAN: (+92) 304-111-0947
             </Button>
           </div>
 
