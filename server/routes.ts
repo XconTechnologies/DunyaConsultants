@@ -170,9 +170,15 @@ async function initializeAdmin() {
       }
     }
 
-    // Seed blog posts (DEVELOPMENT ONLY)
-    await seedBlogPosts();
-    console.log('Development mode: Blog posts seeded');
+    // Only seed blog posts if database is empty (DEVELOPMENT ONLY)
+    const existingBlogPosts = await storage.getBlogPosts();
+    if (existingBlogPosts.length === 0) {
+      console.log('Database empty: Seeding initial blog posts...');
+      await seedBlogPosts();
+      console.log('Development mode: Blog posts seeded');
+    } else {
+      console.log(`Database has ${existingBlogPosts.length} existing blog posts - skipping seeding`);
+    }
   } catch (error) {
     console.error('Failed to initialize development environment:', error);
   }
