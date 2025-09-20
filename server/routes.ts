@@ -1312,7 +1312,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Apply limit if specified
       const limitedPosts = limit ? posts.slice(0, limit) : posts;
-      res.json(limitedPosts);
+      
+      // Map database fields to frontend expected format
+      const mappedPosts = limitedPosts.map(post => ({
+        ...post,
+        featuredImage: post.featuredImage // Map featured_image to featuredImage
+      }));
+      
+      res.json(mappedPosts);
     } catch (error) {
       res.status(500).json({ message: 'Failed to fetch published blog posts' });
     }
