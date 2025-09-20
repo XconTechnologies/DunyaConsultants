@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
-import { Rocket, Play, Phone } from "lucide-react";
+import { Rocket, Play, Phone, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import ConsultationFormModal from "@/components/consultation-form-modal";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 export default function HeroSection() {
   const [isConsultationModalOpen, setIsConsultationModalOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -138,6 +140,14 @@ export default function HeroSection() {
               Start Your Journey
             </Button>
             <Button 
+              size="default"
+              onClick={() => setIsPopupOpen(true)}
+              className="bg-white/20 border-2 border-white text-white px-6 py-3 text-sm font-semibold hover:bg-white hover:text-primary transition-all duration-300 backdrop-blur-sm"
+            >
+              <MessageCircle className="mr-2" size={16} />
+              Connect now
+            </Button>
+            <Button 
               variant="outline"
               size="default"
               onClick={() => scrollToSection("testimonials")}
@@ -154,6 +164,12 @@ export default function HeroSection() {
       <ConsultationFormModal 
         isOpen={isConsultationModalOpen}
         onClose={() => setIsConsultationModalOpen(false)}
+      />
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
       />
       
       {/* Enhanced Floating Elements */}

@@ -223,7 +223,11 @@ export default function Navigation() {
             <Button 
               size="sm"
               onClick={() => window.open('tel:+923041110947')}
-              className="bg-white text-[#1D50C9] hover:bg-blue-50 border border-white/20 font-medium px-3 py-1.5 text-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className={`${
+                !isScrolled 
+                  ? 'bg-white/20 border border-white text-white hover:bg-white/30' 
+                  : 'bg-[#1D50C9] text-white hover:bg-[#1845B3]'
+              } font-medium px-3 py-1.5 text-sm shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
               data-testid="button-uan-number"
             >
               <Phone className="w-4 h-4 mr-2" />
