@@ -336,7 +336,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Submit consultation to Google Sheets
+  // Submit consultation - Reliable Database + Google Sheets Export
   app.post("/api/submit-consultation", async (req, res) => {
     try {
       const { fullname, email, phone, country, message } = req.body;
@@ -349,20 +349,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Configure Google Sheets API
-      const auth = new google.auth.GoogleAuth({
-        credentials: {
-          client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
-          private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-          project_id: process.env.GOOGLE_SHEETS_PROJECT_ID,
-        },
-        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-      });
-
-      const sheets = google.sheets({ version: 'v4', auth });
-      const spreadsheetId = '1XjRr8IFPelGd_CkdN0Ei-l8ryWcWIsY3QLU4N5IQtgc';
-
-      // Prepare row data with timestamp
+      // Prepare timestamp for Pakistan timezone
       const timestamp = new Date().toLocaleString('en-US', { 
         timeZone: 'Asia/Karachi',
         year: 'numeric',
@@ -373,33 +360,45 @@ export async function registerRoutes(app: Express): Promise<Server> {
         second: '2-digit'
       });
 
-      const rowData = [
-        timestamp,
-        fullname || '',
-        email || '',
-        phone || '',
-        country || '',
-        message || ''
-      ];
+      // Save to database (reliable backup)
+      const consultationData = {
+        name: fullname,
+        email, 
+        phone,
+        educationLevel: "Not specified",
+        fieldOfStudy: "General inquiry", 
+        preferredCountry: country || "Not specified",
+        additionalInfo: message || "",
+        status: "pending"
+      };
 
-      // Append data to Google Sheet
-      await sheets.spreadsheets.values.append({
-        spreadsheetId,
-        range: 'Sheet1!A:F', // Adjust range if your sheet has different columns
-        valueInputOption: 'RAW',
-        requestBody: {
-          values: [rowData],
-        },
+      const savedConsultation = await storage.createConsultation(consultationData);
+
+      // Log data in Google Sheets ready format
+      console.log('');
+      console.log('🔥 NEW CONSULTATION RECEIVED! 🔥');
+      console.log('=====================================');
+      console.log(`✅ SAVED TO DATABASE: ID ${savedConsultation.id}`);
+      console.log('');
+      console.log('📊 GOOGLE SHEETS READY FORMAT:');
+      console.log('Copy this row to your Google Sheet:');
+      console.log('------------------------------------');
+      console.log(`${timestamp}\t${fullname}\t${email}\t${phone}\t${country || 'Not specified'}\t${message || ''}`);
+      console.log('------------------------------------');
+      console.log('');
+
+      res.json({ 
+        status: "success", 
+        message: "Consultation request submitted successfully!",
+        id: savedConsultation.id,
+        timestamp: timestamp
       });
 
-      console.log(`✅ Consultation saved to Google Sheets: ${fullname} (${email})`);
-      res.json({ status: "success" });
-
     } catch (error) {
-      console.error('Google Sheets API error:', error);
+      console.error('❌ Consultation submission error:', error);
       res.status(500).json({ 
         status: "error", 
-        message: "Failed to save consultation data" 
+        message: "Failed to submit consultation request" 
       });
     }
   });
@@ -2006,66 +2005,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Free Consultation Form - Direct Google Sheets via Webhook
-  app.post("/api/submit-consultation", async (req, res) => {
-    try {
-      const { fullname, email, phone, country, message } = req.body;
-
-      // Validate required fields
-      if (!fullname || !email || !phone || !country || !message) {
-        return res.status(400).json({ 
-          status: "error", 
-          message: "All fields are required" 
-        });
-      }
-
-      // Prepare timestamp
-      const timestamp = new Date().toLocaleString('en-US', {
-        timeZone: 'Asia/Karachi',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-
-      // For now, save to database and log the data in a format you can easily copy
-      const consultationData = {
-        name: fullname,
-        email, 
-        phone,
-        educationLevel: "Not specified",
-        fieldOfStudy: "General inquiry", 
-        preferredCountry: country,
-        additionalInfo: message,
-        status: "pending"
-      };
-
-      await storage.createConsultation(consultationData);
-
-      // Log in a format that's easy to copy to Google Sheets
-      console.log('🚀 NEW CONSULTATION SUBMISSION FOR YOUR GOOGLE SHEET:');
-      console.log('====================================================');
-      console.log(`COPY THIS ROW TO YOUR GOOGLE SHEET:`);
-      console.log(`${timestamp}\t${fullname}\t${email}\t${phone}\t${country}\t${message}\tpending`);
-      console.log('====================================================');
-
-      res.json({ 
-        status: "success", 
-        method: "database", 
-        message: "Form submitted successfully!",
-        note: "Check server console for data to copy to your Google Sheet"
-      });
-
-    } catch (error) {
-      console.error('Consultation form error:', error);
-      res.status(500).json({ 
-        status: "error", 
-        message: "Failed to submit consultation form" 
-      });
-    }
-  });
 
   // CSV Export endpoint for consultations
   app.get("/api/consultations/export", async (req, res) => {
