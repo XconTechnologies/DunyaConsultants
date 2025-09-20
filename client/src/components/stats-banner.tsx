@@ -12,9 +12,12 @@ import {
   Shield,
   Zap,
   Star,
-  MapPin
+  MapPin,
+  MessageCircle
 } from "lucide-react";
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube, FaLinkedin } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
+import ConsultationFormPopup from "@/components/consultation-form-popup";
 
 const AnimatedCounter = ({ number, suffix, isVisible }: { number: number; suffix: string; isVisible: boolean }) => {
   const [count, setCount] = useState(0);
@@ -47,6 +50,7 @@ export default function StatsBanner() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [, setLocation] = useLocation();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // Scroll to section function
   const scrollToSection = (sectionId: string) => {
@@ -355,14 +359,28 @@ export default function StatsBanner() {
         </div>
 
         {/* Bottom Element */}
-        <div className="flex justify-center mt-8 sm:mt-12 lg:mt-16 mb-4 sm:mb-6 lg:mb-8">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8 sm:mt-12 lg:mt-16 mb-4 sm:mb-6 lg:mb-8">
           <div className="flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-xl rounded-full px-4 sm:px-6 py-2 sm:py-3 border border-white/10">
             <Shield className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: '#1D50C9' }} />
             <span className="text-white/80 font-medium text-sm sm:text-base">Trusted Excellence Since 2021</span>
             <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full" style={{ backgroundColor: '#1D50C9' }} />
           </div>
+          <Button 
+            onClick={() => setIsPopupOpen(true)}
+            className="bg-white/10 border border-white/20 text-white hover:bg-white/20 hover:border-white/30 px-4 py-2 text-sm font-medium rounded-full backdrop-blur-xl transition-all duration-300"
+          >
+            <MessageCircle className="w-4 h-4 mr-2" />
+            Connect now
+          </Button>
         </div>
       </div>
+      
+      {/* Consultation Form Popup */}
+      <ConsultationFormPopup 
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
+      
       <style>{`
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
