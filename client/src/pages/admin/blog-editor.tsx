@@ -15,6 +15,7 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
   Calendar, User, Hash, Globe, Upload, Image as ImageIcon
@@ -128,10 +129,14 @@ export default function BlogEditor() {
       ['clean']
     ],
     clipboard: {
-      // Preserve basic formatting when pasting from Google Docs and other sources
+      // Preserve all formatting including tables when pasting
       matchVisual: false,
-      // Allow most formatting to pass through
-      stripPastedStyles: false
+      stripPastedStyles: false,
+      // Allow table tags to pass through
+      allowedTags: ['table', 'thead', 'tbody', 'tr', 'td', 'th'],
+      // More aggressive preservation
+      keepSelection: true,
+      substituteBlockElements: false
     }
   }), []);
 
@@ -152,7 +157,7 @@ export default function BlogEditor() {
     console.log('Form content changed:', content?.length || 0, 'characters');
   }, [content]);
 
-  // Custom paste handler for table preservation
+  // Enhanced paste handler for table preservation
   useEffect(() => {
     const handlePaste = (e: Event) => {
       const clipboardEvent = e as ClipboardEvent;
@@ -169,9 +174,14 @@ export default function BlogEditor() {
         if (quill) {
           const range = quill.getSelection();
           if (range) {
+            // Clean up the HTML but preserve table structure
+            const cleanedHtml = htmlData.replace(/(<table[^>]*>)/gi, '$1 style="width: 100%; border-collapse: collapse; margin: 20px 0;"')
+                                        .replace(/(<td[^>]*>)/gi, '$1')
+                                        .replace(/(<th[^>]*>)/gi, '$1');
+            
             // Insert the HTML directly, preserving table structure
-            quill.clipboard.dangerouslyPasteHTML(range.index, htmlData);
-            // Update the form value
+            quill.clipboard.dangerouslyPasteHTML(range.index, cleanedHtml);
+            // Update the form value after a short delay
             setTimeout(() => {
               const newContent = quill.root.innerHTML;
               setValue('content', newContent);
@@ -181,12 +191,29 @@ export default function BlogEditor() {
       }
     };
 
+    // Enhanced table preservation on content change
+    const preserveTableStructure = () => {
+      const quill = editorRef.current?.getEditor();
+      if (quill) {
+        const currentContent = quill.root.innerHTML;
+        // If content has tables, ensure they're properly formatted
+        if (currentContent.includes('<table')) {
+          const preservedContent = currentContent.replace(/(<table)([^>]*>)/gi, '$1 style="width: 100%; border-collapse: collapse; margin: 20px 0;"$2');
+          if (preservedContent !== currentContent) {
+            setValue('content', preservedContent);
+          }
+        }
+      }
+    };
+
     // Add event listener to the Quill editor container
     const quillContainer = document.querySelector('.ql-editor');
     if (quillContainer) {
       quillContainer.addEventListener('paste', handlePaste as EventListener);
+      quillContainer.addEventListener('input', preserveTableStructure as EventListener);
       return () => {
         quillContainer.removeEventListener('paste', handlePaste as EventListener);
+        quillContainer.removeEventListener('input', preserveTableStructure as EventListener);
       };
     }
   }, [editorMounted, setValue]);
