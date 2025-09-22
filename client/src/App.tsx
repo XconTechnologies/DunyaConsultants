@@ -169,8 +169,6 @@ function Router() {
       <Route path="/admin/blog-editor" component={BlogEditor} />
       <Route path="/admin/blog-preview/:id" component={AdminBlogPreview} />
       
-      {/* Backward compatibility for old blog slug format */}
-      <Route path="/:slug" component={Blog} />
       
       <Route component={NotFound} />
     </Switch>
