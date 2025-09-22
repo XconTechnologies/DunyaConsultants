@@ -2451,7 +2451,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
                           >
-                            <Link href={`/${blog.slug}`}>
+                            <Link href={`/blog/${blog.slug}`}>
                               <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                                 
                                 {/* Featured Image */}
@@ -2972,7 +2972,7 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Link href={post.slug.includes('/') ? `/${post.slug}` : `/${post.slug}`}>
+              <Link href={post.slug.includes('/') ? `/blog/${post.slug}` : `/blog/${post.slug}`}>
                 <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                   
                   {/* Featured Image */}

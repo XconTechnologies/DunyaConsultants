@@ -397,7 +397,7 @@ export default function BlogList() {
                       <span>{post.date}</span>
                     </div>
                     
-                    <Link href={post.slug}>
+                    <Link href={`/blog/${post.slug}`}>
                       <Button 
                         size="sm" 
                         className="#1D50C9 hover:bg-[#1845B3] text-white"
