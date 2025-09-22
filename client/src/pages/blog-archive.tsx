@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { BlogPost } from "@shared/schema";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import { getBlogUrl } from "@/lib/blog-utils";
 
 interface BlogArchivePost {
   id: string;
@@ -106,7 +107,7 @@ export default function BlogArchive() {
       image: post.featuredImage || featuredImages[post.slug] || "https://dunyaconsultants.com/wp-content/uploads/2025/03/Study-Abroad-Default.webp",
       featured: false,
       trending: (post.viewCount || 0) > 1000,
-      href: `/blog/${post.slug}`
+      href: getBlogUrl(post.slug)
     }));
   }, [blogPosts]);
 

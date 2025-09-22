@@ -5,6 +5,7 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { getBlogUrl } from "@/lib/blog-utils";
 
 // Unified image src normalization function (same as blog.tsx)
 const normalizeImageSrc = (image: string) => {
@@ -307,7 +308,7 @@ export default function BlogsCarouselSection() {
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
               >
-                <Link href={post.slug.includes('/') ? `/blog/${post.slug}` : `/blog/${post.slug}`}>
+                <Link href={getBlogUrl(post.slug)}>
                   <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                     
                     {/* Featured Image - Exact same as blog page */}

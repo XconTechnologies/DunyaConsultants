@@ -9,6 +9,7 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import { getBlogUrl } from "@/lib/blog-utils";
 
 // Unified image src normalization function (same as other components)
 const normalizeImageSrc = (image: string) => {
@@ -476,7 +477,7 @@ export default function BlogList() {
                       <span>{post.date}</span>
                     </div>
                     
-                    <Link href={`/blog/${post.slug}`}>
+                    <Link href={getBlogUrl(post.slug)}>
                       <Button 
                         size="sm" 
                         className="#1D50C9 hover:bg-[#1845B3] text-white"

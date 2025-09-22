@@ -20,6 +20,7 @@ import {
   Save, Eye, ArrowLeft, Loader2, FileText, 
   Calendar, User, Hash, Globe, Upload, Image as ImageIcon
 } from "lucide-react";
+import { getBlogUrl } from "@/lib/blog-utils";
 
 const blogSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -454,7 +455,7 @@ export default function BlogEditor() {
                   onClick={() => {
                     if (blogPost.isPublished && blogPost.slug) {
                       // For published posts, open public URL
-                      window.open(`/blog/${blogPost.slug}`, '_blank');
+                      window.open(getBlogUrl(blogPost.slug), '_blank');
                     } else {
                       // For drafts, open admin preview page
                       window.open(`/admin/blog-preview/${blogPost.id}`, '_blank');

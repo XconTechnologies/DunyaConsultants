@@ -2082,9 +2082,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       publishedPosts.forEach(post => {
         if (post.slug) {
           const lastMod = post.updatedAt ? new Date(post.updatedAt).toISOString() : new Date(post.createdAt).toISOString();
+          // Check if the slug matches the date pattern (YYYY/MM/DD) to determine URL structure
+          const datePattern = /^\d{4}\/\d{2}\/\d{2}\//;
+          const blogUrl = datePattern.test(post.slug) ? `${baseUrl}/${post.slug}` : `${baseUrl}/blog/${post.slug}`;
           urlEntries += `
   <url>
-    <loc>${baseUrl}/blog/${post.slug}</loc>
+    <loc>${blogUrl}</loc>
     <lastmod>${lastMod}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
