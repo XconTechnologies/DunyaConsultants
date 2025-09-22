@@ -2038,6 +2038,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ====================== SITEMAP ROUTES ======================
+
+  // Main sitemap index at /sitemap.xml
+  app.get("/sitemap.xml", async (req, res) => {
+    try {
+      const baseUrl = `https://${req.get('host') || 'dunyaconsultants.com'}`;
+      
+      const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>${baseUrl}/post-sitemap.xml</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>${baseUrl}/page-sitemap.xml</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+  </sitemap>
+</sitemapindex>`;
+
+      res.set('Content-Type', 'application/xml');
+      res.send(sitemapIndex);
+    } catch (error) {
+      console.error('Sitemap index error:', error);
+      res.status(500).send('Failed to generate sitemap index');
+    }
+  });
+
+  // Blog posts sitemap at /post-sitemap.xml
+  app.get("/post-sitemap.xml", async (req, res) => {
+    try {
+      const baseUrl = `https://${req.get('host') || 'dunyaconsultants.com'}`;
+      const publishedPosts = await storage.getBlogPosts(true); // Only published posts
+      
+      let urlEntries = '';
+      publishedPosts.forEach(post => {
+        if (post.slug) {
+          const lastMod = post.updatedAt ? new Date(post.updatedAt).toISOString() : new Date(post.createdAt).toISOString();
+          urlEntries += `
+  <url>
+    <loc>${baseUrl}/blog/${post.slug}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>`;
+        }
+      });
+
+      const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urlEntries}
+</urlset>`;
+
+      res.set('Content-Type', 'application/xml');
+      res.send(sitemap);
+    } catch (error) {
+      console.error('Post sitemap error:', error);
+      res.status(500).send('Failed to generate post sitemap');
+    }
+  });
+
+  // Pages sitemap at /page-sitemap.xml
+  app.get("/page-sitemap.xml", async (req, res) => {
+    try {
+      const baseUrl = `https://${req.get('host') || 'dunyaconsultants.com'}`;
+      const publishedPages = await storage.getPages(true); // Only published pages
+      
+      let urlEntries = '';
+      publishedPages.forEach(page => {
+        if (page.slug) {
+          const lastMod = page.updatedAt ? new Date(page.updatedAt).toISOString() : new Date(page.createdAt).toISOString();
+          urlEntries += `
+  <url>
+    <loc>${baseUrl}/${page.slug}</loc>
+    <lastmod>${lastMod}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>`;
+        }
+      });
+
+      const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urlEntries}
+</urlset>`;
+
+      res.set('Content-Type', 'application/xml');
+      res.send(sitemap);
+    } catch (error) {
+      console.error('Page sitemap error:', error);
+      res.status(500).send('Failed to generate page sitemap');
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
