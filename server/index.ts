@@ -50,7 +50,7 @@ Allow: /*.jpg$
 Allow: /*.png$
 Allow: /*.svg$
 
-Sitemap: https://dunyaconsultants.com/sitemap.xml`);
+Sitemap: https://dunyaconsultants.com/sitemap.xml `);
 });
 
 app.use((req, res, next) => {
