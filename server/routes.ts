@@ -1374,6 +1374,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get all published blog posts (public) with optional limit
   app.get("/api/blog-posts", async (req, res) => {
     try {
+      // Add cache-busting headers to ensure fresh data
+      res.set({
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      });
+      
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
       const posts = await storage.getBlogPosts(true); // Only published posts
       
@@ -1383,7 +1390,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Map database fields to frontend expected format
       const mappedPosts = limitedPosts.map(post => ({
         ...post,
-        featuredImage: post.featuredImage // Map featured_image to featuredImage
+        featuredImage: post.featuredImage // Use the existing featuredImage field
       }));
       
       res.json(mappedPosts);
