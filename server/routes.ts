@@ -2101,20 +2101,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/page-sitemap.xml", async (req, res) => {
     try {
       const baseUrl = `https://${req.get('host') || 'dunyaconsultants.com'}`;
-      const publishedPages = await storage.getPages(true); // Only published pages
+      const lastMod = new Date().toISOString();
+      
+      // Static website pages
+      const staticPages = [
+        { url: '', priority: '1.0', changefreq: 'daily' }, // Homepage
+        { url: 'about', priority: '0.9', changefreq: 'monthly' },
+        { url: 'services', priority: '0.9', changefreq: 'monthly' },
+        { url: 'contact', priority: '0.8', changefreq: 'monthly' },
+        { url: 'blog', priority: '0.8', changefreq: 'daily' },
+        { url: 'eligibility-check', priority: '0.7', changefreq: 'monthly' },
+        { url: 'consultation-booking', priority: '0.8', changefreq: 'monthly' },
+        
+        // Study Destinations
+        { url: 'study-in-usa', priority: '0.8', changefreq: 'monthly' },
+        { url: 'study-in-uk', priority: '0.8', changefreq: 'monthly' },
+        { url: 'study-in-canada', priority: '0.8', changefreq: 'monthly' },
+        { url: 'study-in-finland', priority: '0.8', changefreq: 'monthly' },
+        { url: 'study-in-australia', priority: '0.8', changefreq: 'monthly' },
+        { url: 'study-in-belgium', priority: '0.8', changefreq: 'monthly' },
+        { url: 'study-in-turkey', priority: '0.8', changefreq: 'monthly' },
+        
+        // Test Preparation
+        { url: 'ielts-preparation', priority: '0.7', changefreq: 'monthly' },
+        { url: 'pte-preparation', priority: '0.7', changefreq: 'monthly' },
+        { url: 'toefl-preparation', priority: '0.7', changefreq: 'monthly' },
+        { url: 'duolingo-preparation', priority: '0.7', changefreq: 'monthly' },
+        
+        // Tools and Resources
+        { url: 'cost-calculator', priority: '0.6', changefreq: 'monthly' },
+        { url: 'course-matcher', priority: '0.6', changefreq: 'monthly' },
+        { url: 'document-checklist', priority: '0.6', changefreq: 'monthly' },
+        
+        // Additional Pages
+        { url: 'events', priority: '0.6', changefreq: 'weekly' },
+        { url: 'testimonials', priority: '0.6', changefreq: 'monthly' },
+        { url: 'universities', priority: '0.7', changefreq: 'monthly' },
+        { url: 'locations', priority: '0.6', changefreq: 'monthly' },
+      ];
       
       let urlEntries = '';
-      publishedPages.forEach(page => {
-        if (page.slug) {
-          const lastMod = page.updatedAt ? new Date(page.updatedAt).toISOString() : new Date(page.createdAt).toISOString();
-          urlEntries += `
+      staticPages.forEach(page => {
+        const url = page.url ? `${baseUrl}/${page.url}` : baseUrl;
+        urlEntries += `
   <url>
-    <loc>${baseUrl}/${page.slug}</loc>
+    <loc>${url}</loc>
     <lastmod>${lastMod}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
   </url>`;
-        }
       });
 
       const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
