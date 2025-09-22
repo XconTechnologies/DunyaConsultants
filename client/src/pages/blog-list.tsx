@@ -6,8 +6,30 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+
+// Unified image src normalization function (same as other components)
+const normalizeImageSrc = (image: string) => {
+  if (!image || image.trim() === '') {
+    return '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png'; // fallback for empty images
+  }
+  const trimmed = image.trim();
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    return trimmed;
+  }
+  if (trimmed.startsWith('/api/uploads/') || trimmed.startsWith('api/uploads/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  if (trimmed.startsWith('/blog/') || trimmed.startsWith('blog/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  if (trimmed.startsWith('/attached_assets/') || trimmed.startsWith('attached_assets/')) {
+    return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  }
+  return `/attached_assets/${trimmed}`;
+};
 
 const blogPosts = [
   {
@@ -269,7 +291,48 @@ export default function BlogList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredPosts = blogPosts.filter(post => {
+  // Fetch all blog posts from API
+  const { data: blogPostsData } = useQuery({
+    queryKey: ['/api/blog-posts'],
+    queryFn: async () => {
+      const response = await fetch('/api/blog-posts');
+      if (!response.ok) throw new Error('Failed to fetch blog posts');
+      return response.json();
+    }
+  });
+
+  // Transform API data to component format (same as other blog components)
+  const allBlogPosts = blogPostsData ? blogPostsData.map((post: any) => ({
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category || "Study Guides",
+    author: "Path Visa Consultants",
+    date: (() => {
+      const dateStr = post.publishedAt || post.published_at || post.created_at;
+      if (!dateStr) return 'Unknown Date';
+      try {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return 'Unknown Date';
+        return date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+      } catch {
+        return 'Unknown Date';
+      }
+    })(),
+    readTime: "5 min",
+    views: post.view_count || 0,
+    image: normalizeImageSrc(post.featuredImage || ''),
+    slug: post.slug
+  })) : blogPosts; // Fallback to static data if API fails
+
+  // Get unique categories for filter buttons
+  const dynamicCategories = ["All", ...Array.from(new Set(allBlogPosts.map((post: any) => post.category)))];
+
+  const filteredPosts = allBlogPosts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
@@ -352,7 +415,7 @@ export default function BlogList() {
             <div className="flex items-center gap-2">
               <Filter className="w-5 h-5 text-gray-500" />
               <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
+                {dynamicCategories.map((category: string) => (
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
@@ -372,7 +435,7 @@ export default function BlogList() {
 
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPosts.map((post, index) => (
+          {filteredPosts.map((post: any, index: number) => (
             <motion.div
               key={post.id}
               initial={{ opacity: 0, y: 30 }}
@@ -382,6 +445,21 @@ export default function BlogList() {
               className="group"
             >
               <Card className="hover:shadow-xl transition-all duration-300 border shadow-md">
+                {/* Featured Image */}
+                {post.image && (
+                  <div className="relative overflow-hidden rounded-t-lg">
+                    <img 
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-48 object-cover transition-transform hover:scale-105"
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
+                      onError={(e) => {
+                        e.currentTarget.src = '/attached_assets/generated_images/Blog_placeholder_image_201b6785.png';
+                      }}
+                    />
+                  </div>
+                )}
+                
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:bg-[#1845B3] transition-colors line-clamp-2">
                     {post.title}
