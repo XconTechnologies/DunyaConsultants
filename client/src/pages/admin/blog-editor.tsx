@@ -130,20 +130,8 @@ export default function BlogEditor() {
     clipboard: {
       // Preserve basic formatting when pasting from Google Docs and other sources
       matchVisual: false,
-      // Allow all content to pass through - including table HTML
-      stripPastedStyles: false,
-      // Custom matchers to preserve table elements
-      matchers: [
-        // Let table elements pass through as-is without modification
-        [Node.ELEMENT_NODE, function (node: any, delta: any) {
-          const tagName = node.tagName && node.tagName.toLowerCase();
-          if (['table', 'tr', 'td', 'th', 'thead', 'tbody'].includes(tagName)) {
-            // Preserve table elements exactly as they are
-            return delta;
-          }
-          return delta;
-        }]
-      ]
+      // Allow most formatting to pass through
+      stripPastedStyles: false
     }
   }), []);
 
@@ -163,6 +151,45 @@ export default function BlogEditor() {
   useEffect(() => {
     console.log('Form content changed:', content?.length || 0, 'characters');
   }, [content]);
+
+  // Custom paste handler for table preservation
+  useEffect(() => {
+    const handlePaste = (e: Event) => {
+      const clipboardEvent = e as ClipboardEvent;
+      const clipboardData = clipboardEvent.clipboardData;
+      if (!clipboardData) return;
+
+      const htmlData = clipboardData.getData('text/html');
+      if (htmlData && htmlData.includes('<table')) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Get the Quill editor instance
+        const quill = editorRef.current?.getEditor();
+        if (quill) {
+          const range = quill.getSelection();
+          if (range) {
+            // Insert the HTML directly, preserving table structure
+            quill.clipboard.dangerouslyPasteHTML(range.index, htmlData);
+            // Update the form value
+            setTimeout(() => {
+              const newContent = quill.root.innerHTML;
+              setValue('content', newContent);
+            }, 100);
+          }
+        }
+      }
+    };
+
+    // Add event listener to the Quill editor container
+    const quillContainer = document.querySelector('.ql-editor');
+    if (quillContainer) {
+      quillContainer.addEventListener('paste', handlePaste as EventListener);
+      return () => {
+        quillContainer.removeEventListener('paste', handlePaste as EventListener);
+      };
+    }
+  }, [editorMounted, setValue]);
 
   // Generate slug from title
   useEffect(() => {
