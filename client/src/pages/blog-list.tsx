@@ -331,8 +331,9 @@ export default function BlogList() {
 
   // Get unique categories for filter buttons
   const dynamicCategories = ["All", ...Array.from(new Set(allBlogPosts.map((post: any) => post.category)))];
+  const categoryStrings = dynamicCategories as string[];
 
-  const filteredPosts = allBlogPosts.filter(post => {
+  const filteredPosts = allBlogPosts.filter((post: any) => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === "All" || post.category === selectedCategory;
@@ -415,7 +416,7 @@ export default function BlogList() {
             <div className="flex items-center gap-2">
               <Filter className="w-5 h-5 text-gray-500" />
               <div className="flex flex-wrap gap-2">
-                {dynamicCategories.map((category: string) => (
+                {categoryStrings.map((category) => (
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
