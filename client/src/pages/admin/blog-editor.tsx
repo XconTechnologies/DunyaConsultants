@@ -129,7 +129,22 @@ export default function BlogEditor() {
     ],
     clipboard: {
       // Preserve basic formatting when pasting from Google Docs and other sources
-      matchVisual: false
+      matchVisual: false,
+      // Allow HTML table elements to be preserved when pasting
+      matchers: [
+        ['table', function(node: any, delta: any) {
+          return delta;
+        }],
+        ['tr', function(node: any, delta: any) {
+          return delta;
+        }],
+        ['td', function(node: any, delta: any) {
+          return delta;
+        }],
+        ['th', function(node: any, delta: any) {
+          return delta;
+        }]
+      ]
     }
   }), []);
 
@@ -141,7 +156,8 @@ export default function BlogEditor() {
     'blockquote', 'code-block',
     'list', 'bullet', 'indent',
     'align', 'direction',
-    'link', 'image', 'video'
+    'link', 'image', 'video',
+    'table', 'table-cell', 'table-row', 'table-header'
   ];
 
   // Debug logging for form state changes
