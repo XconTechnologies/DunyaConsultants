@@ -2,6 +2,7 @@ import Navigation from '../../components/navigation';
 import Footer from '../../components/footer';
 import ContactForm from '../../components/blog/ContactForm';
 import ContactSection from '../../components/blog/ContactSection';
+import { getBlogUrl } from '@/lib/blog-utils';
 
 export default function MSInBusinessAnalyticsCourseInUSA() {
   return (
@@ -421,13 +422,13 @@ export default function MSInBusinessAnalyticsCourseInUSA() {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h3 className="text-xl font-bold mb-4 text-gray-800">Related Articles</h3>
               <div className="space-y-3">
-                <a href="/blog/requirements-to-study-computer-science-in-usa" className="block #1845B3 hover:text-[#1565c0] text-sm">
+                <a href={getBlogUrl("requirements-to-study-computer-science-in-usa")} className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Requirements to Study Computer Science in USA
                 </a>
-                <a href="/blog/green-card-for-international-students" className="block #1845B3 hover:text-[#1565c0] text-sm">
+                <a href={getBlogUrl("green-card-for-international-students")} className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Green Card for International Students
                 </a>
-                <a href="/blog/study-abroad-education-consultants-dunya-consultants" className="block #1845B3 hover:text-[#1565c0] text-sm">
+                <a href={getBlogUrl("study-abroad-education-consultants-dunya-consultants")} className="block #1845B3 hover:text-[#1565c0] text-sm">
                   Study Abroad Education Consultants
                 </a>
               </div>

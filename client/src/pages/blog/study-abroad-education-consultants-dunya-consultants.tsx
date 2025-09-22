@@ -2,6 +2,7 @@ import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import ContactSection from "@/components/blog/ContactSection";
 import { Calendar, Clock, User, CheckCircle, Globe, Users, BookOpen, Award, Target, TrendingUp, Star, Heart, ArrowRight } from "lucide-react";
+import { getBlogUrl } from "@/lib/blog-utils";
 
 const StudyAbroadEducationConsultants = () => {
   return (
@@ -180,13 +181,13 @@ const StudyAbroadEducationConsultants = () => {
             <div className="bg-gray-50 rounded-xl p-6">
               <h4 className="text-lg font-semibold text-gray-900 mb-4">Related Articles</h4>
               <div className="space-y-3">
-                <a href="/blog/study-in-canada-complete-guide" className="block text-sm text-gray-600 hover:text-[#1845B3] transition-colors">
+                <a href={getBlogUrl("study-in-canada-complete-guide")} className="block text-sm text-gray-600 hover:text-[#1845B3] transition-colors">
                   Complete Guide to Study in Canada
                 </a>
-                <a href="/blog/study-in-uk-guide" className="block text-sm text-gray-600 hover:text-[#1845B3] transition-colors">
+                <a href={getBlogUrl("study-in-uk-guide")} className="block text-sm text-gray-600 hover:text-[#1845B3] transition-colors">
                   Study in UK: Complete Guide
                 </a>
-                <a href="/blog/ielts-preparation-tips" className="block text-sm text-gray-600 hover:text-[#1845B3] transition-colors">
+                <a href={getBlogUrl("ielts-preparation-tips")} className="block text-sm text-gray-600 hover:text-[#1845B3] transition-colors">
                   IELTS Preparation Tips
                 </a>
               </div>

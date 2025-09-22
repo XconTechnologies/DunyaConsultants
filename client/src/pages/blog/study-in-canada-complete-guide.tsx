@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import ConsultationFormPopup from '@/components/consultation-form-popup';
 import { Button } from '@/components/ui/button';
+import { getBlogUrl } from '@/lib/blog-utils';
 
 export default function StudyInCanadaCompleteGuide() {
   const [sidebarSearch, setSidebarSearch] = useState("");
@@ -40,7 +41,7 @@ export default function StudyInCanadaCompleteGuide() {
       excerpt: 'Comprehensive guide covering everything Pakistani students need to know about studying in the UK, from admission requirements to visa processes and living costs.',
       category: 'Study Guides',
       readTime: '12 min',
-      href: '/blog/study-in-uk-complete-guide'
+      href: getBlogUrl('study-in-uk-complete-guide')
     },
     {
       id: 'study-in-australia-guide',
@@ -48,7 +49,7 @@ export default function StudyInCanadaCompleteGuide() {
       excerpt: 'Complete information about studying in Australia, including university requirements, visa processes, and living costs for Pakistani students.',
       category: 'Study Guides', 
       readTime: '10 min',
-      href: '/blog/study-in-australia-guide'
+      href: getBlogUrl('study-in-australia-guide')
     },
     {
       id: 'study-in-finland-guide',
@@ -56,7 +57,7 @@ export default function StudyInCanadaCompleteGuide() {
       excerpt: 'Everything about studying in Finland, known for world-class education system and exceptional quality of life for international students.',
       category: 'Study Guides',
       readTime: '9 min',
-      href: '/blog/study-in-finland-guide'
+      href: getBlogUrl('study-in-finland-guide')
     }
   ];
   return (

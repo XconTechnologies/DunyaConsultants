@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import ConsultationFormPopup from '@/components/consultation-form-popup';
 import { Button } from '@/components/ui/button';
+import { getBlogUrl } from '@/lib/blog-utils';
 
 export default function StudyInUKCompleteGuide() {
   const [sidebarSearch, setSidebarSearch] = useState("");
@@ -40,7 +41,7 @@ export default function StudyInUKCompleteGuide() {
       excerpt: 'Comprehensive guide covering everything Pakistani students need to know about studying in Canada, from admission requirements to post-graduation opportunities.',
       category: 'Study Guides',
       readTime: '12 min',
-      href: '/blog/study-in-canada-complete-guide'
+      href: getBlogUrl('study-in-canada-complete-guide')
     },
     {
       id: 'study-in-australia-guide',
@@ -48,7 +49,7 @@ export default function StudyInUKCompleteGuide() {
       excerpt: 'Complete information about studying in Australia, including university requirements, visa processes, and living costs for Pakistani students.',
       category: 'Study Guides', 
       readTime: '10 min',
-      href: '/blog/study-in-australia-guide'
+      href: getBlogUrl('study-in-australia-guide')
     },
     {
       id: 'master-of-finance-in-uk',
@@ -56,7 +57,7 @@ export default function StudyInUKCompleteGuide() {
       excerpt: 'Detailed guide about pursuing Masters in Finance in UK, including top universities, admission requirements, and career prospects.',
       category: 'Study Programs',
       readTime: '8 min',
-      href: '/blog/master-of-finance-in-uk'
+      href: getBlogUrl('master-of-finance-in-uk')
     }
   ];
   return (

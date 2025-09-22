@@ -5,6 +5,7 @@ import Footer from '@/components/footer';
 import ContactForm from '@/components/blog/ContactForm';
 import ConsultationFormPopup from '@/components/consultation-form-popup';
 import { Button } from '@/components/ui/button';
+import { getBlogUrl } from '@/lib/blog-utils';
 
 export default function StudyInUSAGuide() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -396,8 +397,8 @@ export default function StudyInUSAGuide() {
               <div className="bg-white p-6 rounded-lg shadow-sm border">
                 <h3 className="text-lg font-semibold mb-4 text-gray-800">Related Articles</h3>
                 <div className="space-y-3">
-                  <a href="/blog/study-in-uk" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in UK: Complete Guide</a>
-                  <a href="/blog/study-in-canada" className="block #1845B3 hover:text-[#1565c0] text-sm">Study in Canada Guide</a>
+                  <a href={getBlogUrl("study-in-uk")} className="block #1845B3 hover:text-[#1565c0] text-sm">Study in UK: Complete Guide</a>
+                  <a href={getBlogUrl("study-in-canada")} className="block #1845B3 hover:text-[#1565c0] text-sm">Study in Canada Guide</a>
                   <a href="/blog/ielts-preparation-tips-and-tricks" className="block #1845B3 hover:text-[#1565c0] text-sm">IELTS Preparation Tips</a>
                   <a href="/blog/requirements-to-study-computer-science-in-usa" className="block #1845B3 hover:text-[#1565c0] text-sm">Computer Science in USA</a>
                 </div>
