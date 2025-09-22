@@ -130,18 +130,17 @@ export default function BlogEditor() {
     clipboard: {
       // Preserve basic formatting when pasting from Google Docs and other sources
       matchVisual: false,
-      // Allow HTML table elements to be preserved when pasting
+      // Allow all content to pass through - including table HTML
+      stripPastedStyles: false,
+      // Custom matchers to preserve table elements
       matchers: [
-        ['table', function(node: any, delta: any) {
-          return delta;
-        }],
-        ['tr', function(node: any, delta: any) {
-          return delta;
-        }],
-        ['td', function(node: any, delta: any) {
-          return delta;
-        }],
-        ['th', function(node: any, delta: any) {
+        // Let table elements pass through as-is without modification
+        [Node.ELEMENT_NODE, function (node: any, delta: any) {
+          const tagName = node.tagName && node.tagName.toLowerCase();
+          if (['table', 'tr', 'td', 'th', 'thead', 'tbody'].includes(tagName)) {
+            // Preserve table elements exactly as they are
+            return delta;
+          }
           return delta;
         }]
       ]
@@ -554,9 +553,10 @@ export default function BlogEditor() {
                             key={`quill-${blogId || 'new'}-${field.value ? 'loaded' : 'empty'}`}
                             value={field.value || ''}
                             onChange={(value) => field.onChange(value)}
-                            placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting!"
+                            placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting including tables!"
                             modules={quillModules}
                             formats={quillFormats}
+                            ref={editorRef}
                           />
                         )}
                       />
