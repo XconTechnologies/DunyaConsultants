@@ -316,8 +316,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
         initializeFAQs(section as HTMLElement);
       });
       
-      // Additional force initialization for this specific blog post
-      if (slug === 'ielts-vs-toefl-for-study-abroad') {
+      // Additional force initialization for specific blog posts that need FAQ functionality
+      const blogsThatNeedFAQs = ['ielts-vs-toefl-for-study-abroad', 'study-abroad-consultant-red-flags'];
+      if (blogsThatNeedFAQs.includes(slug)) {
         setTimeout(() => {
           const body = document.body;
           initializeFAQs(body);
