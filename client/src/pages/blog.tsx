@@ -3352,8 +3352,8 @@ export default function Blog() {
           </div>
         )}
 
-        {/* No Results */}
-        {filteredPosts.length === 0 && (
+        {/* No Results - Only show if not loading and no posts found */}
+        {!isLoading && filteredPosts.length === 0 && (
           <div className="text-center py-16">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No articles found</h3>
             <p className="text-gray-600">Try adjusting your search terms or category filter.</p>
