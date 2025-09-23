@@ -322,7 +322,28 @@ function BlogPostDetail({ slug }: { slug: string }) {
         setTimeout(() => {
           const body = document.body;
           initializeFAQs(body);
-          forceFAQInitialization(body);
+          // Force FAQ initialization for troublesome blog posts
+          const strongElements = body.querySelectorAll('strong, b');
+          strongElements.forEach((strong) => {
+            const text = strong.textContent?.trim() || '';
+            if (text.endsWith('?')) {
+              const parent = strong.parentElement;
+              if (parent && parent.tagName === 'P') {
+                let nextP = parent.nextElementSibling;
+                let attempts = 0;
+                while (nextP && !nextP.textContent?.trim() && attempts < 3) {
+                  nextP = nextP.nextElementSibling;
+                  attempts++;
+                }
+                if (nextP && nextP.tagName === 'P' && nextP.textContent?.trim()) {
+                  const nextText = nextP.textContent?.trim() || '';
+                  if (!nextText.endsWith('?')) {
+                    convertToFAQStructure(parent as HTMLElement, nextP as HTMLElement);
+                  }
+                }
+              }
+            }
+          });
         }, 500);
       }
     }, 300);
@@ -393,6 +414,23 @@ function BlogPostDetail({ slug }: { slug: string }) {
     };
   }, [duplicatedRelatedBlogs]);
 
+  // Show loading state while data is being fetched
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
+            <p className="text-gray-600">Loading article...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  // Show not found only after data has loaded and blog post doesn't exist
   if (!blogPost) {
     return (
       <div className="min-h-screen bg-white">
