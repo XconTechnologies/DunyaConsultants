@@ -2780,38 +2780,160 @@ function BlogPostDetail({ slug }: { slug: string }) {
   );
 }
 
-// FAQ initialization function
+// Enhanced FAQ initialization function
 const initializeFAQs = (container: HTMLElement) => {
-  const faqQuestions = container.querySelectorAll('.faq-question');
+  // Handle both custom .faq-question and auto-detected FAQ patterns
   
+  // Method 1: Handle existing .faq-question elements
+  const faqQuestions = container.querySelectorAll('.faq-question');
   faqQuestions.forEach(question => {
-    // Remove any existing listeners to prevent duplicates
-    const existingHandler = (question as any).__faqHandler;
-    if (existingHandler) {
-      question.removeEventListener('click', existingHandler);
-    }
-    
-    // Create new handler
-    const handler = () => {
-      const answer = question.nextElementSibling as HTMLElement;
-      const icon = question.querySelector('.icon') as HTMLElement;
-
-      if (answer && answer.classList.contains('faq-answer')) {
-        if (answer.style.display === 'block') {
-          answer.style.display = 'none';
-          if (icon) icon.textContent = '+';
-        } else {
-          answer.style.display = 'block';
-          if (icon) icon.textContent = '–';
-        }
-      }
-    };
-    
-    // Store handler reference and add listener
-    (question as any).__faqHandler = handler;
-    question.addEventListener('click', handler);
-    (question as HTMLElement).style.cursor = 'pointer';
+    setupFAQHandler(question as HTMLElement);
   });
+  
+  // Method 2: Auto-detect FAQ patterns and convert them
+  autoDetectAndConvertFAQs(container);
+  
+  // Method 3: Handle simple numbered questions
+  convertNumberedQuestionsToFAQs(container);
+};
+
+const setupFAQHandler = (question: HTMLElement) => {
+  // Remove any existing listeners to prevent duplicates
+  const existingHandler = (question as any).__faqHandler;
+  if (existingHandler) {
+    question.removeEventListener('click', existingHandler);
+  }
+  
+  // Create new handler
+  const handler = () => {
+    const answer = question.nextElementSibling as HTMLElement;
+    const icon = question.querySelector('.icon, .faq-icon') as HTMLElement;
+
+    if (answer && (answer.classList.contains('faq-answer') || answer.classList.contains('answer'))) {
+      const isVisible = answer.style.display === 'block' || answer.style.maxHeight !== '0px';
+      
+      if (isVisible) {
+        answer.style.display = 'none';
+        answer.style.maxHeight = '0px';
+        answer.style.opacity = '0';
+        if (icon) icon.textContent = '+';
+        question.classList.remove('expanded');
+      } else {
+        answer.style.display = 'block';
+        answer.style.maxHeight = '1000px';
+        answer.style.opacity = '1';
+        if (icon) icon.textContent = '−';
+        question.classList.add('expanded');
+      }
+    }
+  };
+  
+  // Store handler reference and add listener
+  (question as any).__faqHandler = handler;
+  question.addEventListener('click', handler);
+  question.style.cursor = 'pointer';
+  
+  // Add icon if it doesn't exist
+  if (!question.querySelector('.icon, .faq-icon')) {
+    const icon = document.createElement('span');
+    icon.className = 'faq-icon';
+    icon.textContent = '+';
+    icon.style.cssText = 'font-weight: bold; font-size: 18px; margin-left: auto;';
+    question.appendChild(icon);
+  }
+};
+
+const autoDetectAndConvertFAQs = (container: HTMLElement) => {
+  // Look for h3/h4 elements that contain question words followed by p elements
+  const headings = container.querySelectorAll('h3, h4, .question');
+  
+  headings.forEach(heading => {
+    const text = heading.textContent?.toLowerCase() || '';
+    const isQuestion = text.includes('?') || 
+                      text.match(/^(what|how|why|when|where|who|can|do|does|is|are|will|would|should)/);
+    
+    if (isQuestion) {
+      const nextElement = heading.nextElementSibling;
+      if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV')) {
+        // Convert to FAQ structure
+        convertToFAQStructure(heading as HTMLElement, nextElement as HTMLElement);
+      }
+    }
+  });
+};
+
+const convertNumberedQuestionsToFAQs = (container: HTMLElement) => {
+  // Look for numbered questions like "1. Question?" followed by answers
+  const paragraphs = container.querySelectorAll('p, div');
+  
+  paragraphs.forEach(p => {
+    const text = p.textContent?.trim() || '';
+    const isNumberedQuestion = text.match(/^\d+\.\s*.+\?/) || text.match(/^Q\d*[:.]?\s*.+\?/);
+    
+    if (isNumberedQuestion) {
+      const nextElement = p.nextElementSibling;
+      if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV')) {
+        convertToFAQStructure(p as HTMLElement, nextElement as HTMLElement);
+      }
+    }
+  });
+};
+
+const convertToFAQStructure = (questionElement: HTMLElement, answerElement: HTMLElement) => {
+  // Skip if already converted
+  if (questionElement.classList.contains('faq-question')) return;
+  
+  // Create FAQ wrapper
+  const faqWrapper = document.createElement('div');
+  faqWrapper.className = 'faq-item';
+  faqWrapper.style.cssText = `
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  `;
+  
+  // Setup question element
+  questionElement.className = 'faq-question';
+  questionElement.style.cssText = `
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #1D50C9;
+    margin: 0;
+    border-bottom: 1px solid #e0e7ff;
+    transition: all 0.3s ease;
+  `;
+  
+  // Setup answer element
+  answerElement.className = 'faq-answer';
+  answerElement.style.cssText = `
+    display: none;
+    padding: 20px;
+    background: #fafbff;
+    border-top: 1px solid #e0e7ff;
+    margin: 0;
+    max-height: 0px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  `;
+  
+  // Insert wrapper before question
+  questionElement.parentNode?.insertBefore(faqWrapper, questionElement);
+  
+  // Move elements into wrapper
+  faqWrapper.appendChild(questionElement);
+  faqWrapper.appendChild(answerElement);
+  
+  // Setup click handler
+  setupFAQHandler(questionElement);
 };
 
 // Main Blog Component
