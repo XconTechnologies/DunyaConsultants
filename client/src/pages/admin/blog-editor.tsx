@@ -64,9 +64,52 @@ export default function BlogEditor() {
   const [htmlContent, setHtmlContent] = useState('');
   const { toast } = useToast();
   
-  // Initialize FAQ functionality after editor loads
+  // Initialize FAQ functionality and register custom formats after editor loads
   useEffect(() => {
-    if (editorMounted) {
+    if (editorMounted && editorRef.current) {
+      const quill = editorRef.current.getEditor();
+      
+      // Register custom FAQ formats
+      const Parchment = quill.constructor.import('parchment');
+      
+      // Register FAQ item format
+      const FAQItemBlot = quill.constructor.import('blots/block');
+      class FAQItem extends FAQItemBlot {
+        static blotName = 'faq-item';
+        static tagName = 'div';
+        static className = 'faq-item';
+      }
+      
+      // Register FAQ question format
+      const FAQQuestionBlot = quill.constructor.import('blots/block');
+      class FAQQuestion extends FAQQuestionBlot {
+        static blotName = 'faq-question';
+        static tagName = 'div';
+        static className = 'faq-question';
+      }
+      
+      // Register FAQ answer format
+      const FAQAnswerBlot = quill.constructor.import('blots/block');
+      class FAQAnswer extends FAQAnswerBlot {
+        static blotName = 'faq-answer';
+        static tagName = 'div';
+        static className = 'faq-answer';
+      }
+      
+      // Register FAQ icon format
+      const FAQIconBlot = quill.constructor.import('blots/inline');
+      class FAQIcon extends FAQIconBlot {
+        static blotName = 'faq-icon';
+        static tagName = 'span';
+        static className = 'faq-icon';
+      }
+      
+      // Register the formats
+      quill.constructor.register(FAQItem);
+      quill.constructor.register(FAQQuestion);
+      quill.constructor.register(FAQAnswer);
+      quill.constructor.register(FAQIcon);
+      
       const initializeFAQs = () => {
         const faqQuestions = document.querySelectorAll('.faq-question');
         faqQuestions.forEach(question => {
