@@ -704,14 +704,19 @@ p[class*="text-gray-700"] a:hover,
   color: white !important;
 }
 
+.faq-question.expanded span {
+  color: white !important;
+}
+
 .faq-answer {
-  padding: 24px !important;
+  padding: 20px !important;
   background: #fafbff !important;
   margin: 0 !important;
   transition: all 0.4s ease !important;
   overflow: hidden !important;
   line-height: 1.6 !important;
   color: #4a5568 !important;
+  text-align: left !important;
 }
 
 .faq-icon {
