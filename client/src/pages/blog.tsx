@@ -2829,6 +2829,9 @@ const initializeFAQs = (container: HTMLElement) => {
   
   // Method 4: Look for any text content with FAQ patterns and convert
   detectTextFAQs(container);
+  
+  // Method 5: Create default FAQs if none found
+  setTimeout(() => createDefaultFAQsIfMissing(container), 200);
 };
 
 const setupFAQHandler = (question: HTMLElement) => {
@@ -2879,19 +2882,24 @@ const setupFAQHandler = (question: HTMLElement) => {
 };
 
 const autoDetectAndConvertFAQs = (container: HTMLElement) => {
-  // Look for h3/h4 elements that contain question words followed by p elements
-  const headings = container.querySelectorAll('h3, h4, .question');
+  // Enhanced detection for various FAQ formats
+  const allElements = container.querySelectorAll('h1, h2, h3, h4, h5, h6, p, div, strong, b, span');
   
-  headings.forEach(heading => {
-    const text = heading.textContent?.toLowerCase() || '';
-    const isQuestion = text.includes('?') || 
-                      text.match(/^(what|how|why|when|where|who|can|do|does|is|are|will|would|should)/);
+  allElements.forEach(element => {
+    const text = element.textContent?.toLowerCase() || '';
+    const innerHTML = element.innerHTML?.trim() || '';
     
-    if (isQuestion) {
-      const nextElement = heading.nextElementSibling;
-      if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV')) {
+    // Enhanced question detection patterns
+    const isQuestion = text.includes('?') || 
+                      text.match(/^(what|how|why|when|where|who|can|do|does|is|are|will|would|should|which|could)/) ||
+                      text.match(/\b(question|faq|q\d*[:.])/) ||
+                      innerHTML.includes('?');
+    
+    if (isQuestion && !element.classList.contains('faq-question') && !element.closest('.faq-item')) {
+      const nextElement = element.nextElementSibling;
+      if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV' || nextElement.textContent?.trim())) {
         // Convert to FAQ structure
-        convertToFAQStructure(heading as HTMLElement, nextElement as HTMLElement);
+        convertToFAQStructure(element as HTMLElement, nextElement as HTMLElement);
       }
     }
   });
