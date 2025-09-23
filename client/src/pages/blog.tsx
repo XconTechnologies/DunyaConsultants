@@ -561,7 +561,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
   }
 
   // Parse content based on format
-  let contentSections;
+  let contentSections: any[] = [];
   let isHTMLContent = false;
   
   // Check if content is HTML (starts with HTML tags)
@@ -2909,7 +2909,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
           </div>
         </div>
       </div>
-      <Footer />
+    <Footer />
     </div>
   );
 }
