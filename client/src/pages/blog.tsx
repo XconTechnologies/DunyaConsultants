@@ -2822,7 +2822,7 @@ const setupFAQHandler = (question: HTMLElement) => {
         answer.style.display = 'block';
         answer.style.maxHeight = '1000px';
         answer.style.opacity = '1';
-        if (icon) icon.textContent = '−';
+        if (icon) icon.textContent = '—';
         question.classList.add('expanded');
       }
     }
@@ -2838,7 +2838,7 @@ const setupFAQHandler = (question: HTMLElement) => {
     const icon = document.createElement('span');
     icon.className = 'faq-icon';
     icon.textContent = '+';
-    icon.style.cssText = 'font-weight: bold; font-size: 18px; margin-left: auto;';
+    icon.style.cssText = 'font-weight: 900; font-size: 16px; color: #1D50C9; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Arial, sans-serif; margin-left: auto;';
     question.appendChild(icon);
   }
 };
@@ -2887,12 +2887,13 @@ const convertToFAQStructure = (questionElement: HTMLElement, answerElement: HTML
   const faqWrapper = document.createElement('div');
   faqWrapper.className = 'faq-item';
   faqWrapper.style.cssText = `
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #e0e7ff;
+    border-radius: 12px;
     overflow: hidden;
     background: white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(29, 80, 201, 0.08);
+    transition: all 0.3s ease;
   `;
   
   // Setup question element
@@ -2901,13 +2902,13 @@ const convertToFAQStructure = (questionElement: HTMLElement, answerElement: HTML
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
-    padding: 15px 20px;
+    background: #e8f0ff;
+    padding: 18px 24px;
     cursor: pointer;
     font-weight: 600;
     color: #1D50C9;
     margin: 0;
-    border-bottom: 1px solid #e0e7ff;
+    border: none;
     transition: all 0.3s ease;
   `;
   
@@ -2917,7 +2918,6 @@ const convertToFAQStructure = (questionElement: HTMLElement, answerElement: HTML
     display: none;
     padding: 20px;
     background: #fafbff;
-    border-top: 1px solid #e0e7ff;
     margin: 0;
     max-height: 0px;
     opacity: 0;
