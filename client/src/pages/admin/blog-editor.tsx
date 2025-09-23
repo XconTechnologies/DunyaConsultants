@@ -60,6 +60,8 @@ export default function BlogEditor() {
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [editorMounted, setEditorMounted] = useState(false);
+  const [editorMode, setEditorMode] = useState<'rich' | 'html'>('rich');
+  const [htmlContent, setHtmlContent] = useState('');
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const contentRef = useRef<HTMLTextAreaElement>(null);
@@ -116,6 +118,33 @@ export default function BlogEditor() {
   const title = watch("title");
   const content = watch("content");
   const isPublished = watch("isPublished");
+  
+  // Sync HTML content with form content
+  useEffect(() => {
+    if (editorMode === 'html' && content && htmlContent !== content) {
+      setHtmlContent(content);
+    }
+  }, [content, editorMode]);
+  
+  // Handle mode switching
+  const handleModeSwitch = (mode: 'rich' | 'html') => {
+    if (mode === 'html') {
+      // Switching to HTML mode - sync current rich text content to HTML
+      setHtmlContent(content || '');
+    } else {
+      // Switching to rich text mode - sync HTML content back to form
+      if (htmlContent !== content) {
+        setValue('content', htmlContent);
+      }
+    }
+    setEditorMode(mode);
+  };
+  
+  // Handle HTML content changes
+  const handleHtmlChange = (value: string) => {
+    setHtmlContent(value);
+    setValue('content', value);
+  };
   
   // Memoized ReactQuill modules to prevent reinitializing
   const quillModules = useMemo(() => ({
@@ -572,61 +601,116 @@ export default function BlogEditor() {
                 </CardContent>
               </Card>
 
-              {/* Content Area with Rich Text Editor */}
+              {/* Content Area with Rich Text and HTML Editor */}
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     <span>Content</span>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => {
-                        setShowImageUpload(false);
-                        fileInputRef.current?.click();
-                      }}
-                      title="Insert Image"
-                      disabled={isImageUploading}
-                    >
-                      {isImageUploading ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      ) : (
-                        <ImageIcon className="w-4 h-4" />
-                      )}
-                      <span className="ml-2">Insert Image</span>
-                    </Button>
+                    <div className="flex items-center space-x-2">
+                      {/* Editor Mode Toggle */}
+                      <div className="flex bg-gray-100 rounded-md p-1">
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant={editorMode === 'rich' ? 'default' : 'ghost'}
+                          onClick={() => handleModeSwitch('rich')}
+                          className="px-3 py-1 text-xs"
+                        >
+                          Rich Text
+                        </Button>
+                        <Button
+                          type="button"
+                          size="sm"
+                          variant={editorMode === 'html' ? 'default' : 'ghost'}
+                          onClick={() => handleModeSwitch('html')}
+                          className="px-3 py-1 text-xs"
+                        >
+                          HTML
+                        </Button>
+                      </div>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setShowImageUpload(false);
+                          fileInputRef.current?.click();
+                        }}
+                        title="Insert Image"
+                        disabled={isImageUploading}
+                      >
+                        {isImageUploading ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <ImageIcon className="w-4 h-4" />
+                        )}
+                        <span className="ml-2">Insert Image</span>
+                      </Button>
+                    </div>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="react-quill-container" style={{ minHeight: '500px', width: '100%' }}>
-                    {editorMounted ? (
-                      <Controller
-                        name="content"
-                        control={control}
-                        render={({ field }) => (
-                          <ReactQuill
-                            key={`quill-${blogId || 'new'}-${field.value ? 'loaded' : 'empty'}`}
-                            value={field.value || ''}
-                            onChange={(value) => field.onChange(value)}
-                            placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting including tables!"
-                            modules={quillModules}
-                            formats={quillFormats}
-                            ref={editorRef}
-                          />
-                        )}
-                      />
-                    ) : (
-                      <div className="h-[460px] border border-gray-300 rounded-md bg-gray-50 flex items-center justify-center">
-                        <p className="text-gray-500">Loading editor...</p>
+                  {editorMode === 'rich' ? (
+                    // Rich Text Editor Mode
+                    <div className="react-quill-container" style={{ minHeight: '500px', width: '100%' }}>
+                      {editorMounted ? (
+                        <Controller
+                          name="content"
+                          control={control}
+                          render={({ field }) => (
+                            <ReactQuill
+                              key={`quill-${blogId || 'new'}-${field.value ? 'loaded' : 'empty'}`}
+                              value={field.value || ''}
+                              onChange={(value) => field.onChange(value)}
+                              placeholder="Write your blog content here... You can paste content from Google Docs and it will preserve formatting including tables!"
+                              modules={quillModules}
+                              formats={quillFormats}
+                              ref={editorRef}
+                            />
+                          )}
+                        />
+                      ) : (
+                        <div className="h-[460px] border border-gray-300 rounded-md bg-gray-50 flex items-center justify-center">
+                          <p className="text-gray-500">Loading editor...</p>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    // HTML Editor Mode with Live Preview
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                      {/* HTML Code Editor */}
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">HTML Code</label>
+                        <textarea
+                          value={htmlContent}
+                          onChange={(e) => handleHtmlChange(e.target.value)}
+                          placeholder="Write your HTML code here..."
+                          className="w-full h-[460px] p-3 border border-gray-300 rounded-md font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        />
                       </div>
-                    )}
-                  </div>
+                      
+                      {/* Live Preview */}
+                      <div className="space-y-2">
+                        <label className="text-sm font-medium text-gray-700">Live Preview</label>
+                        <div 
+                          className="w-full h-[460px] p-3 border border-gray-300 rounded-md bg-white overflow-auto prose prose-sm max-w-none"
+                          dangerouslySetInnerHTML={{ __html: htmlContent }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                  
                   {errors.content && (
                     <p className="text-red-500 text-sm mt-2">{errors.content.message}</p>
                   )}
-                  <p className="text-sm text-gray-500 mt-2">
-                    ✨ <strong>Google Docs Paste Support:</strong> Copy content from Google Docs and paste here - all formatting, headings, links, and lists will be preserved!
-                  </p>
+                  
+                  <div className="mt-2 text-sm text-gray-500">
+                    {editorMode === 'rich' ? (
+                      <>✨ <strong>Google Docs Paste Support:</strong> Copy content from Google Docs and paste here - all formatting, headings, links, and lists will be preserved!</>
+                    ) : (
+                      <>🔧 <strong>HTML Mode:</strong> Write custom HTML code with live preview. Perfect for advanced formatting, custom styles, and embedding multimedia content.</>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             </div>
