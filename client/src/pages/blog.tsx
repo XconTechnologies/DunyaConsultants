@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, X, Linkedin, Share, Instagram, Calculator } from "lucide-react";
+import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, X, Linkedin, Share, Instagram, Calculator, List } from "lucide-react";
 import { Link, useRoute } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from '@/components/navigation';
@@ -13,7 +13,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
-import { getBlogUrl } from "@/lib/blog-utils";
+import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/lib/blog-utils";
 
 // Unified image src normalization function
 const normalizeImageSrc = (image: string) => {
@@ -208,6 +208,117 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
         </div>
       )}
     </div>
+  );
+}
+
+// Table of Contents Component
+function TableOfContents({ content, isVisible = true }: { content: string; isVisible?: boolean }) {
+  const [tocItems, setTocItems] = useState<TOCItem[]>([]);
+  const [activeId, setActiveId] = useState<string>('');
+
+  useEffect(() => {
+    if (!content) return;
+    
+    const items = extractTableOfContents(content);
+    setTocItems(items);
+    
+    // Add heading IDs to actual DOM elements after content is rendered
+    const timeoutId = setTimeout(() => {
+      const contentContainer = document.querySelector('.blog-content, .prose, article');
+      if (contentContainer) {
+        const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        headings.forEach((heading, index) => {
+          const text = heading.textContent?.trim() || '';
+          if (text && !heading.id) {
+            const matchingItem = items.find(item => item.text === text);
+            if (matchingItem) {
+              heading.id = matchingItem.id;
+            }
+          }
+        });
+      }
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [content]);
+
+  // Track active heading based on scroll position
+  useEffect(() => {
+    if (tocItems.length === 0) return;
+
+    const handleScroll = () => {
+      const headings = tocItems
+        .map(item => document.getElementById(item.id))
+        .filter(Boolean) as HTMLElement[];
+      
+      if (headings.length === 0) return;
+
+      const scrollPosition = window.scrollY + 100; // Offset for better UX
+      
+      let activeHeading = headings[0];
+      for (const heading of headings) {
+        if (heading.offsetTop <= scrollPosition) {
+          activeHeading = heading;
+        } else {
+          break;
+        }
+      }
+      
+      setActiveId(activeHeading?.id || '');
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [tocItems]);
+
+  const handleTocClick = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offsetTop = element.offsetTop - 80; // Account for fixed header
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  if (!isVisible || tocItems.length === 0) return null;
+
+  return (
+    <Card className="sticky top-6 bg-white border border-gray-200">
+      <CardHeader className="pb-3">
+        <CardTitle className="flex items-center text-sm font-semibold text-gray-900">
+          <List className="w-4 h-4 mr-2 text-[#1D50C9]" />
+          Table of Contents
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="pt-0">
+        <nav className="space-y-1">
+          {tocItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => handleTocClick(item.id)}
+              className={`
+                block w-full text-left px-2 py-2 text-sm rounded-md transition-colors duration-200
+                ${activeId === item.id 
+                  ? 'bg-[#1D50C9]/10 text-[#1D50C9] font-medium border-l-2 border-[#1D50C9]' 
+                  : 'text-gray-600 hover:text-[#1D50C9] hover:bg-gray-50'
+                }
+              `}
+              style={{ 
+                marginLeft: `${(item.level - 1) * 12}px`,
+                fontSize: item.level === 1 ? '14px' : item.level === 2 ? '13px' : '12px'
+              }}
+              data-testid={`toc-item-${item.id}`}
+            >
+              {item.text}
+            </button>
+          ))}
+        </nav>
+      </CardContent>
+    </Card>
   );
 }
 
@@ -2619,6 +2730,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
           {/* Sidebar */}
           <div className="lg:col-span-1">
             <div className="space-y-4 lg:space-y-6">
+              
+              {/* Table of Contents */}
+              <TableOfContents content={blogPost.content} />
               
               {/* Search Bar */}
               <Card className="bg-white border border-gray-200 shadow-sm">
