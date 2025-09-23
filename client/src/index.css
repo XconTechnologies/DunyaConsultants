@@ -662,110 +662,78 @@ p[class*="text-gray-700"] a:hover,
   box-shadow: 0 0 0 3px rgba(29, 80, 201, 0.1);
 }
 
-/* FAQ Styles - Auto-applied to any FAQ structure */
+/* FAQ Styles - Shadcn/UI Style to match reference */
+.faq-section {
+  margin: 2rem 0 !important;
+}
+
+.faq-section h2,
+.faq-section h3 {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  margin-bottom: 1.5rem !important;
+}
+
 .faq-item {
-  margin-bottom: 12px !important;
-  border: 1px solid #e0e7ff !important;
-  border-radius: 12px !important;
+  margin-bottom: 0.25rem !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 0.5rem !important;
   overflow: hidden !important;
   background: white !important;
-  box-shadow: 0 2px 8px rgba(29, 80, 201, 0.08) !important;
-  transition: all 0.3s ease !important;
-}
-
-.faq-item .faq-question {
-  border-bottom: none !important;
-}
-
-/* Remove any spacing between FAQ question and answer */
-.faq-question + .faq-answer {
-  margin-top: 0 !important;
-  border-top: none !important;
+  transition: all 0.2s ease !important;
 }
 
 .faq-item:hover {
-  box-shadow: 0 4px 16px rgba(29, 80, 201, 0.12) !important;
-  transform: translateY(-1px) !important;
+  border-color: #d1d5db !important;
 }
 
 .faq-question {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
-  border-bottom: none !important;
+  width: 100% !important;
+  padding: 1rem 1.5rem !important;
+  background: white !important;
   border: none !important;
-  background: #e8f0ff !important;
-  padding: 18px 24px !important;
   cursor: pointer !important;
-  font-weight: 600 !important;
-  color: #1D50C9 !important;
-  margin: 0 !important;
-  border: none !important;
-  border-bottom: 1px solid #e0e7ff !important;
-  transition: all 0.3s ease !important;
-  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: #111827 !important;
+  font-size: 0.875rem !important;
   line-height: 1.5 !important;
+  text-align: left !important;
+  transition: background-color 0.2s ease !important;
 }
 
 .faq-question:hover {
-  background: #dce8ff !important;
+  background: #f9fafb !important;
 }
 
-.faq-question.expanded {
-  background: linear-gradient(135deg, #1D50C9 0%, #1565c0 100%) !important;
-  color: white !important;
+.faq-question:focus {
+  outline: none !important;
+  background: #f9fafb !important;
 }
 
-.faq-question.expanded span {
-  color: white !important;
+.faq-chevron {
+  width: 1rem !important;
+  height: 1rem !important;
+  color: #6b7280 !important;
+  transition: transform 0.2s ease !important;
+  flex-shrink: 0 !important;
+  margin-left: 0.75rem !important;
 }
 
-.faq-question.expanded .faq-icon {
-  color: white !important;
-}
-
-/* Force all text in expanded FAQ questions to be white - override any inline styles */
-.faq-question.expanded * {
-  color: white !important;
-}
-
-/* Super specific targeting to override inline styles */
-div.faq-question.expanded * {
-  color: white !important;
-}
-
-/* Target specific elements that might have inline color styles */
-.faq-question.expanded > span,
-.faq-question.expanded > div,
-.faq-question.expanded > p {
-  color: white !important;
+.faq-chevron.expanded {
+  transform: rotate(180deg) !important;
 }
 
 .faq-answer {
-  padding: 20px !important;
-  background: #fafbff !important;
-  margin: 0 !important;
-  transition: all 0.4s ease !important;
-  overflow: hidden !important;
-  line-height: 1.6 !important;
-  color: #4a5568 !important;
-  text-align: left !important;
-}
-
-.faq-icon {
-  font-weight: 900 !important;
-  font-size: 16px !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif !important;
-  margin-left: auto !important;
-  transition: transform 0.3s ease !important;
-  min-width: 24px !important;
-  text-align: center !important;
-  line-height: 1 !important;
-}
-
-.faq-question.expanded .faq-icon {
-  transform: rotate(45deg) !important;
-  color: white !important;
+  padding: 0 1.5rem 1rem 1.5rem !important;
+  background: white !important;
+  color: #6b7280 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+  border-top: 1px solid #f3f4f6 !important;
 }
 
 /* FAQ Button in ReactQuill Toolbar */

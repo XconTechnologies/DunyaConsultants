@@ -245,13 +245,15 @@ export default function BlogEditor() {
           const range = quill.getSelection();
           if (range) {
             const faqHtml = `
-              <div class="faq-item" style="margin-bottom: 12px; border: 1px solid #e0e7ff; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 2px 8px rgba(29, 80, 201, 0.08);">
-                <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; background: #e8f0ff; padding: 18px 24px; cursor: pointer; font-weight: 600; color: #1D50C9;">
-                  <span style="color: #1D50C9;">Click here to add your question?</span>
-                  <span class="faq-icon" style="font-weight: 900; font-size: 16px; color: #1D50C9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;">+</span>
+              <div class="faq-item" style="margin-bottom: 0.25rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white; transition: all 0.2s ease;">
+                <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem 1.5rem; background: white; border: none; cursor: pointer; font-weight: 500; color: #111827; font-size: 0.875rem; line-height: 1.5; text-align: left; transition: background-color 0.2s ease;">
+                  <span style="color: #111827;">Click here to add your question?</span>
+                  <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" style="width: 1rem; height: 1rem; color: #6b7280; transition: transform 0.2s ease; flex-shrink: 0; margin-left: 0.75rem;">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/>
+                  </svg>
                 </div>
-                <div class="faq-answer" style="padding: 20px; background: #fafbff; display: none; text-align: left;">
-                  <p>Click here to add your answer...</p>
+                <div class="faq-answer" style="display: none; padding: 0 1.5rem 1rem 1.5rem; background: white; color: #6b7280; font-size: 0.875rem; line-height: 1.5; border-top: 1px solid #f3f4f6; margin: 0; max-height: 0px; opacity: 0; transition: all 0.3s ease; overflow: hidden; text-align: left;">
+                  <p style="margin: 0; padding-top: 0.5rem;">Click here to add your answer...</p>
                 </div>
               </div>
             `;

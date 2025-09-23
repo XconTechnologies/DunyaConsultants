@@ -185,21 +185,20 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <CollapsibleTrigger className="flex items-center justify-between w-full p-4 text-left bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-        <span className="font-medium text-gray-900">{question}</span>
-        {isOpen ? (
-          <ChevronUp className="w-5 h-5 text-[#1D50C9]" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-[#1D50C9]" />
-        )}
-      </CollapsibleTrigger>
-      <CollapsibleContent className="px-4 pb-4 text-gray-700 bg-gray-50 border-l border-r border-b border-gray-200 rounded-b-lg">
-        <div className="pt-2">
+    <div className="faq-item mb-1 border border-gray-200 rounded-lg overflow-hidden bg-white transition-all">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="faq-question flex items-center justify-between w-full p-4 bg-white hover:bg-gray-50 transition-colors"
+      >
+        <span className="font-medium text-gray-900 text-sm">{question}</span>
+        <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+      </button>
+      {isOpen && (
+        <div className="faq-answer p-4 pt-0 bg-white border-t border-gray-100">
           {answer.split('\n').map((paragraph: string, index: number) => {
             if (paragraph.trim()) {
               return (
-                <p key={index} className="text-gray-700 leading-relaxed text-base mb-2 last:mb-0">
+                <p key={index} className="text-gray-600 text-sm leading-relaxed mb-2 last:mb-0">
                   {paragraph}
                 </p>
               );
@@ -207,8 +206,8 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             return null;
           })}
         </div>
-      </CollapsibleContent>
-    </Collapsible>
+      )}
+    </div>
   );
 }
 
@@ -717,11 +716,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       
                       if (faqItems.length > 0) {
                         return (
-                          <section key={index} id={section.id} className="mb-8">
+                          <section key={index} id={section.id} className="mb-8 faq-section">
                             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                              {section.title.replace(/^#+\s*/, '')}
+                              FAQs
                             </h2>
-                            <div className="space-y-4">
+                            <div className="space-y-1">
                               {faqItems.map((faqItem: any, faqIndex: number) => (
                                 <FAQItem 
                                   key={faqIndex}
@@ -2807,7 +2806,7 @@ const setupFAQHandler = (question: HTMLElement) => {
   // Create new handler
   const handler = () => {
     const answer = question.nextElementSibling as HTMLElement;
-    const icon = question.querySelector('.icon, .faq-icon') as HTMLElement;
+    const chevron = question.querySelector('.faq-chevron') as HTMLElement;
 
     if (answer && (answer.classList.contains('faq-answer') || answer.classList.contains('answer'))) {
       const isVisible = answer.style.display === 'block' || answer.style.maxHeight !== '0px';
@@ -2816,13 +2815,13 @@ const setupFAQHandler = (question: HTMLElement) => {
         answer.style.display = 'none';
         answer.style.maxHeight = '0px';
         answer.style.opacity = '0';
-        if (icon) icon.textContent = '+';
+        if (chevron) chevron.classList.remove('expanded');
         question.classList.remove('expanded');
       } else {
         answer.style.display = 'block';
         answer.style.maxHeight = '1000px';
         answer.style.opacity = '1';
-        if (icon) icon.textContent = '—';
+        if (chevron) chevron.classList.add('expanded');
         question.classList.add('expanded');
       }
     }
@@ -2833,13 +2832,14 @@ const setupFAQHandler = (question: HTMLElement) => {
   question.addEventListener('click', handler);
   question.style.cursor = 'pointer';
   
-  // Add icon if it doesn't exist
-  if (!question.querySelector('.icon, .faq-icon')) {
-    const icon = document.createElement('span');
-    icon.className = 'faq-icon';
-    icon.textContent = '+';
-    icon.style.cssText = 'font-weight: 900; font-size: 16px; color: #1D50C9; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Arial, sans-serif; margin-left: auto;';
-    question.appendChild(icon);
+  // Add chevron if it doesn't exist
+  if (!question.querySelector('.faq-chevron')) {
+    const chevron = document.createElement('svg');
+    chevron.className = 'faq-chevron';
+    chevron.innerHTML = '<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/>';
+    chevron.setAttribute('viewBox', '0 0 24 24');
+    chevron.setAttribute('fill', 'none');
+    question.appendChild(chevron);
   }
 };
 
@@ -2912,13 +2912,12 @@ const convertToFAQStructure = (questionElement: HTMLElement, answerElement: HTML
   const faqWrapper = document.createElement('div');
   faqWrapper.className = 'faq-item';
   faqWrapper.style.cssText = `
-    margin-bottom: 12px;
-    border: 1px solid #e0e7ff;
-    border-radius: 12px;
+    margin-bottom: 0.25rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
     overflow: hidden;
     background: white;
-    box-shadow: 0 2px 8px rgba(29, 80, 201, 0.08);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
   `;
   
   // Setup question element
@@ -2927,22 +2926,29 @@ const convertToFAQStructure = (questionElement: HTMLElement, answerElement: HTML
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #e8f0ff;
-    padding: 18px 24px;
-    cursor: pointer;
-    font-weight: 600;
-    color: #1D50C9;
-    margin: 0;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: white;
     border: none;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: 500;
+    color: #111827;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    text-align: left;
+    transition: background-color 0.2s ease;
   `;
   
   // Setup answer element
   answerElement.className = 'faq-answer';
   answerElement.style.cssText = `
     display: none;
-    padding: 20px;
-    background: #fafbff;
+    padding: 0 1.5rem 1rem 1.5rem;
+    background: white;
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-top: 1px solid #f3f4f6;
     margin: 0;
     max-height: 0px;
     opacity: 0;
