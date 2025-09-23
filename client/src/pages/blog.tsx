@@ -315,10 +315,19 @@ function BlogPostDetail({ slug }: { slug: string }) {
       allContentSections.forEach(section => {
         initializeFAQs(section as HTMLElement);
       });
+      
+      // Additional force initialization for this specific blog post
+      if (slug === 'ielts-vs-toefl-for-study-abroad') {
+        setTimeout(() => {
+          const body = document.body;
+          initializeFAQs(body);
+          forceFAQInitialization(body);
+        }, 500);
+      }
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [blogPost?.content]); // Re-run when content changes
+  }, [blogPost?.content, slug]); // Re-run when content changes
 
   // Infinite scroll animation for related blogs (always call this hook)
   useEffect(() => {
@@ -2806,6 +2815,63 @@ function BlogPostDetail({ slug }: { slug: string }) {
     </div>
   );
 }
+
+// Force FAQ initialization for specific blog posts
+const forceFAQInitialization = (container: HTMLElement) => {
+  // More aggressive FAQ detection for troublesome blog posts
+  const strongElements = container.querySelectorAll('strong, b');
+  
+  strongElements.forEach((strong, index) => {
+    const text = strong.textContent?.trim() || '';
+    
+    // Check if this looks like a question (ends with ?)
+    if (text.endsWith('?')) {
+      const parent = strong.parentElement;
+      if (parent && parent.tagName === 'P') {
+        // Find the next paragraph as the answer
+        let nextP = parent.nextElementSibling;
+        let attempts = 0;
+        
+        // Skip empty elements
+        while (nextP && !nextP.textContent?.trim() && attempts < 3) {
+          nextP = nextP.nextElementSibling;
+          attempts++;
+        }
+        
+        if (nextP && nextP.tagName === 'P' && nextP.textContent?.trim()) {
+          // Don't convert if the next paragraph also ends with ?
+          const nextText = nextP.textContent?.trim() || '';
+          if (!nextText.endsWith('?')) {
+            convertToFAQStructure(parent as HTMLElement, nextP as HTMLElement);
+          }
+        }
+      }
+    }
+  });
+  
+  // Also look for any h3/h4 that end with ? followed by paragraphs
+  const headings = container.querySelectorAll('h3, h4, h5');
+  headings.forEach(heading => {
+    const text = heading.textContent?.trim() || '';
+    if (text.endsWith('?')) {
+      let nextElement = heading.nextElementSibling;
+      let attempts = 0;
+      
+      // Skip empty elements
+      while (nextElement && !nextElement.textContent?.trim() && attempts < 3) {
+        nextElement = nextElement.nextElementSibling;
+        attempts++;
+      }
+      
+      if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV') && nextElement.textContent?.trim()) {
+        const nextText = nextElement.textContent?.trim() || '';
+        if (!nextText.endsWith('?')) {
+          convertToFAQStructure(heading as HTMLElement, nextElement as HTMLElement);
+        }
+      }
+    }
+  });
+};
 
 // Enhanced FAQ initialization function
 const initializeFAQs = (container: HTMLElement) => {
