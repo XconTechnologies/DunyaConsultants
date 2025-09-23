@@ -240,7 +240,7 @@ export default function BlogEditor() {
         ['clean']
       ],
       handlers: {
-        'faq': function() {
+        'faq': function(this: any) {
           const quill = this.quill;
           const range = quill.getSelection();
           if (range) {

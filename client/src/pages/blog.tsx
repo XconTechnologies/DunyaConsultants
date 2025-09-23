@@ -318,7 +318,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     }, 300);
 
     return () => clearTimeout(timeoutId);
-  }, [blogPost.content, contentSections]); // Re-run when content changes
+  }, [blogPost.content]); // Re-run when content changes
 
   // Infinite scroll animation for related blogs (always call this hook)
   useEffect(() => {
