@@ -246,7 +246,7 @@ export default function BlogEditor() {
           if (range) {
             const faqHtml = `
               <div class="faq-item" style="margin-bottom: 12px; border: 1px solid #e0e7ff; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 2px 8px rgba(29, 80, 201, 0.08);">
-                <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%); padding: 18px 24px; cursor: pointer; font-weight: 600; color: #1D50C9;">
+                <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; background: #e8f0ff; padding: 18px 24px; cursor: pointer; font-weight: 600; color: #1D50C9;">
                   <span style="color: #1D50C9;">Click here to add your question?</span>
                   <span class="faq-icon" style="font-weight: 900; font-size: 16px; color: #1D50C9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;">+</span>
                 </div>

@@ -694,7 +694,7 @@ p[class*="text-gray-700"] a:hover,
   align-items: center !important;
   border-bottom: none !important;
   border: none !important;
-  background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%) !important;
+  background: #e8f0ff !important;
   padding: 18px 24px !important;
   cursor: pointer !important;
   font-weight: 600 !important;
@@ -708,7 +708,7 @@ p[class*="text-gray-700"] a:hover,
 }
 
 .faq-question:hover {
-  background: linear-gradient(135deg, #e8f0ff 0%, #dce8ff 100%) !important;
+  background: #dce8ff !important;
 }
 
 .faq-question.expanded {
