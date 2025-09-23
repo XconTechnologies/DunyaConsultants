@@ -2811,9 +2811,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
 const initializeFAQs = (container: HTMLElement) => {
   if (!container) return;
   
-  // Prevent multiple initialization on the same container
-  if (container.dataset.faqInitialized === 'true') return;
-  container.dataset.faqInitialized = 'true';
+  // Remove the single initialization check to allow multiple runs for better detection
   
   // Method 1: Handle existing .faq-question elements
   const faqQuestions = container.querySelectorAll('.faq-question');
@@ -2824,11 +2822,24 @@ const initializeFAQs = (container: HTMLElement) => {
   // Method 2: Auto-detect FAQ patterns and convert them
   autoDetectAndConvertFAQs(container);
   
-  // Method 3: Handle simple numbered questions
+  // Method 3: Handle simple numbered questions (enhanced)
   convertNumberedQuestionsToFAQs(container);
   
-  // Method 4: Look for any text content with FAQ patterns and convert
+  // Method 4: Enhanced text-based FAQ detection
   detectTextFAQs(container);
+  
+  // Method 5: Aggressive FAQ initialization as fallback
+  setTimeout(() => {
+    initializeFAQsAggressively(container);
+  }, 200);
+  
+  // Method 6: Final pass after longer delay for dynamic content
+  setTimeout(() => {
+    const finalQuestions = container.querySelectorAll('.faq-question');
+    finalQuestions.forEach(question => {
+      setupFAQHandler(question as HTMLElement);
+    });
+  }, 500);
 };
 
 const setupFAQHandler = (question: HTMLElement) => {
@@ -2898,40 +2909,58 @@ const autoDetectAndConvertFAQs = (container: HTMLElement) => {
 };
 
 const convertNumberedQuestionsToFAQs = (container: HTMLElement) => {
-  // Look for numbered questions like "1. Question?" or bold numbered questions "**1. Question?**"
-  const allElements = container.querySelectorAll('p, div, strong, b, h3, h4, h5, h6, span');
+  // Enhanced FAQ detection - Look for various FAQ patterns
+  const allElements = container.querySelectorAll('p, div, strong, b, h3, h4, h5, h6, span, li');
   
   allElements.forEach(element => {
     const text = element.textContent?.trim() || '';
     const innerHTML = element.innerHTML?.trim() || '';
     
-    // Match various FAQ question patterns (enhanced detection):
+    // Enhanced FAQ question patterns:
     const patterns = [
       /^\*?\*?\d+\.\s*.+\?\*?\*?/, // **1. Question?** or 1. Question?
       /^Q\d*[:.]?\s*.+\?/,         // Q1: Question? or Q. Question?
       /^\d+\)\s*.+\?/,             // 1) Question?
       /^Question\s*\d*[:.]?\s*.+\?/, // Question 1: text?
-      /^FAQ\s*\d*[:.]?\s*.+\?/     // FAQ 1: text?
+      /^FAQ\s*\d*[:.]?\s*.+\?/,    // FAQ 1: text?
+      /^What\s+.+\?/i,             // What is...?
+      /^How\s+.+\?/i,              // How do/does...?
+      /^Why\s+.+\?/i,              // Why is/does...?
+      /^When\s+.+\?/i,             // When should...?
+      /^Where\s+.+\?/i,            // Where can...?
+      /^Who\s+.+\?/i,              // Who should...?
+      /^Can\s+.+\?/i,              // Can I...?
+      /^Is\s+.+\?/i,               // Is it...?
+      /^Do\s+.+\?/i,               // Do you...?
+      /^Does\s+.+\?/i,             // Does it...?
+      /^Will\s+.+\?/i,             // Will I...?
+      /^Should\s+.+\?/i,           // Should I...?
+      /^Are\s+.+\?/i,              // Are there...?
+      /^\d+\.\s+[A-Z].+\?/,        // 1. Title case question?
+      /^[A-Z][a-z\s]+\?$/          // Simple capitalized question?
     ];
     
-    const isNumberedQuestion = patterns.some(pattern => text.match(pattern)) ||
-                              (innerHTML.includes('<strong>') && text.match(/^\d+\.\s*.+\?/)) ||
-                              (element.tagName.match(/^(STRONG|B)$/) && text.match(/^\d+\.\s*.+\?/));
+    const isQuestionPattern = patterns.some(pattern => text.match(pattern));
+    const hasStrongFormatting = innerHTML.includes('<strong>') || innerHTML.includes('<b>');
+    const isNumberedQuestion = isQuestionPattern || 
+                              (hasStrongFormatting && text.match(/^\d+\.\s*.+\?/)) ||
+                              (element.tagName.match(/^(STRONG|B)$/) && text.includes('?'));
     
-    if (isNumberedQuestion && !element.classList.contains('faq-question')) {
+    if (isNumberedQuestion && !element.classList.contains('faq-question') && text.length > 5) {
       // Look for the answer in the next sibling or next few siblings
       let nextElement = element.nextElementSibling;
       
       // Skip empty elements and find the actual answer
       let attempts = 0;
-      while (nextElement && !nextElement.textContent?.trim() && attempts < 3) {
+      while (nextElement && !nextElement.textContent?.trim() && attempts < 5) {
         nextElement = nextElement.nextElementSibling;
         attempts++;
       }
       
       if (nextElement && 
-          (nextElement.tagName === 'P' || nextElement.tagName === 'DIV') && 
+          (nextElement.tagName === 'P' || nextElement.tagName === 'DIV' || nextElement.tagName === 'LI') && 
           nextElement.textContent?.trim() && 
+          nextElement.textContent.length > 10 &&
           !patterns.some(pattern => nextElement.textContent?.trim().match(pattern))) {
         
         // If the question element is inside a <strong> or <b>, use its parent
@@ -3009,47 +3038,96 @@ const convertToFAQStructure = (questionElement: HTMLElement, answerElement: HTML
   setupFAQHandler(questionElement);
 };
 
-// New method to detect FAQ patterns in text content
+// Enhanced method to detect FAQ patterns in text content
 const detectTextFAQs = (container: HTMLElement) => {
-  const textContent = container.innerHTML || '';
+  // Method 1: Look for existing FAQ-like structures and convert them
+  const existingQuestions = container.querySelectorAll('p, div, h3, h4, h5, h6, li, strong, b');
   
-  // Look for FAQ patterns in HTML content like **1. Question?**
-  const faqPattern = /<strong>\s*\d+\.\s*([^<]*\?)\s*<\/strong>/gi;
-  let matches = textContent.match(faqPattern);
-  
-  if (matches && matches.length > 1) {
-    // If we found multiple FAQ-style questions, create a proper FAQ section
-    let faqSection = '<div class="faq-section"><h2>FAQs</h2>';
+  existingQuestions.forEach(element => {
+    const text = element.textContent?.trim() || '';
+    const isQuestion = text.includes('?') && text.length > 10;
     
-    // Replace each match with proper FAQ structure
-    let updatedContent = textContent;
-    matches.forEach((match, index) => {
-      const questionMatch = match.match(/<strong>\s*\d+\.\s*([^<]*\?)\s*<\/strong>/i);
-      if (questionMatch) {
-        const question = questionMatch[1];
-        const faqItem = `
-          <div class="faq-item" style="margin-bottom: 0.25rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white; transition: all 0.2s ease;">
-            <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem 1.5rem; background: white; border: none; cursor: pointer; font-weight: 500; color: #111827; font-size: 0.875rem; line-height: 1.5; text-align: left; transition: background-color 0.2s ease;">
-              <span>${question}</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" style="width: 1rem; height: 1rem; color: #6b7280; transition: transform 0.2s ease; flex-shrink: 0; margin-left: 0.75rem;">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/>
-              </svg>
-            </div>
-            <div class="faq-answer" style="display: none; padding: 0 1.5rem 1rem 1.5rem; background: white; color: #6b7280; font-size: 0.875rem; line-height: 1.5; border-top: 1px solid #f3f4f6; margin: 0; max-height: 0px; opacity: 0; transition: all 0.3s ease; overflow: hidden;">
-              <p style="margin: 0; padding-top: 0.5rem;">Click to add answer...</p>
-            </div>
-          </div>
-        `;
-        updatedContent = updatedContent.replace(match, faqItem);
+    // Enhanced question detection patterns
+    const questionPatterns = [
+      /^(What|How|Why|When|Where|Who|Can|Is|Do|Does|Will|Should|Are)\s+.+\?/i,
+      /^\d+\.\s+.+\?/,
+      /^Q\d*[:.]?\s*.+\?/i,
+      /^FAQ\s*\d*[:.]?\s*.+\?/i
+    ];
+    
+    const matchesPattern = questionPatterns.some(pattern => pattern.test(text));
+    
+    if ((isQuestion || matchesPattern) && !element.classList.contains('faq-question')) {
+      // Find potential answer
+      let nextElement = element.nextElementSibling;
+      let attempts = 0;
+      
+      while (nextElement && !nextElement.textContent?.trim() && attempts < 3) {
+        nextElement = nextElement.nextElementSibling;
+        attempts++;
       }
-    });
-    
-    faqSection += '</div>';
-    
-    if (updatedContent !== textContent) {
-      container.innerHTML = updatedContent;
+      
+      if (nextElement && 
+          nextElement.textContent?.trim() && 
+          nextElement.textContent.length > 15 &&
+          !nextElement.textContent.includes('?') &&
+          !nextElement.classList.contains('faq-question')) {
+        
+        convertToFAQStructure(element as HTMLElement, nextElement as HTMLElement);
+      }
     }
-  }
+  });
+  
+  // Method 2: HTML content pattern matching for bold questions
+  const textContent = container.innerHTML || '';
+  const faqPatterns = [
+    /<strong>\s*\d+\.\s*([^<]*\?)\s*<\/strong>/gi,
+    /<b>\s*\d+\.\s*([^<]*\?)\s*<\/b>/gi,
+    /<strong>\s*(What|How|Why|When|Where|Who|Can|Is|Do|Does|Will|Should|Are)\s+[^<]*\?\s*<\/strong>/gi,
+    /<b>\s*(What|How|Why|When|Where|Who|Can|Is|Do|Does|Will|Should|Are)\s+[^<]*\?\s*<\/b>/gi
+  ];
+  
+  faqPatterns.forEach(pattern => {
+    let matches = textContent.match(pattern);
+    if (matches && matches.length > 0) {
+      // Force re-initialization after DOM manipulation
+      setTimeout(() => {
+        initializeFAQsAggressively(container);
+      }, 100);
+    }
+  });
+};
+
+// More aggressive FAQ initialization
+const initializeFAQsAggressively = (container: HTMLElement) => {
+  // Find all potential question elements more aggressively
+  const allElements = container.querySelectorAll('*');
+  
+  allElements.forEach(element => {
+    const text = element.textContent?.trim() || '';
+    
+    if (text.includes('?') && 
+        text.length > 10 && 
+        text.length < 200 &&
+        !element.classList.contains('faq-question') &&
+        !element.classList.contains('faq-answer')) {
+      
+      const isQuestion = /^(What|How|Why|When|Where|Who|Can|Is|Do|Does|Will|Should|Are|\d+\.)\s+.+\?/i.test(text);
+      
+      if (isQuestion) {
+        let nextElement = element.nextElementSibling;
+        
+        // Look for answer
+        if (nextElement && 
+            nextElement.textContent?.trim() && 
+            nextElement.textContent.length > 15 &&
+            !nextElement.textContent.includes('?')) {
+          
+          convertToFAQStructure(element as HTMLElement, nextElement as HTMLElement);
+        }
+      }
+    }
+  });
 };
 
 // Main Blog Component
