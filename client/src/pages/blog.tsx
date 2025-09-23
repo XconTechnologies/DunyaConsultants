@@ -2954,6 +2954,40 @@ const convertNumberedQuestionsToFAQs = (container: HTMLElement) => {
   });
 };
 
+// Function to create default FAQs if none found
+const createDefaultFAQsIfMissing = (container: HTMLElement) => {
+  // Check if there are any existing FAQs
+  const existingFAQs = container.querySelectorAll('.faq-item, .faq-question');
+  
+  // If no FAQs found, create a basic FAQ section
+  if (existingFAQs.length === 0) {
+    const faqSection = document.createElement('div');
+    faqSection.className = 'faq-section';
+    faqSection.innerHTML = `
+      <h3 style="margin-top: 2rem; margin-bottom: 1rem; font-size: 1.25rem; font-weight: 600; color: #111827;">FAQs</h3>
+      <div class="faq-item" style="margin-bottom: 0.25rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white; transition: all 0.2s ease;">
+        <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem 1.5rem; background: white; border: none; cursor: pointer; font-weight: 500; color: #111827; font-size: 0.875rem; line-height: 1.5; text-align: left; transition: background-color 0.2s ease;">
+          <span>How can this guide help me?</span>
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" style="width: 1rem; height: 1rem; color: #6b7280; transition: transform 0.2s ease; flex-shrink: 0; margin-left: auto;">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/>
+          </svg>
+        </div>
+        <div class="faq-answer" style="display: none; padding: 0 1.5rem 1rem 1.5rem; background: white; color: #6b7280; font-size: 0.875rem; line-height: 1.5; border-top: 1px solid #f3f4f6; margin: 0; max-height: 0px; opacity: 0; transition: all 0.3s ease; overflow: hidden;">
+          <p style="margin: 0; padding-top: 0.5rem;">This comprehensive guide provides detailed information and expert insights to help you make informed decisions about your study abroad journey.</p>
+        </div>
+      </div>
+    `;
+    
+    container.appendChild(faqSection);
+    
+    // Initialize the newly created FAQ
+    const newFAQQuestion = faqSection.querySelector('.faq-question');
+    if (newFAQQuestion) {
+      setupFAQHandler(newFAQQuestion as HTMLElement);
+    }
+  }
+};
+
 const convertToFAQStructure = (questionElement: HTMLElement, answerElement: HTMLElement) => {
   // Skip if already converted
   if (questionElement.classList.contains('faq-question')) return;
