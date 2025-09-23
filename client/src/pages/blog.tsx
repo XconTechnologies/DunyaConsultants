@@ -2863,17 +2863,42 @@ const autoDetectAndConvertFAQs = (container: HTMLElement) => {
 };
 
 const convertNumberedQuestionsToFAQs = (container: HTMLElement) => {
-  // Look for numbered questions like "1. Question?" followed by answers
-  const paragraphs = container.querySelectorAll('p, div');
+  // Look for numbered questions like "1. Question?" or bold numbered questions "**1. Question?**"
+  const allElements = container.querySelectorAll('p, div, strong, b, h3, h4, h5, h6');
   
-  paragraphs.forEach(p => {
-    const text = p.textContent?.trim() || '';
-    const isNumberedQuestion = text.match(/^\d+\.\s*.+\?/) || text.match(/^Q\d*[:.]?\s*.+\?/);
+  allElements.forEach(element => {
+    const text = element.textContent?.trim() || '';
+    const innerHTML = element.innerHTML?.trim() || '';
+    
+    // Match various FAQ question patterns:
+    // - "1. Question?"
+    // - "**1. Question?**" 
+    // - Bold numbered questions in HTML
+    const isNumberedQuestion = text.match(/^\*?\*?\d+\.\s*.+\?\*?\*?/) || 
+                              text.match(/^Q\d*[:.]?\s*.+\?/) ||
+                              innerHTML.includes('<strong>') && text.match(/^\d+\.\s*.+\?/) ||
+                              element.tagName.match(/^(STRONG|B)$/) && text.match(/^\d+\.\s*.+\?/);
     
     if (isNumberedQuestion) {
-      const nextElement = p.nextElementSibling;
-      if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV')) {
-        convertToFAQStructure(p as HTMLElement, nextElement as HTMLElement);
+      // Look for the answer in the next sibling or next few siblings
+      let nextElement = element.nextElementSibling;
+      
+      // Skip empty elements and find the actual answer
+      while (nextElement && !nextElement.textContent?.trim()) {
+        nextElement = nextElement.nextElementSibling;
+      }
+      
+      if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV') && 
+          nextElement.textContent?.trim() && 
+          !nextElement.textContent.trim().match(/^\*?\*?\d+\.\s*.+\?\*?\*?/)) {
+        
+        // If the question element is inside a <strong> or <b>, use its parent
+        const questionElement = element.tagName.match(/^(STRONG|B)$/) ? 
+          element.parentElement as HTMLElement : element as HTMLElement;
+        
+        if (questionElement) {
+          convertToFAQStructure(questionElement, nextElement as HTMLElement);
+        }
       }
     }
   });
