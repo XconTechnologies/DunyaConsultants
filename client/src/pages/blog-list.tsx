@@ -10,6 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import { getBlogUrl } from "@/lib/blog-utils";
+import { RefreshCw, Database, Globe } from "lucide-react";
 
 // Unified image src normalization function (same as other components)
 const normalizeImageSrc = (image: string) => {
@@ -291,12 +292,14 @@ const categories = [
 export default function BlogList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [useProductionData, setUseProductionData] = useState(false);
 
-  // Fetch all blog posts from API
-  const { data: blogPostsData } = useQuery({
-    queryKey: ['/api/blog-posts'],
+  // Fetch all blog posts from API with production sync option
+  const { data: blogPostsData, isLoading, refetch } = useQuery({
+    queryKey: ['/api/blog-posts', { sync: useProductionData ? 'production' : 'local' }],
     queryFn: async () => {
-      const response = await fetch('/api/blog-posts');
+      const syncParam = useProductionData ? '?sync=production' : '';
+      const response = await fetch(`/api/blog-posts${syncParam}`);
       if (!response.ok) throw new Error('Failed to fetch blog posts');
       return response.json();
     }
@@ -433,6 +436,56 @@ export default function BlogList() {
               </div>
             </div>
           </div>
+          
+          {/* Production Data Sync Toggle */}
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.4 }}
+            className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 mt-6"
+          >
+            <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
+                {useProductionData ? <Globe className="h-4 w-4 text-green-600" /> : <Database className="h-4 w-4 text-blue-600" />}
+                <span>Data Source: {useProductionData ? 'Production (dunyaconsultants.com)' : 'Local Development'}</span>
+                {blogPostsData?.[0]?._source && (
+                  <Badge variant={blogPostsData[0]._source === 'production' ? 'default' : 'secondary'}>
+                    {blogPostsData[0]._source}
+                  </Badge>
+                )}
+              </div>
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    setUseProductionData(!useProductionData);
+                    setTimeout(() => refetch(), 100);
+                  }}
+                  disabled={isLoading}
+                  className="flex items-center gap-2"
+                >
+                  {isLoading ? (
+                    <RefreshCw className="h-4 w-4 animate-spin" />
+                  ) : useProductionData ? (
+                    <Database className="h-4 w-4" />
+                  ) : (
+                    <Globe className="h-4 w-4" />
+                  )}
+                  Switch to {useProductionData ? 'Local' : 'Production'}
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => refetch()}
+                  disabled={isLoading}
+                >
+                  <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
+                  Refresh
+                </Button>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
 
         {/* Blog Posts Grid */}

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
@@ -177,11 +177,15 @@ export default function BlogsCarouselSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
-  // Fetch latest 5 blog posts from API for carousel
-  const { data: blogPostsData } = useQuery({
-    queryKey: ['/api/blog-posts', { limit: 5 }],
+  // Production sync state (for development environment)
+  const [useProductionData, setUseProductionData] = useState(false);
+
+  // Fetch latest 5 blog posts from API for carousel with production sync option
+  const { data: blogPostsData, refetch } = useQuery({
+    queryKey: ['/api/blog-posts', { limit: 5, sync: useProductionData ? 'production' : 'local' }],
     queryFn: async () => {
-      const response = await fetch('/api/blog-posts?limit=5');
+      const syncParam = useProductionData ? '&sync=production' : '';
+      const response = await fetch(`/api/blog-posts?limit=5${syncParam}`);
       if (!response.ok) throw new Error('Failed to fetch blog posts');
       return response.json();
     }

@@ -1371,7 +1371,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // PUBLIC BLOG ROUTES
   // ==============================================
 
-  // Get all published blog posts (public) with optional limit
+  // Get all published blog posts (public) with optional limit and production sync
   app.get("/api/blog-posts", async (req, res) => {
     try {
       // Add cache-busting headers to ensure fresh data
@@ -1382,6 +1382,39 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
       
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
+      const syncFromProduction = req.query.sync === 'production';
+      
+      // Try to fetch from production if requested
+      if (syncFromProduction) {
+        try {
+          console.log('Attempting to sync blog posts from production...');
+          const productionResponse = await fetch('https://dunyaconsultants.com/api/blog-posts');
+          
+          if (productionResponse.ok) {
+            const productionPosts = await productionResponse.json();
+            console.log(`Successfully fetched ${productionPosts.length} posts from production`);
+            
+            // Fix image URLs to point to production and add source flag
+            const postsWithFixedImages = productionPosts.map((post: any) => ({
+              ...post,
+              _source: 'production',
+              featuredImage: post.featuredImage?.startsWith('/api/uploads/') 
+                ? `https://dunyaconsultants.com${post.featuredImage}`
+                : post.featuredImage
+            }));
+            
+            // Apply limit if specified
+            const limitedPosts = limit ? postsWithFixedImages.slice(0, limit) : postsWithFixedImages;
+            return res.json(limitedPosts);
+          } else {
+            console.log('Production sync failed with status:', productionResponse.status);
+          }
+        } catch (syncError) {
+          console.log('Production sync failed, falling back to local data:', syncError);
+        }
+      }
+      
+      // Fallback to local data
       const posts = await storage.getBlogPosts(true); // Only published posts
       
       // Apply limit if specified
@@ -1390,11 +1423,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Map database fields to frontend expected format
       const mappedPosts = limitedPosts.map(post => ({
         ...post,
+        _source: 'local',
         featuredImage: post.featuredImage // Use the existing featuredImage field
       }));
       
       res.json(mappedPosts);
     } catch (error) {
+      console.error('Error in blog posts API:', error);
       res.status(500).json({ message: 'Failed to fetch published blog posts' });
     }
   });
