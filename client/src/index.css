@@ -713,6 +713,23 @@ p[class*="text-gray-700"] a:hover,
   color: white !important;
 }
 
+/* Force all text in expanded FAQ questions to be white - override any inline styles */
+.faq-question.expanded * {
+  color: white !important;
+}
+
+/* Super specific targeting to override inline styles */
+div.faq-question.expanded * {
+  color: white !important;
+}
+
+/* Target specific elements that might have inline color styles */
+.faq-question.expanded > span,
+.faq-question.expanded > div,
+.faq-question.expanded > p {
+  color: white !important;
+}
+
 .faq-answer {
   padding: 20px !important;
   background: #fafbff !important;
