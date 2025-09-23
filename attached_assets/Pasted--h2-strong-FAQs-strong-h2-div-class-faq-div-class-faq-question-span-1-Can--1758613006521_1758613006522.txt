@@ -1,0 +1,99 @@
+<h2><strong>FAQs</strong></h2>
+
+<div class="faq">
+  <div class="faq-question">
+    <span>1. Can I work full time while studying abroad?</span>
+    <span class="icon">+</span>
+  </div>
+  <div class="faq-answer">
+    <p>Only during semester breaks or official holidays. During term time, limits apply in all three countries.</p>
+  </div>
+</div>
+
+<div class="faq">
+  <div class="faq-question">
+    <span>2. Do I need a separate work permit as a student?</span>
+    <span class="icon">+</span>
+  </div>
+  <div class="faq-answer">
+    <p>In the UK and Australia, no. In Canada, a separate permit may be required for co-op placements.</p>
+  </div>
+</div>
+
+<div class="faq">
+  <div class="faq-question">
+    <span>3. What is the minimum wage for part time jobs abroad?</span>
+    <span class="icon">+</span>
+  </div>
+  <div class="faq-answer">
+    <p>It varies by country and region. Always check official government websites for updated rates.</p>
+  </div>
+</div>
+
+<div class="faq">
+  <div class="faq-question">
+    <span>4. Can part time work cover my tuition fees?</span>
+    <span class="icon">+</span>
+  </div>
+  <div class="faq-answer">
+    <p>No, part time jobs are meant to support living expenses. Tuition fees should be planned separately.</p>
+  </div>
+</div>
+
+<div class="faq">
+  <div class="faq-question">
+    <span>5. Are internships counted as part time work?</span>
+    <span class="icon">+</span>
+  </div>
+  <div class="faq-answer">
+    <p>Yes, unless they are unpaid or part of your course requirements, which may have different rules.</p>
+  </div>
+</div>
+
+<style>
+.faq {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f4f4f4;
+  padding: 12px 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.faq-answer {
+  display: none;
+  padding: 10px 15px;
+  background: #fafafa;
+  border-top: 1px solid #ddd;
+}
+
+.icon {
+  font-weight: bold;
+  font-size: 18px;
+}
+</style>
+
+<script>
+document.querySelectorAll(".faq-question").forEach(question => {
+  question.addEventListener("click", () => {
+    const answer = question.nextElementSibling;
+    const icon = question.querySelector(".icon");
+
+    if (answer.style.display === "block") {
+      answer.style.display = "none";
+      icon.textContent = "+";
+    } else {
+      answer.style.display = "block";
+      icon.textContent = "–";
+    }
+  });
+});
+</script>

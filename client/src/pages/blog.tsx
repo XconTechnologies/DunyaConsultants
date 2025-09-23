@@ -532,7 +532,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 <div className="prose prose-xl max-w-none">
                   {/* Handle HTML content or regular intro sections */}
                   {isHTMLContent ? (
-                    <div className="blog-content prose prose-xl max-w-none" dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }} />
+                    <div 
+                      className="blog-content prose prose-xl max-w-none" 
+                      dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }}
+                      ref={(el) => {
+                        // Initialize FAQ functionality after content is rendered
+                        if (el) {
+                          setTimeout(() => {
+                            initializeFAQs(el);
+                          }, 100);
+                        }
+                      }}
+                    />
                   ) : contentSections.length > 0 && contentSections[0] && !contentSections[0].title && (
                     <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
                       <div className="text-gray-700 leading-relaxed">
@@ -2768,6 +2779,40 @@ function BlogPostDetail({ slug }: { slug: string }) {
     </div>
   );
 }
+
+// FAQ initialization function
+const initializeFAQs = (container: HTMLElement) => {
+  const faqQuestions = container.querySelectorAll('.faq-question');
+  
+  faqQuestions.forEach(question => {
+    // Remove any existing listeners to prevent duplicates
+    const existingHandler = (question as any).__faqHandler;
+    if (existingHandler) {
+      question.removeEventListener('click', existingHandler);
+    }
+    
+    // Create new handler
+    const handler = () => {
+      const answer = question.nextElementSibling as HTMLElement;
+      const icon = question.querySelector('.icon') as HTMLElement;
+
+      if (answer && answer.classList.contains('faq-answer')) {
+        if (answer.style.display === 'block') {
+          answer.style.display = 'none';
+          if (icon) icon.textContent = '+';
+        } else {
+          answer.style.display = 'block';
+          if (icon) icon.textContent = '–';
+        }
+      }
+    };
+    
+    // Store handler reference and add listener
+    (question as any).__faqHandler = handler;
+    question.addEventListener('click', handler);
+    (question as HTMLElement).style.cursor = 'pointer';
+  });
+};
 
 // Main Blog Component
 export default function Blog() {

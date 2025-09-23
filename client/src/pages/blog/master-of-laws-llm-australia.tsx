@@ -6,6 +6,40 @@ import ContactSection from '@/components/blog/ContactSection';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 
+// FAQ initialization function
+const initializeFAQs = (container: HTMLElement) => {
+  const faqQuestions = container.querySelectorAll('.faq-question');
+  
+  faqQuestions.forEach(question => {
+    // Remove any existing listeners to prevent duplicates
+    const existingHandler = (question as any).__faqHandler;
+    if (existingHandler) {
+      question.removeEventListener('click', existingHandler);
+    }
+    
+    // Create new handler
+    const handler = () => {
+      const answer = question.nextElementSibling as HTMLElement;
+      const icon = question.querySelector('.icon') as HTMLElement;
+
+      if (answer && answer.classList.contains('faq-answer')) {
+        if (answer.style.display === 'block') {
+          answer.style.display = 'none';
+          if (icon) icon.textContent = '+';
+        } else {
+          answer.style.display = 'block';
+          if (icon) icon.textContent = '–';
+        }
+      }
+    };
+    
+    // Store handler reference and add listener
+    (question as any).__faqHandler = handler;
+    question.addEventListener('click', handler);
+    (question as HTMLElement).style.cursor = 'pointer';
+  });
+};
+
 export default function MasterOfLawsLLMAustralia() {
   const { data: blogPost, isLoading } = useQuery({
     queryKey: ['/api/blog-posts/master-of-laws-llm-in-australia'],
@@ -73,6 +107,14 @@ export default function MasterOfLawsLLMAustralia() {
                   className="prose prose-lg max-w-none text-gray-700 leading-relaxed"
                   dangerouslySetInnerHTML={{ 
                     __html: blogPost?.content || "Loading content..." 
+                  }}
+                  ref={(el) => {
+                    // Initialize FAQ functionality after content is rendered
+                    if (el && blogPost?.content) {
+                      setTimeout(() => {
+                        initializeFAQs(el);
+                      }, 100);
+                    }
                   }}
                 />
               </div>
