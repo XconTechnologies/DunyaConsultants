@@ -720,21 +720,11 @@ p[class*="text-gray-700"] a:hover,
   color: #6b7280 !important;
   transition: transform 0.2s ease !important;
   flex-shrink: 0 !important;
-  margin-left: auto !important;
-  order: 2 !important;
+  margin-left: 0.75rem !important;
 }
 
 .faq-chevron.expanded {
   transform: rotate(180deg) !important;
-}
-
-.faq-item {
-  margin-bottom: 0.25rem !important;
-  border: 1px solid #e5e7eb !important;
-  border-radius: 0.5rem !important;
-  overflow: hidden !important;
-  background: white !important;
-  transition: all 0.2s ease !important;
 }
 
 .faq-answer {
