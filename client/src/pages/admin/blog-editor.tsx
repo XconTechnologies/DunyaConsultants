@@ -78,7 +78,7 @@ export default function BlogEditor() {
               if (answer && answer.classList.contains('faq-answer')) {
                 const isVisible = answer.style.display !== 'none';
                 answer.style.display = isVisible ? 'none' : 'block';
-                if (icon) icon.textContent = isVisible ? '+' : '−';
+                if (icon) icon.textContent = isVisible ? '+' : '-';
                 
                 // Toggle expanded class for proper styling
                 if (isVisible) {
@@ -203,7 +203,7 @@ export default function BlogEditor() {
           if (range) {
             const faqHtml = `
               <div class="faq-item" style="margin-bottom: 12px; border: 1px solid #e0e7ff; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 2px 8px rgba(29, 80, 201, 0.08);">
-                <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%); padding: 18px 24px; cursor: pointer; font-weight: 600; color: #1D50C9; border-bottom: 1px solid #e0e7ff;">
+                <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%); padding: 18px 24px; cursor: pointer; font-weight: 600; color: #1D50C9;">
                   <span style="color: #1D50C9;">Click here to add your question?</span>
                   <span class="faq-icon" style="font-weight: bold; font-size: 20px; color: #1D50C9;">+</span>
                 </div>
