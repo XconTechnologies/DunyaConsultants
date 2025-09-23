@@ -301,6 +301,25 @@ function BlogPostDetail({ slug }: { slug: string }) {
   // Duplicate the blogs for infinite scroll effect
   const duplicatedRelatedBlogs = [...relatedBlogs, ...relatedBlogs];
 
+  // Initialize FAQs for ALL blog content (always run this)
+  useEffect(() => {
+    // Wait for content to be rendered, then initialize FAQs
+    const timeoutId = setTimeout(() => {
+      const contentContainer = document.querySelector('.blog-content, .prose');
+      if (contentContainer) {
+        initializeFAQs(contentContainer as HTMLElement);
+      }
+      
+      // Also check for any content sections that might have FAQs
+      const allContentSections = document.querySelectorAll('[class*="prose"], .blog-content, .content-section');
+      allContentSections.forEach(section => {
+        initializeFAQs(section as HTMLElement);
+      });
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  }, [blogPost.content, contentSections]); // Re-run when content changes
+
   // Infinite scroll animation for related blogs (always call this hook)
   useEffect(() => {
     const carousel = relatedBlogsCarouselRef.current;
@@ -816,7 +835,16 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     }
                     
                     return (
-                      <section key={index} id={section.id} className="mb-8">
+                      <section 
+                        key={index} 
+                        id={section.id} 
+                        className="mb-8 content-section"
+                        ref={(el) => {
+                          if (el) {
+                            setTimeout(() => initializeFAQs(el), 100);
+                          }
+                        }}
+                      >
                         {section.title && (
                           (() => {
                             const cleanTitle = section.title.replace(/^#+\s*/, '');
@@ -2781,7 +2809,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
 // Enhanced FAQ initialization function
 const initializeFAQs = (container: HTMLElement) => {
-  // Handle both custom .faq-question and auto-detected FAQ patterns
+  if (!container) return;
+  
+  // Prevent multiple initialization on the same container
+  if (container.dataset.faqInitialized === 'true') return;
+  container.dataset.faqInitialized = 'true';
   
   // Method 1: Handle existing .faq-question elements
   const faqQuestions = container.querySelectorAll('.faq-question');
@@ -2794,6 +2826,9 @@ const initializeFAQs = (container: HTMLElement) => {
   
   // Method 3: Handle simple numbered questions
   convertNumberedQuestionsToFAQs(container);
+  
+  // Method 4: Look for any text content with FAQ patterns and convert
+  detectTextFAQs(container);
 };
 
 const setupFAQHandler = (question: HTMLElement) => {
@@ -2864,39 +2899,46 @@ const autoDetectAndConvertFAQs = (container: HTMLElement) => {
 
 const convertNumberedQuestionsToFAQs = (container: HTMLElement) => {
   // Look for numbered questions like "1. Question?" or bold numbered questions "**1. Question?**"
-  const allElements = container.querySelectorAll('p, div, strong, b, h3, h4, h5, h6');
+  const allElements = container.querySelectorAll('p, div, strong, b, h3, h4, h5, h6, span');
   
   allElements.forEach(element => {
     const text = element.textContent?.trim() || '';
     const innerHTML = element.innerHTML?.trim() || '';
     
-    // Match various FAQ question patterns:
-    // - "1. Question?"
-    // - "**1. Question?**" 
-    // - Bold numbered questions in HTML
-    const isNumberedQuestion = text.match(/^\*?\*?\d+\.\s*.+\?\*?\*?/) || 
-                              text.match(/^Q\d*[:.]?\s*.+\?/) ||
-                              innerHTML.includes('<strong>') && text.match(/^\d+\.\s*.+\?/) ||
-                              element.tagName.match(/^(STRONG|B)$/) && text.match(/^\d+\.\s*.+\?/);
+    // Match various FAQ question patterns (enhanced detection):
+    const patterns = [
+      /^\*?\*?\d+\.\s*.+\?\*?\*?/, // **1. Question?** or 1. Question?
+      /^Q\d*[:.]?\s*.+\?/,         // Q1: Question? or Q. Question?
+      /^\d+\)\s*.+\?/,             // 1) Question?
+      /^Question\s*\d*[:.]?\s*.+\?/, // Question 1: text?
+      /^FAQ\s*\d*[:.]?\s*.+\?/     // FAQ 1: text?
+    ];
     
-    if (isNumberedQuestion) {
+    const isNumberedQuestion = patterns.some(pattern => text.match(pattern)) ||
+                              (innerHTML.includes('<strong>') && text.match(/^\d+\.\s*.+\?/)) ||
+                              (element.tagName.match(/^(STRONG|B)$/) && text.match(/^\d+\.\s*.+\?/));
+    
+    if (isNumberedQuestion && !element.classList.contains('faq-question')) {
       // Look for the answer in the next sibling or next few siblings
       let nextElement = element.nextElementSibling;
       
       // Skip empty elements and find the actual answer
-      while (nextElement && !nextElement.textContent?.trim()) {
+      let attempts = 0;
+      while (nextElement && !nextElement.textContent?.trim() && attempts < 3) {
         nextElement = nextElement.nextElementSibling;
+        attempts++;
       }
       
-      if (nextElement && (nextElement.tagName === 'P' || nextElement.tagName === 'DIV') && 
+      if (nextElement && 
+          (nextElement.tagName === 'P' || nextElement.tagName === 'DIV') && 
           nextElement.textContent?.trim() && 
-          !nextElement.textContent.trim().match(/^\*?\*?\d+\.\s*.+\?\*?\*?/)) {
+          !patterns.some(pattern => nextElement.textContent?.trim().match(pattern))) {
         
         // If the question element is inside a <strong> or <b>, use its parent
         const questionElement = element.tagName.match(/^(STRONG|B)$/) ? 
           element.parentElement as HTMLElement : element as HTMLElement;
         
-        if (questionElement) {
+        if (questionElement && questionElement !== nextElement) {
           convertToFAQStructure(questionElement, nextElement as HTMLElement);
         }
       }
@@ -2965,6 +3007,49 @@ const convertToFAQStructure = (questionElement: HTMLElement, answerElement: HTML
   
   // Setup click handler
   setupFAQHandler(questionElement);
+};
+
+// New method to detect FAQ patterns in text content
+const detectTextFAQs = (container: HTMLElement) => {
+  const textContent = container.innerHTML || '';
+  
+  // Look for FAQ patterns in HTML content like **1. Question?**
+  const faqPattern = /<strong>\s*\d+\.\s*([^<]*\?)\s*<\/strong>/gi;
+  let matches = textContent.match(faqPattern);
+  
+  if (matches && matches.length > 1) {
+    // If we found multiple FAQ-style questions, create a proper FAQ section
+    let faqSection = '<div class="faq-section"><h2>FAQs</h2>';
+    
+    // Replace each match with proper FAQ structure
+    let updatedContent = textContent;
+    matches.forEach((match, index) => {
+      const questionMatch = match.match(/<strong>\s*\d+\.\s*([^<]*\?)\s*<\/strong>/i);
+      if (questionMatch) {
+        const question = questionMatch[1];
+        const faqItem = `
+          <div class="faq-item" style="margin-bottom: 0.25rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white; transition: all 0.2s ease;">
+            <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem 1.5rem; background: white; border: none; cursor: pointer; font-weight: 500; color: #111827; font-size: 0.875rem; line-height: 1.5; text-align: left; transition: background-color 0.2s ease;">
+              <span>${question}</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" style="width: 1rem; height: 1rem; color: #6b7280; transition: transform 0.2s ease; flex-shrink: 0; margin-left: 0.75rem;">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/>
+              </svg>
+            </div>
+            <div class="faq-answer" style="display: none; padding: 0 1.5rem 1rem 1.5rem; background: white; color: #6b7280; font-size: 0.875rem; line-height: 1.5; border-top: 1px solid #f3f4f6; margin: 0; max-height: 0px; opacity: 0; transition: all 0.3s ease; overflow: hidden;">
+              <p style="margin: 0; padding-top: 0.5rem;">Click to add answer...</p>
+            </div>
+          </div>
+        `;
+        updatedContent = updatedContent.replace(match, faqItem);
+      }
+    });
+    
+    faqSection += '</div>';
+    
+    if (updatedContent !== textContent) {
+      container.innerHTML = updatedContent;
+    }
+  }
 };
 
 // Main Blog Component
