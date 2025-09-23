@@ -42,13 +42,37 @@ Disallow: /wp-admin/
 # Disallow: /temp/
 # Disallow: /*?s=  # block internal search pages (modify as needed)
 
-
 Allow: /wp-content/uploads/
 Allow: /*.css$
 Allow: /*.js$
 Allow: /*.jpg$
 Allow: /*.png$
 Allow: /*.svg$
+
+# Allow specific crawlers full access
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
 
 Sitemap: https://dunyaconsultants.com/sitemap.xml `);
 });
