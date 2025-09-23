@@ -705,6 +705,11 @@ p[class*="text-gray-700"] a:hover,
   transition: background-color 0.2s ease !important;
 }
 
+.faq-question span {
+  flex: 1 !important;
+  margin-right: 1rem !important;
+}
+
 .faq-question:hover {
   background: #f9fafb !important;
 }
@@ -720,7 +725,7 @@ p[class*="text-gray-700"] a:hover,
   color: #6b7280 !important;
   transition: transform 0.2s ease !important;
   flex-shrink: 0 !important;
-  margin-left: 0.75rem !important;
+  margin-left: auto !important;
 }
 
 .faq-chevron.expanded {
