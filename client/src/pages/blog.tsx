@@ -3145,18 +3145,18 @@ export default function Blog() {
     }
   }
 
-  // Skip loading state - show content immediately
-  // if (isLoading) {
-  //   return (
-  //     <div className="min-h-screen bg-white">
-  //       <Navigation />
-  //       <div className="flex justify-center items-center h-64">
-  //         <div className="text-lg">Loading blog posts...</div>
-  //       </div>
-  //       <Footer />
-  //     </div>
-  //   );
-  // }
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white">
+        <Navigation />
+        <div className="flex justify-center items-center h-64">
+          <div className="text-lg">Loading blog posts...</div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   // Filter posts based on search and category
   const filteredPosts = blogPosts.filter((post: any) => {
@@ -3250,7 +3250,12 @@ export default function Blog() {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {postsToDisplay.map((post: any, index: number) => (
-            <div key={post.id}>
+            <motion.div
+              key={post.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
               <Link href={getBlogUrl(post.slug)}>
                 <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                   
@@ -3335,7 +3340,7 @@ export default function Blog() {
                   </CardContent>
                 </Card>
               </Link>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -3352,8 +3357,8 @@ export default function Blog() {
           </div>
         )}
 
-        {/* No Results - Only show if not loading and no posts found */}
-        {!isLoading && filteredPosts.length === 0 && (
+        {/* No Results */}
+        {filteredPosts.length === 0 && (
           <div className="text-center py-16">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No articles found</h3>
             <p className="text-gray-600">Try adjusting your search terms or category filter.</p>
