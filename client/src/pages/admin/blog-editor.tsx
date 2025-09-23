@@ -218,11 +218,11 @@ export default function BlogEditor() {
       }
     },
     clipboard: {
-      // Preserve all formatting including tables when pasting
+      // Preserve all formatting including tables and FAQs when pasting
       matchVisual: false,
       stripPastedStyles: false,
-      // Allow table tags to pass through
-      allowedTags: ['table', 'thead', 'tbody', 'tr', 'td', 'th'],
+      // Allow table and FAQ tags to pass through
+      allowedTags: ['table', 'thead', 'tbody', 'tr', 'td', 'th', 'div', 'span'],
       // More aggressive preservation
       keepSelection: true,
       substituteBlockElements: false
@@ -238,7 +238,8 @@ export default function BlogEditor() {
     'list', 'bullet', 'indent',
     'align', 'direction',
     'link', 'image', 'video',
-    'table', 'table-cell', 'table-row', 'table-header'
+    'table', 'table-cell', 'table-row', 'table-header',
+    'faq-item', 'faq-question', 'faq-answer', 'faq-icon'
   ];
 
   // Debug logging for form state changes
