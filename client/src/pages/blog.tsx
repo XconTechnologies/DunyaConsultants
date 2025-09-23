@@ -3145,18 +3145,18 @@ export default function Blog() {
     }
   }
 
-  // Show loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        <div className="flex justify-center items-center h-64">
-          <div className="text-lg">Loading blog posts...</div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  // Skip loading state - show content immediately
+  // if (isLoading) {
+  //   return (
+  //     <div className="min-h-screen bg-white">
+  //       <Navigation />
+  //       <div className="flex justify-center items-center h-64">
+  //         <div className="text-lg">Loading blog posts...</div>
+  //       </div>
+  //       <Footer />
+  //     </div>
+  //   );
+  // }
 
   // Filter posts based on search and category
   const filteredPosts = blogPosts.filter((post: any) => {
@@ -3250,12 +3250,7 @@ export default function Blog() {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {postsToDisplay.map((post: any, index: number) => (
-            <motion.div
-              key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
+            <div key={post.id}>
               <Link href={getBlogUrl(post.slug)}>
                 <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
                   
@@ -3340,7 +3335,7 @@ export default function Blog() {
                   </CardContent>
                 </Card>
               </Link>
-            </motion.div>
+            </div>
           ))}
         </div>
 
