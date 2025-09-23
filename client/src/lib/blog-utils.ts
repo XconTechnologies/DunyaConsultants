@@ -25,7 +25,7 @@ export interface TOCItem {
   element?: HTMLElement;
 }
 
-// Extract table of contents from blog content
+// Extract table of contents from blog content (only H2 and H3)
 export const extractTableOfContents = (content: string): TOCItem[] => {
   if (!content) return [];
 
@@ -36,7 +36,7 @@ export const extractTableOfContents = (content: string): TOCItem[] => {
     // Parse HTML content using DOM parser
     const parser = new DOMParser();
     const doc = parser.parseFromString(content, 'text/html');
-    const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const headings = doc.querySelectorAll('h2, h3'); // Only H2 and H3
     
     headings.forEach((heading, index) => {
       const text = heading.textContent?.trim() || '';
@@ -57,7 +57,7 @@ export const extractTableOfContents = (content: string): TOCItem[] => {
     
     lines.forEach((line, index) => {
       const trimmedLine = line.trim();
-      const headingMatch = trimmedLine.match(/^(#{1,6})\s+(.+)$/);
+      const headingMatch = trimmedLine.match(/^(#{2,3})\s+(.+)$/); // Only ## and ###
       
       if (headingMatch) {
         const [, hashes, text] = headingMatch;
@@ -89,7 +89,7 @@ export const generateHeadingId = (text: string, index: number): string => {
   return baseId || `heading-${index}`;
 };
 
-// Add IDs to headings in HTML content for smooth scrolling
+// Add IDs to headings in HTML content for smooth scrolling (only H2 and H3)
 export const addHeadingIds = (content: string): string => {
   if (!content) return content;
   
@@ -97,7 +97,7 @@ export const addHeadingIds = (content: string): string => {
   if (content.includes('<h') || content.includes('<H')) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(content, 'text/html');
-    const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const headings = doc.querySelectorAll('h2, h3'); // Only H2 and H3
     
     headings.forEach((heading, index) => {
       const text = heading.textContent?.trim() || '';
@@ -109,8 +109,8 @@ export const addHeadingIds = (content: string): string => {
     return doc.body.innerHTML;
   }
   
-  // For Markdown content, add IDs inline
-  return content.replace(/^(#{1,6})\s+(.+)$/gm, (match, hashes, text) => {
+  // For Markdown content, add IDs inline (only H2 and H3)
+  return content.replace(/^(#{2,3})\s+(.+)$/gm, (match, hashes, text) => {
     const cleanText = text.replace(/#+$/, '').trim();
     const id = generateHeadingId(cleanText, 0);
     return `${hashes} ${cleanText} {#${id}}`;

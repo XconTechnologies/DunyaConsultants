@@ -226,7 +226,7 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
     const timeoutId = setTimeout(() => {
       const contentContainer = document.querySelector('.blog-content, .prose, article');
       if (contentContainer) {
-        const headings = contentContainer.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        const headings = contentContainer.querySelectorAll('h2, h3');
         headings.forEach((heading, index) => {
           const text = heading.textContent?.trim() || '';
           if (text && !heading.id) {
@@ -287,7 +287,7 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
   if (!isVisible || tocItems.length === 0) return null;
 
   return (
-    <Card className="sticky top-6 bg-white border border-gray-200">
+    <Card className="bg-white border border-gray-200">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center text-sm font-semibold text-gray-900">
           <List className="w-4 h-4 mr-2 text-[#1D50C9]" />
@@ -308,8 +308,8 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
                 }
               `}
               style={{ 
-                marginLeft: `${(item.level - 1) * 12}px`,
-                fontSize: item.level === 1 ? '14px' : item.level === 2 ? '13px' : '12px'
+                marginLeft: `${(item.level - 2) * 16}px`,
+                fontSize: item.level === 2 ? '14px' : '13px'
               }}
               data-testid={`toc-item-${item.id}`}
             >
