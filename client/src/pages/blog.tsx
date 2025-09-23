@@ -2815,62 +2815,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              {/* Sidebar with TOC and Elements */}
-              <div className="space-y-6">
-                {/* Table of Contents - Regular (not sticky) */}
-                {contentSections.length > 0 && (
-                  <div className="mb-6">
-                    <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
-                      <CardHeader className="pb-4">
-                        <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2">
-                          {(() => {
-                            let mainSections;
-                            
-                            // Show only main headings (h2) in table of contents for all blog posts
-                            if (slug === 'top-study-abroad-countries') {
-                              // For this blog, only show numbered country headings (h2), not sub-headings
-                              mainSections = contentSections.filter((section: any) => {
-                                if (!section.title || section.title.trim() === '') return false;
-                                const cleanTitle = section.title.replace(/^#+\s*/, '');
-                                // Only numbered countries (h2) and main sections, not sub-headings
-                                return /^\d+\./.test(cleanTitle) || cleanTitle.toLowerCase().includes('faq') || cleanTitle.toLowerCase().includes('conclusion');
-                              });
-                            } else if (slug === 'how-to-apply-for-student-visa') {
-                              // For visa guide, only show main h2 headings, not sub-headings
-                              mainSections = contentSections.filter((section: any) => {
-                                if (!section.title || section.title.trim() === '') return false;
-                                const cleanTitle = section.title.replace(/^#+\s*/, '');
-                                // Exclude sub-headings that typically start with numbers or are very specific
-                                return !cleanTitle.match(/^\d+\)/i) && // Exclude "1)", "2)", etc.
-                                       !cleanTitle.match(/^(pick|build|shortlist|secure|pay|prepare|gather|complete|book|track|get|lock)/i) && // Exclude step sub-headings
-                                       !cleanTitle.includes('?'); // Exclude FAQ questions
-                              });
-                            } else {
-                              // For other blogs, show main headings that are not questions
-                              mainSections = contentSections.filter((section: any) => section.title && section.title.trim() !== '' && !section.title.includes('?'));
-                            }
-                            
-                            const hasFAQs = contentSections.some((section: any) => section.title && section.title.includes('?'));
-                            
-                            return mainSections.map((section: any, index: number) => (
-                              <li key={index}>
-                                <a 
-                                  href={`#${section.id}`}
-                                  className="text-[#1D50C9] hover:underline block py-1 text-sm"
-                                >
-                                  {index + 1}. {section.title}
-                                </a>
-                              </li>
-                            ));
-                          })()}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  </div>
-                )}
+              
 
                 {/* Quick Cost Calculator - Only for exchange programs post */}
                 {(slug.includes("exchange-programs-for-pakistani-students")) && (
