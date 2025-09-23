@@ -63,6 +63,35 @@ export default function BlogEditor() {
   const [editorMode, setEditorMode] = useState<'rich' | 'html'>('rich');
   const [htmlContent, setHtmlContent] = useState('');
   const { toast } = useToast();
+  
+  // Initialize FAQ functionality after editor loads
+  useEffect(() => {
+    if (editorMounted) {
+      const initializeFAQs = () => {
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+          if (!(question as any).__faqHandler) {
+            const handler = () => {
+              const answer = question.nextElementSibling as HTMLElement;
+              const icon = question.querySelector('.faq-icon') as HTMLElement;
+              
+              if (answer && answer.classList.contains('faq-answer')) {
+                const isVisible = answer.style.display !== 'none';
+                answer.style.display = isVisible ? 'none' : 'block';
+                if (icon) icon.textContent = isVisible ? '+' : '−';
+              }
+            };
+            (question as any).__faqHandler = handler;
+            question.addEventListener('click', handler);
+          }
+        });
+      };
+      
+      // Initialize FAQs on content change
+      const interval = setInterval(initializeFAQs, 500);
+      return () => clearInterval(interval);
+    }
+  }, [editorMounted]);
   const queryClient = useQueryClient();
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const editorRef = useRef<any>(null);
@@ -148,16 +177,39 @@ export default function BlogEditor() {
   
   // Memoized ReactQuill modules to prevent reinitializing
   const quillModules = useMemo(() => ({
-    toolbar: [
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      [{ 'color': [] }, { 'background': [] }],
-      ['blockquote', 'code-block'],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-      [{ 'align': [] }],
-      ['link'],
-      ['clean']
-    ],
+    toolbar: {
+      container: [
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': [] }, { 'background': [] }],
+        ['blockquote', 'code-block'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'align': [] }],
+        ['link'],
+        ['faq'], // Custom FAQ button
+        ['clean']
+      ],
+      handlers: {
+        'faq': function() {
+          const quill = this.quill;
+          const range = quill.getSelection();
+          if (range) {
+            const faqHtml = `
+              <div class="faq-item" style="margin-bottom: 12px; border: 1px solid #e0e7ff; border-radius: 12px; overflow: hidden; background: white; box-shadow: 0 2px 8px rgba(29, 80, 201, 0.08);">
+                <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%); padding: 18px 24px; cursor: pointer; font-weight: 600; color: #1D50C9; border-bottom: 1px solid #e0e7ff;">
+                  <span>Click here to add your question?</span>
+                  <span class="faq-icon" style="font-weight: bold; font-size: 20px;">+</span>
+                </div>
+                <div class="faq-answer" style="padding: 24px; background: #fafbff; display: none;">
+                  <p>Click here to add your answer...</p>
+                </div>
+              </div>
+            `;
+            quill.clipboard.dangerouslyPasteHTML(range.index, faqHtml);
+          }
+        }
+      }
+    },
     clipboard: {
       // Preserve all formatting including tables when pasting
       matchVisual: false,
