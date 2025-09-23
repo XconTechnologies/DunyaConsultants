@@ -374,18 +374,65 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const savedConsultation = await storage.createConsultation(consultationData);
 
-      // Log data in Google Sheets ready format
-      console.log('');
-      console.log('🔥 NEW CONSULTATION RECEIVED! 🔥');
-      console.log('=====================================');
-      console.log(`✅ SAVED TO DATABASE: ID ${savedConsultation.id}`);
-      console.log('');
-      console.log('📊 GOOGLE SHEETS READY FORMAT:');
-      console.log('Copy this row to your Google Sheet:');
-      console.log('------------------------------------');
-      console.log(`${timestamp}\t${fullname}\t${email}\t${phone}\t${country || 'Not specified'}\t${message || ''}`);
-      console.log('------------------------------------');
-      console.log('');
+      // Google Sheets Integration
+      try {
+        // Fix private key formatting
+        let privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY || '';
+        if (privateKey && !privateKey.includes('-----BEGIN')) {
+          try {
+            privateKey = Buffer.from(privateKey, 'base64').toString('utf-8');
+          } catch {
+            privateKey = privateKey.replace(/\\n/g, '\n');
+          }
+        } else {
+          privateKey = privateKey.replace(/\\n/g, '\n');
+        }
+
+        const auth = new google.auth.GoogleAuth({
+          credentials: {
+            client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+            private_key: privateKey,
+          },
+          scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+        });
+
+        const sheets = google.sheets({ version: 'v4', auth });
+        const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID || '1XjRr8IFPelGd_CkdN0Ei-l8ryWcWIsY3QLU4N5IQtgc';
+
+        // Append data to Google Sheets
+        const values = [[
+          timestamp,           // Column A: Timestamp
+          fullname,           // Column B: Full Name
+          email,              // Column C: Email
+          phone,              // Column D: Phone
+          country || 'Not specified',  // Column E: Country
+          message || ''       // Column F: Message
+        ]];
+
+        await sheets.spreadsheets.values.append({
+          spreadsheetId,
+          range: 'Sheet1!A:F',
+          valueInputOption: 'USER_ENTERED',
+          requestBody: {
+            values,
+          },
+        });
+
+        console.log('✅ Successfully saved to Google Sheets');
+        
+        // Log success
+        console.log('');
+        console.log('🔥 NEW CONSULTATION RECEIVED! 🔥');
+        console.log('=====================================');
+        console.log(`✅ SAVED TO DATABASE: ID ${savedConsultation.id}`);
+        console.log(`✅ SAVED TO GOOGLE SHEETS: ${spreadsheetId}`);
+        console.log(`📧 Lead: ${fullname} - ${email} - ${country || 'Not specified'}`);
+        console.log('');
+
+      } catch (sheetsError) {
+        const errorMessage = sheetsError instanceof Error ? sheetsError.message : 'Unknown Google Sheets error';
+        console.error('❌ Google Sheets error (data still saved to database):', errorMessage);
+      }
 
       res.json({ 
         status: "success", 
@@ -399,6 +446,261 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ 
         status: "error", 
         message: "Failed to submit consultation request" 
+      });
+    }
+  });
+
+  // Add demo data to Google Sheets - for testing only
+  app.post("/api/add-demo-consultation", async (req, res) => {
+    try {
+      // Demo data samples
+      const demoData = [
+        {
+          fullname: "Ahmed Khan",
+          email: "ahmed.khan@example.com", 
+          phone: "+92 300 1234567",
+          country: "Canada",
+          message: "Interested in pursuing Masters in Computer Science. Looking for guidance on university selection and visa process."
+        },
+        {
+          fullname: "Fatima Ali",
+          email: "fatima.ali@example.com",
+          phone: "+92 301 7654321", 
+          country: "United Kingdom",
+          message: "Want to study MBA in UK. Need help with application process and scholarship opportunities."
+        },
+        {
+          fullname: "Hassan Sheikh",
+          email: "hassan.sheikh@example.com",
+          phone: "+92 302 9876543",
+          country: "Australia", 
+          message: "Planning to study Engineering in Australia. Need consultation for university requirements."
+        }
+      ];
+
+      const results = [];
+
+      for (const demo of demoData) {
+        // Prepare timestamp for Pakistan timezone
+        const timestamp = new Date().toLocaleString('en-US', { 
+          timeZone: 'Asia/Karachi',
+          year: 'numeric',
+          month: '2-digit', 
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+
+        // Save to database
+        const consultationData = {
+          name: demo.fullname,
+          email: demo.email,
+          phone: demo.phone,
+          educationLevel: "Bachelor's Degree",
+          fieldOfStudy: "Demo Inquiry", 
+          preferredCountry: demo.country,
+          additionalInfo: demo.message,
+          status: "pending"
+        };
+
+        const savedConsultation = await storage.createConsultation(consultationData);
+
+        // Google Sheets Integration
+        try {
+          // Fix private key formatting
+          let privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY || '';
+          if (privateKey && !privateKey.includes('-----BEGIN')) {
+            try {
+              privateKey = Buffer.from(privateKey, 'base64').toString('utf-8');
+            } catch {
+              privateKey = privateKey.replace(/\\n/g, '\n');
+            }
+          } else {
+            privateKey = privateKey.replace(/\\n/g, '\n');
+          }
+
+          const auth = new google.auth.GoogleAuth({
+            credentials: {
+              client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+              private_key: privateKey,
+            },
+            scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+          });
+
+          const sheets = google.sheets({ version: 'v4', auth });
+          const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID || '1XjRr8IFPelGd_CkdN0Ei-l8ryWcWIsY3QLU4N5IQtgc';
+
+          // Append data to Google Sheets
+          const values = [[
+            timestamp,
+            demo.fullname,
+            demo.email,
+            demo.phone,
+            demo.country,
+            demo.message
+          ]];
+
+          await sheets.spreadsheets.values.append({
+            spreadsheetId,
+            range: 'Sheet1!A:F',
+            valueInputOption: 'USER_ENTERED',
+            requestBody: {
+              values,
+            },
+          });
+
+          results.push({
+            name: demo.fullname,
+            status: "success",
+            database_id: savedConsultation.id,
+            sheets_status: "saved"
+          });
+
+        } catch (sheetsError) {
+          const errorMessage = sheetsError instanceof Error ? sheetsError.message : 'Unknown error';
+          console.error('❌ Google Sheets error for demo data:', sheetsError);
+          results.push({
+            name: demo.fullname,
+            status: "partial_success",
+            database_id: savedConsultation.id,
+            sheets_status: "failed",
+            error: errorMessage
+          });
+        }
+      }
+
+      console.log('');
+      console.log('🚀 DEMO DATA ADDED! 🚀');
+      console.log('====================');
+      console.log(`✅ Added ${results.length} demo consultation records`);
+      console.log(`📊 Check your Google Sheet: https://docs.google.com/spreadsheets/d/1XjRr8IFPelGd_CkdN0Ei-l8ryWcWIsY3QLU4N5IQtgc/edit`);
+      console.log('');
+
+      res.json({ 
+        status: "success", 
+        message: `Successfully added ${results.length} demo consultation records`,
+        results: results
+      });
+
+    } catch (error) {
+      console.error('❌ Demo data addition error:', error);
+      res.status(500).json({ 
+        status: "error", 
+        message: "Failed to add demo data" 
+      });
+    }
+  });
+
+  // Test Google Sheets connection - for debugging only
+  app.get("/api/test-google-sheets", async (req, res) => {
+    try {
+      console.log('🧪 Testing Google Sheets connection...');
+      
+      // Check if all required environment variables exist
+      const requiredVars = [
+        'GOOGLE_SHEETS_CLIENT_EMAIL',
+        'GOOGLE_SHEETS_PRIVATE_KEY', 
+        'GOOGLE_SHEETS_SPREADSHEET_ID'
+      ];
+      
+      const missingVars = requiredVars.filter(varName => !process.env[varName]);
+      if (missingVars.length > 0) {
+        console.log('❌ Missing environment variables:', missingVars);
+        return res.json({ 
+          status: "error", 
+          message: `Missing environment variables: ${missingVars.join(', ')}` 
+        });
+      }
+      
+      console.log('✅ All environment variables present');
+      console.log('📧 Client Email:', process.env.GOOGLE_SHEETS_CLIENT_EMAIL?.substring(0, 20) + '...');
+      console.log('🔑 Private Key:', process.env.GOOGLE_SHEETS_PRIVATE_KEY ? 'Present (length: ' + process.env.GOOGLE_SHEETS_PRIVATE_KEY.length + ')' : 'Missing');
+      console.log('📄 Spreadsheet ID:', process.env.GOOGLE_SHEETS_SPREADSHEET_ID);
+      
+      // Test Google Sheets API connection
+      let privateKey = process.env.GOOGLE_SHEETS_PRIVATE_KEY || '';
+      
+      // Fix common private key formatting issues
+      if (privateKey && !privateKey.includes('-----BEGIN')) {
+        // If the key doesn't have headers, it might be base64 encoded
+        try {
+          privateKey = Buffer.from(privateKey, 'base64').toString('utf-8');
+        } catch {
+          // If base64 decode fails, use as is but fix newlines
+          privateKey = privateKey.replace(/\\n/g, '\n');
+        }
+      } else {
+        // Fix escaped newlines
+        privateKey = privateKey.replace(/\\n/g, '\n');
+      }
+      
+      console.log('🔧 Private key formatted, starts with:', privateKey.substring(0, 30) + '...');
+      
+      const auth = new google.auth.GoogleAuth({
+        credentials: {
+          client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+          private_key: privateKey,
+        },
+        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+      });
+
+      console.log('🔐 Google Auth created successfully');
+      
+      const sheets = google.sheets({ version: 'v4', auth });
+      const spreadsheetId = process.env.GOOGLE_SHEETS_SPREADSHEET_ID || '1XjRr8IFPelGd_CkdN0Ei-l8ryWcWIsY3QLU4N5IQtgc';
+      
+      console.log('📊 Attempting to read spreadsheet...');
+      
+      // Try to read the spreadsheet to test connection
+      const response = await sheets.spreadsheets.get({
+        spreadsheetId,
+      });
+      
+      console.log('✅ Google Sheets connection successful!');
+      console.log('📋 Spreadsheet title:', response.data.properties?.title);
+      
+      // Test writing data
+      const testValues = [[
+        new Date().toISOString(),
+        'Test Connection',
+        'test@google-sheets.com',
+        '+92 000 0000000',
+        'Test Country',
+        'Testing Google Sheets API connection'
+      ]];
+
+      console.log('✍️ Attempting to write test data...');
+      
+      await sheets.spreadsheets.values.append({
+        spreadsheetId,
+        range: 'Sheet1!A:F',
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: testValues,
+        },
+      });
+
+      console.log('✅ Test data written successfully!');
+      console.log('🎉 Google Sheets integration is working perfectly!');
+
+      res.json({ 
+        status: "success", 
+        message: "Google Sheets connection test successful!",
+        spreadsheet: {
+          title: response.data.properties?.title,
+          id: spreadsheetId,
+        }
+      });
+
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      console.error('❌ Google Sheets test failed:', error);
+      
+      res.json({ 
+        status: "error", 
+        message: `Google Sheets test failed: ${errorMessage}`,
+        error: errorMessage
       });
     }
   });
