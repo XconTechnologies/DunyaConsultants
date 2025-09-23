@@ -235,11 +235,45 @@ export default function BlogEditor() {
         ['blockquote', 'code-block'],
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
         [{ 'align': [] }],
-        ['link'],
+        ['link', 'image'],
+        [{ 'table': 'TD' }, { 'table': 'TH' }], // Table support
         ['faq'], // Custom FAQ button
         ['clean']
       ],
       handlers: {
+        'table': function(this: any, value: string) {
+          const quill = this.quill;
+          const range = quill.getSelection();
+          if (range) {
+            if (value === 'TD') {
+              // Insert basic table
+              const tableHtml = `
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                  <thead>
+                    <tr>
+                      <th style="border: 1px solid #e5e7eb; padding: 0.75rem; background: #f9fafb; font-weight: 600;">Header 1</th>
+                      <th style="border: 1px solid #e5e7eb; padding: 0.75rem; background: #f9fafb; font-weight: 600;">Header 2</th>
+                      <th style="border: 1px solid #e5e7eb; padding: 0.75rem; background: #f9fafb; font-weight: 600;">Header 3</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="border: 1px solid #e5e7eb; padding: 0.75rem;">Row 1, Col 1</td>
+                      <td style="border: 1px solid #e5e7eb; padding: 0.75rem;">Row 1, Col 2</td>
+                      <td style="border: 1px solid #e5e7eb; padding: 0.75rem;">Row 1, Col 3</td>
+                    </tr>
+                    <tr>
+                      <td style="border: 1px solid #e5e7eb; padding: 0.75rem;">Row 2, Col 1</td>
+                      <td style="border: 1px solid #e5e7eb; padding: 0.75rem;">Row 2, Col 2</td>
+                      <td style="border: 1px solid #e5e7eb; padding: 0.75rem;">Row 2, Col 3</td>
+                    </tr>
+                  </tbody>
+                </table>
+              `;
+              quill.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
+            }
+          }
+        },
         'faq': function(this: any) {
           const quill = this.quill;
           const range = quill.getSelection();
@@ -247,8 +281,8 @@ export default function BlogEditor() {
             const faqHtml = `
               <div class="faq-item" style="margin-bottom: 0.25rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white; transition: all 0.2s ease;">
                 <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem 1.5rem; background: white; border: none; cursor: pointer; font-weight: 500; color: #111827; font-size: 0.875rem; line-height: 1.5; text-align: left; transition: background-color 0.2s ease;">
-                  <span style="color: #111827;">Click here to add your question?</span>
-                  <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" style="width: 1rem; height: 1rem; color: #6b7280; transition: transform 0.2s ease; flex-shrink: 0; margin-left: 0.75rem;">
+                  <span style="flex: 1; margin-right: 1rem; color: #111827;">Click here to add your question?</span>
+                  <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" style="width: 1rem; height: 1rem; color: #6b7280; transition: transform 0.2s ease; flex-shrink: 0; margin-left: auto;">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/>
                   </svg>
                 </div>
@@ -258,6 +292,34 @@ export default function BlogEditor() {
               </div>
             `;
             quill.clipboard.dangerouslyPasteHTML(range.index, faqHtml);
+            
+            // Initialize FAQ functionality after insertion
+            setTimeout(() => {
+              const faqElements = document.querySelectorAll('.faq-item');
+              faqElements.forEach(faq => {
+                const question = faq.querySelector('.faq-question') as HTMLElement;
+                const answer = faq.querySelector('.faq-answer') as HTMLElement;
+                const chevron = faq.querySelector('.faq-chevron') as HTMLElement;
+                
+                if (question && answer && chevron) {
+                  question.addEventListener('click', () => {
+                    const isOpen = answer.style.display === 'block';
+                    
+                    if (isOpen) {
+                      answer.style.display = 'none';
+                      answer.style.maxHeight = '0px';
+                      answer.style.opacity = '0';
+                      chevron.style.transform = 'rotate(0deg)';
+                    } else {
+                      answer.style.display = 'block';
+                      answer.style.maxHeight = 'none';
+                      answer.style.opacity = '1';
+                      chevron.style.transform = 'rotate(180deg)';
+                    }
+                  });
+                }
+              });
+            }, 100);
           }
         }
       }

@@ -765,3 +765,33 @@ p[class*="text-gray-700"] a:hover,
 .ql-faq .ql-stroke {
   display: none !important;
 }
+
+/* Table Buttons in ReactQuill Toolbar */
+.ql-toolbar button.ql-table {
+  background: #059669 !important;
+  color: white !important;
+  border-radius: 4px !important;
+  padding: 6px 8px !important;
+  margin: 2px !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+}
+
+.ql-toolbar button.ql-table:hover {
+  background: #047857 !important;
+  transform: scale(1.05) !important;
+}
+
+.ql-toolbar button.ql-table[value="TD"]::before {
+  content: "Table" !important;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.ql-toolbar button.ql-table[value="TH"]::before {
+  content: "Header" !important;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+.ql-table .ql-stroke {
+  display: none !important;
+}
