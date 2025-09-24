@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -128,7 +129,8 @@ export default function UserManagement() {
     username: "",
     email: "",
     password: "",
-    role: "editor"
+    role: "editor",
+    permissions: {}
   });
 
   // Fetch all admin users
@@ -143,7 +145,7 @@ export default function UserManagement() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
       setIsCreateDialogOpen(false);
-      setCreateForm({ username: "", email: "", password: "", role: "editor" });
+      setCreateForm({ username: "", email: "", password: "", role: "editor", permissions: {} });
       toast({
         title: "Success",
         description: "User created successfully",
@@ -332,6 +334,51 @@ export default function UserManagement() {
                   </SelectContent>
                 </Select>
               </div>
+              
+              {/* Custom Permissions Section - Only visible when Custom role is selected */}
+              {createForm.role === 'custom' && (
+                <div className="space-y-3 p-4 bg-gray-50 rounded-lg border">
+                  <Label className="text-sm font-medium text-gray-700">Custom Permissions</Label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {Object.entries(ROLE_CONFIG.custom.defaultPermissions).map(([permission, defaultValue]) => {
+                      const permissionLabels: Record<string, string> = {
+                        canCreate: "Create Content",
+                        canEdit: "Edit Content", 
+                        canPublish: "Publish Content",
+                        canDelete: "Delete Content",
+                        canManageUsers: "Manage Users",
+                        canManageCategories: "Manage Categories", 
+                        canViewAnalytics: "View Analytics",
+                        canManageMedia: "Manage Media"
+                      };
+                      
+                      return (
+                        <div key={permission} className="flex items-center space-x-2">
+                          <Checkbox
+                            id={permission}
+                            checked={createForm.permissions?.[permission] ?? defaultValue}
+                            onCheckedChange={(checked) => {
+                              setCreateForm({
+                                ...createForm,
+                                permissions: {
+                                  ...createForm.permissions,
+                                  [permission]: checked === true
+                                }
+                              });
+                            }}
+                          />
+                          <Label 
+                            htmlFor={permission}
+                            className="text-sm font-normal cursor-pointer"
+                          >
+                            {permissionLabels[permission] || permission}
+                          </Label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
               
               <div className="flex justify-end space-x-2 pt-4">
                 <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
