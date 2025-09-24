@@ -20,8 +20,9 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe, Upload, Image as ImageIcon
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle
 } from "lucide-react";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
 import type { AdminUser } from "@shared/schema";
 
@@ -80,6 +81,84 @@ interface BlogPost {
 export default function BlogEditor() {
   const [, setLocation] = useLocation();
   const [match, params] = useRoute("/admin/blog-editor/:id?");
+  const isEditing = Boolean(params?.id);
+  const blogId = params?.id ? parseInt(params.id) : undefined;
+
+  // Check for existing editing sessions when opening a post
+  const checkEditingConflicts = async (postId: number) => {
+    try {
+      const response = await fetch(`/api/admin/posts/${postId}/editing-sessions`, {
+        headers: getAuthHeaders(),
+      });
+      
+      if (response.ok) {
+        const sessions = await response.json();
+        const otherUsersSessions = sessions.filter((session: any) => session.userId !== adminUser?.id);
+        
+        if (otherUsersSessions.length > 0) {
+          const conflictUser = otherUsersSessions[0].user;
+          setConflictingUser(conflictUser);
+          
+          // If conflicting user is admin and current user is not admin, show permission request
+          if (conflictUser.role === 'admin' && adminUser?.role !== 'admin') {
+            setShowConflictDialog(true);
+            return false; // Block editing
+          }
+        }
+      }
+      return true; // Allow editing
+    } catch (error) {
+      console.error('Error checking editing conflicts:', error);
+      return true; // Allow editing on error
+    }
+  };
+
+  // Start editing session
+  const startEditingSession = async (postId: number) => {
+    try {
+      const response = await fetch('/api/admin/editing-sessions', {
+        method: 'POST',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ postId })
+      });
+      
+      if (response.ok) {
+        const session = await response.json();
+        setCurrentEditingSession(session);
+      }
+    } catch (error) {
+      console.error('Error starting editing session:', error);
+    }
+  };
+
+  // End editing session
+  const endEditingSession = async () => {
+    if (currentEditingSession) {
+      try {
+        await fetch(`/api/admin/editing-sessions/${currentEditingSession.id}`, {
+          method: 'DELETE',
+          headers: getAuthHeaders(),
+        });
+        setCurrentEditingSession(null);
+      } catch (error) {
+        console.error('Error ending editing session:', error);
+      }
+    }
+  };
+
+  // Handle conflict resolution
+  const handleConflictResolution = async (allow: boolean) => {
+    setShowConflictDialog(false);
+    if (allow && blogId) {
+      const canEdit = await checkEditingConflicts(blogId);
+      if (canEdit) {
+        await startEditingSession(blogId);
+      }
+    } else {
+      // User declined, redirect back to dashboard
+      setLocation('/admin/dashboard');
+    }
+  };
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -89,6 +168,12 @@ export default function BlogEditor() {
   const [editorMode, setEditorMode] = useState<'rich' | 'html'>('rich');
   const [htmlContent, setHtmlContent] = useState('');
   const { toast } = useToast();
+  
+  // Editing session management
+  const [currentEditingSession, setCurrentEditingSession] = useState<any>(null);
+  const [showConflictDialog, setShowConflictDialog] = useState(false);
+  const [conflictingUser, setConflictingUser] = useState<any>(null);
+  const [conflictRequestPending, setConflictRequestPending] = useState(false);
   
   // Check authentication - support both admin and user tokens
   useEffect(() => {
@@ -208,9 +293,6 @@ export default function BlogEditor() {
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const editorRef = useRef<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  
-  const isEditing = !!params?.id;
-  const blogId = params?.id;
 
   const token = localStorage.getItem("adminToken") || localStorage.getItem("userToken");
 
@@ -516,6 +598,45 @@ export default function BlogEditor() {
       }, 300);
     }
   }, [blogPost, isEditing, reset, setValue]);
+
+  // Check for editing conflicts and start editing session when opening an existing post
+  useEffect(() => {
+    const initializeEditingSession = async () => {
+      if (isEditing && blogId && adminUser && authChecked) {
+        const canEdit = await checkEditingConflicts(blogId);
+        if (canEdit) {
+          await startEditingSession(blogId);
+        }
+      }
+    };
+
+    initializeEditingSession();
+
+    // Cleanup editing session when component unmounts or user navigates away
+    return () => {
+      if (currentEditingSession) {
+        endEditingSession();
+      }
+    };
+  }, [isEditing, blogId, adminUser, authChecked]);
+
+  // Periodically update editing activity (keep-alive)
+  useEffect(() => {
+    if (currentEditingSession) {
+      const interval = setInterval(async () => {
+        try {
+          await fetch(`/api/admin/editing-sessions/${currentEditingSession.id}/activity`, {
+            method: 'PUT',
+            headers: getAuthHeaders(),
+          });
+        } catch (error) {
+          console.error('Error updating editing activity:', error);
+        }
+      }, 30000); // Update every 30 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [currentEditingSession]);
 
   // Save mutation
   const saveMutation = useMutation({
@@ -1120,6 +1241,61 @@ export default function BlogEditor() {
         onChange={handleImageUpload}
         className="hidden"
       />
+
+      {/* Conflict Resolution Dialog */}
+      <Dialog open={showConflictDialog} onOpenChange={setShowConflictDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="flex items-center space-x-2">
+              <AlertTriangle className="w-5 h-5 text-yellow-500" />
+              <span>Editing Conflict Detected</span>
+            </DialogTitle>
+            <DialogDescription>
+              {conflictingUser && (
+                <div className="space-y-3">
+                  <p>
+                    <strong>{conflictingUser.username}</strong> ({conflictingUser.role}) is currently editing this post.
+                  </p>
+                  <p>
+                    {conflictingUser.role === 'admin' && adminUser?.role !== 'admin' 
+                      ? "An admin is requesting to edit this post. You can allow them to take control or continue editing."
+                      : "Do you want to request permission to edit this post?"
+                    }
+                  </p>
+                </div>
+              )}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="space-x-2">
+            <Button 
+              variant="outline" 
+              onClick={() => handleConflictResolution(false)}
+              disabled={conflictRequestPending}
+            >
+              {conflictingUser?.role === 'admin' && adminUser?.role !== 'admin' 
+                ? "Keep Editing" 
+                : "Cancel"
+              }
+            </Button>
+            <Button 
+              onClick={() => handleConflictResolution(true)}
+              disabled={conflictRequestPending}
+              className="bg-yellow-600 hover:bg-yellow-700"
+            >
+              {conflictRequestPending ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  Processing...
+                </>
+              ) : (
+                conflictingUser?.role === 'admin' && adminUser?.role !== 'admin' 
+                  ? "Allow Admin Access" 
+                  : "Request Access"
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
