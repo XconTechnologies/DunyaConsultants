@@ -53,9 +53,18 @@ interface BlogPost {
   updatedAt: string;
 }
 
+interface AdminUser {
+  id: number;
+  username: string;
+  email: string;
+  role: string;
+}
+
 export default function BlogEditor() {
   const [, setLocation] = useLocation();
-  const [match, params] = useRoute("/admin/blog-editor/:id?");
+  const [match, params] = useRoute("/blog-editor/:id?");
+  const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(false);
@@ -63,6 +72,42 @@ export default function BlogEditor() {
   const [editorMode, setEditorMode] = useState<'rich' | 'html'>('rich');
   const [htmlContent, setHtmlContent] = useState('');
   const { toast } = useToast();
+  
+  // Check authentication - support both admin and user tokens
+  useEffect(() => {
+    let token = localStorage.getItem("adminToken");
+    let user = localStorage.getItem("adminUser");
+    
+    if (!token || !user) {
+      token = localStorage.getItem("userToken");
+      user = localStorage.getItem("user");
+    }
+    
+    if (!token || !user) {
+      setLocation("/login");
+      return;
+    }
+
+    try {
+      const userData = JSON.parse(user);
+      setAdminUser(userData);
+      setAuthChecked(true);
+    } catch {
+      setLocation("/login");
+    }
+  }, [setLocation]);
+  
+  // Get auth token - support both admin and user tokens
+  const getAuthHeaders = () => {
+    let token = localStorage.getItem("adminToken");
+    if (!token) {
+      token = localStorage.getItem("userToken");
+    }
+    return {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
+    };
+  };
   
   // Initialize FAQ functionality and register custom formats after editor loads
   useEffect(() => {
@@ -150,7 +195,7 @@ export default function BlogEditor() {
   const isEditing = !!params?.id;
   const blogId = params?.id;
 
-  const token = localStorage.getItem("adminToken");
+  const token = localStorage.getItem("adminToken") || localStorage.getItem("userToken");
 
   // Ensure editor is mounted client-side
   useEffect(() => {
@@ -526,12 +571,23 @@ export default function BlogEditor() {
     }
   };
 
+  if (!authChecked || !adminUser) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading editor...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
         <div className="flex items-center space-x-2">
-          <Loader2 className="w-6 h-6 animate-spin" />
-          <span>Loading blog post...</span>
+          <Loader2 className="w-6 h-6 animate-spin text-[#1D50C9]" />
+          <span className="text-gray-700">Loading blog post...</span>
         </div>
       </div>
     );
@@ -619,24 +675,26 @@ export default function BlogEditor() {
                 )}
                 <span>{isSaving ? "Saving..." : "Save Draft"}</span>
               </Button>
-              <Button
-                type="submit"
-                form="blog-form"
-                disabled={isSaving || isImageUploading}
-                className="flex items-center space-x-2 ml-2"
-                onClick={() => {
-                  console.log('Publish button clicked');
-                  setValue('isPublished', true);
-                }}
-                data-testid="publish-blog"
-              >
-                {isSaving ? (
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                ) : (
-                  <Save className="w-4 h-4" />
-                )}
-                <span>{isSaving ? "Publishing..." : "Publish"}</span>
-              </Button>
+              {adminUser?.role === 'admin' && (
+                <Button
+                  type="submit"
+                  form="blog-form"
+                  disabled={isSaving || isImageUploading}
+                  className="flex items-center space-x-2 ml-2 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white"
+                  onClick={() => {
+                    console.log('Publish button clicked');
+                    setValue('isPublished', true);
+                  }}
+                  data-testid="publish-blog"
+                >
+                  {isSaving ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Save className="w-4 h-4" />
+                  )}
+                  <span>{isSaving ? "Publishing..." : "Publish"}</span>
+                </Button>
+              )}
             </div>
           </div>
         </div>
