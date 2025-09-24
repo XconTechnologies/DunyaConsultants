@@ -35,6 +35,11 @@ Preferred communication style: Simple, everyday language.
 - `users`: Authentication and user management
 - `contacts`: Contact form submissions
 - `testimonials`: Student success stories
+- `adminUsers`: Enterprise admin user management with roles and permissions
+- `blogPosts`: Content management system with publishing workflow
+- `postAssignments`: Granular post access control assignments
+- `adminSessions`: Secure admin authentication sessions
+- `auditLogs`: Activity tracking and audit trail
 
 ### Key Features
 - Contact Management (validated forms)
@@ -51,6 +56,25 @@ Preferred communication style: Simple, everyday language.
 - Event Management (with registration forms)
 - Consultation Booking (real-time calendar)
 - WhatsApp Integration (Direct contact button linking to +92 326 1111947 for instant consultation)
+
+### Content Management System (Enterprise-Level)
+- **Multi-User Authentication**: Secure admin authentication with session management
+- **Four Role Types**: Admin, Editor, Publisher, and Custom roles with distinct permissions
+- **Granular Permissions System**: Checkbox-based custom permissions for fine-grained access control
+  - canCreate: Create new content
+  - canEdit: Edit existing content  
+  - canPublish: Publish content to live site
+  - canDelete: Delete content
+  - canManageUsers: Manage user accounts and permissions
+  - canManageCategories: Create and manage content categories
+  - canViewAnalytics: Access analytics and reporting
+  - canManageMedia: Upload and manage media files
+- **Post-Level Access Control**: Admins can assign specific posts to individual users
+- **User Management Interface**: Admin dashboard for creating users, assigning roles, and managing permissions
+- **Post Assignment Interface**: Dedicated interface for managing which users can access specific posts
+- **Enhanced Blog Editor**: ReactQuill-based editor with rich formatting, SEO optimization, and category management
+- **Dual Dashboard Access**: Role-based dashboard with different features based on user permissions
+- **Audit Trail**: Activity logging for user actions and content changes
 
 ### UI/UX Decisions
 - Professional dark blue gradient design with custom branding.

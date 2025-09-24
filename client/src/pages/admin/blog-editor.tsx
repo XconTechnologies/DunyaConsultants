@@ -23,6 +23,7 @@ import {
   Calendar, User, Hash, Globe, Upload, Image as ImageIcon
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
+import type { AdminUser } from "@shared/schema";
 
 // Predefined categories for blog posts
 const BLOG_CATEGORIES = [
@@ -74,13 +75,6 @@ interface BlogPost {
   isPublished: boolean;
   createdAt: string;
   updatedAt: string;
-}
-
-interface AdminUser {
-  id: number;
-  username: string;
-  email: string;
-  role: string;
 }
 
 export default function BlogEditor() {
