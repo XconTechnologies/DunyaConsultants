@@ -475,66 +475,6 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Admin Navigation - Only visible for users with management permissions */}
-        {canManageUsers(adminUser) && (
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold">Administration</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer">
-                <CardContent className="p-6">
-                  <Button 
-                    onClick={() => setLocation("/admin/users")}
-                    className="w-full flex items-center justify-start space-x-3 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white shadow-lg h-auto p-4"
-                  >
-                    <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                      <Users className="h-5 w-5 text-white" />
-                    </div>
-                    <div className="text-left">
-                      <div className="font-medium">User Management</div>
-                      <div className="text-xs text-blue-100 mt-1">Manage users and permissions</div>
-                    </div>
-                  </Button>
-                </CardContent>
-              </Card>
-              
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer">
-                <CardContent className="p-6">
-                  <Button 
-                    onClick={() => setLocation("/admin/post-assignments")}
-                    className="w-full flex items-center justify-start space-x-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white shadow-lg h-auto p-4"
-                  >
-                    <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                      <Activity className="h-5 w-5 text-white" />
-                    </div>
-                    <div className="text-left">
-                      <div className="font-medium">Post Assignments</div>
-                      <div className="text-xs text-green-100 mt-1">Manage post access control</div>
-                    </div>
-                  </Button>
-                </CardContent>
-              </Card>
-              
-              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer">
-                <CardContent className="p-6">
-                  <Button 
-                    onClick={() => setLocation("/admin/settings")}
-                    className="w-full flex items-center justify-start space-x-3 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-600 text-white shadow-lg h-auto p-4"
-                    disabled
-                  >
-                    <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                      <Settings className="h-5 w-5 text-white" />
-                    </div>
-                    <div className="text-left">
-                      <div className="font-medium">System Settings</div>
-                      <div className="text-xs text-gray-100 mt-1">Coming soon</div>
-                    </div>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        )}
-
         {/* Blog Posts Management */}
         <div className="space-y-4">
           <div className="flex justify-between items-center">
