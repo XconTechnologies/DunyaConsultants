@@ -15,6 +15,7 @@ import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { canPublishContent, canManageCategories } from "@/lib/permissions";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { 
@@ -751,7 +752,7 @@ export default function BlogEditor() {
                 )}
                 <span>{isSaving ? "Saving..." : "Save Draft"}</span>
               </Button>
-              {adminUser?.role === 'admin' && (
+              {canPublishContent(adminUser) && (
                 <Button
                   type="submit"
                   form="blog-form"
@@ -833,9 +834,9 @@ export default function BlogEditor() {
                   {errors.category && (
                     <p className="text-red-500 text-sm mt-1">{errors.category.message}</p>
                   )}
-                  {adminUser?.role !== 'admin' && (
+                  {!canManageCategories(adminUser) && (
                     <p className="text-sm text-gray-500 mt-2">
-                      Only administrators can create new categories. Contact an admin to add new categories.
+                      Only users with category management permissions can create new categories. Contact an admin to add new categories.
                     </p>
                   )}
                 </CardContent>

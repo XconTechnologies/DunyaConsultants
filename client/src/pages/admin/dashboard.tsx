@@ -43,6 +43,12 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
+import { 
+  canManageUsers, 
+  canPublishContent, 
+  canDeleteContent, 
+  isAdmin 
+} from "@/lib/permissions";
 
 interface AdminUser {
   id: number;
@@ -469,8 +475,8 @@ export default function AdminDashboard() {
           </Card>
         </div>
 
-        {/* Admin Navigation - Only visible for admin users */}
-        {adminUser.role === 'admin' && (
+        {/* Admin Navigation - Only visible for users with management permissions */}
+        {canManageUsers(adminUser) && (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold">Administration</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -549,7 +555,7 @@ export default function AdminDashboard() {
                 {selectedIds.length} blog{selectedIds.length === 1 ? '' : 's'} selected
               </span>
               <div className="flex gap-2">
-                {adminUser.role === 'admin' && (
+                {canPublishContent(adminUser) && (
                   <Button
                     data-testid="button-bulk-publish"
                     size="sm"
@@ -581,7 +587,7 @@ export default function AdminDashboard() {
                   <FileText className="w-4 h-4 mr-1" />
                   Draft Selected
                 </Button>
-                {adminUser.role === 'admin' && (
+                {canDeleteContent(adminUser) && (
                   <Button
                     data-testid="button-bulk-delete"
                     size="sm"
