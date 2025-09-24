@@ -48,6 +48,8 @@ import {
   canPublishContent, 
   canDeleteContent, 
   canEditContent,
+  canCreateContent,
+  canViewAnalytics,
   isAdmin 
 } from "@/lib/permissions";
 import type { AdminUser } from "@shared/schema";
@@ -424,7 +426,8 @@ export default function AdminDashboard() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats Cards */}
+        {/* Stats Cards - Only visible for users with analytics permission */}
+        {canViewAnalytics(adminUser) && (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -475,18 +478,21 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
+        )}
 
         {/* Blog Posts Management */}
         <div className="space-y-4">
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">Blog Posts Management</h2>
-            <Button 
-              onClick={() => setLocation("/blog-editor")}
-              className="flex items-center space-x-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white shadow-lg"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Add New Post</span>
-            </Button>
+            {canCreateContent(adminUser) && (
+              <Button 
+                onClick={() => setLocation("/blog-editor")}
+                className="flex items-center space-x-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white shadow-lg"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Add New Post</span>
+              </Button>
+            )}
           </div>
 
           {/* Bulk Actions */}
@@ -513,21 +519,23 @@ export default function AdminDashboard() {
                     Publish Selected
                   </Button>
                 )}
-                <Button
-                  data-testid="button-bulk-draft"
-                  size="sm"
-                  variant="outline"
-                  disabled={selectedIds.length === 0}
-                  onClick={() => {
-                    if (window.confirm(`Are you sure you want to move ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'} to draft?`)) {
-                      bulkDraftMutation.mutate(selectedIds);
-                    }
-                  }}
-                  className="border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9]/10"
-                >
-                  <FileText className="w-4 h-4 mr-1" />
-                  Draft Selected
-                </Button>
+                {canEditContent(adminUser) && (
+                  <Button
+                    data-testid="button-bulk-draft"
+                    size="sm"
+                    variant="outline"
+                    disabled={selectedIds.length === 0}
+                    onClick={() => {
+                      if (window.confirm(`Are you sure you want to move ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'} to draft?`)) {
+                        bulkDraftMutation.mutate(selectedIds);
+                      }
+                    }}
+                    className="border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9]/10"
+                  >
+                    <FileText className="w-4 h-4 mr-1" />
+                    Draft Selected
+                  </Button>
+                )}
                 {canDeleteContent(adminUser) && (
                   <Button
                     data-testid="button-bulk-delete"
@@ -625,15 +633,17 @@ export default function AdminDashboard() {
                             >
                               <Eye className="w-4 h-4" />
                             </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
-                              title="Edit Article"
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </Button>
-                            {!post.isPublished && (
+                            {canEditContent(adminUser) && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
+                                title="Edit Article"
+                              >
+                                <Edit2 className="w-4 h-4" />
+                              </Button>
+                            )}
+                            {!post.isPublished && canPublishContent(adminUser) && (
                               <Button
                                 size="sm"
                                 variant="outline"

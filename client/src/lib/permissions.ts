@@ -118,10 +118,10 @@ export function canDeleteContent(user: AdminUser | null | undefined): boolean {
 }
 
 /**
- * Check if a user can manage users
+ * Check if a user can view analytics
  */
-export function canManageUsers(user: AdminUser | null | undefined): boolean {
-  return hasPermission(user, 'canManageUsers');
+export function canViewAnalytics(user: AdminUser | null | undefined): boolean {
+  return hasPermission(user, 'canViewAnalytics');
 }
 
 /**
@@ -132,15 +132,15 @@ export function canManageCategories(user: AdminUser | null | undefined): boolean
 }
 
 /**
- * Check if a user can view analytics
- */
-export function canViewAnalytics(user: AdminUser | null | undefined): boolean {
-  return hasPermission(user, 'canViewAnalytics');
-}
-
-/**
  * Check if a user can manage media
  */
 export function canManageMedia(user: AdminUser | null | undefined): boolean {
   return hasPermission(user, 'canManageMedia');
+}
+
+/**
+ * Check if a user can manage users
+ */
+export function canManageUsers(user: AdminUser | null | undefined): boolean {
+  return hasPermission(user, 'canManageUsers');
 }
