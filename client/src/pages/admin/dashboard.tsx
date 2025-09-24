@@ -495,8 +495,8 @@ export default function AdminDashboard() {
             )}
           </div>
 
-          {/* Bulk Actions */}
-          {selectedIds.length > 0 && (
+          {/* Bulk Actions - Only show if user has permission for any bulk action */}
+          {selectedIds.length > 0 && (canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
             <div className="flex items-center gap-2 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-[#1D50C9]/20 rounded-xl shadow-sm">
               <span className="text-sm text-[#1D50C9] font-medium">
                 {selectedIds.length} blog{selectedIds.length === 1 ? '' : 's'} selected
@@ -563,11 +563,13 @@ export default function AdminDashboard() {
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-12">
-                      <Checkbox
-                        data-testid="checkbox-select-all"
-                        checked={isAllSelected}
-                        onCheckedChange={handleSelectAll}
-                      />
+                      {(canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
+                        <Checkbox
+                          data-testid="checkbox-select-all"
+                          checked={isAllSelected}
+                          onCheckedChange={handleSelectAll}
+                        />
+                      )}
                     </TableHead>
                     <TableHead>Title</TableHead>
                     <TableHead>Date</TableHead>
@@ -593,11 +595,13 @@ export default function AdminDashboard() {
                     blogPosts.map((post: BlogPost) => (
                       <TableRow key={post.id}>
                         <TableCell>
-                          <Checkbox
-                            data-testid={`checkbox-select-blog-${post.id}`}
-                            checked={selectedIds.includes(post.id)}
-                            onCheckedChange={(checked) => handleSelectBlog(post.id, checked as boolean)}
-                          />
+                          {(canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
+                            <Checkbox
+                              data-testid={`checkbox-select-blog-${post.id}`}
+                              checked={selectedIds.includes(post.id)}
+                              onCheckedChange={(checked) => handleSelectBlog(post.id, checked as boolean)}
+                            />
+                          )}
                         </TableCell>
                         <TableCell className="font-medium">{post.title}</TableCell>
                         <TableCell className="text-sm text-gray-600">
