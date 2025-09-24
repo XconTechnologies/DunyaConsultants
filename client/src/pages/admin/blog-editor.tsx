@@ -714,13 +714,8 @@ export default function BlogEditor() {
                   variant="outline"
                   className="flex items-center space-x-2"
                   onClick={() => {
-                    if (blogPost.isPublished && blogPost.slug) {
-                      // For published posts, open public URL
-                      window.open(getBlogUrl(blogPost.slug), '_blank');
-                    } else {
-                      // For drafts, open admin preview page
-                      window.open(`/admin/blog-preview/${blogPost.id}`, '_blank');
-                    }
+                    // Always use admin preview for better reliability, especially for new/draft posts
+                    window.open(`/admin/blog-preview/${blogPost.id}`, '_blank');
                   }}
                   data-testid="preview-blog"
                 >
