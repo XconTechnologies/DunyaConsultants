@@ -561,7 +561,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
   }
 
   // Parse content based on format
-  let contentSections: any[] = [];
+  let contentSections;
   let isHTMLContent = false;
   
   // Check if content is HTML (starts with HTML tags)
@@ -994,7 +994,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     }
                     
                     return (
-                      <>
                       <section 
                         key={index} 
                         id={section.id} 
@@ -1476,65 +1475,1257 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                         ))}
                                       </div>
                                       
-                                      {/* Simplified section rendering */}
-                                      {(() => {
-                                        // Check for special handling cases
-                                        if (slug === 'canada-student-visa-consultants' && section.content.includes('TIMELINE_CARDS_START')) {
+                                      {/* After cards content with requirements box handling */}
+                                      {reqStartMarker !== -1 && reqEndMarker !== -1 ? (
+                                        (() => {
+                                          const beforeReq = afterCards.substring(0, reqStartMarker);
+                                          const reqContent = afterCards.substring(reqStartMarker + 26, reqEndMarker);
+                                          const afterReq = afterCards.substring(reqEndMarker + 24);
+                                          
                                           return (
                                             <div>
-                                              <p className="text-gray-700 leading-relaxed text-base mb-3">
-                                                {section.content}
-                                              </p>
+                                              {/* Content before requirements box */}
+                                              {beforeReq.split('\n').map((paragraph: string, pIndex: number) => {
+                                                if (paragraph.trim()) {
+                                                  const processedText = paragraph
+                                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                                    .trim();
+                                                  return (
+                                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                                  );
+                                                }
+                                                return null;
+                                              })}
+                                              
+                                              {/* Requirements Box */}
+                                              <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
+                                                <div className="text-gray-700 leading-relaxed">
+                                                  {reqContent.split('\n').map((paragraph: string, reqIndex: number) => {
+                                                    if (paragraph.trim()) {
+                                                      const processedText = paragraph
+                                                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#1D50C9] hover:text-[#1845B3] font-medium underline">$1</a>')
+                                                        .trim();
+                                                      return (
+                                                        <p key={reqIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                                      );
+                                                    }
+                                                    return null;
+                                                  })}
+                                                </div>
+                                              </div>
+                                              
+                                              {/* Content after requirements box */}
+                                              {afterReq.split('\n').map((paragraph: string, pIndex: number) => {
+                                                if (paragraph.trim()) {
+                                                  const processedText = paragraph
+                                                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                                    .trim();
+                                                  return (
+                                                    <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                                  );
+                                                }
+                                                return null;
+                                              })}
                                             </div>
                                           );
+                                        })()
+                                      ) : (
+                                        // No requirements box, render normally
+                                        afterCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                          if (paragraph.trim()) {
+                                            const processedText = paragraph
+                                              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                              .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                              .trim();
+                                            return (
+                                              <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                            );
+                                          }
+                                          return null;
+                                        })
+                                      )}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })()
+                            ) : 
+                            // Handle timeline cards for Canada student visa blog
+                            slug === 'canada-student-visa-consultants' && section.content.includes('TIMELINE_CARDS_START') ? (
+                              (() => {
+                                const startMarker = section.content.indexOf('**TIMELINE_CARDS_START**');
+                                const endMarker = section.content.indexOf('**TIMELINE_CARDS_END**');
+                                
+                                if (startMarker !== -1 && endMarker !== -1) {
+                                  const beforeCards = section.content.substring(0, startMarker);
+                                  const cardsContent = section.content.substring(startMarker + 25, endMarker);
+                                  const afterCards = section.content.substring(endMarker + 23);
+                                  
+                                  const timelineSteps = cardsContent.split('**').filter((step: string) => step.trim()).reduce((acc: Array<{title: string, content: string}>, current: string, index: number) => {
+                                    if (index % 2 === 0) {
+                                      acc.push({ title: current.trim(), content: '' });
+                                    } else {
+                                      if (acc.length > 0) {
+                                        acc[acc.length - 1].content = current.trim();
+                                      }
+                                    }
+                                    return acc;
+                                  }, [] as Array<{title: string, content: string}>);
+
+                                  return (
+                                    <div>
+                                      {/* Before cards content */}
+                                      {beforeCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
                                         }
-                                        
-                                        // Default case for all sections
-                                        return (
-                                          <div>
-                                            <p className="text-gray-700 leading-relaxed text-base mb-3">
-                                              {section.content}
-                                            </p>
+                                        return null;
+                                      })}
+                                      
+                                      {/* Timeline Cards */}
+                                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">
+                                        {timelineSteps.map((step: {title: string, content: string}, stepIndex: number) => (
+                                          <div key={stepIndex} className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                                            <h4 className="text-sm font-semibold text-[#1D50C9] mb-3 leading-tight">
+                                              {step.title}
+                                            </h4>
+                                            <div className="space-y-1">
+                                              {step.content.split('\n').filter((line: string) => line.trim()).map((line: string, lineIndex: number) => (
+                                                <div key={lineIndex} className="flex items-start">
+                                                  <span className="text-[#1D50C9] mr-2 text-xs leading-none mt-1">•</span>
+                                                  <span className="text-gray-700 text-xs leading-relaxed">
+                                                    {line.replace(/^[-•]\s*/, '')}
+                                                  </span>
+                                                </div>
+                                              ))}
+                                            </div>
                                           </div>
-                                        );
-                                      })()}
+                                        ))}
+                                      </div>
+                                      
+                                      {/* After cards content */}
+                                      {afterCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })()
+                            ) : 
+                            // Handle timeline cards for UK student visa blog
+                            slug === 'best-uk-study-visa-consultants' && section.content.includes('TIMELINE_CARDS_START') ? (
+                              (() => {
+                                const startMarker = section.content.indexOf('**TIMELINE_CARDS_START**');
+                                const endMarker = section.content.indexOf('**TIMELINE_CARDS_END**');
+                                
+                                if (startMarker !== -1 && endMarker !== -1) {
+                                  const beforeCards = section.content.substring(0, startMarker);
+                                  const cardsContent = section.content.substring(startMarker + 25, endMarker);
+                                  const afterCards = section.content.substring(endMarker + 23);
+                                  
+                                  const timelineSteps = cardsContent.split('**').filter((step: string) => step.trim()).reduce((acc: Array<{title: string, content: string}>, current: string, index: number) => {
+                                    if (index % 2 === 0) {
+                                      acc.push({ title: current.trim(), content: '' });
+                                    } else {
+                                      if (acc.length > 0) {
+                                        acc[acc.length - 1].content = current.trim();
+                                      }
+                                    }
+                                    return acc;
+                                  }, [] as Array<{title: string, content: string}>);
+
+                                  return (
+                                    <div>
+                                      {/* Before cards content */}
+                                      {beforeCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                      
+                                      {/* Timeline Cards */}
+                                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">
+                                        {timelineSteps.map((step: {title: string, content: string}, stepIndex: number) => (
+                                          <div key={stepIndex} className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4 hover:shadow-lg transition-shadow">
+                                            <h4 className="text-sm font-semibold text-[#1D50C9] mb-3 leading-tight">
+                                              {step.title}
+                                            </h4>
+                                            <div className="space-y-1">
+                                              {step.content.split('\n').filter((line: string) => line.trim()).map((line: string, lineIndex: number) => (
+                                                <div key={lineIndex} className="flex items-start">
+                                                  <span className="text-[#1D50C9] mr-2 text-xs leading-none mt-1">•</span>
+                                                  <span className="text-gray-700 text-xs leading-relaxed">
+                                                    {line.replace(/^[-•]\s*/, '')}
+                                                  </span>
+                                                </div>
+                                              ))}
+                                            </div>
+                                          </div>
+                                        ))}
+                                      </div>
+                                      
+                                      {/* After cards content */}
+                                      {afterCards.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })()
+                            ) : 
+                            // Handle requirements box for UK student visa blog
+                            slug === 'best-uk-study-visa-consultants' && section.content.includes('**REQUIREMENTS_BOX_START**') ? (
+                              (() => {
+                                const startMarker = section.content.indexOf('**REQUIREMENTS_BOX_START**');
+                                const endMarker = section.content.indexOf('**REQUIREMENTS_BOX_END**');
+                                
+                                if (startMarker !== -1 && endMarker !== -1) {
+                                  const beforeReq = section.content.substring(0, startMarker);
+                                  const reqContent = section.content.substring(startMarker + 26, endMarker);
+                                  const afterReq = section.content.substring(endMarker + 24);
+                                  
+                                  return (
+                                    <div>
+                                      {/* Before requirements content */}
+                                      {beforeReq.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                      
+                                      {/* Requirements Box */}
+                                      <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
+                                        <div className="text-gray-700 leading-relaxed">
+                                          {reqContent.split('\n').map((paragraph: string, reqIndex: number) => {
+                                            if (paragraph.trim()) {
+                                              const processedText = paragraph
+                                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-[#1D50C9] hover:text-[#1845B3] font-medium underline">$1</a>')
+                                                .trim();
+                                              return (
+                                                <p key={reqIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                              );
+                                            }
+                                            return null;
+                                          })}
+                                        </div>
+                                      </div>
+                                      
+                                      {/* After requirements content */}
+                                      {afterReq.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })()
+                            ) : 
+                            // Handle pro tip box for UK student visa blog
+                            slug === 'best-uk-study-visa-consultants' && section.content.includes('PRO_TIP_BOX_START') ? (
+                              (() => {
+                                const startMarker = section.content.indexOf('**PRO_TIP_BOX_START**');
+                                const endMarker = section.content.indexOf('**PRO_TIP_BOX_END**');
+                                
+                                if (startMarker !== -1 && endMarker !== -1) {
+                                  const beforeTip = section.content.substring(0, startMarker);
+                                  const tipContent = section.content.substring(startMarker + 22, endMarker);
+                                  const afterTip = section.content.substring(endMarker + 20);
+                                  
+                                  return (
+                                    <div>
+                                      {/* Before tip content */}
+                                      {beforeTip.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
+                                      
+                                      {/* Pro Tip Box */}
+                                      <div className="bg-gradient-to-r from-[#1D50C9]/10 via-[#1D50C9]/5 to-transparent border-l-4 border-[#1D50C9] rounded-lg p-6 mb-8">
+                                        <div className="text-gray-700 leading-relaxed">
+                                          {tipContent.split('\n').map((paragraph: string, tipIndex: number) => {
+                                            if (paragraph.trim()) {
+                                              const processedText = paragraph
+                                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                                .trim();
+                                              return (
+                                                <p key={tipIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                              );
+                                            }
+                                            return null;
+                                          })}
+                                        </div>
+                                      </div>
+                                      
+                                      {/* After tip content */}
+                                      {afterTip.split('\n').map((paragraph: string, pIndex: number) => {
+                                        if (paragraph.trim()) {
+                                          const processedText = paragraph
+                                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                                            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                                            .trim();
+                                          return (
+                                            <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        }
+                                        return null;
+                                      })}
                                     </div>
                                   );
                                 }
                                 return null;
                               })()
                             ) : (
-                              // Default case for all other blog posts
-                              <div>
-                                <h2 className="text-2xl font-bold text-gray-900 mb-6" id={section.id}>
-                                  {section.title}
-                                </h2>
-                                <div className="text-gray-700 leading-relaxed">
-                                  {section.content.split('\n').map((paragraph: string, pIndex: number) => {
-                                    if (paragraph.trim()) {
-                                      return (
-                                        <p key={pIndex} className="mb-4 text-base leading-relaxed">
-                                          {paragraph}
-                                        </p>
-                                      );
-                                    }
+                              // Skip default content rendering for Country notes section since it's handled with cards
+                              slug === 'how-to-apply-for-student-visa' && section.title === 'Country notes' ? 
+                                null :
+                              section.content.split('\n').map((paragraph: string, pIndex: number) => {
+                                // Check for Contact Us text
+                                if (paragraph.trim() === 'Contact Us for more details') {
+                                  return (
+                                    <p key={pIndex} className="text-center my-4">
+                                      <a 
+                                        href="https://dunyaconsultants.com/contact" 
+                                        className="text-[#1D50C9] hover:text-[#1845B3] font-medium underline text-base cursor-pointer"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        Contact Us for more details
+                                      </a>
+                                    </p>
+                                  );
+                                }
+                                
+                                if (paragraph.trim().startsWith('###')) {
+                                  return (
+                                    <h3 key={pIndex} className="text-xl font-semibold text-gray-800 mt-4 mb-2 flex items-center">
+                                      <span className="w-6 h-6 bg-[#1D50C9]/10 rounded-lg flex items-center justify-center mr-3">
+                                        <span className="w-1.5 h-1.5 bg-[#1D50C9] rounded-full"></span>
+                                      </span>
+                                      <span>{paragraph.replace(/^#+\s*/, '')}</span>
+                                    </h3>
+                                  );
+                                }
+                                
+                                if (paragraph.trim().startsWith('-') || paragraph.trim().startsWith('•')) {
+                                  return (
+                                    <div key={pIndex} className="flex items-start leading-tight mb-2">
+                                      <span className="text-[#1D50C9] mr-2 text-sm leading-none mt-1">•</span>
+                                      <span className="text-gray-700 text-base leading-tight">
+                                        {(() => {
+                                          let processedText = paragraph.replace(/^[-•]\s*/, '');
+                                          // Handle bold text **text** -> <strong>text</strong>
+                                          processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                                          // Handle markdown links [text](url) -> <a href="url">text</a>
+                                          processedText = processedText.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+                                          return (
+                                            <span className="blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                          );
+                                        })()}
+                                      </span>
+                                    </div>
+                                  );
+                                }
+                                
+                                // Skip FAQ questions and answers in regular content (except for specific blog posts)
+                                if (slug !== 'top-study-abroad-countries') {
+                                  if (paragraph.trim().startsWith('**') && paragraph.trim().endsWith('**') && paragraph.includes('?')) {
                                     return null;
-                                  })}
+                                  }
+                                  
+                                  // Skip FAQ answer lines that follow **questions**
+                                  const prevParagraph = section.content.split('\n')[section.content.split('\n').indexOf(paragraph) - 1];
+                                  if (prevParagraph && prevParagraph.trim().startsWith('**') && prevParagraph.trim().endsWith('**') && prevParagraph.includes('?')) {
+                                    return null;
+                                  }
+                                }
+
+                                // Skip markdown table remnants
+                                if (paragraph.trim().startsWith('|') && paragraph.includes('|')) {
+                                  return null;
+                                }
+                              
+                              // Skip HTML tags and content that shouldn't be displayed as text
+                              if (paragraph.trim().match(/^<[^>]+>.*<\/[^>]+>$/)) {
+                                return null;
+                              }
+                              
+                              // Check for complete HTML table content and render it properly
+                              if (paragraph.trim().startsWith('<div class="overflow-x-auto">') && paragraph.includes('</div>')) {
+                                return (
+                                  <div key={pIndex} className="my-6">
+                                    <p className="text-gray-700 leading-relaxed text-base mb-3">{paragraph.replace(/<[^>]*>/g, '')}</p>
+                                  </div>
+                                );
+                              }
+                              
+                              // Skip individual HTML table lines that are part of a larger block
+                              if (paragraph.trim().match(/^<(table|thead|tbody|tr|th|td|div)/i) || paragraph.trim().match(/<\/(table|thead|tbody|tr|th|td|div)>$/i)) {
+                                return null;
+                              }
+                              
+                              // Special handling for Statement of Purpose comparison table
+                              if (section.title === 'A General SOP VS an SOP for Scholarship') {
+                                // Show table only once for the section
+                                if (pIndex === 0) {
+                                  return (
+                                    <div key={pIndex} className="my-6">
+                                      <div className="overflow-x-auto">
+                                        <table className="w-full border-collapse border border-gray-300 dark:border-gray-600">
+                                          <thead>
+                                            <tr className="bg-blue-50 dark:bg-blue-900">
+                                              <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-left font-semibold text-gray-900 dark:text-gray-100">General SOP</th>
+                                              <th className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-left font-semibold text-gray-900 dark:text-gray-100">SOP for Scholarship</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr className="bg-white dark:bg-gray-800">
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">A statement that is written to display your interest in a particular program.</td>
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">A statement to display the reasons for getting the scholarship.</td>
+                                            </tr>
+                                            <tr className="bg-gray-50 dark:bg-gray-700">
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">The purpose of writing it is to fulfill a requirement of an application process.</td>
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">Its purpose is to communicate that how availing the scholarship will help the student to achieve his goals.</td>
+                                            </tr>
+                                            <tr className="bg-white dark:bg-gray-800">
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">The major focus of this is to explain the reason for selecting the reason for selecting a particular program.</td>
+                                              <td className="border border-gray-300 dark:border-gray-600 px-4 py-3 text-gray-700 dark:text-gray-300">The major focus is to explain the financial circumstances and sustainability for the scholarship of that applicant.</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                                // Skip all other content in this section since we only want the table
+                                return null;
+                              }
+                            
+                            // Check for Turkey Burslari Scholarship Universities table intro
+                            if (paragraph.includes('The Turkey Burslari Scholarship universities list is given below:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    The Turkey Burslari Scholarship universities list is given below:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            #
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            University Name
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Akdeniz University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Abdullah Gül University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Ankara University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Boğaziçi University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Bursa Technical University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Çanakkale Onsekiz Mart University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">7</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Çukurova University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">8</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Dokuz Eylül University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">9</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Ankara University</td>
+                                        </tr>
+                                        <tr className="bg-gray-50 hover:bg-gray-100">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">10</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Boğaziçi University</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
                                 </div>
-                              </div>
-                            )
+                              );
+                            }
+                            
+                            // Check for Australia Universities table intro
+                            if (paragraph.includes('Some of the cheapest universities in Australia for international students are as follows:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    Some of the cheapest universities in Australia for international students are as follows:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr No.
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            University Name
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Swinburne University of Technology</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of Queensland</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of Adelaide</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of Southern Queensland</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Bond University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of South Australia</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">7</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Macquarie University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">8</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">The University of New South Wales</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Check for IELTS Fee table intro
+                            if (paragraph.includes('Here is the breakdown of IELTS test exam fee:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    The IELTS fee in Pakistan is the same for both IELTS formats (General Training and Academic). Here is the breakdown of IELTS test exam fee:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Paper Bases
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            IELTS Fee (in USD)
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            IELTS Fee (in PKR)
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Computer-Based Module</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">205 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 57,400</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Paper-Based Module</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">229 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 63,800</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Computer-Based UKVI Test</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">185 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 51,700</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Paper-Based UKVI Test</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">197 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 55,000</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">IELTS Life Skills Test</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">143 USD</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Rs. 50,000</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Check for UK Student Visa Types table intro
+                            if (paragraph.includes('There are three main types of UK study visa for international students that are as follows:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    There are three main types of UK study visa for international students that are as follows:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr. No
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Student Visa Type
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Who can Apply?
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Student route visa (Tier 4 General student visa)</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Those studying at a UK university course for more than six months or an English language course for more than eleven months.</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Child Student visa</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Those who are under 18</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Short-term study visa</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">For English language courses that are less than twelve months</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+
+                            // Check for MOI Universities table intro
+                            if (paragraph.includes('Here are some of the best private as well as public universities in UK that accept MOI instead of IELTS or PTE:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    Are you searching for the UK cheap university for international student that accepts MOI? If yes, then you are at the right place. Here are some of the best private as well as public universities in UK that accept MOI instead of IELTS or PTE:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr. No
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            UK Universities
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Law (U Law)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Hertfordshire</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of South Wales</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Suffolk</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Nottingham Trent University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Bangor University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">7</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Leeds Metropolitan University (LMU)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">8</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Birmingham City University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">9</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Portsmouth</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">10</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Stirling</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">11</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Wolverhampton</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">12</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Essex</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">13</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Cardiff Metropolitan University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">14</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Central Lancashire</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">15</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Sunderland</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">16</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">St. Mary's University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">17</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Edinburgh Napier University (ENU)</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Check for Turkey Medical Universities table intro
+                            if (paragraph.includes('Below given is the list of the top medical universities in Turkey:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    In Turkey, the majority of the students are searching to get admission to universities with good status and low cost to continue their higher studies. If you are one of them, there is no need to worry. In addition to some high-end medical universities, there are several cheapest universities in Turkey for international students as well. Below given is the list of the top medical universities in Turkey:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr No.
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            University Name
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Located In
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Atlas University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul, Hamidiye District</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Istinye University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Altinbas University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul (Bakırköy, Bağcılar, Şişli)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Beykent University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul (Büyükçekmece Campus)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Aydin University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul (Halit Aydın Florya Yerleşkesi)</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Bahcesehir University</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Istanbul (Bosporus)</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                  
+                                  <div className="mt-6 space-y-4">
+                                    <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Atlas University</h3>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-3">
+                                      Located in Istanbul, Turkey, Atlas University pays massive attention to medical departments and programs. The main campus of this university is known as the Vadi Campus and is situated in a very central location (Istanbul's Hamidiye District). Furthermore, this institute was founded by the Turkish Balkan Education Culture and Health Foundation in 2018.
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                      Its mission is to raise students who can make prominent contributions to the medical world. Their training program encourages individuals to educate people-oriented clinicians and doctors who can prioritize all health problems and provide practical solutions to deal with them. Atlas University also has a Medical Faculty Hospital called Medicine Hospital in Istanbul Bağcılar.
+                                    </p>
+
+                                    <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Istinye University</h3>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-3">
+                                      In 2015, Istinye University was founded by the 21st Century Anatolian Foundation. International students want to study medicine in Turkey, İstinye University is a no. 1 choice among them. The Faculty of Medicine at this university allows students to get a high-quality education as well as prepares them for a successful medical career.
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                      The worldwide popularity of Istinye University is due to its modern facilities, beautiful campus, and diverse range of academic programs. Furthermore, the tuition charges for international students at this university can be between $4320 and $21600 yearly for the medical program, while the tuition charges for the Master's program are $5400 yearly.
+                                    </p>
+
+                                    <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Altinbas University</h3>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-3">
+                                      In 2008, Altınbaş University was founded in Istanbul, Turkey as Istanbul Kemerburgaz University. In 2017, its name was changed to its current name. It is regarded as one of the top private universities in the country and is famous for offering medical and engineering programs. The institute has around three campuses located in Bakırköy, Bağcılar, and Şişli.
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                      Moreover, it has over 5000 international students from eighty-nine different nations. Altınbaş University is home to 3 graduate schools, nine undergraduate schools, and two vocational schools. Currently, it offers approximately 34 associate degree programs, 30 bachelor's degree programs, 6 PhD programs, and 28 master's degree programs.
+                                    </p>
+
+                                    <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Beykent University</h3>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-3">
+                                      Another name on the list of best universities in Istanbul is Beykent University. The university offers various courses in English, Russian combined, and Turkish. Its Faculty of Medicine aims to train the best doctors to work according to scientific developments and conduct their research.
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                      Additionally, Beykent University was founded by Adem Çelik (Beykent Educational Foundation), and since then, it has had public legal status. The university started its educational journey in 1997 – 1998 on Büyükçekmece Campus. It provides education on four well-furnished campuses situated in central areas of Istanbul.
+                                    </p>
+
+                                    <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Aydin University</h3>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-3">
+                                      Istanbul Aydın University was created on 18th May 2007. It is a private university made as an extension of its ancestor (the Vocational College of Anadolu BIL). The Faculty of Medicine of this university is a fantastic faculty that supports clinical care, education, and research missions.
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                      Furthermore, the seminars & lectures of the pre-clinical phase are given in English at the campus called "Halit Aydın Florya Yerleşkesi." The advanced field laboratories situated in the Basic Medical Sciences Laboratory complex of its faculty are created to give full advantage to each student. Also, the institute is a technology center of approximately 175,000 m².
+                                    </p>
+
+                                    <h3 className="text-xl font-semibold text-gray-800 mt-6 mb-3">Bahcesehir University</h3>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-3">
+                                      Bahçeşehir University (BAU) is situated in Istanbul around the Bosporus. Its medicine is the 1st-ever Turkish faculty of medicine. From the start, the university has aimed to manufacture a research center for scientific research and has succeeded in this mission.
+                                    </p>
+                                    <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                      Furthermore, the education system of this institute will provide the best opportunities to students with an advanced structure. The university has one school of languages, eight faculties, and 2 vocational schools. More than 1700 students are currently studying at the university (undergraduate & graduate students).
+                                    </p>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Check for University table intro
+                            if (paragraph.includes('Here is the language cert accepted universities list you should know before applying:')) {
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    Here is the language cert accepted universities list you should know before applying:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Sr. No
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            University Name
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">1</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of York</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">2</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Warwick</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">3</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Nottingham</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">4</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Leeds</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">5</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">University of Liverpool</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">6</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Imperial College London</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">7</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">London University of the Arts</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">8</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Abertay University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">9</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Aberystwyth University</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">10</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">Anglia Ruskin University</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Check if this specific paragraph contains the visa ratio table intro
+                            if (paragraph.includes('The UK student visa success rate 2024 for different types is as follows:')) {
+                              // Render the complete table section in one go
+                              return (
+                                <div key={pIndex} className="my-6">
+                                  <p className="text-gray-700 leading-relaxed text-base mb-4">
+                                    The UK student visa success rate 2024 for different types is as follows:
+                                  </p>
+                                  <div className="overflow-x-auto">
+                                    <table className="w-full border-collapse bg-white shadow-sm rounded-lg overflow-hidden">
+                                      <thead className="bg-[#1D50C9]/10">
+                                        <tr>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            Visa Category
+                                          </th>
+                                          <th className="border border-gray-300 px-6 py-3 text-left text-sm font-semibold text-gray-900">
+                                            UK Visa Ratio
+                                          </th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Student Visa</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">98%</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Family Visa</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">86%</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Work Visas</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">95%</td>
+                                        </tr>
+                                        <tr className="hover:bg-gray-50">
+                                          <td className="border border-gray-300 px-6 py-3 text-sm text-gray-700">Visitor Visas</td>
+                                          <td className="border border-gray-300 px-6 py-3 text-sm font-medium text-gray-900">77%</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              );
+                            }
+                            
+                            // Skip rendering raw table data since we have custom tables above
+                            if ((paragraph.includes('Sr. No') && paragraph.includes('University Name')) ||
+                                paragraph.includes('| Sr No. | University Name |') ||
+                                paragraph.includes('| Sr No. | University Name | Located In |') ||
+                                paragraph.includes('|--------|') ||
+                                paragraph.includes('University of York') ||
+                                paragraph.includes('University of Warwick') ||
+                                paragraph.includes('University of Nottingham') ||
+                                paragraph.includes('University of Leeds') ||
+                                paragraph.includes('University of Liverpool') ||
+                                paragraph.includes('Imperial College London') ||
+                                paragraph.includes('London University of the Arts') ||
+                                paragraph.includes('Abertay University') ||
+                                paragraph.includes('Aberystwyth University') ||
+                                paragraph.includes('Anglia Ruskin University') ||
+                                paragraph.includes('Atlas University') ||
+                                paragraph.includes('Istinye University') ||
+                                paragraph.includes('Altinbas University') ||
+                                paragraph.includes('Beykent University') ||
+                                paragraph.includes('Aydin University') ||
+                                paragraph.includes('Bahcesehir University') ||
+                                paragraph.includes('Istanbul, Hamidiye District') ||
+                                paragraph.includes('Istanbul (Bakırköy, Bağcılar, Şişli)') ||
+                                paragraph.includes('Istanbul (Büyükçekmece Campus)') ||
+                                paragraph.includes('Istanbul (Halit Aydın Florya Yerleşkesi)') ||
+                                paragraph.includes('Istanbul (Bosporus)') ||
+                                (paragraph.includes('Paper Bases') && paragraph.includes('IELTS Fee')) ||
+                                paragraph.includes('Computer-Based Module') ||
+                                paragraph.includes('Paper-Based Module') ||
+                                paragraph.includes('Computer-Based UKVI Test') ||
+                                paragraph.includes('Paper-Based UKVI Test') ||
+                                paragraph.includes('IELTS Life Skills Test') ||
+                                paragraph.includes('205 USD') ||
+                                paragraph.includes('229 USD') ||
+                                paragraph.includes('185 USD') ||
+                                paragraph.includes('197 USD') ||
+                                paragraph.includes('143 USD') ||
+                                paragraph.includes('Rs. 57,400') ||
+                                paragraph.includes('Rs. 63,800') ||
+                                paragraph.includes('Rs. 51,700') ||
+                                paragraph.includes('Rs. 55,000') ||
+                                paragraph.includes('Rs. 50,000') ||
+                                paragraph.includes('Visa Category | UK Visa Ratio') || 
+                                paragraph.includes('Student Visa | 98%') ||
+                                paragraph.includes('Family Visa | 86%') ||
+                                paragraph.includes('Work Visas | 95%') ||
+                                paragraph.includes('Visitor Visas | 77%') ||
+                                // Skip standalone university names that are duplicates
+                                (paragraph.trim() === 'Atlas University' && !paragraph.includes('Located in Istanbul')) ||
+                                (paragraph.trim() === 'Istinye University' && !paragraph.includes('In 2015')) ||
+                                (paragraph.trim() === 'Altinbas University' && !paragraph.includes('In 2008')) ||
+                                (paragraph.trim() === 'Beykent University' && !paragraph.includes('Another name')) ||
+                                (paragraph.trim() === 'Aydin University' && !paragraph.includes('Istanbul Aydın')) ||
+                                (paragraph.trim() === 'Bahcesehir University' && !paragraph.includes('Bahçeşehir University')) ||
+                                // Skip standalone university content that creates duplicates
+                                paragraph.includes('Istanbul Aydın University was created on 18th May 2007') ||
+                                paragraph.includes('It is a private university made as an extension of its ancestor') ||
+                                paragraph.includes('The Faculty of Medicine of this university is a fantastic faculty') ||
+                                paragraph.includes('Furthermore, the seminars & lectures of the pre-clinical phase are given in English') ||
+                                paragraph.includes('The advanced field laboratories situated in the Basic Medical Sciences Laboratory') ||
+                                paragraph.includes('Also, the institute is a technology center of approximately 175,000 m²')) {
+                              return null;
+                            }
+                            
+                            // Handle numbered lists (1., 2., 3., etc.)
+                            if (/^\d+\.\s/.test(paragraph.trim())) {
+                              return (
+                                <div key={pIndex} className="flex items-start leading-tight mt-[5px] mb-[5px] pl-[0px] pr-[0px] pt-[0px] pb-[0px]">
+                                  <span className="mr-3 font-semibold text-base leading-none mt-0.5 text-[#000000]">
+                                    {paragraph.trim().match(/^\d+\./)?.[0]}
+                                  </span>
+                                  <span className="text-base leading-relaxed text-[#000000]">
+                                    {(() => {
+                                      let processedText = paragraph.replace(/^\d+\.\s*/, '');
+                                      // Handle bold text **text** -> <strong>text</strong>
+                                      processedText = processedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                                      // Handle markdown links [text](url) -> <a href="url">text</a>
+                                      processedText = processedText.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+                                      return (
+                                        <span className="blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                      );
+                                    })()}
+                                  </span>
+                                </div>
+                              );
+                            }
+
+                            if (paragraph.trim()) {
+                              
+                              // Clean markdown bold and preserve HTML links
+                              const processedText = paragraph
+                                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Convert markdown bold to HTML
+                                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>') // Convert markdown links
+                                .trim();
+                              
+                              // Check if the paragraph contains HTML links
+                              const hasHtmlLinks = /<a\s+[^>]*href[^>]*>/.test(processedText);
+                              
+                              // Only render if there's actual text content
+                              if (processedText) {
+                                // Always render with dangerouslySetInnerHTML to preserve formatting
+                                return (
+                                  <p key={pIndex} className="text-gray-700 leading-relaxed text-base mb-3 blog-content" dangerouslySetInnerHTML={{ __html: processedText }} />
+                                );
+                              }
+                            }
+                            return null;
+                            })
+                          )
                           )}
                         </div>
                       </section>
-                      </>
                     );
                   })}
                 </div>
+
+
+
+                {/* Related Blogs Section - Infinite Scroll Carousel */}
+                <footer className="pt-8 border-t border-gray-200">
+                  <section className="mb-10">
+                    <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
+                    
+                    {/* Infinite Scroll Carousel */}
+                    <div className="relative">
+                      <div
+                        ref={relatedBlogsCarouselRef}
+                        className="flex gap-4 md:gap-6 will-change-scroll [&::-webkit-scrollbar]:hidden"
+                        style={{
+                          scrollBehavior: 'auto',
+                          width: '100%',
+                          WebkitOverflowScrolling: 'touch',
+                          overflowX: 'auto',
+                          scrollbarWidth: 'none',
+                          msOverflowStyle: 'none'
+                        }}
+                      >
+                        {duplicatedRelatedBlogs.map((blog, index) => (
+                          <motion.div
+                            key={`${blog.id}-${index}`}
+                            className="flex-shrink-0 w-80 md:w-96"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: Math.min(index * 0.05, 0.5) }}
+                          >
+                            <Link href={getBlogUrl(blog.slug)}>
+                              <Card className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer h-full">
+                                
+                                {/* Featured Image */}
+                                {blog.image && (
+                                  <div className="relative overflow-hidden rounded-t-lg bg-gray-100">
+                                    <img 
+                                      src={normalizeImageSrc(blog.image)} 
+                                      alt={blog.title}
+                                      className="w-full h-56 object-cover transition-transform hover:scale-105"
+                                      style={{ 
+                                        objectFit: 'cover', 
+                                        objectPosition: 'center',
+                                        imageRendering: 'auto',
+                                        backfaceVisibility: 'hidden'
+                                      }}
+                                      loading="lazy"
+                                      decoding="async"
+                                      onLoad={(e) => {
+                                        e.currentTarget.style.opacity = '1';
+                                      }}
+                                      onError={(e) => {
+                                        // Hide image on error
+                                        e.currentTarget.style.display = 'none';
+                                      }}
+                                    />
+                                  </div>
+                                )}
+
+                                <CardContent className="p-6">
+                                  
+                                  {/* Category Badge */}
+                                  <div className="mb-3">
+                                    <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
+                                      {blog.category}
+                                    </Badge>
+                                  </div>
+
+                                  {/* Title */}
+                                  <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                                    {blog.title}
+                                  </h3>
+
+                                  {/* Excerpt */}
+                                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                                    {blog.excerpt}
+                                  </p>
+
+                                  {/* Meta Information and Read More - Same Line */}
+                                  <div className="flex items-center justify-between text-sm">
+                                    <div className="flex items-center text-gray-500">
+                                      <div className="flex items-center">
+                                        <Calendar className="w-4 h-4 mr-1" />
+                                        <span>{blog.date}</span>
+                                      </div>
+                                    </div>
+                                    
+                                    {/* Read More Link */}
+                                    <div className="flex items-center text-[#1D50C9] font-medium">
+                                      <span>Read More</span>
+                                      <ArrowRight className="w-4 h-4 ml-1" />
+                                    </div>
+                                  </div>
+
+                                </CardContent>
+                              </Card>
+                            </Link>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </section>
+                </footer>
+
               </div>
             </article>
           </div>
-        </div>
-      </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
@@ -1624,7 +2815,62 @@ function BlogPostDetail({ slug }: { slug: string }) {
                 </CardContent>
               </Card>
 
-              
+              {/* Sidebar with TOC and Elements */}
+              <div className="space-y-6">
+                {/* Table of Contents - Regular (not sticky) */}
+                {contentSections.length > 0 && (
+                  <div className="mb-6">
+                    <Card className="hidden md:block bg-white border border-gray-200 shadow-sm">
+                      <CardHeader className="pb-4">
+                        <CardTitle className="text-xl text-[#1D50C9]">Table of Contents</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="space-y-2">
+                          {(() => {
+                            let mainSections;
+                            
+                            // Show only main headings (h2) in table of contents for all blog posts
+                            if (slug === 'top-study-abroad-countries') {
+                              // For this blog, only show numbered country headings (h2), not sub-headings
+                              mainSections = contentSections.filter((section: any) => {
+                                if (!section.title || section.title.trim() === '') return false;
+                                const cleanTitle = section.title.replace(/^#+\s*/, '');
+                                // Only numbered countries (h2) and main sections, not sub-headings
+                                return /^\d+\./.test(cleanTitle) || cleanTitle.toLowerCase().includes('faq') || cleanTitle.toLowerCase().includes('conclusion');
+                              });
+                            } else if (slug === 'how-to-apply-for-student-visa') {
+                              // For visa guide, only show main h2 headings, not sub-headings
+                              mainSections = contentSections.filter((section: any) => {
+                                if (!section.title || section.title.trim() === '') return false;
+                                const cleanTitle = section.title.replace(/^#+\s*/, '');
+                                // Exclude sub-headings that typically start with numbers or are very specific
+                                return !cleanTitle.match(/^\d+\)/i) && // Exclude "1)", "2)", etc.
+                                       !cleanTitle.match(/^(pick|build|shortlist|secure|pay|prepare|gather|complete|book|track|get|lock)/i) && // Exclude step sub-headings
+                                       !cleanTitle.includes('?'); // Exclude FAQ questions
+                              });
+                            } else {
+                              // For other blogs, show main headings that are not questions
+                              mainSections = contentSections.filter((section: any) => section.title && section.title.trim() !== '' && !section.title.includes('?'));
+                            }
+                            
+                            const hasFAQs = contentSections.some((section: any) => section.title && section.title.includes('?'));
+                            
+                            return mainSections.map((section: any, index: number) => (
+                              <li key={index}>
+                                <a 
+                                  href={`#${section.id}`}
+                                  className="text-[#1D50C9] hover:underline block py-1 text-sm"
+                                >
+                                  {index + 1}. {section.title}
+                                </a>
+                              </li>
+                            ));
+                          })()}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
 
                 {/* Quick Cost Calculator - Only for exchange programs post */}
                 {(slug.includes("exchange-programs-for-pakistani-students")) && (
@@ -1713,12 +2959,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </Card>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
-        <div>
-          <Footer />
-        </div>
+      </div>
+      <Footer />
     </div>
   );
 }
