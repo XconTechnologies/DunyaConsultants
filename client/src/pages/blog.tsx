@@ -1523,9 +1523,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               </div>
                             )
                           )}
-                        </div>
-                      </section>
-                  </footer>
+                          </div>
+                        </section>
+                      </div>
+                    </footer>
 
               </div>
           </div>
