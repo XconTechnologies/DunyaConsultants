@@ -1496,10 +1496,35 @@ function BlogPostDetail({ slug }: { slug: string }) {
                                             </p>
                                           </div>
                                         );
-                                      })()
+                                      })()}
+                                    </div>
+                                  );
+                                }
+                                return null;
+                              })()
+                            ) : (
+                              // Default case for all other blog posts
+                              <div>
+                                <h2 className="text-2xl font-bold text-gray-900 mb-6" id={section.id}>
+                                  {section.title}
+                                </h2>
+                                <div className="text-gray-700 leading-relaxed">
+                                  {section.content.split('\n').map((paragraph: string, pIndex: number) => {
+                                    if (paragraph.trim()) {
+                                      return (
+                                        <p key={pIndex} className="mb-4 text-base leading-relaxed">
+                                          {paragraph}
+                                        </p>
+                                      );
+                                    }
+                                    return null;
+                                  })}
+                                </div>
+                              </div>
+                            )
+                          )}
                       </div>
-                    </div>
-                  </section>
+                    </section>
                 </footer>
 
               </div>
