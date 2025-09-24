@@ -170,6 +170,23 @@ async function initializeAdmin() {
       }
     }
 
+    // Create default user account for testing (DEVELOPMENT ONLY)
+    let existingUser = await storage.getAdminByUsername('testuser');
+    
+    if (!existingUser) {
+      try {
+        await storage.createAdminUser({
+          username: 'testuser',
+          password: 'testuser123',
+          email: 'testuser@dunyaconsultants.com',
+          role: 'user'
+        });
+        console.log('Development mode: Default test user created');
+      } catch (error) {
+        console.log('Development mode: Test user already exists or creation failed');
+      }
+    }
+
     // Only seed blog posts if database is empty (DEVELOPMENT ONLY)
     const existingBlogPosts = await storage.getBlogPosts();
     if (existingBlogPosts.length === 0) {
@@ -779,8 +796,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }
 
   // ==============================================
-  // ADMIN AUTHENTICATION ROUTES
+  // AUTHENTICATION ROUTES
   // ==============================================
+
+  // User login
+  app.post("/api/user/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ message: 'Username and password required' });
+      }
+
+      const user = await storage.getAdminByUsername(username);
+      if (!user || !user.isActive) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
+
+      // Create session
+      const sessionToken = crypto.randomBytes(32).toString('hex');
+      const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
+      await storage.createAdminSession({
+        sessionToken,
+        adminUserId: user.id,
+        expiresAt
+      });
+
+      await storage.updateAdminLastLogin(user.id);
+
+      res.json({
+        success: true,
+        token: sessionToken,
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          role: user.role
+        }
+      });
+    } catch (error) {
+      console.error('User login error:', error);
+      res.status(500).json({ message: 'Login failed' });
+    }
+  });
 
   // Admin login
   app.post("/api/admin/login", async (req, res) => {
