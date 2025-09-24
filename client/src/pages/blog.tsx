@@ -1716,7 +1716,9 @@ function BlogPostDetail({ slug }: { slug: string }) {
             </div>
           </div>
         </div>
-      <Footer />
+        <div>
+          <Footer />
+        </div>
     </div>
   );
 }
