@@ -302,6 +302,7 @@ export default function BlogEditor() {
         [{ 'color': [] }, { 'background': [] }],
         ['blockquote', 'code-block'],
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
         [{ 'align': [] }],
         ['link'],
         ['faq'], // Custom FAQ button
@@ -334,11 +335,62 @@ export default function BlogEditor() {
       // Preserve all formatting including tables and FAQs when pasting
       matchVisual: false,
       stripPastedStyles: false,
-      // Allow table and FAQ tags to pass through
-      allowedTags: ['table', 'thead', 'tbody', 'tr', 'td', 'th', 'div', 'span'],
+      // Allow table and FAQ tags to pass through, including list elements
+      allowedTags: ['table', 'thead', 'tbody', 'tr', 'td', 'th', 'div', 'span', 'ol', 'ul', 'li'],
       // More aggressive preservation
       keepSelection: true,
       substituteBlockElements: false
+    },
+    keyboard: {
+      bindings: {
+        // Enhanced keyboard shortcuts for list management
+        'list autofill': {
+          key: ' ',
+          shiftKey: null,
+          handler: function(this: any, range: any, context: any) {
+            const quill = this.quill;
+            if (range.index === 0 || quill.getLine(range.index)[0].cache.delta.ops[0].insert !== context.prefix) {
+              return true;
+            }
+            const lineStart = range.index - context.offset;
+            quill.insertText(lineStart, context.prefix, 'user');
+            
+            if (context.prefix === '1. ') {
+              quill.formatLine(lineStart, 1, 'list', 'ordered');
+            } else if (context.prefix === '* ' || context.prefix === '- ') {
+              quill.formatLine(lineStart, 1, 'list', 'bullet');
+            }
+            quill.deleteText(lineStart, context.prefix.length);
+            quill.setSelection(lineStart);
+            return false;
+          }
+        },
+        'indent add': {
+          key: 'Tab',
+          handler: function(this: any, range: any) {
+            const quill = this.quill;
+            const [line] = quill.getLine(range.index);
+            if (line && line.statics.blotName === 'list-item') {
+              quill.format('indent', '+1');
+              return false;
+            }
+            return true;
+          }
+        },
+        'indent remove': {
+          key: 'Tab',
+          shiftKey: true,
+          handler: function(this: any, range: any) {
+            const quill = this.quill;
+            const [line] = quill.getLine(range.index);
+            if (line && line.statics.blotName === 'list-item') {
+              quill.format('indent', '-1');
+              return false;
+            }
+            return true;
+          }
+        }
+      }
     }
   }), []);
 
