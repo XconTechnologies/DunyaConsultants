@@ -8,6 +8,7 @@ import {
   LogOut
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { canManageUsers } from "@/lib/permissions";
 
 const sidebarItems = [
   {
@@ -81,31 +82,40 @@ export default function AdminSidebar({ currentUser }: AdminSidebarProps) {
 
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-2">
-        {sidebarItems.map((item) => {
-          const isActive = location === item.href || 
-            (item.href === "/admin/dashboard" && location === "/dashboard");
-          const Icon = item.icon;
-          
-          return (
-            <Link key={item.href} href={item.href}>
-              <div
-                className={cn(
-                  "flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer",
-                  isActive
-                    ? "bg-white/20 text-white shadow-lg"
-                    : "text-blue-100 hover:bg-white/10 hover:text-white"
-                )}
-                data-testid={`sidebar-link-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
-              >
-                <Icon className="w-5 h-5" />
-                <div className="flex-1">
-                  <p className="text-sm font-medium">{item.title}</p>
-                  <p className="text-xs opacity-80">{item.description}</p>
+        {sidebarItems
+          .filter((item) => {
+            // Always show Dashboard for all users
+            if (item.href === "/admin/dashboard") {
+              return true;
+            }
+            // Only show admin functions for users with management permissions
+            return canManageUsers(currentUser);
+          })
+          .map((item) => {
+            const isActive = location === item.href || 
+              (item.href === "/admin/dashboard" && location === "/dashboard");
+            const Icon = item.icon;
+            
+            return (
+              <Link key={item.href} href={item.href}>
+                <div
+                  className={cn(
+                    "flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 cursor-pointer",
+                    isActive
+                      ? "bg-white/20 text-white shadow-lg"
+                      : "text-blue-100 hover:bg-white/10 hover:text-white"
+                  )}
+                  data-testid={`sidebar-link-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">{item.title}</p>
+                    <p className="text-xs opacity-80">{item.description}</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
       </nav>
 
       {/* Footer */}
