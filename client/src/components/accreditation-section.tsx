@@ -10,23 +10,19 @@ import icefAgencyLogo from "@assets/ICEF_Agency[1]_1758700143132.png";
 const accreditations = [
   {
     name: "British Council",
-    logo: britishCouncilLogo,
-    description: "Official partnership for quality education services"
+    logo: britishCouncilLogo
   },
   {
     name: "Duolingo",
-    logo: duolingoLogo,
-    description: "Authorized test preparation center"
+    logo: duolingoLogo
   },
   {
     name: "LanguageCert",
-    logo: languageCertLogo,
-    description: "Certified language assessment partner"
+    logo: languageCertLogo
   },
   {
     name: "ICEF Agency",
-    logo: icefAgencyLogo,
-    description: "Verified international education agency"
+    logo: icefAgencyLogo
   }
 ];
 
@@ -78,7 +74,7 @@ export default function AccreditationSection() {
               whileHover={{ y: -5 }}
             >
               <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-[#1D50C9]/20">
-                <div className="flex flex-col items-center text-center space-y-4">
+                <div className="flex items-center justify-center">
                   {/* Logo Container */}
                   <div className="w-24 h-24 lg:w-32 lg:h-32 flex items-center justify-center bg-gray-50 rounded-xl group-hover:bg-[#1D50C9]/5 transition-colors duration-300">
                     <img
@@ -89,33 +85,12 @@ export default function AccreditationSection() {
                       decoding="async"
                     />
                   </div>
-                  
-                  {/* Name */}
-                  <h3 className="font-semibold text-gray-900 text-sm lg:text-base group-hover:text-[#1D50C9] transition-colors duration-300">
-                    {accreditation.name}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-xs lg:text-sm text-gray-600 leading-relaxed">
-                    {accreditation.description}
-                  </p>
                 </div>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* Bottom Message */}
-        <motion.div
-          className="text-center mt-12"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <p className="text-sm text-gray-500 max-w-2xl mx-auto">
-            These accreditations ensure we maintain the highest standards in international education consulting and student services.
-          </p>
-        </motion.div>
       </div>
     </section>
   );
