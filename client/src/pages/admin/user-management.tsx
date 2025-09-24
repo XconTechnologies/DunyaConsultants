@@ -597,7 +597,11 @@ export default function UserManagement() {
                 <Label htmlFor="edit-role">Role</Label>
                 <Select 
                   value={editingUser.role} 
-                  onValueChange={(value) => setEditingUser({ ...editingUser, role: value as any })}
+                  onValueChange={(value) => setEditingUser({ 
+                    ...editingUser, 
+                    role: value as any,
+                    permissions: value === 'custom' ? (editingUser.permissions || {}) : null
+                  })}
                 >
                   <SelectTrigger>
                     <SelectValue />
@@ -614,13 +618,65 @@ export default function UserManagement() {
                   </SelectContent>
                 </Select>
               </div>
+
+              {/* Custom Permissions Section for Edit Dialog */}
+              {editingUser.role === 'custom' && (
+                <div className="space-y-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-purple-200">
+                  <div className="flex items-center space-x-2">
+                    <Settings className="w-4 h-4 text-purple-600" />
+                    <Label className="text-sm font-semibold text-purple-700">Custom Permissions</Label>
+                  </div>
+                  <p className="text-xs text-gray-600 mb-3">Select the specific permissions for this user</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {Object.entries(ROLE_CONFIG.custom.defaultPermissions).map(([permission, defaultValue]) => {
+                      const permissionLabels: Record<string, string> = {
+                        canCreate: "Create Content",
+                        canEdit: "Edit Content", 
+                        canPublish: "Publish Content",
+                        canDelete: "Delete Content",
+                        canManageUsers: "Manage Users",
+                        canManageCategories: "Manage Categories", 
+                        canViewAnalytics: "View Analytics",
+                        canManageMedia: "Manage Media"
+                      };
+                      
+                      return (
+                        <div key={permission} className="flex items-center space-x-2">
+                          <Checkbox
+                            id={`edit-${permission}`}
+                            checked={(editingUser.permissions as any)?.[permission] ?? defaultValue}
+                            onCheckedChange={(checked) => {
+                              setEditingUser({
+                                ...editingUser,
+                                permissions: {
+                                  ...editingUser.permissions,
+                                  [permission]: checked === true
+                                }
+                              });
+                            }}
+                          />
+                          <Label 
+                            htmlFor={`edit-${permission}`}
+                            className="text-sm font-normal cursor-pointer"
+                          >
+                            {permissionLabels[permission] || permission}
+                          </Label>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
               
               <div className="flex justify-end space-x-2 pt-4">
                 <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
                   Cancel
                 </Button>
                 <Button 
-                  onClick={() => handleUpdateUser({ role: editingUser.role })}
+                  onClick={() => handleUpdateUser({ 
+                    role: editingUser.role,
+                    permissions: editingUser.role === 'custom' ? editingUser.permissions : null
+                  })}
                   disabled={updateUserMutation.isPending}
                 >
                   {updateUserMutation.isPending ? "Updating..." : "Update User"}
