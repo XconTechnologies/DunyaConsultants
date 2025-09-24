@@ -66,6 +66,7 @@ import UserLogin from "@/pages/user-login";
 import AdminDashboard from "@/pages/admin/dashboard";
 import BlogEditor from "@/pages/admin/blog-editor";
 import AdminBlogPreview from "@/pages/admin/blog-preview";
+import UserManagement from "@/pages/admin/user-management";
 
 
 
@@ -167,6 +168,7 @@ function Router() {
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/dashboard" component={AdminDashboard} />
+      <Route path="/admin/users" component={UserManagement} />
       <Route path="/admin/blog-editor/:id?" component={BlogEditor} />
       <Route path="/admin/blog-editor" component={BlogEditor} />
       <Route path="/blog-editor/:id?" component={BlogEditor} />

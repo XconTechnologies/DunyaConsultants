@@ -1,0 +1,504 @@
+import { useState } from "react";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { queryClient, apiRequest } from "@/lib/queryClient";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
+import { 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableHead, 
+  TableHeader, 
+  TableRow 
+} from "@/components/ui/table";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { 
+  Users, 
+  UserPlus, 
+  Edit, 
+  Trash2, 
+  Mail, 
+  Shield, 
+  Crown,
+  FileEdit,
+  Upload,
+  Settings
+} from "lucide-react";
+import type { AdminUser } from "@shared/schema";
+
+// Role configuration with permissions and styling
+const ROLE_CONFIG = {
+  admin: {
+    label: "Admin",
+    color: "bg-red-500",
+    icon: Crown,
+    description: "Full system access",
+    defaultPermissions: {
+      canCreate: true,
+      canEdit: true,
+      canPublish: true,
+      canDelete: true,
+      canManageUsers: true,
+      canManageCategories: true,
+      canViewAnalytics: true,
+      canManageMedia: true,
+    }
+  },
+  editor: {
+    label: "Editor",
+    color: "bg-blue-500",
+    icon: FileEdit,
+    description: "Create and edit content",
+    defaultPermissions: {
+      canCreate: true,
+      canEdit: true,
+      canPublish: false,
+      canDelete: false,
+      canManageUsers: false,
+      canManageCategories: false,
+      canViewAnalytics: false,
+      canManageMedia: true,
+    }
+  },
+  publisher: {
+    label: "Publisher",
+    color: "bg-green-500",
+    icon: Upload,
+    description: "Edit and publish content",
+    defaultPermissions: {
+      canCreate: true,
+      canEdit: true,
+      canPublish: true,
+      canDelete: false,
+      canManageUsers: false,
+      canManageCategories: false,
+      canViewAnalytics: true,
+      canManageMedia: true,
+    }
+  },
+  custom: {
+    label: "Custom",
+    color: "bg-purple-500",
+    icon: Settings,
+    description: "Custom permissions",
+    defaultPermissions: {
+      canCreate: false,
+      canEdit: false,
+      canPublish: false,
+      canDelete: false,
+      canManageUsers: false,
+      canManageCategories: false,
+      canViewAnalytics: false,
+      canManageMedia: false,
+    }
+  }
+} as const;
+
+interface CreateUserFormData {
+  username: string;
+  email: string;
+  password: string;
+  role: keyof typeof ROLE_CONFIG;
+  permissions?: Record<string, boolean>;
+}
+
+export default function UserManagement() {
+  const { toast } = useToast();
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [editingUser, setEditingUser] = useState<AdminUser | null>(null);
+  const [createForm, setCreateForm] = useState<CreateUserFormData>({
+    username: "",
+    email: "",
+    password: "",
+    role: "editor"
+  });
+
+  // Fetch all admin users
+  const { data: users = [], isLoading, error } = useQuery<AdminUser[]>({
+    queryKey: ["/api/admin/users"],
+  });
+
+  // Create user mutation
+  const createUserMutation = useMutation({
+    mutationFn: (userData: CreateUserFormData) => 
+      apiRequest("/api/admin/users", "POST", userData),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
+      setIsCreateDialogOpen(false);
+      setCreateForm({ username: "", email: "", password: "", role: "editor" });
+      toast({
+        title: "Success",
+        description: "User created successfully",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to create user",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Update user mutation
+  const updateUserMutation = useMutation({
+    mutationFn: ({ id, updates }: { id: number; updates: Partial<AdminUser> }) =>
+      apiRequest(`/api/admin/users/${id}`, "PUT", updates),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
+      setIsEditDialogOpen(false);
+      setEditingUser(null);
+      toast({
+        title: "Success",
+        description: "User updated successfully",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update user",
+        variant: "destructive",
+      });
+    },
+  });
+
+  // Delete user mutation
+  const deleteUserMutation = useMutation({
+    mutationFn: (id: number) =>
+      apiRequest(`/api/admin/users/${id}`, "DELETE"),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
+      toast({
+        title: "Success",
+        description: "User deleted successfully",
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to delete user",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleCreateUser = () => {
+    if (!createForm.username || !createForm.email || !createForm.password) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const roleConfig = ROLE_CONFIG[createForm.role];
+    const userData = {
+      ...createForm,
+      permissions: createForm.role === 'custom' ? createForm.permissions : roleConfig.defaultPermissions
+    };
+    
+    createUserMutation.mutate(userData);
+  };
+
+  const handleEditUser = (user: AdminUser) => {
+    setEditingUser(user);
+    setIsEditDialogOpen(true);
+  };
+
+  const handleUpdateUser = (updates: Partial<AdminUser>) => {
+    if (!editingUser) return;
+    updateUserMutation.mutate({ id: editingUser.id, updates });
+  };
+
+  const handleDeleteUser = (id: number) => {
+    if (confirm("Are you sure you want to delete this user?")) {
+      deleteUserMutation.mutate(id);
+    }
+  };
+
+  const getRoleBadge = (role: string) => {
+    const config = ROLE_CONFIG[role as keyof typeof ROLE_CONFIG];
+    if (!config) return null;
+    
+    const Icon = config.icon;
+    return (
+      <Badge className={`${config.color} text-white`}>
+        <Icon className="w-3 h-3 mr-1" />
+        {config.label}
+      </Badge>
+    );
+  };
+
+  if (error) {
+    return (
+      <div className="p-6">
+        <Card>
+          <CardContent className="p-6">
+            <p className="text-red-600">Error loading users: {error.message}</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-6 space-y-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
+          <p className="text-gray-600 mt-1">Manage system users and their permissions</p>
+        </div>
+        
+        <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <DialogTrigger asChild>
+            <Button className="bg-gradient-to-r from-blue-600 to-blue-700">
+              <UserPlus className="w-4 h-4 mr-2" />
+              Add User
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>Create New User</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="username">Username</Label>
+                <Input
+                  id="username"
+                  value={createForm.username}
+                  onChange={(e) => setCreateForm({ ...createForm, username: e.target.value })}
+                  placeholder="Enter username"
+                />
+              </div>
+              <div>
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  value={createForm.email}
+                  onChange={(e) => setCreateForm({ ...createForm, email: e.target.value })}
+                  placeholder="Enter email address"
+                />
+              </div>
+              <div>
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={createForm.password}
+                  onChange={(e) => setCreateForm({ ...createForm, password: e.target.value })}
+                  placeholder="Enter password"
+                />
+              </div>
+              <div>
+                <Label htmlFor="role">Role</Label>
+                <Select 
+                  value={createForm.role} 
+                  onValueChange={(value) => setCreateForm({ ...createForm, role: value as keyof typeof ROLE_CONFIG })}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select role" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(ROLE_CONFIG).map(([key, config]) => (
+                      <SelectItem key={key} value={key}>
+                        <div className="flex items-center">
+                          <config.icon className="w-4 h-4 mr-2" />
+                          <span>{config.label}</span>
+                          <span className="text-sm text-gray-500 ml-2">- {config.description}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="flex justify-end space-x-2 pt-4">
+                <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
+                  Cancel
+                </Button>
+                <Button 
+                  onClick={handleCreateUser}
+                  disabled={createUserMutation.isPending}
+                >
+                  {createUserMutation.isPending ? "Creating..." : "Create User"}
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+
+      {/* Users Table */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center">
+            <Users className="w-5 h-5 mr-2" />
+            System Users ({users.length})
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          {isLoading ? (
+            <div className="flex items-center justify-center p-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>User</TableHead>
+                  <TableHead>Role</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Last Login</TableHead>
+                  <TableHead>Created</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {users.map((user: AdminUser) => (
+                  <TableRow key={user.id}>
+                    <TableCell>
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                          <span className="text-sm font-medium text-blue-600">
+                            {user.username.charAt(0).toUpperCase()}
+                          </span>
+                        </div>
+                        <div>
+                          <div className="font-medium">{user.username}</div>
+                          <div className="text-sm text-gray-500 flex items-center">
+                            <Mail className="w-3 h-3 mr-1" />
+                            {user.email}
+                          </div>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      {getRoleBadge(user.role)}
+                    </TableCell>
+                    <TableCell>
+                      <Badge variant={user.isActive ? "default" : "secondary"}>
+                        {user.isActive ? "Active" : "Inactive"}
+                      </Badge>
+                    </TableCell>
+                    <TableCell>
+                      {user.lastLogin 
+                        ? new Date(user.lastLogin).toLocaleDateString()
+                        : "Never"
+                      }
+                    </TableCell>
+                    <TableCell>
+                      {new Date(user.createdAt).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex items-center justify-end space-x-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleEditUser(user)}
+                          data-testid={`button-edit-user-${user.id}`}
+                        >
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDeleteUser(user.id)}
+                          className="text-red-600 hover:text-red-700"
+                          data-testid={`button-delete-user-${user.id}`}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+          
+          {!isLoading && users.length === 0 && (
+            <div className="text-center py-8">
+              <Users className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <p className="text-gray-500">No users found</p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Edit User Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Edit User</DialogTitle>
+          </DialogHeader>
+          {editingUser && (
+            <div className="space-y-4">
+              <div>
+                <Label>Username</Label>
+                <Input value={editingUser.username} disabled />
+              </div>
+              <div>
+                <Label>Email</Label>
+                <Input value={editingUser.email} disabled />
+              </div>
+              <div>
+                <Label htmlFor="edit-role">Role</Label>
+                <Select 
+                  value={editingUser.role} 
+                  onValueChange={(value) => setEditingUser({ ...editingUser, role: value as any })}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {Object.entries(ROLE_CONFIG).map(([key, config]) => (
+                      <SelectItem key={key} value={key}>
+                        <div className="flex items-center">
+                          <config.icon className="w-4 h-4 mr-2" />
+                          <span>{config.label}</span>
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="flex justify-end space-x-2 pt-4">
+                <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+                  Cancel
+                </Button>
+                <Button 
+                  onClick={() => handleUpdateUser({ role: editingUser.role })}
+                  disabled={updateUserMutation.isPending}
+                >
+                  {updateUserMutation.isPending ? "Updating..." : "Update User"}
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
