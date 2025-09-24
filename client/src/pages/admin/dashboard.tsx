@@ -118,16 +118,26 @@ export default function AdminDashboard() {
     };
   };
 
-  // Fetch all blog posts without pagination
+  // Fetch blog posts - all posts for admin, only assigned posts for other users
   const { data: blogPosts = [], isLoading: blogLoading, refetch: refetchBlogs } = useQuery({
-    queryKey: ["/api/admin/blog-posts"],
+    queryKey: adminUser?.role === 'admin' ? ["/api/admin/blog-posts"] : ["/api/admin/users", adminUser?.id, "posts"],
     enabled: authChecked && !!adminUser,
     queryFn: async () => {
-      const response = await fetch("/api/admin/blog-posts?limit=100", {
-        headers: getAuthHeaders(),
-      });
-      if (!response.ok) throw new Error("Failed to fetch blog posts");
-      return response.json();
+      if (adminUser?.role === 'admin') {
+        // Admin sees all posts
+        const response = await fetch("/api/admin/blog-posts?limit=100", {
+          headers: getAuthHeaders(),
+        });
+        if (!response.ok) throw new Error("Failed to fetch blog posts");
+        return response.json();
+      } else {
+        // Non-admin users see only assigned posts
+        const response = await fetch(`/api/admin/users/${adminUser?.id}/posts`, {
+          headers: getAuthHeaders(),
+        });
+        if (!response.ok) throw new Error("Failed to fetch assigned posts");
+        return response.json();
+      }
     },
   });
 
