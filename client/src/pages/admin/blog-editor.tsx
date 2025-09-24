@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -22,11 +23,31 @@ import {
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 
+// Predefined categories for blog posts
+const BLOG_CATEGORIES = [
+  "General",
+  "Student Visa",
+  "Study Abroad",
+  "University Guides",
+  "Test Preparation",
+  "Scholarships",
+  "Student Life",
+  "Country Guides",
+  "Immigration",
+  "Career Advice",
+  "Study Tips",
+  "Visa Requirements",
+  "Application Process",
+  "Document Guidelines",
+  "Success Stories"
+] as const;
+
 const blogSchema = z.object({
   title: z.string().min(1, "Title is required"),
   slug: z.string().min(1, "Slug is required"),
   excerpt: z.string().min(1, "Excerpt is required"),
   content: z.string().min(1, "Content is required"),
+  category: z.string().min(1, "Category is required"),
   metaDescription: z.string().optional(),
   focusKeyword: z.string().optional(),
   featuredImage: z.string().optional(),
@@ -43,6 +64,7 @@ interface BlogPost {
   slug: string;
   excerpt: string;
   content: string;
+  category: string;
   metaDescription?: string;
   focusKeyword?: string;
   featuredImage?: string;
@@ -235,6 +257,7 @@ export default function BlogEditor() {
     defaultValues: {
       isPublished: false,
       content: "",
+      category: "General", // Default category
       publishedAt: "", // Don't pre-fill - only set when actually publishing
     },
   });
@@ -424,6 +447,7 @@ export default function BlogEditor() {
           slug: blogPost.slug || "",
           excerpt: blogPost.excerpt || "",
           content: blogPost.content || "",
+          category: blogPost.category || "General",
           metaDescription: blogPost.metaDescription || "",
           focusKeyword: blogPost.focusKeyword || "",
           featuredImage: blogPost.featuredImage || "",
@@ -723,6 +747,44 @@ export default function BlogEditor() {
                   />
                   {errors.title && (
                     <p className="#1D50C9 text-sm mt-1">{errors.title.message}</p>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Category */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Hash className="w-5 h-5" />
+                    <span>Category</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Controller
+                    name="category"
+                    control={control}
+                    render={({ field }) => (
+                      <Select onValueChange={field.onChange} value={field.value}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a category" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {BLOG_CATEGORIES.map((category) => (
+                            <SelectItem key={category} value={category}>
+                              {category}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    )}
+                  />
+                  {errors.category && (
+                    <p className="text-red-500 text-sm mt-1">{errors.category.message}</p>
+                  )}
+                  {adminUser?.role !== 'admin' && (
+                    <p className="text-sm text-gray-500 mt-2">
+                      Only administrators can create new categories. Contact an admin to add new categories.
+                    </p>
                   )}
                 </CardContent>
               </Card>
