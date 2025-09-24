@@ -79,7 +79,7 @@ interface BlogPost {
 
 export default function BlogEditor() {
   const [, setLocation] = useLocation();
-  const [match, params] = useRoute("/blog-editor/:id?");
+  const [match, params] = useRoute("/admin/blog-editor/:id?");
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -212,12 +212,7 @@ export default function BlogEditor() {
   const isEditing = !!params?.id;
   const blogId = params?.id;
 
-  console.log('Blog Editor Debug - URL params:', params);
-  console.log('Blog Editor Debug - isEditing:', isEditing);
-  console.log('Blog Editor Debug - blogId:', blogId);
-
   const token = localStorage.getItem("adminToken") || localStorage.getItem("userToken");
-  console.log('Blog Editor Debug - token available:', !!token);
 
   // Ensure editor is mounted client-side
   useEffect(() => {
