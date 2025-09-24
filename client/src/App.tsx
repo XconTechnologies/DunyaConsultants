@@ -67,6 +67,7 @@ import AdminDashboard from "@/pages/admin/dashboard";
 import BlogEditor from "@/pages/admin/blog-editor";
 import AdminBlogPreview from "@/pages/admin/blog-preview";
 import UserManagement from "@/pages/admin/user-management";
+import PostAssignments from "@/pages/admin/post-assignments";
 
 
 
@@ -169,6 +170,7 @@ function Router() {
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/dashboard" component={AdminDashboard} />
       <Route path="/admin/users" component={UserManagement} />
+      <Route path="/admin/post-assignments" component={PostAssignments} />
       <Route path="/admin/blog-editor/:id?" component={BlogEditor} />
       <Route path="/admin/blog-editor" component={BlogEditor} />
       <Route path="/blog-editor/:id?" component={BlogEditor} />

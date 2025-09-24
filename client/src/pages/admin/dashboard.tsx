@@ -481,6 +481,23 @@ export default function AdminDashboard() {
                 </CardContent>
               </Card>
               
+              <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer">
+                <CardContent className="p-6">
+                  <Button 
+                    onClick={() => setLocation("/admin/post-assignments")}
+                    className="w-full flex items-center justify-start space-x-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-600 text-white shadow-lg h-auto p-4"
+                  >
+                    <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                      <Activity className="h-5 w-5 text-white" />
+                    </div>
+                    <div className="text-left">
+                      <div className="font-medium">Post Assignments</div>
+                      <div className="text-xs text-green-100 mt-1">Manage post access control</div>
+                    </div>
+                  </Button>
+                </CardContent>
+              </Card>
+              
               <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm hover:shadow-xl transition-shadow cursor-pointer">
                 <CardContent className="p-6">
                   <Button 
