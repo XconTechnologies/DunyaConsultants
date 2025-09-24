@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
+import { useLocation } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -122,6 +123,9 @@ interface CreateUserFormData {
 
 export default function UserManagement() {
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
+  const [authChecked, setAuthChecked] = useState(false);
+  const [currentUser, setCurrentUser] = useState<AdminUser | null>(null);
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingUser, setEditingUser] = useState<AdminUser | null>(null);
@@ -133,15 +137,62 @@ export default function UserManagement() {
     permissions: {}
   });
 
-  // Fetch all admin users
+  // Check authentication
+  useEffect(() => {
+    const token = localStorage.getItem("adminToken");
+    const user = localStorage.getItem("adminUser");
+    
+    if (!token || !user) {
+      setLocation("/admin/login");
+      return;
+    }
+
+    try {
+      const userData = JSON.parse(user);
+      setCurrentUser(userData);
+      setAuthChecked(true);
+    } catch {
+      setLocation("/admin/login");
+    }
+  }, [setLocation]);
+
+  // Get auth headers
+  const getAuthHeaders = () => {
+    const token = localStorage.getItem("adminToken");
+    return {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
+    };
+  };
+
+  // Fetch all admin users with authentication
   const { data: users = [], isLoading, error } = useQuery<AdminUser[]>({
     queryKey: ["/api/admin/users"],
+    queryFn: async () => {
+      const response = await fetch("/api/admin/users", {
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${await response.text()}`);
+      }
+      return response.json();
+    },
+    enabled: authChecked && !!currentUser,
   });
 
   // Create user mutation
   const createUserMutation = useMutation({
-    mutationFn: (userData: CreateUserFormData) => 
-      apiRequest("/api/admin/users", "POST", userData),
+    mutationFn: async (userData: CreateUserFormData) => {
+      const response = await fetch("/api/admin/users", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify(userData),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${await response.text()}`);
+      }
+      return response.json();
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
       setIsCreateDialogOpen(false);
@@ -162,8 +213,17 @@ export default function UserManagement() {
 
   // Update user mutation
   const updateUserMutation = useMutation({
-    mutationFn: ({ id, updates }: { id: number; updates: Partial<AdminUser> }) =>
-      apiRequest(`/api/admin/users/${id}`, "PUT", updates),
+    mutationFn: async ({ id, updates }: { id: number; updates: Partial<AdminUser> }) => {
+      const response = await fetch(`/api/admin/users/${id}`, {
+        method: "PUT",
+        headers: getAuthHeaders(),
+        body: JSON.stringify(updates),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${await response.text()}`);
+      }
+      return response.json();
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
       setIsEditDialogOpen(false);
@@ -184,8 +244,16 @@ export default function UserManagement() {
 
   // Delete user mutation
   const deleteUserMutation = useMutation({
-    mutationFn: (id: number) =>
-      apiRequest(`/api/admin/users/${id}`, "DELETE"),
+    mutationFn: async (id: number) => {
+      const response = await fetch(`/api/admin/users/${id}`, {
+        method: "DELETE",
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${await response.text()}`);
+      }
+      return response.json();
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
       toast({
