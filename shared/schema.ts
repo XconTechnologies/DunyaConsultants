@@ -123,7 +123,17 @@ export const adminUsers = pgTable("admin_users", {
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   email: text("email").notNull().unique(),
-  role: text("role", { enum: ["admin", "user"] }).default("user").notNull(),
+  role: text("role", { enum: ["admin", "editor", "publisher", "custom"] }).default("editor").notNull(),
+  permissions: json("permissions").$type<{
+    canCreate?: boolean;
+    canEdit?: boolean;
+    canPublish?: boolean;
+    canDelete?: boolean;
+    canManageUsers?: boolean;
+    canManageCategories?: boolean;
+    canViewAnalytics?: boolean;
+    canManageMedia?: boolean;
+  }>(),
   isActive: boolean("is_active").default(true).notNull(),
   lastLogin: timestamp("last_login"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -239,6 +249,15 @@ export const auditLogs = pgTable("audit_logs", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Post assignments for granular access control
+export const postAssignments = pgTable("post_assignments", {
+  id: serial("id").primaryKey(),
+  userId: integer("user_id").references(() => adminUsers.id).notNull(),
+  postId: integer("post_id").references(() => blogPosts.id).notNull(),
+  assignedBy: integer("assigned_by").references(() => adminUsers.id).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
   createdAt: true,
@@ -338,6 +357,11 @@ export const insertAuditLogSchema = createInsertSchema(auditLogs).omit({
   createdAt: true,
 });
 
+export const insertPostAssignmentSchema = createInsertSchema(postAssignments).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
@@ -378,3 +402,5 @@ export type InsertBlogPostRevision = z.infer<typeof insertBlogPostRevisionSchema
 export type BlogPostRevision = typeof blogPostRevisions.$inferSelect;
 export type InsertAuditLog = z.infer<typeof insertAuditLogSchema>;
 export type AuditLog = typeof auditLogs.$inferSelect;
+export type InsertPostAssignment = z.infer<typeof insertPostAssignmentSchema>;
+export type PostAssignment = typeof postAssignments.$inferSelect;
