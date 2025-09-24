@@ -115,6 +115,7 @@ export interface IStorage {
   updateEditingActivity(sessionId: number): Promise<void>;
   endEditingSession(sessionId: number): Promise<void>;
   getActiveEditingSessions(postId: number): Promise<EditingSession[]>;
+  getAllActiveEditingSessions(): Promise<EditingSession[]>;
   getUserEditingSession(userId: number, postId: number): Promise<EditingSession | undefined>;
   cleanupInactiveEditingSessions(): Promise<void>;
 }
@@ -764,6 +765,16 @@ export class DatabaseStorage implements IStorage {
           eq(editingSessions.isActive, true)
         )
       )
+      .orderBy(desc(editingSessions.startedAt));
+    
+    return sessions;
+  }
+
+  async getAllActiveEditingSessions(): Promise<EditingSession[]> {
+    const sessions = await db
+      .select()
+      .from(editingSessions)
+      .where(eq(editingSessions.isActive, true))
       .orderBy(desc(editingSessions.startedAt));
     
     return sessions;

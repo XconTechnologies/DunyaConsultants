@@ -1150,6 +1150,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get all active editing sessions (for dashboards)
+  app.get("/api/admin/editing-sessions/all", requireAuth, async (req, res) => {
+    try {
+      // Clean up inactive sessions first
+      await storage.cleanupInactiveEditingSessions();
+
+      const allSessions = await storage.getAllActiveEditingSessions();
+      
+      // Include user information with each session
+      const sessionsWithUsers = await Promise.all(
+        allSessions.map(async (session: EditingSession) => {
+          const user = await storage.getAdminById(session.userId);
+          return {
+            ...session,
+            user: user ? { id: user.id, username: user.username, role: user.role } : null
+          };
+        })
+      );
+
+      res.json(sessionsWithUsers);
+    } catch (error) {
+      console.error('Error fetching all editing sessions:', error);
+      res.status(500).json({ message: 'Failed to fetch editing sessions' });
+    }
+  });
+
   // Get active editing sessions for a post
   app.get("/api/admin/posts/:postId/editing-sessions", requireAuth, async (req, res) => {
     try {
