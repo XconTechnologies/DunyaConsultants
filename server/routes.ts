@@ -179,7 +179,7 @@ async function initializeAdmin() {
           username: 'testuser',
           password: 'testuser123',
           email: 'testuser@dunyaconsultants.com',
-          role: 'user'
+          role: 'editor'
         });
         console.log('Development mode: Default test user created');
       } catch (error) {
@@ -928,6 +928,203 @@ export async function registerRoutes(app: Express): Promise<Server> {
       });
     } catch (error) {
       res.status(500).json({ message: 'Session verification failed' });
+    }
+  });
+
+  // ==============================================
+  // USER MANAGEMENT ROUTES (Admin Only)
+  // ==============================================
+
+  // Get all admin users (for user management interface)
+  app.get("/api/admin/users", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const users = await storage.getAllAdminUsers();
+      res.json(users);
+    } catch (error) {
+      console.error('Error fetching admin users:', error);
+      res.status(500).json({ message: 'Failed to fetch users' });
+    }
+  });
+
+  // Create new admin user
+  app.post("/api/admin/users", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { username, email, password, role, permissions } = req.body;
+      
+      if (!username || !email || !password || !role) {
+        return res.status(400).json({ message: 'Username, email, password, and role are required' });
+      }
+
+      // Check if user already exists
+      const existingUser = await storage.getAdminByUsername(username);
+      if (existingUser) {
+        return res.status(409).json({ message: 'Username already exists' });
+      }
+
+      // Validate role
+      const validRoles = ['admin', 'editor', 'publisher', 'custom'];
+      if (!validRoles.includes(role)) {
+        return res.status(400).json({ message: 'Invalid role' });
+      }
+
+      // Create the admin user
+      const newUser = await storage.createAdminUser({
+        username,
+        email,
+        password,
+        role,
+        permissions: permissions || null,
+        isActive: true
+      });
+
+      // Remove password from response
+      const { password: _, ...userResponse } = newUser;
+      res.status(201).json(userResponse);
+    } catch (error) {
+      console.error('Error creating admin user:', error);
+      res.status(500).json({ message: 'Failed to create user' });
+    }
+  });
+
+  // Update admin user (role and permissions)
+  app.put("/api/admin/users/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+      const { role, permissions, isActive } = req.body;
+
+      if (isNaN(userId)) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+      }
+
+      // Prevent admin from deactivating themselves
+      if (req.adminId === userId && isActive === false) {
+        return res.status(400).json({ message: 'Cannot deactivate your own account' });
+      }
+
+      const updates: any = {};
+      if (role !== undefined) {
+        const validRoles = ['admin', 'editor', 'publisher', 'custom'];
+        if (!validRoles.includes(role)) {
+          return res.status(400).json({ message: 'Invalid role' });
+        }
+        updates.role = role;
+      }
+      if (permissions !== undefined) updates.permissions = permissions;
+      if (isActive !== undefined) updates.isActive = isActive;
+
+      const updatedUser = await storage.updateAdminUser(userId, updates);
+      
+      // Remove password from response
+      const { password: _, ...userResponse } = updatedUser;
+      res.json(userResponse);
+    } catch (error) {
+      console.error('Error updating admin user:', error);
+      res.status(500).json({ message: 'Failed to update user' });
+    }
+  });
+
+  // Delete admin user (soft delete)
+  app.delete("/api/admin/users/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+
+      if (isNaN(userId)) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+      }
+
+      // Prevent admin from deleting themselves
+      if (req.adminId === userId) {
+        return res.status(400).json({ message: 'Cannot delete your own account' });
+      }
+
+      await storage.deleteAdminUser(userId);
+      res.json({ success: true, message: 'User deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting admin user:', error);
+      res.status(500).json({ message: 'Failed to delete user' });
+    }
+  });
+
+  // ==============================================
+  // POST ASSIGNMENT ROUTES (Admin Only)
+  // ==============================================
+
+  // Assign post to user
+  app.post("/api/admin/post-assignments", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { userId, postId } = req.body;
+
+      if (!userId || !postId) {
+        return res.status(400).json({ message: 'User ID and Post ID are required' });
+      }
+
+      const assignment = await storage.assignPostToUser({
+        userId,
+        postId,
+        assignedBy: req.adminId!
+      });
+
+      res.status(201).json(assignment);
+    } catch (error) {
+      console.error('Error assigning post to user:', error);
+      res.status(500).json({ message: 'Failed to assign post' });
+    }
+  });
+
+  // Remove post assignment
+  app.delete("/api/admin/post-assignments/:userId/:postId", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const userId = parseInt(req.params.userId);
+      const postId = parseInt(req.params.postId);
+
+      if (isNaN(userId) || isNaN(postId)) {
+        return res.status(400).json({ message: 'Invalid user ID or post ID' });
+      }
+
+      await storage.removePostAssignment(userId, postId);
+      res.json({ success: true, message: 'Post assignment removed' });
+    } catch (error) {
+      console.error('Error removing post assignment:', error);
+      res.status(500).json({ message: 'Failed to remove assignment' });
+    }
+  });
+
+  // Get user's assigned posts
+  app.get("/api/admin/users/:id/posts", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const userId = parseInt(req.params.id);
+
+      if (isNaN(userId)) {
+        return res.status(400).json({ message: 'Invalid user ID' });
+      }
+
+      // Allow users to see their own posts, admins can see any user's posts
+      if (req.adminRole !== 'admin' && req.adminId !== userId) {
+        return res.status(403).json({ message: 'Access denied' });
+      }
+
+      const posts = await storage.getUserAssignedPosts(userId);
+      res.json(posts);
+    } catch (error) {
+      console.error('Error fetching user assigned posts:', error);
+      res.status(500).json({ message: 'Failed to fetch assigned posts' });
+    }
+  });
+
+  // Get post assignments (which users can access a specific post)
+  app.get("/api/admin/posts/:id/assignments", requireAuth, requireAdmin, async (req, res) => {
+    try {
+      const postId = parseInt(req.params.id);
+
+      if (isNaN(postId)) {
+        return res.status(400).json({ message: 'Invalid post ID' });
+      }
+
+      const assignments = await storage.getPostAssignments(postId);
+      res.json(assignments);
+    } catch (error) {
+      console.error('Error fetching post assignments:', error);
+      res.status(500).json({ message: 'Failed to fetch assignments' });
     }
   });
 
