@@ -13,16 +13,17 @@ const accreditations = [
     logo: britishCouncilLogo
   },
   {
+    name: "ICEF Agency",
+    logo: icefAgencyLogo,
+    link: "https://accreditations.icef.com/certificate?id=210f08ad-2604-44df-ad7f-9a9af53e90c1"
+  },
+  {
     name: "Duolingo",
     logo: duolingoLogo
   },
   {
     name: "LanguageCert",
     logo: languageCertLogo
-  },
-  {
-    name: "ICEF Agency",
-    logo: icefAgencyLogo
   }
 ];
 
@@ -77,13 +78,30 @@ export default function AccreditationSection() {
                 <div className="flex items-center justify-center">
                   {/* Logo Container */}
                   <div className="w-24 h-24 lg:w-32 lg:h-32 flex items-center justify-center bg-gray-50 rounded-xl group-hover:bg-[#1D50C9]/5 transition-colors duration-300">
-                    <img
-                      src={accreditation.logo}
-                      alt={`${accreditation.name} logo`}
-                      className="max-w-full max-h-full object-contain filter group-hover:brightness-110 transition-all duration-300"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    {accreditation.link ? (
+                      <a
+                        href={accreditation.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-center w-full h-full"
+                      >
+                        <img
+                          src={accreditation.logo}
+                          alt={`${accreditation.name} logo`}
+                          className="max-w-full max-h-full object-contain filter group-hover:brightness-110 transition-all duration-300"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </a>
+                    ) : (
+                      <img
+                        src={accreditation.logo}
+                        alt={`${accreditation.name} logo`}
+                        className="max-w-full max-h-full object-contain filter group-hover:brightness-110 transition-all duration-300"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )}
                   </div>
                 </div>
               </div>
