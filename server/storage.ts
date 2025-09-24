@@ -711,9 +711,9 @@ export class DatabaseStorage implements IStorage {
     
     const postIds = assignments.map(a => a.postId);
     
-    // Use IN clause to get all assigned posts
+    // Use inArray to get all assigned posts
     return await db.select().from(blogPosts)
-      .where(sql`${blogPosts.id} IN (${postIds.join(',')})`)
+      .where(inArray(blogPosts.id, postIds))
       .orderBy(desc(blogPosts.updatedAt));
   }
 
