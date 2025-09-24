@@ -1,6 +1,6 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
-  adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs,
+  adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -9,7 +9,7 @@ import {
   type Service, type InsertService, type Page, type InsertPage,
   type AdminSession, type InsertAdminSession, type UserSession, type InsertUserSession,
   type Media, type InsertMedia, type BlogPostRevision, type InsertBlogPostRevision,
-  type AuditLog, type InsertAuditLog
+  type AuditLog, type InsertAuditLog, type PostAssignment, type InsertPostAssignment
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -96,6 +96,18 @@ export interface IStorage {
   getAuditLogs(limit?: number, offset?: number): Promise<AuditLog[]>;
   createAuditLog(auditLog: InsertAuditLog): Promise<AuditLog>;
   getAuditLogsByEntity(entity: string, entityId: number): Promise<AuditLog[]>;
+  
+  // User Management (Admin Operations)
+  getAllAdminUsers(): Promise<AdminUser[]>;
+  updateAdminUser(id: number, updates: Partial<AdminUser>): Promise<AdminUser>;
+  deleteAdminUser(id: number): Promise<void>;
+  
+  // Post Assignment Management
+  assignPostToUser(assignment: InsertPostAssignment): Promise<PostAssignment>;
+  removePostAssignment(userId: number, postId: number): Promise<void>;
+  getUserPostAssignments(userId: number): Promise<PostAssignment[]>;
+  getPostAssignments(postId: number): Promise<PostAssignment[]>;
+  getUserAssignedPosts(userId: number): Promise<BlogPost[]>;
 }
 
 
@@ -293,10 +305,18 @@ export class DatabaseStorage implements IStorage {
   async createAdminUser(insertAdminUser: InsertAdminUser): Promise<AdminUser> {
     // Hash the password before storing
     const hashedPassword = await bcrypt.hash(insertAdminUser.password, 10);
-    const [admin] = await db.insert(adminUsers).values({
-      ...insertAdminUser,
-      password: hashedPassword
-    }).returning();
+    
+    // Handle permissions field properly by ensuring it's cast correctly
+    const insertData: any = {
+      username: insertAdminUser.username,
+      email: insertAdminUser.email,
+      password: hashedPassword,
+      role: insertAdminUser.role,
+      permissions: insertAdminUser.permissions ? JSON.parse(JSON.stringify(insertAdminUser.permissions)) : null,
+      isActive: insertAdminUser.isActive !== undefined ? insertAdminUser.isActive : true,
+    };
+    
+    const [admin] = await db.insert(adminUsers).values(insertData).returning();
     return admin;
   }
 
@@ -622,6 +642,70 @@ export class DatabaseStorage implements IStorage {
         eq(auditLogs.entityId, entityId)
       ))
       .orderBy(desc(auditLogs.createdAt));
+  }
+  
+  // User Management Methods
+  async getAllAdminUsers(): Promise<AdminUser[]> {
+    return await db.select().from(adminUsers)
+      .where(eq(adminUsers.isActive, true))
+      .orderBy(desc(adminUsers.createdAt));
+  }
+  
+  async updateAdminUser(id: number, updates: Partial<AdminUser>): Promise<AdminUser> {
+    const [admin] = await db.update(adminUsers)
+      .set(updates)
+      .where(eq(adminUsers.id, id))
+      .returning();
+    return admin;
+  }
+  
+  async deleteAdminUser(id: number): Promise<void> {
+    // Soft delete by setting isActive to false
+    await db.update(adminUsers)
+      .set({ isActive: false })
+      .where(eq(adminUsers.id, id));
+  }
+  
+  // Post Assignment Methods
+  async assignPostToUser(assignment: InsertPostAssignment): Promise<PostAssignment> {
+    const [postAssignment] = await db.insert(postAssignments).values(assignment).returning();
+    return postAssignment;
+  }
+  
+  async removePostAssignment(userId: number, postId: number): Promise<void> {
+    await db.delete(postAssignments)
+      .where(and(eq(postAssignments.userId, userId), eq(postAssignments.postId, postId)));
+  }
+  
+  async getUserPostAssignments(userId: number): Promise<PostAssignment[]> {
+    return await db.select().from(postAssignments)
+      .where(eq(postAssignments.userId, userId))
+      .orderBy(desc(postAssignments.createdAt));
+  }
+  
+  async getPostAssignments(postId: number): Promise<PostAssignment[]> {
+    return await db.select().from(postAssignments)
+      .where(eq(postAssignments.postId, postId))
+      .orderBy(desc(postAssignments.createdAt));
+  }
+  
+  async getUserAssignedPosts(userId: number): Promise<BlogPost[]> {
+    // Get posts assigned to the user through postAssignments table
+    const assignments = await db.select({
+      postId: postAssignments.postId
+    }).from(postAssignments)
+      .where(eq(postAssignments.userId, userId));
+    
+    if (assignments.length === 0) {
+      return [];
+    }
+    
+    const postIds = assignments.map(a => a.postId);
+    
+    // Use IN clause to get all assigned posts
+    return await db.select().from(blogPosts)
+      .where(sql`${blogPosts.id} IN (${postIds.join(',')})`)
+      .orderBy(desc(blogPosts.updatedAt));
   }
 }
 
