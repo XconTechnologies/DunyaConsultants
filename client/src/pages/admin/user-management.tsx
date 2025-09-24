@@ -390,7 +390,13 @@ export default function UserManagement() {
                 <Label htmlFor="role">Role</Label>
                 <Select 
                   value={createForm.role} 
-                  onValueChange={(value) => setCreateForm({ ...createForm, role: value as keyof typeof ROLE_CONFIG })}
+                  onValueChange={(value) => {
+                    setCreateForm({ 
+                      ...createForm, 
+                      role: value as keyof typeof ROLE_CONFIG,
+                      permissions: value === 'custom' ? {} : undefined
+                    });
+                  }}
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select role" />
@@ -411,8 +417,12 @@ export default function UserManagement() {
               
               {/* Custom Permissions Section - Only visible when Custom role is selected */}
               {createForm.role === 'custom' && (
-                <div className="space-y-3 p-4 bg-gray-50 rounded-lg border">
-                  <Label className="text-sm font-medium text-gray-700">Custom Permissions</Label>
+                <div className="space-y-3 p-4 bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg border-2 border-purple-200">
+                  <div className="flex items-center space-x-2">
+                    <Settings className="w-4 h-4 text-purple-600" />
+                    <Label className="text-sm font-semibold text-purple-700">Custom Permissions</Label>
+                  </div>
+                  <p className="text-xs text-gray-600 mb-3">Select the specific permissions for this user</p>
                   <div className="grid grid-cols-2 gap-3">
                     {Object.entries(ROLE_CONFIG.custom.defaultPermissions).map(([permission, defaultValue]) => {
                       const permissionLabels: Record<string, string> = {
