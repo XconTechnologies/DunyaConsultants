@@ -80,10 +80,17 @@ export default function AdminDashboard() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  // Check authentication
+  // Check authentication - support both admin and user tokens
   useEffect(() => {
-    const token = localStorage.getItem("adminToken");
-    const user = localStorage.getItem("adminUser");
+    // Check for admin token first
+    let token = localStorage.getItem("adminToken");
+    let user = localStorage.getItem("adminUser");
+    
+    // If no admin token, check for user token
+    if (!token || !user) {
+      token = localStorage.getItem("userToken");
+      user = localStorage.getItem("user");
+    }
     
     if (!token || !user) {
       setLocation("/login");
@@ -99,9 +106,12 @@ export default function AdminDashboard() {
     }
   }, [setLocation]);
 
-  // Get auth token
+  // Get auth token - support both admin and user tokens
   const getAuthHeaders = () => {
-    const token = localStorage.getItem("adminToken");
+    let token = localStorage.getItem("adminToken");
+    if (!token) {
+      token = localStorage.getItem("userToken");
+    }
     return {
       "Authorization": `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -305,7 +315,9 @@ export default function AdminDashboard() {
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     localStorage.removeItem("adminUser");
-    setLocation("/admin/login");
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("user");
+    setLocation("/login");
   };
 
   const handlePublish = (id: number) => {
@@ -347,36 +359,44 @@ export default function AdminDashboard() {
 
   if (!authChecked || !adminUser) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 #1845B3 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading admin dashboard...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1D50C9] mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
+          <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <BarChart3 className="w-8 h-8 #1845B3" />
-                <h1 className="text-2xl font-bold text-gray-900">Admin Dashboard</h1>
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                  <BarChart3 className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-white">Content Dashboard</h1>
+                  <p className="text-blue-100 text-sm">
+                    {adminUser.role === 'admin' ? 'Full Access' : 'Editor Access'}
+                  </p>
+                </div>
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-600">
-                Welcome, <span className="font-medium">{adminUser.username}</span>
+              <div className="text-right">
+                <div className="text-sm text-blue-100">Welcome back,</div>
+                <div className="font-medium text-white">{adminUser.username}</div>
               </div>
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleLogout}
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 bg-white/10 border-white/20 text-white hover:bg-white/20 backdrop-blur-sm"
               >
                 <LogOut className="w-4 h-4" />
                 <span>Logout</span>
@@ -388,16 +408,52 @@ export default function AdminDashboard() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-6 mb-8">
-          <Card>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Total Blog Posts</CardTitle>
-              <BookOpen className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium text-gray-700">Total Blog Posts</CardTitle>
+              <div className="p-2 bg-[#1D50C9] rounded-lg">
+                <BookOpen className="h-4 w-4 text-white" />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{blogPosts.length}</div>
-              <p className="text-xs text-muted-foreground">
+              <div className="text-3xl font-bold text-[#1D50C9]">{blogPosts.length}</div>
+              <p className="text-xs text-gray-600 mt-1">
                 {blogPosts.filter((post: BlogPost) => post.isPublished).length} published
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-gray-700">Published</CardTitle>
+              <div className="p-2 bg-green-500 rounded-lg">
+                <CheckCircle className="h-4 w-4 text-white" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-green-600">
+                {blogPosts.filter((post: BlogPost) => post.isPublished).length}
+              </div>
+              <p className="text-xs text-gray-600 mt-1">
+                Live articles
+              </p>
+            </CardContent>
+          </Card>
+          
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-orange-50/50 backdrop-blur-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-gray-700">Drafts</CardTitle>
+              <div className="p-2 bg-orange-500 rounded-lg">
+                <FileText className="h-4 w-4 text-white" />
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-orange-600">
+                {blogPosts.filter((post: BlogPost) => !post.isPublished).length}
+              </div>
+              <p className="text-xs text-gray-600 mt-1">
+                Unpublished articles
               </p>
             </CardContent>
           </Card>
@@ -408,8 +464,8 @@ export default function AdminDashboard() {
           <div className="flex justify-between items-center">
             <h2 className="text-xl font-semibold">Blog Posts Management</h2>
             <Button 
-              onClick={() => setLocation("/admin/blog-editor")}
-              className="flex items-center space-x-2"
+              onClick={() => setLocation("/blog-editor")}
+              className="flex items-center space-x-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white shadow-lg"
             >
               <Plus className="w-4 h-4" />
               <span>Add New Post</span>
@@ -418,26 +474,28 @@ export default function AdminDashboard() {
 
           {/* Bulk Actions */}
           {selectedIds.length > 0 && (
-            <div className="flex items-center gap-2 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-              <span className="text-sm text-blue-700 font-medium">
+            <div className="flex items-center gap-2 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-[#1D50C9]/20 rounded-xl shadow-sm">
+              <span className="text-sm text-[#1D50C9] font-medium">
                 {selectedIds.length} blog{selectedIds.length === 1 ? '' : 's'} selected
               </span>
               <div className="flex gap-2">
-                <Button
-                  data-testid="button-bulk-publish"
-                  size="sm"
-                  variant="default"
-                  disabled={selectedIds.length === 0}
-                  onClick={() => {
-                    if (window.confirm(`Are you sure you want to publish ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}?`)) {
-                      bulkPublishMutation.mutate(selectedIds);
-                    }
-                  }}
-                  className="bg-green-600 hover:bg-green-700 text-white"
-                >
-                  <CheckCircle className="w-4 h-4 mr-1" />
-                  Publish Selected
-                </Button>
+                {adminUser.role === 'admin' && (
+                  <Button
+                    data-testid="button-bulk-publish"
+                    size="sm"
+                    variant="default"
+                    disabled={selectedIds.length === 0}
+                    onClick={() => {
+                      if (window.confirm(`Are you sure you want to publish ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}?`)) {
+                        bulkPublishMutation.mutate(selectedIds);
+                      }
+                    }}
+                    className="bg-green-600 hover:bg-green-700 text-white shadow-sm"
+                  >
+                    <CheckCircle className="w-4 h-4 mr-1" />
+                    Publish Selected
+                  </Button>
+                )}
                 <Button
                   data-testid="button-bulk-draft"
                   size="sm"
@@ -448,24 +506,28 @@ export default function AdminDashboard() {
                       bulkDraftMutation.mutate(selectedIds);
                     }
                   }}
+                  className="border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9]/10"
                 >
                   <FileText className="w-4 h-4 mr-1" />
                   Draft Selected
                 </Button>
-                <Button
-                  data-testid="button-bulk-delete"
-                  size="sm"
-                  variant="destructive"
-                  disabled={selectedIds.length === 0}
-                  onClick={() => {
-                    if (window.confirm(`Are you sure you want to DELETE ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}? This action cannot be undone.`)) {
-                      bulkDeleteMutation.mutate(selectedIds);
-                    }
-                  }}
-                >
-                  <Trash2 className="w-4 h-4 mr-1" />
-                  Delete Selected
-                </Button>
+                {adminUser.role === 'admin' && (
+                  <Button
+                    data-testid="button-bulk-delete"
+                    size="sm"
+                    variant="destructive"
+                    disabled={selectedIds.length === 0}
+                    onClick={() => {
+                      if (window.confirm(`Are you sure you want to DELETE ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}? This action cannot be undone.`)) {
+                        bulkDeleteMutation.mutate(selectedIds);
+                      }
+                    }}
+                    className="shadow-sm"
+                  >
+                    <Trash2 className="w-4 h-4 mr-1" />
+                    Delete Selected
+                  </Button>
+                )}
               </div>
             </div>
           )}
