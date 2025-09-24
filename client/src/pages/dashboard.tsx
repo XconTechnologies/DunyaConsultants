@@ -163,7 +163,7 @@ export default function UserDashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {assignedPosts?.filter(post => post.isPublished).length || 0}
+                {assignedPosts?.filter((post: BlogPost) => post.isPublished).length || 0}
               </div>
               <p className="text-xs text-muted-foreground">Live posts</p>
             </CardContent>
@@ -176,7 +176,7 @@ export default function UserDashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">
-                {assignedPosts?.filter(post => !post.isPublished).length || 0}
+                {assignedPosts?.filter((post: BlogPost) => !post.isPublished).length || 0}
               </div>
               <p className="text-xs text-muted-foreground">Work in progress</p>
             </CardContent>

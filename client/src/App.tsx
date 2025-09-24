@@ -63,6 +63,7 @@ import StudyAbroadJourney from "@/pages/study-abroad-journey";
 import EngagementTracker from "@/components/gamification/engagement-tracker";
 import AdminLogin from "@/pages/admin/login";
 import UserLogin from "@/pages/user-login";
+import UserDashboard from "@/pages/dashboard";
 import AdminDashboard from "@/pages/admin/dashboard";
 import BlogEditor from "@/pages/admin/blog-editor";
 import AdminBlogPreview from "@/pages/admin/blog-preview";
@@ -168,7 +169,7 @@ function Router() {
       <Route path="/login" component={UserLogin} />
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
-      <Route path="/dashboard" component={AdminDashboard} />
+      <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin/users" component={UserManagement} />
       <Route path="/admin/post-assignments" component={PostAssignments} />
       <Route path="/admin/blog-editor/:id?" component={BlogEditor} />
