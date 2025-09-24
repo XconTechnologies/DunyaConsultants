@@ -994,6 +994,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     }
                     
                     return (
+                      <>
                       <section 
                         key={index} 
                         id={section.id} 
@@ -1523,13 +1524,17 @@ function BlogPostDetail({ slug }: { slug: string }) {
                               </div>
                             )
                           )}
-                          </div>
-                        </section>
-                      </div>
-                    </footer>
-
+                        </div>
+                      </section>
+                      </>
+                    );
+                  })}
+                </div>
               </div>
+            </article>
           </div>
+        </div>
+      </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-1">
@@ -1708,12 +1713,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   </Card>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
       </div>
-    <Footer />
+      <Footer />
     </div>
   );
 }
