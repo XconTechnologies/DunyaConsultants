@@ -9,6 +9,7 @@ const AboutCompany = lazy(() => import("@/components/about-company"));
 const BranchesCarousel = lazy(() => import("@/components/branches-carousel"));
 const IeltsSection = lazy(() => import("@/components/ielts-section"));
 const CountriesSection = lazy(() => import("@/components/countries-section"));
+const AccreditationSection = lazy(() => import("@/components/accreditation-section"));
 const ConsultationBookingSection = lazy(() => import("@/components/consultation-booking-section"));
 const UniversityPartnersSection = lazy(() => import("@/components/university-partners-section"));
 // const EventsSection = lazy(() => import("@/components/events-section"));
@@ -53,6 +54,10 @@ export default function Home() {
       
       <Suspense fallback={<SectionSkeleton />}>
         <CountriesSection />
+      </Suspense>
+      
+      <Suspense fallback={<SectionSkeleton />}>
+        <AccreditationSection />
       </Suspense>
       
       <Suspense fallback={<SectionSkeleton />}>
