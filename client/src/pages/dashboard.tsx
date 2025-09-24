@@ -240,6 +240,15 @@ export default function UserDashboard() {
                           <div className="font-medium max-w-[400px] truncate">
                             {post.title}
                           </div>
+                          {(() => {
+                            const editStatus = getEditingStatus(post.id);
+                            return editStatus.isBeingEdited ? (
+                              <div className="text-xs text-orange-600 mt-1 flex items-center space-x-1">
+                                <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                                <span>{editStatus.editingUser?.username} is editing</span>
+                              </div>
+                            ) : null;
+                          })()}
                           <div className="text-sm text-gray-500">
                             ID: {post.id}
                           </div>
