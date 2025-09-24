@@ -1089,6 +1089,103 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Editing Session Management Endpoints
+  
+  // Start editing session for a post
+  app.post("/api/admin/editing-sessions", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { postId } = req.body;
+
+      if (!postId) {
+        return res.status(400).json({ message: 'Post ID is required' });
+      }
+
+      // Clean up any inactive sessions first
+      await storage.cleanupInactiveEditingSessions();
+
+      // Start new editing session
+      const session = await storage.startEditingSession({
+        postId: parseInt(postId),
+        userId: req.adminId!
+      });
+
+      res.status(201).json(session);
+    } catch (error) {
+      console.error('Error starting editing session:', error);
+      res.status(500).json({ message: 'Failed to start editing session' });
+    }
+  });
+
+  // Update editing activity (keep-alive)
+  app.put("/api/admin/editing-sessions/:sessionId/activity", requireAuth, async (req, res) => {
+    try {
+      const sessionId = parseInt(req.params.sessionId);
+
+      if (isNaN(sessionId)) {
+        return res.status(400).json({ message: 'Invalid session ID' });
+      }
+
+      await storage.updateEditingActivity(sessionId);
+      res.json({ success: true, message: 'Activity updated' });
+    } catch (error) {
+      console.error('Error updating editing activity:', error);
+      res.status(500).json({ message: 'Failed to update activity' });
+    }
+  });
+
+  // End editing session
+  app.delete("/api/admin/editing-sessions/:sessionId", requireAuth, async (req, res) => {
+    try {
+      const sessionId = parseInt(req.params.sessionId);
+
+      if (isNaN(sessionId)) {
+        return res.status(400).json({ message: 'Invalid session ID' });
+      }
+
+      await storage.endEditingSession(sessionId);
+      res.json({ success: true, message: 'Editing session ended' });
+    } catch (error) {
+      console.error('Error ending editing session:', error);
+      res.status(500).json({ message: 'Failed to end editing session' });
+    }
+  });
+
+  // Get active editing sessions for a post
+  app.get("/api/admin/posts/:postId/editing-sessions", requireAuth, async (req, res) => {
+    try {
+      const postId = parseInt(req.params.postId);
+
+      if (isNaN(postId)) {
+        return res.status(400).json({ message: 'Invalid post ID' });
+      }
+
+      // Clean up inactive sessions first
+      await storage.cleanupInactiveEditingSessions();
+
+      const sessions = await storage.getActiveEditingSessions(postId);
+      
+      // Include user information with each session
+      const sessionsWithUsers = await Promise.all(
+        sessions.map(async (session) => {
+          const user = await storage.getAdminById(session.userId);
+          return {
+            ...session,
+            user: user ? {
+              id: user.id,
+              username: user.username,
+              role: user.role
+            } : null
+          };
+        })
+      );
+
+      res.json(sessionsWithUsers);
+    } catch (error) {
+      console.error('Error fetching editing sessions:', error);
+      res.status(500).json({ message: 'Failed to fetch editing sessions' });
+    }
+  });
+
   // Get user's assigned posts
   app.get("/api/admin/users/:id/posts", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
