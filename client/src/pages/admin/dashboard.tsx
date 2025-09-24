@@ -47,6 +47,7 @@ import {
   canManageUsers, 
   canPublishContent, 
   canDeleteContent, 
+  canEditContent,
   isAdmin 
 } from "@/lib/permissions";
 import type { AdminUser } from "@shared/schema";
@@ -643,15 +644,17 @@ export default function AdminDashboard() {
                                 <CheckCircle className="w-4 h-4" />
                               </Button>
                             )}
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => handleDelete("blog", post.id)}
-                              title="Delete Article"
-                              className="#1845B3 hover:text-#1a73e8"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </Button>
+                            {canDeleteContent(adminUser) && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={() => handleDelete("blog", post.id)}
+                                title="Delete Article"
+                                className="#1845B3 hover:text-#1a73e8"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            )}
                           </div>
                         </TableCell>
                       </TableRow>
