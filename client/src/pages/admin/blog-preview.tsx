@@ -9,7 +9,16 @@ export default function AdminBlogPreview() {
   const [, params] = useRoute("/admin/blog-preview/:id");
   const blogId = params?.id;
 
-  const token = localStorage.getItem("adminToken");
+  // Check for both admin and user tokens (support for different user types)
+  const getAuthToken = () => {
+    let token = localStorage.getItem("adminToken");
+    if (!token) {
+      token = localStorage.getItem("userToken");
+    }
+    return token;
+  };
+  
+  const token = getAuthToken();
 
   // Fetch blog post for preview (including drafts)
   const { data: blogPost, isLoading, error } = useQuery({
