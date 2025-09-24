@@ -75,11 +75,11 @@ function requireRole(...allowedRoles: string[]) {
 // Admin-only access middleware
 const requireAdmin = requireRole('admin');
 
-// Editor and Admin access middleware  
-const requireEditor = requireRole('admin', 'editor');
+// User and Admin access middleware  
+const requireUser = requireRole('admin', 'user');
 
-// Any admin role access middleware
-const requireAnyAdminRole = requireRole('admin', 'editor', 'writer');
+// Any admin role access middleware (for backwards compatibility)
+const requireAnyAdminRole = requireRole('admin', 'user');
 
 // Reader authentication middleware (for content gating)
 async function requireReader(req: AuthenticatedRequest, res: Response, next: NextFunction) {
@@ -1870,7 +1870,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // ==============================================
 
   // Get blog posts by status (Admin/Editor access)
-  app.get("/api/admin/blog-posts/status/:status", requireEditor, async (req, res) => {
+  app.get("/api/admin/blog-posts/status/:status", requireUser, async (req, res) => {
     try {
       const status = req.params.status as BlogPost['status'];
       const validStatuses = ['draft', 'in_review', 'published', 'archived'];
@@ -1887,7 +1887,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get blog posts by author (Admin/Editor access)
-  app.get("/api/admin/blog-posts/author/:authorId", requireEditor, async (req, res) => {
+  app.get("/api/admin/blog-posts/author/:authorId", requireUser, async (req, res) => {
     try {
       const authorId = parseInt(req.params.authorId);
       const posts = await storage.getBlogPostsByAuthor(authorId);
@@ -2005,7 +2005,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get blog post revisions (Admin/Editor access)
-  app.get("/api/admin/blog-posts/:id/revisions", requireEditor, async (req, res) => {
+  app.get("/api/admin/blog-posts/:id/revisions", requireUser, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const revisions = await storage.getBlogPostRevisions(id);
@@ -2041,7 +2041,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // ==============================================
 
   // Upload media file (Admin/Editor access)
-  app.post("/api/admin/media/upload", requireEditor, upload.single('file'), async (req: AuthenticatedRequest, res) => {
+  app.post("/api/admin/media/upload", requireUser, upload.single('file'), async (req: AuthenticatedRequest, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: 'No file provided' });
@@ -2076,7 +2076,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all media (Admin/Editor access)
-  app.get("/api/admin/media", requireEditor, async (req, res) => {
+  app.get("/api/admin/media", requireUser, async (req, res) => {
     try {
       const media = await storage.getMedia();
       res.json(media);
@@ -2086,7 +2086,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get single media item (Admin/Editor access)
-  app.get("/api/admin/media/:id", requireEditor, async (req, res) => {
+  app.get("/api/admin/media/:id", requireUser, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const media = await storage.getMediaById(id);
@@ -2100,7 +2100,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update media metadata (Admin/Editor access)
-  app.put("/api/admin/media/:id", requireEditor, async (req: AuthenticatedRequest, res) => {
+  app.put("/api/admin/media/:id", requireUser, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
       const { alt, width, height } = req.body;

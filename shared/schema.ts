@@ -123,7 +123,7 @@ export const adminUsers = pgTable("admin_users", {
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   email: text("email").notNull().unique(),
-  role: text("role", { enum: ["admin", "editor", "writer"] }).default("writer").notNull(),
+  role: text("role", { enum: ["admin", "user"] }).default("user").notNull(),
   isActive: boolean("is_active").default(true).notNull(),
   lastLogin: timestamp("last_login"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
