@@ -42,6 +42,7 @@ import {
   Settings
 } from "lucide-react";
 import type { AdminUser, BlogPost } from "@shared/schema";
+import { isAdmin } from "@/lib/permissions";
 
 // Role configuration for user display
 const ROLE_CONFIG = {
@@ -488,15 +489,17 @@ export default function PostAssignments() {
                       </div>
                     </TableCell>
                     <TableCell className="text-right">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleDeleteAssignment(assignment.userId, assignment.postId)}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                        disabled={deleteAssignmentMutation.isPending}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
+                      {isAdmin(currentUser) && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDeleteAssignment(assignment.userId, assignment.postId)}
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                          disabled={deleteAssignmentMutation.isPending}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}

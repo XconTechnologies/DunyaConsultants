@@ -45,6 +45,7 @@ import {
   Settings
 } from "lucide-react";
 import type { AdminUser } from "@shared/schema";
+import { canManageUsers } from "@/lib/permissions";
 
 // Role configuration with permissions and styling
 const ROLE_CONFIG = {
@@ -551,15 +552,17 @@ export default function UserManagement() {
                         >
                           <Edit className="w-4 h-4" />
                         </Button>
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handleDeleteUser(user.id)}
-                          className="text-red-600 hover:text-red-700"
-                          data-testid={`button-delete-user-${user.id}`}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </Button>
+                        {canManageUsers(currentUser) && (
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleDeleteUser(user.id)}
+                            className="text-red-600 hover:text-red-700"
+                            data-testid={`button-delete-user-${user.id}`}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        )}
                       </div>
                     </TableCell>
                   </TableRow>
