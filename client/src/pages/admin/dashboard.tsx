@@ -145,6 +145,26 @@ export default function AdminDashboard() {
     },
   });
 
+  // Fetch active editing sessions for real-time editing status
+  const { data: editingSessions = [] } = useQuery({
+    queryKey: ["/api/admin/editing-sessions/all"],
+    enabled: authChecked && !!adminUser,
+    refetchInterval: 10000, // Poll every 10 seconds for real-time updates
+    queryFn: async () => {
+      const response = await fetch("/api/admin/editing-sessions/all", {
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) return [];
+      return response.json();
+    },
+  });
+
+  // Helper function to get editing status for a post
+  const getEditingStatus = (postId: number) => {
+    const session = editingSessions.find((s: any) => s.postId === postId);
+    return session ? { isBeingEdited: true, editingUser: session.user } : { isBeingEdited: false };
+  };
+
 
 
   // Delete mutations
@@ -603,7 +623,20 @@ export default function AdminDashboard() {
                             />
                           )}
                         </TableCell>
-                        <TableCell className="font-medium">{post.title}</TableCell>
+                        <TableCell className="font-medium">
+                          <div>
+                            <div>{post.title}</div>
+                            {(() => {
+                              const editStatus = getEditingStatus(post.id);
+                              return editStatus.isBeingEdited ? (
+                                <div className="text-xs text-orange-600 mt-1 flex items-center space-x-1">
+                                  <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
+                                  <span>{editStatus.editingUser?.username} is editing</span>
+                                </div>
+                              ) : null;
+                            })()}
+                          </div>
+                        </TableCell>
                         <TableCell className="text-sm text-gray-600">
                           {post.isPublished && post.publishedAt 
                             ? new Date(post.publishedAt).toLocaleDateString('en-US', {

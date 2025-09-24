@@ -5,7 +5,7 @@ import { seedBlogPosts } from "./seed-blogs";
 import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
-  insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost 
+  insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession 
 } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";

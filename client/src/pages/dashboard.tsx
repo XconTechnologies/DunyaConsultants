@@ -77,6 +77,26 @@ export default function UserDashboard() {
     },
   });
 
+  // Fetch active editing sessions for real-time editing status
+  const { data: editingSessions = [] } = useQuery({
+    queryKey: ["/api/admin/editing-sessions/all"],
+    enabled: authChecked && !!currentUser,
+    refetchInterval: 10000, // Poll every 10 seconds for real-time updates
+    queryFn: async () => {
+      const response = await fetch("/api/admin/editing-sessions/all", {
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) return [];
+      return response.json();
+    },
+  });
+
+  // Helper function to get editing status for a post
+  const getEditingStatus = (postId: number) => {
+    const session = editingSessions.find((s: any) => s.postId === postId);
+    return session ? { isBeingEdited: true, editingUser: session.user } : { isBeingEdited: false };
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("userToken");
     localStorage.removeItem("user");
