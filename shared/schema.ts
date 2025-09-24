@@ -249,6 +249,16 @@ export const auditLogs = pgTable("audit_logs", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Real-time editing sessions tracking
+export const editingSessions = pgTable("editing_sessions", {
+  id: serial("id").primaryKey(),
+  postId: integer("post_id").references(() => blogPosts.id).notNull(),
+  userId: integer("user_id").references(() => adminUsers.id).notNull(),
+  startedAt: timestamp("started_at").defaultNow().notNull(),
+  lastActivity: timestamp("last_activity").defaultNow().notNull(),
+  isActive: boolean("is_active").default(true).notNull(),
+});
+
 // Post assignments for granular access control
 export const postAssignments = pgTable("post_assignments", {
   id: serial("id").primaryKey(),
@@ -357,6 +367,12 @@ export const insertAuditLogSchema = createInsertSchema(auditLogs).omit({
   createdAt: true,
 });
 
+export const insertEditingSessionSchema = createInsertSchema(editingSessions).omit({
+  id: true,
+  startedAt: true,
+  lastActivity: true,
+});
+
 export const insertPostAssignmentSchema = createInsertSchema(postAssignments).omit({
   id: true,
   createdAt: true,
@@ -402,5 +418,7 @@ export type InsertBlogPostRevision = z.infer<typeof insertBlogPostRevisionSchema
 export type BlogPostRevision = typeof blogPostRevisions.$inferSelect;
 export type InsertAuditLog = z.infer<typeof insertAuditLogSchema>;
 export type AuditLog = typeof auditLogs.$inferSelect;
+export type InsertEditingSession = z.infer<typeof insertEditingSessionSchema>;
+export type EditingSession = typeof editingSessions.$inferSelect;
 export type InsertPostAssignment = z.infer<typeof insertPostAssignmentSchema>;
 export type PostAssignment = typeof postAssignments.$inferSelect;

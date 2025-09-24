@@ -1,6 +1,6 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
-  adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments,
+  adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, editingSessions,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -9,7 +9,8 @@ import {
   type Service, type InsertService, type Page, type InsertPage,
   type AdminSession, type InsertAdminSession, type UserSession, type InsertUserSession,
   type Media, type InsertMedia, type BlogPostRevision, type InsertBlogPostRevision,
-  type AuditLog, type InsertAuditLog, type PostAssignment, type InsertPostAssignment
+  type AuditLog, type InsertAuditLog, type PostAssignment, type InsertPostAssignment,
+  type EditingSession, type InsertEditingSession
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -108,6 +109,14 @@ export interface IStorage {
   getUserPostAssignments(userId: number): Promise<PostAssignment[]>;
   getPostAssignments(postId: number): Promise<PostAssignment[]>;
   getUserAssignedPosts(userId: number): Promise<BlogPost[]>;
+  
+  // Editing Session Management
+  startEditingSession(session: InsertEditingSession): Promise<EditingSession>;
+  updateEditingActivity(sessionId: number): Promise<void>;
+  endEditingSession(sessionId: number): Promise<void>;
+  getActiveEditingSessions(postId: number): Promise<EditingSession[]>;
+  getUserEditingSession(userId: number, postId: number): Promise<EditingSession | undefined>;
+  cleanupInactiveEditingSessions(): Promise<void>;
 }
 
 
@@ -706,6 +715,88 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(blogPosts)
       .where(sql`${blogPosts.id} IN (${postIds.join(',')})`)
       .orderBy(desc(blogPosts.updatedAt));
+  }
+
+  // Editing Session Methods
+  async startEditingSession(session: InsertEditingSession): Promise<EditingSession> {
+    // First, end any existing session for this user and post
+    await db
+      .update(editingSessions)
+      .set({ isActive: false })
+      .where(
+        and(
+          eq(editingSessions.userId, session.userId),
+          eq(editingSessions.postId, session.postId),
+          eq(editingSessions.isActive, true)
+        )
+      );
+
+    // Create new editing session
+    const [editingSession] = await db
+      .insert(editingSessions)
+      .values(session)
+      .returning();
+    
+    return editingSession;
+  }
+
+  async updateEditingActivity(sessionId: number): Promise<void> {
+    await db
+      .update(editingSessions)
+      .set({ lastActivity: new Date() })
+      .where(eq(editingSessions.id, sessionId));
+  }
+
+  async endEditingSession(sessionId: number): Promise<void> {
+    await db
+      .update(editingSessions)
+      .set({ isActive: false })
+      .where(eq(editingSessions.id, sessionId));
+  }
+
+  async getActiveEditingSessions(postId: number): Promise<EditingSession[]> {
+    const sessions = await db
+      .select()
+      .from(editingSessions)
+      .where(
+        and(
+          eq(editingSessions.postId, postId),
+          eq(editingSessions.isActive, true)
+        )
+      )
+      .orderBy(desc(editingSessions.startedAt));
+    
+    return sessions;
+  }
+
+  async getUserEditingSession(userId: number, postId: number): Promise<EditingSession | undefined> {
+    const [session] = await db
+      .select()
+      .from(editingSessions)
+      .where(
+        and(
+          eq(editingSessions.userId, userId),
+          eq(editingSessions.postId, postId),
+          eq(editingSessions.isActive, true)
+        )
+      );
+    
+    return session || undefined;
+  }
+
+  async cleanupInactiveEditingSessions(): Promise<void> {
+    // Mark sessions inactive if last activity was more than 30 minutes ago
+    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+    
+    await db
+      .update(editingSessions)
+      .set({ isActive: false })
+      .where(
+        and(
+          eq(editingSessions.isActive, true),
+          sql`${editingSessions.lastActivity} < ${thirtyMinutesAgo}`
+        )
+      );
   }
 }
 
