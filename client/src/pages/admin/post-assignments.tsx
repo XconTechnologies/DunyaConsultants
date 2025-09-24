@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { queryClient, apiRequest } from "@/lib/queryClient";
+import { useLocation } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -77,18 +78,69 @@ interface PostAssignment {
 
 export default function PostAssignments() {
   const { toast } = useToast();
+  const [, setLocation] = useLocation();
+  const [authChecked, setAuthChecked] = useState(false);
+  const [currentUser, setCurrentUser] = useState<AdminUser | null>(null);
   const [isAssignDialogOpen, setIsAssignDialogOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState<string>("");
   const [selectedPostId, setSelectedPostId] = useState<string>("");
 
-  // Fetch all users
+  // Check authentication
+  useEffect(() => {
+    const token = localStorage.getItem("adminToken");
+    const user = localStorage.getItem("adminUser");
+    
+    if (!token || !user) {
+      setLocation("/admin/login");
+      return;
+    }
+
+    try {
+      const userData = JSON.parse(user);
+      setCurrentUser(userData);
+      setAuthChecked(true);
+    } catch {
+      setLocation("/admin/login");
+    }
+  }, [setLocation]);
+
+  // Get auth headers
+  const getAuthHeaders = () => {
+    const token = localStorage.getItem("adminToken");
+    return {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
+    };
+  };
+
+  // Fetch all users with authentication
   const { data: users = [] } = useQuery<AdminUser[]>({
     queryKey: ["/api/admin/users"],
+    queryFn: async () => {
+      const response = await fetch("/api/admin/users", {
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${await response.text()}`);
+      }
+      return response.json();
+    },
+    enabled: authChecked && !!currentUser,
   });
 
-  // Fetch all blog posts
+  // Fetch all blog posts with authentication
   const { data: blogPosts = [] } = useQuery<BlogPost[]>({
     queryKey: ["/api/admin/blog-posts"],
+    queryFn: async () => {
+      const response = await fetch("/api/admin/blog-posts", {
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${await response.text()}`);
+      }
+      return response.json();
+    },
+    enabled: authChecked && !!currentUser,
   });
 
   // Fetch all post assignments - we'll need to create this endpoint
@@ -101,7 +153,13 @@ export default function PostAssignments() {
       
       for (const user of users) {
         try {
-          const userPosts = await apiRequest(`/api/admin/users/${user.id}/posts`, "GET") as unknown as BlogPost[];
+          const response = await fetch(`/api/admin/users/${user.id}/posts`, {
+            headers: getAuthHeaders(),
+          });
+          if (!response.ok) {
+            throw new Error(`${response.status}: ${await response.text()}`);
+          }
+          const userPosts = await response.json() as BlogPost[];
           for (const post of userPosts) {
             allAssignments.push({
               id: `${user.id}-${post.id}` as any,
@@ -125,8 +183,17 @@ export default function PostAssignments() {
 
   // Create assignment mutation
   const createAssignmentMutation = useMutation({
-    mutationFn: ({ userId, postId }: { userId: number; postId: number }) =>
-      apiRequest("/api/admin/post-assignments", "POST", { userId, postId }),
+    mutationFn: async ({ userId, postId }: { userId: number; postId: number }) => {
+      const response = await fetch("/api/admin/post-assignments", {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ userId, postId }),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${await response.text()}`);
+      }
+      return response.json();
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/all-post-assignments"] });
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });
@@ -149,8 +216,16 @@ export default function PostAssignments() {
 
   // Delete assignment mutation
   const deleteAssignmentMutation = useMutation({
-    mutationFn: ({ userId, postId }: { userId: number; postId: number }) =>
-      apiRequest(`/api/admin/post-assignments/${userId}/${postId}`, "DELETE"),
+    mutationFn: async ({ userId, postId }: { userId: number; postId: number }) => {
+      const response = await fetch(`/api/admin/post-assignments/${userId}/${postId}`, {
+        method: "DELETE",
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status}: ${await response.text()}`);
+      }
+      return response.json();
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/all-post-assignments"] });
       queryClient.invalidateQueries({ queryKey: ["/api/admin/users"] });

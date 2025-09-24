@@ -1265,11 +1265,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // BLOG MANAGEMENT ROUTES
   // ==============================================
 
-  // Get all blog posts (admin)
-  app.get("/api/admin/blog-posts", requireAuth, async (req, res) => {
+  // Get all blog posts (admin) - respects post assignments for non-admin users
+  app.get("/api/admin/blog-posts", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const published = req.query.published === 'true' ? true : req.query.published === 'false' ? false : undefined;
-      const posts = await storage.getBlogPosts(published);
+      
+      let posts;
+      
+      // Admin users see all posts, non-admin users only see assigned posts
+      if (req.adminRole === 'admin') {
+        posts = await storage.getBlogPosts(published);
+      } else {
+        // Non-admin users only see posts assigned to them
+        posts = await storage.getUserAssignedPosts(req.adminId!);
+        
+        // Filter by published status if specified
+        if (published !== undefined) {
+          posts = posts.filter(post => post.isPublished === published);
+        }
+      }
       
       // Optional pagination support for better dashboard performance
       const limit = req.query.limit ? parseInt(req.query.limit as string) : undefined;
