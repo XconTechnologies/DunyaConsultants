@@ -1377,6 +1377,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
         publishedAt
       } as any);
       
+      // Auto-assign the post to its creator (unless they're an admin, who sees all posts anyway)
+      if (req.adminRole !== 'admin') {
+        try {
+          await storage.assignPostToUser({
+            userId: req.adminId!,
+            postId: post.id,
+            assignedBy: req.adminId! // Self-assigned
+          });
+        } catch (assignmentError) {
+          console.error('Failed to auto-assign post to creator:', assignmentError);
+          // Don't fail the entire operation if assignment fails
+        }
+      }
+      
       // Create comprehensive audit log for blog post creation
       await storage.createAuditLog({
         actorId: req.adminId!,
