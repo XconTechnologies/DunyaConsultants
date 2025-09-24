@@ -49,13 +49,8 @@ import {
   canDeleteContent, 
   isAdmin 
 } from "@/lib/permissions";
-
-interface AdminUser {
-  id: number;
-  username: string;
-  email: string;
-  role: string;
-}
+import type { AdminUser } from "@shared/schema";
+import AdminSidebar from "@/components/admin/sidebar";
 
 interface BlogPost {
   id: number;
@@ -386,15 +381,20 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-                  <BarChart3 className="w-8 h-8 text-white" />
-                </div>
+      {/* Sidebar */}
+      <AdminSidebar currentUser={adminUser} />
+      
+      {/* Main Content */}
+      <div className="ml-64">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-[#1D50C9] to-[#1845B3] shadow-lg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-6">
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                    <BarChart3 className="w-8 h-8 text-white" />
+                  </div>
                 <div>
                   <h1 className="text-2xl font-bold text-white">Content Dashboard</h1>
                   <p className="text-blue-100 text-sm">
@@ -722,6 +722,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
+      </div>
       </div>
     </div>
   );
