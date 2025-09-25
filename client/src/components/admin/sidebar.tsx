@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { 
   Users, 
   FileText, 
-  Settings, 
+  Tag, 
   BarChart3,
   LogOut
 } from "lucide-react";
@@ -30,10 +30,10 @@ const sidebarItems = [
     description: "Manage post access control"
   },
   {
-    title: "System Settings",
-    href: "/admin/settings",
-    icon: Settings,
-    description: "Coming soon"
+    title: "Categories",
+    href: "/admin/categories",
+    icon: Tag,
+    description: "Manage blog categories"
   }
 ];
 
