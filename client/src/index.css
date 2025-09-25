@@ -392,8 +392,8 @@ div[class*="text-gray-700"] a,
 p[class*="text-gray-700"] a,
 .blog-content a {
   color: #1844AB !important;
-  text-decoration: underline;
-  text-decoration-color: #1844AB;
+  text-decoration: underline !important;
+  text-decoration-color: #1844AB !important;
   transition: all 0.2s ease;
   font-weight: normal;
 }
@@ -404,7 +404,8 @@ div[class*="text-gray-700"] a:hover,
 p[class*="text-gray-700"] a:hover,
 .blog-content a:hover {
   color: #1844AB !important;
-  text-decoration-color: #1844AB;
+  text-decoration: underline !important;
+  text-decoration-color: #1844AB !important;
 }
 
 /* Blog content bold text styling */
