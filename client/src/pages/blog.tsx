@@ -15,17 +15,52 @@ import { Label } from "@/components/ui/label";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/lib/blog-utils";
 
-// Force brand blue color for all links
-const applyBrandBlueToLinks = () => {
+// Force brand blue color for all links with MutationObserver
+const setupLinkColorWatcher = () => {
   const brandBlue = '#1D50C9';
-  const links = document.querySelectorAll('a');
-  links.forEach(link => {
-    if (link.style) {
-      link.style.color = brandBlue;
-      link.style.textDecoration = 'underline';
-      link.style.textDecorationColor = brandBlue;
+  
+  const applyBrandBlueToLinks = () => {
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+      if (link instanceof HTMLElement) {
+        link.style.setProperty('color', brandBlue, 'important');
+        link.style.setProperty('text-decoration', 'underline', 'important');
+        link.style.setProperty('text-decoration-color', brandBlue, 'important');
+      }
+    });
+  };
+
+  // Apply immediately
+  applyBrandBlueToLinks();
+
+  // Watch for DOM changes and reapply
+  const observer = new MutationObserver((mutations) => {
+    let shouldReapply = false;
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+        const addedNodesArray = Array.from(mutation.addedNodes);
+        for (let node of addedNodesArray) {
+          if (node.nodeType === Node.ELEMENT_NODE) {
+            const element = node as Element;
+            if (element.tagName === 'A' || element.querySelector('a')) {
+              shouldReapply = true;
+              break;
+            }
+          }
+        }
+      }
+    });
+    if (shouldReapply) {
+      setTimeout(applyBrandBlueToLinks, 10);
     }
   });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  return observer;
 };
 
 // Unified image src normalization function
@@ -427,15 +462,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
   // Initialize FAQs for ALL blog content (always run this)
   useEffect(() => {
-    // Wait for content to be rendered, then initialize FAQs and apply brand blue links
+    // Wait for content to be rendered, then initialize FAQs and setup link color watcher
     const timeoutId = setTimeout(() => {
       const contentContainer = document.querySelector('.blog-content, .prose');
       if (contentContainer) {
         initializeFAQs(contentContainer as HTMLElement);
       }
       
-      // Apply brand blue color to all links
-      applyBrandBlueToLinks();
+      // Setup MutationObserver for link colors
+      const observer = setupLinkColorWatcher();
       
       // Also check for any content sections that might have FAQs
       const allContentSections = document.querySelectorAll('[class*="prose"], .blog-content, .content-section');
@@ -449,8 +484,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
         setTimeout(() => {
           const body = document.body;
           initializeFAQs(body);
-          // Apply brand blue links again after FAQ initialization
-          applyBrandBlueToLinks();
           // Force FAQ initialization for troublesome blog posts
           const strongElements = body.querySelectorAll('strong, b');
           strongElements.forEach((strong) => {
@@ -475,6 +508,10 @@ function BlogPostDetail({ slug }: { slug: string }) {
           });
         }, 500);
       }
+      
+      return () => {
+        observer?.disconnect();
+      };
     }, 300);
 
     return () => clearTimeout(timeoutId);
@@ -731,11 +768,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       className="blog-content prose prose-xl max-w-none" 
                       dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }}
                       ref={(el) => {
-                        // Initialize FAQ functionality and apply brand blue links after content is rendered
+                        // Initialize FAQ functionality after content is rendered
                         if (el) {
                           setTimeout(() => {
                             initializeFAQs(el);
-                            applyBrandBlueToLinks();
+                            // The MutationObserver will handle link colors automatically
                           }, 100);
                         }
                       }}
