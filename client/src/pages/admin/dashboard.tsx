@@ -131,12 +131,49 @@ export default function AdminDashboard() {
 
   // Handle edit button click with conflict checking
   const handleEditPost = async (postId: number) => {
-    const canEdit = await checkEditingConflicts(postId);
-    if (canEdit) {
-      // No conflict, navigate directly to editor
+    // Check if user is admin - admins can takeover posts
+    const isAdmin = adminUser?.role === 'admin';
+    
+    if (isAdmin) {
+      // Admin takeover - check for existing sessions and handle takeover
+      const sessions = await fetch(`/api/admin/posts/${postId}/editing-sessions`, {
+        headers: getAuthHeaders(),
+      });
+      
+      if (sessions.ok) {
+        const sessionsData = await sessions.json();
+        const otherUsersSessions = sessionsData.filter((session: any) => session.userId !== adminUser?.id);
+        
+        if (otherUsersSessions.length > 0) {
+          // Admin takes over - end other sessions and notify them
+          try {
+            await fetch('/api/admin/editing-sessions/takeover', {
+              method: 'POST',
+              headers: getAuthHeaders(),
+              body: JSON.stringify({ postId, takeoverUserId: adminUser.id })
+            });
+            
+            toast({
+              title: "Post Taken Over",
+              description: "You have taken control of this post. Other editors have been notified.",
+            });
+          } catch (error) {
+            console.error('Error during admin takeover:', error);
+          }
+        }
+      }
+      
+      // Navigate to editor regardless (admin always gets access)
       setLocation(`/admin/blog-editor/${postId}`);
+    } else {
+      // Non-admin users need conflict checking
+      const canEdit = await checkEditingConflicts(postId);
+      if (canEdit) {
+        // No conflict, navigate directly to editor
+        setLocation(`/admin/blog-editor/${postId}`);
+      }
+      // If there's a conflict, the dialog will handle the rest
     }
-    // If there's a conflict, the dialog will handle the rest
   };
 
   // Handle conflict resolution for the two-way popup system
