@@ -6,55 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
-import { useEffect } from "react";
-
-// Force brand blue color for all links with MutationObserver
-const setupLinkColorWatcher = () => {
-  const brandBlue = '#1D50C9';
-  
-  const applyBrandBlueToLinks = () => {
-    const links = document.querySelectorAll('a');
-    links.forEach(link => {
-      if (link instanceof HTMLElement) {
-        link.style.setProperty('color', brandBlue, 'important');
-        link.style.setProperty('text-decoration', 'underline', 'important');
-        link.style.setProperty('text-decoration-color', brandBlue, 'important');
-      }
-    });
-  };
-
-  // Apply immediately
-  applyBrandBlueToLinks();
-
-  // Watch for DOM changes and reapply
-  const observer = new MutationObserver((mutations) => {
-    let shouldReapply = false;
-    mutations.forEach((mutation) => {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-        const addedNodesArray = Array.from(mutation.addedNodes);
-        for (let node of addedNodesArray) {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            const element = node as Element;
-            if (element.tagName === 'A' || element.querySelector('a')) {
-              shouldReapply = true;
-              break;
-            }
-          }
-        }
-      }
-    });
-    if (shouldReapply) {
-      setTimeout(applyBrandBlueToLinks, 10);
-    }
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
-  return observer;
-};
 
 export default function AdminBlogPreview() {
   const [, params] = useRoute("/admin/blog-preview/:id");
@@ -85,19 +36,6 @@ export default function AdminBlogPreview() {
       return response.json();
     },
   });
-
-  // Apply brand blue color to links when content loads
-  useEffect(() => {
-    if (blogPost?.content) {
-      const timeoutId = setTimeout(() => {
-        const observer = setupLinkColorWatcher();
-        return () => {
-          observer?.disconnect();
-        };
-      }, 300);
-      return () => clearTimeout(timeoutId);
-    }
-  }, [blogPost?.content]);
 
   if (isLoading) {
     return (
@@ -296,13 +234,7 @@ export default function AdminBlogPreview() {
                 <div className="prose prose-xl max-w-none">
                   <div 
                     className="blog-content prose prose-xl max-w-none" 
-                    dangerouslySetInnerHTML={{ __html: blogPost.content || '' }}
-                    ref={(el) => {
-                      // The MutationObserver will handle link colors automatically
-                      if (el) {
-                        // Content has been rendered, observer will detect any new links
-                      }
-                    }}
+                    dangerouslySetInnerHTML={{ __html: blogPost.content || '' }} 
                   />
                 </div>
               </div>

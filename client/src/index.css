@@ -390,18 +390,10 @@ div[class*="from-[#1D50C9]"] button.mega-menu-button {
 .text-gray-700 a,
 div[class*="text-gray-700"] a,
 p[class*="text-gray-700"] a,
-.blog-content a,
-article a,
-div a,
-p a,
-span a,
-strong a,
-b a,
-em a,
-i a {
-  color: #1D50C9 !important;
-  text-decoration: underline !important;
-  text-decoration-color: #1D50C9 !important;
+.blog-content a {
+  color: #1844AB !important;
+  text-decoration: underline;
+  text-decoration-color: #1844AB;
   transition: all 0.2s ease;
   font-weight: normal;
 }
@@ -410,18 +402,9 @@ i a {
 .text-gray-700 a:hover,
 div[class*="text-gray-700"] a:hover,
 p[class*="text-gray-700"] a:hover,
-.blog-content a:hover,
-article a:hover,
-div a:hover,
-p a:hover,
-span a:hover,
-strong a:hover,
-b a:hover,
-em a:hover,
-i a:hover {
-  color: #1D50C9 !important;
-  text-decoration: underline !important;
-  text-decoration-color: #1D50C9 !important;
+.blog-content a:hover {
+  color: #1844AB !important;
+  text-decoration-color: #1844AB;
 }
 
 /* Blog content bold text styling */
@@ -510,7 +493,6 @@ i a:hover {
 
 .blog-content li,
 .prose li {
-  font-size: 16px !important;
   margin-bottom: 0.5rem !important;
   line-height: 1.6 !important;
   color: #374151 !important;
@@ -547,11 +529,6 @@ i a:hover {
   .prose p {
     font-size: 16px !important;
   }
-
-  .blog-content li,
-  .prose li {
-    font-size: 16px !important;
-  }
 }
 
 /* Blog hero section styling - 800px max width, centered */
@@ -565,29 +542,6 @@ i a:hover {
     max-width: 100% !important;
     width: 100% !important;
   }
-}
-
-/* Additional link color enforcement for blog content areas */
-article[class*="bg-white"] a,
-div[class*="bg-white"] a,
-div[class*="rounded"] a,
-.min-h-screen a,
-main a,
-section a {
-  color: #1D50C9 !important;
-  text-decoration: underline !important;
-  text-decoration-color: #1D50C9 !important;
-}
-
-article[class*="bg-white"] a:hover,
-div[class*="bg-white"] a:hover,
-div[class*="rounded"] a:hover,
-.min-h-screen a:hover,
-main a:hover,
-section a:hover {
-  color: #1D50C9 !important;
-  text-decoration: underline !important;
-  text-decoration-color: #1D50C9 !important;
 }
 
 /* Contact button styling */
@@ -731,15 +685,12 @@ section a:hover {
 }
 
 .react-quill-container .ql-editor a {
-  color: #1D50C9 !important;
-  text-decoration: underline !important;
-  text-decoration-color: #1D50C9 !important;
+  color: #1D50C9;
+  text-decoration: underline;
 }
 
 .react-quill-container .ql-editor a:hover {
-  color: #1D50C9 !important;
-  text-decoration: underline !important;
-  text-decoration-color: #1D50C9 !important;
+  color: #1845B3;
 }
 
 .react-quill-container .ql-editor img {

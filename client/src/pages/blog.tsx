@@ -15,54 +15,6 @@ import { Label } from "@/components/ui/label";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/lib/blog-utils";
 
-// Force brand blue color for all links with MutationObserver
-const setupLinkColorWatcher = () => {
-  const brandBlue = '#1D50C9';
-  
-  const applyBrandBlueToLinks = () => {
-    const links = document.querySelectorAll('a');
-    links.forEach(link => {
-      if (link instanceof HTMLElement) {
-        link.style.setProperty('color', brandBlue, 'important');
-        link.style.setProperty('text-decoration', 'underline', 'important');
-        link.style.setProperty('text-decoration-color', brandBlue, 'important');
-      }
-    });
-  };
-
-  // Apply immediately
-  applyBrandBlueToLinks();
-
-  // Watch for DOM changes and reapply
-  const observer = new MutationObserver((mutations) => {
-    let shouldReapply = false;
-    mutations.forEach((mutation) => {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-        const addedNodesArray = Array.from(mutation.addedNodes);
-        for (let node of addedNodesArray) {
-          if (node.nodeType === Node.ELEMENT_NODE) {
-            const element = node as Element;
-            if (element.tagName === 'A' || element.querySelector('a')) {
-              shouldReapply = true;
-              break;
-            }
-          }
-        }
-      }
-    });
-    if (shouldReapply) {
-      setTimeout(applyBrandBlueToLinks, 10);
-    }
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
-  return observer;
-};
-
 // Unified image src normalization function
 const normalizeImageSrc = (image: string) => {
   if (!image || image.trim() === '') {
@@ -462,15 +414,12 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
   // Initialize FAQs for ALL blog content (always run this)
   useEffect(() => {
-    // Wait for content to be rendered, then initialize FAQs and setup link color watcher
+    // Wait for content to be rendered, then initialize FAQs
     const timeoutId = setTimeout(() => {
       const contentContainer = document.querySelector('.blog-content, .prose');
       if (contentContainer) {
         initializeFAQs(contentContainer as HTMLElement);
       }
-      
-      // Setup MutationObserver for link colors
-      const observer = setupLinkColorWatcher();
       
       // Also check for any content sections that might have FAQs
       const allContentSections = document.querySelectorAll('[class*="prose"], .blog-content, .content-section');
@@ -508,10 +457,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
           });
         }, 500);
       }
-      
-      return () => {
-        observer?.disconnect();
-      };
     }, 300);
 
     return () => clearTimeout(timeoutId);
@@ -672,7 +617,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-bold mb-6 leading-tight text-white max-w-[1000px] mx-auto"
+              className="font-bold mb-6 leading-tight text-white"
               style={{ fontSize: '48px' }}
             >
               {blogPost.title}
@@ -772,7 +717,6 @@ function BlogPostDetail({ slug }: { slug: string }) {
                         if (el) {
                           setTimeout(() => {
                             initializeFAQs(el);
-                            // The MutationObserver will handle link colors automatically
                           }, 100);
                         }
                       }}
@@ -3401,18 +3345,18 @@ export default function Blog() {
       <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-white max-w-[1000px] mx-auto">
+          <div className="text-center text-white">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
             >Study Abroad Blogs</motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-100 mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto px-2"
+              className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto"
             >
               Expert insights, tips, and guides for your international education journey
             </motion.p>
