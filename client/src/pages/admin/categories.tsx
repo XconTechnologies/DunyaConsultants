@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -41,37 +41,31 @@ export default function CategoriesPage() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  // Auth check
-  useState(() => {
-    const checkAuth = async () => {
-      try {
-        const token = localStorage.getItem("adminToken");
-        if (!token) {
-          window.location.href = "/admin/login";
-          return;
-        }
+  // Auth check - same pattern as admin dashboard
+  useEffect(() => {
+    // Check for admin token first
+    let token = localStorage.getItem("adminToken");
+    let user = localStorage.getItem("adminUser");
+    
+    // If no admin token, check for user token
+    if (!token || !user) {
+      token = localStorage.getItem("userToken");
+      user = localStorage.getItem("user");
+    }
+    
+    if (!token || !user) {
+      window.location.href = "/admin/login";
+      return;
+    }
 
-        const response = await fetch("/api/admin/verify", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        if (response.ok) {
-          const userData = await response.json();
-          setAdminUser(userData.user);
-        } else {
-          localStorage.removeItem("adminToken");
-          window.location.href = "/admin/login";
-        }
-      } catch (error) {
-        console.error("Auth check failed:", error);
-        window.location.href = "/admin/login";
-      } finally {
-        setAuthChecked(true);
-      }
-    };
-
-    checkAuth();
-  });
+    try {
+      const userData = JSON.parse(user);
+      setAdminUser(userData);
+      setAuthChecked(true);
+    } catch {
+      window.location.href = "/admin/login";
+    }
+  }, []);
 
   // Fetch categories
   const { data: categories = [], isLoading } = useQuery<Category[]>({
