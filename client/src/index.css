@@ -494,6 +494,7 @@ p[class*="text-gray-700"] a:hover,
 
 .blog-content li,
 .prose li {
+  font-size: 16px !important;
   margin-bottom: 0.5rem !important;
   line-height: 1.6 !important;
   color: #374151 !important;
@@ -528,6 +529,11 @@ p[class*="text-gray-700"] a:hover,
 
   .blog-content p,
   .prose p {
+    font-size: 16px !important;
+  }
+
+  .blog-content li,
+  .prose li {
     font-size: 16px !important;
   }
 }
