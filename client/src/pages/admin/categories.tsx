@@ -67,9 +67,29 @@ export default function CategoriesPage() {
     }
   }, []);
 
+  // Get auth headers helper
+  const getAuthHeaders = () => {
+    const adminToken = localStorage.getItem("adminToken");
+    const userToken = localStorage.getItem("userToken");
+    const token = adminToken || userToken;
+    return {
+      'Content-Type': 'application/json',
+      ...(token && { 'Authorization': `Bearer ${token}` })
+    };
+  };
+
   // Fetch categories
   const { data: categories = [], isLoading } = useQuery<Category[]>({
     queryKey: ["/api/admin/categories"],
+    queryFn: async () => {
+      const response = await fetch('/api/admin/categories', {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch categories');
+      }
+      return response.json();
+    },
     enabled: !!adminUser,
   });
 
