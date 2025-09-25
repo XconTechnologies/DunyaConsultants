@@ -320,7 +320,7 @@ export default function AdminDashboard() {
 
   // Helper function to get editing status for a post
   const getEditingStatus = (postId: number) => {
-    const session = editingSessions.find((s: any) => s.postId === postId);
+    const session = editingSessions.find((s: any) => s.postId === postId && s.isActive);
     return session ? { isBeingEdited: true, editingUser: session.user } : { isBeingEdited: false };
   };
 
