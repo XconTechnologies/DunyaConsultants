@@ -113,9 +113,31 @@ export default function BlogEditor() {
     }
   };
 
-  // Start editing session
+  // Start editing session (with robust safeguards to prevent chaos)
   const startEditingSession = async (postId: number) => {
+    // Multiple layers of protection to prevent session creation chaos
+    if (!postId || !adminUser) {
+      console.log('Missing postId or adminUser, skipping session creation');
+      return;
+    }
+
+    // Don't create if we already have an active session for this post
+    if (currentEditingSession && currentEditingSession.postId === postId) {
+      console.log('Session already exists for post:', postId);
+      return;
+    }
+
+    // Rate limiting: Don't create sessions too frequently 
+    const now = Date.now();
+    if (lastSessionCreation && (now - lastSessionCreation) < 1000) {
+      console.log('Rate limiting: Too soon since last session creation');
+      return;
+    }
+
     try {
+      console.log('Creating editing session for post:', postId);
+      setLastSessionCreation(now);
+      
       const response = await fetch('/api/admin/editing-sessions', {
         method: 'POST',
         headers: getAuthHeaders(),
@@ -124,7 +146,10 @@ export default function BlogEditor() {
       
       if (response.ok) {
         const session = await response.json();
+        console.log('Session created successfully:', session.id);
         setCurrentEditingSession(session);
+      } else {
+        console.error('Failed to create session:', response.status);
       }
     } catch (error) {
       console.error('Error starting editing session:', error);
@@ -331,6 +356,7 @@ export default function BlogEditor() {
   
   // Editing session management
   const [currentEditingSession, setCurrentEditingSession] = useState<any>(null);
+  const [lastSessionCreation, setLastSessionCreation] = useState<number | null>(null);
   const [showConflictDialog, setShowConflictDialog] = useState(false);
   const [conflictingUser, setConflictingUser] = useState<any>(null);
   const [conflictRequestPending, setConflictRequestPending] = useState(false);
@@ -768,6 +794,7 @@ export default function BlogEditor() {
   useEffect(() => {
     const initializeEditingSession = async () => {
       if (isEditing && blogId && adminUser && authChecked) {
+        console.log('Initializing editing session for post:', blogId);
         const canEdit = await checkEditingConflicts(blogId);
         if (canEdit) {
           await startEditingSession(blogId);
@@ -825,7 +852,7 @@ export default function BlogEditor() {
         clearInterval(pollingInterval);
       }
     };
-  }, [isEditing, blogId, adminUser, authChecked, currentEditingSession]);
+  }, [isEditing, blogId, adminUser, authChecked]); // Removed currentEditingSession to prevent infinite loop
 
   // Periodically update editing activity (keep-alive)
   useEffect(() => {
@@ -858,19 +885,15 @@ export default function BlogEditor() {
       }
     };
 
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'hidden' && currentEditingSession) {
-        // Page is being hidden (user switching tabs, etc.)
-        endEditingSession();
-      }
-    };
+    // Remove overly aggressive visibility change handler that was causing
+    // constant session creation/deletion when switching tabs
 
     window.addEventListener('beforeunload', handleBeforeUnload);
-    document.addEventListener('visibilitychange', handleVisibilityChange);
+    // Removed visibilitychange listener that was too aggressive
 
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      // Removed visibilitychange cleanup
     };
   }, [currentEditingSession]);
 
