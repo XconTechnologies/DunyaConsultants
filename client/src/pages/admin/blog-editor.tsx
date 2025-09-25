@@ -74,6 +74,9 @@ interface BlogPost {
   metaDescription?: string;
   focusKeyword?: string;
   featuredImage?: string;
+  featuredImageAlt?: string;
+  featuredImageTitle?: string;
+  featuredImageOriginalName?: string;
   tags: string[];
   publishedAt?: string;
   isPublished: boolean;
@@ -778,6 +781,9 @@ export default function BlogEditor() {
           metaDescription: blogPost.metaDescription || "",
           focusKeyword: blogPost.focusKeyword || "",
           featuredImage: blogPost.featuredImage || "",
+          featuredImageAlt: blogPost.featuredImageAlt || "",
+          featuredImageTitle: blogPost.featuredImageTitle || "",
+          featuredImageOriginalName: blogPost.featuredImageOriginalName || "",
           tags: Array.isArray(blogPost.tags) 
             ? blogPost.tags.join(", ") 
             : typeof blogPost.tags === 'string' 
@@ -1387,17 +1393,37 @@ export default function BlogEditor() {
                     {...register("featuredImage")}
                     placeholder="Image URL or upload..."
                   />
+                  
+                  <div className="space-y-3">
+                    <Input
+                      {...register("featuredImageAlt")}
+                      placeholder="Alt text (for accessibility)"
+                      className="text-sm"
+                    />
+                    <Input
+                      {...register("featuredImageTitle")}
+                      placeholder="Image title (appears on hover)"
+                      className="text-sm"
+                    />
+                  </div>
+                  
                   {watch("featuredImage") && (
                     <div className="mt-2">
                       <img 
                         src={watch("featuredImage")} 
-                        alt="Featured image preview" 
+                        alt={watch("featuredImageAlt") || "Featured image preview"} 
+                        title={watch("featuredImageTitle") || "Featured image"}
                         className="max-w-full h-32 object-cover rounded border"
                         onLoad={() => {}}
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                         }}
                       />
+                      {watch("featuredImageOriginalName") && (
+                        <p className="text-xs text-gray-500 mt-1">
+                          File: {watch("featuredImageOriginalName")}
+                        </p>
+                      )}
                     </div>
                   )}
                   {!watch("featuredImage") && (
