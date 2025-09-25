@@ -26,24 +26,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { getBlogUrl } from "@/lib/blog-utils";
 import type { AdminUser } from "@shared/schema";
 
-// Predefined categories for blog posts
-const BLOG_CATEGORIES = [
-  "General",
-  "Student Visa",
-  "Study Abroad",
-  "University Guides",
-  "Test Preparation",
-  "Scholarships",
-  "Student Life",
-  "Country Guides",
-  "Immigration",
-  "Career Advice",
-  "Study Tips",
-  "Visa Requirements",
-  "Application Process",
-  "Document Guidelines",
-  "Success Stories"
-] as const;
+// Categories will be loaded dynamically from API
 
 const blogSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -375,6 +358,8 @@ export default function BlogEditor() {
   const [showEditRequestDialog, setShowEditRequestDialog] = useState(false);
   const [incomingEditRequest, setIncomingEditRequest] = useState<any>(null);
   const [pollingInterval, setPollingInterval] = useState<NodeJS.Timeout | null>(null);
+  const [newCategoryName, setNewCategoryName] = useState("");
+  const [isCreatingCategory, setIsCreatingCategory] = useState(false);
   
   // Check authentication - support both admin and user tokens
   useEffect(() => {
@@ -491,6 +476,52 @@ export default function BlogEditor() {
     }
   }, [editorMounted]);
   const queryClient = useQueryClient();
+
+  // Fetch categories from API
+  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
+    queryKey: ["/api/admin/categories"],
+    enabled: authChecked
+  });
+
+  // Create category mutation
+  const createCategoryMutation = useMutation({
+    mutationFn: async (name: string) => {
+      return apiRequest("/api/admin/categories", {
+        method: "POST",
+        body: { name }
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
+      setNewCategoryName("");
+      setIsCreatingCategory(false);
+      toast({
+        title: "Success",
+        description: "Category created successfully"
+      });
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to create category",
+        variant: "destructive"
+      });
+    }
+  });
+
+  // Handle creating new category
+  const handleCreateCategory = () => {
+    if (!newCategoryName.trim()) {
+      toast({
+        title: "Error",
+        description: "Category name cannot be empty",
+        variant: "destructive"
+      });
+      return;
+    }
+    createCategoryMutation.mutate(newCategoryName.trim());
+  };
+
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const editorRef = useRef<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -1205,11 +1236,15 @@ export default function BlogEditor() {
                           <SelectValue placeholder="Select a category" />
                         </SelectTrigger>
                         <SelectContent>
-                          {BLOG_CATEGORIES.map((category) => (
-                            <SelectItem key={category} value={category}>
-                              {category}
-                            </SelectItem>
-                          ))}
+                          {categoriesLoading ? (
+                            <div className="p-2 text-center text-sm text-gray-500">Loading categories...</div>
+                          ) : (
+                            categories.map((category: any) => (
+                              <SelectItem key={category.id} value={category.name}>
+                                {category.name}
+                              </SelectItem>
+                            ))
+                          )}
                         </SelectContent>
                       </Select>
                     )}
@@ -1217,6 +1252,37 @@ export default function BlogEditor() {
                   {errors.category && (
                     <p className="text-red-500 text-sm mt-1">{errors.category.message}</p>
                   )}
+
+                  {/* Add new category section */}
+                  {canManageCategories(adminUser) && (
+                    <div className="mt-4 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <div className="flex items-center space-x-2">
+                        <Input
+                          placeholder="Create new category"
+                          value={newCategoryName}
+                          onChange={(e) => setNewCategoryName(e.target.value)}
+                          onKeyPress={(e) => e.key === 'Enter' && handleCreateCategory()}
+                          disabled={createCategoryMutation.isPending}
+                        />
+                        <Button 
+                          type="button"
+                          onClick={handleCreateCategory}
+                          disabled={createCategoryMutation.isPending || !newCategoryName.trim()}
+                          size="sm"
+                        >
+                          {createCategoryMutation.isPending ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            "Create"
+                          )}
+                        </Button>
+                      </div>
+                      <p className="text-xs text-gray-500 mt-1">
+                        New categories will be available immediately for all blog posts.
+                      </p>
+                    </div>
+                  )}
+                  
                   {!canManageCategories(adminUser) && (
                     <p className="text-sm text-gray-500 mt-2">
                       Only users with category management permissions can create new categories. Contact an admin to add new categories.
