@@ -1,6 +1,6 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
-  adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, editingSessions,
+  adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, editingSessions, editRequests,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -10,7 +10,7 @@ import {
   type AdminSession, type InsertAdminSession, type UserSession, type InsertUserSession,
   type Media, type InsertMedia, type BlogPostRevision, type InsertBlogPostRevision,
   type AuditLog, type InsertAuditLog, type PostAssignment, type InsertPostAssignment,
-  type EditingSession, type InsertEditingSession
+  type EditingSession, type InsertEditingSession, type EditRequest, type InsertEditRequest
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -118,6 +118,14 @@ export interface IStorage {
   getAllActiveEditingSessions(): Promise<EditingSession[]>;
   getUserEditingSession(userId: number, postId: number): Promise<EditingSession | undefined>;
   cleanupInactiveEditingSessions(): Promise<void>;
+  
+  // Edit Request Management
+  createEditRequest(request: InsertEditRequest): Promise<EditRequest>;
+  getEditRequest(id: number): Promise<EditRequest | undefined>;
+  getUserEditRequests(userId: number): Promise<EditRequest[]>;
+  getPostEditRequests(postId: number): Promise<EditRequest[]>;
+  updateEditRequestStatus(id: number, status: string, respondedAt?: Date): Promise<EditRequest>;
+  deleteEditRequest(id: number): Promise<void>;
 }
 
 
@@ -808,6 +816,52 @@ export class DatabaseStorage implements IStorage {
           sql`${editingSessions.lastActivity} < ${thirtyMinutesAgo}`
         )
       );
+  }
+
+  // Edit Request Management Implementation
+  async createEditRequest(request: InsertEditRequest): Promise<EditRequest> {
+    const [editRequest] = await db.insert(editRequests).values(request).returning();
+    return editRequest;
+  }
+
+  async getEditRequest(id: number): Promise<EditRequest | undefined> {
+    const [editRequest] = await db.select().from(editRequests).where(eq(editRequests.id, id));
+    return editRequest || undefined;
+  }
+
+  async getUserEditRequests(userId: number): Promise<EditRequest[]> {
+    return await db
+      .select()
+      .from(editRequests)
+      .where(eq(editRequests.currentEditorId, userId))
+      .orderBy(desc(editRequests.requestedAt));
+  }
+
+  async getPostEditRequests(postId: number): Promise<EditRequest[]> {
+    return await db
+      .select()
+      .from(editRequests)
+      .where(eq(editRequests.postId, postId))
+      .orderBy(desc(editRequests.requestedAt));
+  }
+
+  async updateEditRequestStatus(id: number, status: string, respondedAt?: Date): Promise<EditRequest> {
+    const updateData: any = { status };
+    if (respondedAt) {
+      updateData.respondedAt = respondedAt;
+    }
+    
+    const [editRequest] = await db
+      .update(editRequests)
+      .set(updateData)
+      .where(eq(editRequests.id, id))
+      .returning();
+    
+    return editRequest;
+  }
+
+  async deleteEditRequest(id: number): Promise<void> {
+    await db.delete(editRequests).where(eq(editRequests.id, id));
   }
 }
 

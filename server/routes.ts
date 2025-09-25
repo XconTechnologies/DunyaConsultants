@@ -5,7 +5,7 @@ import { seedBlogPosts } from "./seed-blogs";
 import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
-  insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession 
+  insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest 
 } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
@@ -2807,6 +2807,111 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Page sitemap error:', error);
       res.status(500).send('Failed to generate page sitemap');
+    }
+  });
+
+  // Edit Request API endpoints
+  
+  // Send edit request
+  app.post("/api/admin/edit-requests", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { postId, currentEditorId } = req.body;
+
+      if (!postId || !currentEditorId) {
+        return res.status(400).json({ message: 'Post ID and current editor ID are required' });
+      }
+
+      // Check if there's already a pending request for this post
+      const existingRequests = await storage.getPostEditRequests(postId);
+      const pendingRequest = existingRequests.find(req => req.status === 'pending');
+      
+      if (pendingRequest) {
+        return res.status(409).json({ message: 'There is already a pending edit request for this post' });
+      }
+
+      const editRequest = await storage.createEditRequest({
+        postId: parseInt(postId),
+        requesterId: req.adminId!,
+        currentEditorId: parseInt(currentEditorId),
+        status: 'pending'
+      });
+
+      res.status(201).json(editRequest);
+    } catch (error) {
+      console.error('Error creating edit request:', error);
+      res.status(500).json({ message: 'Failed to create edit request' });
+    }
+  });
+
+  // Get edit requests for a user (as current editor)
+  app.get("/api/admin/edit-requests/for-me", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const requests = await storage.getUserEditRequests(req.adminId!);
+      
+      // Include requester information
+      const requestsWithUsers = await Promise.all(
+        requests.map(async (request) => {
+          const requester = await storage.getAdminById(request.requesterId);
+          return {
+            ...request,
+            requester: requester ? { id: requester.id, username: requester.username, role: requester.role } : null
+          };
+        })
+      );
+
+      res.json(requestsWithUsers);
+    } catch (error) {
+      console.error('Error fetching edit requests:', error);
+      res.status(500).json({ message: 'Failed to fetch edit requests' });
+    }
+  });
+
+  // Respond to edit request (approve/decline)
+  app.patch("/api/admin/edit-requests/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const requestId = parseInt(req.params.id);
+      const { action } = req.body; // 'approve' or 'decline'
+
+      if (isNaN(requestId)) {
+        return res.status(400).json({ message: 'Invalid request ID' });
+      }
+
+      if (!action || (action !== 'approve' && action !== 'decline')) {
+        return res.status(400).json({ message: 'Action must be "approve" or "decline"' });
+      }
+
+      const editRequest = await storage.getEditRequest(requestId);
+      if (!editRequest) {
+        return res.status(404).json({ message: 'Edit request not found' });
+      }
+
+      // Verify that the current user is the target editor
+      if (editRequest.currentEditorId !== req.adminId) {
+        return res.status(403).json({ message: 'You can only respond to requests sent to you' });
+      }
+
+      const status = action === 'approve' ? 'approved' : 'declined';
+      const updatedRequest = await storage.updateEditRequestStatus(requestId, status, new Date());
+
+      if (action === 'approve') {
+        // End the current user's editing session
+        const currentSession = await storage.getUserEditingSession(req.adminId!, editRequest.postId);
+        if (currentSession) {
+          await storage.endEditingSession(currentSession.id);
+        }
+
+        // Start a new editing session for the requester
+        await storage.startEditingSession({
+          postId: editRequest.postId,
+          userId: editRequest.requesterId,
+          isActive: true
+        });
+      }
+
+      res.json(updatedRequest);
+    } catch (error) {
+      console.error('Error responding to edit request:', error);
+      res.status(500).json({ message: 'Failed to respond to edit request' });
     }
   });
 
