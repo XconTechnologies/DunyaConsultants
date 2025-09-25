@@ -390,7 +390,15 @@ div[class*="from-[#1D50C9]"] button.mega-menu-button {
 .text-gray-700 a,
 div[class*="text-gray-700"] a,
 p[class*="text-gray-700"] a,
-.blog-content a {
+.blog-content a,
+article a,
+div a,
+p a,
+span a,
+strong a,
+b a,
+em a,
+i a {
   color: #1D50C9 !important;
   text-decoration: underline !important;
   text-decoration-color: #1D50C9 !important;
@@ -402,7 +410,15 @@ p[class*="text-gray-700"] a,
 .text-gray-700 a:hover,
 div[class*="text-gray-700"] a:hover,
 p[class*="text-gray-700"] a:hover,
-.blog-content a:hover {
+.blog-content a:hover,
+article a:hover,
+div a:hover,
+p a:hover,
+span a:hover,
+strong a:hover,
+b a:hover,
+em a:hover,
+i a:hover {
   color: #1D50C9 !important;
   text-decoration: underline !important;
   text-decoration-color: #1D50C9 !important;
@@ -551,6 +567,29 @@ p[class*="text-gray-700"] a:hover,
   }
 }
 
+/* Additional link color enforcement for blog content areas */
+article[class*="bg-white"] a,
+div[class*="bg-white"] a,
+div[class*="rounded"] a,
+.min-h-screen a,
+main a,
+section a {
+  color: #1D50C9 !important;
+  text-decoration: underline !important;
+  text-decoration-color: #1D50C9 !important;
+}
+
+article[class*="bg-white"] a:hover,
+div[class*="bg-white"] a:hover,
+div[class*="rounded"] a:hover,
+.min-h-screen a:hover,
+main a:hover,
+section a:hover {
+  color: #1D50C9 !important;
+  text-decoration: underline !important;
+  text-decoration-color: #1D50C9 !important;
+}
+
 /* Contact button styling */
 .contact-button {
   display: inline-block;
@@ -692,12 +731,15 @@ p[class*="text-gray-700"] a:hover,
 }
 
 .react-quill-container .ql-editor a {
-  color: #1D50C9;
-  text-decoration: underline;
+  color: #1D50C9 !important;
+  text-decoration: underline !important;
+  text-decoration-color: #1D50C9 !important;
 }
 
 .react-quill-container .ql-editor a:hover {
-  color: #1845B3;
+  color: #1D50C9 !important;
+  text-decoration: underline !important;
+  text-decoration-color: #1D50C9 !important;
 }
 
 .react-quill-container .ql-editor img {
