@@ -656,7 +656,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
       <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-white blog-hero-content max-w-[1000px] mx-auto">
+          <div className="text-center text-white blog-hero-content">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -672,7 +672,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-bold mb-6 leading-tight text-white max-w-[800px] mx-auto"
+              className="font-bold mb-6 leading-tight text-white max-w-[1000px] mx-auto"
               style={{ fontSize: '48px' }}
             >
               {blogPost.title}
