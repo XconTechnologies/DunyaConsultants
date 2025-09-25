@@ -923,10 +923,10 @@ export default function AdminDashboard() {
               {conflictingUser && (
                 <div className="space-y-3">
                   <p>
-                    <strong>{conflictingUser.username}</strong> ({conflictingUser.role}) is currently editing this post.
+                    <strong>{conflictingUser.username}</strong> is currently editing this post.
                   </p>
                   <p>
-                    You can request access from them, or come back later when they're done editing.
+                    Do you want to request editing access from them?
                   </p>
                 </div>
               )}
@@ -938,7 +938,7 @@ export default function AdminDashboard() {
               onClick={() => handleConflictResolution('quit')}
               disabled={conflictRequestPending}
             >
-              Cancel
+              Quit
             </Button>
             <Button 
               onClick={() => handleConflictResolution('edit')}
@@ -948,10 +948,10 @@ export default function AdminDashboard() {
               {conflictRequestPending ? (
                 <div className="flex items-center space-x-2">
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  <span>Requesting...</span>
+                  <span>Sending Request...</span>
                 </div>
               ) : (
-                "Request Access"
+                "Send Request"
               )}
             </Button>
           </DialogFooter>
