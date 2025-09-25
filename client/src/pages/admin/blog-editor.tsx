@@ -1004,11 +1004,12 @@ export default function BlogEditor() {
       }
       
       if (showImageUpload === true) {
-        // For featured image
+        // For featured image - store URL and original filename
         setValue("featuredImage", url);
+        setValue("featuredImageOriginalName", file.name);
         setShowImageUpload(false);
       } else {
-        // For content image - insert directly into ReactQuill
+        // For content image - insert directly into ReactQuill (no automatic links)
         const quillEditor = document.querySelector('.ql-editor');
         if (quillEditor) {
           const imageHtml = `<p><img src="${url}" alt="${file.name}" style="max-width: 100%; height: auto;" /></p>`;
