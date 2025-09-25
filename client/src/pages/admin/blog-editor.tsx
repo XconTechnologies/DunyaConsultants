@@ -841,6 +841,35 @@ export default function BlogEditor() {
     }
   }, [currentEditingSession]);
 
+  // Handle browser close/refresh events for better session cleanup
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (currentEditingSession) {
+        // Use sendBeacon for reliable cleanup on page unload
+        const payload = JSON.stringify({ sessionId: currentEditingSession.id });
+        navigator.sendBeacon(
+          `/api/admin/editing-sessions/${currentEditingSession.id}`,
+          new Blob([payload], { type: 'application/json' })
+        );
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden' && currentEditingSession) {
+        // Page is being hidden (user switching tabs, etc.)
+        endEditingSession();
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [currentEditingSession]);
+
   // Save mutation
   const saveMutation = useMutation({
     mutationFn: async (data: BlogForm) => {

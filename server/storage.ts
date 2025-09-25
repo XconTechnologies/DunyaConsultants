@@ -803,6 +803,15 @@ export class DatabaseStorage implements IStorage {
     return session || undefined;
   }
 
+  async getEditingSession(sessionId: number): Promise<EditingSession | undefined> {
+    const [session] = await db
+      .select()
+      .from(editingSessions)
+      .where(eq(editingSessions.id, sessionId));
+    
+    return session || undefined;
+  }
+
   async cleanupInactiveEditingSessions(): Promise<void> {
     // Mark sessions inactive if last activity was more than 2 minutes ago
     const twoMinutesAgo = new Date(Date.now() - 2 * 60 * 1000);
