@@ -1108,8 +1108,8 @@ export default function BlogEditor() {
                   variant="outline"
                   className="flex items-center space-x-2"
                   onClick={() => {
-                    // Always use admin preview for better reliability, especially for new/draft posts
-                    window.open(`/admin/blog-preview/${blogPost.id}`, '_blank');
+                    // Use live blog URL to match dashboard preview
+                    window.open(getBlogUrl(blogPost.slug), '_blank');
                   }}
                   data-testid="preview-blog"
                 >

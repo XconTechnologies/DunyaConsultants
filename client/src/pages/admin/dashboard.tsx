@@ -871,8 +871,8 @@ export default function AdminDashboard() {
                             <Button
                               size="sm"
                               variant="outline"
-                              onClick={() => window.open(`/admin/blog-preview/${post.id}`, '_blank')}
-                              title="Preview Article"
+                              onClick={() => window.open(getBlogUrl(post.slug), '_blank')}
+                              title="View Article"
                             >
                               <Eye className="w-4 h-4" />
                             </Button>
