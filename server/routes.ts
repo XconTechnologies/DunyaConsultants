@@ -2821,12 +2821,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(400).json({ message: 'Post ID and current editor ID are required' });
       }
 
-      // Check if there's already a pending request for this post
+      // Check if there's already a pending request from this user for this post
       const existingRequests = await storage.getPostEditRequests(postId);
-      const pendingRequest = existingRequests.find(req => req.status === 'pending');
+      const pendingRequestFromUser = existingRequests.find(req => 
+        req.status === 'pending' && req.requesterId === req.adminId
+      );
       
-      if (pendingRequest) {
-        return res.status(409).json({ message: 'There is already a pending edit request for this post' });
+      if (pendingRequestFromUser) {
+        return res.status(409).json({ message: 'You already have a pending edit request for this post' });
       }
 
       const editRequest = await storage.createEditRequest({
