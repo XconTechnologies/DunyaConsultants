@@ -480,6 +480,15 @@ export default function BlogEditor() {
   // Fetch categories from API
   const { data: categories = [], isLoading: categoriesLoading } = useQuery({
     queryKey: ["/api/admin/categories"],
+    queryFn: async () => {
+      const response = await fetch('/api/admin/categories', {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch categories');
+      }
+      return response.json();
+    },
     enabled: authChecked
   });
 

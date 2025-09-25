@@ -798,6 +798,7 @@ export default function AdminDashboard() {
                       )}
                     </TableHead>
                     <TableHead>Title</TableHead>
+                    <TableHead>Category</TableHead>
                     <TableHead>Date</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Views</TableHead>
@@ -807,13 +808,13 @@ export default function AdminDashboard() {
                 <TableBody>
                   {blogLoading ? (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-8">
+                      <TableCell colSpan={7} className="text-center py-8">
                         Loading blog posts...
                       </TableCell>
                     </TableRow>
                   ) : blogPosts.length === 0 ? (
                     <TableRow>
-                      <TableCell colSpan={6} className="text-center py-8 text-gray-500">
+                      <TableCell colSpan={7} className="text-center py-8 text-gray-500">
                         No blog posts found. Create your first post!
                       </TableCell>
                     </TableRow>
@@ -842,6 +843,11 @@ export default function AdminDashboard() {
                               ) : null;
                             })()}
                           </div>
+                        </TableCell>
+                        <TableCell>
+                          <Badge variant="outline" className="text-xs">
+                            {post.category || "General"}
+                          </Badge>
                         </TableCell>
                         <TableCell className="text-sm text-gray-600">
                           {post.isPublished && post.publishedAt 
