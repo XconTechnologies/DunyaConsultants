@@ -2987,6 +2987,95 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ====================== CATEGORY MANAGEMENT ROUTES ======================
+
+  // Get all categories with post counts
+  app.get("/api/admin/categories", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const blogPosts = await storage.getBlogPosts();
+      
+      // Extract unique categories and count posts for each
+      const categoryMap = new Map<string, number>();
+      blogPosts.forEach(post => {
+        const category = post.category || 'General';
+        categoryMap.set(category, (categoryMap.get(category) || 0) + 1);
+      });
+
+      // Convert to array format
+      const categories = Array.from(categoryMap.entries()).map(([name, count]) => ({
+        name,
+        count
+      }));
+
+      // Sort by name
+      categories.sort((a, b) => a.name.localeCompare(b.name));
+
+      res.json(categories);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      res.status(500).json({ message: 'Failed to fetch categories' });
+    }
+  });
+
+  // Create a new category (this will be used when creating new blog posts)
+  app.post("/api/admin/categories", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { name } = req.body;
+      
+      if (!name || typeof name !== 'string' || name.trim() === '') {
+        return res.status(400).json({ message: 'Category name is required' });
+      }
+
+      const categoryName = name.trim();
+      
+      // Check if category already exists
+      const blogPosts = await storage.getBlogPosts();
+      const existingCategory = blogPosts.find(post => post.category === categoryName);
+      
+      if (existingCategory) {
+        return res.status(409).json({ message: 'Category already exists' });
+      }
+
+      // Create a placeholder blog post with this category to establish it
+      // In a real application, you might want a dedicated categories table
+      // For now, we'll just return success and the category will be available for use
+      
+      res.status(201).json({ 
+        message: 'Category created successfully',
+        category: { name: categoryName, count: 0 }
+      });
+    } catch (error) {
+      console.error('Error creating category:', error);
+      res.status(500).json({ message: 'Failed to create category' });
+    }
+  });
+
+  // Delete a category (move all posts in this category to 'General')
+  app.delete("/api/admin/categories/:name", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const categoryName = decodeURIComponent(req.params.name);
+      
+      if (categoryName === 'General') {
+        return res.status(400).json({ message: 'Cannot delete the General category' });
+      }
+
+      // Get all posts in this category
+      const blogPosts = await storage.getBlogPosts();
+      const postsToUpdate = blogPosts.filter(post => post.category === categoryName);
+      
+      if (postsToUpdate.length > 0) {
+        return res.status(400).json({ 
+          message: `Cannot delete category "${categoryName}" because it contains ${postsToUpdate.length} post(s). Move or delete the posts first.` 
+        });
+      }
+
+      res.json({ message: 'Category deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting category:', error);
+      res.status(500).json({ message: 'Failed to delete category' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

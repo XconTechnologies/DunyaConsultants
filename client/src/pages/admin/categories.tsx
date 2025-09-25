@@ -74,7 +74,7 @@ export default function CategoriesPage() {
   });
 
   // Fetch categories
-  const { data: categories = [], isLoading } = useQuery({
+  const { data: categories = [], isLoading } = useQuery<Category[]>({
     queryKey: ["/api/admin/categories"],
     enabled: !!adminUser,
   });
@@ -82,10 +82,19 @@ export default function CategoriesPage() {
   // Create category mutation
   const createCategoryMutation = useMutation({
     mutationFn: async (categoryName: string) => {
-      return apiRequest("/api/admin/categories", {
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch("/api/admin/categories", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
         body: JSON.stringify({ name: categoryName }),
       });
+      if (!response.ok) {
+        throw new Error("Failed to create category");
+      }
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
@@ -108,9 +117,17 @@ export default function CategoriesPage() {
   // Delete category mutation
   const deleteCategoryMutation = useMutation({
     mutationFn: async (categoryName: string) => {
-      return apiRequest(`/api/admin/categories/${encodeURIComponent(categoryName)}`, {
+      const token = localStorage.getItem("adminToken");
+      const response = await fetch(`/api/admin/categories/${encodeURIComponent(categoryName)}`, {
         method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
       });
+      if (!response.ok) {
+        throw new Error("Failed to delete category");
+      }
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
@@ -286,7 +303,7 @@ export default function CategoriesPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {categories.map((category: Category) => (
+                      {(categories as Category[]).map((category: Category) => (
                         <TableRow key={category.name} data-testid={`category-row-${category.name.toLowerCase().replace(/\s+/g, '-')}`}>
                           <TableCell className="font-medium">{category.name}</TableCell>
                           <TableCell>{category.count} posts</TableCell>
