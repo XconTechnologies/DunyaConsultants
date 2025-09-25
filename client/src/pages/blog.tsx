@@ -3400,19 +3400,19 @@ export default function Blog() {
       {/* Hero Section - Same style as other pages */}
       <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="relative max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center text-white">
+        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center text-white max-w-[1000px] mx-auto">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight"
             >Study Abroad Blogs</motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl text-blue-100 mb-6 sm:mb-8 max-w-3xl mx-auto px-2"
+              className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-100 mb-4 sm:mb-6 md:mb-8 max-w-3xl mx-auto px-2"
             >
               Expert insights, tips, and guides for your international education journey
             </motion.p>
