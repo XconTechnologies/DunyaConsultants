@@ -804,8 +804,8 @@ export class DatabaseStorage implements IStorage {
   }
 
   async cleanupInactiveEditingSessions(): Promise<void> {
-    // Mark sessions inactive if last activity was more than 30 minutes ago
-    const thirtyMinutesAgo = new Date(Date.now() - 30 * 60 * 1000);
+    // Mark sessions inactive if last activity was more than 2 minutes ago
+    const twoMinutesAgo = new Date(Date.now() - 2 * 60 * 1000);
     
     await db
       .update(editingSessions)
@@ -813,7 +813,7 @@ export class DatabaseStorage implements IStorage {
       .where(
         and(
           eq(editingSessions.isActive, true),
-          sql`${editingSessions.lastActivity} < ${thirtyMinutesAgo}`
+          sql`${editingSessions.lastActivity} < ${twoMinutesAgo}`
         )
       );
   }

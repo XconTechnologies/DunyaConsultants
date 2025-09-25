@@ -308,7 +308,7 @@ export default function AdminDashboard() {
   const { data: editingSessions = [] } = useQuery({
     queryKey: ["/api/admin/editing-sessions/all"],
     enabled: authChecked && !!adminUser,
-    refetchInterval: 10000, // Poll every 10 seconds for real-time updates
+    refetchInterval: 3000, // Poll every 3 seconds for real-time updates
     queryFn: async () => {
       const response = await fetch("/api/admin/editing-sessions/all", {
         headers: getAuthHeaders(),
