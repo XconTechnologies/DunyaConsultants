@@ -263,20 +263,24 @@ export default function BlogEditor() {
 
           if (response.ok) {
             const requests = await response.json();
+            console.log('Received edit requests:', requests);
             const pendingRequest = requests.find((req: any) => 
               req.postId === blogId && req.status === 'pending'
             );
 
-            if (pendingRequest) {
+            if (pendingRequest && !incomingEditRequest) {
+              console.log('New incoming edit request:', pendingRequest);
               setIncomingEditRequest(pendingRequest);
               setShowEditRequestDialog(true);
             }
+          } else {
+            console.log('Failed to fetch edit requests:', response.status);
           }
         } catch (error) {
           console.error('Error polling for incoming edit requests:', error);
         }
       }
-    }, 5000); // Poll every 5 seconds
+    }, 2000); // Poll every 2 seconds for real-time
 
     return interval;
   };

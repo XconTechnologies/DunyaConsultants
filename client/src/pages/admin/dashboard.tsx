@@ -183,6 +183,7 @@ export default function AdminDashboard() {
     if (action === 'edit' && pendingPostId && conflictingUser) {
       // Send edit request to current editor
       try {
+        console.log('Sending edit request:', { postId: pendingPostId, currentEditorId: conflictingUser.id });
         const response = await fetch('/api/admin/edit-requests', {
           method: 'POST',
           headers: getAuthHeaders(),
@@ -192,7 +193,11 @@ export default function AdminDashboard() {
           })
         });
 
+        console.log('Edit request response:', response.status);
+        
         if (response.ok) {
+          const result = await response.json();
+          console.log('Edit request created:', result);
           setConflictRequestPending(true);
           // Start polling for the response
           startPollingForEditRequestResponse();
@@ -202,6 +207,7 @@ export default function AdminDashboard() {
           });
         } else {
           const error = await response.json();
+          console.error('Edit request failed:', error);
           toast({
             title: "Error",
             description: error.message || "Failed to send edit request",
@@ -355,9 +361,13 @@ export default function AdminDashboard() {
     },
   });
 
-  // Helper function to get editing status for a post
+  // Helper function to get editing status for a post (exclude current user's own sessions)
   const getEditingStatus = (postId: number) => {
-    const session = editingSessions.find((s: any) => s.postId === postId && s.isActive);
+    const session = editingSessions.find((s: any) => 
+      s.postId === postId && 
+      s.isActive && 
+      s.userId !== adminUser?.id  // Don't show own editing sessions
+    );
     return session ? { isBeingEdited: true, editingUser: session.user } : { isBeingEdited: false };
   };
 
