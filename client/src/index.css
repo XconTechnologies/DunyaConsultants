@@ -391,9 +391,9 @@ div[class*="from-[#1D50C9]"] button.mega-menu-button {
 div[class*="text-gray-700"] a,
 p[class*="text-gray-700"] a,
 .blog-content a {
-  color: #1844AB !important;
+  color: #1D50C9 !important;
   text-decoration: underline !important;
-  text-decoration-color: #1844AB !important;
+  text-decoration-color: #1D50C9 !important;
   transition: all 0.2s ease;
   font-weight: normal;
 }
@@ -403,9 +403,9 @@ p[class*="text-gray-700"] a,
 div[class*="text-gray-700"] a:hover,
 p[class*="text-gray-700"] a:hover,
 .blog-content a:hover {
-  color: #1844AB !important;
+  color: #1D50C9 !important;
   text-decoration: underline !important;
-  text-decoration-color: #1844AB !important;
+  text-decoration-color: #1D50C9 !important;
 }
 
 /* Blog content bold text styling */
