@@ -1,4 +1,4 @@
-import { pgTable, text, serial, integer, boolean, timestamp, json } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, boolean, timestamp, json, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -259,6 +259,17 @@ export const editingSessions = pgTable("editing_sessions", {
   isActive: boolean("is_active").default(true).notNull(),
 });
 
+// Edit requests for handling collaborative editing conflicts
+export const editRequests = pgTable("edit_requests", {
+  id: serial("id").primaryKey(),
+  postId: integer("post_id").references(() => blogPosts.id).notNull(),
+  requesterId: integer("requester_id").references(() => adminUsers.id).notNull(),
+  currentEditorId: integer("current_editor_id").references(() => adminUsers.id).notNull(),
+  status: varchar("status", { length: 20 }).default("pending").notNull(), // pending, approved, declined
+  requestedAt: timestamp("requested_at").defaultNow().notNull(),
+  respondedAt: timestamp("responded_at"),
+});
+
 // Post assignments for granular access control
 export const postAssignments = pgTable("post_assignments", {
   id: serial("id").primaryKey(),
@@ -373,6 +384,12 @@ export const insertEditingSessionSchema = createInsertSchema(editingSessions).om
   lastActivity: true,
 });
 
+export const insertEditRequestSchema = createInsertSchema(editRequests).omit({
+  id: true,
+  requestedAt: true,
+  respondedAt: true,
+});
+
 export const insertPostAssignmentSchema = createInsertSchema(postAssignments).omit({
   id: true,
   createdAt: true,
@@ -420,5 +437,7 @@ export type InsertAuditLog = z.infer<typeof insertAuditLogSchema>;
 export type AuditLog = typeof auditLogs.$inferSelect;
 export type InsertEditingSession = z.infer<typeof insertEditingSessionSchema>;
 export type EditingSession = typeof editingSessions.$inferSelect;
+export type InsertEditRequest = z.infer<typeof insertEditRequestSchema>;
+export type EditRequest = typeof editRequests.$inferSelect;
 export type InsertPostAssignment = z.infer<typeof insertPostAssignmentSchema>;
 export type PostAssignment = typeof postAssignments.$inferSelect;
