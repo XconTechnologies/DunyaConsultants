@@ -2823,8 +2823,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       // Check if there's already a pending request from this user for this post
       const existingRequests = await storage.getPostEditRequests(postId);
-      const pendingRequestFromUser = existingRequests.find(req => 
-        req.status === 'pending' && req.requesterId === req.adminId
+      const pendingRequestFromUser = existingRequests.find(request => 
+        request.status === 'pending' && request.requesterId === req.adminId
       );
       
       if (pendingRequestFromUser) {
