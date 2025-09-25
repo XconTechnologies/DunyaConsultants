@@ -15,6 +15,19 @@ import { Label } from "@/components/ui/label";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/lib/blog-utils";
 
+// Force brand blue color for all links
+const applyBrandBlueToLinks = () => {
+  const brandBlue = '#1D50C9';
+  const links = document.querySelectorAll('a');
+  links.forEach(link => {
+    if (link.style) {
+      link.style.color = brandBlue;
+      link.style.textDecoration = 'underline';
+      link.style.textDecorationColor = brandBlue;
+    }
+  });
+};
+
 // Unified image src normalization function
 const normalizeImageSrc = (image: string) => {
   if (!image || image.trim() === '') {
@@ -414,12 +427,15 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
   // Initialize FAQs for ALL blog content (always run this)
   useEffect(() => {
-    // Wait for content to be rendered, then initialize FAQs
+    // Wait for content to be rendered, then initialize FAQs and apply brand blue links
     const timeoutId = setTimeout(() => {
       const contentContainer = document.querySelector('.blog-content, .prose');
       if (contentContainer) {
         initializeFAQs(contentContainer as HTMLElement);
       }
+      
+      // Apply brand blue color to all links
+      applyBrandBlueToLinks();
       
       // Also check for any content sections that might have FAQs
       const allContentSections = document.querySelectorAll('[class*="prose"], .blog-content, .content-section');
@@ -433,6 +449,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
         setTimeout(() => {
           const body = document.body;
           initializeFAQs(body);
+          // Apply brand blue links again after FAQ initialization
+          applyBrandBlueToLinks();
           // Force FAQ initialization for troublesome blog posts
           const strongElements = body.querySelectorAll('strong, b');
           strongElements.forEach((strong) => {
@@ -713,10 +731,11 @@ function BlogPostDetail({ slug }: { slug: string }) {
                       className="blog-content prose prose-xl max-w-none" 
                       dangerouslySetInnerHTML={{ __html: contentSections[0]?.content || '' }}
                       ref={(el) => {
-                        // Initialize FAQ functionality after content is rendered
+                        // Initialize FAQ functionality and apply brand blue links after content is rendered
                         if (el) {
                           setTimeout(() => {
                             initializeFAQs(el);
+                            applyBrandBlueToLinks();
                           }, 100);
                         }
                       }}

@@ -6,10 +6,32 @@ import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
+import { useEffect } from "react";
+
+// Force brand blue color for all links
+const applyBrandBlueToLinks = () => {
+  const brandBlue = '#1D50C9';
+  const links = document.querySelectorAll('a');
+  links.forEach(link => {
+    if (link.style) {
+      link.style.color = brandBlue;
+      link.style.textDecoration = 'underline';
+      link.style.textDecorationColor = brandBlue;
+    }
+  });
+};
 
 export default function AdminBlogPreview() {
   const [, params] = useRoute("/admin/blog-preview/:id");
   const blogId = params?.id;
+
+  // Apply brand blue color to links when content loads
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      applyBrandBlueToLinks();
+    }, 300);
+    return () => clearTimeout(timeoutId);
+  }, [blogPost?.content]);
 
   // Check for both admin and user tokens (support for different user types)
   const getAuthToken = () => {
@@ -234,7 +256,14 @@ export default function AdminBlogPreview() {
                 <div className="prose prose-xl max-w-none">
                   <div 
                     className="blog-content prose prose-xl max-w-none" 
-                    dangerouslySetInnerHTML={{ __html: blogPost.content || '' }} 
+                    dangerouslySetInnerHTML={{ __html: blogPost.content || '' }}
+                    ref={(el) => {
+                      if (el) {
+                        setTimeout(() => {
+                          applyBrandBlueToLinks();
+                        }, 100);
+                      }
+                    }}
                   />
                 </div>
               </div>
