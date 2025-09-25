@@ -1212,6 +1212,69 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin takeover endpoint
+  app.post("/api/admin/editing-sessions/takeover", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const { postId, takeoverUserId } = req.body;
+
+      if (!postId || !takeoverUserId) {
+        return res.status(400).json({ message: 'Post ID and takeover user ID are required' });
+      }
+
+      // Verify the requesting user is an admin
+      if (req.adminRole !== 'admin') {
+        return res.status(403).json({ message: 'Only admins can takeover posts' });
+      }
+
+      // End all existing editing sessions for this post
+      const existingSessions = await storage.getActiveEditingSessions(postId);
+      for (const session of existingSessions) {
+        if (session.userId !== takeoverUserId) {
+          await storage.endEditingSession(session.id);
+        }
+      }
+
+      // Start new editing session for the admin
+      const newSession = await storage.startEditingSession({
+        postId: parseInt(postId),
+        userId: parseInt(takeoverUserId),
+        isActive: true
+      });
+
+      res.json({ success: true, message: 'Post takeover successful', session: newSession });
+    } catch (error) {
+      console.error('Error during admin takeover:', error);
+      res.status(500).json({ message: 'Failed to takeover post' });
+    }
+  });
+
+  // Check if editing session still exists (for takeover detection)
+  app.get("/api/admin/editing-sessions/check/:sessionId", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const sessionId = parseInt(req.params.sessionId);
+
+      if (isNaN(sessionId)) {
+        return res.status(400).json({ message: 'Invalid session ID' });
+      }
+
+      const session = await storage.getEditingSession(sessionId);
+      
+      if (!session || !session.isActive) {
+        return res.status(404).json({ message: 'Session not found or inactive' });
+      }
+
+      // Verify session belongs to the requesting user
+      if (session.userId !== req.adminId) {
+        return res.status(403).json({ message: 'Access denied' });
+      }
+
+      res.json({ session, active: true });
+    } catch (error) {
+      console.error('Error checking editing session:', error);
+      res.status(500).json({ message: 'Failed to check session' });
+    }
+  });
+
   // Get user's assigned posts
   app.get("/api/admin/users/:id/posts", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {

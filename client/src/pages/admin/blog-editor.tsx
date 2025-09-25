@@ -775,8 +775,35 @@ export default function BlogEditor() {
 
     // Start polling for incoming edit requests when editing starts
     let requestsPollingInterval: NodeJS.Timeout | null = null;
+    let takeoverPollingInterval: NodeJS.Timeout | null = null;
+    
     if (currentEditingSession && blogId) {
       requestsPollingInterval = pollForIncomingEditRequests();
+      
+      // Poll for takeover events (check if session still exists)
+      takeoverPollingInterval = setInterval(async () => {
+        try {
+          const response = await fetch(`/api/admin/editing-sessions/check/${currentEditingSession.id}`, {
+            headers: getAuthHeaders(),
+          });
+          
+          if (!response.ok || response.status === 404) {
+            // Session was ended (probably by admin takeover)
+            toast({
+              title: "Post Taken Over",
+              description: "An admin has taken control of this post. You are being redirected to the dashboard.",
+              variant: "destructive",
+            });
+            
+            // Redirect to dashboard
+            setTimeout(() => {
+              setLocation('/admin/dashboard');
+            }, 2000);
+          }
+        } catch (error) {
+          console.error('Error checking for takeover:', error);
+        }
+      }, 3000); // Check every 3 seconds
     }
 
     // Cleanup editing session when component unmounts or user navigates away
@@ -786,6 +813,9 @@ export default function BlogEditor() {
       }
       if (requestsPollingInterval) {
         clearInterval(requestsPollingInterval);
+      }
+      if (takeoverPollingInterval) {
+        clearInterval(takeoverPollingInterval);
       }
       if (pollingInterval) {
         clearInterval(pollingInterval);
