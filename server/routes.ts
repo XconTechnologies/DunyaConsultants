@@ -2911,6 +2911,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get edit requests for a user (as current editor)
   app.get("/api/admin/edit-requests/for-me", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
+      // Force no cache with comprehensive headers
+      res.set('Cache-Control', 'no-cache, no-store, must-revalidate, private, max-age=0');
+      res.set('Pragma', 'no-cache');
+      res.set('Expires', '0');
+      res.set('ETag', `"${Date.now()}"`); // Dynamic ETag to bust cache
+      res.set('Last-Modified', new Date().toUTCString());
+      
       const requests = await storage.getUserEditRequests(req.adminId!);
       
       // Include requester information

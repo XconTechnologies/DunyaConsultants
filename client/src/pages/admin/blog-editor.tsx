@@ -282,8 +282,12 @@ export default function BlogEditor() {
     const interval = setInterval(async () => {
       if (currentEditingSession && blogId) {
         try {
-          const response = await fetch('/api/admin/edit-requests/for-me', {
-            headers: getAuthHeaders(),
+          const response = await fetch(`/api/admin/edit-requests/for-me?t=${Date.now()}`, {
+            headers: {
+              ...getAuthHeaders(),
+              'Cache-Control': 'no-cache',
+              'Pragma': 'no-cache'
+            },
           });
 
           if (response.ok) {
