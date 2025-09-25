@@ -74,6 +74,9 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 
+User-agent: OAI-SearchBot/1.0; +https://openai.com/searchbot
+Allow: /
+
 Sitemap: https://dunyaconsultants.com/sitemap.xml `);
 });
 
