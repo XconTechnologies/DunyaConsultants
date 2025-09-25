@@ -146,19 +146,175 @@ export default function BlogEditor() {
     }
   };
 
-  // Handle conflict resolution
-  const handleConflictResolution = async (allow: boolean) => {
+  // Handle conflict resolution for the two-way popup system
+  const handleConflictResolution = async (action: 'edit' | 'quit') => {
     setShowConflictDialog(false);
-    if (allow && blogId) {
-      const canEdit = await checkEditingConflicts(blogId);
-      if (canEdit) {
-        await startEditingSession(blogId);
+    
+    if (action === 'edit' && blogId && conflictingUser) {
+      // Send edit request to current editor
+      try {
+        const response = await fetch('/api/admin/edit-requests', {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({
+            postId: blogId,
+            currentEditorId: conflictingUser.id
+          })
+        });
+
+        if (response.ok) {
+          setConflictRequestPending(true);
+          // Start polling for the response
+          startPollingForEditRequestResponse();
+        } else {
+          const error = await response.json();
+          toast({
+            title: "Error",
+            description: error.message || "Failed to send edit request",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error('Error sending edit request:', error);
+        toast({
+          title: "Error",
+          description: "Failed to send edit request",
+          variant: "destructive",
+        });
       }
     } else {
-      // User declined, redirect back to dashboard
+      // User chose to quit, redirect back to dashboard
       setLocation('/admin/dashboard');
     }
   };
+
+  // Start polling for edit request response
+  const startPollingForEditRequestResponse = () => {
+    // Clear any existing polling
+    if (pollingInterval) {
+      clearInterval(pollingInterval);
+    }
+
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch('/api/admin/edit-requests/for-me', {
+          headers: getAuthHeaders(),
+        });
+
+        if (response.ok) {
+          const requests = await response.json();
+          const relevantRequest = requests.find((req: any) => 
+            req.postId === blogId && req.status !== 'pending'
+          );
+
+          if (relevantRequest) {
+            clearInterval(interval);
+            setPollingInterval(null);
+            setConflictRequestPending(false);
+
+            if (relevantRequest.status === 'approved') {
+              toast({
+                title: "Access Granted",
+                description: `${relevantRequest.requester.username} has allowed you to edit this post.`,
+              });
+              // Reload the page to start editing
+              window.location.reload();
+            } else {
+              toast({
+                title: "Access Denied",
+                description: `${relevantRequest.requester.username} has declined your edit request.`,
+                variant: "destructive",
+              });
+              setLocation('/admin/dashboard');
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error polling for edit request response:', error);
+      }
+    }, 2000); // Poll every 2 seconds
+
+    setPollingInterval(interval);
+    
+    // Auto-timeout after 2 minutes
+    setTimeout(() => {
+      if (pollingInterval) {
+        clearInterval(interval);
+        setPollingInterval(null);
+        setConflictRequestPending(false);
+        toast({
+          title: "Request Timeout",
+          description: "Your edit request timed out. Please try again.",
+          variant: "destructive",
+        });
+        setLocation('/admin/dashboard');
+      }
+    }, 120000);
+  };
+
+  // Poll for incoming edit requests
+  const pollForIncomingEditRequests = () => {
+    const interval = setInterval(async () => {
+      if (currentEditingSession && blogId) {
+        try {
+          const response = await fetch('/api/admin/edit-requests/for-me', {
+            headers: getAuthHeaders(),
+          });
+
+          if (response.ok) {
+            const requests = await response.json();
+            const pendingRequest = requests.find((req: any) => 
+              req.postId === blogId && req.status === 'pending'
+            );
+
+            if (pendingRequest) {
+              setIncomingEditRequest(pendingRequest);
+              setShowEditRequestDialog(true);
+            }
+          }
+        } catch (error) {
+          console.error('Error polling for incoming edit requests:', error);
+        }
+      }
+    }, 5000); // Poll every 5 seconds
+
+    return interval;
+  };
+
+  // Handle incoming edit request response
+  const handleEditRequestResponse = async (action: 'approve' | 'decline') => {
+    if (!incomingEditRequest) return;
+
+    try {
+      const response = await fetch(`/api/admin/edit-requests/${incomingEditRequest.id}`, {
+        method: 'PATCH',
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ action })
+      });
+
+      if (response.ok) {
+        setShowEditRequestDialog(false);
+        setIncomingEditRequest(null);
+
+        if (action === 'approve') {
+          toast({
+            title: "Access Granted",
+            description: `You've granted ${incomingEditRequest.requester.username} access to edit this post.`,
+          });
+          // Redirect to dashboard as editing session is transferred
+          setLocation('/admin/dashboard');
+        } else {
+          toast({
+            title: "Access Denied",
+            description: `You've declined ${incomingEditRequest.requester.username}'s edit request.`,
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error responding to edit request:', error);
+    }
+  };
+
   const [adminUser, setAdminUser] = useState<AdminUser | null>(null);
   const [authChecked, setAuthChecked] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -174,6 +330,11 @@ export default function BlogEditor() {
   const [showConflictDialog, setShowConflictDialog] = useState(false);
   const [conflictingUser, setConflictingUser] = useState<any>(null);
   const [conflictRequestPending, setConflictRequestPending] = useState(false);
+  
+  // Edit request management
+  const [showEditRequestDialog, setShowEditRequestDialog] = useState(false);
+  const [incomingEditRequest, setIncomingEditRequest] = useState<any>(null);
+  const [pollingInterval, setPollingInterval] = useState<NodeJS.Timeout | null>(null);
   
   // Check authentication - support both admin and user tokens
   useEffect(() => {
@@ -612,13 +773,25 @@ export default function BlogEditor() {
 
     initializeEditingSession();
 
+    // Start polling for incoming edit requests when editing starts
+    let requestsPollingInterval: NodeJS.Timeout | null = null;
+    if (currentEditingSession && blogId) {
+      requestsPollingInterval = pollForIncomingEditRequests();
+    }
+
     // Cleanup editing session when component unmounts or user navigates away
     return () => {
       if (currentEditingSession) {
         endEditingSession();
       }
+      if (requestsPollingInterval) {
+        clearInterval(requestsPollingInterval);
+      }
+      if (pollingInterval) {
+        clearInterval(pollingInterval);
+      }
     };
-  }, [isEditing, blogId, adminUser, authChecked]);
+  }, [isEditing, blogId, adminUser, authChecked, currentEditingSession]);
 
   // Periodically update editing activity (keep-alive)
   useEffect(() => {
@@ -1269,7 +1442,7 @@ export default function BlogEditor() {
           <DialogFooter className="space-x-2">
             <Button 
               variant="outline" 
-              onClick={() => handleConflictResolution(false)}
+              onClick={() => handleConflictResolution('quit')}
               disabled={conflictRequestPending}
             >
               {conflictingUser?.role === 'admin' && adminUser?.role !== 'admin' 
@@ -1278,7 +1451,7 @@ export default function BlogEditor() {
               }
             </Button>
             <Button 
-              onClick={() => handleConflictResolution(true)}
+              onClick={() => handleConflictResolution('edit')}
               disabled={conflictRequestPending}
               className="bg-yellow-600 hover:bg-yellow-700"
             >
@@ -1292,6 +1465,44 @@ export default function BlogEditor() {
                   ? "Allow Admin Access" 
                   : "Request Access"
               )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Incoming Edit Request Dialog */}
+      <Dialog open={showEditRequestDialog} onOpenChange={setShowEditRequestDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="flex items-center space-x-2">
+              <AlertTriangle className="w-5 h-5 text-blue-500" />
+              <span>Edit Request</span>
+            </DialogTitle>
+            <DialogDescription>
+              {incomingEditRequest && (
+                <div className="space-y-3">
+                  <p>
+                    <strong>{incomingEditRequest.requester.username}</strong> ({incomingEditRequest.requester.role}) wants to edit this post.
+                  </p>
+                  <p>
+                    Do you want to allow them to take control of editing this post? If you approve, your editing session will be closed and they will be able to edit the post.
+                  </p>
+                </div>
+              )}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="space-x-2">
+            <Button 
+              variant="outline" 
+              onClick={() => handleEditRequestResponse('decline')}
+            >
+              Decline
+            </Button>
+            <Button 
+              onClick={() => handleEditRequestResponse('approve')}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
+              Allow Access
             </Button>
           </DialogFooter>
         </DialogContent>
