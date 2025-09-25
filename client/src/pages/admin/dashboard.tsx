@@ -41,6 +41,7 @@ import {
   Users,
   Activity,
   CheckCircle,
+  AlertTriangle,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 import { 
@@ -83,6 +84,175 @@ export default function AdminDashboard() {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  
+  // Edit conflict state management
+  const [showConflictDialog, setShowConflictDialog] = useState(false);
+  const [conflictingUser, setConflictingUser] = useState<any>(null);
+  const [pendingPostId, setPendingPostId] = useState<number | null>(null);
+  const [conflictRequestPending, setConflictRequestPending] = useState(false);
+  const [pollingInterval, setPollingInterval] = useState<NodeJS.Timeout | null>(null);
+
+  // Get auth headers helper
+  const getAuthHeaders = () => {
+    const adminToken = localStorage.getItem("adminToken");
+    const userToken = localStorage.getItem("userToken");
+    const token = adminToken || userToken;
+    return {
+      'Content-Type': 'application/json',
+      ...(token && { 'Authorization': `Bearer ${token}` })
+    };
+  };
+
+  // Check for editing conflicts before opening post
+  const checkEditingConflicts = async (postId: number) => {
+    try {
+      const response = await fetch(`/api/admin/posts/${postId}/editing-sessions`, {
+        headers: getAuthHeaders(),
+      });
+      
+      if (response.ok) {
+        const sessions = await response.json();
+        const otherUsersSessions = sessions.filter((session: any) => session.userId !== adminUser?.id);
+        
+        if (otherUsersSessions.length > 0) {
+          const conflictUser = otherUsersSessions[0].user;
+          setConflictingUser(conflictUser);
+          setPendingPostId(postId);
+          setShowConflictDialog(true);
+          return false; // Block editing
+        }
+      }
+      return true; // Allow editing
+    } catch (error) {
+      console.error('Error checking editing conflicts:', error);
+      return true; // Allow editing on error
+    }
+  };
+
+  // Handle edit button click with conflict checking
+  const handleEditPost = async (postId: number) => {
+    const canEdit = await checkEditingConflicts(postId);
+    if (canEdit) {
+      // No conflict, navigate directly to editor
+      setLocation(`/admin/blog-editor/${postId}`);
+    }
+    // If there's a conflict, the dialog will handle the rest
+  };
+
+  // Handle conflict resolution for the two-way popup system
+  const handleConflictResolution = async (action: 'edit' | 'quit') => {
+    setShowConflictDialog(false);
+    
+    if (action === 'edit' && pendingPostId && conflictingUser) {
+      // Send edit request to current editor
+      try {
+        const response = await fetch('/api/admin/edit-requests', {
+          method: 'POST',
+          headers: getAuthHeaders(),
+          body: JSON.stringify({
+            postId: pendingPostId,
+            currentEditorId: conflictingUser.id
+          })
+        });
+
+        if (response.ok) {
+          setConflictRequestPending(true);
+          // Start polling for the response
+          startPollingForEditRequestResponse();
+          toast({
+            title: "Request Sent",
+            description: `Your edit request has been sent to ${conflictingUser.username}. Waiting for response...`,
+          });
+        } else {
+          const error = await response.json();
+          toast({
+            title: "Error",
+            description: error.message || "Failed to send edit request",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error('Error sending edit request:', error);
+        toast({
+          title: "Error",
+          description: "Failed to send edit request",
+          variant: "destructive",
+        });
+      }
+    } else {
+      // User chose to quit, reset state
+      setPendingPostId(null);
+      setConflictingUser(null);
+    }
+  };
+
+  // Start polling for edit request response
+  const startPollingForEditRequestResponse = () => {
+    // Clear any existing polling
+    if (pollingInterval) {
+      clearInterval(pollingInterval);
+    }
+
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch('/api/admin/edit-requests/for-me', {
+          headers: getAuthHeaders(),
+        });
+
+        if (response.ok) {
+          const requests = await response.json();
+          const relevantRequest = requests.find((req: any) => 
+            req.postId === pendingPostId && req.status !== 'pending'
+          );
+
+          if (relevantRequest) {
+            clearInterval(interval);
+            setPollingInterval(null);
+            setConflictRequestPending(false);
+
+            if (relevantRequest.status === 'approved') {
+              toast({
+                title: "Access Granted",
+                description: `${conflictingUser.username} has allowed you to edit this post.`,
+              });
+              // Navigate to editor
+              setLocation(`/admin/blog-editor/${pendingPostId}`);
+            } else {
+              toast({
+                title: "Access Denied",
+                description: `${conflictingUser.username} has declined your edit request.`,
+                variant: "destructive",
+              });
+            }
+            
+            // Reset state
+            setPendingPostId(null);
+            setConflictingUser(null);
+          }
+        }
+      } catch (error) {
+        console.error('Error polling for edit request response:', error);
+      }
+    }, 2000); // Poll every 2 seconds
+
+    setPollingInterval(interval);
+    
+    // Auto-timeout after 2 minutes
+    setTimeout(() => {
+      if (pollingInterval) {
+        clearInterval(interval);
+        setPollingInterval(null);
+        setConflictRequestPending(false);
+        toast({
+          title: "Request Timeout",
+          description: "Your edit request timed out. Please try again.",
+          variant: "destructive",
+        });
+        setPendingPostId(null);
+        setConflictingUser(null);
+      }
+    }, 120000);
+  };
 
   // Check authentication - support both admin and user tokens
   useEffect(() => {
@@ -110,17 +280,6 @@ export default function AdminDashboard() {
     }
   }, [setLocation]);
 
-  // Get auth token - support both admin and user tokens
-  const getAuthHeaders = () => {
-    let token = localStorage.getItem("adminToken");
-    if (!token) {
-      token = localStorage.getItem("userToken");
-    }
-    return {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json",
-    };
-  };
 
   // Fetch blog posts - all posts for admin, only assigned posts for other users
   const { data: blogPosts = [], isLoading: blogLoading, refetch: refetchBlogs } = useQuery({
@@ -674,7 +833,7 @@ export default function AdminDashboard() {
                               <Button
                                 size="sm"
                                 variant="outline"
-                                onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
+                                onClick={() => handleEditPost(post.id)}
                                 title="Edit Article"
                               >
                                 <Edit2 className="w-4 h-4" />
@@ -714,6 +873,53 @@ export default function AdminDashboard() {
         </div>
       </div>
       </div>
+
+      {/* Edit Conflict Dialog */}
+      <Dialog open={showConflictDialog} onOpenChange={setShowConflictDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="flex items-center space-x-2">
+              <AlertTriangle className="w-5 h-5 text-orange-500" />
+              <span>Post Being Edited</span>
+            </DialogTitle>
+            <DialogDescription>
+              {conflictingUser && (
+                <div className="space-y-3">
+                  <p>
+                    <strong>{conflictingUser.username}</strong> ({conflictingUser.role}) is currently editing this post.
+                  </p>
+                  <p>
+                    You can request access from them, or come back later when they're done editing.
+                  </p>
+                </div>
+              )}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="space-x-2">
+            <Button 
+              variant="outline" 
+              onClick={() => handleConflictResolution('quit')}
+              disabled={conflictRequestPending}
+            >
+              Cancel
+            </Button>
+            <Button 
+              onClick={() => handleConflictResolution('edit')}
+              disabled={conflictRequestPending}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
+              {conflictRequestPending ? (
+                <div className="flex items-center space-x-2">
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span>Requesting...</span>
+                </div>
+              ) : (
+                "Request Access"
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
