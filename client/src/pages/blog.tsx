@@ -3426,7 +3426,7 @@ export default function Blog() {
                   {post.image && (
                     <div className="relative overflow-hidden rounded-t-lg">
                       <img 
-                        src={normalizeImageSrc(post.image)}
+                        src={post.image}
                         alt={post.title}
                         className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover transition-transform hover:scale-105"
                         style={{ objectFit: 'cover', objectPosition: 'center', maxWidth: '100%', height: 'auto', minHeight: '200px' }}
