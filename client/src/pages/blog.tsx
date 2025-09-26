@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, X, Linkedin, Share, Instagram, Calculator, List } from "lucide-react";
-import { Link, useRoute } from "wouter";
+import { Search, Calendar, Clock, User, Eye, ArrowRight, Tag, ChevronDown, ChevronUp, Share2, Facebook, X, Linkedin, Share, Instagram, Calculator, List, ChevronLeft, ChevronRight } from "lucide-react";
+import { Link, useRoute, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -3234,7 +3234,12 @@ export default function Blog() {
   const [directMatch, directParams] = useRoute("/:slug");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [displayCount, setDisplayCount] = useState(12); // Show 12 blogs initially
+  
+  // URL and pagination management
+  const [location, setLocation] = useLocation();
+  const urlParams = new URLSearchParams(window.location.search);
+  const currentPage = parseInt(urlParams.get('page') || '1', 10);
+  const postsPerPage = 12;
 
   // Fetch blog posts from API
   const { data: blogPostsData, isLoading } = useQuery({
@@ -3395,18 +3400,23 @@ export default function Blog() {
     return matchesSearch && matchesCategory;
   });
 
-  // Get posts to display based on current displayCount
-  const postsToDisplay = filteredPosts.slice(0, displayCount);
-  const hasMorePosts = filteredPosts.length > displayCount;
+  // Pagination calculations
+  const totalPosts = filteredPosts.length;
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
+  const startIndex = (currentPage - 1) * postsPerPage;
+  const endIndex = startIndex + postsPerPage;
+  const postsToDisplay = filteredPosts.slice(startIndex, endIndex);
 
-  // Load more function
-  const loadMorePosts = () => {
-    setDisplayCount(prev => prev + 3); // Show 3 more posts each time
+  // Page navigation functions
+  const goToPage = (page: number) => {
+    if (page < 1 || page > totalPages) return;
+    const newUrl = page === 1 ? '/blog' : `/blog?page=${page}`;
+    setLocation(newUrl);
   };
 
-  // Reset displayCount when search or category changes
+  // Reset to page 1 when search or category changes
   const resetPagination = () => {
-    setDisplayCount(12);
+    setLocation('/blog');
   };
 
   return (
@@ -3581,15 +3591,84 @@ export default function Blog() {
           ))}
         </div>
 
-        {/* Load More Button */}
-        {hasMorePosts && (
-          <div className="text-center mt-12">
-            <Button 
-              onClick={loadMorePosts}
-              size="lg"
-              className="bg-[#1D50C9] hover:bg-[#1845B3] text-white px-8 py-3"
+        {/* Numbered Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center space-x-2 mt-12">
+            {/* Previous Button */}
+            <Button
+              variant="outline"
+              onClick={() => goToPage(currentPage - 1)}
+              disabled={currentPage <= 1}
+              className="flex items-center space-x-1"
+              data-testid="button-pagination-previous"
             >
-              Load More
+              <ChevronLeft className="w-4 h-4" />
+              <span>Previous</span>
+            </Button>
+
+            {/* Page Numbers */}
+            <div className="flex space-x-1">
+              {/* Always show first page */}
+              {currentPage > 3 && (
+                <>
+                  <Button
+                    variant={1 === currentPage ? "default" : "outline"}
+                    onClick={() => goToPage(1)}
+                    className={1 === currentPage ? "bg-[#1D50C9] hover:bg-[#1845B3] text-white" : ""}
+                    data-testid="button-pagination-1"
+                  >
+                    1
+                  </Button>
+                  {currentPage > 4 && <span className="px-2 py-1">...</span>}
+                </>
+              )}
+
+              {/* Show pages around current page */}
+              {Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter(page => {
+                  if (totalPages <= 7) return true; // Show all if 7 or fewer pages
+                  if (currentPage <= 3) return page <= 5; // Show first 5 if current is in first 3
+                  if (currentPage >= totalPages - 2) return page > totalPages - 5; // Show last 5 if current is in last 3
+                  return Math.abs(page - currentPage) <= 1; // Show current ± 1
+                })
+                .map(page => (
+                  <Button
+                    key={page}
+                    variant={page === currentPage ? "default" : "outline"}
+                    onClick={() => goToPage(page)}
+                    className={page === currentPage ? "bg-[#1D50C9] hover:bg-[#1845B3] text-white" : ""}
+                    data-testid={`button-pagination-${page}`}
+                  >
+                    {page}
+                  </Button>
+                ))}
+
+              {/* Always show last page */}
+              {currentPage < totalPages - 2 && (
+                <>
+                  {currentPage < totalPages - 3 && <span className="px-2 py-1">...</span>}
+                  <Button
+                    variant={totalPages === currentPage ? "default" : "outline"}
+                    onClick={() => goToPage(totalPages)}
+                    className={totalPages === currentPage ? "bg-[#1D50C9] hover:bg-[#1845B3] text-white" : ""}
+                    data-testid={`button-pagination-${totalPages}`}
+                  >
+                    {totalPages}
+                  </Button>
+                </>
+              )}
+            </div>
+
+            {/* Next Button */}
+            <Button
+              variant="outline"
+              onClick={() => goToPage(currentPage + 1)}
+              disabled={currentPage >= totalPages}
+              className="flex items-center space-x-1"
+              data-testid="button-pagination-next"
+            >
+              <span>Next</span>
+              <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
         )}
