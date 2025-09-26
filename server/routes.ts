@@ -2080,21 +2080,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
       
-      // Fallback to local data
-      const posts = await storage.getBlogPosts(true); // Only published posts
+      // Fallback to local data - use optimized method to avoid N+1 queries
+      const postsWithCategories = await storage.getBlogPostsWithCategories(true); // Only published posts with categories
       
       // Apply limit if specified
-      const limitedPosts = limit ? posts.slice(0, limit) : posts;
+      const limitedPosts = limit ? postsWithCategories.slice(0, limit) : postsWithCategories;
       
-      // Fetch categories for each post and map database fields to frontend expected format
-      const mappedPosts = await Promise.all(limitedPosts.map(async (post) => {
-        const categories = await storage.getBlogPostCategories(post.id);
-        return {
-          ...post,
-          _source: 'local',
-          featuredImage: post.featuredImage, // Use the existing featuredImage field
-          categories: categories // Add categories array to each post
-        };
+      // Map database fields to frontend expected format
+      const mappedPosts = limitedPosts.map((post) => ({
+        ...post,
+        _source: 'local',
+        featuredImage: post.featuredImage, // Use the existing featuredImage field
+        // categories are already included from the optimized query
       }));
       
       res.json(mappedPosts);

@@ -395,6 +395,51 @@ export class DatabaseStorage implements IStorage {
   }
 
   // Blog Management Methods
+  // Optimized method to get blog posts with their categories in fewer queries
+  async getBlogPostsWithCategories(published?: boolean): Promise<any[]> {
+    // First get all blog posts
+    const posts = await this.getBlogPosts(published);
+    
+    if (posts.length === 0) return [];
+    
+    // Get all post IDs
+    const postIds = posts.map(post => post.id);
+    
+    // Batch fetch all categories for all posts in a single query
+    const postCategories = await db
+      .select({
+        postId: blogPostCategories.blogPostId,
+        categoryId: categories.id,
+        categoryName: categories.name,
+        categorySlug: categories.slug,
+        categoryDescription: categories.description,
+      })
+      .from(blogPostCategories)
+      .innerJoin(categories, eq(blogPostCategories.categoryId, categories.id))
+      .where(inArray(blogPostCategories.blogPostId, postIds))
+      .orderBy(asc(categories.name));
+    
+    // Group categories by post ID
+    const categoriesByPost: Record<number, any[]> = {};
+    postCategories.forEach(pc => {
+      if (!categoriesByPost[pc.postId]) {
+        categoriesByPost[pc.postId] = [];
+      }
+      categoriesByPost[pc.postId].push({
+        id: pc.categoryId,
+        name: pc.categoryName,
+        slug: pc.categorySlug,
+        description: pc.categoryDescription,
+      });
+    });
+    
+    // Combine posts with their categories
+    return posts.map(post => ({
+      ...post,
+      categories: categoriesByPost[post.id] || []
+    }));
+  }
+
   async getBlogPosts(published?: boolean): Promise<any[]> {
     if (published !== undefined) {
       const posts = await db.select({
