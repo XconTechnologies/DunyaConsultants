@@ -5,7 +5,8 @@ import { seedBlogPosts } from "./seed-blogs";
 import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
-  insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest 
+  insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest,
+  insertCategorySchema, Category 
 } from "@shared/schema";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
@@ -2987,62 +2988,91 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // ====================== CATEGORY MANAGEMENT ROUTES ======================
+  // ====================== ENHANCED CATEGORY MANAGEMENT ROUTES ======================
 
-  // Get all categories with post counts
+  // Get all categories with SEO fields and post counts
   app.get("/api/admin/categories", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const blogPosts = await storage.getBlogPosts();
+      const categories = await storage.getCategories(true); // Only active categories
       
-      // Extract unique categories and count posts for each
-      const categoryMap = new Map<string, number>();
-      blogPosts.forEach(post => {
-        const category = post.category || 'General';
-        categoryMap.set(category, (categoryMap.get(category) || 0) + 1);
-      });
+      // Get post counts for each category from many-to-many relationships
+      const categoriesWithCounts = await Promise.all(
+        categories.map(async (category) => {
+          const blogPostCategories = await storage.getBlogPostCategories(0); // This would need adjustment
+          // For now, we'll count using a simple approach
+          const blogPosts = await storage.getBlogPosts();
+          const count = blogPosts.filter(post => post.category === category.name).length;
+          
+          return {
+            ...category,
+            count
+          };
+        })
+      );
 
-      // Convert to array format
-      const categories = Array.from(categoryMap.entries()).map(([name, count]) => ({
-        name,
-        count
-      }));
-
-      // Sort by name
-      categories.sort((a, b) => a.name.localeCompare(b.name));
-
-      res.json(categories);
+      res.json(categoriesWithCounts);
     } catch (error) {
       console.error('Error fetching categories:', error);
       res.status(500).json({ message: 'Failed to fetch categories' });
     }
   });
 
-  // Create a new category (this will be used when creating new blog posts)
+  // Get single category by ID
+  app.get("/api/admin/categories/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const categoryId = parseInt(req.params.id);
+      const category = await storage.getCategory(categoryId);
+      
+      if (!category) {
+        return res.status(404).json({ message: 'Category not found' });
+      }
+
+      res.json(category);
+    } catch (error) {
+      console.error('Error fetching category:', error);
+      res.status(500).json({ message: 'Failed to fetch category' });
+    }
+  });
+
+  // Create a new category with SEO fields
   app.post("/api/admin/categories", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const { name } = req.body;
+      const validation = insertCategorySchema.safeParse(req.body);
       
-      if (!name || typeof name !== 'string' || name.trim() === '') {
-        return res.status(400).json({ message: 'Category name is required' });
+      if (!validation.success) {
+        return res.status(400).json({ 
+          message: 'Validation error', 
+          errors: validation.error.errors 
+        });
       }
 
-      const categoryName = name.trim();
+      const categoryData = validation.data;
       
-      // Check if category already exists
-      const blogPosts = await storage.getBlogPosts();
-      const existingCategory = blogPosts.find(post => post.category === categoryName);
+      // Check if category name already exists
+      const existingCategories = await storage.getCategories();
+      const existingCategory = existingCategories.find(cat => 
+        cat.name.toLowerCase() === categoryData.name.toLowerCase()
+      );
       
       if (existingCategory) {
-        return res.status(409).json({ message: 'Category already exists' });
+        return res.status(409).json({ message: 'Category name already exists' });
       }
 
-      // Create a placeholder blog post with this category to establish it
-      // In a real application, you might want a dedicated categories table
-      // For now, we'll just return success and the category will be available for use
+      // Check if slug already exists (if provided)
+      if (categoryData.slug) {
+        const existingSlug = existingCategories.find(cat => 
+          cat.slug === categoryData.slug
+        );
+        if (existingSlug) {
+          return res.status(409).json({ message: 'Category slug already exists' });
+        }
+      }
+
+      const category = await storage.createCategory(categoryData);
       
       res.status(201).json({ 
         message: 'Category created successfully',
-        category: { name: categoryName, count: 0 }
+        category
       });
     } catch (error) {
       console.error('Error creating category:', error);
@@ -3050,29 +3080,142 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Delete a category (move all posts in this category to 'General')
-  app.delete("/api/admin/categories/:name", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Update a category
+  app.put("/api/admin/categories/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const categoryName = decodeURIComponent(req.params.name);
-      
-      if (categoryName === 'General') {
-        return res.status(400).json({ message: 'Cannot delete the General category' });
+      const categoryId = parseInt(req.params.id);
+      const updates = req.body;
+
+      // Validate that category exists
+      const existingCategory = await storage.getCategory(categoryId);
+      if (!existingCategory) {
+        return res.status(404).json({ message: 'Category not found' });
       }
 
-      // Get all posts in this category
-      const blogPosts = await storage.getBlogPosts();
-      const postsToUpdate = blogPosts.filter(post => post.category === categoryName);
+      // Check if new name/slug conflicts with other categories
+      if (updates.name) {
+        const categories = await storage.getCategories();
+        const nameConflict = categories.find(cat => 
+          cat.id !== categoryId && cat.name.toLowerCase() === updates.name.toLowerCase()
+        );
+        if (nameConflict) {
+          return res.status(409).json({ message: 'Category name already exists' });
+        }
+      }
+
+      if (updates.slug) {
+        const categories = await storage.getCategories();
+        const slugConflict = categories.find(cat => 
+          cat.id !== categoryId && cat.slug === updates.slug
+        );
+        if (slugConflict) {
+          return res.status(409).json({ message: 'Category slug already exists' });
+        }
+      }
+
+      const updatedCategory = await storage.updateCategory(categoryId, updates);
       
-      if (postsToUpdate.length > 0) {
+      res.json({ 
+        message: 'Category updated successfully',
+        category: updatedCategory
+      });
+    } catch (error) {
+      console.error('Error updating category:', error);
+      res.status(500).json({ message: 'Failed to update category' });
+    }
+  });
+
+  // Delete a category
+  app.delete("/api/admin/categories/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const categoryId = parseInt(req.params.id);
+      
+      // Check if category exists
+      const category = await storage.getCategory(categoryId);
+      if (!category) {
+        return res.status(404).json({ message: 'Category not found' });
+      }
+
+      // Check if category has any blog posts assigned
+      const blogPostCategories = await storage.getBlogPostCategories(0); // We'll need to implement a proper count method
+      // For now, check using the old category field too
+      const blogPosts = await storage.getBlogPosts();
+      const postsWithCategory = blogPosts.filter(post => post.category === category.name);
+      
+      if (postsWithCategory.length > 0) {
         return res.status(400).json({ 
-          message: `Cannot delete category "${categoryName}" because it contains ${postsToUpdate.length} post(s). Move or delete the posts first.` 
+          message: `Cannot delete category "${category.name}" because it contains ${postsWithCategory.length} post(s). Remove the category from all posts first.` 
         });
       }
 
+      await storage.deleteCategory(categoryId);
+      
       res.json({ message: 'Category deleted successfully' });
     } catch (error) {
       console.error('Error deleting category:', error);
       res.status(500).json({ message: 'Failed to delete category' });
+    }
+  });
+
+  // Assign categories to blog post
+  app.post("/api/admin/blog-posts/:id/categories", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const postId = parseInt(req.params.id);
+      const { categoryIds } = req.body;
+
+      if (!Array.isArray(categoryIds)) {
+        return res.status(400).json({ message: 'categoryIds must be an array' });
+      }
+
+      // Validate that the blog post exists
+      const blogPost = await storage.getBlogPost(postId);
+      if (!blogPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+
+      // Validate that all categories exist
+      const categories = await storage.getCategories();
+      const validCategoryIds = categories.map(cat => cat.id);
+      const invalidIds = categoryIds.filter(id => !validCategoryIds.includes(id));
+      
+      if (invalidIds.length > 0) {
+        return res.status(400).json({ 
+          message: `Invalid category IDs: ${invalidIds.join(', ')}` 
+        });
+      }
+
+      // Update blog post categories
+      await storage.updateBlogPostCategories(postId, categoryIds);
+      
+      // Get updated categories for response
+      const updatedCategories = await storage.getBlogPostCategories(postId);
+      
+      res.json({ 
+        message: 'Categories updated successfully',
+        categories: updatedCategories
+      });
+    } catch (error) {
+      console.error('Error updating blog post categories:', error);
+      res.status(500).json({ message: 'Failed to update blog post categories' });
+    }
+  });
+
+  // Get categories for a specific blog post
+  app.get("/api/admin/blog-posts/:id/categories", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const postId = parseInt(req.params.id);
+      
+      // Validate that the blog post exists
+      const blogPost = await storage.getBlogPost(postId);
+      if (!blogPost) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+
+      const categories = await storage.getBlogPostCategories(postId);
+      res.json(categories);
+    } catch (error) {
+      console.error('Error fetching blog post categories:', error);
+      res.status(500).json({ message: 'Failed to fetch blog post categories' });
     }
   });
 
