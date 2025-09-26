@@ -14,6 +14,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { canPublishContent, canManageCategories } from "@/lib/permissions";
 import ReactQuill from 'react-quill';
@@ -33,7 +34,8 @@ const blogSchema = z.object({
   slug: z.string().min(1, "Slug is required"),
   excerpt: z.string().min(1, "Excerpt is required"),
   content: z.string().min(1, "Content is required"),
-  category: z.string().min(1, "Category is required"),
+  categoryIds: z.array(z.number()).min(1, "At least one category is required"),
+  category: z.string().optional(), // Keep for backward compatibility
   metaDescription: z.string().optional(),
   focusKeyword: z.string().optional(),
   featuredImage: z.string().optional(),
@@ -54,6 +56,7 @@ interface BlogPost {
   excerpt: string;
   content: string;
   category: string;
+  categoryIds?: number[];
   metaDescription?: string;
   focusKeyword?: string;
   featuredImage?: string;
@@ -360,6 +363,7 @@ export default function BlogEditor() {
   const [pollingInterval, setPollingInterval] = useState<NodeJS.Timeout | null>(null);
   const [newCategoryName, setNewCategoryName] = useState("");
   const [isCreatingCategory, setIsCreatingCategory] = useState(false);
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
   
   // Check authentication - support both admin and user tokens
   useEffect(() => {
@@ -492,6 +496,21 @@ export default function BlogEditor() {
     enabled: authChecked
   });
 
+  // Fetch categories for a blog post when editing
+  const { data: postCategories = [], isLoading: postCategoriesLoading } = useQuery({
+    queryKey: ["/api/admin/blog-posts", blogId, "categories"],
+    queryFn: async () => {
+      const response = await fetch(`/api/admin/blog-posts/${blogId}/categories`, {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch post categories');
+      }
+      return response.json();
+    },
+    enabled: isEditing && !!blogId && authChecked
+  });
+
   // Create category mutation
   const createCategoryMutation = useMutation({
     mutationFn: async (name: string) => {
@@ -529,6 +548,27 @@ export default function BlogEditor() {
       return;
     }
     createCategoryMutation.mutate(newCategoryName.trim());
+  };
+
+  // Handle category selection
+  const handleCategoryToggle = (categoryId: number, checked: boolean) => {
+    setSelectedCategoryIds(prev => {
+      if (checked) {
+        return [...prev, categoryId];
+      } else {
+        return prev.filter(id => id !== categoryId);
+      }
+    });
+    
+    // Update form value for validation
+    setValue('categoryIds', selectedCategoryIds);
+  };
+
+  // Get selected categories for display
+  const getSelectedCategoriesText = () => {
+    if (selectedCategoryIds.length === 0) return "No categories selected";
+    const selectedCategories = categories.filter((cat: any) => selectedCategoryIds.includes(cat.id));
+    return selectedCategories.map((cat: any) => cat.name).join(", ");
   };
 
   const contentRef = useRef<HTMLTextAreaElement>(null);
@@ -576,6 +616,7 @@ export default function BlogEditor() {
       isPublished: false,
       content: "",
       category: "General", // Default category
+      categoryIds: [], // Default to no categories selected
       publishedAt: "", // Don't pre-fill - only set when actually publishing
     },
   });
@@ -818,6 +859,7 @@ export default function BlogEditor() {
           excerpt: blogPost.excerpt || "",
           content: blogPost.content || "",
           category: blogPost.category || "General",
+          categoryIds: selectedCategoryIds,
           metaDescription: blogPost.metaDescription || "",
           focusKeyword: blogPost.focusKeyword || "",
           featuredImage: blogPost.featuredImage || "",
@@ -841,7 +883,15 @@ export default function BlogEditor() {
         }, 100);
       }, 300);
     }
-  }, [blogPost, isEditing, reset, setValue]);
+  }, [blogPost, isEditing, reset, setValue, selectedCategoryIds]);
+
+  // Update selected categories when post categories are loaded
+  useEffect(() => {
+    if (postCategories && postCategories.length > 0) {
+      const categoryIds = postCategories.map((cat: any) => cat.id);
+      setSelectedCategoryIds(categoryIds);
+    }
+  }, [postCategories]);
 
   // Check for editing conflicts and start editing session when opening an existing post
   useEffect(() => {
@@ -979,7 +1029,28 @@ export default function BlogEditor() {
         throw new Error(`${response.status}: ${errorText}`);
       }
       
-      return response.json();
+      const result = await response.json();
+      
+      // Save categories for the blog post
+      if (selectedCategoryIds.length > 0) {
+        const postId = isEditing ? blogId : result.post?.id;
+        if (postId) {
+          const categoriesResponse = await fetch(`/api/admin/blog-posts/${postId}/categories`, {
+            method: "POST",
+            body: JSON.stringify({ categoryIds: selectedCategoryIds }),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          
+          if (!categoriesResponse.ok) {
+            console.error('Failed to save categories:', categoriesResponse.statusText);
+          }
+        }
+      }
+      
+      return result;
     },
     onSuccess: (result) => {
       toast({
@@ -1227,40 +1298,75 @@ export default function BlogEditor() {
                 </CardContent>
               </Card>
 
-              {/* Category */}
+              {/* Categories */}
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
                     <Hash className="w-5 h-5" />
-                    <span>Category</span>
+                    <span>Categories</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <Controller
-                    name="category"
-                    control={control}
-                    render={({ field }) => (
-                      <Select onValueChange={field.onChange} value={field.value}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {categoriesLoading ? (
-                            <div className="p-2 text-center text-sm text-gray-500">Loading categories...</div>
-                          ) : (
-                            categories.map((category: any) => (
-                              <SelectItem key={category.id} value={category.name}>
+                  <div className="space-y-3">
+                    {/* Selected categories summary */}
+                    <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                      <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Selected Categories ({selectedCategoryIds.length})
+                      </div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        {getSelectedCategoriesText()}
+                      </div>
+                    </div>
+
+                    {/* Category selection */}
+                    {categoriesLoading ? (
+                      <div className="p-4 text-center text-sm text-gray-500">
+                        <Loader2 className="w-4 h-4 animate-spin mx-auto mb-2" />
+                        Loading categories...
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 gap-2">
+                        {categories.map((category: any) => (
+                          <div key={category.id} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
+                            <Checkbox
+                              id={`category-${category.id}`}
+                              checked={selectedCategoryIds.includes(category.id)}
+                              onCheckedChange={(checked) => 
+                                handleCategoryToggle(category.id, checked as boolean)
+                              }
+                              data-testid={`checkbox-category-${category.slug}`}
+                            />
+                            <div className="flex-1">
+                              <Label
+                                htmlFor={`category-${category.id}`}
+                                className="text-sm font-medium cursor-pointer"
+                              >
                                 {category.name}
-                              </SelectItem>
-                            ))
-                          )}
-                        </SelectContent>
-                      </Select>
+                              </Label>
+                              {category.description && (
+                                <div className="text-xs text-gray-500 mt-1">
+                                  {category.description}
+                                </div>
+                              )}
+                              {category.focusKeyword && (
+                                <Badge variant="outline" className="text-xs mt-1">
+                                  {category.focusKeyword}
+                                </Badge>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     )}
-                  />
-                  {errors.category && (
-                    <p className="text-red-500 text-sm mt-1">{errors.category.message}</p>
+                  </div>
+
+                  {/* Validation error */}
+                  {selectedCategoryIds.length === 0 && (
+                    <p className="text-red-500 text-sm mt-2">At least one category is required</p>
                   )}
+
+                  {/* Backward compatibility with single category */}
+                  <input type="hidden" {...register("category")} value={categories.find((cat: any) => selectedCategoryIds.includes(cat.id))?.name || "General"} />
 
                   {/* Add new category section */}
                   {canManageCategories(adminUser) && (
