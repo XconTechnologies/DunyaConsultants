@@ -370,51 +370,38 @@ function BlogPostDetail({ slug }: { slug: string }) {
     }
   });
 
-  // Fetch admin users for author information
-  const { data: adminUsers } = useQuery({
-    queryKey: ['/api/admin/users'],
-    queryFn: async () => {
-      const response = await fetch('/api/admin/users');
-      if (!response.ok) throw new Error('Failed to fetch admin users');
-      return response.json();
-    }
-  });
-
   // Transform API data to component format
-  const blogPosts = blogPostsData ? blogPostsData.map((post: any) => {
-    const author = adminUsers?.find((user: any) => user.id === post.authorId);
-    return {
-      id: post.id,
-      title: post.title,
-      excerpt: post.excerpt,
-      category: post.category || "Study Guides",
-      author: author ? author.username : "Path Visa Consultants",
-      authorId: post.authorId,
-      date: (() => {
-        const dateStr = post.publishedAt || post.published_at || post.created_at;
-        if (!dateStr) return 'Unknown Date';
-        try {
-          const date = new Date(dateStr);
-          if (isNaN(date.getTime())) return 'Unknown Date';
-          return date.toLocaleDateString('en-US', { 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          });
-        } catch {
-          return 'Unknown Date';
-        }
-      })(),
-      readTime: "5 min",
-      views: post.view_count || 0,
-      tags: post.tags || [],
-      image: normalizeImageSrc(post.featuredImage || ''),
-      featured: false,
-      slug: post.slug,
-      content: post.content,
-      rawContent: post.content
-    };
-  }) : staticBlogPosts;
+  const blogPosts = blogPostsData ? blogPostsData.map((post: any) => ({
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt,
+    category: post.category || "Study Guides",
+    author: post.authorName || "Path Visa Consultants",
+    authorId: post.authorId,
+    date: (() => {
+      const dateStr = post.publishedAt || post.published_at || post.created_at;
+      if (!dateStr) return 'Unknown Date';
+      try {
+        const date = new Date(dateStr);
+        if (isNaN(date.getTime())) return 'Unknown Date';
+        return date.toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        });
+      } catch {
+        return 'Unknown Date';
+      }
+    })(),
+    readTime: "5 min",
+    views: post.view_count || 0,
+    tags: post.tags || [],
+    image: normalizeImageSrc(post.featuredImage || ''),
+    featured: false,
+    slug: post.slug,
+    content: post.content,
+    rawContent: post.content
+  })) : staticBlogPosts;
 
   const blogPost = blogPosts.find((post: any) => post.slug === slug);
 

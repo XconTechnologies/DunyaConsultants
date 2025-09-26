@@ -392,13 +392,77 @@ export class DatabaseStorage implements IStorage {
   }
 
   // Blog Management Methods
-  async getBlogPosts(published?: boolean): Promise<BlogPost[]> {
+  async getBlogPosts(published?: boolean): Promise<any[]> {
     if (published !== undefined) {
-      return await db.select().from(blogPosts)
-        .where(eq(blogPosts.isPublished, published))
-        .orderBy(desc(blogPosts.publishedAt));
+      const posts = await db.select({
+        id: blogPosts.id,
+        title: blogPosts.title,
+        slug: blogPosts.slug,
+        metaTitle: blogPosts.metaTitle,
+        metaDescription: blogPosts.metaDescription,
+        focusKeyword: blogPosts.focusKeyword,
+        featuredImage: blogPosts.featuredImage,
+        featuredImageAlt: blogPosts.featuredImageAlt,
+        featuredImageTitle: blogPosts.featuredImageTitle,
+        featuredImageOriginalName: blogPosts.featuredImageOriginalName,
+        content: blogPosts.content,
+        excerpt: blogPosts.excerpt,
+        category: blogPosts.category,
+        status: blogPosts.status,
+        viewCount: blogPosts.viewCount,
+        readingTime: blogPosts.readingTime,
+        isPublished: blogPosts.isPublished,
+        publishedAt: blogPosts.publishedAt,
+        authorId: blogPosts.authorId,
+        approverId: blogPosts.approverId,
+        createdAt: blogPosts.createdAt,
+        updatedAt: blogPosts.updatedAt,
+        authorName: adminUsers.username,
+      })
+      .from(blogPosts)
+      .leftJoin(adminUsers, eq(blogPosts.authorId, adminUsers.id))
+      .where(eq(blogPosts.isPublished, published))
+      .orderBy(desc(blogPosts.publishedAt));
+      
+      return posts.map(post => ({
+        ...post,
+        authorName: post.authorName || 'Path Visa Consultants'
+      }));
     }
-    return await db.select().from(blogPosts).orderBy(desc(blogPosts.publishedAt));
+    
+    const posts = await db.select({
+      id: blogPosts.id,
+      title: blogPosts.title,
+      slug: blogPosts.slug,
+      metaTitle: blogPosts.metaTitle,
+      metaDescription: blogPosts.metaDescription,
+      focusKeyword: blogPosts.focusKeyword,
+      featuredImage: blogPosts.featuredImage,
+      featuredImageAlt: blogPosts.featuredImageAlt,
+      featuredImageTitle: blogPosts.featuredImageTitle,
+      featuredImageOriginalName: blogPosts.featuredImageOriginalName,
+      content: blogPosts.content,
+      excerpt: blogPosts.excerpt,
+      category: blogPosts.category,
+      status: blogPosts.status,
+      viewCount: blogPosts.viewCount,
+      readingTime: blogPosts.readingTime,
+      isPublished: blogPosts.isPublished,
+      publishedAt: blogPosts.publishedAt,
+      authorId: blogPosts.authorId,
+      approverId: blogPosts.approverId,
+      createdAt: blogPosts.createdAt,
+      updatedAt: blogPosts.updatedAt,
+      authorName: adminUsers.username,
+    })
+    .from(blogPosts)
+    .leftJoin(adminUsers, eq(blogPosts.authorId, adminUsers.id))
+    .orderBy(desc(blogPosts.publishedAt));
+    
+    return posts.map(post => ({
+      ...post,
+      authorName: post.authorName || 'Path Visa Consultants'
+    }));
   }
 
   async getBlogPost(id: number): Promise<BlogPost | undefined> {
