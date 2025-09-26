@@ -406,10 +406,44 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
   const blogPost = blogPosts.find((post: any) => post.slug === slug);
 
-  // Get latest 5 blogs excluding the current blog (always run this)
-  const relatedBlogs = blogPosts
-    .filter((post: any) => post.slug !== slug) // Exclude current blog
-    .slice(0, 5); // Get latest 5
+  // Get related blogs based on shared categories (always run this)
+  const relatedBlogs = (() => {
+    if (!blogPost || !blogPost.categories || blogPost.categories.length === 0) {
+      // Fallback to latest 5 if no categories
+      return blogPosts
+        .filter((post: any) => post.slug !== slug)
+        .slice(0, 5);
+    }
+    
+    // Get current blog's category names for comparison
+    const currentCategories = blogPost.categories.map((cat: any) => cat.name);
+    
+    // Filter blogs that share at least one category with the current blog
+    const categoryMatchedBlogs = blogPosts
+      .filter((post: any) => {
+        if (post.slug === slug) return false; // Exclude current blog
+        
+        // Check if this post has any categories that match current blog's categories
+        return post.categories && post.categories.some((cat: any) => 
+          currentCategories.includes(cat.name)
+        );
+      })
+      .slice(0, 5); // Limit to 5 blogs
+    
+    // If we don't have enough category-matched blogs, fill with latest blogs
+    if (categoryMatchedBlogs.length < 5) {
+      const additionalBlogs = blogPosts
+        .filter((post: any) => 
+          post.slug !== slug && 
+          !categoryMatchedBlogs.some((matched: any) => matched.slug === post.slug)
+        )
+        .slice(0, 5 - categoryMatchedBlogs.length);
+      
+      return [...categoryMatchedBlogs, ...additionalBlogs];
+    }
+    
+    return categoryMatchedBlogs;
+  })();
 
   // Duplicate the blogs for infinite scroll effect
   const duplicatedRelatedBlogs = [...relatedBlogs, ...relatedBlogs];
