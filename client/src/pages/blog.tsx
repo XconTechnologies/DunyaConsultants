@@ -3280,12 +3280,45 @@ export default function Blog() {
     return b.sortDate.getTime() - a.sortDate.getTime();
   }) : staticBlogPosts;
 
-  // Categories for filtering
+  // Fetch categories from API
+  const { data: apiCategories = [] } = useQuery({
+    queryKey: ["/api/admin/categories"],
+    queryFn: async () => {
+      const response = await fetch('/api/admin/categories');
+      if (!response.ok) {
+        throw new Error('Failed to fetch categories');
+      }
+      return response.json();
+    }
+  });
+
+  // Organize categories hierarchically
+  const organizeHierarchicalCategories = (categories: any[]) => {
+    const parentCategories = categories.filter(cat => !cat.parentId);
+    const childCategories = categories.filter(cat => cat.parentId);
+    
+    const organizedCategories: any[] = [];
+    
+    parentCategories.forEach(parent => {
+      organizedCategories.push(parent);
+      const children = childCategories.filter(child => child.parentId === parent.id);
+      children.forEach(child => {
+        organizedCategories.push(child);
+      });
+    });
+    
+    return organizedCategories;
+  };
+
+  // Create categories for filtering with hierarchical display
+  const organizedApiCategories = organizeHierarchicalCategories(apiCategories);
   const categories = [
-    { name: "All", count: blogPosts.length },
-    { name: "General", count: blogPosts.filter((p: any) => p.category === "General").length },
-    { name: "Study Guides", count: blogPosts.filter((p: any) => p.category === "Study Guides").length },
-    { name: "Test Preparation", count: blogPosts.filter((p: any) => p.category === "Test Preparation").length },
+    { name: "All", count: blogPosts.length, isChild: false },
+    ...organizedApiCategories.map((cat: any) => ({
+      name: cat.name,
+      count: blogPosts.filter((p: any) => p.category === cat.name).length,
+      isChild: !!cat.parentId
+    }))
   ].filter(cat => cat.count > 0);
 
   // If we're viewing a specific blog post

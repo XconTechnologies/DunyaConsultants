@@ -76,6 +76,24 @@ export default function BlogEditor() {
   const isEditing = Boolean(params?.id);
   const blogId = params?.id ? parseInt(params.id) : undefined;
 
+  // Organize categories hierarchically
+  const organizeHierarchicalCategories = (categories: any[]) => {
+    const parentCategories = categories.filter(cat => !cat.parentId);
+    const childCategories = categories.filter(cat => cat.parentId);
+    
+    const organizedCategories: any[] = [];
+    
+    parentCategories.forEach(parent => {
+      organizedCategories.push(parent);
+      const children = childCategories.filter(child => child.parentId === parent.id);
+      children.forEach(child => {
+        organizedCategories.push(child);
+      });
+    });
+    
+    return organizedCategories;
+  };
+
   // Check for existing editing sessions when opening a post
   const checkEditingConflicts = async (postId: number) => {
     try {
@@ -1369,18 +1387,30 @@ export default function BlogEditor() {
                             <SelectValue placeholder="Choose categories to add..." />
                           </SelectTrigger>
                           <SelectContent>
-                            {categories
+                            {organizeHierarchicalCategories(categories)
                               .filter((category: any) => !selectedCategoryIds.includes(category.id))
-                              .map((category: any) => (
-                                <SelectItem key={category.id} value={category.id.toString()}>
-                                  <div className="flex flex-col">
-                                    <span className="font-medium">{category.name}</span>
-                                    {category.description && (
-                                      <span className="text-xs text-gray-500">{category.description}</span>
-                                    )}
-                                  </div>
-                                </SelectItem>
-                              ))}
+                              .map((category: any) => {
+                                const isChild = !!category.parentId;
+                                return (
+                                  <SelectItem key={category.id} value={category.id.toString()}>
+                                    <div className={`flex flex-col ${isChild ? "ml-4" : ""}`}>
+                                      <div className="flex items-center space-x-2">
+                                        {isChild && <span className="text-gray-400">└─</span>}
+                                        {!isChild && <span className="text-blue-600">📁</span>}
+                                        {isChild && <span className="text-green-600">📄</span>}
+                                        <span className={`font-medium ${isChild ? "text-gray-700" : "text-gray-900"}`}>
+                                          {category.name}
+                                        </span>
+                                      </div>
+                                      {category.description && (
+                                        <span className={`text-xs text-gray-500 ${isChild ? "ml-6" : ""}`}>
+                                          {category.description}
+                                        </span>
+                                      )}
+                                    </div>
+                                  </SelectItem>
+                                );
+                              })}
                             {categories.filter((category: any) => !selectedCategoryIds.includes(category.id)).length === 0 && (
                               <div className="p-2 text-center text-sm text-gray-500">
                                 All categories are already selected
