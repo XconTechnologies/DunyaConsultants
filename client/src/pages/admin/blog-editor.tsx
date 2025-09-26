@@ -34,7 +34,7 @@ const blogSchema = z.object({
   slug: z.string().min(1, "Slug is required"),
   excerpt: z.string().min(1, "Excerpt is required"),
   content: z.string().min(1, "Content is required"),
-  categoryIds: z.array(z.number()).min(1, "At least one category is required"),
+  categoryIds: z.array(z.number()).optional(),
   category: z.string().optional(), // Keep for backward compatibility
   metaDescription: z.string().optional(),
   focusKeyword: z.string().optional(),
@@ -42,7 +42,6 @@ const blogSchema = z.object({
   featuredImageAlt: z.string().optional(),
   featuredImageTitle: z.string().optional(),
   featuredImageOriginalName: z.string().optional(),
-  tags: z.string().optional(),
   publishedAt: z.string().optional(),
   isPublished: z.boolean().default(false),
 });
@@ -880,11 +879,6 @@ export default function BlogEditor() {
           featuredImageAlt: blogPost.featuredImageAlt || "",
           featuredImageTitle: blogPost.featuredImageTitle || "",
           featuredImageOriginalName: blogPost.featuredImageOriginalName || "",
-          tags: Array.isArray(blogPost.tags) 
-            ? blogPost.tags.join(", ") 
-            : typeof blogPost.tags === 'string' 
-              ? blogPost.tags 
-              : "",
           publishedAt: blogPost.publishedAt 
             ? new Date(blogPost.publishedAt).toISOString().split('T')[0] 
             : "",
@@ -1024,7 +1018,6 @@ export default function BlogEditor() {
 
       const payload = {
         ...data,
-        tags: data.tags ? data.tags.split(",").map(tag => tag.trim()) : [],
         status: data.isPublished ? "published" : "draft", // Set status field correctly
         publishedAt: data.isPublished && data.publishedAt ? data.publishedAt : undefined, // Only send if provided
       };
@@ -1408,10 +1401,6 @@ export default function BlogEditor() {
                       </div>
                     )}
 
-                    {/* Validation error */}
-                    {selectedCategoryIds.length === 0 && (
-                      <p className="text-red-500 text-sm">At least one category is required</p>
-                    )}
 
                     {/* Backward compatibility with single category */}
                     <input type="hidden" {...register("category")} value={categories.find((cat: any) => selectedCategoryIds.includes(cat.id))?.name || "General"} />
@@ -1736,21 +1725,6 @@ export default function BlogEditor() {
                 </CardContent>
               </Card>
 
-              {/* Tags */}
-              <Card>
-                <CardHeader>
-                  <CardTitle>Tags</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Input
-                    {...register("tags")}
-                    placeholder="Tag1, Tag2, Tag3..."
-                  />
-                  <p className="text-sm text-gray-500 mt-2">
-                    Separate tags with commas
-                  </p>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </form>
