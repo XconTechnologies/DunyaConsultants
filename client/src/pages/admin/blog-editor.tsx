@@ -1369,61 +1369,23 @@ export default function BlogEditor() {
                             <SelectValue placeholder="Choose categories to add..." />
                           </SelectTrigger>
                           <SelectContent>
-                            {(() => {
-                              // Organize categories hierarchically
-                              const availableCategories = categories.filter((category: any) => !selectedCategoryIds.includes(category.id));
-                              const parentCategories = availableCategories.filter((cat: any) => !cat.parentId);
-                              const childCategories = availableCategories.filter((cat: any) => cat.parentId);
-                              
-                              const hierarchicalItems: any[] = [];
-                              
-                              // Add parent categories first
-                              parentCategories.forEach((parent: any) => {
-                                hierarchicalItems.push(
-                                  <SelectItem key={parent.id} value={parent.id.toString()}>
-                                    <div className="flex items-center">
-                                      <span className="font-medium">{parent.name}</span>
-                                      <span className="ml-2 text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">Parent</span>
-                                    </div>
-                                  </SelectItem>
-                                );
-                                
-                                // Add child categories under each parent
-                                const children = childCategories.filter((child: any) => child.parentId === parent.id);
-                                children.forEach((child: any) => {
-                                  hierarchicalItems.push(
-                                    <SelectItem key={child.id} value={child.id.toString()}>
-                                      <div className="flex items-center pl-4">
-                                        <span className="text-gray-600">└─</span>
-                                        <span className="ml-2 font-medium">{child.name}</span>
-                                        <span className="ml-2 text-xs text-blue-500 bg-blue-50 px-2 py-1 rounded">Child</span>
-                                      </div>
-                                    </SelectItem>
-                                  );
-                                });
-                              });
-                              
-                              // Add orphaned child categories (children without visible parents)
-                              const orphanedChildren = childCategories.filter((child: any) => 
-                                !parentCategories.some((parent: any) => parent.id === child.parentId)
-                              );
-                              orphanedChildren.forEach((child: any) => {
-                                hierarchicalItems.push(
-                                  <SelectItem key={child.id} value={child.id.toString()}>
-                                    <div className="flex items-center">
-                                      <span className="font-medium">{child.name}</span>
-                                      <span className="ml-2 text-xs text-orange-500 bg-orange-50 px-2 py-1 rounded">Orphaned</span>
-                                    </div>
-                                  </SelectItem>
-                                );
-                              });
-                              
-                              return hierarchicalItems.length > 0 ? hierarchicalItems : (
-                                <div className="p-2 text-center text-sm text-gray-500">
-                                  All categories are already selected
-                                </div>
-                              );
-                            })()}
+                            {categories
+                              .filter((category: any) => !selectedCategoryIds.includes(category.id))
+                              .map((category: any) => (
+                                <SelectItem key={category.id} value={category.id.toString()}>
+                                  <div className="flex flex-col">
+                                    <span className="font-medium">{category.name}</span>
+                                    {category.description && (
+                                      <span className="text-xs text-gray-500">{category.description}</span>
+                                    )}
+                                  </div>
+                                </SelectItem>
+                              ))}
+                            {categories.filter((category: any) => !selectedCategoryIds.includes(category.id)).length === 0 && (
+                              <div className="p-2 text-center text-sm text-gray-500">
+                                All categories are already selected
+                              </div>
+                            )}
                           </SelectContent>
                         </Select>
                       )}

@@ -24,7 +24,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Tag, Plus, Trash2, LogOut, Edit, Search } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
@@ -39,7 +38,6 @@ interface CategoryFormData {
   name: string;
   slug?: string;
   description?: string;
-  parentId?: number | null;
   focusKeyword?: string;
   metaTitle?: string;
   metaDescription?: string;
@@ -55,7 +53,6 @@ export default function CategoriesPage() {
     name: "",
     slug: "",
     description: "",
-    parentId: null,
     focusKeyword: "",
     metaTitle: "",
     metaDescription: "",
@@ -109,21 +106,6 @@ export default function CategoriesPage() {
       });
       if (!response.ok) {
         throw new Error('Failed to fetch categories');
-      }
-      return response.json();
-    },
-    enabled: !!adminUser,
-  });
-
-  // Fetch parent categories for dropdown
-  const { data: parentCategories = [] } = useQuery<Category[]>({
-    queryKey: ["/api/admin/categories/parents"],
-    queryFn: async () => {
-      const response = await fetch('/api/admin/categories/parents', {
-        headers: getAuthHeaders()
-      });
-      if (!response.ok) {
-        throw new Error('Failed to fetch parent categories');
       }
       return response.json();
     },
@@ -232,7 +214,6 @@ export default function CategoriesPage() {
       name: "",
       slug: "",
       description: "",
-      parentId: null,
       focusKeyword: "",
       metaTitle: "",
       metaDescription: "",
@@ -263,7 +244,6 @@ export default function CategoriesPage() {
       name: category.name,
       slug: category.slug || "",
       description: category.description || "",
-      parentId: category.parentId || null,
       focusKeyword: category.focusKeyword || "",
       metaTitle: category.metaTitle || "",
       metaDescription: category.metaDescription || "",
@@ -416,30 +396,6 @@ export default function CategoriesPage() {
                       />
                     </div>
                     <div>
-                      <Label htmlFor="categoryParent">Parent Category (Optional)</Label>
-                      <Select
-                        value={formData.parentId?.toString() || ""}
-                        onValueChange={(value) => {
-                          setFormData(prev => ({ 
-                            ...prev, 
-                            parentId: value === "" ? null : parseInt(value)
-                          }));
-                        }}
-                      >
-                        <SelectTrigger data-testid="select-parent-category">
-                          <SelectValue placeholder="Select parent category (optional)" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="">No Parent (Top Level)</SelectItem>
-                          {parentCategories.map((category) => (
-                            <SelectItem key={category.id} value={category.id.toString()}>
-                              {category.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
                       <Label htmlFor="categoryFocusKeyword">Focus Keyword</Label>
                       <Input
                         id="categoryFocusKeyword"
@@ -531,32 +487,6 @@ export default function CategoriesPage() {
                       placeholder="Brief description of this category"
                       data-testid="input-edit-category-description"
                     />
-                  </div>
-                  <div>
-                    <Label htmlFor="editCategoryParent">Parent Category (Optional)</Label>
-                    <Select
-                      value={formData.parentId?.toString() || ""}
-                      onValueChange={(value) => {
-                        setFormData(prev => ({ 
-                          ...prev, 
-                          parentId: value === "" ? null : parseInt(value)
-                        }));
-                      }}
-                    >
-                      <SelectTrigger data-testid="select-edit-parent-category">
-                        <SelectValue placeholder="Select parent category (optional)" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="">No Parent (Top Level)</SelectItem>
-                        {parentCategories
-                          .filter(category => category.id !== editingCategory?.id) // Prevent self-selection
-                          .map((category) => (
-                            <SelectItem key={category.id} value={category.id.toString()}>
-                              {category.name}
-                            </SelectItem>
-                          ))}
-                      </SelectContent>
-                    </Select>
                   </div>
                   <div>
                     <Label htmlFor="editCategoryFocusKeyword">Focus Keyword</Label>

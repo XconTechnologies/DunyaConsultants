@@ -128,9 +128,6 @@ export interface IStorage {
   
   // Category Management
   getCategories(active?: boolean): Promise<Category[]>;
-  getHierarchicalCategories(active?: boolean): Promise<any[]>;
-  getParentCategories(active?: boolean): Promise<Category[]>;
-  getChildCategories(parentId: number, active?: boolean): Promise<Category[]>;
   getCategory(id: number): Promise<Category | undefined>;
   getCategoryBySlug(slug: string): Promise<Category | undefined>;
   createCategory(category: InsertCategory): Promise<Category>;
@@ -969,62 +966,6 @@ export class DatabaseStorage implements IStorage {
     return await db
       .select()
       .from(categories)
-      .orderBy(asc(categories.name));
-  }
-
-  async getHierarchicalCategories(active?: boolean): Promise<any[]> {
-    // Get all categories with their parent information
-    const allCategories = await db
-      .select({
-        id: categories.id,
-        name: categories.name,
-        slug: categories.slug,
-        description: categories.description,
-        parentId: categories.parentId,
-        focusKeyword: categories.focusKeyword,
-        metaTitle: categories.metaTitle,
-        metaDescription: categories.metaDescription,
-        isActive: categories.isActive,
-        createdAt: categories.createdAt,
-        updatedAt: categories.updatedAt,
-      })
-      .from(categories)
-      .where(active !== undefined ? eq(categories.isActive, active) : undefined)
-      .orderBy(asc(categories.name));
-
-    // Organize into hierarchical structure
-    const parentCategories = allCategories.filter(cat => cat.parentId === null);
-    const childCategories = allCategories.filter(cat => cat.parentId !== null);
-
-    return parentCategories.map(parent => ({
-      ...parent,
-      children: childCategories.filter(child => child.parentId === parent.id)
-    }));
-  }
-
-  async getParentCategories(active?: boolean): Promise<Category[]> {
-    const conditions = [sql`parent_id IS NULL`];
-    if (active !== undefined) {
-      conditions.push(eq(categories.isActive, active));
-    }
-
-    return await db
-      .select()
-      .from(categories)
-      .where(conditions.length > 1 ? and(...conditions) : conditions[0])
-      .orderBy(asc(categories.name));
-  }
-
-  async getChildCategories(parentId: number, active?: boolean): Promise<Category[]> {
-    const conditions = [eq(categories.parentId, parentId)];
-    if (active !== undefined) {
-      conditions.push(eq(categories.isActive, active));
-    }
-
-    return await db
-      .select()
-      .from(categories)
-      .where(and(...conditions))
       .orderBy(asc(categories.name));
   }
 
