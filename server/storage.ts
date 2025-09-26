@@ -397,47 +397,98 @@ export class DatabaseStorage implements IStorage {
   // Blog Management Methods
   // Optimized method to get blog posts with their categories in fewer queries
   async getBlogPostsWithCategories(published?: boolean): Promise<any[]> {
-    // First get all blog posts
-    const posts = await this.getBlogPosts(published);
-    
-    if (posts.length === 0) return [];
-    
-    // Get all post IDs
-    const postIds = posts.map(post => post.id);
-    
-    // Batch fetch all categories for all posts in a single query
-    const postCategories = await db
-      .select({
-        postId: blogPostCategories.blogPostId,
-        categoryId: categories.id,
-        categoryName: categories.name,
-        categorySlug: categories.slug,
-        categoryDescription: categories.description,
-      })
-      .from(blogPostCategories)
-      .innerJoin(categories, eq(blogPostCategories.categoryId, categories.id))
-      .where(inArray(blogPostCategories.blogPostId, postIds))
-      .orderBy(asc(categories.name));
-    
-    // Group categories by post ID
-    const categoriesByPost: Record<number, any[]> = {};
-    postCategories.forEach(pc => {
-      if (!categoriesByPost[pc.postId]) {
-        categoriesByPost[pc.postId] = [];
-      }
-      categoriesByPost[pc.postId].push({
-        id: pc.categoryId,
-        name: pc.categoryName,
-        slug: pc.categorySlug,
-        description: pc.categoryDescription,
+    try {
+      // Get all blog posts and categories in a single optimized query using JOIN
+      const postsWithCategories = await db
+        .select({
+          id: blogPosts.id,
+          title: blogPosts.title,
+          slug: blogPosts.slug,
+          metaTitle: blogPosts.metaTitle,
+          metaDescription: blogPosts.metaDescription,
+          focusKeyword: blogPosts.focusKeyword,
+          featuredImage: blogPosts.featuredImage,
+          featuredImageAlt: blogPosts.featuredImageAlt,
+          featuredImageTitle: blogPosts.featuredImageTitle,
+          featuredImageOriginalName: blogPosts.featuredImageOriginalName,
+          content: blogPosts.content,
+          excerpt: blogPosts.excerpt,
+          category: blogPosts.category,
+          status: blogPosts.status,
+          viewCount: blogPosts.viewCount,
+          readingTime: blogPosts.readingTime,
+          isPublished: blogPosts.isPublished,
+          publishedAt: blogPosts.publishedAt,
+          authorId: blogPosts.authorId,
+          approverId: blogPosts.approverId,
+          createdAt: blogPosts.createdAt,
+          updatedAt: blogPosts.updatedAt,
+          authorName: adminUsers.username,
+          // Category information
+          categoryId: categories.id,
+          categoryName: categories.name,
+          categorySlug: categories.slug,
+          categoryDescription: categories.description,
+        })
+        .from(blogPosts)
+        .leftJoin(adminUsers, eq(blogPosts.authorId, adminUsers.id))
+        .leftJoin(blogPostCategories, eq(blogPosts.id, blogPostCategories.blogPostId))
+        .leftJoin(categories, eq(blogPostCategories.categoryId, categories.id))
+        .where(published !== undefined ? eq(blogPosts.isPublished, published) : undefined)
+        .orderBy(desc(blogPosts.publishedAt));
+      
+      // Group categories by post ID and build the final structure
+      const postsMap: Record<number, any> = {};
+      
+      postsWithCategories.forEach(row => {
+        const postId = row.id;
+        
+        if (!postsMap[postId]) {
+          postsMap[postId] = {
+            id: row.id,
+            title: row.title,
+            slug: row.slug,
+            metaTitle: row.metaTitle,
+            metaDescription: row.metaDescription,
+            focusKeyword: row.focusKeyword,
+            featuredImage: row.featuredImage,
+            featuredImageAlt: row.featuredImageAlt,
+            featuredImageTitle: row.featuredImageTitle,
+            featuredImageOriginalName: row.featuredImageOriginalName,
+            content: row.content,
+            excerpt: row.excerpt,
+            category: row.category,
+            status: row.status,
+            viewCount: row.viewCount,
+            readingTime: row.readingTime,
+            isPublished: row.isPublished,
+            publishedAt: row.publishedAt,
+            authorId: row.authorId,
+            approverId: row.approverId,
+            createdAt: row.createdAt,
+            updatedAt: row.updatedAt,
+            authorName: row.authorName || 'Path Visa Consultants',
+            categories: []
+          };
+        }
+        
+        // Add category if it exists
+        if (row.categoryId) {
+          postsMap[postId].categories.push({
+            id: row.categoryId,
+            name: row.categoryName,
+            slug: row.categorySlug,
+            description: row.categoryDescription,
+          });
+        }
       });
-    });
-    
-    // Combine posts with their categories
-    return posts.map(post => ({
-      ...post,
-      categories: categoriesByPost[post.id] || []
-    }));
+      
+      return Object.values(postsMap);
+    } catch (error) {
+      console.error('Error in getBlogPostsWithCategories:', error);
+      // Fallback to original method
+      return this.getBlogPosts(published);
+    }
   }
 
   async getBlogPosts(published?: boolean): Promise<any[]> {

@@ -28,9 +28,10 @@ pool.on('error', (err) => {
   console.error('Database pool error:', err);
 });
 
-pool.on('connect', () => {
-  console.log('Database pool connected');
-});
+// Remove excessive logging - this was causing performance logging noise
+// pool.on('connect', () => {
+//   console.log('Database pool connected');
+// });
 
 export const db = drizzle({ client: pool, schema });
 
