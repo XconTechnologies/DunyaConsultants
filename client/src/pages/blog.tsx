@@ -3594,82 +3594,90 @@ export default function Blog() {
         {/* Numbered Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center items-center space-x-2 mt-12">
-            {/* Previous Button */}
-            <Button
-              variant="outline"
-              onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage <= 1}
-              className="flex items-center space-x-1"
-              data-testid="button-pagination-previous"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              <span>Previous</span>
-            </Button>
+            {/* Previous Button - Hide on first page */}
+            {currentPage > 1 && (
+              <Button
+                variant="outline"
+                onClick={() => goToPage(currentPage - 1)}
+                className="flex items-center space-x-1"
+                data-testid="button-pagination-previous"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span>Previous</span>
+              </Button>
+            )}
 
             {/* Page Numbers */}
             <div className="flex space-x-1">
-              {/* Always show first page */}
-              {currentPage > 3 && (
-                <>
-                  <Button
-                    variant={1 === currentPage ? "default" : "outline"}
-                    onClick={() => goToPage(1)}
-                    className={1 === currentPage ? "bg-[#1D50C9] hover:bg-[#1845B3] text-white" : ""}
-                    data-testid="button-pagination-1"
-                  >
-                    1
-                  </Button>
-                  {currentPage > 4 && <span className="px-2 py-1">...</span>}
-                </>
-              )}
-
-              {/* Show pages around current page */}
-              {Array.from({ length: totalPages }, (_, i) => i + 1)
-                .filter(page => {
-                  if (totalPages <= 7) return true; // Show all if 7 or fewer pages
-                  if (currentPage <= 3) return page <= 5; // Show first 5 if current is in first 3
-                  if (currentPage >= totalPages - 2) return page > totalPages - 5; // Show last 5 if current is in last 3
-                  return Math.abs(page - currentPage) <= 1; // Show current ± 1
-                })
-                .map(page => (
-                  <Button
-                    key={page}
-                    variant={page === currentPage ? "default" : "outline"}
-                    onClick={() => goToPage(page)}
-                    className={page === currentPage ? "bg-[#1D50C9] hover:bg-[#1845B3] text-white" : ""}
-                    data-testid={`button-pagination-${page}`}
-                  >
-                    {page}
-                  </Button>
-                ))}
-
-              {/* Always show last page */}
-              {currentPage < totalPages - 2 && (
-                <>
-                  {currentPage < totalPages - 3 && <span className="px-2 py-1">...</span>}
-                  <Button
-                    variant={totalPages === currentPage ? "default" : "outline"}
-                    onClick={() => goToPage(totalPages)}
-                    className={totalPages === currentPage ? "bg-[#1D50C9] hover:bg-[#1845B3] text-white" : ""}
-                    data-testid={`button-pagination-${totalPages}`}
-                  >
-                    {totalPages}
-                  </Button>
-                </>
-              )}
+              {(() => {
+                const pages = [];
+                
+                if (totalPages <= 7) {
+                  // Show all pages if 7 or fewer
+                  for (let i = 1; i <= totalPages; i++) {
+                    pages.push(i);
+                  }
+                } else {
+                  // Complex pagination logic
+                  if (currentPage <= 4) {
+                    // Show first 5 pages + ... + last page
+                    for (let i = 1; i <= 5; i++) pages.push(i);
+                    if (totalPages > 6) {
+                      pages.push('...');
+                      pages.push(totalPages);
+                    }
+                  } else if (currentPage >= totalPages - 3) {
+                    // Show first page + ... + last 5 pages
+                    pages.push(1);
+                    if (totalPages > 6) pages.push('...');
+                    for (let i = totalPages - 4; i <= totalPages; i++) {
+                      if (i > 1) pages.push(i);
+                    }
+                  } else {
+                    // Show first + ... + current-1, current, current+1 + ... + last
+                    pages.push(1);
+                    pages.push('...');
+                    for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+                      pages.push(i);
+                    }
+                    pages.push('...');
+                    pages.push(totalPages);
+                  }
+                }
+                
+                return pages.map((page, index) => {
+                  if (page === '...') {
+                    return <span key={`ellipsis-${index}`} className="px-2 py-1">...</span>;
+                  }
+                  
+                  const pageNum = page as number;
+                  return (
+                    <Button
+                      key={pageNum}
+                      variant={pageNum === currentPage ? "default" : "outline"}
+                      onClick={() => goToPage(pageNum)}
+                      className={pageNum === currentPage ? "bg-[#1D50C9] hover:bg-[#1845B3] text-white" : ""}
+                      data-testid={`button-pagination-${pageNum}`}
+                    >
+                      {pageNum}
+                    </Button>
+                  );
+                });
+              })()}
             </div>
 
-            {/* Next Button */}
-            <Button
-              variant="outline"
-              onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage >= totalPages}
-              className="flex items-center space-x-1"
-              data-testid="button-pagination-next"
-            >
-              <span>Next</span>
-              <ChevronRight className="w-4 h-4" />
-            </Button>
+            {/* Next Button - Hide on last page */}
+            {currentPage < totalPages && (
+              <Button
+                variant="outline"
+                onClick={() => goToPage(currentPage + 1)}
+                className="flex items-center space-x-1"
+                data-testid="button-pagination-next"
+              >
+                <span>Next</span>
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            )}
           </div>
         )}
 
