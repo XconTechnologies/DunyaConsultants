@@ -1,6 +1,7 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, editingSessions, editRequests,
+  categories, blogPostCategories,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -10,7 +11,8 @@ import {
   type AdminSession, type InsertAdminSession, type UserSession, type InsertUserSession,
   type Media, type InsertMedia, type BlogPostRevision, type InsertBlogPostRevision,
   type AuditLog, type InsertAuditLog, type PostAssignment, type InsertPostAssignment,
-  type EditingSession, type InsertEditingSession, type EditRequest, type InsertEditRequest
+  type EditingSession, type InsertEditingSession, type EditRequest, type InsertEditRequest,
+  type Category, type InsertCategory, type BlogPostCategory, type InsertBlogPostCategory
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -123,6 +125,20 @@ export interface IStorage {
   createEditRequest(request: InsertEditRequest): Promise<EditRequest>;
   getEditRequest(id: number): Promise<EditRequest | undefined>;
   getUserEditRequests(userId: number): Promise<EditRequest[]>;
+  
+  // Category Management
+  getCategories(active?: boolean): Promise<Category[]>;
+  getCategory(id: number): Promise<Category | undefined>;
+  getCategoryBySlug(slug: string): Promise<Category | undefined>;
+  createCategory(category: InsertCategory): Promise<Category>;
+  updateCategory(id: number, updates: Partial<Category>): Promise<Category>;
+  deleteCategory(id: number): Promise<void>;
+  
+  // Blog Post Categories (Many-to-Many)
+  getBlogPostCategories(postId: number): Promise<Category[]>;
+  assignCategoryToBlogPost(blogPostId: number, categoryId: number): Promise<BlogPostCategory>;
+  removeCategoryFromBlogPost(blogPostId: number, categoryId: number): Promise<void>;
+  updateBlogPostCategories(blogPostId: number, categoryIds: number[]): Promise<void>;
   getPostEditRequests(postId: number): Promise<EditRequest[]>;
   updateEditRequestStatus(id: number, status: string, respondedAt?: Date): Promise<EditRequest>;
   deleteEditRequest(id: number): Promise<void>;
@@ -871,6 +887,124 @@ export class DatabaseStorage implements IStorage {
 
   async deleteEditRequest(id: number): Promise<void> {
     await db.delete(editRequests).where(eq(editRequests.id, id));
+  }
+
+  // Category Management Implementation
+  async getCategories(active?: boolean): Promise<Category[]> {
+    if (active !== undefined) {
+      return await db
+        .select()
+        .from(categories)
+        .where(eq(categories.isActive, active))
+        .orderBy(asc(categories.name));
+    }
+    
+    return await db
+      .select()
+      .from(categories)
+      .orderBy(asc(categories.name));
+  }
+
+  async getCategory(id: number): Promise<Category | undefined> {
+    const [category] = await db.select().from(categories).where(eq(categories.id, id));
+    return category || undefined;
+  }
+
+  async getCategoryBySlug(slug: string): Promise<Category | undefined> {
+    const [category] = await db.select().from(categories).where(eq(categories.slug, slug));
+    return category || undefined;
+  }
+
+  async createCategory(insertCategory: InsertCategory): Promise<Category> {
+    // Auto-generate slug if not provided
+    if (!insertCategory.slug && insertCategory.name) {
+      insertCategory.slug = insertCategory.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
+    
+    const [category] = await db.insert(categories).values(insertCategory).returning();
+    return category;
+  }
+
+  async updateCategory(id: number, updates: Partial<Category>): Promise<Category> {
+    // Auto-update slug if name is changed
+    if (updates.name && !updates.slug) {
+      updates.slug = updates.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
+    
+    const [category] = await db
+      .update(categories)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(categories.id, id))
+      .returning();
+    
+    return category;
+  }
+
+  async deleteCategory(id: number): Promise<void> {
+    // First remove all blog post category associations
+    await db.delete(blogPostCategories).where(eq(blogPostCategories.categoryId, id));
+    // Then delete the category
+    await db.delete(categories).where(eq(categories.id, id));
+  }
+
+  // Blog Post Categories (Many-to-Many) Implementation
+  async getBlogPostCategories(postId: number): Promise<Category[]> {
+    return await db
+      .select({
+        id: categories.id,
+        name: categories.name,
+        slug: categories.slug,
+        description: categories.description,
+        focusKeyword: categories.focusKeyword,
+        metaTitle: categories.metaTitle,
+        metaDescription: categories.metaDescription,
+        isActive: categories.isActive,
+        createdAt: categories.createdAt,
+        updatedAt: categories.updatedAt,
+      })
+      .from(blogPostCategories)
+      .innerJoin(categories, eq(blogPostCategories.categoryId, categories.id))
+      .where(eq(blogPostCategories.blogPostId, postId))
+      .orderBy(asc(categories.name));
+  }
+
+  async assignCategoryToBlogPost(blogPostId: number, categoryId: number): Promise<BlogPostCategory> {
+    const [assignment] = await db
+      .insert(blogPostCategories)
+      .values({ blogPostId, categoryId })
+      .returning();
+    return assignment;
+  }
+
+  async removeCategoryFromBlogPost(blogPostId: number, categoryId: number): Promise<void> {
+    await db
+      .delete(blogPostCategories)
+      .where(
+        and(
+          eq(blogPostCategories.blogPostId, blogPostId),
+          eq(blogPostCategories.categoryId, categoryId)
+        )
+      );
+  }
+
+  async updateBlogPostCategories(blogPostId: number, categoryIds: number[]): Promise<void> {
+    // First remove all existing category assignments
+    await db.delete(blogPostCategories).where(eq(blogPostCategories.blogPostId, blogPostId));
+    
+    // Then add new assignments
+    if (categoryIds.length > 0) {
+      const assignments = categoryIds.map(categoryId => ({
+        blogPostId,
+        categoryId,
+      }));
+      await db.insert(blogPostCategories).values(assignments);
+    }
   }
 }
 
