@@ -139,12 +139,13 @@ export const adminUsers = pgTable("admin_users", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-// Categories table with SEO fields
+// Categories table with SEO fields and hierarchical structure
 export const categories = pgTable("categories", {
   id: serial("id").primaryKey(),
   name: text("name").notNull().unique(),
   slug: text("slug").notNull().unique(),
   description: text("description"),
+  parentId: integer("parent_id").references(() => categories.id),
   focusKeyword: text("focus_keyword"),
   metaTitle: text("meta_title"),
   metaDescription: text("meta_description"),
