@@ -3237,14 +3237,22 @@ export default function Blog() {
   
   // URL and pagination management
   const [location, setLocation] = useLocation();
-  const urlParams = new URLSearchParams(location.split('?')[1] || '');
-  const currentPage = parseInt(urlParams.get('page') || '1', 10);
+  
+  // Better URL parameter parsing - reactive to location changes
+  const currentPage = (() => {
+    try {
+      const urlParts = location.split('?');
+      const searchParams = new URLSearchParams(urlParts[1] || '');
+      return parseInt(searchParams.get('page') || '1', 10);
+    } catch {
+      return 1;
+    }
+  })();
   const postsPerPage = 12;
   
   // Force component update when location changes
   useEffect(() => {
-    // This effect ensures the component re-renders when the URL changes
-    // and currentPage gets updated from the new URL parameters
+    console.log('Location changed:', location, 'Current page:', currentPage);
   }, [location, currentPage]);
 
   // Fetch blog posts from API - include page in query key for reactivity
@@ -3412,11 +3420,27 @@ export default function Blog() {
   const startIndex = (currentPage - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
   const postsToDisplay = filteredPosts.slice(startIndex, endIndex);
+  
+  console.log('Pagination Debug:', {
+    totalPosts,
+    totalPages, 
+    currentPage,
+    startIndex,
+    endIndex,
+    postsToDisplayCount: postsToDisplay.length,
+    firstPostTitle: postsToDisplay[0]?.title,
+    lastPostTitle: postsToDisplay[postsToDisplay.length - 1]?.title
+  });
 
   // Page navigation functions
   const goToPage = (page: number) => {
-    if (page < 1 || page > totalPages) return;
+    console.log('goToPage called with page:', page, 'totalPages:', totalPages);
+    if (page < 1 || page > totalPages) {
+      console.log('Page out of range, returning');
+      return;
+    }
     const newUrl = page === 1 ? '/blog' : `/blog?page=${page}`;
+    console.log('Setting location to:', newUrl);
     setLocation(newUrl);
   };
 
