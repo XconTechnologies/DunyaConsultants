@@ -167,7 +167,6 @@ export const blogPosts = pgTable("blog_posts", {
   content: text("content").notNull(),
   excerpt: text("excerpt"),
   category: text("category").default("General"), // Keep for backward compatibility
-  tags: text("tags").array(),
   status: text("status", { enum: ["draft", "in_review", "published", "archived"] }).default("draft").notNull(),
   viewCount: integer("view_count").default(0).notNull(),
   readingTime: integer("reading_time").default(5),

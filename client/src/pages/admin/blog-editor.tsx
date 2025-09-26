@@ -62,7 +62,6 @@ interface BlogPost {
   featuredImageAlt?: string;
   featuredImageTitle?: string;
   featuredImageOriginalName?: string;
-  tags: string[];
   publishedAt?: string;
   isPublished: boolean;
   createdAt: string;
@@ -1038,22 +1037,30 @@ export default function BlogEditor() {
       
       const result = await response.json();
       
-      // Save categories for the blog post
-      if (selectedCategoryIds.length > 0) {
-        const postId = isEditing ? blogId : result.post?.id;
-        if (postId) {
-          const categoriesResponse = await fetch(`/api/admin/blog-posts/${postId}/categories`, {
-            method: "POST",
-            body: JSON.stringify({ categoryIds: selectedCategoryIds }),
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          
-          if (!categoriesResponse.ok) {
-            console.error('Failed to save categories:', categoriesResponse.statusText);
+      // Save categories for the blog post - if none selected, use General category
+      const postId = isEditing ? blogId : result.post?.id;
+      if (postId) {
+        let categoryIdsToSave = selectedCategoryIds;
+        
+        // If no categories selected, use General category as default
+        if (categoryIdsToSave.length === 0) {
+          const generalCategory = categories.find((cat: any) => cat.name === "General");
+          if (generalCategory) {
+            categoryIdsToSave = [generalCategory.id];
           }
+        }
+        
+        const categoriesResponse = await fetch(`/api/admin/blog-posts/${postId}/categories`, {
+          method: "POST",
+          body: JSON.stringify({ categoryIds: categoryIdsToSave }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        
+        if (!categoriesResponse.ok) {
+          console.error('Failed to save categories:', categoriesResponse.statusText);
         }
       }
       

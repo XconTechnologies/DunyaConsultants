@@ -65,7 +65,6 @@ interface BlogPost {
   isPublished: boolean;
   publishedAt: Date | null;
   authorId: number;
-  tags: string[];
   metaTitle: string | null;
   metaDescription: string | null;
   featuredImage: string | null;
