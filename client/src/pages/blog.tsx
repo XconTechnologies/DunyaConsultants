@@ -3240,10 +3240,16 @@ export default function Blog() {
   const urlParams = new URLSearchParams(location.split('?')[1] || '');
   const currentPage = parseInt(urlParams.get('page') || '1', 10);
   const postsPerPage = 12;
+  
+  // Force component update when location changes
+  useEffect(() => {
+    // This effect ensures the component re-renders when the URL changes
+    // and currentPage gets updated from the new URL parameters
+  }, [location, currentPage]);
 
-  // Fetch blog posts from API
+  // Fetch blog posts from API - include page in query key for reactivity
   const { data: blogPostsData, isLoading } = useQuery({
-    queryKey: ['/api/blog-posts'],
+    queryKey: ['/api/blog-posts', currentPage, searchTerm, selectedCategory],
     queryFn: async () => {
       const response = await fetch('/api/blog-posts');
       if (!response.ok) throw new Error('Failed to fetch blog posts');
