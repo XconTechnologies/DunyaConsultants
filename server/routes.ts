@@ -6,8 +6,10 @@ import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
   insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest,
-  insertCategorySchema, Category 
+  insertCategorySchema, Category, blogPostCategories 
 } from "@shared/schema";
+import { db } from "./db";
+import { eq, sql } from "drizzle-orm";
 import { z } from "zod";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
@@ -2998,14 +3000,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Get post counts for each category from many-to-many relationships
       const categoriesWithCounts = await Promise.all(
         categories.map(async (category) => {
-          const blogPostCategories = await storage.getBlogPostCategories(0); // This would need adjustment
-          // For now, we'll count using a simple approach
-          const blogPosts = await storage.getBlogPosts();
-          const count = blogPosts.filter(post => post.category === category.name).length;
+          // Get count from junction table
+          const postCategoriesCount = await db
+            .select({ count: sql<number>`count(*)` })
+            .from(blogPostCategories)
+            .where(eq(blogPostCategories.categoryId, category.id));
+          
+          const count = postCategoriesCount[0]?.count || 0;
           
           return {
             ...category,
-            count
+            count: Number(count)
           };
         })
       );

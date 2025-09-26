@@ -396,9 +396,9 @@ export class DatabaseStorage implements IStorage {
     if (published !== undefined) {
       return await db.select().from(blogPosts)
         .where(eq(blogPosts.isPublished, published))
-        .orderBy(desc(blogPosts.createdAt));
+        .orderBy(desc(blogPosts.publishedAt));
     }
-    return await db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt));
+    return await db.select().from(blogPosts).orderBy(desc(blogPosts.publishedAt));
   }
 
   async getBlogPost(id: number): Promise<BlogPost | undefined> {
@@ -564,13 +564,13 @@ export class DatabaseStorage implements IStorage {
   async getBlogPostsByStatus(status: BlogPost["status"]): Promise<BlogPost[]> {
     return await db.select().from(blogPosts)
       .where(eq(blogPosts.status, status))
-      .orderBy(desc(blogPosts.updatedAt));
+      .orderBy(desc(blogPosts.publishedAt));
   }
 
   async getBlogPostsByAuthor(authorId: number): Promise<BlogPost[]> {
     return await db.select().from(blogPosts)
       .where(eq(blogPosts.authorId, authorId))
-      .orderBy(desc(blogPosts.updatedAt));
+      .orderBy(desc(blogPosts.publishedAt));
   }
 
   async updateBlogPostStatus(id: number, status: BlogPost["status"], approverId?: number): Promise<BlogPost> {
