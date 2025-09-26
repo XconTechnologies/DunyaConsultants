@@ -389,7 +389,8 @@ export default function AllPosts() {
                                 onClick={() => window.open(getBlogUrl(post.slug), '_blank')}
                                 data-testid={`button-view-blog-${post.id}`}
                               >
-                                <Eye className="w-4 h-4" />
+                                <Eye className="w-4 h-4 mr-1" />
+                                View
                               </Button>
                             )}
                             {canEditContent(adminUser) && (
@@ -399,7 +400,8 @@ export default function AllPosts() {
                                 onClick={() => setLocation(`/admin/blog-editor/${post.id}`)}
                                 data-testid={`button-edit-blog-${post.id}`}
                               >
-                                <Edit2 className="w-4 h-4" />
+                                <Edit2 className="w-4 h-4 mr-1" />
+                                Edit
                               </Button>
                             )}
                             {canDeleteContent(adminUser) && (
@@ -414,7 +416,8 @@ export default function AllPosts() {
                                 data-testid={`button-delete-blog-${post.id}`}
                                 className="text-red-600 hover:text-red-800"
                               >
-                                <Trash2 className="w-4 h-4" />
+                                <Trash2 className="w-4 h-4 mr-1" />
+                                Delete
                               </Button>
                             )}
                           </div>
