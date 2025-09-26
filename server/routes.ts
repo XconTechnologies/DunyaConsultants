@@ -1591,7 +1591,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
           title: post.title,
           slug: post.slug,
           status: post.status,
-          tags: post.tags,
           category: post.category,
           timestamp: new Date().toISOString()
         })
@@ -3129,7 +3128,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Check if category name already exists
       const existingCategories = await storage.getCategories();
       const existingCategory = existingCategories.find(cat => 
-        cat.name.toLowerCase() === categoryData.name.toLowerCase()
+        cat.name.toLowerCase() === categoryData.name?.toLowerCase()
       );
       
       if (existingCategory) {
