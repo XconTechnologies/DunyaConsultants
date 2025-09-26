@@ -482,7 +482,7 @@ export default function BlogEditor() {
   const queryClient = useQueryClient();
 
   // Fetch categories from API
-  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
+  const { data: categories = [], isLoading: categoriesLoading, refetch: refetchCategories } = useQuery({
     queryKey: ["/api/admin/categories"],
     queryFn: async () => {
       const response = await fetch('/api/admin/categories', {
@@ -493,7 +493,9 @@ export default function BlogEditor() {
       }
       return response.json();
     },
-    enabled: authChecked
+    enabled: authChecked,
+    staleTime: 0, // Always consider data stale
+    gcTime: 0, // Don't cache in memory
   });
 
   // Fetch categories for a blog post when editing
@@ -532,6 +534,7 @@ export default function BlogEditor() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
+      refetchCategories(); // Force refetch categories
       setNewCategoryName("");
       setIsCreatingCategory(false);
       toast({
@@ -1335,6 +1338,11 @@ export default function BlogEditor() {
                             const categoryId = parseInt(value);
                             if (!selectedCategoryIds.includes(categoryId)) {
                               handleCategoryToggle(categoryId, true);
+                            }
+                          }}
+                          onOpenChange={(open) => {
+                            if (open) {
+                              refetchCategories(); // Refresh categories when dropdown opens
                             }
                           }}
                         >

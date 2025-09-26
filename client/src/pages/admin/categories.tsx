@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+import { apiRequest, queryClient as globalQueryClient } from "@/lib/queryClient";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -128,6 +128,7 @@ export default function CategoriesPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
+      globalQueryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
       resetForm();
       setIsCreateDialogOpen(false);
       toast({
@@ -160,6 +161,7 @@ export default function CategoriesPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
+      globalQueryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
       setIsEditDialogOpen(false);
       setEditingCategory(null);
       resetForm();
@@ -192,6 +194,7 @@ export default function CategoriesPage() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
+      globalQueryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
       toast({
         title: "Success",
         description: "Category deleted successfully",
