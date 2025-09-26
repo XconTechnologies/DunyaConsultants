@@ -3237,7 +3237,7 @@ export default function Blog() {
   
   // URL and pagination management
   const [location, setLocation] = useLocation();
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(location.split('?')[1] || '');
   const currentPage = parseInt(urlParams.get('page') || '1', 10);
   const postsPerPage = 12;
 
