@@ -600,8 +600,20 @@ function BlogPostDetail({ slug }: { slug: string }) {
   let contentSections;
   let isHTMLContent = false;
   
-  // Check if content is HTML (starts with HTML tags)
-  if (blogPost.content && (blogPost.content.startsWith('<') || blogPost.content.includes('<p>'))) {
+  // Check if content is HTML (contains HTML tags) - improved detection
+  if (blogPost.content && (
+    blogPost.content.includes('<p>') ||
+    blogPost.content.includes('<h1>') ||
+    blogPost.content.includes('<h2>') ||
+    blogPost.content.includes('<h3>') ||
+    blogPost.content.includes('<ul>') ||
+    blogPost.content.includes('<ol>') ||
+    blogPost.content.includes('<div>') ||
+    blogPost.content.includes('<section>') ||
+    blogPost.content.includes('<blockquote>') ||
+    blogPost.content.includes('<table>') ||
+    blogPost.content.trim().startsWith('<')
+  )) {
     isHTMLContent = true;
     // For HTML content, create a single section to render as HTML
     contentSections = [{
