@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiRequest } from '@/lib/queryClient';
 import type { InsertUserEngagement, UserStats, Achievement } from '@shared/schema';
@@ -21,17 +21,28 @@ export default function EngagementTracker({ children }: EngagementTrackerProps) 
   const queryClient = useQueryClient();
   const sessionId = getSessionId();
   const currentPath = useRef(window.location.pathname);
+  const lastInvalidation = useRef(0);
+  const pendingEngagements = useRef<InsertUserEngagement[]>([]);
 
-  // Track engagement mutation
+  // Debounced function to invalidate queries (max once every 5 seconds)
+  const debouncedInvalidateQueries = useCallback(() => {
+    const now = Date.now();
+    if (now - lastInvalidation.current > 5000) { // 5 seconds
+      lastInvalidation.current = now;
+      queryClient.invalidateQueries({ queryKey: ['user-stats', sessionId] });
+      queryClient.invalidateQueries({ queryKey: ['user-achievements', sessionId] });
+    }
+  }, [queryClient, sessionId]);
+
+  // Track engagement mutation (optimized)
   const trackEngagementMutation = useMutation({
     mutationFn: async (data: InsertUserEngagement) => {
       const res = await apiRequest('POST', '/api/engagement/track', data);
       return res.json();
     },
     onSuccess: () => {
-      // Invalidate and refetch user stats
-      queryClient.invalidateQueries({ queryKey: ['user-stats', sessionId] });
-      queryClient.invalidateQueries({ queryKey: ['user-achievements', sessionId] });
+      // Debounced query invalidation
+      debouncedInvalidateQueries();
     }
   });
 
@@ -91,14 +102,16 @@ export default function EngagementTracker({ children }: EngagementTrackerProps) 
     };
   }, [sessionId]);
 
-  // Expose tracking functions globally
-  useEffect(() => {
-    (window as any).trackEngagement = (
-      action: string, 
-      category: string, 
-      details?: any, 
-      points: number = 0
-    ) => {
+  // Debounced tracking function
+  const debouncedTrackEngagement = useCallback((
+    action: string, 
+    category: string, 
+    details?: any, 
+    points: number = 0
+  ) => {
+    const key = `${action}-${category}`;
+    clearTimeout((window as any)[`trackTimeout_${key}`]);
+    (window as any)[`trackTimeout_${key}`] = setTimeout(() => {
       trackEngagementMutation.mutate({
         sessionId,
         action,
@@ -106,27 +119,31 @@ export default function EngagementTracker({ children }: EngagementTrackerProps) 
         details: details ? JSON.stringify(details) : undefined,
         points,
       });
-    };
+    }, 1000); // 1 second debounce
+  }, [sessionId, trackEngagementMutation]);
 
-    // Track clicks on important elements
+  // Expose tracking functions globally
+  useEffect(() => {
+    (window as any).trackEngagement = debouncedTrackEngagement;
+
+    // Track clicks on important elements (debounced)
     const trackClicks = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
       // Track CTA button clicks
       if (target.closest('[data-track="cta"]')) {
-        trackEngagementMutation.mutate({
-          sessionId,
-          action: 'cta_click',
-          category: 'interaction',
-          details: JSON.stringify({ 
+        debouncedTrackEngagement(
+          'cta_click',
+          'interaction',
+          { 
             element: target.textContent,
             path: window.location.pathname 
-          }),
-          points: 10,
-        });
+          },
+          10
+        );
       }
 
-      // Track form submissions
+      // Track form submissions (immediate, no debounce for conversions)
       if (target.closest('form')) {
         const form = target.closest('form');
         if (target.type === 'submit') {
@@ -146,16 +163,15 @@ export default function EngagementTracker({ children }: EngagementTrackerProps) 
       // Track tool usage
       if (target.closest('[data-track="tool"]')) {
         const tool = target.closest('[data-track="tool"]');
-        trackEngagementMutation.mutate({
-          sessionId,
-          action: 'tool_use',
-          category: 'interaction',
-          details: JSON.stringify({ 
+        debouncedTrackEngagement(
+          'tool_use',
+          'interaction',
+          { 
             tool: tool?.getAttribute('data-tool-name'),
             path: window.location.pathname 
-          }),
-          points: 15,
-        });
+          },
+          15
+        );
       }
     };
 
