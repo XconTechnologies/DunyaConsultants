@@ -2992,6 +2992,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // ====================== ENHANCED CATEGORY MANAGEMENT ROUTES ======================
 
+  // Get parent categories only (for parent category dropdown)
+  app.get("/api/admin/categories/parents", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const parentCategories = await storage.getParentCategories(true); // Only active parent categories
+      res.json(parentCategories);
+    } catch (error) {
+      console.error('Error fetching parent categories:', error);
+      res.status(500).json({ message: 'Failed to fetch parent categories' });
+    }
+  });
+
+  // Get child categories for a specific parent
+  app.get("/api/admin/categories/:parentId/children", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const parentId = parseInt(req.params.parentId);
+      const childCategories = await storage.getChildCategories(parentId, true); // Only active child categories
+      res.json(childCategories);
+    } catch (error) {
+      console.error('Error fetching child categories:', error);
+      res.status(500).json({ message: 'Failed to fetch child categories' });
+    }
+  });
+
   // Get all categories with SEO fields and post counts
   app.get("/api/admin/categories", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
