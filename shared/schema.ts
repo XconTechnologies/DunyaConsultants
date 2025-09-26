@@ -139,6 +139,20 @@ export const adminUsers = pgTable("admin_users", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Categories table with SEO fields
+export const categories = pgTable("categories", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull().unique(),
+  slug: text("slug").notNull().unique(),
+  description: text("description"),
+  focusKeyword: text("focus_keyword"),
+  metaTitle: text("meta_title"),
+  metaDescription: text("meta_description"),
+  isActive: boolean("is_active").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
 export const blogPosts = pgTable("blog_posts", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
@@ -152,7 +166,7 @@ export const blogPosts = pgTable("blog_posts", {
   featuredImageOriginalName: text("featured_image_original_name"),
   content: text("content").notNull(),
   excerpt: text("excerpt"),
-  category: text("category").default("General"),
+  category: text("category").default("General"), // Keep for backward compatibility
   tags: text("tags").array(),
   status: text("status", { enum: ["draft", "in_review", "published", "archived"] }).default("draft").notNull(),
   viewCount: integer("view_count").default(0).notNull(),
@@ -163,6 +177,14 @@ export const blogPosts = pgTable("blog_posts", {
   approverId: integer("approver_id").references(() => adminUsers.id),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// Junction table for blog posts and categories (many-to-many relationship)
+export const blogPostCategories = pgTable("blog_post_categories", {
+  id: serial("id").primaryKey(),
+  blogPostId: integer("blog_post_id").references(() => blogPosts.id, { onDelete: "cascade" }).notNull(),
+  categoryId: integer("category_id").references(() => categories.id, { onDelete: "cascade" }).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const services = pgTable("services", {
@@ -398,6 +420,17 @@ export const insertPostAssignmentSchema = createInsertSchema(postAssignments).om
   createdAt: true,
 });
 
+export const insertCategorySchema = createInsertSchema(categories).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertBlogPostCategorySchema = createInsertSchema(blogPostCategories).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
@@ -444,3 +477,7 @@ export type InsertEditRequest = z.infer<typeof insertEditRequestSchema>;
 export type EditRequest = typeof editRequests.$inferSelect;
 export type InsertPostAssignment = z.infer<typeof insertPostAssignmentSchema>;
 export type PostAssignment = typeof postAssignments.$inferSelect;
+export type InsertCategory = z.infer<typeof insertCategorySchema>;
+export type Category = typeof categories.$inferSelect;
+export type InsertBlogPostCategory = z.infer<typeof insertBlogPostCategorySchema>;
+export type BlogPostCategory = typeof blogPostCategories.$inferSelect;
