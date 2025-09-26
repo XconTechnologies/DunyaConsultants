@@ -3300,14 +3300,41 @@ export default function Blog() {
     }
   }, [location]);
 
-  // Fetch blog posts from API - include page in query key for reactivity
+  // Fetch blog posts from API with instant loading using initialData
   const { data: blogPostsData, isLoading } = useQuery({
     queryKey: ['/api/blog-posts', currentPage, searchTerm, selectedCategory],
     queryFn: async () => {
       const response = await fetch('/api/blog-posts');
       if (!response.ok) throw new Error('Failed to fetch blog posts');
       return response.json();
-    }
+    },
+    initialData: staticBlogPosts.map(post => ({
+      id: parseInt(post.id),
+      title: post.title,
+      slug: post.slug,
+      content: post.content,
+      excerpt: post.excerpt,
+      category: post.category,
+      categories: [{
+        id: 1,
+        name: post.category,
+        slug: post.category.toLowerCase().replace(/\s+/g, '-'),
+        description: post.category
+      }],
+      status: 'published',
+      featuredImage: post.image,
+      featuredImageAlt: post.title,
+      readingTime: 8,
+      isPublished: true,
+      publishedAt: new Date().toISOString(),
+      authorName: post.author,
+      viewCount: post.views || 0,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    })),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    refetchOnMount: 'always',
+    keepPreviousData: true
   });
 
   // Transform API data to component format
@@ -3437,18 +3464,8 @@ export default function Blog() {
     }
   }
 
-  // Show loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-white">
-        <Navigation />
-        <div className="flex justify-center items-center h-64">
-          <div className="text-lg">Loading blog posts...</div>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  // Remove loading state - blogs show instantly with initialData
+  // The page will always render with data (either cached, initialData, or fresh from API)
 
   // Filter posts based on search and category
   const filteredPosts = blogPosts.filter((post: any) => {
