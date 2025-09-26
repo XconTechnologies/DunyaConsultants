@@ -128,6 +128,8 @@ export interface IStorage {
   
   // Category Management
   getCategories(active?: boolean): Promise<Category[]>;
+  getParentCategories(active?: boolean): Promise<Category[]>;
+  getChildCategories(parentId: number, active?: boolean): Promise<Category[]>;
   getCategory(id: number): Promise<Category | undefined>;
   getCategoryBySlug(slug: string): Promise<Category | undefined>;
   createCategory(category: InsertCategory): Promise<Category>;
@@ -1010,7 +1012,39 @@ export class DatabaseStorage implements IStorage {
     return category;
   }
 
+  async getParentCategories(active?: boolean): Promise<Category[]> {
+    const query = db
+      .select()
+      .from(categories)
+      .where(categories.parentId === null);
+    
+    if (active !== undefined) {
+      query.where(eq(categories.isActive, active));
+    }
+    
+    return await query.orderBy(asc(categories.name));
+  }
+
+  async getChildCategories(parentId: number, active?: boolean): Promise<Category[]> {
+    const query = db
+      .select()
+      .from(categories)
+      .where(eq(categories.parentId, parentId));
+    
+    if (active !== undefined) {
+      query.where(eq(categories.isActive, active));
+    }
+    
+    return await query.orderBy(asc(categories.name));
+  }
+
   async deleteCategory(id: number): Promise<void> {
+    // First check if this category has children
+    const children = await this.getChildCategories(id);
+    if (children.length > 0) {
+      throw new Error("Cannot delete category with child categories. Please delete child categories first.");
+    }
+    
     // First remove all blog post category associations
     await db.delete(blogPostCategories).where(eq(blogPostCategories.categoryId, id));
     // Then delete the category
@@ -1025,6 +1059,7 @@ export class DatabaseStorage implements IStorage {
         name: categories.name,
         slug: categories.slug,
         description: categories.description,
+        parentId: categories.parentId,
         focusKeyword: categories.focusKeyword,
         metaTitle: categories.metaTitle,
         metaDescription: categories.metaDescription,
