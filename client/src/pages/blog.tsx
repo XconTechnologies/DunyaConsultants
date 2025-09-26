@@ -3280,46 +3280,66 @@ export default function Blog() {
     return b.sortDate.getTime() - a.sortDate.getTime();
   }) : staticBlogPosts;
 
-  // Fetch categories from API
-  const { data: apiCategories = [] } = useQuery({
-    queryKey: ["/api/admin/categories"],
+  // Fetch hierarchical categories from public API
+  const { data: hierarchicalCategories = [] } = useQuery<any[]>({
+    queryKey: ["/api/categories/hierarchical"],
     queryFn: async () => {
-      const response = await fetch('/api/admin/categories');
-      if (!response.ok) {
-        throw new Error('Failed to fetch categories');
+      try {
+        const response = await fetch('/api/categories/hierarchical');
+        if (!response.ok) {
+          throw new Error('Failed to fetch categories');
+        }
+        return response.json();
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+        return [];
       }
-      return response.json();
-    }
+    },
+    enabled: true,
   });
 
-  // Organize categories hierarchically
-  const organizeHierarchicalCategories = (categories: any[]) => {
-    const parentCategories = categories.filter(cat => !cat.parentId);
-    const childCategories = categories.filter(cat => cat.parentId);
-    
-    const organizedCategories: any[] = [];
-    
-    parentCategories.forEach(parent => {
-      organizedCategories.push(parent);
-      const children = childCategories.filter(child => child.parentId === parent.id);
-      children.forEach(child => {
-        organizedCategories.push(child);
-      });
-    });
-    
-    return organizedCategories;
-  };
+  // Interface for category structure
+  interface CategoryFilter {
+    name: string;
+    count: number;
+    isParent: boolean;
+    isChild: boolean;
+    children?: any[];
+    parentName?: string;
+  }
 
-  // Create categories for filtering with hierarchical display
-  const organizedApiCategories = organizeHierarchicalCategories(apiCategories);
-  const categories = [
-    { name: "All", count: blogPosts.length, isChild: false },
-    ...organizedApiCategories.map((cat: any) => ({
-      name: cat.name,
-      count: blogPosts.filter((p: any) => p.category === cat.name).length,
-      isChild: !!cat.parentId
-    }))
-  ].filter(cat => cat.count > 0);
+  // Create categories array for filtering with hierarchical structure
+  const categories: CategoryFilter[] = [
+    { name: "All", count: blogPosts.length, isParent: false, isChild: false }
+  ];
+
+  // Add hierarchical categories
+  hierarchicalCategories.forEach((parent: any) => {
+    const parentPostCount = blogPosts.filter((p: any) => p.category === parent.name).length;
+    if (parentPostCount > 0) {
+      categories.push({
+        name: parent.name,
+        count: parentPostCount,
+        isParent: true,
+        isChild: false,
+        children: parent.children || []
+      });
+    }
+
+    // Add child categories
+    (parent.children || []).forEach((child: any) => {
+      const childPostCount = blogPosts.filter((p: any) => p.category === child.name).length;
+      if (childPostCount > 0) {
+        categories.push({
+          name: child.name,
+          count: childPostCount,
+          isParent: false,
+          isChild: true,
+          parentName: parent.name
+        });
+      }
+    });
+  });
 
   // If we're viewing a specific blog post
   if (match && params) {
@@ -3427,7 +3447,7 @@ export default function Blog() {
 
           {/* Category Filter */}
           <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
+            {categories.map((category: any) => (
               <Button
                 key={category.name}
                 variant={selectedCategory === category.name ? "default" : "outline"}
@@ -3435,9 +3455,18 @@ export default function Blog() {
                   setSelectedCategory(category.name);
                   resetPagination();
                 }}
-                className="mb-2"
+                className={`mb-2 ${category.isChild ? 'ml-6 relative' : ''}`}
               >
-{category.name}
+                {category.isChild && (
+                  <span className="absolute -left-4 text-gray-400">└</span>
+                )}
+                {category.name}
+                <Badge variant="secondary" className="ml-2 text-xs">
+                  {category.count}
+                </Badge>
+                {category.isParent && (
+                  <Tag className="w-3 h-3 ml-1 text-blue-500" />
+                )}
               </Button>
             ))}
           </div>

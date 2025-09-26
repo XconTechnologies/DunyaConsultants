@@ -128,6 +128,7 @@ export interface IStorage {
   
   // Category Management
   getCategories(active?: boolean): Promise<Category[]>;
+  getHierarchicalCategories(active?: boolean): Promise<any[]>;
   getParentCategories(active?: boolean): Promise<Category[]>;
   getChildCategories(parentId: number, active?: boolean): Promise<Category[]>;
   getCategory(id: number): Promise<Category | undefined>;
@@ -971,6 +972,62 @@ export class DatabaseStorage implements IStorage {
       .orderBy(asc(categories.name));
   }
 
+  async getHierarchicalCategories(active?: boolean): Promise<any[]> {
+    // Get all categories with their parent information
+    const allCategories = await db
+      .select({
+        id: categories.id,
+        name: categories.name,
+        slug: categories.slug,
+        description: categories.description,
+        parentId: categories.parentId,
+        focusKeyword: categories.focusKeyword,
+        metaTitle: categories.metaTitle,
+        metaDescription: categories.metaDescription,
+        isActive: categories.isActive,
+        createdAt: categories.createdAt,
+        updatedAt: categories.updatedAt,
+      })
+      .from(categories)
+      .where(active !== undefined ? eq(categories.isActive, active) : undefined)
+      .orderBy(asc(categories.name));
+
+    // Organize into hierarchical structure
+    const parentCategories = allCategories.filter(cat => cat.parentId === null);
+    const childCategories = allCategories.filter(cat => cat.parentId !== null);
+
+    return parentCategories.map(parent => ({
+      ...parent,
+      children: childCategories.filter(child => child.parentId === parent.id)
+    }));
+  }
+
+  async getParentCategories(active?: boolean): Promise<Category[]> {
+    const conditions = [sql`parent_id IS NULL`];
+    if (active !== undefined) {
+      conditions.push(eq(categories.isActive, active));
+    }
+
+    return await db
+      .select()
+      .from(categories)
+      .where(conditions.length > 1 ? and(...conditions) : conditions[0])
+      .orderBy(asc(categories.name));
+  }
+
+  async getChildCategories(parentId: number, active?: boolean): Promise<Category[]> {
+    const conditions = [eq(categories.parentId, parentId)];
+    if (active !== undefined) {
+      conditions.push(eq(categories.isActive, active));
+    }
+
+    return await db
+      .select()
+      .from(categories)
+      .where(and(...conditions))
+      .orderBy(asc(categories.name));
+  }
+
   async getCategory(id: number): Promise<Category | undefined> {
     const [category] = await db.select().from(categories).where(eq(categories.id, id));
     return category || undefined;
@@ -1012,39 +1069,7 @@ export class DatabaseStorage implements IStorage {
     return category;
   }
 
-  async getParentCategories(active?: boolean): Promise<Category[]> {
-    const query = db
-      .select()
-      .from(categories)
-      .where(categories.parentId === null);
-    
-    if (active !== undefined) {
-      query.where(eq(categories.isActive, active));
-    }
-    
-    return await query.orderBy(asc(categories.name));
-  }
-
-  async getChildCategories(parentId: number, active?: boolean): Promise<Category[]> {
-    const query = db
-      .select()
-      .from(categories)
-      .where(eq(categories.parentId, parentId));
-    
-    if (active !== undefined) {
-      query.where(eq(categories.isActive, active));
-    }
-    
-    return await query.orderBy(asc(categories.name));
-  }
-
   async deleteCategory(id: number): Promise<void> {
-    // First check if this category has children
-    const children = await this.getChildCategories(id);
-    if (children.length > 0) {
-      throw new Error("Cannot delete category with child categories. Please delete child categories first.");
-    }
-    
     // First remove all blog post category associations
     await db.delete(blogPostCategories).where(eq(blogPostCategories.categoryId, id));
     // Then delete the category
@@ -1059,7 +1084,6 @@ export class DatabaseStorage implements IStorage {
         name: categories.name,
         slug: categories.slug,
         description: categories.description,
-        parentId: categories.parentId,
         focusKeyword: categories.focusKeyword,
         metaTitle: categories.metaTitle,
         metaDescription: categories.metaDescription,

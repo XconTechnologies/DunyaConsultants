@@ -2990,6 +2990,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ====================== PUBLIC CATEGORY ROUTES ======================
+
+  // Public route: Get hierarchical categories (for front-end blog page)
+  app.get("/api/categories/hierarchical", async (req, res) => {
+    try {
+      const hierarchicalCategories = await storage.getHierarchicalCategories(true); // Only active categories
+      res.json(hierarchicalCategories);
+    } catch (error) {
+      console.error('Error fetching hierarchical categories:', error);
+      res.status(500).json({ message: 'Failed to fetch hierarchical categories' });
+    }
+  });
+
+  // Public route: Get parent categories only
+  app.get("/api/categories/parents", async (req, res) => {
+    try {
+      const parentCategories = await storage.getParentCategories(true); // Only active categories
+      res.json(parentCategories);
+    } catch (error) {
+      console.error('Error fetching parent categories:', error);
+      res.status(500).json({ message: 'Failed to fetch parent categories' });
+    }
+  });
+
+  // Public route: Get all categories
+  app.get("/api/categories", async (req, res) => {
+    try {
+      const categories = await storage.getCategories(true); // Only active categories
+      res.json(categories);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      res.status(500).json({ message: 'Failed to fetch categories' });
+    }
+  });
+
   // ====================== ENHANCED CATEGORY MANAGEMENT ROUTES ======================
 
   // Get all categories with SEO fields and post counts
@@ -3022,10 +3057,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get parent categories only (for parent category dropdown)
-  app.get("/api/admin/categories-parents", requireAuth, async (req: AuthenticatedRequest, res) => {
+  // Get hierarchical categories (parent-child structure)
+  app.get("/api/admin/categories/hierarchical", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const parentCategories = await storage.getParentCategories(true); // Only active parent categories
+      const hierarchicalCategories = await storage.getHierarchicalCategories(true);
+      res.json(hierarchicalCategories);
+    } catch (error) {
+      console.error('Error fetching hierarchical categories:', error);
+      res.status(500).json({ message: 'Failed to fetch hierarchical categories' });
+    }
+  });
+
+  // Get parent categories only
+  app.get("/api/admin/categories/parents", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const parentCategories = await storage.getParentCategories(true);
       res.json(parentCategories);
     } catch (error) {
       console.error('Error fetching parent categories:', error);
@@ -3034,10 +3080,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get child categories for a specific parent
-  app.get("/api/admin/categories-children/:parentId", requireAuth, async (req: AuthenticatedRequest, res) => {
+  app.get("/api/admin/categories/:parentId/children", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const parentId = parseInt(req.params.parentId);
-      const childCategories = await storage.getChildCategories(parentId, true); // Only active child categories
+      const childCategories = await storage.getChildCategories(parentId, true);
       res.json(childCategories);
     } catch (error) {
       console.error('Error fetching child categories:', error);

@@ -16,13 +16,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
   Table,
   TableBody,
   TableCell,
@@ -31,6 +24,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { Tag, Plus, Trash2, LogOut, Edit, Search } from "lucide-react";
 import { canManageUsers } from "@/lib/permissions";
@@ -106,7 +100,7 @@ export default function CategoriesPage() {
     };
   };
 
-  // Fetch all categories
+  // Fetch categories
   const { data: categories = [], isLoading } = useQuery<EnhancedCategory[]>({
     queryKey: ["/api/admin/categories"],
     queryFn: async () => {
@@ -123,9 +117,9 @@ export default function CategoriesPage() {
 
   // Fetch parent categories for dropdown
   const { data: parentCategories = [] } = useQuery<Category[]>({
-    queryKey: ["/api/admin/categories-parents"],
+    queryKey: ["/api/admin/categories/parents"],
     queryFn: async () => {
-      const response = await fetch('/api/admin/categories-parents', {
+      const response = await fetch('/api/admin/categories/parents', {
         headers: getAuthHeaders()
       });
       if (!response.ok) {
@@ -314,24 +308,6 @@ export default function CategoriesPage() {
     }));
   };
 
-  // Organize categories hierarchically
-  const organizeHierarchicalCategories = (categories: EnhancedCategory[]) => {
-    const parentCategories = categories.filter(cat => !cat.parentId);
-    const childCategories = categories.filter(cat => cat.parentId);
-    
-    const organizedCategories: EnhancedCategory[] = [];
-    
-    parentCategories.forEach(parent => {
-      organizedCategories.push(parent);
-      const children = childCategories.filter(child => child.parentId === parent.id);
-      children.forEach(child => {
-        organizedCategories.push(child);
-      });
-    });
-    
-    return organizedCategories;
-  };
-
   if (!authChecked || !adminUser) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
@@ -430,28 +406,6 @@ export default function CategoriesPage() {
                       </div>
                     </div>
                     <div>
-                      <Label htmlFor="parentCategory">Parent Category (Optional)</Label>
-                      <Select
-                        value={formData.parentId?.toString() || ""}
-                        onValueChange={(value) => setFormData(prev => ({ 
-                          ...prev, 
-                          parentId: value ? parseInt(value) : null 
-                        }))}
-                      >
-                        <SelectTrigger data-testid="select-parent-category">
-                          <SelectValue placeholder="Select parent category (leave empty for main category)" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="">None (Main Category)</SelectItem>
-                          {parentCategories.map((parent) => (
-                            <SelectItem key={parent.id} value={parent.id.toString()}>
-                              {parent.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
                       <Label htmlFor="categoryDescription">Description</Label>
                       <Textarea
                         id="categoryDescription"
@@ -460,6 +414,30 @@ export default function CategoriesPage() {
                         placeholder="Brief description of this category"
                         data-testid="input-category-description"
                       />
+                    </div>
+                    <div>
+                      <Label htmlFor="categoryParent">Parent Category (Optional)</Label>
+                      <Select
+                        value={formData.parentId?.toString() || ""}
+                        onValueChange={(value) => {
+                          setFormData(prev => ({ 
+                            ...prev, 
+                            parentId: value === "" ? null : parseInt(value)
+                          }));
+                        }}
+                      >
+                        <SelectTrigger data-testid="select-parent-category">
+                          <SelectValue placeholder="Select parent category (optional)" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="">No Parent (Top Level)</SelectItem>
+                          {parentCategories.map((category) => (
+                            <SelectItem key={category.id} value={category.id.toString()}>
+                              {category.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
                     </div>
                     <div>
                       <Label htmlFor="categoryFocusKeyword">Focus Keyword</Label>
@@ -545,28 +523,6 @@ export default function CategoriesPage() {
                     </div>
                   </div>
                   <div>
-                    <Label htmlFor="editParentCategory">Parent Category (Optional)</Label>
-                    <Select
-                      value={formData.parentId?.toString() || ""}
-                      onValueChange={(value) => setFormData(prev => ({ 
-                        ...prev, 
-                        parentId: value ? parseInt(value) : null 
-                      }))}
-                    >
-                      <SelectTrigger data-testid="select-edit-parent-category">
-                        <SelectValue placeholder="Select parent category (leave empty for main category)" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="">None (Main Category)</SelectItem>
-                        {parentCategories.filter(parent => parent.id !== editingCategory?.id).map((parent) => (
-                          <SelectItem key={parent.id} value={parent.id.toString()}>
-                            {parent.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
                     <Label htmlFor="editCategoryDescription">Description</Label>
                     <Textarea
                       id="editCategoryDescription"
@@ -575,6 +531,32 @@ export default function CategoriesPage() {
                       placeholder="Brief description of this category"
                       data-testid="input-edit-category-description"
                     />
+                  </div>
+                  <div>
+                    <Label htmlFor="editCategoryParent">Parent Category (Optional)</Label>
+                    <Select
+                      value={formData.parentId?.toString() || ""}
+                      onValueChange={(value) => {
+                        setFormData(prev => ({ 
+                          ...prev, 
+                          parentId: value === "" ? null : parseInt(value)
+                        }));
+                      }}
+                    >
+                      <SelectTrigger data-testid="select-edit-parent-category">
+                        <SelectValue placeholder="Select parent category (optional)" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="">No Parent (Top Level)</SelectItem>
+                        {parentCategories
+                          .filter(category => category.id !== editingCategory?.id) // Prevent self-selection
+                          .map((category) => (
+                            <SelectItem key={category.id} value={category.id.toString()}>
+                              {category.name}
+                            </SelectItem>
+                          ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div>
                     <Label htmlFor="editCategoryFocusKeyword">Focus Keyword</Label>
@@ -656,32 +638,19 @@ export default function CategoriesPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {organizeHierarchicalCategories(categories).map((category) => {
-                        const isChild = !!category.parentId;
-                        return (
-                          <TableRow key={category.id} data-testid={`category-row-${category.slug}`}>
-                            <TableCell>
-                              <div className={isChild ? "ml-6" : ""}>
-                                <div className="flex items-center space-x-2">
-                                  {isChild && <span className="text-gray-400">└─</span>}
-                                  <div className="flex items-center space-x-2">
-                                    {!isChild && <span className="text-blue-600 font-semibold">📁</span>}
-                                    {isChild && <span className="text-green-600">📄</span>}
-                                    <div className={`font-medium ${isChild ? "text-gray-700" : "text-gray-900"}`}>
-                                      {category.name}
-                                    </div>
-                                  </div>
+                      {categories.map((category) => (
+                        <TableRow key={category.id} data-testid={`category-row-${category.slug}`}>
+                          <TableCell>
+                            <div>
+                              <div className="font-medium">{category.name}</div>
+                              <div className="text-sm text-gray-500">/{category.slug}</div>
+                              {category.description && (
+                                <div className="text-xs text-gray-400 mt-1 max-w-xs truncate">
+                                  {category.description}
                                 </div>
-                                <div className={`text-sm text-gray-500 ${isChild ? "ml-8" : ""}`}>
-                                  /{category.slug}
-                                </div>
-                                {category.description && (
-                                  <div className={`text-xs text-gray-400 mt-1 max-w-xs truncate ${isChild ? "ml-8" : ""}`}>
-                                    {category.description}
-                                  </div>
-                                )}
-                              </div>
-                            </TableCell>
+                              )}
+                            </div>
+                          </TableCell>
                           <TableCell>
                             <div className="space-y-1">
                               {category.focusKeyword && (
