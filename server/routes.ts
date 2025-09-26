@@ -2087,11 +2087,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Apply limit if specified
       const limitedPosts = limit ? posts.slice(0, limit) : posts;
       
-      // Map database fields to frontend expected format
-      const mappedPosts = limitedPosts.map(post => ({
-        ...post,
-        _source: 'local',
-        featuredImage: post.featuredImage // Use the existing featuredImage field
+      // Fetch categories for each post and map database fields to frontend expected format
+      const mappedPosts = await Promise.all(limitedPosts.map(async (post) => {
+        const categories = await storage.getBlogPostCategories(post.id);
+        return {
+          ...post,
+          _source: 'local',
+          featuredImage: post.featuredImage, // Use the existing featuredImage field
+          categories: categories // Add categories array to each post
+        };
       }));
       
       res.json(mappedPosts);
