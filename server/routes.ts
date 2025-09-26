@@ -2990,6 +2990,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // ====================== PUBLIC CATEGORY ROUTES ======================
+
+  // Public route: Get hierarchical categories (for front-end blog page)
+  app.get("/api/categories/hierarchical", async (req, res) => {
+    try {
+      const hierarchicalCategories = await storage.getHierarchicalCategories(true); // Only active categories
+      res.json(hierarchicalCategories);
+    } catch (error) {
+      console.error('Error fetching hierarchical categories:', error);
+      res.status(500).json({ message: 'Failed to fetch hierarchical categories' });
+    }
+  });
+
+  // Public route: Get parent categories only
+  app.get("/api/categories/parents", async (req, res) => {
+    try {
+      const parentCategories = await storage.getParentCategories(true); // Only active categories
+      res.json(parentCategories);
+    } catch (error) {
+      console.error('Error fetching parent categories:', error);
+      res.status(500).json({ message: 'Failed to fetch parent categories' });
+    }
+  });
+
+  // Public route: Get all categories
+  app.get("/api/categories", async (req, res) => {
+    try {
+      const categories = await storage.getCategories(true); // Only active categories
+      res.json(categories);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      res.status(500).json({ message: 'Failed to fetch categories' });
+    }
+  });
+
   // ====================== ENHANCED CATEGORY MANAGEMENT ROUTES ======================
 
   // Get all categories with SEO fields and post counts
