@@ -42,6 +42,7 @@ import {
   Activity,
   CheckCircle,
   AlertTriangle,
+  Tag,
 } from "lucide-react";
 import { getBlogUrl } from "@/lib/blog-utils";
 import { 
@@ -83,6 +84,21 @@ export default function AdminDashboard() {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const { toast } = useToast();
   const queryClient = useQueryClient();
+
+  // Fetch categories for count
+  const { data: categories = [] } = useQuery({
+    queryKey: ["/api/admin/categories"],
+    enabled: authChecked && !!adminUser,
+    queryFn: async () => {
+      const response = await fetch('/api/admin/categories', {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch categories');
+      }
+      return response.json();
+    },
+  });
   
   // Edit conflict state management
   const [showConflictDialog, setShowConflictDialog] = useState(false);
@@ -697,7 +713,7 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats Cards - Only visible for users with analytics permission */}
         {canViewAnalytics(adminUser) && (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-gray-700">Total Blog Posts</CardTitle>
@@ -746,256 +762,26 @@ export default function AdminDashboard() {
               </p>
             </CardContent>
           </Card>
-        </div>
-        )}
-
-        {/* Blog Posts Management */}
-        <div className="space-y-4">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold">Blog Posts Management</h2>
-            {canCreateContent(adminUser) && (
-              <Button 
-                onClick={() => setLocation("/blog-editor")}
-                className="flex items-center space-x-2 bg-gradient-to-r from-[#1D50C9] to-[#1845B3] hover:from-[#1845B3] hover:to-[#1D50C9] text-white shadow-lg"
-              >
-                <Plus className="w-4 h-4" />
-                <span>Add New Post</span>
-              </Button>
-            )}
-          </div>
-
-          {/* Bulk Actions - Only show if user has permission for any bulk action */}
-          {selectedIds.length > 0 && (canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
-            <div className="flex items-center gap-2 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-[#1D50C9]/20 rounded-xl shadow-sm">
-              <span className="text-sm text-[#1D50C9] font-medium">
-                {selectedIds.length} blog{selectedIds.length === 1 ? '' : 's'} selected
-              </span>
-              <div className="flex gap-2">
-                {canPublishContent(adminUser) && (
-                  <Button
-                    data-testid="button-bulk-publish"
-                    size="sm"
-                    variant="default"
-                    disabled={selectedIds.length === 0}
-                    onClick={() => {
-                      if (window.confirm(`Are you sure you want to publish ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}?`)) {
-                        bulkPublishMutation.mutate(selectedIds);
-                      }
-                    }}
-                    className="bg-green-600 hover:bg-green-700 text-white shadow-sm"
-                  >
-                    <CheckCircle className="w-4 h-4 mr-1" />
-                    Publish Selected
-                  </Button>
-                )}
-                {canEditContent(adminUser) && (
-                  <Button
-                    data-testid="button-bulk-draft"
-                    size="sm"
-                    variant="outline"
-                    disabled={selectedIds.length === 0}
-                    onClick={() => {
-                      if (window.confirm(`Are you sure you want to move ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'} to draft?`)) {
-                        bulkDraftMutation.mutate(selectedIds);
-                      }
-                    }}
-                    className="border-[#1D50C9] text-[#1D50C9] hover:bg-[#1D50C9]/10"
-                  >
-                    <FileText className="w-4 h-4 mr-1" />
-                    Draft Selected
-                  </Button>
-                )}
-                {canDeleteContent(adminUser) && (
-                  <Button
-                    data-testid="button-bulk-delete"
-                    size="sm"
-                    variant="destructive"
-                    disabled={selectedIds.length === 0}
-                    onClick={() => {
-                      if (window.confirm(`Are you sure you want to DELETE ${selectedIds.length} selected blog post${selectedIds.length === 1 ? '' : 's'}? This action cannot be undone.`)) {
-                        bulkDeleteMutation.mutate(selectedIds);
-                      }
-                    }}
-                    className="shadow-sm"
-                  >
-                    <Trash2 className="w-4 h-4 mr-1" />
-                    Delete Selected
-                  </Button>
-                )}
+          
+          <Card className="border-0 shadow-lg bg-gradient-to-br from-white to-purple-50/50 backdrop-blur-sm">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium text-gray-700">Categories</CardTitle>
+              <div className="p-2 bg-purple-500 rounded-lg">
+                <Tag className="h-4 w-4 text-white" />
               </div>
-            </div>
-          )}
-
-          <Card>
-            <CardContent className="p-0">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-12">
-                      {(canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
-                        <Checkbox
-                          data-testid="checkbox-select-all"
-                          checked={isAllSelected}
-                          onCheckedChange={handleSelectAll}
-                        />
-                      )}
-                    </TableHead>
-                    <TableHead>Title</TableHead>
-                    <TableHead>Category</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Views</TableHead>
-                    <TableHead>Actions</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {blogLoading ? (
-                    <TableRow>
-                      <TableCell colSpan={7} className="text-center py-8">
-                        Loading blog posts...
-                      </TableCell>
-                    </TableRow>
-                  ) : blogPosts.length === 0 ? (
-                    <TableRow>
-                      <TableCell colSpan={7} className="text-center py-8 text-gray-500">
-                        No blog posts found. Create your first post!
-                      </TableCell>
-                    </TableRow>
-                  ) : (
-                    blogPosts.map((post: BlogPost) => (
-                      <TableRow key={post.id}>
-                        <TableCell>
-                          {(canPublishContent(adminUser) || canEditContent(adminUser) || canDeleteContent(adminUser)) && (
-                            <Checkbox
-                              data-testid={`checkbox-select-blog-${post.id}`}
-                              checked={selectedIds.includes(post.id)}
-                              onCheckedChange={(checked) => handleSelectBlog(post.id, checked as boolean)}
-                            />
-                          )}
-                        </TableCell>
-                        <TableCell className="font-medium">
-                          <div>
-                            <div>{post.title}</div>
-                            {(() => {
-                              const editStatus = getEditingStatus(post.id);
-                              return editStatus.isBeingEdited ? (
-                                <div className="text-xs text-orange-600 mt-1 flex items-center space-x-1">
-                                  <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                                  <span>{editStatus.editingUser?.username} is editing</span>
-                                </div>
-                              ) : null;
-                            })()}
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          {(() => {
-                            const postCategories = blogPostCategories[post.id] || [];
-                            if (postCategories.length === 0) {
-                              return (
-                                <Badge variant="outline" className="text-xs">
-                                  {"General"}
-                                </Badge>
-                              );
-                            }
-                            
-                            if (postCategories.length === 1) {
-                              return (
-                                <Badge variant="outline" className="text-xs">
-                                  {postCategories[0].name}
-                                </Badge>
-                              );
-                            }
-                            
-                            // Multiple categories - show count and tooltip
-                            return (
-                              <div className="flex items-center space-x-1">
-                                <Badge variant="outline" className="text-xs">
-                                  {postCategories[0].name}
-                                </Badge>
-                                {postCategories.length > 1 && (
-                                  <Badge variant="secondary" className="text-xs" title={postCategories.map((cat: any) => cat.name).join(", ")}>
-                                    +{postCategories.length - 1}
-                                  </Badge>
-                                )}
-                              </div>
-                            );
-                          })()}
-                        </TableCell>
-                        <TableCell className="text-sm text-gray-600">
-                          {post.isPublished && post.publishedAt 
-                            ? new Date(post.publishedAt).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'short', 
-                                day: 'numeric'
-                              })
-                            : new Date(post.createdAt).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'short',
-                                day: 'numeric'
-                              })
-                          }
-                          <div className="text-xs text-gray-400">
-                            {post.isPublished && post.publishedAt ? 'Published' : 'Created'}
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <Badge variant={post.isPublished ? "default" : "secondary"}>
-                            {post.isPublished ? "Published" : "Draft"}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>{post.views || 0}</TableCell>
-                        <TableCell>
-                          <div className="flex items-center space-x-2">
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => window.open(getBlogUrl(post.slug), '_blank')}
-                              title="View Article"
-                            >
-                              <Eye className="w-4 h-4" />
-                            </Button>
-                            {canEditContent(adminUser) && (
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleEditPost(post.id)}
-                                title="Edit Article"
-                              >
-                                <Edit2 className="w-4 h-4" />
-                              </Button>
-                            )}
-                            {!post.isPublished && canPublishContent(adminUser) && (
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handlePublish(post.id)}
-                                title="Publish Article"
-                                className="#1845B3 hover:text-#1a73e8"
-                              >
-                                <CheckCircle className="w-4 h-4" />
-                              </Button>
-                            )}
-                            {canDeleteContent(adminUser) && (
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => handleDelete("blog", post.id)}
-                                title="Delete Article"
-                                className="#1845B3 hover:text-#1a73e8"
-                              >
-                                <Trash2 className="w-4 h-4" />
-                              </Button>
-                            )}
-                          </div>
-                        </TableCell>
-                      </TableRow>
-                    ))
-                  )}
-                </TableBody>
-              </Table>
+            </CardHeader>
+            <CardContent>
+              <div className="text-3xl font-bold text-purple-600">
+                {categories.length}
+              </div>
+              <p className="text-xs text-gray-600 mt-1">
+                Content categories
+              </p>
             </CardContent>
           </Card>
         </div>
+        )}
+
       </div>
       </div>
 

@@ -70,6 +70,7 @@ import AdminBlogPreview from "@/pages/admin/blog-preview";
 import UserManagement from "@/pages/admin/user-management";
 import PostAssignments from "@/pages/admin/post-assignments";
 import CategoriesPage from "@/pages/admin/categories";
+import AllPosts from "@/pages/admin/posts";
 
 
 
@@ -170,6 +171,7 @@ function Router() {
       <Route path="/login" component={UserLogin} />
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
+      <Route path="/admin/posts" component={AllPosts} />
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin/users" component={UserManagement} />
       <Route path="/admin/post-assignments" component={PostAssignments} />
