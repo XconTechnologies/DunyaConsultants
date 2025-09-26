@@ -418,11 +418,11 @@ export default function CategoriesPage() {
                     <div>
                       <Label htmlFor="categoryParent">Parent Category (Optional)</Label>
                       <Select
-                        value={formData.parentId?.toString() || ""}
+                        value={formData.parentId?.toString() || "none"}
                         onValueChange={(value) => {
                           setFormData(prev => ({ 
                             ...prev, 
-                            parentId: value === "" ? null : parseInt(value)
+                            parentId: value === "none" ? null : parseInt(value)
                           }));
                         }}
                       >
@@ -430,7 +430,7 @@ export default function CategoriesPage() {
                           <SelectValue placeholder="Select parent category (optional)" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="">No Parent (Top Level)</SelectItem>
+                          <SelectItem value="none">No Parent (Top Level)</SelectItem>
                           {parentCategories.map((category) => (
                             <SelectItem key={category.id} value={category.id.toString()}>
                               {category.name}
@@ -535,11 +535,11 @@ export default function CategoriesPage() {
                   <div>
                     <Label htmlFor="editCategoryParent">Parent Category (Optional)</Label>
                     <Select
-                      value={formData.parentId?.toString() || ""}
+                      value={formData.parentId?.toString() || "none"}
                       onValueChange={(value) => {
                         setFormData(prev => ({ 
                           ...prev, 
-                          parentId: value === "" ? null : parseInt(value)
+                          parentId: value === "none" ? null : parseInt(value)
                         }));
                       }}
                     >
@@ -547,7 +547,7 @@ export default function CategoriesPage() {
                         <SelectValue placeholder="Select parent category (optional)" />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="">No Parent (Top Level)</SelectItem>
+                        <SelectItem value="none">No Parent (Top Level)</SelectItem>
                         {parentCategories
                           .filter(category => category.id !== editingCategory?.id) // Prevent self-selection
                           .map((category) => (
