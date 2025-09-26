@@ -18,6 +18,12 @@ const sidebarItems = [
     description: "Overview and analytics"
   },
   {
+    title: "All Posts",
+    href: "/admin/posts",
+    icon: FileText,
+    description: "Manage all blog posts"
+  },
+  {
     title: "User Management",
     href: "/admin/users",
     icon: Users,
@@ -84,8 +90,8 @@ export default function AdminSidebar({ currentUser }: AdminSidebarProps) {
       <nav className="flex-1 p-4 space-y-2">
         {sidebarItems
           .filter((item) => {
-            // Always show Dashboard for all users
-            if (item.href === "/admin/dashboard") {
+            // Always show Dashboard and All Posts for all users
+            if (item.href === "/admin/dashboard" || item.href === "/admin/posts") {
               return true;
             }
             // Only show admin functions for users with management permissions
