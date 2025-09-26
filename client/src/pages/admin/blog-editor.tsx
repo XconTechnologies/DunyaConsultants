@@ -44,6 +44,7 @@ const blogSchema = z.object({
   featuredImageOriginalName: z.string().optional(),
   publishedAt: z.string().optional(),
   isPublished: z.boolean().default(false),
+  authorId: z.number().optional(),
 });
 
 type BlogForm = z.infer<typeof blogSchema>;
@@ -64,6 +65,7 @@ interface BlogPost {
   featuredImageOriginalName?: string;
   publishedAt?: string;
   isPublished: boolean;
+  authorId?: number;
   createdAt: string;
   updatedAt: string;
 }
@@ -496,6 +498,21 @@ export default function BlogEditor() {
     gcTime: 0, // Don't cache in memory
   });
 
+  // Fetch admin users for author selection
+  const { data: adminUsers = [] } = useQuery({
+    queryKey: ["/api/admin/users"],
+    queryFn: async () => {
+      const response = await fetch('/api/admin/users', {
+        headers: getAuthHeaders()
+      });
+      if (!response.ok) {
+        throw new Error('Failed to fetch admin users');
+      }
+      return response.json();
+    },
+    enabled: authChecked,
+  });
+
   // Fetch categories for a blog post when editing
   const { data: postCategories = [], isLoading: postCategoriesLoading } = useQuery({
     queryKey: ["/api/admin/blog-posts", blogId, "categories"],
@@ -630,6 +647,7 @@ export default function BlogEditor() {
       category: "General", // Default category
       categoryIds: [], // Default to no categories selected
       publishedAt: "", // Don't pre-fill - only set when actually publishing
+      authorId: adminUser?.id, // Default to current user
     },
   });
 
@@ -878,6 +896,7 @@ export default function BlogEditor() {
           featuredImageAlt: blogPost.featuredImageAlt || "",
           featuredImageTitle: blogPost.featuredImageTitle || "",
           featuredImageOriginalName: blogPost.featuredImageOriginalName || "",
+          authorId: blogPost.authorId || adminUser?.id,
           publishedAt: blogPost.publishedAt 
             ? new Date(blogPost.publishedAt).toISOString().split('T')[0] 
             : "",
@@ -1605,7 +1624,35 @@ export default function BlogEditor() {
             {/* Sidebar */}
             <div className="space-y-6">
               
-
+              {/* Author Selection */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <User className="w-5 h-5" />
+                    <span>Author</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Select
+                    value={watch("authorId")?.toString() || adminUser?.id?.toString() || ""}
+                    onValueChange={(value) => setValue("authorId", parseInt(value))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select author" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {adminUsers.map((user: any) => (
+                        <SelectItem key={user.id} value={user.id.toString()}>
+                          {user.username} ({user.role})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <p className="text-sm text-gray-500 mt-2">
+                    Choose the author for this blog post
+                  </p>
+                </CardContent>
+              </Card>
 
               {/* Featured Image */}
               <Card>
