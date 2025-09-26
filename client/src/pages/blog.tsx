@@ -3237,23 +3237,22 @@ export default function Blog() {
   
   // URL and pagination management
   const [location, setLocation] = useLocation();
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 12;
   
-  // Better URL parameter parsing - reactive to location changes
-  const currentPage = (() => {
+  // Update currentPage when location changes
+  useEffect(() => {
     try {
       const urlParts = location.split('?');
       const searchParams = new URLSearchParams(urlParts[1] || '');
-      return parseInt(searchParams.get('page') || '1', 10);
-    } catch {
-      return 1;
+      const page = parseInt(searchParams.get('page') || '1', 10);
+      console.log('Location changed:', location, 'Parsed page:', page);
+      setCurrentPage(page);
+    } catch (error) {
+      console.error('Error parsing page:', error);
+      setCurrentPage(1);
     }
-  })();
-  const postsPerPage = 12;
-  
-  // Force component update when location changes
-  useEffect(() => {
-    console.log('Location changed:', location, 'Current page:', currentPage);
-  }, [location, currentPage]);
+  }, [location]);
 
   // Fetch blog posts from API - include page in query key for reactivity
   const { data: blogPostsData, isLoading } = useQuery({
@@ -3440,8 +3439,11 @@ export default function Blog() {
       return;
     }
     const newUrl = page === 1 ? '/blog' : `/blog?page=${page}`;
-    console.log('Setting location to:', newUrl);
-    setLocation(newUrl);
+    console.log('Navigating to:', newUrl);
+    
+    // Use browser's native navigation instead of wouter's setLocation
+    window.history.pushState(null, '', newUrl);
+    setCurrentPage(page);
   };
 
   // Reset to page 1 when search or category changes
