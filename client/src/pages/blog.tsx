@@ -648,7 +648,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   <img 
                     src={normalizeImageSrc(blogPost.image)}
                     alt={blogPost.title}
-                    className="w-full h-auto"
+                    className="w-full h-auto max-w-full object-cover"
+                    style={{ maxWidth: '100%', height: 'auto', minHeight: '250px' }}
                     onError={(e) => {
                       const img = e.currentTarget;
                       const originalSrc = img.src;
@@ -3422,8 +3423,8 @@ export default function Blog() {
                       <img 
                         src={normalizeImageSrc(post.image)}
                         alt={post.title}
-                        className="w-full h-56 object-cover transition-transform hover:scale-105"
-                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover transition-transform hover:scale-105"
+                        style={{ objectFit: 'cover', objectPosition: 'center', maxWidth: '100%', height: 'auto', minHeight: '200px' }}
                         onError={(e) => {
                           const img = e.currentTarget;
                           const originalSrc = img.src;
