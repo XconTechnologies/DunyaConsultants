@@ -21,7 +21,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
@@ -1318,66 +1318,96 @@ export default function BlogEditor() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3">
-                    {/* Selected categories summary */}
-                    <div className="p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                      <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                        Selected Categories ({selectedCategoryIds.length})
-                      </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {getSelectedCategoriesText()}
-                      </div>
+                  <div className="space-y-4">
+                    {/* Category selection dropdown */}
+                    <div>
+                      <Label className="text-sm font-medium mb-2 block">
+                        Select Categories
+                      </Label>
+                      {categoriesLoading ? (
+                        <div className="p-4 text-center text-sm text-gray-500">
+                          <Loader2 className="w-4 h-4 animate-spin mx-auto mb-2" />
+                          Loading categories...
+                        </div>
+                      ) : (
+                        <Select
+                          onValueChange={(value) => {
+                            const categoryId = parseInt(value);
+                            if (!selectedCategoryIds.includes(categoryId)) {
+                              handleCategoryToggle(categoryId, true);
+                            }
+                          }}
+                        >
+                          <SelectTrigger data-testid="dropdown-categories">
+                            <SelectValue placeholder="Choose categories to add..." />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {categories
+                              .filter((category: any) => !selectedCategoryIds.includes(category.id))
+                              .map((category: any) => (
+                                <SelectItem key={category.id} value={category.id.toString()}>
+                                  <div className="flex flex-col">
+                                    <span className="font-medium">{category.name}</span>
+                                    {category.description && (
+                                      <span className="text-xs text-gray-500">{category.description}</span>
+                                    )}
+                                  </div>
+                                </SelectItem>
+                              ))}
+                            {categories.filter((category: any) => !selectedCategoryIds.includes(category.id)).length === 0 && (
+                              <div className="p-2 text-center text-sm text-gray-500">
+                                All categories are already selected
+                              </div>
+                            )}
+                          </SelectContent>
+                        </Select>
+                      )}
                     </div>
 
-                    {/* Category selection */}
-                    {categoriesLoading ? (
-                      <div className="p-4 text-center text-sm text-gray-500">
-                        <Loader2 className="w-4 h-4 animate-spin mx-auto mb-2" />
-                        Loading categories...
-                      </div>
-                    ) : (
-                      <div className="grid grid-cols-1 gap-2">
-                        {categories.map((category: any) => (
-                          <div key={category.id} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800">
-                            <Checkbox
-                              id={`category-${category.id}`}
-                              checked={selectedCategoryIds.includes(category.id)}
-                              onCheckedChange={(checked) => 
-                                handleCategoryToggle(category.id, checked as boolean)
-                              }
-                              data-testid={`checkbox-category-${category.slug}`}
-                            />
-                            <div className="flex-1">
-                              <Label
-                                htmlFor={`category-${category.id}`}
-                                className="text-sm font-medium cursor-pointer"
-                              >
-                                {category.name}
-                              </Label>
-                              {category.description && (
-                                <div className="text-xs text-gray-500 mt-1">
-                                  {category.description}
-                                </div>
-                              )}
-                              {category.focusKeyword && (
-                                <Badge variant="outline" className="text-xs mt-1">
-                                  {category.focusKeyword}
-                                </Badge>
-                              )}
-                            </div>
-                          </div>
-                        ))}
+                    {/* Selected categories display with remove buttons */}
+                    {selectedCategoryIds.length > 0 && (
+                      <div>
+                        <Label className="text-sm font-medium mb-2 block">
+                          Selected Categories ({selectedCategoryIds.length})
+                        </Label>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedCategoryIds.map((categoryId) => {
+                            const category = categories.find((cat: any) => cat.id === categoryId);
+                            if (!category) return null;
+                            
+                            return (
+                              <div key={categoryId} className="flex items-center space-x-2 bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg px-3 py-2">
+                                <span className="text-sm font-medium text-blue-800 dark:text-blue-200">
+                                  {category.name}
+                                </span>
+                                {category.focusKeyword && (
+                                  <Badge variant="outline" className="text-xs">
+                                    {category.focusKeyword}
+                                  </Badge>
+                                )}
+                                <button
+                                  type="button"
+                                  onClick={() => handleCategoryToggle(categoryId, false)}
+                                  className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 ml-2"
+                                  data-testid={`remove-category-${category.slug}`}
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </div>
                     )}
+
+                    {/* Validation error */}
+                    {selectedCategoryIds.length === 0 && (
+                      <p className="text-red-500 text-sm">At least one category is required</p>
+                    )}
+
+                    {/* Backward compatibility with single category */}
+                    <input type="hidden" {...register("category")} value={categories.find((cat: any) => selectedCategoryIds.includes(cat.id))?.name || "General"} />
                   </div>
-
-                  {/* Validation error */}
-                  {selectedCategoryIds.length === 0 && (
-                    <p className="text-red-500 text-sm mt-2">At least one category is required</p>
-                  )}
-
-                  {/* Backward compatibility with single category */}
-                  <input type="hidden" {...register("category")} value={categories.find((cat: any) => selectedCategoryIds.includes(cat.id))?.name || "General"} />
 
                   {/* Add new category section */}
                   {canManageCategories(adminUser) && (
