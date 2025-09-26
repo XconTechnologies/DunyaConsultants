@@ -197,7 +197,7 @@ export default function BlogsCarouselSection() {
     title: post.title,
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
-    author: "Path Visa Consultants",
+    author: post.authorName || "Path Visa Consultants",
     date: (() => {
       const dateStr = post.publishedAt || post.published_at || post.created_at;
       if (!dateStr) return 'Unknown Date';
