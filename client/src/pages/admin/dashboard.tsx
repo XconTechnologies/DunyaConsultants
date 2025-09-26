@@ -347,6 +347,50 @@ export default function AdminDashboard() {
     },
   });
 
+  // Fetch categories for blog posts
+  const { data: allCategories = [] } = useQuery({
+    queryKey: ["/api/admin/categories"],
+    enabled: authChecked && !!adminUser,
+    queryFn: async () => {
+      const response = await fetch("/api/admin/categories", {
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) throw new Error("Failed to fetch categories");
+      return response.json();
+    }
+  });
+
+  // Fetch blog post categories for all posts (with enhanced error handling)
+  const { data: blogPostCategories = {} } = useQuery({
+    queryKey: ["/api/admin/blog-posts", "categories"],
+    enabled: authChecked && !!adminUser && blogPosts.length > 0,
+    queryFn: async () => {
+      const categoryMap: Record<number, any[]> = {};
+      
+      // Fetch categories for each blog post
+      const promises = blogPosts.map(async (post: any) => {
+        try {
+          const response = await fetch(`/api/admin/blog-posts/${post.id}/categories`, {
+            headers: getAuthHeaders(),
+          });
+          if (response.ok) {
+            const categories = await response.json();
+            categoryMap[post.id] = categories;
+          } else {
+            // Fallback to empty array if fetch fails
+            categoryMap[post.id] = [];
+          }
+        } catch (error) {
+          console.error(`Failed to fetch categories for post ${post.id}:`, error);
+          categoryMap[post.id] = [];
+        }
+      });
+      
+      await Promise.all(promises);
+      return categoryMap;
+    }
+  });
+
   // Fetch active editing sessions for real-time editing status
   const { data: editingSessions = [] } = useQuery({
     queryKey: ["/api/admin/editing-sessions/all"],
@@ -845,9 +889,38 @@ export default function AdminDashboard() {
                           </div>
                         </TableCell>
                         <TableCell>
-                          <Badge variant="outline" className="text-xs">
-                            {post.category || "General"}
-                          </Badge>
+                          {(() => {
+                            const postCategories = blogPostCategories[post.id] || [];
+                            if (postCategories.length === 0) {
+                              return (
+                                <Badge variant="outline" className="text-xs">
+                                  {"General"}
+                                </Badge>
+                              );
+                            }
+                            
+                            if (postCategories.length === 1) {
+                              return (
+                                <Badge variant="outline" className="text-xs">
+                                  {postCategories[0].name}
+                                </Badge>
+                              );
+                            }
+                            
+                            // Multiple categories - show count and tooltip
+                            return (
+                              <div className="flex items-center space-x-1">
+                                <Badge variant="outline" className="text-xs">
+                                  {postCategories[0].name}
+                                </Badge>
+                                {postCategories.length > 1 && (
+                                  <Badge variant="secondary" className="text-xs" title={postCategories.map((cat: any) => cat.name).join(", ")}>
+                                    +{postCategories.length - 1}
+                                  </Badge>
+                                )}
+                              </div>
+                            );
+                          })()}
                         </TableCell>
                         <TableCell className="text-sm text-gray-600">
                           {post.isPublished && post.publishedAt 

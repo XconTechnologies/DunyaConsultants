@@ -514,10 +514,21 @@ export default function BlogEditor() {
   // Create category mutation
   const createCategoryMutation = useMutation({
     mutationFn: async (name: string) => {
-      return apiRequest("/api/admin/categories", {
+      const response = await fetch("/api/admin/categories", {
         method: "POST",
-        body: { name }
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ name }),
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || "Failed to create category");
+      }
+
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/admin/categories"] });
