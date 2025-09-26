@@ -1375,9 +1375,6 @@ export default function BlogEditor() {
                                 <SelectItem key={category.id} value={category.id.toString()}>
                                   <div className="flex flex-col">
                                     <span className="font-medium">{category.name}</span>
-                                    {category.description && (
-                                      <span className="text-xs text-gray-500">{category.description}</span>
-                                    )}
                                   </div>
                                 </SelectItem>
                               ))}
