@@ -376,6 +376,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
     title: post.title,
     excerpt: post.excerpt,
     category: post.category || "Study Guides",
+    categories: post.categories || [],
     author: post.authorName || "Path Visa Consultants",
     authorId: post.authorId,
     date: (() => {
@@ -609,10 +610,21 @@ function BlogPostDetail({ slug }: { slug: string }) {
               transition={{ duration: 0.8 }}
               className="mb-6"
             >
-              <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white">
-                <Tag className="w-4 h-4 mr-2" />
-                {blogPost.category}
-              </Badge>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {blogPost.categories && blogPost.categories.length > 0 ? (
+                  blogPost.categories.map((category: any, index: number) => (
+                    <Badge key={index} variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white">
+                      <Tag className="w-4 h-4 mr-2" />
+                      {category.name}
+                    </Badge>
+                  ))
+                ) : (
+                  <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white">
+                    <Tag className="w-4 h-4 mr-2" />
+                    {blogPost.category}
+                  </Badge>
+                )}
+              </div>
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
