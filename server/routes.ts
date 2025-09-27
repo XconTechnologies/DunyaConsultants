@@ -717,8 +717,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const subject = `New ${formType} Submission - ${formData.name || 'Anonymous'}`;
 
       const emailOptions = {
-        from: 'Dunya Consultants <onboarding@resend.dev>',
-        to: 'globaldc89@gmail.com', // Using verified email for now - change to query@teamdunya.com after domain verification
+        from: 'Dunya Consultants <noreply@teamdunya.com>',
+        to: 'query@teamdunya.com',
         subject: subject,
         html: emailContent,
       };
