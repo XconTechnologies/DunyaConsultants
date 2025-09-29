@@ -658,12 +658,17 @@ function BlogPostDetail({ slug }: { slug: string }) {
             >
               <div className="flex flex-wrap gap-2 justify-center">
                 {blogPost.categories && blogPost.categories.length > 0 ? (
-                  blogPost.categories.map((category: any, index: number) => (
-                    <Badge key={index} variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white">
-                      <Tag className="w-4 h-4 mr-2" />
-                      {category.name}
-                    </Badge>
-                  ))
+                  blogPost.categories.map((category: any, index: number) => {
+                    const categorySlug = category.slug || category.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+                    return (
+                      <Link key={index} href={`/category/${categorySlug}`}>
+                        <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white hover:bg-white/30 transition-colors cursor-pointer">
+                          <Tag className="w-4 h-4 mr-2" />
+                          {category.name}
+                        </Badge>
+                      </Link>
+                    );
+                  })
                 ) : (
                   <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white">
                     <Tag className="w-4 h-4 mr-2" />
@@ -3333,8 +3338,7 @@ export default function Blog() {
       updatedAt: new Date().toISOString()
     })),
     staleTime: 5 * 60 * 1000, // 5 minutes
-    refetchOnMount: 'always',
-    keepPreviousData: true
+    refetchOnMount: 'always'
   });
 
   // Transform API data to component format
@@ -3663,9 +3667,16 @@ export default function Blog() {
                     
                     {/* Category Badge */}
                     <div className="mb-3">
-                      <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
-                        {post.category}
-                      </Badge>
+                      {(() => {
+                        const categorySlug = post.category.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+                        return (
+                          <Link href={`/category/${categorySlug}`}>
+                            <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9] hover:bg-[#1D50C9]/20 transition-colors cursor-pointer">
+                              {post.category}
+                            </Badge>
+                          </Link>
+                        );
+                      })()}
                     </div>
 
                     {/* Title */}
