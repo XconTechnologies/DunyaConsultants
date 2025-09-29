@@ -210,7 +210,7 @@ export default function CategoryPage() {
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               {/* Back Button */}
-              <Link href="/categories">
+              <Link href="/category">
                 <Button variant="outline">
                   <ChevronLeft className="w-4 h-4 mr-2" />
                   Back to All Categories
