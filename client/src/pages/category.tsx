@@ -291,7 +291,8 @@ export default function CategoryPage() {
                             <img 
                               src={post.image}
                               alt={post.title}
-                              className="w-full h-56 object-cover"
+                              className="w-full h-56 sm:h-56 md:h-56 lg:h-56 object-cover"
+                              style={{ objectFit: 'cover', objectPosition: 'center', maxWidth: '100%', height: 'auto', minHeight: '200px' }}
                               data-testid={`post-image-${post.id}`}
                             />
                           </div>
@@ -317,17 +318,19 @@ export default function CategoryPage() {
                             {post.excerpt}
                           </p>
                           
-                          {/* Meta Information - Same as Blog Cards */}
-                          <div className="flex items-center justify-between text-sm pt-4 border-t border-gray-100">
+                          {/* Meta Information and Read More - Same Line */}
+                          <div className="flex items-center justify-between text-sm">
                             <div className="flex items-center text-gray-500">
-                              <Calendar className="w-4 h-4 mr-1" />
-                              <span>{post.date}</span>
+                              <div className="flex items-center">
+                                <Calendar className="w-4 h-4 mr-1" />
+                                <span>{post.date}</span>
+                              </div>
                             </div>
                             
-                            {/* Author on the right */}
-                            <div className="flex items-center text-gray-500">
-                              <User className="w-4 h-4 mr-1" />
-                              <span>{post.author}</span>
+                            {/* Read More Link */}
+                            <div className="flex items-center text-[#1D50C9] font-medium">
+                              <span>Read More</span>
+                              <ArrowRight className="w-4 h-4 ml-1" />
                             </div>
                           </div>
                         </CardContent>
