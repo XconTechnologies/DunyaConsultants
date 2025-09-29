@@ -77,6 +77,14 @@ export default function MediaManagement() {
     };
   };
 
+  // Get auth headers for file upload (without Content-Type for FormData)
+  const getUploadAuthHeaders = () => {
+    const adminToken = localStorage.getItem("adminToken");
+    const userToken = localStorage.getItem("userToken");
+    const token = adminToken || userToken;
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+  };
+
   // Check authentication
   useEffect(() => {
     let token = localStorage.getItem("adminToken");
@@ -138,9 +146,7 @@ export default function MediaManagement() {
         
         const response = await fetch("/api/admin/media/upload", {
           method: "POST",
-          headers: {
-            'Authorization': getAuthHeaders().Authorization || "",
-          },
+          headers: getUploadAuthHeaders(),
           body: formData,
         });
         

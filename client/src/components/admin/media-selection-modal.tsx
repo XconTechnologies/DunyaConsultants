@@ -64,6 +64,14 @@ export default function MediaSelectionModal({
     };
   };
 
+  // Get auth headers for file upload (without Content-Type for FormData)
+  const getUploadAuthHeaders = () => {
+    const adminToken = localStorage.getItem("adminToken");
+    const userToken = localStorage.getItem("userToken");
+    const token = adminToken || userToken;
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+  };
+
   // Fetch media files
   const { data: mediaFiles = [], isLoading } = useQuery({
     queryKey: ["/api/admin/media"],
@@ -104,9 +112,7 @@ export default function MediaSelectionModal({
         
         const response = await fetch("/api/admin/media/upload", {
           method: "POST",
-          headers: {
-            'Authorization': getAuthHeaders().Authorization || "",
-          },
+          headers: getUploadAuthHeaders(),
           body: formData,
         });
         
