@@ -669,7 +669,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       const emailOptions: any = {
-        from: 'Dunya Consultants <query@dunyaconsultants.com>',
+        from: 'Dunya Consultants <noreply@dunyaconsultants.com>',
         to: to,
         subject: subject,
         html: html,
@@ -717,8 +717,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const subject = `New ${formType} Submission - ${formData.name || 'Anonymous'}`;
 
       const emailOptions = {
-        from: 'Dunya Consultants <noreply@teamdunya.com>',
-        to: 'query@teamdunya.com',
+        from: 'Dunya Consultants <noreply@dunyaconsultants.com>',
+        to: 'info@dunyaconsultants.com',
         subject: subject,
         html: emailContent,
       };
