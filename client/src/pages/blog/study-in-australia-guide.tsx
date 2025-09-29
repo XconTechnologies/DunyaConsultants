@@ -423,7 +423,7 @@ export default function StudyInAustraliaGuide() {
                 <h2 className="text-3xl font-bold mb-8 text-center text-[#1D50C9]">Related Blogs</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {relatedBlogs.map((blog, index) => (
-                    <div key={blog.id} className="bg-white border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-lg overflow-hidden group">
+                    <div key={blog.id} className="bg-white border border-gray-200 shadow-sm rounded-lg overflow-hidden">
                       <div className="p-6">
                         <div className="mb-3">
                           <span className="bg-[#1D50C9]/10 text-[#1D50C9] text-xs font-medium px-2.5 py-1 rounded-full">
@@ -431,7 +431,7 @@ export default function StudyInAustraliaGuide() {
                           </span>
                         </div>
                         
-                        <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-[#1D50C9] transition-colors">
+                        <h3 className="text-lg font-bold text-gray-900 mb-3">
                           {blog.title}
                         </h3>
                         
@@ -450,7 +450,7 @@ export default function StudyInAustraliaGuide() {
                         
                         <a 
                           href={blog.href}
-                          className="inline-flex items-center text-[#1D50C9] hover:text-[#1565c0] font-medium text-sm group-hover:translate-x-1 transition-all duration-200"
+                          className="inline-flex items-center text-[#1D50C9] font-medium text-sm"
                         >
                           Read More
                           <ArrowRight className="w-4 h-4 ml-1" />
