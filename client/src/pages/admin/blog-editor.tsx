@@ -25,7 +25,8 @@ import {
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
-import type { AdminUser } from "@shared/schema";
+import type { AdminUser, Media } from "@shared/schema";
+import MediaSelectionModal from "@/components/admin/media-selection-modal";
 
 // Categories will be loaded dynamically from API
 
@@ -345,6 +346,7 @@ export default function BlogEditor() {
   const [isSaving, setIsSaving] = useState(false);
   const [isImageUploading, setIsImageUploading] = useState(false);
   const [showImageUpload, setShowImageUpload] = useState(false);
+  const [showMediaModal, setShowMediaModal] = useState(false);
   const [editorMounted, setEditorMounted] = useState(false);
   const [editorMode, setEditorMode] = useState<'rich' | 'html'>('rich');
   const [htmlContent, setHtmlContent] = useState('');
@@ -1120,6 +1122,22 @@ export default function BlogEditor() {
 
   // ReactQuill now handled via Controller - no manual handler needed
 
+  // Handle media selection from media library
+  const handleMediaSelection = (media: Media) => {
+    // Set featured image fields with selected media
+    setValue("featuredImage", media.url);
+    setValue("featuredImageAlt", media.alt || "");
+    setValue("featuredImageOriginalName", media.originalName);
+    
+    // Close the modal
+    setShowMediaModal(false);
+    
+    toast({
+      title: "Media Selected",
+      description: `Selected ${media.originalName} as featured image`,
+    });
+  };
+
   const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -1743,28 +1761,43 @@ export default function BlogEditor() {
                       No featured image selected
                     </div>
                   )}
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => {
-                      setShowImageUpload(true);
-                      fileInputRef.current?.click();
-                    }}
-                    disabled={isImageUploading}
-                    className="w-full"
-                  >
-                    {isImageUploading ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                        Uploading...
-                      </>
-                    ) : (
-                      <>
-                        <Upload className="w-4 h-4 mr-2" />
-                        Upload Image
-                      </>
-                    )}
-                  </Button>
+                  <div className="flex flex-col space-y-2">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setShowMediaModal(true)}
+                      disabled={isImageUploading}
+                      className="w-full"
+                      data-testid="button-select-from-media-library"
+                    >
+                      <ImageIcon className="w-4 h-4 mr-2" />
+                      Select from Media Library
+                    </Button>
+                    
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => {
+                        setShowImageUpload(true);
+                        fileInputRef.current?.click();
+                      }}
+                      disabled={isImageUploading}
+                      className="w-full"
+                      data-testid="button-upload-new-image"
+                    >
+                      {isImageUploading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                          Uploading...
+                        </>
+                      ) : (
+                        <>
+                          <Upload className="w-4 h-4 mr-2" />
+                          Upload New Image
+                        </>
+                      )}
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -1923,6 +1956,16 @@ export default function BlogEditor() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      {/* Media Selection Modal */}
+      <MediaSelectionModal
+        isOpen={showMediaModal}
+        onClose={() => setShowMediaModal(false)}
+        onSelect={handleMediaSelection}
+        allowedTypes={["image/*"]}
+        title="Select Featured Image"
+        description="Choose an image from your media library or upload a new one for your blog post."
+      />
     </div>
   );
 }
