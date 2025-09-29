@@ -29,25 +29,54 @@ export default function ApplicationForm({ country, children }: ApplicationFormPr
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        fullName: "",
-        email: "",
-        phone: "",
-        educationLevel: "",
-        fieldOfStudy: "",
-        preferredIntake: "",
-        message: ""
+    try {
+      const response = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: `${country} Application Form`,
+          formData: {
+            fullName: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            educationLevel: formData.educationLevel,
+            fieldOfStudy: formData.fieldOfStudy,
+            preferredIntake: formData.preferredIntake,
+            message: formData.message,
+            interestedCountry: country
+          }
+        }),
       });
-    }, 3000);
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            fullName: "",
+            email: "",
+            phone: "",
+            educationLevel: "",
+            fieldOfStudy: "",
+            preferredIntake: "",
+            message: ""
+          });
+        }, 3000);
+      } else {
+        alert('There was an error submitting your application. Please try again or contact us directly.');
+      }
+    } catch (error) {
+      console.error('Error submitting application:', error);
+      alert('There was an error submitting your application. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: keyof typeof formData, value: string) => {

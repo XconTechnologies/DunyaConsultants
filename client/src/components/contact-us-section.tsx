@@ -40,10 +40,16 @@ export default function ContactUsSection() {
     setIsSubmitting(true);
 
     try {
-      // Here you would typically send the data to your backend
-      const response = await fetch('/api/contacts', {
+      // Send form data to backend with email notification
+      const response = await fetch('/api/submit-form', {
         method: 'POST',
-        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          formType: 'Contact Us Form',
+          formData: formData
+        }),
       });
 
       if (response.ok) {

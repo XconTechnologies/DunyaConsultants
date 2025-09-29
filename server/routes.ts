@@ -394,6 +394,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const savedConsultation = await storage.createConsultation(consultationData);
 
+      // Send email notification to info@dunyaconsultants.com
+      if (resend) {
+        try {
+          const emailContent = generateFormEmailHTML('Consultation Request', {
+            name: fullname,
+            email,
+            phone,
+            interestedCountry: country || 'Not specified',
+            message: message || 'No additional message provided'
+          });
+
+          await resend.emails.send({
+            from: 'Dunya Consultants <noreply@dunyaconsultants.com>',
+            to: 'info@dunyaconsultants.com',
+            subject: `New Consultation Request - ${fullname}`,
+            html: emailContent,
+          });
+        } catch (emailError) {
+          console.error('Failed to send consultation email:', emailError);
+          // Don't fail the request if email fails
+        }
+      }
+
       // Google Sheets Integration
       try {
         // Fix private key formatting
@@ -617,6 +640,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const consultationData = insertConsultationSchema.parse(req.body);
       const consultation = await storage.createConsultation(consultationData);
+
+      // Send email notification to info@dunyaconsultants.com
+      if (resend) {
+        try {
+          const emailContent = generateFormEmailHTML('Consultation Booking Form', req.body);
+          await resend.emails.send({
+            from: 'Dunya Consultants <noreply@dunyaconsultants.com>',
+            to: 'info@dunyaconsultants.com',
+            subject: `New Consultation Booking - ${req.body.name || 'Anonymous'}`,
+            html: emailContent,
+          });
+        } catch (emailError) {
+          console.error('Failed to send consultation booking email:', emailError);
+        }
+      }
+
       res.json({ success: true, consultation });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -639,6 +678,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const contactData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(contactData);
+
+      // Send email notification to info@dunyaconsultants.com
+      if (resend) {
+        try {
+          const emailContent = generateFormEmailHTML('Contact Form', req.body);
+          await resend.emails.send({
+            from: 'Dunya Consultants <noreply@dunyaconsultants.com>',
+            to: 'info@dunyaconsultants.com',
+            subject: `New Contact Form Submission - ${req.body.name || 'Anonymous'}`,
+            html: emailContent,
+          });
+        } catch (emailError) {
+          console.error('Failed to send contact email:', emailError);
+        }
+      }
+
       res.json({ success: true, contact });
     } catch (error) {
       if (error instanceof z.ZodError) {
