@@ -41,8 +41,21 @@ export default function CategoriesIndexPage() {
     select: (data: any) => data || []
   });
 
+  // Flatten hierarchical categories to show all categories (parent + child)
+  const allCategories = categories.reduce((acc: Category[], category: any) => {
+    // Add parent category
+    acc.push(category);
+    
+    // Add child categories if they exist
+    if (category.children && category.children.length > 0) {
+      acc.push(...category.children);
+    }
+    
+    return acc;
+  }, []);
+
   // Calculate post count for each category
-  const categoriesWithCounts = categories.map((category: Category) => {
+  const categoriesWithCounts = allCategories.map((category: Category) => {
     const postCount = blogPosts.filter((post: any) => 
       post.categories && post.categories.some((cat: any) => cat.id === category.id)
     ).length;
