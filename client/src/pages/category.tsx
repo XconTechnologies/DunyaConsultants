@@ -291,7 +291,7 @@ export default function CategoryPage() {
                             <img 
                               src={post.image}
                               alt={post.title}
-                              className="w-full h-56 object-cover transition-transform hover:scale-105"
+                              className="w-full h-56 object-cover"
                               data-testid={`post-image-${post.id}`}
                             />
                           </div>
