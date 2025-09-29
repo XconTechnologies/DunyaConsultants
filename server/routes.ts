@@ -2995,7 +2995,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Public route: Get hierarchical categories (for front-end blog page)
   app.get("/api/categories/hierarchical", async (req, res) => {
     try {
-      const hierarchicalCategories = await storage.getHierarchicalCategories(true); // Only active categories
+      const hierarchicalCategories = await storage.getHierarchicalCategories(); // All categories
       res.json(hierarchicalCategories);
     } catch (error) {
       console.error('Error fetching hierarchical categories:', error);
@@ -3017,7 +3017,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Public route: Get all categories
   app.get("/api/categories", async (req, res) => {
     try {
-      const categories = await storage.getCategories(true); // Only active categories
+      const categories = await storage.getCategories(); // All categories
       res.json(categories);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -3030,7 +3030,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get all categories with SEO fields and post counts
   app.get("/api/admin/categories", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
-      const categories = await storage.getCategories(true); // Only active categories
+      const categories = await storage.getCategories(); // All categories
       
       // Get post counts for each category from many-to-many relationships
       const categoriesWithCounts = await Promise.all(
