@@ -87,6 +87,7 @@ export interface IStorage {
   // Media Library
   getMedia(): Promise<Media[]>;
   getMediaById(id: number): Promise<Media | undefined>;
+  getMediaByFilename(filename: string): Promise<Media | undefined>;
   createMedia(media: InsertMedia): Promise<Media>;
   updateMedia(id: number, updates: Partial<Media>): Promise<Media>;
   deleteMedia(id: number): Promise<void>;
@@ -787,6 +788,11 @@ export class DatabaseStorage implements IStorage {
 
   async getMediaById(id: number): Promise<Media | undefined> {
     const [mediaItem] = await db.select().from(media).where(eq(media.id, id));
+    return mediaItem || undefined;
+  }
+
+  async getMediaByFilename(filename: string): Promise<Media | undefined> {
+    const [mediaItem] = await db.select().from(media).where(eq(media.filename, filename));
     return mediaItem || undefined;
   }
 

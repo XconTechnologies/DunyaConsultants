@@ -140,8 +140,8 @@ export default function MediaManagement() {
   // Upload media mutation
   const uploadMutation = useMutation({
     mutationFn: async (files: FileList) => {
-      const formData = new FormData();
       for (let i = 0; i < files.length; i++) {
+        const formData = new FormData();
         formData.append('file', files[i]);
         
         const response = await fetch("/api/admin/media/upload", {
@@ -263,6 +263,32 @@ export default function MediaManagement() {
     },
   });
 
+  // Import existing media mutation
+  const importMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch("/api/admin/media/import", {
+        method: "POST",
+        headers: getAuthHeaders(),
+      });
+      if (!response.ok) throw new Error("Failed to import media files");
+      return response.json();
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/media"] });
+      toast({
+        title: "Success",
+        description: `Imported ${data.imported} media files`,
+      });
+    },
+    onError: (error) => {
+      toast({
+        title: "Error", 
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   // Handle file upload
   const handleUpload = () => {
     if (uploadFiles && uploadFiles.length > 0) {
@@ -376,6 +402,16 @@ export default function MediaManagement() {
                 </p>
               </div>
               <div className="flex items-center space-x-4">
+                <Button
+                  onClick={() => importMutation.mutate()}
+                  disabled={importMutation.isPending}
+                  variant="outline"
+                  className="bg-white text-[#1D50C9] hover:bg-blue-50 border-[#1D50C9]"
+                  data-testid="button-import-media"
+                >
+                  <Download className="h-4 w-4 mr-2" />
+                  {importMutation.isPending ? "Importing..." : "Import Existing"}
+                </Button>
                 <Button
                   onClick={() => setShowUploadDialog(true)}
                   className="bg-white text-[#1D50C9] hover:bg-blue-50"

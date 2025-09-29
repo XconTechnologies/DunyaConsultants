@@ -2736,6 +2736,97 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Import existing media files from uploads directory (Admin access only)
+  app.post("/api/admin/media/import", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
+    try {
+      const uploadsDir = path.resolve(process.cwd(), 'uploads');
+      
+      if (!fs.existsSync(uploadsDir)) {
+        return res.status(404).json({ message: 'Uploads directory not found' });
+      }
+
+      const files = fs.readdirSync(uploadsDir);
+      const importedFiles = [];
+      const errors = [];
+
+      for (const filename of files) {
+        try {
+          const filePath = path.join(uploadsDir, filename);
+          const stats = fs.statSync(filePath);
+          
+          if (stats.isFile()) {
+            // Check if file already exists in database
+            const existingMedia = await storage.getMediaByFilename(filename);
+            if (existingMedia) {
+              continue; // Skip if already imported
+            }
+
+            // Extract original name from filename (remove timestamp if present)
+            let originalName = filename;
+            const timestampMatch = filename.match(/_(\d{13})_[a-f0-9]{16}/);
+            if (timestampMatch) {
+              originalName = filename.replace(timestampMatch[0], '');
+            }
+
+            // Determine MIME type from file extension
+            const ext = path.extname(filename).toLowerCase();
+            let mimeType = 'application/octet-stream';
+            if (['.jpg', '.jpeg'].includes(ext)) mimeType = 'image/jpeg';
+            else if (ext === '.png') mimeType = 'image/png';
+            else if (ext === '.gif') mimeType = 'image/gif';
+            else if (ext === '.webp') mimeType = 'image/webp';
+            else if (ext === '.svg') mimeType = 'image/svg+xml';
+            else if (ext === '.mp4') mimeType = 'video/mp4';
+            else if (ext === '.avi') mimeType = 'video/x-msvideo';
+            else if (ext === '.mov') mimeType = 'video/quicktime';
+            else if (ext === '.pdf') mimeType = 'application/pdf';
+            else if (ext === '.doc') mimeType = 'application/msword';
+            else if (ext === '.docx') mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+
+            const media = await storage.createMedia({
+              filename,
+              originalName,
+              mimeType,
+              size: stats.size,
+              url: `/api/uploads/${filename}`,
+              uploadedBy: req.adminId!
+            });
+
+            importedFiles.push(media);
+          }
+        } catch (fileError) {
+          errors.push({ filename, error: fileError.message });
+        }
+      }
+
+      // Create audit log for mass import - omit entityId since this is a batch operation
+      if (importedFiles.length > 0) {
+        await storage.createAuditLog({
+          actorId: req.adminId!,
+          role: req.adminRole!,
+          action: 'import',
+          entity: 'media',
+          entityId: importedFiles[0].id, // Use first imported file as reference
+          after: { 
+            importedCount: importedFiles.length, 
+            errors: errors.length,
+            filenames: importedFiles.map(f => f.filename)
+          }
+        });
+      }
+
+      res.json({ 
+        imported: importedFiles.length, 
+        errors: errors.length,
+        files: importedFiles,
+        errorDetails: errors.length > 0 ? errors : undefined 
+      });
+    } catch (error) {
+      console.error('Error importing media:', error);
+      res.status(500).json({ message: 'Failed to import media files' });
+    }
+  });
+
   // Get published services
   app.get("/api/services", async (req, res) => {
     try {
