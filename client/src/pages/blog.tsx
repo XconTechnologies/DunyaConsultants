@@ -3286,18 +3286,17 @@ export default function Blog() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   
-  // URL and pagination management
+  // URL and pagination management  
   const [location, setLocation] = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 12;
   
-  // Update currentPage when location changes
+  // Update currentPage when URL changes
   useEffect(() => {
     try {
-      const urlParts = location.split('?');
-      const searchParams = new URLSearchParams(urlParts[1] || '');
-      const page = parseInt(searchParams.get('page') || '1', 10);
-      console.log('Location changed:', location, 'Parsed page:', page);
+      const urlParams = new URLSearchParams(window.location.search);
+      const page = parseInt(urlParams.get('page') || '1', 10);
+      console.log('URL changed:', window.location.href, 'Parsed page:', page);
       setCurrentPage(page);
       
       // Scroll to top on page change (with a small delay to allow rendering)
@@ -3309,6 +3308,19 @@ export default function Blog() {
       setCurrentPage(1);
     }
   }, [location]);
+  
+  // Also listen to popstate events for browser back/forward navigation
+  useEffect(() => {
+    const handlePopState = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const page = parseInt(urlParams.get('page') || '1', 10);
+      console.log('Browser navigation, parsed page:', page);
+      setCurrentPage(page);
+    };
+    
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Fetch blog posts from API with instant loading using initialData
   const { data: blogPostsData, isLoading } = useQuery({
@@ -3513,13 +3525,18 @@ export default function Blog() {
     const newUrl = page === 1 ? '/blog' : `/blog?page=${page}`;
     console.log('Navigating to:', newUrl);
     
-    // Use wouter's setLocation for proper navigation
-    setLocation(newUrl);
+    // Use browser's native navigation and update state immediately
+    window.history.pushState(null, '', newUrl);
+    setCurrentPage(page);
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Reset to page 1 when search or category changes
   const resetPagination = () => {
-    setLocation('/blog');
+    window.history.pushState(null, '', '/blog');
+    setCurrentPage(1);
   };
 
   return (
