@@ -3299,6 +3299,11 @@ export default function Blog() {
       const page = parseInt(searchParams.get('page') || '1', 10);
       console.log('Location changed:', location, 'Parsed page:', page);
       setCurrentPage(page);
+      
+      // Scroll to top on page change (with a small delay to allow rendering)
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
     } catch (error) {
       console.error('Error parsing page:', error);
       setCurrentPage(1);
@@ -3307,7 +3312,7 @@ export default function Blog() {
 
   // Fetch blog posts from API with instant loading using initialData
   const { data: blogPostsData, isLoading } = useQuery({
-    queryKey: ['/api/blog-posts', currentPage, searchTerm, selectedCategory],
+    queryKey: ['/api/blog-posts'],
     queryFn: async () => {
       const response = await fetch('/api/blog-posts');
       if (!response.ok) throw new Error('Failed to fetch blog posts');
@@ -3508,9 +3513,8 @@ export default function Blog() {
     const newUrl = page === 1 ? '/blog' : `/blog?page=${page}`;
     console.log('Navigating to:', newUrl);
     
-    // Use browser's native navigation instead of wouter's setLocation
-    window.history.pushState(null, '', newUrl);
-    setCurrentPage(page);
+    // Use wouter's setLocation for proper navigation
+    setLocation(newUrl);
   };
 
   // Reset to page 1 when search or category changes
