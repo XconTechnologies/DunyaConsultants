@@ -201,42 +201,38 @@ export default function CategoryPage() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           
-          {/* Back to Blog */}
+          {/* Back Button and Search in Single Row */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-8"
-          >
-            <Link href="/blog">
-              <Button variant="outline" className="mb-6">
-                <ChevronLeft className="w-4 h-4 mr-2" />
-                Back to All Articles
-              </Button>
-            </Link>
-          </motion.div>
-
-          {/* Search */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-12"
           >
-            <div className="max-w-md mx-auto">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <Input
-                  type="text"
-                  placeholder={`Search in ${currentCategory.name}...`}
-                  value={searchTerm}
-                  onChange={(e) => {
-                    setSearchTerm(e.target.value);
-                    setCurrentPage(1);
-                  }}
-                  className="pl-10"
-                  data-testid="search-category-posts"
-                />
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              {/* Back Button */}
+              <Link href="/categories">
+                <Button variant="outline">
+                  <ChevronLeft className="w-4 h-4 mr-2" />
+                  Back to All Categories
+                </Button>
+              </Link>
+              
+              {/* Search */}
+              <div className="max-w-md w-full sm:w-auto">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                  <Input
+                    type="text"
+                    placeholder={`Search in ${currentCategory.name}...`}
+                    value={searchTerm}
+                    onChange={(e) => {
+                      setSearchTerm(e.target.value);
+                      setCurrentPage(1);
+                    }}
+                    className="pl-10 w-full sm:w-80"
+                    data-testid="search-category-posts"
+                  />
+                </div>
               </div>
             </div>
           </motion.div>
