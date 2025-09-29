@@ -69,9 +69,10 @@ import BlogEditor from "@/pages/admin/blog-editor";
 import AdminBlogPreview from "@/pages/admin/blog-preview";
 import UserManagement from "@/pages/admin/user-management";
 import PostAssignments from "@/pages/admin/post-assignments";
-import CategoriesPage from "@/pages/admin/categories";
+import AdminCategoriesPage from "@/pages/admin/categories";
 import AllPosts from "@/pages/admin/posts";
 import CategoryPage from "@/pages/category";
+import CategoriesIndexPage from "@/pages/categories";
 
 
 
@@ -106,6 +107,7 @@ function Router() {
 
       {/* Blog Routes - Date-based slugs */}
       <Route path="/blog" component={Blog} />
+      <Route path="/category" component={CategoriesIndexPage} />
       <Route path="/category/:categorySlug" component={CategoryPage} />
       <Route path="/:year/:month/:day/:slug" component={Blog} />
       <Route path="/blog/:slug" component={Blog} />
@@ -177,7 +179,7 @@ function Router() {
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin/users" component={UserManagement} />
       <Route path="/admin/post-assignments" component={PostAssignments} />
-      <Route path="/admin/categories" component={CategoriesPage} />
+      <Route path="/admin/categories" component={AdminCategoriesPage} />
       <Route path="/admin/blog-editor/:id?" component={BlogEditor} />
       <Route path="/admin/blog-editor" component={BlogEditor} />
       <Route path="/blog-editor/:id?" component={BlogEditor} />
