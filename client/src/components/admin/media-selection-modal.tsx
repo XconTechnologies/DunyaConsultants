@@ -53,23 +53,19 @@ export default function MediaSelectionModal({
   const queryClient = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Get auth headers helper
+  // Get auth headers helper (admin only)
   const getAuthHeaders = () => {
     const adminToken = localStorage.getItem("adminToken");
-    const userToken = localStorage.getItem("userToken");
-    const token = adminToken || userToken;
     return {
       'Content-Type': 'application/json',
-      ...(token && { 'Authorization': `Bearer ${token}` })
+      ...(adminToken && { 'Authorization': `Bearer ${adminToken}` })
     };
   };
 
   // Get auth headers for file upload (without Content-Type for FormData)
   const getUploadAuthHeaders = () => {
     const adminToken = localStorage.getItem("adminToken");
-    const userToken = localStorage.getItem("userToken");
-    const token = adminToken || userToken;
-    return token ? { 'Authorization': `Bearer ${token}` } : {};
+    return adminToken ? { 'Authorization': `Bearer ${adminToken}` } : {};
   };
 
   // Fetch media files

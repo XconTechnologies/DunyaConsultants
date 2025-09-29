@@ -78,11 +78,11 @@ function requireRole(...allowedRoles: string[]) {
 // Admin-only access middleware
 const requireAdmin = requireRole('admin');
 
-// User and Admin access middleware  
-const requireUser = requireRole('admin', 'user');
+// Editor and Admin access middleware  
+const requireUser = requireRole('admin', 'editor');
 
 // Any admin role access middleware (for backwards compatibility)
-const requireAnyAdminRole = requireRole('admin', 'user');
+const requireAnyAdminRole = requireRole('admin', 'editor');
 
 // Reader authentication middleware (for content gating)
 async function requireReader(req: AuthenticatedRequest, res: Response, next: NextFunction) {
@@ -2574,7 +2574,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // ==============================================
 
   // Upload media file (Admin/Editor access)
-  app.post("/api/admin/media/upload", requireUser, upload.single('file'), async (req: AuthenticatedRequest, res) => {
+  app.post("/api/admin/media/upload", requireAuth, requireUser, upload.single('file'), async (req: AuthenticatedRequest, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: 'No file provided' });
@@ -2609,7 +2609,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get all media (Admin/Editor access)
-  app.get("/api/admin/media", requireUser, async (req, res) => {
+  app.get("/api/admin/media", requireAuth, requireUser, async (req, res) => {
     try {
       const media = await storage.getMedia();
       res.json(media);
@@ -2619,7 +2619,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Get single media item (Admin/Editor access)
-  app.get("/api/admin/media/:id", requireUser, async (req, res) => {
+  app.get("/api/admin/media/:id", requireAuth, requireUser, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
       const media = await storage.getMediaById(id);
@@ -2633,7 +2633,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Update media metadata (Admin/Editor access)
-  app.put("/api/admin/media/:id", requireUser, async (req: AuthenticatedRequest, res) => {
+  app.put("/api/admin/media/:id", requireAuth, requireUser, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
       const { alt, width, height } = req.body;
@@ -2683,7 +2683,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   }
 
   // Delete media with atomic operation (Admin access only)
-  app.delete("/api/admin/media/:id", requireAdmin, async (req: AuthenticatedRequest, res) => {
+  app.delete("/api/admin/media/:id", requireAuth, requireAdmin, async (req: AuthenticatedRequest, res) => {
     try {
       const id = parseInt(req.params.id);
       

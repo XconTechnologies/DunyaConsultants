@@ -66,37 +66,28 @@ export default function MediaManagement() {
   const queryClient = useQueryClient();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Get auth headers helper
+  // Get auth headers helper (admin only)
   const getAuthHeaders = () => {
     const adminToken = localStorage.getItem("adminToken");
-    const userToken = localStorage.getItem("userToken");
-    const token = adminToken || userToken;
     return {
       'Content-Type': 'application/json',
-      ...(token && { 'Authorization': `Bearer ${token}` })
+      ...(adminToken && { 'Authorization': `Bearer ${adminToken}` })
     };
   };
 
   // Get auth headers for file upload (without Content-Type for FormData)
   const getUploadAuthHeaders = () => {
     const adminToken = localStorage.getItem("adminToken");
-    const userToken = localStorage.getItem("userToken");
-    const token = adminToken || userToken;
-    return token ? { 'Authorization': `Bearer ${token}` } : {};
+    return adminToken ? { 'Authorization': `Bearer ${adminToken}` } : {};
   };
 
-  // Check authentication
+  // Check authentication (admin only)
   useEffect(() => {
-    let token = localStorage.getItem("adminToken");
-    let user = localStorage.getItem("adminUser");
+    const token = localStorage.getItem("adminToken");
+    const user = localStorage.getItem("adminUser");
     
     if (!token || !user) {
-      token = localStorage.getItem("userToken");
-      user = localStorage.getItem("user");
-    }
-    
-    if (!token || !user) {
-      setLocation("/login");
+      setLocation("/admin/login");
       return;
     }
 
@@ -105,7 +96,7 @@ export default function MediaManagement() {
       setAdminUser(userData);
       setAuthChecked(true);
     } catch {
-      setLocation("/login");
+      setLocation("/admin/login");
     }
   }, [setLocation]);
 
