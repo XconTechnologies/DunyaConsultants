@@ -317,21 +317,17 @@ export default function CategoryPage() {
                             {post.excerpt}
                           </p>
                           
-                          {/* Meta Info */}
-                          <div className="flex items-center justify-between text-xs text-gray-500 pt-4 border-t border-gray-100">
-                            <div className="flex items-center space-x-4">
-                              <div className="flex items-center">
-                                <Calendar className="w-3 h-3 mr-1" />
-                                <span>{post.date}</span>
-                              </div>
-                              <div className="flex items-center">
-                                <Clock className="w-3 h-3 mr-1" />
-                                <span>{post.readTime}</span>
-                              </div>
+                          {/* Meta Information - Same as Blog Cards */}
+                          <div className="flex items-center justify-between text-sm pt-4 border-t border-gray-100">
+                            <div className="flex items-center text-gray-500">
+                              <Calendar className="w-4 h-4 mr-1" />
+                              <span>{post.date}</span>
                             </div>
-                            <div className="flex items-center">
-                              <Eye className="w-3 h-3 mr-1" />
-                              <span>{post.views}</span>
+                            
+                            {/* Author on the right */}
+                            <div className="flex items-center text-gray-500">
+                              <User className="w-4 h-4 mr-1" />
+                              <span>{post.author}</span>
                             </div>
                           </div>
                         </CardContent>
