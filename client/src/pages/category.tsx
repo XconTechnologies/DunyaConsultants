@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import SimpleConsultationForm from "@/components/simple-consultation-form";
+import ConsultationBookingSection from "@/components/consultation-booking-section";
 import { getBlogUrl } from "@/lib/blog-utils";
 
 // Unified image src normalization function
@@ -381,7 +381,7 @@ export default function CategoryPage() {
         </div>
       </section>
 
-      <SimpleConsultationForm />
+      <ConsultationBookingSection />
       <Footer />
     </div>
   );
