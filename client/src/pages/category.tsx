@@ -177,8 +177,8 @@ export default function CategoryPage() {
             className="text-center"
           >
             <div className="flex items-center justify-center mb-6">
-              <Tag className="w-8 h-8 text-white mr-3" />
-              <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white">
+              <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white flex items-center gap-2">
+                <Tag className="w-5 h-5 text-white" />
                 Category
               </Badge>
             </div>
@@ -189,8 +189,9 @@ export default function CategoryPage() {
               Discover expert insights and comprehensive guides in {currentCategory.name.toLowerCase()}. 
               Stay informed with the latest updates and advice from our consultants.
             </p>
-            <div className="text-white/80">
-              <span className="text-lg font-medium">{filteredPosts.length}</span> article{filteredPosts.length !== 1 ? 's' : ''} found
+            <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full border border-white/20">
+              <span className="text-lg font-bold text-white">{filteredPosts.length}</span>
+              <span className="text-white/90 ml-2">article{filteredPosts.length !== 1 ? 's' : ''} found</span>
             </div>
           </motion.div>
         </div>

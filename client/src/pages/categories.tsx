@@ -105,8 +105,8 @@ export default function CategoriesIndexPage() {
             className="text-center"
           >
             <div className="flex items-center justify-center mb-6">
-              <Tag className="w-8 h-8 text-white mr-3" />
-              <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white">
+              <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white flex items-center gap-2">
+                <Tag className="w-5 h-5 text-white" />
                 Categories
               </Badge>
             </div>
@@ -117,8 +117,9 @@ export default function CategoriesIndexPage() {
               Discover expert insights and comprehensive guides across various topics. 
               Find the perfect category that matches your study abroad journey.
             </p>
-            <div className="text-white/80">
-              <span className="text-lg font-medium">{categoriesWithCounts.length}</span> categories available
+            <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full border border-white/20">
+              <span className="text-lg font-bold text-white">{categoriesWithCounts.length}</span>
+              <span className="text-white/90 ml-2">categories available</span>
             </div>
           </motion.div>
         </div>
