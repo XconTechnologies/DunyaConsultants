@@ -3578,9 +3578,6 @@ export default function Blog() {
                   <span className="absolute -left-4 text-gray-400">└</span>
                 )}
                 {category.name}
-                <Badge variant="secondary" className="ml-2 text-xs">
-                  {category.count}
-                </Badge>
                 {category.isParent && (
                   <Tag className="w-3 h-3 ml-1 text-blue-500" />
                 )}
