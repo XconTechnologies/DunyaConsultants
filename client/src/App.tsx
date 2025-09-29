@@ -71,6 +71,7 @@ import UserManagement from "@/pages/admin/user-management";
 import PostAssignments from "@/pages/admin/post-assignments";
 import CategoriesPage from "@/pages/admin/categories";
 import AllPosts from "@/pages/admin/posts";
+import CategoryPage from "@/pages/category";
 
 
 
@@ -105,6 +106,7 @@ function Router() {
 
       {/* Blog Routes - Date-based slugs */}
       <Route path="/blog" component={Blog} />
+      <Route path="/category/:categorySlug" component={CategoryPage} />
       <Route path="/:year/:month/:day/:slug" component={Blog} />
       <Route path="/blog/:slug" component={Blog} />
       <Route path="/ielts" component={IELTS} />

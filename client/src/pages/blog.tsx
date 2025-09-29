@@ -3564,25 +3564,43 @@ export default function Blog() {
 
           {/* Category Filter */}
           <div className="flex flex-wrap gap-2">
-            {categories.map((category: any) => (
-              <Button
-                key={category.name}
-                variant={selectedCategory === category.name ? "default" : "outline"}
-                onClick={() => {
-                  setSelectedCategory(category.name);
-                  resetPagination();
-                }}
-                className={`mb-2 ${category.isChild ? 'ml-6 relative' : ''}`}
-              >
-                {category.isChild && (
-                  <span className="absolute -left-4 text-gray-400">└</span>
-                )}
-                {category.name}
-                {category.isParent && (
-                  <Tag className="w-3 h-3 ml-1 text-blue-500" />
-                )}
-              </Button>
-            ))}
+            {categories.map((category: any) => {
+              // Create slug from category name
+              const categorySlug = category.name === "All" 
+                ? "all" 
+                : category.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+              
+              return category.name === "All" ? (
+                <Button
+                  key={category.name}
+                  variant={selectedCategory === category.name ? "default" : "outline"}
+                  onClick={() => {
+                    setSelectedCategory(category.name);
+                    resetPagination();
+                  }}
+                  className="mb-2"
+                  data-testid={`category-button-${categorySlug}`}
+                >
+                  {category.name}
+                </Button>
+              ) : (
+                <Link key={category.name} href={`/category/${categorySlug}`}>
+                  <Button
+                    variant="outline"
+                    className={`mb-2 ${category.isChild ? 'ml-6 relative' : ''}`}
+                    data-testid={`category-link-${categorySlug}`}
+                  >
+                    {category.isChild && (
+                      <span className="absolute -left-4 text-gray-400">└</span>
+                    )}
+                    {category.name}
+                    {category.isParent && (
+                      <Tag className="w-3 h-3 ml-1 text-blue-500" />
+                    )}
+                  </Button>
+                </Link>
+              );
+            })}
           </div>
         </div>
 
