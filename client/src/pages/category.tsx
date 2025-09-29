@@ -115,7 +115,7 @@ export default function CategoryPage() {
   });
 
   // Filter posts by search term
-  const filteredPosts = searchTerm.trim() 
+  const searchFilteredPosts = searchTerm.trim() 
     ? categoryBlogPosts.filter((post: any) => {
         const searchLower = searchTerm.toLowerCase();
         return (
@@ -125,6 +125,13 @@ export default function CategoryPage() {
         );
       })
     : categoryBlogPosts;
+
+  // Sort posts by date (newest to oldest)
+  const filteredPosts = searchFilteredPosts.sort((a: any, b: any) => {
+    const dateA = new Date(a.publishedAt || a.published_at || a.created_at || 0);
+    const dateB = new Date(b.publishedAt || b.published_at || b.created_at || 0);
+    return dateB.getTime() - dateA.getTime(); // Descending order (newest first)
+  });
 
   // Pagination
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
