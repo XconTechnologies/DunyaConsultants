@@ -370,6 +370,9 @@ export default function BlogEditor() {
   const [newCategoryName, setNewCategoryName] = useState("");
   const [isCreatingCategory, setIsCreatingCategory] = useState(false);
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
+  const [showBlockMenu, setShowBlockMenu] = useState(false);
+  const [blockMenuPosition, setBlockMenuPosition] = useState({ top: 0, left: 0 });
+  const [currentQuill, setCurrentQuill] = useState<any>(null);
   
   // Check authentication - support both admin and user tokens
   useEffect(() => {
@@ -406,6 +409,41 @@ export default function BlogEditor() {
       "Content-Type": "application/json",
     };
   };
+  
+  // Customize toolbar button and handle block menu
+  useEffect(() => {
+    const handleShowBlockMenu = (event: any) => {
+      const quill = event.detail.quill;
+      setCurrentQuill(quill);
+      
+      // Get the button position
+      const button = document.querySelector('.ql-addBlock');
+      if (button) {
+        const rect = button.getBoundingClientRect();
+        setBlockMenuPosition({
+          top: rect.bottom + 5,
+          left: rect.left
+        });
+        setShowBlockMenu(true);
+      }
+    };
+    
+    document.addEventListener('showBlockMenu', handleShowBlockMenu);
+    return () => {
+      document.removeEventListener('showBlockMenu', handleShowBlockMenu);
+    };
+  }, []);
+  
+  // Customize the Add Block button in the toolbar
+  useEffect(() => {
+    if (editorMounted) {
+      const button = document.querySelector('.ql-addBlock');
+      if (button && !button.innerHTML) {
+        button.innerHTML = `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>`;
+        button.setAttribute('title', 'Add Block (+)');
+      }
+    }
+  }, [editorMounted]);
   
   // Initialize FAQ functionality and register custom formats after editor loads
   useEffect(() => {
@@ -609,6 +647,88 @@ export default function BlogEditor() {
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const editorRef = useRef<any>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  // Block insertion functions
+  const insertBlockAtCursor = (blockType: string) => {
+    if (!currentQuill) return;
+    
+    const range = currentQuill.getSelection();
+    if (!range) return;
+    
+    let blockHtml = '';
+    
+    switch (blockType) {
+      case 'faq':
+        blockHtml = `
+          <div class="content-block faq-block" style="margin: 1.5rem 0; padding: 1rem; border: 2px dashed #60a5fa; border-radius: 0.5rem; background: #eff6ff;">
+            <div class="block-label" style="font-weight: 600; color: #2563eb; margin-bottom: 0.5rem; font-size: 0.875rem;">FAQ BLOCK</div>
+            <div style="background: white; padding: 1rem; border-radius: 0.375rem;">
+              <p style="margin: 0; font-weight: 500;">Click here to add your question</p>
+              <p style="margin: 0.5rem 0 0 0; color: #6b7280;">Click here to add your answer...</p>
+            </div>
+          </div>
+        `;
+        break;
+      case 'table':
+        blockHtml = `
+          <div class="content-block table-block" style="margin: 1.5rem 0; padding: 1rem; border: 2px dashed #10b981; border-radius: 0.5rem; background: #ecfdf5;">
+            <div class="block-label" style="font-weight: 600; color: #059669; margin-bottom: 0.5rem; font-size: 0.875rem;">TABLE BLOCK</div>
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr><th style="border: 1px solid #d1d5db; padding: 0.5rem; background: #f3f4f6;">Header 1</th><th style="border: 1px solid #d1d5db; padding: 0.5rem; background: #f3f4f6;">Header 2</th></tr>
+              <tr><td style="border: 1px solid #d1d5db; padding: 0.5rem;">Cell 1</td><td style="border: 1px solid #d1d5db; padding: 0.5rem;">Cell 2</td></tr>
+            </table>
+          </div>
+        `;
+        break;
+      case 'html':
+        blockHtml = `
+          <div class="content-block html-block" style="margin: 1.5rem 0; padding: 1rem; border: 2px dashed #f59e0b; border-radius: 0.5rem; background: #fef3c7;">
+            <div class="block-label" style="font-weight: 600; color: #d97706; margin-bottom: 0.5rem; font-size: 0.875rem;">HTML BLOCK</div>
+            <div style="background: white; padding: 1rem; border-radius: 0.375rem;">
+              <p style="margin: 0;">Add custom HTML content here</p>
+            </div>
+          </div>
+        `;
+        break;
+      case 'button':
+        blockHtml = `
+          <div class="content-block button-block" style="margin: 1.5rem 0; padding: 1rem; border: 2px dashed #8b5cf6; border-radius: 0.5rem; background: #f5f3ff; text-align: center;">
+            <div class="block-label" style="font-weight: 600; color: #7c3aed; margin-bottom: 0.5rem; font-size: 0.875rem;">BUTTON BLOCK</div>
+            <button style="background: #8b5cf6; color: white; padding: 0.75rem 2rem; border-radius: 0.5rem; border: none; font-weight: 500; cursor: pointer;">Click Me</button>
+          </div>
+        `;
+        break;
+      case 'image':
+        blockHtml = `
+          <div class="content-block image-block" style="margin: 1.5rem 0; padding: 1rem; border: 2px dashed #ec4899; border-radius: 0.5rem; background: #fdf2f8; text-align: center;">
+            <div class="block-label" style="font-weight: 600; color: #db2777; margin-bottom: 0.5rem; font-size: 0.875rem;">IMAGE BLOCK</div>
+            <div style="background: #f3f4f6; padding: 2rem; border-radius: 0.375rem;">
+              <p style="margin: 0; color: #6b7280;">Image placeholder - Click to upload</p>
+            </div>
+          </div>
+        `;
+        break;
+      case 'youtube':
+        blockHtml = `
+          <div class="content-block youtube-block" style="margin: 1.5rem 0; padding: 1rem; border: 2px dashed #ef4444; border-radius: 0.5rem; background: #fef2f2; text-align: center;">
+            <div class="block-label" style="font-weight: 600; color: #dc2626; margin-bottom: 0.5rem; font-size: 0.875rem;">YOUTUBE BLOCK</div>
+            <div style="background: #000; padding: 3rem; border-radius: 0.375rem;">
+              <p style="margin: 0; color: white;">YouTube Video Embed</p>
+            </div>
+          </div>
+        `;
+        break;
+      case 'spacer':
+        blockHtml = `<div class="content-block spacer-block" style="height: 3rem; margin: 1rem 0; background: repeating-linear-gradient(90deg, #e5e7eb 0, #e5e7eb 10px, transparent 10px, transparent 20px);"></div>`;
+        break;
+      case 'divider':
+        blockHtml = `<hr class="content-block divider-block" style="margin: 2rem 0; border: none; border-top: 2px solid #e5e7eb;" />`;
+        break;
+    }
+    
+    currentQuill.clipboard.dangerouslyPasteHTML(range.index, blockHtml + '<p><br></p>');
+    setShowBlockMenu(false);
+  };
 
   const token = localStorage.getItem("adminToken") || localStorage.getItem("userToken");
 
@@ -2018,6 +2138,93 @@ export default function BlogEditor() {
         title="Select Featured Image"
         description="Choose an image from your media library or upload a new one for your blog post."
       />
+      
+      {/* Block Menu Dropdown */}
+      {showBlockMenu && (
+        <>
+          <div 
+            className="fixed inset-0 z-40" 
+            onClick={() => setShowBlockMenu(false)}
+          />
+          <div 
+            className="fixed z-50 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[200px]"
+            style={{
+              top: `${blockMenuPosition.top}px`,
+              left: `${blockMenuPosition.left}px`
+            }}
+          >
+            <div className="px-3 py-2 text-xs font-semibold text-gray-500 border-b">
+              INSERT BLOCK
+            </div>
+            <button
+              type="button"
+              onClick={() => insertBlockAtCursor('faq')}
+              className="w-full px-4 py-2 text-left hover:bg-blue-50 flex items-center gap-2 text-sm"
+            >
+              <div className="w-3 h-3 rounded bg-blue-500" />
+              <span>FAQ Block</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => insertBlockAtCursor('table')}
+              className="w-full px-4 py-2 text-left hover:bg-green-50 flex items-center gap-2 text-sm"
+            >
+              <div className="w-3 h-3 rounded bg-green-500" />
+              <span>Table Block</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => insertBlockAtCursor('html')}
+              className="w-full px-4 py-2 text-left hover:bg-yellow-50 flex items-center gap-2 text-sm"
+            >
+              <div className="w-3 h-3 rounded bg-yellow-500" />
+              <span>HTML Block</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => insertBlockAtCursor('button')}
+              className="w-full px-4 py-2 text-left hover:bg-purple-50 flex items-center gap-2 text-sm"
+            >
+              <div className="w-3 h-3 rounded bg-purple-500" />
+              <span>Button Block</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => insertBlockAtCursor('image')}
+              className="w-full px-4 py-2 text-left hover:bg-pink-50 flex items-center gap-2 text-sm"
+            >
+              <div className="w-3 h-3 rounded bg-pink-500" />
+              <span>Image Block</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => insertBlockAtCursor('youtube')}
+              className="w-full px-4 py-2 text-left hover:bg-red-50 flex items-center gap-2 text-sm"
+            >
+              <div className="w-3 h-3 rounded bg-red-500" />
+              <span>YouTube Block</span>
+            </button>
+            <div className="border-t mt-1 pt-1">
+              <button
+                type="button"
+                onClick={() => insertBlockAtCursor('spacer')}
+                className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2 text-sm"
+              >
+                <div className="w-3 h-3 rounded bg-gray-400" />
+                <span>Spacer</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => insertBlockAtCursor('divider')}
+                className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2 text-sm"
+              >
+                <div className="w-3 h-3 rounded bg-gray-400" />
+                <span>Divider</span>
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
