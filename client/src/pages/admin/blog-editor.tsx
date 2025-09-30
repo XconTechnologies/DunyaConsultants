@@ -28,6 +28,7 @@ import { getBlogUrl } from "@/lib/blog-utils";
 import type { AdminUser, Media, ContentBlock } from "@shared/schema";
 import MediaSelectionModal from "@/components/admin/media-selection-modal";
 import ContentBlocks from "@/components/admin/content-blocks";
+import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 
 // Categories will be loaded dynamically from API
 
@@ -1690,6 +1691,38 @@ export default function BlogEditor() {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Content Preview with Blocks */}
+              {((watch("contentBlocks") as ContentBlock[] | undefined)?.length ?? 0) > 0 && (
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <Eye className="w-5 h-5" />
+                      <span>Content Preview (with blocks)</span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="border rounded-lg p-6 bg-white">
+                      {/* Preview of main content */}
+                      <div 
+                        className="prose prose-sm max-w-none mb-6"
+                        dangerouslySetInnerHTML={{ __html: (watch("content") as string) || '' }}
+                      />
+                      
+                      {/* Preview of content blocks */}
+                      <div className="space-y-4 border-t pt-6">
+                        <div className="text-sm font-medium text-gray-600 mb-3">
+                          Content Blocks Preview:
+                        </div>
+                        <ContentBlocksRenderer blocks={(watch("contentBlocks") as ContentBlock[]) || []} />
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-3">
+                      This preview shows how your content and blocks will appear together on the published page.
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
 
               {/* Content Blocks */}
               <Card>
