@@ -25,8 +25,9 @@ import {
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
-import type { AdminUser, Media } from "@shared/schema";
+import type { AdminUser, Media, ContentBlock } from "@shared/schema";
 import MediaSelectionModal from "@/components/admin/media-selection-modal";
+import ContentBlocks from "@/components/admin/content-blocks";
 
 // Categories will be loaded dynamically from API
 
@@ -35,6 +36,7 @@ const blogSchema = z.object({
   slug: z.string().min(1, "Slug is required"),
   excerpt: z.string().min(1, "Excerpt is required"),
   content: z.string().min(1, "Content is required"),
+  contentBlocks: z.array(z.any()).optional(),
   categoryIds: z.array(z.number()).optional(),
   category: z.string().optional(), // Keep for backward compatibility
   metaDescription: z.string().optional(),
@@ -56,6 +58,7 @@ interface BlogPost {
   slug: string;
   excerpt: string;
   content: string;
+  contentBlocks?: ContentBlock[];
   category: string;
   categoryIds?: number[];
   metaDescription?: string;
@@ -1673,6 +1676,25 @@ export default function BlogEditor() {
                       <>🔧 <strong>HTML Mode:</strong> Write custom HTML code with live preview. Perfect for advanced formatting, custom styles, and embedding multimedia content.</>
                     )}
                   </div>
+                </CardContent>
+              </Card>
+
+              {/* Content Blocks */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>Advanced Content Blocks</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Controller
+                    name="contentBlocks"
+                    control={control}
+                    render={({ field }) => (
+                      <ContentBlocks
+                        blocks={field.value || []}
+                        onChange={field.onChange}
+                      />
+                    )}
+                  />
                 </CardContent>
               </Card>
             </div>
