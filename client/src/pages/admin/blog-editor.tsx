@@ -19,10 +19,9 @@ import { useToast } from "@/hooks/use-toast";
 import { canPublishContent, canManageCategories } from "@/lib/permissions";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import '@/lib/quill-content-block';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
-  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X
+  Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X, Plus
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { getBlogUrl } from "@/lib/blog-utils";
@@ -689,59 +688,6 @@ export default function BlogEditor() {
     setValue('content', value);
   };
   
-  // Insert content blocks into Quill editor
-  useEffect(() => {
-    if (!editorRef.current || !editorMounted) return;
-    
-    const contentBlocks = watch('contentBlocks') || [];
-    if (contentBlocks.length === 0) return;
-    
-    const quill = editorRef.current.getEditor();
-    if (!quill) return;
-    
-    // Remove existing content block embeds first
-    const delta = quill.getContents();
-    delta.ops.forEach((op: any, index: number) => {
-      if (op.insert && op.insert.contentBlock) {
-        quill.deleteText(index, 1);
-      }
-    });
-    
-    // Get all block-level elements (p, h1, h2, etc.)
-    const lines = quill.getLines();
-    
-    // Insert blocks at their specified positions
-    contentBlocks.forEach((block: ContentBlock) => {
-      const position = block.position ?? 999;
-      
-      let insertIndex = 0;
-      
-      if (position === 0) {
-        // Insert at the very beginning
-        insertIndex = 0;
-      } else if (position >= lines.length || position >= 999) {
-        // Insert at the end
-        insertIndex = quill.getLength() - 1;
-      } else {
-        // Insert after the Nth element
-        let charCount = 0;
-        for (let i = 0; i < position && i < lines.length; i++) {
-          charCount += lines[i].length();
-        }
-        insertIndex = charCount;
-      }
-      
-      // Insert the content block embed
-      quill.insertEmbed(insertIndex, 'contentBlock', {
-        id: block.id,
-        block: block
-      }, 'user');
-      
-      // Add a newline after the embed for proper spacing
-      quill.insertText(insertIndex + 1, '\n', 'user');
-    });
-  }, [watch('contentBlocks'), editorMounted, content]);
-  
   // Memoized ReactQuill modules to prevent reinitializing
   const quillModules = useMemo(() => ({
     toolbar: {
@@ -754,29 +700,17 @@ export default function BlogEditor() {
         [{ 'indent': '-1' }, { 'indent': '+1' }],
         [{ 'align': [] }],
         ['link'],
-        ['faq'], // Custom FAQ button
+        ['addBlock'], // Custom Add Block button
         ['clean']
       ],
       handlers: {
-        'faq': function(this: any) {
-          const quill = this.quill;
-          const range = quill.getSelection();
-          if (range) {
-            const faqHtml = `
-              <div class="faq-item" style="margin-bottom: 0.25rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; overflow: hidden; background: white; transition: all 0.2s ease;">
-                <div class="faq-question" style="display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 1rem 1.5rem; background: white; border: none; cursor: pointer; font-weight: 500; color: #111827; font-size: 0.875rem; line-height: 1.5; text-align: left; transition: background-color 0.2s ease;">
-                  <span style="color: #111827;">Click here to add your question?</span>
-                  <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" style="width: 1rem; height: 1rem; color: #6b7280; transition: transform 0.2s ease; flex-shrink: 0; margin-left: 0.75rem;">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9 6 6 6-6"/>
-                  </svg>
-                </div>
-                <div class="faq-answer" style="display: none; padding: 0 1.5rem 1rem 1.5rem; background: white; color: #6b7280; font-size: 0.875rem; line-height: 1.5; border-top: 1px solid #f3f4f6; margin: 0; max-height: 0px; opacity: 0; transition: all 0.3s ease; overflow: hidden; text-align: left;">
-                  <p style="margin: 0; padding-top: 0.5rem;">Click here to add your answer...</p>
-                </div>
-              </div>
-            `;
-            quill.clipboard.dangerouslyPasteHTML(range.index, faqHtml);
-          }
+        'addBlock': function(this: any) {
+          // This handler will be triggered by clicking the toolbar button
+          // The actual dropdown logic will be handled by a separate click event
+          const event = new CustomEvent('showBlockMenu', { 
+            detail: { quill: this.quill } 
+          });
+          document.dispatchEvent(event);
         }
       }
     },
