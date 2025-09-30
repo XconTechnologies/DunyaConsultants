@@ -388,6 +388,7 @@ function FAQBlockEditor({ block, updateBlock }: any) {
 function TableBlockEditor({ block, updateBlock }: any) {
   const [rows, setRows] = useState(block.data.rows || 3);
   const [cols, setCols] = useState(block.data.cols || 3);
+  const hasInitialized = block.data.cells && block.data.cells.length > 0;
 
   const initializeTable = () => {
     const headers = Array(cols).fill('').map((_, i) => `Header ${i + 1}`);
@@ -395,35 +396,106 @@ function TableBlockEditor({ block, updateBlock }: any) {
     updateBlock(block.id, { rows, cols, headers, cells, hasHeader: true });
   };
 
+  const updateHeader = (colIndex: number, value: string) => {
+    const newHeaders = [...(block.data.headers || [])];
+    newHeaders[colIndex] = value;
+    updateBlock(block.id, { headers: newHeaders });
+  };
+
+  const updateCell = (rowIndex: number, colIndex: number, value: string) => {
+    const newCells = [...(block.data.cells || [])];
+    if (!newCells[rowIndex]) {
+      newCells[rowIndex] = [];
+    }
+    newCells[rowIndex][colIndex] = value;
+    updateBlock(block.id, { cells: newCells });
+  };
+
   return (
-    <div className="space-y-3">
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <Label>Rows</Label>
-          <Input
-            type="number"
-            min="1"
-            value={rows}
-            onChange={(e) => setRows(parseInt(e.target.value) || 1)}
-          />
-        </div>
-        <div>
-          <Label>Columns</Label>
-          <Input
-            type="number"
-            min="1"
-            value={cols}
-            onChange={(e) => setCols(parseInt(e.target.value) || 1)}
-          />
-        </div>
-      </div>
-      <Button onClick={initializeTable} size="sm">
-        Initialize Table
-      </Button>
-      {block.data.cells && block.data.cells.length > 0 && (
-        <div className="text-sm text-gray-600">
-          Table created with {block.data.rows} rows × {block.data.cols} columns
-        </div>
+    <div className="space-y-4">
+      {!hasInitialized ? (
+        <>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label>Rows</Label>
+              <Input
+                type="number"
+                min="1"
+                value={rows}
+                onChange={(e) => setRows(parseInt(e.target.value) || 1)}
+              />
+            </div>
+            <div>
+              <Label>Columns</Label>
+              <Input
+                type="number"
+                min="1"
+                value={cols}
+                onChange={(e) => setCols(parseInt(e.target.value) || 1)}
+              />
+            </div>
+          </div>
+          <Button onClick={initializeTable} size="sm">
+            Initialize Table
+          </Button>
+        </>
+      ) : (
+        <>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <Label className="text-sm font-semibold">Table Content ({block.data.rows} rows × {block.data.cols} columns)</Label>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={() => updateBlock(block.id, { cells: [], headers: [], rows: 3, cols: 3 })}
+              >
+                Reset Table
+              </Button>
+            </div>
+            
+            {/* Table Headers */}
+            {block.data.hasHeader && (
+              <div className="space-y-2">
+                <Label className="text-xs text-gray-600">Headers</Label>
+                <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${block.data.cols}, 1fr)` }}>
+                  {block.data.headers?.map((header: string, colIndex: number) => (
+                    <Input
+                      key={`header-${colIndex}`}
+                      value={header}
+                      onChange={(e) => updateHeader(colIndex, e.target.value)}
+                      placeholder={`Header ${colIndex + 1}`}
+                      className="text-sm font-semibold"
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Table Cells */}
+            <div className="space-y-2">
+              <Label className="text-xs text-gray-600">Table Data</Label>
+              <div className="space-y-2">
+                {block.data.cells?.map((row: string[], rowIndex: number) => (
+                  <div 
+                    key={`row-${rowIndex}`} 
+                    className="grid gap-2" 
+                    style={{ gridTemplateColumns: `repeat(${block.data.cols}, 1fr)` }}
+                  >
+                    {row.map((cell: string, colIndex: number) => (
+                      <Input
+                        key={`cell-${rowIndex}-${colIndex}`}
+                        value={cell}
+                        onChange={(e) => updateCell(rowIndex, colIndex, e.target.value)}
+                        placeholder={`R${rowIndex + 1}C${colIndex + 1}`}
+                        className="text-sm"
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
