@@ -2,6 +2,117 @@ import { pgTable, text, serial, integer, boolean, timestamp, json, varchar } fro
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// Content Block Types for Blog Editor
+export type ContentBlock =
+  | FAQBlock
+  | TableBlock
+  | HTMLBlock
+  | ButtonBlock
+  | ImageBlock
+  | YouTubeBlock
+  | SpacerBlock
+  | DividerBlock
+  | SchemaBlock;
+
+export interface FAQBlock {
+  id: string;
+  type: 'faq';
+  position: number;
+  data: {
+    question: string;
+    answer: string;
+    questionBgColor?: string;
+    answerBgColor?: string;
+  };
+}
+
+export interface TableBlock {
+  id: string;
+  type: 'table';
+  position: number;
+  data: {
+    rows: number;
+    cols: number;
+    headers: string[];
+    cells: string[][];
+    hasHeader: boolean;
+  };
+}
+
+export interface HTMLBlock {
+  id: string;
+  type: 'html';
+  position: number;
+  data: {
+    html: string;
+  };
+}
+
+export interface ButtonBlock {
+  id: string;
+  type: 'button';
+  position: number;
+  data: {
+    text: string;
+    url: string;
+    bgColor: string;
+    textColor: string;
+    alignment: 'left' | 'center' | 'right' | 'stretch';
+    borderWidth: number;
+    borderRadius: number;
+  };
+}
+
+export interface ImageBlock {
+  id: string;
+  type: 'image';
+  position: number;
+  data: {
+    url: string;
+    alt: string;
+    alignment: 'left' | 'center' | 'right';
+    width: string;
+  };
+}
+
+export interface YouTubeBlock {
+  id: string;
+  type: 'youtube';
+  position: number;
+  data: {
+    url: string;
+    videoId: string;
+  };
+}
+
+export interface SpacerBlock {
+  id: string;
+  type: 'spacer';
+  position: number;
+  data: {
+    height: number;
+  };
+}
+
+export interface DividerBlock {
+  id: string;
+  type: 'divider';
+  position: number;
+  data: {
+    thickness: number;
+    width: string;
+  };
+}
+
+export interface SchemaBlock {
+  id: string;
+  type: 'schema';
+  position: number;
+  data: {
+    schemaJson: string;
+  };
+}
+
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
@@ -166,6 +277,7 @@ export const blogPosts = pgTable("blog_posts", {
   featuredImageTitle: text("featured_image_title"),
   featuredImageOriginalName: text("featured_image_original_name"),
   content: text("content").notNull(),
+  contentBlocks: json("content_blocks").$type<ContentBlock[]>(),
   excerpt: text("excerpt"),
   category: text("category").default("General"), // Keep for backward compatibility
   status: text("status", { enum: ["draft", "in_review", "published", "archived"] }).default("draft").notNull(),
