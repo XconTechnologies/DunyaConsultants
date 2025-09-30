@@ -2398,6 +2398,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Preview blog post (including drafts) - requires authentication
+  app.get("/api/blog-posts/:slug/preview", requireAuth, async (req, res) => {
+    try {
+      const post = await storage.getBlogPostBySlug(req.params.slug);
+      if (!post) {
+        return res.status(404).json({ message: 'Blog post not found' });
+      }
+      // Return the post regardless of publication status for preview
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ message: 'Failed to fetch blog post preview' });
+    }
+  });
+
   // ==============================================
   // ENHANCED BLOG MANAGEMENT APIS (CMS)
   // ==============================================
