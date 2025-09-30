@@ -59,6 +59,7 @@ export default function CategoryPage() {
     categories: post.categories || [],
     author: post.authorName || "Path Visa Consultants",
     authorId: post.authorId,
+    publishedAt: post.publishedAt || post.published_at || post.created_at,
     date: (() => {
       const dateStr = post.publishedAt || post.published_at || post.created_at;
       if (!dateStr) return 'Unknown Date';
@@ -128,8 +129,8 @@ export default function CategoryPage() {
 
   // Sort posts by date (newest to oldest)
   const filteredPosts = searchFilteredPosts.sort((a: any, b: any) => {
-    const dateA = new Date(a.publishedAt || a.published_at || a.created_at || 0);
-    const dateB = new Date(b.publishedAt || b.published_at || b.created_at || 0);
+    const dateA = new Date(a.publishedAt || 0);
+    const dateB = new Date(b.publishedAt || 0);
     return dateB.getTime() - dateA.getTime(); // Descending order (newest first)
   });
 
