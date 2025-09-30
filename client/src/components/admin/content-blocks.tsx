@@ -150,6 +150,7 @@ export default function ContentBlocks({ blocks, onChange, content = '' }: Conten
                 </div>
                 <div className="flex items-center gap-1">
                   <Button
+                    type="button"
                     variant="ghost"
                     size="sm"
                     onClick={() => moveBlock(block.id, 'up')}
@@ -158,6 +159,7 @@ export default function ContentBlocks({ blocks, onChange, content = '' }: Conten
                     ↑
                   </Button>
                   <Button
+                    type="button"
                     variant="ghost"
                     size="sm"
                     onClick={() => moveBlock(block.id, 'down')}
@@ -166,6 +168,7 @@ export default function ContentBlocks({ blocks, onChange, content = '' }: Conten
                     ↓
                   </Button>
                   <Button
+                    type="button"
                     variant="ghost"
                     size="sm"
                     onClick={() => setExpandedBlockId(expandedBlockId === block.id ? null : block.id)}
@@ -173,6 +176,7 @@ export default function ContentBlocks({ blocks, onChange, content = '' }: Conten
                     <ChevronDown className={`w-4 h-4 transition-transform ${expandedBlockId === block.id ? 'rotate-180' : ''}`} />
                   </Button>
                   <Button
+                    type="button"
                     variant="ghost"
                     size="sm"
                     onClick={() => deleteBlock(block.id)}
@@ -331,6 +335,7 @@ function FAQBlockEditor({ block, updateBlock }: any) {
             <span className="text-sm font-semibold text-gray-700">Question {index + 1}</span>
             {questions.length > 1 && (
               <Button
+                type="button"
                 variant="ghost"
                 size="sm"
                 onClick={() => removeQuestion(index)}
@@ -382,6 +387,7 @@ function FAQBlockEditor({ block, updateBlock }: any) {
       ))}
       
       <Button
+        type="button"
         variant="outline"
         size="sm"
         onClick={addQuestion}
@@ -446,7 +452,7 @@ function TableBlockEditor({ block, updateBlock }: any) {
               />
             </div>
           </div>
-          <Button onClick={initializeTable} size="sm">
+          <Button type="button" onClick={initializeTable} size="sm">
             Initialize Table
           </Button>
         </>
@@ -456,6 +462,7 @@ function TableBlockEditor({ block, updateBlock }: any) {
             <div className="flex items-center justify-between">
               <Label className="text-sm font-semibold">Table Content ({block.data.rows} rows × {block.data.cols} columns)</Label>
               <Button 
+                type="button"
                 variant="outline" 
                 size="sm" 
                 onClick={() => updateBlock(block.id, { cells: [], headers: [], rows: 3, cols: 3 })}
