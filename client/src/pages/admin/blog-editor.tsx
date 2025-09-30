@@ -1273,8 +1273,8 @@ export default function BlogEditor() {
                   variant="outline"
                   className="flex items-center space-x-2"
                   onClick={() => {
-                    // Use live blog URL to match dashboard preview
-                    window.open(getBlogUrl(blogPost.slug), '_blank');
+                    // Open preview with ?preview=true parameter to allow viewing drafts
+                    window.open(`${getBlogUrl(blogPost.slug)}?preview=true`, '_blank');
                   }}
                   data-testid="preview-blog"
                 >

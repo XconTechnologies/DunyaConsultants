@@ -327,6 +327,10 @@ function TableOfContents({ content, isVisible = true }: { content: string; isVis
 function BlogPostDetail({ slug }: { slug: string }) {
   const [sidebarSearch, setSidebarSearch] = useState("");
 
+  // Check if we're in preview mode
+  const isPreviewMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('preview') === 'true';
+  const adminToken = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
+
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareTitle = 'Blog Post - Path Visa Consultants';
 
@@ -361,14 +365,28 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
   const relatedBlogsCarouselRef = useRef<HTMLDivElement>(null);
   
-  // Fetch blog posts for detail view
+  // Fetch blog posts for detail view (regular or preview mode)
   const { data: blogPostsData, isLoading } = useQuery({
-    queryKey: ['/api/blog-posts'],
+    queryKey: isPreviewMode ? ['/api/blog-posts', slug, 'preview'] : ['/api/blog-posts'],
     queryFn: async () => {
-      const response = await fetch('/api/blog-posts');
-      if (!response.ok) throw new Error('Failed to fetch blog posts');
-      return response.json();
-    }
+      if (isPreviewMode && adminToken) {
+        // Preview mode: fetch specific post with authentication
+        const response = await fetch(`/api/blog-posts/${slug}/preview`, {
+          headers: {
+            'Authorization': `Bearer ${adminToken}`
+          }
+        });
+        if (!response.ok) throw new Error('Failed to fetch blog post preview');
+        const post = await response.json();
+        return [post]; // Return as array for consistency
+      } else {
+        // Regular mode: fetch all published posts
+        const response = await fetch('/api/blog-posts');
+        if (!response.ok) throw new Error('Failed to fetch blog posts');
+        return response.json();
+      }
+    },
+    enabled: !isPreviewMode || !!adminToken // Only run if we have a token in preview mode
   });
 
   // Transform API data to component format
