@@ -279,18 +279,27 @@ function renderBlockEditor(block: ContentBlock, updateBlock: (blockId: string, d
 
 // FAQ Block Editor
 function FAQBlockEditor({ block, updateBlock }: any) {
-  // Migrate old format to new format if needed
-  const questions = block.data.questions || [
-    {
-      question: block.data.question || 'Enter your question...',
-      answer: block.data.answer || 'Enter your answer...',
-      questionBgColor: block.data.questionBgColor || '#f3f4f6',
-      answerBgColor: block.data.answerBgColor || '#ffffff'
+  // Migrate old format to new format if needed and get current questions
+  const getQuestions = () => {
+    if (block.data.questions && Array.isArray(block.data.questions) && block.data.questions.length > 0) {
+      return block.data.questions;
     }
-  ];
+    // Fallback for old format or new blocks
+    return [
+      {
+        question: block.data.question || 'Enter your question...',
+        answer: block.data.answer || 'Enter your answer...',
+        questionBgColor: block.data.questionBgColor || '#f3f4f6',
+        answerBgColor: block.data.answerBgColor || '#ffffff'
+      }
+    ];
+  };
+
+  const questions = getQuestions();
 
   const addQuestion = () => {
-    const newQuestions = [...questions, {
+    const currentQuestions = getQuestions();
+    const newQuestions = [...currentQuestions, {
       question: 'Enter your question...',
       answer: 'Enter your answer...',
       questionBgColor: '#f3f4f6',
@@ -300,13 +309,15 @@ function FAQBlockEditor({ block, updateBlock }: any) {
   };
 
   const removeQuestion = (index: number) => {
-    if (questions.length === 1) return; // Keep at least one question
-    const newQuestions = questions.filter((_: any, i: number) => i !== index);
+    const currentQuestions = getQuestions();
+    if (currentQuestions.length === 1) return; // Keep at least one question
+    const newQuestions = currentQuestions.filter((_: any, i: number) => i !== index);
     updateBlock(block.id, { questions: newQuestions });
   };
 
   const updateQuestion = (index: number, field: string, value: string) => {
-    const newQuestions = questions.map((q: any, i: number) => 
+    const currentQuestions = getQuestions();
+    const newQuestions = currentQuestions.map((q: any, i: number) => 
       i === index ? { ...q, [field]: value } : q
     );
     updateBlock(block.id, { questions: newQuestions });
