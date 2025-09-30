@@ -1,0 +1,245 @@
+import type { ContentBlock } from "@shared/schema";
+
+interface ContentBlocksRendererProps {
+  blocks?: ContentBlock[];
+}
+
+export default function ContentBlocksRenderer({ blocks }: ContentBlocksRendererProps) {
+  if (!blocks || blocks.length === 0) {
+    return null;
+  }
+
+  const sortedBlocks = [...blocks].sort((a, b) => a.position - b.position);
+
+  return (
+    <div className="content-blocks-wrapper space-y-6 mt-8">
+      {sortedBlocks.map((block) => (
+        <div key={block.id}>
+          {renderBlock(block)}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function renderBlock(block: ContentBlock) {
+  switch (block.type) {
+    case 'faq':
+      return <FAQBlock block={block} />;
+    case 'table':
+      return <TableBlock block={block} />;
+    case 'html':
+      return <HTMLBlock block={block} />;
+    case 'button':
+      return <ButtonBlock block={block} />;
+    case 'image':
+      return <ImageBlock block={block} />;
+    case 'youtube':
+      return <YouTubeBlock block={block} />;
+    case 'spacer':
+      return <SpacerBlock block={block} />;
+    case 'divider':
+      return <DividerBlock block={block} />;
+    case 'schema':
+      return <SchemaBlock block={block} />;
+    default:
+      return null;
+  }
+}
+
+// FAQ Block Renderer
+function FAQBlock({ block }: { block: ContentBlock & { type: 'faq' } }) {
+  return (
+    <div className="faq-block border rounded-lg overflow-hidden">
+      <div 
+        className="p-4 font-semibold"
+        style={{ backgroundColor: block.data.questionBgColor || '#f3f4f6' }}
+      >
+        {block.data.question}
+      </div>
+      <div 
+        className="p-4"
+        style={{ backgroundColor: block.data.answerBgColor || '#ffffff' }}
+      >
+        {block.data.answer}
+      </div>
+    </div>
+  );
+}
+
+// Table Block Renderer
+function TableBlock({ block }: { block: ContentBlock & { type: 'table' } }) {
+  const { headers, cells, hasHeader } = block.data;
+
+  if (!cells || cells.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="table-block overflow-x-auto">
+      <table className="min-w-full border-collapse border border-gray-300">
+        {hasHeader && headers && headers.length > 0 && (
+          <thead>
+            <tr className="bg-gray-100">
+              {headers.map((header: string, index: number) => (
+                <th key={index} className="border border-gray-300 px-4 py-2 text-left font-semibold">
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
+        )}
+        <tbody>
+          {cells.map((row: string[], rowIndex: number) => (
+            <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+              {row.map((cell: string, cellIndex: number) => (
+                <td key={cellIndex} className="border border-gray-300 px-4 py-2">
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+// HTML Block Renderer
+function HTMLBlock({ block }: { block: ContentBlock & { type: 'html' } }) {
+  return (
+    <div 
+      className="html-block"
+      dangerouslySetInnerHTML={{ __html: block.data.html || '' }}
+    />
+  );
+}
+
+// Button Block Renderer
+function ButtonBlock({ block }: { block: ContentBlock & { type: 'button' } }) {
+  const { text, url, bgColor, textColor, alignment, borderWidth, borderRadius } = block.data;
+
+  const alignmentStyles = {
+    left: 'justify-start',
+    center: 'justify-center',
+    right: 'justify-end',
+    stretch: 'justify-stretch',
+  };
+
+  const buttonStyles = {
+    backgroundColor: bgColor || '#1D50C9',
+    color: textColor || '#ffffff',
+    borderWidth: `${borderWidth || 0}px`,
+    borderRadius: `${borderRadius || 8}px`,
+    borderColor: textColor || '#1D50C9',
+  };
+
+  return (
+    <div className={`button-block flex ${alignmentStyles[alignment as keyof typeof alignmentStyles] || 'justify-center'}`}>
+      <a
+        href={url || '#'}
+        className="inline-block px-6 py-3 font-semibold transition-opacity hover:opacity-90"
+        style={buttonStyles}
+        target={url?.startsWith('http') ? '_blank' : undefined}
+        rel={url?.startsWith('http') ? 'noopener noreferrer' : undefined}
+      >
+        {text || 'Click Me'}
+      </a>
+    </div>
+  );
+}
+
+// Image Block Renderer
+function ImageBlock({ block }: { block: ContentBlock & { type: 'image' } }) {
+  const { url, alt, alignment, width } = block.data;
+
+  if (!url) {
+    return null;
+  }
+
+  const alignmentStyles = {
+    left: 'text-left',
+    center: 'text-center',
+    right: 'text-right',
+  };
+
+  return (
+    <div className={`image-block ${alignmentStyles[alignment as keyof typeof alignmentStyles] || 'text-center'}`}>
+      <img
+        src={url}
+        alt={alt || ''}
+        style={{ width: width || '100%', maxWidth: '100%', height: 'auto' }}
+        className="inline-block"
+      />
+    </div>
+  );
+}
+
+// YouTube Block Renderer
+function YouTubeBlock({ block }: { block: ContentBlock & { type: 'youtube' } }) {
+  const { videoId } = block.data;
+
+  if (!videoId) {
+    return null;
+  }
+
+  return (
+    <div className="youtube-block aspect-video">
+      <iframe
+        width="100%"
+        height="100%"
+        src={`https://www.youtube.com/embed/${videoId}`}
+        title="YouTube video"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        className="rounded-lg"
+      />
+    </div>
+  );
+}
+
+// Spacer Block Renderer
+function SpacerBlock({ block }: { block: ContentBlock & { type: 'spacer' } }) {
+  const { height } = block.data;
+
+  return (
+    <div className="spacer-block" style={{ height: `${height || 40}px` }} />
+  );
+}
+
+// Divider Block Renderer
+function DividerBlock({ block }: { block: ContentBlock & { type: 'divider' } }) {
+  const { thickness, width } = block.data;
+
+  return (
+    <div className="divider-block flex justify-center">
+      <hr
+        style={{
+          width: width || '100%',
+          height: `${thickness || 1}px`,
+          backgroundColor: '#e5e7eb',
+          border: 'none',
+        }}
+      />
+    </div>
+  );
+}
+
+// Schema Block Renderer (not visible to users, only crawlers)
+function SchemaBlock({ block }: { block: ContentBlock & { type: 'schema' } }) {
+  const { schemaJson } = block.data;
+
+  try {
+    const parsedSchema = JSON.parse(schemaJson || '{}');
+    
+    return (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(parsedSchema) }}
+      />
+    );
+  } catch {
+    return null;
+  }
+}

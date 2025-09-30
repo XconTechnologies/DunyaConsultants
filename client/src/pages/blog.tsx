@@ -14,6 +14,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@/components/ui/label";
 import ConsultationBookingSection from "@/components/consultation-booking-section";
 import { getBlogUrl, extractTableOfContents, addHeadingIds, TOCItem } from "@/lib/blog-utils";
+import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 
 // Unified image src normalization function
 const normalizeImageSrc = (image: string) => {
@@ -401,7 +402,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
     featured: false,
     slug: post.slug,
     content: post.content,
-    rawContent: post.content
+    rawContent: post.content,
+    contentBlocks: post.contentBlocks || []
   })) : staticBlogPosts;
 
   const blogPost = blogPosts.find((post: any) => post.slug === slug);
@@ -2689,7 +2691,8 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   })}
                 </div>
 
-
+                {/* Content Blocks */}
+                <ContentBlocksRenderer blocks={blogPost.contentBlocks} />
 
                 {/* Related Blogs Section - Infinite Scroll Carousel */}
                 <footer className="pt-8 border-t border-gray-200">
