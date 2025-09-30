@@ -2399,15 +2399,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Preview blog post (including drafts) - requires authentication
-  app.get("/api/blog-posts/:slug/preview", requireAuth, async (req, res) => {
+  app.get("/api/blog-posts/:slug/preview", async (req, res) => {
     try {
+      // Check for authentication token
+      const token = req.headers.authorization?.replace('Bearer ', '');
+      
+      if (!token) {
+        return res.status(401).json({ message: 'Authentication required for preview' });
+      }
+
+      // Verify the token is valid (admin session)
+      const session = await storage.getAdminSession(token);
+      if (!session) {
+        return res.status(401).json({ message: 'Invalid or expired token' });
+      }
+
+      // Get the blog post (regardless of publication status)
       const post = await storage.getBlogPostBySlug(req.params.slug);
       if (!post) {
         return res.status(404).json({ message: 'Blog post not found' });
       }
+      
       // Return the post regardless of publication status for preview
       res.json(post);
     } catch (error) {
+      console.error('Preview error:', error);
       res.status(500).json({ message: 'Failed to fetch blog post preview' });
     }
   });

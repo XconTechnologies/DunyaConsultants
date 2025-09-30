@@ -1272,9 +1272,21 @@ export default function BlogEditor() {
                 <Button
                   variant="outline"
                   className="flex items-center space-x-2"
-                  onClick={() => {
-                    // Open preview with ?preview=true parameter to allow viewing drafts
-                    window.open(`${getBlogUrl(blogPost.slug)}?preview=true`, '_blank');
+                  onClick={async () => {
+                    // Get the admin token
+                    const token = localStorage.getItem('adminToken');
+                    if (!token) {
+                      toast({
+                        title: "Authentication Required",
+                        description: "Please log in again to preview",
+                        variant: "destructive"
+                      });
+                      return;
+                    }
+
+                    // Create a preview URL with token in URL (temporary approach)
+                    const previewUrl = `${getBlogUrl(blogPost.slug)}?preview=true&token=${encodeURIComponent(token)}`;
+                    window.open(previewUrl, '_blank');
                   }}
                   data-testid="preview-blog"
                 >

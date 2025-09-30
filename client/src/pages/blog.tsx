@@ -329,7 +329,18 @@ function BlogPostDetail({ slug }: { slug: string }) {
 
   // Check if we're in preview mode
   const isPreviewMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('preview') === 'true';
-  const adminToken = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
+  
+  // Get token from URL parameter first, then fall back to localStorage
+  const urlToken = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('token') : null;
+  const localStorageToken = typeof window !== 'undefined' ? localStorage.getItem('adminToken') : null;
+  const adminToken = urlToken || localStorageToken;
+
+  // Debug logging for preview mode
+  if (isPreviewMode) {
+    console.log('Preview mode active');
+    console.log('Admin token exists:', !!adminToken);
+    console.log('Token source:', urlToken ? 'URL' : 'localStorage');
+  }
 
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const shareTitle = 'Blog Post - Path Visa Consultants';
