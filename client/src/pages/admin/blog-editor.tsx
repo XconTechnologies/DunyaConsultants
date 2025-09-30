@@ -894,6 +894,7 @@ export default function BlogEditor() {
           slug: blogPost.slug || "",
           excerpt: blogPost.excerpt || "",
           content: blogPost.content || "",
+          contentBlocks: blogPost.contentBlocks || [],
           category: blogPost.category || "General",
           categoryIds: selectedCategoryIds,
           metaDescription: blogPost.metaDescription || "",

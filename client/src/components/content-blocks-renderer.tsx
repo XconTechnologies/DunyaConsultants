@@ -81,9 +81,11 @@ function IntegratedContentRenderer({ content, blocks }: { content: string; block
     }
   });
   
-  // Add blocks at the end (position 999 or greater)
+  // Add blocks at the end (position >= 999 OR position > number of elements)
+  // This ensures blocks with out-of-range positions don't disappear
   blocks.forEach((block, idx) => {
-    if ((block.position ?? 999) >= 999) {
+    const pos = block.position ?? 999;
+    if (pos >= 999 || pos > elements.length) {
       contentParts.push(
         <div key={`block-end-${idx}`} className="my-6">
           {renderBlock(block)}
