@@ -122,20 +122,34 @@ function renderBlock(block: ContentBlock) {
 
 // FAQ Block Renderer
 function FAQBlock({ block }: { block: ContentBlock & { type: 'faq' } }) {
+  // Support both old single question format and new multiple questions format
+  const questions = block.data.questions || [
+    {
+      question: block.data.question || '',
+      answer: block.data.answer || '',
+      questionBgColor: block.data.questionBgColor || '#f3f4f6',
+      answerBgColor: block.data.answerBgColor || '#ffffff'
+    }
+  ];
+
   return (
-    <div className="faq-block border rounded-lg overflow-hidden">
-      <div 
-        className="p-4 font-semibold"
-        style={{ backgroundColor: block.data.questionBgColor || '#f3f4f6' }}
-      >
-        {block.data.question}
-      </div>
-      <div 
-        className="p-4"
-        style={{ backgroundColor: block.data.answerBgColor || '#ffffff' }}
-      >
-        {block.data.answer}
-      </div>
+    <div className="faq-block space-y-4">
+      {questions.map((q: any, index: number) => (
+        <div key={index} className="border rounded-lg overflow-hidden">
+          <div 
+            className="p-4 font-semibold"
+            style={{ backgroundColor: q.questionBgColor || '#f3f4f6' }}
+          >
+            {q.question}
+          </div>
+          <div 
+            className="p-4"
+            style={{ backgroundColor: q.answerBgColor || '#ffffff' }}
+          >
+            {q.answer}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

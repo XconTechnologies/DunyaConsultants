@@ -221,7 +221,16 @@ export default function ContentBlocks({ blocks, onChange, content = '' }: Conten
 function getDefaultDataForType(type: ContentBlock['type']): any {
   switch (type) {
     case 'faq':
-      return { question: 'Enter your question...', answer: 'Enter your answer...', questionBgColor: '#f3f4f6', answerBgColor: '#ffffff' };
+      return { 
+        questions: [
+          { 
+            question: 'Enter your question...', 
+            answer: 'Enter your answer...', 
+            questionBgColor: '#f3f4f6', 
+            answerBgColor: '#ffffff' 
+          }
+        ]
+      };
     case 'table':
       return { rows: 3, cols: 3, headers: [], cells: [], hasHeader: true };
     case 'html':
@@ -270,43 +279,107 @@ function renderBlockEditor(block: ContentBlock, updateBlock: (blockId: string, d
 
 // FAQ Block Editor
 function FAQBlockEditor({ block, updateBlock }: any) {
+  // Migrate old format to new format if needed
+  const questions = block.data.questions || [
+    {
+      question: block.data.question || 'Enter your question...',
+      answer: block.data.answer || 'Enter your answer...',
+      questionBgColor: block.data.questionBgColor || '#f3f4f6',
+      answerBgColor: block.data.answerBgColor || '#ffffff'
+    }
+  ];
+
+  const addQuestion = () => {
+    const newQuestions = [...questions, {
+      question: 'Enter your question...',
+      answer: 'Enter your answer...',
+      questionBgColor: '#f3f4f6',
+      answerBgColor: '#ffffff'
+    }];
+    updateBlock(block.id, { questions: newQuestions });
+  };
+
+  const removeQuestion = (index: number) => {
+    if (questions.length === 1) return; // Keep at least one question
+    const newQuestions = questions.filter((_: any, i: number) => i !== index);
+    updateBlock(block.id, { questions: newQuestions });
+  };
+
+  const updateQuestion = (index: number, field: string, value: string) => {
+    const newQuestions = questions.map((q: any, i: number) => 
+      i === index ? { ...q, [field]: value } : q
+    );
+    updateBlock(block.id, { questions: newQuestions });
+  };
+
   return (
-    <div className="space-y-3">
-      <div>
-        <Label>Question</Label>
-        <Input
-          value={block.data.question}
-          onChange={(e) => updateBlock(block.id, { question: e.target.value })}
-          placeholder="Enter question..."
-        />
-      </div>
-      <div>
-        <Label>Answer</Label>
-        <Textarea
-          value={block.data.answer}
-          onChange={(e) => updateBlock(block.id, { answer: e.target.value })}
-          placeholder="Enter answer..."
-          rows={4}
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <Label>Question Background Color</Label>
-          <Input
-            type="color"
-            value={block.data.questionBgColor || '#f3f4f6'}
-            onChange={(e) => updateBlock(block.id, { questionBgColor: e.target.value })}
-          />
+    <div className="space-y-4">
+      {questions.map((q: any, index: number) => (
+        <div key={index} className="border rounded-lg p-4 space-y-3 bg-gray-50">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-sm font-semibold text-gray-700">Question {index + 1}</span>
+            {questions.length > 1 && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => removeQuestion(index)}
+                className="text-red-500 hover:text-red-700"
+              >
+                <Trash2 className="w-4 h-4" />
+              </Button>
+            )}
+          </div>
+          
+          <div>
+            <Label>Question</Label>
+            <Input
+              value={q.question}
+              onChange={(e) => updateQuestion(index, 'question', e.target.value)}
+              placeholder="Enter question..."
+            />
+          </div>
+          
+          <div>
+            <Label>Answer</Label>
+            <Textarea
+              value={q.answer}
+              onChange={(e) => updateQuestion(index, 'answer', e.target.value)}
+              placeholder="Enter answer..."
+              rows={4}
+            />
+          </div>
+          
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <Label>Question Background Color</Label>
+              <Input
+                type="color"
+                value={q.questionBgColor || '#f3f4f6'}
+                onChange={(e) => updateQuestion(index, 'questionBgColor', e.target.value)}
+              />
+            </div>
+            <div>
+              <Label>Answer Background Color</Label>
+              <Input
+                type="color"
+                value={q.answerBgColor || '#ffffff'}
+                onChange={(e) => updateQuestion(index, 'answerBgColor', e.target.value)}
+              />
+            </div>
+          </div>
         </div>
-        <div>
-          <Label>Answer Background Color</Label>
-          <Input
-            type="color"
-            value={block.data.answerBgColor || '#ffffff'}
-            onChange={(e) => updateBlock(block.id, { answerBgColor: e.target.value })}
-          />
-        </div>
-      </div>
+      ))}
+      
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={addQuestion}
+        className="w-full"
+        data-testid="button-add-question"
+      >
+        <Plus className="w-4 h-4 mr-2" />
+        Add Question
+      </Button>
     </div>
   );
 }

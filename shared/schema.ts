@@ -19,8 +19,15 @@ export interface FAQBlock {
   type: 'faq';
   position: number;
   data: {
-    question: string;
-    answer: string;
+    questions?: Array<{
+      question: string;
+      answer: string;
+      questionBgColor?: string;
+      answerBgColor?: string;
+    }>;
+    // Legacy support for old single question format
+    question?: string;
+    answer?: string;
     questionBgColor?: string;
     answerBgColor?: string;
   };
