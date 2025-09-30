@@ -32,419 +32,6 @@ import ContentBlocksRenderer from "@/components/content-blocks-renderer";
 
 // Categories will be loaded dynamically from API
 
-// Visual Editor Component with Inline Blocks
-function VisualEditor({ 
-  content, 
-  contentBlocks, 
-  onContentChange, 
-  onBlocksChange 
-}: {
-  content: string;
-  contentBlocks: ContentBlock[];
-  onContentChange: (value: string) => void;
-  onBlocksChange: (blocks: ContentBlock[]) => void;
-}) {
-  const [showBlockMenu, setShowBlockMenu] = useState(false);
-  const [insertPosition, setInsertPosition] = useState(0);
-  const [editingContent, setEditingContent] = useState(content);
-
-  // Parse content into elements
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = editingContent || '<p><br></p>';
-  const elements = Array.from(tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote, table'));
-  
-  if (elements.length === 0 && editingContent) {
-    elements.push(tempDiv);
-  }
-
-  // Add new block
-  const addBlock = (type: string) => {
-    const newBlock: ContentBlock = {
-      id: `block-${Date.now()}`,
-      type: type as any,
-      position: insertPosition,
-      data: getDefaultBlockData(type)
-    };
-    
-    // Shift existing blocks at/after insertPosition, then add the new block
-    const updatedBlocks = [
-      ...contentBlocks.map((block) => ({
-        ...block,
-        position: (block.position ?? 0) >= insertPosition ? (block.position ?? 0) + 1 : block.position
-      })),
-      newBlock
-    ];
-    
-    onBlocksChange(updatedBlocks);
-    setShowBlockMenu(false);
-  };
-
-  // Move block up/down
-  const moveBlock = (blockId: string, direction: 'up' | 'down') => {
-    const block = contentBlocks.find(b => b.id === blockId);
-    if (!block) return;
-
-    const currentPos = block.position ?? 0;
-    const newPos = direction === 'up' ? currentPos - 1 : currentPos + 1;
-    
-    // Prevent moving outside valid range (0 to elements.length)
-    if (newPos < 0 || newPos > elements.length) return;
-
-    const updatedBlocks = contentBlocks.map(b => {
-      if (b.id === blockId) {
-        return { ...b, position: newPos };
-      }
-      if (b.position === newPos) {
-        return { ...b, position: currentPos };
-      }
-      return b;
-    });
-
-    onBlocksChange(updatedBlocks);
-  };
-
-  // Delete block
-  const deleteBlock = (blockId: string) => {
-    onBlocksChange(contentBlocks.filter(b => b.id !== blockId));
-  };
-
-  // Edit element content
-  const editElement = (index: number, newContent: string) => {
-    const newElements = [...elements];
-    newElements[index].innerHTML = newContent;
-    const newHtml = newElements.map(el => el.outerHTML).join('');
-    setEditingContent(newHtml);
-    onContentChange(newHtml);
-  };
-
-  // Group blocks by position
-  const blocksByPosition = new Map<number, ContentBlock[]>();
-  contentBlocks.forEach(block => {
-    const pos = block.position ?? 999;
-    if (!blocksByPosition.has(pos)) {
-      blocksByPosition.set(pos, []);
-    }
-    blocksByPosition.get(pos)?.push(block);
-  });
-
-  return (
-    <div className="visual-editor min-h-[500px] border border-gray-200 rounded-md">
-      {/* Toolbar */}
-      <div className="border-b bg-gray-50 p-3 flex items-center justify-between">
-        <div className="text-sm text-gray-600">Visual Editor - Blocks appear inline</div>
-        <Button
-          type="button"
-          size="sm"
-          variant="outline"
-          onClick={() => {
-            setInsertPosition(0);
-            setShowBlockMenu(true);
-          }}
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Add Block at Top
-        </Button>
-      </div>
-
-      {/* Content with Inline Blocks */}
-      <div className="p-6 prose prose-sm max-w-none">
-        {/* Blocks at position 0 (top) */}
-        {blocksByPosition.get(0)?.map((block) => (
-          <InlineBlockRenderer
-            key={block.id}
-            block={block}
-            onMoveUp={() => moveBlock(block.id, 'up')}
-            onMoveDown={() => moveBlock(block.id, 'down')}
-            onDelete={() => deleteBlock(block.id)}
-          />
-        ))}
-
-        {/* Content elements with blocks after each */}
-        {elements.map((el, index) => (
-          <div key={index}>
-            <div
-              contentEditable
-              suppressContentEditableWarning
-              onBlur={(e) => editElement(index, e.currentTarget.innerHTML)}
-              dangerouslySetInnerHTML={{ __html: el.outerHTML }}
-              className="outline-none focus:ring-2 focus:ring-blue-300 rounded px-2 min-h-[1.5em]"
-            />
-            
-            {/* Add Block button after each element */}
-            <div className="flex items-center justify-center my-2">
-              <Button
-                type="button"
-                size="sm"
-                variant="ghost"
-                onClick={() => {
-                  setInsertPosition(index + 1);
-                  setShowBlockMenu(true);
-                }}
-                className="text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-all"
-              >
-                <Plus className="w-3 h-3 mr-1" />
-                Add Block
-              </Button>
-            </div>
-
-            {/* Blocks after this element */}
-            {blocksByPosition.get(index + 1)?.map((block) => (
-              <InlineBlockRenderer
-                key={block.id}
-                block={block}
-                onMoveUp={() => moveBlock(block.id, 'up')}
-                onMoveDown={() => moveBlock(block.id, 'down')}
-                onDelete={() => deleteBlock(block.id)}
-              />
-            ))}
-          </div>
-        ))}
-      </div>
-
-      {/* Block Menu Dropdown */}
-      {showBlockMenu && (
-        <>
-          <div 
-            className="fixed inset-0 z-40" 
-            onClick={() => setShowBlockMenu(false)}
-          />
-          <div 
-            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 bg-white rounded-lg shadow-xl border border-gray-200 py-2 min-w-[200px]"
-          >
-            <div className="px-3 py-2 text-xs font-semibold text-gray-500 border-b">
-              INSERT BLOCK
-            </div>
-            <button type="button" onClick={() => addBlock('faq')} className="w-full px-4 py-2 text-left hover:bg-blue-50 flex items-center gap-2 text-sm">
-              <div className="w-3 h-3 rounded bg-blue-500" />
-              <span>FAQ Block</span>
-            </button>
-            <button type="button" onClick={() => addBlock('table')} className="w-full px-4 py-2 text-left hover:bg-green-50 flex items-center gap-2 text-sm">
-              <div className="w-3 h-3 rounded bg-green-500" />
-              <span>Table Block</span>
-            </button>
-            <button type="button" onClick={() => addBlock('html')} className="w-full px-4 py-2 text-left hover:bg-yellow-50 flex items-center gap-2 text-sm">
-              <div className="w-3 h-3 rounded bg-yellow-500" />
-              <span>HTML Block</span>
-            </button>
-            <button type="button" onClick={() => addBlock('button')} className="w-full px-4 py-2 text-left hover:bg-purple-50 flex items-center gap-2 text-sm">
-              <div className="w-3 h-3 rounded bg-purple-500" />
-              <span>Button Block</span>
-            </button>
-            <button type="button" onClick={() => addBlock('image')} className="w-full px-4 py-2 text-left hover:bg-pink-50 flex items-center gap-2 text-sm">
-              <div className="w-3 h-3 rounded bg-pink-500" />
-              <span>Image Block</span>
-            </button>
-            <button type="button" onClick={() => addBlock('youtube')} className="w-full px-4 py-2 text-left hover:bg-red-50 flex items-center gap-2 text-sm">
-              <div className="w-3 h-3 rounded bg-red-500" />
-              <span>YouTube Block</span>
-            </button>
-            <div className="border-t mt-1 pt-1">
-              <button type="button" onClick={() => addBlock('spacer')} className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2 text-sm">
-                <div className="w-3 h-3 rounded bg-gray-400" />
-                <span>Spacer</span>
-              </button>
-              <button type="button" onClick={() => addBlock('divider')} className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2 text-sm">
-                <div className="w-3 h-3 rounded bg-gray-400" />
-                <span>Divider</span>
-              </button>
-            </div>
-          </div>
-        </>
-      )}
-    </div>
-  );
-}
-
-// Inline Block Renderer with Move Controls
-function InlineBlockRenderer({ 
-  block, 
-  onMoveUp, 
-  onMoveDown, 
-  onDelete 
-}: { 
-  block: ContentBlock; 
-  onMoveUp: () => void; 
-  onMoveDown: () => void;
-  onDelete: () => void;
-}) {
-  return (
-    <div className="my-6 group relative border-2 border-blue-200 rounded-lg p-4 bg-blue-50/30">
-      {/* Block Controls */}
-      <div className="absolute -top-3 right-4 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-        <Button
-          type="button"
-          size="sm"
-          variant="outline"
-          onClick={onMoveUp}
-          className="h-6 w-6 p-0 bg-white"
-        >
-          ↑
-        </Button>
-        <Button
-          type="button"
-          size="sm"
-          variant="outline"
-          onClick={onMoveDown}
-          className="h-6 w-6 p-0 bg-white"
-        >
-          ↓
-        </Button>
-        <Button
-          type="button"
-          size="sm"
-          variant="outline"
-          onClick={onDelete}
-          className="h-6 w-6 p-0 bg-white text-red-600 hover:text-red-700"
-        >
-          ×
-        </Button>
-      </div>
-
-      {/* Block Type Label */}
-      <div className="text-xs font-semibold text-blue-600 mb-2">
-        {block.type.toUpperCase()} BLOCK
-      </div>
-
-      {/* Block Content */}
-      {renderBlockContent(block)}
-    </div>
-  );
-}
-
-// Render block content (reuse from ContentBlocksRenderer)
-function renderBlockContent(block: ContentBlock) {
-  switch (block.type) {
-    case 'faq':
-      const questions = block.data.questions || [];
-      return (
-        <div className="space-y-3">
-          {questions.map((q: any, i: number) => (
-            <div key={i} className="border rounded-md overflow-hidden">
-              <div className="p-3 bg-gray-100 font-medium">{q.question}</div>
-              <div className="p-3 bg-white">{q.answer}</div>
-            </div>
-          ))}
-        </div>
-      );
-    
-    case 'table':
-      const { headers, cells, hasHeader } = block.data;
-      return (
-        <table className="min-w-full border-collapse border">
-          {hasHeader && headers && (
-            <thead>
-              <tr className="bg-gray-100">
-                {headers.map((h: string, i: number) => (
-                  <th key={i} className="border px-4 py-2">{h}</th>
-                ))}
-              </tr>
-            </thead>
-          )}
-          <tbody>
-            {cells?.map((row: string[], i: number) => (
-              <tr key={i}>
-                {row.map((cell: string, j: number) => (
-                  <td key={j} className="border px-4 py-2">{cell}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      );
-
-    case 'html':
-      return <div dangerouslySetInnerHTML={{ __html: block.data.html || '' }} />;
-
-    case 'button':
-      return (
-        <div className="flex justify-center">
-          <a
-            href={block.data.url || '#'}
-            className="inline-block px-6 py-3 rounded font-semibold"
-            style={{
-              backgroundColor: block.data.bgColor || '#1D50C9',
-              color: block.data.textColor || '#ffffff'
-            }}
-          >
-            {block.data.text || 'Button'}
-          </a>
-        </div>
-      );
-
-    case 'image':
-      return block.data.url ? (
-        <img src={block.data.url} alt={block.data.alt || ''} className="max-w-full h-auto" />
-      ) : (
-        <div className="bg-gray-100 p-8 text-center text-gray-500">Image placeholder</div>
-      );
-
-    case 'youtube':
-      return block.data.videoId ? (
-        <div className="aspect-video">
-          <iframe
-            width="100%"
-            height="100%"
-            src={`https://www.youtube.com/embed/${block.data.videoId}`}
-            frameBorder="0"
-            allowFullScreen
-          />
-        </div>
-      ) : (
-        <div className="bg-gray-100 p-8 text-center text-gray-500">YouTube video</div>
-      );
-
-    case 'spacer':
-      return <div style={{ height: `${block.data.height || 40}px` }} className="bg-gray-100" />;
-
-    case 'divider':
-      return <hr className="border-t-2 border-gray-300" />;
-
-    default:
-      return <div>Unknown block type</div>;
-  }
-}
-
-// Get default data for new blocks
-function getDefaultBlockData(type: string) {
-  switch (type) {
-    case 'faq':
-      return {
-        questions: [{
-          question: 'Your question here?',
-          answer: 'Your answer here.',
-          questionBgColor: '#f3f4f6',
-          answerBgColor: '#ffffff'
-        }]
-      };
-    case 'table':
-      return {
-        headers: ['Column 1', 'Column 2'],
-        cells: [['Cell 1', 'Cell 2']],
-        hasHeader: true
-      };
-    case 'html':
-      return { html: '<p>Your HTML here</p>' };
-    case 'button':
-      return {
-        text: 'Click Me',
-        url: '#',
-        bgColor: '#1D50C9',
-        textColor: '#ffffff',
-        alignment: 'center'
-      };
-    case 'image':
-      return { url: '', alt: '', alignment: 'center', width: '100%' };
-    case 'youtube':
-      return { videoId: '' };
-    case 'spacer':
-      return { height: 40 };
-    case 'divider':
-      return { thickness: 1, width: '100%' };
-    default:
-      return {};
-  }
-}
-
 const blogSchema = z.object({
   title: z.string().min(1, "Title is required"),
   slug: z.string().min(1, "Slug is required"),
@@ -765,7 +352,7 @@ export default function BlogEditor() {
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [showMediaModal, setShowMediaModal] = useState(false);
   const [editorMounted, setEditorMounted] = useState(false);
-  const [editorMode, setEditorMode] = useState<'visual' | 'rich' | 'html'>('visual');
+  const [editorMode, setEditorMode] = useState<'rich' | 'html'>('rich');
   const [htmlContent, setHtmlContent] = useState('');
   const { toast } = useToast();
   
@@ -1202,12 +789,10 @@ export default function BlogEditor() {
   }, [content, editorMode]);
   
   // Handle mode switching
-  const handleModeSwitch = (mode: 'visual' | 'rich' | 'html') => {
+  const handleModeSwitch = (mode: 'rich' | 'html') => {
     if (mode === 'html') {
       // Switching to HTML mode - sync current rich text content to HTML
       setHtmlContent(content || '');
-    } else if (mode === 'visual') {
-      // Switching to Visual mode - no special sync needed
     } else {
       // Switching to rich text mode - sync HTML content back to form
       if (htmlContent !== content) {
@@ -2114,15 +1699,6 @@ export default function BlogEditor() {
                         <Button
                           type="button"
                           size="sm"
-                          variant={editorMode === 'visual' ? 'default' : 'ghost'}
-                          onClick={() => handleModeSwitch('visual')}
-                          className="px-3 py-1 text-xs"
-                        >
-                          Visual
-                        </Button>
-                        <Button
-                          type="button"
-                          size="sm"
                           variant={editorMode === 'rich' ? 'default' : 'ghost'}
                           onClick={() => handleModeSwitch('rich')}
                           className="px-3 py-1 text-xs"
@@ -2161,15 +1737,7 @@ export default function BlogEditor() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {editorMode === 'visual' ? (
-                    // Visual Editor Mode with Inline Blocks
-                    <VisualEditor
-                      content={watch("content") as string || ''}
-                      contentBlocks={(watch("contentBlocks") as ContentBlock[]) || []}
-                      onContentChange={(value) => setValue('content', value)}
-                      onBlocksChange={(blocks) => setValue('contentBlocks', blocks)}
-                    />
-                  ) : editorMode === 'rich' ? (
+                  {editorMode === 'rich' ? (
                     // Rich Text Editor Mode
                     <div className="react-quill-container" style={{ minHeight: '500px', width: '100%' }}>
                       {editorMounted ? (
@@ -2224,9 +1792,7 @@ export default function BlogEditor() {
                   )}
                   
                   <div className="mt-2 text-sm text-gray-500">
-                    {editorMode === 'visual' ? (
-                      <>👁️ <strong>Visual Mode:</strong> See blocks inline as you write. Click "+ Add Block" buttons to insert blocks at any position, then move them up/down as needed.</>
-                    ) : editorMode === 'rich' ? (
+                    {editorMode === 'rich' ? (
                       <>✨ <strong>Google Docs Paste Support:</strong> Copy content from Google Docs and paste here - all formatting, headings, links, and lists will be preserved!</>
                     ) : (
                       <>🔧 <strong>HTML Mode:</strong> Write custom HTML code with live preview. Perfect for advanced formatting, custom styles, and embedding multimedia content.</>
