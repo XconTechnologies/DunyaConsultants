@@ -19,6 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import { canPublishContent, canManageCategories } from "@/lib/permissions";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import '@/lib/quill-content-block';
 import { 
   Save, Eye, ArrowLeft, Loader2, FileText, 
   Calendar, User, Hash, Globe, Upload, Image as ImageIcon, AlertTriangle, X
@@ -687,6 +688,59 @@ export default function BlogEditor() {
     setHtmlContent(value);
     setValue('content', value);
   };
+  
+  // Insert content blocks into Quill editor
+  useEffect(() => {
+    if (!editorRef.current || !editorMounted) return;
+    
+    const contentBlocks = watch('contentBlocks') || [];
+    if (contentBlocks.length === 0) return;
+    
+    const quill = editorRef.current.getEditor();
+    if (!quill) return;
+    
+    // Remove existing content block embeds first
+    const delta = quill.getContents();
+    delta.ops.forEach((op: any, index: number) => {
+      if (op.insert && op.insert.contentBlock) {
+        quill.deleteText(index, 1);
+      }
+    });
+    
+    // Get all block-level elements (p, h1, h2, etc.)
+    const lines = quill.getLines();
+    
+    // Insert blocks at their specified positions
+    contentBlocks.forEach((block: ContentBlock) => {
+      const position = block.position ?? 999;
+      
+      let insertIndex = 0;
+      
+      if (position === 0) {
+        // Insert at the very beginning
+        insertIndex = 0;
+      } else if (position >= lines.length || position >= 999) {
+        // Insert at the end
+        insertIndex = quill.getLength() - 1;
+      } else {
+        // Insert after the Nth element
+        let charCount = 0;
+        for (let i = 0; i < position && i < lines.length; i++) {
+          charCount += lines[i].length();
+        }
+        insertIndex = charCount;
+      }
+      
+      // Insert the content block embed
+      quill.insertEmbed(insertIndex, 'contentBlock', {
+        id: block.id,
+        block: block
+      }, 'user');
+      
+      // Add a newline after the embed for proper spacing
+      quill.insertText(insertIndex + 1, '\n', 'user');
+    });
+  }, [watch('contentBlocks'), editorMounted, content]);
   
   // Memoized ReactQuill modules to prevent reinitializing
   const quillModules = useMemo(() => ({
