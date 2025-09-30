@@ -2720,8 +2720,16 @@ function BlogPostDetail({ slug }: { slug: string }) {
                   })}
                 </div>
 
-                {/* Content Blocks */}
-                <ContentBlocksRenderer blocks={blogPost.contentBlocks} />
+                {/* Content Blocks - Integrated with content */}
+                {blogPost.contentBlocks && blogPost.contentBlocks.length > 0 ? (
+                  <div className="mt-8">
+                    <ContentBlocksRenderer 
+                      blocks={blogPost.contentBlocks} 
+                      content={blogPost.content}
+                      integrated={true}
+                    />
+                  </div>
+                ) : null}
 
                 {/* Related Blogs Section - Infinite Scroll Carousel */}
                 <footer className="pt-8 border-t border-gray-200">

@@ -1703,22 +1703,17 @@ export default function BlogEditor() {
                   </CardHeader>
                   <CardContent>
                     <div className="border rounded-lg p-6 bg-white">
-                      {/* Preview of main content */}
-                      <div 
-                        className="prose prose-sm max-w-none mb-6"
-                        dangerouslySetInnerHTML={{ __html: (watch("content") as string) || '' }}
-                      />
-                      
-                      {/* Preview of content blocks */}
-                      <div className="space-y-4 border-t pt-6">
-                        <div className="text-sm font-medium text-gray-600 mb-3">
-                          Content Blocks Preview:
-                        </div>
-                        <ContentBlocksRenderer blocks={(watch("contentBlocks") as ContentBlock[]) || []} />
+                      {/* Integrated preview of content with blocks at correct positions */}
+                      <div className="prose prose-sm max-w-none">
+                        <ContentBlocksRenderer 
+                          blocks={(watch("contentBlocks") as ContentBlock[]) || []} 
+                          content={(watch("content") as string) || ''}
+                          integrated={true}
+                        />
                       </div>
                     </div>
                     <p className="text-xs text-gray-500 mt-3">
-                      This preview shows how your content and blocks will appear together on the published page.
+                      This preview shows your content with blocks inserted at their selected positions.
                     </p>
                   </CardContent>
                 </Card>
@@ -1737,6 +1732,7 @@ export default function BlogEditor() {
                       <ContentBlocks
                         blocks={field.value || []}
                         onChange={field.onChange}
+                        content={watch("content") as string || ''}
                       />
                     )}
                   />

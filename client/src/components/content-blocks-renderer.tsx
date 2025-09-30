@@ -2,15 +2,23 @@ import type { ContentBlock } from "@shared/schema";
 
 interface ContentBlocksRendererProps {
   blocks?: ContentBlock[];
+  content?: string; // Main content HTML
+  integrated?: boolean; // If true, insert blocks within content
 }
 
-export default function ContentBlocksRenderer({ blocks }: ContentBlocksRendererProps) {
+export default function ContentBlocksRenderer({ blocks, content = '', integrated = false }: ContentBlocksRendererProps) {
   if (!blocks || blocks.length === 0) {
     return null;
   }
 
-  const sortedBlocks = [...blocks].sort((a, b) => a.position - b.position);
+  const sortedBlocks = [...blocks].sort((a, b) => (a.position ?? 999) - (b.position ?? 999));
 
+  // If integrated mode, insert blocks at their positions within content
+  if (integrated && content) {
+    return <IntegratedContentRenderer content={content} blocks={sortedBlocks} />;
+  }
+
+  // Otherwise, render blocks separately
   return (
     <div className="content-blocks-wrapper space-y-6 mt-8">
       {sortedBlocks.map((block) => (
@@ -20,6 +28,71 @@ export default function ContentBlocksRenderer({ blocks }: ContentBlocksRendererP
       ))}
     </div>
   );
+}
+
+// Integrated renderer that inserts blocks at specific positions
+function IntegratedContentRenderer({ content, blocks }: { content: string; blocks: ContentBlock[] }) {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = content;
+  
+  const elements = tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote, table');
+  const contentParts: JSX.Element[] = [];
+  
+  // Group blocks by position
+  const blocksByPosition = new Map<number, ContentBlock[]>();
+  blocks.forEach(block => {
+    const pos = block.position ?? 999;
+    if (!blocksByPosition.has(pos)) {
+      blocksByPosition.set(pos, []);
+    }
+    blocksByPosition.get(pos)?.push(block);
+  });
+  
+  // Add blocks at position 0 (beginning)
+  if (blocksByPosition.has(0)) {
+    blocksByPosition.get(0)?.forEach((block, idx) => {
+      contentParts.push(
+        <div key={`block-0-${idx}`} className="my-6">
+          {renderBlock(block)}
+        </div>
+      );
+    });
+  }
+  
+  // Add content elements with blocks inserted after them
+  elements.forEach((el, index) => {
+    contentParts.push(
+      <div 
+        key={`content-${index}`} 
+        dangerouslySetInnerHTML={{ __html: el.outerHTML }}
+      />
+    );
+    
+    // Insert blocks after this element
+    const blocksAfter = blocksByPosition.get(index + 1);
+    if (blocksAfter) {
+      blocksAfter.forEach((block, idx) => {
+        contentParts.push(
+          <div key={`block-${index + 1}-${idx}`} className="my-6">
+            {renderBlock(block)}
+          </div>
+        );
+      });
+    }
+  });
+  
+  // Add blocks at the end (position 999 or greater)
+  blocks.forEach((block, idx) => {
+    if ((block.position ?? 999) >= 999) {
+      contentParts.push(
+        <div key={`block-end-${idx}`} className="my-6">
+          {renderBlock(block)}
+        </div>
+      );
+    }
+  });
+  
+  return <div className="integrated-content">{contentParts}</div>;
 }
 
 function renderBlock(block: ContentBlock) {

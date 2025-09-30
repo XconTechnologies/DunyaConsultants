@@ -17,16 +17,17 @@ import type { ContentBlock } from "@shared/schema";
 interface ContentBlocksProps {
   blocks: ContentBlock[];
   onChange: (blocks: ContentBlock[]) => void;
+  content?: string; // Main content HTML to determine insertion points
 }
 
-export default function ContentBlocks({ blocks, onChange }: ContentBlocksProps) {
+export default function ContentBlocks({ blocks, onChange, content = '' }: ContentBlocksProps) {
   const [expandedBlockId, setExpandedBlockId] = useState<string | null>(null);
 
   const addBlock = (type: ContentBlock['type']) => {
     const newBlock: ContentBlock = {
       id: `block-${Date.now()}`,
       type,
-      position: blocks.length,
+      position: 0, // Default to position 0 (start of content)
       data: getDefaultDataForType(type),
     } as ContentBlock;
 
@@ -55,13 +56,39 @@ export default function ContentBlocks({ blocks, onChange }: ContentBlocksProps) 
     const newBlocks = [...blocks];
     [newBlocks[index], newBlocks[newIndex]] = [newBlocks[newIndex], newBlocks[index]];
     
-    // Update positions
-    newBlocks.forEach((block, i) => {
-      block.position = i;
-    });
-    
     onChange(newBlocks);
   };
+
+  const updateBlockPosition = (blockId: string, position: number) => {
+    const updatedBlocks = blocks.map(block =>
+      block.id === blockId ? { ...block, position } : block
+    );
+    onChange(updatedBlocks);
+  };
+
+  // Extract insertion points from HTML content
+  const getInsertionPoints = () => {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+    
+    const insertionPoints: { value: number; label: string }[] = [
+      { value: 0, label: 'At the beginning' }
+    ];
+    
+    const elements = tempDiv.querySelectorAll('p, h1, h2, h3, h4, h5, h6, ul, ol, blockquote, table');
+    elements.forEach((el, index) => {
+      const tagName = el.tagName.toLowerCase();
+      const text = el.textContent?.substring(0, 40) || '';
+      const label = `After ${tagName.toUpperCase()}${index + 1}: "${text}${text.length > 40 ? '...' : ''}"`;
+      insertionPoints.push({ value: index + 1, label });
+    });
+    
+    insertionPoints.push({ value: 999, label: 'At the end' });
+    
+    return insertionPoints;
+  };
+
+  const insertionPoints = getInsertionPoints();
 
   return (
     <div className="space-y-4">
@@ -157,6 +184,29 @@ export default function ContentBlocks({ blocks, onChange }: ContentBlocksProps) 
 
               {expandedBlockId === block.id && (
                 <div className="mt-4 space-y-4">
+                  {/* Position Selector */}
+                  <div className="pb-4 border-b">
+                    <Label className="text-sm font-medium mb-2 block">Block Position</Label>
+                    <Select
+                      value={block.position?.toString() || '999'}
+                      onValueChange={(value) => updateBlockPosition(block.id, parseInt(value))}
+                    >
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Select position..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {insertionPoints.map((point) => (
+                          <SelectItem key={point.value} value={point.value.toString()}>
+                            {point.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Choose where this block should appear in your content
+                    </p>
+                  </div>
+                  
                   {renderBlockEditor(block, updateBlock)}
                 </div>
               )}
