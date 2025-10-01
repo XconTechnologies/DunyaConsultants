@@ -1,0 +1,54 @@
+User-agent: *
+Allow: /
+
+# OpenAI
+User-agent: GPTBot
+Allow: /
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+
+# Google Gemini
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# DeepSeek
+User-agent: DeepSeekBot
+Allow: /
+
+# Cohere
+User-agent: CohereAI
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Neeva
+User-agent: NeevaBot
+Allow: /
+
+# Common Crawl (used by many AI)
+User-agent: CCBot
+Allow: /
+
+# Bing (Microsoft Copilot)
+User-agent: bingbot
+Allow: /
+
+# Apple AI
+User-agent: Applebot
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Facebook AI
+User-agent: facebookexternalhit
+Allow: /
