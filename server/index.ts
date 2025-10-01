@@ -31,6 +31,7 @@ app.use('/attached_assets', express.static('attached_assets'));
 // Serve robots.txt before other routes
 app.get("/robots.txt", (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
   res.send(`# robots.txt for dunyaconsultants.com
 # Default rule for all bots
 User-agent: *
