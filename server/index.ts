@@ -34,13 +34,13 @@ app.get("/robots.txt", (req, res) => {
   res.send(`# robots.txt for dunyaconsultants.com
 # Default rule for all bots
 User-agent: *
-# Disallow access to private or irrelevant areas
-Disallow: /admin/
-Disallow: /login/
-Disallow: /wp-admin/
+# Allow access to private or irrelevant areas
+Allow: /admin/
+Allow: /login/
+Allow: /wp-admin/
 # Example: block tracking or temp folders (customize if applicable)
-# Disallow: /temp/
-# Disallow: /*?s=  # block internal search pages (modify as needed)
+# Allow: /temp/
+# Allow: /*?s=  # block internal search pages (modify as needed)
 
 Allow: /wp-content/uploads/
 Allow: /*.css$
