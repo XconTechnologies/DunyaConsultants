@@ -522,15 +522,27 @@ function TableBlockEditor({ block, updateBlock }: any) {
 // HTML Block Editor
 function HTMLBlockEditor({ block, updateBlock }: any) {
   return (
-    <div>
-      <Label>HTML/CSS/JavaScript</Label>
-      <Textarea
-        value={block.data.html}
-        onChange={(e) => updateBlock(block.id, { html: e.target.value })}
-        placeholder="Enter HTML, CSS, or JavaScript..."
-        rows={8}
-        className="font-mono text-sm"
-      />
+    <div className="space-y-4">
+      <div>
+        <Label>HTML/CSS/JavaScript</Label>
+        <Textarea
+          value={block.data.html}
+          onChange={(e) => updateBlock(block.id, { html: e.target.value })}
+          placeholder="Enter HTML, CSS, or JavaScript..."
+          rows={8}
+          className="font-mono text-sm"
+        />
+      </div>
+      
+      {block.data.html && (
+        <div>
+          <Label>Live Preview</Label>
+          <div 
+            className="border rounded-md p-4 bg-white min-h-[100px]"
+            dangerouslySetInnerHTML={{ __html: block.data.html }}
+          />
+        </div>
+      )}
     </div>
   );
 }
