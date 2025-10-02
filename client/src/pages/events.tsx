@@ -154,7 +154,7 @@ export default function EventsPage() {
       </section>
 
       {/* Search and Filter Section - Overlapping */}
-      <section className="relative -mt-20 md:-mt-24 mb-8 z-10">
+      <section className="relative -mt-32 md:-mt-40 mb-8 z-10 bg-gray-50 pt-24 md:pt-32">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4 items-end">
