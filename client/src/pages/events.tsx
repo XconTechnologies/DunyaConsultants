@@ -35,12 +35,12 @@ export default function EventsPage() {
     additionalInfo: ""
   });
 
-  // Office cities
+  // Office cities (Domestic first, then International - both alphabetically)
   const cities = [
-    "Bahawalpur", "Cairo", "Faisalabad", "Gujranwala", "Gujrat",
-    "Islamabad", "Istanbul", "Jeddah", "Jhelum", "Karachi",
-    "Lahore", "Mandi Bahauddin", "Mardan", "Mian Channu", "Multan",
-    "Peshawar", "Sargodha", "Sheikhupura", "Sialkot"
+    "Bahawalpur", "Faisalabad", "Gujranwala", "Gujrat", "Islamabad",
+    "Jhelum", "Karachi", "Lahore", "Mandi Bahauddin", "Mardan",
+    "Mian Channu", "Multan", "Peshawar", "Sargodha", "Sheikhupura",
+    "Sialkot", "Cairo", "Istanbul", "Jeddah"
   ];
 
   // Study destination countries
