@@ -343,6 +343,34 @@ export const adminSessions = pgTable("admin_sessions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const events = pgTable("events", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  shortDescription: text("short_description").notNull(),
+  fullDescription: text("full_description").notNull(),
+  image: text("image").notNull(),
+  eventDate: timestamp("event_date").notNull(),
+  eventType: text("event_type", { enum: ["latest", "upcoming"] }).notNull(),
+  location: text("location"),
+  isActive: boolean("is_active").default(true).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const eventRegistrations = pgTable("event_registrations", {
+  id: serial("id").primaryKey(),
+  eventId: integer("event_id").references(() => events.id).notNull(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  phone: text("phone").notNull(),
+  education: text("education"),
+  destination: text("destination"),
+  additionalInfo: text("additional_info"),
+  status: text("status").default("pending"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 // User sessions for reader authentication
 export const userSessions = pgTable("user_sessions", {
   id: serial("id").primaryKey(),
@@ -550,6 +578,17 @@ export const insertBlogPostCategorySchema = createInsertSchema(blogPostCategorie
   createdAt: true,
 });
 
+export const insertEventSchema = createInsertSchema(events).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
+export const insertEventRegistrationSchema = createInsertSchema(eventRegistrations).omit({
+  id: true,
+  createdAt: true,
+});
+
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 export type InsertContact = z.infer<typeof insertContactSchema>;
@@ -600,3 +639,7 @@ export type InsertCategory = z.infer<typeof insertCategorySchema>;
 export type Category = typeof categories.$inferSelect;
 export type InsertBlogPostCategory = z.infer<typeof insertBlogPostCategorySchema>;
 export type BlogPostCategory = typeof blogPostCategories.$inferSelect;
+export type InsertEvent = z.infer<typeof insertEventSchema>;
+export type Event = typeof events.$inferSelect;
+export type InsertEventRegistration = z.infer<typeof insertEventRegistrationSchema>;
+export type EventRegistration = typeof eventRegistrations.$inferSelect;

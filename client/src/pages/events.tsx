@@ -1,666 +1,426 @@
-import { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import {
-  Calendar,
-  Clock,
-  MapPin,
-  Users,
-  Video,
-  Mic,
-  BookOpen,
-  Award,
-  Filter,
-  Search,
-  ChevronRight,
-  Globe,
-  Laptop,
-  Building
-} from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Calendar, MapPin, ArrowRight } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
+import { format } from "date-fns";
+import type { Event } from "@shared/schema";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 
-interface Event {
-  id: string;
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  location: string;
-  type: "webinar" | "seminar" | "workshop" | "consultation" | "fair";
-  mode: "online" | "offline" | "hybrid";
-  capacity: number;
-  registered: number;
-  image: string;
-  featured: boolean;
-  price: string;
-  speaker: {
-    name: string;
-    title: string;
-    company: string;
-    image: string;
-  };
-  agenda: string[];
-  benefits: string[];
-  targetAudience: string[];
-  registrationLink: string;
-  tags: string[];
-  country?: string;
-}
+export default function EventsPage() {
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
 
-const upcomingEvents: Event[] = [
-  {
-    id: "1",
-    title: "Study in UK: Complete Guide to Applications & Scholarships",
-    description: "Comprehensive session covering UK university applications, scholarship opportunities, and visa requirements for 2024 intake.",
-    date: "2024-07-15",
-    time: "3:00 PM - 5:00 PM PST",
-    location: "Online Webinar",
-    type: "webinar",
-    mode: "online",
-    capacity: 500,
-    registered: 342,
-    image: "/api/placeholder/400/250",
-    featured: true,
-    price: "Free",
-    speaker: {
-      name: "Dr. Sarah Mitchell",
-      title: "Senior Education Consultant",
-      company: "Path Consultants",
-      image: "/api/placeholder/100/100"
-    },
-    agenda: [
-      "UK Education System Overview",
-      "Top Universities & Programs",
-      "Application Process & Requirements",
-      "Scholarship Opportunities",
-      "Student Visa Guidelines",
-      "Q&A Session"
-    ],
-    benefits: [
-      "University selection guidance",
-      "Application tips from experts",
-      "Scholarship database access",
-      "Free consultation voucher"
-    ],
-    targetAudience: ["Undergraduate Students", "Postgraduate Students", "Parents"],
-    registrationLink: "https://zoom.us/webinar/register",
-    tags: ["UK", "Scholarships", "Applications", "Visa"],
-    country: "United Kingdom"
-  },
-  {
-    id: "2",
-    title: "Canada Immigration & Study Pathways",
-    description: "Explore study opportunities in Canada and pathways to permanent residency through Provincial Nominee Programs.",
-    date: "2024-07-18",
-    time: "7:00 PM - 9:00 PM PST",
-    location: "Path Consultants Lahore Office",
-    type: "seminar",
-    mode: "offline",
-    capacity: 100,
-    registered: 78,
-    image: "/api/placeholder/400/250",
-    featured: true,
-    price: "Free",
-    speaker: {
-      name: "Michael Thompson",
-      title: "Immigration Specialist",
-      company: "Path Consultants",
-      image: "/api/placeholder/100/100"
-    },
-    agenda: [
-      "Canadian Education System",
-      "Study Permit Process",
-      "Work Opportunities",
-      "Permanent Residency Pathways",
-      "Cost of Living & Budgeting",
-      "Networking Session"
-    ],
-    benefits: [
-      "Immigration assessment",
-      "University partnerships access",
-      "Job market insights",
-      "PR pathway consultation"
-    ],
-    targetAudience: ["Working Professionals", "Graduate Students", "Immigrants"],
-    registrationLink: "https://eventbrite.com/register",
-    tags: ["Canada", "Immigration", "PR", "Work Permit"],
-    country: "Canada"
-  },
-  {
-    id: "3",
-    title: "Australian Universities Fair 2024",
-    description: "Meet representatives from 25+ Australian universities and explore diverse study options across different states.",
-    date: "2024-07-22",
-    time: "10:00 AM - 6:00 PM PST",
-    location: "Pearl Continental Hotel, Karachi",
-    type: "fair",
-    mode: "offline",
-    capacity: 1000,
-    registered: 567,
-    image: "/api/placeholder/400/250",
-    featured: true,
-    price: "Free",
-    speaker: {
-      name: "Multiple Representatives",
-      title: "University Delegates",
-      company: "Australian Universities",
-      image: "/api/placeholder/100/100"
-    },
-    agenda: [
-      "University Exhibitions",
-      "One-on-One Counseling",
-      "Scholarship Information",
-      "Student Life Presentations",
-      "Visa Process Workshop",
-      "Alumni Meet & Greet"
-    ],
-    benefits: [
-      "Direct university interaction",
-      "On-spot admission offers",
-      "Scholarship applications",
-      "Visa guidance"
-    ],
-    targetAudience: ["High School Students", "Undergraduate Students", "Parents"],
-    registrationLink: "https://eventbrite.com/australia-fair",
-    tags: ["Australia", "University Fair", "Admissions", "Scholarships"],
-    country: "Australia"
-  },
-  {
-    id: "4",
-    title: "IELTS Preparation Masterclass",
-    description: "Intensive workshop covering all four modules of IELTS with expert tips and practice sessions.",
-    date: "2024-07-25",
-    time: "2:00 PM - 6:00 PM PST",
-    location: "Online + Path Consultants Centers",
-    type: "workshop",
-    mode: "hybrid",
-    capacity: 200,
-    registered: 156,
-    image: "/api/placeholder/400/250",
-    featured: false,
-    price: "PKR 2,500",
-    speaker: {
-      name: "Emma Collins",
-      title: "IELTS Expert Trainer",
-      company: "British Council Certified",
-      image: "/api/placeholder/100/100"
-    },
-    agenda: [
-      "Listening Module Strategies",
-      "Reading Comprehension Tips",
-      "Writing Task 1 & 2 Techniques",
-      "Speaking Module Practice",
-      "Mock Test Session",
-      "Score Improvement Plan"
-    ],
-    benefits: [
-      "Practice materials",
-      "Mock test access",
-      "Score prediction",
-      "Improvement strategies"
-    ],
-    targetAudience: ["IELTS Candidates", "Test Takers", "English Learners"],
-    registrationLink: "https://ielts-masterclass.com/register",
-    tags: ["IELTS", "Test Prep", "English", "Workshop"],
-  },
-  {
-    id: "5",
-    title: "USA F1 Visa Interview Preparation",
-    description: "Comprehensive session on F1 visa interview process, common questions, and success strategies.",
-    date: "2024-07-28",
-    time: "4:00 PM - 6:00 PM PST",
-    location: "Online Webinar",
-    type: "webinar",
-    mode: "online",
-    capacity: 300,
-    registered: 234,
-    image: "/api/placeholder/400/250",
-    featured: false,
-    price: "Free",
-    speaker: {
-      name: "Robert Davis",
-      title: "Visa Consultant",
-      company: "Path Consultants",
-      image: "/api/placeholder/100/100"
-    },
-    agenda: [
-      "F1 Visa Requirements",
-      "Document Preparation",
-      "Interview Questions & Answers",
-      "Common Rejection Reasons",
-      "Success Tips & Strategies",
-      "Mock Interview Session"
-    ],
-    benefits: [
-      "Interview preparation guide",
-      "Document checklist",
-      "Mock interview access",
-      "Success strategies"
-    ],
-    targetAudience: ["US-bound Students", "Visa Applicants"],
-    registrationLink: "https://f1visa-prep.com/register",
-    tags: ["USA", "F1 Visa", "Interview", "Documentation"],
-    country: "United States"
-  },
-  {
-    id: "6",
-    title: "European Study Options: Germany, Netherlands & Sweden",
-    description: "Explore affordable study opportunities in Europe with focus on public universities and scholarship programs.",
-    date: "2024-08-02",
-    time: "6:00 PM - 8:00 PM PST",
-    location: "Online Webinar",
-    type: "webinar",
-    mode: "online",
-    capacity: 400,
-    registered: 198,
-    image: "/api/placeholder/400/250",
-    featured: false,
-    price: "Free",
-    speaker: {
-      name: "Dr. Klaus Weber",
-      title: "European Education Specialist",
-      company: "Path Consultants",
-      image: "/api/placeholder/100/100"
-    },
-    agenda: [
-      "European Education Systems",
-      "Public vs Private Universities",
-      "Scholarship Opportunities",
-      "Language Requirements",
-      "Living Costs Comparison",
-      "Work Opportunities"
-    ],
-    benefits: [
-      "Country comparison guide",
-      "Scholarship database",
-      "University contacts",
-      "Application assistance"
-    ],
-    targetAudience: ["Graduate Students", "Budget-conscious Students"],
-    registrationLink: "https://europe-study.com/register",
-    tags: ["Europe", "Germany", "Netherlands", "Sweden", "Scholarships"]
-  }
-];
-
-const eventTypes = [
-  { value: "all", label: "All Events", icon: Calendar },
-  { value: "webinar", label: "Webinars", icon: Video },
-  { value: "seminar", label: "Seminars", icon: Mic },
-  { value: "workshop", label: "Workshops", icon: BookOpen },
-  { value: "consultation", label: "Consultations", icon: Users },
-  { value: "fair", label: "University Fairs", icon: Building }
-];
-
-const eventModes = [
-  { value: "all", label: "All Modes", icon: Globe },
-  { value: "online", label: "Online", icon: Laptop },
-  { value: "offline", label: "Offline", icon: MapPin },
-  { value: "hybrid", label: "Hybrid", icon: Globe }
-];
-
-export default function Events() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedType, setSelectedType] = useState("all");
-  const [selectedMode, setSelectedMode] = useState("all");
-  const [selectedCountry, setSelectedCountry] = useState("all");
-  const [activeTab, setActiveTab] = useState("upcoming");
-
-  const countries = ["all", "United States", "United Kingdom", "Canada", "Australia", "Germany", "Netherlands", "Sweden"];
-
-  const filteredEvents = upcomingEvents.filter(event => {
-    const matchesSearch = event.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         event.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         event.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    
-    const matchesType = selectedType === "all" || event.type === selectedType;
-    const matchesMode = selectedMode === "all" || event.mode === selectedMode;
-    const matchesCountry = selectedCountry === "all" || event.country === selectedCountry;
-
-    return matchesSearch && matchesType && matchesMode && matchesCountry;
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    education: "",
+    destination: "",
+    additionalInfo: ""
   });
 
-  const getEventTypeIcon = (type: string) => {
-    const eventType = eventTypes.find(t => t.value === type);
-    return eventType ? eventType.icon : Calendar;
-  };
+  const { data: events = [] } = useQuery<Event[]>({
+    queryKey: ["/api/events"],
+  });
 
-  const getModeIcon = (mode: string) => {
-    switch (mode) {
-      case "online": return Laptop;
-      case "offline": return MapPin;
-      case "hybrid": return Globe;
-      default: return Globe;
+  const registerMutation = useMutation({
+    mutationFn: async (data: typeof formData & { eventId: number }) =>
+      apiRequest("/api/events/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      }),
+    onSuccess: () => {
+      toast({
+        title: "Registration Successful!",
+        description: "We'll contact you soon with more details.",
+      });
+      setShowRegisterModal(false);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        education: "",
+        destination: "",
+        additionalInfo: ""
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Registration Failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
     }
-  };
+  });
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+  const handleRegister = () => {
+    if (!selectedEvent) return;
+    registerMutation.mutate({
+      ...formData,
+      eventId: selectedEvent.id
     });
   };
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" ref={ref}>
-      <Navigation />
-      {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-[#1D50C9] to-[#1845B3] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="w-full h-full bg-gradient-to-r from-[#1D50C9]/30 to-[#1845B3]/30"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-8">
-              <Calendar className="w-5 h-5" />
-              <span className="text-sm font-medium">Study Abroad Events</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Upcoming<br />
-              <span className="text-blue-300">Events & Seminars</span>
-            </h1>
-            
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Join our expert-led sessions, university fairs, and workshops to accelerate your study abroad journey. 
-              Connect with education specialists and fellow students.
-            </p>
+  const latestEvents = events.filter(e => e.eventType === "latest");
+  const upcomingEvents = events.filter(e => e.eventType === "upcoming");
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-300">50+</div>
-                <div className="text-sm text-blue-100">Events This Year</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-300">5000+</div>
-                <div className="text-sm text-blue-100">Participants</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-300">25+</div>
-                <div className="text-sm text-blue-100">Countries Covered</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-300">100%</div>
-                <div className="text-sm text-blue-100">Free Events</div>
-              </div>
-            </div>
-          </motion.div>
+  return (
+    <div className="min-h-screen bg-white">
+      <Navigation />
+      
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-10"></div>
+        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center text-white">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="mb-6"
+            >
+              <Badge className="bg-white/20 text-white border-white/30 px-4 py-2 text-sm font-medium">
+                Events & Expos
+              </Badge>
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            >
+              Explore Our <span className="text-white">Events & Expos</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto"
+            >
+              Join us at educational events and exhibitions to learn about study abroad opportunities
+            </motion.p>
+          </div>
         </div>
       </section>
 
-      {/* Events Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filters */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-12"
-          >
-            <Card className="p-6 shadow-lg">
-              <div className="flex flex-col lg:flex-row gap-4 items-center">
-                <div className="flex-1">
-                  <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-400 w-4 h-4" />
-                    <Input
-                      placeholder="Search events, topics, or speakers..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                </div>
-                
-                <div className="flex flex-wrap gap-3">
-                  <Select value={selectedType} onValueChange={setSelectedType}>
-                    <SelectTrigger className="w-40">
-                      <SelectValue placeholder="Event Type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {eventTypes.map((type) => (
-                        <SelectItem key={type.value} value={type.value}>
-                          <div className="flex items-center space-x-2">
-                            <type.icon className="w-4 h-4" />
-                            <span>{type.label}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+      {/* Latest Events Section */}
+      {latestEvents.length > 0 && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4">
+                Latest Events
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Recent educational events and exhibitions
+              </p>
+            </div>
 
-                  <Select value={selectedMode} onValueChange={setSelectedMode}>
-                    <SelectTrigger className="w-32">
-                      <SelectValue placeholder="Mode" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {eventModes.map((mode) => (
-                        <SelectItem key={mode.value} value={mode.value}>
-                          <div className="flex items-center space-x-2">
-                            <mode.icon className="w-4 h-4" />
-                            <span>{mode.label}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-
-                  <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-                    <SelectTrigger className="w-40">
-                      <SelectValue placeholder="Country" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {countries.map((country) => (
-                        <SelectItem key={country} value={country}>
-                          {country === "all" ? "All Countries" : country}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
-            </Card>
-          </motion.div>
-
-          {/* Events Tabs */}
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <TabsList className="grid w-full grid-cols-3 mb-8">
-              <TabsTrigger value="upcoming">Upcoming Events</TabsTrigger>
-              <TabsTrigger value="featured">Featured Events</TabsTrigger>
-              <TabsTrigger value="past">Past Events</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="upcoming" className="space-y-6">
-              {/* Featured Events */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredEvents.map((event, index) => {
-                  const TypeIcon = getEventTypeIcon(event.type);
-                  const ModeIcon = getModeIcon(event.mode);
-                  
-                  return (
-                    <motion.div
-                      key={event.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                    >
-                      <Card className={`overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 ${event.featured ? 'ring-2 ring-primary' : ''}`}>
-                        {event.featured && (
-                          <div className="bg-gradient-to-r from-primary to-secondary text-white text-center py-1 text-sm font-medium">
-                            Featured Event
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {latestEvents.map((event, index) => (
+                <motion.div
+                  key={event.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card className="h-full hover:shadow-xl transition-shadow duration-300">
+                    <div className="aspect-video overflow-hidden rounded-t-lg">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="text-xl font-bold text-gray-900">
+                        {event.title}
+                      </CardTitle>
+                      <div className="flex flex-col gap-2 text-sm text-gray-600 mt-2">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          <span>{format(new Date(event.eventDate), "MMMM d, yyyy")}</span>
+                        </div>
+                        {event.location && (
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4" />
+                            <span>{event.location}</span>
                           </div>
                         )}
-                        
-                        <div className="relative h-48 bg-gradient-to-br from-[#1D50C9] to-purple-600">
-                          <div className="absolute inset-0 bg-black/20"></div>
-                          <div className="absolute top-4 right-4">
-                            <Badge variant={event.price === "Free" ? "secondary" : "default"} className="bg-white/90 text-neutral-800">
-                              {event.price}
-                            </Badge>
-                          </div>
-                          <div className="absolute bottom-4 left-4 text-white">
-                            <div className="flex items-center space-x-2 mb-2">
-                              <TypeIcon className="w-4 h-4" />
-                              <span className="text-sm capitalize">{event.type}</span>
-                              <ModeIcon className="w-4 h-4 ml-2" />
-                              <span className="text-sm capitalize">{event.mode}</span>
-                            </div>
-                            <div className="text-2xl font-bold">{formatDate(event.date).split(',')[1]}</div>
-                            <div className="text-sm opacity-90">{formatDate(event.date).split(',')[0]}</div>
-                          </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 mb-4">{event.shortDescription}</p>
+                      <div className="flex gap-2">
+                        <Button
+                          onClick={() => {
+                            setSelectedEvent(event);
+                            setShowDetailsModal(true);
+                          }}
+                          variant="outline"
+                          className="flex-1"
+                          data-testid={`button-view-details-${event.id}`}
+                        >
+                          View Details
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            setSelectedEvent(event);
+                            setShowRegisterModal(true);
+                          }}
+                          className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a]"
+                          data-testid={`button-register-${event.id}`}
+                        >
+                          Register
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Upcoming Events Section */}
+      {upcomingEvents.length > 0 && (
+        <section className="py-20 bg-white">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4">
+                Upcoming Events
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Mark your calendar for these exciting upcoming opportunities
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {upcomingEvents.map((event, index) => (
+                <motion.div
+                  key={event.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card className="h-full hover:shadow-xl transition-shadow duration-300">
+                    <div className="aspect-video overflow-hidden rounded-t-lg">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <CardHeader>
+                      <CardTitle className="text-xl font-bold text-gray-900">
+                        {event.title}
+                      </CardTitle>
+                      <div className="flex flex-col gap-2 text-sm text-gray-600 mt-2">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          <span>{format(new Date(event.eventDate), "MMMM d, yyyy")}</span>
                         </div>
-
-                        <CardContent className="p-6">
-                          <h3 className="text-xl font-bold text-neutral-800 mb-3 line-clamp-2">
-                            {event.title}
-                          </h3>
-                          
-                          <p className="text-neutral-600 mb-4 line-clamp-3">
-                            {event.description}
-                          </p>
-
-                          <div className="space-y-3 mb-4">
-                            <div className="flex items-center text-sm text-neutral-600">
-                              <Clock className="w-4 h-4 mr-2" />
-                              {event.time}
-                            </div>
-                            <div className="flex items-center text-sm text-neutral-600">
-                              <MapPin className="w-4 h-4 mr-2" />
-                              {event.location}
-                            </div>
-                            <div className="flex items-center text-sm text-neutral-600">
-                              <Users className="w-4 h-4 mr-2" />
-                              {event.registered} / {event.capacity} registered
-                            </div>
+                        {event.location && (
+                          <div className="flex items-center gap-2">
+                            <MapPin className="w-4 h-4" />
+                            <span>{event.location}</span>
                           </div>
+                        )}
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 mb-4">{event.shortDescription}</p>
+                      <div className="flex gap-2">
+                        <Button
+                          onClick={() => {
+                            setSelectedEvent(event);
+                            setShowDetailsModal(true);
+                          }}
+                          variant="outline"
+                          className="flex-1"
+                          data-testid={`button-view-details-${event.id}`}
+                        >
+                          View Details
+                        </Button>
+                        <Button
+                          onClick={() => {
+                            setSelectedEvent(event);
+                            setShowRegisterModal(true);
+                          }}
+                          className="flex-1 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a]"
+                          data-testid={`button-register-${event.id}`}
+                        >
+                          Register
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
-                          <div className="flex flex-wrap gap-1 mb-4">
-                            {event.tags.slice(0, 3).map((tag) => (
-                              <Badge key={tag} variant="outline" className="text-xs">
-                                {tag}
-                              </Badge>
-                            ))}
-                          </div>
-
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-2">
-                              <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                {event.speaker.name.split(' ').map(n => n[0]).join('')}
-                              </div>
-                              <div className="text-sm">
-                                <div className="font-medium text-neutral-800">{event.speaker.name}</div>
-                                <div className="text-neutral-500">{event.speaker.title}</div>
-                              </div>
-                            </div>
-                            <Button size="sm" className="bg-primary hover:bg-primary/90">
-                              Register
-                              <ChevronRight className="w-4 h-4 ml-1" />
-                            </Button>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {filteredEvents.length === 0 && (
-                <div className="text-center py-12">
-                  <Calendar className="w-16 h-16 mx-auto text-neutral-300 mb-4" />
-                  <h3 className="text-xl font-semibold text-neutral-600 mb-2">No events found</h3>
-                  <p className="text-neutral-500">Try adjusting your filters or search query</p>
+      {/* Details Modal */}
+      <Dialog open={showDetailsModal} onOpenChange={setShowDetailsModal}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold">{selectedEvent?.title}</DialogTitle>
+            <DialogDescription>
+              {selectedEvent && (
+                <div className="flex flex-col gap-2 mt-4">
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <Calendar className="w-4 h-4" />
+                    <span>{format(new Date(selectedEvent.eventDate), "MMMM d, yyyy")}</span>
+                  </div>
+                  {selectedEvent.location && (
+                    <div className="flex items-center gap-2 text-gray-600">
+                      <MapPin className="w-4 h-4" />
+                      <span>{selectedEvent.location}</span>
+                    </div>
+                  )}
                 </div>
               )}
-            </TabsContent>
-
-            <TabsContent value="featured">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredEvents.filter(event => event.featured).map((event, index) => (
-                  <motion.div
-                    key={event.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                  >
-                    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ring-2 ring-primary">
-                      <div className="bg-gradient-to-r from-primary to-secondary text-white text-center py-2 text-sm font-medium">
-                        ⭐ Featured Event
-                      </div>
-                      {/* Same card content structure as above */}
-                      <div className="relative h-48 bg-gradient-to-br from-primary to-secondary">
-                        <div className="absolute inset-0 bg-black/20"></div>
-                        <div className="absolute bottom-4 left-4 text-white">
-                          <div className="text-2xl font-bold">{formatDate(event.date).split(',')[1]}</div>
-                          <div className="text-sm opacity-90">{formatDate(event.date).split(',')[0]}</div>
-                        </div>
-                      </div>
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-bold text-neutral-800 mb-3">{event.title}</h3>
-                        <p className="text-neutral-600 mb-4">{event.description}</p>
-                        <Button className="w-full bg-primary hover:bg-primary/90">
-                          Register Now
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </TabsContent>
-
-            <TabsContent value="past">
-              <div className="text-center py-12">
-                <Calendar className="w-16 h-16 mx-auto text-neutral-300 mb-4" />
-                <h3 className="text-xl font-semibold text-neutral-600 mb-2">Past Events</h3>
-                <p className="text-neutral-500">Check back later for recordings and highlights from our past events</p>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-secondary text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            <h2 className="text-4xl font-bold mb-6">
-              Don't Miss Out on Future Events
-            </h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Subscribe to our newsletter and be the first to know about upcoming events, workshops, and exclusive opportunities
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <Input 
-                placeholder="Enter your email" 
-                className="bg-white/10 border-white/20 text-white placeholder:text-white/60"
+            </DialogDescription>
+          </DialogHeader>
+          {selectedEvent && (
+            <div className="space-y-4">
+              <img
+                src={selectedEvent.image}
+                alt={selectedEvent.title}
+                className="w-full h-64 object-cover rounded-lg"
               />
-              <Button className="bg-white text-primary hover:bg-blue-50 whitespace-nowrap">
-                Subscribe Now
-              </Button>
+              <div className="prose max-w-none">
+                <p className="text-gray-700 whitespace-pre-wrap">{selectedEvent.fullDescription}</p>
+              </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          )}
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowDetailsModal(false)}>
+              Close
+            </Button>
+            <Button
+              onClick={() => {
+                setShowDetailsModal(false);
+                setShowRegisterModal(true);
+              }}
+              className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a]"
+            >
+              Register Now
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Registration Modal */}
+      <Dialog open={showRegisterModal} onOpenChange={setShowRegisterModal}>
+        <DialogContent className="max-w-md">
+          <DialogHeader>
+            <DialogTitle>Register for Event</DialogTitle>
+            <DialogDescription>
+              Fill out the form below to register for {selectedEvent?.title}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <Label htmlFor="name">Full Name *</Label>
+              <Input
+                id="name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                data-testid="input-name"
+              />
+            </div>
+            <div>
+              <Label htmlFor="email">Email *</Label>
+              <Input
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                data-testid="input-email"
+              />
+            </div>
+            <div>
+              <Label htmlFor="phone">Phone *</Label>
+              <Input
+                id="phone"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                data-testid="input-phone"
+              />
+            </div>
+            <div>
+              <Label htmlFor="education">Education Level</Label>
+              <Select
+                value={formData.education}
+                onValueChange={(value) => setFormData({ ...formData, education: value })}
+              >
+                <SelectTrigger data-testid="select-education">
+                  <SelectValue placeholder="Select your education level" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="high-school">High School</SelectItem>
+                  <SelectItem value="undergraduate">Undergraduate</SelectItem>
+                  <SelectItem value="graduate">Graduate</SelectItem>
+                  <SelectItem value="postgraduate">Postgraduate</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label htmlFor="destination">Preferred Study Destination</Label>
+              <Input
+                id="destination"
+                value={formData.destination}
+                onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
+                data-testid="input-destination"
+              />
+            </div>
+            <div>
+              <Label htmlFor="additionalInfo">Additional Information</Label>
+              <Textarea
+                id="additionalInfo"
+                value={formData.additionalInfo}
+                onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
+                rows={3}
+                data-testid="textarea-additional-info"
+              />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowRegisterModal(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={handleRegister}
+              disabled={!formData.name || !formData.email || !formData.phone || registerMutation.isPending}
+              className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a]"
+              data-testid="button-submit-registration"
+            >
+              {registerMutation.isPending ? "Submitting..." : "Submit Registration"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Footer />
     </div>
   );
 }

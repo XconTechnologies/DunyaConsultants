@@ -1,7 +1,7 @@
 import { 
   contacts, testimonials, users, userEngagement, achievements, userStats, eligibilityChecks, consultations,
   adminUsers, blogPosts, services, pages, adminSessions, userSessions, media, blogPostRevisions, auditLogs, postAssignments, editingSessions, editRequests,
-  categories, blogPostCategories,
+  categories, blogPostCategories, events, eventRegistrations,
   type User, type InsertUser, type Contact, type InsertContact, 
   type Testimonial, type InsertTestimonial, type UserEngagement, type InsertUserEngagement,
   type Achievement, type InsertAchievement, type UserStats, type InsertUserStats,
@@ -12,7 +12,8 @@ import {
   type Media, type InsertMedia, type BlogPostRevision, type InsertBlogPostRevision,
   type AuditLog, type InsertAuditLog, type PostAssignment, type InsertPostAssignment,
   type EditingSession, type InsertEditingSession, type EditRequest, type InsertEditRequest,
-  type Category, type InsertCategory, type BlogPostCategory, type InsertBlogPostCategory
+  type Category, type InsertCategory, type BlogPostCategory, type InsertBlogPostCategory,
+  type Event, type InsertEvent, type EventRegistration, type InsertEventRegistration
 } from "@shared/schema";
 import bcrypt from "bcryptjs";
 
@@ -23,6 +24,9 @@ export interface IStorage {
   createContact(contact: InsertContact): Promise<Contact>;
   getTestimonials(): Promise<Testimonial[]>;
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
+  getEvents(): Promise<Event[]>;
+  getEventById(id: number): Promise<Event | undefined>;
+  createEventRegistration(registration: InsertEventRegistration): Promise<EventRegistration>;
   createEligibilityCheck(eligibilityCheck: InsertEligibilityCheck): Promise<EligibilityCheck>;
   createConsultation(consultation: InsertConsultation): Promise<Consultation>;
   getConsultations(): Promise<Consultation[]>;
@@ -186,6 +190,20 @@ export class DatabaseStorage implements IStorage {
   async createTestimonial(insertTestimonial: InsertTestimonial): Promise<Testimonial> {
     const [testimonial] = await db.insert(testimonials).values(insertTestimonial).returning();
     return testimonial;
+  }
+
+  async getEvents(): Promise<Event[]> {
+    return await db.select().from(events).where(eq(events.isActive, true)).orderBy(desc(events.eventDate));
+  }
+
+  async getEventById(id: number): Promise<Event | undefined> {
+    const [event] = await db.select().from(events).where(eq(events.id, id));
+    return event || undefined;
+  }
+
+  async createEventRegistration(insertRegistration: InsertEventRegistration): Promise<EventRegistration> {
+    const [registration] = await db.insert(eventRegistrations).values(insertRegistration).returning();
+    return registration;
   }
 
   async createEligibilityCheck(insertEligibilityCheck: InsertEligibilityCheck): Promise<EligibilityCheck> {

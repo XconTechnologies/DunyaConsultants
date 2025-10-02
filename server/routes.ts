@@ -6,7 +6,7 @@ import { getChatbotResponse } from "./chatbot";
 import { 
   insertContactSchema, insertUserEngagementSchema, insertEligibilityCheckSchema, insertConsultationSchema,
   insertAdminUserSchema, insertBlogPostSchema, insertServiceSchema, insertPageSchema, BlogPost, EditingSession, EditRequest,
-  insertCategorySchema, Category, blogPostCategories 
+  insertCategorySchema, Category, blogPostCategories, insertEventRegistrationSchema
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, sql } from "drizzle-orm";
@@ -277,6 +277,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false, 
         message: "Failed to fetch testimonials" 
       });
+    }
+  });
+
+  // Events API routes
+  app.get("/api/events", async (req, res) => {
+    try {
+      const events = await storage.getEvents();
+      res.json(events);
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to fetch events" 
+      });
+    }
+  });
+
+  app.get("/api/events/:id", async (req, res) => {
+    try {
+      const event = await storage.getEventById(parseInt(req.params.id));
+      if (!event) {
+        return res.status(404).json({ success: false, message: "Event not found" });
+      }
+      res.json(event);
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to fetch event" 
+      });
+    }
+  });
+
+  app.post("/api/events/register", async (req, res) => {
+    try {
+      const registrationData = insertEventRegistrationSchema.parse(req.body);
+      const registration = await storage.createEventRegistration(registrationData);
+      res.json({ success: true, registration });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ 
+          success: false, 
+          message: "Invalid registration data", 
+          errors: error.errors 
+        });
+      } else {
+        res.status(500).json({ 
+          success: false, 
+          message: "Failed to submit registration" 
+        });
+      }
     }
   });
 
