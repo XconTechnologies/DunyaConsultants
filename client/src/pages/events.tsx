@@ -154,9 +154,9 @@ export default function EventsPage() {
       </section>
 
       {/* Search and Filter Section - Overlapping */}
-      <section className="relative -mt-32 md:-mt-40 mb-12 z-10">
+      <section className="relative -mt-20 md:-mt-24 mb-8 z-10">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-b from-[#0f3a8a]/8 via-white/98 to-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-2xl backdrop-blur-sm">
+          <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4 items-end">
               {/* City Selection */}
               <div className="space-y-2 lg:col-span-4">
