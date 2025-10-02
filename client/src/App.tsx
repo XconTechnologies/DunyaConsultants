@@ -72,6 +72,7 @@ import PostAssignments from "@/pages/admin/post-assignments";
 import AdminCategoriesPage from "@/pages/admin/categories";
 import AllPosts from "@/pages/admin/posts";
 import MediaManagement from "@/pages/admin/media";
+import EventsManagement from "@/pages/admin/events-management";
 import CategoryPage from "@/pages/category";
 import CategoriesIndexPage from "@/pages/categories";
 
@@ -177,6 +178,7 @@ function Router() {
       <Route path="/admin/login" component={AdminLogin} />
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/admin/posts" component={AllPosts} />
+      <Route path="/admin/events" component={EventsManagement} />
       <Route path="/admin/media" component={MediaManagement} />
       <Route path="/dashboard" component={UserDashboard} />
       <Route path="/admin/users" component={UserManagement} />

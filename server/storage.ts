@@ -27,6 +27,10 @@ export interface IStorage {
   getEvents(): Promise<Event[]>;
   getEventById(id: number): Promise<Event | undefined>;
   createEventRegistration(registration: InsertEventRegistration): Promise<EventRegistration>;
+  getAllEvents(): Promise<Event[]>;
+  createEvent(event: InsertEvent): Promise<Event>;
+  updateEvent(id: number, updates: Partial<InsertEvent>): Promise<Event>;
+  deleteEvent(id: number): Promise<void>;
   createEligibilityCheck(eligibilityCheck: InsertEligibilityCheck): Promise<EligibilityCheck>;
   createConsultation(consultation: InsertConsultation): Promise<Consultation>;
   getConsultations(): Promise<Consultation[]>;
@@ -204,6 +208,27 @@ export class DatabaseStorage implements IStorage {
   async createEventRegistration(insertRegistration: InsertEventRegistration): Promise<EventRegistration> {
     const [registration] = await db.insert(eventRegistrations).values(insertRegistration).returning();
     return registration;
+  }
+
+  async getAllEvents(): Promise<Event[]> {
+    return await db.select().from(events).orderBy(desc(events.eventDate));
+  }
+
+  async createEvent(insertEvent: InsertEvent): Promise<Event> {
+    const [event] = await db.insert(events).values(insertEvent).returning();
+    return event;
+  }
+
+  async updateEvent(id: number, updates: Partial<InsertEvent>): Promise<Event> {
+    const [event] = await db.update(events)
+      .set({ ...updates, updatedAt: new Date() })
+      .where(eq(events.id, id))
+      .returning();
+    return event;
+  }
+
+  async deleteEvent(id: number): Promise<void> {
+    await db.delete(events).where(eq(events.id, id));
   }
 
   async createEligibilityCheck(insertEligibilityCheck: InsertEligibilityCheck): Promise<EligibilityCheck> {

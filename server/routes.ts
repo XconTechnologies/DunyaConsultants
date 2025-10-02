@@ -329,6 +329,51 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Admin Events Management
+  app.get("/api/admin/events", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const events = await storage.getAllEvents();
+      res.json(events);
+    } catch (error) {
+      console.error("Error fetching events:", error);
+      res.status(500).json({ message: "Failed to fetch events" });
+    }
+  });
+
+  app.post("/api/admin/events", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const eventData = req.body;
+      const event = await storage.createEvent(eventData);
+      res.json(event);
+    } catch (error) {
+      console.error("Error creating event:", error);
+      res.status(500).json({ message: "Failed to create event" });
+    }
+  });
+
+  app.patch("/api/admin/events/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const eventData = req.body;
+      const event = await storage.updateEvent(id, eventData);
+      res.json(event);
+    } catch (error) {
+      console.error("Error updating event:", error);
+      res.status(500).json({ message: "Failed to update event" });
+    }
+  });
+
+  app.delete("/api/admin/events/:id", requireAuth, async (req: AuthenticatedRequest, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteEvent(id);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error deleting event:", error);
+      res.status(500).json({ message: "Failed to delete event" });
+    }
+  });
+
   // Engagement tracking routes
   app.post("/api/engagement/track", async (req, res) => {
     try {

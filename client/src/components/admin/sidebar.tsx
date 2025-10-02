@@ -6,7 +6,8 @@ import {
   Tag, 
   BarChart3,
   LogOut,
-  Image
+  Image,
+  Calendar
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { canManageUsers } from "@/lib/permissions";
@@ -23,6 +24,12 @@ const sidebarItems = [
     href: "/admin/posts",
     icon: FileText,
     description: "Manage all blog posts"
+  },
+  {
+    title: "Events",
+    href: "/admin/events",
+    icon: Calendar,
+    description: "Manage events and expos"
   },
   {
     title: "Media",
@@ -97,8 +104,8 @@ export default function AdminSidebar({ currentUser }: AdminSidebarProps) {
       <nav className="flex-1 p-4 space-y-2">
         {sidebarItems
           .filter((item) => {
-            // Always show Dashboard, All Posts, and Media for all users
-            if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || item.href === "/admin/media") {
+            // Always show Dashboard, All Posts, Events, and Media for all users
+            if (item.href === "/admin/dashboard" || item.href === "/admin/posts" || item.href === "/admin/events" || item.href === "/admin/media") {
               return true;
             }
             // Only show admin functions for users with management permissions
