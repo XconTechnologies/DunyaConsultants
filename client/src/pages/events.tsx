@@ -154,17 +154,21 @@ export default function EventsPage() {
       </section>
 
       {/* Search and Filter Section */}
-      <section className="py-8 bg-white border-b">
+      <section className="py-6 md:py-8 bg-white border-b shadow-sm">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-gradient-to-br from-gray-50 to-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-sm">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4 items-end">
               {/* City Selection */}
-              <div className="space-y-2">
-                <Label htmlFor="city-filter" className="text-sm font-medium text-gray-700">
+              <div className="space-y-2 lg:col-span-4">
+                <Label htmlFor="city-filter" className="text-sm font-semibold text-gray-700">
                   Filter by City
                 </Label>
                 <Select value={selectedCity} onValueChange={setSelectedCity}>
-                  <SelectTrigger id="city-filter" data-testid="select-city-filter">
+                  <SelectTrigger 
+                    id="city-filter" 
+                    data-testid="select-city-filter"
+                    className="h-11 border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]"
+                  >
                     <SelectValue placeholder="All Cities" />
                   </SelectTrigger>
                   <SelectContent>
@@ -179,12 +183,16 @@ export default function EventsPage() {
               </div>
 
               {/* Country Selection */}
-              <div className="space-y-2">
-                <Label htmlFor="country-filter" className="text-sm font-medium text-gray-700">
+              <div className="space-y-2 lg:col-span-4">
+                <Label htmlFor="country-filter" className="text-sm font-semibold text-gray-700">
                   Filter by Study Destination
                 </Label>
                 <Select value={selectedCountry} onValueChange={setSelectedCountry}>
-                  <SelectTrigger id="country-filter" data-testid="select-country-filter">
+                  <SelectTrigger 
+                    id="country-filter" 
+                    data-testid="select-country-filter"
+                    className="h-11 border-gray-300 focus:border-[#1D50C9] focus:ring-[#1D50C9]"
+                  >
                     <SelectValue placeholder="All Countries" />
                   </SelectTrigger>
                   <SelectContent>
@@ -199,26 +207,24 @@ export default function EventsPage() {
               </div>
 
               {/* Filter Button */}
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-gray-700 block md:hidden">
+              <div className="space-y-2 lg:col-span-4">
+                <Label className="text-sm font-semibold text-gray-700 hidden lg:block opacity-0">
                   Action
                 </Label>
-                <div className="flex items-end h-full">
-                  <Button
-                    onClick={() => {
-                      // Filters are applied automatically via state, but this gives user feedback
-                      toast({
-                        title: "Filters Applied",
-                        description: `Showing events${selectedCity !== "all" ? ` in ${selectedCity}` : ""}${selectedCountry !== "all" ? ` for ${selectedCountry}` : ""}`,
-                      });
-                    }}
-                    className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] hover:from-[#1845B3] hover:to-[#0f3a8a]"
-                    data-testid="button-apply-filters"
-                  >
-                    <Search className="w-4 h-4 mr-2" />
-                    Search Events
-                  </Button>
-                </div>
+                <Button
+                  onClick={() => {
+                    // Filters are applied automatically via state, but this gives user feedback
+                    toast({
+                      title: "Filters Applied",
+                      description: `Showing events${selectedCity !== "all" ? ` in ${selectedCity}` : ""}${selectedCountry !== "all" ? ` for ${selectedCountry}` : ""}`,
+                    });
+                  }}
+                  className="w-full h-11 bg-gradient-to-r from-[#1D50C9] via-[#1845B3] to-[#0f3a8a] hover:from-[#1845B3] hover:via-[#1D50C9] hover:to-[#1845B3] text-white font-semibold shadow-md hover:shadow-xl transition-all duration-300 hover:animate-bob active:scale-95"
+                  data-testid="button-apply-filters"
+                >
+                  <Search className="w-5 h-5 mr-2" />
+                  Search Events
+                </Button>
               </div>
             </div>
 
