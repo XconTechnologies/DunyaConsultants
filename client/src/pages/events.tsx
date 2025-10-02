@@ -37,16 +37,16 @@ export default function EventsPage() {
 
   // Office cities
   const cities = [
-    "Sargodha", "Lahore", "Islamabad", "Karachi", "Faisalabad",
-    "Gujranwala", "Sialkot", "Gujrat", "Bahawalpur", "Mian Channu",
-    "Mandi Bahauddin", "Sheikhupura", "Multan", "Peshawar", "Jhelum",
-    "Mardan", "Jeddah", "Istanbul", "Cairo"
+    "Bahawalpur", "Cairo", "Faisalabad", "Gujranwala", "Gujrat",
+    "Islamabad", "Istanbul", "Jeddah", "Jhelum", "Karachi",
+    "Lahore", "Mandi Bahauddin", "Mardan", "Mian Channu", "Multan",
+    "Peshawar", "Sargodha", "Sheikhupura", "Sialkot"
   ];
 
   // Study destination countries
   const countries = [
-    "USA", "UK", "Canada", "Australia", "Finland", "Belgium",
-    "Turkey", "Cyprus", "Germany", "Ireland"
+    "Australia", "Belgium", "Canada", "Cyprus", "Finland",
+    "Germany", "Ireland", "Turkey", "UK", "USA"
   ];
 
   const { data: events = [] } = useQuery<Event[]>({
