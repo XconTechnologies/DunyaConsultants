@@ -39,6 +39,8 @@ interface EventFormData {
   image: string;
   eventDate: string;
   location: string;
+  country: string;
+  venue: string;
   eventType: "latest" | "upcoming";
   isActive: boolean;
 }
@@ -63,6 +65,8 @@ export default function EventsManagement() {
     image: "",
     eventDate: "",
     location: "",
+    country: "",
+    venue: "",
     eventType: "upcoming",
     isActive: true,
   });
@@ -222,6 +226,8 @@ export default function EventsManagement() {
       image: "",
       eventDate: "",
       location: "",
+      country: "",
+      venue: "",
       eventType: "upcoming",
       isActive: true,
     });
@@ -249,6 +255,8 @@ export default function EventsManagement() {
       image: event.image,
       eventDate: format(new Date(event.eventDate), "yyyy-MM-dd"),
       location: event.location || "",
+      country: event.country || "",
+      venue: event.venue || "",
       eventType: event.eventType,
       isActive: event.isActive,
     });
@@ -454,14 +462,50 @@ export default function EventsManagement() {
             </div>
 
             <div>
-              <Label htmlFor="location">Venue / Location</Label>
+              <Label htmlFor="location">City / Location</Label>
               <Input
                 id="location"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                placeholder="e.g., Lahore - Pearl Continental Hotel"
+                placeholder="e.g., Lahore"
                 data-testid="input-location"
               />
+            </div>
+
+            <div>
+              <Label htmlFor="venue">Venue</Label>
+              <Input
+                id="venue"
+                value={formData.venue}
+                onChange={(e) => setFormData({ ...formData, venue: e.target.value })}
+                placeholder="e.g., Pearl Continental Hotel"
+                data-testid="input-venue"
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="country">Study Destination Country</Label>
+              <Select
+                value={formData.country}
+                onValueChange={(value) => setFormData({ ...formData, country: value })}
+              >
+                <SelectTrigger id="country" data-testid="select-country">
+                  <SelectValue placeholder="Select country" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">None</SelectItem>
+                  <SelectItem value="USA">USA</SelectItem>
+                  <SelectItem value="UK">UK</SelectItem>
+                  <SelectItem value="Canada">Canada</SelectItem>
+                  <SelectItem value="Australia">Australia</SelectItem>
+                  <SelectItem value="Finland">Finland</SelectItem>
+                  <SelectItem value="Belgium">Belgium</SelectItem>
+                  <SelectItem value="Turkey">Turkey</SelectItem>
+                  <SelectItem value="Cyprus">Cyprus</SelectItem>
+                  <SelectItem value="Germany">Germany</SelectItem>
+                  <SelectItem value="Ireland">Ireland</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div>
@@ -587,13 +631,48 @@ export default function EventsManagement() {
             </div>
 
             <div>
-              <Label htmlFor="edit-location">Venue / Location</Label>
+              <Label htmlFor="edit-location">City / Location</Label>
               <Input
                 id="edit-location"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                placeholder="e.g., Lahore - Pearl Continental Hotel"
+                placeholder="e.g., Lahore"
               />
+            </div>
+
+            <div>
+              <Label htmlFor="edit-venue">Venue</Label>
+              <Input
+                id="edit-venue"
+                value={formData.venue}
+                onChange={(e) => setFormData({ ...formData, venue: e.target.value })}
+                placeholder="e.g., Pearl Continental Hotel"
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="edit-country">Study Destination Country</Label>
+              <Select
+                value={formData.country}
+                onValueChange={(value) => setFormData({ ...formData, country: value })}
+              >
+                <SelectTrigger id="edit-country">
+                  <SelectValue placeholder="Select country" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="">None</SelectItem>
+                  <SelectItem value="USA">USA</SelectItem>
+                  <SelectItem value="UK">UK</SelectItem>
+                  <SelectItem value="Canada">Canada</SelectItem>
+                  <SelectItem value="Australia">Australia</SelectItem>
+                  <SelectItem value="Finland">Finland</SelectItem>
+                  <SelectItem value="Belgium">Belgium</SelectItem>
+                  <SelectItem value="Turkey">Turkey</SelectItem>
+                  <SelectItem value="Cyprus">Cyprus</SelectItem>
+                  <SelectItem value="Germany">Germany</SelectItem>
+                  <SelectItem value="Ireland">Ireland</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             <div>
@@ -678,6 +757,7 @@ export default function EventsManagement() {
       {/* Media Selection Modal */}
       {showMediaModal && (
         <MediaSelectionModal
+          isOpen={showMediaModal}
           onSelect={handleMediaSelect}
           onClose={() => {
             setShowMediaModal(false);

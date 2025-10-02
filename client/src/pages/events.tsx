@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Calendar, MapPin, ArrowRight } from "lucide-react";
+import { Calendar, MapPin, ArrowRight, Search } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { format } from "date-fns";
@@ -21,6 +21,8 @@ export default function EventsPage() {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [selectedCity, setSelectedCity] = useState<string>("all");
+  const [selectedCountry, setSelectedCountry] = useState<string>("all");
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -33,17 +35,34 @@ export default function EventsPage() {
     additionalInfo: ""
   });
 
+  // Office cities
+  const cities = [
+    "Sargodha", "Lahore", "Islamabad", "Karachi", "Faisalabad",
+    "Gujranwala", "Sialkot", "Gujrat", "Bahawalpur", "Mian Channu",
+    "Mandi Bahauddin", "Sheikhupura", "Multan", "Peshawar", "Jhelum",
+    "Mardan", "Jeddah", "Istanbul", "Cairo"
+  ];
+
+  // Study destination countries
+  const countries = [
+    "USA", "UK", "Canada", "Australia", "Finland", "Belgium",
+    "Turkey", "Cyprus", "Germany", "Ireland"
+  ];
+
   const { data: events = [] } = useQuery<Event[]>({
     queryKey: ["/api/events"],
   });
 
   const registerMutation = useMutation({
-    mutationFn: async (data: typeof formData & { eventId: number }) =>
-      apiRequest("/api/events/register", {
+    mutationFn: async (data: typeof formData & { eventId: number }) => {
+      const response = await fetch("/api/events/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
-      }),
+      });
+      if (!response.ok) throw new Error("Failed to register");
+      return response.json();
+    },
     onSuccess: () => {
       toast({
         title: "Registration Successful!",
@@ -76,8 +95,24 @@ export default function EventsPage() {
     });
   };
 
-  const latestEvents = events.filter(e => e.eventType === "latest");
-  const upcomingEvents = events.filter(e => e.eventType === "upcoming");
+  // Filter events based on selected city and country
+  const filterEvents = (eventsList: Event[]) => {
+    return eventsList.filter(event => {
+      const cityMatch = selectedCity === "all" || 
+        event.location?.toLowerCase().includes(selectedCity.toLowerCase());
+      
+      const countryMatch = selectedCountry === "all" || 
+        event.country?.toLowerCase() === selectedCountry.toLowerCase();
+      
+      return cityMatch && countryMatch;
+    });
+  };
+
+  const allLatestEvents = events.filter(e => e.eventType === "latest");
+  const allUpcomingEvents = events.filter(e => e.eventType === "upcoming");
+  
+  const latestEvents = filterEvents(allLatestEvents);
+  const upcomingEvents = filterEvents(allUpcomingEvents);
 
   return (
     <div className="min-h-screen bg-white">
@@ -117,6 +152,148 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
+
+      {/* Search and Filter Section */}
+      <section className="py-8 bg-white border-b">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* City Selection */}
+              <div className="space-y-2">
+                <Label htmlFor="city-filter" className="text-sm font-medium text-gray-700">
+                  Filter by City
+                </Label>
+                <Select value={selectedCity} onValueChange={setSelectedCity}>
+                  <SelectTrigger id="city-filter" data-testid="select-city-filter">
+                    <SelectValue placeholder="All Cities" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Cities</SelectItem>
+                    {cities.map((city) => (
+                      <SelectItem key={city} value={city}>
+                        {city}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Country Selection */}
+              <div className="space-y-2">
+                <Label htmlFor="country-filter" className="text-sm font-medium text-gray-700">
+                  Filter by Study Destination
+                </Label>
+                <Select value={selectedCountry} onValueChange={setSelectedCountry}>
+                  <SelectTrigger id="country-filter" data-testid="select-country-filter">
+                    <SelectValue placeholder="All Countries" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All Countries</SelectItem>
+                    {countries.map((country) => (
+                      <SelectItem key={country} value={country}>
+                        {country}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Filter Button */}
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-gray-700 block md:hidden">
+                  Action
+                </Label>
+                <div className="flex items-end h-full">
+                  <Button
+                    onClick={() => {
+                      // Filters are applied automatically via state, but this gives user feedback
+                      toast({
+                        title: "Filters Applied",
+                        description: `Showing events${selectedCity !== "all" ? ` in ${selectedCity}` : ""}${selectedCountry !== "all" ? ` for ${selectedCountry}` : ""}`,
+                      });
+                    }}
+                    className="w-full bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] hover:from-[#1845B3] hover:to-[#0f3a8a]"
+                    data-testid="button-apply-filters"
+                  >
+                    <Search className="w-4 h-4 mr-2" />
+                    Search Events
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* Active Filters Display */}
+            {(selectedCity !== "all" || selectedCountry !== "all") && (
+              <div className="mt-4 flex items-center gap-2 flex-wrap">
+                <span className="text-sm text-gray-600">Active filters:</span>
+                {selectedCity !== "all" && (
+                  <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
+                    City: {selectedCity}
+                    <button
+                      onClick={() => setSelectedCity("all")}
+                      className="ml-2 hover:text-[#0f3a8a]"
+                      data-testid={`button-clear-city-filter`}
+                    >
+                      ×
+                    </button>
+                  </Badge>
+                )}
+                {selectedCountry !== "all" && (
+                  <Badge variant="secondary" className="bg-[#1D50C9]/10 text-[#1D50C9]">
+                    Country: {selectedCountry}
+                    <button
+                      onClick={() => setSelectedCountry("all")}
+                      className="ml-2 hover:text-[#0f3a8a]"
+                      data-testid={`button-clear-country-filter`}
+                    >
+                      ×
+                    </button>
+                  </Badge>
+                )}
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    setSelectedCity("all");
+                    setSelectedCountry("all");
+                  }}
+                  className="text-sm text-gray-600 hover:text-gray-900"
+                  data-testid="button-clear-all-filters"
+                >
+                  Clear all
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* No Results Message */}
+      {latestEvents.length === 0 && upcomingEvents.length === 0 && (selectedCity !== "all" || selectedCountry !== "all") && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <div className="bg-white p-12 rounded-lg shadow-sm">
+                <Search className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">No Events Found</h3>
+                <p className="text-gray-600 mb-6">
+                  No events match your current filters. Try adjusting your search criteria.
+                </p>
+                <Button
+                  onClick={() => {
+                    setSelectedCity("all");
+                    setSelectedCountry("all");
+                  }}
+                  className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a]"
+                  data-testid="button-clear-filters-no-results"
+                >
+                  Clear All Filters
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Latest Events Section */}
       {latestEvents.length > 0 && (
