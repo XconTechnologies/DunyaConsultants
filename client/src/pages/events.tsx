@@ -119,7 +119,7 @@ export default function EventsPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-32 pb-32 md:pb-40 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center text-white">
@@ -145,7 +145,7 @@ export default function EventsPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto"
+              className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-16"
             >
               Join us at educational events and exhibitions to learn about study abroad opportunities
             </motion.p>
@@ -153,10 +153,10 @@ export default function EventsPage() {
         </div>
       </section>
 
-      {/* Search and Filter Section */}
-      <section className="py-6 md:py-8 bg-white border-b shadow-sm">
+      {/* Search and Filter Section - Overlapping */}
+      <section className="relative -mt-20 md:-mt-24 mb-8 z-10">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-br from-gray-50 to-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-sm">
+          <div className="bg-white p-4 sm:p-6 rounded-xl border border-gray-200 shadow-xl">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 md:gap-4 items-end">
               {/* City Selection */}
               <div className="space-y-2 lg:col-span-4">
