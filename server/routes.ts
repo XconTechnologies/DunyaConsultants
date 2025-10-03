@@ -2728,7 +2728,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       const { originalname, mimetype, size, filename } = req.file;
-      const fileUrl = `/uploads/${filename}`;
+      const fileUrl = `/api/uploads/${filename}`;
 
       const media = await storage.createMedia({
         filename,
