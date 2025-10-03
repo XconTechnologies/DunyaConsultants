@@ -343,6 +343,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/admin/events", requireAuth, async (req: AuthenticatedRequest, res) => {
     try {
       const eventData = req.body;
+      // Convert eventDate string to Date object
+      if (eventData.eventDate && typeof eventData.eventDate === 'string') {
+        eventData.eventDate = new Date(eventData.eventDate);
+      }
       const event = await storage.createEvent(eventData);
       res.json(event);
     } catch (error) {
@@ -355,6 +359,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const id = parseInt(req.params.id);
       const eventData = req.body;
+      // Convert eventDate string to Date object if present
+      if (eventData.eventDate && typeof eventData.eventDate === 'string') {
+        eventData.eventDate = new Date(eventData.eventDate);
+      }
       const event = await storage.updateEvent(id, eventData);
       res.json(event);
     } catch (error) {
