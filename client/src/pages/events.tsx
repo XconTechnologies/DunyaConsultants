@@ -102,7 +102,7 @@ export default function EventsPage() {
         event.location?.toLowerCase().includes(selectedCity.toLowerCase());
       
       const countryMatch = selectedCountry === "all" || 
-        event.country?.toLowerCase() === selectedCountry.toLowerCase();
+        (event.country && Array.isArray(event.country) && event.country.some(c => c.toLowerCase() === selectedCountry.toLowerCase()));
       
       return cityMatch && countryMatch;
     });
@@ -110,28 +110,26 @@ export default function EventsPage() {
 
   // Automatically categorize events based on date
   const today = new Date();
-  const oneMonthFromNow = new Date();
-  oneMonthFromNow.setMonth(today.getMonth() + 1);
+  today.setHours(0, 0, 0, 0); // Set to start of day for accurate comparison
 
-  // Latest/Live Events: Events within 1 month of their date (but not past)
-  const allLatestEvents = events.filter(e => {
-    const eventDate = new Date(e.eventDate);
-    return eventDate >= today && eventDate <= oneMonthFromNow;
-  });
+  // Upcoming Events: All future events (sorted by date ascending - nearest first)
+  const allUpcomingEvents = events
+    .filter(e => {
+      const eventDate = new Date(e.eventDate);
+      eventDate.setHours(0, 0, 0, 0);
+      return eventDate >= today;
+    })
+    .sort((a, b) => new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime());
 
-  // Upcoming Events: Events more than 1 month away
-  const allUpcomingEvents = events.filter(e => {
-    const eventDate = new Date(e.eventDate);
-    return eventDate > oneMonthFromNow;
-  });
-
-  // Past Events: Events whose date has passed
-  const allPastEvents = events.filter(e => {
-    const eventDate = new Date(e.eventDate);
-    return eventDate < today;
-  });
+  // Past Events: Events whose date has passed (sorted by date descending - most recent first)
+  const allPastEvents = events
+    .filter(e => {
+      const eventDate = new Date(e.eventDate);
+      eventDate.setHours(0, 0, 0, 0);
+      return eventDate < today;
+    })
+    .sort((a, b) => new Date(b.eventDate).getTime() - new Date(a.eventDate).getTime());
   
-  const latestEvents = filterEvents(allLatestEvents);
   const upcomingEvents = filterEvents(allUpcomingEvents);
   const pastEvents = filterEvents(allPastEvents);
 
@@ -296,7 +294,7 @@ export default function EventsPage() {
       </section>
 
       {/* No Results Message */}
-      {latestEvents.length === 0 && upcomingEvents.length === 0 && (selectedCity !== "all" || selectedCountry !== "all") && (
+      {upcomingEvents.length === 0 && (selectedCity !== "all" || selectedCountry !== "all") && (
         <section className="py-20 bg-gray-50">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
@@ -322,21 +320,21 @@ export default function EventsPage() {
         </section>
       )}
 
-      {/* Latest Events Section */}
-      {latestEvents.length > 0 && (
+      {/* Upcoming Events Section */}
+      {upcomingEvents.length > 0 && (
         <section className="py-20 bg-gray-50">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4">
-                Live Events
+                Upcoming Events
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Join our live sessions happening right now. Connect instantly, ask questions, and get real-time guidance from our consultants.
+                Explore upcoming webinars, workshops, and info sessions. Reserve your seat today and be the first to learn about study abroad opportunities.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {latestEvents.map((event, index) => (
+              {upcomingEvents.map((event, index) => (
                 <motion.div
                   key={event.id}
                   initial={{ opacity: 0, y: 20 }}
@@ -390,76 +388,9 @@ export default function EventsPage() {
         </section>
       )}
 
-      {/* Upcoming Events Section */}
-      {upcomingEvents.length > 0 && (
-        <section className="py-20 bg-white">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4">
-                Upcoming Events
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Explore upcoming webinars, workshops, and info sessions. Reserve your seat today and be the first to learn about study abroad opportunities.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {upcomingEvents.map((event, index) => (
-                <motion.div
-                  key={event.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="h-full border-0 shadow-lg hover:shadow-[0_20px_50px_rgba(29,80,201,0.3)] transition-shadow duration-300">
-                    <div className="aspect-video overflow-hidden rounded-t-lg">
-                      <img
-                        src={event.image}
-                        alt={event.title}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <CardHeader>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">
-                        {event.title}
-                      </h3>
-                      <div className="flex items-center justify-between text-sm text-gray-600">
-                        {event.location && (
-                          <div className="flex items-center gap-1">
-                            <MapPin className="w-4 h-4" />
-                            <span>{event.location}</span>
-                          </div>
-                        )}
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{format(new Date(event.eventDate), "MMMM d, yyyy")}</span>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-gray-600 mb-4">{event.shortDescription}</p>
-                      <Button
-                        onClick={() => {
-                          setSelectedEvent(event);
-                          setShowRegisterModal(true);
-                        }}
-                        className="w-full bg-white border-0 shadow-md text-gray-900 hover:shadow-[0_10px_30px_rgba(29,80,201,0.2)] hover:animate-bob transition-all duration-300"
-                        data-testid={`button-register-${event.id}`}
-                      >
-                        Reserve Seat
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* Past Events Section */}
       {pastEvents.length > 0 && (
-        <section className="py-20 bg-gray-50">
+        <section className="py-20 bg-white">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4">
