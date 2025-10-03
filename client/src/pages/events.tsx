@@ -108,11 +108,32 @@ export default function EventsPage() {
     });
   };
 
-  const allLatestEvents = events.filter(e => e.eventType === "latest");
-  const allUpcomingEvents = events.filter(e => e.eventType === "upcoming");
+  // Automatically categorize events based on date
+  const today = new Date();
+  const oneMonthFromNow = new Date();
+  oneMonthFromNow.setMonth(today.getMonth() + 1);
+
+  // Latest/Live Events: Events within 1 month of their date (but not past)
+  const allLatestEvents = events.filter(e => {
+    const eventDate = new Date(e.eventDate);
+    return eventDate >= today && eventDate <= oneMonthFromNow;
+  });
+
+  // Upcoming Events: Events more than 1 month away
+  const allUpcomingEvents = events.filter(e => {
+    const eventDate = new Date(e.eventDate);
+    return eventDate > oneMonthFromNow;
+  });
+
+  // Past Events: Events whose date has passed
+  const allPastEvents = events.filter(e => {
+    const eventDate = new Date(e.eventDate);
+    return eventDate < today;
+  });
   
   const latestEvents = filterEvents(allLatestEvents);
   const upcomingEvents = filterEvents(allUpcomingEvents);
+  const pastEvents = filterEvents(allPastEvents);
 
   return (
     <div className="min-h-screen bg-white">
@@ -314,7 +335,7 @@ export default function EventsPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {latestEvents.map((event, index) => (
                 <motion.div
                   key={event.id}
@@ -394,7 +415,7 @@ export default function EventsPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {upcomingEvents.map((event, index) => (
                 <motion.div
                   key={event.id}
@@ -452,6 +473,74 @@ export default function EventsPage() {
                           Register
                         </Button>
                       </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Past Events Section */}
+      {pastEvents.length > 0 && (
+        <section className="py-20 bg-gray-50">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4">
+                Past Events
+              </h2>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Review our previous successful events and exhibitions
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {pastEvents.map((event, index) => (
+                <motion.div
+                  key={event.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-shadow duration-300 opacity-90">
+                    <div className="aspect-video overflow-hidden rounded-t-lg">
+                      <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <CardHeader>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
+                        {event.title}
+                      </h3>
+                      <div className="flex items-center justify-between text-sm text-gray-600">
+                        {event.location && (
+                          <div className="flex items-center gap-1">
+                            <MapPin className="w-4 h-4" />
+                            <span>{event.location}</span>
+                          </div>
+                        )}
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-4 h-4" />
+                          <span>{format(new Date(event.eventDate), "MMMM d, yyyy")}</span>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 mb-4">{event.shortDescription}</p>
+                      <Button
+                        onClick={() => {
+                          setSelectedEvent(event);
+                          setShowDetailsModal(true);
+                        }}
+                        variant="outline"
+                        className="w-full"
+                        data-testid={`button-view-details-${event.id}`}
+                      >
+                        View Details
+                      </Button>
                     </CardContent>
                   </Card>
                 </motion.div>
