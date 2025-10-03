@@ -328,10 +328,10 @@ export default function EventsPage() {
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4">
-                Latest Events
+                Live Events
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Recent educational events and exhibitions
+                Join our live sessions happening right now. Connect instantly, ask questions, and get real-time guidance from our consultants.
               </p>
             </div>
 
@@ -343,7 +343,7 @@ export default function EventsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                  <Card className="h-full border-0 shadow-lg hover:shadow-[0_20px_50px_rgba(29,80,201,0.3)] transition-shadow duration-300">
                     <div className="aspect-video overflow-hidden rounded-t-lg">
                       <img
                         src={event.image}
@@ -411,7 +411,7 @@ export default function EventsPage() {
                 Upcoming Events
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Mark your calendar for these exciting upcoming opportunities
+                Explore upcoming webinars, workshops, and info sessions. Reserve your seat today and be the first to learn about study abroad opportunities.
               </p>
             </div>
 
@@ -423,7 +423,7 @@ export default function EventsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                  <Card className="h-full border-0 shadow-lg hover:shadow-[0_20px_50px_rgba(29,80,201,0.3)] transition-shadow duration-300">
                     <div className="aspect-video overflow-hidden rounded-t-lg">
                       <img
                         src={event.image}
@@ -491,7 +491,7 @@ export default function EventsPage() {
                 Past Events
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Review our previous successful events and exhibitions
+                Browse through past events, recordings, and highlights. Catch up on valuable insights you may have missed.
               </p>
             </div>
 
