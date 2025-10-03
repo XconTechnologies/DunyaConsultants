@@ -26,6 +26,7 @@ export interface IStorage {
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
   getEvents(): Promise<Event[]>;
   getEventById(id: number): Promise<Event | undefined>;
+  getEventBySlug(slug: string): Promise<Event | undefined>;
   createEventRegistration(registration: InsertEventRegistration): Promise<EventRegistration>;
   getAllEvents(): Promise<Event[]>;
   createEvent(event: InsertEvent): Promise<Event>;
@@ -202,6 +203,11 @@ export class DatabaseStorage implements IStorage {
 
   async getEventById(id: number): Promise<Event | undefined> {
     const [event] = await db.select().from(events).where(eq(events.id, id));
+    return event || undefined;
+  }
+
+  async getEventBySlug(slug: string): Promise<Event | undefined> {
+    const [event] = await db.select().from(events).where(eq(events.slug, slug));
     return event || undefined;
   }
 

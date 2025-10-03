@@ -15,6 +15,7 @@ import CostCalculator from "@/pages/cost-calculator";
 import CourseMatchTool from "@/pages/course-match-tool";
 import DocumentChecklist from "@/pages/document-checklist";
 import Events from "@/pages/events";
+import EventDetail from "@/pages/event-detail";
 
 import IELTS from "@/pages/ielts";
 import IELTSExamDay from "@/pages/ielts-exam-day";
@@ -105,6 +106,7 @@ function Router() {
       <Route path="/cost-calculator" component={CostCalculator} />
       <Route path="/course-match-tool" component={CourseMatchTool} />
       <Route path="/document-checklist" component={DocumentChecklist} />
+      <Route path="/events/:slug" component={EventDetail} />
       <Route path="/events" component={Events} />
 
       {/* Blog Routes - Date-based slugs */}

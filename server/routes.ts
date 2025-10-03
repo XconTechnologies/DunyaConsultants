@@ -308,6 +308,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.get("/api/events/slug/:slug", async (req, res) => {
+    try {
+      const event = await storage.getEventBySlug(req.params.slug);
+      if (!event) {
+        return res.status(404).json({ success: false, message: "Event not found" });
+      }
+      res.json(event);
+    } catch (error) {
+      res.status(500).json({ 
+        success: false, 
+        message: "Failed to fetch event" 
+      });
+    }
+  });
+
   app.post("/api/events/register", async (req, res) => {
     try {
       const registrationData = insertEventRegistrationSchema.parse(req.body);
