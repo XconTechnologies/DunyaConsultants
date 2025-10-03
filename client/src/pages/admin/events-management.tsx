@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Dialog,
   DialogContent,
@@ -39,11 +41,23 @@ interface EventFormData {
   image: string;
   eventDate: string;
   location: string;
-  country: string;
+  country: string[];
   venue: string;
-  eventType: "latest" | "upcoming";
   isActive: boolean;
 }
+
+const AVAILABLE_COUNTRIES = [
+  "USA",
+  "UK",
+  "Canada",
+  "Australia",
+  "Finland",
+  "Belgium",
+  "Turkey",
+  "Cyprus",
+  "Germany",
+  "Ireland"
+];
 
 export default function EventsManagement() {
   const [, setLocation] = useLocation();
@@ -65,9 +79,8 @@ export default function EventsManagement() {
     image: "",
     eventDate: "",
     location: "",
-    country: "none",
+    country: [],
     venue: "",
-    eventType: "upcoming",
     isActive: true,
   });
 
@@ -226,9 +239,8 @@ export default function EventsManagement() {
       image: "",
       eventDate: "",
       location: "",
-      country: "none",
+      country: [],
       venue: "",
-      eventType: "upcoming",
       isActive: true,
     });
   };
@@ -242,11 +254,7 @@ export default function EventsManagement() {
       });
       return;
     }
-    const dataToSubmit = {
-      ...formData,
-      country: formData.country === "none" ? "" : formData.country,
-    };
-    createMutation.mutate(dataToSubmit);
+    createMutation.mutate(formData);
   };
 
   const handleEdit = (event: Event) => {
@@ -259,9 +267,8 @@ export default function EventsManagement() {
       image: event.image,
       eventDate: format(new Date(event.eventDate), "yyyy-MM-dd"),
       location: event.location || "",
-      country: event.country || "none",
+      country: event.country || [],
       venue: event.venue || "",
-      eventType: event.eventType,
       isActive: event.isActive,
     });
     setIsEditDialogOpen(true);
@@ -277,11 +284,7 @@ export default function EventsManagement() {
       });
       return;
     }
-    const dataToSubmit = {
-      ...formData,
-      country: formData.country === "none" ? "" : formData.country,
-    };
-    updateMutation.mutate({ id: editingEvent.id, data: dataToSubmit });
+    updateMutation.mutate({ id: editingEvent.id, data: formData });
   };
 
   const handleDelete = (id: number) => {
@@ -492,44 +495,55 @@ export default function EventsManagement() {
             </div>
 
             <div>
-              <Label htmlFor="country">Study Destination Country</Label>
-              <Select
-                value={formData.country}
-                onValueChange={(value) => setFormData({ ...formData, country: value })}
-              >
-                <SelectTrigger id="country" data-testid="select-country">
-                  <SelectValue placeholder="Select country" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">None</SelectItem>
-                  <SelectItem value="USA">USA</SelectItem>
-                  <SelectItem value="UK">UK</SelectItem>
-                  <SelectItem value="Canada">Canada</SelectItem>
-                  <SelectItem value="Australia">Australia</SelectItem>
-                  <SelectItem value="Finland">Finland</SelectItem>
-                  <SelectItem value="Belgium">Belgium</SelectItem>
-                  <SelectItem value="Turkey">Turkey</SelectItem>
-                  <SelectItem value="Cyprus">Cyprus</SelectItem>
-                  <SelectItem value="Germany">Germany</SelectItem>
-                  <SelectItem value="Ireland">Ireland</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label htmlFor="eventType">Event Type</Label>
-              <Select
-                value={formData.eventType}
-                onValueChange={(value: "latest" | "upcoming") => setFormData({ ...formData, eventType: value })}
-              >
-                <SelectTrigger data-testid="select-event-type">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="upcoming">Upcoming</SelectItem>
-                  <SelectItem value="latest">Latest</SelectItem>
-                </SelectContent>
-              </Select>
+              <Label>Study Destination Countries (Multi-select)</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-left font-normal"
+                    data-testid="button-country-select"
+                  >
+                    {formData.country.length === 0
+                      ? "Select countries"
+                      : `${formData.country.length} selected: ${formData.country.join(", ")}`}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-full p-4" align="start">
+                  <div className="space-y-2">
+                    {AVAILABLE_COUNTRIES.map((countryOption) => (
+                      <div key={countryOption} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`country-${countryOption}`}
+                          checked={formData.country.includes(countryOption)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setFormData({
+                                ...formData,
+                                country: [...formData.country, countryOption]
+                              });
+                            } else {
+                              setFormData({
+                                ...formData,
+                                country: formData.country.filter((c) => c !== countryOption)
+                              });
+                            }
+                          }}
+                          data-testid={`checkbox-country-${countryOption.toLowerCase()}`}
+                        />
+                        <label
+                          htmlFor={`country-${countryOption}`}
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          {countryOption}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+              <p className="text-xs text-gray-500 mt-1">
+                Event type is automatically determined based on the event date
+              </p>
             </div>
 
             <div>
@@ -659,44 +673,53 @@ export default function EventsManagement() {
             </div>
 
             <div>
-              <Label htmlFor="edit-country">Study Destination Country</Label>
-              <Select
-                value={formData.country}
-                onValueChange={(value) => setFormData({ ...formData, country: value })}
-              >
-                <SelectTrigger id="edit-country">
-                  <SelectValue placeholder="Select country" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">None</SelectItem>
-                  <SelectItem value="USA">USA</SelectItem>
-                  <SelectItem value="UK">UK</SelectItem>
-                  <SelectItem value="Canada">Canada</SelectItem>
-                  <SelectItem value="Australia">Australia</SelectItem>
-                  <SelectItem value="Finland">Finland</SelectItem>
-                  <SelectItem value="Belgium">Belgium</SelectItem>
-                  <SelectItem value="Turkey">Turkey</SelectItem>
-                  <SelectItem value="Cyprus">Cyprus</SelectItem>
-                  <SelectItem value="Germany">Germany</SelectItem>
-                  <SelectItem value="Ireland">Ireland</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
-            <div>
-              <Label htmlFor="edit-eventType">Event Type</Label>
-              <Select
-                value={formData.eventType}
-                onValueChange={(value: "latest" | "upcoming") => setFormData({ ...formData, eventType: value })}
-              >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="upcoming">Upcoming</SelectItem>
-                  <SelectItem value="latest">Latest</SelectItem>
-                </SelectContent>
-              </Select>
+              <Label>Study Destination Countries (Multi-select)</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-left font-normal"
+                  >
+                    {formData.country.length === 0
+                      ? "Select countries"
+                      : `${formData.country.length} selected: ${formData.country.join(", ")}`}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-full p-4" align="start">
+                  <div className="space-y-2">
+                    {AVAILABLE_COUNTRIES.map((countryOption) => (
+                      <div key={countryOption} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`edit-country-${countryOption}`}
+                          checked={formData.country.includes(countryOption)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setFormData({
+                                ...formData,
+                                country: [...formData.country, countryOption]
+                              });
+                            } else {
+                              setFormData({
+                                ...formData,
+                                country: formData.country.filter((c) => c !== countryOption)
+                              });
+                            }
+                          }}
+                        />
+                        <label
+                          htmlFor={`edit-country-${countryOption}`}
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          {countryOption}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+              <p className="text-xs text-gray-500 mt-1">
+                Event type is automatically determined based on the event date
+              </p>
             </div>
 
             <div>
