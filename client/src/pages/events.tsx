@@ -322,7 +322,7 @@ export default function EventsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="h-full hover:shadow-xl transition-shadow duration-300">
+                  <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div className="aspect-video overflow-hidden rounded-t-lg">
                       <img
                         src={event.image}
@@ -331,20 +331,20 @@ export default function EventsPage() {
                       />
                     </div>
                     <CardHeader>
-                      <CardTitle className="text-xl font-bold text-gray-900">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
                         {event.title}
-                      </CardTitle>
-                      <div className="flex flex-col gap-2 text-sm text-gray-600 mt-2">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" />
-                          <span>{format(new Date(event.eventDate), "MMMM d, yyyy")}</span>
-                        </div>
+                      </h3>
+                      <div className="flex items-center justify-between text-sm text-gray-600">
                         {event.location && (
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
                             <MapPin className="w-4 h-4" />
                             <span>{event.location}</span>
                           </div>
                         )}
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-4 h-4" />
+                          <span>{format(new Date(event.eventDate), "MMMM d, yyyy")}</span>
+                        </div>
                       </div>
                     </CardHeader>
                     <CardContent>
@@ -402,7 +402,7 @@ export default function EventsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="h-full hover:shadow-xl transition-shadow duration-300">
+                  <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div className="aspect-video overflow-hidden rounded-t-lg">
                       <img
                         src={event.image}
@@ -411,20 +411,20 @@ export default function EventsPage() {
                       />
                     </div>
                     <CardHeader>
-                      <CardTitle className="text-xl font-bold text-gray-900">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">
                         {event.title}
-                      </CardTitle>
-                      <div className="flex flex-col gap-2 text-sm text-gray-600 mt-2">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" />
-                          <span>{format(new Date(event.eventDate), "MMMM d, yyyy")}</span>
-                        </div>
+                      </h3>
+                      <div className="flex items-center justify-between text-sm text-gray-600">
                         {event.location && (
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-1">
                             <MapPin className="w-4 h-4" />
                             <span>{event.location}</span>
                           </div>
                         )}
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-4 h-4" />
+                          <span>{format(new Date(event.eventDate), "MMMM d, yyyy")}</span>
+                        </div>
                       </div>
                     </CardHeader>
                     <CardContent>
