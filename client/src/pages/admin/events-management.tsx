@@ -65,7 +65,7 @@ export default function EventsManagement() {
     image: "",
     eventDate: "",
     location: "",
-    country: "",
+    country: "none",
     venue: "",
     eventType: "upcoming",
     isActive: true,
@@ -226,7 +226,7 @@ export default function EventsManagement() {
       image: "",
       eventDate: "",
       location: "",
-      country: "",
+      country: "none",
       venue: "",
       eventType: "upcoming",
       isActive: true,
@@ -242,7 +242,11 @@ export default function EventsManagement() {
       });
       return;
     }
-    createMutation.mutate(formData);
+    const dataToSubmit = {
+      ...formData,
+      country: formData.country === "none" ? "" : formData.country,
+    };
+    createMutation.mutate(dataToSubmit);
   };
 
   const handleEdit = (event: Event) => {
@@ -255,7 +259,7 @@ export default function EventsManagement() {
       image: event.image,
       eventDate: format(new Date(event.eventDate), "yyyy-MM-dd"),
       location: event.location || "",
-      country: event.country || "",
+      country: event.country || "none",
       venue: event.venue || "",
       eventType: event.eventType,
       isActive: event.isActive,
@@ -273,7 +277,11 @@ export default function EventsManagement() {
       });
       return;
     }
-    updateMutation.mutate({ id: editingEvent.id, data: formData });
+    const dataToSubmit = {
+      ...formData,
+      country: formData.country === "none" ? "" : formData.country,
+    };
+    updateMutation.mutate({ id: editingEvent.id, data: dataToSubmit });
   };
 
   const handleDelete = (id: number) => {
@@ -493,7 +501,7 @@ export default function EventsManagement() {
                   <SelectValue placeholder="Select country" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">None</SelectItem>
+                  <SelectItem value="none">None</SelectItem>
                   <SelectItem value="USA">USA</SelectItem>
                   <SelectItem value="UK">UK</SelectItem>
                   <SelectItem value="Canada">Canada</SelectItem>
@@ -660,7 +668,7 @@ export default function EventsManagement() {
                   <SelectValue placeholder="Select country" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">None</SelectItem>
+                  <SelectItem value="none">None</SelectItem>
                   <SelectItem value="USA">USA</SelectItem>
                   <SelectItem value="UK">UK</SelectItem>
                   <SelectItem value="Canada">Canada</SelectItem>
