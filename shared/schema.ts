@@ -353,7 +353,7 @@ export const events = pgTable("events", {
   eventDate: timestamp("event_date").notNull(),
   eventType: text("event_type", { enum: ["latest", "upcoming"] }).notNull(),
   location: text("location"),
-  country: text("country"),
+  country: text("country").array(),
   venue: text("venue"),
   isActive: boolean("is_active").default(true).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
