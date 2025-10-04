@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import ElevenLabsWidget from "@/components/ElevenLabsWidget";
 import { useEffect } from "react";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
@@ -196,6 +197,7 @@ function Router() {
       <Route component={NotFound} />
     </Switch>
     <WhatsAppButton />
+    <ElevenLabsWidget />
     </>
   );
 }
