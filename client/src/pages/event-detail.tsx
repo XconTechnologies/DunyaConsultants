@@ -462,7 +462,7 @@ export default function EventDetailPage() {
             <Button 
               variant="outline" 
               onClick={() => setShowRegisterModal(false)}
-              className="w-full sm:w-auto px-8 h-11 border-2 hover:bg-gray-50"
+              className="w-full sm:w-auto px-8 h-11 border-2 border-[#dadada] hover:bg-gray-50"
             >
               Cancel
             </Button>
