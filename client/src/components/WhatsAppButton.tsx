@@ -24,8 +24,8 @@ export default function WhatsAppButton() {
 
   return (
     <>
-      {/* ElevenLabs ConvAI Widget - 20px left of WhatsApp button */}
-      <div className="fixed bottom-6 z-50" style={{ right: '92px' }}>
+      {/* ElevenLabs ConvAI Widget - 26px left of WhatsApp button */}
+      <div className="fixed bottom-6 z-50" style={{ right: '98px' }}>
         <elevenlabs-convai agent-id="agent_2801k4yyfeq3f209wvk3xzbjdpt7"></elevenlabs-convai>
       </div>
 
