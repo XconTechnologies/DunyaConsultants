@@ -141,22 +141,29 @@ export default function EventDetailPage() {
             transition={{ duration: 0.8 }}
             className="text-white"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{event.title}</h1>
-            <div className="inline-flex flex-wrap items-center justify-center gap-4 bg-[#FF6B35] px-6 py-3 rounded-full">
-              <div className="flex items-center gap-2 text-white">
-                <Calendar className="w-5 h-5" />
-                <span className="font-medium">{format(eventDate, "EEEE, MMMM d, yyyy")}</span>
+            {/* Date and Venue Tickers */}
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFB088] to-[#FFA366] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 160, 102, 0.4)' }}>
+                <Calendar className="w-4 h-4 text-white" />
+                <span className="font-semibold text-white text-sm">{format(eventDate, "EEEE, MMMM d, yyyy")}</span>
               </div>
               {event.location && (
-                <>
-                  <div className="w-1 h-1 bg-white rounded-full"></div>
-                  <div className="flex items-center gap-2 text-white">
-                    <MapPin className="w-5 h-5" />
-                    <span className="font-medium">{event.location}</span>
-                  </div>
-                </>
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFB088] to-[#FFA366] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 160, 102, 0.4)' }}>
+                  <MapPin className="w-4 h-4 text-white" />
+                  <span className="font-semibold text-white text-sm">{event.location}</span>
+                </div>
               )}
             </div>
+
+            {/* Event Title */}
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">{event.title}</h1>
+            
+            {/* Short Description */}
+            {event.shortDescription && (
+              <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+                {event.shortDescription}
+              </p>
+            )}
           </motion.div>
         </div>
       </section>
