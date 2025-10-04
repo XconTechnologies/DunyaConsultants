@@ -322,7 +322,7 @@ export default function EventsPage() {
 
       {/* Upcoming Events Section */}
       {upcomingEvents.length > 0 && (
-        <section className="py-20 bg-gray-50">
+        <section className="pt-10 pb-20 bg-gray-50">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent mb-4">
