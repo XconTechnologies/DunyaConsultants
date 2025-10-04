@@ -341,80 +341,121 @@ export default function EventDetailPage() {
           </DialogHeader>
           <div className="space-y-5 mt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-semibold text-gray-700">Full Name *</Label>
+              {/* Full Name - Floating Label */}
+              <div className="relative">
                 <Input
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="John Doe"
+                  placeholder=" "
                   required
-                  className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
+                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
                   data-testid="input-name"
                 />
+                <Label 
+                  htmlFor="name" 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                >
+                  Full Name *
+                </Label>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-semibold text-gray-700">Email Address *</Label>
+
+              {/* Email - Floating Label */}
+              <div className="relative">
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="john@example.com"
+                  placeholder=" "
                   required
-                  className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
+                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
                   data-testid="input-email"
                 />
+                <Label 
+                  htmlFor="email" 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                >
+                  Email Address *
+                </Label>
               </div>
             </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-sm font-semibold text-gray-700">Phone Number *</Label>
+              {/* Phone - Floating Label */}
+              <div className="relative">
                 <Input
                   id="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  placeholder="+92 300 1234567"
+                  placeholder=" "
                   required
-                  className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
+                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
                   data-testid="input-phone"
                 />
+                <Label 
+                  htmlFor="phone" 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                >
+                  Phone Number *
+                </Label>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="education" className="text-sm font-semibold text-gray-700">Education Level</Label>
+
+              {/* Education Level - Floating Label */}
+              <div className="relative">
                 <Input
                   id="education"
                   value={formData.education}
                   onChange={(e) => setFormData({ ...formData, education: e.target.value })}
-                  placeholder="Bachelor's, Master's, PhD"
-                  className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
+                  placeholder=" "
+                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
                   data-testid="input-education"
                 />
+                <Label 
+                  htmlFor="education" 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                >
+                  Education Level
+                </Label>
               </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="destination" className="text-sm font-semibold text-gray-700">Preferred Study Destination</Label>
+
+            {/* Preferred Study Destination - Floating Label */}
+            <div className="relative">
               <Input
                 id="destination"
                 value={formData.destination}
                 onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                placeholder="USA, UK, Canada, Australia, etc."
-                className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
+                placeholder=" "
+                className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
                 data-testid="input-destination"
               />
+              <Label 
+                htmlFor="destination" 
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+              >
+                Preferred Study Destination
+              </Label>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="additionalInfo" className="text-sm font-semibold text-gray-700">Additional Information</Label>
+
+            {/* Additional Information - Floating Label */}
+            <div className="relative">
               <Textarea
                 id="additionalInfo"
                 value={formData.additionalInfo}
                 onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
-                placeholder="Any questions or special requirements..."
+                placeholder=" "
                 rows={4}
-                className="border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors resize-none"
+                className="border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all resize-none peer pt-6 pb-2 px-4"
                 data-testid="textarea-additional-info"
               />
+              <Label 
+                htmlFor="additionalInfo" 
+                className="absolute left-4 top-6 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+              >
+                Additional Information
+              </Label>
             </div>
           </div>
           <DialogFooter className="flex flex-col sm:flex-row gap-3 sm:justify-center mt-6">
