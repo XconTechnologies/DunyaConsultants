@@ -132,9 +132,9 @@ export default function EventDetailPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] min-h-[400px] overflow-hidden flex items-center justify-center">
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] min-h-[400px] overflow-hidden flex items-center justify-center py-16">
         <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 text-center flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
