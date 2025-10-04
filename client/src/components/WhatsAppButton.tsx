@@ -17,10 +17,30 @@ export default function WhatsAppButton() {
 
   return (
     <>
-      {/* WhatsApp Button */}
+      <style>{`
+        .whatsapp-button {
+          position: fixed;
+          bottom: 26px;
+          right: 26px;
+          z-index: 1000;
+        }
+
+        .whatsapp-button img {
+          width: 60px;
+          height: 60px;
+        }
+
+        .convai-widget {
+          position: fixed;
+          bottom: 26px;
+          right: calc(26px + 60px + 26px);
+          z-index: 999;
+        }
+      `}</style>
+
       <a 
         href="https://wa.me/923261111947" 
-        className="fixed bottom-[26px] right-[26px] z-[1000]" 
+        className="whatsapp-button" 
         target="_blank" 
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -29,30 +49,13 @@ export default function WhatsAppButton() {
           src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
           alt="WhatsApp" 
           width="60" 
-          height="60"
-          className="w-[60px] h-[60px]"
+          height="60" 
         />
       </a>
 
-      {/* ElevenLabs Convai Widget */}
-      <elevenlabs-convai 
-        agent-id="agent_2801k4yyfeq3f209wvk3xzbjdpt7"
-        style={{
-          position: 'fixed',
-          bottom: '26px',
-          right: '112px',
-          zIndex: 999
-        }}
-      />
-
-      <style>{`
-        elevenlabs-convai {
-          position: fixed !important;
-          bottom: 26px !important;
-          right: 112px !important;
-          z-index: 999 !important;
-        }
-      `}</style>
+      <div className="convai-widget">
+        <elevenlabs-convai agent-id="agent_2801k4yyfeq3f209wvk3xzbjdpt7"></elevenlabs-convai>
+      </div>
     </>
   );
 }
