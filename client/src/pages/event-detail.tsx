@@ -132,36 +132,29 @@ export default function EventDetailPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] py-20 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] min-h-[400px] overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <Button
-            onClick={() => setLocation("/events")}
-            variant="ghost"
-            className="text-white hover:bg-white/10 mb-6"
-            data-testid="button-back-to-events"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Events
-          </Button>
-          
+        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-white"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">{event.title}</h1>
-            <div className="flex flex-wrap gap-4 text-lg">
-              <div className="flex items-center gap-2">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">{event.title}</h1>
+            <div className="inline-flex flex-wrap items-center justify-center gap-4 bg-[#FF6B35] px-6 py-3 rounded-full">
+              <div className="flex items-center gap-2 text-white">
                 <Calendar className="w-5 h-5" />
-                <span>{format(eventDate, "EEEE, MMMM d, yyyy")}</span>
+                <span className="font-medium">{format(eventDate, "EEEE, MMMM d, yyyy")}</span>
               </div>
               {event.location && (
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5" />
-                  <span>{event.location}</span>
-                </div>
+                <>
+                  <div className="w-1 h-1 bg-white rounded-full"></div>
+                  <div className="flex items-center gap-2 text-white">
+                    <MapPin className="w-5 h-5" />
+                    <span className="font-medium">{event.location}</span>
+                  </div>
+                </>
               )}
             </div>
           </motion.div>
