@@ -8,12 +8,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Calendar, MapPin, ArrowLeft } from "lucide-react";
+import { Calendar, MapPin, GraduationCap } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { format } from "date-fns";
 import type { Event } from "@shared/schema";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
+import ReactCountryFlag from "react-country-flag";
 
 export default function EventDetailPage() {
   const [, params] = useRoute("/events/:slug");
@@ -127,6 +128,28 @@ export default function EventDetailPage() {
   const eventDate = new Date(event.eventDate);
   const isPastEvent = eventDate < new Date();
 
+  // Country code mapping for flags
+  const getCountryCode = (country: string): string => {
+    const countryMap: { [key: string]: string } = {
+      "USA": "US",
+      "UK": "GB",
+      "Canada": "CA",
+      "Australia": "AU",
+      "Germany": "DE",
+      "France": "FR",
+      "Ireland": "IE",
+      "Netherlands": "NL",
+      "Finland": "FI",
+      "Belgium": "BE",
+      "Turkey": "TR",
+      "New Zealand": "NZ",
+      "Sweden": "SE",
+      "Denmark": "DK",
+      "Norway": "NO",
+    };
+    return countryMap[country] || "US";
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
@@ -185,15 +208,57 @@ export default function EventDetailPage() {
                   className="w-full h-96 object-cover rounded-xl shadow-lg mb-8"
                 />
                 
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">About This Event</h2>
-                <p className="text-gray-700 text-lg leading-relaxed mb-6 whitespace-pre-wrap">
-                  {event.fullDescription}
-                </p>
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">Event Details</h2>
+                
+                {/* Study Level Section */}
+                {event.studyLevel && Array.isArray(event.studyLevel) && event.studyLevel.length > 0 && (
+                  <div className="mb-8">
+                    <div className="flex items-center gap-2 mb-3">
+                      <GraduationCap className="w-6 h-6 text-[#1D50C9]" />
+                      <h3 className="text-xl font-semibold text-gray-900">Study Level</h3>
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                      {event.studyLevel.map((level) => (
+                        <span key={level} className="px-4 py-2 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white rounded-lg font-medium text-sm">
+                          {level}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-                {event.venue && (
-                  <div className="bg-gray-50 p-6 rounded-xl mb-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">Venue</h3>
-                    <p className="text-gray-700">{event.venue}</p>
+                {/* About This Event */}
+                <div className="mb-8">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">About This Event</h3>
+                  <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-wrap">
+                    {event.fullDescription}
+                  </p>
+                </div>
+
+                {/* Study Destination Cards */}
+                {event.country && Array.isArray(event.country) && event.country.length > 0 && (
+                  <div className="mb-8">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-4">Study Destinations</h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                      {event.country.map((country) => (
+                        <Card key={country} className="bg-gradient-to-br from-[#FF6B35] to-[#FF8C61] border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                          <CardContent className="p-6 text-center">
+                            <ReactCountryFlag
+                              countryCode={getCountryCode(country)}
+                              svg
+                              style={{
+                                width: '64px',
+                                height: '64px',
+                                borderRadius: '50%',
+                                objectFit: 'cover',
+                              }}
+                              className="mx-auto mb-3"
+                            />
+                            <h4 className="text-white font-bold text-lg">{country}</h4>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
                   </div>
                 )}
               </motion.div>
@@ -265,93 +330,105 @@ export default function EventDetailPage() {
 
       {/* Registration Modal */}
       <Dialog open={showRegisterModal} onOpenChange={setShowRegisterModal}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold">Register for {event.title}</DialogTitle>
-            <DialogDescription>
-              Fill in your details below to register for this event.
+            <DialogTitle className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">
+              Register for {event.title}
+            </DialogTitle>
+            <DialogDescription className="text-base">
+              Fill in your details below to secure your spot at this event.
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4">
+          <div className="space-y-5 mt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="name">Full Name *</Label>
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-sm font-semibold text-gray-700">Full Name *</Label>
                 <Input
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="Enter your full name"
+                  placeholder="John Doe"
                   required
+                  className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
                   data-testid="input-name"
                 />
               </div>
-              <div>
-                <Label htmlFor="email">Email *</Label>
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-sm font-semibold text-gray-700">Email Address *</Label>
                 <Input
                   id="email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="Enter your email"
+                  placeholder="john@example.com"
                   required
+                  className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
                   data-testid="input-email"
                 />
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="phone">Phone Number *</Label>
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-sm font-semibold text-gray-700">Phone Number *</Label>
                 <Input
                   id="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  placeholder="Enter your phone number"
+                  placeholder="+92 300 1234567"
                   required
+                  className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
                   data-testid="input-phone"
                 />
               </div>
-              <div>
-                <Label htmlFor="education">Education Level</Label>
+              <div className="space-y-2">
+                <Label htmlFor="education" className="text-sm font-semibold text-gray-700">Education Level</Label>
                 <Input
                   id="education"
                   value={formData.education}
                   onChange={(e) => setFormData({ ...formData, education: e.target.value })}
-                  placeholder="e.g., Bachelor's, Master's"
+                  placeholder="Bachelor's, Master's, PhD"
+                  className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
                   data-testid="input-education"
                 />
               </div>
             </div>
-            <div>
-              <Label htmlFor="destination">Preferred Study Destination</Label>
+            <div className="space-y-2">
+              <Label htmlFor="destination" className="text-sm font-semibold text-gray-700">Preferred Study Destination</Label>
               <Input
                 id="destination"
                 value={formData.destination}
                 onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
-                placeholder="e.g., USA, UK, Canada"
+                placeholder="USA, UK, Canada, Australia, etc."
+                className="h-11 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors"
                 data-testid="input-destination"
               />
             </div>
-            <div>
-              <Label htmlFor="additionalInfo">Additional Information</Label>
+            <div className="space-y-2">
+              <Label htmlFor="additionalInfo" className="text-sm font-semibold text-gray-700">Additional Information</Label>
               <Textarea
                 id="additionalInfo"
                 value={formData.additionalInfo}
                 onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
-                placeholder="Any questions or special requirements?"
+                placeholder="Any questions or special requirements..."
                 rows={4}
+                className="border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-colors resize-none"
                 data-testid="textarea-additional-info"
               />
             </div>
           </div>
-          <DialogFooter>
-            <Button variant="outline" onClick={() => setShowRegisterModal(false)}>
+          <DialogFooter className="flex flex-col sm:flex-row gap-3 sm:justify-center mt-6">
+            <Button 
+              variant="outline" 
+              onClick={() => setShowRegisterModal(false)}
+              className="w-full sm:w-auto px-8 h-11 border-2 hover:bg-gray-50"
+            >
               Cancel
             </Button>
             <Button
               onClick={handleRegister}
               disabled={!formData.name || !formData.email || !formData.phone || registerMutation.isPending}
-              className="bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a]"
+              className="w-full sm:w-auto px-8 h-11 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] text-white hover:shadow-lg transition-all duration-300"
               data-testid="button-submit-registration"
             >
               {registerMutation.isPending ? "Submitting..." : "Register"}
