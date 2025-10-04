@@ -349,12 +349,12 @@ export default function EventDetailPage() {
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder=" "
                   required
-                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
+                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
                   data-testid="input-name"
                 />
                 <Label 
                   htmlFor="name" 
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
                   Full Name *
                 </Label>
@@ -369,12 +369,12 @@ export default function EventDetailPage() {
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder=" "
                   required
-                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
+                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
                   data-testid="input-email"
                 />
                 <Label 
                   htmlFor="email" 
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
                   Email Address *
                 </Label>
@@ -391,12 +391,12 @@ export default function EventDetailPage() {
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   placeholder=" "
                   required
-                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
+                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
                   data-testid="input-phone"
                 />
                 <Label 
                   htmlFor="phone" 
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
                   Phone Number *
                 </Label>
@@ -409,12 +409,12 @@ export default function EventDetailPage() {
                   value={formData.education}
                   onChange={(e) => setFormData({ ...formData, education: e.target.value })}
                   placeholder=" "
-                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
+                  className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
                   data-testid="input-education"
                 />
                 <Label 
                   htmlFor="education" 
-                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
                 >
                   Education Level
                 </Label>
@@ -428,12 +428,12 @@ export default function EventDetailPage() {
                 value={formData.destination}
                 onChange={(e) => setFormData({ ...formData, destination: e.target.value })}
                 placeholder=" "
-                className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer pt-6 pb-2 px-4"
+                className="h-14 border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all peer px-4"
                 data-testid="input-destination"
               />
               <Label 
                 htmlFor="destination" 
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
               >
                 Preferred Study Destination
               </Label>
@@ -447,12 +447,12 @@ export default function EventDetailPage() {
                 onChange={(e) => setFormData({ ...formData, additionalInfo: e.target.value })}
                 placeholder=" "
                 rows={4}
-                className="border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all resize-none peer pt-6 pb-2 px-4"
+                className="border-2 border-gray-200 focus:border-[#1D50C9] rounded-lg transition-all resize-none peer px-4 pt-4"
                 data-testid="textarea-additional-info"
               />
               <Label 
                 htmlFor="additionalInfo" 
-                className="absolute left-4 top-6 text-gray-500 transition-all duration-300 pointer-events-none peer-focus:top-2 peer-focus:text-xs peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:text-gray-600"
+                className="absolute left-3 top-6 text-gray-500 bg-white px-2 transition-all duration-300 pointer-events-none peer-focus:top-0 peer-focus:text-[#1D50C9] peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:text-gray-600"
               >
                 Additional Information
               </Label>
