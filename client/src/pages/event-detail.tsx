@@ -143,12 +143,12 @@ export default function EventDetailPage() {
           >
             {/* Date and Venue Tickers */}
             <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFB088] to-[#FFA366] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 160, 102, 0.4)' }}>
+              <div className="inline-flex items-center gap-2 bg-[#FF6B35] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)' }}>
                 <Calendar className="w-4 h-4 text-white" />
                 <span className="font-semibold text-white text-sm">{format(eventDate, "EEEE, MMMM d, yyyy")}</span>
               </div>
               {event.location && (
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFB088] to-[#FFA366] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 160, 102, 0.4)' }}>
+                <div className="inline-flex items-center gap-2 bg-[#FF6B35] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)' }}>
                   <MapPin className="w-4 h-4 text-white" />
                   <span className="font-semibold text-white text-sm">{event.location}</span>
                 </div>
