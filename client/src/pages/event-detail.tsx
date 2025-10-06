@@ -177,7 +177,6 @@ export default function EventDetailPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navigation />
-
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-24 md:pt-28 lg:pt-32 pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
@@ -217,7 +216,6 @@ export default function EventDetailPage() {
           </div>
         </div>
       </section>
-
       {/* Detail Image Section - Single Image Overlapping */}
       <section className="relative z-10">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 -mt-20">
@@ -239,7 +237,6 @@ export default function EventDetailPage() {
           </motion.div>
         </div>
       </section>
-
       {/* Event Content */}
       <section className="py-12 pb-20 bg-white">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -387,7 +384,6 @@ export default function EventDetailPage() {
           </div>
         </div>
       </section>
-
       {/* Study Destinations Carousel */}
       <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -397,9 +393,7 @@ export default function EventDetailPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">
-              Study Destinations We Deal With
-            </h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">Best Study Abroad Destinations</h2>
             <p className="text-gray-600 text-lg">
               Explore study opportunities in top destinations worldwide
             </p>
@@ -447,7 +441,6 @@ export default function EventDetailPage() {
           </p>
         </div>
       </section>
-
       {/* Registration Modal */}
       <Dialog open={showRegisterModal} onOpenChange={setShowRegisterModal}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
@@ -597,7 +590,6 @@ export default function EventDetailPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-
       <Footer />
     </div>
   );
