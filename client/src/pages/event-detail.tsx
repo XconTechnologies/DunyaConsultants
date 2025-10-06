@@ -167,7 +167,7 @@ export default function EventDetailPage() {
               {/* Event Type Ticker Above Title */}
               {event.eventType && (
                 <div className="flex justify-center mb-6">
-                  <div className="inline-flex items-center gap-2 bg-[#FF6B35] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)' }}>
+                  <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/30">
                     <span className="font-semibold text-white text-sm">{event.eventType}</span>
                   </div>
                 </div>
@@ -176,16 +176,16 @@ export default function EventDetailPage() {
               {/* Event Title */}
               <h1 className="text-4xl md:text-5xl font-bold mb-6">{event.title}</h1>
 
-              {/* Date and Venue Tickers Below Title - White with Blue Text */}
+              {/* Date and Venue Tickers Below Title - Low White Opacity */}
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <div className="inline-flex items-center gap-2 bg-white px-5 py-2.5 rounded-full shadow-lg">
-                  <Calendar className="w-4 h-4 text-[#1D50C9]" />
-                  <span className="font-semibold text-[#1D50C9] text-sm">{format(eventDate, "EEEE, MMMM d, yyyy")}</span>
+                <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/30">
+                  <Calendar className="w-4 h-4 text-white" />
+                  <span className="font-semibold text-white text-sm">{format(eventDate, "EEEE, MMMM d, yyyy")}</span>
                 </div>
                 {event.location && (
-                  <div className="inline-flex items-center gap-2 bg-white px-5 py-2.5 rounded-full shadow-lg">
-                    <MapPin className="w-4 h-4 text-[#1D50C9]" />
-                    <span className="font-semibold text-[#1D50C9] text-sm">{event.location}</span>
+                  <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/30">
+                    <MapPin className="w-4 h-4 text-white" />
+                    <span className="font-semibold text-white text-sm">{event.location}</span>
                   </div>
                 )}
               </div>
