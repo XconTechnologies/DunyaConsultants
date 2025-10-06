@@ -27,7 +27,7 @@ import kadirHasLogo from "@assets/Uni-Logos-3-02-2048x877_1750756376778.jpg";
 import universityOfLawLogo from "@assets/Uni-Logos-3-03-2048x878_1750756376779.jpg";
 
 // Import additional university logos - batch 3 (10 logos)
-import deMontfortLogo from "@assets/Uni-Logos-3-04-2048x877_1750756577519.jpg";
+import deMontfortLogo from "@assets/Group 1000008937_1759736620706.png";
 import gbsGlobalLogo from "@assets/Uni-Logos-3-05-2048x879_1750756577520.jpg";
 import abertayUniversityLogo from "@assets/Uni-Logos-3-06-2048x878_1750756577521.jpg";
 import heriotWattLogo from "@assets/Uni-Logos-3-07-2048x879_1750756577522.jpg";
