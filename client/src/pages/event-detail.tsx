@@ -37,13 +37,19 @@ export default function EventDetailPage() {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const { toast } = useToast();
 
+  const autoplayPlugin = Autoplay({ 
+    delay: 3000, 
+    stopOnInteraction: false, 
+    stopOnMouseEnter: true 
+  });
+
   const [emblaRef] = useEmblaCarousel(
     { 
       loop: true,
       align: 'start',
       slidesToScroll: 1,
     },
-    [Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true })]
+    [autoplayPlugin]
   );
 
   const [formData, setFormData] = useState({
@@ -410,7 +416,7 @@ export default function EventDetailPage() {
                   className="flex-none w-[250px] md:w-[280px]"
                 >
                   <Card className="bg-white hover:shadow-2xl transition-all duration-500 border-0 shadow-lg group cursor-pointer overflow-hidden">
-                    <CardContent className="p-8 text-center">
+                    <CardContent className="p-8 pb-[20px] text-center">
                       <div className="mb-6 transform group-hover:scale-110 transition-transform duration-500">
                         <ReactCountryFlag
                           countryCode={destination.code}
