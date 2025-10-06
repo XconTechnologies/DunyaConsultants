@@ -522,7 +522,7 @@ export default function EventsManagement() {
                       : `${formData.studyLevel.length} selected: ${formData.studyLevel.join(", ")}`}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-full p-4" align="start">
+                <PopoverContent className="w-full p-4 bg-white" align="start">
                   <div className="space-y-2">
                     {STUDY_LEVELS.map((level) => (
                       <div key={level} className="flex items-center space-x-2">
@@ -593,7 +593,7 @@ export default function EventsManagement() {
                       : `${formData.country.length} selected: ${formData.country.join(", ")}`}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-full p-4" align="start">
+                <PopoverContent className="w-full p-4 bg-white" align="start">
                   <div className="space-y-2">
                     {AVAILABLE_COUNTRIES.map((countryOption) => (
                       <div key={countryOption} className="flex items-center space-x-2">
@@ -793,7 +793,7 @@ export default function EventsManagement() {
                       : `${formData.studyLevel.length} selected: ${formData.studyLevel.join(", ")}`}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-full p-4" align="start">
+                <PopoverContent className="w-full p-4 bg-white" align="start">
                   <div className="space-y-2">
                     {STUDY_LEVELS.map((level) => (
                       <div key={level} className="flex items-center space-x-2">
@@ -860,7 +860,7 @@ export default function EventsManagement() {
                       : `${formData.country.length} selected: ${formData.country.join(", ")}`}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-full p-4" align="start">
+                <PopoverContent className="w-full p-4 bg-white" align="start">
                   <div className="space-y-2">
                     {AVAILABLE_COUNTRIES.map((countryOption) => (
                       <div key={countryOption} className="flex items-center space-x-2">
