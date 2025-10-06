@@ -154,53 +154,58 @@ export default function EventDetailPage() {
     <div className="min-h-screen bg-white">
       <Navigation />
 
-      {/* Hero Section - 50% */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] overflow-hidden flex items-center justify-center py-12">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] min-h-[400px] flex items-center justify-center overflow-hidden pb-32">
         <div className="absolute inset-0 bg-black opacity-10"></div>
-        <div className="relative max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 text-center flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-white w-full"
-          >
-            {/* Date and Venue Tickers */}
-            <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
-              <div className="inline-flex items-center gap-2 bg-[#FF6B35] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)' }}>
-                <Calendar className="w-4 h-4 text-white" />
-                <span className="font-semibold text-white text-sm">{format(eventDate, "EEEE, MMMM d, yyyy")}</span>
-              </div>
-              {event.location && (
-                <div className="inline-flex items-center gap-2 bg-[#FF6B35] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)' }}>
-                  <MapPin className="w-4 h-4 text-white" />
-                  <span className="font-semibold text-white text-sm">{event.location}</span>
-                </div>
-              )}
-            </div>
-
-            {/* Event Title */}
-            <h1 className="text-4xl md:text-5xl font-bold mb-8">{event.title}</h1>
-            
-            {/* Detail Image */}
+        <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="text-center text-white">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="w-full max-w-[1200px] mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
             >
-              <img
-                src={event.detailImage || event.image}
-                alt={event.title}
-                className="w-full h-auto object-cover rounded-lg shadow-2xl"
-                style={{ aspectRatio: '1200/500' }}
-              />
+              {/* Date and Venue Tickers */}
+              <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+                <div className="inline-flex items-center gap-2 bg-[#FF6B35] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)' }}>
+                  <Calendar className="w-4 h-4 text-white" />
+                  <span className="font-semibold text-white text-sm">{format(eventDate, "EEEE, MMMM d, yyyy")}</span>
+                </div>
+                {event.location && (
+                  <div className="inline-flex items-center gap-2 bg-[#FF6B35] px-5 py-2.5 rounded-full shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)' }}>
+                    <MapPin className="w-4 h-4 text-white" />
+                    <span className="font-semibold text-white text-sm">{event.location}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Event Title */}
+              <h1 className="text-4xl md:text-5xl font-bold">{event.title}</h1>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Detail Image Section - Overlapping */}
+      <section className="relative z-10 bg-white">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="-translate-y-1/2"
+          >
+            <img
+              src={event.detailImage || event.image}
+              alt={event.title}
+              className="w-full h-auto object-cover rounded-xl shadow-2xl"
+              style={{ aspectRatio: '1200/500' }}
+            />
           </motion.div>
         </div>
       </section>
 
       {/* Event Content */}
-      <section className="py-20 shadow-lg" style={{ boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.1)' }}>
+      <section className="py-8 pb-20 bg-white -mt-32">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
