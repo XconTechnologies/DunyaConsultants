@@ -693,7 +693,7 @@ function BlogPostDetail({ slug }: { slug: string }) {
                     const categorySlug = category.slug || category.name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
                     return (
                       <Link key={index} href={`/category/${categorySlug}`}>
-                        <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white cursor-pointer hover:text-white hover:scale-105 transition-transform duration-200">
+                        <Badge variant="secondary" className="px-4 py-2 text-lg bg-white/20 text-white cursor-pointer hover:!text-white hover:scale-105 transition-all duration-200">
                           <Tag className="w-4 h-4 mr-2" />
                           {category.name}
                         </Badge>
