@@ -15,12 +15,36 @@ import type { Event } from "@shared/schema";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
 import ReactCountryFlag from "react-country-flag";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
+
+const studyDestinations = [
+  { name: "Australia", code: "AU" },
+  { name: "USA", code: "US" },
+  { name: "Canada", code: "CA" },
+  { name: "UK", code: "GB" },
+  { name: "Finland", code: "FI" },
+  { name: "Belgium", code: "BE" },
+  { name: "Cyprus", code: "CY" },
+  { name: "Turkey", code: "TR" },
+  { name: "Germany", code: "DE" },
+  { name: "Sweden", code: "SE" },
+];
 
 export default function EventDetailPage() {
   const [, params] = useRoute("/events/:slug");
   const [, setLocation] = useLocation();
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const { toast } = useToast();
+
+  const [emblaRef] = useEmblaCarousel(
+    { 
+      loop: true,
+      align: 'start',
+      slidesToScroll: 1,
+    },
+    [Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true })]
+  );
 
   const [formData, setFormData] = useState({
     name: "",
@@ -361,6 +385,66 @@ export default function EventDetailPage() {
               </motion.div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Study Destinations Carousel */}
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent">
+              Study Destinations We Deal With
+            </h2>
+            <p className="text-gray-600 text-lg">
+              Explore study opportunities in top destinations worldwide
+            </p>
+          </motion.div>
+
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-6">
+              {studyDestinations.map((destination, index) => (
+                <motion.div
+                  key={destination.code}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="flex-none w-[250px] md:w-[280px]"
+                >
+                  <Card className="bg-white hover:shadow-2xl transition-all duration-500 border-0 shadow-lg group cursor-pointer overflow-hidden">
+                    <CardContent className="p-8 text-center">
+                      <div className="mb-6 transform group-hover:scale-110 transition-transform duration-500">
+                        <ReactCountryFlag
+                          countryCode={destination.code}
+                          svg
+                          style={{
+                            width: '100px',
+                            height: '100px',
+                            borderRadius: '50%',
+                            objectFit: 'cover',
+                            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.15)',
+                          }}
+                          className="mx-auto"
+                        />
+                      </div>
+                      <h3 className="text-2xl font-bold bg-gradient-to-r from-[#1D50C9] to-[#0f3a8a] bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+                        {destination.name}
+                      </h3>
+                      <div className="mt-4 h-1 w-16 bg-gradient-to-r from-[#FF6B35] to-[#FF8C61] mx-auto rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <p className="text-center text-gray-500 text-sm mt-8 italic">
+            Hover to pause • Auto-scrolling carousel
+          </p>
         </div>
       </section>
 
