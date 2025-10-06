@@ -203,7 +203,7 @@ export default function EventDetailPage() {
                 transition={{ duration: 0.6 }}
               >
                 <img
-                  src={event.image}
+                  src={event.detailImage || event.image}
                   alt={event.title}
                   className="w-full h-96 object-cover rounded-xl shadow-lg mb-8"
                 />

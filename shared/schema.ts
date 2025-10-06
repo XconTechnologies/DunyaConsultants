@@ -350,6 +350,7 @@ export const events = pgTable("events", {
   shortDescription: text("short_description").notNull(),
   fullDescription: text("full_description").notNull(),
   image: text("image").notNull(),
+  detailImage: text("detail_image"),
   eventDate: timestamp("event_date").notNull(),
   eventType: text("event_type", { enum: ["latest", "upcoming"] }).notNull(),
   location: text("location"),

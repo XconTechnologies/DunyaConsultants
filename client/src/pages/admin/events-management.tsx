@@ -39,6 +39,7 @@ interface EventFormData {
   shortDescription: string;
   fullDescription: string;
   image: string;
+  detailImage: string;
   eventDate: string;
   eventType: "latest" | "upcoming";
   location: string;
@@ -77,7 +78,7 @@ export default function EventsManagement() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
   const [showMediaModal, setShowMediaModal] = useState(false);
-  const [mediaTargetField, setMediaTargetField] = useState<'image' | null>(null);
+  const [mediaTargetField, setMediaTargetField] = useState<'image' | 'detailImage' | null>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -87,6 +88,7 @@ export default function EventsManagement() {
     shortDescription: "",
     fullDescription: "",
     image: "",
+    detailImage: "",
     eventDate: "",
     eventType: "upcoming",
     location: "",
@@ -249,6 +251,7 @@ export default function EventsManagement() {
       shortDescription: "",
       fullDescription: "",
       image: "",
+      detailImage: "",
       eventDate: "",
       eventType: "upcoming",
       location: "",
@@ -279,6 +282,7 @@ export default function EventsManagement() {
       shortDescription: event.shortDescription,
       fullDescription: event.fullDescription,
       image: event.image,
+      detailImage: event.detailImage || "",
       eventDate: format(new Date(event.eventDate), "yyyy-MM-dd"),
       eventType: event.eventType,
       location: event.location || "",
@@ -312,6 +316,8 @@ export default function EventsManagement() {
   const handleMediaSelect = (media: { url: string }) => {
     if (mediaTargetField === 'image') {
       setFormData({ ...formData, image: media.url });
+    } else if (mediaTargetField === 'detailImage') {
+      setFormData({ ...formData, detailImage: media.url });
     }
     setShowMediaModal(false);
     setMediaTargetField(null);
@@ -626,7 +632,7 @@ export default function EventsManagement() {
             </div>
 
             <div>
-              <Label htmlFor="image">Event Image</Label>
+              <Label htmlFor="image">Card/Thumbnail Image (for event listings) *</Label>
               <div className="flex gap-2">
                 <Input
                   id="image"
@@ -648,8 +654,38 @@ export default function EventsManagement() {
                 </Button>
               </div>
               {formData.image && (
-                <img src={formData.image} alt="Preview" className="mt-2 h-32 object-cover rounded" />
+                <img src={formData.image} alt="Thumbnail Preview" className="mt-2 h-32 object-cover rounded" />
               )}
+            </div>
+
+            <div>
+              <Label htmlFor="detailImage">Event Detail Page Image (optional)</Label>
+              <div className="flex gap-2">
+                <Input
+                  id="detailImage"
+                  value={formData.detailImage}
+                  onChange={(e) => setFormData({ ...formData, detailImage: e.target.value })}
+                  placeholder="Image URL"
+                  data-testid="input-detail-image"
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setMediaTargetField('detailImage');
+                    setShowMediaModal(true);
+                  }}
+                  data-testid="button-select-detail-image"
+                >
+                  Select
+                </Button>
+              </div>
+              {formData.detailImage && (
+                <img src={formData.detailImage} alt="Detail Preview" className="mt-2 h-32 object-cover rounded" />
+              )}
+              <p className="text-xs text-gray-500 mt-1">
+                If not provided, the card/thumbnail image will be used on the event detail page
+              </p>
             </div>
 
             <div>
@@ -862,7 +898,7 @@ export default function EventsManagement() {
             </div>
 
             <div>
-              <Label htmlFor="edit-image">Event Image</Label>
+              <Label htmlFor="edit-image">Card/Thumbnail Image (for event listings) *</Label>
               <div className="flex gap-2">
                 <Input
                   id="edit-image"
@@ -882,8 +918,36 @@ export default function EventsManagement() {
                 </Button>
               </div>
               {formData.image && (
-                <img src={formData.image} alt="Preview" className="mt-2 h-32 object-cover rounded" />
+                <img src={formData.image} alt="Thumbnail Preview" className="mt-2 h-32 object-cover rounded" />
               )}
+            </div>
+
+            <div>
+              <Label htmlFor="edit-detailImage">Event Detail Page Image (optional)</Label>
+              <div className="flex gap-2">
+                <Input
+                  id="edit-detailImage"
+                  value={formData.detailImage}
+                  onChange={(e) => setFormData({ ...formData, detailImage: e.target.value })}
+                  placeholder="Image URL"
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => {
+                    setMediaTargetField('detailImage');
+                    setShowMediaModal(true);
+                  }}
+                >
+                  Select
+                </Button>
+              </div>
+              {formData.detailImage && (
+                <img src={formData.detailImage} alt="Detail Preview" className="mt-2 h-32 object-cover rounded" />
+              )}
+              <p className="text-xs text-gray-500 mt-1">
+                If not provided, the card/thumbnail image will be used on the event detail page
+              </p>
             </div>
 
             <div>
