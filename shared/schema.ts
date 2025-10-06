@@ -254,6 +254,9 @@ export const adminUsers = pgTable("admin_users", {
   }>(),
   isActive: boolean("is_active").default(true).notNull(),
   lastLogin: timestamp("last_login"),
+  trashedAt: timestamp("trashed_at"),
+  trashedBy: integer("trashed_by").references(() => adminUsers.id),
+  trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
@@ -268,6 +271,9 @@ export const categories = pgTable("categories", {
   metaTitle: text("meta_title"),
   metaDescription: text("meta_description"),
   isActive: boolean("is_active").default(true).notNull(),
+  trashedAt: timestamp("trashed_at"),
+  trashedBy: integer("trashed_by").references(() => adminUsers.id),
+  trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -294,6 +300,9 @@ export const blogPosts = pgTable("blog_posts", {
   publishedAt: timestamp("published_at"),
   authorId: integer("author_id").references(() => adminUsers.id),
   approverId: integer("approver_id").references(() => adminUsers.id),
+  trashedAt: timestamp("trashed_at"),
+  trashedBy: integer("trashed_by").references(() => adminUsers.id),
+  trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -358,6 +367,9 @@ export const events = pgTable("events", {
   studyLevel: text("study_level").array(),
   venue: text("venue"),
   isActive: boolean("is_active").default(true).notNull(),
+  trashedAt: timestamp("trashed_at"),
+  trashedBy: integer("trashed_by").references(() => adminUsers.id),
+  trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -396,6 +408,9 @@ export const media = pgTable("media", {
   mimeType: text("mime_type").notNull(),
   size: integer("size").notNull(),
   uploadedBy: integer("uploaded_by").references(() => adminUsers.id).notNull(),
+  trashedAt: timestamp("trashed_at"),
+  trashedBy: integer("trashed_by").references(() => adminUsers.id),
+  trashReason: text("trash_reason"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
