@@ -8,8 +8,8 @@ export default function WhatsAppButton() {
   };
 
   return (
-    <div className="fixed z-50" style={{ right: '240px', bottom: '44px' }}>
-      {/* WhatsApp Button - Positioned to the left of AI widget */}
+    <div className="fixed bottom-6 right-6 z-50">
+      {/* WhatsApp Button */}
       <div
         onClick={handleWhatsAppClick}
         className="w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center cursor-pointer"

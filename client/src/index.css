@@ -852,13 +852,3 @@ p[class*="text-gray-700"] a:hover,
 .ql-faq .ql-stroke {
   display: none !important;
 }
-
-/* ElevenLabs Conversational AI Widget - Border Radius */
-elevenlabs-convai {
-  border-radius: 16px !important;
-}
-
-elevenlabs-convai iframe,
-elevenlabs-convai button {
-  border-radius: 16px !important;
-}
