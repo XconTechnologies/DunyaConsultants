@@ -185,7 +185,7 @@ export default function EventDetailPage() {
         </div>
       </section>
 
-      {/* Detail Image Section - Overlapping */}
+      {/* Detail Image Section - 50/50 Split with Shadow */}
       <section className="relative z-10 bg-white">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -194,12 +194,30 @@ export default function EventDetailPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="-translate-y-1/2"
           >
-            <img
-              src={event.detailImage || event.image}
-              alt={event.title}
-              className="w-full h-auto object-cover rounded-xl shadow-2xl"
-              style={{ aspectRatio: '1200/500' }}
-            />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="w-full">
+                <img
+                  src={event.detailImage || event.image}
+                  alt={event.title}
+                  className="w-full h-auto object-cover rounded-xl"
+                  style={{ 
+                    aspectRatio: '600/400',
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1)'
+                  }}
+                />
+              </div>
+              <div className="w-full">
+                <img
+                  src={event.detailImage || event.image}
+                  alt={event.title}
+                  className="w-full h-auto object-cover rounded-xl"
+                  style={{ 
+                    aspectRatio: '600/400',
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1)'
+                  }}
+                />
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
