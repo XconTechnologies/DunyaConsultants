@@ -155,6 +155,36 @@ export interface IStorage {
   getPostEditRequests(postId: number): Promise<EditRequest[]>;
   updateEditRequestStatus(id: number, status: string, respondedAt?: Date): Promise<EditRequest>;
   deleteEditRequest(id: number): Promise<void>;
+  
+  // Trash Management (Soft Delete)
+  softDeleteMedia(id: number, trashedBy: number, reason?: string): Promise<Media>;
+  softDeleteBlogPost(id: number, trashedBy: number, reason?: string): Promise<BlogPost>;
+  softDeleteCategory(id: number, trashedBy: number, reason?: string): Promise<Category>;
+  softDeleteEvent(id: number, trashedBy: number, reason?: string): Promise<Event>;
+  softDeleteAdminUser(id: number, trashedBy: number, reason?: string): Promise<AdminUser>;
+  
+  // Restore from Trash
+  restoreMedia(id: number): Promise<Media>;
+  restoreBlogPost(id: number): Promise<BlogPost>;
+  restoreCategory(id: number): Promise<Category>;
+  restoreEvent(id: number): Promise<Event>;
+  restoreAdminUser(id: number): Promise<AdminUser>;
+  
+  // Permanent Delete (Purge)
+  purgeMedia(id: number): Promise<void>;
+  purgeBlogPost(id: number): Promise<void>;
+  purgeCategory(id: number): Promise<void>;
+  purgeEvent(id: number): Promise<void>;
+  purgeAdminUser(id: number): Promise<void>;
+  
+  // Get Trashed Items
+  getTrashedItems(type?: string): Promise<{
+    media?: Media[];
+    blogPosts?: BlogPost[];
+    categories?: Category[];
+    events?: Event[];
+    adminUsers?: AdminUser[];
+  }>;
 }
 
 
@@ -1279,6 +1309,222 @@ export class DatabaseStorage implements IStorage {
       }));
       await db.insert(blogPostCategories).values(assignments);
     }
+  }
+  
+  // Trash Management (Soft Delete) Implementations
+  async softDeleteMedia(id: number, trashedBy: number, reason?: string): Promise<Media> {
+    const [trashedMedia] = await db
+      .update(media)
+      .set({
+        trashedAt: new Date(),
+        trashedBy,
+        trashReason: reason || null
+      })
+      .where(eq(media.id, id))
+      .returning();
+    return trashedMedia;
+  }
+  
+  async softDeleteBlogPost(id: number, trashedBy: number, reason?: string): Promise<BlogPost> {
+    const [trashedPost] = await db
+      .update(blogPosts)
+      .set({
+        trashedAt: new Date(),
+        trashedBy,
+        trashReason: reason || null
+      })
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return trashedPost;
+  }
+  
+  async softDeleteCategory(id: number, trashedBy: number, reason?: string): Promise<Category> {
+    const [trashedCategory] = await db
+      .update(categories)
+      .set({
+        trashedAt: new Date(),
+        trashedBy,
+        trashReason: reason || null
+      })
+      .where(eq(categories.id, id))
+      .returning();
+    return trashedCategory;
+  }
+  
+  async softDeleteEvent(id: number, trashedBy: number, reason?: string): Promise<Event> {
+    const [trashedEvent] = await db
+      .update(events)
+      .set({
+        trashedAt: new Date(),
+        trashedBy,
+        trashReason: reason || null
+      })
+      .where(eq(events.id, id))
+      .returning();
+    return trashedEvent;
+  }
+  
+  async softDeleteAdminUser(id: number, trashedBy: number, reason?: string): Promise<AdminUser> {
+    const [trashedUser] = await db
+      .update(adminUsers)
+      .set({
+        trashedAt: new Date(),
+        trashedBy,
+        trashReason: reason || null
+      })
+      .where(eq(adminUsers.id, id))
+      .returning();
+    return trashedUser;
+  }
+  
+  // Restore from Trash Implementations
+  async restoreMedia(id: number): Promise<Media> {
+    const [restoredMedia] = await db
+      .update(media)
+      .set({
+        trashedAt: null,
+        trashedBy: null,
+        trashReason: null
+      })
+      .where(eq(media.id, id))
+      .returning();
+    return restoredMedia;
+  }
+  
+  async restoreBlogPost(id: number): Promise<BlogPost> {
+    const [restoredPost] = await db
+      .update(blogPosts)
+      .set({
+        trashedAt: null,
+        trashedBy: null,
+        trashReason: null
+      })
+      .where(eq(blogPosts.id, id))
+      .returning();
+    return restoredPost;
+  }
+  
+  async restoreCategory(id: number): Promise<Category> {
+    const [restoredCategory] = await db
+      .update(categories)
+      .set({
+        trashedAt: null,
+        trashedBy: null,
+        trashReason: null
+      })
+      .where(eq(categories.id, id))
+      .returning();
+    return restoredCategory;
+  }
+  
+  async restoreEvent(id: number): Promise<Event> {
+    const [restoredEvent] = await db
+      .update(events)
+      .set({
+        trashedAt: null,
+        trashedBy: null,
+        trashReason: null
+      })
+      .where(eq(events.id, id))
+      .returning();
+    return restoredEvent;
+  }
+  
+  async restoreAdminUser(id: number): Promise<AdminUser> {
+    const [restoredUser] = await db
+      .update(adminUsers)
+      .set({
+        trashedAt: null,
+        trashedBy: null,
+        trashReason: null
+      })
+      .where(eq(adminUsers.id, id))
+      .returning();
+    return restoredUser;
+  }
+  
+  // Permanent Delete (Purge) Implementations
+  async purgeMedia(id: number): Promise<void> {
+    await db.delete(media).where(eq(media.id, id));
+  }
+  
+  async purgeBlogPost(id: number): Promise<void> {
+    // First delete related blog post revisions and categories
+    await db.delete(blogPostRevisions).where(eq(blogPostRevisions.postId, id));
+    await db.delete(blogPostCategories).where(eq(blogPostCategories.blogPostId, id));
+    // Then delete the post
+    await db.delete(blogPosts).where(eq(blogPosts.id, id));
+  }
+  
+  async purgeCategory(id: number): Promise<void> {
+    // First remove all blog post category associations
+    await db.delete(blogPostCategories).where(eq(blogPostCategories.categoryId, id));
+    // Then delete the category
+    await db.delete(categories).where(eq(categories.id, id));
+  }
+  
+  async purgeEvent(id: number): Promise<void> {
+    // First delete event registrations
+    await db.delete(eventRegistrations).where(eq(eventRegistrations.eventId, id));
+    // Then delete the event
+    await db.delete(events).where(eq(events.id, id));
+  }
+  
+  async purgeAdminUser(id: number): Promise<void> {
+    await db.delete(adminUsers).where(eq(adminUsers.id, id));
+  }
+  
+  // Get Trashed Items Implementation
+  async getTrashedItems(type?: string): Promise<{
+    media?: Media[];
+    blogPosts?: BlogPost[];
+    categories?: Category[];
+    events?: Event[];
+    adminUsers?: AdminUser[];
+  }> {
+    const result: any = {};
+    
+    if (!type || type === 'media') {
+      result.media = await db
+        .select()
+        .from(media)
+        .where(sql`${media.trashedAt} IS NOT NULL`)
+        .orderBy(desc(media.trashedAt));
+    }
+    
+    if (!type || type === 'blogPosts') {
+      result.blogPosts = await db
+        .select()
+        .from(blogPosts)
+        .where(sql`${blogPosts.trashedAt} IS NOT NULL`)
+        .orderBy(desc(blogPosts.trashedAt));
+    }
+    
+    if (!type || type === 'categories') {
+      result.categories = await db
+        .select()
+        .from(categories)
+        .where(sql`${categories.trashedAt} IS NOT NULL`)
+        .orderBy(desc(categories.trashedAt));
+    }
+    
+    if (!type || type === 'events') {
+      result.events = await db
+        .select()
+        .from(events)
+        .where(sql`${events.trashedAt} IS NOT NULL`)
+        .orderBy(desc(events.trashedAt));
+    }
+    
+    if (!type || type === 'adminUsers') {
+      result.adminUsers = await db
+        .select()
+        .from(adminUsers)
+        .where(sql`${adminUsers.trashedAt} IS NOT NULL`)
+        .orderBy(desc(adminUsers.trashedAt));
+    }
+    
+    return result;
   }
 }
 
