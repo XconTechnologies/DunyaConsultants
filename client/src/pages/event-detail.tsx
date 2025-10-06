@@ -155,7 +155,7 @@ export default function EventDetailPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] min-h-[400px] flex items-center justify-center overflow-hidden pb-32">
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] min-h-[400px] flex items-center justify-center overflow-hidden pb-24">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center text-white">
@@ -185,45 +185,39 @@ export default function EventDetailPage() {
         </div>
       </section>
 
-      {/* Detail Image Section - 50/50 Split with Shadow */}
-      <section className="relative z-10 bg-white">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Detail Image Section - 50/50 Split Overlapping */}
+      <section className="relative z-10">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 -mt-20">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="-translate-y-1/2"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 bg-white rounded-xl shadow-2xl p-1"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div className="w-full">
-                <img
-                  src={event.detailImage || event.image}
-                  alt={event.title}
-                  className="w-full h-auto object-cover rounded-xl"
-                  style={{ 
-                    aspectRatio: '600/400',
-                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1)'
-                  }}
-                />
-              </div>
-              <div className="w-full">
-                <img
-                  src={event.detailImage || event.image}
-                  alt={event.title}
-                  className="w-full h-auto object-cover rounded-xl"
-                  style={{ 
-                    aspectRatio: '600/400',
-                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1)'
-                  }}
-                />
-              </div>
-            </div>
+            <div 
+              className="w-full h-64 lg:h-80 rounded-lg"
+              style={{ 
+                backgroundImage: `url(${event.detailImage || event.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            />
+            <div 
+              className="w-full h-64 lg:h-80 rounded-lg"
+              style={{ 
+                backgroundImage: `url(${event.detailImage || event.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            />
           </motion.div>
         </div>
       </section>
 
       {/* Event Content */}
-      <section className="py-8 pb-20 bg-white -mt-32">
+      <section className="py-12 pb-20 bg-white">
         <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
