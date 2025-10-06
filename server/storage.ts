@@ -198,7 +198,7 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getEvents(): Promise<Event[]> {
-    return await db.select().from(events).where(eq(events.isActive, true)).orderBy(desc(events.eventDate));
+    return await db.select().from(events).where(eq(events.isActive, true)).orderBy(asc(events.eventDate));
   }
 
   async getEventById(id: number): Promise<Event | undefined> {
