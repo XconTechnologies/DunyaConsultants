@@ -155,7 +155,7 @@ export default function EventDetailPage() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] flex items-center justify-center overflow-hidden" style={{ height: '400px', marginTop: '80px' }}>
+      <section className="relative bg-gradient-to-br from-[#1D50C9] to-[#0f3a8a] pt-24 md:pt-28 lg:pt-32 pb-8 overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="text-center text-white">
@@ -166,7 +166,7 @@ export default function EventDetailPage() {
             >
               {/* Event Type Ticker Above Title */}
               {event.eventType && (
-                <div className="flex justify-center mb-6">
+                <div className="flex justify-center mb-4 md:mb-6">
                   <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-5 py-2.5 rounded-full border border-white/30">
                     <span className="font-semibold text-white text-sm">{event.eventType}</span>
                   </div>
@@ -174,7 +174,7 @@ export default function EventDetailPage() {
               )}
 
               {/* Event Title */}
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">{event.title}</h1>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">{event.title}</h1>
 
               {/* Date and Venue Tickers Below Title - Low White Opacity */}
               <div className="flex flex-wrap items-center justify-center gap-3">
@@ -196,7 +196,7 @@ export default function EventDetailPage() {
 
       {/* Detail Image Section - Single Image Overlapping */}
       <section className="relative z-10">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 -mt-28">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 -mt-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
