@@ -227,11 +227,17 @@ export default function EventDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Short Description Ticker */}
+                {/* Short Description with Left Border */}
                 {event.shortDescription && (
                   <div className="mb-8">
-                    <div className="bg-[#FF6B35] px-6 py-4 md:px-8 md:py-5 rounded-xl shadow-lg" style={{ boxShadow: '0 4px 12px rgba(255, 107, 53, 0.4)' }}>
-                      <p className="text-white text-base md:text-lg font-medium leading-relaxed text-center">
+                    <div 
+                      className="px-4 py-4 md:px-6 md:py-5 rounded-xl shadow-lg"
+                      style={{ 
+                        background: 'linear-gradient(to right, #FFE5D9, #FFF0E8)',
+                        borderLeft: '3px solid #FF6B35'
+                      }}
+                    >
+                      <p className="text-gray-800 text-base md:text-lg font-medium leading-relaxed text-left">
                         {event.shortDescription}
                       </p>
                     </div>
