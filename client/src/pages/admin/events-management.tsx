@@ -40,8 +40,10 @@ interface EventFormData {
   fullDescription: string;
   image: string;
   eventDate: string;
+  eventType: "latest" | "upcoming";
   location: string;
   country: string[];
+  studyLevel: string[];
   venue: string;
   isActive: boolean;
 }
@@ -57,6 +59,14 @@ const AVAILABLE_COUNTRIES = [
   "Cyprus",
   "Germany",
   "Ireland"
+];
+
+const STUDY_LEVELS = [
+  "Bachelors",
+  "Masters",
+  "PhD",
+  "Diploma",
+  "Foundation"
 ];
 
 export default function EventsManagement() {
@@ -78,8 +88,10 @@ export default function EventsManagement() {
     fullDescription: "",
     image: "",
     eventDate: "",
+    eventType: "upcoming",
     location: "",
     country: [],
+    studyLevel: [],
     venue: "",
     isActive: true,
   });
@@ -238,8 +250,10 @@ export default function EventsManagement() {
       fullDescription: "",
       image: "",
       eventDate: "",
+      eventType: "upcoming",
       location: "",
       country: [],
+      studyLevel: [],
       venue: "",
       isActive: true,
     });
@@ -266,8 +280,10 @@ export default function EventsManagement() {
       fullDescription: event.fullDescription,
       image: event.image,
       eventDate: format(new Date(event.eventDate), "yyyy-MM-dd"),
+      eventType: event.eventType,
       location: event.location || "",
       country: event.country || [],
+      studyLevel: event.studyLevel || [],
       venue: event.venue || "",
       isActive: event.isActive,
     });
@@ -473,6 +489,69 @@ export default function EventsManagement() {
             </div>
 
             <div>
+              <Label htmlFor="eventType">Event Type *</Label>
+              <select
+                id="eventType"
+                value={formData.eventType}
+                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "latest" | "upcoming" })}
+                className="w-full h-10 px-3 rounded-md border border-input bg-background"
+                data-testid="select-event-type"
+              >
+                <option value="upcoming">Upcoming</option>
+                <option value="latest">Latest</option>
+              </select>
+            </div>
+
+            <div>
+              <Label>Study Levels (Multi-select)</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-left font-normal"
+                    data-testid="button-study-level-select"
+                  >
+                    {formData.studyLevel.length === 0
+                      ? "Select study levels"
+                      : `${formData.studyLevel.length} selected: ${formData.studyLevel.join(", ")}`}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-full p-4" align="start">
+                  <div className="space-y-2">
+                    {STUDY_LEVELS.map((level) => (
+                      <div key={level} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`study-level-${level}`}
+                          checked={formData.studyLevel.includes(level)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setFormData({
+                                ...formData,
+                                studyLevel: [...formData.studyLevel, level]
+                              });
+                            } else {
+                              setFormData({
+                                ...formData,
+                                studyLevel: formData.studyLevel.filter((l) => l !== level)
+                              });
+                            }
+                          }}
+                          data-testid={`checkbox-study-level-${level.toLowerCase()}`}
+                        />
+                        <label
+                          htmlFor={`study-level-${level}`}
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          {level}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
+
+            <div>
               <Label htmlFor="location">City / Location</Label>
               <Input
                 id="location"
@@ -650,6 +729,66 @@ export default function EventsManagement() {
                 value={formData.eventDate}
                 onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
               />
+            </div>
+
+            <div>
+              <Label htmlFor="edit-eventType">Event Type *</Label>
+              <select
+                id="edit-eventType"
+                value={formData.eventType}
+                onChange={(e) => setFormData({ ...formData, eventType: e.target.value as "latest" | "upcoming" })}
+                className="w-full h-10 px-3 rounded-md border border-input bg-background"
+              >
+                <option value="upcoming">Upcoming</option>
+                <option value="latest">Latest</option>
+              </select>
+            </div>
+
+            <div>
+              <Label>Study Levels (Multi-select)</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start text-left font-normal"
+                  >
+                    {formData.studyLevel.length === 0
+                      ? "Select study levels"
+                      : `${formData.studyLevel.length} selected: ${formData.studyLevel.join(", ")}`}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-full p-4" align="start">
+                  <div className="space-y-2">
+                    {STUDY_LEVELS.map((level) => (
+                      <div key={level} className="flex items-center space-x-2">
+                        <Checkbox
+                          id={`edit-study-level-${level}`}
+                          checked={formData.studyLevel.includes(level)}
+                          onCheckedChange={(checked) => {
+                            if (checked) {
+                              setFormData({
+                                ...formData,
+                                studyLevel: [...formData.studyLevel, level]
+                              });
+                            } else {
+                              setFormData({
+                                ...formData,
+                                studyLevel: formData.studyLevel.filter((l) => l !== level)
+                              });
+                            }
+                          }}
+                        />
+                        <label
+                          htmlFor={`edit-study-level-${level}`}
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          {level}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
             </div>
 
             <div>
