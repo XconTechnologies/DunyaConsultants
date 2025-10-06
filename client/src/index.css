@@ -855,18 +855,30 @@ p[class*="text-gray-700"] a:hover,
 
 /* ElevenLabs Conversational AI Widget - Position inside white container */
 elevenlabs-convai {
-  position: fixed !important;
-  bottom: 30px !important;
-  right: 30px !important;
-  z-index: 50 !important;
-  border-radius: 16px !important;
-  overflow: hidden !important;
+  position: relative !important;
+  display: inline-block !important;
+  border-radius: 50% !important;
+  overflow: visible !important;
 }
 
-elevenlabs-convai iframe {
-  border-radius: 16px !important;
+/* Move the widget into the container */
+#elevenlabs-ai-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Target the ElevenLabs button specifically */
 elevenlabs-convai button {
-  border-radius: 16px !important;
+  border-radius: 50% !important;
+  width: 48px !important;
+  height: 48px !important;
+}
+
+@media (max-width: 640px) {
+  elevenlabs-convai button {
+    width: 44px !important;
+    height: 44px !important;
+  }
 }

@@ -94,7 +94,20 @@
     </script>
     
     <!-- ElevenLabs Conversational AI Widget -->
-    <elevenlabs-convai agent-id="agent_2801k4yyfeq3f209wvk3xzbjdpt7"></elevenlabs-convai>
     <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+    <script>
+      // Position ElevenLabs widget inside the container
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const container = document.getElementById('elevenlabs-ai-container');
+          const widget = document.querySelector('elevenlabs-convai');
+          if (container && !container.querySelector('elevenlabs-convai')) {
+            const convaiWidget = document.createElement('elevenlabs-convai');
+            convaiWidget.setAttribute('agent-id', 'agent_2801k4yyfeq3f209wvk3xzbjdpt7');
+            container.appendChild(convaiWidget);
+          }
+        }, 1000);
+      });
+    </script>
   </body>
 </html>
