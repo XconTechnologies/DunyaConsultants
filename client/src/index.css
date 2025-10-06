@@ -853,8 +853,12 @@ p[class*="text-gray-700"] a:hover,
   display: none !important;
 }
 
-/* ElevenLabs Conversational AI Widget - Border Radius */
+/* ElevenLabs Conversational AI Widget - Position inside white container */
 elevenlabs-convai {
+  position: fixed !important;
+  bottom: 30px !important;
+  right: 30px !important;
+  z-index: 50 !important;
   border-radius: 16px !important;
   overflow: hidden !important;
 }
